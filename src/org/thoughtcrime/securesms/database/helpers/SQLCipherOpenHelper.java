@@ -71,8 +71,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV2                           = 23;
   private static final int lokiV3                           = 24;
   private static final int lokiV4                           = 25;
+  private static final int lokiV5                           = 26;
 
-  private static final int    DATABASE_VERSION = lokiV4; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
+  private static final int    DATABASE_VERSION = lokiV5; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -127,6 +128,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiAPIDatabase.getCreateLastMessageServerIDTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateLastDeletionServerIDTableCommand());
     db.execSQL(LokiAPIDatabase.getCreatePairingAuthorisationTableCommand());
+    db.execSQL(LokiAPIDatabase.getCreateUserCountTableCommand());
     db.execSQL(LokiPreKeyBundleDatabase.getCreateTableCommand());
     db.execSQL(LokiPreKeyRecordDatabase.getCreateTableCommand());
     db.execSQL(LokiMessageDatabase.getCreateMessageFriendRequestTableCommand());
@@ -164,6 +166,15 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       SessionStoreMigrationHelper.migrateSessions(context, db);
       PreKeyMigrationHelper.cleanUpPreKeys(context);
     }
+  }
+
+  @Override
+  public void onConfigure(SQLiteDatabase db) {
+    super.onConfigure(db);
+    // Loki: Enable Write Ahead Logging Mode, increase the cache size
+    // This should be disabled if we ever run into serious race condition bugs
+    db.enableWriteAheadLogging();
+    db.execSQL("PRAGMA cache_size = 10000");
   }
 
   @Override
@@ -508,6 +519,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < lokiV4) {
         db.execSQL(LokiMessageDatabase.getCreateMessageToThreadMappingTableCommand());
+      }
+
+      if (oldVersion < lokiV5) {
+        db.execSQL(LokiAPIDatabase.getCreateUserCountTableCommand());
       }
 
       db.setTransactionSuccessful();

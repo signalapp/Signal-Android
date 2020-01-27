@@ -8,7 +8,7 @@
         android:id="@+id/linkpreview_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="6dp"
+        android:padding="@dimen/small_spacing"
         android:background="?linkpreview_background_color">
 
         <org.thoughtcrime.securesms.components.OutlinedThumbnailView
@@ -34,6 +34,7 @@
             android:ellipsize="end"
             android:fontFamily="sans-serif-medium"
             android:maxLines="1"
+            android:textSize="@dimen/medium_font_size"
             android:textColor="?linkpreview_primary_text_color"
             app:layout_constraintEnd_toStartOf="@+id/linkpreview_close"
             app:layout_constraintHorizontal_bias="0.0"
@@ -48,8 +49,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
-            android:textAllCaps="true"
+            android:maxLines="1"
+            android:textSize="@dimen/small_font_size"
             android:textColor="?linkpreview_secondary_text_color"
+            android:alpha="0.6"
             app:layout_constraintStart_toEndOf="@+id/linkpreview_thumbnail"
             app:layout_constraintTop_toBottomOf="@+id/linkpreview_title"
             tools:text="dailybugle.com" />
@@ -82,21 +85,19 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:visibility="visible" />
 
-        <com.pnikosis.materialishprogress.ProgressWheel
+        <com.github.ybq.android.spinkit.SpinKitView
+            style="@style/SpinKitView.DoubleBounce"
             android:id="@+id/linkpreview_progress_wheel"
-            android:layout_width="match_parent"
+            android:layout_width="72dp"
             android:layout_height="72dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="8dp"
-            android:indeterminate="true"
-            android:padding="8dp"
+            android:layout_gravity="center"
+            android:padding="@dimen/small_spacing"
+            app:SpinKit_Color="@color/text"
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/linkpreview_divider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:matProg_barColor="@color/core_blue"
-            app:matProg_progressIndeterminate="true" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 

@@ -18,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.database.SmsMigrator.ProgressDescription;
+import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
 import org.thoughtcrime.securesms.service.ApplicationMigrationService;
 import org.thoughtcrime.securesms.service.ApplicationMigrationService.ImportState;
 
@@ -151,7 +152,7 @@ public class DatabaseMigrationActivity extends PassphraseRequiredActionBarActivi
       if (getIntent().hasExtra("next_intent")) {
         startActivity((Intent)getIntent().getParcelableExtra("next_intent"));
       } else {
-        startActivity(new Intent(this, ConversationListActivity.class));
+        startActivity(new Intent(this, HomeActivity.class));
       }
     }
 

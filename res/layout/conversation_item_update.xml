@@ -10,8 +10,8 @@
     android:gravity="center"
     android:orientation="vertical"
     android:paddingBottom="6dp"
-    android:paddingStart="28dp"
-    android:paddingEnd="28dp"
+    android:paddingStart="48dp"
+    android:paddingEnd="48dp"
     android:paddingTop="8dp">
 
     <LinearLayout
@@ -34,8 +34,8 @@
             style="@style/Signal.Text.Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAllCaps="true"
-            android:textColor="?conversation_item_update_text_color"
+            android:textSize="@dimen/small_font_size"
+            android:textColor="@color/text"
             tools:text="1 hour" />
 
     </LinearLayout>
@@ -56,7 +56,8 @@
             android:autoLink="none"
             android:gravity="center"
             android:linksClickable="true"
-            android:textColor="?attr/conversation_item_update_text_color"
+            android:textSize="@dimen/small_font_size"
+            android:textColor="@color/text"
             tools:text="Gwen Stacy set the disappearing message timer to 1 hour" />
 
         <TextView
@@ -70,8 +71,8 @@
             android:gravity="center"
             android:linksClickable="false"
             android:minWidth="15sp"
-            android:textAllCaps="true"
-            android:textColor="?conversation_item_update_text_color"
+            android:textSize="@dimen/small_font_size"
+            android:textColor="@color/text"
             tools:text="30 min ago" />
 
     </LinearLayout>

@@ -67,11 +67,14 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
 import org.thoughtcrime.securesms.loki.BackgroundPollWorker;
+import org.thoughtcrime.securesms.loki.BackgroundPublicChatPollWorker;
 import org.thoughtcrime.securesms.loki.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.LokiPublicChatManager;
 import org.thoughtcrime.securesms.loki.LokiRSSFeedPoller;
 import org.thoughtcrime.securesms.loki.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
+import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
+import org.thoughtcrime.securesms.loki.redesign.utilities.Broadcaster;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -150,6 +153,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private LokiRSSFeedPoller lokiMessengerUpdatesFeedPoller = null;
   private LokiPublicChatManager lokiPublicChatManager = null;
   private LokiPublicChatAPI lokiPublicChatAPI = null;
+  public Broadcaster broadcaster = null;
   public SignalCommunicationModule communicationModule;
   public MixpanelAPI mixpanel;
 
@@ -163,6 +167,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   public void onCreate() {
     super.onCreate();
     Log.i(TAG, "onCreate()");
+    broadcaster = new Broadcaster(this);
     checkNeedsDatabaseReset();
     startKovenant();
     initializeSecurityProvider();
@@ -198,8 +203,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       mixpanel.trackMap(event, properties);
       return Unit.INSTANCE;
     };
-    // Loki - Set up public chat manager
-    lokiPublicChatManager = new LokiPublicChatManager(this);
     // Loki - Set the cache
     LokiDotNetAPI.setCache(new Cache(this.getCacheDir(), OK_HTTP_CACHE_SIZE));
     // Loki - Update device mappings
@@ -209,6 +212,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         checkNeedsRevocation();
       }
     }
+    // Loki - Set up public chat manager
+    lokiPublicChatManager = new LokiPublicChatManager(this);
     updatePublicChatProfileAvatarIfNeeded();
   }
 
@@ -377,7 +382,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     DirectoryRefreshListener.schedule(this);
     LocalBackupListener.schedule(this);
     RotateSenderCertificateListener.schedule(this);
-    BackgroundPollWorker.schedule(this); // Loki
+    BackgroundPollWorker.schedule(this); // Session
+    BackgroundPublicChatPollWorker.schedule(this); // Session
 
     if (BuildConfig.PLAY_STORE_DISABLED) {
       UpdateApkRefreshListener.schedule(this);
@@ -505,7 +511,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     if (userHexEncodedPublicKey == null) return;
     LokiAPIDatabase lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(this);
     Context context = this;
-    lokiLongPoller = new LokiLongPoller(userHexEncodedPublicKey, lokiAPIDatabase, protos -> {
+    lokiLongPoller = new LokiLongPoller(userHexEncodedPublicKey, lokiAPIDatabase, broadcaster, protos -> {
       for (SignalServiceProtos.Envelope proto : protos) {
         new PushContentReceiveJob(context).processEnvelope(new SignalServiceEnvelope(proto));
       }
@@ -605,7 +611,12 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   public void updatePublicChatProfileAvatarIfNeeded() {
     AsyncTask.execute(() -> {
-      LokiPublicChatAPI publicChatAPI = getLokiPublicChatAPI();
+      LokiPublicChatAPI publicChatAPI = null;
+      try {
+        publicChatAPI = getLokiPublicChatAPI();
+      } catch (Exception e) {
+        // Do nothing
+      }
       if (publicChatAPI != null) {
         byte[] profileKey = ProfileKeyUtil.getProfileKey(this);
         String url = TextSecurePreferences.getProfileAvatarUrl(this);
@@ -648,7 +659,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   public void restartApplication() {
-    Intent intent = new Intent(this, ConversationListActivity.class);
+    Intent intent = new Intent(this, HomeActivity.class);
     ComponentName componentName = intent.getComponent();
     Intent mainIntent = Intent.makeRestartActivityTask(componentName);
     this.startActivity(mainIntent);

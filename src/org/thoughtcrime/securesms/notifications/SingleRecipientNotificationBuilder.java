@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -38,6 +39,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.signalservice.loki.api.LokiPublicChat;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -118,7 +120,18 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
 
     if (privacy.isDisplayContact() && threadRecipients.isGroupRecipient()) {
-      stringBuilder.append(Util.getBoldedString(individualRecipient.toShortString() + ": "));
+      long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(threadRecipients);
+      LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID);
+      String hexEncodedPublicKey = individualRecipient.getAddress().toString();
+      String displayName;
+      if (publicChat != null) {
+        displayName = DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(publicChat.getId(), hexEncodedPublicKey);
+      } else {
+        displayName = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(hexEncodedPublicKey);
+      }
+      if (displayName != null) {
+        stringBuilder.append(Util.getBoldedString(displayName + ": "));
+      }
     }
 
     if (privacy.isDisplayMessage()) {

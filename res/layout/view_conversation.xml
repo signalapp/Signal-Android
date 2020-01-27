@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/conversation_view_background"
+    android:orientation="horizontal"
+    android:gravity="center_vertical">
+
+    <View
+        android:id="@+id/unreadMessagesIndicatorView"
+        android:layout_width="@dimen/accent_line_thickness"
+        android:layout_height="match_parent"
+        android:background="@color/accent" />
+    
+    <org.thoughtcrime.securesms.loki.redesign.views.ProfilePictureView
+        android:id="@+id/profilePictureView"
+        android:layout_width="@dimen/medium_profile_picture_size"
+        android:layout_height="@dimen/medium_profile_picture_size"
+        android:layout_marginTop="@dimen/medium_spacing"
+        android:layout_marginLeft="@dimen/medium_spacing"
+        android:layout_marginBottom="@dimen/medium_spacing" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/medium_spacing"
+        android:layout_marginRight="@dimen/medium_spacing"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/displayNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textSize="@dimen/medium_font_size"
+                android:textStyle="bold"
+                android:textColor="@color/text"
+                android:text="Spiderman" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/timestampTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/medium_spacing"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textSize="@dimen/small_font_size"
+                android:textColor="@color/text"
+                android:alpha="0.4"
+                android:text="9:41 AM" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/muteIndicatorImageView"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:src="@drawable/ic_mute"
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="4dp" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/snippetTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textSize="@dimen/medium_font_size"
+                    android:textColor="@color/text"
+                    android:text="Sorry, gotta go fight crime again" />
+
+                <org.thoughtcrime.securesms.components.TypingIndicatorView
+                    android:id="@+id/typingIndicatorView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:typingIndicator_tint="@color/text" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/statusIndicatorImageView"
+                android:layout_width="@dimen/conversation_view_status_indicator_size"
+                android:layout_height="@dimen/conversation_view_status_indicator_size"
+                android:layout_marginLeft="@dimen/medium_spacing" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

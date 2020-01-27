@@ -50,13 +50,17 @@ import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.Closeable;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class ThreadDatabase extends Database {
 
   private static final String TAG = ThreadDatabase.class.getSimpleName();
+
+  private Map<Long, Address> addressCache = new HashMap<>();
 
   public  static final String TABLE_NAME             = "thread";
   public  static final String ID                     = "_id";
@@ -177,6 +181,7 @@ public class ThreadDatabase extends Database {
   private void deleteThread(long threadId) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.delete(TABLE_NAME, ID_WHERE, new String[] {threadId + ""});
+    addressCache.remove(threadId);
     notifyConversationListListeners();
   }
 
@@ -191,12 +196,16 @@ public class ThreadDatabase extends Database {
     where = where.substring(0, where.length() - 4);
 
     db.delete(TABLE_NAME, where, null);
+    for (long threadId: threadIds) {
+      addressCache.remove(threadId);
+    }
     notifyConversationListListeners();
   }
 
   private void deleteAllThreads() {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.delete(TABLE_NAME, null, null);
+    addressCache.clear();
     notifyConversationListListeners();
   }
 
@@ -528,6 +537,11 @@ public class ThreadDatabase extends Database {
   }
 
   public @Nullable Recipient getRecipientForThreadId(long threadId) {
+    // Loki - Cache the address.
+    if (addressCache.containsKey(threadId) && addressCache.get(threadId) != null) {
+      return Recipient.from(context, addressCache.get(threadId), false);
+    }
+
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
     Cursor cursor     = null;
 
@@ -536,6 +550,7 @@ public class ThreadDatabase extends Database {
 
       if (cursor != null && cursor.moveToFirst()) {
         Address address = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
+        addressCache.put(threadId, address);
         return Recipient.from(context, address, false);
       }
     } finally {

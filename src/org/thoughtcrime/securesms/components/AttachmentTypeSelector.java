@@ -26,9 +26,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.ViewUtil;
+
+import network.loki.messenger.R;
 
 public class AttachmentTypeSelector extends PopupWindow {
 
@@ -45,6 +46,8 @@ public class AttachmentTypeSelector extends PopupWindow {
   @SuppressWarnings("unused")
   private static final String TAG = AttachmentTypeSelector.class.getSimpleName();
 
+  private final @NonNull Context             context;
+  public                 int                 keyboardHeight;
   private final @NonNull LoaderManager       loaderManager;
   private final @NonNull RecentPhotoViewRail recentRail;
   private final @NonNull ImageView           imageButton;
@@ -59,8 +62,11 @@ public class AttachmentTypeSelector extends PopupWindow {
   private @Nullable View                      currentAnchor;
   private @Nullable AttachmentClickedListener listener;
 
-  public AttachmentTypeSelector(@NonNull Context context, @NonNull LoaderManager loaderManager, @Nullable AttachmentClickedListener listener) {
+  public AttachmentTypeSelector(@NonNull Context context, @NonNull LoaderManager loaderManager, @Nullable AttachmentClickedListener listener, int keyboardHeight) {
     super(context);
+
+    this.context = context;
+    this.keyboardHeight = keyboardHeight;
 
     LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     LinearLayout   layout   = (LinearLayout) inflater.inflate(R.layout.attachment_type_selector, null, true);
@@ -96,10 +102,14 @@ public class AttachmentTypeSelector extends PopupWindow {
     setFocusable(true);
     setTouchable(true);
 
+    updateHeight();
+
     loaderManager.initLoader(1, null, recentRail);
   }
 
   public void show(@NonNull Activity activity, final @NonNull View anchor) {
+    updateHeight();
+
     if (Permissions.hasAll(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
       recentRail.setVisibility(View.VISIBLE);
       loaderManager.restartLoader(1, null, recentRail);
@@ -135,6 +145,16 @@ public class AttachmentTypeSelector extends PopupWindow {
       animateButtonIn(contactButton, 0);
       animateButtonIn(closeButton, 0);
     }
+  }
+
+  private void updateHeight() {
+    int thresholdInDP = 120;
+    float scale = context.getResources().getDisplayMetrics().density;
+    int thresholdInPX = (int)(thresholdInDP * scale);
+    View contentView = ViewUtil.findById(getContentView(), R.id.contentView);
+    LinearLayout.LayoutParams contentViewLayoutParams = (LinearLayout.LayoutParams)contentView.getLayoutParams();
+    contentViewLayoutParams.height = keyboardHeight > thresholdInPX ? keyboardHeight : LinearLayout.LayoutParams.WRAP_CONTENT;
+    contentView.setLayoutParams(contentViewLayoutParams);
   }
 
   @Override

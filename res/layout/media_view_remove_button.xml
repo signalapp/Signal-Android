@@ -4,5 +4,7 @@
            android:layout_width="@dimen/media_bubble_remove_button_size"
            android:layout_height="@dimen/media_bubble_remove_button_size"
            android:layout_gravity="top|end"
-           android:src="@drawable/conversation_attachment_close_circle"
+           android:background="@drawable/circle_alpha"
+           android:src="@drawable/ic_close_white_18dp"
+           android:tint="#99FFFFFF"
            android:visibility="gone"/>

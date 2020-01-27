@@ -14,10 +14,8 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.giph.model.GiphyImage;
 import org.thoughtcrime.securesms.giph.net.GiphyLoader;
 import org.thoughtcrime.securesms.giph.util.InfiniteScrollListener;
@@ -28,13 +26,15 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import java.util.LinkedList;
 import java.util.List;
 
+import network.loki.messenger.R;
+
 public abstract class GiphyFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<GiphyImage>>, GiphyAdapter.OnItemClickListener {
 
   private static final String TAG = GiphyFragment.class.getSimpleName();
 
   private GiphyAdapter                     giphyAdapter;
   private RecyclerView                     recyclerView;
-  private ProgressBar                      loadingProgress;
+  private View                             loadingProgress;
   private TextView                         noResultsView;
   private GiphyAdapter.OnItemClickListener listener;
 

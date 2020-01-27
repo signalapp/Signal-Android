@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Loki Messenger</string>
+  <string name="app_name">Session</string>
   <string name="yes">Да</string>
   <string name="no">Не</string>
   <string name="delete">Избриши</string>
@@ -24,17 +24,17 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Избриши</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Избриши ја лозинката</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Трајно овозможи ги нотификациите на Loki Messenger апликацијата.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Трајно овозможи ги нотификациите на Session апликацијата.</string>
   <string name="ApplicationPreferencesActivity_disable">Оневозможи</string>
   <string name="ApplicationPreferencesActivity_unregistering">Одјавување</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Одјавување од Loki Messenger пораки и повици...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Оневозможи Loki Messenger пораки и повици?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Оневозможи ги пораките и повиците од Loki Messenger со одрегистрирање од серверот. Ќе мора повторно да го ререгистрирате телефонскиот број за да може повторно да добивате пораки.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Одјавување од Session пораки и повици...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Оневозможи Session пораки и повици?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Оневозможи ги пораките и повиците од Session со одрегистрирање од серверот. Ќе мора повторно да го ререгистрирате телефонскиот број за да може повторно да добивате пораки.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Грешка при поврзување со серверот!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS активиран</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Промена на стандардната SMS апликација</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS деактивиран</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Постави ја Loki Messenger како стандардна SMS апликација</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Постави ја Session како стандардна SMS апликација</string>
   <string name="ApplicationPreferencesActivity_on">вклучи</string>
   <string name="ApplicationPreferencesActivity_On">Вклучи</string>
   <string name="ApplicationPreferencesActivity_off">исклучи</string>
@@ -55,8 +55,8 @@
   <string name="DraftDatabase_Draft_quote_snippet">(одговор)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Не постои апликација за избор на датотеки.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">На Loki Messenger му е потребен пристап до датотеката за да можете да пеикачете слики, видеа или аудио, но моментално пристапот е одбиен. Ве молиме продожете до менито  за подесување на апликациите, селектирајте \"Дозволи\", и дозволете \"Датотеки\"</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">На Loki Messenger му е потребна дозвола до контактите за да можете да прикачете информации на контакти, но моментално пристапот е одбиен. Ве молиме продолжете до менито за подесување на апликациите, селектирајте \"Дозволи\", и дозволете \"Контакти\".</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">На Session му е потребен пристап до датотеката за да можете да пеикачете слики, видеа или аудио, но моментално пристапот е одбиен. Ве молиме продожете до менито  за подесување на апликациите, селектирајте \"Дозволи\", и дозволете \"Датотеки\"</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">На Session му е потребна дозвола до контактите за да можете да прикачете информации на контакти, но моментално пристапот е одбиен. Ве молиме продолжете до менито за подесување на апликациите, селектирајте \"Дозволи\", и дозволете \"Контакти\".</string>
   <!--AudioSlidePlayer-->
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Блокирани контакти</string>
@@ -94,7 +94,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Дали сте сигурни дека сакате да ја напуштите групата?</string>
   <string name="ConversationActivity_transport_insecure_sms">Незаштитена SMS порака</string>
   <string name="ConversationActivity_transport_insecure_mms">Незаштитена MMS порака</string>
-  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
+  <string name="ConversationActivity_transport_signal">Session</string>
   <string name="ConversationActivity_specify_recipient">Изберете контакт</string>
   <string name="ConversationActivity_unblock_this_contact_question">Одблокирај го контактот?</string>
   <string name="ConversationActivity_unblock">Одблокирај</string>
@@ -160,15 +160,15 @@
   <string name="MessageDetailsRecipient_failed_to_send">Неуспешно праќање</string>
   <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Loki Messenger</string>
+  <string name="MessageRetrievalService_signal">Session</string>
   <!--MmsDownloader-->
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media_delete_progress_title">Бришење</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Бришење на пораките...</string>
   <string name="MediaOverviewActivity_Select_all">Избери се</string>
   <!--- NotificationBarManager-->
-  <string name="NotificationBarManager__establishing_signal_call">Воспоставување на повик на Loki Messenger</string>
-  <string name="NotificationBarManager__incoming_signal_call">Доаѓачки повик на Loki Messenger</string>
+  <string name="NotificationBarManager__establishing_signal_call">Воспоставување на повик на Session</string>
+  <string name="NotificationBarManager__incoming_signal_call">Доаѓачки повик на Session</string>
   <string name="NotificationBarManager__deny_call">Одбиј го повикот</string>
   <string name="NotificationBarManager__answer_call">Одговори на повикот</string>
   <string name="NotificationBarManager__end_call">Заврши го повикот</string>
@@ -180,7 +180,7 @@
   <!--MediaSendActivity-->
   <!--MediaRepository-->
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Добивте порака која е енкриптирана користејќи стара верзија на Loki Messenger која веќе не е поддржана. Ве молиме побајте од праќачот пораката да ја апдејтира апликацијата на најновата верзија и пак да ја препрати пораката.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Добивте порака која е енкриптирана користејќи стара верзија на Session која веќе не е поддржана. Ве молиме побајте од праќачот пораката да ја апдејтира апликацијата на најновата верзија и пак да ја препрати пораката.</string>
   <string name="MessageRecord_left_group">Ја напуштивте групата.</string>
   <string name="MessageRecord_s_called_you">%s ве повика</string>
   <string name="MessageRecord_called_s">Повикан %s</string>
@@ -296,7 +296,7 @@
   <string name="SearchToolbar_search">Барај</string>
   <!--ShortcutLauncherActivity-->
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Session</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Нова порака</string>
   <!--TransferControlView-->
   <!--UnauthorizedReminder-->
@@ -538,7 +538,7 @@
   <string name="text_secure_normal__help">Помош</string>
   <!--verify_display_fragment-->
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Вашата верзија на Loki Messenger е застарена.</string>
+  <string name="reminder_header_outdated_build">Вашата верзија на Session е застарена.</string>
   <string name="reminder_header_sms_default_title">Користи како стандардна СМС апликација</string>
   <string name="reminder_header_share_title">Покани ги твиоте пријатели!</string>
   <!--media_preview-->

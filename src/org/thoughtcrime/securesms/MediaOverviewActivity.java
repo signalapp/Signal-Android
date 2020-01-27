@@ -104,6 +104,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
   @Override
   protected void onCreate(Bundle bundle, boolean ready) {
     setContentView(R.layout.media_overview_activity);
+    getWindow().setNavigationBarColor(getResources().getColor(R.color.navigation_bar_background));
 
     initializeResources();
     initializeToolbar();
@@ -142,7 +143,6 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
   private void initializeToolbar() {
     setSupportActionBar(this.toolbar);
     getSupportActionBar().setTitle(recipient.toShortString());
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     this.recipient.addListener(recipient -> {
       Util.runOnMain(() -> getSupportActionBar().setTitle(recipient.toShortString()));
     });

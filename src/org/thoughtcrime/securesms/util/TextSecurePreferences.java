@@ -1179,6 +1179,14 @@ public class TextSecurePreferences {
     setLongPreference(context, "background_poll_time", backgroundPollTime);
   }
 
+  public static long getPublicChatBackgroundPollTime(Context context) {
+    return getLongPreference(context, "public_chat_background_poll_time", 0L);
+  }
+
+  public static void setPublicChatBackgroundPollTime(Context context, long backgroundPollTime) {
+    setLongPreference(context, "public_chat_background_poll_time", backgroundPollTime);
+  }
+
   public static boolean isChatSetUp(Context context, String id) {
     return getBooleanPreference(context, "is_chat_set_up" + "?chat=" + id, false);
   }
@@ -1193,6 +1201,14 @@ public class TextSecurePreferences {
 
   public static void setMasterHexEncodedPublicKey(Context context, String masterHexEncodedPublicKey) {
     setStringPreference(context, "master_hex_encoded_public_key", masterHexEncodedPublicKey.toLowerCase());
+  }
+
+  public static Boolean getHasViewedSeed(Context context) {
+    return getBooleanPreference(context, "has_viewed_seed", false);
+  }
+
+  public static void setHasViewedSeed(Context context, Boolean hasViewedSeed) {
+    setBooleanPreference(context, "has_viewed_seed", hasViewedSeed);
   }
 
   public static void setResetDatabase(Context context, boolean resetDatabase) {

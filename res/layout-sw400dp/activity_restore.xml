@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/default_session_background"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/very_large_spacing"
+        android:layout_marginRight="@dimen/very_large_spacing"
+        android:textSize="@dimen/very_large_font_size"
+        android:textStyle="bold"
+        android:textColor="@color/text"
+        android:text="Restore your account" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/very_large_spacing"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="@dimen/very_large_spacing"
+        android:textSize="@dimen/medium_font_size"
+        android:textColor="@color/text"
+        android:text="Enter the recovery phrase that was given to you when you signed up to restore your account." />
+
+    <EditText
+        style="@style/SessionEditText"
+        android:id="@+id/mnemonicEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/very_large_spacing"
+        android:layout_marginTop="@dimen/medium_spacing"
+        android:layout_marginRight="@dimen/very_large_spacing"
+        android:hint="Enter your recovery phrase" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <Button
+        style="@style/MediumProminentFilledButton"
+        android:id="@+id/restoreButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/medium_button_height"
+        android:layout_marginLeft="@dimen/massive_spacing"
+        android:layout_marginRight="@dimen/massive_spacing"
+        android:text="Continue" />
+
+    <Button
+        android:id="@+id/termsButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/onboarding_button_bottom_offset"
+        android:layout_marginLeft="@dimen/massive_spacing"
+        android:layout_marginRight="@dimen/massive_spacing"
+        android:gravity="center"
+        android:background="@color/transparent"
+        android:textAllCaps="false"
+        android:textSize="@dimen/very_small_font_size"
+        android:textColor="@color/text"
+        android:text="By using this service, you agree to our Terms and Conditions and Privacy Statement" />
+
+</LinearLayout>

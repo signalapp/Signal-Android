@@ -10,7 +10,6 @@ import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.database.RecipientDatabase
 import org.thoughtcrime.securesms.jobs.PushDecryptJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -154,7 +153,7 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
         return SignalServiceDataMessage(message.timestamp, serviceGroup, attachments, body, false, 0, false, null, false, quote, null, signalLinkPreviews, null)
     }
 
-    private fun pollForNewMessages() {
+    fun pollForNewMessages() {
         fun processIncomingMessage(message: LokiPublicChatMessage) {
             // If the sender of the current message is not a secondary device, we need to set the display name in the database
             val primaryDevice = LokiStorageAPI.shared.getPrimaryDevicePublicKey(message.hexEncodedPublicKey).get()
@@ -221,6 +220,9 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
         }
         var userDevices = setOf<String>()
         var uniqueDevices = setOf<String>()
+        val userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(context).privateKey.serialize()
+        val database = DatabaseFactory.getLokiAPIDatabase(context)
+        LokiStorageAPI.configure(false, userHexEncodedPublicKey, userPrivateKey, database)
         LokiStorageAPI.shared.getAllDevicePublicKeys(userHexEncodedPublicKey).bind { devices ->
             userDevices = devices
             api.getMessages(group.channel, group.server)

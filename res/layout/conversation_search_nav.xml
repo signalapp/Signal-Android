@@ -6,7 +6,7 @@
     android:id="@+id/conversation_search_nav"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?conversation_background"
+    android:background="@color/compose_view_background"
     android:visibility="gone"
     tools:visibility="visible"
     tools:parentTag="android.support.constraint.ConstraintLayout">
@@ -54,20 +54,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.pnikosis.materialishprogress.ProgressWheel
+    <com.github.ybq.android.spinkit.SpinKitView
+        style="@style/SpinKitView.DoubleBounce"
         android:id="@+id/conversation_search_progress_wheel"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="0dp"
-        android:indeterminate="true"
         android:padding="8dp"
-        android:background="?conversation_background"
+        android:background="@color/compose_view_background"
         android:visibility="gone"
+        app:SpinKit_Color="@color/text"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:matProg_barColor="@color/core_grey_25"
-        app:matProg_progressIndeterminate="true" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </org.thoughtcrime.securesms.components.ConversationSearchBottomBar>

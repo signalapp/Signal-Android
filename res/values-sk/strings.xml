@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Loki Messenger</string>
+  <string name="app_name">Session</string>
   <string name="yes">Áno</string>
   <string name="no">Nie</string>
   <string name="delete">Zmazať</string>
@@ -29,17 +29,17 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Zmazať</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Vypnúť heslo?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Toto natrvalo odomkne Loki Messenger a upozornenia správ.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Toto natrvalo odomkne Session a upozornenia správ.</string>
   <string name="ApplicationPreferencesActivity_disable">Vypnúť</string>
   <string name="ApplicationPreferencesActivity_unregistering">Rušenie registrácie</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Rušenie registrácie Loki Messenger správ a hovorov...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Vypnúť Loki Messenger správy a hovory?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Zakážte Loki Messenger správy a hovory zrušením registrácie zo serveru. Pre ich opätovné použitie budete musieť svoje telefónne číslo znovu zaregistrovať.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Rušenie registrácie Session správ a hovorov...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Vypnúť Session správy a hovory?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Zakážte Session správy a hovory zrušením registrácie zo serveru. Pre ich opätovné použitie budete musieť svoje telefónne číslo znovu zaregistrovať.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Chyba pripojenia na server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS zapnuté</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotykom môžete zmeniť Vašu predvolenú SMS aplikáciu.</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS vypnuté</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Dotykom nastavte Loki Messenger ako predvolenú aplikáciu</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Dotykom nastavte Session ako predvolenú aplikáciu</string>
   <string name="ApplicationPreferencesActivity_on">zap.</string>
   <string name="ApplicationPreferencesActivity_On">Zapnuté</string>
   <string name="ApplicationPreferencesActivity_off">vyp.</string>
@@ -62,10 +62,10 @@
   <string name="DraftDatabase_Draft_quote_snippet">(odpoveď)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nenašla sa aplikácia pre výber médií.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Loki Messenger potrebuje prístup k úložisku aby k správam mohol pridať obrázkové, video a zvukové prílohy, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Úložisko\".</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Loki Messenger potrebuje prístup ku kontaktom aby k správam mohol pripojiť informácie o kontakte, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Kontakty\".</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Loki Messenger potrebuje prístup k polohe aby k správam mohol pripojiť informácie o polohe, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Poloha\".</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Loki Messenger potrebuje prístup k fotoaparátu aby mohol vytvárať fotografie, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Fotoaparát\".</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Session potrebuje prístup k úložisku aby k správam mohol pridať obrázkové, video a zvukové prílohy, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Úložisko\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Session potrebuje prístup ku kontaktom aby k správam mohol pripojiť informácie o kontakte, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Kontakty\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Session potrebuje prístup k polohe aby k správam mohol pripojiť informácie o polohe, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Poloha\".</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Session potrebuje prístup k fotoaparátu aby mohol vytvárať fotografie, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Fotoaparát\".</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Chyba pri prehrávaní zvuku!</string>
   <!--BlockedContactsActivity-->
@@ -85,7 +85,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nenašiel sa žiadny webový prehliadač.</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Vaše bezpečnostné číslo s %1$s sa zmenilo. Môže to znamenať, že sa niekto snaží preniknúť do vašej komunikácie alebo jednoducho, že %2$s si preinštaloval/a Loki Messenger.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Vaše bezpečnostné číslo s %1$s sa zmenilo. Môže to znamenať, že sa niekto snaží preniknúť do vašej komunikácie alebo jednoducho, že %2$s si preinštaloval/a Session.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Mali by ste overiť vaše bezpečnostné číslo s týmto kontaktom.</string>
   <string name="ConfirmIdentityDialog_accept">Potvrdiť</string>
   <!--ContactsCursorLoader-->
@@ -94,7 +94,7 @@
   <string name="ContactsCursorLoader_groups">Skupiny</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Správa %s</string>
-  <string name="ContactsDatabase_signal_call_s">Loki Messenger Hovor %s</string>
+  <string name="ContactsDatabase_signal_call_s">Session Hovor %s</string>
   <!--ContactNameEditActivity-->
   <string name="ContactNameEditActivity_given_name">Krstné meno</string>
   <string name="ContactNameEditActivity_family_name">Priezvisko</string>
@@ -114,7 +114,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">Odosielanie zlyhalo, ťuknutím pošlete nezabezpečenú správu</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Prepnúť na nezabezpečené SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Prepnúť na nezabezpečené MMS?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Táto správa <b>nebude</b> šifrovaná, pretože adresát už nepoužíva Loki Messenger.\n\nOdoslať nezabezpečenú SMS správu?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Táto správa <b>nebude</b> šifrovaná, pretože adresát už nepoužíva Session.\n\nOdoslať nezabezpečenú SMS správu?</string>
   <string name="ConversationItem_unable_to_open_media">Nepodarilo sa nájst aplikáciu schopnú otvoriť tento typ súboru.</string>
   <string name="ConversationItem_copied_text">Skopírovaných %s</string>
   <string name="ConversationItem_from_s">od %s</string>
@@ -141,8 +141,8 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ste si istí že chcete opustiť túto skupinu?</string>
   <string name="ConversationActivity_transport_insecure_sms">Nezabezpečená SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nezabezpečená MMS</string>
-  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Prejdime na Loki Messenger %1$s</string>
+  <string name="ConversationActivity_transport_signal">Session</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Prejdime na Session %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Chatujme cez toto: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Chyba pri opustení skupiny</string>
   <string name="ConversationActivity_specify_recipient">Prosím vyberte kontakt</string>
@@ -155,15 +155,15 @@
   <string name="ConversationActivity_quick_camera_unavailable">Kamera je nedostupná</string>
   <string name="ConversationActivity_unable_to_record_audio">Nemôžem zaznamenať zvuk!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Vo vašom zariadení nie je aplikácia schopná otvoriť tento odkaz.</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Pre posielanie zvukových správ potrebuje Loki Messenger prístup k mikrofónu.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Loki Messenger potrebuje prístup k mikrofónu aby mohol posielať zvukové správy, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Mikrofón\".</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Pre volanie %s, portebuje Loki Messenger prístup k Vášmu mikrofónu a vašej kamere.</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Loki Messenger potrebuje prístup k mikrofónu a fotoaparátu aby mohol zavolať %s, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Mikrofón\" a \"Fotoaparát\".</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Pre fotenie a nahrávanie videa potrebuje Loki Messenger prístup k fotoaparátu.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Loki Messenger potrebuje prístup k fotoaparátu aby mohol vytvárať fotografie a video, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Fotoaparát\".</string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Loki Messenger potrebuje prístup k Fotoaparátu, aby mohol vytvárať fotografie a videá</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Pre posielanie zvukových správ potrebuje Session prístup k mikrofónu.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session potrebuje prístup k mikrofónu aby mohol posielať zvukové správy, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Mikrofón\".</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Pre volanie %s, portebuje Session prístup k Vášmu mikrofónu a vašej kamere.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Session potrebuje prístup k mikrofónu a fotoaparátu aby mohol zavolať %s, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Mikrofón\" a \"Fotoaparát\".</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Pre fotenie a nahrávanie videa potrebuje Session prístup k fotoaparátu.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Session potrebuje prístup k fotoaparátu aby mohol vytvárať fotografie a video, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Fotoaparát\".</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session potrebuje prístup k Fotoaparátu, aby mohol vytvárať fotografie a videá</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Loki Messenger nemôže odosielať SMS/MMS, pretože nie je prednastavenou SMS aplikáciou. Chcete to zmeniť v nastaveniach Androidu?</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Session nemôže odosielať SMS/MMS, pretože nie je prednastavenou SMS aplikáciou. Chcete to zmeniť v nastaveniach Androidu?</string>
   <string name="ConversationActivity_yes">Áno</string>
   <string name="ConversationActivity_no">Nie</string>
   <string name="ConversationActivity_search_position">%1$d z %2$d</string>
@@ -215,7 +215,7 @@
     <item quantity="other">Ukladanie %1$d príloh na úložisko...</item>
   </plurals>
   <string name="ConversationFragment_pending">Čaká na spracovanie...</string>
-  <string name="ConversationFragment_push">Dáta (Loki Messenger)</string>
+  <string name="ConversationFragment_push">Dáta (Session)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Mazanie</string>
@@ -265,7 +265,7 @@
   <string name="CreateProfileActivity_too_long">Príliš dlhé</string>
   <string name="CreateProfileActivity_profile_name">Profilové meno</string>
   <string name="CreateProfileActivity_set_up_your_profile">Nastavte si svoj profil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profily Signal sú end-to-end šifrované a služba Loki Messenger nikdy nemá prístup k týmto informáciám.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profily Signal sú end-to-end šifrované a služba Session nikdy nemá prístup k týmto informáciám.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Používa sa vlastné: %s</string>
   <string name="CustomDefaultPreference_using_default">Používa sa predvolené: %s</string>
@@ -297,22 +297,22 @@
   <string name="DocumentView_unknown_file">Neznámy súbor</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimalizovať pre chýbajúce služby Google Play</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Toto zariadenie nepodporuje služby Google Play. Ťuknite pre vypnutie systémovej optimalizácie batérie, ktorá zabraňuje Loki Messengeru prijímať správy v neaktívnom stave.</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Toto zariadenie nepodporuje služby Google Play. Ťuknite pre vypnutie systémovej optimalizácie batérie, ktorá zabraňuje Sessionu prijímať správy v neaktívnom stave.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Zdieľať s</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Vitajte v Loki Messenger.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure a RedPhone sú teraz jedným súkromným messengerom pre každú situáciu: Loki Messenger.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Vitajte v Loki Messenger!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure je odteraz Loki Messenger.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure a RedPhone sú odteraz jednou aplikáciou: Loki Messenger. Ťuknutím preskúmajte.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Vitajte v Session.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure a RedPhone sú teraz jedným súkromným messengerom pre každú situáciu: Session.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Vitajte v Session!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure je odteraz Session.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure a RedPhone sú odteraz jednou aplikáciou: Session. Ťuknutím preskúmajte.</string>
   <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Privítajte bezpečné videohovory.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal odteraz podporuje zabezpečené videohovory. Začnite Loki Messenger hovor ako obvykle, ťuknite na tlačidlo videa a zamávajte.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Loki Messenger odteraz podporuje zabezpečené videohovory.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Loki Messenger odteraz podporuje zabezpečené videohovory. Ťuknutím preskúmajte.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal odteraz podporuje zabezpečené videohovory. Začnite Session hovor ako obvykle, ťuknite na tlačidlo videa a zamávajte.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Session odteraz podporuje zabezpečené videohovory.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Session odteraz podporuje zabezpečené videohovory. Ťuknutím preskúmajte.</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Ste pripravený na portrét?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Teraz môžete s vašimi priateľmi na Loki Messengeru zdieľať vašu profilovú fotku a meno</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Loki Messenger profily sú tu</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Teraz môžete s vašimi priateľmi na Sessionu zdieľať vašu profilovú fotku a meno</string>
+  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Session profily sú tu</string>
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Predstavujeme indikátory písania.</string>
   <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Teraz môžete voliteľne vidieť a zdieľať, keď sú správy písané.</string>
   <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Želáte si ich zapnúť?</string>
@@ -322,13 +322,13 @@
   <string name="ExperienceUpgradeActivity_no_thanks">Nie, ďakujem</string>
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Uvádzame náhľady stránok.</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Náhľady sú teraz voliteľne podporované pre niektoré z najpopulárnejších webových stránok na internete.</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Túto funkciu môžete kedykoľvek vypnúť alebo zapnúť v nastaveniach Loki Messenger-u (Súkromie &gt; Posielať náhľady stránok).</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Túto funkciu môžete kedykoľvek vypnúť alebo zapnúť v nastaveniach Session-u (Súkromie &gt; Posielať náhľady stránok).</string>
   <string name="ExperienceUpgradeActivity_got_it">Chápem</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Preberanie správy…</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trvalá chyba komunikácie Loki Messenger!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal sa nebol schopný registrovať k službám Google Play. Loki Messenger správy a hovory boli vypnuté, prosím zaregistrujte sa opätovne cez Nastavenia &gt; Rozšírené.</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trvalá chyba komunikácie Session!</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal sa nebol schopný registrovať k službám Google Play. Session správy a hovory boli vypnuté, prosím zaregistrujte sa opätovne cez Nastavenia &gt; Rozšírené.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Chyba pri prijímaní GIFu v plnom rozlíšení</string>
   <!--GiphyFragmentPageAdapter-->
@@ -339,15 +339,15 @@
   <string name="GroupCreateActivity_actionbar_edit_title">Upraviť skupinu</string>
   <string name="GroupCreateActivity_group_name_hint">Názov skupiny</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nová MMS skupina</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Vybrali ste kontakt, ktorý nepodporuje skupiny Loki Messenger, takže táto skupina bude MMS.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Nie ste zaregistrovaní do Signal správ a hovorov, takže Loki Messenger skupiny sú vypnuté. Prosím zaregistrujte sa cez Nastavenia &gt; Rozšírené.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Vybrali ste kontakt, ktorý nepodporuje skupiny Session, takže táto skupina bude MMS.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Nie ste zaregistrovaní do Signal správ a hovorov, takže Session skupiny sú vypnuté. Prosím zaregistrujte sa cez Nastavenia &gt; Rozšírené.</string>
   <string name="GroupCreateActivity_contacts_no_members">V skupine musí byť aspoň jedna osoba!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Jeden z členov Vašej skupiny má číslo, ktoré sa nepodarilo správne prečítať. Prosím, upravte tento kontakt a skúste to znovu.</string>
   <string name="GroupCreateActivity_avatar_content_description">Obrázok skupiny</string>
   <string name="GroupCreateActivity_menu_apply_button">Použiť</string>
   <string name="GroupCreateActivity_creating_group">Vytváranie %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Aktualizácia %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nepodarilo sa pridať %1$s, pretože nie je používateľom Loki Messenger.</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nepodarilo sa pridať %1$s, pretože nie je používateľom Session.</string>
   <string name="GroupCreateActivity_loading_group_details">Načítavajú sa údaje o skupine…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Už ste v skupine.</string>
   <!--GroupShareProfileView-->
@@ -368,7 +368,7 @@
   <string name="InviteActivity_sending">Odosiela sa...</string>
   <string name="InviteActivity_heart_content_description">Srdce</string>
   <string name="InviteActivity_invitations_sent">Pozvánky odoslané!</string>
-  <string name="InviteActivity_invite_to_signal">Pozvať do Loki Messengeru</string>
+  <string name="InviteActivity_invite_to_signal">Pozvať do Sessionu</string>
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">ODOSLAŤ SMS %d PRIATEĽOVI</item>
     <item quantity="few">ODOSLAŤ SMS %d PRIATEĽOM</item>
@@ -381,7 +381,7 @@
     <item quantity="many">Odoslať %d SMS pozvánok? </item>
     <item quantity="other">Odoslať %d SMS pozvánok? </item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Prejdime na Loki Messenger: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Prejdime na Session: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Vyzerá to, že nemáte žiadne aplikácie kam by ste mohli zdieľať.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Priatelia nenechávajú priateľov chatovať nešifrovane.</string>
   <!--Job-->
@@ -394,7 +394,7 @@
   <string name="LongMessageActivity_message_from_s">Správa od %1$s</string>
   <string name="LongMessageActivity_your_message">Vaša správa</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Loki Messenger</string>
+  <string name="MessageRetrievalService_signal">Session</string>
   <string name="MessageRetrievalService_background_connection_enabled">Pripojenie na pozadí zapnuté</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Chyba pri načítaní MMS nastavení poskytovateľa</string>
@@ -418,9 +418,9 @@
   <string name="MediaOverviewActivity_Select_all">Označiť všetko</string>
   <string name="MediaOverviewActivity_collecting_attachments">Ukladám prílohy...</string>
   <!--- NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">Prebieha Loki Messenger hovor</string>
-  <string name="NotificationBarManager__establishing_signal_call">Príprava na Loki Messenger hovor</string>
-  <string name="NotificationBarManager__incoming_signal_call">Prichádzajúci Loki Messenger hovor</string>
+  <string name="NotificationBarManager_signal_call_in_progress">Prebieha Session hovor</string>
+  <string name="NotificationBarManager__establishing_signal_call">Príprava na Session hovor</string>
+  <string name="NotificationBarManager__incoming_signal_call">Prichádzajúci Session hovor</string>
   <string name="NotificationBarManager__deny_call">Odmietnuť hovor</string>
   <string name="NotificationBarManager__answer_call">Prijať hovor</string>
   <string name="NotificationBarManager__end_call">Ukončiť hovor</string>
@@ -447,7 +447,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Všetky médiá</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Prijatá správa je šifrovaná starou verziou Loki Messengeru, ktorá už nie je podporovaná. Prosím požiadajte odosielateľa o aktualizáciu na najnovšiu verziu a opätovné odoslanie správy.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Prijatá správa je šifrovaná starou verziou Sessionu, ktorá už nie je podporovaná. Prosím požiadajte odosielateľa o aktualizáciu na najnovšiu verziu a opätovné odoslanie správy.</string>
   <string name="MessageRecord_left_group">Opustili ste skupinu.</string>
   <string name="MessageRecord_you_updated_group">Aktualizovali ste skupinu.</string>
   <string name="MessageRecord_you_called">Odchádzajúci hovor</string>
@@ -457,7 +457,7 @@
   <string name="MessageRecord_s_called_you">%s vám volal/a</string>
   <string name="MessageRecord_called_s">Volali ste %s</string>
   <string name="MessageRecord_missed_call_from">Zmeškaný hovor od %s</string>
-  <string name="MessageRecord_s_joined_signal">%s je na Loki Messengere!</string>
+  <string name="MessageRecord_s_joined_signal">%s je na Sessione!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Vypli ste miznúce správy.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s vypol/la miznúce správy.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Nastavili ste časovač miznúcich správ na %1$s.</string>
@@ -487,9 +487,9 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">Neplatný QR kód.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Máte príliš veľa pripojených zariadení, skúste niektoré odpojiť</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Tento QR kód neslúži na pridanie zariadenia.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Pridať zariadenie so Loki Messengerom?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Vyzerá to, že sa snažíte pripojiť zariadenie Signal cez skener tretej strany. Pre vašu bezpečnosť, prosím naskenujte kód znovu priamo zo Loki Messengeru.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Loki Messenger potrebuje prístup k fotoaparátu aby mohol naskenovať QR kód, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Fotoaparát\".</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Pridať zariadenie so Sessionom?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Vyzerá to, že sa snažíte pripojiť zariadenie Signal cez skener tretej strany. Pre vašu bezpečnosť, prosím naskenujte kód znovu priamo zo Sessionu.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Session potrebuje prístup k fotoaparátu aby mohol naskenovať QR kód, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Fotoaparát\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Nedá sa naskenovať QR kód bez povolenia prístupu k fotoaparátu</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Miznúce správy</string>
@@ -497,7 +497,7 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Správy odoslané a prijaté v tejto konverzácii zmiznú %s po prečítaní.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Zadajte heslo</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Loki Messenger ikona</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Session ikona</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Odoslať heslo</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nesprávne heslo!</string>
   <!--PlayServicesProblemFragment-->
@@ -552,7 +552,7 @@ telefónne číslo
 (%s) je neplatné.
 </string>
   <string name="RegistrationActivity_missing_google_play_services">Chýba služba Google Play</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">V tomto zariadení chýba služba Google Play. Loki Messenger môžete používať aj tak, ale táto konfigurácia môže mať za následok nespoľahlivosť a nižší výkon.\n\nAk nie ste pokročilý užívateľ, nepoužívate neoficiálny ROM telefónu alebo si myslíte, že sa vám toto hlásenie nemalo zobrazovať, kontaktujte nás na support@signal.org pre vyriešenie problému.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">V tomto zariadení chýba služba Google Play. Session môžete používať aj tak, ale táto konfigurácia môže mať za následok nespoľahlivosť a nižší výkon.\n\nAk nie ste pokročilý užívateľ, nepoužívate neoficiálny ROM telefónu alebo si myslíte, že sa vám toto hlásenie nemalo zobrazovať, kontaktujte nás na support@signal.org pre vyriešenie problému.</string>
   <string name="RegistrationActivity_i_understand">Rozumiem</string>
   <string name="RegistrationActivity_play_services_error">Chyba služby Google Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Služba Google Play sa aktualizuje, alebo je dočasne nedostupná. Prosím, skúste to znova.</string>
@@ -560,9 +560,9 @@ telefónne číslo
   <string name="RegistrationActivity_no_browser">Odkaz sa nepodarilo otvoriť. Nenašiel sa žiadny webový prehliadač.</string>
   <string name="RegistrationActivity_more_information">Viac informácií</string>
   <string name="RegistrationActivity_less_information">Menej informácií</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Loki Messenger potrebuje prístup k vašim kontaktom a médiám aby sa mohol spojiť s vašimi priateľmi, posielať správy a uskutočniť zabezpečené hovory</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Session potrebuje prístup k vašim kontaktom a médiám aby sa mohol spojiť s vašimi priateľmi, posielať správy a uskutočniť zabezpečené hovory</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nepodarilo sa pripojiť k službe. Prosím, overte Vaše sieťové pripojenie a skúste to znovu.</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Pre jednoduchšie overenie Vášho telefónneho čísla môže Loki Messenger automaticky zistiť Váš verifikačný kód, ak mu povolíte prístup k SMS správam.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Pre jednoduchšie overenie Vášho telefónneho čísla môže Session automaticky zistiť Váš verifikačný kód, ak mu povolíte prístup k SMS správam.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Ste %d krok od odoslania ladiaceho záznamu.</item>
     <item quantity="few">Ste %d kroky od odoslania ladiaceho záznamu.</item>
@@ -587,13 +587,13 @@ telefónne číslo
   <string name="SearchFragment_header_messages">Správy</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Pridať medzi kontakty</string>
-  <string name="SharedContactDetailsActivity_invite_to_signal">Pozvať do Loki Messengeru</string>
-  <string name="SharedContactDetailsActivity_signal_message">Loki Messenger správa</string>
-  <string name="SharedContactDetailsActivity_signal_call">Loki Messenger hovor</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Pozvať do Sessionu</string>
+  <string name="SharedContactDetailsActivity_signal_message">Session správa</string>
+  <string name="SharedContactDetailsActivity_signal_call">Session hovor</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">Pridať medzi kontakty</string>
-  <string name="SharedContactView_invite_to_signal">Pozvať do Loki Messengeru</string>
-  <string name="SharedContactView_message">Loki Messenger správa</string>
+  <string name="SharedContactView_invite_to_signal">Pozvať do Sessionu</string>
+  <string name="SharedContactView_message">Session správa</string>
   <!--Slide-->
   <string name="Slide_image">Obrázok</string>
   <string name="Slide_audio">Zvuk</string>
@@ -618,7 +618,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ThreadRecord_called_you">Volal Vám</string>
   <string name="ThreadRecord_missed_call">Zmeškaný hovor</string>
   <string name="ThreadRecord_media_message">Multimediálna správa</string>
-  <string name="ThreadRecord_s_is_on_signal">%s je na Loki Messengere!</string>
+  <string name="ThreadRecord_s_is_on_signal">%s je na Sessione!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Miznúce správy vypnuté</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas miznúcich správ bol nastavený na %s</string>
   <string name="ThreadRecord_safety_number_changed">Bezpečnostné číslo sa zmenilo</string>
@@ -626,8 +626,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ThreadRecord_you_marked_verified">Označili ste ako overené</string>
   <string name="ThreadRecord_you_marked_unverified">Označili ste ako neoverené</string>
   <!--UpdateApkReadyListener-->
-  <string name="UpdateApkReadyListener_Signal_update">Aktualizácia Loki Messengeru</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">K dispozícii je nová verzia Loki Messengeru, ťuknutím aktualizujte</string>
+  <string name="UpdateApkReadyListener_Signal_update">Aktualizácia Sessionu</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">K dispozícii je nová verzia Sessionu, ťuknutím aktualizujte</string>
   <!--UnknownSenderView-->
   <string name="UnknownSenderView_block_s">Blokovať %s?</string>
   <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Blokované kontakty vám nebudú môcť poslať správy alebo vám zavolať.</string>
@@ -642,14 +642,14 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="UnverifiedSendDialog_send_message">Odoslať správu?</string>
   <string name="UnverifiedSendDialog_send">Odoslať</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Váš kontakt používa starú verziu Loki Messengeru. Pred overením bezpečnostného čísla ich požiadajte o aktualizáciu aplikácie.</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Váš kontakt používa novšiu verziu Loki Messengeru, nekompatibilnú s formátom QR kódu. Prosím aktualizujte pre porovnanie.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Váš kontakt používa starú verziu Sessionu. Pred overením bezpečnostného čísla ich požiadajte o aktualizáciu aplikácie.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Váš kontakt používa novšiu verziu Sessionu, nekompatibilnú s formátom QR kódu. Prosím aktualizujte pre porovnanie.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Naskenovaný QR kód nie je správne formátovaný verifikačný kód bezpečnostného čísla. Prosím skúste ho naskenovať znova.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Zdielať bezpečnostné číslo cez...</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_number">Naše Loki Messenger bezpečnostné číslo:</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Naše Session bezpečnostné číslo:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Vyzerá to, že nemáte žiadne aplikácie kam by sa dalo zdieľať.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">V schránke sa nenašlo žiadne bezpečnostné číslo pre porovnanie</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Loki Messenger potrebuje prístup k fotoaparátu aby mohol naskenovať QR kód, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Fotoaparát\".</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Session potrebuje prístup k fotoaparátu aby mohol naskenovať QR kód, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Fotoaparát\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Nedá sa naskenovať QR kód bez povolenia prístupu k fotoaparátu</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Zlá šifrovaná správa</string>
@@ -669,13 +669,13 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Dotykom otvor.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Dotykom otvorte alebo ťuknutím na zámok zatvorte.</string>
-  <string name="KeyCachingService_passphrase_cached">Loki Messenger je odomknutý</string>
-  <string name="KeyCachingService_lock">Zamknúť Loki Messenger</string>
+  <string name="KeyCachingService_passphrase_cached">Session je odomknutý</string>
+  <string name="KeyCachingService_lock">Zamknúť Session</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Vy</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Nepodporovaný typ súboru</string>
   <string name="MediaPreviewActivity_draft">Koncept</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Loki Messenger potrebuje prístup k úložisku aby mohol ukladať dáta na externé úložisko, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Úložisko\".</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Session potrebuje prístup k úložisku aby mohol ukladať dáta na externé úložisko, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Úložisko\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Bez povolenia sa nedá zapisovať na externé úložisko</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Vymazať správu?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Týmto natrvalo odstánite túto správu.</string>
@@ -691,10 +691,10 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="MessageNotifier_mark_read">Označiť ako prečítané</string>
   <string name="MessageNotifier_media_message">Multimediálna správa</string>
   <string name="MessageNotifier_reply">Odpovedať</string>
-  <string name="MessageNotifier_signal_message">Loki Messenger správa</string>
+  <string name="MessageNotifier_signal_message">Session správa</string>
   <string name="MessageNotifier_unsecured_sms">Nezabezpečená SMS</string>
-  <string name="MessageNotifier_pending_signal_messages">Nevybavené Loki Messenger správy </string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Máte nevybavené Loki Messenger správy, stlačením otvorte a prevezmite</string>
+  <string name="MessageNotifier_pending_signal_messages">Nevybavené Session správy </string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">Máte nevybavené Session správy, stlačením otvorte a prevezmite</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--Notification Channels-->
@@ -708,7 +708,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="NotificationChannel_group_messages">Správy</string>
   <string name="NotificationChannel_missing_display_name">Neznáma</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Rýchla odpoveď nie je dostupná, keď je Loki Messenger zamknutý!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Rýchla odpoveď nie je dostupná, keď je Session zamknutý!</string>
   <string name="QuickResponseService_problem_sending_message">Problém pri odosielaní správy!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">Uložené do %s</string>
@@ -719,7 +719,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Neplatná skratka</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Session</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nová správa</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
@@ -730,14 +730,14 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Zariadenie už nie je registrované</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dôvodom je pravdepodobne to, že ste Vaše telefónne číslo zaregistrovali v Loki Messengeru na inom zariadení.</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dôvodom je pravdepodobne to, že ste Vaše telefónne číslo zaregistrovali v Sessionu na inom zariadení.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Chyba pri prehrávaní videa</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Pre prijatie hovoru od %s musíte povoliť Loki Messengeru prístup k mikrofónu.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Loki Messenger potrebuje prístup k mikrofónu a fotoaparátu aby mohol volať alebo prijímať hovory, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Mikrofón\" a \"Fotoaparát\".</string>
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Pre prijatie hovoru od %s musíte povoliť Sessionu prístup k mikrofónu.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Session potrebuje prístup k mikrofónu a fotoaparátu aby mohol volať alebo prijímať hovory, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Mikrofón\" a \"Fotoaparát\".</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">Bezpečnostné číslo pre konverzáciu s %1$s sa zmenilo. Môže to znamenať, že sa niekto snaží preniknúť do vašej komunikácie alebo jednoducho, že %2$s si preinštaloval/a Loki Messenger.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers">Bezpečnostné číslo pre konverzáciu s %1$s sa zmenilo. Môže to znamenať, že sa niekto snaží preniknúť do vašej komunikácie alebo jednoducho, že %2$s si preinštaloval/a Session.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Mali by ste overiť vaše bezpečnostné číslo s týmto kontaktom.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Nové bezpečnostné číslo</string>
   <string name="WebRtcCallScreen_accept">Potvrdiť</string>
@@ -772,15 +772,15 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Fotka kontaktu</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Loki Messenger potrebuje prístup ku kontaktom aby mohol zobraziť Vaše kontakty, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Kontakty\".</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Session potrebuje prístup ku kontaktom aby mohol zobraziť Vaše kontakty, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Kontakty\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Nepodarilo sa načítať kontakty. Skontrolujte svoje sieťové pripojenie</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Žiadne blokované kontakty</string>
   <!--contact_selection_list_fragment-->
-  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Loki Messenger potrebuje prístup k Vašim kontaktom, aby ich mohol zobraziť.</string>
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Session potrebuje prístup k Vašim kontaktom, aby ich mohol zobraziť.</string>
   <string name="contact_selection_list_fragment__show_contacts">Ukázať Kontakty</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Loki Messenger správa</string>
+  <string name="conversation_activity__type_message_push">Session správa</string>
   <string name="conversation_activity__type_message_sms_insecure">Nezabezpečená SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Nezabezpečená MMS</string>
   <string name="conversation_activity__from_sim_name">Z %1$s</string>
@@ -792,7 +792,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Prepnúť na rýchlu prílohu fotoaparátom</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Nahrať a odoslať zvukovú prílohu</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Zamknúť nahrávanie zvukovej prílohy</string>
-  <string name="conversation_activity__enable_signal_for_sms">Zapnúť Loki Messenger pre SMS</string>
+  <string name="conversation_activity__enable_signal_for_sms">Zapnúť Session pre SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Potiahnite pre zrušenie</string>
   <string name="conversation_input_panel__cancel">Zrušiť</string>
@@ -875,9 +875,9 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="IdentityUtil_unverified_banner_one">Vaše bezpečnostné číslo s %s sa zmenilo, a už nie je overené</string>
   <string name="IdentityUtil_unverified_banner_two">Vaše bezpečnostné čísla s %1$s a %2$s už nie sú overené</string>
   <string name="IdentityUtil_unverified_banner_many">Vaše bezpečnostné čísla s %1$s, %2$s, a %3$s už nie sú overené</string>
-  <string name="IdentityUtil_unverified_dialog_one">Vaše bezpečnostné číslo s %1$s sa zmenilo a nie je už overené. Môže to znamenať, že sa niekto snaží preniknúť do vašej komunikácie alebo jednoducho, že %1$s si preinštaloval/a Loki Messenger.</string>
-  <string name="IdentityUtil_unverified_dialog_two">Vaše bezpečnostné čísla s %1$s a %2$s už nie sú overené. Môže to znamenať, že sa niekto snaží preniknúť do vašej komunikácie alebo jednoducho, že si preinštalovali Loki Messenger.</string>
-  <string name="IdentityUtil_unverified_dialog_many">Vaše bezpečnostné čísla s %1$s, %2$s a %3$s už nie sú overené. Môže to znamenať, že sa niekto snaží preniknúť do vašej komunikácie alebo jednoducho, že si preinštalovali Loki Messenger.</string>
+  <string name="IdentityUtil_unverified_dialog_one">Vaše bezpečnostné číslo s %1$s sa zmenilo a nie je už overené. Môže to znamenať, že sa niekto snaží preniknúť do vašej komunikácie alebo jednoducho, že %1$s si preinštaloval/a Session.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Vaše bezpečnostné čísla s %1$s a %2$s už nie sú overené. Môže to znamenať, že sa niekto snaží preniknúť do vašej komunikácie alebo jednoducho, že si preinštalovali Session.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Vaše bezpečnostné čísla s %1$s, %2$s a %3$s už nie sú overené. Môže to znamenať, že sa niekto snaží preniknúť do vašej komunikácie alebo jednoducho, že si preinštalovali Session.</string>
   <string name="IdentityUtil_untrusted_dialog_one">Vaše bezpečnostné číslo s %s sa zmenilo.</string>
   <string name="IdentityUtil_untrusted_dialog_two">Vaše bezpečnostné čísla s %1$s a %2$s sa zmenili.</string>
   <string name="IdentityUtil_untrusted_dialog_many">Vaše bezpečnostné čísla s %1$s, %2$s a %3$s sa zmenili.</string>
@@ -910,7 +910,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="log_submit_activity__please_review_this_log_from_my_app">Prosím skontrolujte záznam z mojej aplikácie: %1$s</string>
   <string name="log_submit_activity__network_failure">Chyba siete. Skúste to znovu.</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Chcete importovať vaše existujúce textové správy do šifrovanej databázy Loki Messengeru?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Chcete importovať vaše existujúce textové správy do šifrovanej databázy Sessionu?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Pôvodná systémová databáza nebude žiadnym spôsobom modifikovaná.</string>
   <string name="database_migration_activity__skip">Preskočiť</string>
   <string name="database_migration_activity__import">Import</string>
@@ -944,7 +944,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Odomknúť</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Loki Messenger vyžaduje nastavenia MMS na doručenie médií a skupinových správ cez vášho poskytovateľa pripojenia. Vaše zariadenie neposkytuje tieto informácie, čo občas spôsobujú uzamknuté zariadenia alebo iné obmedzenia v nastaveniach.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Session vyžaduje nastavenia MMS na doručenie médií a skupinových správ cez vášho poskytovateľa pripojenia. Vaše zariadenie neposkytuje tieto informácie, čo občas spôsobujú uzamknuté zariadenia alebo iné obmedzenia v nastaveniach.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Pre odoslanie médií a skupinových správ stlačte OK, a dokončite príslušné nastavenia. MMS nastavenia vášho poskytovateľa sa väčšinov dajú nájsť vyhľadaním \"váš poskytovateľ APN\". Toto nastavenie musíte urobiť len raz.</string>
   <!--profile_create_activity-->
   <string name="profile_create_activity__set_later">Nastaviť neskôr</string>
@@ -967,12 +967,12 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="recipient_preferences__call_settings">Nastavenia hovoru</string>
   <string name="recipient_preferences__ringtone">Zvonenie</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Loki Messenger hovor</string>
+  <string name="redphone_call_card__signal_call">Session hovor</string>
   <string name="redphone_call_controls__mute">Stíšiť</string>
   <string name="redphone_call_controls__flip_camera_rear">Prepnúť kameru</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFÓNNE ČÍSLO </string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal uľahčuje komunikáciu použitím vášho telefónneho čísla a kontaktov. Vaši priatelia, ktorí už vedia ako sa s vami spojiť cez telefón vás budú môcť ľahko kontaktovať cez Loki Messenger.\n\nPočas registrácie sa prenesú niektoré informácie o kontaktoch na server, ktoré sa ďalej neukladajú.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal uľahčuje komunikáciu použitím vášho telefónneho čísla a kontaktov. Vaši priatelia, ktorí už vedia ako sa s vami spojiť cez telefón vás budú môcť ľahko kontaktovať cez Session.\n\nPočas registrácie sa prenesú niektoré informácie o kontaktoch na server, ktoré sa ďalej neukladajú.</string>
   <string name="registration_activity__verify_your_number">Overte Vaše číslo</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Zadajte svoje telefónne číslo pre prijatie verifikačného kódu. Môže to byť spoplatnené.</string>
   <!--recipients_panel-->
@@ -1051,8 +1051,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__sms_mms">SMS a MMS</string>
   <string name="preferences__pref_all_sms_title">Prijať všetky SMS</string>
   <string name="preferences__pref_all_mms_title">Prijať všetky MMS</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Použiť Loki Messenger pre všetky prichádzajúce textové správy</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Použiť Loki Messenger pre všetky prichádzajúce multimediálne správy</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Použiť Session pre všetky prichádzajúce textové správy</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Použiť Session pre všetky prichádzajúce multimediálne správy</string>
   <string name="preferences__pref_enter_sends_title">Odoslať stlačením klávesy Enter</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Stlačením klávesy Enter sa správa odošle</string>
   <string name="preferences__send_link_previews">Posielať náhľady stránok</string>
@@ -1065,7 +1065,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Uzamknúť obrazovku a upozornenia pomocou hesla</string>
   <string name="preferences__screen_security">Zabezpečenie obrazovky</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Zakázať vytváranie snímkov obrazovky v tejto aplikácii a v zozname bežiacich aplikácií</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Automaticky zamknúť Loki Messenger po určenej dobe bez aktivity</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Automaticky zamknúť Session po určenej dobe bez aktivity</string>
   <string name="preferences__inactivity_timeout_passphrase">Heslo po neaktivite</string>
   <string name="preferences__inactivity_timeout_interval">Interval doby bez aktivity</string>
   <string name="preferences__notifications">Upozornenia</string>
@@ -1118,8 +1118,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__theme">Motív</string>
   <string name="preferences__default">Štandardné nastavenie</string>
   <string name="preferences__language">Jazyk</string>
-  <string name="preferences__signal_messages_and_calls">Loki Messenger správy a hovory</string>
-  <string name="preferences__free_private_messages_and_calls">Bezplatné zabezpečené správy a hovory medzi užívateľmi Loki Messengeru</string>
+  <string name="preferences__signal_messages_and_calls">Session správy a hovory</string>
+  <string name="preferences__free_private_messages_and_calls">Bezplatné zabezpečené správy a hovory medzi užívateľmi Sessionu</string>
   <string name="preferences__submit_debug_log">Odoslať ladiaci záznam</string>
   <string name="preferences__support_wifi_calling">Režim kompatibility \'WiFi volania\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Zapnite ak vaše zariadenie používa doručenie SMS/MMS cez WiFi (zapnite len ak sú \"WiFi volania\" zapnuté na vašom zariadení)</string>
@@ -1136,8 +1136,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_chats__media_auto_download">Automatické preberanie médií</string>
   <string name="preferences_chats__message_trimming">Premazávanie správ</string>
   <string name="preferences_advanced__use_system_emoji">Použiť systémové emoji</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Vypnúť emoji zabudované v Loki Messengere</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Smerovať všetky hovory cez server Loki Messenger pre zabránenie odhaleniu vašej IP adresy kontaktu. Zapnutie zníži kvalitu hovoru.</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Vypnúť emoji zabudované v Sessione</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Smerovať všetky hovory cez server Session pre zabránenie odhaleniu vašej IP adresy kontaktu. Zapnutie zníži kvalitu hovoru.</string>
   <string name="preferences_advanced__always_relay_calls">Vždy presmerovať hovory</string>
   <string name="preferences_app_protection__app_access">Prístup k aplikácii</string>
   <string name="preferences_app_protection__communication">Komunikácia</string>
@@ -1149,9 +1149,9 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_notifications__calls">Volania</string>
   <string name="preferences_notifications__ringtone">Zvonenie</string>
   <string name="preferences_chats__show_invitation_prompts">Zobraziť pozvánky</string>
-  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Zobraziť pozvánky pre kontakty bez Loki Messengeru</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Zobraziť pozvánky pre kontakty bez Sessionu</string>
   <string name="preferences_chats__message_text_size">Veľkosť písma správy</string>
-  <string name="preferences_events__contact_joined_signal">Váš kontakt začal používať Loki Messenger</string>
+  <string name="preferences_events__contact_joined_signal">Váš kontakt začal používať Session</string>
   <string name="preferences_notifications__priority">Priorita</string>
   <string name="preferences_communication__category_sealed_sender">Zapečatený odosielateľ</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Zobraziť indikátory</string>
@@ -1167,7 +1167,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Zavolať</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">Loki Messenger hovor</string>
+  <string name="conversation_callable_secure__menu_call">Session hovor</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Podrobnosti správy</string>
   <string name="conversation_context__menu_copy_text">Kopírovať text</string>
@@ -1230,28 +1230,28 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopírovať</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Porovnať</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Vaša verzia Loki Messengeru nie je aktuálna</string>
+  <string name="reminder_header_outdated_build">Vaša verzia Sessionu nie je aktuálna</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Vaša verzia Loki Messengeru vyprší za %d deň. Ťuknutím aktualizujte na najnovšiu verziu.</item>
-    <item quantity="few">Vaša verzia Loki Messengeru vyprší za %d dni. Ťuknutím aktualizujte na najnovšiu verziu.</item>
-    <item quantity="many">Vaša verzia Loki Messengeru vyprší za %d dní. Ťuknutím aktualizujte na najnovšiu verziu.</item>
-    <item quantity="other">Vaša verzia Loki Messengeru vyprší za %d dní. Ťuknutím aktualizujte na najnovšiu verziu.</item>
+    <item quantity="one">Vaša verzia Sessionu vyprší za %d deň. Ťuknutím aktualizujte na najnovšiu verziu.</item>
+    <item quantity="few">Vaša verzia Sessionu vyprší za %d dni. Ťuknutím aktualizujte na najnovšiu verziu.</item>
+    <item quantity="many">Vaša verzia Sessionu vyprší za %d dní. Ťuknutím aktualizujte na najnovšiu verziu.</item>
+    <item quantity="other">Vaša verzia Sessionu vyprší za %d dní. Ťuknutím aktualizujte na najnovšiu verziu.</item>
   </plurals>
-  <string name="reminder_header_outdated_build_details_today">Vaša verzia Loki Messengeru dnes vyprší. Ťuknutím aktualizujte na najnovšiu verziu.</string>
-  <string name="reminder_header_expired_build">Vaša verzia Loki Messengeru vypršala!</string>
+  <string name="reminder_header_outdated_build_details_today">Vaša verzia Sessionu dnes vyprší. Ťuknutím aktualizujte na najnovšiu verziu.</string>
+  <string name="reminder_header_expired_build">Vaša verzia Sessionu vypršala!</string>
   <string name="reminder_header_expired_build_details">Správy sa nepodarí úspešne odoslať. Ťuknutím aktualizujte na najnovšiu verziu.</string>
   <string name="reminder_header_sms_default_title">Použiť ako predvolenú SMS aplikáciu</string>
-  <string name="reminder_header_sms_default_text">Ťuknutím nastavíte Loki Messenger ako Vašu predvolenú SMS aplikáciu.</string>
+  <string name="reminder_header_sms_default_text">Ťuknutím nastavíte Session ako Vašu predvolenú SMS aplikáciu.</string>
   <string name="reminder_header_sms_import_title">Importovať systémové SMS správy?</string>
-  <string name="reminder_header_sms_import_text">Ťuknutím skopírujete SMS správy z vášho telefónu do šifrovanej databázy Loki Messengeru.</string>
-  <string name="reminder_header_push_title">Zapnúť Loki Messenger správy a hovory</string>
+  <string name="reminder_header_sms_import_text">Ťuknutím skopírujete SMS správy z vášho telefónu do šifrovanej databázy Sessionu.</string>
+  <string name="reminder_header_push_title">Zapnúť Session správy a hovory</string>
   <string name="reminder_header_push_text">Zlepšite svoj zážitok z komunikácie.</string>
-  <string name="reminder_header_invite_title">Pozvať do Loki Messengeru</string>
+  <string name="reminder_header_invite_title">Pozvať do Sessionu</string>
   <string name="reminder_header_invite_text">Vyzdvihnite vašu konverzáciu s osobou %1$s na ďalšiu úroveň.</string>
   <string name="reminder_header_share_title">Pozvite vašich priateľov!</string>
-  <string name="reminder_header_share_text">Čím viac priateľov používa Loki Messenger, tým lepším sa stane.</string>
-  <string name="reminder_header_service_outage_text">Loki Messenger má technické ťažkosti. Pracujeme na tom, aby sme čo najskôr obnovili našu službu.</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">Najnovšie funkcie Signalu nefungujú v tejto verzii Androidu. Ak chcete v budúcnosti prijímať aktualizácie Loki Messengeru, upgradujte si, prosím, toto zariadenie.</string>
+  <string name="reminder_header_share_text">Čím viac priateľov používa Session, tým lepším sa stane.</string>
+  <string name="reminder_header_service_outage_text">Session má technické ťažkosti. Pracujeme na tom, aby sme čo najskôr obnovili našu službu.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">Najnovšie funkcie Signalu nefungujú v tejto verzii Androidu. Ak chcete v budúcnosti prijímať aktualizácie Sessionu, upgradujte si, prosím, toto zariadenie.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Uložiť</string>
   <string name="media_preview__forward_title">Preposlať</string>
@@ -1272,16 +1272,16 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ConversationListFragment_loading">Načítava sa...</string>
   <string name="CallNotificationBuilder_connecting">Pripájanie...</string>
   <string name="Permissions_permission_required">Potrebné povolenie</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Loki Messenger potrebuje prístup k SMS správam aby mohol posielať SMS správy, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"SMS\".</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Session potrebuje prístup k SMS správam aby mohol posielať SMS správy, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"SMS\".</string>
   <string name="Permissions_continue">Pokračovať</string>
   <string name="Permissions_not_now">Teraz nie</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Loki Messenger potrebuje prístup ku kontaktom aby mohol prehľadávať Vaše kontakty, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Kontakty\".</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Session potrebuje prístup ku kontaktom aby mohol prehľadávať Vaše kontakty, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Kontakty\".</string>
   <string name="conversation_activity__enable_signal_messages">POVOLIŤ SIGNAL SPRÁVY</string>
-  <string name="SQLCipherMigrationHelper_migrating_signal_database">Presúvam databázu Loki Messengeru</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Presúvam databázu Sessionu</string>
   <string name="PushDecryptJob_new_locked_message">Nová uzamknutá správa</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Odomknite pre zobrazenie nevybavených správ</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Odomknite pre dokončenie aktualizácie</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Odomknite Loki Messenger pre dokončenie aktualizácie</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Odomknite Session pre dokončenie aktualizácie</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Heslo pre zálohy</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Zálohy budú uložené na úložisko zašifrované nasledujúcim heslom. K obnoveniu zálohy musíte mať toto heslo k dispozícii.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Heslo som si zapísal/a, bez hesla nebudem schopný/á obnoviť zálohy.</string>
@@ -1293,7 +1293,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_chats__create_backup">Vytvoriť zálohu</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Zadajte heslo pre zálohy</string>
   <string name="RegistrationActivity_restore">Obnovenie</string>
-  <string name="RegistrationActivity_backup_failure_downgrade">Zálohy z novšej verzie Loki Messenger sa nedajú importovať.</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Zálohy z novšej verzie Session sa nedajú importovať.</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Nesprávne heslo pre zálohy</string>
   <string name="RegistrationActivity_checking">Kontrola...</string>
   <string name="RegistrationActivity_d_messages_so_far">Zatiaľ %d správ...</string>
@@ -1308,7 +1308,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="BackupDialog_disable_and_delete_all_local_backups">Zakázať a vymazať všetky lokálne zálohy?</string>
   <string name="BackupDialog_delete_backups_statement">Vymazať zálohy</string>
   <string name="BackupDialog_copied_to_clipboard">Skopírované do schránky</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Loki Messenger potrebuje prístup k úložisku aby mohol vytvárať zálohy, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Úložisko\".</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Session potrebuje prístup k úložisku aby mohol vytvárať zálohy, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Úložisko\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Posledná záloha: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Prebieha</string>
   <string name="LocalBackupJob_creating_backup">Vytváranie zálohy...</string>
@@ -1319,7 +1319,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="BackupUtil_never">Nikdy</string>
   <string name="BackupUtil_unknown">Neznáma</string>
   <string name="preferences_app_protection__screen_lock">Zámok obrazovky</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Uzamknúť Loki Messenger pomocou zámku obrazovky Androidu alebo odtlačkom prstu</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Uzamknúť Session pomocou zámku obrazovky Androidu alebo odtlačkom prstu</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Časový limit neaktivity pred uzamknutím</string>
   <string name="AppProtectionPreferenceFragment_none">Žiadny</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN registračného zámku sa nezhoduje s verifikačným kódom ktorý ste obdržali v SMS správe. Zadajte prosím PIN, ktorý ste si v aplikácii nastavili.</string>
@@ -1330,7 +1330,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="registration_lock_dialog_view__confirm_pin">Potvrďte PIN</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Zadajte Váš PIN registračného zámku</string>
   <string name="registration_lock_reminder_view__enter_pin">Zadajte PIN</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Povoľte PIN registračného zámku, ktorý bude potrebné zadať pri opätovnej registrácii tohto telefónneho čísla do Loki Messengeru.</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Povoľte PIN registračného zámku, ktorý bude potrebné zadať pri opätovnej registrácii tohto telefónneho čísla do Sessionu.</string>
   <string name="preferences_app_protection__registration_lock_pin">PIN registračného zámku</string>
   <string name="preferences_app_protection__registration_lock">Registračný zámok</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Musíte zadať svoj PIN registračného zámku</string>
@@ -1339,13 +1339,13 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Urobili ste príliš veľa pokusov o zadanie PINu registračného zámku. Skúste to znovu za deň.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Chyba pri pripájaní k službe</string>
   <string name="RegistrationActivity_oh_no">Ale nie!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registrácia tohto telefónneho čísla bez PINu registračného zámku bude možná po 7 dňoch neaktivity tohto telefónneho čísla na Loki Messengere. Ostáva %d dní.</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registrácia tohto telefónneho čísla bez PINu registračného zámku bude možná po 7 dňoch neaktivity tohto telefónneho čísla na Sessione. Ostáva %d dní.</string>
   <string name="RegistrationActivity_registration_lock_pin">PIN registračného zámku</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Toto telefónne číslo má nastavený registračný zámok. Zadajte PIN registračného zámku.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Toto telefónne číslo má nastavený registračný zámok. Aby ste ho nezabudli, Loki Messenger občas poprosí o jeho zadanie.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Toto telefónne číslo má nastavený registračný zámok. Aby ste ho nezabudli, Session občas poprosí o jeho zadanie.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Zabudol som svoj PIN.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Zabudli ste PIN?</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registračný zámok pomáha chrániť Vaše telefónne číslo pred neautorizovanou registráciou. Táto funkcia sa dá vypnúť kedykoľvek v nastaveniach súkromia Loki Messengeru.</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registračný zámok pomáha chrániť Vaše telefónne číslo pred neautorizovanou registráciou. Táto funkcia sa dá vypnúť kedykoľvek v nastaveniach súkromia Sessionu.</string>
   <string name="RegistrationLockDialog_registration_lock">Registračný zámok</string>
   <string name="RegistrationLockDialog_enable">Zapnúť</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">Registračný zámok musí obsahovať aspoň 4 čísla.</string>
@@ -1354,7 +1354,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Vypnúť PIN registračného zámku?</string>
   <string name="RegistrationLockDialog_disable">Vypnúť</string>
   <string name="preferences_chats__backups">Zálohy</string>
-  <string name="prompt_passphrase_activity__signal_is_locked">Loki Messenger je zamknutý</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Session je zamknutý</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">ŤUKNUTÍM ODOMKNITE</string>
   <string name="RegistrationLockDialog_reminder">Pripomienka:</string>
   <string name="recipient_preferences__about">Informácie</string>

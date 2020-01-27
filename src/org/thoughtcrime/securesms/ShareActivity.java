@@ -30,7 +30,6 @@ import android.provider.OpenableColumns;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -112,6 +111,8 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     initializeResources();
     initializeSearch();
     initializeMedia();
+
+    getWindow().setNavigationBarColor(getResources().getColor(R.color.navigation_bar_background));
   }
 
   @Override
@@ -161,12 +162,6 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   private void initializeToolbar() {
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
-
-    ActionBar actionBar = getSupportActionBar();
-
-    if (actionBar != null) {
-      actionBar.setDisplayHomeAsUpEnabled(true);
-    }
   }
 
   private void initializeResources() {

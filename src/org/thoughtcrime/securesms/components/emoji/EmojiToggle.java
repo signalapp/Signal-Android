@@ -1,15 +1,17 @@
 package org.thoughtcrime.securesms.components.emoji;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatImageButton;
 import android.util.AttributeSet;
 
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.stickers.StickerKeyboardProvider;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+
+import network.loki.messenger.R;
 
 public class EmojiToggle extends AppCompatImageButton implements MediaKeyboard.MediaKeyboardListener {
 
@@ -53,6 +55,8 @@ public class EmojiToggle extends AppCompatImageButton implements MediaKeyboard.M
     this.stickerToggle   = drawables.getDrawable(1);
     this.imeToggle       = drawables.getDrawable(2);
     this.mediaToggle     = emojiToggle;
+
+    setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.text)));
 
     drawables.recycle();
     setToMedia();

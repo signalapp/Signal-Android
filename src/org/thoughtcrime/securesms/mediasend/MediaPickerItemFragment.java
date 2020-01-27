@@ -20,13 +20,13 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+
+import network.loki.messenger.R;
 
 /**
  * Allows the user to select a set of media items from a specified folder.
@@ -167,7 +167,6 @@ public class MediaPickerItemFragment extends Fragment implements MediaPickerItem
 
   private void initToolbar(Toolbar toolbar) {
     ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
-    ((AppCompatActivity) requireActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(folderTitle);
 
     toolbar.setNavigationOnClickListener(v -> requireActivity().onBackPressed());

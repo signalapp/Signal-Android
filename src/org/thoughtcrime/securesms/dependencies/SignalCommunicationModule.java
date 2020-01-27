@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.dependencies;
 import android.content.Context;
 
 import org.greenrobot.eventbus.EventBus;
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.CreateProfileActivity;
 import org.thoughtcrime.securesms.DeviceListFragment;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
@@ -160,7 +161,8 @@ public class SignalCommunicationModule {
                                                           DatabaseFactory.getLokiMessageDatabase(context),
                                                           DatabaseFactory.getLokiPreKeyBundleDatabase(context),
                                                           new TextSecureSessionStore(context),
-                                                          DatabaseFactory.getLokiUserDatabase(context));
+                                                          DatabaseFactory.getLokiUserDatabase(context),
+                                                          ((ApplicationContext)context.getApplicationContext()).broadcaster);
     } else {
       this.messageSender.setMessagePipe(IncomingMessageObserver.getPipe(), IncomingMessageObserver.getUnidentifiedPipe());
       this.messageSender.setIsMultiDevice(TextSecurePreferences.isMultiDevice(context));

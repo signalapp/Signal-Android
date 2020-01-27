@@ -55,15 +55,24 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         private val grantSignature = "grant_signature"
         @JvmStatic val createPairingAuthorisationTableCommand = "CREATE TABLE $pairingAuthorisationCache ($primaryDevicePublicKey TEXT, $secondaryDevicePublicKey TEXT, " +
             "$requestSignature TEXT NULLABLE DEFAULT NULL, $grantSignature TEXT NULLABLE DEFAULT NULL, PRIMARY KEY ($primaryDevicePublicKey, $secondaryDevicePublicKey));"
+        // User count cache
+        private val userCountCache = "loki_user_count_cache"
+        private val publicChatID = "public_chat_id"
+        private val userCount = "user_count"
+        @JvmStatic val createUserCountTableCommand = "CREATE TABLE $userCountCache ($publicChatID STRING PRIMARY KEY, $userCount INTEGER DEFAULT 0);"
     }
 
     override fun getSwarmCache(hexEncodedPublicKey: String): Set<LokiAPITarget>? {
         val database = databaseHelper.readableDatabase
         return database.get(swarmCache, "${Companion.hexEncodedPublicKey} = ?", wrap(hexEncodedPublicKey)) { cursor ->
             val swarmAsString = cursor.getString(cursor.getColumnIndexOrThrow(swarm))
-            swarmAsString.split(", ").map { targetAsString ->
-                val components = targetAsString.split("?port=")
-                LokiAPITarget(components[0], components[1].toInt())
+            swarmAsString.split(", ").mapNotNull { targetAsString ->
+                val components = targetAsString.split("-")
+                val address = components[0]
+                val port = components.getOrNull(1)?.toIntOrNull() ?: return@mapNotNull null
+                val idKey = components.getOrNull(2) ?: return@mapNotNull null
+                val encryptionKey = components.getOrNull(3)?: return@mapNotNull null
+                LokiAPITarget(address, port, LokiAPITarget.KeySet(idKey, encryptionKey))
             }
         }?.toSet()
     }
@@ -71,7 +80,12 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
     override fun setSwarmCache(hexEncodedPublicKey: String, newValue: Set<LokiAPITarget>) {
         val database = databaseHelper.writableDatabase
         val swarmAsString = newValue.joinToString(", ") { target ->
-            "${target.address}?port=${target.port}"
+            var string = "${target.address}-${target.port}"
+            val keySet = target.publicKeySet
+            if (keySet != null) {
+                string += "-${keySet.idKey}-${keySet.encryptionKey}"
+            }
+            string
         }
         val row = wrap(mapOf( Companion.hexEncodedPublicKey to hexEncodedPublicKey, swarm to swarmAsString ))
         database.insertOrUpdate(swarmCache, row, "${Companion.hexEncodedPublicKey} = ?", wrap(hexEncodedPublicKey))
@@ -186,13 +200,28 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
     }
 
     override fun removePairingAuthorisations(hexEncodedPublicKey: String) {
-        val database = databaseHelper.readableDatabase
+        val database = databaseHelper.writableDatabase
         database.delete(pairingAuthorisationCache, "$primaryDevicePublicKey = ? OR $secondaryDevicePublicKey = ?", arrayOf( hexEncodedPublicKey, hexEncodedPublicKey ))
     }
 
     fun removePairingAuthorisation(primaryDevicePublicKey: String, secondaryDevicePublicKey: String) {
-        val database = databaseHelper.readableDatabase
+        val database = databaseHelper.writableDatabase
         database.delete(pairingAuthorisationCache, "${Companion.primaryDevicePublicKey} = ? OR ${Companion.secondaryDevicePublicKey} = ?", arrayOf( primaryDevicePublicKey, secondaryDevicePublicKey ))
+    }
+
+    fun getUserCount(group: Long, server: String): Int? {
+        val database = databaseHelper.readableDatabase
+        val index = "$server.$group"
+        return database.get(userCountCache, "$publicChatID = ?", wrap(index)) { cursor ->
+            cursor.getInt(userCount)
+        }?.toInt()
+    }
+
+    override fun setUserCount(userCount: Int, group: Long, server: String) {
+        val database = databaseHelper.writableDatabase
+        val index = "$server.$group"
+        val row = wrap(mapOf( publicChatID to index, LokiAPIDatabase.userCount to userCount.toString() ))
+        database.insertOrUpdate(userCountCache, row, "$publicChatID = ?", wrap(index))
     }
 }
 

@@ -20,7 +20,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?mediapicker_image_outline" />
+        android:background="@drawable/mediapicker_item_border_dark" />
 
     <FrameLayout
         android:id="@+id/mediapicker_play_overlay"

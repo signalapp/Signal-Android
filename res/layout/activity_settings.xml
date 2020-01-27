@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/default_session_background">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:minHeight="?attr/actionBarSize"
+                app:contentInsetLeft="20dp"
+                app:contentInsetRight="20dp"
+                android:theme="?attr/actionBarStyle">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/cancelButton"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_close_white_24dp"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/titleTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Settings"
+                        android:textColor="@color/text"
+                        android:textSize="@dimen/very_large_font_size"
+                        android:fontFamily="sans-serif-medium" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:id="@+id/saveButton"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_check_white_24dp"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/showQRCodeButton"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_qr_code" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.Toolbar>
+
+            <org.thoughtcrime.securesms.loki.redesign.views.ProfilePictureView
+                android:id="@+id/profilePictureView"
+                android:layout_width="@dimen/large_profile_picture_size"
+                android:layout_height="@dimen/large_profile_picture_size"
+                android:layout_marginTop="@dimen/medium_spacing" />
+
+            <RelativeLayout
+                android:id="@+id/displayNameContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/large_spacing"
+                android:layout_marginTop="@dimen/small_spacing"
+                android:layout_marginRight="@dimen/large_spacing">
+
+                <EditText
+                    style="@style/SessionEditText"
+                    android:id="@+id/displayNameEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textAlignment="center"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:visibility="invisible"
+                    android:hint="Enter a display name" />
+
+                <TextView
+                    android:id="@+id/displayNameTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/very_large_font_size"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <org.thoughtcrime.securesms.loki.redesign.views.SeparatorView
+                android:id="@+id/separatorView"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginLeft="@dimen/large_spacing"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="@dimen/large_spacing"/>
+
+            <TextView
+                android:id="@+id/publicKeyTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/large_spacing"
+                android:layout_marginTop="@dimen/large_spacing"
+                android:layout_marginRight="@dimen/large_spacing"
+                android:textSize="@dimen/large_font_size"
+                android:textColor="@color/text"
+                android:fontFamily="@font/space_mono_regular"
+                android:textAlignment="center"
+                android:text="05987d601943c267879be41830888066c6a024cbdc9a548d06813924bf3372ea78" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/large_spacing"
+                android:layout_marginTop="@dimen/large_spacing"
+                android:layout_marginRight="@dimen/large_spacing"
+                android:orientation="horizontal">
+
+                <Button
+                    style="@style/MediumProminentOutlineButton"
+                    android:id="@+id/copyButton"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/medium_button_height"
+                    android:layout_weight="1"
+                    android:text="Copy" />
+
+                <Button
+                    style="@style/MediumUnimportantOutlineButton"
+                    android:id="@+id/shareButton"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/medium_button_height"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/medium_spacing"
+                    android:text="Share" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="@dimen/large_spacing"
+                android:background="@color/separator" />
+
+            <TextView
+                android:id="@+id/privacyButton"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/setting_button_height"
+                android:background="@drawable/setting_button_background"
+                android:textColor="@color/text"
+                android:textSize="@dimen/medium_font_size"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="Privacy" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/separator" />
+
+            <TextView
+                android:id="@+id/notificationsButton"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/setting_button_height"
+                android:background="@drawable/setting_button_background"
+                android:textColor="@color/text"
+                android:textSize="@dimen/medium_font_size"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="Notifications" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/separator" />
+
+            <TextView
+                android:id="@+id/chatsButton"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/setting_button_height"
+                android:background="@drawable/setting_button_background"
+                android:textColor="@color/text"
+                android:textSize="@dimen/medium_font_size"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="Chats" />
+
+            <View
+                android:id="@+id/linkedDevicesButtonTopSeparator"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/separator" />
+
+            <TextView
+                android:id="@+id/linkedDevicesButton"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/setting_button_height"
+                android:background="@drawable/setting_button_background"
+                android:textColor="@color/text"
+                android:textSize="@dimen/medium_font_size"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="Devices" />
+
+            <View
+                android:id="@+id/seedButtonTopSeparator"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/separator" />
+
+            <TextView
+                android:id="@+id/seedButton"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/setting_button_height"
+                android:background="@drawable/setting_button_background"
+                android:textColor="@color/text"
+                android:textSize="@dimen/medium_font_size"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="Recovery Phrase" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/separator" />
+
+            <TextView
+                android:id="@+id/clearAllDataButton"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/setting_button_height"
+                android:background="@drawable/setting_button_background"
+                android:textColor="@color/destructive"
+                android:textSize="@dimen/medium_font_size"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="Clear All Data" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginBottom="@dimen/large_spacing"
+                android:background="@color/separator" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/loader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#A4000000"
+        android:visibility="gone"
+        android:alpha="0">
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            style="@style/SpinKitView.Large.ThreeBounce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_centerInParent="true"
+            app:SpinKit_Color="@color/text" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

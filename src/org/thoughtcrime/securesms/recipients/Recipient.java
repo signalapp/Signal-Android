@@ -22,7 +22,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 
 import com.annimon.stream.function.Consumer;
 
@@ -34,7 +33,6 @@ import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.GroupRecordContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
-import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.SystemContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.TransparentContactPhoto;
 import org.thoughtcrime.securesms.database.Address;
@@ -86,7 +84,7 @@ public class Recipient implements RecipientModifiedListener {
   private           Uri                  contactUri;
   private @Nullable Uri                  messageRingtone       = null;
   private @Nullable Uri                  callRingtone          = null;
-  private           long                 mutedUntil            = 0;
+  public            long                 mutedUntil            = 0;
   private           boolean              blocked               = false;
   private           VibrateState         messageVibrate        = VibrateState.DEFAULT;
   private           VibrateState         callVibrate           = VibrateState.DEFAULT;

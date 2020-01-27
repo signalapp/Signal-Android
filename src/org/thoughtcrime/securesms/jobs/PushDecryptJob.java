@@ -28,7 +28,6 @@ import org.signal.libsignal.metadata.ProtocolNoSessionException;
 import org.signal.libsignal.metadata.ProtocolUntrustedIdentityException;
 import org.signal.libsignal.metadata.SelfSendException;
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
@@ -76,6 +75,7 @@ import org.thoughtcrime.securesms.loki.LokiPreKeyBundleDatabase;
 import org.thoughtcrime.securesms.loki.LokiPreKeyRecordDatabase;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
+import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
@@ -260,7 +260,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
                                                                          .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                                                                          .setContentTitle(context.getString(R.string.PushDecryptJob_new_locked_message))
                                                                          .setContentText(context.getString(R.string.PushDecryptJob_unlock_to_view_pending_messages))
-                                                                         .setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, ConversationListActivity.class), 0))
+                                                                         .setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, HomeActivity.class), 0))
                                                                          .setDefaults(NotificationCompat.DEFAULT_SOUND | NotificationCompat.DEFAULT_VIBRATE)
                                                                          .build());
 
@@ -1058,8 +1058,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
       if (smsMessageId.isPresent()) database.deleteMessage(smsMessageId.get());
 
-      boolean isGroupMessage = message.getGroupInfo().isPresent();
-      if (threadId != null && !isGroupMessage) {
+      if (threadId != null) {
         MessageNotifier.updateNotification(context, threadId);
       }
 
@@ -1771,7 +1770,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       }
       return Recipient.from(context, Address.fromSerialized(publicKey), false);
     } catch (Exception e) {
-      Log.d("Loki", "Failed to get primary device public key for message. " + e.getMessage());
+      Log.d("Loki", "Failed to get primary device public key for " + pubKey + ". " + e.getMessage());
       return Recipient.from(context, Address.fromSerialized(pubKey), false);
     }
   }
