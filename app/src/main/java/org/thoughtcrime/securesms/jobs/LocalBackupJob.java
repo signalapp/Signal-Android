@@ -86,15 +86,25 @@ public class LocalBackupJob extends BaseJob {
 
       File tempFile = File.createTempFile("backup", "tmp", StorageUtil.getBackupCacheDirectory(context));
 
-      FullBackupExporter.export(context,
-                                AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
-                                DatabaseFactory.getBackupDatabase(context),
-                                tempFile,
-                                backupPassword);
+      try {
+        FullBackupExporter.export(context,
+                                  AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
+                                  DatabaseFactory.getBackupDatabase(context),
+                                  tempFile,
+                                  backupPassword);
 
-      if (!tempFile.renameTo(backupFile)) {
-        tempFile.delete();
-        throw new IOException("Renaming temporary backup file failed!");
+        if (!tempFile.renameTo(backupFile)) {
+          Log.w(TAG, "Failed to rename temp file");
+          throw new IOException("Renaming temporary backup file failed!");
+        }
+      } finally {
+        if (tempFile.exists()) {
+          if (tempFile.delete()) {
+            Log.w(TAG, "Backup failed. Deleted temp file");
+          } else {
+            Log.w(TAG, "Backup failed. Failed to delete temp file " + tempFile);
+          }
+        }
       }
 
       BackupUtil.deleteOldBackups();
