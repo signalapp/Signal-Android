@@ -75,6 +75,12 @@ public final class LegacyCameraModels {
     add("COL-AL10");
     add("COL-L29");
     add("COL-L19");
+
+    // Samsung Galaxy S6
+    add("SM-G920F");
+
+    // Honor View 10
+    add("BLK-L09");
   }};
 
   private LegacyCameraModels() {
