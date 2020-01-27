@@ -69,10 +69,10 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
             swarmAsString.split(", ").mapNotNull { targetAsString ->
                 val components = targetAsString.split("-")
                 val address = components[0]
-                val port = components.getOrNull(1) ?: return@mapNotNull null
-                val identificationKey = components.getOrNull(2) ?: return@mapNotNull null
+                val port = components.getOrNull(1)?.toIntOrNull() ?: return@mapNotNull null
+                val idKey = components.getOrNull(2) ?: return@mapNotNull null
                 val encryptionKey = components.getOrNull(3)?: return@mapNotNull null
-                LokiAPITarget(address, port.toInt(), LokiAPITarget.Keys(identificationKey, encryptionKey))
+                LokiAPITarget(address, port, LokiAPITarget.KeySet(idKey, encryptionKey))
             }
         }?.toSet()
     }
@@ -81,9 +81,9 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         val database = databaseHelper.writableDatabase
         val swarmAsString = newValue.joinToString(", ") { target ->
             var string = "${target.address}-${target.port}"
-            val keys = target.publicKeys
-            if (keys != null) {
-                string += "-${keys.identification}-${keys.encryption}"
+            val keySet = target.publicKeySet
+            if (keySet != null) {
+                string += "-${keySet.idKey}-${keySet.encryptionKey}"
             }
             string
         }
