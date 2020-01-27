@@ -23,6 +23,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.StringRes;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavDirections;
@@ -52,11 +53,13 @@ import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.DISPL
 import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.EXCLUDE_SYSTEM;
 import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.NEXT_BUTTON_TEXT;
 import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.NEXT_INTENT;
+import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.SHOW_BACK_ARROW;
 
 public class EditProfileFragment extends Fragment {
 
   private static final String TAG = Log.tag(EditProfileFragment.class);
 
+  private Toolbar                toolbar;
   private ImageView              avatar;
   private CircularProgressButton finishButton;
   private EditText               givenName;
@@ -187,6 +190,7 @@ public class EditProfileFragment extends Fragment {
   private void initializeResources(@NonNull View view) {
     Bundle arguments = requireArguments();
 
+    this.toolbar            = view.findViewById(R.id.toolbar);
     this.avatar             = view.findViewById(R.id.avatar);
     this.givenName          = view.findViewById(R.id.given_name);
     this.familyName         = view.findViewById(R.id.family_name);
@@ -231,6 +235,11 @@ public class EditProfileFragment extends Fragment {
       NavDirections action = EditProfileFragmentDirections.actionEditUsername();
       Navigation.findNavController(v).navigate(action);
     });
+
+    if (arguments.getBoolean(SHOW_BACK_ARROW, true)) {
+      this.toolbar.setVisibility(View.VISIBLE);
+      this.toolbar.setNavigationOnClickListener(v -> requireActivity().finish());
+    }
   }
 
   private void initializeProfileName() {

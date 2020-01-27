@@ -19,6 +19,7 @@ public class EditProfileActivity extends BaseActionBarActivity implements EditPr
   public static final String EXCLUDE_SYSTEM    = "exclude_system";
   public static final String DISPLAY_USERNAME  = "display_username";
   public static final String NEXT_BUTTON_TEXT  = "next_button_text";
+  public static final String SHOW_BACK_ARROW   = "show_back_arrow";
 
   private final DynamicTheme dynamicTheme    = new DynamicRegistrationTheme();
 
