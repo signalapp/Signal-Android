@@ -29,6 +29,7 @@
         android:paddingTop="1dp"
         android:paddingBottom="3dp"
         android:textColor="?conversation_subtitle_color"
-        android:textSize="14sp"
-        tools:text="1w" />
+        android:textSize="14dp"
+        tools:text="1w"
+        tools:ignore="SpUsage" />
 </LinearLayout>
