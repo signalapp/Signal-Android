@@ -340,7 +340,7 @@ public class MessageNotifier {
 
     if (notificationState.getNotifications().isEmpty()) {
       if (!bundled) cancelActiveNotifications(context);
-      Log.i(TAG, "Empty notification state. Skipping.");
+      Log.i(TAG, "[sendSingleThreadNotification] Empty notification state. Skipping.");
       return;
     }
 
@@ -407,6 +407,11 @@ public class MessageNotifier {
                                                      boolean signal)
   {
     Log.i(TAG, "sendMultiThreadNotification()  signal: " + signal);
+
+    if (notificationState.getNotifications().isEmpty()) {
+      Log.i(TAG, "[sendMultiThreadNotification] Empty notification state. Skipping.");
+      return;
+    }
 
     MultipleRecipientNotificationBuilder builder       = new MultipleRecipientNotificationBuilder(context, TextSecurePreferences.getNotificationPrivacy(context));
     List<NotificationItem>               notifications = notificationState.getNotifications();
