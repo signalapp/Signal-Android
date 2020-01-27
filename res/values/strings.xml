@@ -1494,7 +1494,7 @@
     <string name="preferences__read_receipts">Read receipts</string>
     <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">If read receipts are disabled, others cannot see if you read their messages, but you also won\'t be able to see if others have read your messages.</string>
     <string name="preferences__typing_indicators">Typing indicators</string>
-    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">If typing indicators are disabled, others cannot see when you are typing, but you also won\'t be able to see when others are typing.</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">If typing indicators are disabled, others cannot see whether you are typing, but you also won\'t be able to see when others are typing.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Request keyboard to disable personalized learning</string>
     <string name="preferences_app_protection__blocked_contacts">Blocked contacts</string>
     <string name="preferences_chats__when_using_mobile_data">When using mobile data</string>
