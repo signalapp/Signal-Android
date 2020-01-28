@@ -877,11 +877,11 @@
 
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_bad_encrypted_message">Message cannot be decrypted</string>
-    <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Message encrypted for non-existing session</string>
+    <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Message encrypted for nonexistent session</string>
 
     <!-- MmsMessageRecord -->
     <string name="MmsMessageRecord_bad_encrypted_mms_message">MMS message cannot be decrypted</string>
-    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS message encrypted for non-existing session</string>
+    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS message encrypted for nonexistent session</string>
 
     <!-- MuteDialog -->
     <string name="MuteDialog_mute_notifications">Mute notifications</string>
@@ -1492,7 +1492,7 @@
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Enable if you wish to send and receive SMS/MMS over Wi-Fi (only enable this when \'Wi-Fi Calling\' is enabled on your device)</string>
     <string name="preferences__incognito_keyboard">Incognito keyboard</string>
     <string name="preferences__read_receipts">Read receipts</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">If read receipts are disabled, others cannot see if you read their messages, but you also won\'t be able to see if others have read your messages.</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">If read receipts are disabled, others cannot see whether you have read their messages, but you also won\'t be able to see whether others have read your messages.</string>
     <string name="preferences__typing_indicators">Typing indicators</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">If typing indicators are disabled, others cannot see whether you are typing, but you also won\'t be able to see when others are typing.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Request keyboard to disable personalized learning</string>
@@ -1517,7 +1517,7 @@
     <string name="preferences_chats__chats">Chats</string>
     <string name="preferences_notifications__messages">Messages</string>
     <string name="preferences_notifications__events">Events</string>
-    <string name="preferences_notifications__in_chat_sounds">Also sound if Signal is on foreground</string>
+    <string name="preferences_notifications__in_chat_sounds">Also sound for opened chat</string>
     <string name="preferences_notifications__show">Show</string>
     <string name="preferences_notifications__calls">Calls</string>
     <string name="preferences_notifications__ringtone">Ringtone</string>
