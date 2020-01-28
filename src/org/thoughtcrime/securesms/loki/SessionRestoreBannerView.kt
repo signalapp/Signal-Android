@@ -10,18 +10,14 @@ import kotlinx.android.synthetic.main.session_restore_banner.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.recipients.Recipient
 
-/**
- * View to display actionable reminders to the user
- */
-class SessionRestoreBannerView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : LinearLayout(context, attrs, defStyleAttr) {
+class SessionRestoreBannerView : LinearLayout {
   lateinit var recipient: Recipient
   var onDismiss: (() -> Unit)? = null
   var onRestore: (() -> Unit)? = null
 
-  // region Initialization
-  constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
-  constructor(context: Context) : this(context, null)
-  // endregion
+  constructor(context: Context) : super(context, null)
+  constructor(context: Context, attrs: AttributeSet?) : super(context, attrs, 0)
+  constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
   init {
     LayoutInflater.from(context).inflate(R.layout.session_restore_banner, this, true)
@@ -31,7 +27,7 @@ class SessionRestoreBannerView(context: Context, attrs: AttributeSet?, defStyleA
 
   fun update(recipient: Recipient) {
     this.recipient = recipient
-    restoreText.text = context.getString(R.string.session_restore_banner_message, recipient.toShortString())
+    messageTextView.text = context.getString(R.string.session_restore_banner_message, recipient.toShortString())
   }
 
   fun show() {

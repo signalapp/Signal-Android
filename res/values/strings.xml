@@ -735,7 +735,7 @@
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_bad_encrypted_message">Bad encrypted message</string>
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Message encrypted for non-existing session</string>
-    <string name="MessageRecord_session_restore_sent">You have sent a session restore request to %s</string>
+    <string name="MessageRecord_session_restore_sent">You have sent a session restoration request to %s</string>
 
     <!-- MmsMessageRecord -->
     <string name="MmsMessageRecord_bad_encrypted_mms_message">Bad encrypted MMS message</string>
@@ -1653,9 +1653,9 @@
     <string name="dialog_device_unlink_title">Device unlinked</string>
     <string name="dialog_device_unlink_message">This device has been successfully unlinked</string>
     <!-- Session restore banner -->
-    <string name="session_restore_banner_message">Would you like to start a new session with %s?</string>
-    <string name="session_restore_banner_restore_button_title">Restore session</string>
+    <string name="session_restore_banner_message">Would you like to restore your session with %s?</string>
     <string name="session_restore_banner_dismiss_button_title">Dismiss</string>
+    <string name="session_restore_banner_restore_button_title">Restore</string>
 
     <!-- Loki -->
 

@@ -1563,12 +1563,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   protected void updateSessionRestoreBanner() {
     Set<String> devices = DatabaseFactory.getLokiThreadDatabase(this).getSessionRestoreDevices(threadId);
-    if (devices.size() > 0) {
+//    if (devices.size() > 0) {
       sessionRestoreBannerView.update(recipient);
       sessionRestoreBannerView.show();
-    } else {
-      sessionRestoreBannerView.hide();
-    }
+//    } else {
+//      sessionRestoreBannerView.hide();
+//    }
   }
 
   private void updateDefaultSubscriptionId(Optional<Integer> defaultSubscriptionId) {
@@ -1668,7 +1668,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     searchNav              = ViewUtil.findById(this, R.id.conversation_search_nav);
     mentionCandidateSelectionViewContainer = ViewUtil.findById(this, R.id.mentionCandidateSelectionViewContainer);
     mentionCandidateSelectionView = ViewUtil.findById(this, R.id.userSelectionView);
-    sessionRestoreBannerView      = ViewUtil.findById(this, R.id.sessionRestoreBannerView);
+    sessionRestoreBannerView = ViewUtil.findById(this, R.id.sessionRestoreBannerView);
     messageStatusProgressBar = ViewUtil.findById(this, R.id.messageStatusProgressBar);
     muteIndicatorImageView = ViewUtil.findById(this, R.id.muteIndicatorImageView);
     actionBarSubtitleTextView = ViewUtil.findById(this, R.id.subtitleTextView);
@@ -3302,17 +3302,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   public void restoreSession() {
     // Loki - User clicked restore session
-    if (!recipient.isGroupRecipient()) {
-      LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(this);
-      SmsDatabase database    = DatabaseFactory.getSmsDatabase(this);
-      Set<String> devices = lokiThreadDatabase.getSessionRestoreDevices(threadId);
-      for (String device : devices) { MessageSender.sendRestoreSessionMessage(this, device); }
-      long messageId = database.insertMessageOutbox(threadId, new OutgoingTextMessage(recipient,"", 0, 0), false, System.currentTimeMillis(), null);
-      if (messageId > -1) {
-        database.markAsLokiSessionRestoreSent(messageId);
-      }
-      lokiThreadDatabase.removeAllSessionRestoreDevices(threadId);
-      updateSessionRestoreBanner();
+    if (recipient.isGroupRecipient()) { return; }
+    LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(this);
+    SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(this);
+    Set<String> devices = lokiThreadDatabase.getSessionRestoreDevices(threadId);
+    for (String device : devices) { MessageSender.sendRestoreSessionMessage(this, device); }
+    long messageId = smsDatabase.insertMessageOutbox(threadId, new OutgoingTextMessage(recipient,"", 0, 0), false, System.currentTimeMillis(), null);
+    if (messageId > -1) {
+      smsDatabase.markAsLokiSessionRestoreSent(messageId);
     }
+    lokiThreadDatabase.removeAllSessionRestoreDevices(threadId);
+    updateSessionRestoreBanner();
   }
 }

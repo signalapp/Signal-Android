@@ -206,7 +206,6 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     if (conversationItem instanceof ConversationItem) {
       ((ConversationItem)conversationItem).friendRequestViewDelegate = this.friendRequestViewDelegate;
     }
-
     conversationItem.bind(messageRecord,
                           Optional.fromNullable(previousRecord),
                           Optional.fromNullable(nextRecord),
