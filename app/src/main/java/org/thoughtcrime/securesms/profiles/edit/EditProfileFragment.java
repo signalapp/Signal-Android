@@ -57,7 +57,8 @@ import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.SHOW_
 
 public class EditProfileFragment extends Fragment {
 
-  private static final String TAG = Log.tag(EditProfileFragment.class);
+  private static final String TAG          = Log.tag(EditProfileFragment.class);
+  private static final String AVATAR_STATE = "avatar";
 
   private Toolbar                toolbar;
   private View                   title;
@@ -115,12 +116,26 @@ public class EditProfileFragment extends Fragment {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     initializeResources(view);
-    initializeViewModel(requireArguments().getBoolean(EXCLUDE_SYSTEM, false));
+    initializeViewModel(requireArguments().getBoolean(EXCLUDE_SYSTEM, false), savedInstanceState != null);
     initializeProfileName();
     initializeProfileAvatar();
     initializeUsername();
 
     requireActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
+  }
+
+  @Override
+  public void onSaveInstanceState(@NonNull Bundle outState) {
+    outState.putByteArray(AVATAR_STATE, viewModel.getAvatarSnapshot());
+  }
+
+  @Override
+  public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+    super.onViewStateRestored(savedInstanceState);
+
+    if (savedInstanceState != null && savedInstanceState.containsKey(AVATAR_STATE)) {
+      viewModel.setAvatar(savedInstanceState.getByteArray(AVATAR_STATE));
+    }
   }
 
   @Override
@@ -181,9 +196,9 @@ public class EditProfileFragment extends Fragment {
     }
   }
 
-  private void initializeViewModel(boolean excludeSystem) {
-    EditProfileRepository repository = new EditProfileRepository(requireContext(), excludeSystem);
-    EditProfileViewModel.Factory factory    = new EditProfileViewModel.Factory(repository);
+  private void initializeViewModel(boolean excludeSystem, boolean hasSavedInstanceState) {
+    EditProfileRepository        repository = new EditProfileRepository(requireContext(), excludeSystem);
+    EditProfileViewModel.Factory factory    = new EditProfileViewModel.Factory(repository, hasSavedInstanceState);
 
     viewModel = ViewModelProviders.of(this, factory).get(EditProfileViewModel.class);
   }
@@ -246,17 +261,17 @@ public class EditProfileFragment extends Fragment {
   }
 
   private void initializeProfileName() {
-    viewModel.profileName().observe(this, profileName -> {
+    viewModel.givenName().observe(this, givenName -> updateFieldIfNeeded(this.givenName, givenName));
 
-      updateFieldIfNeeded(givenName, profileName.getGivenName());
-      updateFieldIfNeeded(familyName, profileName.getFamilyName());
+    viewModel.familyName().observe(this, familyName -> updateFieldIfNeeded(this.familyName, familyName));
+
+    viewModel.profileName().observe(this, profileName -> {
+      preview.setText(profileName.toString());
 
       boolean validEntry = !profileName.isGivenNameEmpty();
 
       finishButton.setEnabled(validEntry);
       finishButton.setAlpha(validEntry ? 1f : 0.5f);
-
-      preview.setText(profileName.toString());
     });
   }
 

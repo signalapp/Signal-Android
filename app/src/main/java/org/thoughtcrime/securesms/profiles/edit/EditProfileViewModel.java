@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.profiles.edit;
 
+import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.core.util.Consumer;
 import androidx.lifecycle.LiveData;
@@ -22,19 +23,30 @@ class EditProfileViewModel extends ViewModel {
   private final MutableLiveData<Optional<String>> internalUsername    = new MutableLiveData<>();
   private final EditProfileRepository             repository;
 
-  private EditProfileViewModel(@NonNull EditProfileRepository repository) {
+  private EditProfileViewModel(@NonNull EditProfileRepository repository, boolean hasInstanceState) {
     this.repository = repository;
 
     repository.getCurrentUsername(internalUsername::postValue);
-    repository.getCurrentProfileName(name -> {
-      givenName.setValue(name.getGivenName());
-      familyName.setValue(name.getFamilyName());
-    });
-    repository.getCurrentAvatar(internalAvatar::setValue);
+
+    if (!hasInstanceState) {
+      repository.getCurrentProfileName(name -> {
+        givenName.setValue(name.getGivenName());
+        familyName.setValue(name.getFamilyName());
+      });
+      repository.getCurrentAvatar(internalAvatar::setValue);
+    }
+  }
+
+  public LiveData<String> givenName() {
+    return Transformations.distinctUntilChanged(givenName);
+  }
+
+  public LiveData<String> familyName() {
+    return Transformations.distinctUntilChanged(familyName);
   }
 
   public LiveData<ProfileName> profileName() {
-    return internalProfileName;
+    return Transformations.distinctUntilChanged(internalProfileName);
   }
 
   public LiveData<byte[]> avatar() {
@@ -47,6 +59,11 @@ class EditProfileViewModel extends ViewModel {
 
   public boolean hasAvatar() {
     return internalAvatar.getValue() != null;
+  }
+
+  @MainThread
+  public byte[] getAvatarSnapshot() {
+    return internalAvatar.getValue();
   }
 
   public void setGivenName(String givenName) {
@@ -73,16 +90,18 @@ class EditProfileViewModel extends ViewModel {
   static class Factory implements ViewModelProvider.Factory {
 
     private final EditProfileRepository repository;
+    private final boolean hasInstanceState;
 
-    Factory(EditProfileRepository repository) {
-      this.repository = repository;
+    Factory(@NonNull EditProfileRepository repository, boolean hasInstanceState) {
+      this.repository       = repository;
+      this.hasInstanceState = hasInstanceState;
     }
 
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
       //noinspection unchecked
-      return (T) new EditProfileViewModel(repository);
+      return (T) new EditProfileViewModel(repository, hasInstanceState);
     }
   }
 }
