@@ -270,12 +270,9 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">যাচাইকৃত</string>
   <!--CreateProfileActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_your_profile_info">আপনার প্রোফাইলের তথ্য</string> -->
   <string name="CreateProfileActivity_error_setting_profile_photo">প্রোফাইলের ছবি সেট করতে সমস্যা হয়েছে</string>
   <string name="CreateProfileActivity_problem_setting_profile">প্রোফাইল সেট করতে সমস্যা হয়েছে</string>
   <string name="CreateProfileActivity_profile_photo">প্রোফাইলের ছবি</string>
-  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_too_long">বেশী দীর্ঘ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_profile_name">প্রোফাইল নাম</string> -->
   <string name="CreateProfileActivity_set_up_your_profile">আপনার প্রোফাইল সেট করুন</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal প্রোফাইলগুলি এক প্রান্ত থেকে অপর প্রান্ত অব্দি এনক্রিপ্ট করা হয় এবং Signal পরিষেবাটির কখনও এই তথ্যে প্রবেশাধিকার থাকে না।</string>
   <string name="CreateProfileActivity_set_avatar_description">প্রোফাইলের ছবি সেট করুন</string>
@@ -550,17 +547,6 @@
   <string name="PlacePickerActivity_accept_address">ঠিকানাটি মানছি</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">আপনার ইনস্টল করা গুগল প্লে পরিষেবাদির সংস্করণটি সঠিকভাবে কাজ করছে না। গুগল প্লে পরিষেবাগুলি পুনরায় ইনস্টল করুন এবং আবার চেষ্টা করুন।</string>
-  <!--ProfileEditNameFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_profile_name">প্রোফাইল নাম</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_your_profile_name_can_be_seen_by_your_contacts">আপনি যখন কোনও কথোপকথন শুরু করেন বা কোনও কথোপকথনের অনুরোধ গ্রহণ করেন তখন আপনার প্রোফাইল নামটি আপনার পরিচিতিগুলি এবং অন্যান্য ব্যবহারকারী বা গ্রুপ দ্বারা দেখা যায়।</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_save">সংরক্ষন</string> -->
-  <!--ProfileEditOverviewFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_profile">প্রোফাইল</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_profile_name">প্রোফাইল নাম</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_username">ব্যবহারকারীর নাম</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_create_a_profile_name">প্রোফাইল নাম তৈরি করুন</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_create_a_username">একটি ব্যবহারকারীর নাম তৈরি করুন</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_your_signal_profile_can_be_seen_by">আপনি যখন কোনও কথোপকথন শুরু করেন বা কোনও কথোপকথনের অনুরোধ গ্রহণ করেন তখন আপনার Signal প্রোফাইল নামটি আপনার পরিচিতিগুলি এবং অন্যান্য ব্যবহারকারী বা গ্রুপ দ্বারা দেখা যায়।<a href="https://support.signal.org/hc/en-us/articles/360007459591-Signal-Profiles">আরও জানতে এখানে আলতো চাপুন</a>|</string> -->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">এই এপটিকে রেটিং দিন</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">আপনি যদি এই অ্যাপ ব্যবহার করে উপভোগ করেন, তবে দয়া করে এটি রেটিং দিতে কিছুক্ষণ সময় দিয়ে আমাদের সহায়তা করুন।</string>
@@ -802,7 +788,7 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">সাম্প্রতিক বিজ্ঞপ্তিগুলি দেখার জন্য Signal খুলুন।</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">পরিচিতি</string>
-  <string name="MessageNotifier_reacted_to_your_message">আপনার বার্তায় প্রতিক্রিয়া জানিয়েছে: %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">আপনার বার্তায় প্রতিক্রিয়া জানিয়েছে: %1$s</string> -->
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">সচারচর</string>
   <string name="NotificationChannel_calls">কল সমূহ</string>
@@ -1059,10 +1045,9 @@
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">আপনার ওয়্যারলেস ক্যারিয়ারের মাধ্যমে মিডিয়া এবং গ্রুপ বার্তাগুলি সরবরাহ করার জন্য সিগন্যালের এমএমএস সেটিংস প্রয়োজন। আপনার ডিভাইসএ এই তথ্যটি পাওয়া যাচ্ছে না, যা লক্ করা ডিভাইস এবং অন্যান্য বিধিনিষেধযুক্ত কনফিগারেশনের জন্য প্রায়শ সত্য|</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">মিডিয়া এবং গ্রুপ বার্তা প্রেরণ করতে, \'ঠিক আছে\' আলতো চাপুন এবং অনুরোধ করা সেটিংসটি সম্পূর্ণ করুন। আপনার ক্যারিয়ারের এমএমএস সেটিংস সাধারণত \'আপনার ক্যারিয়ার এপিএন\' অনুসন্ধান করে সনাক্ত করা যায়। আপনার কেবল এটি একবার করা দরকার।</string>
   <!--profile_create_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__set_later">পরে সেট করুন</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__finish">শেষ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__who_can_see_this_information">কে এই তথ্য দেখতে পাবে?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__your_name">আপনার নাম</string> -->
+  <string name="CreateProfileActivity_next">পরবর্তী</string>
+  <string name="CreateProfileActivity__username">ব্যবহারকারীর নাম</string>
+  <string name="CreateProfileActivity__create_a_username">একটি ব্যবহারকারীর নাম তৈরি করুন</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">শেয়ার করা মিডিয়া</string>
   <!--recipient_preferences-->
@@ -1493,7 +1478,6 @@
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">রেজিস্ট্রেশন লক আপনার ফোন নাম্বার অননুমোদিত রেজিস্ট্রেশন প্রচেষ্টা থেকে রক্ষা করতে সহায়তা করে। আপনার Signal গোপনীয়তা সেটিংস থেকে এই বৈশিষ্ট্যটি যে কোনও সময় অক্ষম করা যেতে পারে।</string>
   <string name="RegistrationLockDialog_registration_lock">রেজিস্ট্রেশন লক</string>
   <string name="RegistrationLockDialog_enable">সক্ষম করুন</string>
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">রেজিস্ট্রেশন লক এর পিন কোড অবশ্যই কমপক্ষে 4 ডিজিটের হতে হবে।</string> -->
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">আপনি যে দুটি পিন লিখেছেন তা মিলছে না।</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">পরিষেবাটিতে সংযোগ করার সময় ত্রুটি</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">রেজিস্ট্রেশন লক এর পিন কোড অক্ষম করতে চান?</string>

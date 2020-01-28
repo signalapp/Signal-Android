@@ -256,12 +256,9 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">検証済み</string>
   <!--CreateProfileActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_your_profile_info">プロフィール情報</string> -->
   <string name="CreateProfileActivity_error_setting_profile_photo">プロフィール画像の設定でエラー</string>
   <string name="CreateProfileActivity_problem_setting_profile">プロフィールの設定でエラー</string>
   <string name="CreateProfileActivity_profile_photo">プロフィール画像</string>
-  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_too_long">長すぎます</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_profile_name">プロフィール名</string> -->
   <string name="CreateProfileActivity_set_up_your_profile">プロフィールの設定</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">プロフィールはエンドツーエンドで暗号化され、Signalのサービス側でもアクセスできません。</string>
   <string name="CreateProfileActivity_set_avatar_description">アバターを設定</string>
@@ -289,8 +286,8 @@
   <string name="DeviceListActivity_network_failed">ネットワークエラー！</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">無名のデバイス</string>
-  <string name="DeviceListItem_linked_s">リンクした日 %s</string>
-  <string name="DeviceListItem_last_active_s">最終利用 %s</string>
+  <string name="DeviceListItem_linked_s">リンクした日: %s</string>
+  <string name="DeviceListItem_last_active_s">最終利用: %s</string>
   <string name="DeviceListItem_today">今日</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">無名のファイル</string>
@@ -529,17 +526,6 @@
   <string name="PlacePickerActivity_accept_address">アドレスを受け入れる</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">インストールされているGoogle Play開発者サービスのバージョンは正しく動作していません。Google Play開発者サービスを再インストールして再度試してください。</string>
-  <!--ProfileEditNameFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_profile_name">プロフィール名</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_your_profile_name_can_be_seen_by_your_contacts">あなたのSignalプロフィール名は、連絡先や会話を開始したり会話リクエストを承諾した他のユーザまたはグループに表示されます。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_save">保存</string> -->
-  <!--ProfileEditOverviewFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_profile">プロフィール</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_profile_name">プロフィール名</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_username">ユーザ名</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_create_a_profile_name">プロフィール名を作成</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_create_a_username">ユーザ名を作成</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_your_signal_profile_can_be_seen_by">あなたのSignalプロフィールは、連絡先や会話を開始したり会話リクエストを承諾した他のユーザまたはグループに表示されます。<a href="https://support.signal.org/hc/en-us/articles/360007459591-Signal-Profiles">詳細はここをタップしてください</a>。</string> -->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">アプリを評価</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">このアプリが気に入ったら、評価アンケートへのご協力をお願いします。</string>
@@ -641,8 +627,8 @@
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">無効な鍵交換メッセージを受信しました</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">受信した鍵交換メッセージのプロトコルバージョンが無効です</string>
   <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">新しい安全番号が付いたメッセージを受け取りました。処理や表示を行うにはタップしてください。</string>
-  <string name="SmsMessageRecord_secure_session_reset">セキュアセッションを設定し直しました</string>
-  <string name="SmsMessageRecord_secure_session_reset_s">%sがセキュアセッションを設定し直しました。</string>
+  <string name="SmsMessageRecord_secure_session_reset">セキュアセッションをリセットしました。</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">%s がセキュアセッションをリセットしました。</string>
   <string name="SmsMessageRecord_duplicate_message">重複メッセージ</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">このメッセージは新しいバージョンのSignalから送信されたため、処理できませんでした。アップデートしてから連絡先にメッセージの再送を依頼してください。</string>
   <string name="SmsMessageRecord_error_handling_incoming_message">受信中にエラー</string>
@@ -775,7 +761,7 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">通知を確認するため、Signalを開いてください</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">連絡先</string>
-  <string name="MessageNotifier_reacted_to_your_message">あなたのメッセージへの反応: %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">あなたのメッセージへの反応: %1$s</string> -->
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">既定</string>
   <string name="NotificationChannel_calls">通話</string>
@@ -1024,10 +1010,11 @@
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">グループメッセージや画像等を携帯電話回線を使って送るようMMSの設定をする必要がありますが、このデバイスの設定情報が不明です。これはデバイスにロックや制限が掛かっている場合に起こることがあります。</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">グループメッセージや画像等を送るには「OK」を押して設定を完了してください。MMSの設定は一般的には「アクセスポイント名」を探すことで見つかります。これは１度行えば十分です。</string>
   <!--profile_create_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__set_later">後で</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__finish">完了</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__who_can_see_this_information">この情報を見られるのは誰ですか？</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__your_name">プロフィール名</string> -->
+  <string name="CreateProfileActivity_first_name_required">名 (必須)</string>
+  <string name="CreateProfileActivity_last_name_optional">姓 (任意)</string>
+  <string name="CreateProfileActivity_next">次へ</string>
+  <string name="CreateProfileActivity__username">ユーザ名</string>
+  <string name="CreateProfileActivity__create_a_username">ユーザ名を作成</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">共有されたメディア</string>
   <!--recipient_preferences-->
@@ -1456,7 +1443,7 @@
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">登録ロックはあなたの電話番号をなりすまし登録から保護します。この機能はSignalのプライバシー設定からいつでも無効化できます。</string>
   <string name="RegistrationLockDialog_registration_lock">登録ロック</string>
   <string name="RegistrationLockDialog_enable">有効にする</string>
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">登録ロックPINは4桁以上の数字にしてください。</string> -->
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">登録ロックPINは%d桁以上の数字としてください。</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">入力された2つのPINが一致しません。</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">サービスへの接続中にエラーが発生しました</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">登録ロックPINを無効にしますか？</string>

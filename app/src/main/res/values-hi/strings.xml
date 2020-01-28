@@ -270,12 +270,9 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">सत्यापित</string>
   <!--CreateProfileActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_your_profile_info">आपकी प्रोफाइल जानकारी</string> -->
   <string name="CreateProfileActivity_error_setting_profile_photo">प्रोफाइल फोटो सेट करने में त्रुटि</string>
   <string name="CreateProfileActivity_problem_setting_profile">प्रोफ़ाइल सेट करने में समस्या</string>
   <string name="CreateProfileActivity_profile_photo">प्रोफाइल फोटो</string>
-  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_too_long">बहुत लंबा</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_profile_name">प्रोफ़ाइल नाम</string> -->
   <string name="CreateProfileActivity_set_up_your_profile">अपना प्रोफ़ाइल सेट करें</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal प्रोफाइल एंड-टू-एंड एन्क्रिप्टेड हैं, और Signal को इस जानकारी की पहुंच नहीं है।</string>
   <string name="CreateProfileActivity_set_avatar_description">अपने बारे में कुछ लिखें</string>
@@ -550,17 +547,6 @@
   <string name="PlacePickerActivity_accept_address">पता स्वीकारें</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">आपके द्वारा इंस्टॉल की गई Google Play सेवाओं का वर्ज़न सही ढंग से कार्य नहीं कर रहा है। कृपया Google Play सेवाओं को पुनर्स्थापित करें और पुनः प्रयास करें।</string>
-  <!--ProfileEditNameFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_profile_name">प्रोफ़ाइल नाम</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_your_profile_name_can_be_seen_by_your_contacts">जब आप संवाद आरंभ करते हैं या संवाद अनुरोध स्वीकार करते हैं तो आपका प्रोफ़ाइल नाम आपके संपर्कों और अन्य उपयोगकर्ताओं या ग्रुप द्वारा देखा जा सकता है|</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_save">सेव</string> -->
-  <!--ProfileEditOverviewFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_profile">प्रोफ़ाइल</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_profile_name">प्रोफ़ाइल नाम</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_username">उपयोगकर्ता नाम</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_create_a_profile_name">एक प्रोफ़ाइल नाम बनाएँ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_create_a_username">एक उपयोगकर्ता नाम बनाएँ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_your_signal_profile_can_be_seen_by">जब आप संवाद आरंभ करते हैं या संवाद अनुरोध स्वीकार करते हैं, तो आपके Signal प्रोफाइल को आपके संपर्कों और अन्य उपयोगकर्ताओं या समूहों द्वारा देखा जा सकता है| <a href="https://support.signal.org/hc/en-us/articles/360007459591-Signal-Profiles">अधिक जानने के लिए यहां टैप करें</a>|</string> -->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">इस ऐप्लिकेशन को रेट करें</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">यदि आप इस ऐप का उपयोग करने का आनंद लेते हैं, तो कृपया इसे रेटिंग करके हमारी सहायता करने के लिए कुछ समय दें।</string>
@@ -800,7 +786,7 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">नई अधिसुचनाओं के लिए Signal खोलें।</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">संपर्क</string>
-  <string name="MessageNotifier_reacted_to_your_message">आपके मेसेज पर प्रतिक्रिया: %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">आपके मेसेज पर प्रतिक्रिया: %1$s</string> -->
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">डिफ़ॉल्ट</string>
   <string name="NotificationChannel_calls">कॉल</string>
@@ -1057,10 +1043,9 @@
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal को आपके वायरलेस वाहक के माध्यम से मीडिया और समूह संदेशों को वितरित करने के लिए MMS सेटिंग्स की आवश्यकता होती है। आपका डिवाइस यह जानकारी उपलब्ध नहीं कराता है, जो कभी-कभी लॉक किए गए डिवाइस और अन्य प्रतिबंधित कॉन्फ़िगरेशन के लिए सच है।</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">मीडिया और समूह संदेश भेजने के लिए, \'ओके\' टैप करें और अनुरोधित सेटिंग्स को पूरा करें। आपके वाहक के लिए MMS सेटिंग्स आम तौर पर \'आपके वाहक एपीएन\' की खोज करके स्थित हो सकती हैं। आपको केवल एक बार ऐसा करने की आवश्यकता होगी।</string>
   <!--profile_create_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__set_later">बाद में सेट करें</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__finish">समाप्त</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__who_can_see_this_information">इस जानकारी को कौन देख सकता है?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__your_name">आपका नाम?</string> -->
+  <string name="CreateProfileActivity_next">अगला</string>
+  <string name="CreateProfileActivity__username">उपयोगकर्ता नाम</string>
+  <string name="CreateProfileActivity__create_a_username">एक उपयोगकर्ता नाम बनाएँ</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">शेयर किया गया मीडिया</string>
   <!--recipient_preferences-->
@@ -1495,7 +1480,6 @@ Locale: %4$s</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">पंजीकरण लॉक अनधिकृत पंजीकरण प्रयासों से आपके फोन नंबर की सुरक्षा में मदद करता है। यह सुविधा किसी भी समय आपकी Signal गोपनीयता सेटिंग्स में अक्षम की जा सकती है।</string>
   <string name="RegistrationLockDialog_registration_lock">पंजीकरण लॉक</string>
   <string name="RegistrationLockDialog_enable">सक्षम करना</string>
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">पंजीकरण लॉक पिन कम से कम 4 अंक होना चाहिए</string> -->
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">आपके द्वारा दर्ज किए गए दो पिन मेल नहीं खाते हैं</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">सेवा से कनेक्ट करने में त्रुटि</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">पंजीकरण लॉक पिन अक्षम करें?</string>

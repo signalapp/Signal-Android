@@ -270,12 +270,9 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Verifisert</string>
   <!--CreateProfileActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_your_profile_info">Din profilinfo</string> -->
   <string name="CreateProfileActivity_error_setting_profile_photo">Feil ved largring av profilbilde</string>
   <string name="CreateProfileActivity_problem_setting_profile">Feil ved lagring av profil</string>
   <string name="CreateProfileActivity_profile_photo">Profilbilde</string>
-  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_too_long">For lang</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_profile_name">Profilnavn</string> -->
   <string name="CreateProfileActivity_set_up_your_profile">Sett opp din profil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-profiler er kryptert fra ende til ende, og Signal-tjenesten har aldri tilgang til denne informasjonen.</string>
   <string name="CreateProfileActivity_set_avatar_description">Sett avatar</string>
@@ -550,17 +547,6 @@
   <string name="PlacePickerActivity_accept_address">Godta adresse</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Versjonen av Google Play Tjenester som er installert på denne enheten fungerer ikke skikkelig. Installer Google Play Tjenester på nytt og prøv igjen.</string>
-  <!--ProfileEditNameFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_profile_name">Profil navn</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_your_profile_name_can_be_seen_by_your_contacts">Profilnavnet ditt kan sees av kontaktene dine og av andre brukere eller grupper når du starter en samtale eller godtar en samtaleforespørsel.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_save">Lagre</string> -->
-  <!--ProfileEditOverviewFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_profile">Profil</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_profile_name">Profil navn</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_username">Brukernavn</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_create_a_profile_name">Opprett et profilnavn</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_create_a_username">Opprett et brukernavn</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_your_signal_profile_can_be_seen_by">Signal-profilen din kan sees av kontaktene dine og av andre brukere eller grupper når du setter i gang en samtale eller godtar en samtaleforespørsel. <a href="https://support.signal.org/hc/en-us/articles/360007459591-Signal-Profiles">Trykk her for å lære mer</a>.</string> -->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Vurder dette programmet</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Hvis du liker dette programmet, vil vi gjerne at du hjelper oss ved å gi din vurdering.</string>
@@ -797,7 +783,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Åpne signal for å se etter nylige varsler.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
-  <string name="MessageNotifier_reacted_to_your_message">Reagerte på meldingen din: %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">Reagerte på meldingen din: %1$s</string> -->
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Forvalgt</string>
   <string name="NotificationChannel_calls">Samtaler</string>
@@ -1054,10 +1040,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal krever MMS-oppsett for å levere medier og gruppemeldinger via mobilnett. Enheten din gjør ikke denne informasjonen tilgjengelig, som kan skje for låste enheter og andre restriktive konfigurasjoner.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Trykk «OK» og følg anvisninger hvis du vil sende medie- og gruppemeldinger. Du finner vanligvis MMS-oppsettet for operatøren din ved å søke etter «din operatør APN». Du trenger bare å gjøre dette én gang.</string>
   <!--profile_create_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__set_later">Legg til senere</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__finish">FERDIG</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__who_can_see_this_information">Hvem kan se denne informasjonen?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__your_name">Ditt navn</string> -->
+  <string name="CreateProfileActivity_next">Neste</string>
+  <string name="CreateProfileActivity__username">Brukernavn</string>
+  <string name="CreateProfileActivity__create_a_username">Opprett et brukernavn</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Delte medier</string>
   <!--recipient_preferences-->
@@ -1488,7 +1473,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registreringslås beskytter telefonnummeret ditt mot uautoriserte registreringsforsøk. Denne funksjonen kan deaktiveres når som helst i Signal-personverninnstillingene</string>
   <string name="RegistrationLockDialog_registration_lock">Registreringslås</string>
   <string name="RegistrationLockDialog_enable">Aktiver</string>
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">Registrerings-PIN-koden må bestå av minst 4 sifre.</string> -->
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">PIN-kodene du skrev inn var ikke like.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Feil ved å koble til tjenesten</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Vil du slå av registreringslåsen?</string>

@@ -274,12 +274,9 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">ಪರಿಶೀಲಿಸಲಾಗಿದೆ</string>
   <!--CreateProfileActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_your_profile_info">ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಮಾಹಿತಿ</string> -->
   <string name="CreateProfileActivity_error_setting_profile_photo">ಪ್ರೊಫೈಲ್ ಫೋಟೋ ಹೊಂದಿಸುವಲ್ಲಿ ದೋಷ</string>
   <string name="CreateProfileActivity_problem_setting_profile">ಪ್ರೊಫೈಲ್ ಸೆಟ್ಟಿಂಗ್ ಸಮಸ್ಯೆ</string>
   <string name="CreateProfileActivity_profile_photo">ಪ್ರೊಫೈಲ್ ಚಿತ್ರ</string>
-  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_too_long">ತುಂಬಾ ಉದ್ದ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_profile_name">ಪ್ರೊಫೈಲ್ ಹೆಸರು</string> -->
   <string name="CreateProfileActivity_set_up_your_profile">ನಿಮ್ಮ ಪ್ರೊಫೈಲನ್ನು ಸ್ಥಾಪಿಸಿ</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal ಪ್ರೊಫೈಲ್‌ಗಳು ಕೊನೆಯಿಂದ ಕೊನೆಯವರೆಗೆ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಲಾಗಿದೆ, ಮತ್ತು ದಿ Signal ಸೇವೆ ಎಂದಿಗೂ ಹೊಂದಿಲ್ಲ ಪ್ರವೇಶ ಇದಕ್ಕಾಗಿ ಮಾಹಿತಿ.</string>
   <string name="CreateProfileActivity_set_avatar_description">ಹೊಂದಿಸಿ ಅವತಾರ</string>
@@ -555,17 +552,6 @@
   <string name="PlacePickerActivity_accept_address">ವಿಳಾಸವನ್ನು ಸ್ವೀಕರಿಸಿ</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">ನೀವು ಅನುಸ್ಥಾಪಿಸಿದ ಗೂಗಲ್ ಪ್ಲೆ ನ ಆವೃತ್ತಿಯು ಸರಿಯಾಗಿ ಕೆಲಸ ಮಾಡುತ್ತಿಲ್ಲ. ದಯವಿಟ್ಟು. ಗೂಗಲ್ ಪ್ಲೆ ನ  ಮರುಸ್ಥಾಪಿಸಿ ಹಾಗು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ .  </string>
-  <!--ProfileEditNameFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_profile_name">ಪ್ರೊಫೈಲ್ ಹೆಸರು</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_your_profile_name_can_be_seen_by_your_contacts">ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಹೆಸರನ್ನು ನೋಡಬಹುದು ನಿಮ್ಮ ಸಂಪರ್ಕಗಳು ಮತ್ತು ಇವರಿಂದ ಇತರ ಯಾವಾಗ ಬಳಕೆದಾರರು ಅಥವಾ ಗುಂಪುಗಳು ನೀವು ಸಂಭಾಷಣೆಯನ್ನು ಪ್ರಾರಂಭಿಸಿ ಅಥವಾ ಸಂಭಾಷಣೆ ವಿನಂತಿಯನ್ನು ಸ್ವೀಕರಿಸಿ.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_save">ಉಳಿಸಿ</string> -->
-  <!--ProfileEditOverviewFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_profile">ಪ್ರೊಫೈಲ್</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_profile_name">ಪ್ರೊಫೈಲ್ ಹೆಸರು</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_username">ಬಳಕೆದಾರ ಹೆಸರು</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_create_a_profile_name">ರಚಿಸಿ ಪ್ರೊಫೈಲ್ ಹೆಸರು</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_create_a_username">ಬಳಕೆದಾರ ಹೆಸರನ್ನು ರಚಿಸಿ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_your_signal_profile_can_be_seen_by">ನಿಮ್ಮ Signal ಇವರಿಂದ ಪ್ರೊಫೈಲ್ ನೋಡಬಹುದು ನಿಮ್ಮ ಸಂಪರ್ಕಗಳು ಮತ್ತು ಇವರಿಂದ ಇತರ ಯಾವಾಗ ಬಳಕೆದಾರರು ಅಥವಾ ಗುಂಪುಗಳು ನೀವು ಸಂಭಾಷಣೆಯನ್ನು ಪ್ರಾರಂಭಿಸಿ ಅಥವಾ ಸಂಭಾಷಣೆ ವಿನಂತಿಯನ್ನು ಸ್ವೀಕರಿಸಿ.  <a href="https://support.signal.org/hc/en-us/articles/360007459591-Signal-Profiles">ಟ್ಯಾಪ್ ಮಾಡಿ ಇನ್ನಷ್ಟು ತಿಳಿಯಲು ಇಲ್ಲಿ</a>.</string> -->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">ಈ ಅಪ್ಲಿಕೇಶನನ್ನು ಮೌಲ್ಯೀಕರಿಸಿ</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">ಈ ಅಪ್ಲಿಕೇಶನ್ ಬಳಕೆ ಒಂದು ವೇಳೆ ಆನಂದದಾಯಕವಾಗಿದ್ದರೆ, ಕೊಂಚ ಬಿಡುವು ಮಾಡಿಕೊಂದು ರೇಟಿಂಗ್  ಮಾಡಿ.</string>
@@ -807,7 +793,7 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">ತೆರೆಯಿರಿ Signal ಇತ್ತೀಚಿನದನ್ನು ಪರಿಶೀಲಿಸಲು ಅಧಿಸೂಚನೆಗಳು.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">ಸಂಪರ್ಕ</string>
-  <string name="MessageNotifier_reacted_to_your_message">ಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಲಾಗಿದೆ ನಿಮ್ಮ ಸಂದೇಶ:  %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">ಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಲಾಗಿದೆ ನಿಮ್ಮ ಸಂದೇಶ:  %1$s</string> -->
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">ಪೂರ್ವನಿಯೋಜಿತ</string>
   <string name="NotificationChannel_calls">ಕರೆಗಳು</string>
@@ -1064,10 +1050,9 @@
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal ಅಗತ್ಯವಿದೆ ಎಂಎಂಎಸ್ ಸಂಯೋಜನೆಗಳು ತಲುಪಿಸಲು ಮಾಧ್ಯಮ ಮತ್ತು ಮೂಲಕ ಗುಂಪು ಸಂದೇಶಗಳು ನಿಮ್ಮ ವೈರ್ಲೆಸ್ ವಾಹಕ. ನಿಮ್ಮ ಸಾಧನ ಇದನ್ನು ಮಾಡುವುದಿಲ್ಲ ಮಾಹಿತಿ ಲಭ್ಯವಿದೆ, ಇದು ಲಾಕ್ ಮಾಡಲಾದ ಸಾಧನಗಳಿಗೆ ಸಾಂದರ್ಭಿಕವಾಗಿ ನಿಜವಾಗಿದೆ ಮತ್ತು ಇತರ ನಿರ್ಬಂಧಿತ ಸಂರಚನೆಗಳು.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">ಮಾಧ್ಯಮ ಮತ್ತು ಗುಂಪು ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು, \'ಸರಿ\' ಟ್ಯಾಪ್ ಮಾಡಿ ಮತ್ತು ವಿನಂತಿಸಿದ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಪೂರ್ಣಗೊಳಿಸಿ. \'ನಿಮ್ಮ ವಾಹಕ ಎಪಿಎನ್\' ಗಾಗಿ ಹುಡುಕುವ ಮೂಲಕ ನಿಮ್ಮ ವಾಹಕಕ್ಕಾಗಿ ಎಂಎಂಎಸ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಸಾಮಾನ್ಯವಾಗಿ ಕಂಡುಹಿಡಿಯಬಹುದು. ನೀವು ಇದನ್ನು ಒಮ್ಮೆ ಮಾತ್ರ ಮಾಡಬೇಕಾಗುತ್ತದೆ.</string>
   <!--profile_create_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__set_later">ಹೊಂದಿಸಿ ನಂತರ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__finish">ಫಿನಿಶ್</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__who_can_see_this_information">ಇದನ್ನು ಯಾರು ನೋಡಬಹುದು ಮಾಹಿತಿ?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__your_name">ನಿಮ್ಮ ಹೆಸರು</string> -->
+  <string name="CreateProfileActivity_next">ಮುಂದೆ</string>
+  <string name="CreateProfileActivity__username">ಬಳಕೆದಾರ ಹೆಸರು</string>
+  <string name="CreateProfileActivity__create_a_username">ಬಳಕೆದಾರ ಹೆಸರನ್ನು ರಚಿಸಿ</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">ಹಂಚಿಕೊಳ್ಳಲಾಗಿದೆ ಮಾಧ್ಯಮ</string>
   <!--recipient_preferences-->
@@ -1498,7 +1483,6 @@
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">ನೋಂದಣಿ ಲಾಕ್ ರಕ್ಷಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ ನಿಮ್ಮ ದೂರವಾಣಿಅನಧಿಕೃತ ನೋಂದಣಿ ಪ್ರಯತ್ನಗಳಿಂದ ಸಂಖ್ಯೆ. ಇದುವೈಶಿಷ್ಟ್ಯ ಆಗಿರಬಹುದು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ ಯಾವುದೇ ಸಮಯದಲ್ಲಿ ನಿಮ್ಮ Signal ಗೌಪ್ಯತೆ ಸಂಯೋಜನೆಗಳು</string>
   <string name="RegistrationLockDialog_registration_lock">ನೋಂದಣಿ ಲಾಕ್</string>
   <string name="RegistrationLockDialog_enable">ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">ದಿ ನೋಂದಣಿ ಲಾಕ್ ಪಿನ್ ಕನಿಷ್ಠ 4 ಅಂಕೆಗಳಾಗಿರಬೇಕು.</string> -->
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">ನೀವು ನಮೂದಿಸಿದ ಎರಡು ಪಿನ್‌ಗಳು ಹೊಂದಿಕೆಯಾಗುವುದಿಲ್ಲ.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">ಸೇವೆಗೆ ಸಂಪರ್ಕಿಸುವಲ್ಲಿ ದೋಷ</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ ನೋಂದಣಿ ಲಾಕ್ ಪಿನ್?</string>

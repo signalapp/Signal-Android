@@ -237,12 +237,9 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Rastandî ye</string>
   <!--CreateProfileActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_your_profile_info">Agahiya profîla te</string> -->
   <string name="CreateProfileActivity_error_setting_profile_photo">Di sazkirina wêneyê profîlê de çewtî rû da</string>
   <string name="CreateProfileActivity_problem_setting_profile">Pirsgirêka sazkirina profîlê</string>
   <string name="CreateProfileActivity_profile_photo">Wêneyê profîlê</string>
-  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_too_long">Zêde direj e</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_profile_name">Navê Profîlê</string> -->
   <string name="CreateProfileActivity_set_up_your_profile">Profîla xwe saz bike</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Bikaranîna kesanekirî: %s</string>
@@ -453,9 +450,6 @@
   <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Guhertoya Google Play Servicesê ya di amûra te da sazkirî baş naxebite. Ji kerema xwe dîsa saz bike û biceribîne.</string>
-  <!--ProfileEditNameFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_save">Tomar bike</string> -->
-  <!--ProfileEditOverviewFragment-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Puan bide vê sepanê</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Ku ji bikaranîna vê sepanê dilxweş î, ji kerema xwe bo alîkariyê puan bide me.</string>
@@ -883,10 +877,7 @@
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Ji bo şandina medya û peyamên komê ser WiFi, Signal şikila MMS dixwaze. Vê agahî ser cihazê te bêfêde ye, belkî amûr biqif e, an şikil gelek astengker e.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Ji bo şandina medya û peyamên komê, \'OK\' lêxe û şikila pêwîst xelas bike. Şikila MMS ji bo şirketa torrê di normal de dikare bê peydakirin bi lêgerrina \'your carrier APN\'. Pêwîst ku tu tenê carek wisa bikî.</string>
   <!--profile_create_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__set_later">Paşê mîheng bike</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__finish">XELASKIRIN</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__who_can_see_this_information">Kî dikare vê agahî bibîne?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__your_name">Navê te</string> -->
+  <string name="CreateProfileActivity_next">Pêşve</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Medyaya parvekirî</string>
   <!--recipient_preferences-->
@@ -1277,7 +1268,6 @@
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Qufleya Tomarbûnê wê hejmara telefona te ji hewldanên tomarbûnê yên bêdestûr biparêze. Tu hertim dikare vê taybetiyê ji sazkariyên nepeniya Signalê neçalak bike.</string>
   <string name="RegistrationLockDialog_registration_lock">Qufleya Tomarbûnê</string>
   <string name="RegistrationLockDialog_enable">Biçalakîne</string>
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">Divê PINa Qufleya Tomarbûnê herî kêm 4 jimar be.</string> -->
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Her du PINên te têxistiye ne wekhev in.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Çewtiya girêdana xizmetê</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Bila PINa Qufleya Tomarbûmê Neçalak Bibe?</string>
