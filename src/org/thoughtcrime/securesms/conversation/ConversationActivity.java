@@ -1563,12 +1563,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   protected void updateSessionRestoreBanner() {
     Set<String> devices = DatabaseFactory.getLokiThreadDatabase(this).getSessionRestoreDevices(threadId);
-//    if (devices.size() > 0) {
+    if (devices.size() > 0) {
       sessionRestoreBannerView.update(recipient);
       sessionRestoreBannerView.show();
-//    } else {
-//      sessionRestoreBannerView.hide();
-//    }
+    } else {
+      sessionRestoreBannerView.hide();
+    }
   }
 
   private void updateDefaultSubscriptionId(Optional<Integer> defaultSubscriptionId) {
