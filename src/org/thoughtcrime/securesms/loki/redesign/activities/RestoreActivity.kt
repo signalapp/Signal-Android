@@ -87,6 +87,7 @@ class RestoreActivity : BaseActionBarActivity() {
                     IdentityKeyUtil.getIdentityKeyPair(this).publicKey, IdentityDatabase.VerifiedStatus.VERIFIED,
                     true, System.currentTimeMillis(), true)
             TextSecurePreferences.setLocalNumber(this, userHexEncodedPublicKey)
+            TextSecurePreferences.setRestorationTime(this, System.currentTimeMillis())
             TextSecurePreferences.setHasViewedSeed(this, true)
             val intent = Intent(this, DisplayNameActivity::class.java)
             push(intent)

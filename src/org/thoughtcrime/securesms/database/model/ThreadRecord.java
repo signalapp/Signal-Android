@@ -71,6 +71,7 @@ public class ThreadRecord extends DisplayRecord {
 
   @Override
   public SpannableString getDisplayBody(@NonNull Context context) {
+    Recipient recipient = getRecipient();
     if (isGroupUpdate()) {
       return emphasisAdded(context.getString(R.string.ThreadRecord_group_updated));
     } else if (isGroupQuit()) {
@@ -81,6 +82,8 @@ public class ThreadRecord extends DisplayRecord {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_bad_encrypted_message));
     } else if (SmsDatabase.Types.isNoRemoteSessionType(type)) {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_message_encrypted_for_non_existing_session));
+    } else if (isLokiSessionRestoreSent()) {
+      return emphasisAdded(context.getString(R.string.MessageRecord_session_restore_sent, recipient.toShortString()));
     } else if (SmsDatabase.Types.isEndSessionType(type)) {
       return emphasisAdded(context.getString(R.string.ThreadRecord_secure_session_reset));
     } else if (MmsSmsColumns.Types.isLegacyType(type)) {

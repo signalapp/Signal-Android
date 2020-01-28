@@ -15,28 +15,34 @@ import org.whispersystems.signalservice.internal.util.JsonUtil
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
-data class BackgroundMessage private constructor(val recipient: String, val body: String?, val friendRequest: Boolean, val unpairingRequest: Boolean) {
+data class BackgroundMessage private constructor(val data: Map<String, Any>) {
+
   companion object {
+
     @JvmStatic
-    fun create(recipient: String) = BackgroundMessage(recipient, null, false, false)
+    fun create(recipient: String) = BackgroundMessage(mapOf("recipient" to recipient))
+
     @JvmStatic
-    fun createFriendRequest(recipient: String, messageBody: String) = BackgroundMessage(recipient, messageBody, true, false)
+    fun createFriendRequest(recipient: String, messageBody: String) = BackgroundMessage(mapOf( "recipient" to recipient, "body" to messageBody, "friendRequest" to true ))
+
     @JvmStatic
-    fun createUnpairingRequest(recipient: String) = BackgroundMessage(recipient, null, false, true)
+    fun createUnpairingRequest(recipient: String) = BackgroundMessage(mapOf( "recipient" to recipient, "unpairingRequest" to true ))
+
+    @JvmStatic
+    fun createSessionRestore(recipient: String) = BackgroundMessage(mapOf( "recipient" to recipient, "friendRequest" to true, "sessionRestore" to true ))
             
     internal fun parse(serialized: String): BackgroundMessage {
-      val node = JsonUtil.fromJson(serialized)
-      val recipient = node.get("recipient").asText()
-      val body = if (node.hasNonNull("body")) node.get("body").asText() else null
-      val friendRequest = node.get("friendRequest").asBoolean(false)
-      val unpairingRequest = node.get("unpairingRequest").asBoolean(false)
-      return BackgroundMessage(recipient, body, friendRequest, unpairingRequest)
+      val data = JsonUtil.fromJson(serialized, Map::class.java) as? Map<String, Any> ?: throw AssertionError("JSON parsing failed")
+      return BackgroundMessage(data)
     }
   }
 
+  fun <T> get(key: String, defaultValue: T): T {
+    return data[key] as? T ?: defaultValue
+  }
+
   fun serialize(): String {
-    val map = mapOf("recipient" to recipient, "body" to body, "friendRequest" to friendRequest, "unpairingRequest" to unpairingRequest)
-    return JsonUtil.toJson(map)
+    return JsonUtil.toJson(data)
   }
 }
 
@@ -71,24 +77,31 @@ class PushBackgroundMessageSendJob private constructor(
   }
 
   public override fun onRun() {
+    val recipient = message.get<String?>("recipient", null) ?: throw IllegalStateException()
     val dataMessage = SignalServiceDataMessage.newBuilder()
             .withTimestamp(System.currentTimeMillis())
-            .withBody(message.body)
+            .withBody(message.get<String?>("body", null))
 
-    if (message.friendRequest) {
-      val bundle = DatabaseFactory.getLokiPreKeyBundleDatabase(context).generatePreKeyBundle(message.recipient)
+    if (message.get("friendRequest", false)) {
+      val bundle = DatabaseFactory.getLokiPreKeyBundleDatabase(context).generatePreKeyBundle(recipient)
       dataMessage.withPreKeyBundle(bundle)
               .asFriendRequest(true)
-    } else if (message.unpairingRequest) {
+    }
+
+    if (message.get("unpairingRequest", false)) {
       dataMessage.asUnpairingRequest(true)
     }
 
+    if (message.get("sessionRestore", false)) {
+      dataMessage.asSessionRestore(true)
+    }
+
     val messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender()
-    val address = SignalServiceAddress(message.recipient)
+    val address = SignalServiceAddress(recipient)
     try {
       messageSender.sendMessage(-1, address, Optional.absent<UnidentifiedAccessPair>(), dataMessage.build()) // The message ID doesn't matter
     } catch (e: Exception) {
-      Log.d("Loki", "Failed to send background message to: ${message.recipient}.")
+      Log.d("Loki", "Failed to send background message to: ${recipient}.")
       throw e
     }
   }

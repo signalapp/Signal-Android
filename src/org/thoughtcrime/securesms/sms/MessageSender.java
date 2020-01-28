@@ -139,6 +139,10 @@ public class MessageSender {
   public static void sendUnpairRequest(Context context, String contactHexEncodedPublicKey) {
     ApplicationContext.getInstance(context).getJobManager().add(new PushBackgroundMessageSendJob(BackgroundMessage.createUnpairingRequest(contactHexEncodedPublicKey)));
   }
+
+  public static void sendRestoreSessionMessage(Context context, String contactHexEncodedPublicKey) {
+    ApplicationContext.getInstance(context).getJobManager().add(new PushBackgroundMessageSendJob(BackgroundMessage.createSessionRestore(contactHexEncodedPublicKey)));
+  }
   // endregion
 
   public static long send(final Context context,

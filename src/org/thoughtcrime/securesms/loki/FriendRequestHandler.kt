@@ -26,7 +26,12 @@ object FriendRequestHandler {
         ActionType.Failed -> LokiThreadFriendRequestStatus.NONE
         ActionType.Sent -> LokiThreadFriendRequestStatus.REQUEST_SENT
       }
-      DatabaseFactory.getLokiThreadDatabase(context).setFriendRequestStatus(threadId, threadFriendStatus)
+      val database = DatabaseFactory.getLokiThreadDatabase(context)
+      database.setFriendRequestStatus(threadId, threadFriendStatus)
+      // If we sent a friend request then we need to hide the session restore prompt
+      if (type == ActionType.Sent) {
+        database.removeAllSessionRestoreDevices(threadId)
+      }
     }
 
     // Update message status
@@ -56,6 +61,8 @@ object FriendRequestHandler {
   @JvmStatic
   fun updateLastFriendRequestMessage(context: Context, threadId: Long, status: LokiMessageFriendRequestStatus) {
     if (threadId < 0) { return }
+    val recipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId) ?: return
+    if (!recipient.address.isPhone) { return }
 
     val messages = DatabaseFactory.getSmsDatabase(context).getAllMessageIDs(threadId)
     val lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context)

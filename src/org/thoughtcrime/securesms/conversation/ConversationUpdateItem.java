@@ -113,6 +113,7 @@ public class ConversationUpdateItem extends LinearLayout
     else if (messageRecord.isIdentityUpdate())        setIdentityRecord(messageRecord);
     else if (messageRecord.isIdentityVerified() ||
              messageRecord.isIdentityDefault())       setIdentityVerifyUpdate(messageRecord);
+    else if (messageRecord.isLokiSessionRestoreSent()) setTextMessageRecord(messageRecord);
     else                                              throw new AssertionError("Neither group nor log nor joined.");
 
     if (batchSelected.contains(messageRecord)) setSelected(true);
@@ -198,6 +199,15 @@ public class ConversationUpdateItem extends LinearLayout
     icon.setColorFilter(new PorterDuffColorFilter(Color.parseColor("#757575"), PorterDuff.Mode.MULTIPLY));
     body.setText(messageRecord.getDisplayBody(getContext()));
 
+    title.setVisibility(GONE);
+    body.setVisibility(VISIBLE);
+    date.setVisibility(GONE);
+  }
+
+  private  void setTextMessageRecord(MessageRecord messageRecord) {
+    body.setText(messageRecord.getDisplayBody(getContext()));
+
+    icon.setVisibility(GONE);
     title.setVisibility(GONE);
     body.setVisibility(VISIBLE);
     date.setVisibility(GONE);

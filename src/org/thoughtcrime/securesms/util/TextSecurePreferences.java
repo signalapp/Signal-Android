@@ -1236,6 +1236,14 @@ public class TextSecurePreferences {
   public static boolean needsRevocationCheck(Context context) {
     return getBooleanPreference(context, "needs_revocation", false);
   }
+
+  public static void setRestorationTime(Context context, long time) {
+    setLongPreference(context, "restoration_time", time);
+  }
+
+  public static long getRestorationTime(Context context) {
+    return getLongPreference(context, "restoration_time", 0);
+  }
   // endregion
 
   public static void clearAll(Context context) {
