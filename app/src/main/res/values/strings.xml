@@ -312,6 +312,7 @@
     <string name="ConversationTitleView_verified">Verified</string>
 
     <!-- CreateProfileActivity -->
+    <string name="CreateProfileActivity__profile">Profile</string>
     <string name="CreateProfileActivity_error_setting_profile_photo">Error setting profile photo</string>
     <string name="CreateProfileActivity_problem_setting_profile">Problem setting profile</string>
     <string name="CreateProfileActivity_profile_photo">Profile photo</string>

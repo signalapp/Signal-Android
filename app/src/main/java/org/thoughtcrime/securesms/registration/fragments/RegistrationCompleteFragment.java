@@ -33,7 +33,7 @@ public final class RegistrationCompleteFragment extends BaseRegistrationFragment
     if (!isReregister()) {
       Intent setProfileNameIntent = getRoutedIntent(activity, EditProfileActivity.class, new Intent(activity, MainActivity.class));
 
-      setProfileNameIntent.putExtra(EditProfileActivity.SHOW_BACK_ARROW, false);
+      setProfileNameIntent.putExtra(EditProfileActivity.SHOW_TOOLBAR, false);
 
       activity.startActivity(setProfileNameIntent);
     }

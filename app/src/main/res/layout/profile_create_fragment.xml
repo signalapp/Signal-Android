@@ -30,7 +30,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:navigationIcon="@drawable/ic_arrow_left_24" />
+                    app:navigationIcon="@drawable/ic_arrow_left_24"
+                    app:title="@string/CreateProfileActivity__profile" />
 
                 <TextView
                     android:id="@+id/title"
@@ -58,7 +59,8 @@
                     android:tint="@color/core_grey_05"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/title" />
+                    app:layout_constraintTop_toBottomOf="@+id/title"
+                    app:layout_goneMarginTop="?attr/actionBarSize" />
 
                 <ImageView
                     android:id="@+id/avatar_placeholder"
