@@ -350,9 +350,15 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
   }
 
   private void setReactions(@NonNull SQLiteDatabase db, long messageId, @NonNull ReactionList reactionList) {
-    ContentValues values = new ContentValues(1);
+    ContentValues values       = new ContentValues(1);
+    boolean       hasReactions = reactionList.getReactionsCount() != 0;
+
     values.put(REACTIONS, reactionList.getReactionsList().isEmpty() ? null : reactionList.toByteArray());
-    values.put(REACTIONS_UNREAD, reactionList.getReactionsCount() != 0 ? 1 : 0);
+    values.put(REACTIONS_UNREAD, hasReactions ? 1 : 0);
+
+    if (hasReactions) {
+      values.put(NOTIFIED, 0);
+    }
 
     String   query = ID + " = ?";
     String[] args  = new String[] { String.valueOf(messageId) };

@@ -63,6 +63,7 @@ import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -550,7 +551,7 @@ public class MessageNotifier {
           if (KeyCachingService.isLocked(context)) {
             body = SpanUtil.italic(context.getString(R.string.MessageNotifier_locked_message));
           } else {
-            String   text  = SpanUtil.italic(context.getString(R.string.MessageNotifier_reacted_to_your_message, EMOJI_REPLACEMENT_STRING)).toString();
+            String   text  = SpanUtil.italic(getReactionMessageBody(context, record)).toString();
             String[] parts = text.split(EMOJI_REPLACEMENT_STRING);
 
             SpannableStringBuilder builder = new SpannableStringBuilder();
@@ -578,6 +579,36 @@ public class MessageNotifier {
 
     reader.close();
     return notificationState;
+  }
+
+  private static CharSequence getReactionMessageBody(@NonNull Context context, @NonNull MessageRecord record) {
+    CharSequence body        = record.getDisplayBody(context);
+    boolean      bodyIsEmpty = TextUtils.isEmpty(body);
+
+    if (MessageRecordUtil.hasSharedContact(record)) {
+      Contact       contact = ((MmsMessageRecord) record).getSharedContacts().get(0);
+      CharSequence  summary = ContactUtil.getStringSummary(context, contact);
+
+      return context.getString(R.string.MessageNotifier_reacted_s_to_s, EMOJI_REPLACEMENT_STRING, summary);
+    } else if (MessageRecordUtil.hasSticker(record)) {
+      return context.getString(R.string.MessageNotifier_reacted_s_to_your_sticker, EMOJI_REPLACEMENT_STRING);
+    } else if (record.isMms() && record.isViewOnce() && MediaUtil.isVideoType(getMessageContentType((MmsMessageRecord) record))) {
+      return context.getString(R.string.MessageNotifier_reacted_s_to_your_view_once_video, EMOJI_REPLACEMENT_STRING);
+    } else if (record.isMms() && record.isViewOnce()){
+      return context.getString(R.string.MessageNotifier_reacted_s_to_your_view_once_photo, EMOJI_REPLACEMENT_STRING);
+    } else if (!bodyIsEmpty) {
+      return context.getString(R.string.MessageNotifier_reacted_s_to_s, EMOJI_REPLACEMENT_STRING, body);
+    } else if (MessageRecordUtil.isMediaMessage(record) && MediaUtil.isVideoType(getMessageContentType((MmsMessageRecord) record))) {
+      return context.getString(R.string.MessageNotifier_reacted_s_to_your_video, EMOJI_REPLACEMENT_STRING);
+    } else if (MessageRecordUtil.isMediaMessage(record) && MediaUtil.isImageType(getMessageContentType((MmsMessageRecord) record))) {
+      return context.getString(R.string.MessageNotifier_reacted_s_to_your_image, EMOJI_REPLACEMENT_STRING);
+    } else if (MessageRecordUtil.isMediaMessage(record) && MediaUtil.isAudioType(getMessageContentType((MmsMessageRecord) record))) {
+      return context.getString(R.string.MessageNotifier_reacted_s_to_your_audio, EMOJI_REPLACEMENT_STRING);
+    } else if (MessageRecordUtil.isMediaMessage(record)) {
+      return context.getString(R.string.MessageNotifier_reacted_s_to_your_file, EMOJI_REPLACEMENT_STRING);
+    } else {
+      return context.getString(R.string.MessageNotifier_reacted_s_to_s, EMOJI_REPLACEMENT_STRING, body);
+    }
   }
 
   private static @StringRes int getViewOnceDescription(@NonNull MmsMessageRecord messageRecord) {

@@ -922,7 +922,14 @@
     <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Open Signal to check for recent notifications.</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Contact</string>
-    <string name="MessageNotifier_reacted_to_your_message">Reacted to your message: %1$s</string>
+    <string name="MessageNotifier_reacted_s_to_s">Reacted %1$s to: \"%2$s\".</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">Reacted %1$s to your video.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">Reacted %1$s to your image.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">Reacted %1$s to your file.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">Reacted %1$s to your audio.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reacted %1$s to your view-once photo.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reacted %1$s to your view-once video.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">Reacted %1$s to your sticker.</string>
 
     <!-- Notification Channels -->
     <string name="NotificationChannel_messages">Default</string>
@@ -1653,6 +1660,69 @@
     <string name="InsightsReminder__view_insights">View Insights</string>
     <string name="InsightsReminder__invite">Invite</string>
 
+    <!-- Edit KBS Pin -->
+
+    <!-- BaseKbsPinFragment -->
+    <string name="BaseKbsPinFragment__next">Next</string>
+    <string name="BaseKbsPinFragment__create_alphanumeric_pin">Create alphanumeric PIN</string>
+    <string name="BaseKbsPinFragment__create_numeric_pin">Create numeric PIN</string>
+
+    <!-- CreateKbsPinFragment -->
+    <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">PIN must be at least %1$d characters</string>
+    <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">PIN must be at least %1$d digits</string>
+    <string name="CreateKbsPinFragment__create_a_new_pin">Create a new PIN</string>
+    <string name="CreateKbsPinFragment__because_youre_still_logged_in">Because you\'re still logged in, you can create a new PIN. When you\'re logged out, there is no way to recover your PIN.</string>
+    <string name="CreateKbsPinFragment__create_your_pin">Create your PIN</string>
+    <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PINs add an extra layer of security to your account. Write your PIN down and keep it in a safe place. It can\'t be recovered.</string>
+
+    <!-- ConfirmKbsPinFragment -->
+    <string name="ConfirmKbsPinFragment__pins_dont_match">PINs don\'t match. Try again.</string>
+    <string name="ConfirmKbsPinFragment__confirm_your_pin">Confirm your PIN.</string>
+    <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN creation failed</string>
+    <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Your PIN was not saved. We\'ll prompt you to create a PIN later.</string>
+    <string name="ConfirmKbsPinFragment__pin_created">PIN created.</string>
+
+    <!-- KbsSplashFragment -->
+    <string name="KbsSplashFragment__introducing_pins">Introducing PINs</string>
+    <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">Add another level of security to your account. %1$s</string>
+    <string name="KbsSplashFragment__read_more_here">Read more here.</string>
+    <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string>
+    <string name="KbsSplashFragment__registration_lock_equals_pin">Registration Lock = PIN</string>
+    <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Your Registration Lock is now called a PIN, and it does more. Update it now. %1$s</string>
+    <string name="KbsSplashFragment__read_more_about_pins">Read more about PINs.</string>
+    <string name="KbsSplashFragment__update_pin">Update PIN</string>
+    <string name="KbsSplashFragment__create_your_pin">Create your PIN</string>
+    <string name="KbsSplashFragment__remind_me_later">Remind me later</string>
+
+    <!-- KBS Reminder Dialog -->
+    <string name="KbsReminderDialog__enter_your_signal_pin">Enter your Signal PIN</string>
+    <string name="KbsReminderDialog__to_help_you_memorize_your_pin">To help you memorize your PIN, we\'ll ask you to enter it periodically. We ask you less over time.</string>
+    <string name="KbsReminderDialog__skip">Skip</string>
+    <string name="KbsReminderDialog__submit">Submit</string>
+    <string name="KbsReminderDialog__forgot_pin">Forgot PIN?</string>
+    <string name="KbsReminderDialog__incorrect_pin_try_again">Incorrect PIN. Try again.</string>
+
+    <!-- AccountLockedFragment -->
+    <string name="AccountLockedFragment__account_locked">Account locked</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Your account has been locked to protect your privacy and security. After %1$d days of inactivity in your account you\'ll be able to re-register this phone number without needing your pin. All content will be deleted.</string>
+    <string name="AccountLockedFragment__next">Next</string>
+    <string name="AccountLockedFragment__learn_more">Learn More</string>
+    <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
+
+    <!-- KbsLockFragment -->
+    <string name="KbsLockFragment__enter_your_pin">Enter your PIN</string>
+    <string name="KbsLockFragment__enter_the_pin_you_created">Enter the PIN you created for your account. This is different from your SMS verification code.</string>
+    <string name="KbsLockFragment__enter_alphanumeric_pin">Enter alphanumeric PIN</string>
+    <string name="KbsLockFragment__enter_numeric_pin">Enter numeric PIN</string>
+    <string name="KbsLockFragment__next">Next</string>
+    <string name="KbsLockFragment__incorrect_pin_try_again">Incorrect PIN. Try again.</string>
+    <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">Incorrect PIN. %1$d attempts remaining.</string>
+    <string name="KbsLockFragment__forgot_pin">Forgot PIN?</string>
+    <string name="KbsLockFragment__incorrect_pin">Incorrect PIN</string>
+    <string name="KbsLockFragment__you_have_d_attempts_remaining">You have %1$d attempts remaining. If you run out of attempts your account will be locked for %2$d days. After %3$d days of inactivity, you can re-register without your PIN. Your account will be wiped and all content deleted.</string>
+    <string name="KbsLockFragment__forgot_your_pin">Forgot your PIN?</string>
+    <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">For your privacy and security, there is no way to recover your PIN. If you run out of attempts, you can re-verify with SMS after %1$d days of inactivity. In this case, your account will be wiped and all content deleted.</string>
+
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
     <string name="ConversationListFragment_loading">Loading…</string>
@@ -1711,6 +1781,10 @@
     <string name="preferences_app_protection__screen_lock">Screen lock</string>
     <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lock Signal access with Android screen lock or fingerprint</string>
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Screen lock inactivity timeout</string>
+    <string name="preferences_app_protection__signal_pin">Signal PIN</string>
+    <string name="preferences_app_protection__pin">PIN</string>
+    <string name="preferences_app_protection__change">Change</string>
+    <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Your PIN adds an extra layer of security and backs up your account. You\'ll be asked for it when you register your phone number with Signal. If you forget your PIN, you\'ll be locked out of your account for 7 days.</string>
     <string name="AppProtectionPreferenceFragment_none">None</string>
     <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">The Registration Lock PIN is not the same as the SMS verification code you just received. Please enter the PIN you previously configured in the application.</string>
     <string name="registration_activity__registration_lock_pin">Registration Lock PIN</string>
