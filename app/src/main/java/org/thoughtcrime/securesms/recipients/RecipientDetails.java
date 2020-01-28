@@ -130,7 +130,7 @@ public class RecipientDetails {
     this.blocked                = false;
     this.expireMessages         = 0;
     this.participants           = new LinkedList<>();
-    this.profileName            = null;
+    this.profileName            = ProfileName.EMPTY;
     this.insightsBannerTier     = InsightsBannerTier.TIER_TWO;
     this.defaultSubscriptionId  = Optional.absent();
     this.registered             = RegisteredState.UNKNOWN;
