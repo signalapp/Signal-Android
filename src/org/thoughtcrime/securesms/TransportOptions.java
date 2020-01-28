@@ -32,7 +32,7 @@ public class TransportOptions {
   private final Context                          context;
   private final List<TransportOption>            enabledTransports;
 
-  private Type                      defaultTransportType  = Type.SMS;
+  private Type                      defaultTransportType  = Type.TEXTSECURE;
   private Optional<Integer>         defaultSubscriptionId = Optional.absent();
   private Optional<TransportOption> selectedOption        = Optional.absent();
 
@@ -53,7 +53,7 @@ public class TransportOptions {
     if (selectedOption.isPresent() && !isEnabled(selectedOption.get())) {
       setSelectedTransport(null);
     } else {
-      this.defaultTransportType = Type.SMS;
+      this.defaultTransportType = Type.TEXTSECURE;
       this.defaultSubscriptionId = Optional.absent();
 
       notifyTransportChangeListeners();
@@ -148,16 +148,6 @@ public class TransportOptions {
 
   private List<TransportOption> initializeAvailableTransports(boolean isMediaMessage) {
     List<TransportOption> results = new LinkedList<>();
-
-    if (isMediaMessage) {
-      results.addAll(getTransportOptionsForSimCards(context.getString(R.string.ConversationActivity_transport_insecure_mms),
-                                                    context.getString(R.string.conversation_activity__type_message_mms_insecure),
-                                                    new MmsCharacterCalculator()));
-    } else {
-      results.addAll(getTransportOptionsForSimCards(context.getString(R.string.ConversationActivity_transport_insecure_sms),
-                                                    context.getString(R.string.conversation_activity__type_message_sms_insecure),
-                                                    new SmsCharacterCalculator()));
-    }
 
     results.add(new TransportOption(Type.TEXTSECURE, R.drawable.ic_send_push_white_24dp,
                                     context.getResources().getColor(R.color.textsecure_primary),
