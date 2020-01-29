@@ -29,6 +29,8 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
+import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream;
@@ -285,9 +287,12 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
                                                                                 .build();
 
       SignalServiceAddress messageRecipient = recipient != null ? new SignalServiceAddress(recipient) : null;
+      Address address = recipient != null ? Address.fromSerialized(recipient) : null;
+
+      Optional<UnidentifiedAccessPair> unidentifiedAccess = address != null ? UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, address, false)) : Optional.absent();
 
       try {
-        messageSender.sendMessage(0, SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream, complete)), messageRecipient);
+        messageSender.sendMessage(0, SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream, complete)), unidentifiedAccess, Optional.fromNullable(messageRecipient));
       } catch (IOException ioe) {
         throw new NetworkException(ioe);
       }

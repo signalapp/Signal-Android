@@ -601,7 +601,9 @@ public class TextSecurePreferences {
   }
 
   public static boolean isUnidentifiedDeliveryEnabled(Context context) {
-    return getBooleanPreference(context, UNIDENTIFIED_DELIVERY_ENABLED, true);
+    // Loki - Always enable unidentified sender
+    return true;
+    // return getBooleanPreference(context, UNIDENTIFIED_DELIVERY_ENABLED, true);
   }
 
   public static long getSignedPreKeyRotationTime(Context context) {

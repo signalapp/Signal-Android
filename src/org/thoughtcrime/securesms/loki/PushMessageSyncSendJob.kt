@@ -1,11 +1,13 @@
 package org.thoughtcrime.securesms.loki
 
+import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.dependencies.InjectableType
 import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.BaseJob
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.api.SignalServiceMessageSender
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
@@ -63,7 +65,8 @@ class PushMessageSyncSendJob private constructor(
   public override fun onRun() {
     // Don't send sync messages to a group
     if (recipient.isGroup || recipient.isEmail) { return }
-    messageSender.lokiSendSyncMessage(messageID, SignalServiceAddress(recipient.toPhoneString()), timestamp, message, ttl)
+    val unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, recipient, false))
+    messageSender.lokiSendSyncMessage(messageID, SignalServiceAddress(recipient.toPhoneString()), unidentifiedAccess, timestamp, message, ttl)
   }
 
   public override fun onShouldRetry(e: Exception): Boolean {
