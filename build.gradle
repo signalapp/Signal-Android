@@ -10,6 +10,7 @@ buildscript {
     ext.crashlytics_version = "2.10.1"
 
     repositories {
+        mavenLocal()
         google()
         mavenCentral()
         maven { url 'https://maven.fabric.io/public' }
@@ -69,6 +70,10 @@ repositories {
 
 configurations.all {
     resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+    exclude group: "org.whispersystems", module: "signal-protocol-java"
+    exclude group: "org.whispersystems", module: "signal-protocol-android"
+    exclude group: "org.signal", module: "signal-metadata-java"
+    exclude group: "org.signal", module: "signal-metadata-android"
 }
 
 dependencies {
@@ -179,9 +184,10 @@ dependencies {
     // Loki
     // Local:
     implementation "org.whispersystems:signal-service-android:2.13.2" // Run ./gradlew install from loki-messenger-android-service to install
+    implementation "org.whispersystems:curve25519-java:0.5.0"
     // Remote:
     // implementation "com.github.loki-project:loki-messenger-android-service:dev-SNAPSHOT"
-    implementation "org.signal:signal-metadata-android:0.0.3"
+//    implementation "org.signal:signal-metadata-android:0.0.3"
     implementation "com.google.protobuf:protobuf-java:2.5.0"
     implementation "com.googlecode.libphonenumber:libphonenumber:8.10.7"
     implementation "com.fasterxml.jackson.core:jackson-databind:2.9.8"
