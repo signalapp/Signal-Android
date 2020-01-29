@@ -61,7 +61,6 @@ public class LinkPreviewRepository {
   public LinkPreviewRepository() {
     this.client = new OkHttpClient.Builder()
                                   .proxySelector(new ContentProxySelector())
-                                  .addInterceptor(new UserAgentInterceptor())
                                   .addNetworkInterceptor(new ContentProxySafetyInterceptor())
                                   .cache(null)
                                   .build();
