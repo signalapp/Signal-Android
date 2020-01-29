@@ -71,8 +71,10 @@ public class SmsReceiveJob extends BaseJob {
 
   @Override
   public void onRun() throws MigrationPendingException {
-    Log.i(TAG, "onRun()");
-    
+    if (TextSecurePreferences.getLocalUuid(context) == null && TextSecurePreferences.getLocalNumber(context) == null) {
+      throw new NotReadyException();
+    }
+
     Optional<IncomingTextMessage> message = assembleMessageFragments(pdus, subscriptionId);
 
     if (message.isPresent() && !isBlocked(message.get())) {
@@ -166,5 +168,8 @@ public class SmsReceiveJob extends BaseJob {
         throw new AssertionError(e);
       }
     }
+  }
+
+  private class NotReadyException extends RuntimeException {
   }
 }
