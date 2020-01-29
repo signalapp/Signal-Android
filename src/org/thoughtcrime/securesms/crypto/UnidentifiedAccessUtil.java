@@ -30,12 +30,7 @@ public class UnidentifiedAccessUtil {
   private static final String TAG = UnidentifiedAccessUtil.class.getSimpleName();
 
   public static CertificateValidator getCertificateValidator() {
-    try {
-      ECPublicKey unidentifiedSenderTrustRoot = Curve.decodePoint(Base64.decode(BuildConfig.UNIDENTIFIED_SENDER_TRUST_ROOT), 0);
-      return new CertificateValidator(unidentifiedSenderTrustRoot);
-    } catch (InvalidKeyException | IOException e) {
-      throw new AssertionError(e);
-    }
+    return new CertificateValidator();
   }
 
   @WorkerThread

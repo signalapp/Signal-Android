@@ -274,18 +274,14 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       SignalServiceAddress     localAddress             = new SignalServiceAddress(TextSecurePreferences.getLocalNumber(context));
       LokiServiceCipher        cipher                   = new LokiServiceCipher(localAddress, axolotlStore, lokiThreadDatabase, lokiPreKeyRecordDatabase, UnidentifiedAccessUtil.getCertificateValidator());
 
-      // Loki - Handle session reset logic
-      if (!envelope.isFriendRequest() && cipher.getSessionStatus(envelope) == null && envelope.isPreKeySignalMessage()) {
-        cipher.validateBackgroundMessage(envelope, envelope.getContent());
-      }
+      SignalServiceContent content = cipher.decrypt(envelope);
 
       // Loki - Ignore any friend requests that we got before restoration
-      if (envelope.isFriendRequest() && envelope.getTimestamp() < TextSecurePreferences.getRestorationTime(context)) {
+      if (content.isFriendRequest() && content.getTimestamp() < TextSecurePreferences.getRestorationTime(context)) {
         Log.d("Loki", "Ignoring friend request received before restoration.");
         return;
       }
 
-      SignalServiceContent content = cipher.decrypt(envelope);
 
       if (shouldIgnore(content)) {
         Log.i(TAG, "Ignoring message.");
@@ -293,12 +289,12 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       }
 
       // Loki - Handle friend request acceptance if needed
-      acceptFriendRequestIfNeeded(envelope, content);
+      acceptFriendRequestIfNeeded(content);
 
       // Loki - Store pre key bundle
       // We shouldn't store it if it's a pairing message
       if (!content.getPairingAuthorisation().isPresent()) {
-        storePreKeyBundleIfNeeded(envelope, content);
+        storePreKeyBundleIfNeeded(content);
       }
 
       if (content.lokiServiceMessage.isPresent()) {
@@ -313,24 +309,24 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       if (rawSenderDisplayName.isPresent() && rawSenderDisplayName.get().length() > 0) {
         // If we got a name from our primary device then we set our profile name to match it
         String ourPrimaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
-        if (ourPrimaryDevice != null && envelope.getSource().equals(ourPrimaryDevice)) {
+        if (ourPrimaryDevice != null && content.getSender().equals(ourPrimaryDevice)) {
           TextSecurePreferences.setProfileName(context, rawSenderDisplayName.get());
         }
 
         // If we receive a message from our device then don't set the display name in the database (as we probably have a alias set for them)
         MultiDeviceUtilities.isOneOfOurDevices(context, Address.fromSerialized(content.getSender())).success(isOneOfOurDevice -> {
-          if (!isOneOfOurDevice) { setDisplayName(envelope.getSource(), rawSenderDisplayName.get()); }
+          if (!isOneOfOurDevice) { setDisplayName(content.getSender(), rawSenderDisplayName.get()); }
           return Unit.INSTANCE;
         });
       }
 
       if (content.getPairingAuthorisation().isPresent()) {
-        handlePairingMessage(content.getPairingAuthorisation().get(), envelope, content);
+        handlePairingMessage(content.getPairingAuthorisation().get(), content);
       } else if (content.getDataMessage().isPresent()) {
         SignalServiceDataMessage message        = content.getDataMessage().get();
         boolean                  isMediaMessage = message.getAttachments().isPresent() || message.getQuote().isPresent() || message.getSharedContacts().isPresent() || message.getPreviews().isPresent() || message.getSticker().isPresent();
 
-        if (!envelope.isFriendRequest() && message.isUnpairingRequest()) {
+        if (!content.isFriendRequest() && message.isUnpairingRequest()) {
           // Make sure we got the request from our primary device
           String ourPrimaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
           if (ourPrimaryDevice != null && ourPrimaryDevice.equals(content.getSender())) {
@@ -363,7 +359,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           }
 
           // Loki - Handle friend request logic if needed
-          updateFriendRequestStatusIfNeeded(envelope, content, message);
+          updateFriendRequestStatusIfNeeded(content, message);
         }
       } else if (content.getSyncMessage().isPresent()) {
         TextSecurePreferences.setMultiDevice(context, true);
@@ -404,8 +400,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       }
 
       // Loki - Handle session reset logic
-      if (!envelope.isFriendRequest()) {
-        cipher.handleSessionResetRequestIfNeeded(envelope, cipher.getSessionStatus(envelope));
+      if (!content.isFriendRequest()) {
+        cipher.handleSessionResetRequestIfNeeded(content, cipher.getSessionStatus(content));
       }
     } catch (ProtocolInvalidVersionException e) {
       Log.w(TAG, e);
@@ -1109,26 +1105,26 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     ApplicationContext.getInstance(context).getJobManager().add(new RetrieveProfileAvatarJob(primaryDevice, url));
   }
 
-  private void handlePairingMessage(@NonNull PairingAuthorisation authorisation, @NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content) {
+  private void handlePairingMessage(@NonNull PairingAuthorisation authorisation, @NonNull SignalServiceContent content) {
     String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context);
     if (authorisation.getType() == PairingAuthorisation.Type.REQUEST) {
-      handlePairingRequestMessage(authorisation, envelope, content);
+      handlePairingRequestMessage(authorisation, content);
     } else if (authorisation.getSecondaryDevicePublicKey().equals(userHexEncodedPublicKey)) {
-      handlePairingAuthorisationMessage(authorisation, envelope, content);
+      handlePairingAuthorisationMessage(authorisation, content);
     }
   }
 
-  private void handlePairingRequestMessage(@NonNull PairingAuthorisation authorisation, @NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content) {
+  private void handlePairingRequestMessage(@NonNull PairingAuthorisation authorisation, @NonNull SignalServiceContent content) {
     boolean isValid = isValidPairingMessage(authorisation);
     DeviceLinkingSession linkingSession = DeviceLinkingSession.Companion.getShared();
     if (isValid && linkingSession.isListeningForLinkingRequests()) {
       // Loki - If we successfully received a request then we should store the PreKeyBundle
-      storePreKeyBundleIfNeeded(envelope, content);
+      storePreKeyBundleIfNeeded(content);
       linkingSession.processLinkingRequest(authorisation);
     }
   }
 
-  private void handlePairingAuthorisationMessage(@NonNull PairingAuthorisation authorisation, @NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content) {
+  private void handlePairingAuthorisationMessage(@NonNull PairingAuthorisation authorisation, @NonNull SignalServiceContent content) {
     // Prepare
     boolean isSecondaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context) != null;
     if (isSecondaryDevice) {
@@ -1147,7 +1143,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     if (authorisation.getType() != PairingAuthorisation.Type.GRANT) { return; }
     Log.d("Loki", "Received pairing authorisation message from: " + authorisation.getPrimaryDevicePublicKey() + ".");
     // Save PreKeyBundle if for whatever reason we got one
-    storePreKeyBundleIfNeeded(envelope, content);
+    storePreKeyBundleIfNeeded(content);
     // Process
     DeviceLinkingSession.Companion.getShared().processLinkingAuthorization(authorisation);
     // Store the primary device's public key
@@ -1188,7 +1184,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
   }
 
-  private void storePreKeyBundleIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content) {
+  private void storePreKeyBundleIfNeeded(@NonNull SignalServiceContent content) {
     Recipient sender = Recipient.from(context, Address.fromSerialized(content.getSender()), false);
     if (!sender.isGroupRecipient() && content.lokiServiceMessage.isPresent()) {
       LokiServiceMessage lokiMessage = content.lokiServiceMessage.get();
@@ -1205,7 +1201,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           lokiPreKeyBundleDatabase.setPreKeyBundle(content.getSender(), preKeyBundle);
 
           // Loki - If we received a friend request, but we were already friends with this user, then reset the session
-          if (envelope.isFriendRequest()) {
+          if (content.isFriendRequest()) {
             long threadID = threadDatabase.getThreadIdIfExistsFor(sender);
             if (lokiThreadDatabase.getFriendRequestStatus(threadID) == LokiThreadFriendRequestStatus.FRIENDS) {
               resetSession(content.getSender(), threadID);
@@ -1218,9 +1214,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
   }
 
-  private void acceptFriendRequestIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content) {
+  private void acceptFriendRequestIfNeeded(@NonNull SignalServiceContent content) {
     // If we get anything other than a friend request, we can assume that we have a session with the other user
-    if (envelope.isFriendRequest() || isGroupChatMessage(content)) { return; }
+    if (content.isFriendRequest() || isGroupChatMessage(content)) { return; }
     becomeFriendsWithContact(content.getSender(), true);
   }
 
@@ -1251,8 +1247,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     });
   }
 
-  private void updateFriendRequestStatusIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
-    if (!envelope.isFriendRequest() || message.isGroupUpdate()) { return; }
+  private void updateFriendRequestStatusIfNeeded(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
+    if (!content.isFriendRequest() || message.isGroupUpdate()) { return; }
     // This handles the case where another user sends us a regular message without authorisation
     Promise<Boolean, Exception> promise = PromiseUtil.timeout(MultiDeviceUtilities.shouldAutomaticallyBecomeFriendsWithDevice(content.getSender(), context), 8000);
     boolean shouldBecomeFriends = PromiseUtil.get(promise, false);
