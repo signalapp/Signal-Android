@@ -172,48 +172,63 @@
       tools:listitem="@layout/conversation_list_item_view"
       tools:visibility="gone" />
 
-  <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
-      android:id="@+id/camera_fab"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="20dp"
-      android:contentDescription="@string/conversation_list_fragment__open_camera_description"
-      android:focusable="true"
-      android:tint="?conversation_list_camera_icon_tint"
-      app:backgroundTint="?conversation_list_camera_button_background"
-      app:layout_constraintBottom_toTopOf="@id/fab"
-      app:layout_constraintEnd_toEndOf="@id/fab"
-      app:srcCompat="@drawable/ic_camera_solid_24" />
-
-  <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
-      android:id="@+id/fab"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_margin="16dp"
-      android:contentDescription="@string/conversation_list_fragment__fab_content_description"
-      android:focusable="true"
-      android:tint="?conversation_list_compose_icon_tint"
-      app:layout_constraintBottom_toTopOf="@id/megaphone_container"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:srcCompat="@drawable/ic_compose_solid_24" />
-
-  <androidx.cardview.widget.CardView
-      android:id="@+id/megaphone_container"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:layout_margin="8dp"
-      android:clipToPadding="false"
-      android:clipChildren="false"
-      android:visibility="gone"
-      app:contentPadding="0dp"
-      app:cardCornerRadius="8dp"
-      app:cardElevation="4dp"
-      app:cardPreventCornerOverlap="false"
-      app:cardUseCompatPadding="true"
-      app:cardBackgroundColor="?megaphone_background"
+  <androidx.coordinatorlayout.widget.CoordinatorLayout
+      android:id="@+id/coordinator"
       app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      tools:visibility="visible" />
+      app:layout_constraintEnd_toEndOf="parent"
+      android:layout_width="0dp"
+      android:layout_height="500dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior=".util.views.SlideUpWithSnackbarBehavior">
+
+      <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
+          android:id="@+id/camera_fab"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="20dp"
+          android:contentDescription="@string/conversation_list_fragment__open_camera_description"
+          android:focusable="true"
+          android:tint="?conversation_list_camera_icon_tint"
+          app:backgroundTint="?conversation_list_camera_button_background"
+          app:layout_constraintBottom_toTopOf="@id/fab"
+          app:layout_constraintEnd_toEndOf="@id/fab"
+          app:srcCompat="@drawable/ic_camera_solid_24" />
+
+      <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
+          android:id="@+id/fab"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_margin="16dp"
+          android:contentDescription="@string/conversation_list_fragment__fab_content_description"
+          android:focusable="true"
+          android:tint="?conversation_list_compose_icon_tint"
+          app:layout_constraintBottom_toTopOf="@id/megaphone_container"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:srcCompat="@drawable/ic_compose_solid_24" />
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/megaphone_container"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="8dp"
+          android:clipChildren="false"
+          android:clipToPadding="false"
+          android:visibility="gone"
+          app:cardBackgroundColor="?megaphone_background"
+          app:cardCornerRadius="8dp"
+          app:cardElevation="4dp"
+          app:cardPreventCornerOverlap="false"
+          app:cardUseCompatPadding="true"
+          app:contentPadding="0dp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+  </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

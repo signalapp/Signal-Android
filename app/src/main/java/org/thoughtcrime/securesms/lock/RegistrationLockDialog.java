@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -26,13 +27,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.DialogCompat;
+import androidx.fragment.app.Fragment;
+
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.KbsValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
+import org.thoughtcrime.securesms.lock.v2.KbsConstants;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.migrations.RegistrationPinV2MigrationJob;
 import org.thoughtcrime.securesms.util.FeatureFlags;
@@ -43,7 +51,6 @@ import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 import org.whispersystems.signalservice.api.KeyBackupService;
 import org.whispersystems.signalservice.api.KeyBackupServicePinException;
 import org.whispersystems.signalservice.api.RegistrationLockData;
-import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.kbs.HashedPin;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
 import org.whispersystems.signalservice.internal.contacts.crypto.UnauthenticatedResponseException;
@@ -55,10 +62,9 @@ public final class RegistrationLockDialog {
 
   private static final String TAG = Log.tag(RegistrationLockDialog.class);
 
-  private static final int MIN_V2_NUMERIC_PIN_LENGTH_ENTRY   = 4;
-  private static final int MIN_V2_NUMERIC_PIN_LENGTH_SETTING = 4;
+  public static void showReminderIfNecessary(@NonNull Fragment fragment) {
+    final Context context = fragment.requireContext();
 
-  public static void showReminderIfNecessary(@NonNull Context context) {
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) return;
     if (!RegistrationLockReminders.needsReminder(context))    return;
 
@@ -69,6 +75,86 @@ public final class RegistrationLockDialog {
       return;
     }
 
+    if (FeatureFlags.pinsForAll()) {
+      showReminder(context, fragment);
+    } else {
+      showLegacyPinReminder(context);
+    }
+  }
+
+  private static void showReminder(@NonNull Context context, @NonNull Fragment fragment) {
+    AlertDialog dialog = new AlertDialog.Builder(context, ThemeUtil.isDarkTheme(context) ? R.style.RationaleDialogDark_SignalAccent : R.style.RationaleDialogLight_SignalAccent)
+                                        .setView(R.layout.kbs_pin_reminder_view)
+                                        .setCancelable(false)
+                                        .setOnCancelListener(d -> RegistrationLockReminders.scheduleReminder(context, false))
+                                        .create();
+
+    WindowManager  windowManager = ServiceUtil.getWindowManager(context);
+    Display        display       = windowManager.getDefaultDisplay();
+    DisplayMetrics metrics       = new DisplayMetrics();
+    display.getMetrics(metrics);
+
+    dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+    dialog.show();
+    dialog.getWindow().setLayout((int)(metrics.widthPixels * .80), ViewGroup.LayoutParams.WRAP_CONTENT);
+
+    TextInputLayout pinWrapper  = (TextInputLayout) DialogCompat.requireViewById(dialog, R.id.pin_wrapper);
+    EditText        pinEditText = (EditText) DialogCompat.requireViewById(dialog, R.id.pin);
+    TextView        reminder    = (TextView) DialogCompat.requireViewById(dialog, R.id.reminder);
+    View            skip        = DialogCompat.requireViewById(dialog, R.id.skip);
+    View            submit      = DialogCompat.requireViewById(dialog, R.id.submit);
+
+    SpannableString reminderText = new SpannableString(context.getString(R.string.KbsReminderDialog__to_help_you_memorize_your_pin));
+    SpannableString forgotText   = new SpannableString(context.getString(R.string.KbsReminderDialog__forgot_pin));
+
+    pinEditText.requestFocus();
+
+    switch (SignalStore.kbsValues().getKeyboardType()) {
+      case NUMERIC:
+        pinEditText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+        break;
+      case ALPHA_NUMERIC:
+        pinEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        break;
+    }
+
+    ClickableSpan clickableSpan = new ClickableSpan() {
+      @Override
+      public void onClick(@NonNull View widget) {
+        dialog.dismiss();
+        RegistrationLockReminders.scheduleReminder(context, true);
+
+        fragment.startActivityForResult(CreateKbsPinActivity.getIntentForPinUpdate(context), CreateKbsPinActivity.REQUEST_NEW_PIN);
+      }
+    };
+
+    forgotText.setSpan(clickableSpan, 0, forgotText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+    reminder.setText(new SpannableStringBuilder(reminderText).append(" ").append(forgotText));
+    reminder.setMovementMethod(LinkMovementMethod.getInstance());
+
+    skip.setOnClickListener(v -> {
+      dialog.dismiss();
+      RegistrationLockReminders.scheduleReminder(context, false);
+    });
+
+    PinVerifier.Callback callback = getPinWatcherCallback(context, dialog, pinWrapper);
+    PinVerifier          verifier = SignalStore.kbsValues().isV2RegistrationLockEnabled()
+                                    ? new V2PinVerifier()
+                                    : new V1PinVerifier(context);
+
+    submit.setOnClickListener(v -> {
+      Editable pinEditable = pinEditText.getText();
+
+      verifier.verifyPin(pinEditable == null ? null : pinEditable.toString(), callback);
+    });
+  }
+
+  /**
+   * @deprecated TODO [alex]: Remove after pins for all live.
+   */
+  @Deprecated
+  private static void showLegacyPinReminder(@NonNull Context context) {
     AlertDialog dialog = new AlertDialog.Builder(context, ThemeUtil.isDarkTheme(context) ? R.style.RationaleDialogDark : R.style.RationaleDialogLight)
                                         .setView(R.layout.registration_lock_reminder_view)
                                         .setCancelable(true)
@@ -84,8 +170,8 @@ public final class RegistrationLockDialog {
     dialog.show();
     dialog.getWindow().setLayout((int)(metrics.widthPixels * .80), ViewGroup.LayoutParams.WRAP_CONTENT);
 
-    EditText pinEditText = dialog.findViewById(R.id.pin);
-    TextView reminder    = dialog.findViewById(R.id.reminder);
+    EditText pinEditText = (EditText) DialogCompat.requireViewById(dialog, R.id.pin);
+    TextView reminder    = (TextView) DialogCompat.requireViewById(dialog, R.id.reminder);
 
     if (pinEditText == null) throw new AssertionError();
     if (reminder    == null) throw new AssertionError();
@@ -136,17 +222,15 @@ public final class RegistrationLockDialog {
 
   private static TextWatcher getV2PinWatcher(@NonNull Context context, AlertDialog dialog) {
     KbsValues kbsValues    = SignalStore.kbsValues();
-    MasterKey masterKey    = kbsValues.getPinBackedMasterKey();
     String    localPinHash = kbsValues.getLocalPinHash();
 
-    if (masterKey    == null) throw new AssertionError("No masterKey set at time of reminder");
     if (localPinHash == null) throw new AssertionError("No local pin hash set at time of reminder");
 
     return new AfterTextChanged((Editable s) -> {
       if (s == null) return;
       String pin = s.toString();
       if (TextUtils.isEmpty(pin)) return;
-      if (pin.length() < MIN_V2_NUMERIC_PIN_LENGTH_ENTRY) return;
+      if (pin.length() < KbsConstants.MINIMUM_POSSIBLE_PIN_LENGTH) return;
 
       if (PinHashing.verifyLocalPinHash(localPinHash, pin)) {
         dialog.dismiss();
@@ -178,9 +262,9 @@ public final class RegistrationLockDialog {
         String pinValue    = pin.getText().toString().replace(" ", "");
         String repeatValue = repeat.getText().toString().replace(" ", "");
 
-        if (pinValue.length() < MIN_V2_NUMERIC_PIN_LENGTH_SETTING) {
+        if (pinValue.length() < KbsConstants.MINIMUM_POSSIBLE_PIN_LENGTH) {
           Toast.makeText(context,
-                         context.getString(R.string.RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits, MIN_V2_NUMERIC_PIN_LENGTH_SETTING),
+                         context.getString(R.string.RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits, KbsConstants.MINIMUM_POSSIBLE_PIN_LENGTH),
                          Toast.LENGTH_LONG).show();
           return;
         }
@@ -325,4 +409,78 @@ public final class RegistrationLockDialog {
     dialog.show();
   }
 
+  private static PinVerifier.Callback getPinWatcherCallback(@NonNull Context context,
+                                                            @NonNull AlertDialog dialog,
+                                                            @NonNull TextInputLayout inputWrapper)
+  {
+    return new PinVerifier.Callback() {
+      @Override
+      public void onPinCorrect() {
+        dialog.dismiss();
+        RegistrationLockReminders.scheduleReminder(context, true);
+      }
+
+      @Override
+      public void onPinWrong() {
+        inputWrapper.setError(context.getString(R.string.KbsReminderDialog__incorrect_pin_try_again));
+      }
+    };
+  }
+
+  private static final class V1PinVerifier implements PinVerifier {
+
+    private final String pinInPreferences;
+
+    private V1PinVerifier(@NonNull Context context) {
+      //noinspection deprecation Acceptable to check the old pin in a reminder on a non-migrated system.
+      this.pinInPreferences = TextSecurePreferences.getDeprecatedV1RegistrationLockPin(context);
+    }
+
+    @Override
+    public void verifyPin(@Nullable String pin, @NonNull Callback callback) {
+      if (pin != null && pin.replace(" ", "").equals(pinInPreferences)) {
+        callback.onPinCorrect();
+
+        Log.i(TAG, "Pin V1 successfully remembered, scheduling a migration to V2");
+        ApplicationDependencies.getJobManager().add(new RegistrationPinV2MigrationJob());
+      } else {
+        callback.onPinWrong();
+      }
+    }
+  }
+
+  private static final class V2PinVerifier implements PinVerifier {
+
+    private final String localPinHash;
+
+    V2PinVerifier() {
+      localPinHash = SignalStore.kbsValues().getLocalPinHash();
+
+      if (localPinHash == null) throw new AssertionError("No local pin hash set at time of reminder");
+    }
+
+    @Override
+    public void verifyPin(@Nullable String pin, @NonNull Callback callback) {
+      if (pin == null) return;
+      if (TextUtils.isEmpty(pin)) return;
+
+      if (pin.length() < KbsConstants.MINIMUM_POSSIBLE_PIN_LENGTH) return;
+
+      if (PinHashing.verifyLocalPinHash(localPinHash, pin)) {
+        callback.onPinCorrect();
+      } else {
+        callback.onPinWrong();
+      }
+    }
+  }
+
+  private interface PinVerifier {
+
+    void verifyPin(@Nullable String pin, @NonNull PinVerifier.Callback callback);
+
+    interface Callback {
+      void onPinCorrect();
+      void onPinWrong();
+    }
+  }
 }

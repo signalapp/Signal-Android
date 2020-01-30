@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.registration.service.CodeVerificationRequest;
 import org.thoughtcrime.securesms.registration.service.RegistrationCodeRequest;
 import org.thoughtcrime.securesms.registration.service.RegistrationService;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 
@@ -126,8 +127,13 @@ public final class EnterCodeFragment extends BaseRegistrationFragment {
             keyboard.displayLocked().addListener(new AssertedSuccessListener<Boolean>() {
               @Override
               public void onSuccess(Boolean r) {
-                Navigation.findNavController(requireView())
-                          .navigate(EnterCodeFragmentDirections.actionRequireRegistrationLockPin(timeRemaining));
+                if (FeatureFlags.pinsForAll()) {
+                  Navigation.findNavController(requireView())
+                            .navigate(EnterCodeFragmentDirections.actionRequireKbsLockPin(timeRemaining));
+                } else {
+                  Navigation.findNavController(requireView())
+                            .navigate(EnterCodeFragmentDirections.actionRequireRegistrationLockPin(timeRemaining));
+                }
               }
             });
           }

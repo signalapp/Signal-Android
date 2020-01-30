@@ -102,7 +102,7 @@
 
     <PreferenceCategory android:layout="@layout/preference_divider"/>
 
-    <PreferenceCategory android:title="@string/preferences_app_protection__registration_lock">
+    <PreferenceCategory android:key="prefs_lock_v1" android:title="@string/preferences_app_protection__registration_lock">
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
                 android:defaultValue="false"
                 android:key="pref_registration_lock"
@@ -110,5 +110,12 @@
                 android:summary="@string/preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required"/>
     </PreferenceCategory>
 
+    <PreferenceCategory android:key="prefs_lock_v2" android:title="@string/preferences_app_protection__signal_pin">
+        <Preference
+            android:widgetLayout="@layout/kbs_pin_change_preference"
+            android:key="pref_kbs_change"
+            android:title="@string/preferences_app_protection__pin"
+            android:summary="@string/preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs" />
+    </PreferenceCategory>
 
 </PreferenceScreen>

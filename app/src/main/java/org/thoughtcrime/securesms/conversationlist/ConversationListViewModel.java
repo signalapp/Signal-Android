@@ -1,15 +1,15 @@
 package org.thoughtcrime.securesms.conversationlist;
 
+import android.app.Application;
+import android.database.ContentObserver;
+import android.os.Handler;
+import android.text.TextUtils;
+
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-
-import android.app.Application;
-import android.database.ContentObserver;
-import android.os.Handler;
-import androidx.annotation.NonNull;
-import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.conversationlist.model.SearchResult;
 import org.thoughtcrime.securesms.database.DatabaseContentProviders;
@@ -70,7 +70,7 @@ class ConversationListViewModel extends ViewModel {
   }
 
   void onMegaphoneSnoozed(@NonNull Megaphone snoozed) {
-    megaphoneRepository.markSeen(snoozed);
+    megaphoneRepository.markSeen(snoozed.getEvent());
     megaphone.postValue(null);
   }
 

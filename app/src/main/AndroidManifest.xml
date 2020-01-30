@@ -414,11 +414,21 @@
             android:windowSoftInputMode="stateVisible"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
+    <activity android:name=".lock.v2.CreateKbsPinActivity"
+            android:theme="@style/TextSecure.LightRegistrationTheme"
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
+    <activity android:name=".lock.v2.KbsMigrationActivity"
+            android:theme="@style/TextSecure.LightRegistrationTheme"
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
     <activity android:name=".ClearProfileAvatarActivity"
-              android:theme="@style/Theme.AppCompat.Dialog.Alert"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-              android:icon="@drawable/clear_profile_avatar"
-              android:label="@string/AndroidManifest_remove_photo">
+            android:theme="@style/Theme.AppCompat.Dialog.Alert"
+            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+            android:icon="@drawable/clear_profile_avatar"
+            android:label="@string/AndroidManifest_remove_photo">
 
         <intent-filter>
             <action android:name="org.thoughtcrime.securesms.action.CLEAR_PROFILE_PHOTO"/>

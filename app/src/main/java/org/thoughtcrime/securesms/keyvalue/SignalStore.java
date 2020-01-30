@@ -21,6 +21,10 @@ public final class SignalStore {
     return new KbsValues(getStore());
   }
 
+  public static RegistrationValues registrationValues() {
+    return new RegistrationValues(getStore());
+  }
+
   public static String getRemoteConfig() {
     return getStore().getString(REMOTE_CONFIG, null);
   }

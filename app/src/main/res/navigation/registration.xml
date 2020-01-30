@@ -92,6 +92,16 @@
             app:popUpToInclusive="true" />
 
         <action
+            android:id="@+id/action_requireKbsLockPin"
+            app:destination="@id/kbsLockFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/welcomeFragment"
+            app:popUpToInclusive="true" />
+
+        <action
             android:id="@+id/action_wrongNumber"
             app:popUpTo="@id/enterCodeFragment"
             app:popUpToInclusive="true" />
@@ -132,6 +142,49 @@
             android:name="timeRemaining"
             app:argType="long" />
 
+    </fragment>
+
+    <fragment
+        android:id="@+id/kbsLockFragment"
+        android:name="org.thoughtcrime.securesms.registration.fragments.KbsLockFragment"
+        android:label="fragment_kbs_lock"
+        tools:layout="@layout/kbs_lock_fragment">
+
+        <action
+            android:id="@+id/action_successfulRegistration"
+            app:destination="@id/registrationCompletePlaceHolderFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/welcomeFragment"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_accountLocked"
+            app:destination="@id/accountLockedFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/welcomeFragment"
+            app:popUpToInclusive="true" />
+
+        <argument
+            android:name="timeRemaining"
+            app:argType="long" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/accountLockedFragment"
+        android:name="org.thoughtcrime.securesms.registration.fragments.AccountLockedFragment"
+        android:label="fragment_account_locked"
+        tools:layout="@layout/account_locked_fragment">
+
+        <argument
+            android:name="timeRemaining"
+            app:argType="long" />
     </fragment>
 
     <fragment

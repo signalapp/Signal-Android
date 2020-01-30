@@ -1,8 +1,10 @@
 package org.thoughtcrime.securesms.keyvalue;
 
+import androidx.annotation.CheckResult;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.lock.v2.KbsKeyboardType;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.whispersystems.signalservice.api.RegistrationLockData;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
@@ -17,6 +19,7 @@ public final class KbsValues {
   private static final String MASTER_KEY          = "kbs.registration_lock_master_key";
   private static final String TOKEN_RESPONSE      = "kbs.token_response";
   private static final String LOCK_LOCAL_PIN_HASH = "kbs.registration_lock_local_pin_hash";
+  private static final String KEYBOARD_TYPE       = "kbs.keyboard_type";
 
   private final KeyValueStore store;
 
@@ -32,6 +35,7 @@ public final class KbsValues {
          .remove(V2_LOCK_ENABLED)
          .remove(TOKEN_RESPONSE)
          .remove(LOCK_LOCAL_PIN_HASH)
+         .remove(KEYBOARD_TYPE)
          .commit();
   }
 
@@ -111,5 +115,16 @@ public final class KbsValues {
     } catch (IOException e) {
       throw new AssertionError(e);
     }
+  }
+
+  public void setKeyboardType(@NonNull KbsKeyboardType keyboardType) {
+    store.beginWrite()
+         .putString(KEYBOARD_TYPE, keyboardType.getCode())
+         .commit();
+  }
+
+  @CheckResult
+  public @NonNull KbsKeyboardType getKeyboardType() {
+    return KbsKeyboardType.fromCode(store.getString(KEYBOARD_TYPE, null));
   }
 }

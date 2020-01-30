@@ -14,9 +14,14 @@ import androidx.fragment.app.Fragment;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
+import org.thoughtcrime.securesms.lock.v2.PinUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrationActivity;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
+import org.thoughtcrime.securesms.profiles.ProfileName;
+import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -35,6 +40,8 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   private static final int STATE_UI_BLOCKING_UPGRADE = 3;
   private static final int STATE_EXPERIENCE_UPGRADE  = 4;
   private static final int STATE_WELCOME_PUSH_SCREEN = 5;
+  private static final int STATE_CREATE_PROFILE_NAME = 6;
+  private static final int STATE_CREATE_KBS_PIN      = 7;
 
   private SignalServiceNetworkAccess networkAccess;
   private BroadcastReceiver          clearKeyReceiver;
@@ -150,6 +157,8 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
       case STATE_UI_BLOCKING_UPGRADE: return getUiBlockingUpgradeIntent();
       case STATE_WELCOME_PUSH_SCREEN: return getPushRegistrationIntent();
       case STATE_EXPERIENCE_UPGRADE:  return getExperienceUpgradeIntent();
+      case STATE_CREATE_KBS_PIN:      return getCreateKbsPinIntent();
+      case STATE_CREATE_PROFILE_NAME: return getCreateProfileNameIntent();
       default:                        return null;
     }
   }
@@ -165,9 +174,21 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
       return STATE_WELCOME_PUSH_SCREEN;
     } else if (ExperienceUpgradeActivity.isUpdate(this)) {
       return STATE_EXPERIENCE_UPGRADE;
+    } else if (userMustSetKbsPin()) {
+      return STATE_CREATE_KBS_PIN;
+    } else if (userMustSetProfileName()) {
+      return STATE_CREATE_PROFILE_NAME;
     } else {
       return STATE_NORMAL;
     }
+  }
+
+  private boolean userMustSetKbsPin() {
+    return !SignalStore.registrationValues().isRegistrationComplete() && !PinUtil.userHasPin(this);
+  }
+
+  private boolean userMustSetProfileName() {
+    return !SignalStore.registrationValues().isRegistrationComplete() && TextSecurePreferences.getProfileName(this) == ProfileName.EMPTY;
   }
 
   private Intent getCreatePassphraseIntent() {
@@ -191,6 +212,22 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
 
   private Intent getPushRegistrationIntent() {
     return RegistrationNavigationActivity.newIntentForNewRegistration(this);
+  }
+
+  private Intent getCreateKbsPinIntent() {
+
+    final Intent intent;
+    if (userMustSetProfileName()) {
+      intent = getCreateProfileNameIntent();
+    } else {
+      intent = getIntent();
+    }
+
+    return getRoutedIntent(CreateKbsPinActivity.class, intent);
+  }
+
+  private Intent getCreateProfileNameIntent() {
+    return getRoutedIntent(EditProfileActivity.class, getIntent());
   }
 
   private Intent getRoutedIntent(Class<?> destination, @Nullable Intent nextIntent) {

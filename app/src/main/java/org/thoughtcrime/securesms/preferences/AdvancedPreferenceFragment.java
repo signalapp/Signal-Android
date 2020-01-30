@@ -20,6 +20,7 @@ import androidx.preference.Preference;
 
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
 
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -174,6 +175,7 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
           break;
         case SUCCESS:
           TextSecurePreferences.setPushRegistered(getActivity(), false);
+          SignalStore.registrationValues().clearRegistrationComplete();
           initializePushMessagingToggle();
           break;
         }

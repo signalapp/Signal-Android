@@ -12,9 +12,14 @@ public interface MegaphoneListener {
   void onMegaphoneNavigationRequested(@NonNull Intent intent);
 
   /**
+   * When a megaphone wants to navigate to a specific intent for a request code.
+   */
+  void onMegaphoneNavigationRequested(@NonNull Intent intent, int requestCode);
+
+  /**
    * When a megaphone wants to show a toast/snackbar.
    */
-  void onMegaphoneToastRequested(@StringRes int stringRes);
+  void onMegaphoneToastRequested(@NonNull String string);
 
   /**
    * When a megaphone has been snoozed via "remind me later" or a similar option.

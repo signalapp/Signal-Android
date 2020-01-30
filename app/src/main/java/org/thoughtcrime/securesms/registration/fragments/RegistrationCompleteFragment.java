@@ -14,7 +14,11 @@ import androidx.navigation.ActivityNavigator;
 
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
+import org.thoughtcrime.securesms.lock.v2.PinUtil;
 import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 
 public final class RegistrationCompleteFragment extends BaseRegistrationFragment {
 
@@ -30,12 +34,19 @@ public final class RegistrationCompleteFragment extends BaseRegistrationFragment
 
     FragmentActivity activity = requireActivity();
 
+
     if (!isReregister()) {
-      Intent setProfileNameIntent = getRoutedIntent(activity, EditProfileActivity.class, new Intent(activity, MainActivity.class));
+      final Intent main = new Intent(activity, MainActivity.class);
+      final Intent next = getRoutedIntent(activity, EditProfileActivity.class, main);
 
-      setProfileNameIntent.putExtra(EditProfileActivity.SHOW_TOOLBAR, false);
+      next.putExtra(EditProfileActivity.SHOW_TOOLBAR, false);
 
-      activity.startActivity(setProfileNameIntent);
+      Context context = requireContext();
+      if (FeatureFlags.pinsForAll() && !PinUtil.userHasPin(context)) {
+        activity.startActivity(getRoutedIntent(activity, CreateKbsPinActivity.class, next));
+      } else {
+        activity.startActivity(next);
+      }
     }
 
     activity.finish();

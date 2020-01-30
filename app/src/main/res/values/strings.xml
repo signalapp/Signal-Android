@@ -1682,12 +1682,18 @@
     <string name="BaseKbsPinFragment__create_numeric_pin">Create numeric PIN</string>
 
     <!-- CreateKbsPinFragment -->
-    <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">PIN must be at least %1$d characters</string>
-    <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">PIN must be at least %1$d digits</string>
+    <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
+        <item quantity="one">PIN must be at least %1$d character</item>
+        <item quantity="other">PIN must be at least %1$d characters</item>
+    </plurals>
+    <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
+        <item quantity="one">PIN must be at least %1$d digit</item>
+        <item quantity="other">PIN must be at least %1$d digits</item>
+    </plurals>
     <string name="CreateKbsPinFragment__create_a_new_pin">Create a new PIN</string>
     <string name="CreateKbsPinFragment__because_youre_still_logged_in">Because you\'re still logged in, you can create a new PIN. When you\'re logged out, there is no way to recover your PIN.</string>
     <string name="CreateKbsPinFragment__create_your_pin">Create your PIN</string>
-    <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PINs add an extra layer of security to your account. Write your PIN down and keep it in a safe place. It can\'t be recovered.</string>
+    <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PINs add an extra layer of security to your account. It\'s important to remember this PIN, as it can\'t be recovered.</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">PINs don\'t match. Try again.</string>
@@ -1695,18 +1701,19 @@
     <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN creation failed</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Your PIN was not saved. We\'ll prompt you to create a PIN later.</string>
     <string name="ConfirmKbsPinFragment__pin_created">PIN created.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_pin">Re-enter PIN</string>
+    <string name="ConfirmKbsPinFragment__creating_pin">Creating PIN...</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">Introducing PINs</string>
-    <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">Add another level of security to your account. %1$s</string>
-    <string name="KbsSplashFragment__read_more_here">Read more here.</string>
-    <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string>
+    <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">PINs add another level of security to your account. Create one now.</string>
+    <string name="KbsSplashFragment__learn_more">Learn More</string>
+    <string name="KbsSplashFragment__learn_more_link">https://signal.org/blog/secure-value-recovery/</string>
     <string name="KbsSplashFragment__registration_lock_equals_pin">Registration Lock = PIN</string>
-    <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Your Registration Lock is now called a PIN, and it does more. Update it now. %1$s</string>
+    <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Your Registration Lock is now called a PIN, and it does more. Update it now.</string>
     <string name="KbsSplashFragment__read_more_about_pins">Read more about PINs.</string>
     <string name="KbsSplashFragment__update_pin">Update PIN</string>
     <string name="KbsSplashFragment__create_your_pin">Create your PIN</string>
-    <string name="KbsSplashFragment__remind_me_later">Remind me later</string>
 
     <!-- KBS Reminder Dialog -->
     <string name="KbsReminderDialog__enter_your_signal_pin">Enter your Signal PIN</string>
@@ -1735,7 +1742,17 @@
     <string name="KbsLockFragment__incorrect_pin">Incorrect PIN</string>
     <string name="KbsLockFragment__you_have_d_attempts_remaining">You have %1$d attempts remaining. If you run out of attempts your account will be locked for %2$d days. After %3$d days of inactivity, you can re-register without your PIN. Your account will be wiped and all content deleted.</string>
     <string name="KbsLockFragment__forgot_your_pin">Forgot your PIN?</string>
-    <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">For your privacy and security, there is no way to recover your PIN. If you run out of attempts, you can re-verify with SMS after %1$d days of inactivity. In this case, your account will be wiped and all content deleted.</string>
+    <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">For your privacy and security, there is no way to recover your PIN. If you can\'t remember your PIN, you can re-verify with SMS after %1$d days of inactivity. In this case, your account will be wiped and all content deleted.</string>
+
+    <!-- KBS Megaphone -->
+    <string name="KbsMegaphone__create_a_pin">Create a PIN</string>
+    <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">PINs add another layer of security to your Signal account.</string>
+    <string name="KbsMegaphone__create_pin">Create PIN</string>
+    <string name="KbsMegaphone__introducing_pins">Introducing PINs</string>
+    <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Your Registration Lock is now called a PIN. Updating it takes seconds.</string>
+    <string name="KbsMegaphone__update_pin">Update PIN</string>
+    <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">We\'ll remind you later. Creating a PIN will become mandatory in %1$d days.</string>
+    <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">We\'ll remind you later. Confirming your PIN will become mandatory in %1$d days.</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>

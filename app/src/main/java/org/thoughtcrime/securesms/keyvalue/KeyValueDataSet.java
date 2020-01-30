@@ -106,16 +106,16 @@ public class KeyValueDataSet implements KeyValueReader {
     }
   }
 
+  boolean containsKey(@NonNull String key) {
+    return values.containsKey(key);
+  }
+
   public @NonNull Map<String, Object> getValues() {
     return values;
   }
 
   public Class getType(@NonNull String key) {
     return types.get(key);
-  }
-
-  public boolean containsKey(@NonNull String key) {
-    return values.containsKey(key);
   }
 
   private <E> E readValueAsType(@NonNull String key, Class<E> type, boolean nullable) {

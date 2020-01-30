@@ -17,6 +17,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
+import org.thoughtcrime.securesms.lock.v2.KbsKeyboardType;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.profiles.ProfileName;
@@ -162,6 +163,8 @@ public class TextSecurePreferences {
   private static final String REGISTRATION_LOCK_LAST_REMINDER_TIME          = "pref_registration_lock_last_reminder_time";
   private static final String REGISTRATION_LOCK_LAST_REMINDER_TIME_POST_KBS = "pref_registration_lock_last_reminder_time_post_kbs";
   private static final String REGISTRATION_LOCK_NEXT_REMINDER_INTERVAL      = "pref_registration_lock_next_reminder_interval";
+
+  public  static final String KBS_PIN_CHANGE = "pref_kbs_change";
 
   private static final String SERVICE_OUTAGE         = "pref_service_outage";
   private static final String LAST_OUTAGE_CHECK_TIME = "pref_last_outage_check_time";

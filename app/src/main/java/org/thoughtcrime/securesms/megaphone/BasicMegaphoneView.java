@@ -48,7 +48,7 @@ public class BasicMegaphoneView extends FrameLayout {
     super.onAttachedToWindow();
 
     if (megaphone != null && megaphoneListener != null && megaphone.getOnVisibleListener() != null) {
-      megaphone.getOnVisibleListener().onVisible(megaphone, megaphoneListener);
+      megaphone.getOnVisibleListener().onEvent(megaphone, megaphoneListener);
     }
   }
 
@@ -82,7 +82,7 @@ public class BasicMegaphoneView extends FrameLayout {
       actionButton.setText(megaphone.getButtonText());
       actionButton.setOnClickListener(v -> {
         if (megaphone.getButtonClickListener() != null) {
-          megaphone.getButtonClickListener().onClick(megaphone, megaphoneListener);
+          megaphone.getButtonClickListener().onEvent(megaphone, megaphoneListener);
         }
       });
     } else {
@@ -91,7 +91,13 @@ public class BasicMegaphoneView extends FrameLayout {
 
     if (megaphone.canSnooze()) {
       snoozeButton.setVisibility(VISIBLE);
-      snoozeButton.setOnClickListener(v -> megaphoneListener.onMegaphoneSnooze(megaphone));
+      snoozeButton.setOnClickListener(v -> {
+        megaphoneListener.onMegaphoneSnooze(megaphone);
+
+        if (megaphone.getSnoozeListener() != null) {
+          megaphone.getSnoozeListener().onEvent(megaphone, megaphoneListener);
+        }
+      });
     } else {
       actionButton.setVisibility(GONE);
     }

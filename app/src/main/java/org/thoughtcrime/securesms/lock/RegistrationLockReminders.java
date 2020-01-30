@@ -35,19 +35,19 @@ public class RegistrationLockReminders {
   }
 
   public static void scheduleReminder(@NonNull Context context, boolean success) {
-    Long nextReminderInterval;
-
     if (success) {
       long timeSinceLastReminder = System.currentTimeMillis() - TextSecurePreferences.getRegistrationLockLastReminderTime(context);
-      nextReminderInterval = INTERVALS.higher(timeSinceLastReminder);
-      if (nextReminderInterval == null) nextReminderInterval = INTERVALS.last();
-    } else {
-      long lastReminderInterval = TextSecurePreferences.getRegistrationLockNextReminderInterval(context);
-      nextReminderInterval = INTERVALS.lower(lastReminderInterval);
-      if (nextReminderInterval == null) nextReminderInterval = INTERVALS.first();
-    }
+      Long nextReminderInterval = INTERVALS.higher(timeSinceLastReminder);
 
-    TextSecurePreferences.setRegistrationLockLastReminderTime(context, System.currentTimeMillis());
-    TextSecurePreferences.setRegistrationLockNextReminderInterval(context, nextReminderInterval);
+      if (nextReminderInterval == null) {
+        nextReminderInterval = INTERVALS.last();
+      }
+
+      TextSecurePreferences.setRegistrationLockLastReminderTime(context, System.currentTimeMillis());
+      TextSecurePreferences.setRegistrationLockNextReminderInterval(context, nextReminderInterval);
+    } else {
+      long timeSinceLastReminder = TextSecurePreferences.getRegistrationLockLastReminderTime(context) + TimeUnit.MINUTES.toMillis(5);
+      TextSecurePreferences.setRegistrationLockLastReminderTime(context, timeSinceLastReminder);
+    }
   }
 }

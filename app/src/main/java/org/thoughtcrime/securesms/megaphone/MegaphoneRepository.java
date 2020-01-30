@@ -82,21 +82,12 @@ public class MegaphoneRepository {
   }
 
   @MainThread
-  public void markSeen(@NonNull Megaphone megaphone) {
+  public void markSeen(@NonNull Event event) {
     long lastSeen = System.currentTimeMillis();
 
     executor.execute(() -> {
-      Event           event  = megaphone.getEvent();
       MegaphoneRecord record = getRecord(event);
-
-      if (megaphone.getMaxAppearances() != Megaphone.UNLIMITED &&
-          record.getSeenCount() + 1 >= megaphone.getMaxAppearances())
-      {
-        database.markFinished(event);
-      } else {
-        database.markSeen(event, record.getSeenCount() + 1, lastSeen);
-      }
-
+      database.markSeen(event, record.getSeenCount() + 1, lastSeen);
       enabled = false;
       resetDatabaseCache();
     });

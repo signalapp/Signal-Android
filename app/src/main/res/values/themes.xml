@@ -188,6 +188,8 @@
         <item name="android:homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
         <!--<item name="android:windowContentOverlay">@drawable/compat_actionbar_shadow_background</item>-->
 
+        <item name="kbs_splash_image">@drawable/ic_kbs_splash_light_svg</item>
+
         <item name="attachment_type_selector_background">@color/white</item>
         <item name="attachment_document_icon_small">@drawable/ic_document_small_light</item>
         <item name="attachment_document_icon_large">@drawable/ic_document_large_light</item>
@@ -440,6 +442,8 @@
         <item name="homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
         <item name="android:homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
 
+        <item name="kbs_splash_image">@drawable/ic_kbs_splash_dark_svg</item>
+
         <item name="attachment_type_selector_background">@color/core_grey_95</item>
         <item name="attachment_document_icon_small">@drawable/ic_document_small_dark</item>
         <item name="attachment_document_icon_large">@drawable/ic_document_large_dark</item>
@@ -650,6 +654,15 @@
     <style name="RationaleDialogDark" parent="Theme.AppCompat.Dialog.Alert">
         <item name="android:windowBackground">@drawable/permission_rationale_dialog_corners</item>
     </style>
+
+    <style name="RationaleDialogLight.SignalAccent">
+        <item name="colorAccent">@color/signal_primary</item>
+    </style>
+
+    <style name="RationaleDialogDark.SignalAccent">
+        <item name="colorAccent">@color/signal_primary</item>
+    </style>
+
 
     <style name="Theme.Signal.Insights.Modal" parent="@style/Theme.AppCompat.Dialog.MinWidth">
     </style>

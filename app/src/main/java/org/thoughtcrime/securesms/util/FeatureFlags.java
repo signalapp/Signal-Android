@@ -52,7 +52,7 @@ public final class FeatureFlags {
   private static final String USERNAMES         = generateKey("usernames");
   private static final String KBS               = generateKey("kbs");
   private static final String STORAGE_SERVICE   = generateKey("storageService");
-  private static final String REACTION_SENDING  = generateKey("reactionSending");
+  private static final String PINS_FOR_ALL      = generateKey("beta.pinsForAll"); // TODO [alex] remove beta prefix
 
   /**
    * Values in this map will take precedence over any value. If you do not wish to have any sort of
@@ -82,6 +82,7 @@ public final class FeatureFlags {
    * Flags in this set will stay true forever once they receive a true value from a remote config.
    */
   private static final Set<String> STICKY = Sets.newHashSet(
+    PINS_FOR_ALL // TODO [alex] -- add android.beta.pinsForAll to sticky set when we remove prefix
   );
 
   private static final Map<String, Boolean> REMOTE_VALUES = new TreeMap<>();
@@ -153,9 +154,9 @@ public final class FeatureFlags {
     return value;
   }
 
-  /** Send support for reactions. */
-  public static synchronized boolean reactionSending() {
-    return getValue(REACTION_SENDING, false);
+  /** Enables new KBS UI and notices but does not require user to set a pin */
+  public static boolean pinsForAll() {
+    return SignalStore.registrationValues().pinWasRequiredAtRegistration() || getValue(PINS_FOR_ALL, false);
   }
 
   /** Only for rendering debug info. */
