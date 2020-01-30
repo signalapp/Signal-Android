@@ -66,6 +66,15 @@
     <string name="DraftDatabase_Draft_location_snippet">(location)</string>
     <string name="DraftDatabase_Draft_quote_snippet">(reply)</string>
 
+    <!-- AttachmentKeyboard -->
+    <string name="AttachmentKeyboard_gallery">Gallery</string>
+    <string name="AttachmentKeyboard_gif">GIF</string>
+    <string name="AttachmentKeyboard_file">File</string>
+    <string name="AttachmentKeyboard_contact">Contact</string>
+    <string name="AttachmentKeyboard_location">Location</string>
+    <string name="AttachmentKeyboard_Signal_requires_the_storage_permission">Signal requires the Storage permission to show your recent photos and videos.</string>
+    <string name="AttachmentKeyboard_grant_access">Grant Access</string>
+
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Can\'t find an app to select media.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal requires the Storage permission in order to attach photos, videos, or audio, but it has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Storage\".</string>

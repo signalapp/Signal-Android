@@ -129,6 +129,13 @@
                 android:inflatedId="@+id/emoji_drawer"
                 android:layout="@layout/conversation_activity_emojidrawer_stub" />
 
+            <ViewStub
+                android:id="@+id/attachment_keyboard_stub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inflatedId="@+id/attachment_keyboard"
+                android:layout="@layout/conversation_activity_attachment_keyboard_stub" />
+
         </LinearLayout>
 
     </org.thoughtcrime.securesms.components.InputAwareLayout>

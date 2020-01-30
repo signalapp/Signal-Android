@@ -1,10 +1,14 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
+
+import android.graphics.Color;
 import android.util.AttributeSet;
 
 import org.thoughtcrime.securesms.R;
@@ -21,20 +25,30 @@ public class OutlinedThumbnailView extends ThumbnailView {
 
   public OutlinedThumbnailView(Context context) {
     super(context);
-    init();
+    init(null);
   }
 
   public OutlinedThumbnailView(Context context, AttributeSet attrs) {
     super(context, attrs);
-    init();
+    init(attrs);
   }
 
-  private void init() {
+  private void init(@Nullable AttributeSet attrs) {
     cornerMask = new CornerMask(this);
     outliner   = new Outliner();
 
     outliner.setColor(ThemeUtil.getThemedColor(getContext(), R.attr.conversation_item_image_outline_color));
-    setRadius(0);
+
+    int radius = 0;
+
+    if (attrs != null) {
+      TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.OutlinedThumbnailView, 0, 0);
+      radius = typedArray.getDimensionPixelOffset(R.styleable.OutlinedThumbnailView_otv_cornerRadius, 0);
+    }
+
+    setRadius(radius);
+    setCorners(radius, radius, radius, radius);
+
     setWillNotDraw(false);
   }
 

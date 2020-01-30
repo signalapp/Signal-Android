@@ -412,6 +412,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
             width,
             height,
             length,
+            0,
             Optional.of(Media.ALL_MEDIA_BUCKET_ID),
             Optional.absent()
         );

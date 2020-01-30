@@ -344,6 +344,10 @@ public class ThumbnailView extends FrameLayout {
   }
 
   public ListenableFuture<Boolean> setImageResource(@NonNull GlideRequests glideRequests, @NonNull Uri uri) {
+    return setImageResource(glideRequests, uri, 0, 0);
+  }
+
+  public ListenableFuture<Boolean> setImageResource(@NonNull GlideRequests glideRequests, @NonNull Uri uri, int width, int height) {
     SettableFuture<Boolean> future = new SettableFuture<>();
 
     if (transferControls.isPresent()) getTransferControls().setVisibility(View.GONE);
@@ -351,6 +355,10 @@ public class ThumbnailView extends FrameLayout {
     GlideRequest request = glideRequests.load(new DecryptableUri(uri))
                                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                                         .transition(withCrossFade());
+
+    if (width > 0 && height > 0) {
+      request = request.override(width, height);
+    }
 
     if (radius > 0) {
       request = request.transforms(new CenterCrop(), new RoundedCorners(radius));

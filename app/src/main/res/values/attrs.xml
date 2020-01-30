@@ -14,6 +14,9 @@
     <attr name="attachment_document_icon_small" format="reference" />
     <attr name="attachment_document_icon_large" format="reference" />
 
+    <attr name="attachment_keyboard_button_background" format="color|reference" />
+    <attr name="attachment_keyboard_button_foreground" format="color" />
+
     <attr name="conversation_list_item_background" format="reference"/>
     <attr name="conversation_list_item_contact_color" format="reference|color"/>
     <attr name="conversation_list_item_subject_color" format="reference|color"/>
@@ -430,4 +433,16 @@
     <declare-styleable name="ContactFilterToolbar">
         <attr name="searchTextStyle" format="reference" />
     </declare-styleable>
+
+    <declare-styleable name="SquareImageView">
+        <attr name="siv_dominant" format="enum">
+            <enum name="width" value="0" />
+            <enum name="height" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="OutlinedThumbnailView">
+        <attr name="otv_cornerRadius" format="dimension|reference" />
+    </declare-styleable>
+
 </resources>

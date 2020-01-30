@@ -13,6 +13,7 @@
     <color name="black">@color/core_black</color>
 
     <color name="transparent_black_05">#0D000000</color>
+    <color name="transparent_black_10">#18000000</color>
     <color name="transparent_black_20">#33000000</color>
     <color name="transparent_black_40">#66000000</color>
     <color name="transparent_black_60">#99000000</color>

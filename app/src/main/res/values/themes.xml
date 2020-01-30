@@ -192,6 +192,9 @@
         <item name="attachment_document_icon_small">@drawable/ic_document_small_light</item>
         <item name="attachment_document_icon_large">@drawable/ic_document_large_light</item>
 
+        <item name="attachment_keyboard_button_background">@drawable/attachment_keyboard_button_background_light</item>
+        <item name="attachment_keyboard_button_foreground">@color/core_grey_65</item>
+
         <item name="compose_icon_tint">?icon_tint</item>
 
         <item name="contact_filter_toolbar_icon_tint">?icon_tint</item>
@@ -440,6 +443,9 @@
         <item name="attachment_type_selector_background">@color/core_grey_95</item>
         <item name="attachment_document_icon_small">@drawable/ic_document_small_dark</item>
         <item name="attachment_document_icon_large">@drawable/ic_document_large_dark</item>
+
+        <item name="attachment_keyboard_button_background">@drawable/attachment_keyboard_button_background_dark</item>
+        <item name="attachment_keyboard_button_foreground">@color/core_grey_05</item>
 
         <item name="compose_icon_tint">?icon_tint</item>
 

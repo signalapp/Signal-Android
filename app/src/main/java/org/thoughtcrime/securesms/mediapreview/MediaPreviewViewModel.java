@@ -110,6 +110,7 @@ public class MediaPreviewViewModel extends ViewModel {
                      mediaRecord.getAttachment().getWidth(),
                      mediaRecord.getAttachment().getHeight(),
                      mediaRecord.getAttachment().getSize(),
+                     0,
                      Optional.absent(),
                      Optional.fromNullable(mediaRecord.getAttachment().getCaption()));
   }

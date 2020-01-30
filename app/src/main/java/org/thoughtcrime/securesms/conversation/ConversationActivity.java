@@ -97,7 +97,6 @@ import org.thoughtcrime.securesms.audio.AudioRecorder;
 import org.thoughtcrime.securesms.audio.AudioSlidePlayer;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
-import org.thoughtcrime.securesms.components.AttachmentTypeSelector;
 import org.thoughtcrime.securesms.components.ComposeText;
 import org.thoughtcrime.securesms.components.ConversationSearchBottomBar;
 import org.thoughtcrime.securesms.components.HidingLinearLayout;
@@ -262,7 +261,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                InputPanel.MediaListener,
                ComposeText.CursorPositionChangedListener,
                ConversationSearchBottomBar.EventListener,
-               StickerKeyboardProvider.StickerEventListener
+               StickerKeyboardProvider.StickerEventListener,
+               AttachmentKeyboard.Callback
 {
   private static final String TAG = ConversationActivity.class.getSimpleName();
 
@@ -311,18 +311,19 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   FrameLayout                 messageRequestOverlay;
   private   ConversationReactionOverlay reactionOverlay;
 
-  private   AttachmentTypeSelector attachmentTypeSelector;
-  private   AttachmentManager      attachmentManager;
-  private   AudioRecorder          audioRecorder;
-  private   BroadcastReceiver      securityUpdateReceiver;
-  private   Stub<MediaKeyboard>    emojiDrawerStub;
-  protected HidingLinearLayout     quickAttachmentToggle;
-  protected HidingLinearLayout     inlineAttachmentToggle;
-  private   InputPanel             inputPanel;
+  private   AttachmentManager        attachmentManager;
+  private   AudioRecorder            audioRecorder;
+  private   BroadcastReceiver        securityUpdateReceiver;
+  private   Stub<MediaKeyboard>      emojiDrawerStub;
+  private   Stub<AttachmentKeyboard> attachmentKeyboardStub;
+  protected HidingLinearLayout       quickAttachmentToggle;
+  protected HidingLinearLayout       inlineAttachmentToggle;
+  private   InputPanel               inputPanel;
 
   private LinkPreviewViewModel         linkPreviewViewModel;
   private ConversationSearchViewModel  searchViewModel;
   private ConversationStickerViewModel stickerViewModel;
+  private ConversationViewModel        viewModel;
   private InviteReminderModel          inviteReminderModel;
 
   private LiveRecipient recipient;
@@ -391,6 +392,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     initializeLinkPreviewObserver();
     initializeSearchObserver();
     initializeStickerObserver();
+    initializeViewModel();
     initializeSecurity(recipient.get().isRegistered(), isDefaultSms).addListener(new AssertedSuccessListener<Boolean>() {
       @Override
       public void onSuccess(Boolean result) {
@@ -844,7 +846,44 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
   }
 
-  //////// Event Handlers
+  @Override
+  public void onAttachmentMediaClicked(@NonNull Media media) {
+    linkPreviewViewModel.onUserCancel();
+    startActivityForResult(MediaSendActivity.buildEditorIntent(ConversationActivity.this, Collections.singletonList(media), recipient.get(), composeText.getTextTrimmed(), sendButton.getSelectedTransport()), MEDIA_SENDER);
+  }
+
+  @Override
+  public void onAttachmentSelectorClicked(@NonNull AttachmentKeyboardButton button) {
+    switch (button) {
+      case GALLERY:
+        AttachmentManager.selectGallery(this, MEDIA_SENDER, recipient.get(), composeText.getTextTrimmed(), sendButton.getSelectedTransport());
+        break;
+      case GIF:
+        AttachmentManager.selectGif(this, PICK_GIF, !isSecureText, recipient.get().getColor().toConversationColor(this));
+        break;
+      case FILE:
+        AttachmentManager.selectDocument(this, PICK_DOCUMENT);
+        break;
+      case CONTACT:
+        AttachmentManager.selectContactInfo(this, PICK_CONTACT);
+        break;
+      case LOCATION:
+        AttachmentManager.selectLocation(this, PICK_LOCATION);
+        break;
+    }
+    // TODO [greyson] [attachment] Add these
+//    attachmentManager.capturePhoto(this, TAKE_PHOTO); break;
+  }
+
+  @Override
+  public void onAttachmentPermissionsRequested() {
+    Permissions.with(this)
+               .request(Manifest.permission.READ_EXTERNAL_STORAGE)
+               .onAllGranted(() -> viewModel.onAttachmentKeyboardOpen())
+               .execute();
+  }
+
+//////// Event Handlers
 
   private void handleSelectMessageExpiration() {
     if (isPushGroupConversation() && !isActiveGroup()) {
@@ -1168,10 +1207,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void handleAddAttachment() {
     if (this.isMmsEnabled || isSecureText) {
-      if (attachmentTypeSelector == null) {
-        attachmentTypeSelector = new AttachmentTypeSelector(this, getSupportLoaderManager(), new AttachmentTypeListener());
+      viewModel.getRecentMedia().removeObservers(this);
+
+      if (attachmentKeyboardStub.resolved() && container.isInputOpen() && container.getCurrentInput() == attachmentKeyboardStub.get()) {
+        container.showSoftkey(composeText);
+      } else {
+        viewModel.getRecentMedia().observe(this, media -> attachmentKeyboardStub.get().onMediaChanged(media));
+        attachmentKeyboardStub.get().setCallback(this);
+        container.show(composeText, attachmentKeyboardStub.get());
+
+        viewModel.onAttachmentKeyboardOpen();
       }
-      attachmentTypeSelector.show(this, attachButton);
     } else {
       handleManualMmsRequired();
     }
@@ -1564,6 +1610,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     composeText            = ViewUtil.findById(this, R.id.embedded_text_editor);
     charactersLeft         = ViewUtil.findById(this, R.id.space_left);
     emojiDrawerStub        = ViewUtil.findStubById(this, R.id.emoji_drawer_stub);
+    attachmentKeyboardStub = ViewUtil.findStubById(this, R.id.attachment_keyboard_stub);
     unblockButton          = ViewUtil.findById(this, R.id.unblock_button);
     makeDefaultSmsButton   = ViewUtil.findById(this, R.id.make_default_sms_button);
     registerButton         = ViewUtil.findById(this, R.id.register_button);
@@ -1586,10 +1633,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     inputPanel.setListener(this);
     inputPanel.setMediaListener(this);
 
-    attachmentTypeSelector = null;
-    attachmentManager      = new AttachmentManager(this, this);
-    audioRecorder          = new AudioRecorder(this);
-    typingTextWatcher      = new TypingStatusTextWatcher();
+    attachmentManager = new AttachmentManager(this, this);
+    audioRecorder     = new AudioRecorder(this);
+    typingTextWatcher = new TypingStatusTextWatcher();
 
     SendButtonListener        sendButtonListener        = new SendButtonListener();
     ComposeKeyPressedListener composeKeyPressedListener = new ComposeKeyPressedListener();
@@ -1732,6 +1778,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     });
   }
 
+  private void initializeViewModel() {
+    this.viewModel = ViewModelProviders.of(this, new ConversationViewModel.Factory()).get(ConversationViewModel.class);
+  }
+
   private void showStickerIntroductionTooltip() {
     TextSecurePreferences.setMediaKeyboardMode(this, MediaKeyboardMode.STICKER);
     inputPanel.setMediaKeyboardToggleMode(true);
@@ -1835,28 +1885,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   //////// Helper Methods
 
-  private void addAttachment(int type) {
-    linkPreviewViewModel.onUserCancel();
-
-    Log.i(TAG, "Selected: " + type);
-    switch (type) {
-    case AttachmentTypeSelector.ADD_GALLERY:
-      AttachmentManager.selectGallery(this, MEDIA_SENDER, recipient.get(), composeText.getTextTrimmed(), sendButton.getSelectedTransport()); break;
-    case AttachmentTypeSelector.ADD_DOCUMENT:
-      AttachmentManager.selectDocument(this, PICK_DOCUMENT); break;
-    case AttachmentTypeSelector.ADD_SOUND:
-      AttachmentManager.selectAudio(this, PICK_AUDIO); break;
-    case AttachmentTypeSelector.ADD_CONTACT_INFO:
-      AttachmentManager.selectContactInfo(this, PICK_CONTACT); break;
-    case AttachmentTypeSelector.ADD_LOCATION:
-      AttachmentManager.selectLocation(this, PICK_LOCATION); break;
-    case AttachmentTypeSelector.TAKE_PHOTO:
-      attachmentManager.capturePhoto(this, TAKE_PHOTO); break;
-    case AttachmentTypeSelector.ADD_GIF:
-      AttachmentManager.selectGif(this, PICK_GIF, !isSecureText, recipient.get().getColor().toConversationColor(this)); break;
-    }
-  }
-
   private ListenableFuture<Boolean> setMedia(@Nullable Uri uri, @NonNull MediaType mediaType) {
     return setMedia(uri, mediaType, 0, 0);
   }
@@ -1870,7 +1898,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       openContactShareEditor(uri);
       return new SettableFuture<>(false);
     } else if (MediaType.IMAGE.equals(mediaType) || MediaType.GIF.equals(mediaType) || MediaType.VIDEO.equals(mediaType)) {
-      Media media = new Media(uri, MediaUtil.getMimeType(this, uri), 0, width, height, 0, Optional.absent(), Optional.absent());
+      Media media = new Media(uri, MediaUtil.getMimeType(this, uri), 0, width, height, 0, 0, Optional.absent(), Optional.absent());
       startActivityForResult(MediaSendActivity.buildEditorIntent(ConversationActivity.this, Collections.singletonList(media), recipient.get(), composeText.getTextTrimmed(), sendButton.getSelectedTransport()), MEDIA_SENDER);
       return new SettableFuture<>(false);
     } else {
@@ -2583,7 +2611,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void sendSticker(@NonNull StickerLocator stickerLocator, @NonNull Uri uri, long size, boolean clearCompose) {
     if (sendButton.getSelectedTransport().isSms()) {
-      Media  media  = new Media(uri, MediaUtil.IMAGE_WEBP, System.currentTimeMillis(), StickerSlide.WIDTH, StickerSlide.HEIGHT, size, Optional.absent(), Optional.absent());
+      Media  media  = new Media(uri, MediaUtil.IMAGE_WEBP, System.currentTimeMillis(), StickerSlide.WIDTH, StickerSlide.HEIGHT, size, 0, Optional.absent(), Optional.absent());
       Intent intent = MediaSendActivity.buildEditorIntent(this, Collections.singletonList(media), recipient.get(), composeText.getTextTrimmed(), sendButton.getSelectedTransport());
       startActivityForResult(intent, MEDIA_SENDER);
       return;
@@ -2609,20 +2637,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   // Listeners
-
-  private class AttachmentTypeListener implements AttachmentTypeSelector.AttachmentClickedListener {
-    @Override
-    public void onClick(int type) {
-      addAttachment(type);
-    }
-
-    @Override
-    public void onQuickAttachment(Uri uri, String mimeType, String bucketId, long dateTaken, int width, int height, long size) {
-      linkPreviewViewModel.onUserCancel();
-      Media media = new Media(uri, mimeType, dateTaken, width, height, size, Optional.of(Media.ALL_MEDIA_BUCKET_ID), Optional.absent());
-      startActivityForResult(MediaSendActivity.buildEditorIntent(ConversationActivity.this, Collections.singletonList(media), recipient.get(), composeText.getTextTrimmed(), sendButton.getSelectedTransport()), MEDIA_SENDER);
-    }
-  }
 
   private class QuickCameraToggleListener implements OnClickListener {
     @Override

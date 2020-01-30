@@ -20,17 +20,28 @@ public class Media implements Parcelable {
   private final int    width;
   private final int    height;
   private final long   size;
+  private final long   duration;
 
   private Optional<String> bucketId;
   private Optional<String> caption;
 
-  public Media(@NonNull Uri uri, @NonNull String mimeType, long date, int width, int height, long size, Optional<String> bucketId, Optional<String> caption) {
+  public Media(@NonNull Uri uri,
+               @NonNull String mimeType,
+               long date,
+               int width,
+               int height,
+               long size,
+               long duration,
+               Optional<String> bucketId,
+               Optional<String> caption)
+  {
     this.uri      = uri;
     this.mimeType = mimeType;
     this.date     = date;
     this.width    = width;
     this.height   = height;
     this.size     = size;
+    this.duration = duration;
     this.bucketId = bucketId;
     this.caption  = caption;
   }
@@ -42,6 +53,7 @@ public class Media implements Parcelable {
     width    = in.readInt();
     height   = in.readInt();
     size     = in.readLong();
+    duration = in.readLong();
     bucketId = Optional.fromNullable(in.readString());
     caption  = Optional.fromNullable(in.readString());
   }
@@ -70,6 +82,10 @@ public class Media implements Parcelable {
     return size;
   }
 
+  public long getDuration() {
+    return duration;
+  }
+
   public Optional<String> getBucketId() {
     return bucketId;
   }
@@ -95,6 +111,7 @@ public class Media implements Parcelable {
     dest.writeInt(width);
     dest.writeInt(height);
     dest.writeLong(size);
+    dest.writeLong(duration);
     dest.writeString(bucketId.orNull());
     dest.writeString(caption.orNull());
   }
