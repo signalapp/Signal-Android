@@ -475,6 +475,8 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
         megaphone.getOnVisibleListener().onVisible(megaphone, this);
       }
     }
+
+    viewModel.onMegaphoneVisible(megaphone);
   }
 
   private void updateReminders() {

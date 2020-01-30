@@ -9,7 +9,7 @@ class RecurringSchedule implements MegaphoneSchedule {
   }
 
   @Override
-  public boolean shouldDisplay(int seenCount, long lastSeen, long currentTime) {
+  public boolean shouldDisplay(int seenCount, long lastSeen, long firstVisible, long currentTime) {
     if (seenCount == 0) {
       return true;
     }

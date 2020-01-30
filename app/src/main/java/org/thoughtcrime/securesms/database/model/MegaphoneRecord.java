@@ -9,13 +9,15 @@ public class MegaphoneRecord {
   private final Megaphones.Event event;
   private final int              seenCount;
   private final long             lastSeen;
+  private final long             firstVisible;
   private final boolean          finished;
 
-  public MegaphoneRecord(@NonNull Megaphones.Event event, int seenCount, long lastSeen, boolean finished) {
-    this.event     = event;
-    this.seenCount = seenCount;
-    this.lastSeen  = lastSeen;
-    this.finished  = finished;
+  public MegaphoneRecord(@NonNull Megaphones.Event event, int seenCount, long lastSeen, long firstVisible, boolean finished) {
+    this.event        = event;
+    this.seenCount    = seenCount;
+    this.lastSeen     = lastSeen;
+    this.firstVisible = firstVisible;
+    this.finished     = finished;
   }
 
   public @NonNull Megaphones.Event getEvent() {
@@ -28,6 +30,10 @@ public class MegaphoneRecord {
 
   public long getLastSeen() {
     return lastSeen;
+  }
+
+  public long getFirstVisible() {
+    return firstVisible;
   }
 
   public boolean isFinished() {

@@ -70,6 +70,18 @@ public class MegaphoneRepository {
   }
 
   @MainThread
+  public void markVisible(@NonNull Megaphones.Event event) {
+    long time = System.currentTimeMillis();
+
+    executor.execute(() -> {
+      if (getRecord(event).getFirstVisible() == 0) {
+        database.markFirstVisible(event, time);
+        resetDatabaseCache();
+      }
+    });
+  }
+
+  @MainThread
   public void markSeen(@NonNull Megaphone megaphone) {
     long lastSeen = System.currentTimeMillis();
 

@@ -104,8 +104,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int SPLIT_PROFILE_NAMES              = 43;
   private static final int STICKER_PACK_ORDER               = 44;
   private static final int MEGAPHONES                       = 45;
+  private static final int MEGAPHONE_FIRST_APPEARANCE       = 46;
 
-  private static final int    DATABASE_VERSION = 45;
+  private static final int    DATABASE_VERSION = 46;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -717,6 +718,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
                                            "seen_count INTEGER, " +
                                            "last_seen INTEGER, "  +
                                            "finished INTEGER)");
+      }
+
+      if (oldVersion < MEGAPHONE_FIRST_APPEARANCE) {
+        db.execSQL("ALTER TABLE megaphone ADD COLUMN first_visible INTEGER DEFAULT 0");
       }
 
       db.setTransactionSuccessful();

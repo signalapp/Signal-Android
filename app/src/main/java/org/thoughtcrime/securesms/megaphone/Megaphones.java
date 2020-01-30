@@ -45,7 +45,7 @@ public final class Megaphones {
                                          MegaphoneRecord   record = Objects.requireNonNull(records.get(e.getKey()));
                                          MegaphoneSchedule schedule = e.getValue();
 
-                                         return !record.isFinished() && schedule.shouldDisplay(record.getSeenCount(), record.getLastSeen(), currentTime);
+                                         return !record.isFinished() && schedule.shouldDisplay(record.getSeenCount(), record.getLastSeen(), record.getFirstVisible(), currentTime);
                                        })
                                        .map(Map.Entry::getKey)
                                        .map(records::get)

@@ -14,7 +14,6 @@ import android.text.TextUtils;
 import org.thoughtcrime.securesms.conversationlist.model.SearchResult;
 import org.thoughtcrime.securesms.database.DatabaseContentProviders;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.megaphone.Megaphone;
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
 import org.thoughtcrime.securesms.megaphone.Megaphones;
@@ -73,6 +72,10 @@ class ConversationListViewModel extends ViewModel {
   void onMegaphoneSnoozed(@NonNull Megaphone snoozed) {
     megaphoneRepository.markSeen(snoozed);
     megaphone.postValue(null);
+  }
+
+  void onMegaphoneVisible(@NonNull Megaphone visible) {
+    megaphoneRepository.markVisible(visible.getEvent());
   }
 
   void updateQuery(String query) {

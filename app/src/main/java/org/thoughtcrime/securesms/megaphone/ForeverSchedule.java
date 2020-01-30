@@ -9,7 +9,7 @@ final class ForeverSchedule implements MegaphoneSchedule {
   }
 
   @Override
-  public boolean shouldDisplay(int seenCount, long lastSeen, long currentTime) {
+  public boolean shouldDisplay(int seenCount, long lastSeen, long firstVisible, long currentTime) {
     return enabled;
   }
 }

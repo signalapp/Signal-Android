@@ -23,17 +23,19 @@ public class MegaphoneDatabase extends Database {
 
   private static final String TABLE_NAME = "megaphone";
 
-  private static final String ID         = "_id";
-  private static final String EVENT      = "event";
-  private static final String SEEN_COUNT = "seen_count";
-  private static final String LAST_SEEN  = "last_seen";
-  private static final String FINISHED   = "finished";
+  private static final String ID            = "_id";
+  private static final String EVENT         = "event";
+  private static final String SEEN_COUNT    = "seen_count";
+  private static final String LAST_SEEN     = "last_seen";
+  private static final String FIRST_VISIBLE = "first_visible";
+  private static final String FINISHED      = "finished";
 
-  public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + ID         + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                                                                                 EVENT      + " TEXT UNIQUE, " +
-                                                                                 SEEN_COUNT + " INTEGER, " +
-                                                                                 LAST_SEEN  + " INTEGER, " +
-                                                                                 FINISHED   + " INTEGER)";
+  public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + ID               + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                                                                 EVENT            + " TEXT UNIQUE, " +
+                                                                                 SEEN_COUNT       + " INTEGER, " +
+                                                                                 LAST_SEEN        + " INTEGER, " +
+                                                                                 FIRST_VISIBLE + " INTEGER, " +
+                                                                                 FINISHED         + " INTEGER)";
 
   MegaphoneDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -62,16 +64,27 @@ public class MegaphoneDatabase extends Database {
 
     try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, null, null, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
-        String  event     = cursor.getString(cursor.getColumnIndexOrThrow(EVENT));
-        int     seenCount = cursor.getInt(cursor.getColumnIndexOrThrow(SEEN_COUNT));
-        long    lastSeen  = cursor.getLong(cursor.getColumnIndexOrThrow(LAST_SEEN));
-        boolean finished  = cursor.getInt(cursor.getColumnIndexOrThrow(FINISHED)) == 1;
+        String  event        = cursor.getString(cursor.getColumnIndexOrThrow(EVENT));
+        int     seenCount    = cursor.getInt(cursor.getColumnIndexOrThrow(SEEN_COUNT));
+        long    lastSeen     = cursor.getLong(cursor.getColumnIndexOrThrow(LAST_SEEN));
+        long    firstVisible = cursor.getLong(cursor.getColumnIndexOrThrow(FIRST_VISIBLE));
+        boolean finished     = cursor.getInt(cursor.getColumnIndexOrThrow(FINISHED)) == 1;
 
-        records.add(new MegaphoneRecord(Event.fromKey(event), seenCount, lastSeen, finished));
+        records.add(new MegaphoneRecord(Event.fromKey(event), seenCount, lastSeen, firstVisible, finished));
       }
     }
 
     return records;
+  }
+
+  public void markFirstVisible(@NonNull Event event, long time) {
+    String   query = EVENT + " = ?";
+    String[] args  = new String[]{event.getKey()};
+
+    ContentValues values = new ContentValues();
+    values.put(FIRST_VISIBLE, time);
+
+    databaseHelper.getWritableDatabase().update(TABLE_NAME, values, query, args);
   }
 
   public void markSeen(@NonNull Event event, int seenCount, long lastSeen) {
