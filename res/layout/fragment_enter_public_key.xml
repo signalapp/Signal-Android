@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/contentView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/default_session_background"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <EditText
+        style="@style/SmallSessionEditText"
+        android:id="@+id/publicKeyEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/large_spacing"
+        android:layout_marginTop="@dimen/large_spacing"
+        android:layout_marginRight="@dimen/large_spacing"
+        android:hint="Enter Session ID of recipient" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/large_spacing"
+        android:layout_marginTop="@dimen/medium_spacing"
+        android:layout_marginRight="@dimen/large_spacing"
+        android:textSize="@dimen/small_font_size"
+        android:textColor="@color/text"
+        android:alpha="0.6"
+        android:textAlignment="center"
+        android:text="Users can share their Session ID by going into their account settings and tapping &quot;Share Session ID&quot;, or by sharing their QR code." />
+    
+    <org.thoughtcrime.securesms.loki.redesign.views.SeparatorView
+        android:id="@+id/separatorView"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_marginLeft="@dimen/large_spacing"
+        android:layout_marginTop="@dimen/large_spacing"
+        android:layout_marginRight="@dimen/large_spacing" />
+
+    <TextView
+        android:id="@+id/publicKeyTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/large_spacing"
+        android:layout_marginTop="@dimen/large_spacing"
+        android:layout_marginRight="@dimen/large_spacing"
+        android:textSize="@dimen/medium_font_size"
+        android:textColor="@color/text"
+        android:fontFamily="@font/space_mono_regular"
+        android:textAlignment="center"
+        android:text="05987d601943c267879be41830888066c6a024cbdc9a548d06813924bf3372ea78" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/large_spacing"
+        android:layout_marginTop="@dimen/large_spacing"
+        android:layout_marginRight="@dimen/large_spacing"
+        android:orientation="horizontal">
+
+        <Button
+            style="@style/MediumUnimportantFilledButton"
+            android:id="@+id/copyButton"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/medium_button_height"
+            android:layout_weight="1"
+            android:text="Copy" />
+
+        <Button
+            style="@style/MediumUnimportantFilledButton"
+            android:id="@+id/shareButton"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/medium_button_height"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/medium_spacing"
+            android:text="Share" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+        style="@style/MediumProminentOutlineButton"
+        android:id="@+id/createPrivateChatButton"
+        android:layout_width="196dp"
+        android:layout_height="@dimen/medium_button_height"
+        android:layout_marginBottom="@dimen/medium_spacing"
+        android:text="Next" />
+
+</LinearLayout>

@@ -5,6 +5,9 @@ import android.content.Context
 import org.thoughtcrime.securesms.crypto.PreKeyUtil
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
+import org.thoughtcrime.securesms.loki.redesign.utilities.get
+import org.thoughtcrime.securesms.loki.redesign.utilities.getInt
+import org.thoughtcrime.securesms.loki.redesign.utilities.insertOrUpdate
 import org.whispersystems.libsignal.state.PreKeyRecord
 import org.whispersystems.signalservice.loki.messaging.LokiPreKeyRecordDatabaseProtocol
 

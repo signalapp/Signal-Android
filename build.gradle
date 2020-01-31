@@ -10,6 +10,7 @@ buildscript {
     ext.crashlytics_version = "2.10.1"
 
     repositories {
+        mavenLocal()
         google()
         mavenCentral()
         maven { url 'https://maven.fabric.io/public' }
@@ -27,6 +28,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 apply plugin: 'witness'
 apply plugin: 'io.fabric'
+apply plugin: 'kotlin-kapt'
 
 repositories {
     mavenLocal()
@@ -68,6 +70,10 @@ repositories {
 
 configurations.all {
     resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+    exclude group: "org.whispersystems", module: "signal-protocol-java"
+    exclude group: "org.whispersystems", module: "signal-protocol-android"
+    exclude group: "org.signal", module: "signal-metadata-java"
+    exclude group: "org.signal", module: "signal-metadata-android"
 }
 
 dependencies {
@@ -112,6 +118,7 @@ dependencies {
     implementation 'com.github.chrisbanes:PhotoView:2.1.3'
     implementation 'com.github.bumptech.glide:glide:4.5.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
+    kapt 'com.github.bumptech.glide:compiler:4.5.0'
     implementation 'com.makeramen:roundedimageview:2.1.0'
     implementation 'com.pnikosis:materialish-progress:1.5'
     implementation 'org.greenrobot:eventbus:3.0.0'
@@ -177,9 +184,9 @@ dependencies {
     // Loki
     // Local:
     implementation "org.whispersystems:signal-service-android:2.13.2" // Run ./gradlew install from loki-messenger-android-service to install
+    implementation "org.whispersystems:curve25519-java:0.5.0"
     // Remote:
     // implementation "com.github.loki-project:loki-messenger-android-service:dev-SNAPSHOT"
-    implementation "org.signal:signal-metadata-android:0.0.3"
     implementation "com.google.protobuf:protobuf-java:2.5.0"
     implementation "com.googlecode.libphonenumber:libphonenumber:8.10.7"
     implementation "com.fasterxml.jackson.core:jackson-databind:2.9.8"
@@ -193,10 +200,13 @@ dependencies {
     implementation("com.crashlytics.sdk.android:crashlytics:$crashlytics_version@aar") {
         transitive = true
     }
+    implementation "com.jakewharton.rxbinding3:rxbinding:3.1.0"
+    implementation "com.github.tbruyelle:rxpermissions:0.10.2"
+    implementation "com.github.ybq:Android-SpinKit:1.4.0"
 }
 
-def canonicalVersionCode = 23
-def canonicalVersionName = "1.5.2"
+def canonicalVersionCode = 29
+def canonicalVersionName = "1.0.0"
 
 def postFixSize = 10
 def abiPostFix = ['armeabi-v7a' : 1,

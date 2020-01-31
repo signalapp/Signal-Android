@@ -13,6 +13,7 @@
             android:layout_height="20dp"
             android:layout_gravity="center"
             android:src="@drawable/ic_timer"
+            android:background="@color/transparent"
             android:scaleType="fitCenter"/>
 
     <TextView
@@ -23,6 +24,7 @@
             android:gravity="center_horizontal|bottom"
             android:paddingBottom="3dp"
             android:paddingTop="1dp"
+            android:background="@color/transparent"
             android:textColor="@android:color/white"
             android:textSize="10sp" />
 </FrameLayout>

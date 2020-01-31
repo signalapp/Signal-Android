@@ -15,9 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        style="@style/Signal.Text.Caption"
-        android:textColor="?conversation_item_update_text_color"
-        android:textAllCaps="true"
+        android:textColor="#99FFFFFF"
+        android:textSize="@dimen/small_font_size"
         tools:text="March 1, 2015" />
 
 </LinearLayout>

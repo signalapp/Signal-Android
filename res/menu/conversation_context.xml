@@ -18,7 +18,7 @@
 
     <item android:title="@string/activity_conversation_copy_public_key_button_title"
         android:id="@+id/menu_context_copy_public_key"
-        android:icon="@drawable/ic_profile_default"
+        android:icon="@drawable/ic_key"
         app:showAsAction="always" />
 
     <!-- <item android:title="@string/conversation_context__menu_forward_message"

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/default_session_background">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text"
+            android:textSize="@dimen/small_font_size"
+            android:text="Session needs camera access to scan QR codes" />
+
+        <Button
+            style="@style/MediumProminentOutlineButton"
+            android:id="@+id/grantCameraAccessButton"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/medium_button_height"
+            android:layout_marginTop="@dimen/medium_spacing"
+            android:paddingLeft="@dimen/medium_spacing"
+            android:paddingRight="@dimen/medium_spacing"
+            android:text="Grant Camera Access" />
+
+    </LinearLayout>
+
+</RelativeLayout>

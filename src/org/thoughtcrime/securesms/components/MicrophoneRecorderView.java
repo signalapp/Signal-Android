@@ -20,9 +20,10 @@ import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.ViewUtil;
+
+import network.loki.messenger.R;
 
 public final class MicrophoneRecorderView extends FrameLayout implements View.OnTouchListener {
 
@@ -156,7 +157,7 @@ public final class MicrophoneRecorderView extends FrameLayout implements View.On
     FloatingRecordButton(Context context, ImageView recordButtonFab) {
       this.recordButtonFab = recordButtonFab;
       this.recordButtonFab.getBackground().setColorFilter(context.getResources()
-                                                                 .getColor(R.color.red_500),
+                                                                 .getColor(R.color.destructive),
                                                           PorterDuff.Mode.SRC_IN);
     }
 

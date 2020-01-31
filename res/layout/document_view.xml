@@ -82,7 +82,7 @@
 
             <LinearLayout android:layout_width="match_parent"
                           android:layout_height="wrap_content"
-                          android:layout_marginStart="2dp"
+                          android:layout_marginStart="6dp"
                           android:orientation="vertical"
                           android:focusable="false"
                           android:clickable="false">
@@ -91,6 +91,7 @@
                           android:layout_width="match_parent"
                           android:layout_height="wrap_content"
                           style="@style/Signal.Text.Body"
+                          android:textSize="@dimen/medium_font_size"
                           android:singleLine="true"
                           android:maxLines="1"
                           android:clickable="false"

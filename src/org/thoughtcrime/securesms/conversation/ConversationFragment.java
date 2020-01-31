@@ -47,6 +47,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -79,7 +80,7 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.FriendRequestViewDelegate;
+import org.thoughtcrime.securesms.loki.redesign.views.FriendRequestViewDelegate;
 import org.thoughtcrime.securesms.longmessage.LongMessageActivity;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -509,7 +510,6 @@ public class ConversationFragment extends Fragment
     builder.setMessage(getActivity().getResources().getQuantityString(R.plurals.ConversationFragment_this_will_permanently_delete_all_n_selected_messages, messagesCount, messagesCount));
     builder.setCancelable(true);
 
-    // Loki - The delete option is only visible to the user in a public chat
     LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
 
     builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
@@ -521,42 +521,52 @@ public class ConversationFragment extends Fragment
         {
           @Override
           protected Void doInBackground(MessageRecord... messageRecords) {
-            ArrayList<Long> serverIDs = new ArrayList<>();
-            ArrayList<Long> ignoredMessages = new ArrayList<>();
-            ArrayList<Long> failedMessages = new ArrayList<>();
-            boolean isSentByUser = true;
-            LokiPublicChatAPI publicChatAPI = ApplicationContext.getInstance(getContext()).getLokiPublicChatAPI();
-            for (MessageRecord messageRecord : messageRecords) {
-              isSentByUser = isSentByUser && messageRecord.isOutgoing();
-              Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id);
-              if (serverID != null) {
-                serverIDs.add(serverID);
-              } else {
-                ignoredMessages.add(messageRecord.getId());
-              }
-            }
-            if (publicChat != null && publicChatAPI != null) {
-              publicChatAPI
-              .deleteMessages(serverIDs, publicChat.getChannel(), publicChat.getServer(), isSentByUser)
-              .success(l -> {
-                for (MessageRecord messageRecord : messageRecords) {
-                  Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id);
-                  if (l.contains(serverID)) {
-                    if (messageRecord.isMms()) {
-                      DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
-                    } else {
-                      DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
-                    }
-                  } else if (!ignoredMessages.contains(serverID)) {
-                    failedMessages.add(messageRecord.getId());
-                    Log.d("Loki", "Failed to delete message: " + messageRecord.getId() + ".");
-                  }
+            if (publicChat != null) {
+              ArrayList<Long> serverIDs = new ArrayList<>();
+              ArrayList<Long> ignoredMessages = new ArrayList<>();
+              ArrayList<Long> failedMessages = new ArrayList<>();
+              boolean isSentByUser = true;
+              LokiPublicChatAPI publicChatAPI = ApplicationContext.getInstance(getContext()).getLokiPublicChatAPI();
+              for (MessageRecord messageRecord : messageRecords) {
+                isSentByUser = isSentByUser && messageRecord.isOutgoing();
+                Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id);
+                if (serverID != null) {
+                  serverIDs.add(serverID);
+                } else {
+                  ignoredMessages.add(messageRecord.getId());
                 }
-                return null;
-              }). fail(e -> {
-                Log.d("Loki", "Couldn't delete message due to error: " + e.toString() + ".");
-                return null;
-              });
+              }
+              if (publicChat != null && publicChatAPI != null) {
+                publicChatAPI
+                .deleteMessages(serverIDs, publicChat.getChannel(), publicChat.getServer(), isSentByUser)
+                .success(l -> {
+                  for (MessageRecord messageRecord : messageRecords) {
+                    Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id);
+                    if (l.contains(serverID)) {
+                      if (messageRecord.isMms()) {
+                        DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
+                      } else {
+                        DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
+                      }
+                    } else if (!ignoredMessages.contains(serverID)) {
+                      failedMessages.add(messageRecord.getId());
+                      Log.d("Loki", "Failed to delete message: " + messageRecord.getId() + ".");
+                    }
+                  }
+                  return null;
+                }). fail(e -> {
+                  Log.d("Loki", "Couldn't delete message due to error: " + e.toString() + ".");
+                  return null;
+                });
+              }
+            } else {
+              for (MessageRecord messageRecord : messageRecords) {
+                if (messageRecord.isMms()) {
+                  DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
+                } else {
+                  DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
+                }
+              }
             }
             return null;
           }
@@ -966,6 +976,15 @@ public class ConversationFragment extends Fragment
         list.getAdapter().notifyDataSetChanged();
 
         actionMode = ((AppCompatActivity)getActivity()).startSupportActionMode(actionModeCallback);
+
+        View titleTextView = (getActivity().findViewById(R.id.action_bar_title));
+        if (titleTextView != null) {
+          titleTextView.setBackgroundColor(getResources().getColor(R.color.transparent));
+          ViewParent titleTextViewContainerView = titleTextView.getParent();
+          if (titleTextViewContainerView != null) {
+            ((View)titleTextViewContainerView).setBackgroundColor(getResources().getColor(R.color.transparent));
+          }
+        }
       }
     }
 
@@ -1082,7 +1101,6 @@ public class ConversationFragment extends Fragment
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         Window window = getActivity().getWindow();
         statusBarColor = window.getStatusBarColor();
-        window.setStatusBarColor(getResources().getColor(R.color.action_mode_status_bar));
       }
 
       setCorrectMenuVisibility(menu);

@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.DatabaseContentProviders
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupManager
+import org.thoughtcrime.securesms.loki.redesign.messaging.LokiPublicChatPoller
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.loki.api.LokiPublicChat

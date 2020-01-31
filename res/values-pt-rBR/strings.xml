@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Loki Messenger</string>
+  <string name="app_name">Session</string>
   <string name="yes">Sim</string>
   <string name="no">Não</string>
   <string name="delete">Excluir</string>
@@ -25,17 +25,17 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Excluir</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Desabilitar frase-chave?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Isto irá destravar permanentemente as notificações do Loki Messenger e de mensagens.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Isto irá destravar permanentemente as notificações do Session e de mensagens.</string>
   <string name="ApplicationPreferencesActivity_disable">Desabilitar</string>
   <string name="ApplicationPreferencesActivity_unregistering">Descadastrar</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Descadastrando de mensagens e chamadas Loki Messenger...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Desabilitar mensagens e chamadas Loki Messenger?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Desabilitar mensagens e chamadas Signal descadastrando-o do servidor. Você precisará recadastrar seu número de telefone para usar o Loki Messenger novamente no futuro.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Descadastrando de mensagens e chamadas Session...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Desabilitar mensagens e chamadas Session?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Desabilitar mensagens e chamadas Signal descadastrando-o do servidor. Você precisará recadastrar seu número de telefone para usar o Session novamente no futuro.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erro ao conectar-se com o servidor!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS habilitado</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Toque para mudar seu aplicativo padrão de SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS desabilitado</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Toque para tornar o Loki Messenger o seu aplicativo padrão de SMS</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Toque para tornar o Session o seu aplicativo padrão de SMS</string>
   <string name="ApplicationPreferencesActivity_on">ligado</string>
   <string name="ApplicationPreferencesActivity_On">Ligado</string>
   <string name="ApplicationPreferencesActivity_off">desligado</string>
@@ -56,10 +56,10 @@
   <string name="DraftDatabase_Draft_quote_snippet">(resposta)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Não foi possível encontrar um aplicativo para selecionar arquivos.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">O Loki Messenger precisa da permissão Memória para anexar fotos, vídeos, ou áudios, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Memória\".</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">O Loki Messenger precisa da permissão Contatos para anexar informações de contato, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Contatos\".</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">O Loki Messenger precisa da permissão Local para anexar uma localização, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Local\".</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">O Loki Messenger precisa da permissão Câmera para tirar fotos, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Câmera\".</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">O Session precisa da permissão Memória para anexar fotos, vídeos, ou áudios, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Memória\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">O Session precisa da permissão Contatos para anexar informações de contato, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Contatos\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">O Session precisa da permissão Local para anexar uma localização, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Local\".</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">O Session precisa da permissão Câmera para tirar fotos, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Câmera\".</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Erro ao tocar áudio!</string>
   <!--BlockedContactsActivity-->
@@ -79,7 +79,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nenhum navegador encontrado.</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Seu número de segurança com %1$s mudou. Isso pode significar que alguém está tentando interceptar a sua comunicação ou que %2$s simplesmente reinstalou o Loki Messenger.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Seu número de segurança com %1$s mudou. Isso pode significar que alguém está tentando interceptar a sua comunicação ou que %2$s simplesmente reinstalou o Session.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Talvez você queira verificar seu número de segurança com esse contato.</string>
   <string name="ConfirmIdentityDialog_accept">Aceitar</string>
   <!--ContactsCursorLoader-->
@@ -88,7 +88,7 @@
   <string name="ContactsCursorLoader_groups">Grupos</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mensagem %s</string>
-  <string name="ContactsDatabase_signal_call_s">Chamada Loki Messenger %s</string>
+  <string name="ContactsDatabase_signal_call_s">Chamada Session %s</string>
   <!--ContactNameEditActivity-->
   <string name="ContactNameEditActivity_given_name">Primeiro nome</string>
   <string name="ContactNameEditActivity_family_name">Sobrenome</string>
@@ -108,7 +108,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">Falha no envio, toque para alternativa insegura</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Contingenciar para SMS não criptografado?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Contingenciar para MMS não criptografado?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Esta mensagem <b>não</b> será criptografada pois o destinatário não é mais um usuário Loki Messenger.\n\nEnviar mensagem não segura?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Esta mensagem <b>não</b> será criptografada pois o destinatário não é mais um usuário Session.\n\nEnviar mensagem não segura?</string>
   <string name="ConversationItem_unable_to_open_media">Não foi possível encontrar um aplicativo para abrir este arquivo.</string>
   <string name="ConversationItem_copied_text">Copiou %s</string>
   <string name="ConversationItem_from_s">de %s</string>
@@ -135,8 +135,8 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Tem certeza que deseja sair deste grupo?</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS inseguro</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS inseguro</string>
-  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Vamos mudar para o Loki Messenger %1$s</string>
+  <string name="ConversationActivity_transport_signal">Session</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Vamos mudar para o Session %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Vamos usar isto para conversar: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Erro ao sair do grupo</string>
   <string name="ConversationActivity_specify_recipient">Favor escolher um contato</string>
@@ -149,15 +149,15 @@
   <string name="ConversationActivity_quick_camera_unavailable">Câmera indisponível</string>
   <string name="ConversationActivity_unable_to_record_audio">Não foi possível gravar o áudio!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Não há nenhum aplicativo disponível no seu dispositivo para abrir este link.</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Para enviar mensagens de áudio permita ao Loki Messenger acessar o microfone.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">O Loki Messenger precisa da permissão Microfone para enviar mensagens de áudio, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Microfone\".</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Para chamar %s o Loki Messenger precisa de acesso ao microfone e à câmera.</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">O Loki Messenger precisa das permissões Microfone e Câmera para chamar %s, mas elas foram permanentemente negadas. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Microfone\" e \"Câmera\".</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Para tirar fotos e fazer vídeos permita ao Loki Messenger acessar a câmera.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">O Loki Messenger precisa da permissão Câmera para tirar fotos e fazer vídeos, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Câmera\".</string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">O Loki Messenger precisa da permissão Câmera para tirar fotos ou fazer vídeos</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Para enviar mensagens de áudio permita ao Session acessar o microfone.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">O Session precisa da permissão Microfone para enviar mensagens de áudio, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Microfone\".</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Para chamar %s o Session precisa de acesso ao microfone e à câmera.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">O Session precisa das permissões Microfone e Câmera para chamar %s, mas elas foram permanentemente negadas. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Microfone\" e \"Câmera\".</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Para tirar fotos e fazer vídeos permita ao Session acessar a câmera.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">O Session precisa da permissão Câmera para tirar fotos e fazer vídeos, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Câmera\".</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">O Session precisa da permissão Câmera para tirar fotos ou fazer vídeos</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
-  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">O Loki Messenger não pode enviar mensagens de SMS/MMS porque não é seu aplicativo de mensagens padrão. Você gostaria de mudar isso nas configurações do seu Android?</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">O Session não pode enviar mensagens de SMS/MMS porque não é seu aplicativo de mensagens padrão. Você gostaria de mudar isso nas configurações do seu Android?</string>
   <string name="ConversationActivity_yes">Sim</string>
   <string name="ConversationActivity_no">Não</string>
   <string name="ConversationActivity_search_position">%1$d de %2$d</string>
@@ -195,7 +195,7 @@
     <item quantity="other">Gravando %1$d anexos no armazenamento...</item>
   </plurals>
   <string name="ConversationFragment_pending">Pendente...</string>
-  <string name="ConversationFragment_push">Dados (Loki Messenger)</string>
+  <string name="ConversationFragment_push">Dados (Session)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Excluindo</string>
@@ -237,7 +237,7 @@
   <string name="CreateProfileActivity_too_long">Muito longo</string>
   <string name="CreateProfileActivity_profile_name">Nome de perfil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Crie seu perfil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Os perfis do Signal são criptografados de ponta a ponta, e o Loki Messenger jamais tem acesso a estas informações.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Os perfis do Signal são criptografados de ponta a ponta, e o Session jamais tem acesso a estas informações.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usando personalização: %s</string>
   <string name="CustomDefaultPreference_using_default">Usando padrão: %s</string>
@@ -269,22 +269,22 @@
   <string name="DocumentView_unknown_file">Arquivo desconhecido</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Otimizar para ausência do Serviços Play</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Este dispositivo não tem suporte para o Serviços Play. Clique para desabilitar as otimizações sistêmicas de bateria que impedem o Loki Messenger de receber mensagens enquanto está inativo.</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Este dispositivo não tem suporte para o Serviços Play. Clique para desabilitar as otimizações sistêmicas de bateria que impedem o Session de receber mensagens enquanto está inativo.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Encaminhar para</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Boas-vindas ao Loki Messenger.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure e RedPhone agora são um mensageiro privado, para todas as situações: Loki Messenger.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Boas-vindas ao Loki Messenger!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure agora é Loki Messenger.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure e RedPhone agora são um aplicativo: Loki Messenger. Clique para explorar.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Boas-vindas ao Session.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure e RedPhone agora são um mensageiro privado, para todas as situações: Session.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Boas-vindas ao Session!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure agora é Session.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure e RedPhone agora são um aplicativo: Session. Clique para explorar.</string>
   <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Diga oi para chamadas de vídeo seguras</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">O Signal agora tem suporte para chamadas de vídeo seguras. Apenas inicie uma chamada Loki Messenger normalmente, clique no botão de vídeo, e diga \"Oi\".</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">O Loki Messenger agora tem suporte para chamadas de vídeo seguras.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">O Loki Messenger agora tem suporte para chamadas de vídeo seguras. Clique para explorar.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">O Signal agora tem suporte para chamadas de vídeo seguras. Apenas inicie uma chamada Session normalmente, clique no botão de vídeo, e diga \"Oi\".</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">O Session agora tem suporte para chamadas de vídeo seguras.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">O Session agora tem suporte para chamadas de vídeo seguras. Clique para explorar.</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Pronto(a) para o close?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Agora você pode compartilhar um nome e foto do perfil com amigos no Loki Messenger</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Aqui estão os perfis Loki Messenger</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Agora você pode compartilhar um nome e foto do perfil com amigos no Session</string>
+  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Aqui estão os perfis Session</string>
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Apresentando indicadores de digitação.</string>
   <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Agora você tem a opção de ver e mostrar quando mensagens estiverem sendo digitadas.</string>
   <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Quer habilitá-los agora?</string>
@@ -294,13 +294,13 @@
   <string name="ExperienceUpgradeActivity_no_thanks">Não, obrigado</string>
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Apresentando pré-visualizações de links.</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Agora é possível mostrar pré-visualizações de links de alguns dos sites mais populares da internet.</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Você pode desativar ou ativar esta função quando quiser nas configurações do seu Loki Messenger (Privacidade &gt; Enviar pré-visualizações de links).</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Você pode desativar ou ativar esta função quando quiser nas configurações do seu Session (Privacidade &gt; Enviar pré-visualizações de links).</string>
   <string name="ExperienceUpgradeActivity_got_it">Entendi</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Recuperando uma mensagem...</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Falha permanente de comunicação do Loki Messenger!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">O Signal não pôde cadastrar-se no Serviços Google Play. Mensagens e chamadas Loki Messenger foram desabilitadas; tente recadastrar em Configurações &gt; Avançado.</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Falha permanente de comunicação do Session!</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">O Signal não pôde cadastrar-se no Serviços Google Play. Mensagens e chamadas Session foram desabilitadas; tente recadastrar em Configurações &gt; Avançado.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Erro ao restaurar GIF com resolução total</string>
   <!--GiphyFragmentPageAdapter-->
@@ -311,15 +311,15 @@
   <string name="GroupCreateActivity_actionbar_edit_title">Editar grupo</string>
   <string name="GroupCreateActivity_group_name_hint">Nome do grupo</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Novo grupo MMS</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Você selecionou um contato que não tem suporte para grupos Loki Messenger. Então, este grupo será de MMS.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Você não está cadastrado para usar mensagens e chamadas Signal, então grupos Loki Messenger estão desabilitados. Tente recadastrar em Configurações &gt; Avançado.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Você selecionou um contato que não tem suporte para grupos Session. Então, este grupo será de MMS.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Você não está cadastrado para usar mensagens e chamadas Signal, então grupos Session estão desabilitados. Tente recadastrar em Configurações &gt; Avançado.</string>
   <string name="GroupCreateActivity_contacts_no_members">Você precisa de pelo menos uma pessoa no seu grupo!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Um dos membros do seu grupo tem um número que não pôde ser lido. Favor consertar ou remover esse contato e tentar novamente.</string>
   <string name="GroupCreateActivity_avatar_content_description">Avatar do grupo</string>
   <string name="GroupCreateActivity_menu_apply_button">Aplicar</string>
   <string name="GroupCreateActivity_creating_group">Criando %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Atualizando %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Não foi possível adicionar %1$s porque o grupo não é usuário do Loki Messenger.</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Não foi possível adicionar %1$s porque o grupo não é usuário do Session.</string>
   <string name="GroupCreateActivity_loading_group_details">Carregando detalhes do grupo...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Você já está quase no grupo.</string>
   <!--GroupShareProfileView-->
@@ -340,7 +340,7 @@
   <string name="InviteActivity_sending">Enviando...</string>
   <string name="InviteActivity_heart_content_description">Coração</string>
   <string name="InviteActivity_invitations_sent">Convites enviados!</string>
-  <string name="InviteActivity_invite_to_signal">Convidar para o Loki Messenger</string>
+  <string name="InviteActivity_invite_to_signal">Convidar para o Session</string>
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">ENVIAR SMS PARA %d AMIGO</item>
     <item quantity="other">ENVIAR SMS PARA %d AMIGOS</item>
@@ -349,7 +349,7 @@
     <item quantity="one">Enviar %d convite SMS?</item>
     <item quantity="other">Enviar %d convites SMS?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Vamos mudar para o Loki Messenger: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Vamos mudar para o Session: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Parece que você não tem aplicativos para onde compartilhar.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Amigos não deixam amigos conversarem sem criptografia.</string>
   <!--Job-->
@@ -362,7 +362,7 @@
   <string name="LongMessageActivity_message_from_s">Mensagem de %1$s</string>
   <string name="LongMessageActivity_your_message">Sua mensagem</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Loki Messenger</string>
+  <string name="MessageRetrievalService_signal">Session</string>
   <string name="MessageRetrievalService_background_connection_enabled">Conexão em segundo plano habilitada</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Erro ao ler configuracoes de MMS do provedor sem fio </string>
@@ -382,9 +382,9 @@
   <string name="MediaOverviewActivity_Select_all">Marcar todos</string>
   <string name="MediaOverviewActivity_collecting_attachments">Coletando anexos...</string>
   <!--- NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">Chamada Loki Messenger em andamento</string>
-  <string name="NotificationBarManager__establishing_signal_call">Estabelecendo uma ligação via Loki Messenger</string>
-  <string name="NotificationBarManager__incoming_signal_call">Recebendo ligação via Loki Messenger</string>
+  <string name="NotificationBarManager_signal_call_in_progress">Chamada Session em andamento</string>
+  <string name="NotificationBarManager__establishing_signal_call">Estabelecendo uma ligação via Session</string>
+  <string name="NotificationBarManager__incoming_signal_call">Recebendo ligação via Session</string>
   <string name="NotificationBarManager__deny_call">Recusar ligação</string>
   <string name="NotificationBarManager__answer_call">Atender ligação</string>
   <string name="NotificationBarManager__end_call">Terminar ligação</string>
@@ -409,7 +409,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Todas as mídias</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Foi recebida uma mensagem que foi criptografada usando uma versão antiga do Loki Messenger que não é mais suportada. Favor pedir ao remetente que atualize para a versão mais recente e reenvie a mensagem.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Foi recebida uma mensagem que foi criptografada usando uma versão antiga do Session que não é mais suportada. Favor pedir ao remetente que atualize para a versão mais recente e reenvie a mensagem.</string>
   <string name="MessageRecord_left_group">Você saiu do grupo.</string>
   <string name="MessageRecord_you_updated_group">Você atualizou o grupo.</string>
   <string name="MessageRecord_you_called">Ligação efetuada</string>
@@ -419,7 +419,7 @@
   <string name="MessageRecord_s_called_you">%s ligou para você</string>
   <string name="MessageRecord_called_s">Chamou %s</string>
   <string name="MessageRecord_missed_call_from">Chamada perdida de %s</string>
-  <string name="MessageRecord_s_joined_signal">%s está no Loki Messenger!</string>
+  <string name="MessageRecord_s_joined_signal">%s está no Session!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Você desabilitou as mensagens efêmeras.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s desabilitou as mensagens efêmeras.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Você definiu o tempo de duração das mensagens efêmeras como %1$s.</string>
@@ -450,9 +450,9 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">Código QR inválido.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Desculpe, você já possui muitos dispositivos vinculados. Tente remover alguns.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Desculpe, este não é um código QR de dispositivo válido.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Vincular um dispositivo Loki Messenger?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Parece que você está tentando vincular um dispositivo Signal usando um outro scanner. Para sua proteção, favor escanear novamente o código usando o Loki Messenger.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">O Loki Messenger precisa da permissão Câmera para escanear um código QR, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Câmera\".</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Vincular um dispositivo Session?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Parece que você está tentando vincular um dispositivo Signal usando um outro scanner. Para sua proteção, favor escanear novamente o código usando o Session.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">O Session precisa da permissão Câmera para escanear um código QR, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Câmera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Não é possível escanear um código QR sem a permissão Câmera</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Mensagens efêmeras</string>
@@ -460,7 +460,7 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Mensagens enviadas e recebidas nesta conversa irão desaparecer %s após terem sido visualizadas.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Inserir frase-chave</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Ícone do Loki Messenger</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Ícone do Session</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Enviar frase-chave</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frase-chave inválida!</string>
   <!--PlayServicesProblemFragment-->
@@ -515,7 +515,7 @@
         especificou (%s) é inválido.
     </string>
   <string name="RegistrationActivity_missing_google_play_services">Ausência do Serviços Google Play</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Este dispositivo não tem Google Play Services. Você ainda pode usar o Loki Messenger, mas talvez não consiga a mesma estabilidade e desempenho.\n\nSe você está em uma ROM oficial do Android, acredita que esta mensagem é um erro ou não faz ideia do que está acontecendo, fale conosco no endereço support@signal.org para que possamos ajudar a resolver o problema.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Este dispositivo não tem Google Play Services. Você ainda pode usar o Session, mas talvez não consiga a mesma estabilidade e desempenho.\n\nSe você está em uma ROM oficial do Android, acredita que esta mensagem é um erro ou não faz ideia do que está acontecendo, fale conosco no endereço support@signal.org para que possamos ajudar a resolver o problema.</string>
   <string name="RegistrationActivity_i_understand">Entendi</string>
   <string name="RegistrationActivity_play_services_error">Erro Serviços Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Serviços Google Play está sendo atualizado ou temporariamente indisponível. Favor tentar novamente.</string>
@@ -523,9 +523,9 @@
   <string name="RegistrationActivity_no_browser">Nenhum navegador foi encontrado para abrir o link.</string>
   <string name="RegistrationActivity_more_information">Mais informações</string>
   <string name="RegistrationActivity_less_information">Menos informações</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">O Loki Messenger precisa de acesso aos seus contatos e mídias para conectar-se a amigos, trocar mensagens, e fazer chamadas seguras</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">O Session precisa de acesso aos seus contatos e mídias para conectar-se a amigos, trocar mensagens, e fazer chamadas seguras</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Não é possível conectar ao serviço. Favor verificar a conexão à rede e tentar novamente.</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Para verificar seu número de telefone de maneira fácil, o Signal pode automaticamente detectar seu código de verificação se você permitir ao Loki Messenger acessar mensagens SMS.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Para verificar seu número de telefone de maneira fácil, o Signal pode automaticamente detectar seu código de verificação se você permitir ao Session acessar mensagens SMS.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Você está agora a %d passo de submeter um log de depuração.</item>
     <item quantity="other">Você está agora a %d passos de submeter um log de depuração</item>
@@ -548,13 +548,13 @@
   <string name="SearchFragment_header_messages">Mensagens</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Adicionar a Contatos</string>
-  <string name="SharedContactDetailsActivity_invite_to_signal">Convidar para o Loki Messenger</string>
-  <string name="SharedContactDetailsActivity_signal_message">Mensagem no Loki Messenger</string>
-  <string name="SharedContactDetailsActivity_signal_call">Chamada do Loki Messenger</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Convidar para o Session</string>
+  <string name="SharedContactDetailsActivity_signal_message">Mensagem no Session</string>
+  <string name="SharedContactDetailsActivity_signal_call">Chamada do Session</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">Adicionar a Contatos</string>
-  <string name="SharedContactView_invite_to_signal">Convidar para o Loki Messenger</string>
-  <string name="SharedContactView_message">Mensagem no Loki Messenger</string>
+  <string name="SharedContactView_invite_to_signal">Convidar para o Session</string>
+  <string name="SharedContactView_message">Mensagem no Session</string>
   <!--Slide-->
   <string name="Slide_image">Imagem</string>
   <string name="Slide_audio">Áudio</string>
@@ -579,7 +579,7 @@
   <string name="ThreadRecord_called_you">Ligação recebida</string>
   <string name="ThreadRecord_missed_call">Ligação perdida</string>
   <string name="ThreadRecord_media_message">MMS</string>
-  <string name="ThreadRecord_s_is_on_signal">%s está no Loki Messenger!</string>
+  <string name="ThreadRecord_s_is_on_signal">%s está no Session!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Mensagens efêmeras desabilitadas</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Expiração da mensagem efêmera definida para %s</string>
   <string name="ThreadRecord_safety_number_changed">Número de segurança alterado</string>
@@ -587,8 +587,8 @@
   <string name="ThreadRecord_you_marked_verified">Você marcou como verificado</string>
   <string name="ThreadRecord_you_marked_unverified">Você marcou como não verificado</string>
   <!--UpdateApkReadyListener-->
-  <string name="UpdateApkReadyListener_Signal_update">Atualização do Loki Messenger</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Uma nova versão do Loki Messenger está disponível, clique para atualizar.</string>
+  <string name="UpdateApkReadyListener_Signal_update">Atualização do Session</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Uma nova versão do Session está disponível, clique para atualizar.</string>
   <!--UnknownSenderView-->
   <string name="UnknownSenderView_block_s">Bloquear %s?</string>
   <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Contatos bloqueados não irão mais conseguir enviar mensagens nem ligar para você.</string>
@@ -603,14 +603,14 @@
   <string name="UnverifiedSendDialog_send_message">Enviar mensagem?</string>
   <string name="UnverifiedSendDialog_send">Enviar</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Seu contato está usando uma versão antiga do Loki Messenger. Peça a ele para atualizá-la antes de verificar o seu número de segurança.</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Seu contato está usando uma versão mais nova do Loki Messenger com um formato de código QR incompatível. Atualize para poder comparar.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Seu contato está usando uma versão antiga do Session. Peça a ele para atualizá-la antes de verificar o seu número de segurança.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Seu contato está usando uma versão mais nova do Session com um formato de código QR incompatível. Atualize para poder comparar.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">O código QR escaneado não é um código de verificação de número de segurança formatado corretamente. Por favor, tente escanear de novo.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Compartilhar número de segurança por...</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_number">Nosso número de segurança Loki Messenger:</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Nosso número de segurança Session:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Parece que você não tem aplicativos para onde compartilhar.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Nenhum número de segurança a ser comaprado foi encontrado na área de transferência.</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">O Loki Messenger precisa da permissão Câmera para escanear um código QR, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Câmera\".</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">O Session precisa da permissão Câmera para escanear um código QR, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Câmera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Não é possível escanear código QR sem a permissão Câmera</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Mensagem com erro de criptografia </string>
@@ -630,13 +630,13 @@
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Toque para abrir.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Toque para abrir ou clique no cadeado para fechar.</string>
-  <string name="KeyCachingService_passphrase_cached">Loki Messenger está destrancado</string>
-  <string name="KeyCachingService_lock">Trancar Loki Messenger</string>
+  <string name="KeyCachingService_passphrase_cached">Session está destrancado</string>
+  <string name="KeyCachingService_lock">Trancar Session</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Você</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Tipo de mídia não suportado</string>
   <string name="MediaPreviewActivity_draft">Rascunho</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">O Loki Messenger precisa da permissão Memória para gravar dados no armazenamento externo, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Memória\".</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">O Session precisa da permissão Memória para gravar dados no armazenamento externo, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Memória\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Não é possível gravar dados no armazenamento externo sem as permissões</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Excluir mensagem?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Esta mensagem será excluída permanentemente.</string>
@@ -652,10 +652,10 @@
   <string name="MessageNotifier_mark_read">Marcar como lida</string>
   <string name="MessageNotifier_media_message">Mensagem multimídia</string>
   <string name="MessageNotifier_reply">Responder</string>
-  <string name="MessageNotifier_signal_message">Mensagem no Loki Messenger</string>
+  <string name="MessageNotifier_signal_message">Mensagem no Session</string>
   <string name="MessageNotifier_unsecured_sms">SMS inseguro</string>
-  <string name="MessageNotifier_pending_signal_messages">Mensagens Loki Messenger pendentes</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Você tem mensagens Loki Messenger pendentes. Clique para abrir e recuperá-las.</string>
+  <string name="MessageNotifier_pending_signal_messages">Mensagens Session pendentes</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">Você tem mensagens Session pendentes. Clique para abrir e recuperá-las.</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contato</string>
   <!--Notification Channels-->
@@ -669,7 +669,7 @@
   <string name="NotificationChannel_group_messages">Mensagens</string>
   <string name="NotificationChannel_missing_display_name">Desconhecida</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Resposta rápida não disponível quando o Loki Messenger está trancado!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Resposta rápida não disponível quando o Session está trancado!</string>
   <string name="QuickResponseService_problem_sending_message">Problema ao enviar mensagem!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">Gravado no %s</string>
@@ -680,7 +680,7 @@
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Atalho inválido</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Session</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nova mensagem</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
@@ -689,14 +689,14 @@
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Aparelho não mais registrado</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Isso provavelmente aconteceu porque você registrou seu número de telefone no Loki Messenger usando um outro aparelho. Toque para registrar novamente.</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Isso provavelmente aconteceu porque você registrou seu número de telefone no Session usando um outro aparelho. Toque para registrar novamente.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Erro ao reproduzir vídeo</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Para atender a chamada de %s, dê ao Loki Messenger acesso ao microfone.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">O Loki Messenger precisa das permissões Microfone e Câmera para fazer ou receber chamadas, mas elas foram permanentemente negadas. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Microfone\" e \"Câmera\".</string>
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Para atender a chamada de %s, dê ao Session acesso ao microfone.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">O Session precisa das permissões Microfone e Câmera para fazer ou receber chamadas, mas elas foram permanentemente negadas. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Microfone\" e \"Câmera\".</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">O número de segurança da sua conversa com %1$s mudou. Isto pode significar que alguém está tentando interceptar sua comunicação, ou que %2$s simplesmente reinstalou o Loki Messenger.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers">O número de segurança da sua conversa com %1$s mudou. Isto pode significar que alguém está tentando interceptar sua comunicação, ou que %2$s simplesmente reinstalou o Session.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Talvez você queira verificar seu número de segurança com esse contato.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Novo número de segurança</string>
   <string name="WebRtcCallScreen_accept">Aceitar</string>
@@ -731,15 +731,15 @@
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Foto do contato</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">O Loki Messenger precisa da permissão Contatos para exibir seus contatos, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Contatos\".</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">O Session precisa da permissão Contatos para exibir seus contatos, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Contatos\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Erro ao buscar os contatos, verifique sua conexão à rede</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nenhum contato bloqueado</string>
   <!--contact_selection_list_fragment-->
-  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">O Loki Messenger precisa de acesso aos seus contatos para poder exibi-los.</string>
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">O Session precisa de acesso aos seus contatos para poder exibi-los.</string>
   <string name="contact_selection_list_fragment__show_contacts">Mostrar contatos</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Mensagem Loki Messenger</string>
+  <string name="conversation_activity__type_message_push">Mensagem Session</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS inseguro</string>
   <string name="conversation_activity__type_message_mms_insecure">MMS inseguro</string>
   <string name="conversation_activity__from_sim_name">Usando %1$s</string>
@@ -750,7 +750,7 @@
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Alternar gaveta rápida de anexos de câmera</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Gravar e enviar áudio em anexo</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Trancar gravação de anexo de áudio</string>
-  <string name="conversation_activity__enable_signal_for_sms">Habilitar Loki Messenger para SMS</string>
+  <string name="conversation_activity__enable_signal_for_sms">Habilitar Session para SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Deslize para cancelar</string>
   <string name="conversation_input_panel__cancel">Cancelar</string>
@@ -823,9 +823,9 @@
   <string name="IdentityUtil_unverified_banner_one">Seu número de segurança com %s mudou e não está verificado</string>
   <string name="IdentityUtil_unverified_banner_two">Seus números de segurança com %1$s e %2$s não estão verificados</string>
   <string name="IdentityUtil_unverified_banner_many">Seus números de segurança com %1$s, %2$s e %3$s não estão verificados</string>
-  <string name="IdentityUtil_unverified_dialog_one">Seu número de segurança com %1$s mudou e não está verificado. Isso pode significar que alguém está tentando interceptar a sua comunicação ou que %1$s simplesmente reinstalou o Loki Messenger.</string>
-  <string name="IdentityUtil_unverified_dialog_two">Seus números de segurança com %1$s e %2$s não estão verificados. Isso pode significar que alguém está tentando interceptar a sua comunicação ou que eles simplesmente reinstalaram o Loki Messenger.</string>
-  <string name="IdentityUtil_unverified_dialog_many">Seus números de segurança com %1$s, %2$s e %3$s não estão verificados. Isso pode significar que alguém está tentando interceptar a sua comunicação ou que eles simplesmente reinstalaram o Loki Messenger.</string>
+  <string name="IdentityUtil_unverified_dialog_one">Seu número de segurança com %1$s mudou e não está verificado. Isso pode significar que alguém está tentando interceptar a sua comunicação ou que %1$s simplesmente reinstalou o Session.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Seus números de segurança com %1$s e %2$s não estão verificados. Isso pode significar que alguém está tentando interceptar a sua comunicação ou que eles simplesmente reinstalaram o Session.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Seus números de segurança com %1$s, %2$s e %3$s não estão verificados. Isso pode significar que alguém está tentando interceptar a sua comunicação ou que eles simplesmente reinstalaram o Session.</string>
   <string name="IdentityUtil_untrusted_dialog_one">Seu número de segurança com %s acabou de mudar.</string>
   <string name="IdentityUtil_untrusted_dialog_two">Seus números de segurança com %1$s e %2$s acabaram de mudar.</string>
   <string name="IdentityUtil_untrusted_dialog_many">Seus números de segurança com %1$s, %2$s e %3$s acabaram de mudar.</string>
@@ -856,7 +856,7 @@
   <string name="log_submit_activity__please_review_this_log_from_my_app">Por favor, examine este registro enviado do meu aplicativo: %1$s</string>
   <string name="log_submit_activity__network_failure">Falha de rede. Tente novamente.</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Gostaria de importar suas mensagens para a base de dados criptografada do Loki Messenger?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Gostaria de importar suas mensagens para a base de dados criptografada do Session?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">A base de dados padrão do sistema não será alterada.</string>
   <string name="database_migration_activity__skip">Pular</string>
   <string name="database_migration_activity__import">Importar</string>
@@ -888,7 +888,7 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Destrancar</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">O Loki Messenger requer configurações de MMS para entregar mídia e mensagens de grupos através de seu provedor de wireless. Seu dispositivo não disponibiliza esta informação, o que ocasionalmente ocorre com dispositivos bloqueados ou com outras configurações restritivas.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">O Session requer configurações de MMS para entregar mídia e mensagens de grupos através de seu provedor de wireless. Seu dispositivo não disponibiliza esta informação, o que ocasionalmente ocorre com dispositivos bloqueados ou com outras configurações restritivas.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Para enviar mensagens de grupo e de mídia, clique \'OK\' e complete as configurações solicitadas. As configurações de MMS para a sua operadora geralmente podem ser encontradas fazendo uma busca por \'APN da sua operadora\'. Você só precisará fazer isto uma vez.</string>
   <!--profile_create_activity-->
   <string name="profile_create_activity__set_later">Definir mais tarde</string>
@@ -911,12 +911,12 @@
   <string name="recipient_preferences__call_settings">Configurações de chamada</string>
   <string name="recipient_preferences__ringtone">Toque</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Chamada do Loki Messenger</string>
+  <string name="redphone_call_card__signal_call">Chamada do Session</string>
   <string name="redphone_call_controls__mute">Mudo</string>
   <string name="redphone_call_controls__flip_camera_rear">Inverter câmera</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NÚMERO DE TELEFONE</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">É fácil se comunicar com o Loki Messenger usando seu número de telefone e contatos já existentes. Quem já fala com você pelo celular também não terá dificuldade de entrar em contato pelo aplicativo.\n\nDurante o cadastro, algumas informações de contato são transmitidas para o servidor. Elas não são armazenadas.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">É fácil se comunicar com o Session usando seu número de telefone e contatos já existentes. Quem já fala com você pelo celular também não terá dificuldade de entrar em contato pelo aplicativo.\n\nDurante o cadastro, algumas informações de contato são transmitidas para o servidor. Elas não são armazenadas.</string>
   <string name="registration_activity__verify_your_number">Verificar seu número</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Favor inserir seu número de telefone móvel para receber um código de verificação. Taxas da operadora podem ser cobradas.</string>
   <!--recipients_panel-->
@@ -993,8 +993,8 @@
   <string name="preferences__sms_mms">SMS e MMS</string>
   <string name="preferences__pref_all_sms_title">Receber todos os SMS</string>
   <string name="preferences__pref_all_mms_title">Receber todos os MMS</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Use o Loki Messenger para receber todas as mensagens de texto</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Use o Loki Messenger para receber todas as mensagens de multimídia</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Use o Session para receber todas as mensagens de texto</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Use o Session para receber todas as mensagens de multimídia</string>
   <string name="preferences__pref_enter_sends_title">Tecla Enter envia</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pressionar a tecla Enter enviará mensagens de texto</string>
   <string name="preferences__send_link_previews">Enviar pré-visualizações de links</string>
@@ -1007,7 +1007,7 @@
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bloquear tela e notificações com senha</string>
   <string name="preferences__screen_security">Segurança da tela</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Bloquear capturas de tela na lista de recentes e dentro do aplicativo</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Trancar automaticamente o Loki Messenger após um determinado período de inatividade</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Trancar automaticamente o Session após um determinado período de inatividade</string>
   <string name="preferences__inactivity_timeout_passphrase">Frase-chave de expiração por inatividade</string>
   <string name="preferences__inactivity_timeout_interval">Período de expiração por inatividade</string>
   <string name="preferences__notifications">Notificações</string>
@@ -1060,8 +1060,8 @@
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Padrão</string>
   <string name="preferences__language">Idioma</string>
-  <string name="preferences__signal_messages_and_calls">Mensagens e chamadas do Loki Messenger</string>
-  <string name="preferences__free_private_messages_and_calls">Chamadas e mensagens privadas gratuitas para usuários do Loki Messenger</string>
+  <string name="preferences__signal_messages_and_calls">Mensagens e chamadas do Session</string>
+  <string name="preferences__free_private_messages_and_calls">Chamadas e mensagens privadas gratuitas para usuários do Session</string>
   <string name="preferences__submit_debug_log">Enviar log de depuração</string>
   <string name="preferences__support_wifi_calling">Modo de compatibilidade \'WiFi Calling\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Habilite se o seu dispositivo usa entrega de SMS/MMS via WiFi (somente habilite quando \'WiFi Calling\' estiver habilitado no seu dispositivo)</string>
@@ -1078,8 +1078,8 @@
   <string name="preferences_chats__media_auto_download">Download automático de mídia</string>
   <string name="preferences_chats__message_trimming">Aparar mensagem</string>
   <string name="preferences_advanced__use_system_emoji">Usar emoji do sistema</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Desabilitar o suporte a emoji embutido no Loki Messenger</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Encaminhar todas as chamadas através do servidor Loki Messenger para evitar revelar seu endereço IP para seu contato. Habilitar reduzirá a qualidade da chamada.</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Desabilitar o suporte a emoji embutido no Session</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Encaminhar todas as chamadas através do servidor Session para evitar revelar seu endereço IP para seu contato. Habilitar reduzirá a qualidade da chamada.</string>
   <string name="preferences_advanced__always_relay_calls">Sempre reencaminhar chamadas</string>
   <string name="preferences_app_protection__app_access">Acesso ao aplicativo</string>
   <string name="preferences_app_protection__communication">Comunicação</string>
@@ -1091,9 +1091,9 @@
   <string name="preferences_notifications__calls">Chamadas</string>
   <string name="preferences_notifications__ringtone">Toque</string>
   <string name="preferences_chats__show_invitation_prompts">Mostrar avisos de convite</string>
-  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Mostrar avisos de convite para contatos sem Loki Messenger</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Mostrar avisos de convite para contatos sem Session</string>
   <string name="preferences_chats__message_text_size">Tamanho da fonte da mensagem</string>
-  <string name="preferences_events__contact_joined_signal">O contato entrou no Loki Messenger!</string>
+  <string name="preferences_events__contact_joined_signal">O contato entrou no Session!</string>
   <string name="preferences_notifications__priority">Prioridade</string>
   <string name="preferences_communication__category_sealed_sender">Remetente Oculto</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Exibir indicadores</string>
@@ -1109,7 +1109,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Chamar</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">Chamada do Loki Messenger</string>
+  <string name="conversation_callable_secure__menu_call">Chamada do Session</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Detalhes da mensagem</string>
   <string name="conversation_context__menu_copy_text">Copiar texto</string>
@@ -1172,27 +1172,27 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copiar para a área de transferência</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Comparar com a área de transferência</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Sua versão do Loki Messenger está desatualizada</string>
+  <string name="reminder_header_outdated_build">Sua versão do Session está desatualizada</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Sua versão do Loki Messenger irá expirar em %d dia. Aperte para atualizar para a versão mais recente.</item>
-    <item quantity="other">Sua versão do Loki Messenger irá expirar em %d dias. Aperte para atualizar para a versão mais recente.</item>
+    <item quantity="one">Sua versão do Session irá expirar em %d dia. Aperte para atualizar para a versão mais recente.</item>
+    <item quantity="other">Sua versão do Session irá expirar em %d dias. Aperte para atualizar para a versão mais recente.</item>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">Sua versão do Signal expirará hoje. Aperte para atualizar para a versão mais recente.
 </string>
-  <string name="reminder_header_expired_build">Sua versão do Loki Messenger expirou!</string>
+  <string name="reminder_header_expired_build">Sua versão do Session expirou!</string>
   <string name="reminder_header_expired_build_details">As mensagens não serão mais enviadas com sucesso. Aperte para atualizar para a versão mais recente.</string>
   <string name="reminder_header_sms_default_title">Usar como aplicativo padrão de SMS</string>
-  <string name="reminder_header_sms_default_text">Aperte para tornar o Loki Messenger o seu aplicativo padrão de SMS</string>
+  <string name="reminder_header_sms_default_text">Aperte para tornar o Session o seu aplicativo padrão de SMS</string>
   <string name="reminder_header_sms_import_title">Importar SMS do sistema</string>
-  <string name="reminder_header_sms_import_text">Clique para copiar as mensagens SMS do seu telefone para a base de dados criptografada do Loki Messenger.</string>
-  <string name="reminder_header_push_title">Habilitar mensagens e ligações pelo Loki Messenger</string>
+  <string name="reminder_header_sms_import_text">Clique para copiar as mensagens SMS do seu telefone para a base de dados criptografada do Session.</string>
+  <string name="reminder_header_push_title">Habilitar mensagens e ligações pelo Session</string>
   <string name="reminder_header_push_text">Melhore sua experiência de comunicação.</string>
-  <string name="reminder_header_invite_title">Convidar para o Loki Messenger</string>
+  <string name="reminder_header_invite_title">Convidar para o Session</string>
   <string name="reminder_header_invite_text">Leve sua conversa com %1$s para outro nível.</string>
   <string name="reminder_header_share_title">Convide seus amigos!</string>
-  <string name="reminder_header_share_text">Quanto mais gente usar o Loki Messenger, melhor ele fica.</string>
-  <string name="reminder_header_service_outage_text">O Loki Messenger está com dificuldades técnicas. Estamos fazendo o máximo possível para restaurar o serviço o quanto antes.</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">Os recursos mais novos do Signal não funcionarão nesta versão do Android. Por favor, atualize este dispositivo para receber atualizações futuras do Loki Messenger.</string>
+  <string name="reminder_header_share_text">Quanto mais gente usar o Session, melhor ele fica.</string>
+  <string name="reminder_header_service_outage_text">O Session está com dificuldades técnicas. Estamos fazendo o máximo possível para restaurar o serviço o quanto antes.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">Os recursos mais novos do Signal não funcionarão nesta versão do Android. Por favor, atualize este dispositivo para receber atualizações futuras do Session.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Salvar</string>
   <string name="media_preview__forward_title">Avançar</string>
@@ -1213,16 +1213,16 @@
   <string name="ConversationListFragment_loading">Carregando...</string>
   <string name="CallNotificationBuilder_connecting">Conectando...</string>
   <string name="Permissions_permission_required">Permissão necessária</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">O Loki Messenger precisa da permissão SMS para enviar mensagens SMS, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"SMS\".</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">O Session precisa da permissão SMS para enviar mensagens SMS, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"SMS\".</string>
   <string name="Permissions_continue">Continuar</string>
   <string name="Permissions_not_now">Agora não</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Loki Messenger precisa da permissão de Contatos para poder pesquisar nos seus contatos, mas ela foi permanentemente negada. Por favor, vá nas configurações do aplicativo, selecione \"Permissões\" e ative \"Contatos\".</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Session precisa da permissão de Contatos para poder pesquisar nos seus contatos, mas ela foi permanentemente negada. Por favor, vá nas configurações do aplicativo, selecione \"Permissões\" e ative \"Contatos\".</string>
   <string name="conversation_activity__enable_signal_messages">HABILITAR MENSAGENS SIGNAL</string>
-  <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrando a base de dados do Loki Messenger</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrando a base de dados do Session</string>
   <string name="PushDecryptJob_new_locked_message">Nova mensagem trancada</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Destranque para ver as mensagens pendentes</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Destranque para completar a atualização</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Favor destrancar o Loki Messenger para completar a atualização</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Favor destrancar o Session para completar a atualização</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Frase-chave de backup</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Os backups serão gravados no armazenamento externo e criptografados com a frase-chave abaixo. Você precisa desta frase-chave para restaurar um backup.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Eu anotei esta frase-chave. Sem ela eu não conseguirei restaurar um backup.</string>
@@ -1234,7 +1234,7 @@
   <string name="preferences_chats__create_backup">Criar backup</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Digite a frase-chave de backup</string>
   <string name="RegistrationActivity_restore">Restaurar</string>
-  <string name="RegistrationActivity_backup_failure_downgrade">Não é possível importar backups feitos com versões mais novas do Loki Messenger</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Não é possível importar backups feitos com versões mais novas do Session</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Frase-chave de backup incorreta</string>
   <string name="RegistrationActivity_checking">Checando...</string>
   <string name="RegistrationActivity_d_messages_so_far">%d mensagens até agora...</string>
@@ -1249,7 +1249,7 @@
   <string name="BackupDialog_disable_and_delete_all_local_backups">Desabilitar e excluir todos os backups locais?</string>
   <string name="BackupDialog_delete_backups_statement">Excluir backups</string>
   <string name="BackupDialog_copied_to_clipboard">Copiada para a área de transferência</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">O Loki Messenger precisa de acesso ao armazenamento externo para fazer backup. Por favor, vá para as configurações de aplicativos, entre em \"Permissões\" e habilite o \"Armazenamento\".</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">O Session precisa de acesso ao armazenamento externo para fazer backup. Por favor, vá para as configurações de aplicativos, entre em \"Permissões\" e habilite o \"Armazenamento\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Último backup: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Em andamento</string>
   <string name="LocalBackupJob_creating_backup">Criando backup...</string>
@@ -1260,7 +1260,7 @@
   <string name="BackupUtil_never">Nunca</string>
   <string name="BackupUtil_unknown">Desconhecida</string>
   <string name="preferences_app_protection__screen_lock">Bloqueio de tela</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Proteger acesso ao Loki Messenger com tela de bloqueio do Android ou impressão digital.</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Proteger acesso ao Session com tela de bloqueio do Android ou impressão digital.</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Tempo de espera para bloquear tela</string>
   <string name="AppProtectionPreferenceFragment_none">Nenhuma</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">O PIN de Desbloqueio de Cadastro não é igual ao código de verificação que você acabou de receber. Por favor, insira o PIN definido anteriormente por meio do aplicativo.</string>
@@ -1271,7 +1271,7 @@
   <string name="registration_lock_dialog_view__confirm_pin">Confirme o PIN</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Insira seu PIN de Desbloqueio de Cadastro</string>
   <string name="registration_lock_reminder_view__enter_pin">Insira o PIN</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Habilite um PIN de Desbloqueio de Cadastro que seja requerido para recadastrar esse número de telefone no Loki Messenger.</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Habilite um PIN de Desbloqueio de Cadastro que seja requerido para recadastrar esse número de telefone no Session.</string>
   <string name="preferences_app_protection__registration_lock_pin">PIN de Desbloqueio de Cadastro</string>
   <string name="preferences_app_protection__registration_lock">Bloqueio de Cadastro</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Você deve inserir seu PIN de Desbloqueio de Cadastro</string>
@@ -1280,13 +1280,13 @@
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Você excedeu o número máximo de tentativas para acertar o PIN de Desbloqueio de Cadastro. Por favor, tente novamente daqui a um dia.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Erro na conexão ao serviço</string>
   <string name="RegistrationActivity_oh_no">Ah não!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Este número de telefone poderá ser cadastrado sem o PIN de Desbloqueio de Cadastro após 7 dias de inatividade no Loki Messenger. Restam %d dias.</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Este número de telefone poderá ser cadastrado sem o PIN de Desbloqueio de Cadastro após 7 dias de inatividade no Session. Restam %d dias.</string>
   <string name="RegistrationActivity_registration_lock_pin">PIN de Desbloqueio de Cadastro</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Este número de telefone está com o Bloqueio de Cadastro ativo. Por favor, insira o PIN de Desbloqueio de Cadastro.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">O Bloqueio de Cadastro está ativo para seu número de telefone. Para ajudar você a memorizar seu PIN de Desbloqueio de Cadastro, o Loki Messenger pedirá que o confirme periodicamente.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">O Bloqueio de Cadastro está ativo para seu número de telefone. Para ajudar você a memorizar seu PIN de Desbloqueio de Cadastro, o Session pedirá que o confirme periodicamente.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Eu esqueci meu PIN.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Esqueceu o PIN?</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">O Bloqueio de Cadastro ajuda a proteger seu número de telefone de tentativas de cadastro não autorizadas. Esse recurso pode ser desativado a qualquer instante nas configurações de privacidade do Loki Messenger.</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">O Bloqueio de Cadastro ajuda a proteger seu número de telefone de tentativas de cadastro não autorizadas. Esse recurso pode ser desativado a qualquer instante nas configurações de privacidade do Session.</string>
   <string name="RegistrationLockDialog_registration_lock">Bloqueio de Cadastro</string>
   <string name="RegistrationLockDialog_enable">Permitir</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">O PIN de Desbloqueio de Cadastro deve ter ao menos 4 dígitos.</string>
@@ -1295,7 +1295,7 @@
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Desabilitar PIN de Desbloqueio de Cadastro?</string>
   <string name="RegistrationLockDialog_disable">Desabilitar</string>
   <string name="preferences_chats__backups">Backups</string>
-  <string name="prompt_passphrase_activity__signal_is_locked">Loki Messenger está trancado</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Session está trancado</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TOQUE PARA DESBLOQUEAR</string>
   <string name="RegistrationLockDialog_reminder">Lembrete:</string>
   <string name="recipient_preferences__about">Sobre</string>

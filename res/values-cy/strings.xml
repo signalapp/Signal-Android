@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Loki Messenger</string>
+  <string name="app_name">Session</string>
   <string name="yes">Iawn</string>
   <string name="no">Na</string>
   <string name="delete">Dileu</string>
@@ -29,17 +29,17 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Dileu</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Analluogi\'r cyfrinair?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Bydd hyn yn datgloi Loki Messenger a hysbysiadau negeseuon yn barhaol.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Bydd hyn yn datgloi Session a hysbysiadau negeseuon yn barhaol.</string>
   <string name="ApplicationPreferencesActivity_disable">Analluogi</string>
   <string name="ApplicationPreferencesActivity_unregistering">Datgofrestru</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Datgofrestru o negeseuon a galwadau Loki Messenger...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Analluogi negeseuon a galwadau Loki Messenger?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Analluogi negeseuon a galwadau Loki Messenger drwy ddadgofrestru o\'r gweinydd. Bydd angen i chi ailgofrestru eich rhif ffón i\'w defnyddio eto\'n y dyfodol.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Datgofrestru o negeseuon a galwadau Session...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Analluogi negeseuon a galwadau Session?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Analluogi negeseuon a galwadau Session drwy ddadgofrestru o\'r gweinydd. Bydd angen i chi ailgofrestru eich rhif ffón i\'w defnyddio eto\'n y dyfodol.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Gwall cysylltu â\'r gweinydd!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Galluogwyd SMS</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Cyffyrddwch i newid eich rhaglen SMS ragosodedig</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Analluogwyd SMS</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Cyffyrddwch i wneud Loki Messenger eich ap SMS rhagosodiedig</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Cyffyrddwch i wneud Session eich ap SMS rhagosodiedig</string>
   <string name="ApplicationPreferencesActivity_on">ymlaen</string>
   <string name="ApplicationPreferencesActivity_On">Ymlaen</string>
   <string name="ApplicationPreferencesActivity_off">diffodd</string>
@@ -62,10 +62,10 @@
   <string name="DraftDatabase_Draft_quote_snippet">(ateb)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Methu canfod rhaglen i ddewis cyfryngau.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Mae ar Loki Messenger angen caniatâd Storio er mwyn atodi lluniau, fideos neu sain, ond mae wedi\'i wrthod yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Storio".</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Mae ar Loki Messenger angen caniatâd Cysylltiadau er mwyn atodi gwybodaeth gyswllt, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Cysylltiadau".</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Mae ar Loki Messenger angen caniatâd Lleoliad er mwyn atodi gwybodaeth lleoliad, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Lleoliadau".</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Mae ar Loki Messenger angen caniatâd Camera er mwyn atodi tynnu lluniau, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Camera".</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Mae ar Session angen caniatâd Storio er mwyn atodi lluniau, fideos neu sain, ond mae wedi\'i wrthod yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Storio".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Mae ar Session angen caniatâd Cysylltiadau er mwyn atodi gwybodaeth gyswllt, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Cysylltiadau".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Mae ar Session angen caniatâd Lleoliad er mwyn atodi gwybodaeth lleoliad, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Lleoliadau".</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Mae ar Session angen caniatâd Camera er mwyn atodi tynnu lluniau, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Camera".</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Gwall chwarae sain!</string>
   <!--BlockedContactsActivity-->
@@ -94,7 +94,7 @@
   <string name="ContactsCursorLoader_groups">Grwpiau</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Neges %s</string>
-  <string name="ContactsDatabase_signal_call_s">Galwad Loki Messenger %s</string>
+  <string name="ContactsDatabase_signal_call_s">Galwad Session %s</string>
   <!--ContactNameEditActivity-->
   <string name="ContactNameEditActivity_given_name">Enw</string>
   <string name="ContactNameEditActivity_family_name">Enw teuluol</string>
@@ -143,8 +143,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ydych chi\'n siŵr eich bod am adael y grŵp?</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS aniogel</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS anniogel</string>
-  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Gadewch i ni newid i Loki Messenger %1$s</string>
+  <string name="ConversationActivity_transport_signal">Session</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Gadewch i ni newid i Session %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Gadewch i ni ddefnyddio hyn i sgwrsio: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Gwall wrth adael grŵp</string>
   <string name="ConversationActivity_specify_recipient">Dewiswch gyswllt</string>
@@ -157,15 +157,15 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationActivity_quick_camera_unavailable">Camera ddim ar gael</string>
   <string name="ConversationActivity_unable_to_record_audio">Methu recordio sain!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nid oes ap ar gael i drin y ddolen hon ar eich dyfais.</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">I anfon negeseuon sain, caniatewch i Loki Messenger gael mynediad i\'ch meicroffon.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Mae ar Loki Messenger angen caniatâd Meicroffon i anfon negeseuon sain, ond mae wed\'i atal yn barhaol. Ewch i osodiadau\'r ap, dewis "Caniatâd", a galluogi "Microffon".</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">I alw %s, mae angen i Loki Messenger gael mynediad i\'ch meicroffon a\'ch camera.</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Mae ar Loki Messenger angen caniatâd Meicroffon a Chamera i alw %s, ond mae wedi\'i atal yn barhaol. Ewch i osodiadau\'r ap, dewis "Caniatâd", a galluogi "Microffon" a "Chamera".</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">I gipio lluniau a fideo, caniatewch i Loki Messenger gael mynediad i\'r camera.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Mae ar Loki Messenger angen caniatâd Camera er mwyn atodi tynnu lluniau neu fideos, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Camera".</string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Angen Loki Messenger angen caniatâd camera i dynnu lluniau neu fideo</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">I anfon negeseuon sain, caniatewch i Session gael mynediad i\'ch meicroffon.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Mae ar Session angen caniatâd Meicroffon i anfon negeseuon sain, ond mae wed\'i atal yn barhaol. Ewch i osodiadau\'r ap, dewis "Caniatâd", a galluogi "Microffon".</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">I alw %s, mae angen i Session gael mynediad i\'ch meicroffon a\'ch camera.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Mae ar Session angen caniatâd Meicroffon a Chamera i alw %s, ond mae wedi\'i atal yn barhaol. Ewch i osodiadau\'r ap, dewis "Caniatâd", a galluogi "Microffon" a "Chamera".</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">I gipio lluniau a fideo, caniatewch i Session gael mynediad i\'r camera.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Mae ar Session angen caniatâd Camera er mwyn atodi tynnu lluniau neu fideos, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Camera".</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Angen Session angen caniatâd camera i dynnu lluniau neu fideo</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Nid yw Loki Messenger yn gallu anfon negeseuon SMS/MMS gan nad yw eich ap ragosodedig SMS.Hoffech chi newid hyn yn eich gosodiadau Android?</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Nid yw Session yn gallu anfon negeseuon SMS/MMS gan nad yw eich ap ragosodedig SMS.Hoffech chi newid hyn yn eich gosodiadau Android?</string>
   <string name="ConversationActivity_yes">Iawn</string>
   <string name="ConversationActivity_no">Na</string>
   <string name="ConversationActivity_search_position">%1$d o %2$d</string>
@@ -217,7 +217,7 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="other">Cadw %1$d atodiad i\'r storfa</item>
   </plurals>
   <string name="ConversationFragment_pending">Yn aros...</string>
-  <string name="ConversationFragment_push">Data (Loki Messenger)</string>
+  <string name="ConversationFragment_push">Data (Session)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Wrthi\'n dileu</string>
@@ -267,7 +267,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="CreateProfileActivity_too_long">Rhy hir</string>
   <string name="CreateProfileActivity_profile_name">Enw Proffil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Creu eich proffil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Mae proffiliau Signal wedi eu hamgryprio\'n llwyr ac nid oes gan wasanaeth Loki Messenger fynediad i\'r wybodaeth hwn.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Mae proffiliau Signal wedi eu hamgryprio\'n llwyr ac nid oes gan wasanaeth Session fynediad i\'r wybodaeth hwn.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Defnyddio\'r cyfaddas: %s</string>
   <string name="CustomDefaultPreference_using_default">Defnyddio rhagosodedig: %s</string>
@@ -299,22 +299,22 @@ Send neges heb ei ddiogelu?</string>
   <string name="DocumentView_unknown_file">Ffeil anhysbys</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimeiddio ar gyfer Play Services coll</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Nid yw\'r ddyfais hon yn cefnogi Play Services Tapiwch i analluogi gwelliannau batri system sy\'n atal Loki Messenger rhag adfer negeseuon tra\'n anweithredol.</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Nid yw\'r ddyfais hon yn cefnogi Play Services Tapiwch i analluogi gwelliannau batri system sy\'n atal Session rhag adfer negeseuon tra\'n anweithredol.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Rhannu â</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Croeso i Loki Messenger.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">Mae TextSecure a RedPhone bellach yn un negesydd preifat ar gyfer pob sefyllfa: Loki Messenger.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Croeso i Loki Messenger!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure yw Loki Messenger nawr.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">Mae TextSecure a RedPhone nawr yn un app: Loki Messenger. Tapiwch i\'w weld.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Croeso i Session.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">Mae TextSecure a RedPhone bellach yn un negesydd preifat ar gyfer pob sefyllfa: Session.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Croeso i Session!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure yw Session nawr.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">Mae TextSecure a RedPhone nawr yn un app: Session. Tapiwch i\'w weld.</string>
   <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Dywedwch helo i alwadau fideo diogel.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Mae Signal nawr yn cynnal galwadau fideo diogel. Dechreuwch alwad Loki Messenger fel arfer, tapiwch y botwm fideo, a chwifio helo.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Mae Loki Messenger nawr yn cynnal galwad fideo diogel.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Mae Loki Messenger nawr yn cynnal galwad fideo diogel. Tapiwch i weld.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Mae Signal nawr yn cynnal galwadau fideo diogel. Dechreuwch alwad Session fel arfer, tapiwch y botwm fideo, a chwifio helo.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Mae Session nawr yn cynnal galwad fideo diogel.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Mae Session nawr yn cynnal galwad fideo diogel. Tapiwch i weld.</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Barod ar gyfer eich llun agos?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Nawr gallwch chi rannu llun proffil ac enw gyda ffrindiau ar Loki Messenger</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Mae proffiliau Loki Messenger yma</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Nawr gallwch chi rannu llun proffil ac enw gyda ffrindiau ar Session</string>
+  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Mae proffiliau Session yma</string>
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Yn cyflwyno dangosyddion teipio</string>
   <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Nawr gallwch chi ddewis gweld a rannu pryd mae negeseuon yn cael eu teipio.</string>
   <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Hoffech chi eu galluogi nawr?</string>
@@ -324,13 +324,13 @@ Send neges heb ei ddiogelu?</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Dim diolch</string>
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Yn cyflwyno rhagolygon dolenni.</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Mae rhagolygon dolenni dewisol nawr yn cael eu cynnal ar gyfer rhai o\'r gwefannau mwyaf poblogaidd ar y rhyngrwyd.</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Gallwch alluogi neu analluogi\'r nodwedd yng ngosodiadau Loki Messenger. (Preifatrwydd &gt; Anfon dolen rhagolwg).</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Gallwch alluogi neu analluogi\'r nodwedd yng ngosodiadau Session. (Preifatrwydd &gt; Anfon dolen rhagolwg).</string>
   <string name="ExperienceUpgradeActivity_got_it">Iawn, rwy\'n deall</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Estyn neges...</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Methiant cyfathrebu Loki Messenger parhaol!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Nid yw Signal yn gallu cofrestru gyda Google Play Services. Mae negeseuon a galwadau Loki Messenger wedi\'u hanalluogi, ceisiwch ailgofrestru yn Gosodiadau &gt; Uwch.</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Methiant cyfathrebu Session parhaol!</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Nid yw Signal yn gallu cofrestru gyda Google Play Services. Mae negeseuon a galwadau Session wedi\'u hanalluogi, ceisiwch ailgofrestru yn Gosodiadau &gt; Uwch.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Gwall wrth estyn GIF cydraniad llawn</string>
   <!--GiphyFragmentPageAdapter-->
@@ -341,15 +341,15 @@ Send neges heb ei ddiogelu?</string>
   <string name="GroupCreateActivity_actionbar_edit_title">Golygu grŵp</string>
   <string name="GroupCreateActivity_group_name_hint">Enw\'r grŵp</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Grŵp MMS newydd</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Rydych chi wedi dewis cyswllt nad yw\'n cynnal grwpiau Loki Messenger, felly bydd y grŵp hwn yn MMS.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Nid ydych chi wedi cofrestru ar gyfer negeseuon a galwadau Signal, felly mae grwpiau Loki Messenger wedi eu hanalluogi. Ceisiwch gofrestru yn y Gosodiadau &gt; Uwch.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Rydych chi wedi dewis cyswllt nad yw\'n cynnal grwpiau Session, felly bydd y grŵp hwn yn MMS.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Nid ydych chi wedi cofrestru ar gyfer negeseuon a galwadau Signal, felly mae grwpiau Session wedi eu hanalluogi. Ceisiwch gofrestru yn y Gosodiadau &gt; Uwch.</string>
   <string name="GroupCreateActivity_contacts_no_members">Mae angen o leiaf un person yn eich grŵp!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Mae gan un o aelodau eich grŵp rif nad oes modd ei ddarllen yn iawn. Dylech ddileu neu ddileu\'r cyswllt hwnnw a cheisio eto.</string>
   <string name="GroupCreateActivity_avatar_content_description">Llun y grŵp</string>
   <string name="GroupCreateActivity_menu_apply_button">Gosod</string>
   <string name="GroupCreateActivity_creating_group">Creu %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Yn diweddaru %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Methu ychwanegu %1$s oherwydd nad yw\'n ddefnyddiwr Loki Messenger.</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Methu ychwanegu %1$s oherwydd nad yw\'n ddefnyddiwr Session.</string>
   <string name="GroupCreateActivity_loading_group_details">Llwytho manylion grŵp...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Rydych eisoes yn y grŵp.</string>
   <!--GroupShareProfileView-->
@@ -370,7 +370,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="InviteActivity_sending">Anfon...</string>
   <string name="InviteActivity_heart_content_description">Calon</string>
   <string name="InviteActivity_invitations_sent">Gwahoddiadau wedi\'u anfon!</string>
-  <string name="InviteActivity_invite_to_signal">Gwahodd i Loki Messenger</string>
+  <string name="InviteActivity_invite_to_signal">Gwahodd i Session</string>
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">ANFON SMS AT %d FFRIND</item>
     <item quantity="two">ANFON SMS AT %d FFRIND</item>
@@ -383,7 +383,7 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="many">Anfon %d gwahoddiad SMS</item>
     <item quantity="other">Anfon %d gwahoddiad SMS</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Gadewch i ni newid i Loki Messenger %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Gadewch i ni newid i Session %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Mae\'n edrych fel nad oes gennych unrhyw apiau i\'w rhannu.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Dyw ffrindiau ddim yn gadael i ffrindiau sgwrsio heb amgryptiad.</string>
   <!--Job-->
@@ -396,7 +396,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="LongMessageActivity_message_from_s">Neges gan %1$s</string>
   <string name="LongMessageActivity_your_message">Eich neges</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Loki Messenger</string>
+  <string name="MessageRetrievalService_signal">Session</string>
   <string name="MessageRetrievalService_background_connection_enabled">Cysylltiad cefndir wedi\'i alluogi</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Gwall wrth ddarllen gosodiadau darparwr MMS diwifr</string>
@@ -420,9 +420,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="MediaOverviewActivity_Select_all">Dewis popeth</string>
   <string name="MediaOverviewActivity_collecting_attachments">Casglu atodiadau...</string>
   <!--- NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">Ar ganol galwad Loki Messenger</string>
-  <string name="NotificationBarManager__establishing_signal_call">Sicrhau galwad Loki Messenger</string>
-  <string name="NotificationBarManager__incoming_signal_call">Galwad Loki Messenger wedi cyrraedd</string>
+  <string name="NotificationBarManager_signal_call_in_progress">Ar ganol galwad Session</string>
+  <string name="NotificationBarManager__establishing_signal_call">Sicrhau galwad Session</string>
+  <string name="NotificationBarManager__incoming_signal_call">Galwad Session wedi cyrraedd</string>
   <string name="NotificationBarManager__deny_call">Gwrthod galwad</string>
   <string name="NotificationBarManager__answer_call">Ateb galwad</string>
   <string name="NotificationBarManager__end_call">Gorffen galwad</string>
@@ -449,7 +449,7 @@ Send neges heb ei ddiogelu?</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Pob cyfrwng</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Wedi derbyn neges wedi\'i hamgryptio gan ddefnyddio hen fersiwn o Loki Messenger nad yw bellach yn cael ei gefnogi. Gofynnwch i\'r anfonwr ddiweddaru i\'r fersiwn ddiweddaraf ac ail-anfon y neges.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Wedi derbyn neges wedi\'i hamgryptio gan ddefnyddio hen fersiwn o Session nad yw bellach yn cael ei gefnogi. Gofynnwch i\'r anfonwr ddiweddaru i\'r fersiwn ddiweddaraf ac ail-anfon y neges.</string>
   <string name="MessageRecord_left_group">Rydych wedi gadael y grŵp.</string>
   <string name="MessageRecord_you_updated_group">Rydych chi wedi diweddaru\'r grŵp.</string>
   <string name="MessageRecord_you_called">Galwoch chi</string>
@@ -459,7 +459,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRecord_s_called_you">Galwodd %s chi</string>
   <string name="MessageRecord_called_s">Wedi galw %s</string>
   <string name="MessageRecord_missed_call_from">Galwad coll gan %s</string>
-  <string name="MessageRecord_s_joined_signal">Mae %s ar Loki Messenger! </string>
+  <string name="MessageRecord_s_joined_signal">Mae %s ar Session! </string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Rydych chi\'n wedi analluogi negeseuon sy\'n diflannu .</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s neges diflannu anabl.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Rydych wedi gosod yr amserydd neges sy\'n diflannu i%1$s.</string>
@@ -489,9 +489,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Cod QR annilys.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Mae gormod o ddyfeisiau eisoes wedi\'u cysylltu; rhaid datgysylltu rhai.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Nid yw hwn yn god QR dilys i gysylltu dyfais.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Cysylltu â dyfais Loki Messenger?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Mae\'n edrych fel eich bod yn ceisio cysylltu dyfais Signal gan ddefnyddio sganiwr trydydd parti. Er eich diogelwch, sganiwch y cod eto o fewn Loki Messenger.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Mae ar Loki Messenger angen caniatâd Camera er mwyn sganio cod QR, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Camera".</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Cysylltu â dyfais Session?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Mae\'n edrych fel eich bod yn ceisio cysylltu dyfais Signal gan ddefnyddio sganiwr trydydd parti. Er eich diogelwch, sganiwch y cod eto o fewn Session.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Mae ar Session angen caniatâd Camera er mwyn sganio cod QR, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Camera".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Methu sganio cod QR heb ganiatâd y Camera</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Negeseuon diflanedig</string>
@@ -499,7 +499,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Bydd negeseuon sy\'n cael eu anfon a\'u derbyn yn y sgwrs yn diflannu %s ar ôl iddynt gael eu gweld.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Rhoi cyfrinymadrodd</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Eicon Loki Messenger</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Eicon Session</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Cyflwyno cyfrinymadrodd</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Cyfrinair annilys!</string>
   <!--PlayServicesProblemFragment-->
@@ -551,7 +551,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Mae\'r rhif rydych wedi
        ei bennu ( %s) yn annilys.</string>
   <string name="RegistrationActivity_missing_google_play_services">Google Play Services Coll</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Nid yw Google Play Services ar y ddyfais hon. Gallwch barhau i ddefnyddio Loki Messenger, ond gall y ffurfweddiad hwn arwain at lai o ddibynadwyedd neu berfformiad. \n\nOs nad ydych chi\'n ddefnyddiwr uwch, nac yn rhedeg ROM Android amgen, neu os ydych chi\'n credu eich bod yn gweld hyn trwy gamgymeriad, cysylltwch â support@signal.org er mwyn datrys problemau.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Nid yw Google Play Services ar y ddyfais hon. Gallwch barhau i ddefnyddio Session, ond gall y ffurfweddiad hwn arwain at lai o ddibynadwyedd neu berfformiad. \n\nOs nad ydych chi\'n ddefnyddiwr uwch, nac yn rhedeg ROM Android amgen, neu os ydych chi\'n credu eich bod yn gweld hyn trwy gamgymeriad, cysylltwch â support@signal.org er mwyn datrys problemau.</string>
   <string name="RegistrationActivity_i_understand">Rwy\'n deall</string>
   <string name="RegistrationActivity_play_services_error">Gwall Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Mae Google Play Services yn cael eu diweddaru neu nid yw ar gael dros dro. Ceisiwch eto os gwelwch yn dda.</string>
@@ -559,9 +559,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationActivity_no_browser">Methu agor y ddolen. Heb ddarganfod porwr gwe.</string>
   <string name="RegistrationActivity_more_information">Rhagor o wybodaeth</string>
   <string name="RegistrationActivity_less_information">Llai o wybodaeth</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Mae ar Loki Messenger angen mynediad i\'ch cysylltiadau a\'ch cyfryngau er mwyn cysylltu â ffrindiau, cyfnewid negeseuon, a gwneud galwadau diogel</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Mae ar Session angen mynediad i\'ch cysylltiadau a\'ch cyfryngau er mwyn cysylltu â ffrindiau, cyfnewid negeseuon, a gwneud galwadau diogel</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Methu cysylltu â\'r gwasanaeth. Gwiriwch y cysylltiad rhwydwaith a cheisio eto.</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">I wirio eich rhif ffôn yn hawdd, gall Signal ganfod eich cod dilysu yn awtomatig os ydych yn caniatáu i Loki Messenger weld negeseuon SMS.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">I wirio eich rhif ffôn yn hawdd, gall Signal ganfod eich cod dilysu yn awtomatig os ydych yn caniatáu i Session weld negeseuon SMS.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Rydych chi nawr %d cam cyn cyflwyno cofnod dadfygio.</item>
     <item quantity="two">Rydych chi nawr %d gam cyn cyflwyno cofnod dadfygio.</item>
@@ -586,13 +586,13 @@ Send neges heb ei ddiogelu?</string>
   <string name="SearchFragment_header_messages">Negeseuon</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Ychwanegu at Cysylltiadau</string>
-  <string name="SharedContactDetailsActivity_invite_to_signal">Gwahodd i Loki Messenger</string>
-  <string name="SharedContactDetailsActivity_signal_message">Neges Loki Messenger</string>
-  <string name="SharedContactDetailsActivity_signal_call">Galwad Loki Messenger</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Gwahodd i Session</string>
+  <string name="SharedContactDetailsActivity_signal_message">Neges Session</string>
+  <string name="SharedContactDetailsActivity_signal_call">Galwad Session</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">Ychwanegu at Cysylltiadau</string>
-  <string name="SharedContactView_invite_to_signal">Gwahodd i Loki Messenger</string>
-  <string name="SharedContactView_message">Neges Loki Messenger</string>
+  <string name="SharedContactView_invite_to_signal">Gwahodd i Session</string>
+  <string name="SharedContactView_message">Neges Session</string>
   <!--Slide-->
   <string name="Slide_image">Llun</string>
   <string name="Slide_audio">Sain</string>
@@ -615,7 +615,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ThreadRecord_called_you">Wedi\'ch galw chi</string>
   <string name="ThreadRecord_missed_call">Galwad coll</string>
   <string name="ThreadRecord_media_message">Neges cyfryngau</string>
-  <string name="ThreadRecord_s_is_on_signal">Mae %s ar Loki Messenger!</string>
+  <string name="ThreadRecord_s_is_on_signal">Mae %s ar Session!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Negeseuon diflanedig wedi\'u hanalluogi</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Amser neges diflanedig wedi\'i osod i %s</string>
   <string name="ThreadRecord_safety_number_changed">Mae\'r rhif diogelwch wedi newid</string>
@@ -623,8 +623,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="ThreadRecord_you_marked_verified">Eich marcio wedi\'i wirio</string>
   <string name="ThreadRecord_you_marked_unverified">Eich marcio heb ei wirio</string>
   <!--UpdateApkReadyListener-->
-  <string name="UpdateApkReadyListener_Signal_update">Diweddariad Loki Messenger</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Mae fersiwn newydd o Loki Messenger ar gael. Tapiwch i ddiweddaru.</string>
+  <string name="UpdateApkReadyListener_Signal_update">Diweddariad Session</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Mae fersiwn newydd o Session ar gael. Tapiwch i ddiweddaru.</string>
   <!--UnknownSenderView-->
   <string name="UnknownSenderView_block_s">Rhwystro %s</string>
   <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Ni fydd yn bosib i gysylltiadau wedi\'u rhwystro anfon negeseuon atoch neu eich ffonio.</string>
@@ -639,14 +639,14 @@ Send neges heb ei ddiogelu?</string>
   <string name="UnverifiedSendDialog_send_message">Anfon neges?</string>
   <string name="UnverifiedSendDialog_send">Anfon</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Mae eich cyswllt yn rhedeg hen fersiwn o Loki Messenger. Gofynnwch iddynt ddiweddaru cyn gwirio eich rhif diogelwch.</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Mae eich cyswllt yn rhedeg fersiwn newydd o Loki Messenger gyda fformat cod QR anghydnaws. Diweddarwch i gymharu.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Mae eich cyswllt yn rhedeg hen fersiwn o Session. Gofynnwch iddynt ddiweddaru cyn gwirio eich rhif diogelwch.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Mae eich cyswllt yn rhedeg fersiwn newydd o Session gyda fformat cod QR anghydnaws. Diweddarwch i gymharu.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Nid yw\'r cod QR sganedig yn god dilysu rhif diogelwch cywir. Ceisiwch sganio eto.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Rhannu\'r rhif diogelwch drwy...</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_number">Ein rhif diogelwch Loki Messenger:</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Ein rhif diogelwch Session:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Mae\'n edrych fel nad oes gennych unrhyw apiau i\'w rhannu.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Dim rhif diogelwch i\'w gymharu yn y clipfwrdd</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Mae ar Loki Messenger angen caniatâd Camera er mwyn sganio cod QR, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Camera".</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Mae ar Session angen caniatâd Camera er mwyn sganio cod QR, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Camera".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Methu sganio cod QR heb ganiatâd y Camera</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Neges amgryptio gwael</string>
@@ -666,13 +666,13 @@ Send neges heb ei ddiogelu?</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Cyffwrdd i agor.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Cyffwrdd i agor, neu gyffwrdd y clo i\'w gau.</string>
-  <string name="KeyCachingService_passphrase_cached">Mae Loki Messenger wedi\'i ddatgloi</string>
-  <string name="KeyCachingService_lock">Cloi Loki Messenger</string>
+  <string name="KeyCachingService_passphrase_cached">Mae Session wedi\'i ddatgloi</string>
+  <string name="KeyCachingService_lock">Cloi Session</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Chi</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Math o gyfrwng heb ei gynnal</string>
   <string name="MediaPreviewActivity_draft">Drafft</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Mae ar Loki Messenger angen caniatâd Storio er mwyn cadw i storfa allanol, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Storfa".</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Mae ar Session angen caniatâd Storio er mwyn cadw i storfa allanol, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Storfa".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Methu cadw i storfa allanol heb ganiatâd</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Dileu neges?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Bydd hyn yn dileu yn barhaol y neges hon.</string>
@@ -688,10 +688,10 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageNotifier_mark_read">Marcio wedi\'i ddarllen</string>
   <string name="MessageNotifier_media_message">Neges cyfryngau</string>
   <string name="MessageNotifier_reply">Ymateb</string>
-  <string name="MessageNotifier_signal_message">Neges Loki Messenger</string>
+  <string name="MessageNotifier_signal_message">Neges Session</string>
   <string name="MessageNotifier_unsecured_sms">SMS anniogel</string>
-  <string name="MessageNotifier_pending_signal_messages">Negeseuon Loki Messenger yn aros</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Mae gennych negeseuon Loki Messenger yn aros, tapiwch i\'w hagor ac adfer</string>
+  <string name="MessageNotifier_pending_signal_messages">Negeseuon Session yn aros</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">Mae gennych negeseuon Session yn aros, tapiwch i\'w hagor ac adfer</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Cysylltiad</string>
   <!--Notification Channels-->
@@ -705,7 +705,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="NotificationChannel_group_messages">Negeseuon</string>
   <string name="NotificationChannel_missing_display_name">Anhysbys</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Nid yw ymateb cyflym ar gael pan fydd Loki Messenger wedi\'i gloi!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Nid yw ymateb cyflym ar gael pan fydd Session wedi\'i gloi!</string>
   <string name="QuickResponseService_problem_sending_message">Anhawster anfon neges!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">Wedi\'i gadw i %s</string>
@@ -716,7 +716,7 @@ Send neges heb ei ddiogelu?</string>
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Llwybr byr annilys</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Session</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Neges newydd</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
@@ -727,14 +727,14 @@ Send neges heb ei ddiogelu?</string>
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Nid yw\'r ddyfais wedi\'i chofrestru bellach</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Mae hyn yn debygol oherwydd eich bod wedi cofrestru\'ch rhif ffôn gyda Loki Messenger ar ddyfais wahanol. Tapiwch i ailgofrestru.</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Mae hyn yn debygol oherwydd eich bod wedi cofrestru\'ch rhif ffôn gyda Session ar ddyfais wahanol. Tapiwch i ailgofrestru.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Gwall wrth chwarae fideo</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">I ateb yr alwad o %s, rhowch fynediad i\'ch meicroffon i Loki Messenger.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Mae Loki Messenger yn gofyn am ganiatâd Microffon a Chamera er mwyn gwneud neu dderbyn galwadau, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Microffon" a "Camera".</string>
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">I ateb yr alwad o %s, rhowch fynediad i\'ch meicroffon i Session.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Mae Session yn gofyn am ganiatâd Microffon a Chamera er mwyn gwneud neu dderbyn galwadau, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Microffon" a "Camera".</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">Mae\'r rhif diogelwch ar gyfer eich sgwrs gyda %1$s wedi newid. Gallai hyn olygu bod rhywun yn ceisio atal eich cyfathrebu, neu bod %2$s wedi ail-osod Loki Messenger.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers">Mae\'r rhif diogelwch ar gyfer eich sgwrs gyda %1$s wedi newid. Gallai hyn olygu bod rhywun yn ceisio atal eich cyfathrebu, neu bod %2$s wedi ail-osod Session.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Efallai yr hoffech wirio\'ch rhif diogelwch gyda\'r cyswllt hwn.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Rhif diogelwch newydd</string>
   <string name="WebRtcCallScreen_accept">Derbyn</string>
@@ -769,15 +769,15 @@ Send neges heb ei ddiogelu?</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Llun Cyswllt</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Mae ar Loki Messenger angen caniatâd Cysylltiadau er mwyn dangos eich cysylltiadau, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Cysylltiadau".</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Mae ar Session angen caniatâd Cysylltiadau er mwyn dangos eich cysylltiadau, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Cysylltiadau".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Gwall wrth estyn cysylltiadau, gwiriwch eich cysylltiad rhwydwaith</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Dim cysylltiadau wedi\'u rhwystro</string>
   <!--contact_selection_list_fragment-->
-  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Mae ar Loki Messenger angen mynediad i\'ch cysylltiadau er mwyn eu harddangos.</string>
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Mae ar Session angen mynediad i\'ch cysylltiadau er mwyn eu harddangos.</string>
   <string name="contact_selection_list_fragment__show_contacts">Dangos Cysylltiadau</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Neges Loki Messenger</string>
+  <string name="conversation_activity__type_message_push">Neges Session</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS anniogel</string>
   <string name="conversation_activity__type_message_mms_insecure">MMS anniogel</string>
   <string name="conversation_activity__from_sim_name">Oddi wrth %1$s</string>
@@ -789,7 +789,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Newid y drôr atodiad cyflym camera</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Recordio ac anfon atodiad sain</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Cloi recordio atodiad sain</string>
-  <string name="conversation_activity__enable_signal_for_sms">Galluogi Loki Messenger ar gyfer SMS</string>
+  <string name="conversation_activity__enable_signal_for_sms">Galluogi Session ar gyfer SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Llithro i ddiddymu</string>
   <string name="conversation_input_panel__cancel">Diddymu</string>
@@ -872,9 +872,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="IdentityUtil_unverified_banner_one">Mae\'ch rhif diogelwch gyda %1$s wedi newid ac nid yw wedi\'i dilysu bellach.</string>
   <string name="IdentityUtil_unverified_banner_two">Nid yw eich rhif diogelwch gyda %1$s a %2$s wedi\'i dilysu bellach</string>
   <string name="IdentityUtil_unverified_banner_many">Nid yw eich rhifau diogelwch gyda %1$s, %2$s, a %3$s bellach yn cael eu gwirio</string>
-  <string name="IdentityUtil_unverified_dialog_one">Mae\'ch rhif diogelwch gyda %1$s wedi newid ac nid yw wedi\'i dilysu bellach. Gall hyn olygu bod rhywun yn ceisio rhyng-gipio eich cyfathrebu, neu bod %1$s wedi ail-osod Loki Messenger.</string>
-  <string name="IdentityUtil_unverified_dialog_two">Mae\'ch rhifau diogelwch gyda %1$s a %2$s wedi\'i dilysu bellach. Gall hyn olygu bod rhywun yn ceisio rhyng-gipio eich cyfathrebu, neu bod nhw wedi ail-osod Loki Messenger.</string>
-  <string name="IdentityUtil_unverified_dialog_many">Mae\'ch rhifau diogelwch gyda %1$s, %2$s, a %3$s wedi\'i dilysi bellach. Gall hyn olygu bod rhywun yn ceisio rhyng-gipio eich cyfathrebu, neu bod nhw wedi ail-osod Loki Messenger.</string>
+  <string name="IdentityUtil_unverified_dialog_one">Mae\'ch rhif diogelwch gyda %1$s wedi newid ac nid yw wedi\'i dilysu bellach. Gall hyn olygu bod rhywun yn ceisio rhyng-gipio eich cyfathrebu, neu bod %1$s wedi ail-osod Session.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Mae\'ch rhifau diogelwch gyda %1$s a %2$s wedi\'i dilysu bellach. Gall hyn olygu bod rhywun yn ceisio rhyng-gipio eich cyfathrebu, neu bod nhw wedi ail-osod Session.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Mae\'ch rhifau diogelwch gyda %1$s, %2$s, a %3$s wedi\'i dilysi bellach. Gall hyn olygu bod rhywun yn ceisio rhyng-gipio eich cyfathrebu, neu bod nhw wedi ail-osod Session.</string>
   <string name="IdentityUtil_untrusted_dialog_one">Mae\'ch rhif diogelwch gyda %1$s wedi newid yn ddiweddar.</string>
   <string name="IdentityUtil_untrusted_dialog_two">Mae\'ch rhif diogelwch gyda %1$s wedi newid yn ddiweddar.</string>
   <string name="IdentityUtil_untrusted_dialog_many">Mae\'ch rhif diogelwch gyda %1$s a %3$s wedi newid.</string>
@@ -907,7 +907,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Adolygwch y cofnod hwn o\'m ap: %1$s</string>
   <string name="log_submit_activity__network_failure">Methiant y rhwydwaith. Ceisiwch eto.</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Hoffech chi fewnforio eich negeseuon testun i gronfa ddata amgryptiedig Loki Messenger?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Hoffech chi fewnforio eich negeseuon testun i gronfa ddata amgryptiedig Session?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Ni chaiff cronfa ddata\'r system rhagosodedig ei addasu neu ei newid mewn unrhyw ffordd.</string>
   <string name="database_migration_activity__skip">Hepgor</string>
   <string name="database_migration_activity__import">Mewnforio</string>
@@ -941,7 +941,7 @@ Send neges heb ei ddiogelu?</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Datgloi</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Mae ar Loki Messenger angen gosodiadau MMS i ddarparu negeseuon cyfrwng a grŵp trwy\'ch cludwr di-wifr. Nid yw\'ch dyfais yn gwneud y wybodaeth hon ar gael, sydd weithiau\'n wir ar gyfer dyfeisiau wedi\'u cloi a ffurfweddiadau cyfyngol eraill.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Mae ar Session angen gosodiadau MMS i ddarparu negeseuon cyfrwng a grŵp trwy\'ch cludwr di-wifr. Nid yw\'ch dyfais yn gwneud y wybodaeth hon ar gael, sydd weithiau\'n wir ar gyfer dyfeisiau wedi\'u cloi a ffurfweddiadau cyfyngol eraill.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">I anfon negeseuon cyfryngau a grŵp, tapiwch \'Iawn\' a chwblhau\'r gosodiadau gofynnol. Yn gyffredinol, gall lleoliadau MMS eich cludwr gael eu lleoli trwy chwilio am \'eich APN cludwr\'. Dim ond unwaith y bydd angen i chi wneud hyn.</string>
   <!--profile_create_activity-->
   <string name="profile_create_activity__set_later">Gosod yn hwyrach</string>
@@ -964,12 +964,12 @@ Send neges heb ei ddiogelu?</string>
   <string name="recipient_preferences__call_settings">Gosodiadau galw</string>
   <string name="recipient_preferences__ringtone">Tôn canu</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Galwad Loki Messenger</string>
+  <string name="redphone_call_card__signal_call">Galwad Session</string>
   <string name="redphone_call_controls__mute">Tewi</string>
   <string name="redphone_call_controls__flip_camera_rear">Newid Camera</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">RHIF FFÔN</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Mae Signal yn ei gwneud hi\'n hawdd i gyfathrebu trwy ddefnyddio\'ch rhif ffôn a\'ch llyfr cyfeiriadau. Bydd cyfeillion a chysylltiadau sydd eisoes yn gwybod sut i gysylltu â chi dros y ffôn yn gallu cysylltu â Loki Messenger yn rhwydd.\n\nMae cofrestru\'n trosglwyddo peth gwybodaeth cyswllt i\'r gweinydd. Nid yw\'n cael ei gadw.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Mae Signal yn ei gwneud hi\'n hawdd i gyfathrebu trwy ddefnyddio\'ch rhif ffôn a\'ch llyfr cyfeiriadau. Bydd cyfeillion a chysylltiadau sydd eisoes yn gwybod sut i gysylltu â chi dros y ffôn yn gallu cysylltu â Session yn rhwydd.\n\nMae cofrestru\'n trosglwyddo peth gwybodaeth cyswllt i\'r gweinydd. Nid yw\'n cael ei gadw.</string>
   <string name="registration_activity__verify_your_number">Gwirio eich Rhif</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Rhowch eich rhif ffôn symudol i dderbyn cod dilysu. Gall cyfraddau darparwr gael eu codi.</string>
   <!--recipients_panel-->
@@ -1048,8 +1048,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences__sms_mms">SMS ac MMS</string>
   <string name="preferences__pref_all_sms_title">Derbyn yr holl SMS</string>
   <string name="preferences__pref_all_mms_title">Derbyn yr holl MMS</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Defnyddio Loki Messenger ar gyfer yr holl negeseuon testun sy\'n cael eu derbyn</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Defnyddio Loki Messenger ar gyfer yr holl negeseuon amlgyfrwng sy\'n cael eu derbyn</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Defnyddio Session ar gyfer yr holl negeseuon testun sy\'n cael eu derbyn</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Defnyddio Session ar gyfer yr holl negeseuon amlgyfrwng sy\'n cael eu derbyn</string>
   <string name="preferences__pref_enter_sends_title">Pwyso Enter i anfon</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pwyso Enter i anfon negeseuon testun</string>
   <string name="preferences__send_link_previews">Anfon rhagolwg dolen</string>
@@ -1062,7 +1062,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Cloi\'r sgrin a hysbysiadau gyda chyfrinymadrodd</string>
   <string name="preferences__screen_security">Diogelu\'r sgrin</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Rhwystro sgrinluniau tu mewn i\'r rhaglen</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Awto gloi Loki Messenger ar ôl cyfnod penodol o anweithgarwch</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Awto gloi Session ar ôl cyfnod penodol o anweithgarwch</string>
   <string name="preferences__inactivity_timeout_passphrase">Cyfrinymadrodd terfynu anweithgarwch</string>
   <string name="preferences__inactivity_timeout_interval">Cyfnod terfynu anweithgarwch</string>
   <string name="preferences__notifications">Hysbysiadau</string>
@@ -1115,8 +1115,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences__theme">Thema</string>
   <string name="preferences__default">Rhagosodiad</string>
   <string name="preferences__language">Iaith</string>
-  <string name="preferences__signal_messages_and_calls">Negeseuon a galwadau Loki Messenger</string>
-  <string name="preferences__free_private_messages_and_calls">Negeseuon preifat am ddim a galwadau i ddefnyddwyr Loki Messenger</string>
+  <string name="preferences__signal_messages_and_calls">Negeseuon a galwadau Session</string>
+  <string name="preferences__free_private_messages_and_calls">Negeseuon preifat am ddim a galwadau i ddefnyddwyr Session</string>
   <string name="preferences__submit_debug_log">Anfon cofnod dadfygio</string>
   <string name="preferences__support_wifi_calling">Modd gydnawsedd \'Galw Diwifr\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Galluogi os yw\'ch dyfais yn defnyddio darpariaeth SMS / MMS dros y diwifr (dim ond pan fydd \'Galw Diwifr\' wedi\'alluogi ar eich dyfais)</string>
@@ -1133,8 +1133,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences_chats__media_auto_download">Awto lwytho cyfryngau</string>
   <string name="preferences_chats__message_trimming">Tocio sgyrsiau</string>
   <string name="preferences_advanced__use_system_emoji">Defnyddio gwenogluniau\'r system</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Analluogi cefnogaeth gwenogluniau Loki Messenger</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Ail-alw pob galwad drwy\'r gweinydd Loki Messenger i osgoi datgelu eich cyfeiriad IP i\'ch cyswllt. Bydd galluogi yn lleihau ansawdd galwadau.</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Analluogi cefnogaeth gwenogluniau Session</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Ail-alw pob galwad drwy\'r gweinydd Session i osgoi datgelu eich cyfeiriad IP i\'ch cyswllt. Bydd galluogi yn lleihau ansawdd galwadau.</string>
   <string name="preferences_advanced__always_relay_calls">Anfon galwadau ymlaen bob tro</string>
   <string name="preferences_app_protection__app_access">Mynediad i ap</string>
   <string name="preferences_app_protection__communication">Cyfathrebu</string>
@@ -1146,9 +1146,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences_notifications__calls">Galwadau</string>
   <string name="preferences_notifications__ringtone">Tôn canu</string>
   <string name="preferences_chats__show_invitation_prompts">Dangos awgrymiadau gwahoddiad</string>
-  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Dangos awgrymiadau gwahoddiad ar gyfer cysylltiadau heb Loki Messenger</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Dangos awgrymiadau gwahoddiad ar gyfer cysylltiadau heb Session</string>
   <string name="preferences_chats__message_text_size">Maint ffont negeseuon</string>
-  <string name="preferences_events__contact_joined_signal">Cysylltiad wedi ymuno â Loki Messenger</string>
+  <string name="preferences_events__contact_joined_signal">Cysylltiad wedi ymuno â Session</string>
   <string name="preferences_notifications__priority">Blaenoriaeth</string>
   <string name="preferences_communication__category_sealed_sender">Anfonwr dan Sêl</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Dangos dangosyddion</string>
@@ -1164,7 +1164,7 @@ Send neges heb ei ddiogelu?</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Galw</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">Galwad Loki Messenger</string>
+  <string name="conversation_callable_secure__menu_call">Galwad Session</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Manylion y neges</string>
   <string name="conversation_context__menu_copy_text">Copïo testun</string>
@@ -1227,28 +1227,28 @@ Send neges heb ei ddiogelu?</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copïo i\'r clipfwrdd</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Cymharu â\'r clipfwrdd</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Mae\'ch fersiwn o Loki Messenger yn hen</string>
+  <string name="reminder_header_outdated_build">Mae\'ch fersiwn o Session yn hen</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Bydd eich fersiwn o Loki Messenger yn dod i ben ymhen %d diwrnod. Tapiwch i ddiweddaru i\'r fersiwn ddiweddaraf.</item>
-    <item quantity="two">Bydd eich fersiwn o Loki Messenger yn dod i ben ymhen %d diwrnod. Tapiwch i ddiweddaru i\'r fersiwn ddiweddaraf.</item>
-    <item quantity="many">Bydd eich fersiwn o Loki Messenger yn dod i ben ymhen %d diwrnod. Tapiwch i ddiweddaru i\'r fersiwn ddiweddaraf.</item>
-    <item quantity="other">Bydd eich fersiwn o Loki Messenger yn dod i ben ymhen %d diwrnod. Tapiwch i ddiweddaru i\'r fersiwn ddiweddaraf.</item>
+    <item quantity="one">Bydd eich fersiwn o Session yn dod i ben ymhen %d diwrnod. Tapiwch i ddiweddaru i\'r fersiwn ddiweddaraf.</item>
+    <item quantity="two">Bydd eich fersiwn o Session yn dod i ben ymhen %d diwrnod. Tapiwch i ddiweddaru i\'r fersiwn ddiweddaraf.</item>
+    <item quantity="many">Bydd eich fersiwn o Session yn dod i ben ymhen %d diwrnod. Tapiwch i ddiweddaru i\'r fersiwn ddiweddaraf.</item>
+    <item quantity="other">Bydd eich fersiwn o Session yn dod i ben ymhen %d diwrnod. Tapiwch i ddiweddaru i\'r fersiwn ddiweddaraf.</item>
   </plurals>
-  <string name="reminder_header_outdated_build_details_today">Bydd eich fersiwn o Loki Messenger yn dod i ben heddiw. Tapiwch i ddiweddaru i\'r fersiwn ddiweddaraf.</string>
-  <string name="reminder_header_expired_build">Mae\'ch fersiwn o Loki Messenger wedi dod i ben!</string>
+  <string name="reminder_header_outdated_build_details_today">Bydd eich fersiwn o Session yn dod i ben heddiw. Tapiwch i ddiweddaru i\'r fersiwn ddiweddaraf.</string>
+  <string name="reminder_header_expired_build">Mae\'ch fersiwn o Session wedi dod i ben!</string>
   <string name="reminder_header_expired_build_details">Ni fydd negeseuon bellach yn cael eu hanfon yn llwyddiannus. Tapiwch i ddiweddaru i\'r fersiwn ddiweddaraf.</string>
   <string name="reminder_header_sms_default_title">Defnyddio fel yr ap SMS rhagosodedig</string>
-  <string name="reminder_header_sms_default_text">Tapio i wneud Loki Messenger eich ap SMS.</string>
+  <string name="reminder_header_sms_default_text">Tapio i wneud Session eich ap SMS.</string>
   <string name="reminder_header_sms_import_title">Mewnforio SMS y system</string>
-  <string name="reminder_header_sms_import_text">Tapio i gopïo negeseuon SMS eich ffôn i gronfa ddata amgryptio Loki Messenger.</string>
-  <string name="reminder_header_push_title">Galluogi negeseuon a galwadau Loki Messenger</string>
+  <string name="reminder_header_sms_import_text">Tapio i gopïo negeseuon SMS eich ffôn i gronfa ddata amgryptio Session.</string>
+  <string name="reminder_header_push_title">Galluogi negeseuon a galwadau Session</string>
   <string name="reminder_header_push_text">Diweddarwch eich profiad cyfathrebu.</string>
-  <string name="reminder_header_invite_title">Gwahodd i Loki Messenger</string>
+  <string name="reminder_header_invite_title">Gwahodd i Session</string>
   <string name="reminder_header_invite_text">Cymerwch eich sgwrs gyda %1$s i\'r lefel nesaf.</string>
   <string name="reminder_header_share_title">Gwahoddwch eich ffrindiau!</string>
-  <string name="reminder_header_share_text">Gorau po fwyaf o ffrindiau sy\'n defnyddio Loki Messenger</string>
-  <string name="reminder_header_service_outage_text">Mae Loki Messenger yn profi anawsterau technegol. Rydym yn gweithio\'n galed i adfer y gwasanaeth cyn gynted ā phosib.</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">Ni fydd y nodwedd diweddaraf yn Signal yn gweithio gyda\'r fersiwn yma o Android. Diweddarwch y ddyfais i dderbyn diweddariadau Loki Messenger y dyfodol.</string>
+  <string name="reminder_header_share_text">Gorau po fwyaf o ffrindiau sy\'n defnyddio Session</string>
+  <string name="reminder_header_service_outage_text">Mae Session yn profi anawsterau technegol. Rydym yn gweithio\'n galed i adfer y gwasanaeth cyn gynted ā phosib.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">Ni fydd y nodwedd diweddaraf yn Signal yn gweithio gyda\'r fersiwn yma o Android. Diweddarwch y ddyfais i dderbyn diweddariadau Session y dyfodol.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Cadw</string>
   <string name="media_preview__forward_title">Ymlaen</string>
@@ -1269,16 +1269,16 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationListFragment_loading">Llwytho...</string>
   <string name="CallNotificationBuilder_connecting">Wrthi\'n cysylltu...</string>
   <string name="Permissions_permission_required">Angen caniatâd</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Mae ar Loki Messenger angen caniatâd Camera er mwyn anfon SMS, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "SMS".</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Mae ar Session angen caniatâd Camera er mwyn anfon SMS, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "SMS".</string>
   <string name="Permissions_continue">Parhau</string>
   <string name="Permissions_not_now">Nid nawr</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Mae ar Loki Messenger angen caniatâd Cysylltiadau er mwyn chwilio eich cysylltiadau, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Cysylltiadau".</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Mae ar Session angen caniatâd Cysylltiadau er mwyn chwilio eich cysylltiadau, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Cysylltiadau".</string>
   <string name="conversation_activity__enable_signal_messages">GALLUOGI NEGESEUON SIGNAL</string>
-  <string name="SQLCipherMigrationHelper_migrating_signal_database">Mudo cronfa ddata Loki Messenger</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Mudo cronfa ddata Session</string>
   <string name="PushDecryptJob_new_locked_message">Neges wedi\'i gloi newydd</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Datgloi i weld negeseuon sy\'n aros</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Datgloi i gwblhau\'r diweddariad</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Datgloi Loki Messenger i gwblhau\'r diweddariad</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Datgloi Session i gwblhau\'r diweddariad</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Cyfrinymadrodd cadw wrth gefn</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Bydd copïau wrth gefn yn cael eu cadw i storfa allanol ac wedi\'u hamgryptio gyda\'r cyfrinymadrodd isod. Rhaid i chi fod â\'r cyfrinymadrodd hwn er mwyn adfer y copi wrth gefn.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Rwy wedi ysgrifennu\'r cyfrinymadrodd hwn i lawr. Hebddo, fydda i ddim yn gallu adfer copi wrth gefn.</string>
@@ -1290,7 +1290,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences_chats__create_backup">Creu copi wrth gefn</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Rhoi\'r cyfrinymadrodd wrth gefn</string>
   <string name="RegistrationActivity_restore">Adfer</string>
-  <string name="RegistrationActivity_backup_failure_downgrade">Methu mewnforio o fersiynau mwy diweddar o Loki Messenger</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Methu mewnforio o fersiynau mwy diweddar o Session</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Cyfrinymadrodd wrth gefn anghywir</string>
   <string name="RegistrationActivity_checking">Gwirio...</string>
   <string name="RegistrationActivity_d_messages_so_far">%d neges hyd yn hyn</string>
@@ -1305,7 +1305,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Analluogi a dileu\'r copïau wrth gefn lleol?</string>
   <string name="BackupDialog_delete_backups_statement">Dileu copïau wrth gefn</string>
   <string name="BackupDialog_copied_to_clipboard">Wedi\'i gopïo i\'r clipfwrdd</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Mae ar Loki Messenger angen caniatâd storio allanol er mwyn creu copïau wrth gefn, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Storio".</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Mae ar Session angen caniatâd storio allanol er mwyn creu copïau wrth gefn, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Storio".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Copi wrth gefn diwethaf %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Cynnydd</string>
   <string name="LocalBackupJob_creating_backup">Creu copi wrth gefn ...</string>
@@ -1316,7 +1316,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="BackupUtil_never">Byth</string>
   <string name="BackupUtil_unknown">Anhysbys</string>
   <string name="preferences_app_protection__screen_lock">Clo sgrin</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Cloi mynediad i Loki Messenger gyda chlo sgrin neu ôl bysedd Android</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Cloi mynediad i Session gyda chlo sgrin neu ôl bysedd Android</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Amserlen segur clo sgrin</string>
   <string name="AppProtectionPreferenceFragment_none">Dim</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Nid yw\'r Clo Cofrestru PIN  yr un fath â\'r cod dilysu SMS rydych newydd ei dderbyn. Rhowch y PIN a ffurfiwyd gennych yn flaenorol yr ap .</string>
@@ -1327,7 +1327,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="registration_lock_dialog_view__confirm_pin">Cadarnhau PIN</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Rhowch eich PIN Clo Cofrestru</string>
   <string name="registration_lock_reminder_view__enter_pin">Rhoi\'r PIN</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Galluogi PIN Clo Cofrestru a fydd yn ofynnol i gofrestru\'r rhif ffôn hwn gyda Loki Messenger eto.</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Galluogi PIN Clo Cofrestru a fydd yn ofynnol i gofrestru\'r rhif ffôn hwn gyda Session eto.</string>
   <string name="preferences_app_protection__registration_lock_pin">PIN Clo Cofrestru</string>
   <string name="preferences_app_protection__registration_lock">Clo Cofrestru</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Rhaid i chi nodi\'ch PIN Clo Cofrestru</string>
@@ -1336,13 +1336,13 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Rydych wedi gwneud gormod o geisiadau PIN Clo Cofrestru anghywir. Ceisiwch eto ymhen diwrnod.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Gwall wrth gysylltu â gwasanaeth</string>
   <string name="RegistrationActivity_oh_no">O na!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Bydd cofrestru\'r rhif ffôn hwn yn bosibl heb eich PIN Clo Cofrestru ar ôl i 7 diwrnod fynd heibio ers i\'r rhif ffôn hwn fod yn weithredol ddiwethaf ar Loki Messenger. Mae gennych %d diwrnod ar ôl.</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Bydd cofrestru\'r rhif ffôn hwn yn bosibl heb eich PIN Clo Cofrestru ar ôl i 7 diwrnod fynd heibio ers i\'r rhif ffôn hwn fod yn weithredol ddiwethaf ar Session. Mae gennych %d diwrnod ar ôl.</string>
   <string name="RegistrationActivity_registration_lock_pin">PIN Clo Cofrestru</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Mae gan y rhif ffôn hwn Glo Cofrestru wedi ei alluogi. Rhowch PIN y Clo Cofrestru.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Mae Clo Cofrestru wedi\'i alluogi ar gyfer eich rhif ffôn. Er mwyn eich helpu i gofio\'ch PIN Clo Cofrestru, bydd Loki Messenger yn gofyn i chi gadarnhau hynny o bryd i\'w gilydd.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Mae Clo Cofrestru wedi\'i alluogi ar gyfer eich rhif ffôn. Er mwyn eich helpu i gofio\'ch PIN Clo Cofrestru, bydd Session yn gofyn i chi gadarnhau hynny o bryd i\'w gilydd.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Wedi anghofio fy PIN</string>
   <string name="RegistrationLockDialog_forgotten_pin">PIN wedi\'i anghofio?</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Mae Clo Cofrestru yn helpu i ddiogelu eich rhif ffôn rhag ymdrechion cofrestru heb awdurdod. Gall y nodwedd hon gael ei analluogi ar unrhyw adeg yng ngosodiadau preifatrwydd Loki Messenger</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Mae Clo Cofrestru yn helpu i ddiogelu eich rhif ffôn rhag ymdrechion cofrestru heb awdurdod. Gall y nodwedd hon gael ei analluogi ar unrhyw adeg yng ngosodiadau preifatrwydd Session</string>
   <string name="RegistrationLockDialog_registration_lock">Clo Cofrestru</string>
   <string name="RegistrationLockDialog_enable">Galluogi</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">Rhaid i\'r Clo Cofrestru PIN fod o leiaf 4 digid.</string>
@@ -1351,7 +1351,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Analluogi PIN Cofrestru Clo?</string>
   <string name="RegistrationLockDialog_disable">Analluogi</string>
   <string name="preferences_chats__backups">Copïau wrth gefn</string>
-  <string name="prompt_passphrase_activity__signal_is_locked">Mae Loki Messenger wedi\'i gloi</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Mae Session wedi\'i gloi</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TAPIO I DDATGLOI</string>
   <string name="RegistrationLockDialog_reminder">Atgoffa:</string>
   <string name="recipient_preferences__about">Ynghylch</string>

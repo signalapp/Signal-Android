@@ -28,7 +28,6 @@ import org.signal.libsignal.metadata.ProtocolNoSessionException;
 import org.signal.libsignal.metadata.ProtocolUntrustedIdentityException;
 import org.signal.libsignal.metadata.SelfSendException;
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
@@ -69,12 +68,13 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.FriendRequestHandler;
-import org.thoughtcrime.securesms.loki.LokiAPIUtilities;
+import org.thoughtcrime.securesms.loki.redesign.messaging.LokiAPIUtilities;
 import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.LokiPreKeyBundleDatabase;
 import org.thoughtcrime.securesms.loki.LokiPreKeyRecordDatabase;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
+import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
@@ -259,7 +259,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
                                                                          .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                                                                          .setContentTitle(context.getString(R.string.PushDecryptJob_new_locked_message))
                                                                          .setContentText(context.getString(R.string.PushDecryptJob_unlock_to_view_pending_messages))
-                                                                         .setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, ConversationListActivity.class), 0))
+                                                                         .setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, HomeActivity.class), 0))
                                                                          .setDefaults(NotificationCompat.DEFAULT_SOUND | NotificationCompat.DEFAULT_VIBRATE)
                                                                          .build());
 
@@ -281,7 +281,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
       // Loki - Ignore any friend requests that we got before restoration
       if (envelope.isFriendRequest() && envelope.getTimestamp() < TextSecurePreferences.getRestorationTime(context)) {
-        Log.i(TAG, "Ignoring friend request that was received before restoration");
+        Log.d("Loki", "Ignoring friend request received before restoration.");
         return;
       }
 
@@ -341,8 +341,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
             MultiDeviceUtilities.checkForRevocation(context);
           }
         } else {
-          // Loki - We shouldn't process session restore message any further
+          // Loki - Don't process session restore message any further
           if (message.isSessionRestore() || message.isSessionRequest()) { return; }
+
           if (message.isEndSession()) handleEndSessionMessage(content, smsMessageId);
           else if (message.isGroupUpdate()) handleGroupMessage(content, message, smsMessageId);
           else if (message.isExpirationUpdate())
@@ -1062,8 +1063,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
       if (smsMessageId.isPresent()) database.deleteMessage(smsMessageId.get());
 
-      boolean isGroupMessage = message.getGroupInfo().isPresent();
-      if (threadId != null && !isGroupMessage) {
+      if (threadId != null) {
         MessageNotifier.updateNotification(context, threadId);
       }
 
@@ -1204,18 +1204,18 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
         LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
 
-        // Store the latest PreKeyBundle
+        // Loki - Store the latest pre key bundle
         if (registrationID > 0) {
           Log.d("Loki", "Received a pre key bundle from: " + content.getSender() + ".");
           PreKeyBundle preKeyBundle = lokiMessage.getPreKeyBundleMessage().getPreKeyBundle(registrationID);
           lokiPreKeyBundleDatabase.setPreKeyBundle(content.getSender(), preKeyBundle);
 
-          // If we got a friend request and we were friends with this user then we need to reset our session
+          // Loki - If we received a friend request, but we were already friends with this user, then reset the session
           if (envelope.isFriendRequest()) {
             long threadID = threadDatabase.getThreadIdIfExistsFor(sender);
             if (lokiThreadDatabase.getFriendRequestStatus(threadID) == LokiThreadFriendRequestStatus.FRIENDS) {
               resetSession(content.getSender(), threadID);
-              // Let our other devices know that we have reset session
+              // Let our other devices know that we have reset the session
               MessageSender.syncContact(context, sender.getAddress());
             }
           }
@@ -1409,13 +1409,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
       Recipient recipient = Recipient.from(context, Address.fromSerialized(sender), false);
       long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(recipient);
-      if (threadID < 0) {
-        return null;
-      }
+      if (threadID < 0) { return null; }
       int messageCount = smsDatabase.getMessageCountForThread(threadID);
-      if (messageCount <= 0) {
-        return null;
-      }
+      if (messageCount <= 0) { return null; }
       long lastMessageID = smsDatabase.getIDForMessageAtIndex(threadID, messageCount - 1);
       return smsDatabase.getMessage(lastMessageID);
     } catch (Exception e) {
@@ -1792,7 +1788,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       }
       return Recipient.from(context, Address.fromSerialized(publicKey), false);
     } catch (Exception e) {
-      Log.d("Loki", "Failed to get primary device public key for message. " + e.getMessage());
+      Log.d("Loki", "Failed to get primary device public key for " + pubKey + ". " + e.getMessage());
       return Recipient.from(context, Address.fromSerialized(pubKey), false);
     }
   }

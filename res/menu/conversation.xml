@@ -8,7 +8,6 @@
     <!-- <item android:title="@string/conversation__menu_conversation_settings"
           android:id="@+id/menu_conversation_settings"/> -->
 
-
     <item android:title="@string/SearchToolbar_search"
           android:id="@+id/menu_search"
           app:actionViewClass="android.support.v7.widget.SearchView"

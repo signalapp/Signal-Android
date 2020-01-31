@@ -9,22 +9,30 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import network.loki.messenger.R;
-import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.loki.redesign.views.ProfilePictureView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.whispersystems.signalservice.loki.api.LokiAPI;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
+import network.loki.messenger.R;
 
 public class ContactSelectionListItem extends LinearLayout implements RecipientModifiedListener {
 
   @SuppressWarnings("unused")
   private static final String TAG = ContactSelectionListItem.class.getSimpleName();
 
-  private AvatarImageView contactPhotoImage;
+  private ProfilePictureView profilePictureView;
   private TextView        numberView;
   private TextView        nameView;
   private TextView        labelView;
@@ -33,6 +41,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientM
   private String        number;
   private Recipient     recipient;
   private GlideRequests glideRequests;
+  private long          threadID;
 
   public ContactSelectionListItem(Context context) {
     super(context);
@@ -45,7 +54,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientM
   @Override
   protected void onFinishInflate() {
     super.onFinishInflate();
-    this.contactPhotoImage = findViewById(R.id.contact_photo_image);
+    this.profilePictureView = findViewById(R.id.profilePictureView);
     this.numberView        = findViewById(R.id.number);
     this.labelView         = findViewById(R.id.label);
     this.nameView          = findViewById(R.id.name);
@@ -60,7 +69,6 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientM
 
     if (type == ContactsDatabase.NEW_TYPE) {
       this.recipient = null;
-      this.contactPhotoImage.setAvatar(glideRequests, Recipient.from(getContext(), Address.UNKNOWN, true), false);
     } else if (!TextUtils.isEmpty(number)) {
       Address address = Address.fromExternal(getContext(), number);
       this.recipient = Recipient.from(getContext(), address, true);
@@ -71,9 +79,10 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientM
       }
     }
 
-    this.nameView.setTextColor(color);
+    threadID = DatabaseFactory.getThreadDatabase(getContext()).getThreadIdFor(recipient);
+
     this.numberView.setTextColor(color);
-    this.contactPhotoImage.setAvatar(glideRequests, recipient, false);
+    updateProfilePicture(glideRequests, name, threadID);
 
     if (!multiSelect && recipient != null && recipient.isLocalNumber()) {
       name = getContext().getString(R.string.note_to_self);
@@ -94,8 +103,6 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientM
       recipient.removeListener(this);
       recipient = null;
     }
-
-    contactPhotoImage.clear(glideRequests);
   }
 
   private void setText(int type, String name, String number, String label) {
@@ -125,9 +132,30 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientM
   public void onModified(final Recipient recipient) {
     if (this.recipient == recipient) {
       Util.runOnMain(() -> {
-        contactPhotoImage.setAvatar(glideRequests, recipient, false);
+        threadID = DatabaseFactory.getThreadDatabase(getContext()).getThreadIdFor(recipient);
+        updateProfilePicture(glideRequests, recipient.getName(), threadID);
         nameView.setText(recipient.toShortString());
       });
     }
+  }
+
+  private void updateProfilePicture(GlideRequests glide, String name, long threadID) {
+    if (this.recipient.isGroupRecipient()) {
+      Set<String> usersAsSet = LokiAPI.Companion.getUserHexEncodedPublicKeyCache().get(threadID);
+      if (usersAsSet == null) {
+        usersAsSet = new HashSet<>();
+      }
+      ArrayList<String> users = new ArrayList<>(usersAsSet);
+      Collections.sort(users); // Sort to provide a level of stability
+      profilePictureView.setHexEncodedPublicKey(users.size() > 0 ? users.get(0) : "");
+      profilePictureView.setAdditionalHexEncodedPublicKey(users.size() > 1 ? users.get(1) : "");
+      profilePictureView.setRSSFeed(name.equals("Loki News") || name.equals("Loki Messenger Updates"));
+    } else {
+      profilePictureView.setHexEncodedPublicKey(this.number);
+      profilePictureView.setAdditionalHexEncodedPublicKey(null);
+      profilePictureView.setRSSFeed(false);
+    }
+    profilePictureView.glide = glide;
+    profilePictureView.update();
   }
 }

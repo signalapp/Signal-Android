@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Loki Messenger</string>
+  <string name="app_name">Session</string>
   <string name="yes">Da</string>
   <string name="no">Ne</string>
   <string name="delete">Obriši</string>
@@ -27,17 +27,17 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Obriši</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Onemogući lozinku?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Trajno ćete otključati Loki Messenger i obavijesti o porukama.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Trajno ćete otključati Session i obavijesti o porukama.</string>
   <string name="ApplicationPreferencesActivity_disable">Onemogući</string>
   <string name="ApplicationPreferencesActivity_unregistering">Uklanjanje registracije</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Uklanjanje registracije na Loki Messenger poruke i pozive...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Onemogući Loki Messenger poruke i pozive?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Onemogućite Loki Messenger poruke i pozive tako što će ukloniti registraciju s poslužitelja. Trebat ćete ponovno registrirati vaš broj telefona kako biste ih koristili u budućnosti.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Uklanjanje registracije na Session poruke i pozive...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Onemogući Session poruke i pozive?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Onemogućite Session poruke i pozive tako što će ukloniti registraciju s poslužitelja. Trebat ćete ponovno registrirati vaš broj telefona kako biste ih koristili u budućnosti.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Greška prilikom povezivanja na poslužitelj!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS omogućen</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Pritisnite za promjenu zadane SMS aplikacije</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS onemogućen</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Pritisnite kako biste postavili Loki Messenger kao zadanu SMS aplikaciju</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Pritisnite kako biste postavili Session kao zadanu SMS aplikaciju</string>
   <string name="ApplicationPreferencesActivity_on">uključeno</string>
   <string name="ApplicationPreferencesActivity_On">Uključeno</string>
   <string name="ApplicationPreferencesActivity_off">isključeno</string>
@@ -59,10 +59,10 @@
   <string name="DraftDatabase_Draft_quote_snippet">(odgovor)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nije moguće pronaći aplikaciju za odabir medija.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Loki Messenger zahtijeva dozvolu pristupa Pohrani podataka za umetanje slikovnih i audio-vizualnih priloga ali zahtjev biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Pohrana\".</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Loki Messenger zahtijeva dozvolu pristupa Kontaktima za prilaganje informacije o kontaktima ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Kontakti\".</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Loki Messenger zahtijeva dozvolu pristupa Lokaciji za prilaganje informacije o vašoj lokaciji ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Lokacija\".</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Loki Messenger zahtijeva dozvolu pristupa Kameri za omogućavanje slikanja ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Kamera\".</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Session zahtijeva dozvolu pristupa Pohrani podataka za umetanje slikovnih i audio-vizualnih priloga ali zahtjev biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Pohrana\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Session zahtijeva dozvolu pristupa Kontaktima za prilaganje informacije o kontaktima ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Kontakti\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Session zahtijeva dozvolu pristupa Lokaciji za prilaganje informacije o vašoj lokaciji ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Lokacija\".</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Session zahtijeva dozvolu pristupa Kameri za omogućavanje slikanja ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Kamera\".</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Greška prilikom reprodukcije zvuka!</string>
   <!--BlockedContactsActivity-->
@@ -82,7 +82,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Web pretraživać nije pronađen.</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Vaš sigurnosni broj za %1$s je izmjenjen. Ovo može značiti da netko pokušava presresti vašu komunikaciju ili da je %2$s jednostavno ponovno instalirao Loki Messenger.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Vaš sigurnosni broj za %1$s je izmjenjen. Ovo može značiti da netko pokušava presresti vašu komunikaciju ili da je %2$s jednostavno ponovno instalirao Session.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Možda biste trebali provjeriti sigurnosni broj za ovaj kontakt.</string>
   <string name="ConfirmIdentityDialog_accept">Prihvati</string>
   <!--ContactsCursorLoader-->
@@ -91,7 +91,7 @@
   <string name="ContactsCursorLoader_groups">Grupe</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Poruka %s</string>
-  <string name="ContactsDatabase_signal_call_s">Loki Messenger poziv %s</string>
+  <string name="ContactsDatabase_signal_call_s">Session poziv %s</string>
   <!--ContactNameEditActivity-->
   <string name="ContactNameEditActivity_given_name">Ime</string>
   <string name="ContactNameEditActivity_family_name">Prezime</string>
@@ -111,7 +111,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">Slanje neuspješno, pritisnite za nesigurnu rezervu</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Nekriptirani SMS kao rezerva?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Nekriptirani MMS kao rezerva?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ova poruka <b>neće</b> biti kriptirana zato što primatelj nije više Loki Messenger korisnik.\n\nPošalji nesigurnu poruku?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ova poruka <b>neće</b> biti kriptirana zato što primatelj nije više Session korisnik.\n\nPošalji nesigurnu poruku?</string>
   <string name="ConversationItem_unable_to_open_media">Nije moguće pronaći aplikaciju za otvaranje ovog medija.</string>
   <string name="ConversationItem_copied_text">Kopirano %s</string>
   <string name="ConversationItem_from_s">od %s</string>
@@ -138,8 +138,8 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Jeste li sigurni da želite napustiti ovu grupu?</string>
   <string name="ConversationActivity_transport_insecure_sms">Nesigurni SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nesigurni MMS</string>
-  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Prebaci se na Loki Messenger %1$s</string>
+  <string name="ConversationActivity_transport_signal">Session</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Prebaci se na Session %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Koristi ovo za razgovor: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Greška pri napuštanju grupe</string>
   <string name="ConversationActivity_specify_recipient">Odaberite kontakt</string>
@@ -152,15 +152,15 @@
   <string name="ConversationActivity_quick_camera_unavailable">Kamera nije dostupna</string>
   <string name="ConversationActivity_unable_to_record_audio">Nije moguće snimati svuk!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Na vašem uređaju ne postoji aplikacija koja bi rukovala ovom poveznicom.</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Kako biste poslali audio poruku, dozvolite Loki Messengeru pristup vašem mikrofonu.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Loki Messenger zahtijeva dozvolu pristupa Mikrofonu za slanje zvučnih poruka ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Mikrofon\".</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Kako biste nazvali %s, Loki Messenger treba pristup vašem mikrofonu i kameri.</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Loki Messenger zahtijeva pristup Mikrofonu i Kameri za pozivanje %s ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Mikrofon\" i \"Kamera\".</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Kako biste snimili slike i video, dozvolite Loki Messengeru pristup kameri.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Loki Messenger zahtijeva dozvolu Kameri za fotografiranje ili snimanje videa, ali pristup biva odbijen. Molim nastavite s postavkama aplikacije, odaberite \"Dozvole\" i omogućite \"Kamera\". </string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Loki Messenger treba pristup kameri kako bi snimio slike ili video.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Kako biste poslali audio poruku, dozvolite Sessionu pristup vašem mikrofonu.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session zahtijeva dozvolu pristupa Mikrofonu za slanje zvučnih poruka ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Mikrofon\".</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Kako biste nazvali %s, Session treba pristup vašem mikrofonu i kameri.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Session zahtijeva pristup Mikrofonu i Kameri za pozivanje %s ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Mikrofon\" i \"Kamera\".</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Kako biste snimili slike i video, dozvolite Sessionu pristup kameri.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Session zahtijeva dozvolu Kameri za fotografiranje ili snimanje videa, ali pristup biva odbijen. Molim nastavite s postavkama aplikacije, odaberite \"Dozvole\" i omogućite \"Kamera\". </string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session treba pristup kameri kako bi snimio slike ili video.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
-  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Loki Messenger ne može poslati SMS/MMS poruke jer nije označen kao vaša uobičajena SMS aplikacija. Želite li promijeniti ovu stavku u Android postavkama?</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Session ne može poslati SMS/MMS poruke jer nije označen kao vaša uobičajena SMS aplikacija. Želite li promijeniti ovu stavku u Android postavkama?</string>
   <string name="ConversationActivity_yes">Da</string>
   <string name="ConversationActivity_no">Ne</string>
   <string name="ConversationActivity_search_position">%1$d od %2$d</string>
@@ -205,7 +205,7 @@
     <item quantity="other">Spremanje %1$d privitaka na disk...</item>
   </plurals>
   <string name="ConversationFragment_pending">U toku...</string>
-  <string name="ConversationFragment_push">Podaci (Loki Messenger)</string>
+  <string name="ConversationFragment_push">Podaci (Session)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Brisanje</string>
@@ -251,7 +251,7 @@
   <string name="CreateProfileActivity_too_long">Predugo</string>
   <string name="CreateProfileActivity_profile_name">Ime profila</string>
   <string name="CreateProfileActivity_set_up_your_profile">Postavite vaš profil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal profili su zaštićeni s kraja na kraj, te Loki Messenger servis nikada nema pristup tim informacijama.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal profili su zaštićeni s kraja na kraj, te Session servis nikada nema pristup tim informacijama.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Koristeći prilagođeno: %s</string>
   <string name="CustomDefaultPreference_using_default">Koristeći zadano: %s</string>
@@ -283,22 +283,22 @@
   <string name="DocumentView_unknown_file">Nepoznata datoteka</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimiziraj za nedostatak Play Services</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Ovaj uređaj ne podržava Play Services. Pritisnite kako biste onemogućili sistemsku optimizaciju baterije koja spriječava Loki Messenger da dohvaća poruke dok je uređaj neaktivan.</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Ovaj uređaj ne podržava Play Services. Pritisnite kako biste onemogućili sistemsku optimizaciju baterije koja spriječava Session da dohvaća poruke dok je uređaj neaktivan.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Podijeli s</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Dobro došli u Loki Messenger.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure i RedPhone su sada jedan privatni način komunikacije za svaku situaciju: Loki Messenger.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Dobro došli u Loki Messenger!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure je sada Loki Messenger.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure i RedPhone su sada jedna aplikacija: Loki Messenger. Pritisnite za pregled.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Dobro došli u Session.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure i RedPhone su sada jedan privatni način komunikacije za svaku situaciju: Session.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Dobro došli u Session!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure je sada Session.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure i RedPhone su sada jedna aplikacija: Session. Pritisnite za pregled.</string>
   <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Pozdravite sigurne video pozive.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal sada podržava sigurne video pozive. Samo započnite Loki Messenger poziv kao i inače, pritisnite video tipku, i mahnite sugovorniku.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Loki Messenger sada podržava sigurne video pozive.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Loki Messenger sada podržava sigurne video pozive. Pritisnite kako biste istražili.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal sada podržava sigurne video pozive. Samo započnite Session poziv kao i inače, pritisnite video tipku, i mahnite sugovorniku.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Session sada podržava sigurne video pozive.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Session sada podržava sigurne video pozive. Pritisnite kako biste istražili.</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Spremni za snimku izbliza?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Sada možete podijeliti profilnu sliku i ime s prijateljima na Loki Messengeru</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Loki Messenger profili su stigli</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Sada možete podijeliti profilnu sliku i ime s prijateljima na Sessionu</string>
+  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Session profili su stigli</string>
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Predstavljamo pokazatelja tipkanja.</string>
   <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Želite li ih omogućiti sada?</string>
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Omogući pokazitelje tipkanja</string>
@@ -307,8 +307,8 @@
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Dobavljam poruku....</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trajna greška u Loki Messenger komunikaciji!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal se nije uspješno registrirao na Google Play Services. Loki Messenger poruke i pozivi su onemogućeni, pokušajte se ponovno registrirati kroz Postavke &gt; Napredno.</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trajna greška u Session komunikaciji!</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal se nije uspješno registrirao na Google Play Services. Session poruke i pozivi su onemogućeni, pokušajte se ponovno registrirati kroz Postavke &gt; Napredno.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Greška pri dohvaćanju GIFa pune rezolucije</string>
   <!--GiphyFragmentPageAdapter-->
@@ -319,15 +319,15 @@
   <string name="GroupCreateActivity_actionbar_edit_title">Uredi grupu</string>
   <string name="GroupCreateActivity_group_name_hint">Naziv grupe</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nova MMS grupa</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Odabrali ste kontakt koji ne podržava Loki Messenger grupe, tako da će ovo biti MMS grupa.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Niste registrirani za Signal poruke i pozive, tako da su Loki Messenger grupe onemogućene. Pokušajte se ponovno registrirati u Postavke &gt; Napredno.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Odabrali ste kontakt koji ne podržava Session grupe, tako da će ovo biti MMS grupa.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Niste registrirani za Signal poruke i pozive, tako da su Session grupe onemogućene. Pokušajte se ponovno registrirati u Postavke &gt; Napredno.</string>
   <string name="GroupCreateActivity_contacts_no_members">Potrebna je barem jedna osoba u vašoj grupi!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Jedan od članova vaše grupe ima broj koji ne može biti ispravno pročitan. Ispravite ili uklonite taj kontakt i pokušajte ponovno.</string>
   <string name="GroupCreateActivity_avatar_content_description">Grupni avatar</string>
   <string name="GroupCreateActivity_menu_apply_button">Primjeni</string>
   <string name="GroupCreateActivity_creating_group">Stvaranje %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Ažuriranje %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nije moguće dodati %1$s jer nisu Loki Messenger korisnici.</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nije moguće dodati %1$s jer nisu Session korisnici.</string>
   <string name="GroupCreateActivity_loading_group_details">Učitavanje detalja grupe...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Već ste u grupi.</string>
   <!--GroupShareProfileView-->
@@ -348,7 +348,7 @@
   <string name="InviteActivity_sending">Slanje...</string>
   <string name="InviteActivity_heart_content_description">Srce</string>
   <string name="InviteActivity_invitations_sent">Pozivnice poslane!</string>
-  <string name="InviteActivity_invite_to_signal">Pozovi u Loki Messenger</string>
+  <string name="InviteActivity_invite_to_signal">Pozovi u Session</string>
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">POŠALJI SMS %dPRIJATELJU</item>
     <item quantity="few">POŠALJI SMS %dPRIJATELJA</item>
@@ -359,7 +359,7 @@
     <item quantity="few">Pošalji %dSMS pozivnice?</item>
     <item quantity="other">Pošalji %dSMS pozivnica?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Prebacimo se na Loki Messenger %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Prebacimo se na Session %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Izgleda da nemate aplikacije s kojima je moguće dijeljenje.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Prijatelji paze da se njihovi prijatelji kriptirano dopisuju.</string>
   <!--Job-->
@@ -372,7 +372,7 @@
   <string name="LongMessageActivity_message_from_s">Poruka od %1$s</string>
   <string name="LongMessageActivity_your_message">Vaša poruka</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Loki Messenger</string>
+  <string name="MessageRetrievalService_signal">Session</string>
   <string name="MessageRetrievalService_background_connection_enabled">Pozadinska veza omogućena</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Greška pri čitanju MMS postavki od operatera</string>
@@ -394,9 +394,9 @@
   <string name="MediaOverviewActivity_Select_all">Odaberi sve</string>
   <string name="MediaOverviewActivity_collecting_attachments">Prikupljanje privitaka...</string>
   <!--- NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">Loki Messenger poziv u tijeku</string>
-  <string name="NotificationBarManager__establishing_signal_call">Uspostavljanje Loki Messenger poziva</string>
-  <string name="NotificationBarManager__incoming_signal_call">Dolazni Loki Messenger poziv</string>
+  <string name="NotificationBarManager_signal_call_in_progress">Session poziv u tijeku</string>
+  <string name="NotificationBarManager__establishing_signal_call">Uspostavljanje Session poziva</string>
+  <string name="NotificationBarManager__incoming_signal_call">Dolazni Session poziv</string>
   <string name="NotificationBarManager__deny_call">Odbij poziv</string>
   <string name="NotificationBarManager__answer_call">Prihvati poziv</string>
   <string name="NotificationBarManager__end_call">Završi poziv</string>
@@ -419,7 +419,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Svi mediji</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Primljena je poruka kriptirana starom inačicom Loki Messenger aplikacije koja više nije podržana. Molimo zapitajte pošiljatelja da ažurira na najnoviju inačicu aplikacije i ponovno pošalje poruku.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Primljena je poruka kriptirana starom inačicom Session aplikacije koja više nije podržana. Molimo zapitajte pošiljatelja da ažurira na najnoviju inačicu aplikacije i ponovno pošalje poruku.</string>
   <string name="MessageRecord_left_group">Napustili ste grupu.</string>
   <string name="MessageRecord_you_updated_group">Ažurirali ste grupu.</string>
   <string name="MessageRecord_you_called">Zvali ste</string>
@@ -428,7 +428,7 @@
   <string name="MessageRecord_s_called_you">%s vas je zvao</string>
   <string name="MessageRecord_called_s">Nazvao %s</string>
   <string name="MessageRecord_missed_call_from">Propušteni poziv od %s</string>
-  <string name="MessageRecord_s_joined_signal">%s je dostupan na Loki Messengeru!</string>
+  <string name="MessageRecord_s_joined_signal">%s je dostupan na Sessionu!</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Vaš sigurnosni broj s %s je izmjenjen.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Označili ste vaš sigurnosni broj s %s provjerenim</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Označili ste s drugog uređaja vaš sigurnosni broj s %s provjerenim</string>
@@ -455,9 +455,9 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">Neispravan QR kod.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Imate previše registriranih uređaja, pokušajte ukloniti neke</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Žao nam je, ovo nije važeći QR kôd za povezivanje uređaja.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Poveži Loki Messenger uređaj?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Izgleda da pokušavate povezati Signal uređaj pomoću strane aplikacije. Za Vašu vlastitu sigurnost molimo skenirajte kôd ponovno unutar Loki Messenger aplikacije.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Loki Messenger zahtijeva pristup Kameri za skeniranje QR koda ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Kamera\".</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Poveži Session uređaj?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Izgleda da pokušavate povezati Signal uređaj pomoću strane aplikacije. Za Vašu vlastitu sigurnost molimo skenirajte kôd ponovno unutar Session aplikacije.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Session zahtijeva pristup Kameri za skeniranje QR koda ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Kamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Nemoguće je skenirati QR kod bez dozvole pristupa Kameri.</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Nestajuće poruke</string>
@@ -465,7 +465,7 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Primljene i poslane poruke u ovom razgovoru će nestati %s nakon što su viđene.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Unesite lozinku</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Loki Messenger ikona</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Session ikona</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Pošaljite lozinku</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Neispravna lozinka!</string>
   <!--PlayServicesProblemFragment-->
@@ -517,7 +517,7 @@ telefona</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Broj koji ste unijeli
 (%s) je neispravan.</string>
   <string name="RegistrationActivity_missing_google_play_services">Google Play Services nije dostupan</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Na ovom uređaju Google Play Services nisu dostupne. I dalje možete koristiti Loki Messenger, ali ovo može rezultirati umanjenim performansama i pouzdanosti u radu.\n\nUkoliko niste napredni korisnik, ne koristite prilagođeni Android sustav ili mislite da vam se ovo upozorenje pojavljuje greškom, kontaktirajte support@signal.org kako bismo vam pokušali pomoći.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Na ovom uređaju Google Play Services nisu dostupne. I dalje možete koristiti Session, ali ovo može rezultirati umanjenim performansama i pouzdanosti u radu.\n\nUkoliko niste napredni korisnik, ne koristite prilagođeni Android sustav ili mislite da vam se ovo upozorenje pojavljuje greškom, kontaktirajte support@signal.org kako bismo vam pokušali pomoći.</string>
   <string name="RegistrationActivity_i_understand">Razumijem</string>
   <string name="RegistrationActivity_play_services_error">Play Services greška</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services se trenutno ažurira ili je nedostupno. Pokušajte ponovno kasnije.</string>
@@ -525,9 +525,9 @@ telefona</string>
   <string name="RegistrationActivity_no_browser">Nije moguće otvoriti poveznicu. Web preglednik nije pronađen.</string>
   <string name="RegistrationActivity_more_information">Više informacija</string>
   <string name="RegistrationActivity_less_information">Manje informacija</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Loki Messenger treba pristup vašim kontaktima i medijima da biste se  mogli konektirati  s prijateljima, razmjenjivati poruke, i obavljati zaštićene pozive</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Session treba pristup vašim kontaktima i medijima da biste se  mogli konektirati  s prijateljima, razmjenjivati poruke, i obavljati zaštićene pozive</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nije se moguće povezati na servis. Provjerite svoju mrežnu konekciju i pokušajte ponovo.</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Da biste lako mogli  potvrditi svoj telefonski broj, Signal može automatski da otkrije vaš verifikacijski kôd ako dozvolite Loki Messenger-u da prikaže SMS poruke.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Da biste lako mogli  potvrditi svoj telefonski broj, Signal može automatski da otkrije vaš verifikacijski kôd ako dozvolite Session-u da prikaže SMS poruke.</string>
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Moramo potvrditi da ste osoba.</string>
   <string name="RegistrationActivity_next">Sljedeće</string>
   <string name="RegistrationActivity_continue">Nastavi</string>
@@ -544,11 +544,11 @@ telefona</string>
   <string name="SearchFragment_header_messages">Poruke</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Dodaj u kontakte</string>
-  <string name="SharedContactDetailsActivity_invite_to_signal">Pozovi u Loki Messenger</string>
-  <string name="SharedContactDetailsActivity_signal_call">Loki Messenger poziv</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Pozovi u Session</string>
+  <string name="SharedContactDetailsActivity_signal_call">Session poziv</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">Dodaj u kontakte</string>
-  <string name="SharedContactView_invite_to_signal">Pozovi u Loki Messenger</string>
+  <string name="SharedContactView_invite_to_signal">Pozovi u Session</string>
   <!--Slide-->
   <string name="Slide_image">Slika</string>
   <string name="Slide_audio">Audio</string>
@@ -571,15 +571,15 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="ThreadRecord_called_you">Zvali su vas</string>
   <string name="ThreadRecord_missed_call">Propušteni poziv</string>
   <string name="ThreadRecord_media_message">Multimedijalna poruka</string>
-  <string name="ThreadRecord_s_is_on_signal">%s je dostupan na Loki Messengeru!</string>
+  <string name="ThreadRecord_s_is_on_signal">%s je dostupan na Sessionu!</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Vrijeme nestajanja poruke postavljeno na %s</string>
   <string name="ThreadRecord_safety_number_changed">Sigurnosni broj je izmijenjen</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Vaš sigurnosni broj s %s je izmjenjen.</string>
   <string name="ThreadRecord_you_marked_verified">Označili ste provjerenim</string>
   <string name="ThreadRecord_you_marked_unverified">Označili ste nepotvrđenim</string>
   <!--UpdateApkReadyListener-->
-  <string name="UpdateApkReadyListener_Signal_update">Loki Messenger ažuriranje</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Nova inačica Loki Messengera je dostupna, pritisnite za ažuriranje</string>
+  <string name="UpdateApkReadyListener_Signal_update">Session ažuriranje</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Nova inačica Sessiona je dostupna, pritisnite za ažuriranje</string>
   <!--UnknownSenderView-->
   <string name="UnknownSenderView_block_s">Blokiraj %s?</string>
   <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Blokirani kontakti vam više neće moći slati poruke ili vas zvati.</string>
@@ -594,14 +594,14 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="UnverifiedSendDialog_send_message">Pošalji poruku?</string>
   <string name="UnverifiedSendDialog_send">Pošalji</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Vaš kontakt koristi stariju Signal inačicu. Zamolite ih da ažuriraju Loki Messenger prije provjere sigurnosnog broja.</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Vaš kontakt koristi noviju Loki Messenger inačicu s nekompatibilnim QR kod oblikom. Ažurirajte vašu inačicu kako biste usporedili.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Vaš kontakt koristi stariju Signal inačicu. Zamolite ih da ažuriraju Session prije provjere sigurnosnog broja.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Vaš kontakt koristi noviju Session inačicu s nekompatibilnim QR kod oblikom. Ažurirajte vašu inačicu kako biste usporedili.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Skenirani QR kod nije ispravno oblikovan sigurnosni broj za provjeru. Pokušajte ponovno skenirati broj.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Podijelite sigurnosni broj putem...</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_number">Naš Loki Messenger sigurnosni broj:</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Naš Session sigurnosni broj:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Izgleda da nemate aplikacije s kojima je moguće dijeljenje.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Sigurnosni broj za usporedbu nije pronađen u međuspremniku</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Loki Messenger zahtijeva pristup Kameri za skeniranje QR koda ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Kamera\".</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Session zahtijeva pristup Kameri za skeniranje QR koda ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Kamera\".</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Loše kriptirana poruka</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Poruka kriptirana za nepostojeću sesiju</string>
@@ -620,13 +620,13 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Pritisnite za otvaranje.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Pritisnite za otvaranje ili pritisnite lokot za zatvaranje.</string>
-  <string name="KeyCachingService_passphrase_cached">Loki Messenger je otključan</string>
-  <string name="KeyCachingService_lock">Zaključaj Loki Messenger</string>
+  <string name="KeyCachingService_passphrase_cached">Session je otključan</string>
+  <string name="KeyCachingService_lock">Zaključaj Session</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Vi</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Nepodržani tip medija</string>
   <string name="MediaPreviewActivity_draft">Skica</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Loki Messenger zahtjeva pristup pohrani kako bi se omogućilo zapisivanje podataka na vanjski medij, ali je trajno odbijeno. Molimo nastavite do opcija aplikacije, odaberite \"Dozvole\", i uključite \"Pohrana\".</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Session zahtjeva pristup pohrani kako bi se omogućilo zapisivanje podataka na vanjski medij, ali je trajno odbijeno. Molimo nastavite do opcija aplikacije, odaberite \"Dozvole\", i uključite \"Pohrana\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Nije moguće spremanje na vanjski medij bez dozvola</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Obriši poruku?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Radnja će trajno izbrisati ovu poruku.</string>
@@ -643,8 +643,8 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="MessageNotifier_media_message">Multimedijalna poruka</string>
   <string name="MessageNotifier_reply">Odgovori</string>
   <string name="MessageNotifier_unsecured_sms">Nesigurni SMS</string>
-  <string name="MessageNotifier_pending_signal_messages">Loki Messenger poruke na čekanju</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Imate Loki Messenger poruka na čekanju, pritisnite kako biste ih otvorili i preuzeli</string>
+  <string name="MessageNotifier_pending_signal_messages">Session poruke na čekanju</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">Imate Session poruka na čekanju, pritisnite kako biste ih otvorili i preuzeli</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--Notification Channels-->
@@ -658,7 +658,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="NotificationChannel_group_messages">Poruke</string>
   <string name="NotificationChannel_missing_display_name">Nepoznato</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Brzi odgovor nije dostupan kada je Loki Messenger zaključan!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Brzi odgovor nije dostupan kada je Session zaključan!</string>
   <string name="QuickResponseService_problem_sending_message">Greška prilikom slanja poruke!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">Spremljeno u %s</string>
@@ -669,18 +669,18 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Nevažeći prečac</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Session</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nova poruka</string>
   <!--TransferControlView-->
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Uređaj više nije registriran</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">To je vjerovatno jer ste registirali Vaš telefonski broj sa Loki Messengerom na drugom uređaju. Dodirnite za ponovnu registraciju.</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">To je vjerovatno jer ste registirali Vaš telefonski broj sa Sessionom na drugom uređaju. Dodirnite za ponovnu registraciju.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Greška pri video reprodukciji</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Da biste odgovorili na poziv od %s, dozvolite Loki Messenger pristup vašem mikrofonu.</string>
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Da biste odgovorili na poziv od %s, dozvolite Session pristup vašem mikrofonu.</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">Sigurnosni broj za vaš razgovor s %1$s je izmjenjen. Ovo može značiti da netko pokušava presresti vašu komunikaciju ili da je %2$s jednostavno ponovno instalirao Loki Messenger.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers">Sigurnosni broj za vaš razgovor s %1$s je izmjenjen. Ovo može značiti da netko pokušava presresti vašu komunikaciju ili da je %2$s jednostavno ponovno instalirao Session.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Možda biste trebali provjeriti sigurnosni broj za ovaj kontakt.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Novi sigurnosni broj</string>
   <string name="WebRtcCallScreen_accept">Prihvati</string>
@@ -719,10 +719,10 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nema blokiranih kontakata</string>
   <!--contact_selection_list_fragment-->
-  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Loki Messenger zahtjeva pristup vašim kontaktima kako bi ih mogao prikazati.</string>
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Session zahtjeva pristup vašim kontaktima kako bi ih mogao prikazati.</string>
   <string name="contact_selection_list_fragment__show_contacts">Prikaži kontakte</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Loki Messenger poruka</string>
+  <string name="conversation_activity__type_message_push">Session poruka</string>
   <string name="conversation_activity__type_message_sms_insecure">Nesigurni SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Nesigurni MMS</string>
   <string name="conversation_activity__from_sim_name">Od %1$s</string>
@@ -732,7 +732,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="conversation_activity__attachment_thumbnail">Priložena sličica</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Uključi/isključi ladicu brze kamere</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Snimi i pošalji audio privitak</string>
-  <string name="conversation_activity__enable_signal_for_sms">Omogući Loki Messenger za SMS</string>
+  <string name="conversation_activity__enable_signal_for_sms">Omogući Session za SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Kliznite za otkazivanje</string>
   <string name="conversation_input_panel__cancel">Odustani</string>
@@ -784,9 +784,9 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="IdentityUtil_unverified_banner_one">Vaš sigurnosni broj s %s je izmijenjen i više nije potvrđen</string>
   <string name="IdentityUtil_unverified_banner_two">Vaši sigurnosni brojevi s %1$s i %2$s nisu više potvrđeni</string>
   <string name="IdentityUtil_unverified_banner_many">Vaši sigurnosni brojevi s %1$s, %2$s i %3$s nisu više potvrđeni</string>
-  <string name="IdentityUtil_unverified_dialog_one">Vaš sigurnosni broj za %1$s je izmjenjen i nije više potvrđen. Ovo može značiti da netko pokušava presresti vašu komunikaciju ili da je %1$s jednostavno ponovno instalirao Loki Messenger.</string>
-  <string name="IdentityUtil_unverified_dialog_two">Vaš sigurnosni brojevi s %1$s i %2$s su izmjenjeni i nisu više potvrđeni. Ovo može značiti da netko pokušava presresti vašu komunikaciju ili da su jednostavno ponovno instalirali Loki Messenger.</string>
-  <string name="IdentityUtil_unverified_dialog_many">Vaš sigurnosni brojevi s %1$s, %2$s i %3$s su izmjenjeni i nisu više potvrđeni. Ovo može značiti da netko pokušava presresti vašu komunikaciju ili da su jednostavno ponovno instalirali Loki Messenger.</string>
+  <string name="IdentityUtil_unverified_dialog_one">Vaš sigurnosni broj za %1$s je izmjenjen i nije više potvrđen. Ovo može značiti da netko pokušava presresti vašu komunikaciju ili da je %1$s jednostavno ponovno instalirao Session.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Vaš sigurnosni brojevi s %1$s i %2$s su izmjenjeni i nisu više potvrđeni. Ovo može značiti da netko pokušava presresti vašu komunikaciju ili da su jednostavno ponovno instalirali Session.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Vaš sigurnosni brojevi s %1$s, %2$s i %3$s su izmjenjeni i nisu više potvrđeni. Ovo može značiti da netko pokušava presresti vašu komunikaciju ili da su jednostavno ponovno instalirali Session.</string>
   <string name="IdentityUtil_untrusted_dialog_one">Vaš sigurnosni broj s %s je upravo izmjenjen.</string>
   <string name="IdentityUtil_untrusted_dialog_two">Vaši sigurnosni brojevi s %1$s i %2$s su upravo izmjenjeni.</string>
   <string name="IdentityUtil_untrusted_dialog_many">Vaši sigurnosni brojevi s %1$s, %2$s i %3$s su upravo izmjenjeni.</string>
@@ -816,7 +816,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="log_submit_activity__choose_email_app">Izaberite email aplikaciju</string>
   <string name="log_submit_activity__network_failure">Greška kod mreže. Molimo pokušajte ponovo.</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Želite li uvesti vaše postojeće tekst poruke u kriptiranu Loki Messenger bazu podataka?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Želite li uvesti vaše postojeće tekst poruke u kriptiranu Session bazu podataka?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Zadana sistemska baza podataka neće biti izmjenjena na bilo koji način.</string>
   <string name="database_migration_activity__skip">Preskoči</string>
   <string name="database_migration_activity__import">Uvoz</string>
@@ -850,7 +850,7 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Otključaj</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Loki Messenger zahtjeva MMS postavke kako bi dostavio multimedijalne ili grupne poruke preko vašeg operatera. Vaš uređaj nije ove informacije učinio dostupnima, što se ponekad događa kod zaključanih uređaja ili drugih ograničenih postavki.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Session zahtjeva MMS postavke kako bi dostavio multimedijalne ili grupne poruke preko vašeg operatera. Vaš uređaj nije ove informacije učinio dostupnima, što se ponekad događa kod zaključanih uređaja ili drugih ograničenih postavki.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Kako biste slali multimedijalne i grupne poruke, pritisnite \'OK\' i popunite tražene postavke. MMS postavke za Vašeg operatera obično se mogu naći tražeći \'APN vašeg operatera\'. Ovo je potrebno učiniti samo jednom.</string>
   <!--profile_create_activity-->
   <string name="profile_create_activity__set_later">Postavi kasnije</string>
@@ -872,12 +872,12 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="recipient_preferences__call_settings">Postavke poziva</string>
   <string name="recipient_preferences__ringtone">Melodija</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Loki Messenger poziv</string>
+  <string name="redphone_call_card__signal_call">Session poziv</string>
   <string name="redphone_call_controls__mute">Utišaj</string>
   <string name="redphone_call_controls__flip_camera_rear">Zamijeni kamere</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONSKI BROJ</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal olakšava komunikaciju koristeći postojeće telefonske brojeve iz vašeg imenika. Prijatelji i kontakti koji već znaju vaš broj telefona će biti u mogućnosti lako vas kontaktirati putem Loki Messengera.\n\nRegistracija šalje neke kontakt podatke na poslužitelj, ali se oni ne spremaju.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal olakšava komunikaciju koristeći postojeće telefonske brojeve iz vašeg imenika. Prijatelji i kontakti koji već znaju vaš broj telefona će biti u mogućnosti lako vas kontaktirati putem Sessiona.\n\nRegistracija šalje neke kontakt podatke na poslužitelj, ali se oni ne spremaju.</string>
   <string name="registration_activity__verify_your_number">Potvrdite vaš broj</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Unesite ime ili broj</small></string>
@@ -951,8 +951,8 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="preferences__sms_mms">SMS i MMS</string>
   <string name="preferences__pref_all_sms_title">Primi sve SMS</string>
   <string name="preferences__pref_all_mms_title">Primi sve MMS</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Koristi Loki Messenger za sve dolazne tekst poruke</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Koristi Loki Messenger za sve dolazne multimedija poruke</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Koristi Session za sve dolazne tekst poruke</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Koristi Session za sve dolazne multimedija poruke</string>
   <string name="preferences__pref_enter_sends_title">Enter šalje poruku</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pritisak na Enter će poslati tekst poruku</string>
   <string name="preferences__choose_identity">Odaberite identitet</string>
@@ -961,7 +961,7 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="preferences__change_your_passphrase">Izmijenite Vašu lozinku</string>
   <string name="preferences__screen_security">Sigurnost ekrana</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Onemogući snimanje ekrana na popisu nedavnih i unutar aplikacije</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Automatski zaključaj Loki Messenger nakon određenog vremenskog intervala neaktivnosti</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Automatski zaključaj Session nakon određenog vremenskog intervala neaktivnosti</string>
   <string name="preferences__inactivity_timeout_passphrase">Lozinka neaktivnosti</string>
   <string name="preferences__inactivity_timeout_interval">Interval neaktivnosti</string>
   <string name="preferences__notifications">Obavijesti</string>
@@ -1014,8 +1014,8 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="preferences__theme">Teme</string>
   <string name="preferences__default">Zadano</string>
   <string name="preferences__language">Jezik</string>
-  <string name="preferences__signal_messages_and_calls">Loki Messenger poruke i pozivi</string>
-  <string name="preferences__free_private_messages_and_calls">Besplatne privatne poruke i pozivi sa Loki Messenger korisnicima</string>
+  <string name="preferences__signal_messages_and_calls">Session poruke i pozivi</string>
+  <string name="preferences__free_private_messages_and_calls">Besplatne privatne poruke i pozivi sa Session korisnicima</string>
   <string name="preferences__submit_debug_log">Pošalji debug zapis</string>
   <string name="preferences__support_wifi_calling">\'WiFi Calling\' način kompatibilnosti</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Omogućite ukoliko vaš uređaj koristi SMS/MMS isporuku preko WiFi (omogućite jedino kada je \'WiFi pozivanje\' omogućeno na vašem uređaju)</string>
@@ -1031,8 +1031,8 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="preferences_chats__media_auto_download">Automatsko preuzimanje media sadržaja</string>
   <string name="preferences_chats__message_trimming">Skraćivanje poruke</string>
   <string name="preferences_advanced__use_system_emoji">Koristi emotikone sustava</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Onemogući ugrađenu Loki Messenger podršku za emotikone</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Preusmjeri sve pozive kroz Loki Messenger poslužitelj kako biste izbjegli otkrivanje svoje IP adrese vašem kontaktu. Ukoliko ovo omogućite smanjit će se kvaliteta poziva.</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Onemogući ugrađenu Session podršku za emotikone</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Preusmjeri sve pozive kroz Session poslužitelj kako biste izbjegli otkrivanje svoje IP adrese vašem kontaktu. Ukoliko ovo omogućite smanjit će se kvaliteta poziva.</string>
   <string name="preferences_advanced__always_relay_calls">Uvijek preusmjeri pozive</string>
   <string name="preferences_app_protection__app_access">Pristup aplikaciji</string>
   <string name="preferences_app_protection__communication">Komunikacija</string>
@@ -1044,9 +1044,9 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="preferences_notifications__calls">Pozivi</string>
   <string name="preferences_notifications__ringtone">Melodija</string>
   <string name="preferences_chats__show_invitation_prompts">Prikaži upite za pozivnice</string>
-  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Prikaži upite za pozivnice za kontakte koji ne koriste Loki Messenger</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Prikaži upite za pozivnice za kontakte koji ne koriste Session</string>
   <string name="preferences_chats__message_text_size">Veličina fonta poruke</string>
-  <string name="preferences_events__contact_joined_signal">Kontakt se prijavio/la u Loki Messenger</string>
+  <string name="preferences_events__contact_joined_signal">Kontakt se prijavio/la u Session</string>
   <string name="preferences_notifications__priority">Prioritet</string>
   <string name="preferences_communication__category_sealed_sender">Zatvoreni pošiljatelj</string>
   <!--****************************************-->
@@ -1057,7 +1057,7 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Nazovi</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">Loki Messenger poziv</string>
+  <string name="conversation_callable_secure__menu_call">Session poziv</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Detalji poruke</string>
   <string name="conversation_context__menu_copy_text">Kopiraj tekst</string>
@@ -1115,20 +1115,20 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiraj u međuspremnik</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Usporedi s međuspremnikom</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Vaša Loki Messenger inačica je istekla!</string>
-  <string name="reminder_header_outdated_build_details_today">Vaša će verzija Loki Messengera isteći danas. Dodirnite za ažuriranje na najnoviju inačicu.</string>
-  <string name="reminder_header_expired_build">Vaša je verzija Loki Messengera istekla!</string>
+  <string name="reminder_header_outdated_build">Vaša Session inačica je istekla!</string>
+  <string name="reminder_header_outdated_build_details_today">Vaša će verzija Sessiona isteći danas. Dodirnite za ažuriranje na najnoviju inačicu.</string>
+  <string name="reminder_header_expired_build">Vaša je verzija Sessiona istekla!</string>
   <string name="reminder_header_expired_build_details">Poruke više neće moći biti uspješno poslane. Pritisnite za ažuriranje na najnoviju inačicu.</string>
   <string name="reminder_header_sms_default_title">Koristi kao zadanu SMS aplikaciju</string>
-  <string name="reminder_header_sms_default_text">Pritisnite kako biste postavili Loki Messenger kao zadanu SMS aplikaciju.</string>
+  <string name="reminder_header_sms_default_text">Pritisnite kako biste postavili Session kao zadanu SMS aplikaciju.</string>
   <string name="reminder_header_sms_import_title">Uvezi SMS poruke sustava</string>
-  <string name="reminder_header_sms_import_text">Dodirnite za uvoz postojećih tekstualnih poruka u Loki Messenger kriptiranu bazu podataka?</string>
-  <string name="reminder_header_push_title">Omogući Loki Messenger poruke i pozive</string>
+  <string name="reminder_header_sms_import_text">Dodirnite za uvoz postojećih tekstualnih poruka u Session kriptiranu bazu podataka?</string>
+  <string name="reminder_header_push_title">Omogući Session poruke i pozive</string>
   <string name="reminder_header_push_text">Nadogradi svoje iskustvo komuniciranja.</string>
-  <string name="reminder_header_invite_title">Pozovi u Loki Messenger</string>
+  <string name="reminder_header_invite_title">Pozovi u Session</string>
   <string name="reminder_header_invite_text">Dovedite svoj razgovor s %1$s na sljedeću razinu.</string>
   <string name="reminder_header_share_title">Pozovi svoje prijatelje!</string>
-  <string name="reminder_header_share_text">Što više prijatelja koriste Loki Messenger, to bolje.</string>
+  <string name="reminder_header_share_text">Što više prijatelja koriste Session, to bolje.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Spremi</string>
   <string name="media_preview__forward_title">Naprijed</string>
@@ -1162,11 +1162,11 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Morate unijeti vaš PIN registracijskog zaključavanja</string>
   <string name="RegistrationActivity_too_many_attempts">Previše pokušaja</string>
   <string name="RegistrationActivity_oh_no">O ne!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registracija ovog telefonskog broja biti će moguća bez vašeg registracijskog PIN-a nakon 7 dana od posljednje aktivacije ovog broja na Loki Messenger. Preostalo vam je %ddana.</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registracija ovog telefonskog broja biti će moguća bez vašeg registracijskog PIN-a nakon 7 dana od posljednje aktivacije ovog broja na Session. Preostalo vam je %ddana.</string>
   <string name="RegistrationActivity_registration_lock_pin">PIN registracijskog zaključavanja</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Ovaj telefonski broj ima omogućeno registracijsko zaključavanje. Molimo unesite PIN registracijskog zaključavanja.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Zaboravljen PIN?</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registracijsko zaključavanje pomaže u zaštiti vašeg telefonskog broja od neovlaštenih pokušaja registracije. Ova značajka se u svakom trenutku može onemogućiti u vašim Loki Messenger postavkama privatnosti.</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registracijsko zaključavanje pomaže u zaštiti vašeg telefonskog broja od neovlaštenih pokušaja registracije. Ova značajka se u svakom trenutku može onemogućiti u vašim Session postavkama privatnosti.</string>
   <string name="RegistrationLockDialog_registration_lock">Zaključavanje registracije</string>
   <string name="RegistrationLockDialog_enable">Omogući</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">Registracijski PIN za zaključavanje mora biti najmanje 4 broja.</string>
@@ -1175,7 +1175,7 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Onemogućiti PIN registracijskog zaključavanja?</string>
   <string name="RegistrationLockDialog_disable">Onemogući</string>
   <string name="preferences_chats__backups">Sigurnosne kopije</string>
-  <string name="prompt_passphrase_activity__signal_is_locked">Loki Messenger je zaključan</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Session je zaključan</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">DODIRNI ZA OTKLJUČAVANJE</string>
   <string name="RegistrationLockDialog_reminder">Podsjetnik:</string>
   <!--EOF-->

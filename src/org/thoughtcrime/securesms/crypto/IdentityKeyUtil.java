@@ -49,8 +49,8 @@ public class IdentityKeyUtil {
   private static final String IDENTITY_PUBLIC_KEY_CIPHERTEXT_LEGACY_PREF  = "pref_identity_public_curve25519";
   private static final String IDENTITY_PRIVATE_KEY_CIPHERTEXT_LEGACY_PREF = "pref_identity_private_curve25519";
 
-  private static final String IDENTITY_PUBLIC_KEY_PREF                    = "pref_identity_public_v3";
-  private static final String IDENTITY_PRIVATE_KEY_PREF                   = "pref_identity_private_v3";
+  public static final String IDENTITY_PUBLIC_KEY_PREF                    = "pref_identity_public_v3";
+  public static final String IDENTITY_PRIVATE_KEY_PREF                   = "pref_identity_private_v3";
 
   public static final String lokiSeedKey = "loki_seed";
 

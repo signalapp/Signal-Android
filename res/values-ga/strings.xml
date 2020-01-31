@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Loki Messenger</string>
+  <string name="app_name">Session</string>
   <string name="yes">Tá</string>
   <string name="no">Níl</string>
   <string name="delete">Scrios</string>
@@ -31,17 +31,17 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Scrios</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Díchumasaigh an nath faire?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Baineann sé seo glas de Loki Messenger agus de fógraí teachtaireachta go deo.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Baineann sé seo glas de Session agus de fógraí teachtaireachta go deo.</string>
   <string name="ApplicationPreferencesActivity_disable">Díchumasaigh</string>
   <string name="ApplicationPreferencesActivity_unregistering">Ag díchlárú</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Ag díchlárú ón teachtaireachtaí agus glaonna Loki Messenger ...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Díchumasiagh teachtaireachtaí agus glaonna Loki Messenger?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Díchumasaigh teachtaireachtaí agus glaonna Loki Messenger trí dhíclárú ón bhfreastalaí. Ba chóir duit do uimhir fóin a athchlárú chun iad a úsáid arís sa todhchaí.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Ag díchlárú ón teachtaireachtaí agus glaonna Session ...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Díchumasiagh teachtaireachtaí agus glaonna Session?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Díchumasaigh teachtaireachtaí agus glaonna Session trí dhíclárú ón bhfreastalaí. Ba chóir duit do uimhir fóin a athchlárú chun iad a úsáid arís sa todhchaí.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Tharla botún ag déanamh teagmháil leis an bhfreastalaí!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS cumasaithe</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tadhaill chun do aip SMS réamhshocrú a athrú</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS díchumasaithe</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Tadhaill chun Loki Messenger a úsáid mar aip SMS réamhshocrú</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Tadhaill chun Session a úsáid mar aip SMS réamhshocrú</string>
   <string name="ApplicationPreferencesActivity_on">ar siúl</string>
   <string name="ApplicationPreferencesActivity_On">Ar siúl</string>
   <string name="ApplicationPreferencesActivity_off">as</string>
@@ -65,10 +65,10 @@
   <string name="DraftDatabase_Draft_quote_snippet">(freagair)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Ní féidir teacht ar fheidhmchláirín chun meán a roghnú.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Tá gá ag Loki Messenger le cead stóras chun griangraif a thógáil, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Stóras\".</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Tá gá ag Loki Messenger le cead teagmhálaí chun eolas teagmhálaí a cheangail, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Teagmhálaí\". </string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Tá gá ag Loki Messenger le cead áite i gcomhair do áit a cheangail, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Áit\". </string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Tá gá ag Loki Messenger le cead cheamara chun griangraif a thógáil, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Ceamara\". </string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Tá gá ag Session le cead stóras chun griangraif a thógáil, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Stóras\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Tá gá ag Session le cead teagmhálaí chun eolas teagmhálaí a cheangail, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Teagmhálaí\". </string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Tá gá ag Session le cead áite i gcomhair do áit a cheangail, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Áit\". </string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Tá gá ag Session le cead cheamara chun griangraif a thógáil, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Ceamara\". </string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Tharla botún ag seinm na fuaime!</string>
   <!--BlockedContactsActivity-->
@@ -88,7 +88,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Níor aimsíodh aon líonléitheoir.</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">D\'athraíodh do uimhir shábhála le %1$s. Ciallaíonn sé sin go bhfuil duine éigéan ag iarraigh do teagmháil a idircheapadh, nó go athshuiteáil %2$s Loki Messenger.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">D\'athraíodh do uimhir shábhála le %1$s. Ciallaíonn sé sin go bhfuil duine éigéan ag iarraigh do teagmháil a idircheapadh, nó go athshuiteáil %2$s Session.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">B\'fhéidir go mhian leat do uimhir shábhála a dheimhniú leis an dteagmhálaí seo.</string>
   <string name="ConfirmIdentityDialog_accept">Glac leis</string>
   <!--ContactsCursorLoader-->
@@ -97,7 +97,7 @@
   <string name="ContactsCursorLoader_groups">Baiclí</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Teachtaireacht %s</string>
-  <string name="ContactsDatabase_signal_call_s">Glao Loki Messenger %s</string>
+  <string name="ContactsDatabase_signal_call_s">Glao Session %s</string>
   <!--ContactNameEditActivity-->
   <string name="ContactNameEditActivity_given_name">Céad ainm</string>
   <string name="ContactNameEditActivity_family_name">Sloinne</string>
@@ -115,7 +115,7 @@
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Teachtaireacht malartú eochracha faighta. Brúigh chun próiséiseáil.</string>
   <string name="ConversationItem_group_action_left">D\'fhág %1$s an bhaicle.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Theip ar an seoladh, cnag air i gcomhair rogha nach bhfuil slán</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message"><b>Ní</b> bheidh an teachtaireacht seo criptithe mar níl an faighteoir sa lucht Loki Messenger a thuilleadh.\n\nSeol teachtaireacht neamhcriptithe?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message"><b>Ní</b> bheidh an teachtaireacht seo criptithe mar níl an faighteoir sa lucht Session a thuilleadh.\n\nSeol teachtaireacht neamhcriptithe?</string>
   <string name="ConversationItem_unable_to_open_media">Ní féidir feidhmchláirín atá in ann an meán seo a oscailt a aimsiú.</string>
   <string name="ConversationItem_copied_text">Macasamhlaíodh %s </string>
   <string name="ConversationItem_from_s">ó %s</string>
@@ -141,8 +141,8 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">An bhfuil tú cinnte gur mian leat an bhaicle seo a fhágáil?</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS easlán</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS easlán</string>
-  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Téimís i muinín Loki Messenger %1$s</string>
+  <string name="ConversationActivity_transport_signal">Session</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Téimís i muinín Session %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Déanaimís comhrá ar seo: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Tharla botún ag fágáil an bhaicle</string>
   <string name="ConversationActivity_specify_recipient">Roghnaigh teagmhálaí</string>
@@ -154,13 +154,13 @@
   <string name="ConversationActivity_quick_camera_unavailable">Níl an grianghrafadán ar fáil</string>
   <string name="ConversationActivity_unable_to_record_audio">Ní féidir fuaim a thaifeadadh!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Níl aon fheidhmchláirín ar fáil ar do ghléas chun an nasc seo a láimhseáil.</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Ceadaigh Loki Messenger do mhicreafón a úsáid chun teachtaireachtaí fuaime a sheoladh.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Tá gá ag Loki Messenger le cead micreafóin chun teachtaireachtaí fuaime a sheoladh, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Micreafón\".</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Chun %s a ghlaoigh, is gá le Loki Messenger rochtain ar do mhicreafón agus do cheamara.</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Tá gá ag Loki Messenger le cead micreafóin agus cheamara chun %s a ghlaoigh, ach ní ceadaítear iad go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Micreafón\" agus \"Ceamara\".</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Ceadaigh Loki Messenger do cheamara a úsáid chun grianghraif a thógáil nó físéan a dhéanamh.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Tá gá ag Loki Messenger le cead cheamara chun griangraif a thógáil nó físéan a dhéanamh, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Ceamara\".</string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Tá gá ag Loki Messenger le ceadanna cheamara chun griangraif a thógáil nó físéan a dhéanamh.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Ceadaigh Session do mhicreafón a úsáid chun teachtaireachtaí fuaime a sheoladh.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Tá gá ag Session le cead micreafóin chun teachtaireachtaí fuaime a sheoladh, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Micreafón\".</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Chun %s a ghlaoigh, is gá le Session rochtain ar do mhicreafón agus do cheamara.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Tá gá ag Session le cead micreafóin agus cheamara chun %s a ghlaoigh, ach ní ceadaítear iad go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Micreafón\" agus \"Ceamara\".</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Ceadaigh Session do cheamara a úsáid chun grianghraif a thógáil nó físéan a dhéanamh.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Tá gá ag Session le cead cheamara chun griangraif a thógáil nó físéan a dhéanamh, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Ceamara\".</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Tá gá ag Session le ceadanna cheamara chun griangraif a thógáil nó físéan a dhéanamh.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_yes">Tá</string>
   <string name="ConversationActivity_no">Níl</string>
@@ -189,7 +189,7 @@
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Ní féidir scríobh chun stóras.</string>
   <string name="ConversationFragment_pending">Ar feitheamh...</string>
-  <string name="ConversationFragment_push">Sonraí (Loki Messenger)</string>
+  <string name="ConversationFragment_push">Sonraí (Session)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Ag scriosadh</string>
@@ -254,18 +254,18 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Comhroinn le</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Fáilte go Loki Messenger!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">Is an teachtaire príobháideach céanna anois iad TextSecure agus RedPhone le gach cúrsa: Loki Messenger.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Fáilte go Loki Messenger</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">Is Loki Messenger anois é TextSecure.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">Is an feidhmchláirín céanna anois iad TextSecure agus RedPhone: Loki Messenger. Brúigh chun taiscéal.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Fáilte go Session!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">Is an teachtaire príobháideach céanna anois iad TextSecure agus RedPhone le gach cúrsa: Session.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Fáilte go Session</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">Is Session anois é TextSecure.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">Is an feidhmchláirín céanna anois iad TextSecure agus RedPhone: Session. Brúigh chun taiscéal.</string>
   <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Abair hóra le físghlaonna slána.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Tugann Signal tacaíocht ar físghlaonna slána anois. Ní mór ach glao Loki Messenger a thosnú mar is gnáth, cnag an cnaipe físe, agus croith do lámh.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Tugann Loki Messenger tacaíocht ar físghlaonna slána anois.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Tugann Loki Messenger tacaíocht ar físghlaonna slána anois. Cnag chun taiscéal.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Tugann Signal tacaíocht ar físghlaonna slána anois. Ní mór ach glao Session a thosnú mar is gnáth, cnag an cnaipe físe, agus croith do lámh.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Tugann Session tacaíocht ar físghlaonna slána anois.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Tugann Session tacaíocht ar físghlaonna slána anois. Cnag chun taiscéal.</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">An bhfuil tú réidh do do ghrianghraf gar-amhairc?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Is féidir do ghrianghraf próifíle agus do aimn a chomhroinn le cairde anois le Loki Messenger.</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Tá próifíl Loki Messenger anseo</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Is féidir do ghrianghraf próifíle agus do aimn a chomhroinn le cairde anois le Session.</string>
+  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Tá próifíl Session anseo</string>
   <string name="ExperienceUpgradeActivity_typing_ui_title">Tá leideoirí clóscríobh tagtha</string>
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Cumasaigh leideoirí clóscríobh</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Cur leideoirí clóscríobh ar súil</string>
@@ -273,7 +273,7 @@
   <string name="ExperienceUpgradeActivity_got_it">Tuigim sin</string>
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Fadhb cumarsáid Loki Messenger buan!</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Fadhb cumarsáid Session buan!</string>
   <!--GiphyActivity-->
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFeanna</string>
@@ -284,13 +284,13 @@
   <string name="GroupCreateActivity_group_name_hint">Ainm na baicle</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Baicle MMS nua</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Roghnaigh tú teagmhálaí nach dtugann tacaíocht do bhaiclí Shignal, de réir sin, baicle MMS a bheith ann.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Níl tú cláraithe le haghaidh teachtaireachtaí ná glaonna Loki Messenger, a gciallaíonn go bhfuil baicle díchumasaithe. Le do thoil, bain triail as clárú i Socrú &gt; Ardshocrú.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Níl tú cláraithe le haghaidh teachtaireachtaí ná glaonna Session, a gciallaíonn go bhfuil baicle díchumasaithe. Le do thoil, bain triail as clárú i Socrú &gt; Ardshocrú.</string>
   <string name="GroupCreateActivity_contacts_no_members">Caithfear duine amháin ar a laghad a bheith i do bhaicle!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Tá uimhir mícheart ag duine sa bhaicle seo. Le do thoil, deisigh nó bain an teagmhálaí sin agus déan arís é.</string>
   <string name="GroupCreateActivity_menu_apply_button">Cuir i bhfeidhm é</string>
   <string name="GroupCreateActivity_creating_group">Ag cruthú %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Ag nuashonrú %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Ní féidir %1$s a cuir leis mar ní bhall den lucht Loki Messenger é.</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Ní féidir %1$s a cuir leis mar ní bhall den lucht Session é.</string>
   <string name="GroupCreateActivity_loading_group_details">Ag luchtú sonraí na baicle...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Tá tú sa bhaicle cheana féin.</string>
   <!--GroupShareProfileView-->
@@ -309,8 +309,8 @@
   <string name="InviteActivity_sending">Ag seoladh...</string>
   <string name="InviteActivity_heart_content_description">Croí</string>
   <string name="InviteActivity_invitations_sent">Seoladh na cuirí!</string>
-  <string name="InviteActivity_invite_to_signal">Tabhair cuireadh chuig Loki Messenger</string>
-  <string name="InviteActivity_lets_switch_to_signal">Téimís i muinín Loki Messenger: %1$s</string>
+  <string name="InviteActivity_invite_to_signal">Tabhair cuireadh chuig Session</string>
+  <string name="InviteActivity_lets_switch_to_signal">Téimís i muinín Session: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Tá an dealramh air nach bhfuil aon fheidhmchláirín agat lena roinnt leis.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Ní ligeann do chairde dá gcairde comhráite gan chriptiú a bheith acu.</string>
   <!--Job-->
@@ -320,7 +320,7 @@
   <string name="MessageDetailsRecipient_new_safety_number">Uimhir shábhála nua</string>
   <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Loki Messenger</string>
+  <string name="MessageRetrievalService_signal">Session</string>
   <!--MmsDownloader-->
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Meáin</string>
@@ -337,9 +337,9 @@
   <string name="MediaOverviewActivity_Select_all">Roghnaigh uile</string>
   <string name="MediaOverviewActivity_collecting_attachments">Ag bailiú ceangaltáin...</string>
   <!--- NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">Glao Loki Messenger ar siúl</string>
-  <string name="NotificationBarManager__establishing_signal_call">Ag cruthú glao Loki Messenger</string>
-  <string name="NotificationBarManager__incoming_signal_call">Glao Loki Messenger isteach</string>
+  <string name="NotificationBarManager_signal_call_in_progress">Glao Session ar siúl</string>
+  <string name="NotificationBarManager__establishing_signal_call">Ag cruthú glao Session</string>
+  <string name="NotificationBarManager__incoming_signal_call">Glao Session isteach</string>
   <string name="NotificationBarManager__deny_call">Diúltaigh an glao</string>
   <string name="NotificationBarManager__answer_call">Freagair an glao</string>
   <string name="NotificationBarManager__end_call">Críochnaigh an glao</string>
@@ -356,7 +356,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Gach meán</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Fuair teachtaireacht cripithe ón seanleagan Loki Messenger nach bhfuil taca go bhfóill. Fiafraigh an seoltóir an leagan is déanaí a úsáid agus an teachtaireacht a athsheoladh.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Fuair teachtaireacht cripithe ón seanleagan Session nach bhfuil taca go bhfóill. Fiafraigh an seoltóir an leagan is déanaí a úsáid agus an teachtaireacht a athsheoladh.</string>
   <string name="MessageRecord_left_group">D\'fhág tú an bhaicle.</string>
   <string name="MessageRecord_you_updated_group">Nuashonraigh tú an bhaicle</string>
   <string name="MessageRecord_you_called">Ghlaoigh tú air</string>
@@ -366,7 +366,7 @@
   <string name="MessageRecord_s_called_you">Chuir %s glaoch ort</string>
   <string name="MessageRecord_called_s">Ghlaoigh tú %s</string>
   <string name="MessageRecord_missed_call_from">Glao caillte ó %s</string>
-  <string name="MessageRecord_s_joined_signal">Tá %s ar Loki Messenger!</string>
+  <string name="MessageRecord_s_joined_signal">Tá %s ar Session!</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">D\'athraíodh do uimhir shábhála le %s.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Dheimhnigh tú do uimhir shábhála le %s.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Dheimhnigh tú do uimhir shábhála le %s ón gléas eile.</string>
@@ -390,8 +390,8 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">QR code neamhbhailí.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Faraor, tá a thuilleadh gléasanna nascaithe, cuir de le cúpla cinn.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Faraor, ní QR code nacs gléis bailí é seo.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Nasc gléas Loki Messenger?</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Tá gá ag Loki Messenger cead cheamara chun QR code a scanadh, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Ceamara\". </string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Nasc gléas Session?</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Tá gá ag Session cead cheamara chun QR code a scanadh, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Ceamara\". </string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Ní féidir QR code a scanadh gan cead Cheamara.</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Teachtaireachtaí a imíonn as amharc</string>
@@ -399,7 +399,7 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Imeoidh teachtaireachtaí seolta agus faighte sa chomhrá seo as amharc, %s tar éis iad a léamh.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Cuir isteach nath faire</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Deilbhín Loki Messenger</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Deilbhín Session</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Seol isteach an nath faire</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nath faire neamhbhailí!</string>
   <!--PlayServicesProblemFragment-->
@@ -452,8 +452,8 @@ a shonrú</string>
   <string name="RegistrationActivity_no_browser">Ní féidir an nasc sin a oscailt. Níor aimsíodh aon líonléitheoir.</string>
   <string name="RegistrationActivity_more_information">Tuilleadh eolais</string>
   <string name="RegistrationActivity_less_information">Níos lú eolais</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Tá gá ag Loki Messenger riochtain ar do theagmhálaithe agus do mheáin chun nasc a dhéanamh le cairde, teachtaireachtaí a mhalairt agus glaonna slán a dhéanamh.</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Chun do uimhir fóin a deimhniú, is féidir le Signal to uimhir deimhnithe a léamh uaidh féin má tá cead ag Loki Messenger do theachtaireachtaí SMS a léamh.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Tá gá ag Session riochtain ar do theagmhálaithe agus do mheáin chun nasc a dhéanamh le cairde, teachtaireachtaí a mhalairt agus glaonna slán a dhéanamh.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Chun do uimhir fóin a deimhniú, is féidir le Signal to uimhir deimhnithe a léamh uaidh féin má tá cead ag Session do theachtaireachtaí SMS a léamh.</string>
   <string name="RegistrationActivity_continue">Lean ar aghaidh</string>
   <string name="RegistrationActivity_call">Glao</string>
   <!--ScribbleActivity-->
@@ -464,13 +464,13 @@ a shonrú</string>
   <string name="SearchFragment_header_messages">Teachtaireachtaí</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Cuir leis na teagmhálacha</string>
-  <string name="SharedContactDetailsActivity_invite_to_signal">Tabhair cuireadh chuig Loki Messenger</string>
-  <string name="SharedContactDetailsActivity_signal_message">Teachtaireacht Loki Messenger</string>
-  <string name="SharedContactDetailsActivity_signal_call">Glao Loki Messenger</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Tabhair cuireadh chuig Session</string>
+  <string name="SharedContactDetailsActivity_signal_message">Teachtaireacht Session</string>
+  <string name="SharedContactDetailsActivity_signal_call">Glao Session</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">Cuir leis na teagmhálacha</string>
-  <string name="SharedContactView_invite_to_signal">Tabhair cuireadh chuig Loki Messenger</string>
-  <string name="SharedContactView_message">Teachtaireacht Loki Messenger</string>
+  <string name="SharedContactView_invite_to_signal">Tabhair cuireadh chuig Session</string>
+  <string name="SharedContactView_message">Teachtaireacht Session</string>
   <!--Slide-->
   <string name="Slide_image">Íomhá</string>
   <string name="Slide_audio">Fuaim</string>
@@ -490,13 +490,13 @@ a shonrú</string>
   <string name="ThreadRecord_called_you">Ghlaoigh siad ort</string>
   <string name="ThreadRecord_missed_call">Glao caillte</string>
   <string name="ThreadRecord_media_message">Teachtaireacht mheán</string>
-  <string name="ThreadRecord_s_is_on_signal">Tá %s ar Loki Messenger! </string>
+  <string name="ThreadRecord_s_is_on_signal">Tá %s ar Session! </string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Shocraíodh go imeoidh teachtaireachtaí as amharc tar éis %s.</string>
   <string name="ThreadRecord_safety_number_changed">Athraíodh an uimhir shábhála</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">D\'athraíodh do uimhir shábhála le %s.</string>
   <!--UpdateApkReadyListener-->
-  <string name="UpdateApkReadyListener_Signal_update">Nuashonrú Loki Messenger</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Tá leagan nua de Loki Messenger ar fáil, cnag chun é a nuashonrú</string>
+  <string name="UpdateApkReadyListener_Signal_update">Nuashonrú Session</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Tá leagan nua de Session ar fáil, cnag chun é a nuashonrú</string>
   <!--UnknownSenderView-->
   <string name="UnknownSenderView_block_s">Cuir bac ar %s?</string>
   <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Ní féidir teagmháláithe bacáilte teachtaireachtaí a sheoladh chugat no tú a ghlaoigh.</string>
@@ -511,14 +511,14 @@ a shonrú</string>
   <string name="UnverifiedSendDialog_send_message">Seol an teachtaireacht? </string>
   <string name="UnverifiedSendDialog_send">Seol</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Tá seanleagan Loki Messenger ag do theagmhálaí. Fiafraigh do theagmhálái leagan nua a úsáid roimh do uimhir shábhála a deimhniú.</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Tá nualeagan Loki Messenger ag do theagmhálaí le QR code neamhfhreaghrach duit. Le do thoil, nuashonraigh chun cuir i gcomórtas.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Tá seanleagan Session ag do theagmhálaí. Fiafraigh do theagmhálái leagan nua a úsáid roimh do uimhir shábhála a deimhniú.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Tá nualeagan Session ag do theagmhálaí le QR code neamhfhreaghrach duit. Le do thoil, nuashonraigh chun cuir i gcomórtas.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Ní uimhir shábhála bailí é an QR code. Le do thoil, bain triail as an QR code a scanadh arís.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Comhroinn do uimhir shábhála le ...</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_number">Ár uimhir shábhála Loki Messenger:</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Ár uimhir shábhála Session:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Tá an dealramh air nach bhfuil aon fheidhmchláirín agat lena roinnt leis.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Níl aon uimhir shábhála sa ghearrthaisce chun cuir i gcomórtas leis.</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Tá gá ag Loki Messenger cead cheamara chun QR code a scanadh, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Ceamara\". </string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Tá gá ag Session cead cheamara chun QR code a scanadh, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Ceamara\". </string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Ní féidir QR code a scanadh gan cead Cheamara.</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Teachtaireacht criptiú go mícheart</string>
@@ -536,8 +536,8 @@ a shonrú</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Tadhaill chun é a oscailt.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Tadhaill chun é a oscailt, nó tadhail chun an glas a dhúnadh.</string>
-  <string name="KeyCachingService_passphrase_cached">Tá an glas bainte de Loki Messenger</string>
-  <string name="KeyCachingService_lock">Cuir Loki Messenger faoi ghlas</string>
+  <string name="KeyCachingService_passphrase_cached">Tá an glas bainte de Session</string>
+  <string name="KeyCachingService_lock">Cuir Session faoi ghlas</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Tusa</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Cineál meán nach dtugtar tacaíocht dó</string>
@@ -556,10 +556,10 @@ a shonrú</string>
   <string name="MessageNotifier_mark_read">Rianaigh mar léite</string>
   <string name="MessageNotifier_media_message">Teachtaireacht mheán</string>
   <string name="MessageNotifier_reply">Freagair</string>
-  <string name="MessageNotifier_signal_message">Teachtaireacht Loki Messenger</string>
+  <string name="MessageNotifier_signal_message">Teachtaireacht Session</string>
   <string name="MessageNotifier_unsecured_sms">SMS nach bhfuil slán</string>
-  <string name="MessageNotifier_pending_signal_messages">Ar feitheamh ar teachtaireachtaí Loki Messenger</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Tá teachtaireachtaí Loki Messenger ar feitheamh agat, cnag chun iad a oscailt agus a athfháil.</string>
+  <string name="MessageNotifier_pending_signal_messages">Ar feitheamh ar teachtaireachtaí Session</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">Tá teachtaireachtaí Session ar feitheamh agat, cnag chun iad a oscailt agus a athfháil.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Teagmhálaí</string>
   <!--Notification Channels-->
@@ -572,7 +572,7 @@ a shonrú</string>
   <string name="NotificationChannel_group_messages">Teachtaireachtaí</string>
   <string name="NotificationChannel_missing_display_name">Anaithnid</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Níl freagairt tapa le fáil agus Loki Messenger faoi ghlas.</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Níl freagairt tapa le fáil agus Session faoi ghlas.</string>
   <string name="QuickResponseService_problem_sending_message">Tharla fadhb ag seoladh na teachtaireachta!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved">Curtha i dtaisce</string>
@@ -581,19 +581,19 @@ a shonrú</string>
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Aicearra neamhbhailí</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Session</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Teachtaireacht nua</string>
   <!--TransferControlView-->
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Níl an gléas cláráithe a thulleadh.</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Is dócha go chláraigh do uimhir fóin le Loki Messenger ar gléas eile. Cnag chun athchláraigh.</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Is dócha go chláraigh do uimhir fóin le Session ar gléas eile. Cnag chun athchláraigh.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Tharla fadhb ag seinm an fhíseáin</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Chun an ghlao ón %s a fhreaghairt, tabhairt riochtain do Shignal do do mhicreafón.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Tá gá ag Loki Messenger le ceadanna micreafóin agus cheamara chun glaonna a chuir nó a fháil, ach ní ceadaítear iad go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Micreafón\" agus \"Ceamara\".</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Tá gá ag Session le ceadanna micreafóin agus cheamara chun glaonna a chuir nó a fháil, ach ní ceadaítear iad go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Micreafón\" agus \"Ceamara\".</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">D\'athraíodh an uimhir shábhála le haghaigh an comhrá le %1$s. Ciallaíonn sé sin go bhfuil duine éigéan ag iarraigh do teagmháil a idircheapadh, nó go athshuiteáil %2$s Loki Messenger.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers">D\'athraíodh an uimhir shábhála le haghaigh an comhrá le %1$s. Ciallaíonn sé sin go bhfuil duine éigéan ag iarraigh do teagmháil a idircheapadh, nó go athshuiteáil %2$s Session.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">B\'fhéidir go mhian leat do uimhir sábhailte a dheimhniú leis an dteagmhálaí seo.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Uimhir shábháilteachta nua</string>
   <string name="WebRtcCallScreen_accept">Glac leis</string>
@@ -628,14 +628,14 @@ a shonrú</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Grianghraf den teagmhálaí</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Tá gá ag Loki Messenger le cead teagmhálaí chun teagmháláithe a léiriú, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Teagmhálaí\". </string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Tá gá ag Session le cead teagmhálaí chun teagmháláithe a léiriú, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Teagmhálaí\". </string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Níl aon teaghmhálaithe le bac orthu</string>
   <!--contact_selection_list_fragment-->
-  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Tá gá ag Loki Messenger riochtain ar do theagmhálaithe chun iad a thaispeáint.</string>
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Tá gá ag Session riochtain ar do theagmhálaithe chun iad a thaispeáint.</string>
   <string name="contact_selection_list_fragment__show_contacts">Táispeáin teagmhálaithe</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Teachtaireacht Loki Messenger</string>
+  <string name="conversation_activity__type_message_push">Teachtaireacht Session</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS nach bhfuil slán</string>
   <string name="conversation_activity__type_message_mms_insecure">MMS nach bhfuil slán</string>
   <string name="conversation_activity__from_sim_name">Ó %1$s</string>
@@ -644,7 +644,7 @@ a shonrú</string>
   <string name="conversation_activity__emoji_toggle_description">Scoránaigh an méarchlár emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Mionshamhail an cheangaltáin</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Ceangaltán fuaime a thaifid agus a sheoladh</string>
-  <string name="conversation_activity__enable_signal_for_sms">Cumasaigh Loki Messenger le haghaidh SMS</string>
+  <string name="conversation_activity__enable_signal_for_sms">Cumasaigh Session le haghaidh SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__cancel">Cealaigh</string>
   <!--conversation_item-->
@@ -696,9 +696,9 @@ a shonrú</string>
   <string name="IdentityUtil_unverified_banner_one">D\'athraíodh do uimhir shábhála le %s agus níl sí deimhnithe a thuilleadh.</string>
   <string name="IdentityUtil_unverified_banner_two">Níl do uimhreacha sábhálacha le %1$s agus le %2$s deimhnithe a thuilleadh.</string>
   <string name="IdentityUtil_unverified_banner_many">Níl do uimhreacha sábhálacha le %1$s, le %2$s agus le %3$s deimhnithe a thuilleadh.</string>
-  <string name="IdentityUtil_unverified_dialog_one">D\'athraíodh do uimhir shábhála le %1$s. Ciallaíonn sé sin go bhfuil duine éigéan ag iarraigh do teagmháil a idircheapadh, nó go athshuiteáil %1$s Loki Messenger.</string>
-  <string name="IdentityUtil_unverified_dialog_two">Níl do uimhreacha shábhálacha le %1$s agus le %2$s deimhnithe a thuilleadh. Ciallaíonn sé sin go bhfuil duine éigéan ag iarraigh do teagmháil a idircheapadh, nó go athshuiteáil siad Loki Messenger.</string>
-  <string name="IdentityUtil_unverified_dialog_many">Níl do uimhreacha shábhálacha le %1$s, le %2$s agus le %3$sdeimhnithe a thuilleadh. Ciallaíonn sé sin go bhfuil duine éigéan ag iarraigh do teagmháil a idircheapadh, nó go athshuiteáil siad Loki Messenger.</string>
+  <string name="IdentityUtil_unverified_dialog_one">D\'athraíodh do uimhir shábhála le %1$s. Ciallaíonn sé sin go bhfuil duine éigéan ag iarraigh do teagmháil a idircheapadh, nó go athshuiteáil %1$s Session.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Níl do uimhreacha shábhálacha le %1$s agus le %2$s deimhnithe a thuilleadh. Ciallaíonn sé sin go bhfuil duine éigéan ag iarraigh do teagmháil a idircheapadh, nó go athshuiteáil siad Session.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Níl do uimhreacha shábhálacha le %1$s, le %2$s agus le %3$sdeimhnithe a thuilleadh. Ciallaíonn sé sin go bhfuil duine éigéan ag iarraigh do teagmháil a idircheapadh, nó go athshuiteáil siad Session.</string>
   <string name="IdentityUtil_untrusted_dialog_one">D\'athraíodh do uimhir shábhála le %s anois go díreach.</string>
   <string name="IdentityUtil_untrusted_dialog_two">D\'athraíodh do uimhreacha shábhálacha le %1$s agus le %2$s anois go díreach.</string>
   <string name="IdentityUtil_untrusted_dialog_many">D\'athraíodh do uimhreacha shábhálacha le %1$s,  le %2$s agus le %3$s anois go díreach.</string>
@@ -768,7 +768,7 @@ a shonrú</string>
   <string name="recipient_preferences__call_settings">Glao-shocruithe</string>
   <string name="recipient_preferences__ringtone">Glaofhuaimeanna</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Glao Loki Messenger</string>
+  <string name="redphone_call_card__signal_call">Glao Session</string>
   <string name="redphone_call_controls__mute">Balbhaigh</string>
   <string name="redphone_call_controls__flip_camera_rear">Malartaigh grianghrafadáin</string>
   <!--registration_activity-->
@@ -849,8 +849,8 @@ a shonrú</string>
   <string name="preferences__sms_mms">SMS agus MMS</string>
   <string name="preferences__pref_all_sms_title">Glac le gach SMS</string>
   <string name="preferences__pref_all_mms_title">Glac le gach MMS</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Bain feidhm as Loki Messenger i gcomhair gach teachtaireacht téacs isteach</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Bain feidhm as Loki Messenger i gcomhair gach teachtaireachtaí mhéain isteach</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Bain feidhm as Session i gcomhair gach teachtaireacht téacs isteach</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Bain feidhm as Session i gcomhair gach teachtaireachtaí mhéain isteach</string>
   <string name="preferences__pref_enter_sends_title">Enter = seol í</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Má bhrúitear Enter, seolfar teachtaireachtaí téacs</string>
   <string name="preferences__choose_identity">Roghnaigh céannacht</string>
@@ -901,8 +901,8 @@ a shonrú</string>
   <string name="preferences__theme">Téama</string>
   <string name="preferences__default">An réamhshocrú</string>
   <string name="preferences__language">Teanga</string>
-  <string name="preferences__signal_messages_and_calls">Teachtaireachtaí agus glaonna Loki Messenger</string>
-  <string name="preferences__free_private_messages_and_calls">Teachtaireachtaí agus glaonna príobháideacha don lucht Loki Messenger</string>
+  <string name="preferences__signal_messages_and_calls">Teachtaireachtaí agus glaonna Session</string>
+  <string name="preferences__free_private_messages_and_calls">Teachtaireachtaí agus glaonna príobháideacha don lucht Session</string>
   <string name="preferences__incognito_keyboard">Méarchlár faoi cheilt</string>
   <string name="preferences__read_receipts">Adhmálacha léamh</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Má tá adhmálacha léamh díchumasaithe, ní féidir leat adhmálacha léamh ó dhaoine else a fheiceáil.</string>
@@ -927,7 +927,7 @@ a shonrú</string>
   <string name="preferences_notifications__ringtone">Glaofhuaim</string>
   <string name="preferences_chats__show_invitation_prompts">Taispeáin leideanna i gcomhair cuirí</string>
   <string name="preferences_chats__message_text_size">Méid chlófhoirne na teachtaireachta</string>
-  <string name="preferences_events__contact_joined_signal">Chuaigh an teagmhálaí isteach in Loki Messenger</string>
+  <string name="preferences_events__contact_joined_signal">Chuaigh an teagmhálaí isteach in Session</string>
   <string name="preferences_notifications__priority">Tosaíocht</string>
   <string name="preferences_communication__sealed_sender_learn_more">Foghlaim tuilleadh</string>
   <!--****************************************-->
@@ -938,7 +938,7 @@ a shonrú</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Glao</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">Glao Loki Messenger</string>
+  <string name="conversation_callable_secure__menu_call">Glao Session</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Sonraí na teachtaireachta</string>
   <string name="conversation_context__menu_copy_text">Macasamhlaigh an téacs</string>
@@ -999,16 +999,16 @@ a shonrú</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Macasamhlaigh chuig an ghearrthaisce</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Cuir i gcomórtas leis an ngearrthaisce</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Tá an leagan de Loki Messenger a bhfuil agat seanda</string>
-  <string name="reminder_header_outdated_build_details_today">Rachaidh do leagan Loki Messenger as bhfeidhm inniu. Cnag chun é a nuashonrú chuig an leagan is deanaí.</string>
-  <string name="reminder_header_expired_build">Tá an leagan de Loki Messenger atá agat as feidhm!</string>
+  <string name="reminder_header_outdated_build">Tá an leagan de Session a bhfuil agat seanda</string>
+  <string name="reminder_header_outdated_build_details_today">Rachaidh do leagan Session as bhfeidhm inniu. Cnag chun é a nuashonrú chuig an leagan is deanaí.</string>
+  <string name="reminder_header_expired_build">Tá an leagan de Session atá agat as feidhm!</string>
   <string name="reminder_header_expired_build_details">Ní sheolfar go rathúil teachtaireachtaí a thuilleadh. Cnag chun é a nuashonrú chuig an leagan is déanaí.</string>
   <string name="reminder_header_sms_default_title">Úsáid mar aip SMS réamhshocrú</string>
-  <string name="reminder_header_sms_default_text">Cnag chun Loki Messenger a úsáid mar aip SMS réamhshocrú</string>
+  <string name="reminder_header_sms_default_text">Cnag chun Session a úsáid mar aip SMS réamhshocrú</string>
   <string name="reminder_header_sms_import_title">Tabhair isteach SMS an chórais</string>
-  <string name="reminder_header_push_title">Cumasaigh teachtaireachtaí agus glaonna Loki Messenger</string>
+  <string name="reminder_header_push_title">Cumasaigh teachtaireachtaí agus glaonna Session</string>
   <string name="reminder_header_push_text">Feabhsaigh do chumarsáid.</string>
-  <string name="reminder_header_invite_title">Tabhair cuireadh chuig Loki Messenger</string>
+  <string name="reminder_header_invite_title">Tabhair cuireadh chuig Session</string>
   <string name="reminder_header_invite_text">Cuir feabhas le do chomhrá le %1$s.</string>
   <string name="reminder_header_share_title">Tabhair cuirí do do chairde!</string>
   <string name="reminder_header_share_text">An mó cairde leat a bhaineann feidhm as Singal, is fearrde é.</string>
@@ -1032,14 +1032,14 @@ a shonrú</string>
   <string name="ConversationListFragment_loading">Ag luchtú...</string>
   <string name="CallNotificationBuilder_connecting">Ag ceangail...</string>
   <string name="Permissions_permission_required">Is gá cead a fháil</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Tá gá ag Loki Messenger leis an cead SMS chun SMS a sheol, ach ní ceadaítear é go deo. Lean ar aghaigh, le do thoil, go socruithe aipe, roghnaigh \"SMS\". </string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Tá gá ag Session leis an cead SMS chun SMS a sheol, ach ní ceadaítear é go deo. Lean ar aghaigh, le do thoil, go socruithe aipe, roghnaigh \"SMS\". </string>
   <string name="Permissions_continue">Lean ar aghaidh</string>
   <string name="Permissions_not_now">Ní anois</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Tá gá ag Loki Messenger le cead teagmhálaí chun teagmhálaithe a chuardaigh, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Teagmhálaí\". </string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Tá gá ag Session le cead teagmhálaí chun teagmhálaithe a chuardaigh, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Teagmhálaí\". </string>
   <string name="conversation_activity__enable_signal_messages">CUMASAIGH TEACHTAIREACHTAÍ SIGNAL</string>
   <string name="PushDecryptJob_new_locked_message">Teachtaireacht ghlasaithe nua</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Bain an glas de chun an nuashonrú a chríochnú</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Bain an glas de Loki Messenger chun an nuashonrú a chríochnú</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Bain an glas de Session chun an nuashonrú a chríochnú</string>
   <string name="registration_activity__skip">Léim thar seo</string>
   <string name="registration_activity__register">Cláraigh</string>
   <string name="preferences_chats__create_backup">Cruthaigh cúltaca</string>
@@ -1069,7 +1069,7 @@ a shonrú</string>
   <string name="RegistrationLockDialog_enable">Cumasaigh</string>
   <string name="RegistrationLockDialog_disable">Díchumasaigh</string>
   <string name="preferences_chats__backups">Cúltacaithe</string>
-  <string name="prompt_passphrase_activity__signal_is_locked">Tá Loki Messenger faoi ghlas</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Tá Session faoi ghlas</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">CNAG CHUN É A DHÍGHLASÁIL</string>
   <string name="RegistrationLockDialog_reminder">Cuimhneachán:</string>
   <string name="recipient_preferences__about">Maidir leis</string>

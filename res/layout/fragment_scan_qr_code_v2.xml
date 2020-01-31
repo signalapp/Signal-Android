@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <org.thoughtcrime.securesms.components.camera.CameraView
+        android:id="@+id/cameraView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:camera="0" />
+
+    <LinearLayout
+        android:id="@+id/overlayView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="3" >
+
+        <org.thoughtcrime.securesms.components.ShapeScrim
+            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+        <TextView
+            android:id="@+id/messageTextView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="@dimen/very_large_spacing"
+            android:gravity="center"
+            android:background="@color/navigation_bar_background"
+            android:text="Scan a user’s QR code to start a session. QR codes can be found by tapping the QR code icon in account settings."
+            android:textSize="@dimen/small_font_size"
+            android:textColor="@color/text" />
+
+    </LinearLayout>
+
+</FrameLayout>

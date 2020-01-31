@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.loki.redesign.views.MentionCandidateView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="44dp"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/medium_spacing"
+    android:paddingEnd="@dimen/medium_spacing"
+    android:gravity="center_vertical"
+    android:background="@drawable/mention_candidate_view_background">
+
+    <RelativeLayout
+        android:layout_width="26dp"
+        android:layout_height="32dp">
+
+        <org.thoughtcrime.securesms.loki.redesign.views.ProfilePictureView
+            android:id="@+id/profilePictureView"
+            android:layout_width="@dimen/very_small_profile_picture_size"
+            android:layout_height="@dimen/very_small_profile_picture_size"
+            android:layout_marginTop="3dp" />
+
+        <ImageView
+            android:id="@+id/moderatorIconImageView"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/icon_crown"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/displayNameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/medium_spacing"
+        android:textSize="@dimen/small_font_size"
+        android:textColor="@color/text"
+        android:maxLines="1"
+        android:ellipsize="end" />
+
+</org.thoughtcrime.securesms.loki.redesign.views.MentionCandidateView>

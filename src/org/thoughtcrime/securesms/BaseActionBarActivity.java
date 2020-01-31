@@ -46,7 +46,7 @@ public abstract class BaseActionBarActivity extends AppCompatActivity {
     DynamicLanguageActivityHelper.recreateIfNotInCorrectLanguage(this, TextSecurePreferences.getLanguage(this));
     String name = getResources().getString(R.string.app_name);
     Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher_foreground);
-    int color = getResources().getColor(R.color.loki_darkest_gray);
+    int color = getResources().getColor(R.color.app_icon_background);
     setTaskDescription(new ActivityManager.TaskDescription(name, icon, color));
   }
 

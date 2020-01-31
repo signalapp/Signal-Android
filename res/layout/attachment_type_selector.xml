@@ -12,6 +12,7 @@
         android:background="@drawable/attachment_selector_shadow"/>
 
     <LinearLayout
+        android:id="@+id/contentView"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,16 +21,21 @@
         <org.thoughtcrime.securesms.components.RecentPhotoViewRail
             android:id="@+id/recent_photos"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
+            android:layout_height="72dp"
             android:padding="4dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginTop="16dp"
             android:weightSum="3">
 
             <LinearLayout
@@ -41,8 +47,8 @@
 
                 <org.thoughtcrime.securesms.components.CircleColorImageView
                     android:id="@+id/gallery_button"
-                    android:layout_width="53dp"
-                    android:layout_height="53dp"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
                     android:src="@drawable/ic_image_white_24dp"
                     android:scaleType="center"
                     android:contentDescription="@string/attachment_type_selector__gallery_description"
@@ -65,14 +71,15 @@
 
                 <org.thoughtcrime.securesms.components.CircleColorImageView
                     android:id="@+id/camera_button"
-                    android:layout_width="53dp"
-                    android:layout_height="53dp"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
                     android:src="@drawable/ic_camera_white_24dp"
                     android:scaleType="center"
                     android:contentDescription="@string/attachment_type_selector__camera_description"
                     app:circleColor="@color/green_400"/>
 
-                <TextView android:layout_marginTop="10dp"
+                <TextView
+                    android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -91,8 +98,8 @@
 
                 <org.thoughtcrime.securesms.components.CircleColorImageView
                     android:id="@+id/audio_button"
-                    android:layout_width="53dp"
-                    android:layout_height="53dp"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
                     android:contentDescription="@string/attachment_type_selector__audio_description"
                     android:scaleType="center"
                     android:src="@drawable/ic_headset_white_24dp"
@@ -116,8 +123,8 @@
 
                 <org.thoughtcrime.securesms.components.CircleColorImageView
                     android:id="@+id/document_button"
-                    android:layout_width="53dp"
-                    android:layout_height="53dp"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
                     android:contentDescription="@string/attachment_type_selector__file_description"
                     android:scaleType="center"
                     android:src="@drawable/ic_insert_drive_file_white_24dp"
@@ -142,8 +149,8 @@
 
                 <org.thoughtcrime.securesms.components.CircleColorImageView
                     android:id="@+id/contact_button"
-                    android:layout_width="53dp"
-                    android:layout_height="53dp"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
                     android:src="@drawable/ic_person_white_24dp"
                     android:scaleType="center"
                     android:contentDescription="@string/attachment_type_selector__contact_description"
@@ -181,8 +188,8 @@
 
                 <org.thoughtcrime.securesms.components.CircleColorImageView
                     android:id="@+id/location_button"
-                    android:layout_width="53dp"
-                    android:layout_height="53dp"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
                     android:contentDescription="@string/attachment_type_selector__location_description"
                     android:scaleType="center"
                     android:src="@drawable/ic_location_on_white_24dp"
@@ -206,8 +213,8 @@
 
                 <org.thoughtcrime.securesms.components.CircleColorImageView
                     android:id="@+id/giphy_button"
-                    android:layout_width="53dp"
-                    android:layout_height="53dp"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
                     android:src="@drawable/ic_gif_white_24dp"
                     android:scaleType="center"
                     android:contentDescription="@string/attachment_type_selector__gif_description"
@@ -231,8 +238,9 @@
 
                 <org.thoughtcrime.securesms.components.CircleColorImageView
                     android:id="@+id/close_button"
-                    android:layout_width="53dp"
-                    android:layout_height="53dp"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:paddingTop="4dp"
                     android:src="@drawable/ic_keyboard_arrow_down_white_24dp"
                     android:scaleType="center"
                     android:contentDescription="@string/attachment_type_selector__drawer_description"
@@ -248,6 +256,11 @@
             </LinearLayout>
 
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
     </LinearLayout>
 

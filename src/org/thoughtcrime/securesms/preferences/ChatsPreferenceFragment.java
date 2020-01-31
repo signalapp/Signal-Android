@@ -9,7 +9,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.EditTextPreference;
-import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.text.TextUtils;
 
@@ -17,8 +16,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.backup.BackupDialog;
 import org.thoughtcrime.securesms.backup.FullBackupBase.BackupEvent;
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
@@ -35,6 +32,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import network.loki.messenger.R;
+
 public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
   private static final String TAG = ChatsPreferenceFragment.class.getSimpleName();
 
@@ -49,9 +48,9 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
         .setOnPreferenceChangeListener(new MediaDownloadChangeListener());
     findPreference(TextSecurePreferences.MEDIA_DOWNLOAD_ROAMING_PREF)
         .setOnPreferenceChangeListener(new MediaDownloadChangeListener());
-     */
     findPreference(TextSecurePreferences.MESSAGE_BODY_TEXT_SIZE_PREF)
         .setOnPreferenceChangeListener(new ListSummaryListener());
+     */
 
     findPreference(TextSecurePreferences.THREAD_TRIM_NOW)
         .setOnPreferenceClickListener(new TrimNowClickListener());
@@ -63,7 +62,7 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
     findPreference(TextSecurePreferences.BACKUP_NOW)
         .setOnPreferenceClickListener(new BackupCreateListener());
 
-    initializeListSummary((ListPreference) findPreference(TextSecurePreferences.MESSAGE_BODY_TEXT_SIZE_PREF));
+//    initializeListSummary((ListPreference) findPreference(TextSecurePreferences.MESSAGE_BODY_TEXT_SIZE_PREF));
 
     EventBus.getDefault().register(this);
   }
@@ -76,7 +75,6 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
   @Override
   public void onResume() {
     super.onResume();
-    ((ApplicationPreferencesActivity)getActivity()).getSupportActionBar().setTitle(R.string.preferences__chats);
     setMediaDownloadSummaries();
     setBackupSummary();
   }

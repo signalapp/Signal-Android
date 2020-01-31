@@ -56,7 +56,7 @@ public class RemovableEditableMediaView extends FrameLayout {
     if (current != null) current.setVisibility(View.GONE);
 
     if (view != null) {
-      view.setPadding(view.getPaddingLeft(), removeSize / 2, removeSize / 2, view.getPaddingRight());
+      view.setPadding(view.getPaddingLeft(), removeSize / 2, removeSize / 2, (int)(8 * getResources().getDisplayMetrics().density));
       edit.setPadding(0, 0, removeSize / 2, 0);
 
       view.setVisibility(View.VISIBLE);

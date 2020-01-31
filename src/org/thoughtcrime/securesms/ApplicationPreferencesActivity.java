@@ -37,11 +37,10 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.Preference;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.loki.LinkedDevicesActivity;
-import org.thoughtcrime.securesms.loki.QRCodeDialog;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.ChatsPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.CorrectedPreferenceFragment;
@@ -337,13 +336,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
           shareIntent.setType("text/plain");
           startActivity(shareIntent);
           break;
-        case PREFERENCE_CATEGORY_QR_CODE:
-          QRCodeDialog.INSTANCE.show(getContext());
-          break;
-        case PREFERENCE_CATEGORY_LINKED_DEVICES:
-          Intent intent = new Intent(getActivity(), LinkedDevicesActivity.class);
-          startActivity(intent);
-          break;
+        case PREFERENCE_CATEGORY_QR_CODE: break;
+        case PREFERENCE_CATEGORY_LINKED_DEVICES: break;
         case PREFERENCE_CATEGORY_SEED:
           Analytics.Companion.getShared().track("Seed Modal Shown");
           File languageFileDirectory = new File(getContext().getApplicationInfo().dataDir);
@@ -365,7 +359,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
                     .setNeutralButton(R.string.activity_settings_seed_dialog_ok_button_title, null)
                     .show();
           } catch (Exception e) {
-            // Do nothing
+            Log.d("Loki", e.getMessage());
           }
           break;
         default:
