@@ -160,7 +160,6 @@ public class TextSecurePreferences {
   @Deprecated
   private static final String REGISTRATION_LOCK_PIN_PREF_V1            = "pref_registration_lock_pin";
 
-  private static final String REGISTRATION_LOCK_LAST_REMINDER_TIME          = "pref_registration_lock_last_reminder_time";
   private static final String REGISTRATION_LOCK_LAST_REMINDER_TIME_POST_KBS = "pref_registration_lock_last_reminder_time_post_kbs";
   private static final String REGISTRATION_LOCK_NEXT_REMINDER_INTERVAL      = "pref_registration_lock_next_reminder_interval";
 
@@ -272,16 +271,11 @@ public class TextSecurePreferences {
   }
 
   public static long getRegistrationLockLastReminderTime(@NonNull Context context) {
-    return getLongPreference(context, getAppropriateReminderKey(), 0);
+    return getLongPreference(context, REGISTRATION_LOCK_LAST_REMINDER_TIME_POST_KBS, 0);
   }
 
   public static void setRegistrationLockLastReminderTime(@NonNull Context context, long time) {
-    setLongPreference(context, getAppropriateReminderKey(), time);
-  }
-
-  private static String getAppropriateReminderKey() {
-    return FeatureFlags.kbs() ? REGISTRATION_LOCK_LAST_REMINDER_TIME_POST_KBS
-                              : REGISTRATION_LOCK_LAST_REMINDER_TIME;
+    setLongPreference(context, REGISTRATION_LOCK_LAST_REMINDER_TIME_POST_KBS, time);
   }
 
   public static long getRegistrationLockNextReminderInterval(@NonNull Context context) {

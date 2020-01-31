@@ -122,14 +122,6 @@ public class SignalServiceAccountManager {
   }
 
   /**
-   * @deprecated Remove this method once KBS is live.
-   */
-  @Deprecated
-  public void setPin(String pin) throws IOException {
-    this.pushServiceSocket.setPin(pin);
-  }
-
-  /**
    * V1 Pin setting has been replaced by KeyBackupService.
    * Now you can only remove the old pin but there is no need to remove the old pin if setting a KBS Pin.
    */

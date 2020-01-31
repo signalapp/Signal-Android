@@ -297,11 +297,6 @@ public class PushServiceSocket {
     makeServiceRequest(String.format(Locale.US, REQUEST_PUSH_CHALLENGE, gcmRegistrationId, e164number), "GET", null);
   }
 
-  public void setPin(String pin) throws IOException {
-    RegistrationLock accountLock = new RegistrationLock(pin);
-    makeServiceRequest(PIN_PATH, "PUT", JsonUtil.toJson(accountLock));
-  }
-
   /** Note: Setting a KBS Pin will clear this */
   public void removePin() throws IOException {
     makeServiceRequest(PIN_PATH, "DELETE", null);

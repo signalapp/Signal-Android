@@ -27,7 +27,6 @@ import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKeyPair;
 import org.whispersystems.libsignal.state.PreKeyRecord;
@@ -248,10 +247,8 @@ public final class CodeVerificationRequest {
       //noinspection deprecation Only acceptable place to write the old pin enabled state.
       TextSecurePreferences.setV1RegistrationLockEnabled(context, pin != null);
       if (pin != null) {
-        if (FeatureFlags.kbs()) {
-          Log.i(TAG, "Pin V1 successfully entered during registration, scheduling a migration to Pin V2");
-          ApplicationDependencies.getJobManager().add(new RegistrationPinV2MigrationJob());
-        }
+        Log.i(TAG, "Pin V1 successfully entered during registration, scheduling a migration to Pin V2");
+        ApplicationDependencies.getJobManager().add(new RegistrationPinV2MigrationJob());
       }
     } else {
       SignalStore.kbsValues().setRegistrationLockMasterKey(kbsData, PinHashing.localPinHash(pin));
