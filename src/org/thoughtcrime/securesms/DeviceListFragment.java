@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.DeviceListLoader;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.devicelist.Device;
-import org.thoughtcrime.securesms.loki.DeviceListBottomSheetFragment;
+import org.thoughtcrime.securesms.loki.redesign.views.DeviceEditingOptionsBottomSheet;
 import org.thoughtcrime.securesms.loki.redesign.utilities.MnemonicUtilities;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -140,7 +140,7 @@ public class DeviceListFragment extends ListFragment
     final String deviceName = ((DeviceListItem)view).getDeviceName();
     final String deviceId   = ((DeviceListItem)view).getDeviceId();
 
-    DeviceListBottomSheetFragment bottomSheet = new DeviceListBottomSheetFragment();
+    DeviceEditingOptionsBottomSheet bottomSheet = new DeviceEditingOptionsBottomSheet();
     bottomSheet.setOnEditTapped(() -> {
       bottomSheet.dismiss();
       EditText deviceNameEditText = new EditText(getContext());

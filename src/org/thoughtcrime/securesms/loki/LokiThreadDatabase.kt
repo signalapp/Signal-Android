@@ -7,11 +7,7 @@ import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
-import org.thoughtcrime.securesms.loki.redesign.utilities.get
-import org.thoughtcrime.securesms.loki.redesign.utilities.getInt
-import org.thoughtcrime.securesms.loki.redesign.utilities.getLong
-import org.thoughtcrime.securesms.loki.redesign.utilities.getString
-import org.thoughtcrime.securesms.loki.redesign.utilities.insertOrUpdate
+import org.thoughtcrime.securesms.loki.redesign.utilities.*
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.internal.util.JsonUtil
@@ -49,7 +45,6 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
 
     fun getFriendRequestStatus(threadID: Long): LokiThreadFriendRequestStatus {
         if (threadID < 0) { return LokiThreadFriendRequestStatus.NONE }
-
         val database = databaseHelper.readableDatabase
         val result = database.get(friendRequestTableName, "${Companion.threadID} = ?", arrayOf( threadID.toString() )) { cursor ->
             cursor.getInt(friendRequestStatus)
@@ -63,7 +58,6 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
 
     override fun setFriendRequestStatus(threadID: Long, friendRequestStatus: LokiThreadFriendRequestStatus) {
         if (threadID < 0) { return }
-
         val database = databaseHelper.writableDatabase
         val contentValues = ContentValues(2)
         contentValues.put(Companion.threadID, threadID)
@@ -148,7 +142,6 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         databaseHelper.writableDatabase.delete(publicChatTableName, "${Companion.threadID} = ?", arrayOf( threadID.toString() ))
     }
 
-    // region Session Restore
     fun addSessionRestoreDevice(threadID: Long, hexEncodedPublicKey: String) {
         val devices = getSessionRestoreDevices(threadID).toMutableSet()
         if (devices.add(hexEncodedPublicKey)) {
@@ -168,5 +161,4 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         TextSecurePreferences.setStringPreference(context, "session_restore_devices_$threadID", "")
         delegate?.handleSessionRestoreDevicesChanged(threadID)
     }
-    // endregion
 }

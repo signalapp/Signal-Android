@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki
+package org.thoughtcrime.securesms.loki.redesign.messaging
 
 import android.content.ContentValues
 import android.content.Context
@@ -18,7 +18,6 @@ class LokiUserDatabase(context: Context, helper: SQLCipherOpenHelper) : Database
     companion object {
         // Shared
         private val displayName = "display_name"
-        private val profileAvatarUrl = "profile_avatar_url"
         // Display name cache
         private val displayNameTable = "loki_user_display_name_database"
         private val hexEncodedPublicKey = "hex_encoded_public_key"
@@ -70,7 +69,7 @@ class LokiUserDatabase(context: Context, helper: SQLCipherOpenHelper) : Database
         }
     }
 
-    override fun getProfileAvatarUrl(hexEncodedPublicKey: String): String? {
+    override fun getProfilePictureURL(hexEncodedPublicKey: String): String? {
         return if (hexEncodedPublicKey == TextSecurePreferences.getLocalNumber(context)) {
             TextSecurePreferences.getProfileAvatarUrl(context)
         } else {

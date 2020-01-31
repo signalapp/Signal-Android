@@ -12,7 +12,7 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.qr.ScanListener
 import org.thoughtcrime.securesms.qr.ScanningThread
 
-class ScanQRCodeFragmentV2 : Fragment() {
+class ScanQRCodeFragment : Fragment() {
     private val scanningThread = ScanningThread()
     var scanListener: ScanListener? = null
         set(value) { field = value; scanningThread.setScanListener(scanListener) }

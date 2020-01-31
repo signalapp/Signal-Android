@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki
+package org.thoughtcrime.securesms.loki.redesign.views
 
 import android.content.Context
 import android.util.AttributeSet

@@ -15,7 +15,7 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.devicelist.Device
-import org.thoughtcrime.securesms.loki.DeviceListBottomSheetFragment
+import org.thoughtcrime.securesms.loki.redesign.views.DeviceEditingOptionsBottomSheet
 import org.thoughtcrime.securesms.loki.redesign.dialogs.EditDeviceNameDialog
 import org.thoughtcrime.securesms.loki.redesign.dialogs.EditDeviceNameDialogDelegate
 import org.thoughtcrime.securesms.loki.redesign.dialogs.LinkDeviceMasterModeDialog
@@ -104,7 +104,7 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity, LoaderManager
     }
 
     override fun onDeviceClick(device: Device) {
-        val bottomSheet = DeviceListBottomSheetFragment()
+        val bottomSheet = DeviceEditingOptionsBottomSheet()
         bottomSheet.onEditTapped = {
             bottomSheet.dismiss()
             val editDeviceNameDialog = EditDeviceNameDialog()

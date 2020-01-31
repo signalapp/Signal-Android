@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki
+package org.thoughtcrime.securesms.loki.redesign.messaging
 
 import android.content.ContentValues
 import android.content.Context
@@ -88,7 +88,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
             }
             string
         }
-        val row = wrap(mapOf( Companion.hexEncodedPublicKey to hexEncodedPublicKey, swarm to swarmAsString ))
+        val row = wrap(mapOf(Companion.hexEncodedPublicKey to hexEncodedPublicKey, swarm to swarmAsString))
         database.insertOrUpdate(swarmCache, row, "${Companion.hexEncodedPublicKey} = ?", wrap(hexEncodedPublicKey))
     }
 
@@ -101,7 +101,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
 
     override fun setLastMessageHashValue(target: LokiAPITarget, newValue: String) {
         val database = databaseHelper.writableDatabase
-        val row = wrap(mapOf( Companion.target to target.address, lastMessageHashValue to newValue ))
+        val row = wrap(mapOf(Companion.target to target.address, lastMessageHashValue to newValue))
         database.insertOrUpdate(lastMessageHashValueCache, row, "${Companion.target} = ?", wrap(target.address))
     }
 
@@ -116,7 +116,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
     override fun setReceivedMessageHashValues(newValue: Set<String>) {
         val database = databaseHelper.writableDatabase
         val receivedMessageHashValuesAsString = newValue.joinToString(", ")
-        val row = wrap(mapOf( userID to userPublicKey, receivedMessageHashValues to receivedMessageHashValuesAsString ))
+        val row = wrap(mapOf(userID to userPublicKey, receivedMessageHashValues to receivedMessageHashValuesAsString))
         database.insertOrUpdate(receivedMessageHashValuesCache, row, "$userID = ?", wrap(userPublicKey))
     }
 
@@ -148,7 +148,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
     override fun setLastMessageServerID(group: Long, server: String, newValue: Long) {
         val database = databaseHelper.writableDatabase
         val index = "$server.$group"
-        val row = wrap(mapOf( lastMessageServerIDCacheIndex to index, lastMessageServerID to newValue.toString() ))
+        val row = wrap(mapOf(lastMessageServerIDCacheIndex to index, lastMessageServerID to newValue.toString()))
         database.insertOrUpdate(lastMessageServerIDCache, row, "$lastMessageServerIDCacheIndex = ?", wrap(index))
     }
 
@@ -169,7 +169,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
     override fun setLastDeletionServerID(group: Long, server: String, newValue: Long) {
         val database = databaseHelper.writableDatabase
         val index = "$server.$group"
-        val row = wrap(mapOf( lastDeletionServerIDCacheIndex to index, lastDeletionServerID to newValue.toString() ))
+        val row = wrap(mapOf(lastDeletionServerIDCacheIndex to index, lastDeletionServerID to newValue.toString()))
         database.insertOrUpdate(lastDeletionServerIDCache, row, "$lastDeletionServerIDCacheIndex = ?", wrap(index))
     }
 
@@ -221,7 +221,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
     override fun setUserCount(userCount: Int, group: Long, server: String) {
         val database = databaseHelper.writableDatabase
         val index = "$server.$group"
-        val row = wrap(mapOf( publicChatID to index, LokiAPIDatabase.userCount to userCount.toString() ))
+        val row = wrap(mapOf(publicChatID to index, Companion.userCount to userCount.toString()))
         database.insertOrUpdate(userCountCache, row, "$publicChatID = ?", wrap(index))
     }
 }
