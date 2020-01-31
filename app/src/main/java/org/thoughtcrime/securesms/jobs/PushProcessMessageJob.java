@@ -528,8 +528,9 @@ public final class PushProcessMessageJob extends BaseJob {
   {
     try {
       MmsDatabase          database     = DatabaseFactory.getMmsDatabase(context);
+      Recipient            sender       = Recipient.externalPush(context, content.getSender());
       Recipient            recipient    = getMessageDestination(content, message);
-      IncomingMediaMessage mediaMessage = new IncomingMediaMessage(recipient.getId(),
+      IncomingMediaMessage mediaMessage = new IncomingMediaMessage(sender.getId(),
                                                                    message.getTimestamp(), -1,
                                                                    message.getExpiresInSeconds() * 1000L, true,
                                                                    false,
