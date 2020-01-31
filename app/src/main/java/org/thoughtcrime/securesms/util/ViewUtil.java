@@ -233,6 +233,16 @@ public class ViewUtil {
     view.requestLayout();
   }
 
+  public static void setRightMargin(@NonNull View view, int margin) {
+    if (ViewCompat.getLayoutDirection(view) == ViewCompat.LAYOUT_DIRECTION_LTR) {
+      ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).rightMargin = margin;
+    } else {
+      ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).leftMargin = margin;
+    }
+    view.forceLayout();
+    view.requestLayout();
+  }
+
   public static void setTopMargin(@NonNull View view, int margin) {
     ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).topMargin = margin;
     view.requestLayout();

@@ -97,11 +97,13 @@
     <attr name="emoji_category_emoticons" format="reference"/>
     <attr name="emoji_variation_selector_background" format="reference|color" />
 
-    <attr name="reactions_sent_background" format="reference" />
-    <attr name="reactions_recv_background" format="reference" />
     <attr name="reactions_overlay_old_background" format="reference" />
     <attr name="reactions_overlay_scrubber_background" format="reference" />
     <attr name="reactions_bottom_dialog_fragment_emoji_selected" format="reference" />
+    <attr name="reactions_pill_background" format="reference" />
+    <attr name="reactions_pill_selected_background" format="reference" />
+    <attr name="reactions_pill_text_color" format="color" />
+    <attr name="reactions_pill_selected_text_color" format="color" />
 
     <attr name="camera_button_style" />
 
@@ -447,4 +449,7 @@
         <attr name="otv_cornerRadius" format="dimension|reference" />
     </declare-styleable>
 
+    <declare-styleable name="ReactionsConversationView">
+      <attr name="rcv_outgoing" format="boolean" />
+    </declare-styleable>
 </resources>

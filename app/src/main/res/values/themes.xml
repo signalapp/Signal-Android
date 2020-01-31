@@ -270,11 +270,13 @@
         <item name="emoji_category_emoticons">@drawable/ic_emoji_emoticon_light_20</item>
         <item name="emoji_variation_selector_background">@drawable/emoji_variation_selector_background_light</item>
 
-        <item name="reactions_recv_background">@drawable/reactions_recv_background_light</item>
-        <item name="reactions_sent_background">@drawable/reactions_send_background_light</item>
         <item name="reactions_overlay_old_background">@drawable/reactions_old_background_dark</item>
         <item name="reactions_overlay_scrubber_background">@drawable/conversation_reaction_overlay_background_dark</item>
         <item name="reactions_bottom_dialog_fragment_emoji_selected">@drawable/reactions_bottom_sheet_dialog_fragment_emoji_item_selected_light</item>
+        <item name="reactions_pill_background">@drawable/reaction_pill_background_light</item>
+        <item name="reactions_pill_selected_background">@drawable/reaction_pill_background_selected_light</item>
+        <item name="reactions_pill_text_color">@color/core_grey_60</item>
+        <item name="reactions_pill_selected_text_color">@color/core_grey_75</item>
 
         <item name="conversation_item_bubble_background">@color/core_grey_05</item>
         <item name="conversation_item_sent_text_primary_color">@color/core_grey_90</item>
@@ -536,12 +538,13 @@
         <item name="conversation_title_color">@color/transparent_white_90</item>
         <item name="conversation_subtitle_color">@color/transparent_white_80</item>
 
-        <item name="reactions_recv_background">@drawable/reactions_recv_background_dark</item>
-        <item name="reactions_sent_background">@drawable/reactions_send_background_dark</item>
         <item name="reactions_overlay_old_background">@drawable/reactions_old_background_dark</item>
         <item name="reactions_overlay_scrubber_background">@drawable/conversation_reaction_overlay_background_dark</item>
         <item name="reactions_bottom_dialog_fragment_emoji_selected">@drawable/reactions_bottom_sheet_dialog_fragment_emoji_item_selected_dark</item>
-
+        <item name="reactions_pill_background">@drawable/reaction_pill_background_dark</item>
+        <item name="reactions_pill_selected_background">@drawable/reaction_pill_background_selected_dark</item>
+        <item name="reactions_pill_text_color">@color/core_grey_35</item>
+        <item name="reactions_pill_selected_text_color">@color/core_grey_15</item>
 
         <item name="emoji_tab_strip_background">@color/core_grey_85</item>
         <item name="emoji_tab_indicator">@color/core_grey_65</item>

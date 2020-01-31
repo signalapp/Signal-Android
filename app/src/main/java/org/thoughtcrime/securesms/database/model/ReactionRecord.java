@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
+import java.util.Objects;
+
 public class ReactionRecord {
   private final String      emoji;
   private final RecipientId author;
@@ -35,5 +37,21 @@ public class ReactionRecord {
 
   public long getDateReceived() {
     return dateReceived;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ReactionRecord that = (ReactionRecord) o;
+    return dateSent == that.dateSent &&
+        dateReceived == that.dateReceived &&
+        Objects.equals(emoji, that.emoji) &&
+        Objects.equals(author, that.author);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(emoji, author, dateSent, dateReceived);
   }
 }

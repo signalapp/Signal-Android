@@ -42,6 +42,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -97,6 +98,7 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
 import org.thoughtcrime.securesms.mms.TextSlide;
+import org.thoughtcrime.securesms.reactions.ReactionsConversationView;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
@@ -158,7 +160,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   private   AvatarImageView            contactPhoto;
   private   AlertView                  alertView;
   private   ViewGroup                  container;
-  protected ViewGroup                  reactionsContainer;
+  protected ReactionsConversationView reactionsView;
 
   private @NonNull  Set<MessageRecord>              batchSelected = new HashSet<>();
   private @NonNull  Outliner                        outliner      = new Outliner();
@@ -171,7 +173,6 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   private           Stub<StickerView>               stickerStub;
   private           Stub<ViewOnceMessageView>       revealableStub;
   private @Nullable EventListener                   eventListener;
-  private           ConversationItemReactionBubbles conversationItemReactionBubbles;
 
   private int defaultBubbleColor;
   private int measureCalls;
@@ -226,9 +227,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
     this.quoteView               =            findViewById(R.id.quote_view);
     this.container               =            findViewById(R.id.container);
     this.reply                   =            findViewById(R.id.reply_icon);
-    this.reactionsContainer      =            findViewById(R.id.reactions_bubbles_container);
-
-    this.conversationItemReactionBubbles = new ConversationItemReactionBubbles(this.reactionsContainer);
+    this.reactionsView           =            findViewById(R.id.reactions_view);
 
     setOnClickListener(new ClickListener(null));
 
@@ -906,8 +905,23 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   }
 
   private void setReactions(@NonNull MessageRecord current) {
-    conversationItemReactionBubbles.setReactions(current.getReactions());
-    reactionsContainer.setOnClickListener(v -> {
+    if (current.getReactions().isEmpty()) {
+      reactionsView.clear();
+      return;
+    }
+
+    bodyBubble.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+      @Override
+      public void onGlobalLayout() {
+        setReactionsWithWidth(current);
+        bodyBubble.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+      }
+    });
+  }
+
+  private void setReactionsWithWidth(@NonNull MessageRecord current) {
+    reactionsView.setReactions(current.getReactions(), bodyBubble.getWidth());
+    reactionsView.setOnClickListener(v -> {
       if (eventListener == null) return;
 
       eventListener.onReactionClicked(current.getId(), current.isMms());

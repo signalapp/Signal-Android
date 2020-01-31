@@ -49,7 +49,8 @@ public class MegaphoneRepository {
   @MainThread
   public void onFirstEverAppLaunch() {
     executor.execute(() -> {
-      // Future megaphones we don't want to show to new users should get marked as finished here.
+      database.markFinished(Event.REACTIONS);
+      resetDatabaseCache();
     });
   }
 

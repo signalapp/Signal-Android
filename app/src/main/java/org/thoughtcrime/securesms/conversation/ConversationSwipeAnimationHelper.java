@@ -33,7 +33,7 @@ final class ConversationSwipeAnimationHelper {
     float progress = dx / TRIGGER_DX;
 
     updateBodyBubbleTransition(conversationItem.bodyBubble, dx, sign);
-    updateReactionsTransition(conversationItem.reactionsContainer, dx, sign);
+    updateReactionsTransition(conversationItem.reactionsView, dx, sign);
     updateReplyIconTransition(conversationItem.reply, dx, progress, sign);
     updateContactPhotoHolderTransition(conversationItem.contactPhotoHolder, progress, sign);
   }

@@ -188,35 +188,15 @@
             android:orientation="vertical"
             android:paddingBottom="4dp" />
 
-        <org.thoughtcrime.securesms.components.MaxHeightFrameLayout
-            android:id="@+id/reactions_bubbles_container"
+        <org.thoughtcrime.securesms.reactions.ReactionsConversationView
+            android:id="@+id/reactions_view"
             android:layout_width="wrap_content"
-            android:layout_height="0dip"
-            android:layout_alignTop="@id/body_bubble"
-            android:layout_alignBottom="@id/body_bubble"
-            android:layout_marginEnd="@dimen/reactions_bubble_margin"
-            android:layout_toStartOf="@id/body_bubble"
-            android:visibility="gone"
-            app:mhfl_maxHeight="@dimen/reactions_bubble_container_max_height"
-            tools:visibility="visible">
-
-            <org.thoughtcrime.securesms.components.emoji.EmojiImageView
-                android:id="@+id/reactions_bubbles_secondary"
-                android:layout_width="@dimen/reactions_bubble_size"
-                android:layout_height="@dimen/reactions_bubble_size"
-                android:layout_gravity="bottom"
-                android:padding="6dp"
-                android:background="?attr/reactions_recv_background" />
-
-            <org.thoughtcrime.securesms.components.emoji.EmojiImageView
-                android:id="@+id/reactions_bubbles_primary"
-                android:layout_width="@dimen/reactions_bubble_size"
-                android:layout_height="@dimen/reactions_bubble_size"
-                android:layout_gravity="top"
-                android:padding="6dp"
-                android:background="?attr/reactions_recv_background" />
-
-        </org.thoughtcrime.securesms.components.MaxHeightFrameLayout>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="-8dp"
+            android:layout_below="@id/body_bubble"
+            android:layout_alignEnd="@id/body_bubble"
+            app:rcv_outgoing="true"/>
 
     </RelativeLayout>
 

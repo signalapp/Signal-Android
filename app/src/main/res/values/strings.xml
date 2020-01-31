@@ -666,6 +666,9 @@
     <string name="RatingManager_later">Later</string>
     <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Whoops, the Play Store app does not appear to be installed on your device.</string>
 
+    <!-- ReactionsConversationView -->
+    <string name="ReactionsConversationView_plus">+%1$d</string>
+
     <!-- RecipientPreferencesActivity -->
     <string name="RecipientPreferenceActivity_block_this_contact_question">Block this contact?</string>
     <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">You will no longer receive messages and calls from this contact.</string>
