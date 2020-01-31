@@ -187,7 +187,6 @@ dependencies {
     implementation "org.whispersystems:curve25519-java:0.5.0"
     // Remote:
     // implementation "com.github.loki-project:loki-messenger-android-service:dev-SNAPSHOT"
-//    implementation "org.signal:signal-metadata-android:0.0.3"
     implementation "com.google.protobuf:protobuf-java:2.5.0"
     implementation "com.googlecode.libphonenumber:libphonenumber:8.10.7"
     implementation "com.fasterxml.jackson.core:jackson-databind:2.9.8"
