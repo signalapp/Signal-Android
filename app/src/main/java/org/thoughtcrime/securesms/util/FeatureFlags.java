@@ -46,13 +46,14 @@ public final class FeatureFlags {
   private static final String PREFIX         = "android.";
   private static final long   FETCH_INTERVAL = TimeUnit.HOURS.toMillis(2);
 
-  private static final String UUIDS             = generateKey("uuids");
-  private static final String PROFILE_DISPLAY   = generateKey("profileDisplay");
-  private static final String MESSAGE_REQUESTS  = generateKey("messageRequests");
-  private static final String USERNAMES         = generateKey("usernames");
-  private static final String KBS               = generateKey("kbs");
-  private static final String STORAGE_SERVICE   = generateKey("storageService");
-  private static final String PINS_FOR_ALL      = generateKey("beta.pinsForAll"); // TODO [alex] remove beta prefix
+  private static final String UUIDS                      = generateKey("uuids");
+  private static final String PROFILE_DISPLAY            = generateKey("profileDisplay");
+  private static final String MESSAGE_REQUESTS           = generateKey("messageRequests");
+  private static final String USERNAMES                  = generateKey("usernames");
+  private static final String KBS                        = generateKey("kbs");
+  private static final String STORAGE_SERVICE            = generateKey("storageService");
+  private static final String PINS_FOR_ALL               = generateKey("beta.pinsForAll"); // TODO [alex] remove beta prefix
+  private static final String PINS_MEGAPHONE_KILL_SWITCH = generateKey("pinsMegaphoneKillSwitch");
 
   /**
    * Values in this map will take precedence over any value. If you do not wish to have any sort of
@@ -75,7 +76,8 @@ public final class FeatureFlags {
    * more burden on the reader to ensure that the app experience remains consistent.
    */
   private static final Set<String> HOT_SWAPPABLE = Sets.newHashSet(
-    KBS
+    KBS,
+    PINS_MEGAPHONE_KILL_SWITCH
   );
 
   /**
@@ -157,6 +159,11 @@ public final class FeatureFlags {
   /** Enables new KBS UI and notices but does not require user to set a pin */
   public static boolean pinsForAll() {
     return SignalStore.registrationValues().pinWasRequiredAtRegistration() || getValue(PINS_FOR_ALL, false);
+  }
+
+  /** Safety flag to disable Pins for All Megaphone */
+  public static boolean pinsForAllMegaphoneKillSwitch() {
+    return getValue(PINS_MEGAPHONE_KILL_SWITCH, false);
   }
 
   /** Only for rendering debug info. */

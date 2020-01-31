@@ -17,7 +17,6 @@ class PinsForAllSchedule implements MegaphoneSchedule {
   static final long DAYS_REMAINING_MAX    = DAYS_UNTIL_FULLSCREEN - 1;
 
   private final MegaphoneSchedule schedule = new RecurringSchedule(TimeUnit.DAYS.toMillis(2));
-  private final boolean           enabled  = !SignalStore.registrationValues().isPinRequired() || FeatureFlags.pinsForAll();
 
   static boolean shouldDisplayFullScreen(long firstVisible, long currentTime) {
     if (firstVisible == 0L) {
@@ -37,12 +36,20 @@ class PinsForAllSchedule implements MegaphoneSchedule {
 
   @Override
   public boolean shouldDisplay(int seenCount, long lastSeen, long firstVisible, long currentTime) {
-    if (!enabled) return false;
+    if (!isEnabled()) return false;
 
     if (shouldDisplayFullScreen(firstVisible, currentTime)) {
       return true;
     } else {
       return schedule.shouldDisplay(seenCount, lastSeen, firstVisible, currentTime);
     }
+  }
+
+  private static boolean isEnabled() {
+    if (FeatureFlags.pinsForAllMegaphoneKillSwitch() || SignalStore.registrationValues().pinWasRequiredAtRegistration()) {
+      return false;
+    }
+
+    return FeatureFlags.pinsForAll();
   }
 }

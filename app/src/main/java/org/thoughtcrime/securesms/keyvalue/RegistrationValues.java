@@ -32,7 +32,7 @@ public final class RegistrationValues {
   }
 
   @CheckResult
-  public synchronized boolean isPinRequired() {
+  public synchronized boolean pinWasRequiredAtRegistration() {
     return store.getBoolean(PIN_REQUIRED, false);
   }
 
