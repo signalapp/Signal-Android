@@ -103,7 +103,7 @@ public class MegaphoneRepository {
 
   @WorkerThread
   private void init() {
-    List<MegaphoneRecord> records = database.getAll();
+    List<MegaphoneRecord> records = database.getAllAndDeleteMissing();
     Set<Event>            events  = Stream.of(records).map(MegaphoneRecord::getEvent).collect(Collectors.toSet());
     Set<Event>            missing = Stream.of(Megaphones.Event.values()).filterNot(events::contains).collect(Collectors.toSet());
 
@@ -120,7 +120,7 @@ public class MegaphoneRepository {
   @WorkerThread
   private void resetDatabaseCache() {
     databaseCache.clear();
-    databaseCache.putAll(Stream.of(database.getAll()).collect(Collectors.toMap(MegaphoneRecord::getEvent, m -> m)));
+    databaseCache.putAll(Stream.of(database.getAllAndDeleteMissing()).collect(Collectors.toMap(MegaphoneRecord::getEvent, m -> m)));
   }
 
   public interface Callback<E> {

@@ -170,5 +170,14 @@ public final class Megaphones {
       }
       throw new IllegalArgumentException("No event for key: " + key);
     }
+
+    public static boolean hasKey(@NonNull String key) {
+      for (Event event : values()) {
+        if (event.getKey().equals(key)) {
+          return true;
+        }
+      }
+      return false;
+    }
   }
 }

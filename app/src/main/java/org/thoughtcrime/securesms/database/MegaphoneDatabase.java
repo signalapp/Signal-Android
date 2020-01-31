@@ -10,16 +10,21 @@ import net.sqlcipher.database.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MegaphoneRecord;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.megaphone.Megaphones.Event;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * IMPORTANT: Writes should only be made through {@link org.thoughtcrime.securesms.megaphone.MegaphoneRepository}.
  */
 public class MegaphoneDatabase extends Database {
+
+  private static final String TAG = Log.tag(MegaphoneDatabase.class);
 
   private static final String TABLE_NAME = "megaphone";
 
@@ -59,19 +64,41 @@ public class MegaphoneDatabase extends Database {
     }
   }
 
-  public @NonNull List<MegaphoneRecord> getAll() {
+  public @NonNull List<MegaphoneRecord> getAllAndDeleteMissing() {
+    SQLiteDatabase        db      = databaseHelper.getWritableDatabase();
     List<MegaphoneRecord> records = new ArrayList<>();
 
-    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, null, null, null, null, null)) {
-      while (cursor != null && cursor.moveToNext()) {
-        String  event        = cursor.getString(cursor.getColumnIndexOrThrow(EVENT));
-        int     seenCount    = cursor.getInt(cursor.getColumnIndexOrThrow(SEEN_COUNT));
-        long    lastSeen     = cursor.getLong(cursor.getColumnIndexOrThrow(LAST_SEEN));
-        long    firstVisible = cursor.getLong(cursor.getColumnIndexOrThrow(FIRST_VISIBLE));
-        boolean finished     = cursor.getInt(cursor.getColumnIndexOrThrow(FINISHED)) == 1;
+    db.beginTransaction();
+    try {
+      Set<String> missingKeys = new HashSet<>();
 
-        records.add(new MegaphoneRecord(Event.fromKey(event), seenCount, lastSeen, firstVisible, finished));
+      try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, null, null, null, null, null)) {
+        while (cursor != null && cursor.moveToNext()) {
+          String  event        = cursor.getString(cursor.getColumnIndexOrThrow(EVENT));
+          int     seenCount    = cursor.getInt(cursor.getColumnIndexOrThrow(SEEN_COUNT));
+          long    lastSeen     = cursor.getLong(cursor.getColumnIndexOrThrow(LAST_SEEN));
+          long    firstVisible = cursor.getLong(cursor.getColumnIndexOrThrow(FIRST_VISIBLE));
+          boolean finished     = cursor.getInt(cursor.getColumnIndexOrThrow(FINISHED)) == 1;
+
+          if (Event.hasKey(event)) {
+            records.add(new MegaphoneRecord(Event.fromKey(event), seenCount, lastSeen, firstVisible, finished));
+          } else {
+            Log.w(TAG, "No in-app handing for event '" + event + "'! Deleting it from the database.");
+            missingKeys.add(event);
+          }
+        }
       }
+
+      for (String missing : missingKeys) {
+        String   query = EVENT + " = ?";
+        String[] args  = new String[]{missing};
+
+        databaseHelper.getWritableDatabase().delete(TABLE_NAME, query, args);
+      }
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
     }
 
     return records;
@@ -106,5 +133,12 @@ public class MegaphoneDatabase extends Database {
     values.put(FINISHED, 1);
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, values, query, args);
+  }
+
+  public void delete(@NonNull Event event) {
+    String   query = EVENT + " = ?";
+    String[] args  = new String[]{event.getKey()};
+
+    databaseHelper.getWritableDatabase().delete(TABLE_NAME, query, args);
   }
 }
