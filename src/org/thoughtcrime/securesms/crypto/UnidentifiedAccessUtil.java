@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
 
+import org.signal.libsignal.metadata.SignalProtos;
 import org.signal.libsignal.metadata.certificate.CertificateValidator;
 import org.signal.libsignal.metadata.certificate.InvalidCertificateException;
 import network.loki.messenger.BuildConfig;
@@ -20,6 +21,7 @@ import org.whispersystems.libsignal.ecc.ECPublicKey;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.io.IOException;
 
@@ -28,12 +30,7 @@ public class UnidentifiedAccessUtil {
   private static final String TAG = UnidentifiedAccessUtil.class.getSimpleName();
 
   public static CertificateValidator getCertificateValidator() {
-    try {
-      ECPublicKey unidentifiedSenderTrustRoot = Curve.decodePoint(Base64.decode(BuildConfig.UNIDENTIFIED_SENDER_TRUST_ROOT), 0);
-      return new CertificateValidator(unidentifiedSenderTrustRoot);
-    } catch (InvalidKeyException | IOException e) {
-      throw new AssertionError(e);
-    }
+    return new CertificateValidator();
   }
 
   @WorkerThread
@@ -48,7 +45,7 @@ public class UnidentifiedAccessUtil {
     try {
       byte[] theirUnidentifiedAccessKey       = getTargetUnidentifiedAccessKey(recipient);
       byte[] ourUnidentifiedAccessKey         = getSelfUnidentifiedAccessKey(context);
-      byte[] ourUnidentifiedAccessCertificate = TextSecurePreferences.getUnidentifiedAccessCertificate(context);
+      byte[] ourUnidentifiedAccessCertificate = getUnidentifiedAccessCertificate(context);
 
       if (TextSecurePreferences.isUniversalUnidentifiedAccess(context)) {
         ourUnidentifiedAccessKey = Util.getSecretBytes(16);
@@ -83,7 +80,7 @@ public class UnidentifiedAccessUtil {
 
     try {
       byte[] ourUnidentifiedAccessKey         = getSelfUnidentifiedAccessKey(context);
-      byte[] ourUnidentifiedAccessCertificate = TextSecurePreferences.getUnidentifiedAccessCertificate(context);
+      byte[] ourUnidentifiedAccessCertificate = getUnidentifiedAccessCertificate(context);
 
       if (TextSecurePreferences.isUniversalUnidentifiedAccess(context)) {
         ourUnidentifiedAccessKey = Util.getSecretBytes(16);
@@ -124,5 +121,18 @@ public class UnidentifiedAccessUtil {
       default:
         throw new AssertionError("Unknown mode: " + recipient.getUnidentifiedAccessMode().getMode());
     }
+  }
+
+  private static @Nullable byte[] getUnidentifiedAccessCertificate(Context context) {
+    String ourNumber = TextSecurePreferences.getLocalNumber(context);
+    if (ourNumber != null) {
+      SignalProtos.SenderCertificate certificate = SignalProtos.SenderCertificate.newBuilder()
+              .setSender(ourNumber)
+              .setSenderDevice(SignalServiceAddress.DEFAULT_DEVICE_ID)
+              .build();
+      return certificate.toByteArray();
+    }
+
+    return null;
   }
 }

@@ -101,7 +101,7 @@ public class Recipient implements RecipientModifiedListener {
   private           String         notificationChannel;
   private           boolean        forceSmsSelection;
 
-  private @NonNull  UnidentifiedAccessMode unidentifiedAccessMode = UnidentifiedAccessMode.DISABLED;
+  private @NonNull  UnidentifiedAccessMode unidentifiedAccessMode = UnidentifiedAccessMode.ENABLED;
 
   @SuppressWarnings("ConstantConditions")
   public static @NonNull Recipient from(@NonNull Context context, @NonNull Address address, boolean asynchronous) {
