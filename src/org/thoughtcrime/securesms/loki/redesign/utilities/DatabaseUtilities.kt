@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki
+package org.thoughtcrime.securesms.loki.redesign.utilities
 
 import android.content.ContentValues
 import net.sqlcipher.Cursor

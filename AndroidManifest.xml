@@ -178,8 +178,6 @@
             android:name="org.thoughtcrime.securesms.loki.redesign.activities.LinkedDevicesActivity"
             android:screenOrientation="portrait" />
         <!-- Session -->
-        <activity android:name="org.thoughtcrime.securesms.loki.LinkedDevicesActivity"
-            android:screenOrientation="portrait" />
         <activity
             android:name="org.thoughtcrime.securesms.WebRtcCallActivity"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|fontScale"
@@ -549,27 +547,7 @@
             android:name="org.thoughtcrime.securesms.ShortcutLauncherActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:exported="true"
-            android:theme="@style/TextSecure.LightNoActionBar" /> <!-- Loki -->
-        <activity
-            android:name="org.thoughtcrime.securesms.loki.DisplayNameActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:launchMode="singleTask"
-            android:theme="@style/TextSecure.DarkRegistrationTheme"
-            android:windowSoftInputMode="stateUnchanged" />
-        <activity
-            android:name="org.thoughtcrime.securesms.loki.SeedActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:launchMode="singleTask"
-            android:theme="@style/TextSecure.DarkRegistrationTheme"
-            android:windowSoftInputMode="stateUnchanged" />
-        <activity
-            android:name="org.thoughtcrime.securesms.loki.NewConversationActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:windowSoftInputMode="stateAlwaysVisible" />
-        <activity
-            android:name="org.thoughtcrime.securesms.loki.AddPublicChatActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:windowSoftInputMode="stateAlwaysVisible" /> <!-- Loki -->
+            android:theme="@style/TextSecure.LightNoActionBar" />
         <service
             android:name="org.thoughtcrime.securesms.service.WebRtcCallService"
             android:enabled="true" />
@@ -808,12 +786,12 @@
             </intent-filter>
         </receiver>
         <!-- Session -->
-        <receiver android:name="org.thoughtcrime.securesms.loki.BackgroundPollWorker">
+        <receiver android:name="org.thoughtcrime.securesms.loki.redesign.messaging.BackgroundPollWorker">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <receiver android:name="org.thoughtcrime.securesms.loki.BackgroundPublicChatPollWorker">
+        <receiver android:name="org.thoughtcrime.securesms.loki.redesign.messaging.BackgroundPublicChatPollWorker">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>

@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.database.loaders.DeviceListLoader;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.devicelist.Device;
 import org.thoughtcrime.securesms.loki.DeviceListBottomSheetFragment;
-import org.thoughtcrime.securesms.loki.MnemonicUtilities;
+import org.thoughtcrime.securesms.loki.redesign.utilities.MnemonicUtilities;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.libsignal.util.guava.Function;
