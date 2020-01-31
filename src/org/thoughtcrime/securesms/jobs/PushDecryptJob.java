@@ -292,7 +292,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       acceptFriendRequestIfNeeded(content);
 
       // Loki - Session requests
-      handleSessionRequestIfNeeded(envelope, content);
+      handleSessionRequestIfNeeded(content);
 
       // Loki - Store pre key bundle
       // We shouldn't store it if it's a pairing message
@@ -1226,8 +1226,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     becomeFriendsWithContact(content.getSender(), true, false);
   }
 
-  private void handleSessionRequestIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content) {
-    if (envelope.isFriendRequest() && isSessionRequest(content)) {
+  private void handleSessionRequestIfNeeded(@NonNull SignalServiceContent content) {
+    if (content.isFriendRequest() && isSessionRequest(content)) {
       // TODO: Check if member is in one of our private groups
       boolean isInOneOfOurGroups = false;
       if (isInOneOfOurGroups) {
