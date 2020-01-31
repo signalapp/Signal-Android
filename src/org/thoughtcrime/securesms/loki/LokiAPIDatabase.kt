@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
+import org.thoughtcrime.securesms.loki.redesign.utilities.*
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.loki.api.LokiAPIDatabaseProtocol

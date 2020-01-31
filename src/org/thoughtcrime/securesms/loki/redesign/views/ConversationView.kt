@@ -9,7 +9,7 @@ import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_conversation.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.database.model.ThreadRecord
-import org.thoughtcrime.securesms.loki.LokiAPIUtilities.populateUserHexEncodedPublicKeyCacheIfNeeded
+import org.thoughtcrime.securesms.loki.redesign.messaging.LokiAPIUtilities.populateUserHexEncodedPublicKeyCacheIfNeeded
 import org.thoughtcrime.securesms.loki.redesign.utilities.MentionUtilities.highlightMentions
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.DateUtils

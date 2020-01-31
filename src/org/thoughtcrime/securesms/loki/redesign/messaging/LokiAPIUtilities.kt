@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki
+package org.thoughtcrime.securesms.loki.redesign.messaging
 
 import android.content.Context
 import org.thoughtcrime.securesms.database.DatabaseFactory

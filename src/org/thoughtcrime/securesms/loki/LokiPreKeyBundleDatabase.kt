@@ -9,6 +9,10 @@ import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.logging.Log
+import org.thoughtcrime.securesms.loki.redesign.utilities.get
+import org.thoughtcrime.securesms.loki.redesign.utilities.getBase64EncodedData
+import org.thoughtcrime.securesms.loki.redesign.utilities.getInt
+import org.thoughtcrime.securesms.loki.redesign.utilities.insertOrUpdate
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.libsignal.IdentityKey

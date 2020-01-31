@@ -12,7 +12,7 @@ import android.view.View
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.dialog_link_device_slave_mode.view.*
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.loki.MnemonicUtilities
+import org.thoughtcrime.securesms.loki.redesign.utilities.MnemonicUtilities
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.loki.api.DeviceLinkingSession

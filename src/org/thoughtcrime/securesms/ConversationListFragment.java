@@ -74,7 +74,7 @@ import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob;
-import org.thoughtcrime.securesms.loki.NewConversationActivity;
+import org.thoughtcrime.securesms.loki.redesign.activities.CreatePrivateChatActivity;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -155,7 +155,7 @@ public class ConversationListFragment extends Fragment
     super.onActivityCreated(bundle);
 
     setHasOptionsMenu(true);
-    fab.setOnClickListener(v -> startActivity(new Intent(getActivity(), NewConversationActivity.class)));
+    fab.setOnClickListener(v -> startActivity(new Intent(getActivity(), CreatePrivateChatActivity.class)));
     initializeListAdapter();
     initializeTypingObserver();
   }

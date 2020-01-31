@@ -9,16 +9,16 @@ import kotlinx.android.synthetic.main.fragment_device_list_bottom_sheet.*
 import network.loki.messenger.R
 
 public class DeviceListBottomSheetFragment : BottomSheetDialogFragment() {
-  var onEditTapped: (() -> Unit)? = null
-  var onUnlinkTapped: (() -> Unit)? = null
+    var onEditTapped: (() -> Unit)? = null
+    var onUnlinkTapped: (() -> Unit)? = null
 
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-    return inflater.inflate(R.layout.fragment_device_list_bottom_sheet, container, false)
-  }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_device_list_bottom_sheet, container, false)
+    }
 
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
-    editDisplayNameText.setOnClickListener { onEditTapped?.invoke() }
-    unlinkDeviceText.setOnClickListener { onUnlinkTapped?.invoke() }
-  }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        editDisplayNameText.setOnClickListener { onEditTapped?.invoke() }
+        unlinkDeviceText.setOnClickListener { onUnlinkTapped?.invoke() }
+    }
 }
