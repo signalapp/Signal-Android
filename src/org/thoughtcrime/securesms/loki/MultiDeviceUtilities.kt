@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.crypto.PreKeyUtil
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
+import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.logging.Log
@@ -128,7 +129,8 @@ fun sendPairingAuthorisationMessage(context: Context, contactHexEncodedPublicKey
 
   return try {
     Log.d("Loki", "Sending authorisation message to: $contactHexEncodedPublicKey.")
-    val result = messageSender.sendMessage(0, address, Optional.absent<UnidentifiedAccessPair>(), message.build())
+    val udAccess = UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.fromSerialized(contactHexEncodedPublicKey), false))
+    val result = messageSender.sendMessage(0, address, udAccess, message.build())
     if (result.success == null) {
       val exception = when {
         result.isNetworkFailure -> "Failed to send authorisation message due to a network error."

@@ -280,26 +280,7 @@ public abstract class PushSendJob extends SendJob {
   }
 
   protected void rotateSenderCertificateIfNecessary() throws IOException {
-    try {
-      byte[] certificateBytes = TextSecurePreferences.getUnidentifiedAccessCertificate(context);
-
-      if (certificateBytes == null) {
-        throw new InvalidCertificateException("No certificate was present.");
-      }
-
-      SenderCertificate certificate = new SenderCertificate(certificateBytes);
-
-      if (System.currentTimeMillis() > (certificate.getExpiration() - CERTIFICATE_EXPIRATION_BUFFER)) {
-        throw new InvalidCertificateException("Certificate is expired, or close to it. Expires on: " + certificate.getExpiration() + ", currently: " + System.currentTimeMillis());
-      }
-
-      Log.d(TAG, "Certificate is valid.");
-    } catch (InvalidCertificateException e) {
-      Log.w(TAG, "Certificate was invalid at send time. Fetching a new one.", e);
-      RotateCertificateJob certificateJob = new RotateCertificateJob(context);
-      ApplicationContext.getInstance(context).injectDependencies(certificateJob);
-      certificateJob.onRun();
-    }
+    // Loki - We don't need verification on sender certificates
   }
 
   protected SignalServiceSyncMessage buildSelfSendSyncMessage(@NonNull Context context, @NonNull SignalServiceDataMessage message, Optional<UnidentifiedAccessPair> syncAccess) {

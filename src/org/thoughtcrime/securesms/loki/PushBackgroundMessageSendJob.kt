@@ -1,12 +1,15 @@
 package org.thoughtcrime.securesms.loki
 
 import org.thoughtcrime.securesms.ApplicationContext
+import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil
+import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.BaseJob
 import org.thoughtcrime.securesms.logging.Log
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
@@ -106,7 +109,8 @@ class PushBackgroundMessageSendJob private constructor(
     val messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender()
     val address = SignalServiceAddress(recipient)
     try {
-      messageSender.sendMessage(-1, address, Optional.absent<UnidentifiedAccessPair>(), dataMessage.build()) // The message ID doesn't matter
+      val udAccess = UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.fromSerialized(recipient), false))
+      messageSender.sendMessage(-1, address, udAccess, dataMessage.build()) // The message ID doesn't matter
     } catch (e: Exception) {
       Log.d("Loki", "Failed to send background message to: ${recipient}.")
       throw e
