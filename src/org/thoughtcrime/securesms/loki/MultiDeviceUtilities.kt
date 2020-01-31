@@ -6,12 +6,10 @@ import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.all
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
-import nl.komponents.kovenant.then
 import nl.komponents.kovenant.toFailVoid
 import nl.komponents.kovenant.ui.successUi
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
-import org.thoughtcrime.securesms.crypto.PreKeyUtil
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil
 import org.thoughtcrime.securesms.database.Address
@@ -20,14 +18,11 @@ import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.libsignal.util.guava.Optional
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI
 import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
-import org.whispersystems.signalservice.loki.utilities.Analytics
 import org.whispersystems.signalservice.loki.utilities.recover
 import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
 import java.util.*
@@ -44,7 +39,6 @@ fun checkForRevocation(context: Context) {
     DatabaseFactory.getLokiAPIDatabase(context).removePairingAuthorisations(ourDevice)
     LokiStorageAPI.shared.updateUserDeviceMappings()
   }.successUi {
-    Analytics.shared.track("Secondary Device Unlinked")
     TextSecurePreferences.setNeedsRevocationCheck(context, false)
     ApplicationContext.getInstance(context).clearData()
   }.fail { error ->

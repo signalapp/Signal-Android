@@ -33,7 +33,6 @@ import android.support.multidex.MultiDexApplication;
 
 import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.security.ProviderInstaller;
-import com.mixpanel.android.mpmetrics.MixpanelAPI;
 
 import org.conscrypt.Conscrypt;
 import org.jetbrains.annotations.NotNull;
@@ -66,14 +65,14 @@ import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
-import org.thoughtcrime.securesms.loki.redesign.messaging.BackgroundPollWorker;
-import org.thoughtcrime.securesms.loki.redesign.messaging.BackgroundPublicChatPollWorker;
 import org.thoughtcrime.securesms.loki.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.LokiPublicChatManager;
 import org.thoughtcrime.securesms.loki.LokiRSSFeedPoller;
 import org.thoughtcrime.securesms.loki.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
+import org.thoughtcrime.securesms.loki.redesign.messaging.BackgroundPollWorker;
+import org.thoughtcrime.securesms.loki.redesign.messaging.BackgroundPublicChatPollWorker;
 import org.thoughtcrime.securesms.loki.redesign.utilities.Broadcaster;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
@@ -106,11 +105,9 @@ import org.whispersystems.signalservice.loki.api.LokiPublicChat;
 import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
 import org.whispersystems.signalservice.loki.api.LokiRSSFeed;
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
-import org.whispersystems.signalservice.loki.utilities.Analytics;
 
 import java.security.Security;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -119,7 +116,6 @@ import java.util.concurrent.TimeUnit;
 import dagger.ObjectGraph;
 import io.fabric.sdk.android.Fabric;
 import kotlin.Unit;
-import kotlin.jvm.functions.Function1;
 import network.loki.messenger.BuildConfig;
 import okhttp3.Cache;
 
@@ -155,7 +151,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private LokiPublicChatAPI lokiPublicChatAPI = null;
   public Broadcaster broadcaster = null;
   public SignalCommunicationModule communicationModule;
-  public MixpanelAPI mixpanel;
 
   private volatile boolean isAppVisible;
 
@@ -195,14 +190,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     if (!BuildConfig.DEBUG) {
       Fabric.with(this, new Crashlytics());
     }
-    mixpanel = MixpanelAPI.getInstance(this, "59040b6707e5a1725f3fb6730fefca92");
-    Analytics.Companion.getShared().trackImplementation = (Function1<String, Unit>) event -> {
-      HashMap<String, Object> properties = new HashMap();
-      String configuration = BuildConfig.DEBUG ? "debug" : "production";
-      properties.put("configuration", configuration);
-      mixpanel.trackMap(event, properties);
-      return Unit.INSTANCE;
-    };
     // Loki - Set the cache
     LokiDotNetAPI.setCache(new Cache(this.getCacheDir(), OK_HTTP_CACHE_SIZE));
     // Loki - Update device mappings

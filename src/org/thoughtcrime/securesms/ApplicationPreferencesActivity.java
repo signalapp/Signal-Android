@@ -51,7 +51,6 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec;
-import org.whispersystems.signalservice.loki.utilities.Analytics;
 import org.whispersystems.signalservice.loki.utilities.SerializationKt;
 
 import java.io.File;
@@ -101,7 +100,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
     if (getIntent() != null && getIntent().getCategories() != null && getIntent().getCategories().contains("android.intent.category.NOTIFICATION_PREFERENCES")) {
       initFragment(android.R.id.content, new NotificationsPreferenceFragment());
     } else if (icicle == null) {
-      Analytics.Companion.getShared().track("Settings Opened");
       initFragment(android.R.id.content, new ApplicationPreferenceFragment());
     }
   }
@@ -325,7 +323,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
           break;
          */
         case PREFERENCE_CATEGORY_PUBLIC_KEY:
-          Analytics.Companion.getShared().track("Public Key Shared");
           String hexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(getContext());
           if (hexEncodedPublicKey == null) {
             hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(getContext());
@@ -339,7 +336,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
         case PREFERENCE_CATEGORY_QR_CODE: break;
         case PREFERENCE_CATEGORY_LINKED_DEVICES: break;
         case PREFERENCE_CATEGORY_SEED:
-          Analytics.Companion.getShared().track("Seed Modal Shown");
           File languageFileDirectory = new File(getContext().getApplicationInfo().dataDir);
           try {
             String hexEncodedSeed = IdentityKeyUtil.retrieve(getContext(), IdentityKeyUtil.lokiSeedKey);

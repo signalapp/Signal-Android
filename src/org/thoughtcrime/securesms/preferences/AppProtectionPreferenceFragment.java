@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
-import org.whispersystems.signalservice.loki.utilities.Analytics;
 
 import java.util.concurrent.TimeUnit;
 
@@ -127,12 +126,6 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     public boolean onPreferenceChange(Preference preference, Object newValue) {
       boolean enabled = (Boolean)newValue;
 
-      if (enabled) {
-        Analytics.Companion.getShared().track("Screen Lock Enabled");
-      } else {
-        Analytics.Companion.getShared().track("Screen Lock Disabled");
-      }
-
       TextSecurePreferences.setScreenLockEnabled(getContext(), enabled);
 
       Intent intent = new Intent(getContext(), KeyCachingService.class);
@@ -203,12 +196,6 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     public boolean onPreferenceChange(Preference preference, Object newValue) {
       boolean enabled = (boolean)newValue;
 
-      if (enabled) {
-        Analytics.Companion.getShared().track("Typing Indicators Enabled");
-      } else {
-        Analytics.Companion.getShared().track("Typing Indicators Disabled");
-      }
-
       ApplicationContext.getInstance(getContext())
                         .getJobManager()
                         .add(new MultiDeviceConfigurationUpdateJob(TextSecurePreferences.isReadReceiptsEnabled(requireContext()),
@@ -228,12 +215,6 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
       boolean enabled = (boolean)newValue;
-
-      if (enabled) {
-        Analytics.Companion.getShared().track("Link Previews Enabled");
-      } else {
-        Analytics.Companion.getShared().track("Link Previews Disabled");
-      }
 
       ApplicationContext.getInstance(requireContext())
                         .getJobManager()

@@ -6,7 +6,6 @@ buildscript {
     ext.kovenant_version = "3.3.0"
     ext.identicon_version = "v11"
     ext.rss_parser_version = "2.0.4"
-    ext.mixpanel_version = "5.+"
     ext.crashlytics_version = "2.10.1"
 
     repositories {
@@ -196,7 +195,6 @@ dependencies {
     implementation "nl.komponents.kovenant:kovenant-android:$kovenant_version"
     implementation "com.github.lelloman:android-identicons:$identicon_version"
     implementation "com.prof.rssparser:rssparser:$rss_parser_version"
-    implementation "com.mixpanel.android:mixpanel-android:$mixpanel_version"
     implementation("com.crashlytics.sdk.android:crashlytics:$crashlytics_version@aar") {
         transitive = true
     }
