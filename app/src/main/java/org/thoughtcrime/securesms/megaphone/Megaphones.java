@@ -74,7 +74,7 @@ public final class Megaphones {
    */
   private static Map<Event, MegaphoneSchedule> buildDisplayOrder() {
     return new LinkedHashMap<Event, MegaphoneSchedule>() {{
-      put(Event.REACTIONS, new ForeverSchedule(FeatureFlags.reactionSending()));
+      put(Event.REACTIONS, new ForeverSchedule(true));
       put(Event.PINS_FOR_ALL, new PinsForAllSchedule());
     }};
   }

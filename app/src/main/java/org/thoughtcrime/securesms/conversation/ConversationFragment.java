@@ -995,8 +995,7 @@ public class ConversationFragment extends Fragment
 
       if (actionMode != null) return;
 
-      if (FeatureFlags.reactionSending() &&
-          messageRecord.isSecure()       &&
+      if (messageRecord.isSecure()       &&
           !messageRecord.isUpdate()      &&
           ((ConversationAdapter) list.getAdapter()).getSelectedItems().isEmpty())
       {
