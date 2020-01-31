@@ -75,6 +75,13 @@
                 android:dependency="pref_backup_enabled"
                 tools:summary="Last backup: 3 days ago"/>
 
+        <androidx.preference.Preference
+                android:key="pref_backup_passphrase_verify"
+                android:title="@string/preferences_chats__verify_backup_passphrase"
+                android:persistent="false"
+                android:dependency="pref_backup_enabled"
+                android:summary="@string/preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches"/>
+
     </PreferenceCategory>
 
 </PreferenceScreen>

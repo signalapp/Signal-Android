@@ -23,6 +23,8 @@ public class BackupUtil {
 
   private static final String TAG = BackupUtil.class.getSimpleName();
 
+  public static final int PASSPHRASE_LENGTH = 30;
+
   public static @NonNull String getLastBackupTime(@NonNull Context context, @NonNull Locale locale) {
     try {
       BackupInfo backup = getLatestBackup();

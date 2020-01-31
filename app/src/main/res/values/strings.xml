@@ -1778,6 +1778,8 @@
     <string name="preferences_chats__chat_backups">Chat backups</string>
     <string name="preferences_chats__backup_chats_to_external_storage">Backup chats to external storage</string>
     <string name="preferences_chats__create_backup">Create backup</string>
+    <string name="preferences_chats__verify_backup_passphrase">Verify backup passphrase</string>
+    <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Test your backup passphrase and verify that it matches</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Enter backup passphrase</string>
     <string name="RegistrationActivity_restore">Restore</string>
     <string name="RegistrationActivity_backup_failure_downgrade">Cannot import backups from newer versions of Signal</string>
@@ -1795,6 +1797,10 @@
     <string name="BackupDialog_disable_and_delete_all_local_backups">Disable and delete all local backups?</string>
     <string name="BackupDialog_delete_backups_statement">Delete backups</string>
     <string name="BackupDialog_copied_to_clipboard">Copied to clipboard</string>
+    <string name="BackupDialog_enter_backup_passphrase_to_verify">Enter your backup passphrase to verify</string>
+    <string name="BackupDialog_verify">Verify</string>
+    <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">You successfully entered your backup passphrase</string>
+    <string name="BackupDialog_passphrase_was_not_correct">Passphrase was not correct</string>
     <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal requires external storage permission in order to create backups, but it has been permanently denied. Please continue to app settings, select \"Permissions\" and enable \"Storage\".</string>
     <string name="ChatsPreferenceFragment_last_backup_s">Last backup: %s</string>
     <string name="ChatsPreferenceFragment_in_progress">In progress</string>

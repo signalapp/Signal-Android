@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.preferences;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -52,6 +51,8 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
         .setOnPreferenceClickListener(new BackupClickListener());
     findPreference(TextSecurePreferences.BACKUP_NOW)
         .setOnPreferenceClickListener(new BackupCreateListener());
+    findPreference(TextSecurePreferences.BACKUP_PASSPHRASE_VERIFY)
+        .setOnPreferenceClickListener(new BackupVerifyListener());
 
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.MESSAGE_BODY_TEXT_SIZE_PREF));
 
@@ -145,7 +146,6 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
   }
 
   private class BackupCreateListener implements Preference.OnPreferenceClickListener {
-    @SuppressLint("StaticFieldLeak")
     @Override
     public boolean onPreferenceClick(Preference preference) {
       Permissions.with(ChatsPreferenceFragment.this)
@@ -158,6 +158,14 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
                  .withPermanentDenialDialog(getString(R.string.ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups))
                  .execute();
 
+      return true;
+    }
+  }
+
+  private class BackupVerifyListener implements Preference.OnPreferenceClickListener {
+    @Override
+    public boolean onPreferenceClick(Preference preference) {
+      BackupDialog.showVerifyBackupPassphraseDialog(requireContext());
       return true;
     }
   }

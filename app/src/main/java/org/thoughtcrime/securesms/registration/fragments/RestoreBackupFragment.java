@@ -281,7 +281,7 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
     FAILURE_UNKNOWN
   }
 
-  private static class PassphraseAsYouTypeFormatter implements TextWatcher {
+  public static class PassphraseAsYouTypeFormatter implements TextWatcher {
 
     private static final int GROUP_SIZE = 5;
 
@@ -292,7 +292,7 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
       addSpans(editable);
     }
 
-    private void removeSpans(Editable editable) {
+    private static void removeSpans(Editable editable) {
       SpaceSpan[] paddingSpans = editable.getSpans(0, editable.length(), SpaceSpan.class);
 
       for (SpaceSpan span : paddingSpans) {
@@ -300,15 +300,15 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
       }
     }
 
-    private void addSpans(Editable editable) {
+    private static void addSpans(Editable editable) {
       final int length = editable.length();
 
       for (int i = GROUP_SIZE; i < length; i += GROUP_SIZE) {
         editable.setSpan(new SpaceSpan(), i - 1, i, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
       }
 
-      if (editable.length() > 30) {
-        editable.delete(30, editable.length());
+      if (editable.length() > BackupUtil.PASSPHRASE_LENGTH) {
+        editable.delete(BackupUtil.PASSPHRASE_LENGTH, editable.length());
       }
     }
 
