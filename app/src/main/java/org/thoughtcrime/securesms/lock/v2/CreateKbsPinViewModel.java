@@ -5,17 +5,14 @@ import androidx.annotation.NonNull;
 import androidx.core.util.Preconditions;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
-import org.thoughtcrime.securesms.util.livedata.LiveDataPair;
 
 public final class CreateKbsPinViewModel extends ViewModel implements BaseKbsPinViewModel {
 
   private final MutableLiveData<KbsPin>          userEntry = new MutableLiveData<>(KbsPin.EMPTY);
-  private final MutableLiveData<KbsKeyboardType> keyboard  = new MutableLiveData<>(KbsKeyboardType.NUMERIC);
+  private final MutableLiveData<PinKeyboardType> keyboard  = new MutableLiveData<>(PinKeyboardType.NUMERIC);
   private final SingleLiveEvent<NavigationEvent> events    = new SingleLiveEvent<>();
 
   @Override
@@ -24,7 +21,7 @@ public final class CreateKbsPinViewModel extends ViewModel implements BaseKbsPin
   }
 
   @Override
-  public LiveData<KbsKeyboardType> getKeyboard() {
+  public LiveData<PinKeyboardType> getKeyboard() {
     return keyboard;
   }
 
@@ -51,9 +48,9 @@ public final class CreateKbsPinViewModel extends ViewModel implements BaseKbsPin
 
   static final class NavigationEvent {
     private final KbsPin          userEntry;
-    private final KbsKeyboardType keyboard;
+    private final PinKeyboardType keyboard;
 
-    NavigationEvent(@NonNull KbsPin userEntry, @NonNull KbsKeyboardType keyboard) {
+    NavigationEvent(@NonNull KbsPin userEntry, @NonNull PinKeyboardType keyboard) {
       this.userEntry = userEntry;
       this.keyboard  = keyboard;
     }
@@ -62,7 +59,7 @@ public final class CreateKbsPinViewModel extends ViewModel implements BaseKbsPin
       return userEntry;
     }
 
-    KbsKeyboardType getKeyboard() {
+    PinKeyboardType getKeyboard() {
       return keyboard;
     }
   }

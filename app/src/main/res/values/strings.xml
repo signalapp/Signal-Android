@@ -1735,18 +1735,41 @@
     <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
 
     <!-- KbsLockFragment -->
-    <string name="KbsLockFragment__enter_your_pin">Enter your PIN</string>
-    <string name="KbsLockFragment__enter_the_pin_you_created">Enter the PIN you created for your account. This is different from your SMS verification code.</string>
-    <string name="KbsLockFragment__enter_alphanumeric_pin">Enter alphanumeric PIN</string>
-    <string name="KbsLockFragment__enter_numeric_pin">Enter numeric PIN</string>
-    <string name="KbsLockFragment__next">Next</string>
-    <string name="KbsLockFragment__incorrect_pin_try_again">Incorrect PIN. Try again.</string>
-    <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">Incorrect PIN. %1$d attempts remaining.</string>
-    <string name="KbsLockFragment__forgot_pin">Forgot PIN?</string>
-    <string name="KbsLockFragment__incorrect_pin">Incorrect PIN</string>
-    <string name="KbsLockFragment__you_have_d_attempts_remaining">You have %1$d attempts remaining. If you run out of attempts your account will be locked for %2$d days. After %3$d days of inactivity, you can re-register without your PIN. Your account will be wiped and all content deleted.</string>
-    <string name="KbsLockFragment__forgot_your_pin">Forgot your PIN?</string>
-    <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">For your privacy and security, there is no way to recover your PIN. If you can\'t remember your PIN, you can re-verify with SMS after %1$d days of inactivity. In this case, your account will be wiped and all content deleted.</string>
+    <string name="RegistrationLockFragment__enter_your_pin">Enter your PIN</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created">Enter the PIN you created for your account. This is different from your SMS verification code.</string>
+    <string name="RegistrationLockFragment__enter_alphanumeric_pin">Enter alphanumeric PIN</string>
+    <string name="RegistrationLockFragment__enter_numeric_pin">Enter numeric PIN</string>
+    <string name="RegistrationLockFragment__next">Next</string>
+    <string name="RegistrationLockFragment__incorrect_pin_try_again">Incorrect PIN. Try again.</string>
+    <string name="RegistrationLockFragment__forgot_pin">Forgot PIN?</string>
+    <string name="RegistrationLockFragment__incorrect_pin">Incorrect PIN</string>
+    <string name="RegistrationLockFragment__forgot_your_pin">Forgot your PIN?</string>
+    <string name="RegistrationLockFragment__not_many_tries_left">Not many tries left!</string>
+
+    <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
+        <item quantity="one">For your privacy and security, there is no way to recover your PIN. If you can\'t remember your PIN, you can re-verify with SMS after %1$d day of inactivity. In this case, your account will be wiped and all content deleted.</item>
+        <item quantity="other">For your privacy and security, there is no way to recover your PIN. If you can\'t remember your PIN, you can re-verify with SMS after %1$d days of inactivity. In this case, your account will be wiped and all content deleted.</item>
+    </plurals>
+
+    <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
+        <item quantity="one">Incorrect PIN. %1$d attempt remaining.</item>
+        <item quantity="other">Incorrect PIN. %1$d attempts remaining.</item>
+    </plurals>
+
+    <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
+        <item quantity="one">If you run out of attempts your account will be locked for %1$d day. After %1$d day of inactivity, you can re-register without your PIN. Your account will be wiped and all content deleted.</item>
+        <item quantity="other">If you run out of attempts your account will be locked for %1$d days. After %1$d days of inactivity, you can re-register without your PIN. Your account will be wiped and all content deleted.</item>
+    </plurals>
+
+    <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
+        <item quantity="one">You have %1$d attempt remaining.</item>
+        <item quantity="other">You have %1$d attempts remaining.</item>
+    </plurals>
+
+    <plurals name="RegistrationLockFragment__d_attempts_remaining">
+        <item quantity="one">%1$d attempt remaining.</item>
+        <item quantity="other">%1$d attempts remaining.</item>
+    </plurals>
 
     <!-- KBS Megaphone -->
     <string name="KbsMegaphone__create_a_pin">Create a PIN</string>

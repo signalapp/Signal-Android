@@ -4,7 +4,7 @@ import androidx.annotation.CheckResult;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.lock.v2.KbsKeyboardType;
+import org.thoughtcrime.securesms.lock.v2.PinKeyboardType;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.whispersystems.signalservice.api.RegistrationLockData;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
@@ -117,14 +117,14 @@ public final class KbsValues {
     }
   }
 
-  public void setKeyboardType(@NonNull KbsKeyboardType keyboardType) {
+  public void setKeyboardType(@NonNull PinKeyboardType keyboardType) {
     store.beginWrite()
          .putString(KEYBOARD_TYPE, keyboardType.getCode())
          .commit();
   }
 
   @CheckResult
-  public @NonNull KbsKeyboardType getKeyboardType() {
-    return KbsKeyboardType.fromCode(store.getString(KEYBOARD_TYPE, null));
+  public @NonNull PinKeyboardType getKeyboardType() {
+    return PinKeyboardType.fromCode(store.getString(KEYBOARD_TYPE, null));
   }
 }

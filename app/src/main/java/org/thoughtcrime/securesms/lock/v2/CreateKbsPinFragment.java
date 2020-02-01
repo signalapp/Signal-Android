@@ -46,7 +46,7 @@ public class CreateKbsPinFragment extends BaseKbsPinFragment<CreateKbsPinViewMod
     return viewModel;
   }
 
-  private void onConfirmPin(@NonNull KbsPin userEntry, @NonNull KbsKeyboardType keyboard) {
+  private void onConfirmPin(@NonNull KbsPin userEntry, @NonNull PinKeyboardType keyboard) {
     CreateKbsPinFragmentDirections.ActionConfirmPin action = CreateKbsPinFragmentDirections.actionConfirmPin();
 
     action.setUserEntry(userEntry);
@@ -56,8 +56,8 @@ public class CreateKbsPinFragment extends BaseKbsPinFragment<CreateKbsPinViewMod
     Navigation.findNavController(requireView()).navigate(action);
   }
 
-  private String getLabelText(@NonNull KbsKeyboardType keyboard) {
-    if (keyboard == KbsKeyboardType.ALPHA_NUMERIC) {
+  private String getLabelText(@NonNull PinKeyboardType keyboard) {
+    if (keyboard == PinKeyboardType.ALPHA_NUMERIC) {
       return getPinLengthRestrictionText(R.plurals.CreateKbsPinFragment__pin_must_be_at_least_characters);
     } else {
       return getPinLengthRestrictionText(R.plurals.CreateKbsPinFragment__pin_must_be_at_least_digits);

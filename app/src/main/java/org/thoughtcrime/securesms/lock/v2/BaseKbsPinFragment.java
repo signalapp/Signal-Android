@@ -132,15 +132,15 @@ abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> extends
     return true;
   }
 
-  private void updateKeyboard(@NonNull KbsKeyboardType keyboard) {
-    boolean isAlphaNumeric = keyboard == KbsKeyboardType.ALPHA_NUMERIC;
+  private void updateKeyboard(@NonNull PinKeyboardType keyboard) {
+    boolean isAlphaNumeric = keyboard == PinKeyboardType.ALPHA_NUMERIC;
 
     input.setInputType(isAlphaNumeric ? InputType.TYPE_CLASS_TEXT   | InputType.TYPE_TEXT_VARIATION_PASSWORD
                                       : InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
   }
 
-  private @StringRes int resolveKeyboardToggleText(@NonNull KbsKeyboardType keyboard) {
-    if (keyboard == KbsKeyboardType.ALPHA_NUMERIC) {
+  private @StringRes int resolveKeyboardToggleText(@NonNull PinKeyboardType keyboard) {
+    if (keyboard == PinKeyboardType.ALPHA_NUMERIC) {
       return R.string.BaseKbsPinFragment__create_numeric_pin;
     } else {
       return R.string.BaseKbsPinFragment__create_alphanumeric_pin;

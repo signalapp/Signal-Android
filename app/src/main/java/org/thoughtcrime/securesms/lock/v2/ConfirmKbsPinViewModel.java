@@ -16,14 +16,14 @@ final class ConfirmKbsPinViewModel extends ViewModel implements BaseKbsPinViewMo
   private final ConfirmKbsPinRepository repository;
 
   private final MutableLiveData<KbsPin>          userEntry     = new MutableLiveData<>(KbsPin.EMPTY);
-  private final MutableLiveData<KbsKeyboardType> keyboard      = new MutableLiveData<>(KbsKeyboardType.NUMERIC);
+  private final MutableLiveData<PinKeyboardType> keyboard      = new MutableLiveData<>(PinKeyboardType.NUMERIC);
   private final MutableLiveData<SaveAnimation>   saveAnimation = new MutableLiveData<>(SaveAnimation.NONE);
   private final MutableLiveData<Label>           label         = new MutableLiveData<>(Label.RE_ENTER_PIN);
 
   private final KbsPin pinToConfirm;
 
   private ConfirmKbsPinViewModel(@NonNull KbsPin pinToConfirm,
-                                 @NonNull KbsKeyboardType keyboard,
+                                 @NonNull PinKeyboardType keyboard,
                                  @NonNull ConfirmKbsPinRepository repository)
   {
     this.keyboard.setValue(keyboard);
@@ -65,7 +65,7 @@ final class ConfirmKbsPinViewModel extends ViewModel implements BaseKbsPinViewMo
   }
 
   @Override
-  public LiveData<KbsKeyboardType> getKeyboard() {
+  public LiveData<PinKeyboardType> getKeyboard() {
     return keyboard;
   }
 
@@ -109,11 +109,11 @@ final class ConfirmKbsPinViewModel extends ViewModel implements BaseKbsPinViewMo
   static final class Factory implements ViewModelProvider.Factory {
 
     private final KbsPin                  pinToConfirm;
-    private final KbsKeyboardType         keyboard;
+    private final PinKeyboardType         keyboard;
     private final ConfirmKbsPinRepository repository;
 
     Factory(@NonNull KbsPin pinToConfirm,
-            @NonNull KbsKeyboardType keyboard,
+            @NonNull PinKeyboardType keyboard,
             @NonNull ConfirmKbsPinRepository repository)
     {
       this.pinToConfirm = pinToConfirm;

@@ -2,17 +2,17 @@ package org.thoughtcrime.securesms.lock.v2;
 
 import androidx.annotation.Nullable;
 
-public enum KbsKeyboardType {
+public enum PinKeyboardType {
   NUMERIC("numeric"),
   ALPHA_NUMERIC("alphaNumeric");
 
   private final String code;
 
-  KbsKeyboardType(String code) {
+  PinKeyboardType(String code) {
     this.code = code;
   }
 
-  KbsKeyboardType getOther() {
+  public PinKeyboardType getOther() {
     if (this == NUMERIC) return ALPHA_NUMERIC;
     else                 return NUMERIC;
   }
@@ -21,8 +21,8 @@ public enum KbsKeyboardType {
     return code;
   }
 
-  public static KbsKeyboardType fromCode(@Nullable String code) {
-    for (KbsKeyboardType type : KbsKeyboardType.values()) {
+  public static PinKeyboardType fromCode(@Nullable String code) {
+    for (PinKeyboardType type : PinKeyboardType.values()) {
       if (type.code.equals(code)) {
         return type;
       }

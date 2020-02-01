@@ -41,7 +41,7 @@ public class ConfirmKbsPinFragment extends BaseKbsPinFragment<ConfirmKbsPinViewM
   @Override
   protected ConfirmKbsPinViewModel initializeViewModel() {
     KbsPin                         userEntry  = Preconditions.checkNotNull(args.getUserEntry());
-    KbsKeyboardType                keyboard   = args.getKeyboard();
+    PinKeyboardType                keyboard   = args.getKeyboard();
     ConfirmKbsPinRepository        repository = new ConfirmKbsPinRepository();
     ConfirmKbsPinViewModel.Factory factory    = new ConfirmKbsPinViewModel.Factory(userEntry, keyboard, repository);
 

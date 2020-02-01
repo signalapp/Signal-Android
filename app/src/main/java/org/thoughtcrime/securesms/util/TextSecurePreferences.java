@@ -17,7 +17,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
-import org.thoughtcrime.securesms.lock.v2.KbsKeyboardType;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.profiles.ProfileName;

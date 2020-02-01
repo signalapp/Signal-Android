@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.registration.fragments;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -21,7 +22,7 @@ import com.dd.CircularProgressButton;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.lock.v2.KbsKeyboardType;
+import org.thoughtcrime.securesms.lock.v2.PinKeyboardType;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.registration.service.CodeVerificationRequest;
 import org.thoughtcrime.securesms.registration.service.RegistrationService;
@@ -35,6 +36,7 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
   private static final String TAG = Log.tag(RegistrationLockFragment.class);
 
   private EditText               pinEntry;
+  private View                   forgotPin;
   private CircularProgressButton pinButton;
   private TextView               errorLabel;
   private TextView               keyboardToggle;
@@ -55,12 +57,12 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
     pinButton      = view.findViewById(R.id.kbs_lock_pin_confirm);
     errorLabel     = view.findViewById(R.id.kbs_lock_pin_input_label);
     keyboardToggle = view.findViewById(R.id.kbs_lock_keyboard_toggle);
-
-    View pinForgotButton = view.findViewById(R.id.kbs_lock_forgot_pin);
+    forgotPin      = view.findViewById(R.id.kbs_lock_forgot_pin);
 
     timeRemaining = RegistrationLockFragmentArgs.fromBundle(requireArguments()).getTimeRemaining();
 
-    pinForgotButton.setOnClickListener(v -> handleForgottenPin(timeRemaining));
+    forgotPin.setVisibility(View.GONE);
+    forgotPin.setOnClickListener(v -> handleForgottenPin(timeRemaining));
 
     pinEntry.setImeOptions(EditorInfo.IME_ACTION_DONE);
     pinEntry.setOnEditorActionListener((v, actionId, event) -> {
@@ -78,20 +80,50 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
     });
 
     keyboardToggle.setOnClickListener((v) -> {
-      KbsKeyboardType keyboardType = getPinEntryKeyboardType();
+      PinKeyboardType keyboardType = getPinEntryKeyboardType();
 
-      updateKeyboard(keyboardType);
+      updateKeyboard(keyboardType.getOther());
       keyboardToggle.setText(resolveKeyboardToggleText(keyboardType));
     });
 
+    PinKeyboardType keyboardType = getPinEntryKeyboardType().getOther();
+    keyboardToggle.setText(resolveKeyboardToggleText(keyboardType));
+
     getModel().getTimeRemaining()
               .observe(getViewLifecycleOwner(), t -> timeRemaining = t);
+
+    TokenResponse keyBackupCurrentToken = getModel().getKeyBackupCurrentToken();
+
+    if (keyBackupCurrentToken != null) {
+      int triesRemaining = keyBackupCurrentToken.getTries();
+      if (triesRemaining <= 3) {
+        int daysRemaining = getLockoutDays(timeRemaining);
+
+        new AlertDialog.Builder(requireContext())
+                       .setTitle(R.string.RegistrationLockFragment__not_many_tries_left)
+                       .setMessage(getTriesRemainingDialogMessage(triesRemaining, daysRemaining))
+                       .setPositiveButton(android.R.string.ok, null)
+                       .show();
+      }
+
+      if (triesRemaining < 5) {
+        errorLabel.setText(requireContext().getResources().getQuantityString(R.plurals.RegistrationLockFragment__d_attempts_remaining, triesRemaining, triesRemaining));
+      }
+    }
   }
 
-  private KbsKeyboardType getPinEntryKeyboardType() {
-    boolean isNumeric = (pinEntry.getImeOptions() & InputType.TYPE_MASK_CLASS) == InputType.TYPE_CLASS_NUMBER;
+  private String getTriesRemainingDialogMessage(int triesRemaining, int daysRemaining) {
+    Resources resources = requireContext().getResources();
+    String tries        = resources.getQuantityString(R.plurals.RegistrationLockFragment__you_have_d_attempts_remaining, triesRemaining, triesRemaining);
+    String days         = resources.getQuantityString(R.plurals.RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days, daysRemaining, daysRemaining);
 
-    return isNumeric ? KbsKeyboardType.NUMERIC : KbsKeyboardType.ALPHA_NUMERIC;
+    return tries + " " + days;
+  }
+
+  private PinKeyboardType getPinEntryKeyboardType() {
+    boolean isNumeric = (pinEntry.getInputType() & InputType.TYPE_MASK_CLASS) == InputType.TYPE_CLASS_NUMBER;
+
+    return isNumeric ? PinKeyboardType.NUMERIC : PinKeyboardType.ALPHA_NUMERIC;
   }
 
   private void handlePinEntry() {
@@ -133,7 +165,7 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
           cancelSpinning(pinButton);
           pinEntry.getText().clear();
 
-          errorLabel.setText(R.string.KbsLockFragment__incorrect_pin);
+          errorLabel.setText(R.string.RegistrationLockFragment__incorrect_pin);
         }
 
         @Override
@@ -157,19 +189,20 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
           }
 
           if (triesRemaining == 3) {
-            long daysRemaining = getLockoutDays(timeRemaining);
+            int daysRemaining = getLockoutDays(timeRemaining);
 
             new AlertDialog.Builder(requireContext())
-                           .setTitle(R.string.KbsLockFragment__incorrect_pin)
-                           .setMessage(getString(R.string.KbsLockFragment__you_have_d_attempts_remaining, triesRemaining, daysRemaining, daysRemaining))
+                           .setTitle(R.string.RegistrationLockFragment__incorrect_pin)
+                           .setMessage(getTriesRemainingDialogMessage(triesRemaining, daysRemaining))
                            .setPositiveButton(android.R.string.ok, null)
                            .show();
           }
 
           if (triesRemaining > 5) {
-            errorLabel.setText(R.string.KbsLockFragment__incorrect_pin_try_again);
+            errorLabel.setText(R.string.RegistrationLockFragment__incorrect_pin_try_again);
           } else {
-            errorLabel.setText(getString(R.string.KbsLockFragment__incorrect_pin_d_attempts_remaining, triesRemaining));
+            errorLabel.setText(requireContext().getResources().getQuantityString(R.plurals.RegistrationLockFragment__incorrect_pin_d_attempts_remaining, triesRemaining, triesRemaining));
+            forgotPin.setVisibility(View.VISIBLE);
           }
         }
 
@@ -201,15 +234,16 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
   }
 
   private void handleForgottenPin(long timeRemainingMs) {
+    int lockoutDays = getLockoutDays(timeRemainingMs);
     new AlertDialog.Builder(requireContext())
-                   .setTitle(R.string.KbsLockFragment__forgot_your_pin)
-                   .setMessage(getString(R.string.KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover, getLockoutDays(timeRemainingMs)))
+                   .setTitle(R.string.RegistrationLockFragment__forgot_your_pin)
+                   .setMessage(requireContext().getResources().getQuantityString(R.plurals.RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover, lockoutDays, lockoutDays))
                    .setPositiveButton(android.R.string.ok, null)
                    .show();
   }
 
-  private static long getLockoutDays(long timeRemainingMs) {
-    return TimeUnit.MILLISECONDS.toDays(timeRemainingMs) + 1;
+  private static int getLockoutDays(long timeRemainingMs) {
+    return (int) TimeUnit.MILLISECONDS.toDays(timeRemainingMs) + 1;
   }
 
   private void lockAccount(long timeRemaining) {
@@ -218,18 +252,18 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
     Navigation.findNavController(requireView()).navigate(action);
   }
 
-  private void updateKeyboard(@NonNull KbsKeyboardType keyboard) {
-    boolean isAlphaNumeric = keyboard == KbsKeyboardType.ALPHA_NUMERIC;
+  private void updateKeyboard(@NonNull PinKeyboardType keyboard) {
+    boolean isAlphaNumeric = keyboard == PinKeyboardType.ALPHA_NUMERIC;
 
     pinEntry.setInputType(isAlphaNumeric ? InputType.TYPE_CLASS_TEXT   | InputType.TYPE_TEXT_VARIATION_PASSWORD
                                          : InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
   }
 
-  private @StringRes static int resolveKeyboardToggleText(@NonNull KbsKeyboardType keyboard) {
-    if (keyboard == KbsKeyboardType.ALPHA_NUMERIC) {
-      return R.string.KbsLockFragment__enter_alphanumeric_pin;
+  private @StringRes static int resolveKeyboardToggleText(@NonNull PinKeyboardType keyboard) {
+    if (keyboard == PinKeyboardType.ALPHA_NUMERIC) {
+      return R.string.RegistrationLockFragment__enter_alphanumeric_pin;
     } else {
-      return R.string.KbsLockFragment__enter_numeric_pin;
+      return R.string.RegistrationLockFragment__enter_numeric_pin;
     }
   }
 }
