@@ -216,6 +216,25 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     public boolean onPreferenceChange(Preference preference, Object newValue) {
       boolean enabled = (boolean)newValue;
 
+      if (enabled) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setTitle("Enable Link Previews?");
+        builder.setMessage("You will not have full metadata protection when sending or receiving link previews.");
+        builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());
+        builder.setNegativeButton("Cancel", (dialog, which) -> {
+          TextSecurePreferences.setLinkPreviewsEnabled(requireContext(), false);
+          ((SwitchPreferenceCompat)AppProtectionPreferenceFragment.this.findPreference(TextSecurePreferences.LINK_PREVIEWS)).setChecked(false);
+          ApplicationContext.getInstance(requireContext())
+                  .getJobManager()
+                  .add(new MultiDeviceConfigurationUpdateJob(TextSecurePreferences.isReadReceiptsEnabled(requireContext()),
+                          TextSecurePreferences.isTypingIndicatorsEnabled(requireContext()),
+                          TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(requireContext()),
+                          false));
+          dialog.dismiss();
+        });
+        builder.create().show();
+      }
+
       ApplicationContext.getInstance(requireContext())
                         .getJobManager()
                         .add(new MultiDeviceConfigurationUpdateJob(TextSecurePreferences.isReadReceiptsEnabled(requireContext()),

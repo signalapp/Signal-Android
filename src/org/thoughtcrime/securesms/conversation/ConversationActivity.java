@@ -157,16 +157,16 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.redesign.messaging.LokiAPIUtilities;
 import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabaseDelegate;
-import org.thoughtcrime.securesms.loki.redesign.messaging.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
-import org.thoughtcrime.securesms.loki.redesign.views.SessionRestoreBannerView;
 import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
+import org.thoughtcrime.securesms.loki.redesign.messaging.LokiAPIUtilities;
+import org.thoughtcrime.securesms.loki.redesign.messaging.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.redesign.views.FriendRequestViewDelegate;
 import org.thoughtcrime.securesms.loki.redesign.views.MentionCandidateSelectionView;
+import org.thoughtcrime.securesms.loki.redesign.views.SessionRestoreBannerView;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
@@ -658,9 +658,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       break;
     case PICK_GIF:
       setMedia(data.getData(),
-               MediaType.GIF,
-               data.getIntExtra(GiphyActivity.EXTRA_WIDTH, 0),
-               data.getIntExtra(GiphyActivity.EXTRA_HEIGHT, 0));
+              MediaType.GIF,
+              data.getIntExtra(GiphyActivity.EXTRA_WIDTH, 0),
+              data.getIntExtra(GiphyActivity.EXTRA_HEIGHT, 0));
       break;
     case SMS_DEFAULT:
       initializeSecurity(isSecureText, isDefaultSms);
@@ -1931,7 +1931,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case AttachmentTypeSelector.TAKE_PHOTO:
       attachmentManager.capturePhoto(this, TAKE_PHOTO); break;
     case AttachmentTypeSelector.ADD_GIF:
-      AttachmentManager.selectGif(this, PICK_GIF, !isSecureText); break;
+      AlertDialog.Builder builder = new AlertDialog.Builder(this);
+      builder.setTitle("Search GIFs?");
+      builder.setMessage("You will not have full metadata protection when sending GIFs.");
+      builder.setPositiveButton("OK", (dialog, which) -> {
+        AttachmentManager.selectGif(this, PICK_GIF, !isSecureText);
+        dialog.dismiss();
+      });
+      builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss() );
+      builder.create().show();
+      break;
     }
   }
 
