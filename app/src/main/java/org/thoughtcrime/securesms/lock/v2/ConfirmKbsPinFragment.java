@@ -81,6 +81,7 @@ public class ConfirmKbsPinFragment extends BaseKbsPinFragment<ConfirmKbsPinViewM
       case PIN_DOES_NOT_MATCH:
         getLabel().setText(SpanUtil.color(ContextCompat.getColor(requireContext(), R.color.red),
                            getString(R.string.ConfirmKbsPinFragment__pins_dont_match)));
+        getInput().getText().clear();
         break;
     }
   }

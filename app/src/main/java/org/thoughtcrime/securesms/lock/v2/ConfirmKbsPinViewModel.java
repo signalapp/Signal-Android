@@ -43,10 +43,10 @@ final class ConfirmKbsPinViewModel extends ViewModel implements BaseKbsPinViewMo
   @Override
   public void confirm() {
     KbsPin userEntry = this.userEntry.getValue();
+    this.userEntry.setValue(KbsPin.EMPTY);
 
     if (pinToConfirm.toString().equals(userEntry.toString())) {
       this.label.setValue(Label.CREATING_PIN);
-      this.userEntry.setValue(KbsPin.EMPTY);
       this.saveAnimation.setValue(SaveAnimation.LOADING);
 
       repository.setPin(pinToConfirm, Preconditions.checkNotNull(this.keyboard.getValue()), this::handleResult);
