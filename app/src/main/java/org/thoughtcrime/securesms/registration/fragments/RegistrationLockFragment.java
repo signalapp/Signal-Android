@@ -1,32 +1,33 @@
 package org.thoughtcrime.securesms.registration.fragments;
 
 import android.os.Bundle;
-import android.text.Editable;
+import android.text.InputType;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.navigation.Navigation;
 
 import com.dd.CircularProgressButton;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.lock.v2.KbsKeyboardType;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.registration.service.CodeVerificationRequest;
 import org.thoughtcrime.securesms.registration.service.RegistrationService;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
-import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public final class RegistrationLockFragment extends BaseRegistrationFragment {
@@ -35,11 +36,12 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
 
   private EditText               pinEntry;
   private CircularProgressButton pinButton;
+  private TextView               errorLabel;
+  private TextView               keyboardToggle;
   private long                   timeRemaining;
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                           Bundle savedInstanceState) {
+  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     return inflater.inflate(R.layout.fragment_registration_lock, container, false);
   }
 
@@ -47,38 +49,18 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
-    setDebugLogSubmitMultiTapView(view.findViewById(R.id.verify_header));
+    setDebugLogSubmitMultiTapView(view.findViewById(R.id.kbs_lock_pin_title));
 
-    pinEntry  = view.findViewById(R.id.pin);
-    pinButton = view.findViewById(R.id.pinButton);
+    pinEntry       = view.findViewById(R.id.kbs_lock_pin_input);
+    pinButton      = view.findViewById(R.id.kbs_lock_pin_confirm);
+    errorLabel     = view.findViewById(R.id.kbs_lock_pin_input_label);
+    keyboardToggle = view.findViewById(R.id.kbs_lock_keyboard_toggle);
 
-    View clarificationLabel = view.findViewById(R.id.clarification_label);
-    View subHeader          = view.findViewById(R.id.verify_subheader);
-    View pinForgotButton    = view.findViewById(R.id.forgot_button);
-
-    String code = getModel().getTextCodeEntered();
+    View pinForgotButton = view.findViewById(R.id.kbs_lock_forgot_pin);
 
     timeRemaining = RegistrationLockFragmentArgs.fromBundle(requireArguments()).getTimeRemaining();
 
     pinForgotButton.setOnClickListener(v -> handleForgottenPin(timeRemaining));
-
-    pinEntry.addTextChangedListener(new TextWatcher() {
-
-      @Override
-      public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-      }
-
-      @Override
-      public void onTextChanged(CharSequence s, int start, int before, int count) {
-      }
-
-      @Override
-      public void afterTextChanged(Editable s) {
-        boolean matchesTextCode = s != null && s.toString().equals(code);
-        clarificationLabel.setVisibility(matchesTextCode ? View.VISIBLE : View.INVISIBLE);
-        subHeader.setVisibility(matchesTextCode ? View.INVISIBLE : View.VISIBLE);
-      }
-    });
 
     pinEntry.setImeOptions(EditorInfo.IME_ACTION_DONE);
     pinEntry.setOnEditorActionListener((v, actionId, event) -> {
@@ -95,35 +77,21 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
       handlePinEntry();
     });
 
-    RegistrationViewModel model = getModel();
-    model.getTokenResponseCredentialsPair()
-         .observe(this, pair -> {
-           TokenResponse token       = pair.first();
-           String        credentials = pair.second();
-           updateContinueText(token, credentials);
-         });
+    keyboardToggle.setOnClickListener((v) -> {
+      KbsKeyboardType keyboardType = getPinEntryKeyboardType();
 
-    model.onRegistrationLockFragmentCreate();
+      updateKeyboard(keyboardType);
+      keyboardToggle.setText(resolveKeyboardToggleText(keyboardType));
+    });
+
+    getModel().getTimeRemaining()
+              .observe(getViewLifecycleOwner(), t -> timeRemaining = t);
   }
 
-  private void updateContinueText(@Nullable TokenResponse tokenResponse, @Nullable String storageCredentials) {
-    if (tokenResponse == null) {
-      if (storageCredentials == null) {
-        pinButton.setIdleText(getString(R.string.RegistrationActivity_continue));
-      } else {
-        // TODO: This is the case where we can determine they are locked out
-        //  no token, but do have storage credentials. Might want to change text.
-        pinButton.setIdleText(getString(R.string.RegistrationActivity_continue));
-      }
-    } else {
-      int triesRemaining = tokenResponse.getTries();
-      if (triesRemaining == 1) {
-        pinButton.setIdleText(getString(R.string.RegistrationActivity_continue_last_attempt));
-      } else {
-        pinButton.setIdleText(getString(R.string.RegistrationActivity_continue_d_attempts_left, triesRemaining));
-      }
-    }
-    pinButton.setText(pinButton.getIdleText());
+  private KbsKeyboardType getPinEntryKeyboardType() {
+    boolean isNumeric = (pinEntry.getImeOptions() & InputType.TYPE_MASK_CLASS) == InputType.TYPE_CLASS_NUMBER;
+
+    return isNumeric ? KbsKeyboardType.NUMERIC : KbsKeyboardType.ALPHA_NUMERIC;
   }
 
   private void handlePinEntry() {
@@ -134,58 +102,79 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
       return;
     }
 
-    RegistrationViewModel model               = getModel();
-    RegistrationService   registrationService = RegistrationService.getInstance(model.getNumber().getE164Number(), model.getRegistrationSecret());
-    String                storageCredentials  = model.getBasicStorageCredentials();
-    TokenResponse         tokenResponse       = model.getKeyBackupCurrentToken();
+    RegistrationViewModel model                   = getModel();
+    RegistrationService   registrationService     = RegistrationService.getInstance(model.getNumber().getE164Number(), model.getRegistrationSecret());
+    TokenResponse         tokenResponse           = model.getKeyBackupCurrentToken();
+    String                basicStorageCredentials = model.getBasicStorageCredentials();
 
     setSpinning(pinButton);
 
     registrationService.verifyAccount(requireActivity(),
                                       model.getFcmToken(),
                                       model.getTextCodeEntered(),
-                                      pin, storageCredentials, tokenResponse,
+                                      pin,
+                                      basicStorageCredentials,
+                                      tokenResponse,
 
       new CodeVerificationRequest.VerifyCallback() {
 
         @Override
         public void onSuccessfulRegistration() {
           cancelSpinning(pinButton);
+          SignalStore.kbsValues().setKeyboardType(getPinEntryKeyboardType());
 
           Navigation.findNavController(requireView()).navigate(RegistrationLockFragmentDirections.actionSuccessfulRegistration());
         }
 
         @Override
-        public void onIncorrectRegistrationLockPin(long timeRemaining, String storageCredentials) {
-          model.setStorageCredentials(storageCredentials);
-          cancelSpinning(pinButton);
+        public void onV1RegistrationLockPinRequiredOrIncorrect(long timeRemaining) {
+          getModel().setTimeRemaining(timeRemaining);
 
-          pinEntry.setText("");
-          Toast.makeText(requireContext(), R.string.RegistrationActivity_incorrect_registration_lock_pin, Toast.LENGTH_LONG).show();
+          cancelSpinning(pinButton);
+          pinEntry.getText().clear();
+
+          errorLabel.setText(R.string.KbsLockFragment__incorrect_pin);
+        }
+
+        @Override
+        public void onKbsRegistrationLockPinRequired(long timeRemaining, @NonNull TokenResponse kbsTokenResponse, @NonNull String kbsStorageCredentials) {
+          throw new AssertionError("Not expected after a pin guess");
         }
 
         @Override
         public void onIncorrectKbsRegistrationLockPin(@NonNull TokenResponse tokenResponse) {
           cancelSpinning(pinButton);
+          pinEntry.getText().clear();
 
           model.setKeyBackupCurrentToken(tokenResponse);
 
           int triesRemaining = tokenResponse.getTries();
 
           if (triesRemaining == 0) {
-            handleForgottenPin(timeRemaining);
+            Log.w(TAG, "Account locked. User out of attempts on KBS.");
+            lockAccount(timeRemaining);
             return;
           }
 
-          new AlertDialog.Builder(requireContext())
-                         .setTitle(R.string.RegistrationActivity_pin_incorrect)
-                         .setMessage(getString(R.string.RegistrationActivity_you_have_d_tries_remaining, triesRemaining))
-                         .setPositiveButton(android.R.string.ok, null)
-                         .show();
+          if (triesRemaining == 3) {
+            long daysRemaining = getLockoutDays(timeRemaining);
+
+            new AlertDialog.Builder(requireContext())
+                           .setTitle(R.string.KbsLockFragment__incorrect_pin)
+                           .setMessage(getString(R.string.KbsLockFragment__you_have_d_attempts_remaining, triesRemaining, daysRemaining, daysRemaining))
+                           .setPositiveButton(android.R.string.ok, null)
+                           .show();
+          }
+
+          if (triesRemaining > 5) {
+            errorLabel.setText(R.string.KbsLockFragment__incorrect_pin_try_again);
+          } else {
+            errorLabel.setText(getString(R.string.KbsLockFragment__incorrect_pin_d_attempts_remaining, triesRemaining));
+          }
         }
 
         @Override
-        public void onTooManyAttempts() {
+        public void onRateLimited() {
           cancelSpinning(pinButton);
 
           new AlertDialog.Builder(requireContext())
@@ -193,6 +182,13 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
                          .setMessage(R.string.RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day)
                          .setPositiveButton(android.R.string.ok, null)
                          .show();
+        }
+
+        @Override
+        public void onKbsAccountLocked(long timeRemaining) {
+          getModel().setTimeRemaining(timeRemaining);
+
+          lockAccount(timeRemaining);
         }
 
         @Override
@@ -206,9 +202,34 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
 
   private void handleForgottenPin(long timeRemainingMs) {
     new AlertDialog.Builder(requireContext())
-                   .setTitle(R.string.RegistrationActivity_oh_no)
-                   .setMessage(getString(R.string.RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed, (TimeUnit.MILLISECONDS.toDays(timeRemainingMs) + 1)))
+                   .setTitle(R.string.KbsLockFragment__forgot_your_pin)
+                   .setMessage(getString(R.string.KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover, getLockoutDays(timeRemainingMs)))
                    .setPositiveButton(android.R.string.ok, null)
                    .show();
+  }
+
+  private static long getLockoutDays(long timeRemainingMs) {
+    return TimeUnit.MILLISECONDS.toDays(timeRemainingMs) + 1;
+  }
+
+  private void lockAccount(long timeRemaining) {
+    RegistrationLockFragmentDirections.ActionAccountLocked action = RegistrationLockFragmentDirections.actionAccountLocked(timeRemaining);
+
+    Navigation.findNavController(requireView()).navigate(action);
+  }
+
+  private void updateKeyboard(@NonNull KbsKeyboardType keyboard) {
+    boolean isAlphaNumeric = keyboard == KbsKeyboardType.ALPHA_NUMERIC;
+
+    pinEntry.setInputType(isAlphaNumeric ? InputType.TYPE_CLASS_TEXT   | InputType.TYPE_TEXT_VARIATION_PASSWORD
+                                         : InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+  }
+
+  private @StringRes static int resolveKeyboardToggleText(@NonNull KbsKeyboardType keyboard) {
+    if (keyboard == KbsKeyboardType.ALPHA_NUMERIC) {
+      return R.string.KbsLockFragment__enter_alphanumeric_pin;
+    } else {
+      return R.string.KbsLockFragment__enter_numeric_pin;
+    }
   }
 }

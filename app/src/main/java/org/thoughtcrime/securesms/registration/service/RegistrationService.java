@@ -45,8 +45,4 @@ public final class RegistrationService {
   {
     CodeVerificationRequest.verifyAccount(activity, credentials, fcmToken, code, pin, basicStorageCredentials, tokenResponse, callback);
   }
-
-  public @Nullable TokenResponse getToken(@Nullable String basicStorageCredentials) throws IOException {
-    return CodeVerificationRequest.getToken(basicStorageCredentials);
-  }
 }

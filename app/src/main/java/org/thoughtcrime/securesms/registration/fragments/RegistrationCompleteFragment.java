@@ -14,7 +14,6 @@ import androidx.navigation.ActivityNavigator;
 
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
 import org.thoughtcrime.securesms.lock.v2.PinUtil;
 import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
