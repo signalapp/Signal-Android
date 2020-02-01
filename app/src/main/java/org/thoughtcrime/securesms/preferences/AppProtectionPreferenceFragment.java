@@ -247,7 +247,8 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
   }
 
   public static CharSequence getSummary(Context context) {
-    final   int    privacySummaryResId = R.string.ApplicationPreferencesActivity_privacy_summary;
+    final   int    privacySummaryResId = FeatureFlags.pinsForAll() ? R.string.ApplicationPreferencesActivity_privacy_summary_screen_lock
+                                                                   : R.string.ApplicationPreferencesActivity_privacy_summary;
     final   String onRes               = context.getString(R.string.ApplicationPreferencesActivity_on);
     final   String offRes              = context.getString(R.string.ApplicationPreferencesActivity_off);
     boolean registrationLockEnabled    = PinUtil.userHasPin(context);

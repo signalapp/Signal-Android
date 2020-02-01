@@ -51,6 +51,7 @@
     <string name="ApplicationPreferencesActivity_Off">Off</string>
     <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
     <string name="ApplicationPreferencesActivity_privacy_summary">Screen lock %1$s, Registration lock %2$s</string>
+    <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Screen lock %1$s</string>
     <string name="ApplicationPreferencesActivity_appearance_summary">Theme %1$s, Language %2$s</string>
 
     <!-- AppProtectionPreferenceFragment -->
