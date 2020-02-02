@@ -1,5 +1,8 @@
 package org.thoughtcrime.securesms.loki.redesign.activities
 
+import android.content.Intent
+import android.graphics.Bitmap
+import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v4.app.LoaderManager
 import android.support.v4.content.Loader
@@ -7,11 +10,19 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_linked_devices.*
-import kotlinx.android.synthetic.main.view_user.*
+import kotlinx.android.synthetic.main.activity_create_closed_group.*
+import kotlinx.android.synthetic.main.activity_linked_devices.recyclerView
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
+import org.thoughtcrime.securesms.conversation.ConversationActivity
+import org.thoughtcrime.securesms.database.Address
+import org.thoughtcrime.securesms.database.ThreadDatabase
+import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.mms.GlideApp
+import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.whispersystems.libsignal.util.guava.Optional
+import java.lang.ref.WeakReference
 
 class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberClickListener, LoaderManager.LoaderCallbacks<List<String>> {
     private var members = listOf<String>()
@@ -76,7 +87,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
     }
 
     private fun createClosedGroup() {
-        val name = nameTextView.text.trim()
+        val name = nameEditText.text.trim()
         if (name.isEmpty()) {
             return Toast.makeText(this, "Please enter a group name", Toast.LENGTH_LONG).show()
         }
@@ -84,10 +95,57 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
             return Toast.makeText(this, "Please enter a shorter group name", Toast.LENGTH_LONG).show()
         }
         val selectedMembers = this.selectedMembers
-        if (selectedMembers.count() < 2) {
-            return Toast.makeText(this, "Please pick at least 2 group members", Toast.LENGTH_LONG).show()
+        if (selectedMembers.count() < 1) {
+            return Toast.makeText(this, "Please pick at least 1 group member", Toast.LENGTH_LONG).show()
         }
-        // TODO: Create group
+        val recipients = selectedMembers.map {
+            Recipient.from(this, Address.fromSerialized(it), false)
+        }.toSet()
+        val local = Recipient.from(this, Address.fromSerialized(TextSecurePreferences.getLocalNumber(this)), false)
+        CreateClosedGroupTask(WeakReference(this), null, name.toString(), recipients, setOf(local)).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
+    }
+
+    private fun handleOpenConversation(threadId: Long, recipient: Recipient) {
+        val intent = Intent(this, ConversationActivity::class.java)
+        intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId)
+        intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT)
+        intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.address)
+        startActivity(intent)
+        finish()
+    }
+    // endregion
+
+    // region Tasks
+    internal class CreateClosedGroupTask(
+            private val activity: WeakReference<CreateClosedGroupActivity>,
+            private val avatar: Bitmap?,
+            private val name: String?,
+            private val members: Set<Recipient>,
+            private val admins: Set<Recipient>
+    ) : AsyncTask<Void, Void, Optional<GroupManager.GroupActionResult>>() {
+
+        override fun doInBackground(vararg params: Void?): Optional<GroupManager.GroupActionResult> {
+            val activity = activity.get() ?: return Optional.absent()
+            return Optional.of(GroupManager.createGroup(activity, members, avatar, name, false, admins))
+        }
+
+        override fun onPostExecute(result: Optional<GroupManager.GroupActionResult>) {
+            val activity = activity.get()
+            if (activity == null) {
+                super.onPostExecute(result)
+                return
+            }
+
+            if (result.isPresent && result.get().threadId > -1) {
+                if (!activity.isFinishing) {
+                    activity.handleOpenConversation(result.get().threadId, result.get().groupRecipient)
+                }
+            } else {
+                super.onPostExecute(result)
+                Toast.makeText(activity.applicationContext,
+                        R.string.GroupCreateActivity_contacts_invalid_number, Toast.LENGTH_LONG).show()
+            }
+        }
     }
     // endregion
 }
