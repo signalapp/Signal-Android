@@ -160,6 +160,23 @@ public class GroupDatabase extends Database {
     return recipients;
   }
 
+  public boolean signalGroupsHaveMember(String hexEncodedPublicKey) {
+    try {
+      Address address = Address.fromSerialized(hexEncodedPublicKey);
+      Reader reader = DatabaseFactory.getGroupDatabase(context).getGroups();
+      GroupRecord record;
+      while ((record = reader.getNext()) != null) {
+        if (record.isSignalGroup() && record.members.contains(address)) {
+            return true;
+        }
+      }
+
+      return false;
+    } catch (Exception e) {
+      return false;
+    }
+  }
+
   public void create(@NonNull String groupId, @Nullable String title, @NonNull List<Address> members,
                      @Nullable SignalServiceAttachmentPointer avatar, @Nullable String relay, @Nullable List<Address> admins)
   {
@@ -475,6 +492,8 @@ public class GroupDatabase extends Database {
     public boolean isPublicChat() { return Address.fromSerialized(id).isPublicChat(); }
 
     public boolean isRSSFeed() { return Address.fromSerialized(id).isRSSFeed(); }
+
+    public boolean isSignalGroup() { return Address.fromSerialized(id).isSignalGroup(); }
 
     public String getUrl() { return url; }
 

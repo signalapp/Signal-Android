@@ -1228,12 +1228,20 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
   private void handleSessionRequestIfNeeded(@NonNull SignalServiceContent content) {
     if (content.isFriendRequest() && isSessionRequest(content)) {
-      // TODO: Check if member is in one of our private groups
-      boolean isInOneOfOurGroups = false;
-      if (isInOneOfOurGroups) {
-        // Send a background message to acknowledge session request
-        MessageSender.sendBackgroundMessage(context, content.getSender());
-      }
+      // Check if the session request from a member in one of our groups or our friend
+      LokiStorageAPI.shared.getPrimaryDevicePublicKey(content.getSender()).success(primaryDevicePublicKey -> {
+        String sender = primaryDevicePublicKey != null ? primaryDevicePublicKey : content.getSender();
+        long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(sender), false));
+        LokiThreadFriendRequestStatus threadFriendRequestStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID);
+        boolean isOurFriend = threadFriendRequestStatus == LokiThreadFriendRequestStatus.FRIENDS;
+        boolean isInOneOfOurGroups = DatabaseFactory.getGroupDatabase(context).signalGroupsHaveMember(sender);
+        boolean shouldAcceptSessionRequest = isOurFriend || isInOneOfOurGroups;
+        if (shouldAcceptSessionRequest) {
+          // Send a background message to acknowledge session request
+          MessageSender.sendBackgroundMessage(context, content.getSender());
+        }
+        return Unit.INSTANCE;
+      });
     }
   }
 
