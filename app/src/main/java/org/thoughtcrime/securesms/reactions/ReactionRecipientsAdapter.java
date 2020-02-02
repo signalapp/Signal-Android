@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.reactions.ReactionsLoader.Reaction;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.AvatarUtil;
 
@@ -19,9 +20,9 @@ import java.util.List;
 
 final class ReactionRecipientsAdapter extends RecyclerView.Adapter<ReactionRecipientsAdapter.ViewHolder> {
 
-  private List<Recipient> data = Collections.emptyList();
+  private List<Reaction> data = Collections.emptyList();
 
-  public void updateData(List<Recipient> newData) {
+  public void updateData(List<Reaction> newData) {
     data = newData;
     notifyDataSetChanged();
   }
@@ -48,21 +49,24 @@ final class ReactionRecipientsAdapter extends RecyclerView.Adapter<ReactionRecip
 
     private final AvatarImageView avatar;
     private final TextView        recipient;
+    private final TextView        emoji;
 
     public ViewHolder(@NonNull View itemView) {
       super(itemView);
 
       avatar    = itemView.findViewById(R.id.reactions_bottom_view_recipient_avatar);
       recipient = itemView.findViewById(R.id.reactions_bottom_view_recipient_name);
+      emoji     = itemView.findViewById(R.id.reactions_bottom_view_recipient_emoji);
     }
 
-    void bind(Recipient recipient) {
-      this.recipient.setText(recipient.getDisplayName(itemView.getContext()));
+    void bind(@NonNull Reaction reaction) {
+      this.recipient.setText(reaction.getSender().getDisplayName(itemView.getContext()));
+      this.emoji.setText(reaction.getEmoji());
 
-      if (recipient.equals(Recipient.self())) {
-        AvatarUtil.loadIconIntoImageView(recipient, avatar);
+      if (reaction.getSender().equals(Recipient.self())) {
+        AvatarUtil.loadIconIntoImageView(reaction.getSender(), avatar);
       } else {
-        this.avatar.setAvatar(GlideApp.with(avatar), recipient, false);
+        this.avatar.setAvatar(GlideApp.with(avatar), reaction.getSender(), false);
       }
     }
   }

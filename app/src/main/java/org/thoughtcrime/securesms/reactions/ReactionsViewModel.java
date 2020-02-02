@@ -9,9 +9,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.recipients.Recipient;
-
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -26,12 +23,12 @@ public class ReactionsViewModel extends ViewModel {
     this.repository = repository;
   }
 
-  public @NonNull LiveData<List<Recipient>> getRecipients() {
+  public @NonNull LiveData<List<Reaction>> getRecipients() {
     return Transformations.switchMap(filterEmoji,
                                      emoji -> Transformations.map(repository.getReactions(),
                                                                   reactions -> Stream.of(reactions)
-                                                                                     .filter(reaction -> reaction.getEmoji().equals(emoji))
-                                                                                     .map(Reaction::getSender).toList()));
+                                                                                     .filter(reaction -> emoji == null || reaction.getEmoji().equals(emoji))
+                                                                                     .toList()));
   }
 
   public @NonNull LiveData<List<EmojiCount>> getEmojiCounts() {

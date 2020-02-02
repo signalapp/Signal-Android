@@ -88,7 +88,7 @@ public final class ReactionsBottomSheetDialogFragment extends BottomSheetDialogF
   }
 
   private void setUpEmojiRecyclerView() {
-    emojiCountAdapter = new ReactionEmojiCountAdapter((emojiCount -> viewModel.setFilterEmoji(emojiCount.getEmoji())));
+    emojiCountAdapter = new ReactionEmojiCountAdapter((emoji -> viewModel.setFilterEmoji(emoji)));
     emojiRecyclerView.setAdapter(emojiCountAdapter);
   }
 

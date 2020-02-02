@@ -15,7 +15,8 @@
       android:id="@+id/reactions_pill_emoji"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:textSize="16dp"/>
+      android:textSize="16dp"
+      tools:ignore="SpUsage" />
 
   <Space
       android:id="@+id/reactions_pill_spacer"
@@ -30,6 +31,7 @@
       android:textSize="14dp"
       android:fontFamily="sans-serif-medium"
       android:textColor="?reactions_pill_text_color"
-      tools:text="23" />
+      tools:text="23"
+      tools:ignore="SpUsage" />
 
 </LinearLayout>
