@@ -83,6 +83,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         profileButton.hexEncodedPublicKey = hexEncodedPublicKey
         profileButton.update()
         profileButton.setOnClickListener { openSettings() }
+        createClosedGroupButton.setOnClickListener { createClosedGroup() }
         joinPublicChatButton.setOnClickListener { joinPublicChat() }
         // Set up seed reminder view
         val isMasterDevice = (TextSecurePreferences.getMasterHexEncodedPublicKey(this) == null)
@@ -179,6 +180,11 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
 
     private fun createPrivateChat() {
         val intent = Intent(this, CreatePrivateChatActivity::class.java)
+        show(intent)
+    }
+
+    private fun createClosedGroup() {
+        val intent = Intent(this, CreateClosedGroupActivity::class.java)
         show(intent)
     }
 
