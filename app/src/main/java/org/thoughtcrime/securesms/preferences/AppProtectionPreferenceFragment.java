@@ -4,6 +4,7 @@ import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -23,7 +24,6 @@ import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.RegistrationLockDialog;
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
 import org.thoughtcrime.securesms.lock.v2.PinUtil;
@@ -56,8 +56,16 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     Preference             kbsGroup     = this.findPreference("prefs_lock_v2");
 
     if (FeatureFlags.pinsForAll()) {
+      Preference preference = this.findPreference("pref_kbs_change");
       regGroup.setVisible(false);
-      kbsPinChange.setOnPreferenceClickListener(new KbsPinChangeListener());
+
+      if (PinUtil.userHasPin(ApplicationDependencies.getApplication())) {
+        kbsPinChange.setOnPreferenceClickListener(new KbsPinUpdateListener());
+        preference.setWidgetLayoutResource(R.layout.kbs_pin_change_preference);
+      } else {
+        kbsPinChange.setOnPreferenceClickListener(new KbsPinCreateListener());
+        preference.setWidgetLayoutResource(R.layout.kbs_pin_create_preference);
+      }
     } else {
       kbsGroup.setVisible(false);
       regLock.setChecked(PinUtil.userHasPin(requireContext()));
@@ -171,10 +179,18 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     }
   }
 
-  private class KbsPinChangeListener implements Preference.OnPreferenceClickListener {
+  private class KbsPinUpdateListener implements Preference.OnPreferenceClickListener {
     @Override
     public boolean onPreferenceClick(Preference preference) {
       startActivityForResult(CreateKbsPinActivity.getIntentForPinUpdate(requireContext()), CreateKbsPinActivity.REQUEST_NEW_PIN);
+      return true;
+    }
+  }
+
+  private class KbsPinCreateListener implements Preference.OnPreferenceClickListener {
+    @Override
+    public boolean onPreferenceClick(Preference preference) {
+      startActivityForResult(CreateKbsPinActivity.getIntentForPinCreate(requireContext()), CreateKbsPinActivity.REQUEST_NEW_PIN);
       return true;
     }
   }

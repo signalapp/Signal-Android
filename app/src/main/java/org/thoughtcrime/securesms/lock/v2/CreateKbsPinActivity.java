@@ -26,14 +26,16 @@ public class CreateKbsPinActivity extends BaseActionBarActivity {
   private final DynamicTheme dynamicTheme = new DynamicRegistrationTheme();
 
   public static Intent getIntentForPinCreate(@NonNull Context context) {
-    return new Intent(context, CreateKbsPinActivity.class);
+    return getIntent(context, true);
   }
 
   public static Intent getIntentForPinUpdate(@NonNull Context context) {
-    Intent intent = getIntentForPinCreate(context);
+    return getIntent(context, false);
+  }
 
-    intent.putExtra(IS_NEW_PIN, true);
-
+  private static Intent getIntent(@NonNull Context context, boolean isNewPin) {
+    Intent intent = new Intent(context, CreateKbsPinActivity.class);
+    intent.putExtra(IS_NEW_PIN, isNewPin);
     return intent;
   }
 
