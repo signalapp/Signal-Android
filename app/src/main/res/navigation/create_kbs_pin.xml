@@ -21,7 +21,12 @@
 
         <argument
             app:argType="boolean"
-            android:name="is_new_pin"
+            android:name="is_pin_change"
+            android:defaultValue="false" />
+
+        <argument
+            app:argType="boolean"
+            android:name="is_forgot_pin"
             android:defaultValue="false" />
 
     </fragment>
@@ -34,7 +39,7 @@
 
         <argument
             app:argType="boolean"
-            android:name="is_new_pin"
+            android:name="is_pin_change"
             android:defaultValue="false" />
 
         <argument

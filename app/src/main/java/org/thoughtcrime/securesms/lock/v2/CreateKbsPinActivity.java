@@ -21,22 +21,37 @@ public class CreateKbsPinActivity extends BaseActionBarActivity {
 
   public static final int REQUEST_NEW_PIN = 27698;
 
-  private static final String IS_NEW_PIN = "is_new_pin";
-
   private final DynamicTheme dynamicTheme = new DynamicRegistrationTheme();
 
-  public static Intent getIntentForPinCreate(@NonNull Context context) {
-    return getIntent(context, true);
+  public static @NonNull Intent getIntentForPinCreate(@NonNull Context context) {
+    CreateKbsPinFragmentArgs args = new CreateKbsPinFragmentArgs.Builder()
+                                                                .setIsForgotPin(false)
+                                                                .setIsPinChange(false)
+                                                                .build();
+
+    return getIntentWithArgs(context, args);
   }
 
-  public static Intent getIntentForPinUpdate(@NonNull Context context) {
-    return getIntent(context, false);
+  public static @NonNull Intent getIntentForPinChangeFromForgotPin(@NonNull Context context) {
+    CreateKbsPinFragmentArgs args = new CreateKbsPinFragmentArgs.Builder()
+                                                                .setIsForgotPin(true)
+                                                                .setIsPinChange(true)
+                                                                .build();
+
+    return getIntentWithArgs(context, args);
   }
 
-  private static Intent getIntent(@NonNull Context context, boolean isNewPin) {
-    Intent intent = new Intent(context, CreateKbsPinActivity.class);
-    intent.putExtra(IS_NEW_PIN, isNewPin);
-    return intent;
+  public static @NonNull Intent getIntentForPinChangeFromSettings(@NonNull Context context) {
+    CreateKbsPinFragmentArgs args = new CreateKbsPinFragmentArgs.Builder()
+                                                                .setIsForgotPin(false)
+                                                                .setIsPinChange(true)
+                                                                .build();
+
+    return getIntentWithArgs(context, args);
+  }
+
+  private static @NonNull Intent getIntentWithArgs(@NonNull Context context, @NonNull CreateKbsPinFragmentArgs args) {
+    return new Intent(context, CreateKbsPinActivity.class).putExtras(args.toBundle());
   }
 
   @Override

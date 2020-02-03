@@ -1698,7 +1698,10 @@
         <item quantity="other">PIN must be at least %1$d digits</item>
     </plurals>
     <string name="CreateKbsPinFragment__create_a_new_pin">Create a new PIN</string>
-    <string name="CreateKbsPinFragment__because_youre_still_logged_in">Because you\'re still logged in, you can create a new PIN. When you\'re logged out, there is no way to recover your PIN.</string>
+    <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
+        <item quantity="one">You can choose a new PIN because this device is registered. If you forget your PIN, you may need to wait %1$d day to register again.</item>
+        <item quantity="other">You can choose a new PIN because this device is registered. If you forget your PIN, you may need to wait %1$d days to register again.</item>
+    </plurals>
     <string name="CreateKbsPinFragment__create_your_pin">Create your PIN</string>
     <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PINs add an extra layer of security to your account. It\'s important to remember this PIN, as it can\'t be recovered.</string>
 
@@ -1715,7 +1718,7 @@
     <string name="KbsSplashFragment__introducing_pins">Introducing PINs</string>
     <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">PINs add another level of security to your account. Create one now.</string>
     <string name="KbsSplashFragment__learn_more">Learn More</string>
-    <string name="KbsSplashFragment__learn_more_link">https://signal.org/blog/secure-value-recovery/</string>
+    <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
     <string name="KbsSplashFragment__registration_lock_equals_pin">Registration Lock = PIN</string>
     <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Your Registration Lock is now called a PIN, and it does more. Update it now.</string>
     <string name="KbsSplashFragment__read_more_about_pins">Read more about PINs.</string>
@@ -1735,7 +1738,7 @@
     <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Your account has been locked to protect your privacy and security. After %1$d days of inactivity in your account you\'ll be able to re-register this phone number without needing your pin. All content will be deleted.</string>
     <string name="AccountLockedFragment__next">Next</string>
     <string name="AccountLockedFragment__learn_more">Learn More</string>
-    <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
+    <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
 
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Enter your PIN</string>

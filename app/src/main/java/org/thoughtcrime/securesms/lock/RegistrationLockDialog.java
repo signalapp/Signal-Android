@@ -124,7 +124,7 @@ public final class RegistrationLockDialog {
         dialog.dismiss();
         RegistrationLockReminders.scheduleReminder(context, true);
 
-        fragment.startActivityForResult(CreateKbsPinActivity.getIntentForPinUpdate(context), CreateKbsPinActivity.REQUEST_NEW_PIN);
+        fragment.startActivityForResult(CreateKbsPinActivity.getIntentForPinChangeFromForgotPin(context), CreateKbsPinActivity.REQUEST_NEW_PIN);
       }
     };
 

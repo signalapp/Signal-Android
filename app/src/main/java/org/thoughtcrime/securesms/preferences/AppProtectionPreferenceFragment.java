@@ -4,7 +4,6 @@ import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -182,7 +181,7 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
   private class KbsPinUpdateListener implements Preference.OnPreferenceClickListener {
     @Override
     public boolean onPreferenceClick(Preference preference) {
-      startActivityForResult(CreateKbsPinActivity.getIntentForPinUpdate(requireContext()), CreateKbsPinActivity.REQUEST_NEW_PIN);
+      startActivityForResult(CreateKbsPinActivity.getIntentForPinChangeFromSettings(requireContext()), CreateKbsPinActivity.REQUEST_NEW_PIN);
       return true;
     }
   }

@@ -9,25 +9,33 @@ import org.thoughtcrime.securesms.R;
 
 public class CreateKbsPinFragment extends BaseKbsPinFragment<CreateKbsPinViewModel> {
 
-  private CreateKbsPinFragmentArgs args;
+  private static final int PIN_LOCKOUT_DAYS = 7;
 
   @Override
   protected void initializeViewStates() {
-    args = CreateKbsPinFragmentArgs.fromBundle(requireArguments());
+    CreateKbsPinFragmentArgs args = CreateKbsPinFragmentArgs.fromBundle(requireArguments());
 
-    if (args.getIsNewPin()) {
-      initializeViewStatesForPinCreate();
+    if (args.getIsPinChange()) {
+      initializeViewStatesForPinChange(args.getIsForgotPin());
     } else {
-      initializeViewStatesForPinUpdate();
+      initializeViewStatesForPinCreate();
     }
 
     getLabel().setText(getPinLengthRestrictionText(R.plurals.CreateKbsPinFragment__pin_must_be_at_least_digits));
     getConfirm().setEnabled(false);
   }
 
-  private void initializeViewStatesForPinUpdate() {
+  private void initializeViewStatesForPinChange(boolean isForgotPin) {
     getTitle().setText(R.string.CreateKbsPinFragment__create_a_new_pin);
-    getDescription().setText(R.string.CreateKbsPinFragment__because_youre_still_logged_in);
+
+    if (isForgotPin) {
+      getDescription().setText(requireContext().getResources()
+                                               .getQuantityString(R.plurals.CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered,
+                                                                  PIN_LOCKOUT_DAYS,
+                                                                  PIN_LOCKOUT_DAYS));
+    } else {
+      getDescription().setText(R.string.CreateKbsPinFragment__pins_add_an_extra_layer_of_security);
+    }
   }
 
   private void initializeViewStatesForPinCreate() {
@@ -37,9 +45,11 @@ public class CreateKbsPinFragment extends BaseKbsPinFragment<CreateKbsPinViewMod
 
   @Override
   protected CreateKbsPinViewModel initializeViewModel() {
-    CreateKbsPinViewModel viewModel = ViewModelProviders.of(this).get(CreateKbsPinViewModel.class);
+    CreateKbsPinViewModel    viewModel = ViewModelProviders.of(this).get(CreateKbsPinViewModel.class);
+    CreateKbsPinFragmentArgs args      = CreateKbsPinFragmentArgs.fromBundle(requireArguments());
 
-    viewModel.getNavigationEvents().observe(getViewLifecycleOwner(), e -> onConfirmPin(e.getUserEntry(), e.getKeyboard()));
+
+    viewModel.getNavigationEvents().observe(getViewLifecycleOwner(), e -> onConfirmPin(e.getUserEntry(), e.getKeyboard(), args.getIsPinChange()));
     viewModel.getKeyboard().observe(getViewLifecycleOwner(), k -> {
       getLabel().setText(getLabelText(k));
       getInput().getText().clear();
@@ -48,12 +58,12 @@ public class CreateKbsPinFragment extends BaseKbsPinFragment<CreateKbsPinViewMod
     return viewModel;
   }
 
-  private void onConfirmPin(@NonNull KbsPin userEntry, @NonNull PinKeyboardType keyboard) {
+  private void onConfirmPin(@NonNull KbsPin userEntry, @NonNull PinKeyboardType keyboard, boolean isPinChange) {
     CreateKbsPinFragmentDirections.ActionConfirmPin action = CreateKbsPinFragmentDirections.actionConfirmPin();
 
     action.setUserEntry(userEntry);
     action.setKeyboard(keyboard);
-    action.setIsNewPin(args.getIsNewPin());
+    action.setIsPinChange(isPinChange);
 
     Navigation.findNavController(requireView()).navigate(action);
   }

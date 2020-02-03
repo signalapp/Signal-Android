@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.lock.v2;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,12 +12,10 @@ import android.widget.TextView;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public final class KbsSplashFragment extends Fragment {
 
@@ -45,7 +42,7 @@ public final class KbsSplashFragment extends Fragment {
     primaryAction.setOnClickListener(v -> onCreatePin());
     secondaryAction.setOnClickListener(v -> onLearnMore());
 
-    if (TextSecurePreferences.isV1RegistrationLockEnabled(requireContext())) {
+    if (PinUtil.userHasPin(requireContext())) {
       setUpRegLockEnabled();
     } else {
       setUpRegLockDisabled();
@@ -74,7 +71,11 @@ public final class KbsSplashFragment extends Fragment {
   }
 
   private void onCreatePin() {
-    Navigation.findNavController(requireView()).navigate(KbsSplashFragmentDirections.actionCreateKbsPin());
+    KbsSplashFragmentDirections.ActionCreateKbsPin action = KbsSplashFragmentDirections.actionCreateKbsPin();
+
+    action.setIsPinChange(PinUtil.userHasPin(requireContext()));
+
+    Navigation.findNavController(requireView()).navigate(action);
   }
 
   private void onLearnMore() {

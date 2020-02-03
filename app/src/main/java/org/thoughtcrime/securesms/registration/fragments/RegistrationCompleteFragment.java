@@ -36,13 +36,13 @@ public final class RegistrationCompleteFragment extends BaseRegistrationFragment
 
     if (!isReregister()) {
       final Intent main = new Intent(activity, MainActivity.class);
-      final Intent next = getRoutedIntent(activity, EditProfileActivity.class, main);
+      final Intent next = chainIntents(new Intent(activity, EditProfileActivity.class), main);
 
       next.putExtra(EditProfileActivity.SHOW_TOOLBAR, false);
 
       Context context = requireContext();
       if (FeatureFlags.pinsForAll() && !PinUtil.userHasPin(context)) {
-        activity.startActivity(getRoutedIntent(activity, CreateKbsPinActivity.class, next));
+        activity.startActivity(chainIntents(CreateKbsPinActivity.getIntentForPinCreate(context), next));
       } else {
         activity.startActivity(next);
       }
@@ -52,9 +52,8 @@ public final class RegistrationCompleteFragment extends BaseRegistrationFragment
     ActivityNavigator.applyPopAnimationsToPendingTransition(activity);
   }
 
-  private static Intent getRoutedIntent(@NonNull Context context, Class<?> destination, @Nullable Intent nextIntent) {
-    final Intent intent = new Intent(context, destination);
-    if (nextIntent != null) intent.putExtra("next_intent", nextIntent);
-    return intent;
+  private static Intent chainIntents(@NonNull Intent sourceIntent, @Nullable Intent nextIntent) {
+    if (nextIntent != null) sourceIntent.putExtra("next_intent", nextIntent);
+    return sourceIntent;
   }
 }

@@ -130,7 +130,7 @@ public final class Megaphones {
     return builder.setTitle(R.string.KbsMegaphone__introducing_pins)
                   .setBody(R.string.KbsMegaphone__your_registration_lock_is_now_called_a_pin)
                   .setButtonText(R.string.KbsMegaphone__update_pin, (megaphone, listener) -> {
-                    Intent intent = CreateKbsPinActivity.getIntentForPinUpdate(ApplicationDependencies.getApplication());
+                    Intent intent = CreateKbsPinActivity.getIntentForPinChangeFromSettings(ApplicationDependencies.getApplication());
 
                     listener.onMegaphoneNavigationRequested(intent, CreateKbsPinActivity.REQUEST_NEW_PIN);
                   })

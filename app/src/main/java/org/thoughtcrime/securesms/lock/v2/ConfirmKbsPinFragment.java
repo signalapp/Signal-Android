@@ -24,22 +24,22 @@ import org.thoughtcrime.securesms.util.SpanUtil;
 
 public class ConfirmKbsPinFragment extends BaseKbsPinFragment<ConfirmKbsPinViewModel> {
 
-  private ConfirmKbsPinFragmentArgs args;
   private ConfirmKbsPinViewModel    viewModel;
 
   @Override
   protected void initializeViewStates() {
-    args = ConfirmKbsPinFragmentArgs.fromBundle(requireArguments());
+    ConfirmKbsPinFragmentArgs args = ConfirmKbsPinFragmentArgs.fromBundle(requireArguments());
 
-    if (args.getIsNewPin()) {
-      initializeViewStatesForPinCreate();
+    if (args.getIsPinChange()) {
+      initializeViewStatesForPinChange();
     } else {
-      initializeViewStatesForPinUpdate();
+      initializeViewStatesForPinCreate();
     }
   }
 
   @Override
   protected ConfirmKbsPinViewModel initializeViewModel() {
+    ConfirmKbsPinFragmentArgs      args       = ConfirmKbsPinFragmentArgs.fromBundle(requireArguments());
     KbsPin                         userEntry  = Preconditions.checkNotNull(args.getUserEntry());
     PinKeyboardType                keyboard   = args.getKeyboard();
     ConfirmKbsPinRepository        repository = new ConfirmKbsPinRepository();
@@ -60,7 +60,7 @@ public class ConfirmKbsPinFragment extends BaseKbsPinFragment<ConfirmKbsPinViewM
     getLabel().setText("");
   }
 
-  private void initializeViewStatesForPinUpdate() {
+  private void initializeViewStatesForPinChange() {
     getTitle().setText(R.string.CreateKbsPinFragment__create_a_new_pin);
     getDescription().setText(R.string.ConfirmKbsPinFragment__confirm_your_pin);
     getKeyboardToggle().setVisibility(View.INVISIBLE);
