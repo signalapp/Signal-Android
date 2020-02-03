@@ -257,6 +257,8 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
 
     pinEntry.setInputType(isAlphaNumeric ? InputType.TYPE_CLASS_TEXT   | InputType.TYPE_TEXT_VARIATION_PASSWORD
                                          : InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+
+    pinEntry.getText().clear();
   }
 
   private @StringRes static int resolveKeyboardToggleText(@NonNull PinKeyboardType keyboard) {

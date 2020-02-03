@@ -39,8 +39,11 @@ public class CreateKbsPinFragment extends BaseKbsPinFragment<CreateKbsPinViewMod
   protected CreateKbsPinViewModel initializeViewModel() {
     CreateKbsPinViewModel viewModel = ViewModelProviders.of(this).get(CreateKbsPinViewModel.class);
 
-    viewModel.getKeyboard().observe(getViewLifecycleOwner(), k -> getLabel().setText(getLabelText(k)));
     viewModel.getNavigationEvents().observe(getViewLifecycleOwner(), e -> onConfirmPin(e.getUserEntry(), e.getKeyboard()));
+    viewModel.getKeyboard().observe(getViewLifecycleOwner(), k -> {
+      getLabel().setText(getLabelText(k));
+      getInput().getText().clear();
+    });
 
     return viewModel;
   }
