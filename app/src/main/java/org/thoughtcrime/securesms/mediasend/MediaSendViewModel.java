@@ -307,6 +307,7 @@ class MediaSendViewModel extends ViewModel {
                                     .toList();
 
     selectedMedia.setValue(uncaptioned);
+    position.setValue(position.getValue() != null ? position.getValue() : 0);
     hudState.setValue(buildHudState());
   }
 
