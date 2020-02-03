@@ -541,18 +541,18 @@ public class SmsDatabase extends MessagingDatabase {
   }
 
   public @NonNull Pair<Long, Long> insertReceivedCall(@NonNull RecipientId address) {
-    return insertCallLog(address, Types.INCOMING_CALL_TYPE, false);
+    return insertCallLog(address, Types.INCOMING_CALL_TYPE, false, System.currentTimeMillis());
   }
 
   public @NonNull Pair<Long, Long> insertOutgoingCall(@NonNull RecipientId address) {
-    return insertCallLog(address, Types.OUTGOING_CALL_TYPE, false);
+    return insertCallLog(address, Types.OUTGOING_CALL_TYPE, false, System.currentTimeMillis());
   }
 
-  public @NonNull Pair<Long, Long> insertMissedCall(@NonNull RecipientId address) {
-    return insertCallLog(address, Types.MISSED_CALL_TYPE, true);
+  public @NonNull Pair<Long, Long> insertMissedCall(@NonNull RecipientId address, long timestamp) {
+    return insertCallLog(address, Types.MISSED_CALL_TYPE, true, timestamp);
   }
 
-  private @NonNull Pair<Long, Long> insertCallLog(@NonNull RecipientId recipientId, long type, boolean unread) {
+  private @NonNull Pair<Long, Long> insertCallLog(@NonNull RecipientId recipientId, long type, boolean unread, long timestamp) {
     Recipient recipient = Recipient.resolved(recipientId);
     long      threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
 
@@ -560,7 +560,7 @@ public class SmsDatabase extends MessagingDatabase {
     values.put(RECIPIENT_ID, recipientId.serialize());
     values.put(ADDRESS_DEVICE_ID,  1);
     values.put(DATE_RECEIVED, System.currentTimeMillis());
-    values.put(DATE_SENT, System.currentTimeMillis());
+    values.put(DATE_SENT, timestamp);
     values.put(READ, unread ? 0 : 1);
     values.put(TYPE, type);
     values.put(THREAD_ID, threadId);

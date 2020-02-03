@@ -349,7 +349,8 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
     Log.i(TAG, "handleIncomingCall(): callId: 0x" + Long.toHexString(callId));
 
     if (isIncomingMessageExpired(intent)) {
-      insertMissedCall(this.recipient, true);
+      long timestamp = intent.getLongExtra(WebRtcCallService.EXTRA_TIMESTAMP, System.currentTimeMillis());
+      insertMissedCall(this.recipient, true, timestamp);
       terminate();
       return;
     }
@@ -601,7 +602,8 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
     }
 
     sendMessage(recipient, SignalServiceCallMessage.forBusy(new BusyMessage(callId)));
-    insertMissedCall(getRemoteRecipient(intent), false);
+    long timestamp = intent.getLongExtra(WebRtcCallService.EXTRA_TIMESTAMP, System.currentTimeMillis());
+    insertMissedCall(getRemoteRecipient(intent), false, timestamp);
   }
 
   private void handleBusyMessage(Intent intent) {
@@ -640,7 +642,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
       sendMessage(WebRtcViewModel.State.CALL_DISCONNECTED, this.recipient, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
 
       if (this.callState == CallState.STATE_ANSWERING || this.callState == CallState.STATE_LOCAL_RINGING) {
-        insertMissedCall(this.recipient, true);
+        insertMissedCall(this.recipient, true, System.currentTimeMillis());
       }
 
       terminate();
@@ -655,8 +657,8 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
     }
   }
 
-  private void insertMissedCall(@NonNull Recipient recipient, boolean signal) {
-    Pair<Long, Long> messageAndThreadId = DatabaseFactory.getSmsDatabase(this).insertMissedCall(recipient.getId());
+  private void insertMissedCall(@NonNull Recipient recipient, boolean signal, long timestamp) {
+    Pair<Long, Long> messageAndThreadId = DatabaseFactory.getSmsDatabase(this).insertMissedCall(recipient.getId(), timestamp);
     MessageNotifier.updateNotification(this, messageAndThreadId.second, signal);
   }
 
@@ -700,7 +702,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
     try {
       Log.i(TAG, "handleDenyCall()");
       this.callConnection.hangUp();
-      DatabaseFactory.getSmsDatabase(this).insertMissedCall(recipient.getId());
+      DatabaseFactory.getSmsDatabase(this).insertMissedCall(recipient.getId(), System.currentTimeMillis());
     } catch (CallException e) {
       Log.w(TAG, e);
     }
@@ -746,7 +748,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
     }
 
     if (this.callState == CallState.STATE_ANSWERING || this.callState == CallState.STATE_LOCAL_RINGING) {
-      insertMissedCall(this.recipient, true);
+      insertMissedCall(this.recipient, true, System.currentTimeMillis());
     }
 
     terminate();
@@ -912,7 +914,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
     }
 
     if (this.callState == CallState.STATE_ANSWERING || this.callState == CallState.STATE_LOCAL_RINGING) {
-      insertMissedCall(this.recipient, true);
+      insertMissedCall(this.recipient, true, System.currentTimeMillis());
     }
 
     switch (error) {
