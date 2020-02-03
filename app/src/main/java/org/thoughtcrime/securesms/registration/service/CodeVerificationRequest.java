@@ -250,10 +250,6 @@ public final class CodeVerificationRequest {
       TextSecurePreferences.setDeprecatedRegistrationLockPin(context, pin);
       //noinspection deprecation Only acceptable place to write the old pin enabled state.
       TextSecurePreferences.setV1RegistrationLockEnabled(context, pin != null);
-      if (pin != null) {
-        Log.i(TAG, "Pin V1 successfully entered during registration, scheduling a migration to Pin V2");
-        ApplicationDependencies.getJobManager().add(new RegistrationPinV2MigrationJob());
-      }
     } else {
       SignalStore.kbsValues().setRegistrationLockMasterKey(kbsData, PinHashing.localPinHash(pin));
       repostPinToResetTries(context, pin, kbsData);

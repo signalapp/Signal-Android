@@ -2,8 +2,10 @@ package org.thoughtcrime.securesms.megaphone;
 
 import androidx.annotation.VisibleForTesting;
 
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.concurrent.TimeUnit;
@@ -19,6 +21,10 @@ class PinsForAllSchedule implements MegaphoneSchedule {
   private final MegaphoneSchedule schedule = new RecurringSchedule(TimeUnit.DAYS.toMillis(2));
 
   static boolean shouldDisplayFullScreen(long firstVisible, long currentTime) {
+    if (pinCreationFailedDuringRegistration()) {
+      return true;
+    }
+
     if (firstVisible == 0L) {
       return false;
     } else {
@@ -46,10 +52,33 @@ class PinsForAllSchedule implements MegaphoneSchedule {
   }
 
   private static boolean isEnabled() {
-    if (FeatureFlags.pinsForAllMegaphoneKillSwitch() || SignalStore.registrationValues().pinWasRequiredAtRegistration()) {
+    if (FeatureFlags.pinsForAllMegaphoneKillSwitch()) {
+      return false;
+    }
+
+    if (pinCreationFailedDuringRegistration()) {
+      return true;
+    }
+
+    if (newlyRegisteredV1PinUser()) {
+      return true;
+    }
+
+    if (SignalStore.registrationValues().pinWasRequiredAtRegistration()) {
       return false;
     }
 
     return FeatureFlags.pinsForAll();
   }
+
+  private static boolean pinCreationFailedDuringRegistration() {
+    return SignalStore.registrationValues().pinWasRequiredAtRegistration() &&
+           !SignalStore.kbsValues().isV2RegistrationLockEnabled()          &&
+           !TextSecurePreferences.isV1RegistrationLockEnabled(ApplicationDependencies.getApplication());
+  }
+
+  private static final boolean newlyRegisteredV1PinUser() {
+    return SignalStore.registrationValues().pinWasRequiredAtRegistration() && TextSecurePreferences.isV1RegistrationLockEnabled(ApplicationDependencies.getApplication());
+  }
+
 }
