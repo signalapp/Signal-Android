@@ -32,9 +32,9 @@ public class ConfirmKbsPinFragment extends BaseKbsPinFragment<ConfirmKbsPinViewM
     args = ConfirmKbsPinFragmentArgs.fromBundle(requireArguments());
 
     if (args.getIsNewPin()) {
-      initializeViewStatesForNewPin();
+      initializeViewStatesForPinCreate();
     } else {
-      initializeViewStatesForPin();
+      initializeViewStatesForPinUpdate();
     }
   }
 
@@ -53,15 +53,15 @@ public class ConfirmKbsPinFragment extends BaseKbsPinFragment<ConfirmKbsPinViewM
     return viewModel;
   }
 
-  private void initializeViewStatesForNewPin() {
-    getTitle().setText(R.string.CreateKbsPinFragment__create_a_new_pin);
+  private void initializeViewStatesForPinCreate() {
+    getTitle().setText(R.string.CreateKbsPinFragment__create_your_pin);
     getDescription().setText(R.string.ConfirmKbsPinFragment__confirm_your_pin);
     getKeyboardToggle().setVisibility(View.INVISIBLE);
     getLabel().setText("");
   }
 
-  private void initializeViewStatesForPin() {
-    getTitle().setText(R.string.CreateKbsPinFragment__create_your_pin);
+  private void initializeViewStatesForPinUpdate() {
+    getTitle().setText(R.string.CreateKbsPinFragment__create_a_new_pin);
     getDescription().setText(R.string.ConfirmKbsPinFragment__confirm_your_pin);
     getKeyboardToggle().setVisibility(View.INVISIBLE);
     getLabel().setText("");

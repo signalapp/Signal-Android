@@ -16,24 +16,23 @@ public class CreateKbsPinFragment extends BaseKbsPinFragment<CreateKbsPinViewMod
     args = CreateKbsPinFragmentArgs.fromBundle(requireArguments());
 
     if (args.getIsNewPin()) {
-      initializeViewStatesForNewPin();
+      initializeViewStatesForPinCreate();
     } else {
-      initializeViewStatesForPin();
+      initializeViewStatesForPinUpdate();
     }
 
     getLabel().setText(getPinLengthRestrictionText(R.plurals.CreateKbsPinFragment__pin_must_be_at_least_digits));
     getConfirm().setEnabled(false);
   }
 
-  private void initializeViewStatesForPin() {
-    getTitle().setText(R.string.CreateKbsPinFragment__create_your_pin);
-    getDescription().setText(R.string.CreateKbsPinFragment__pins_add_an_extra_layer_of_security);
-
-  }
-
-  private void initializeViewStatesForNewPin() {
+  private void initializeViewStatesForPinUpdate() {
     getTitle().setText(R.string.CreateKbsPinFragment__create_a_new_pin);
     getDescription().setText(R.string.CreateKbsPinFragment__because_youre_still_logged_in);
+  }
+
+  private void initializeViewStatesForPinCreate() {
+    getTitle().setText(R.string.CreateKbsPinFragment__create_your_pin);
+    getDescription().setText(R.string.CreateKbsPinFragment__pins_add_an_extra_layer_of_security);
   }
 
   @Override
