@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.registration.fragments;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.InputType;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +33,9 @@ import java.util.concurrent.TimeUnit;
 public final class RegistrationLockFragment extends BaseRegistrationFragment {
 
   private static final String TAG = Log.tag(RegistrationLockFragment.class);
+
+  /** Applies to both V1 and V2 pins, because some V2 pins may have been migrated from V1. */
+  private static final int MINIMUM_PIN_LENGTH = 4;
 
   private EditText               pinEntry;
   private View                   forgotPin;
@@ -129,8 +131,14 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
   private void handlePinEntry() {
     final String pin = pinEntry.getText().toString();
 
-    if (TextUtils.isEmpty(pin) || TextUtils.isEmpty(pin.replace(" ", ""))) {
+    int trimmedLength = pin.replace(" ", "").length();
+    if (trimmedLength == 0) {
       Toast.makeText(requireContext(), R.string.RegistrationActivity_you_must_enter_your_registration_lock_PIN, Toast.LENGTH_LONG).show();
+      return;
+    }
+
+    if (trimmedLength < MINIMUM_PIN_LENGTH) {
+      Toast.makeText(requireContext(), getString(R.string.RegistrationActivity_your_pin_has_at_least_d_digits_or_characters, MINIMUM_PIN_LENGTH), Toast.LENGTH_LONG).show();
       return;
     }
 

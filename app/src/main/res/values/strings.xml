@@ -1866,6 +1866,7 @@
     <string name="preferences_app_protection__registration_lock_pin">Registration Lock PIN</string>
     <string name="preferences_app_protection__registration_lock">Registration Lock</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">You must enter your Registration Lock PIN</string>
+    <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Your pin has at least %d digits or characters</string>
     <string name="RegistrationActivity_incorrect_registration_lock_pin">Incorrect Registration Lock PIN</string>
     <string name="RegistrationActivity_too_many_attempts">Too many attempts</string>
     <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">You\'ve made too many incorrect Registration Lock PIN attempts. Please try again in a day.</string>
