@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.loki
 import android.content.Context
 import nl.komponents.kovenant.ui.successUi
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
 
@@ -62,7 +63,7 @@ object FriendRequestHandler {
   fun updateLastFriendRequestMessage(context: Context, threadId: Long, status: LokiMessageFriendRequestStatus) {
     if (threadId < 0) { return }
     val recipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId) ?: return
-    if (!recipient.address.isPhone) { return }
+    if (!recipient.address.isPhone || recipient.address.serialize() == TextSecurePreferences.getLocalNumber(context)) { return }
 
     val messages = DatabaseFactory.getSmsDatabase(context).getAllMessageIDs(threadId)
     val lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context)
@@ -81,7 +82,7 @@ object FriendRequestHandler {
     // We only want to update the last message status if we're not friends with any of their linked devices
     // This ensures that we don't spam the UI with accept/decline messages
     val recipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId) ?: return
-    if (!recipient.address.isPhone) { return }
+    if (!recipient.address.isPhone || recipient.address.serialize() == TextSecurePreferences.getLocalNumber(context)) { return }
 
     isFriendsWithAnyLinkedDevice(context, recipient).successUi { isFriends ->
       if (isFriends) { return@successUi }
