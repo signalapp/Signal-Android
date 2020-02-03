@@ -274,6 +274,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">ಪರಿಶೀಲಿಸಲಾಗಿದೆ</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">ಪ್ರೊಫೈಲ್</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">ಪ್ರೊಫೈಲ್ ಫೋಟೋ ಹೊಂದಿಸುವಲ್ಲಿ ದೋಷ</string>
   <string name="CreateProfileActivity_problem_setting_profile">ಪ್ರೊಫೈಲ್ ಸೆಟ್ಟಿಂಗ್ ಸಮಸ್ಯೆ</string>
   <string name="CreateProfileActivity_profile_photo">ಪ್ರೊಫೈಲ್ ಚಿತ್ರ</string>
@@ -793,7 +794,14 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">ತೆರೆಯಿರಿ Signal ಇತ್ತೀಚಿನದನ್ನು ಪರಿಶೀಲಿಸಲು ಅಧಿಸೂಚನೆಗಳು.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">ಸಂಪರ್ಕ</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">ಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಲಾಗಿದೆ ನಿಮ್ಮ ಸಂದೇಶ:  %1$s</string> -->
+  <string name="MessageNotifier_reacted_s_to_s">ಪ್ರತಿಕ್ರಿಯಿಸಿದೆ %1$s ಗೆ: \"%2$s\".</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">ಪ್ರತಿಕ್ರಿಯಿಸಿದೆ %1$s ಗೆ ನಿಮ್ಮ ವೀಡಿಯೊ.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">ಪ್ರತಿಕ್ರಿಯಿಸಿದೆ %1$s ನಿಮ್ಮ ಚಿತ್ರಕ್ಕೆ.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">ಪ್ರತಿಕ್ರಿಯಿಸಿದೆ %1$s ಗೆ ನಿಮ್ಮ ಫೈಲ್.</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">ಪ್ರತಿಕ್ರಿಯಿಸಿದೆ %1$s ಗೆ ನಿಮ್ಮ ಆಡಿಯೋ.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">ಪ್ರತಿಕ್ರಿಯಿಸಿದೆ %1$s ಗೆ ನಿಮ್ಮ ನೋಟ-ಒಂದು ಫೋಟೋ.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">ಪ್ರತಿಕ್ರಿಯಿಸಿದೆ %1$s ನಿಮ್ಮ ವೀಕ್ಷಣೆ-ಒಮ್ಮೆ ವೀಡಿಯೊಗೆ.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">ಪ್ರತಿಕ್ರಿಯಿಸಿದೆ %1$s ನಿಮ್ಮ ಸ್ಟಿಕ್ಕರ್‌ಗೆ.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">ಪೂರ್ವನಿಯೋಜಿತ</string>
   <string name="NotificationChannel_calls">ಕರೆಗಳು</string>
@@ -912,7 +920,7 @@
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">ನ ಲಾಕ್ ರೆಕಾರ್ಡಿಂಗ್ ಆಡಿಯೋ ಲಗತ್ತು</string>
   <string name="conversation_activity__enable_signal_for_sms">ಸಕ್ರಿಯಗೊಳಿಸಿ Signal ಗಾಗಿ ಎಸ್‌ಎಂಎಸ್</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">ಸ್ಲೈಡ್ ರದ್ದುಪಡಿಸಲು</string>
+  <string name="conversation_input_panel__slide_to_cancel">ಸ್ಲೈಡ್ ಮಾಡಿ ರದ್ದುಪಡಿಸಲು</string>
   <string name="conversation_input_panel__cancel">ರದ್ದುಮಾಡು</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">ಬಹುಮಾಧ್ಯಮ ಸಂದೇಶ</string>
@@ -1050,6 +1058,8 @@
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal ಅಗತ್ಯವಿದೆ ಎಂಎಂಎಸ್ ಸಂಯೋಜನೆಗಳು ತಲುಪಿಸಲು ಮಾಧ್ಯಮ ಮತ್ತು ಮೂಲಕ ಗುಂಪು ಸಂದೇಶಗಳು ನಿಮ್ಮ ವೈರ್ಲೆಸ್ ವಾಹಕ. ನಿಮ್ಮ ಸಾಧನ ಇದನ್ನು ಮಾಡುವುದಿಲ್ಲ ಮಾಹಿತಿ ಲಭ್ಯವಿದೆ, ಇದು ಲಾಕ್ ಮಾಡಲಾದ ಸಾಧನಗಳಿಗೆ ಸಾಂದರ್ಭಿಕವಾಗಿ ನಿಜವಾಗಿದೆ ಮತ್ತು ಇತರ ನಿರ್ಬಂಧಿತ ಸಂರಚನೆಗಳು.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">ಮಾಧ್ಯಮ ಮತ್ತು ಗುಂಪು ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು, \'ಸರಿ\' ಟ್ಯಾಪ್ ಮಾಡಿ ಮತ್ತು ವಿನಂತಿಸಿದ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಪೂರ್ಣಗೊಳಿಸಿ. \'ನಿಮ್ಮ ವಾಹಕ ಎಪಿಎನ್\' ಗಾಗಿ ಹುಡುಕುವ ಮೂಲಕ ನಿಮ್ಮ ವಾಹಕಕ್ಕಾಗಿ ಎಂಎಂಎಸ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಸಾಮಾನ್ಯವಾಗಿ ಕಂಡುಹಿಡಿಯಬಹುದು. ನೀವು ಇದನ್ನು ಒಮ್ಮೆ ಮಾತ್ರ ಮಾಡಬೇಕಾಗುತ್ತದೆ.</string>
   <!--profile_create_activity-->
+  <string name="CreateProfileActivity_first_name_required">ಮೊದಲ ಹೆಸರು (ಅಗತ್ಯವಿದೆ)</string>
+  <string name="CreateProfileActivity_last_name_optional">ಕೊನೆಯದು ಹೆಸರು (ಐಚ್ಛಿಕ)</string>
   <string name="CreateProfileActivity_next">ಮುಂದೆ</string>
   <string name="CreateProfileActivity__username">ಬಳಕೆದಾರ ಹೆಸರು</string>
   <string name="CreateProfileActivity__create_a_username">ಬಳಕೆದಾರ ಹೆಸರನ್ನು ರಚಿಸಿ</string>
@@ -1399,13 +1409,68 @@
   <string name="SecondInviteReminder__description">ಆಹ್ವಾನಿಸಿ %1$s</string>
   <string name="InsightsReminder__view_insights">ನೋಟ ಒಳನೋಟಗಳು</string>
   <string name="InsightsReminder__invite">ಆಹ್ವಾನ</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">ಮುಂದೆ</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">ರಚಿಸಿ ಆಲ್ಫಾನ್ಯೂಮರಿಕ್ ಪಿನ್</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">ಸಂಖ್ಯಾ ಪಿನ್ ರಚಿಸಿ</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">ಪಿನ್ ಕನಿಷ್ಠ ಇರಬೇಕು %1$d ಅಕ್ಷರಗಳು</string>
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">ಪಿನ್ ಕನಿಷ್ಠ ಇರಬೇಕು %1$d ಅಂಕೆಗಳು</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">ರಚಿಸಿಹೊಸದುಪಿನ್</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">ನೀವು ಇನ್ನೂ ಲಾಗಿನ್ ಆಗಿರುವ ಕಾರಣ, ನೀವು ಹೊಸ ಪಿನ್ ರಚಿಸಬಹುದು. ನೀವು ಲಾಗ್ ಹೊರಗೆ ಟ್ ಮಾಡಿದಾಗ, ನಿಮ್ಮ ಪಿನ್ ಅನ್ನು ಮರುಪಡೆಯಲು ಯಾವುದೇ ಮಾರ್ಗವಿಲ್ಲ.</string> -->
+  <string name="CreateKbsPinFragment__create_your_pin">ರಚಿಸಿ ನಿಮ್ಮ ಪಿನ್</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">ಪಿನ್‌ಗಳು ಸುರಕ್ಷತೆಯ ಹೆಚ್ಚುವರಿ ಪದರವನ್ನು ಸೇರಿಸುತ್ತವೆ ನಿಮ್ಮಖಾತೆ. ಬರೆಯಿರಿನಿಮ್ಮ ಪಿನ್ ಕೆಳಗೆ ಮತ್ತುಅದನ್ನು ಸುರಕ್ಷಿತ ಸ್ಥಳದಲ್ಲಿ ಇರಿಸಿ. ಅದುಸಾಧ್ಯವಿಲ್ಲ ಮರುಪಡೆಯಲಾಗುತ್ತದೆ.</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__pins_dont_match">ಪಿನ್‌ಗಳು ಹೊಂದಿಕೆಯಾಗುವುದಿಲ್ಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸು.</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">ನಿಮ್ಮ ಪಿನ್ ಅನ್ನು ದೃಡಪಡಿಸು.</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">ಪಿನ್ ರಚನೆ ವಿಫಲವಾಗಿದೆ</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">ನಿಮ್ಮ ಪಿನ್ ಉಳಿಸಲಾಗಿಲ್ಲ. ನಂತರ ಪಿನ್ ರಚಿಸಲು ನಾವು ನಿಮ್ಮನ್ನು ಕೇಳುತ್ತೇವೆ.</string>
+  <string name="ConfirmKbsPinFragment__pin_created">ಪಿನ್ ರಚಿಸಲಾಗಿದೆ.</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">ಪಿನ್‌ಗಳನ್ನು ಪರಿಚಯಿಸಲಾಗುತ್ತಿದೆ</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">ಇದಕ್ಕೆ ಮತ್ತೊಂದು ಮಟ್ಟದ ಭದ್ರತೆಯನ್ನು ಸೇರಿಸಿ ನಿಮ್ಮ ಖಾತೆ. %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">ಇಲ್ಲಿ ಇನ್ನಷ್ಟು ಓದಿ.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string> -->
+  <string name="KbsSplashFragment__registration_lock_equals_pin">ನೋಂದಣಿ ಲಾಕ್ = ಪಿನ್</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">ನಿಮ್ಮ ನೋಂದಣಿ ಲಾಕ್ ಅನ್ನು ಈಗ ಪಿನ್ ಎಂದು ಕರೆಯಲಾಗುತ್ತದೆ, ಮತ್ತು ಅದು ಹೆಚ್ಚಿನದನ್ನು ಮಾಡುತ್ತದೆ. ಇದೀಗ ಅದನ್ನು ನವೀಕರಿಸಿ. %1$s</string>
+  <string name="KbsSplashFragment__read_more_about_pins">ಪಿನ್‌ಗಳ ಬಗ್ಗೆ ಇನ್ನಷ್ಟು ಓದಿ.</string>
+  <string name="KbsSplashFragment__update_pin">ಪಿನ್ ನವೀಕರಿಸಿ</string>
+  <string name="KbsSplashFragment__create_your_pin">ರಚಿಸಿ ನಿಮ್ಮ ಪಿನ್</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">ನಂತರ ನನಗೆ ನೆನಪಿಸು</string> -->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">ನಿಮ್ಮ Signal ಪಿನ್ ಅನ್ನು ನಮೂದಿಸಿ</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">ಗೆ ಸಹಾಯ ನೀವು ನೆನಪಿಡಿ ನಿಮ್ಮ ಪಿನ್, ನಾವು\'ಕೇಳುತ್ತೇನೆ ನೀವು ಗೆ ನಮೂದಿಸಿಇದು ನಿಯತಕಾಲಿಕವಾಗಿ. ನಾವು ಕೇಳುತ್ತೇವೆನೀವು ಕಾಲಾನಂತರದಲ್ಲಿ ಕಡಿಮೆ.</string>
+  <string name="KbsReminderDialog__skip">ಬಿಟ್ಟು ಮುಂದುವರಿ</string>
+  <string name="KbsReminderDialog__submit">ಸಲ್ಲಿಸು</string>
+  <string name="KbsReminderDialog__forgot_pin">ಮರೆತುಹೋಗಿದೆ ಪಿನ್?</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">ತಪ್ಪಾದ ಪಿನ್. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸು.</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__account_locked">ಖಾತೆಯನ್ನು ಲಾಕ್ ಮಾಡಲಾಗಿದೆ</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">ನಿಮ್ಮ ರಕ್ಷಿಸಲು ಖಾತೆಯನ್ನು ಲಾಕ್ ಮಾಡಲಾಗಿದೆ ನಿಮ್ಮ ಗೌಪ್ಯತೆ ಮತ್ತುಭದ್ರತೆ. ನಂತರ %1$d ನಿಷ್ಕ್ರಿಯತೆಯ ದಿನಗಳು ನಿಮ್ಮ ಖಾತೆ ನೀವು\'ಇದನ್ನು ಮರು ನೋಂದಾಯಿಸಲು ನನಗೆ ಸಾಧ್ಯವಾಗುತ್ತದೆ ದೂರವಾಣಿ ಅಗತ್ಯವಿಲ್ಲದೆ ಸಂಖ್ಯೆ ನಿಮ್ಮ ಪಿನ್. ಎಲ್ಲಾ ವಿಷಯವನ್ನು ಅಳಿಸಲಾಗುತ್ತದೆ.</string>
+  <string name="AccountLockedFragment__next">ಮುಂದೆ</string>
+  <string name="AccountLockedFragment__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
+  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">ನಮೂದಿಸಿ ನಿಮ್ಮ ಪಿನ್</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">ನಮೂದಿಸಿ ದಿ ಪಿನ್ ನೀವು ಗಾಗಿ ರಚಿಸಲಾಗಿದೆ ನಿಮ್ಮಖಾತೆ. ಇದು ವಿಭಿನ್ನವಾಗಿದೆನಿಮ್ಮ ಎಸ್‌ಎಂಎಸ್ ಪರಿಶೀಲನೆ ಕೋಡ್.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">ನಮೂದಿಸಿ ಆಲ್ಫಾನ್ಯೂಮರಿಕ್ ಪಿನ್</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">ನಮೂದಿಸಿ ಸಂಖ್ಯಾ ಪಿನ್</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">ಮುಂದೆ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">ತಪ್ಪಾದ ಪಿನ್. ಮತ್ತೆ  ಪ್ರಯತ್ನಿಸಿ.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">ತಪ್ಪಾದ ಪಿನ್. %1$d ಉಳಿದ ಪ್ರಯತ್ನಗಳು.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">ಮರೆತುಹೋಗಿದೆ ಪಿನ್?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">ತಪ್ಪಾದ ಪಿನ್</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">ನೀವು ಹೊಂದಿವೆ %1$d ಉಳಿದ ಪ್ರಯತ್ನಗಳು. ವೇಳೆ ನೀವು ಪ್ರಯತ್ನಗಳು ಮುಗಿದಿವೆ ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಲಾಕ್ ಮಾಡಲಾಗುತ್ತದೆ %2$d ದಿನಗಳು. ನಂತರ %3$d ನಿಷ್ಕ್ರಿಯತೆಯ ದಿನಗಳು, ನೀವು ಇಲ್ಲದೆ ಮರು ನೋಂದಾಯಿಸಬಹುದು ನಿಮ್ಮ ಪಿನ್. ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅಳಿಸಲಾಗುತ್ತದೆ ಮತ್ತು ಎಲ್ಲಾ ವಿಷಯವನ್ನು ಅಳಿಸಲಾಗಿದೆ.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">ಮರೆತುಹೋಗಿದೆ ನಿಮ್ಮ ಪಿನ್?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">ಫಾರ್ ನಿಮ್ಮ ಗೌಪ್ಯತೆ ಮತ್ತು ಭದ್ರತೆ, ಇದೆ ಇಲ್ಲ ಚೇತರಿಸಿಕೊಳ್ಳುವ ಮಾರ್ಗ ನಿಮ್ಮ ಪಿನ್. ವೇಳೆ ನೀವು ಪ್ರಯತ್ನಗಳು ಮುಗಿದಿವೆ, ನೀವು ಇದರೊಂದಿಗೆ ಮರು ಪರಿಶೀಲಿಸಬಹುದು ಎಸ್‌ಎಂಎಸ್ ನಂತರ %1$d ನಿಷ್ಕ್ರಿಯತೆಯ ದಿನಗಳು. ಈ ವಿಷಯದಲ್ಲಿ,ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅಳಿಸಲಾಗುತ್ತದೆ ಮತ್ತು ಎಲ್ಲಾ ವಿಷಯವನ್ನು ಅಳಿಸಲಾಗಿದೆ.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">ಸಾರಿಗೆ ಮಾಧ್ಯಮದ ಚಿಹ್ನೆ</string>
   <string name="ConversationListFragment_loading">ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
   <string name="CallNotificationBuilder_connecting">ಸಂಪರ್ಕಿಸಲಾಗುತ್ತಿದೆ…</string>
   <string name="Permissions_permission_required">ಅನುಮತಿ ಅಗತ್ಯವಿದೆ</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal ಅಗತ್ಯಗಳು ಎಸ್‌ಎಂಎಸ್ ಅನುಮತಿ ಸಲುವಾಗಿ ಕಳುಹಿಸು ಒಂದು ಎಸ್‌ಎಂಎಸ್, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಮುಂದುವರಿಸಿ ಅಪ್ಲಿಕೇಶನ್ ಸಂಯೋಜನೆಗಳು, ಆಯ್ಕೆ ಮಾಡಿ \"ಅನುಮತಿಗಳು\" ಮತ್ತು ಸಕ್ರಿಯಗೊಳಿಸಿ \"ಎಸ್‌ಎಂಎಸ್</string>
-  <string name="Permissions_continue">ಮುಂದುವರಿಸು</string>
+  <string name="Permissions_continue">ಮುಂದುವರಿಸಿ</string>
   <string name="Permissions_not_now">ಈಗಲ್ಲ</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal ಸಂಪರ್ಕಗಳ ಅಗತ್ಯವಿದೆ ಅನುಮತಿ ಹುಡುಕಲು ನಿಮ್ಮ ಸಂಪರ್ಕಗಳು, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಮುಂದುವರಿಸಿ ಅಪ್ಲಿಕೇಶನ್ ಸಂಯೋಜನೆಗಳು, ಆಯ್ಕೆ ಮಾಡಿ \"ಅನುಮತಿಗಳು\", ಮತ್ತು \"ಸಂಪರ್ಕಗಳು\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
   <string name="conversation_activity__enable_signal_messages">ENABLE SIGNAL MESSAGES</string>
@@ -1456,6 +1521,10 @@
   <string name="preferences_app_protection__screen_lock">ಸ್ಕ್ರೀನ್ ಲಾಕ್</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">ಲಾಕ್ ಮಾಡಿ Signal ಪ್ರವೇಶ ಜೊತೆ Android ಸ್ಕ್ರೀನ್ ಲಾಕ್ ಅಥವಾ ಫಿಂಗರ್ಪ್ರಿಂಟ್</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">ಸ್ಕ್ರೀನ್ ಲಾಕ್ ನಿಷ್ಕ್ರಿಯತೆಯ ಸಮಯ ಮೀರಿದೆ</string>
+  <string name="preferences_app_protection__signal_pin">Signal ಪಿನ್</string>
+  <string name="preferences_app_protection__pin">ಪಿನ್</string>
+  <string name="preferences_app_protection__change">ಬದಲಾವಣೆ</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">ನಿಮ್ಮ ಪಿನ್ ಸುರಕ್ಷತೆಯ ಹೆಚ್ಚುವರಿ ಪದರವನ್ನು ಸೇರಿಸುತ್ತದೆ ಮತ್ತು ಬ್ಯಾಕ್ ಅಪ್ ನಿಮ್ಮ ಖಾತೆ. ನೀವು\'ಯಾವಾಗ ಅದನ್ನು ಕೇಳಲಾಗುತ್ತದೆ ನೀವು ನೋಂದಣಿ ನಿಮ್ಮ ದೂರವಾಣಿ ಇದರೊಂದಿಗೆ ಸಂಖ್ಯೆ Signal. ವೇಳೆ ನೀವು ಮರೆತುಬಿಡಿ ನಿಮ್ಮ ಪಿನ್, ನೀವು\'ಹೊರಗೆ ಲಾಕ್ ಮಾಡಲಾಗುವುದು ನಿಮ್ಮ 7 ದಿನಗಳ ಖಾತೆ.</string>
   <string name="AppProtectionPreferenceFragment_none">ಯಾವುದೂ ಇಲ್ಲ</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">ದಿ ನೋಂದಣಿ ಲಾಕ್ ಪಿನ್ ನಂತೆಯೇ ಅಲ್ಲ ಎಸ್‌ಎಂಎಸ್ ಪರಿಶೀಲನೆ ಕೋಡ್ ನೀವು ಇದೀಗ ಸ್ವೀಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ನಮೂದಿಸಿ ದಿ ಪಿನ್ ನೀವು ಹಿಂದೆ ಕಾನ್ಫಿಗರ್ ಮಾಡಲಾಗಿದೆ ಅಪ್ಲಿಕೇಶನ್.</string>
   <string name="registration_activity__registration_lock_pin">ನೋಂದಣಿ ಲಾಕ್ ಪಿನ್</string>
@@ -1483,6 +1552,7 @@
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">ನೋಂದಣಿ ಲಾಕ್ ರಕ್ಷಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ ನಿಮ್ಮ ದೂರವಾಣಿಅನಧಿಕೃತ ನೋಂದಣಿ ಪ್ರಯತ್ನಗಳಿಂದ ಸಂಖ್ಯೆ. ಇದುವೈಶಿಷ್ಟ್ಯ ಆಗಿರಬಹುದು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ ಯಾವುದೇ ಸಮಯದಲ್ಲಿ ನಿಮ್ಮ Signal ಗೌಪ್ಯತೆ ಸಂಯೋಜನೆಗಳು</string>
   <string name="RegistrationLockDialog_registration_lock">ನೋಂದಣಿ ಲಾಕ್</string>
   <string name="RegistrationLockDialog_enable">ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">ನೋಂದಣಿ ಲಾಕ್ ಪಿನ್ ಕನಿಷ್ಠ ಇರಬೇಕು %d ಅಂಕೆಗಳು.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">ನೀವು ನಮೂದಿಸಿದ ಎರಡು ಪಿನ್‌ಗಳು ಹೊಂದಿಕೆಯಾಗುವುದಿಲ್ಲ.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">ಸೇವೆಗೆ ಸಂಪರ್ಕಿಸುವಲ್ಲಿ ದೋಷ</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ ನೋಂದಣಿ ಲಾಕ್ ಪಿನ್?</string>

@@ -239,6 +239,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Təsdiq edildi</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Profil şəklinin təyini zamanı xəta</string>
   <string name="CreateProfileActivity_problem_setting_profile">Profilin quraşdırılmasında problem</string>
   <string name="CreateProfileActivity_profile_photo">Profil şəkli</string>
@@ -1236,6 +1237,23 @@
   <string name="InsightsDashboardFragment__send">Göndər</string>
   <string name="FirstInviteReminder__title">Signal-a dəvət et</string>
   <string name="InsightsReminder__invite">Dəvət et</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Növbəti</string>
+  <!--CreateKbsPinFragment-->
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">PIN-i təsdiq et.</string>
+  <!--KbsSplashFragment-->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__skip">Ötür</string>
+  <string name="KbsReminderDialog__submit">Təqdim et</string>
+  <string name="KbsReminderDialog__forgot_pin">PIN-i unutmusan?</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__next">Növbəti</string>
+  <string name="AccountLockedFragment__learn_more">Daha Ətraflı</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Növbəti</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">PIN-i unutmusan?</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ötürülmə ikonası</string>
   <string name="ConversationListFragment_loading">Yüklənir…</string>

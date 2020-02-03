@@ -123,7 +123,7 @@
   <string name="ContactNameEditActivity_family_name">Achternaam</string>
   <string name="ContactNameEditActivity_prefix">Voorvoegsel</string>
   <string name="ContactNameEditActivity_suffix">Achtervoegsel</string>
-  <string name="ContactNameEditActivity_middle_name">2e voornaam</string>
+  <string name="ContactNameEditActivity_middle_name">Tweede voornaam</string>
   <!--ContactShareEditActivity-->
   <string name="ContactShareEditActivity_type_home">Thuis</string>
   <string name="ContactShareEditActivity_type_mobile">Mobiel</string>
@@ -270,6 +270,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Geverifieerd</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Profiel</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Fout bij instellen van profielfoto</string>
   <string name="CreateProfileActivity_problem_setting_profile">Probleem bij instellen van profiel</string>
   <string name="CreateProfileActivity_profile_photo">Profielfoto</string>
@@ -616,7 +617,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
     <item quantity="one">Je bent nu %d stap verwijderd van het indienen van een foutopsporingslog.</item>
     <item quantity="other">Je bent nu %d stappen verwijderd van het indienen van een foutopsporingslog.</item>
   </plurals>
-  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">We moeten verifiëren dat je een mens bent.</string>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Signal moet verifiëren dat je een mens bent.</string>
   <string name="RegistrationActivity_failed_to_verify_the_captcha">Verifiëren van CAPTCHA mislukt</string>
   <string name="RegistrationActivity_next">Volgende</string>
   <string name="RegistrationActivity_continue">Doorgaan</string>
@@ -797,7 +798,14 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Open Signal om te zien of er recente meldingen zijn.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contactpersoon</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">Reageerden op je bericht met: %1$s</string> -->
+  <string name="MessageNotifier_reacted_s_to_s">Reageerde met %1$s op “%2$s”.</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">Reageerde met %1$s op je video.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">Reageerde me %1$s op je afbeelding.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">Reageerde met %1$s op je bestand.</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">Reageerde met %1$s op je audio.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reageerde met %1$s op je eenmaligeweergave-afbeelding.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reageerde met %1$s op je eenmaligeweergave-video.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">Reageerde met %1$s op je sticker.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Systeemstandaard</string>
   <string name="NotificationChannel_calls">Oproepen</string>
@@ -1025,7 +1033,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">De systeemdatabank zal op geen enkele wijze worden gewijzigd of aangepast.</string>
   <string name="database_migration_activity__skip">Overslaan</string>
   <string name="database_migration_activity__import">Importeren</string>
-  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Dit kan even duren. Even geduld, we zullen je melden wanneer het importeren voltooid is.</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Dit kan even duren. Even geduld, Signal zal je melden wanneer het importeren voltooid is.</string>
   <string name="database_migration_activity__importing">BEZIG MET IMPORTEREN</string>
   <string name="import_fragment__import_system_sms_database">Sms-berichten uit de systeemdatabank importeren?</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importeer de databank van de standaardberichtenapp</string>
@@ -1407,6 +1415,61 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="SecondInviteReminder__description">Nodig %1$s uit</string>
   <string name="InsightsReminder__view_insights">Inzichten weergeven</string>
   <string name="InsightsReminder__invite">Uitnodigen</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Volgende</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">Alfanumerieke PIN aanmaken</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">Numerieke PIN aanmaken</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">Je PIN moet uit minimaal %1$d karakters bestaan.</string>
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">Je PIN moet uit minimaal %1$d getallen bestaan.</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">Nieuwe pincode aanmaken</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">Omdat je nog bent ingelogd, kun je een nieuwe PIN aanmaken. Wanneer je bent uitgelogd is er geen mogelijkheid meer om je PIN te veranderen of terug te zien.</string> -->
+  <string name="CreateKbsPinFragment__create_your_pin">Pincode aanmaken</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">Je PIN voegt een extra niveau van beveiliging toe aan je account. Schrijf je PIN op en bewaar het op een veilige plaats. Je kunt de PIN niet terugzien.</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__pins_dont_match">De PINs komen niet overeen, probeer het opnieuw.</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">Bevestig je pincode.</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN aanmaken mislukt</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Je PIN is niet opgeslagen. Signal zal je later vragen een PIN aan te maken.</string>
+  <string name="ConfirmKbsPinFragment__pin_created">PIN aangemaakt.</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">We introduceren pincodes</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">Voeg een extra niveau van beveiliging toe aan je account. %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">Lees hier meer.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string> -->
+  <string name="KbsSplashFragment__registration_lock_equals_pin">Registratievergrendeling = Pincode</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Registratievergrendeling heet vanaf nu een PIN en vanaf nu kun je er meer mee. Werk je PIN nu bij. %1$s</string>
+  <string name="KbsSplashFragment__read_more_about_pins">Lees meer over PINs</string>
+  <string name="KbsSplashFragment__update_pin">PIN bijwerken</string>
+  <string name="KbsSplashFragment__create_your_pin">Pincode aanmaken</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">Herinner me later</string> -->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">Voer je Signal-pincode in</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Om je te helpen je PIN te onthouden zal Signal je periodiek vragen om je PIN in te voeren. Na verloop van tijd zal Signal dit minder vaak vragen.</string>
+  <string name="KbsReminderDialog__skip">Overslaan</string>
+  <string name="KbsReminderDialog__submit">Aanvragen</string>
+  <string name="KbsReminderDialog__forgot_pin">Pincode vergeten?</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">Foutieve PIN, probeer het opnieuw.</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__account_locked">Account vergrendeld</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Je account is vergrendeld om de beveiliging van je account en je privacy te beschermen. Na %1$d dagen van inactiviteit op je account zul je je telefoonnummer ook weer kunnen registreren zonder je PIN, maar als je daarvoor kiest wordt alle inhoud van je account gewist.</string>
+  <string name="AccountLockedFragment__next">Volgende</string>
+  <string name="AccountLockedFragment__learn_more">Lees meer</string>
+  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">Voer je pincode in</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">Voer de pincode in welke je voor jou account hebt aangemaakt. Dit is niet de zelfde code als je Sms-verificatiecode.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">Voer alfanumerieke PIN in.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">Voer numerieke PIN in.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Volgende</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">Foutieve PIN, probeer het opnieuw.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">Foutive PIN. %1$d pogingen resterend.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Pincode vergeten?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">Incorrecte pincode</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">Je hebt %1$d pogingen resterend. Als je al je pogingen hebt verbruikt, dan zul je voor %2$d dagen geen toegang meer hebben tot je account. Na %3$d dagen van inactiviteit kun je er ook voor kiezen om je opnieuw te registreren zonder je PIN, maar dan zal alle inhoud van je account worden gewist.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">Pincode vergeten?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">Voor je privacy en veiligheid is er geen mogelijkheid om je PIN terug te zien. Als al je pogingen verbruikt zijn dan kun je na %1$d dagen je identiteit opnieuw verifiëren via SMS. In dat geval wordt je account en alle inhoud gewist.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportmethodepictogram</string>
   <string name="ConversationListFragment_loading">Aan het laden…</string>
@@ -1464,6 +1527,10 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_app_protection__screen_lock">Schermvergrendeling</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Vergrendel Signal met de Android-schermvergrendeling of vingerafdruk</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Inactiviteitsduur voor schermvergrendeling</string>
+  <string name="preferences_app_protection__signal_pin">Signal-PIN</string>
+  <string name="preferences_app_protection__pin">Pincode</string>
+  <string name="preferences_app_protection__change">Wijzigen</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Je PIN voegt een extra niveau van beveiliging toe en stelt je in staat in de toekomst een back-up van je account te doen. Als je een PIN instelt zal om die PIN worden gevraagd wanneer je je telefoonnummer registreert. Als je je PIN in de tussentijd vergeet, dan zul je voor 7 dagen geen toegang kunnen krijgen tot je account.</string>
   <string name="AppProtectionPreferenceFragment_none">Geen</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">De pincode voor registratievergrendeling is niet hetzelfde als de sms-verificatiecode die je net ontvangen hebt. Voer de pincode in die je hiervoor in de app ingesteld hebt.</string>
   <string name="registration_activity__registration_lock_pin">Registratievergrendeling</string>

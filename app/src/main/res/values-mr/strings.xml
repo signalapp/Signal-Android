@@ -270,6 +270,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">सत्यापित</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">प्रोफाईल</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">प्रोफाईल फोटो सेट करण्यात त्रुटी</string>
   <string name="CreateProfileActivity_problem_setting_profile">प्रोफाईल सेट करण्यात समस्या</string>
   <string name="CreateProfileActivity_profile_photo">प्रोफाईल फोटो</string>
@@ -421,7 +422,7 @@
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
     <item quantity="one">हे निवडलेली फाईल कायमचे हटवेल. या आयटम सोबत संबंधित कुठलाही संदेश मजकूर देखील हटविला जाईल.</item>
-    <item quantity="other">हे %1$d निवडलेल्या सर्व फाईल कायमचे हटवेल. या आयटम सोबत संबंधित कुठलाही संदेश मजकूर देखील हटविला जाईल.</item>
+    <item quantity="other">हे निवडलेल्या सर्व %1$d फाईल कायमचे हटवेल. या आयटम सोबत संबंधित कुठलाही संदेश मजकूर देखील हटविला जाईल.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">हटवत आहे</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">संदेश हटवत आहे…</string>
@@ -729,7 +730,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">वापरकर्तानाव अंकांसोबत सोबत चालू होऊ शकत नाही.</string>
   <string name="UsernameEditFragment_username_is_invalid">वापरकर्तानाव अवैध आहे.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">वापरकर्तानाव %1$d आणि %2$d कॅरेक्टर मध्येच असायला हवे.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">इतर Signal वापरकर्ते आपला फोन नंबर न जाणता आपल्या ऐकमेव वापरकर्त्यानावावर संदेश विनंत्या पाठवू शकतात. वापरकर्तानाव निवडणे पर्यायी आहे.</string>
+  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">इतर Signal वापरकर्ते आपला फोन नंबर न जाणता आपल्या एकमेव वापरकर्त्यानावावर संदेश विनंत्या पाठवू शकतात. वापरकर्तानाव निवडणे पर्यायी आहे.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">आपला संपर्क Signal ची जुनी आवृत्ती वापरत आहे.आपला सुरक्षितता नंबर सत्यापित करण्यापूर्वी कृपया त्यांना अद्यतन करण्यास विचारा.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">आपला संपर्क विसंगत QR कोड स्वरूपन सोबत Signal ची नवीन आवृत्ती वापरत आहे. तुलना करण्यासाठी कृपया अद्यतन करा.</string>
@@ -791,7 +792,14 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">अलीकडील सूचनांसाठी Signal उघडा.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">संपर्क</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">आपल्या संदेशाला प्रतिसाद दिला: %1$s</string> -->
+  <string name="MessageNotifier_reacted_s_to_s">%1$s प्रतिसाद दिला यास: \"%2$s\".</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">आपल्या व्हिडिओला %1$s प्रतिसाद दिला.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">आपल्या चित्राला %1$s प्रतिसाद दिला.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">आपल्या फाईलला %1$s प्रतिसाद दिला. </string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">आपल्या ऑडिओला %1$s प्रतिसाद दिला.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">आपल्या एकदा-बघा फोटोला %1$s प्रतिसाद दिला.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">आपल्या एकदा-बघा व्हिडिओला %1$s प्रतिसाद दिला.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">आपल्या स्टिकरला %1$s प्रतिसाद दिला.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">पूर्वनिर्धारित</string>
   <string name="NotificationChannel_calls">कॉल</string>
@@ -1048,6 +1056,8 @@
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">आपल्या वायरलेस वाहकाद्वारे मिडिया आणि गट संदेश पोहोचविण्यासाठी Signal ला MMS सेटिंगची आवश्यकता असते. आपला डिव्हाईस ही माहिती उपलब्ध करून देत नाही, जे लॉक असलेल्या डिव्हाईस करिता आणि इतर प्रतिबंधक कॉन्फिगरेशन यांकरिता कधी कधी खरे असते.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">मिडिया आणि गट संदेश पाठविण्यासाठी, \'ठीक\' टॅप करा आणि विनंती केलेल्या सेटिंग पूर्ण करा. आपल्या वाहकासाठीच्या MMS सेटिंग सामान्यपणे \'आपला वाहक APN\' शोधून सापडू शकते. आपल्याला हे फक्त एकदा करावे लागेल.</string>
   <!--profile_create_activity-->
+  <string name="CreateProfileActivity_first_name_required">पहिले नाव (आवश्यक)</string>
+  <string name="CreateProfileActivity_last_name_optional">शेवटचे नाव (पर्यायी)</string>
   <string name="CreateProfileActivity_next">पुढे</string>
   <string name="CreateProfileActivity__username">वापरकर्तानाव</string>
   <string name="CreateProfileActivity__create_a_username">एक वापरकर्तानाव तयार करा</string>
@@ -1397,6 +1407,61 @@
   <string name="SecondInviteReminder__description">%1$s ला आमंत्रित करा</string>
   <string name="InsightsReminder__view_insights">ईन्साईट बघा</string>
   <string name="InsightsReminder__invite">आमंत्रित करा</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">पुढे</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">अल्फान्यूमेरिक PIN तयार करा</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">न्यूमेरिक PIN तयार करा</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">PIN कमीतकमी %1$d कॅरेक्टर असावा</string>
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">PIN कमीतकमी %1$d अंकी असावा</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">एक नवीन PIN तयार करा</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">कारण आपण आताही लॉग ईन केलेले आहात, आपण नवीन PIN तयार करू शकता. जेव्हा आपण लॉग आऊट केलेले असता, आपल्याकडे PIN पुनर्प्राप्त करण्याचा कुठलाही मार्ग नसतो.</string> -->
+  <string name="CreateKbsPinFragment__create_your_pin">आपला PIN तयार करा</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PIN आपल्या खात्याला सुरक्षेचा एक अतिरिक्त थर जोडतात. आपला PIN लिहून ठेवा आणि त्यास एका सुरक्षित जागेवर ठेवा. तो पुनर्प्राप्त केला जाऊ शकत नाही.</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__pins_dont_match">PIN जुळत नाहीत. पुन्हा प्रयत्न करा.</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">आपल्या PIN ची पुष्टी करा.</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN तयार करणे अयशस्वी</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">आपला PIN जतन केला गेला नाही. आम्ही नंतर आपल्याला PIN तयार करण्यासाठी सूचित करू.</string>
+  <string name="ConfirmKbsPinFragment__pin_created">PIN तयार केले</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">PIN ची ओळख करून देत आहे</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">सुरक्षेचा एक अतिरिक्त थर आपले खात्याला जोडा. %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">अधिक येथे वाचा.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string> -->
+  <string name="KbsSplashFragment__registration_lock_equals_pin">नोंदणी लॉक = PIN</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">आपले नोंदणी लॉक आता PIN म्हणून ओळखले जाते, आणि ते अधिक करते. त्यास आता अद्यतनित. %1$s</string>
+  <string name="KbsSplashFragment__read_more_about_pins">PIN बद्दल अधिक येथे वाचा.</string>
+  <string name="KbsSplashFragment__update_pin">PIN अद्यतनित करा</string>
+  <string name="KbsSplashFragment__create_your_pin">आपला PIN तयार करा</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">मला नंतर आठवण करून द्या</string> -->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">आपला Signal PIN प्रविष्ट करा</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">आपल्याला PIN लक्षात ठेवण्यासाठी, आम्ही आपल्याला तो वेळोवेळी तो प्रविष्ट करण्यास विचारू. काही काळानंतर आम्ही आपल्याला कमी विचारू.</string>
+  <string name="KbsReminderDialog__skip">वगळा</string>
+  <string name="KbsReminderDialog__submit">सादर करा</string>
+  <string name="KbsReminderDialog__forgot_pin">PIN विसरलात?</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">चुकीचा PIN.पुन्हा प्रयत्न करा.</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__account_locked">खाते लॉक केले गेले</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">आपल्या गोपनीयतेसाठी आणि सुरक्षेसाठी आपले खाते लॉक केले गेले आहे. आपल्या खात्यामध्ये %1$d दिवसांच्या निष्क्रियतेनंतर आपल्या PIN विना आपल्याला या फोन नंबर सोबत पुन्हा नोंदणी करता येईल. सर्व मजकूर हटविला जाईल.</string>
+  <string name="AccountLockedFragment__next">पुढे</string>
+  <string name="AccountLockedFragment__learn_more">अधिक जाणा</string>
+  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">आपला PIN प्रविष्ट करा</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">आपल्या खात्यासाठी आपण तयार केलेला PIN प्रविष्ट करा. हे आपल्या SMS सत्यापन कोडपेक्षा वेगळे आहे.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">अल्फान्यूमेरिक PIN प्रविष्ट करा</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">न्यूमेरिक PIN प्रविष्ट करा</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">पुढे</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">चुकीचा PIN.पुन्हा प्रयत्न करा.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">चुकीचा PIN. %1$d प्रयत्न उर्वरित.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">PIN विसरलात?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">चुकीचा PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">आपल्याकडे %1$d प्रयत्न उर्वरित आहेत. जर आपले प्रयत्न संपले तर आपले खाते %2$d दिवसांकरिता लॉक केले जाईल. %3$d दिवसांच्या निष्क्रियतेनंतर आपण विना PIN पुन्हा नोंदणी करू शकता. आपले खाते साफ केले जाईल आणि सर्व मजकूर हटविला जाईल.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">आपला PIN विसरलात?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">आपल्या गोपनीयतेसाठी आणि सुरक्षेसाठी, आपला PIN पुनर्स्थापित करण्याचा कुठलाही मार्ग नाही. जर आपले प्रयत्न संपले, तर आपण %1$d दिवसांच्या निष्क्रियतेनंतर SMS सोबत आपण पुनःसत्यापित करू शकता. या परिस्थितीमध्ये, आपले खाते साफ केले जाईल आणि सर्व मजकूर हटविला जाईल.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">वाहतूक चिन्ह</string>
   <string name="ConversationListFragment_loading">लोड होत आहे…</string>
@@ -1454,6 +1519,10 @@
   <string name="preferences_app_protection__screen_lock">स्क्रीन लॉक</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Android स्क्रीन लॉक किंवा फिंगरप्रिंटने Signal अॅक्सेस लॉक करा</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">स्क्रीन लॉक निष्क्रियता टाईमआऊट</string>
+  <string name="preferences_app_protection__signal_pin">Signal PIN</string>
+  <string name="preferences_app_protection__pin">PIN</string>
+  <string name="preferences_app_protection__change">बदला</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">आपला PIN सुरक्षेचा एक अतिरिक्त थर जोडतो आणि आपले खाते बॅक अप करतो. आपण Signal सोबत आपला फोन नंबर नोंदवताना आपल्याला त्याचासाठी विचारले जाईल. जर आपण आपला PIN विसरलात, कर आपण आपल्या खात्यापासून 7 दिवसांकरिता लॉक केले जाल.</string>
   <string name="AppProtectionPreferenceFragment_none">कुठलेही नाही</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">आपल्याला आता प्राप्त झालेल्या SMS सत्यापन कोड आणि नोंदणी लॉक PIN सारखे नाहीत. कृपया आपण अॅपलिकेशनमध्ये पूर्वी कॉन्फिगर केलेले PIN प्रविष्ट करा.</string>
   <string name="registration_activity__registration_lock_pin">नोंदणी लॉक PIN</string>
@@ -1481,6 +1550,7 @@
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">नोंदणी लॉक आपल्या फोन नंबरला अनाधिकृत नोंदणी प्रयत्नांपासून संरक्षित करण्यास मदत करते. हे वैशिष्ट्य आपल्या Signal गोपनीयता सेटिंग मध्ये कधीही अक्षम केले जाऊ शकते</string>
   <string name="RegistrationLockDialog_registration_lock">नोंदणी लॉक</string>
   <string name="RegistrationLockDialog_enable">सक्षम करा</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">नोंदणी लॉक PIN कमीतकमी %d अंकी असायला हवे.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">आपण प्रविष्ट केलेले दोन PIN जुळत नाहीत.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">सेवेसोबत कनेक्ट करण्यात त्रुटी</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">नोंदणी लॉक PIN अक्षम करायचे?</string>

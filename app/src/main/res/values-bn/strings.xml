@@ -270,6 +270,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">যাচাইকৃত</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">প্রোফাইল</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">প্রোফাইলের ছবি সেট করতে সমস্যা হয়েছে</string>
   <string name="CreateProfileActivity_problem_setting_profile">প্রোফাইল সেট করতে সমস্যা হয়েছে</string>
   <string name="CreateProfileActivity_profile_photo">প্রোফাইলের ছবি</string>
@@ -788,7 +789,14 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">সাম্প্রতিক বিজ্ঞপ্তিগুলি দেখার জন্য Signal খুলুন।</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">পরিচিতি</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">আপনার বার্তায় প্রতিক্রিয়া জানিয়েছে: %1$s</string> -->
+  <string name="MessageNotifier_reacted_s_to_s"> \"%2$s\" তে %1$s প্রতিক্রিয়া|</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">আপনার ভিডিওতে %1$s প্রতিক্রিয়া জানিয়েছে|</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">আপনার চিত্রে %1$s প্রতিক্রিয়া জানিয়েছে|</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">আপনার ফাইলে %1$s প্রতিক্রিয়া জানিয়েছে|</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">আপনার অডিওতে %1$s প্রতিক্রিয়া জানিয়েছে|</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">আপনার একবার দেখার যোগ্য ছবিতে %1$s প্রতিক্রিয়া জানিয়েছে|</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">আপনার একবার দেখার যোগ্য ভিডিওতে %1$s প্রতিক্রিয়া জানিয়েছে|</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">আপনার স্টিকারে %1$s প্রতিক্রিয়া জানিয়েছে|</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">সচারচর</string>
   <string name="NotificationChannel_calls">কল সমূহ</string>
@@ -1045,6 +1053,8 @@
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">আপনার ওয়্যারলেস ক্যারিয়ারের মাধ্যমে মিডিয়া এবং গ্রুপ বার্তাগুলি সরবরাহ করার জন্য সিগন্যালের এমএমএস সেটিংস প্রয়োজন। আপনার ডিভাইসএ এই তথ্যটি পাওয়া যাচ্ছে না, যা লক্ করা ডিভাইস এবং অন্যান্য বিধিনিষেধযুক্ত কনফিগারেশনের জন্য প্রায়শ সত্য|</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">মিডিয়া এবং গ্রুপ বার্তা প্রেরণ করতে, \'ঠিক আছে\' আলতো চাপুন এবং অনুরোধ করা সেটিংসটি সম্পূর্ণ করুন। আপনার ক্যারিয়ারের এমএমএস সেটিংস সাধারণত \'আপনার ক্যারিয়ার এপিএন\' অনুসন্ধান করে সনাক্ত করা যায়। আপনার কেবল এটি একবার করা দরকার।</string>
   <!--profile_create_activity-->
+  <string name="CreateProfileActivity_first_name_required">নামের প্রথম অংশ (প্রয়োজনীয়)</string>
+  <string name="CreateProfileActivity_last_name_optional">নামের শেষ অংশ (ঐচ্ছিক)</string>
   <string name="CreateProfileActivity_next">পরবর্তী</string>
   <string name="CreateProfileActivity__username">ব্যবহারকারীর নাম</string>
   <string name="CreateProfileActivity__create_a_username">একটি ব্যবহারকারীর নাম তৈরি করুন</string>
@@ -1394,6 +1404,61 @@
   <string name="SecondInviteReminder__description">%1$s কে আমন্ত্রণ জানান</string>
   <string name="InsightsReminder__view_insights">অন্তর্দৃষ্টি দেখুন</string>
   <string name="InsightsReminder__invite">আমন্ত্রণ</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">পরবর্তী</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">বর্ণানুক্রমিক পিন তৈরি করুন</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">সংখ্যার পিন তৈরি করুন</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">পিন অবশ্যই কমপক্ষে %1$d টি অক্ষর হতে হবে</string>
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">পিন অবশ্যই কমপক্ষে %1$d টি ডিজিটের হতে হবে</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">একটি নতুন পিন তৈরি করুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">আপনি এখনও লগ ইন থাকায় আপনি একটি নতুন পিন তৈরি করতে পারেন। আপনি যখন লগ আউট করে ফেলবেন তখন আপনার পিনটি পুনরুদ্ধার করার কোনও উপায় থাকবেনা।</string> -->
+  <string name="CreateKbsPinFragment__create_your_pin">আপনার পিন তৈরি করুন</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">পিনগুলি আপনার অ্যাকাউন্টে সুরক্ষার অতিরিক্ত স্তর যুক্ত করে। আপনার পিনটি লিখুন এবং এটিকে একটি নিরাপদ স্থানে রাখুন। এটি পুনরুদ্ধার করা যায় না।</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__pins_dont_match">পিনগুলি মেলে না। আবার চেষ্টা করুন|</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">আপনার পিনটি নিশ্চিত করুন।</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">পিন তৈরি ব্যর্থ হয়েছে</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">আপনার পিন সংরক্ষণ করা হয়নি। আমরা আপনাকে পরে একটি পিন তৈরি করতে অনুরোধ করব।</string>
+  <string name="ConfirmKbsPinFragment__pin_created">পিন তৈরি করা হয়েছে।</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">পিনের সাথে পরিচিত হন</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">আপনার অ্যাকাউন্টে সুরক্ষার অন্য স্তর যুক্ত করুন। %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">এখানে আরও পড়ুন।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string> -->
+  <string name="KbsSplashFragment__registration_lock_equals_pin">রেজিস্ট্রেশন লক = পিন</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">আপনার রেজিস্ট্রেশন লক কে এখন পিন বলা হয় এবং এটি আরও বেশি করে। এখনই এটি আপডেট করুন। %1$s</string>
+  <string name="KbsSplashFragment__read_more_about_pins">পিন সম্পর্কে আরও পড়ুন।</string>
+  <string name="KbsSplashFragment__update_pin">পিন আপডেট করুন</string>
+  <string name="KbsSplashFragment__create_your_pin">আপনার পিন তৈরি করুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">আমাকে পরে মনে করিয়ে দিবেন</string> -->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">আপনার Signal পিন প্রবেশ করান</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">আপনাকে আপনার পিন মুখস্ত করতে সহায়তা করতে আমরা আপনাকে মাঝে মাঝে এটি প্রবেশ করাতে বলব। আমরা সময়ের সাথে সাথে  জিজ্ঞাসা করা কমিয়ে দেব।</string>
+  <string name="KbsReminderDialog__skip">বাদ দিয়ে যান</string>
+  <string name="KbsReminderDialog__submit">সাবমিট</string>
+  <string name="KbsReminderDialog__forgot_pin">পিন ভুলে গেছেন?</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">ভুল পিন। আবার চেষ্টা করুন|</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__account_locked">একাউন্ট লক করা হয়েছে</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">আপনার গোপনীয়তা এবং সুরক্ষা সুরক্ষার জন্য আপনার অ্যাকাউন্টটি লক করা হয়েছে। আপনার অ্যাকাউন্টে %1$d দিনের নিষ্ক্রিয়তার পরে আপনি আপনার পিনের প্রয়োজন ছাড়াই এই ফোন নম্বরটি পুনরায় নিবন্ধন করতে সক্ষম হবেন। সমস্ত সামগ্রী মুছে ফেলা হবে।</string>
+  <string name="AccountLockedFragment__next">পরবর্তী</string>
+  <string name="AccountLockedFragment__learn_more">আরও জানুন</string>
+  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">আপনার পিন প্রবেশ করান</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">আপনি নিজের অ্যাকাউন্ট এর জন্য তৈরি করা পিনটি প্রবেশ করুন। এটি আপনার এসএমএস যাচাইকরণ কোড থেকে ভিন্ন।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">বর্ণানুক্রমিক পিন প্রবেশ করান</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">সংখ্যার পিন প্রবেশ করান</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">পরবর্তী</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">ভুল পিন। আবার চেষ্টা করুন|</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">ভুল পিন। %1$d টি প্রচেষ্টা বাকি আছে।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">পিন ভুলে গেছেন?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">ভুল পিন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">আপনার কাছে %1$d প্রচেষ্টা বাকি আছে। আপনি যদি শেষ পর্যন্ত ব্যর্থ হন তবে, আপনার অ্যাকাউন্ট %2$d দিনের জন্য লক্ করা হবে। নিষ্ক্রিয়তার %3$d দিন পরে, আপনি আপনার পিন ছাড়াই পুনরায় নিবন্ধন করতে পারেন। আপনার অ্যাকাউন্ট এবং সমস্ত সামগ্রী মুছে ফেলা হবে।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">পিন ভুলে গেছেন?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">আপনার গোপনীয়তা এবং সুরক্ষার জন্য, আপনার পিনটি পুনরুদ্ধার করার কোনও উপায় নেই। আপনি যদি আপনার পিনটি মনে না করতে পারেন তবে আপনি %1$d দিনের নিষ্ক্রিয়তার পরে এসএমএস দিয়ে পুনরায় যাচাই করতে পারেন। এই ক্ষেত্রে, আপনার অ্যাকাউন্ট এবং সমস্ত সামগ্রী মুছে ফেলা হবে।</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">পরিবহন আইকন</string>
   <string name="ConversationListFragment_loading">লোড হচ্ছে…</string>
@@ -1451,6 +1516,10 @@
   <string name="preferences_app_protection__screen_lock">স্ক্রীন এর লক্</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">অ্যানড্রয়েড স্ক্রীন এর লক্ বা ফিঙ্গারপ্রিন্ট লক দিয়ে সিগন্যাল লক্ করুন </string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">স্ক্রীন এর লক্ নিষ্ক্রিয়তার সময়সীমা</string>
+  <string name="preferences_app_protection__signal_pin">Signal পিন</string>
+  <string name="preferences_app_protection__pin">পিন</string>
+  <string name="preferences_app_protection__change">পরিবর্তন</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">আপনার পিন সুরক্ষার অতিরিক্ত স্তর যুক্ত করে এবং আপনার অ্যাকাউন্ট নিরাপদ করে। আপনি যখন সিগন্যালের সাথে আপনার ফোন নাম্বার নিবন্ধন করবেন তখন আপনাকে এটি জিজ্ঞাসা করা হবে। আপনি যদি আপনার পিনটি ভুলে যান তবে আপনাকে 7 দিনের জন্য আপনার অ্যাকাউন্ট থেকে লক্ করা হবে।</string>
   <string name="AppProtectionPreferenceFragment_none">কেউ না</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">রেজিস্ট্রেশন লক পিনটি আপনি সদ্য প্রাপ্ত এসএমএস যাচাইকরণ কোডের সাথে মিলছে না। আপনি পূর্বে অ্যাপ্লিকেশনটিতে কনফিগার করা পিনটি প্রবেশ করুন।</string>
   <string name="registration_activity__registration_lock_pin">রেজিস্ট্রেশন লক এর পিন কোড</string>
@@ -1478,6 +1547,7 @@
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">রেজিস্ট্রেশন লক আপনার ফোন নাম্বার অননুমোদিত রেজিস্ট্রেশন প্রচেষ্টা থেকে রক্ষা করতে সহায়তা করে। আপনার Signal গোপনীয়তা সেটিংস থেকে এই বৈশিষ্ট্যটি যে কোনও সময় অক্ষম করা যেতে পারে।</string>
   <string name="RegistrationLockDialog_registration_lock">রেজিস্ট্রেশন লক</string>
   <string name="RegistrationLockDialog_enable">সক্ষম করুন</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">রেজিস্ট্রেশন লক এর পিন কোড অবশ্যই কমপক্ষে %d ডিজিটের হতে হবে।</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">আপনি যে দুটি পিন লিখেছেন তা মিলছে না।</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">পরিষেবাটিতে সংযোগ করার সময় ত্রুটি</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">রেজিস্ট্রেশন লক এর পিন কোড অক্ষম করতে চান?</string>

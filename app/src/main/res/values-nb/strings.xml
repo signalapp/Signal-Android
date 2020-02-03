@@ -270,6 +270,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Verifisert</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Feil ved largring av profilbilde</string>
   <string name="CreateProfileActivity_problem_setting_profile">Feil ved lagring av profil</string>
   <string name="CreateProfileActivity_profile_photo">Profilbilde</string>
@@ -783,7 +784,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Åpne signal for å se etter nylige varsler.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">Reagerte på meldingen din: %1$s</string> -->
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Forvalgt</string>
   <string name="NotificationChannel_calls">Samtaler</string>
@@ -1389,6 +1389,33 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="SecondInviteReminder__description">Inviter %1$s</string>
   <string name="InsightsReminder__view_insights">Se Innsikt</string>
   <string name="InsightsReminder__invite">Inviter</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Neste</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__create_a_new_pin">Opprett en ny PIN-kode</string>
+  <string name="CreateKbsPinFragment__create_your_pin">Opprett PIN-koden</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">Bekreft din PIN.</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">Vi introduserer PIN-koder</string>
+  <string name="KbsSplashFragment__registration_lock_equals_pin">Registreringslås = PIN</string>
+  <string name="KbsSplashFragment__create_your_pin">Opprett PIN-koden</string>
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">Skriv inn din Signal PIN</string>
+  <string name="KbsReminderDialog__skip">Hopp over</string>
+  <string name="KbsReminderDialog__submit">Send inn</string>
+  <string name="KbsReminderDialog__forgot_pin">Har du glemt PIN-koden?</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__next">Neste</string>
+  <string name="AccountLockedFragment__learn_more">Lær mer</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">Skriv inn PIN-koden din</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">Skriv inn PIN-koden du opprettet for kontoen din. Dette er forskjellig fra SMS-bekreftelseskoden.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Neste</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Har du glemt PIN-koden?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">Feil PIN-kode</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">Glemt PIN-koden din?</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
   <string name="ConversationListFragment_loading">Laster…</string>
@@ -1446,6 +1473,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_app_protection__screen_lock">Skjermlås</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lås Signal tilgang med Android-skjermlås eller fingeravtrykk</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Tidsavbrudd for skjermlås ved inaktivitet.</string>
+  <string name="preferences_app_protection__pin">PIN</string>
   <string name="AppProtectionPreferenceFragment_none">Ingen</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Registreringslås-PIN-koden er ikke den samme som SMS-bekreftelseskoden du nettopp har mottatt. Vennligst skriv inn PIN-koden du tidligere konfigurert i programmet.</string>
   <string name="registration_activity__registration_lock_pin">Registrerings-PIN</string>

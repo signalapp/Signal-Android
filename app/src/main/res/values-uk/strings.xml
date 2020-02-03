@@ -273,6 +273,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Завірено</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Профіль</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Не вдалося встановити фото профілю</string>
   <string name="CreateProfileActivity_problem_setting_profile">Не вдалося встановити профіль</string>
   <string name="CreateProfileActivity_profile_photo">Фото профілю</string>
@@ -1248,6 +1249,23 @@
   <string name="InsightsDashboardFragment__send">Надіслати</string>
   <string name="FirstInviteReminder__title">Запросити до Signal</string>
   <string name="InsightsReminder__invite">Запросити</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Далі</string>
+  <!--CreateKbsPinFragment-->
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">Підтвердьте ваш ПІН.</string>
+  <!--KbsSplashFragment-->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__skip">Пропустити</string>
+  <string name="KbsReminderDialog__submit">Надіслати</string>
+  <string name="KbsReminderDialog__forgot_pin">Забули PIN?</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__next">Далі</string>
+  <string name="AccountLockedFragment__learn_more">Дізнатися більше</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Далі</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Забули PIN?</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Логотип типу зв\'язку</string>
   <string name="ConversationListFragment_loading">Завантаження…</string>

@@ -270,6 +270,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Godkjent</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Klarte ikkje endra profilbildet</string>
   <string name="CreateProfileActivity_problem_setting_profile">Klarte ikkje endra profilen</string>
   <string name="CreateProfileActivity_profile_photo">Profilbilde</string>
@@ -791,7 +792,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Opna Signal for å sjekka nye varsel</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">Reagerte på meldinga di: %1$s</string> -->
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Forvald</string>
   <string name="NotificationChannel_calls">Samtalar</string>
@@ -1400,6 +1400,21 @@ Du er à jour!</string>
   <string name="SecondInviteReminder__description">Inviter %1$s</string>
   <string name="InsightsReminder__view_insights">Vis Oversikt</string>
   <string name="InsightsReminder__invite">Inviter</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Neste</string>
+  <!--CreateKbsPinFragment-->
+  <!--ConfirmKbsPinFragment-->
+  <!--KbsSplashFragment-->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__skip">Hopp over</string>
+  <string name="KbsReminderDialog__submit">Send</string>
+  <string name="KbsReminderDialog__forgot_pin">Gløymt PIN-koden?</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__next">Neste</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Neste</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Gløymt PIN-koden?</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
   <string name="ConversationListFragment_loading">Lastar …</string>

@@ -1304,6 +1304,21 @@
   <string name="SecondInviteReminder__description">%1$s ਨੂੰ ਸੱਦਾ</string>
   <string name="InsightsReminder__view_insights">ਇਨਸਾਈਟਸ ਵੇਖੋ</string>
   <string name="InsightsReminder__invite">ਸੱਦਾ</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">ਅਗਲਾ</string>
+  <!--CreateKbsPinFragment-->
+  <!--ConfirmKbsPinFragment-->
+  <!--KbsSplashFragment-->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__skip">ਛੱਡੋ</string>
+  <string name="KbsReminderDialog__submit">ਜਮ੍ਹਾਂ ਕਰੋ</string>
+  <string name="KbsReminderDialog__forgot_pin">ਕੀ PIN ਭੁੱਲ ਗਏ?</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__next">ਅਗਲਾ</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">ਅਗਲਾ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">ਕੀ PIN ਭੁੱਲ ਗਏ?</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">ਆਵਾਜਾਈ ਆਈਕਨ</string>
   <string name="ConversationListFragment_loading">ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ …</string>

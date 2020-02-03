@@ -284,6 +284,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Verificat</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Eroare la setarea pozei de profil</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problemă la setarea profilului</string>
   <string name="CreateProfileActivity_profile_photo">Poză profil</string>
@@ -812,7 +813,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Deschideți Signal pentru a verifica notificările recente.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contact</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">A reacționat la mesajul tău: %1$s</string> -->
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Implicit</string>
   <string name="NotificationChannel_calls">Apeluri</string>
@@ -1429,6 +1429,33 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="SecondInviteReminder__description">Invitați pe %1$s</string>
   <string name="InsightsReminder__view_insights">Vizualizați Statistici</string>
   <string name="InsightsReminder__invite">Invită</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Următorul</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__create_a_new_pin">Creeați un nou PIN</string>
+  <string name="CreateKbsPinFragment__create_your_pin">Creeați-vă PIN-ul</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">Confirmați PIN-ul dvs.</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">Vă prezentăm PIN-uri</string>
+  <string name="KbsSplashFragment__registration_lock_equals_pin">Blocarea Înregistrării = PIN</string>
+  <string name="KbsSplashFragment__create_your_pin">Creeați-vă PIN-ul</string>
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">Introduceți PIN-ul dvs Signal.</string>
+  <string name="KbsReminderDialog__skip">Omite</string>
+  <string name="KbsReminderDialog__submit">Trimite</string>
+  <string name="KbsReminderDialog__forgot_pin">Ați uitat PIN-ul?</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__next">Următorul</string>
+  <string name="AccountLockedFragment__learn_more">Află mai multe</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">Introduceți PIN-ul dvs.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">Introduceți codul PIN pe care l-ați creat pentru contul dvs. Acesta este diferit față de codul dvs. de verificare prin SMS.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Următorul</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Ați uitat PIN-ul?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">PIN incorect</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">Ați uitat PIN-ul?</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pictogramă transport</string>
   <string name="ConversationListFragment_loading">Se încarcă…</string>
@@ -1486,6 +1513,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_app_protection__screen_lock">Blocare ecran</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Blocați accesul la Signal prin ecranul de blocare Android sau prin amprentă</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Expirare timp blocare ecran pentru inactivitate</string>
+  <string name="preferences_app_protection__pin">PIN</string>
   <string name="AppProtectionPreferenceFragment_none">Niciuna</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Codul PIN de Blocare a Înregistrării nu este același cu codul de verificare pe care tocmai l-ați primit prin SMS. Vă rugăm să introduceți PIN-ul configurat anterior în aplicație.</string>
   <string name="registration_activity__registration_lock_pin">PIN de blocare a înregistrării</string>

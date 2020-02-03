@@ -263,6 +263,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Verificado</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Perfil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Erro ao establecer a fotografía do perfil</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problemas ao establecer o perfil</string>
   <string name="CreateProfileActivity_profile_photo">Fotografía do perfil</string>
@@ -1304,6 +1305,23 @@
   <string name="FirstInviteReminder__title">Convidar a Signal</string>
   <string name="SecondInviteReminder__description">Convidar a %1$s</string>
   <string name="InsightsReminder__invite">Convidar</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Seguinte</string>
+  <!--CreateKbsPinFragment-->
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">Confirma o teu PIN.</string>
+  <!--KbsSplashFragment-->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__skip">Omitir</string>
+  <string name="KbsReminderDialog__submit">Enviar</string>
+  <string name="KbsReminderDialog__forgot_pin">Esqueciches o PIN?</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__next">Seguinte</string>
+  <string name="AccountLockedFragment__learn_more">Saber máis</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Seguinte</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Esqueciches o PIN?</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona do tráfico</string>
   <string name="ConversationListFragment_loading">Cargando…</string>

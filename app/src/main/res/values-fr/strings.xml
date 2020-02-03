@@ -270,6 +270,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Vérifié</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Erreur de définition de la photo de profil</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problème de définition du profil</string>
   <string name="CreateProfileActivity_profile_photo">Photo de profil</string>
@@ -785,7 +786,14 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Ouvrez Signal pour vérifier les notifications récentes.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contact</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">A réagi à votre message : %1$s</string> -->
+  <string name="MessageNotifier_reacted_s_to_s">A réagi %1$s à : « %2$s ».</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">A réagi %1$s à votre vidéo.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">A réagi %1$s à votre image.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">A réagi %1$s à votre fichier.</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">A réagi %1$s à votre son.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">A réagi %1$s à votre photo éphémère.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">A réagi %1$s à votre vidéo éphémère.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">A réagi %1$s à votre autocollant.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Valeur par défaut</string>
   <string name="NotificationChannel_calls">Appels</string>
@@ -1393,6 +1401,61 @@
   <string name="SecondInviteReminder__description">Inviter %1$s</string>
   <string name="InsightsReminder__view_insights">Visualiser Aperçu</string>
   <string name="InsightsReminder__invite">Inviter</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Suivant</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">Créer un NIP alphanumérique</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">Créer un NIP numérique</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">Votre NIP doit comporter au moins %1$d caractères</string>
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">Votre NIP doit comporter au moins %1$d chiffres</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">Créer un nouveau NIP</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">Comme vous êtes encore connecté, vous pouvez créer un nouveau NIP. Si vous êtes déconnecté, il est impossible de récupérer votre NIP.</string> -->
+  <string name="CreateKbsPinFragment__create_your_pin">Créer votre NIP</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">Les NIP ajoutent une couche supplémentaire de sécurité à votre compte. Prenez votre NIP par écrit et gardez-le en lieu sûr. Il ne peut pas être récupéré.</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__pins_dont_match">Les NIP ne correspondent pas. Veuillez ressayez.</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">Confirmez votre NIP</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">Échec de création du NIP</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Votre NIP n’a pas été enregistré. Nous vous inviterons à en créer un ultérieurement.</string>
+  <string name="ConfirmKbsPinFragment__pin_created">Votre NIP a été créé.</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">Nous présentons les NIP</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">Ajoutez une couche supplémentaire de sécurité à votre compte. %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">Apprenez-en davantage ici.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string> -->
+  <string name="KbsSplashFragment__registration_lock_equals_pin">Blocage de l’inscription = NIP</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Votre blocage de l’inscription s’appelle désormais un NIP et il accomplit encore plus. Mettez-le à jour maintenant. %1$s</string>
+  <string name="KbsSplashFragment__read_more_about_pins">Apprenez-en davantage sur les NIP.</string>
+  <string name="KbsSplashFragment__update_pin">Mettre le NIP à jour</string>
+  <string name="KbsSplashFragment__create_your_pin">Créer votre NIP</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">Me le rappeler plus tard</string> -->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">Saisissez votre NIP Signal</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Pour vous aider à mémoriser votre NIP, nous vous demanderons de le saisir régulièrement. Nous vous le demanderons de moins en moins souvent.</string>
+  <string name="KbsReminderDialog__skip">Ignorer</string>
+  <string name="KbsReminderDialog__submit">Envoyer</string>
+  <string name="KbsReminderDialog__forgot_pin">Avez-vous oublié votre NIP ?</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">Le NIP est erroné. Veuillez ressayer.</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__account_locked">Le compte est verrouillé</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Votre compte a été verrouillé afin de protéger vos données personnelles et votre sécurité. Après %1$d jours d’inactivité dans votre compte, vous pouvez réinscrire ce numéro de téléphone sans avoir besoin de votre NIP. Tout le contenu sera supprimé.</string>
+  <string name="AccountLockedFragment__next">Suivant</string>
+  <string name="AccountLockedFragment__learn_more">En savoir plus</string>
+  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">Saisissez votre NIP</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">Saisissez le NIP que vous avez créé pour votre compte. Il est différent de votre code de vérification reçu par texto.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">Saisir un NIP alphanumérique</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">Saisir un NIP numérique</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Suivant</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">Le NIP est erroné. Veuillez ressayer.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">Le NIP est erroné. Il reste %1$d tentatives.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Avez-vous oublié votre NIP ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">Le NIP est erroné</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">Il vous reste %1$d tentatives. Si vous épuisez le nombre de tentatives, votre compte sera verrouillé pendant %2$d jours. Après %3$d jours d’inactivité, vous pourrez vous réinscrire sans votre NIP. Votre compte sera effacé et son contenu supprimé.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">Avez-vous oublié votre NIP ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">Afin de protéger vos données personnelles et votre sécurité, il est impossible de récupérer votre NIP. Si vous épuisez le nombre de tentatives, vous pouvez reconfirmer votre compte par texto après %1$d jours d’inactivité. Le cas échéant, votre compte sera effacé et son contenu supprimé.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icône de transport</string>
   <string name="ConversationListFragment_loading">Chargement…</string>
@@ -1450,6 +1513,10 @@
   <string name="preferences_app_protection__screen_lock">Verrouillage de l’écran</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Verrouiller l’accès à Signal avec le verrouillage de l’écran d’Android ou une empreinte</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Délai d’inactivité avant verrouillage de l’écran</string>
+  <string name="preferences_app_protection__signal_pin">NIP de Signal</string>
+  <string name="preferences_app_protection__pin">NIP</string>
+  <string name="preferences_app_protection__change">Changer</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Votre NIP ajoute une couche supplémentaire de sécurité et sauvegarde votre compte. Il vous sera demandé quand vous inscrirez votre numéro de téléphone auprès de Signal. Si vous oubliez votre NIP, votre compte sera verrouillé pendant sept jours.</string>
   <string name="AppProtectionPreferenceFragment_none">Aucun</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Le NIP de blocage de l’inscription ne correspond pas au code de vérification que vous venez de recevoir par texto. Veuillez saisir le NIP que vous avez précédemment défini dans l’application.</string>
   <string name="registration_activity__registration_lock_pin">NIP de blocage de l’inscription</string>

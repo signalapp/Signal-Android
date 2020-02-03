@@ -1712,7 +1712,7 @@
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Your PIN was not saved. We\'ll prompt you to create a PIN later.</string>
     <string name="ConfirmKbsPinFragment__pin_created">PIN created.</string>
     <string name="ConfirmKbsPinFragment__re_enter_pin">Re-enter PIN</string>
-    <string name="ConfirmKbsPinFragment__creating_pin">Creating PIN...</string>
+    <string name="ConfirmKbsPinFragment__creating_pin">Creating PIN…</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">Introducing PINs</string>

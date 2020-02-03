@@ -251,6 +251,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Disahkan</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Ralat menetapkan foto profil</string>
   <string name="CreateProfileActivity_problem_setting_profile">Masalah menetapkan profil</string>
   <string name="CreateProfileActivity_profile_photo">Foto profil</string>
@@ -1269,6 +1270,33 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="InsightsDashboardFragment__send">Hantar</string>
   <string name="FirstInviteReminder__title">Jemput ke Signal</string>
   <string name="InsightsReminder__invite">Jemput</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Seterusnya</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__create_a_new_pin">Cipta PIN baru</string>
+  <string name="CreateKbsPinFragment__create_your_pin">Cipta PIN anda</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">Sahkan PIN anda.</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">Memperkenalkan PIN</string>
+  <string name="KbsSplashFragment__registration_lock_equals_pin">Kunci Pendaftaran = PIN</string>
+  <string name="KbsSplashFragment__create_your_pin">Cipta PIN anda</string>
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">Masukkan PIN Signal anda</string>
+  <string name="KbsReminderDialog__skip">Langkau</string>
+  <string name="KbsReminderDialog__submit">Hantar</string>
+  <string name="KbsReminderDialog__forgot_pin">Terlupa PIN?</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__next">Seterusnya</string>
+  <string name="AccountLockedFragment__learn_more">Ketahui Lebih Lanjut</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">Masukkan PIN anda</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">Masukkan PIN yang anda buat untuk akaun anda. Ini berbeza dengan kod pengesahan SMS anda.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Seterusnya</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Terlupa PIN?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">PIN tidak betul</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">Lupa PIN anda?</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pindah ikon</string>
   <string name="ConversationListFragment_loading">Memuatkan…</string>
@@ -1326,6 +1354,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="preferences_app_protection__screen_lock">Kunci skrin</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Kunci akses Signal dengan kunci skrin Android atau cap jari</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Kunci skrin tidak aktif tamat masa</string>
+  <string name="preferences_app_protection__pin">PIN</string>
   <string name="AppProtectionPreferenceFragment_none">Tiada</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN Kunci Pendaftaran tidak sama dengan kod pengesahan SMS yang anda terima. Sila masukkan PIN yang dikonfigurasikan anda dalam aplikasi.</string>
   <string name="registration_activity__registration_lock_pin">PIN Kunci Pendaftaran</string>

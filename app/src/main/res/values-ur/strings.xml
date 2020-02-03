@@ -271,6 +271,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">تصدیق شدہ</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">پروفائل </string>
   <string name="CreateProfileActivity_error_setting_profile_photo">پروفائل تصویر کو ترتیب دینے میں خرابی </string>
   <string name="CreateProfileActivity_problem_setting_profile">پروفائل ترتیب دینے میں مسئلہ ہو رہا ہے۔</string>
   <string name="CreateProfileActivity_profile_photo">پروفائل کی تصویر</string>
@@ -785,7 +786,14 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">حالیہ اطلاعات چیک کرنے کے لیے Signal کھولیں۔</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">رابطہ کریں</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">آپ کے پیغام پر ردعمل ظاہر کیا:%1$s</string> -->
+  <string name="MessageNotifier_reacted_s_to_s">اس پر رد عمل%1$s ظاہر کیا: \"%2$s\"۔</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">آپ کی ویڈیو پر رد عمل %1$s ظاہر  کیا</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">آپ کی تصویر پر رد عمل%1$s ظاہر کیا</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">آپ کی فائل پر رد عمل%1$s ظاہر کیا</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">آپ کی آڈیو پر رد عمل %1$s ظاہر کیا</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">آپ کی صرف ایک بار دیکھیں والی تصویر پر رد عمل%1$s ظاہر کیا</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">آپ کی صرف ایک بار دیکھیں والی ویڈیو پر رد عمل %1$s ظاہر کیا</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">آپ کی اسٹیکر پر رد عمل %1$s ظاہر کیا</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">پہلے سے طے شدہ</string>
   <string name="NotificationChannel_calls">کالز</string>
@@ -1043,6 +1051,8 @@
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal کیلئے ایم ایم ایس کی  ترتیبات کی ضرورت ہوتی ہے تاکہ آپ کے وائرلیس کیریئر کے ذریعہ میڈیا اور گروپ پیغامات کی فراہمی ہوسکے۔ آپ کی ڈیوائس اس معلومات کو دستیاب نہیں کرتا ہے ، جو کبھی کبھار لاک ڈیوائسز اور دیگر پابندی والی تشکیلات کے لئے درست ہوتا ہے۔</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">میڈیا اور گروپ پیغامات بھیجنے کے لئے ، \'OK\' پر ٹیپ کریں اور مطلوبہ ترتیبات کو مکمل کریں۔ آپ کے کیریئر کے لئے ایم ایم ایس کی ترتیبات عام طور پر \'آپ کے کیریئر اے پی این\' کی تلاش کرکے حاصل کی جاسکتی ہیں۔ آپ کو صرف ایک بار ایسا کرنے کی ضرورت ہوگی۔</string>
   <!--profile_create_activity-->
+  <string name="CreateProfileActivity_first_name_required">پہلا نام (ضروری)</string>
+  <string name="CreateProfileActivity_last_name_optional">آخری نام (اختیاری)</string>
   <string name="CreateProfileActivity_next">اگلا</string>
   <string name="CreateProfileActivity__username">صارف کا نام</string>
   <string name="CreateProfileActivity__create_a_username">صارف نام بنائیں</string>
@@ -1392,6 +1402,61 @@
   <string name="SecondInviteReminder__description">مدعو کریں%1$s</string>
   <string name="InsightsReminder__view_insights">Insights دیکھیں</string>
   <string name="InsightsReminder__invite">مدعو کریں</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">اگلا</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">Alphanumeric پن بنائیں</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">عددی پن بنائیں</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">پن کم از کم %1$d حروف کا ہونا ضروری ہے</string>
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">پن کم از کم %1$d ہندسوں کا ہونا ضروری ہے</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">ایک نیا پن بنائیں</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">چونکہ آپ ابھی بھی لاگ ان ہیں ، لہذا آپ نیا پن بنا سکتے ہیں۔ جب آپ لاگ آؤٹ ہو جاتے ہیں تو ، آپ کا پن بازیافت کرنے کا کوئی راستہ نہیں ہوتا ہے۔</string> -->
+  <string name="CreateKbsPinFragment__create_your_pin">اپنا پن بنائیں</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">پن آپ کے اکاؤنٹ میں سیکیورٹی کی ایک اضافی پرت کا اضافہ کرتے ہیں۔ اپنا پن لکھ کر ایک محفوظ جگہ پر رکھیں۔ اسے بازیافت نہیں کیا جاسکتا۔</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__pins_dont_match">پن مماثل نہیں ہیں۔ دوبارہ کوشش کریں.</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">اپنے پن کی تصدیق کریں۔</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">پن کی تشکیل ناکام ہوگئی</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">آپ کا پن محفوظ نہیں ہوا تھا۔ ہم آپ کو بعد میں ایک پن بنانے کا اشارہ کریں گے۔</string>
+  <string name="ConfirmKbsPinFragment__pin_created">پن تیار کیا گیا۔</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">پن ز متعارف ہو رہے ہیں</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">اپنے اکاؤنٹ میں سیکیورٹی کی ایک اور سطح شامل کریں۔%1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">یہاں مزید پڑھیں</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string> -->
+  <string name="KbsSplashFragment__registration_lock_equals_pin">رجسٹریشن لاک=پن</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">آپ کے رجسٹریشن لاک کو اب ایک پن کہا جاتا ہے ، اور یہ اور بھی کرتا ہے۔ ابھی اسے اپ ڈیٹ کریں۔%1$s</string>
+  <string name="KbsSplashFragment__read_more_about_pins">پن کے بارے میں مزید پڑھیں</string>
+  <string name="KbsSplashFragment__update_pin">پن کو اپ ڈیٹ کریں</string>
+  <string name="KbsSplashFragment__create_your_pin">اپنا پن بنائیں</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">مجھے بعد میں یاد کروانا</string> -->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">اپنا Signal پن داخل کریں</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">آپ کو اپنا پن حفظ کرنے میں مدد کے لیئے ، ہم آپ سے وقتا فوقتا اس میں داخل ہونے کو کہیں گے۔ وقت کے ساتھ ہم آپ سے کم پوچھتے ہیں۔</string>
+  <string name="KbsReminderDialog__skip">چھوڑ دو</string>
+  <string name="KbsReminderDialog__submit">جمع کرائیں</string>
+  <string name="KbsReminderDialog__forgot_pin">پن بھول گیا؟</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">غلط پن. دوبارہ کوشش کریں.</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__account_locked">اکاؤنٹ مقفل ہے</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">آپ کی نجی معلومات کی حفاظتی اور حفاظت کے لیئے آپ کا اکاؤنٹ مقفل کردیا گیا ہے۔ آپ کے اکاؤنٹ میں%1$d دنوں کے غیر فعال ہونے کے بعد آپ اپنے پن کی ضرورت کے بغیر اس فون نمبر کو دوبارہ رجسٹر کرسکیں گے۔ تمام مشمولات کو حذف کردیا جائے گا۔</string>
+  <string name="AccountLockedFragment__next">اگلا</string>
+  <string name="AccountLockedFragment__learn_more">مزید پڑھیں</string>
+  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">اپنا پن داخل کریں</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">اپنے اکاؤنٹ کیلئے جو پن بنایا ہے داخل کریں۔ یہ آپ کے تصدیقی ایس ایم ایس سے مختلف ہے۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">Alphanumeric کا پن درج کریں</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">عددی پن درج کریں</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">اگلا</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">غلط پن. دوبارہ کوشش کریں.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">غلط پن.%1$d باقی کوششیں</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">پن بھول گیا؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">غلط پن</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">آپ کے پاس %1$d کوششیں باقی ہیں۔ اگر آپ کوششوں سے باہر نکل جاتے ہیں تو آپ کا اکاؤنٹ %2$d دنوں کے لئے بند ہوجاتا ہے۔ %3$d دن کی غیر فعالیت کے بعد ، آپ اپنے پن کے بغیر دوبارہ اندراج کرسکتے ہیں۔ آپ کا اکاؤنٹ مٹا دیا جائے گا اور سارا مواد حذف ہوجائے گا۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">آپ کا پن بھول گیا؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">آپ کی رازداری اور سیکیورٹی کے لیئے ، آپ کے پن کی بازیافت کا کوئی راستہ نہیں ہے۔ اگر آپ کی کوششیں ختم ہوجاتی ہیں تو ، آپ غیر فعال %1$d دنوں کے بعد ایس ایم ایس کے ساتھ دوبارہ توثیق کرسکتے ہیں۔ اس معاملے میں ، آپ کا اکاؤنٹ صاف ہوجائے گا اور تمام مواد حذف ہوجائے گا۔</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">ٹرانسپورٹ آئکن</string>
   <string name="ConversationListFragment_loading">لوڈ ہو رہا ہے۔۔۔</string>
@@ -1449,6 +1514,10 @@
   <string name="preferences_app_protection__screen_lock">سکرین لاک</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">لاک Signal انڈروئد سکرین لاک یا فنگر پرنٹ کے ساتھ رسائی کر چکا ہے</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">غیر سرگرمی سکرین لاک کا وقت ختم ہو چکا ہے</string>
+  <string name="preferences_app_protection__signal_pin">Signal پن</string>
+  <string name="preferences_app_protection__pin">پن</string>
+  <string name="preferences_app_protection__change">تبدیلی</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">آپ کا پن سیکیورٹی کی ایک اضافی پرت کو جوڑتا ہے اور آپ کے اکاؤنٹ کا بیک اپ بناتا ہے۔ جب آپ اپنے فون نمبر کو Signal کے ساتھ رجسٹر کرتے ہیں تو آپ سے اس کے بارے میں پوچھا جائے گا۔ اگر آپ اپنا پن بھول جاتے ہیں تو ، آپ کو 7 دن کے لئے آپ کے اکاؤنٹ سے بند کر دیا جائے گا۔</string>
   <string name="AppProtectionPreferenceFragment_none">کوئی نہیں</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">رجسٹریشن لاک پن وہی نہیں ہے جو آپ نے ابھی موصول کردہ ایس ایم ایس کا تصدیقی کوڈ سے کیا ہے۔ براہ کرم درخواست میں جو پن آپ نے پہلے تشکیل کیا تھا اسے درج کریں۔</string>
   <string name="registration_activity__registration_lock_pin">رجسٹریشن لاک پن</string>
@@ -1476,6 +1545,7 @@
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">رجسٹریشن لاک آپ کے فون نمبر کو غیر مجاز رجسٹریشن کی کوششوں سے بچانے میں مدد کرتا ہے۔ آپ کی Signal پرائیویسی کی ترتیبات میں کسی بھی وقت یہ خصوصیت غیر فعال کی جاسکتی ہے</string>
   <string name="RegistrationLockDialog_registration_lock">رجسٹریشن لاک</string>
   <string name="RegistrationLockDialog_enable">فعال کریں</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">رجسٹریشن لاک پن کم از کم %d ہندسوں کا ہونا ضروری ہے۔</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">جو دو پن آپ نے داخل کی ہیں میچ نہیں ہو رہی۔</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">سروس سے رابطے میں غلطی ہو رہی ہے</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">رجسٹریشن لاک پن معطل کریں؟</string>

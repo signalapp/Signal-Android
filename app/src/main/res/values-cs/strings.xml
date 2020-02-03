@@ -298,6 +298,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Ověřeno</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Chyba při nastavení profilové fotografie</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problém při nastavení profilu</string>
   <string name="CreateProfileActivity_profile_photo">Profilová fotografie</string>
@@ -837,7 +838,14 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Otevřít Signal pro kontrolu nedávných upozornění.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">Reagoval(a) na vaši zprávu: %1$s</string> -->
+  <string name="MessageNotifier_reacted_s_to_s">Reagoval %1$s na: \"%2$s\".</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">Reagoval %1$s na vaše video.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">Reagoval %1$s na váš obrázek.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">Reagoval %1$s na váš soubor.</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">Reagoval %1$s na vaše audio.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagoval %1$sna vaši fotografii pro jednorázové zobrazení.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagoval %1$sna vaše video pro jednorázové zobrazení.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">Reagoval %1$s na vaši nálepku.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Výchozí</string>
   <string name="NotificationChannel_calls">Volání</string>
@@ -1110,6 +1118,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal vyžaduje informace o nastavení MMS, aby mohly být média a skupinové zprávy doručovány prostřednictvím operátora. Vaše zařízení tyto informace neposkytuje, což se občas stává u zamknutých zařízení a jiných omezujících nastavení.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Pro odesílání médií a skupinových zpráv klepněte na \"OK\" a vyplňte požadované informace. Nastavení MMS pro vašeho operátora lze většinou zjistit hledáním \"*váš operátor* APN\". Toto stačí udělat pouze jednou.</string>
   <!--profile_create_activity-->
+  <string name="CreateProfileActivity_first_name_required">Křestní jméno (povinné)</string>
+  <string name="CreateProfileActivity_last_name_optional">Příjmení (nepovinné)</string>
   <string name="CreateProfileActivity_next">Další</string>
   <string name="CreateProfileActivity__username">Uživatelské jméno</string>
   <string name="CreateProfileActivity__create_a_username">Vytvořit uživatelské jméno</string>
@@ -1463,6 +1473,61 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="SecondInviteReminder__description">Pozvat %1$s</string>
   <string name="InsightsReminder__view_insights">Prohlédnout Postřehy</string>
   <string name="InsightsReminder__invite">Pozvánka</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Další</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">Vytvořit alfanumerický PIN</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">Vytvořit číselný PIN</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">PIN musí mít alespoň %1$d znaků</string>
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">PIN musí mít alespoň %1$d číslic</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">Vytvořit nový PIN</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">Protože jste stále přihlášen, můžete vytvořit nový PIN. Až budete odhlášen, neexistuje žádný způsob, jak váš PIN obnovit.</string> -->
+  <string name="CreateKbsPinFragment__create_your_pin">Vytvořit váš PIN</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PIN přidává další vrstvu zabezpečení vašeho účtu. Zapište si váš PIN a uchovejte jej na bezpečném místě. Nelze jej obnovit.</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__pins_dont_match">PIN se neshodují. Zkuste to znovu.</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">Potvrďte Váš PIN.</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">Vytvoření PIN selhalo</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Váš PIN nebyl uložen. Vyzveme vás k vytvoření PIN později.</string>
+  <string name="ConfirmKbsPinFragment__pin_created">PIN vytvořen.</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">Představujeme PIN</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">Přidejte další vrstvu zabezpečení k vašemu účtu. %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">Čtěte více zde.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string> -->
+  <string name="KbsSplashFragment__registration_lock_equals_pin">Zámek registrace = PIN</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Váš zámek registrace se nyní nazývá PIN a umí toho víc. Aktualizujte si jej nyní. %1$s</string>
+  <string name="KbsSplashFragment__read_more_about_pins">Zjistit více o PIN.</string>
+  <string name="KbsSplashFragment__update_pin">Aktualizovat PIN</string>
+  <string name="KbsSplashFragment__create_your_pin">Vytvořit váš PIN</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">Připomenout později</string> -->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">Zadejte váš PIN k Signalu</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Abychom vám pomohli zapamatovat si PIN, budeme vás opakovaně žádat o jeho zadání. Postupem času vás budeme žádat méně.</string>
+  <string name="KbsReminderDialog__skip">Přeskočit</string>
+  <string name="KbsReminderDialog__submit">Odeslat</string>
+  <string name="KbsReminderDialog__forgot_pin">Zapomněli jste PIN?</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">Nesprávný PIN. Zkuste to znovu.</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__account_locked">Účet uzamčen</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Váš účet byl uzamčen kvůli ochraně soukromí a bezpečnosti. Po %1$d dnech nečinnosti na vašem účtu můžete znovu zaregistrovat toto telefonní číslo, aniž budete potřebovat vaše PIN. Veškerý obsah účtu bude smazán.</string>
+  <string name="AccountLockedFragment__next">Další</string>
+  <string name="AccountLockedFragment__learn_more">Dozvědět se více</string>
+  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">Zadejte váš PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">Zadejte PIN, který jste vytvořili pro váš účet. Je to jiný kód, než ten v ověřovací SMS.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">Zadejte alfanumerický PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">Zadejte číselný PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Další</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">Nesprávný PIN. Zkuste to znovu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">Nesprávný PIN. Zbývající pokusy: %1$d.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Zapomněli jste PIN?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">Nesprávný PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">Zbývají vám %1$dpokusy. Pokud vám pokusy dojdou, bude váš účet uzamčen po dobu %2$d dní. Po %3$d dnech nečinnosti se můžete znovu registrovat bez vašeho PIN. Váš účet bude vymazán a veškerý jeho obsah smazán.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">Zapomněl(a) jste váš PIN?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">Pro vaše soukromí a bezpečnost neexistuje žádný způsob jak obnovit váš PIN. Pokud vám dojdou pokusy, můžete se znovu vrátit pomocí SMS po %1$d dnech nečinnosti. V tomto případě bude váš účet vymazán a veškerý jeho obsah smazán.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona přenosu</string>
   <string name="ConversationListFragment_loading">Načítání…</string>
@@ -1520,6 +1585,10 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences_app_protection__screen_lock">Zámek obrazovky</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Zamknout přístup k Signalu zámkem obrazovky Androidu nebo otiskem prstu</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Časový limit neaktivity zámku obrazovky</string>
+  <string name="preferences_app_protection__signal_pin">Signal PIN</string>
+  <string name="preferences_app_protection__pin">PIN</string>
+  <string name="preferences_app_protection__change">Změnit</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">PIN přidává další vrstvu zabezpečení a zálohuje váš účet. O jeho zadání budete požádáni při registraci vašeho telefonního čísla u Signalu. Pokud váš PIN zapomenete, bude účet uzamčen po dobu 7 dní.</string>
   <string name="AppProtectionPreferenceFragment_none">Nic</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN zámku registrace není stejný jako přijatý SMS kontrolní kód, který jste před chvílí obdrželi. Prosím zadejte PIN, který jste dříve nastavili v aplikaci.</string>
   <string name="registration_activity__registration_lock_pin">PIN zámku registrace</string>
@@ -1547,6 +1616,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Zámek registrace chrání vaše telefonní číslo před pokusy o jeho nepovolenou registraci. Tato vlastnost může být vypnuta kdykoliv v nastavení zabezpečení Signalu.</string>
   <string name="RegistrationLockDialog_registration_lock">Zámek registrace</string>
   <string name="RegistrationLockDialog_enable">Povolit</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">PIN zámku registrace musí mít alespoň %dčíslic.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Dva zadané PINy nejsou shodné.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Chyba při připojování k službě</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Zakázat PIN zámku registrace?</string>

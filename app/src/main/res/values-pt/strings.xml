@@ -270,6 +270,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Verificado</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Perfil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Erro ao definir a fotografia de perfil</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problema na configuração do perfil</string>
   <string name="CreateProfileActivity_profile_photo">Fotografia de perfil</string>
@@ -790,7 +791,14 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Abra o Signal para verificar se existem notificações recentes.</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contacto</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">Reagiu à sua mensagem: %1$s</string> -->
+  <string name="MessageNotifier_reacted_s_to_s">Reagiu %1$s a: \"%2$s\".</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">Reagiu %1$s ao seu vídeo.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">Reagiu %1$s à sua imagem.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">Reagiu %1$s ao seu ficheiro.</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">Reagiu %1$s ao seu áudio.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagiu %1$s ˋa sua fotografia de visualização única.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagiu %1$s ao seu vídeo de visualização única.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">Reagiu %1$s ao seu autocolante.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Predefinição</string>
   <string name="NotificationChannel_calls">Chamadas</string>
@@ -1047,6 +1055,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">O Signal precisa de definições de MMS para transmitir multimédia e mensagens de grupo através da sua operadora. O seu aparelho não disponibiliza essa informação, o que poderá ocorrer em aparelhos bloqueados ou com configurações restritivas.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Para enviar ficheiros multimédia e mensagens de grupo toque em \"OK\" e complete as definições solicitadas. As definições de MMS para a sua operadora podem normalmente ser encontradas ao pesquisar na internet por \"[nome do operador] APN\". Apenas é necessário efectuar isto uma vez.</string>
   <!--profile_create_activity-->
+  <string name="CreateProfileActivity_first_name_required">Nome (obrigatório)</string>
+  <string name="CreateProfileActivity_last_name_optional">Apelido (obrigatório)</string>
   <string name="CreateProfileActivity_next">Seguinte</string>
   <string name="CreateProfileActivity__username">Nome de utilizador</string>
   <string name="CreateProfileActivity__create_a_username">Criar um nome de utilizador</string>
@@ -1092,8 +1102,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Deslize para baixo para rejeitar</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Alguns problemas requerem a sua atenção.</string>
-  <string name="message_details_header__sent">Enviada a</string>
-  <string name="message_details_header__received">Recebida a</string>
+  <string name="message_details_header__sent">Enviada</string>
+  <string name="message_details_header__received">Recebida</string>
   <string name="message_details_header__disappears">Desaparece</string>
   <string name="message_details_header__via">Via</string>
   <string name="message_details_header__to">Para:</string>
@@ -1396,6 +1406,61 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="SecondInviteReminder__description">Convidar %1$s</string>
   <string name="InsightsReminder__view_insights">Ver Insights</string>
   <string name="InsightsReminder__invite">Convidar</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Seguinte</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">Criar um PIN alfanumérico</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">Criar um PIN numérico</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">O PIN deverá ter pelo menos %1$d caracteres</string>
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">O PIN deve ter pelo menos %1$d dígitos</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">Criar um novo PIN</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">Porque ainda tem sessão iniciada, você pode criar um PIN novo. Quando terminar sessão, não existe forma de recuperar o seu PIN.</string> -->
+  <string name="CreateKbsPinFragment__create_your_pin">Criar o seu PIN</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">Os PINs adicionam uma camada extra de segurança à sua conta. Escreva o seu PIN e guarde-o num local seguro. Ele não poderá ser recuperado.</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__pins_dont_match">Os PINs não coincidem. Tente novamente.</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">Confirme o seu PIN</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">Ocorreu um erro ao tentar criar o PIN</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">O seu PIN não foi guardado. Iremos pedir-lhe para criar o PIN mais tarde.</string>
+  <string name="ConfirmKbsPinFragment__pin_created">PIN criado.</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">Introdução aos PINs</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">Adicione outro nível de segurança à sua conta. %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">Leia mais aqui.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string> -->
+  <string name="KbsSplashFragment__registration_lock_equals_pin">Bloqueio do registo = PIN</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">O seu \'Bloqueio de resgisto\' agora chama-se PIN, e faz mais. Actualize-o agora. %1$s</string>
+  <string name="KbsSplashFragment__read_more_about_pins">Ler mais acerca dos PINs.</string>
+  <string name="KbsSplashFragment__update_pin">Atualizar PIN</string>
+  <string name="KbsSplashFragment__create_your_pin">Crie o seu PIN</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">Lembrar-me mais tarde</string> -->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">Introduza o seu PIN do Signal</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Para o ajudar a memorizar o seu PIN, vamos pedir-lhe para o introduzir periodicamente. Iremos pedir-lhe menos vezes ao longo do tempo.</string>
+  <string name="KbsReminderDialog__skip">Saltar</string>
+  <string name="KbsReminderDialog__submit">Submeter</string>
+  <string name="KbsReminderDialog__forgot_pin">Esqueceu-se do PIN?</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">PIN incorreto. Tente novamente.</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__account_locked">Conta bloqueada</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">A sua conta foi bloqueada de forma a proteger a sua privacidade e segurança. Após %1$d dias de inatividade da sua conta, você será capaz de voltar a registar este número de telemóvel sem necessitar do seu pin. Todo o conteúdo será eliminado.</string>
+  <string name="AccountLockedFragment__next">Seguinte</string>
+  <string name="AccountLockedFragment__learn_more">Saber mais</string>
+  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">Introduza o seu PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">Introduza o PIN que criou para a sua conta. Ele é diferente do seu código de verificação SMS.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">Introduza um PIN alfanumérico</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">Introduza um PIN numérico</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Seguinte</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">PIN incorreto. Tente novamente.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">PIN incorreto. Restam-lhe %1$d tentativas.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Esqueceu-se do PIN?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">PIN incorreto</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">Restam-lhe %1$d tentativas. Quando não restarem mais tentativas, a sua conta será bloqueada durante %2$d dias. Após %3$d dias de inatividade, você poderá voltar a registar-se sem ser necessário o seu PIN. A sua conta será limpa e todo o conteúdo presente nela será eliminado.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">Esqueceu-se do seu PIN?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">Para sua privacidade e segurança, não existe forma de recuperar o seu PIN. Se esgotar todas as tentativas, poderá fazer uma nova verificação através de SMS após %1$d dias de inatividade. Neste caso, a sua conta será limpa e todo o conteúdo presente nela será eliminado.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ícone de transporte</string>
   <string name="ConversationListFragment_loading">A carregar…</string>
@@ -1453,6 +1518,10 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences_app_protection__screen_lock">Ecrã de bloqueio</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Bloqueie o acesso ao Signal usando o bloqueio de ecrã do Android ou a impressão digital</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Bloqueio de ecrã devido a inatividade</string>
+  <string name="preferences_app_protection__signal_pin">PIN do Signal</string>
+  <string name="preferences_app_protection__pin">PIN</string>
+  <string name="preferences_app_protection__change">Alterar</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">O seu PIN adiciona uma camada extra de segurança e faz uma códia de segurança da sua conta. Ser-lhe-á pedida quando registar o seu número de telemóvel com o Signal. Se se esquecer do seu PIN, ficará bloqueado de aceder à sua conta durante 7 dias.</string>
   <string name="AppProtectionPreferenceFragment_none">Nenhum</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">O registo de um PIN de bloqueio não é o mesmo que o código de verificação SMS que acabou de receber. Por favor, insira o PIN que configurou previamente para a sua aplicação.</string>
   <string name="registration_activity__registration_lock_pin">PIN de bloqueio do registo</string>
@@ -1480,6 +1549,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">O PIN de registo ajuda-o/a a proteger o seu número de telefone de tentativas não autorizadas de registo. Esta capacidade pode ser desativada em qualquer altura, acedendo às Definições de privacidade do Signal</string>
   <string name="RegistrationLockDialog_registration_lock">Bloqueio de registo</string>
   <string name="RegistrationLockDialog_enable">Ativar</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">O PIN de bloqueio do registo deverá conter pelo menos %d dígitos.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Os dois PIN inseridos não coincidem.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Erro ao estabelecer a ligação com o serviço</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Desativar o PIN de bloqueio do registo?</string>

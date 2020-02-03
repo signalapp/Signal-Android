@@ -300,6 +300,7 @@ Send neges heb ei ddiogelu?</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Gwiriwyd</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Proffil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Gwall gosod llun proffil</string>
   <string name="CreateProfileActivity_problem_setting_profile">Anhawster gosod proffil</string>
   <string name="CreateProfileActivity_profile_photo">Llun proffil</string>
@@ -834,7 +835,14 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Agorwch Signal i weld hysbysiadau diweddar.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Cysylltiad</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">Ateb eich neges: %1$s</string> -->
+  <string name="MessageNotifier_reacted_s_to_s">Ymatebodd %1$s i \"%2$s\".</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">Ymatebodd %1$s i\'ch fideo.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">Ymatebodd %1$s i\'ch delwedd.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">Ymatebodd %1$s i\'ch ffeil.</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">%1$si\'ch sain.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Ymatebodd %1$si\'ch llun golwg unwaith.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Ymatebodd %1$s i\'ch fideo golwg unwaith.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">Ymatebodd %1$s i\'ch sticer.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Rhagosodiad</string>
   <string name="NotificationChannel_calls">Galwadau</string>
@@ -1462,6 +1470,61 @@ Send neges heb ei ddiogelu?</string>
   <string name="SecondInviteReminder__description">Gwahodd %1$s</string>
   <string name="InsightsReminder__view_insights">Gweld Mewnweledigaethau</string>
   <string name="InsightsReminder__invite">Gwahodd</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Nesaf</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">Crëwch PIN alffaniwmerig</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">`Crëwch PIn rhifol</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">Rhaid i\'r PIN fod yn o leiaf %1$d nod</string>
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">Rhaid i\'r PIN fod yn o leiaf %1$d nod</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">Crëwch PIN newydd</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">Gan eich bod wedi eich mewngofnodi o hyd, gallwch greu PIN newydd. Pan fyddwch wedi allgofnodi, does dim modd i adfer eich PIN.</string> -->
+  <string name="CreateKbsPinFragment__create_your_pin">Crëwch eich PIN</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">Mae PIN yn ychwanegu haen ychwanegol o ddiogelwch i\'ch cyfrif. Ysgrifennwch eich PIN i lawr a\'i gadw mewn man diogel. Nid oes modd ei adfer.</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__pins_dont_match">Nid yw\'r PIN yn cyfateb. Ceisiwch eto.</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">Cadarnhewch eich PIN.</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">Methodd creu\'r PIN</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Nid yw eich PIN wedi\'i gadw. Byddwn yn eich atgoffa i greu PIN maes o law.</string>
+  <string name="ConfirmKbsPinFragment__pin_created">Crëwyd y PIN.</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">Yn Cyflwyno PIN</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">Ychwanegwch lefel arall o ddiogelwch i\'ch cyfrif. %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">Darllenwch ragor yma.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string> -->
+  <string name="KbsSplashFragment__registration_lock_equals_pin">Clo Cofrestru = PIN</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Mae eich Clo Cofrestru nawr yn cael ei alw\'n PIN, ac mae\'n gwneud mwy. Diweddarwch nawr. %1$s</string>
+  <string name="KbsSplashFragment__read_more_about_pins">Darllenwch ragor am PIN</string>
+  <string name="KbsSplashFragment__update_pin">Diweddaru PIN</string>
+  <string name="KbsSplashFragment__create_your_pin">Crëwch eich PIN</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">Atgoffwch fi\'n hwyrach</string> -->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">Rhowch eich PIN Signal</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">I helpu i chi gofio\'ch PIN, byddwn yn gofyn i chi ei roi o bryd i\'w gilydd. Byddwn yn gofyn yn llai aml dros amser.</string>
+  <string name="KbsReminderDialog__skip">Hepgor</string>
+  <string name="KbsReminderDialog__submit">Cyflwyno</string>
+  <string name="KbsReminderDialog__forgot_pin">Wedi anghofio PIN?</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">PIN anghywir. Ceisiwch eto.</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__account_locked">Cyfrif wedi\'i gloi</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Mae eich cyfrif wedi ei gloi i ddiogelu eich preifatrwydd a diogelwch. Ar ôl %1$d diwrnod heb weithgarwch ar eich cyfrif bydd modd i chi ailgofrestru\'r rhif ffôn yma heb fod angen eich PIN. Bydd yr holl gynnwys yn cael ei ddileu.</string>
+  <string name="AccountLockedFragment__next">Nesaf</string>
+  <string name="AccountLockedFragment__learn_more">Dysgu Rhagor</string>
+  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">Rhowch eich PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">Rhowch y PIN rydych wedi\'i greu ar gyfer eich cyfrif. Mae hwn yn wahanol i\'ch cod dilysu SMS.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">Rhowch PIN alffaniwmerig</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">Rhowch PIN rhifol</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Nesaf</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">PIN anghywir. Ceisiwch eto.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">PIN anghywir. %1$d ymgais ar ôl.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Wedi anghofio PIN?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">PIN anghywir</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">Mae gennych %1$d ymgais ar ôl. Os fyddwch yn rhedeg allan o geisiadau bydd eich cyfri\'\'n cael ei gloi am %2$d diwrnod. Ar ôl %3$d diwrnod o anweithgaredd gallwch ailgofrestru heb eich PIN. Bydd eich cyfrif wedi ei dynnu a\'r holl ddata ei ddileu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">Wedi anghofio eich PIN?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">Er lles eich preifatrwydd a\'ch diogelwch, does dim modd i adfer eich PIN. Os fyddwch yn rhedeg allan o geisiadau bydd modd ail ddilysu gyda SMS ar ôl %1$d diwrnod o anweithgaredd. Yn yr achos yma, bydd eich cyfrif yn cael ei dynnu a\'r holl ddata ei ddileu.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Eicon trafnidiaeth</string>
   <string name="ConversationListFragment_loading">Llwytho…</string>
@@ -1519,6 +1582,10 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences_app_protection__screen_lock">Clo sgrin</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Cloi mynediad i Signal gyda chlo sgrin neu ôl bysedd Android</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Amserlen segur clo sgrin</string>
+  <string name="preferences_app_protection__signal_pin">PIN Signal</string>
+  <string name="preferences_app_protection__pin">PIN</string>
+  <string name="preferences_app_protection__change">Newid</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Mae eich PIN yn ychwanegu haen ychwanegol o ddiogelwch ac yn cadw eich cyfrif wrth gefn. Byddwn yn gofyn amdano pan fyddwch yn cofrestru eich rhif ffôn gyda Signal. Os fyddwch yn anghofio eich PIN, byddwch yn cael eich cloi allan o\'ch cyfrif am 7 diwrnod.</string>
   <string name="AppProtectionPreferenceFragment_none">Dim</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Nid yw\'r Clo Cofrestru PIN  yr un fath â\'r cod dilysu SMS rydych newydd ei dderbyn. Rhowch y PIN a ffurfiwyd gennych yn flaenorol yr ap .</string>
   <string name="registration_activity__registration_lock_pin">PIN Clo Cofrestru</string>

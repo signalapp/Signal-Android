@@ -298,6 +298,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Potrjeno</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Napaka pri pošiljanju predstavitvene fotografije</string>
   <string name="CreateProfileActivity_problem_setting_profile">Napaka pri nastavljanju profila</string>
   <string name="CreateProfileActivity_profile_photo">Predstavitvena fotografija</string>
@@ -829,7 +830,14 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Odprite Signal in preverite nova sporočila.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Stik</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">Odziv na vaše sporočilo: %1$s</string> -->
+  <string name="MessageNotifier_reacted_s_to_s">%1$s spremenjeno v: \"%2$s\".</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">%1$s spremenjeno v vaš video.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">%1$s spremenjeno v vašo sliko.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">%1$s spremenjeno v vašo datoteko.</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">%1$s spremenjeno v vaš zvok.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">%1$s spremenjeno v vašo fotografijo za enkraten ogled.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">%1$s spremenjeno v vaš video za enkraten ogled.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s spremenjeno v vašo nalepko.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Privzeto</string>
   <string name="NotificationChannel_calls">Klici</string>
@@ -1457,6 +1465,61 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="SecondInviteReminder__description">Povabi uporabnika %1$s</string>
   <string name="InsightsReminder__view_insights">Odpri Pregled</string>
   <string name="InsightsReminder__invite">Povabi</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Naprej</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">Ustvari alfanumerični PIN</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">Ustvari številčni PIN</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">PIN mora vsebovati vsaj %1$d znakov</string>
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">PIN mora vsebovati vsaj %1$d številke</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">Ustvari nov PIN</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">Ker ste prijavljeni v vaš račun, lahko kreirate nov PIN. Kadar ste odjavljeni, obnova vašega PINa ni mogoča.</string> -->
+  <string name="CreateKbsPinFragment__create_your_pin">Ustvarite svoj PIN</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">S kodami PIN boste izboljšali varnost svojega računa. Zapišite si svoj PIN in ga shranite na varnem mestu. PINa ni mogoče obnoviti.</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__pins_dont_match">PIN se ne ujema. Poskusite znova.</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">Potrdite svoj PIN.</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">Kreiranje PIN kode ni uspelo</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Vaš PIN ni bil shranjen. Kasneje vas bomo spomnili, da ustvarite novega.</string>
+  <string name="ConfirmKbsPinFragment__pin_created">PIN je bil ustvarjen.</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">Predstavljamo vam PIN kode!</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">Izboljšajte varnost vašega računa. %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">Preberite več tu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string> -->
+  <string name="KbsSplashFragment__registration_lock_equals_pin">PIN = koda za prijavo v omrežje</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">PIN za prijavo v omrežje je izboljšan in odslej ponuja več možnosti. Posodobite ga zdaj!%1$s</string>
+  <string name="KbsSplashFragment__read_more_about_pins">Preberite več o varnostni PIN kodi.</string>
+  <string name="KbsSplashFragment__update_pin">Posodobite PIN</string>
+  <string name="KbsSplashFragment__create_your_pin">Ustvarite svoj PIN</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">Spomni me kasneje</string> -->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">Vnesite svoj Signal PIN</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Da si boste lažje zapomnili svoj PIN, vas bomo večkrat vprašali po nje. Sčasoma se bo frekvenca prošenj za vnos zmanjšala.</string>
+  <string name="KbsReminderDialog__skip">Preskoči</string>
+  <string name="KbsReminderDialog__submit">Oddaj</string>
+  <string name="KbsReminderDialog__forgot_pin">Ste pozabili PIN?</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">Napačen PIN. Poskusite znova.</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__account_locked">Račun je zaklenjen</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Zaradi zaščite vaše varnosti in zasebnosti je bil vaš račun zaklenjen. Po %1$d dneh neaktivnosti se boste zopet lahko prijavili s to številko brez vnosa PINa. Vsa vsebina bo izbrisana.</string>
+  <string name="AccountLockedFragment__next">Naprej</string>
+  <string name="AccountLockedFragment__learn_more">Več o tem…</string>
+  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">Vnesite svoj PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">Vnesite PIN, ki ste ga ustvarili za zaklep svojega računa. Tu ne gre za SMS potrditveno kodo.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">Vnesite alfanumerični PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">Vnesite številčni PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Naprej</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">Napačen PIN. Poskusite znova.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">Napačen PIN. Še %1$d poskusov.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Ste pozabili PIN?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">Napačen PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">Na voljo imate še %1$d poskusov. Če vam jih bo zmanjkalo, se bo vaš račun zaklenil za %2$d dni. Po %3$d dneh neaktivnosti se boste zopet lahko prijavili s to številko brez vnosa PINa. Vaš račun in vsa vsebina bosta izbrisana.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">Ste pozabili svoj PIN?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">Zaradi zaščite vaše varnosti in zasebnosti obnova PINa ni mogoča. Če vam je zmanjkalo poskusov za odklenitev, se lahko po %1$ddneh neaktivnosti ponovno prijavite z SMS potrditvijo. V tem primeru bosta vaš račun in vsa vsebina izbrisana.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
   <string name="ConversationListFragment_loading">Nalaganje …</string>
@@ -1514,6 +1577,10 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_app_protection__screen_lock">Zaklep zaslona</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Uporaba sistemskega zaklepanja in prstnih odtisov za zaklep aplikacije</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Časovni interval pred zaklepom aplikacije</string>
+  <string name="preferences_app_protection__signal_pin">Signal PIN</string>
+  <string name="preferences_app_protection__pin">PIN</string>
+  <string name="preferences_app_protection__change">Zamenjava</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">S PINom boste izboljšali svojo varnost in zasebnost ter omogočili varnostno kopijo svojega računa. Po PINu boste vprašani vsakič, ko se boste želeli na novo prijaviti s svojo telefonsko številko. Če boste nanj pozabili, boste za 7 dni ostali zaklenjeni iz svojega računa Signal.</string>
   <string name="AppProtectionPreferenceFragment_none">Brez</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Koda PIN za prijavo v omrežje ni enaka potrditveni kodi SMS, ki ste jo prejeli ravnokar. Prosimo, vnesite PIN, ki ste ga predhodno določili za zaklepanje.</string>
   <string name="registration_activity__registration_lock_pin">PIN za prijavo v omrežje</string>

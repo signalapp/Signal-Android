@@ -274,6 +274,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">ధృవీకరించబడింది</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">రూపం</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">రూపచిత్రం సెట్ చేయడంలో లోపం</string>
   <string name="CreateProfileActivity_problem_setting_profile">రూపాన్ని సెట్ చేయడంలో సమస్య</string>
   <string name="CreateProfileActivity_profile_photo">రూపచిత్రం </string>
@@ -793,7 +794,14 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">ఇటీవలి నోటిఫికేషన్‌ల కోసం తనిఖీ చేయడానికి Signal ను తెరవండి.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">పరిచయం</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">మీ సందేశానికి ప్రతిస్పందించారు:%1$s</string> -->
+  <string name="MessageNotifier_reacted_s_to_s">దీనికి %1$sను ప్రతిస్పందించారు: %2$s</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">మీ వీడియోకు %1$s స్పందించింది.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">మీ చిత్రానికి %1$s ప్రతిస్పందించింది.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">మీ ఫైల్‌కు %1$s ప్రతిస్పందించింది.</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">మీ ఆడియోకు %1$s స్పందించింది.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">మీ వీక్షణ-ఒకసారి ఫోటోకు %1$s ప్రతిస్పందించింది.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">మీ వీక్షణ-ఒకసారి వీడియోకు %1$s ప్రతిస్పందించింది.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">మీ స్టిక్కర్‌కు %1$s స్పందించింది.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">అప్రమేయం</string>
   <string name="NotificationChannel_calls">కాల్స్</string>
@@ -1401,6 +1409,61 @@
   <string name="SecondInviteReminder__description">ఆహ్వానించండి %1$s</string>
   <string name="InsightsReminder__view_insights">అంతర్దృష్టి వీక్షించండి </string>
   <string name="InsightsReminder__invite">ఆహ్వానించండి</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">తరువాత</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">ఆల్ఫాన్యూమరిక్ పిన్ను సృష్టించండి</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">సంఖ్యా పిన్ను సృష్టించండి</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">పిన్ కనీసం %1$d అక్షరాలు ఉండాలి</string>
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">పిన్ కనీసం %1$d అంకెలు ఉండాలి</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">క్రొత్త పిన్ను సృష్టించండి</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">మీరు ఇప్పటికీ లాగిన్ అయినందున, మీరు క్రొత్త పిన్ను సృష్టించవచ్చు. మీరు లాగ్ అవుట్ అయినప్పుడు, మీ పిన్‌ను తిరిగి పొందటానికి మార్గం లేదు.</string> -->
+  <string name="CreateKbsPinFragment__create_your_pin">మీ పిన్ను సృష్టించండి</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">పిన్‌లు మీ ఖాతాకు అదనపు భద్రతా పొరను జోడిస్తాయి. మీ పిన్ను వ్రాసి సురక్షితమైన స్థలంలో ఉంచండి. దాన్ని తిరిగి పొందలేము.</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__pins_dont_match">పిన్‌లు సరిపోలడం లేదు. మళ్ళీ ప్రయత్నించండి.</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">మీ పిన్ను నిర్ధారించండి.</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">పిన్ సృష్టి విఫలమైంది</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">మీ పిన్ సేవ్ చేయబడలేదు. తరువాత పిన్ సృష్టించమని మేము మిమ్మల్ని అడుగుతాము.</string>
+  <string name="ConfirmKbsPinFragment__pin_created">పిన్ సృష్టించబడింది.</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">పిన్‌లను పరిచయం చేస్తోంది</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">మీ ఖాతాకు మరో స్థాయి భద్రతను జోడించండి. %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">ఇక్కడ మరింత చదవండి.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string> -->
+  <string name="KbsSplashFragment__registration_lock_equals_pin">నమోదు లాక్  = పిన్</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">మీ రిజిస్ట్రేషన్ లాక్‌ను ఇప్పుడు పిన్ అని పిలుస్తారు మరియు ఇది మరింత చేస్తుంది. ఇప్పుడే దాన్ని నవీకరించండి. %1$s</string>
+  <string name="KbsSplashFragment__read_more_about_pins">పిన్‌ల గురించి మరింత చదవండి.</string>
+  <string name="KbsSplashFragment__update_pin">పిన్‌ను నవీకరించండి</string>
+  <string name="KbsSplashFragment__create_your_pin">మీ పిన్ను సృష్టించండి</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">తరువాత నాకు గుర్తు చేయండి</string> -->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">మీ Signal పిన్ను నమోదు చేయండి</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">మీ పిన్‌ను గుర్తుంచుకోవడంలో మీకు సహాయపడటానికి, క్రమానుగతంగా నమోదు చేయమని మేము మిమ్మల్ని అడుగుతాము. మేము మిమ్మల్ని కాలక్రమేణా తక్కువ అడుగుతాము.</string>
+  <string name="KbsReminderDialog__skip">దాటవేయి</string>
+  <string name="KbsReminderDialog__submit">సమర్పించండి</string>
+  <string name="KbsReminderDialog__forgot_pin">పిన్ను మరచిపోయారా?</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">తప్పు పిన్. మళ్ళీ ప్రయత్నించండి.</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__account_locked">ఖాతా లాక్ చేయబడింది</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">మీ గోప్యత మరియు భద్రతను రక్షించడానికి మీ ఖాతా లాక్ చేయబడింది. మీ ఖాతాలో %1$d రోజుల నిష్క్రియాత్మకత తర్వాత మీరు మీ పిన్ అవసరం లేకుండా ఈ ఫోన్ నంబర్‌ను తిరిగి నమోదు చేయగలరు. మొత్తం కంటెంట్ తొలగించబడుతుంది.</string>
+  <string name="AccountLockedFragment__next">తరువాత</string>
+  <string name="AccountLockedFragment__learn_more">ఇంకా నేర్చుకో</string>
+  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">మీ పిన్ను నమోదు చేయండి</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">మీ ఖాతా కోసం మీరు సృష్టించిన పిన్‌ను నమోదు చేయండి. ఇది మీ SMS ధృవీకరణ కోడ్‌కు భిన్నంగా ఉంటుంది.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">ఆల్ఫాన్యూమరిక్ పిన్ను నమోదు చేయండి</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">సంఖ్యా పిన్ను నమోదు చేయండి</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">తరువాత</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">తప్పు పిన్. మళ్ళీ ప్రయత్నించండి.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">తప్పు పిన్. %1$d ప్రయత్నాలు మిగిలి ఉన్నాయి.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">పిన్ను మరచిపోయారా?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">తప్పయిన పిన్</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">మీకు %1$d ప్రయత్నాలు మిగిలి ఉన్నాయి. మీరు ప్రయత్నాలు అయిపోతే మీ ఖాతా %2$d రోజులు లాక్ చేయబడుతుంది. %3$d రోజుల నిష్క్రియాత్మకత తరువాత, మీరు మీ పిన్ లేకుండా తిరిగి నమోదు చేసుకోవచ్చు. మీ ఖాతా తుడిచివేయబడుతుంది మరియు మొత్తం కంటెంట్ తొలగించబడుతుంది.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">పిన్ను మరచిపోయారా?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">మీ గోప్యత మరియు భద్రత కోసం, మీ పిన్‌ను తిరిగి పొందటానికి మార్గం లేదు. మీరు ప్రయత్నాలు అయిపోతే, %1$d రోజుల నిష్క్రియాత్మకత తర్వాత మీరు SMS తో తిరిగి ధృవీకరించవచ్చు. ఈ సందర్భంలో, మీ ఖాతా తుడిచివేయబడుతుంది మరియు మొత్తం కంటెంట్ తొలగించబడుతుంది.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">రవాణా చిహ్నం</string>
   <string name="ConversationListFragment_loading">లోడ్…</string>
@@ -1458,6 +1521,10 @@
   <string name="preferences_app_protection__screen_lock">స్క్రీన్ తాళం</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Android స్క్రీన్ లాక్ లేదా వేలిముద్రతో Signal యాక్సెస్ను లాక్ చేయండి</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">స్క్రీన్ లాక్ నిష్క్రియ సమయం</string>
+  <string name="preferences_app_protection__signal_pin">Signal పిన్</string>
+  <string name="preferences_app_protection__pin">పిన్</string>
+  <string name="preferences_app_protection__change">మార్పు</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">మీ పిన్ అదనపు భద్రతా పొరను జోడిస్తుంది మరియు మీ ఖాతాను బ్యాకప్ చేస్తుంది. మీరు మీ ఫోన్ నంబర్‌ను Signal తో నమోదు చేసినప్పుడు మీరు అడుగుతారు. మీరు మీ పిన్‌ను మరచిపోతే, మీరు మీ ఖాతా నుండి 7 రోజులు లాక్ అవుతారు.</string>
   <string name="AppProtectionPreferenceFragment_none">ఏదీ కాదు</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">మీరు అందుకున్న SMS ధృవీకరణ కోడ్ వలె నమోదు లాక్ పిన్ అదే కాదు. దయచేసి మీరు మునుపు అనువర్తనం లో కాన్ఫిగర్ చేసిన పిన్ ను నమోదు చేయండి.</string>
   <string name="registration_activity__registration_lock_pin">నమోదు లాక్ పిన్</string>

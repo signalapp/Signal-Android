@@ -258,7 +258,7 @@
   <string name="ConversationFragment_failed_to_open_message">נכשל בפתיחת הודעה</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">אתה יכול להחליק ימינה על הודעה כלשהי כדי להשיב בזריזות</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">אתה יכול להחליק שמאלה על הודעה כלשהי כדי להשיב בזריזות</string>
-  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">קבצי מדיה יוצאים של צפייה חד־פעמית מוסרים באופן אוטומטי לאחר שהם נשלחים</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">קבצי מדיה יוצאים לצפייה חד־פעמית מוסרים באופן אוטומטי לאחר שהם נשלחים</string>
   <string name="ConversationFragment_you_already_viewed_this_message">צפית כבר בהודעה זו</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">אין דפדפן מותקן במכשיר שלך.</string>
@@ -298,6 +298,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">מוודא</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">פרופיל</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">שגיאה בהגדרת תצלום פרופיל</string>
   <string name="CreateProfileActivity_problem_setting_profile">בעיה בהגדרת פרופיל</string>
   <string name="CreateProfileActivity_profile_photo">תצלום פרופיל</string>
@@ -550,7 +551,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">סימנת את מספר הביטחון שלך עם %s כבלתי מוודא ממכשיר אחר</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">משפטי־סיסמה אינם תואמים!</string>
-  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">משפט־סיסמה ישן אינו נכון!</string>
+  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">משפט־סיסמה ישן שגוי!</string>
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">הכנס משפט־סיסמה חדש!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">לקשר מכשיר זה?</string>
@@ -736,9 +737,9 @@
   <string name="ThreadRecord_missed_call">שיחה שלא נענתה</string>
   <string name="ThreadRecord_media_message">הודעת מדיה</string>
   <string name="ThreadRecord_sticker">מדבקה</string>
-  <string name="ThreadRecord_view_once_photo">תצלום של צפייה חד־פעמית</string>
-  <string name="ThreadRecord_view_once_video">סרטון של צפייה חד־פעמית</string>
-  <string name="ThreadRecord_view_once_media">מדיה של צפייה חד־פעמית</string>
+  <string name="ThreadRecord_view_once_photo">תצלום לצפייה חד־פעמית</string>
+  <string name="ThreadRecord_view_once_video">סרטון לצפייה חד־פעמית</string>
+  <string name="ThreadRecord_view_once_media">מדיה לצפייה חד־פעמית</string>
   <string name="ThreadRecord_s_is_on_signal">%s נמצא ב־Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">הודעות נעלמות הושבתו</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">זמן הודעות נעלמות הוגדר אל %s</string>
@@ -829,8 +830,8 @@
   <string name="MessageNotifier_mark_read">סמן כנקרא</string>
   <string name="MessageNotifier_media_message">הודעת מדיה</string>
   <string name="MessageNotifier_sticker">מדבקה</string>
-  <string name="MessageNotifier_view_once_photo">תצלום של צפייה חד־פעמית</string>
-  <string name="MessageNotifier_view_once_video">סרטון של צפייה חד־פעמית</string>
+  <string name="MessageNotifier_view_once_photo">תצלום לצפייה חד־פעמית</string>
+  <string name="MessageNotifier_view_once_video">סרטון לצפייה חד־פעמית</string>
   <string name="MessageNotifier_reply">השב</string>
   <string name="MessageNotifier_signal_message">הודעת Signal</string>
   <string name="MessageNotifier_unsecured_sms">מסרון בלתי מאובטח</string>
@@ -838,7 +839,14 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">פתח את Signal כדי לבדוק התראות אחרונות.</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">איש קשר</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">הגיב אל ההודעה שלך: %1$s</string> -->
+  <string name="MessageNotifier_reacted_s_to_s">הגיב עם %1$s אל: \"%2$s\".</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">הגיב עם %1$s אל הסרטון שלך.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">הגיב עם %1$s אל התמונה שלך.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">הגיב עם %1$s אל הקובץ שלך.</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">הגיב עם %1$s אל השמע שלך.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">הגיב עם %1$s אל התצלום לצפייה חד־פעמית שלך.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">הגיב עם %1$s אל הסרטון לצפייה חד־פעמית שלך.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">הגיב עם %1$s אל המדבקה שלך.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">ברירת מחדל</string>
   <string name="NotificationChannel_calls">שיחות</string>
@@ -918,9 +926,9 @@
   <string name="attachment_type_selector__file">קובץ</string>
   <string name="attachment_type_selector__drawer_description">עורר מגירת צרופות</string>
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">משפט סיסמה ישן</string>
-  <string name="change_passphrase_activity__new_passphrase">משפט סיסמה חדש</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">חזור על משפט סיסמה חדש</string>
+  <string name="change_passphrase_activity__old_passphrase">משפט־סיסמה ישן</string>
+  <string name="change_passphrase_activity__new_passphrase">משפט־סיסמה חדש</string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">חזור על משפט־סיסמה חדש</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">הכנס שם או מספר</string>
   <string name="contact_selection_activity__invite_to_signal">הזמן אל Signal</string>
@@ -978,7 +986,7 @@
   <string name="QuoteView_audio">שמע</string>
   <string name="QuoteView_video">סרטון</string>
   <string name="QuoteView_photo">תצלום</string>
-  <string name="QuoteView_view_once_media">מדיה של צפייה חד־פעמית</string>
+  <string name="QuoteView_view_once_media">מדיה לצפייה חד־פעמית</string>
   <string name="QuoteView_sticker">מדבקה</string>
   <string name="QuoteView_document">מסמך</string>
   <string name="QuoteView_you">אתה</string>
@@ -1111,8 +1119,8 @@
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal דורש הגדרות MMS כדי למסור הודעות מדיה והודעות קבוצתיות דרך מפעיל התקשורת שלך. המכשיר שלך לא הופך מידע זה לזמין, מה שלעיתים נכון לגבי מכשירים נעולים ותצורות מגבילות אחרות.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">כדי לשלוח מדיה והודעות קבוצתיות, הקש על \'אישור\' והשלם את ההגדרות המבוקשות. הגדרות ה־MMS עבור המפעיל שלך יכולות בד\"כ להימצא ע\"י חיפוש אחר \'מפעיל ה־APN שלך\'. תצטרך לעשות זאת רק פעם אחת.</string>
   <!--profile_create_activity-->
-  <string name="CreateProfileActivity_first_name_required">שם פרטי (חובה)</string>
-  <string name="CreateProfileActivity_last_name_optional">שם משפחה (לא חובה)</string>
+  <string name="CreateProfileActivity_first_name_required">שם פרטי (דרוש)</string>
+  <string name="CreateProfileActivity_last_name_optional">שם משפחה (רשותי)</string>
   <string name="CreateProfileActivity_next">הבא</string>
   <string name="CreateProfileActivity__username">שם משתמש</string>
   <string name="CreateProfileActivity__create_a_username">צור שם משתמש</string>
@@ -1166,9 +1174,9 @@
   <string name="message_details_header__from">מאת:</string>
   <string name="message_details_header__with">עם:</string>
   <!--AndroidManifest.xml-->
-  <string name="AndroidManifest__create_passphrase">צור משפט סיסמה</string>
+  <string name="AndroidManifest__create_passphrase">צור משפט־סיסמה</string>
   <string name="AndroidManifest__select_contacts">בחר אנשי קשר</string>
-  <string name="AndroidManifest__change_passphrase">שנה משפט סיסמה</string>
+  <string name="AndroidManifest__change_passphrase">שנה משפט־סיסמה</string>
   <string name="AndroidManifest__verify_safety_number">וודא מספר ביטחון</string>
   <string name="AndroidManifest__log_submit">הגש יומן ניפוי תקלים</string>
   <string name="AndroidManifest__media_preview">קדם־תצוגה של מדיה</string>
@@ -1222,8 +1230,8 @@
   <string name="preferences__previews_are_supported_for">קדם־תצוגות נתמכות עבור קישורים של Imgur, Instagram, Pinterest, Reddit ו־YouTube</string>
   <string name="preferences__choose_identity">בחר זהות</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">בחר את כניסת איש הקשר שלך מתוך רשימת אנשי הקשר.</string>
-  <string name="preferences__change_passphrase">שנה משפט סיסמה</string>
-  <string name="preferences__change_your_passphrase">שנה את משפט הסיסמה שלך</string>
+  <string name="preferences__change_passphrase">שנה משפט־סיסמה</string>
+  <string name="preferences__change_your_passphrase">שנה את משפט־הסיסמה שלך</string>
   <string name="preferences__enable_passphrase">אפשר נעילת מסך עם משפט־סיסמה</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">נעל מסך והתראות באמצעות משפט־סיסמה</string>
   <string name="preferences__screen_security">אבטחת מסך</string>
@@ -1466,6 +1474,61 @@
   <string name="SecondInviteReminder__description">הזמן את %1$s</string>
   <string name="InsightsReminder__view_insights">הצג תובנות</string>
   <string name="InsightsReminder__invite">הזמן</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">הבא</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">צור PIN אלפאנומרי</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">צור PIN מספרי</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">PIN חייב להיות לפחות %1$d תווים</string>
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">PIN חייב להיות לפחות %1$d ספרות</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">צור PIN חדש</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">מאחר שאתה עדין מחובר, אתה יכול ליצור PIN חדש. ברגע שתתנתק, אין דרך להשיב את ה־PIN שלך.</string> -->
+  <string name="CreateKbsPinFragment__create_your_pin">צור את ה־PIN שלך</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">קודי PIN מוספים שכבת אקסטרה של אבטחה אל החשבון שלך. כתוב את ה־PIN שלך ושמור אותו במקום בטוח. הוא בלתי ניתן להשבה.</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__pins_dont_match">קודי PIN אינם תואמים. נסה שוב.</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">אמת את ה־PIN שלך.</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">יצירת PIN נכשלה</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">ה־PIN שלך לא נשמר. ניידע אותך ליצור PIN מאוחר יותר.</string>
+  <string name="ConfirmKbsPinFragment__pin_created">PIN נוצר.</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">היכרות עם PIN</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">הוסף רמה נוספת של אבטחה אל החשבון שלך. %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">למד עוד כאן.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string> -->
+  <string name="KbsSplashFragment__registration_lock_equals_pin">נעילת הרשמה = PIN</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">נעילת ההרשמה שלך נקראת כעת PIN, והיא עושה יותר. עדכן אותה כעת. %1$s</string>
+  <string name="KbsSplashFragment__read_more_about_pins">למד עוד על PIN.</string>
+  <string name="KbsSplashFragment__update_pin">עדכן PIN</string>
+  <string name="KbsSplashFragment__create_your_pin">צור את ה־PIN שלך</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">הזכר לי מאוחר יותר</string> -->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">הכנס את ה־PIN של Signal שלך</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">כדי לעזור לך לשנן את ה־PIN שלך, נבקש ממך להכניס אותו מעת לעת. נבקש ממך פחות עם הזמן.</string>
+  <string name="KbsReminderDialog__skip">דלג</string>
+  <string name="KbsReminderDialog__submit">הגש</string>
+  <string name="KbsReminderDialog__forgot_pin">שכחת PIN?</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">PIN שגוי. נסה שוב.</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__account_locked">החשבון ננעל</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">החשבון שלך ננעל כדי להגן על הפרטיות והאבטחה שלך. לאחר %1$d ימים של אי־פעילות בחשבון שלך, תוכל להירשם שוב עם מספר טלפון זה ללא צורך ב־PIN שלך. כל התוכן יימחק.</string>
+  <string name="AccountLockedFragment__next">הבא</string>
+  <string name="AccountLockedFragment__learn_more">למד עוד</string>
+  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">הכנס את ה־PIN שלך</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">הכנס את ה־PIN שיצרת עבור החשבון שלך. הוא שונה מקוד הוידוא שלך במסרון.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">הכנס PIN אלפאנומרי</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">הכנס PIN מספרי</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">הבא</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">PIN שגוי. נסה שוב.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">PIN שגוי. %1$d ניסיונות נותרו.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">שכחת PIN?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">PIN שגוי</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">יש לך %1$d ניסיונות נותרים. אם הניסיונות יאזלו, חשבונך יינעל למשך %2$d ימים. לאחר %3$d ימים של אי־פעילות, תוכל להירשם שוב בלי ה־PIN שלך. חשבונך ינוקה וכל התוכן יימחק.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">שכחת את ה־PIN שלך?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">למען פרטיותך ואבטחתך, אין דרך להשיב את ה־PIN שלך. אם הניסיונות יאזלו, תוכל לוודא מחדש עם מסרון לאחר %1$d ימים של אי־פעילות. במקרה זה, חשבונך ינוקה וכל התוכן יימחק.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">צלמית תעבורה</string>
   <string name="ConversationListFragment_loading">טוען…</string>
@@ -1523,6 +1586,10 @@
   <string name="preferences_app_protection__screen_lock">נעילת מסך</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">נעל גישה אל Signal באמצעות נעילת מסך או טביעת אצבע</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">פסק זמן אי־פעילות של נעילת מסך</string>
+  <string name="preferences_app_protection__signal_pin">PIN של Signal</string>
+  <string name="preferences_app_protection__pin">PIN</string>
+  <string name="preferences_app_protection__change">שנה</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">ה־PIN שלך מוסיף שכבת אקסטרה של אבטחה ומגבה את חשבונך. תישאל לגביו כאשר תירשם עם מספר הטלפון שלך אל Signal. אם תשכח את ה־PIN שלך, תינעל מחוץ לחשבונך למשך 7 ימים.</string>
   <string name="AppProtectionPreferenceFragment_none">ללא</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN נעילת ההרשמה אינו אותו דבר כמו קוד הוידוא שקיבלת. אנא הכנס את ה־PIN שתיצרת קודם לכן ביישום.</string>
   <string name="registration_activity__registration_lock_pin">PIN נעילת הרשמה</string>
@@ -1550,7 +1617,7 @@
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">נעילת הרשמה עוזרת להגן על מספר הטלפון שלך מפני ניסיונות הרשמה בלתי מורשים. מאפיין זה יכול להיות מושבת בכל זמן שהוא בהגדרות הַפְּרָטִיוּת של Signal</string>
   <string name="RegistrationLockDialog_registration_lock">נעילת הרשמה</string>
   <string name="RegistrationLockDialog_enable">אפשר</string>
-  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">הקוד הסודי להרשמה חייב לכלול ספרה %d לפחות</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">PIN נעילת ההרשמה חייב להיות לפחות %d ספרות.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">שני מספרי ה־PIN שהכנסת אינם תואמים.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">שגיאה בהתחברות אל השירות</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">להשבית PIN נעילת הרשמה?</string>

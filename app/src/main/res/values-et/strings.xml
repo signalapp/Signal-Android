@@ -270,6 +270,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Kontrollitud</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Profiil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Profiilipildi seadmisel tekkis viga</string>
   <string name="CreateProfileActivity_problem_setting_profile">Profiili seadistamisel tekkis probleem</string>
   <string name="CreateProfileActivity_profile_photo">Profiilipilt</string>
@@ -794,7 +795,14 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Ava Signal et kontrollida viimaseid teateid.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">Reageeris sinu sõnumile: %1$s</string> -->
+  <string name="MessageNotifier_reacted_s_to_s">Reageeris %1$s sõnumile: \"%2$s\".</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">Reageeris %1$s sinu videole.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">Reageeris %1$s sinu pildile.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">Reageeris %1$s sinu failile.</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">Reageeris %1$s sinu helile.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reageeris %1$s sinu korra-vaatamise fotole.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reageeris %1$s sinu korra-vaatamise videole.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">Reageeris %1$s sinu kleepsule.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Vaikimisi</string>
   <string name="NotificationChannel_calls">Kõned</string>
@@ -1402,6 +1410,43 @@
   <string name="SecondInviteReminder__description">Kutsu %1$s</string>
   <string name="InsightsReminder__view_insights">Vaata Pilguheitu</string>
   <string name="InsightsReminder__invite">Kutsu</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Edasi</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">Loo tähtnumbriline PIN</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">Loo numbriline PIN</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__create_a_new_pin">Loo uus PIN-kood</string>
+  <string name="CreateKbsPinFragment__create_your_pin">Loo enda PIN-kood</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">Kinnita enda PIN-kood.</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">Tutvustame PIN-koode</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">Loe lisaks siit.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string> -->
+  <string name="KbsSplashFragment__registration_lock_equals_pin">Registreerimislukk = PIN-kood</string>
+  <string name="KbsSplashFragment__update_pin">Uuenda PINi</string>
+  <string name="KbsSplashFragment__create_your_pin">Loo enda PIN-kood</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">Tuleta hiljem meelde</string> -->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">Sisesta Signal-i PIN-kood</string>
+  <string name="KbsReminderDialog__skip">Jäta vahele</string>
+  <string name="KbsReminderDialog__submit">Postita</string>
+  <string name="KbsReminderDialog__forgot_pin">Unustasid PINi?</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__account_locked">Konto lukustatud</string>
+  <string name="AccountLockedFragment__next">Edasi</string>
+  <string name="AccountLockedFragment__learn_more">Uuri täpsemalt</string>
+  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">Sisesta enda PIN-kood</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">Sisesta PIN-kood, mille tegid enda konto jaoks. See erineb SMS-kontrollkoodist.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">Sisesta tähtnumbriline PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">Sisesta numbriline PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Edasi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Unustasid PINi?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">Sobimatu PIN-kood</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">Kas unustasid PIN-koodi?</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transpordi ikoon</string>
   <string name="ConversationListFragment_loading">Laadimine…</string>
@@ -1459,6 +1504,9 @@
   <string name="preferences_app_protection__screen_lock">Ekraanilukk</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lukusta Signali juurdepääs Androidi lukustuskuva või sõrmejäljega</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Ekraaniluku ebaaktiivsuse ajalõpp</string>
+  <string name="preferences_app_protection__signal_pin">Signali PIN</string>
+  <string name="preferences_app_protection__pin">PIN-kood</string>
+  <string name="preferences_app_protection__change">Muuda</string>
   <string name="AppProtectionPreferenceFragment_none">Puudub</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Registreerimisluku PIN ei ole sama, mis SMSi kinnituskood, mille just said. Palun sisesta PIN, mille seadistasid eelnevalt rakenduse siseselt.</string>
   <string name="registration_activity__registration_lock_pin">Registreerimisluku PIN</string>

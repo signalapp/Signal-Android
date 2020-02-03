@@ -256,6 +256,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Đã xác minh</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Hồ sơ</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Lỗi đặt ảnh đại diện</string>
   <string name="CreateProfileActivity_problem_setting_profile">Lỗi thiết lập hồ sơ</string>
   <string name="CreateProfileActivity_profile_photo">Ảnh đại diện</string>
@@ -766,7 +767,14 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Mở Signal để xem thông báo gần đây.</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Liên hệ</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">Đã bày tỏ cảm xúc với tin nhắn: %1$s</string> -->
+  <string name="MessageNotifier_reacted_s_to_s">Đã bày tỏ cảm xúc %1$s cho \"%2$s\".</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">Đã bày tỏ cảm xúc %1$s cho video của bạn.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">Đã bày tỏ cảm xúc %1$s cho hình ảnh của bạn.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">Đã bày tỏ cảm xúc %1$s cho tệp tin của bạn.</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">Đã bày tỏ cảm xúc %1$s cho tệp âm thanh của bạn.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Đã bày tỏ cảm xúc %1$s cho ảnh xem một lần của bạn.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Đã bày tỏ cảm xúc %1$s cho video xem một lần của bạn.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">Đã bày tỏ cảm xúc %1$s cho nhãn dán của bạn.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Mặc định</string>
   <string name="NotificationChannel_calls">Cuộc gọi</string>
@@ -1364,6 +1372,59 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="SecondInviteReminder__description">Mời %1$s</string>
   <string name="InsightsReminder__view_insights">Xem Phân tích</string>
   <string name="InsightsReminder__invite">Mời</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Tiếp</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">Tạo mã PIN bao gồm chữ và số</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">Tạo mã PIN bao gồm số</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">PIN phải có ít nhất %1$d kí tự</string>
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">PIN phải có ít nhất %1$d chữ số</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">Tạo mã PIN mới</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">Vì bạn vẫn đang đăng nhập, bạn có thể tạo mã PIN mới. Khi bạn đăng xuất, không có cách nào để bạn khôi phục mã PIN.</string> -->
+  <string name="CreateKbsPinFragment__create_your_pin">Tạo mã PIN của bạn</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">Mã PIN thêm một lớp bảo mật cho tài khoản của bạn. Viết mã PIN của bạn và lưu giữ nó ở nơi an toàn. Mã PIN không thể được khôi phục.</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__pins_dont_match">Mã PIN không khớp. Vui lòng thử lại.</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">Xác nhận mã PIN của bạn.</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">Không thể tạo mã PIN</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Mã PIN của bạn chưa được lưu. Chúng tôi sẽ nhắc bạn tạo mã PIN sau.</string>
+  <string name="ConfirmKbsPinFragment__pin_created">Mã PIN đã được tạo.</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">Giới thiệu mã PIN</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">Thêm một lớp bảo mật cho tài khoản của bạn. %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">Đọc thêm ở đây.</string> -->
+  <string name="KbsSplashFragment__registration_lock_equals_pin">Khóa Đăng ký = PIN</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Khoá Đăng ký của bạn bây giờ được gọi là PIN, và có thêm các tính năng mới. Cập nhật ở đây. %1$s</string>
+  <string name="KbsSplashFragment__read_more_about_pins">Đọc thêm về mã PIN.</string>
+  <string name="KbsSplashFragment__update_pin">Cập nhật mã PIN</string>
+  <string name="KbsSplashFragment__create_your_pin">Tạo mã PIN của bạn</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">Nhắc tôi sau</string> -->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">Nhập mã PIN Signal của bạn</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Để giúp bạn nhớ mã PIN của mình, chúng tôi sẽ yêu cầu bạn nhập lại mã định kỳ. Chúng tôi sẽ dần hỏi ít hơn.</string>
+  <string name="KbsReminderDialog__skip">Bỏ qua</string>
+  <string name="KbsReminderDialog__submit">Gửi</string>
+  <string name="KbsReminderDialog__forgot_pin">Quên mã PIN?</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">PIN không đúng. Hãy thử lại.</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__account_locked">Tài khoản bị khoá.</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Tài khoản của bạn đã bị khoá để bảo vệ sự riêng tư và bảo mật của bạn. Sau %1$d ngày không sử dụng bạn sẽ có thể đăng ký lại số điện thoại này mà không cần mã PIN của mình. Mọi dữ liệu sẽ bị xoá.</string>
+  <string name="AccountLockedFragment__next">Tiếp</string>
+  <string name="AccountLockedFragment__learn_more">Tìm hiểu thêm</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">Nhập mã PIN của bạn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">Nhập mã PIN bạn đã tạo cho tài khoản. Mã này khác với mã xác minh SMS của bạn.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">Nhập mã PIN gồm chữ và số</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">Nhập mã PIN bao gồm số</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Tiếp</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">PIN không đúng. Hãy thử lại.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">PIN không đúng. Còn %1$d lần thử.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Quên mã PIN?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">Mã PIN không chính xác</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">Bạn còn %1$d lần thử. Nếu bạn dùng hết số lần thử tài khoản của bạn sẽ bị khoá trong vòng %2$d ngày. Sau %3$d ngày không sử dụng, bạn có thể đăng ký lại mà không cần mã PIN. Tài khoản của bạn sẽ bị quét sạch và mọi dữ liệu sẽ bị xoá.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">Quên mã PIN của bạn?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">Để đảm bảo sự riêng tư và bảo mật của bạn, không có cách nào để khôi phục mã PIN. Nếu bạn dùng hết số lần thử, bạn có thể xác minh lại với tin nhắn SMS sau %1$d ngày không sử dụng. Trong trường hợp này, tài khoản của bạn sẽ bị quét và mọi dữ liệu sẽ bị xoá.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Biểu tượng chuyển tải</string>
   <string name="ConversationListFragment_loading">Đang tải…</string>
@@ -1421,6 +1482,10 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences_app_protection__screen_lock">Khoá màn hình</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Khoá truy cập Signal bằng mật khẩu Android hoặc vân tay</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Thời gian chờ trước khi tự động khoá</string>
+  <string name="preferences_app_protection__signal_pin">Mã PIN Signal</string>
+  <string name="preferences_app_protection__pin">PIN</string>
+  <string name="preferences_app_protection__change">Thay đổi</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Mã PIN thêm một lớp bảo mật và sao lưu tài khoản của bạn. Bạn sẽ được hỏi nhập mã PIN khi bạn đăng ký số điện thoại của mình với Signal. Nếu bạn quên mã PIN của mình, bạn sẽ bị khoá khỏi tài khoản của mình trong 7 ngày.</string>
   <string name="AppProtectionPreferenceFragment_none">Không</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Mã PIN Khóa Đăng ký khác hoàn toàn mã xác minh SMS bạn vừa nhận được. Vui lòng điền mã PIN mà bạn sử dụng trước đó.</string>
   <string name="registration_activity__registration_lock_pin">Mã PIN Khóa Đăng ký</string>
@@ -1448,7 +1513,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Khóa Đăng ký giúp bạn bảo vệ số điện thoại của mình khỏi bị đăng kí khi không có sự cho phép của bạn. Tính năng này có thể được tắt bất cứ lúc nào trong phần cài đặt riêng tư Signal.</string>
   <string name="RegistrationLockDialog_registration_lock">Khóa Đăng ký</string>
   <string name="RegistrationLockDialog_enable">Bật</string>
-  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">Mã PIN Khoá Đăng ký phải ít nhất %d kí tự.</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">Mã PIN Khoá Đăng ký phải có ít nhất %d chữ số.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Hai mã PIN bạn vừa điền không khớp nhau.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Lỗi kết nối tới dịch vụ</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Tắt mã PIN Khóa Đăng ký?</string>

@@ -270,6 +270,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Konfirmita</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Profilo</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Eraro dum agordo de profila foto</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problemo dum agordo de profilo</string>
   <string name="CreateProfileActivity_profile_photo">Profila foto</string>
@@ -793,7 +794,14 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Malfermu Signal-on por vidi, ĉu estas sciigoj.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakto</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">Reagis pri via mesaĝo: %1$s</string> -->
+  <string name="MessageNotifier_reacted_s_to_s">Reagis per %1$s al „%2$s“.</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">Reagis per %1$s al via videaĵo.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">Reagis per %1$s al via bildo.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">Reagis per %1$s al via dosiero.</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">Reagis per %1$s al via aŭdaĵo.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagis per %1$s al via nurunufoje videbla bildo.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagis per %1$s al via nurunufoje videbla videaĵo.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">Reagis per %1$s al via glumarko.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Defaŭlta</string>
   <string name="NotificationChannel_calls">Alvokoj</string>
@@ -1050,6 +1058,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal bezonas agordojn pri MMS por liveri aŭdvidajn kaj grupajn mesaĝojn per via sendrata provizanto. Via aparato ne disponigas tiun informon: tio okazas ĉe ŝlositaj aparatoj kaj aliaj limigaj aparatoj.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Por sendi aŭdvidajn kaj grupajn mesaĝojn, tuŝeto „Bone“, kaj aldoni la bezonatajn agordojn. La MMS-agordo por via provizanto kutime troviĝas per serĉo pri „via provizanto APN“ („APN“ estas „nomo de la retkaptejo“ angle). Vi bezonas fari tion nur unufoje.</string>
   <!--profile_create_activity-->
+  <string name="CreateProfileActivity_first_name_required">Persona nomo (nepra)</string>
+  <string name="CreateProfileActivity_last_name_optional">Familia nomo (malnepra)</string>
   <string name="CreateProfileActivity_next">Sekva</string>
   <string name="CreateProfileActivity__username">Uzantnomo</string>
   <string name="CreateProfileActivity__create_a_username">Krei uzantnomon</string>
@@ -1399,6 +1409,61 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="SecondInviteReminder__description">Inviti %1$s</string>
   <string name="InsightsReminder__view_insights">Vidi superrigardon</string>
   <string name="InsightsReminder__invite">Inviti</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Sekva</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">Krei literciferan PIN</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">Krei ciferan PIN</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">PIN estu almenaŭ %1$d signojn longa</string>
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">PIN estu almenaŭ %1$d ciferajn longa</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">Krei novan PIN</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">Ĉar vi jam estas ensalutinta, vi povas krei novan PIN. Kiam vi estas elsalutinta, ne ekzistas maniero rehavi vian PIN.</string> -->
+  <string name="CreateKbsPinFragment__create_your_pin">Krei vian PIN</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PIN aldonas plian tavolon de sekurigo ĉe via konto. Skribu vian PIN kaj konservu ĝin sekurloke. Ĝi ne estas rehavebla.</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__pins_dont_match">La du PIN-oj malsamas. Re-provu.</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">Konfirmu vian PIN.</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">Kreo de la PIN malsukcesis</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Via PIN ne konserviĝis. Ni petos vin krei PIN-on poste.</string>
+  <string name="ConfirmKbsPinFragment__pin_created">PIN kreiĝis.</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">Jen la „persona identiga numero“ (PIN)</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">Aldonu plian tavolon de sekurigo al via konto. %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">Legu pli ĉi tie.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string> -->
+  <string name="KbsSplashFragment__registration_lock_equals_pin">Bloko de registriĝo = PIN</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Via „bloko de registriĝo“ nomiĝas nun „PIN“, kaj ĝi faras pli. Ĝisdatigu ĝin nun. %1$s</string>
+  <string name="KbsSplashFragment__read_more_about_pins">Legu pli pri PIN.</string>
+  <string name="KbsSplashFragment__update_pin">Ĝisdatigi PIN-on</string>
+  <string name="KbsSplashFragment__create_your_pin">Krei vian PIN</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">Memorigi min poste</string> -->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">Entajpu vian Signal-PIN-on</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Por helpi vin memorigi vian PIN, ni petos vin entajpi ĝin tempaltempe. Ni mapli petos vin laŭtempe.</string>
+  <string name="KbsReminderDialog__skip">Preterpasi</string>
+  <string name="KbsReminderDialog__submit">Sendi</string>
+  <string name="KbsReminderDialog__forgot_pin">Ĉu vi forgesis vian personan identigan numeron?</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">Malĝusta PIN. Reprovu.</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__account_locked">Konto ŝlosita</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Via konto ŝlosiĝis por protekti vian privatecon kaj sekurecon. Post %1$d tagoj de neaktiveco, vi povos re-registrigi tiun telefonnumeron sen bezono de via PIN. Ĉiu enhavo foriĝos.</string>
+  <string name="AccountLockedFragment__next">Sekva</string>
+  <string name="AccountLockedFragment__learn_more">Scii pli</string>
+  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">Entajpu vian PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">Entajpu la PIN-on, kiun vi kreis por via konto. Ĝi ne estas la sama kiel la SMS-kontrolkodo.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">Entajpu literciferan PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">Entajpu ciferan PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Sekva</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">Malĝusta PIN. Reprovu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">Malĝusta PIN. Restas %1$d provoj.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Ĉu vi forgesis vian personan identigan numeron?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">Malĝusta PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">Restas %1$d provoj. Se vi ne plu havas provojn, via konto ŝlosiĝos dum %2$d tagoj. Post %3$d tagoj sen aktivaĵoj, vi povos re-registriĝi sen via PIN. Via konto kaj ĉiu enhavo forviŝiĝos.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">Ĉu vi forgesis vian PIN?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">Pro via protekto kaj sekureco, tute ne eblas rehavi vian PIN. Se vi ne plu povas reprovi, vi povos re-kontroli vian konton per SMS post %1$d tagoj de neaktivaĵoj. Ĉi-okaze, via konto kaj ĉiu enhavo forviŝiĝos.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Piktogramo pri sendometodo</string>
   <string name="ConversationListFragment_loading">Ŝargado…</string>
@@ -1456,6 +1521,10 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences_app_protection__screen_lock">Ekranŝloso</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Ŝlosi aliron al Signal per Androida ekranŝloso aŭ fingropremaĵo</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Neaktiveca eltempiĝo antaŭ ol ŝlosi la ekranon</string>
+  <string name="preferences_app_protection__signal_pin">Signal-PIN</string>
+  <string name="preferences_app_protection__pin">PIN</string>
+  <string name="preferences_app_protection__change">Ŝanĝi</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Via PIN aldonas plian tavolon de sekurigo ĉe via konto. Oni petos ĝin al vi, kiam vi registros vian telefonnumeron ĉe Signal. Se vi forgesas vian PIN, vi ne plus povos aliri vian konton dum 7 tagoj.</string>
   <string name="AppProtectionPreferenceFragment_none">Neniu</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">La persona identiga numero de bloko de registriĝo ne estas la sama kodo kiel la SMS-kontrolkodo, kiun vi ĵus ricevis. Bv. entajpi la personan identigan numeron, kiun vi antaŭe agordis en la aplikaĵo.</string>
   <string name="registration_activity__registration_lock_pin">PIN de bloko de registriĝo</string>
@@ -1483,6 +1552,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Bloko de registriĝo helpas protekti vian telefonnumeron kontraŭ nerajtigita provo de registriĝo. Tio povas estas malŝaltita en viaj Signal-agordoj pri privateco</string>
   <string name="RegistrationLockDialog_registration_lock">Bloko de registriĝo</string>
   <string name="RegistrationLockDialog_enable">Ŝalti</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">La PIN estu almenaŭ %d ciferajn longa.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">La du PIN, kiujn vi entajpis, ne kongruas.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Eraro dum konekto al servo</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Ĉu malŝalti la PIN de bloko de registriĝo?</string>

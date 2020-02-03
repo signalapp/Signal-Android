@@ -238,6 +238,7 @@
   <string name="ConversationFragment_failed_to_open_message">Akatsa mezua irekitzean</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Azkar erantzuteko, irristatu hatza eskuinetara edozein mezuren gainean</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Azkar erantzuteko, irristatu hatza ezkerretara edozein mezuren gainean </string>
+  <string name="ConversationFragment_you_already_viewed_this_message">Mezu hau ikusia duzu</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Ez dago nabigatzaile instalaturik zure gailuan.</string>
   <!--ConversationListFragment-->
@@ -268,6 +269,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Egiaztatua</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Profila</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Errorea gertatu da profileko argazkia gordetzean</string>
   <string name="CreateProfileActivity_problem_setting_profile">Profila gordetzean errorea</string>
   <string name="CreateProfileActivity_profile_photo">Profileko argazkia</string>
@@ -625,6 +627,7 @@ zenbakia (%s) baliogabea da.
   <string name="RegistrationActivity_call">Deitu</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Ikusi argazkia</string>
+  <string name="RevealableMessageView_view_video">Bideoa Ikusi</string>
   <string name="RevealableMessageView_viewed">Ikusita</string>
   <string name="RevealableMessageView_media">Multimedia</string>
   <!--ScribbleActivity-->
@@ -785,7 +788,6 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Ireki Signal azken jakinarazpenak egiaztatzeko.</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontaktua</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">Zure mezuak erreakzioa sortu du: %1$s</string> -->
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Lehenetsia</string>
   <string name="NotificationChannel_calls">Deiak</string>
@@ -1042,6 +1044,8 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signalek MMS ezarpenak behar ditu media eta taldeko mezuak banatu ahal izateko zure hari-gabeko hornitzailearen bitartez. Zure gailuak ez dauka informazio hau eskuragarri. Hau batzuetan gertatzen da blokeatuta dauden eta beste konfigurazio murrizgarriak dituzten gailuetan.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Media eta taldeko mezuak bidaltzeko, ukitu \'Ados\' eta osatu behar diren ezarpenak. Zure hornitzailearentzako ezarpenak normalean topa daitezke zure hornitzailearen APNa bilatuz. Bakarrik behin egin beharko duzu hau.</string>
   <!--profile_create_activity-->
+  <string name="CreateProfileActivity_first_name_required">Izena (beharrezkoa)</string>
+  <string name="CreateProfileActivity_last_name_optional">Abizena (aukerazkoa)</string>
   <string name="CreateProfileActivity_next">Hurrengoa</string>
   <string name="CreateProfileActivity__username">Erabiltzailearen izena</string>
   <string name="CreateProfileActivity__create_a_username">Sortu erabiltzaile izena</string>
@@ -1391,6 +1395,43 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="SecondInviteReminder__description">%1$s gonbidatu</string>
   <string name="InsightsReminder__view_insights">Estatistikak Ikusi</string>
   <string name="InsightsReminder__invite">Gonbidatu</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Hurrengoa</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__create_a_new_pin">Sortu PIN berria</string>
+  <string name="CreateKbsPinFragment__create_your_pin">Sortu zure PINa</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">Baieztatu zure PIN-a.</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN-a sortzeak huts egin du</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Zure PIN-a ez da gorde. Beranduago PIN bat sortzea eskatuko dizugu.</string>
+  <string name="ConfirmKbsPinFragment__pin_created">PIN-a sortua.</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">PIN-ak sartzen</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">Zure kontuari beste segurtasun maila bat gehitu. %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">Irakurri gehiago hemen.</string> -->
+  <string name="KbsSplashFragment__read_more_about_pins">Irakurri gehiago PIN-ei buruz.</string>
+  <string name="KbsSplashFragment__update_pin">Eguneratu PIN-a</string>
+  <string name="KbsSplashFragment__create_your_pin">Sortu zure PINa</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">Gogorarazi iezadazu beranduago</string> -->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">Sartu zure Signal PIN-a</string>
+  <string name="KbsReminderDialog__skip">Saltatu</string>
+  <string name="KbsReminderDialog__submit">Bidali</string>
+  <string name="KbsReminderDialog__forgot_pin">PINa ahaztu al duzu?</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">PIN okerra. Saia zaitez berriro.</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__account_locked">Kontua blokeatuta</string>
+  <string name="AccountLockedFragment__next">Hurrengoa</string>
+  <string name="AccountLockedFragment__learn_more">Gehiago jakin</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">Sartu zure PIN-a</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">Idatzi konturako sortu duzun PIN-a. PIN hau ez da zure SMS berifikazio gakoa.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">Idatzi PIN alfanumerikoa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">Idatzi zenbakizko PIN-a</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Hurrengoa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">PIN okerra. Saia zaitez berriro.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">PINa ahaztu al duzu?</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Garraio ikonoa</string>
   <string name="ConversationListFragment_loading">Kargatzen…</string>

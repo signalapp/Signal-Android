@@ -116,7 +116,7 @@
   <string name="ContactsCursorLoader_phone_number_search">फ़ोन नंबर खोजें</string>
   <string name="ContactsCursorLoader_username_search">उपयोगकर्ता का नाम खोजें</string>
   <!--ContactsDatabase-->
-  <string name="ContactsDatabase_message_s">%s को संदेश</string>
+  <string name="ContactsDatabase_message_s">%s को मेसेज</string>
   <string name="ContactsDatabase_signal_call_s">%s को Signal कॉल</string>
   <!--ContactNameEditActivity-->
   <string name="ContactNameEditActivity_given_name">नाम</string>
@@ -137,7 +137,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">भेजने में असफल रहा, असुरक्षित फ़ॉलबैक के लिए टैप करें</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">अनएन्क्रिप्टेड SMS पर फॉलबैक?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">अनएन्क्रिप्टेड MMS पर फॉलबैक?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">यह संदेश एन्क्रिप्ट <b>नहीं</b> किया जाएगा क्योंकि प्राप्तकर्ता अब Signal उपयोगकर्ता नहीं है। \n\n असुरक्षित संदेश भेजें?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">यह मेसेज एन्क्रिप्ट <b>नहीं</b> किया जाएगा क्योंकि प्राप्तकर्ता अब Signal उपयोगकर्ता नहीं है। \n\n असुरक्षित मेसेज भेजें?</string>
   <string name="ConversationItem_unable_to_open_media">इस मीडिया को खोलने में सक्षम कोई ऐप नहीं मिल सकता है।</string>
   <string name="ConversationItem_copied_text">%s की नकल की</string>
   <string name="ConversationItem_from_s">%s से</string>
@@ -177,8 +177,8 @@
   <string name="ConversationActivity_quick_camera_unavailable">कैमरा अनुपलब्ध</string>
   <string name="ConversationActivity_unable_to_record_audio">ऑडियो रिकॉर्ड करने में असमर्थ</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">आपके डिवाइस पर इस लिंक को संभालने के लिए कोई ऐप उपलब्ध नहीं है।</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">ऑडियो संदेश भेजने के लिए, अपने माइक्रोफ़ोन पर Signal पहुंच की अनुमति दें।</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">ऑडियो संदेशों को भेजने के लिए Signal को माइक्रोफ़ोन अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स जारी रखें, \"अनुमतियां\" चुनें, और \"माइक्रोफ़ोन\" सक्षम करें।</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">ऑडियो मेसेज भेजने के लिए, अपने माइक्रोफ़ोन पर Signal पहुंच की अनुमति दें।</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">ऑडियो मेसेज को भेजने के लिए Signal को माइक्रोफ़ोन अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स जारी रखें, \"अनुमतियां\" चुनें, और \"माइक्रोफ़ोन\" सक्षम करें।</string>
   <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">%s को कॉल करने के लिए, Signal को आपके माइक्रोफ़ोन और कैमरे तक पहुंच की आवश्यकता होती है।</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">%s को कॉल करने के लिए Signal को माइक्रोफ़ोन और कैमरा अनुमतियों की आवश्यकता होती है, लेकिन उन्हें स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स जारी रखें, \"अनुमतियां\" चुनें, और \"माइक्रोफ़ोन\" और \"कैमरा\" सक्षम करें।</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">फोटो और वीडियो कैप्चर करने के लिए, कैमरे को Signal पहुंच की अनुमति दें।</string>
@@ -188,7 +188,7 @@
   <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal को वीडियो रिकॉर्ड करने के लिए माइक्रोफोन की अनुमति की आवश्यकता होती है, लेकिन उसे अस्वीकार कर दिया गया है। कृपया एप्प विन्यास जारी रखें, \"अनुमतियां\" चुनें, और \"माइक्रोफोन\" और \"कैमरा\" सक्षम करें।</string>
   <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal को वीडियो रिकॉर्ड करने के लिए माइक्रोफोन की अनुमति की आवश्यकता होती है।</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
-  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal SMS/MMS संदेश नहीं भेज सकता क्योंकि यह आपका तयशुदा SMS एप्प नहीं है। क्या आप इसे अपने Android विन्यास में बदलना चाहेंगे?</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal SMS/MMS मेसेज नहीं भेज सकता क्योंकि यह आपका तयशुदा SMS एप्प नहीं है। क्या आप इसे अपने Android सेटिंग्स बदलना चाहेंगे?</string>
   <string name="ConversationActivity_yes">हाँ </string>
   <string name="ConversationActivity_no">नहीं</string>
   <string name="ConversationActivity_search_position">%1$d का %2$d</string>
@@ -197,13 +197,13 @@
   <string name="ConversationActivity_new_say_it_with_stickers">नया! स्टीकर के साथ कहें</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
-    <item quantity="one">%d अपठित संदेश</item>
-    <item quantity="other">%dअपठित संदेश </item>
+    <item quantity="one">%d अपठित मेसेज</item>
+    <item quantity="other">%dअपठित मेसेज</item>
   </plurals>
   <!--ConversationFragment-->
   <plurals name="ConversationFragment_delete_selected_messages">
-    <item quantity="one">चयनित संदेश हटाएं?</item>
-    <item quantity="other">चयनित संदेश हटाएं?</item>
+    <item quantity="one">चयनित मेसेज हटाएं?</item>
+    <item quantity="other">चयनित मेसेज हटाएं?</item>
   </plurals>
   <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
     <item quantity="one">यह सभी चयनित वार्तालापों को स्थायी रूप से हटा देगा।</item>
@@ -270,6 +270,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">सत्यापित</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">प्रोफ़ाइल</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">प्रोफाइल फोटो सेट करने में त्रुटि</string>
   <string name="CreateProfileActivity_problem_setting_profile">प्रोफ़ाइल सेट करने में समस्या</string>
   <string name="CreateProfileActivity_profile_photo">प्रोफाइल फोटो</string>
@@ -342,7 +343,7 @@
   <string name="GcmBroadcastReceiver_retrieving_a_message">मेसेज मंगाया जा रहा है़…</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">स्थायी Signal संचार विफलता</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Google Play सेवाओं के साथ पंजीकरण करने में असमर्थ था। Signal संदेश और कॉल अक्षम कर दिए गए हैं, कृपया सेटिंग &gt; उन्नत में पुनः पंजीकरण करने का प्रयास करें।</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Google Play सेवाओं के साथ पंजीकरण करने में असमर्थ था। Signal मेसेज और कॉल अक्षम कर दिए गए हैं, कृपया सेटिंग्स &gt; उन्नत में पुनः पंजीकरण करने का प्रयास करें।</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">पूर्ण रिज़ॉल्यूशन GIF पुनर्प्राप्त करते समय त्रुटि</string>
   <!--GiphyFragmentPageAdapter-->
@@ -354,7 +355,7 @@
   <string name="GroupCreateActivity_group_name_hint">समूह का नाम</string>
   <string name="GroupCreateActivity_actionbar_mms_title">नया MMS समूह</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">आपने एक संपर्क चुना है जो Signal समूहों का समर्थन नहीं करता है, इसलिए यह समूह एमएमएस होगा।</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">आप Signal संदेशों और कॉल के लिए पंजीकृत नहीं हैं, इसलिए Signal समूह अक्षम हैं। सेटिंग्स &gt; उन्नत में पंजीकरण करने का प्रयास करें।</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">आप Signal मेसेज और कॉल के लिए पंजीकृत नहीं हैं, इसलिए Signal समूह अक्षम हैं। सेटिंग्स &gt; उन्नत में पंजीकरण करने का प्रयास करें।</string>
   <string name="GroupCreateActivity_contacts_no_members">आपको अपने समूह में कम से कम एक व्यक्ति की आवश्यकता है!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">आपके समूह के सदस्यों में से एक में एक संपर्क नंबर है जिसे सही ढंग से पढ़ा नहीं जा सकता है। कृपया उस संपर्क को ठीक करें या हटाएं और पुनः प्रयास करें।</string>
   <string name="GroupCreateActivity_avatar_content_description">समूह अवतार</string>
@@ -374,7 +375,7 @@
   <string name="CropImageActivity_group_avatar">समूह अवतार</string>
   <string name="CropImageActivity_profile_avatar">अवतार</string>
   <!--InputPanel-->
-  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">वॉइस संदेश रिकॉर्ड करने के लिए टैप करें और दबाएं और भेजने के लिए रिलीज़ करें</string>
+  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">वॉइस मेसेज रिकॉर्ड करने के लिए टैप करें और दबाएं और भेजने के लिए रिलीज़ करें</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">साझा करें</string>
   <string name="InviteActivity_choose_contacts">संपर्क चुनें</string>
@@ -402,8 +403,8 @@
   <string name="MessageDetailsRecipient_failed_to_send">भेजने में विफल</string>
   <string name="MessageDetailsRecipient_new_safety_number">नई सुरक्षा संख्या</string>
   <!--LongMessageActivity-->
-  <string name="LongMessageActivity_unable_to_find_message">संदेश खोजने में असमर्थ</string>
-  <string name="LongMessageActivity_message_from_s">%1$s से संदेश</string>
+  <string name="LongMessageActivity_unable_to_find_message">मेसेज खोजने में असमर्थ</string>
+  <string name="LongMessageActivity_message_from_s">%1$s से मेसेज</string>
   <string name="LongMessageActivity_your_message">आपका मेसेज</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
@@ -420,8 +421,8 @@
     <item quantity="other">चयनित आइटम हटाएं?</item>
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one"> यह सभी चयनित फ़ाइल को स्थायी रूप से हटा देगा। इन वस्तुओं से जुड़ा कोई भी मेसेज पाठ भी हटा दिया जाएगा।</item>
-    <item quantity="other">%1$d यह सभी चयनित फ़ाइलों को स्थायी रूप से हटा देगा। इन वस्तुओं से जुड़ा कोई भी मेसेज पाठ भी हटा दिया जाएगा।</item>
+    <item quantity="one"> यह सभी चयनित फ़ाइल को स्थायी रूप से हटा देगा। इन आइटम से जुड़ा कोई भी मेसेज पाठ भी हटा दिया जाएगा।</item>
+    <item quantity="other">%1$d यह सभी चयनित फ़ाइलों को स्थायी रूप से हटा देगा। इन आइटम से जुड़ा कोई भी मेसेज पाठ भी हटा दिया जाएगा।</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">हटाना</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">मेसेज हटाए जा रहे हैं</string>
@@ -436,17 +437,17 @@
   <string name="MediaOverviewActivity_List_view_description">लिस्ट व्यु</string>
   <string name="MediaOverviewActivity_Selected_description">चयनित</string>
   <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$dआइटम%2$s</item>
-    <item quantity="other">%1$dआइटम%2$s</item>
+    <item quantity="one">%1$dआइटम %2$s</item>
+    <item quantity="other">%1$dआइटम %2$s</item>
   </plurals>
   <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$dआइटम</item>
-    <item quantity="other">%1$dआइटम</item>
+    <item quantity="one">%1$d आइटम</item>
+    <item quantity="other">%1$d आइटम</item>
   </plurals>
   <string name="MediaOverviewActivity_file">फ़ाइल</string>
   <string name="MediaOverviewActivity_audio">ऑडियो</string>
   <string name="MediaOverviewActivity_video">वीडियो</string>
-  <string name="MediaOverviewActivity_image">छवि</string>
+  <string name="MediaOverviewActivity_image">तस्वीर</string>
   <string name="MediaOverviewActivity_sent_by_s">%1$s द्वारा भेजा</string>
   <string name="MediaOverviewActivity_sent_by_you">आपके द्वारा भेजा गया</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s द्वारा %2$s को भेजा गया</string>
@@ -737,11 +738,11 @@
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">कैमरा अनुमति के बिना क्यूआर कोड स्कैन करने में असमर्थ</string>
   <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">खराब एन्क्रिप्टेड संदेश</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">गैर-मौजूदा सत्र के लिए संदेश एन्क्रिप्ट किया गया</string>
+  <string name="MessageDisplayHelper_bad_encrypted_message">खराब एन्क्रिप्टेड मेसेज</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">गैर-मौजूदा सत्र के लिए मेसेज एन्क्रिप्ट किया गया</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">खराब एन्क्रिप्टेड MMS संदेश</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">गैर-मौजूदा सत्र के लिए MMS संदेश एन्क्रिप्ट किया गया </string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">खराब एन्क्रिप्टेड MMS मेसेज</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">गैर-मौजूदा सत्र के लिए MMS मेसेज एन्क्रिप्ट किया गया</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">नोटिफिकेशन म्यूट करें</string>
   <!--OutdatedBuildReminder-->
@@ -768,14 +769,14 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d संवाद में %1$d नए मेसेज</string>
   <string name="MessageNotifier_most_recent_from_s">%1$s से हाल ही में</string>
-  <string name="MessageNotifier_locked_message">लॉक संदेश</string>
-  <string name="MessageNotifier_media_message_with_text">%s मीडिया संदेश</string>
+  <string name="MessageNotifier_locked_message">लॉक मेसेज</string>
+  <string name="MessageNotifier_media_message_with_text">मीडिया मेसेज: %s</string>
   <string name="MessageNotifier_message_delivery_failed">मेसेज प्रेषण असफल हुआ</string>
   <string name="MessageNotifier_failed_to_deliver_message">मेसेज देने में विफल रहा</string>
   <string name="MessageNotifier_error_delivering_message">मेसेज देने में त्रुटि</string>
   <string name="MessageNotifier_mark_all_as_read">सभी को पढ़ा हुआ मार्क करें</string>
   <string name="MessageNotifier_mark_read">पढ़ा हुआ मार्क करें</string>
-  <string name="MessageNotifier_media_message">मीडिया संदेश</string>
+  <string name="MessageNotifier_media_message">मीडिया मेसेज</string>
   <string name="MessageNotifier_sticker">स्टिकर</string>
   <string name="MessageNotifier_view_once_photo">देखें-एक बार फोटो</string>
   <string name="MessageNotifier_view_once_video">देखें-एक बार वीडियो</string>
@@ -786,7 +787,14 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">नई अधिसुचनाओं के लिए Signal खोलें।</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">संपर्क</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">आपके मेसेज पर प्रतिक्रिया: %1$s</string> -->
+  <string name="MessageNotifier_reacted_s_to_s">प्रतिक्रिया की गई %1$s से: \"%2$s\".</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">आपके वीडियो पर %1$s ने प्रतिक्रिया व्यक्त की गई </string>
+  <string name="MessageNotifier_reacted_s_to_your_image">आपकी तस्वीर पर %1$s ने प्रतिक्रिया व्यक्त की.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">आपकी फ़ाइल पर %1$sने प्रतिक्रिया व्यक्त की|</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">आपके ऑडियो के लिए %1$sप्रतिक्रिया व्यक्त की।</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">आपके विचार-एक बार फोटो पर %1$sको पुनःप्रक्रिया|</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">आपके दृश्य-एक बार वीडियो पर %1$sप्रतिक्रिया व्यक्त की।</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">आपके स्टिकर पर %1$sको पुन: सक्रिय किया।</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">डिफ़ॉल्ट</string>
   <string name="NotificationChannel_calls">कॉल</string>
@@ -928,7 +936,7 @@
   <string name="QuoteView_sticker">स्टिकर</string>
   <string name="QuoteView_document">दस्तावेज़</string>
   <string name="QuoteView_you">आप</string>
-  <string name="QuoteView_original_missing">मूल संदेश नहीं मिला</string>
+  <string name="QuoteView_original_missing">मूल मेसेज नहीं मिला</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">नीचे स्क्रॉल करें</string>
   <!--country_selection_fragment-->
@@ -1010,7 +1018,7 @@
   <string name="log_submit_activity__please_review_this_log_from_my_app">कृपया मेरे ऐप %1$s से इस लॉग की समीक्षा करें</string>
   <string name="log_submit_activity__network_failure">नेटवर्क विफलता। कृपया पुन: प्रयास करें।</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">क्या आप अपने मौजूदा टेक्स्ट संदेशों को Signal के एन्क्रिप्टेड डेटाबेस में आयात करना चाहते हैं?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">क्या आप अपने मौजूदा टेक्स्ट मेसेज को Signal के एन्क्रिप्टेड डेटाबेस में आयात करना चाहते हैं?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">डिफ़ॉल्ट सिस्टम डेटाबेस किसी भी तरह से संशोधित या परिवर्तित नहीं किया जाएगा।</string>
   <string name="database_migration_activity__skip">छोड़ दे </string>
   <string name="database_migration_activity__import">आयात</string>
@@ -1040,9 +1048,11 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">खोलो </string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal को आपके वायरलेस वाहक के माध्यम से मीडिया और समूह संदेशों को वितरित करने के लिए MMS सेटिंग्स की आवश्यकता होती है। आपका डिवाइस यह जानकारी उपलब्ध नहीं कराता है, जो कभी-कभी लॉक किए गए डिवाइस और अन्य प्रतिबंधित कॉन्फ़िगरेशन के लिए सच है।</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">मीडिया और समूह संदेश भेजने के लिए, \'ओके\' टैप करें और अनुरोधित सेटिंग्स को पूरा करें। आपके वाहक के लिए MMS सेटिंग्स आम तौर पर \'आपके वाहक एपीएन\' की खोज करके स्थित हो सकती हैं। आपको केवल एक बार ऐसा करने की आवश्यकता होगी।</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal को आपके वायरलेस वाहक के माध्यम से मीडिया और समूह मेसेज को वितरित करने के लिए MMS सेटिंग्स की आवश्यकता होती है। आपका डिवाइस यह जानकारी उपलब्ध नहीं कराता है, जो कभी-कभी लॉक किए गए डिवाइस और अन्य प्रतिबंधित कॉन्फ़िगरेशन के लिए सच है।</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">मीडिया और समूह मेसेज भेजने के लिए, \'OK\' टैप करें और अनुरोधित सेटिंग्स को पूरा करें। आपके वाहक के लिए MMS सेटिंग्स आम तौर पर \'आपके वाहक APN\' की खोज करके स्थित हो सकती हैं। आपको केवल एक बार ऐसा करने की आवश्यकता होगी।</string>
   <!--profile_create_activity-->
+  <string name="CreateProfileActivity_first_name_required">पहला नाम (आवश्यक)</string>
+  <string name="CreateProfileActivity_last_name_optional">अंतिम नाम (वैकल्पिक)</string>
   <string name="CreateProfileActivity_next">अगला</string>
   <string name="CreateProfileActivity__username">उपयोगकर्ता नाम</string>
   <string name="CreateProfileActivity__create_a_username">एक उपयोगकर्ता नाम बनाएँ</string>
@@ -1102,7 +1112,7 @@
   <string name="AndroidManifest__verify_safety_number">सुरक्षा संख्या सत्यापित करें</string>
   <string name="AndroidManifest__log_submit">डीबग लॉग जमा करें</string>
   <string name="AndroidManifest__media_preview">मीडिया प्रिव्यु</string>
-  <string name="AndroidManifest__message_details">संदेश विवरण</string>
+  <string name="AndroidManifest__message_details">मेसेज विवरण</string>
   <string name="AndroidManifest__linked_devices">जुड़े हुए उपकरण </string>
   <string name="AndroidManifest__invite_friends">मित्रों को आमंत्रित करें</string>
   <string name="AndroidManifest_archived_conversations">संग्रहीत बातचीत</string>
@@ -1119,9 +1129,9 @@
   <string name="arrays__settings_default">सेटिंग्स डिफ़ॉल्ट</string>
   <string name="arrays__enabled">सक्षम</string>
   <string name="arrays__disabled">अक्षम</string>
-  <string name="arrays__name_and_message">नाम और संदेश</string>
+  <string name="arrays__name_and_message">नाम और मेसेज</string>
   <string name="arrays__name_only">केवल नाम</string>
-  <string name="arrays__no_name_or_message">कोई नाम या संदेश नहीं</string>
+  <string name="arrays__no_name_or_message">कोई नाम या मेसेज नहीं</string>
   <string name="arrays__images">तसवीरें </string>
   <string name="arrays__audio">ऑडियो </string>
   <string name="arrays__video">वीडियो </string>
@@ -1142,10 +1152,10 @@
   <string name="preferences__sms_mms">SMS और MMS…</string>
   <string name="preferences__pref_all_sms_title">सभी SMS प्राप्त करें</string>
   <string name="preferences__pref_all_mms_title">सभी MMS प्राप्त करें</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">सभी आने वाले पाठ संदेशों के लिए Signal का उपयोग करें</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">सभी आने वाले मल्टीमीडिया संदेशों के लिए Signal का उपयोग करें</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">सभी आने वाले पाठ मेसेज के लिए Signal का उपयोग करें</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">सभी आने वाले मल्टीमीडिया मेसेज के लिए Signal का उपयोग करें</string>
   <string name="preferences__pref_enter_sends_title">दर्ज की भेजता है</string>
-  <string name="preferences__pressing_the_enter_key_will_send_text_messages">एंटर कुंजी दबाकर टेक्स्ट संदेश भेजे जाएंगे</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">एंटर कुंजी दबाकर टेक्स्ट मेसेज भेजे जाएंगे</string>
   <string name="preferences__send_link_previews">लिंक प्रिव्यु भेजें</string>
   <string name="preferences__previews_are_supported_for">Imgur, Instagram, Pinterest, Reddit, और YouTube की लिंक्स का पूर्व दृश्य देखना संभव है</string>
   <string name="preferences__choose_identity">पहचान का चयन करें</string>
@@ -1195,9 +1205,9 @@
   <string name="preferences__mmsc_username">MMSC उपयोगकर्ता नाम</string>
   <string name="preferences__mmsc_password">MMSC पासवर्ड</string>
   <string name="preferences__sms_delivery_reports">SMS वितरण रिपोर्ट</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">आपके द्वारा भेजे जाने वाले प्रत्येक SMS संदेश के लिए डिलीवरी रिपोर्ट का अनुरोध करें</string>
-  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">वार्तालाप एक निर्दिष्ट लंबाई से अधिक हो जाने के बाद स्वचालित रूप से पुराने संदेशों को हटा दें</string>
-  <string name="preferences__delete_old_messages">पुराने संदेश हटाएं</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">आपके द्वारा भेजे जाने वाले प्रत्येक SMS मेसेज के लिए डिलीवरी रिपोर्ट का अनुरोध करें</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">वार्तालाप एक निर्दिष्ट लंबाई से अधिक हो जाने के बाद स्वचालित रूप से पुराने मेसेज को हटा दें</string>
+  <string name="preferences__delete_old_messages">पुराने मेसेज हटाएं</string>
   <string name="preferences__chats">चैट और मीडिया</string>
   <string name="preferences__storage">स्टॉरेज </string>
   <string name="preferences__conversation_length_limit">वार्तालाप लंबाई सीमा</string>
@@ -1211,8 +1221,8 @@
   <string name="preferences__theme">विषय</string>
   <string name="preferences__default">डिफ़ॉल्ट</string>
   <string name="preferences__language">भाषा </string>
-  <string name="preferences__signal_messages_and_calls">Signal संदेश और कॉल</string>
-  <string name="preferences__free_private_messages_and_calls">Signal उपयोगकर्ताओं को मुफ्त निजी संदेश और कॉल</string>
+  <string name="preferences__signal_messages_and_calls">Signal मेसेज और कॉल</string>
+  <string name="preferences__free_private_messages_and_calls">Signal उपयोगकर्ताओं को मुफ्त निजी मेसेज और कॉल</string>
   <string name="preferences__submit_debug_log">डीबग लॉग जमा करें</string>
   <string name="preferences__support_wifi_calling">\'वाईफाई कॉलिंग\' संगतता मोड</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">सक्षम करें अगर आपका डिवाइस वाईफाई पर SMS / MMS डिलीवरी का उपयोग करता है (केवल तभी सक्षम करें जब आपके डिवाइस पर \'वाईफाई कॉलिंग\' सक्षम हो)</string>
@@ -1271,8 +1281,8 @@
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">मेसेज की माहिती</string>
   <string name="conversation_context__menu_copy_text">कॉपी टेक्स्ट</string>
-  <string name="conversation_context__menu_delete_message"> डिलीट मेसिज</string>
-  <string name="conversation_context__menu_forward_message">फॉर्वर्ड मेसिज</string>
+  <string name="conversation_context__menu_delete_message"> डिलीट मेसेज</string>
+  <string name="conversation_context__menu_forward_message">फॉर्वर्ड मेसेज</string>
   <string name="conversation_context__menu_resend_message">मेसेज दोबारा भेजें</string>
   <string name="conversation_context__menu_reply_to_message">मेसेज का जवाब</string>
   <!--conversation_context_reacction-->
@@ -1342,12 +1352,12 @@
   </plurals>
   <string name="reminder_header_outdated_build_details_today">Signal का आपका वर्ज़न आज समाप्त हो जाएगा। नवीनतम वर्ज़न में अपडेट करने के लिए टैप करें।</string>
   <string name="reminder_header_expired_build">Signal का आपका वर्ज़न समाप्त हो गया है!</string>
-  <string name="reminder_header_expired_build_details">संदेश अब सफलतापूर्वक नहीं भेजे जाएंगे। नवीनतम वर्ज़न में अपडेट करने के लिए टैप करें।</string>
+  <string name="reminder_header_expired_build_details">मेसेज अब सफलतापूर्वक नहीं भेजे जाएंगे। नवीनतम वर्ज़न में अपडेट करने के लिए टैप करें।</string>
   <string name="reminder_header_sms_default_title">डिफ़ॉल्ट SMS ऐप के रूप में उपयोग करें</string>
   <string name="reminder_header_sms_default_text">अपने डिफ़ॉल्ट SMS ऐप को Signal करने के लिए टैप करें</string>
   <string name="reminder_header_sms_import_title">सिस्टम SMS आयात करें</string>
   <string name="reminder_header_sms_import_text">अपने फोन के SMS मेसेजों को Signal के एन्क्रिप्टेड डेटाबेस में कॉपी करने के लिए टैप करें।</string>
-  <string name="reminder_header_push_title">Signal संदेश और कॉल सक्षम करें</string>
+  <string name="reminder_header_push_title">Signal मेसेज और कॉल सक्षम करें</string>
   <string name="reminder_header_push_text">अपने संचार अनुभव को अपग्रेड करें।</string>
   <string name="reminder_header_invite_title">Signal को आमंत्रित करें</string>
   <string name="reminder_header_invite_text">अपने वार्तालाप को %1$s के साथ अगले स्तर पर ले जाएं।</string>
@@ -1368,30 +1378,85 @@
   <!--Trimmer-->
   <string name="trimmer__deleting">हटाना</string>
   <string name="trimmer__deleting_old_messages">पुराने मेसेज को हटा रहा है</string>
-  <string name="trimmer__old_messages_successfully_deleted">पुराने संदेश सफलतापूर्वक हटाए गए</string>
+  <string name="trimmer__old_messages_successfully_deleted">पुराने मेसेज सफलतापूर्वक हटाए गए</string>
   <!--Insights-->
   <string name="Insights__percent">%</string>
-  <string name="Insights__title">Insights</string>
-  <string name="InsightsDashboardFragment__title">Insights</string>
-  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal प्रोटोकॉल ने पिछले %2$d दिनों में आपके %1$d%% आउटगोइंग संदेशों की स्वचालित रूप से रक्षा की। Signal उपयोगकर्ताओं के बीच वार्तालाप हमेशा अंत-से-अंत एन्क्रिप्टेड होते हैं।</string>
+  <string name="Insights__title">इनसाइट्स</string>
+  <string name="InsightsDashboardFragment__title">इनसाइट्स</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal प्रोटोकॉल ने पिछले %2$d दिनों में आपके %1$d%% आउटगोइंग मेसेज की स्वचालित रूप से रक्षा की। Signal उपयोगकर्ताओं के बीच वार्तालाप हमेशा अंत-से-अंत एन्क्रिप्टेड होते हैं।</string>
   <string name="InsightsDashboardFragment__boost_your_signal">Signal बढ़ाएँ</string>
   <string name="InsightsDashboardFragment__not_enough_data">पर्याप्त डाटा नहीं</string>
-  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">आपके Insights प्रतिशत की गणना पिछले %1$d दिनों के आउटगोइंग संदेशों के आधार पर की जाती है जो गायब नहीं हुए हैं या मिटाए नहीं गए हैं।</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">आपके इनसाइट्स प्रतिशत की गणना पिछले %1$d दिनों के आउटगोइंग मेसेज के आधार पर की जाती है जो गायब नहीं हुए हैं या मिटाए नहीं गए हैं।</string>
   <string name="InsightsDashboardFragment__start_a_conversation">एक वार्तालाप शुरु करें</string>
-  <string name="InsightsDashboardFragment__invite_your_contacts">सुरक्षित रूप से संचार करना शुरू करें और Signal में शामिल होने के लिए अधिक संपर्कों को आमंत्रित करके अनएन्क्रिप्टेड एसएमएस संदेशों की सीमाओं से परे जाने वाली नई विशेषताएं को सक्षम करें।</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">सुरक्षित रूप से संचार करना शुरू करें और Signal में शामिल होने के लिए अधिक संपर्कों को आमंत्रित करके अनएन्क्रिप्टेड SMS मेसेज की सीमाओं से परे जाने वाली नई फ़ीचर्स को सक्षम करें।</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">ये आँकड़े स्थानीय रूप से आपके डिवाइस पर उत्पन्न हुए थे और केवल आपके द्वारा देखे जा सकते हैं। वे कभी भी कहीं भी प्रेषित नहीं होते हैं।</string>
-  <string name="InsightsDashboardFragment__encrypted_messages">एन्क्रिप्टेड संदेश</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">एन्क्रिप्टेड मेसेज</string>
   <string name="InsightsDashboardFragment__cancel">रद्द करें</string>
   <string name="InsightsDashboardFragment__send">भेजें</string>
-  <string name="InsightsModalFragment__title">पेश है Insights</string>
-  <string name="InsightsModalFragment__description">यह पता करें कि आपके आउटगोइंग संदेशों में से कितने सुरक्षित रूप से भेजे गए थे, फिर अपने Signal प्रतिशत को बढ़ाने के लिए नए संपर्कों को जल्दी से आमंत्रित करें।</string>
-  <string name="InsightsModalFragment__view_insights">Insights देखें</string>
+  <string name="InsightsModalFragment__title">पेश है इनसाइट्स</string>
+  <string name="InsightsModalFragment__description">यह पता करें कि आपके आउटगोइंग मेसेज में से कितने सुरक्षित रूप से भेजे गए थे, फिर अपने Signal प्रतिशत को बढ़ाने के लिए नए संपर्कों को जल्दी से आमंत्रित करें।</string>
+  <string name="InsightsModalFragment__view_insights">इनसाइट्स देखें</string>
   <string name="FirstInviteReminder__title">Signal का उपयोग करने के लिए आमंत्रित करें</string>
-  <string name="FirstInviteReminder__description">आप एन्क्रिप्ट भेजे गए संदेशों की संख्या %1$d%% से बढ़ा सकते हैं</string>
+  <string name="FirstInviteReminder__description">आप एन्क्रिप्ट भेजे गए मेसेज की संख्या %1$d%% से बढ़ा सकते हैं</string>
   <string name="SecondInviteReminder__title">अपना Signal बढ़ाएँ</string>
   <string name="SecondInviteReminder__description">%1$s को आमंत्रित करें</string>
-  <string name="InsightsReminder__view_insights">Insights देखें</string>
+  <string name="InsightsReminder__view_insights">इनसाइट्स देखें</string>
   <string name="InsightsReminder__invite">आमंत्रण</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">अगला</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">अल्फ़ान्यूमेरिक पिन बनाएं</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">न्यूमेरिक पिन बनाएं</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">पिन कम से कम %1$d अक्षर का होना चाहिए</string>
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">पिन कम से कम %1$d अंकों का होना चाहिए</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">नया पिेन बनाएँ</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">क्योंकि आप अभी भी लॉग इन हैं, आप एक नया पिन बना सकते हैं| जब आप लॉग आउट हो जाते हैं, तो आपके पिन को पुनर्प्राप्त करने का कोई तरीका नहीं है।</string> -->
+  <string name="CreateKbsPinFragment__create_your_pin">अपना पिन बनाएँ</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">पिन आपके खाते में सुरक्षा की एक अतिरिक्त परत जोड़ते हैं। अपना पिन नीचे लिखें और इसे सुरक्षित स्थान पर रखें। इसे पुनर्प्राप्त नहीं किया जा सकता है।</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__pins_dont_match">पिन मेल नहीं खाते। पुनः प्रयास करें।</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">अपने पिन की पुष्टि करें।</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">पिन निर्माण विफल रहा</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">आपका पिन सहेजा नहीं गया था| हम आपको बाद में एक पिन बनाने के लिए संकेत देंगे।</string>
+  <string name="ConfirmKbsPinFragment__pin_created">पिन बनाया गया।</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">पेश है, पिन</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">अपने खाते में सुरक्षा का एक और स्तर जोड़ें| %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">यहाँ और पढ़ें|</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string> -->
+  <string name="KbsSplashFragment__registration_lock_equals_pin">पंजीकरन लॉक = पिन</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">आपके पंजीकरण लॉक को अब एक पिन कहा जाता है, और यह अधिक करता है। इसे अभी अपडेट करें| %1$s</string>
+  <string name="KbsSplashFragment__read_more_about_pins">पिन के बारे में अधिक पढ़ें|</string>
+  <string name="KbsSplashFragment__update_pin">पिन अपडेट करें</string>
+  <string name="KbsSplashFragment__create_your_pin">अपना पिन बनाएँ</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">मुझे बाद में याद दिलाना</string> -->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">अपना Signal पिन डालें</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">आपको अपना पिन याद रखने में मदद करने के लिए, हम आपको समय-समय पर इसे दर्ज करने के लिए कहेंगे। हम आपसे समय के साथ कम पूछते हैं।</string>
+  <string name="KbsReminderDialog__skip">छोड़ दे </string>
+  <string name="KbsReminderDialog__submit">सबमिट</string>
+  <string name="KbsReminderDialog__forgot_pin">पिन भूल गए?</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">गलत पिन। पुनः प्रयास करें।</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__account_locked">खाता बंद</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">आपकी गोपनीयता और सुरक्षा की रक्षा के लिए आपका खाता लॉक कर दिया गया है। आपके खाते में निष्क्रियता के %1$d दिनों के बाद आप अपने पिन की आवश्यकता के बिना इस फोन नंबर को फिर से पंजीकृत करने में सक्षम होंगे। सभी सामग्री हटा दी जाएगी।</string>
+  <string name="AccountLockedFragment__next">अगला</string>
+  <string name="AccountLockedFragment__learn_more">और जानें</string>
+  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">अपना पिन डालें</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">अपने ख़ाते के लिये बनाया गया पिन डालें। ये पिन आपके SMS सत्यापण कोड से अलग है।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">अल्फ़ान्यूमेरिक पिन दर्ज करें</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">संख्यात्मक पिन दर्ज करें</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">अगला</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">गलत पिन। पुनः प्रयास करें।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">गलत पिन| %1$d प्रयास बाकी|</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">पिन भूल गए?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">ग़लत पिन</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">आपके पास %1$d प्रयास बाकी हैं| यदि आप प्रयासों से बाहर निकलते हैं तो आपका खाता %2$d दिनों के लिए लॉक हो जाएगा। %3$d दिनों की निष्क्रियता के बाद, आप अपने पिन के बिना फिर से पंजीकरण कर सकते हैं। आपका खाता मिटा दिया जाएगा और सभी सामग्री हटा दी जाएंगी।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">क्या आप अपना पिन भूल गये हैं?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">आपकी गोपनीयता और सुरक्षा के लिए, आपके पिन को पुनर्प्राप्त करने का कोई तरीका नहीं है। यदि आप प्रयासों से बाहर निकलते हैं, तो आप %1$d दिनों की निष्क्रियता के बाद SMS से पुन: सत्यापन कर सकते हैं। इस स्थिति में, आपका खाता मिटा दिया जाएगा और सभी सामग्री हटा दी जाएंगी।</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">परिवहन चिह्न</string>
   <string name="ConversationListFragment_loading">लोड हो रहा है</string>
@@ -1423,7 +1488,7 @@
   <string name="RegistrationActivity_checking">जांच की जा रही है</string>
   <string name="RegistrationActivity_d_messages_so_far">अब तक %d मेसेज…</string>
   <string name="RegistrationActivity_restore_from_backup">बैकअप से बहाल करना?</string>
-  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">स्थानीय संदेशों से अपने संदेशों और मीडिया को पुनर्स्थापित करें। अगर आप अभी पुनर्स्थापित नहीं करते हैं, तो आप बाद में पुनर्स्थापित नहीं कर पाएंगे।</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">स्थानीय मेसेज से अपने मेसेज और मीडिया को पुनर्स्थापित करें। अगर आप अभी पुनर्स्थापित नहीं करते हैं, तो आप बाद में बैकअप नहीं कर पाएंगे।</string>
   <string name="RegistrationActivity_backup_size_s">बैकअप माप: %s</string>
   <string name="RegistrationActivity_backup_timestamp_s">बैकअप टाइमस्टैंप: %s</string>
   <string name="BackupDialog_enable_local_backups">स्थानीय बैकअप सक्षम करें?</string>
@@ -1437,7 +1502,7 @@
   <string name="ChatsPreferenceFragment_last_backup_s">पिछला बैकअप: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">प्रगति में</string>
   <string name="LocalBackupJob_creating_backup">बैकअप बनाया जा रहा है</string>
-  <string name="ProgressPreference_d_messages_so_far">अब तक %d संदेश</string>
+  <string name="ProgressPreference_d_messages_so_far">अब तक %d मेसेज</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">कृपया %s को भेजे गए सत्यापन कोड दर्ज करें।</string>
   <string name="RegistrationActivity_wrong_number">गलत नंबर</string>
   <string name="RegistrationActivity_call_me_instead_available_in">मुझे काॅल करें (%1$02d:%2$02d में उपलब्ध)</string>
@@ -1453,6 +1518,10 @@ Locale: %4$s</string>
   <string name="preferences_app_protection__screen_lock">स्क्रीन लॉक</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Android स्क्रीन लॉक या फिंगरप्रिंट के साथ Signal एक्सेस लॉक करें</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">स्क्रीन लॉक निष्क्रियता टाइमआउट</string>
+  <string name="preferences_app_protection__signal_pin">Signal पिन</string>
+  <string name="preferences_app_protection__pin">पिन</string>
+  <string name="preferences_app_protection__change">बदलो</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">आपका पिन सुरक्षा की एक अतिरिक्त परत जोड़ता है और आपके खाते का बैक अप लेता है। जब आप Signal के साथ अपना फ़ोन नंबर पंजीकृत करेंगे तो आपसे इसके लिए पूछा जाएगा। यदि आप अपना पिन भूल जाते हैं, तो आपको अपने खाते से 7 दिनों के लिए बंद कर दिया जाएगा।</string>
   <string name="AppProtectionPreferenceFragment_none">कुछ नहीं</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">पंजीकरण लॉक पिन आपके द्वारा प्राप्त किए गए एसएमएस सत्यापन कोड जैसा नहीं है। कृपया उस पिन को दर्ज करें जिसे आपने पहले एप्लिकेशन में कॉन्फ़िगर किया था।</string>
   <string name="registration_activity__registration_lock_pin">पंजीकरण लॉक पिन</string>
@@ -1480,11 +1549,12 @@ Locale: %4$s</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">पंजीकरण लॉक अनधिकृत पंजीकरण प्रयासों से आपके फोन नंबर की सुरक्षा में मदद करता है। यह सुविधा किसी भी समय आपकी Signal गोपनीयता सेटिंग्स में अक्षम की जा सकती है।</string>
   <string name="RegistrationLockDialog_registration_lock">पंजीकरण लॉक</string>
   <string name="RegistrationLockDialog_enable">सक्षम करना</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">पंजीकरण लॉक पिन कम से कम %d अंकों का होना चाहिए।</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">आपके द्वारा दर्ज किए गए दो पिन मेल नहीं खाते हैं</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">सेवा से कनेक्ट करने में त्रुटि</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">पंजीकरण लॉक पिन अक्षम करें?</string>
   <string name="RegistrationLockDialog_disable">अक्षम</string>
-  <string name="RegistrationActivity_pin_incorrect">ग़लत PIN</string>
+  <string name="RegistrationActivity_pin_incorrect">ग़लत पिन</string>
   <string name="RegistrationActivity_you_have_d_tries_remaining">आपके पास %d प्रयास शेष हैं</string>
   <string name="preferences_chats__backups">बैकअप</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal लॉक किया गया है</string>
@@ -1495,7 +1565,7 @@ Locale: %4$s</string>
   <string name="MessageRequestBottomView_accept">स्वीकृत </string>
   <string name="MessageRequestBottomView_delete">हटाए </string>
   <string name="MessageRequestBottomView_block">ब्लॉक</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let">क्या आप %1$s से संदेश प्राप्त करना चाहते हैं?</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let">क्या आप %1$s से मेसेज प्राप्त करना चाहते हैं?</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s का सदस्य</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s और %2$s का सदस्य</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s और %3$s का सदस्य</string>

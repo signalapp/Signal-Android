@@ -270,6 +270,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Tabbatacce</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Furofayil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Kuskure wajen saitin hoton furofayil</string>
   <string name="CreateProfileActivity_problem_setting_profile">As samu matsalar saitin furofayil</string>
   <string name="CreateProfileActivity_profile_photo">Hoton furofayil</string>
@@ -792,7 +793,14 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Bude Signal domin duba sabobbin sanarwa.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Lambar sadarwa</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">Ya/ta amsa sakonka/ki: %1$s</string> -->
+  <string name="MessageNotifier_reacted_s_to_s">Ya/ta yi martanin %1$s akan: \"%2$s\".</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">Ya/ta yi martanin %1$s akan bidiyonka/ki.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">Ya/ta yi martanin %1$s akan hotonka/ki.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">Ya/ta yi martanin %1$s akan fayil dinka/ki.</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">Ya/ta yi martanin %1$s akan odiyonka/ki.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Ya/ta yi martanin %1$s akan hotonka/ki mai kallo daya.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Ya/ta yi martanin %1$s akan bidiyonka/ki mai kallo daya.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">Ya/ta yi martanin%1$s akan sitikarka/ki.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Tanadadde</string>
   <string name="NotificationChannel_calls">Kira</string>
@@ -1400,6 +1408,61 @@
   <string name="SecondInviteReminder__description">Gayyaci %1$s</string>
   <string name="InsightsReminder__view_insights">Kalli bayanai</string>
   <string name="InsightsReminder__invite">Gayyaci</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Na gaba</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">Kirkiri lambobin sirri a hade da haruffa.</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">Kirkiri lambobin sirri zalla</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">Dole sai lambobin sirri sun kai haruffa %1$d</string>
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">Dole sai lbobin sirri sun kai wa\'adi %1$d </string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">Kirkiri sabon lambobin sirri</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">Sabida kana cikin Signal, zaka/ki iya kirkira sabon lambobin sirri. Idan ka/kika fita kuma, ba damar murmure lambobin sirrinka/ki.</string> -->
+  <string name="CreateKbsPinFragment__create_your_pin">Kirkiri lambobin sirrinka/ki</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">Lambobin sirri na kara karfin tsaron asusunka/ki. Rubuta lambobin sirrinka/ki kuma ka/ki ajiye da kyau. Baza\'a iya murmurewa ba.</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__pins_dont_match">An samu kuskuren lambobin sirri. Kara gwadawa.</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">Tabbabtar da lambobin sirrinka/ki.</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">Kirkiran lambobin sirri ya gaza</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Ba\'a ajiye lambobin sirrinka/ki ba. Zamu sa ka/ki kirkiri wani anjima.</string>
+  <string name="ConfirmKbsPinFragment__pin_created">An kirkiri lambobin sirri.</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">Gabatarwa da lbobin sirri</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">Kara karfin tsaron asusunka/ki %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">Karanta karin bayani anan.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string> -->
+  <string name="KbsSplashFragment__registration_lock_equals_pin">Kullin rijista = Lambobin sirri</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Sunan makullin rijistarka/ki ya koma Lambobin sirri kuma yafi aiki. Sabunta yanzu.. %1$s</string>
+  <string name="KbsSplashFragment__read_more_about_pins">Karanta karin bayanin lambobin sirri.</string>
+  <string name="KbsSplashFragment__update_pin">Sabunta lambobin sirri</string>
+  <string name="KbsSplashFragment__create_your_pin">Kirkiri lambobin sirrinka/ki</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">Tuna min anjima</string> -->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">Shigar da lambobin sirrin Signal dinka/ki</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Domin tayakaki haddace lambobin sirrinka/ki, zamu rinka tambayan lambobin lokaci-lokaci. Zamu rage tambaya nan gaba.</string>
+  <string name="KbsReminderDialog__skip">Tsallake</string>
+  <string name="KbsReminderDialog__submit">Aika</string>
+  <string name="KbsReminderDialog__forgot_pin">An manta da lambobin sirri?</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">Lambobin sirrinnan ba dai dai bane. Kara gwada.</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__account_locked">Asusu na kulle</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">An kulle asusunka/ki domin kare sirrinka/ki. Bayan kwana %1$d na rashin aikin asusunka/ki zaka/ki iya sake rijista da wannan lambar ba tare da bukatar lambobin sirri ba. Za\'a goge duk abubuwa da suke ciki.</string>
+  <string name="AccountLockedFragment__next">Na gaba</string>
+  <string name="AccountLockedFragment__learn_more">Karin bayani</string>
+  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">Shigar da lambobim sirri</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">Sa lambobin sirri da ka/kika kirkirawa asusunka/ki. Waddannan lambobin, daban suke da waddanda aka turo maka/ki ta SMS.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">Shigar da lambobin sirri mai haruffa.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">Shigar da lambobin sirri mai lambobi zalla</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Na gaba</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">Lambobin sirrinnan ba dai dai bane. Kara gwada.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">Lambobin sirrin ba daidai bane. Damar gwajinka/ki saura %1$d </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">An manta da lambobin sirri?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">Lambobin sirrin ba daidai bane</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">Damar gwajinka/ki saura %1$d . Idan damarka/ki ta kare, za\'a kulle asusunka/ki zuwa kwana%2$d. Bayan kwana %3$d na rashin aiki, zaka/ki iya sake rijista ba tare da lambobin sirrinka/ki ba. Za\'a goge asusunka/ki da abubuwan ciki.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">Ka/kin manta lambobin sirri?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">Domin kare sirrinka/ki, ba damar murmure lambobin sirrinka/ki. idan damar gwadawarka/ki ta kare, zaka/ki iya sake tabbatarwa da SMS bayan kwana %1$d na rashin aiki. A iri wannan kes, za\'a goge asusunka/ki da duk abubuwan da suke ciki.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Gusar da alamar hoto</string>
   <string name="ConversationListFragment_loading">Yana lodi</string>
@@ -1457,6 +1520,10 @@
   <string name="preferences_app_protection__screen_lock">Kullewar fuskar na\'ura</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Kulle hanyar hadin Signal da mukullin fuskar Android da kuma sawun yatsa.</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Lokacin aikin kullin fuskar na\'ura ya kure</string>
+  <string name="preferences_app_protection__signal_pin">Lambobin sirrin Signal</string>
+  <string name="preferences_app_protection__pin">Lambobin sirri</string>
+  <string name="preferences_app_protection__change">Canza</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Lambobin sirrinka/ki na kara karfin tsaron asusunka/ki. Za\'a tambayeka/ki shi idan kayiwa lambar wayarka/ki rijistar Signal. Idan ka/kika manta da lambobin sirrin, za\'a kulle damar samun asusunka/ki zuwa kwana 7.</string>
   <string name="AppProtectionPreferenceFragment_none">Babu.</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Lambar sirrin rijista ba daya bane da lambar sirrin tabbatarwar SMS da ka/kika samu. Dan shigar da lambar sirrin that ka/kika fara sakawa a manhajar.</string>
   <string name="registration_activity__registration_lock_pin">Lambar sirrin rijista</string>

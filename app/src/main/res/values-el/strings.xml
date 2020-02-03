@@ -126,7 +126,7 @@
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Ελήφθη μήνυμα ανταλλαγής κλειδιών, πατήστε για να επεξεργαστεί.</string>
   <string name="ConversationItem_group_action_left">Ο/Η %1$s έφυγε απο την ομάδα.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Η αποστολή απέτυχε, πατήστε για μη ασφαλή εναλλακτική αποστολή</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Να σταλεί ΜΗ κρυπτογραφημένο μηνύμα SMS?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Να σταλεί ΜΗ κρυπτογραφημένο μήνυμα SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Να σταλεί ΜΗ κρυπτογραφημένο μήνυμα πολυμέσων MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Αυτό το μήνυμα <b>δε</b> θα κρυπτογραφηθεί, επειδή ο παραλήπτης δεν είναι πλέον χρήστης του Signal.\n\nΝα σταλεί το μήνυμα μη κρυπτογραφημένο;</string>
   <string name="ConversationItem_unable_to_open_media">Δεν μπορεί να βρεθεί κατάλληλη εφαρμογή για το άνοιγμα αυτού του πολυμέσου.</string>
@@ -253,6 +253,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Επιβεβαιωμένο</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Προφίλ</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Πρόβλημα κατά τον καθορισμό φωτογραφίας προφίλ</string>
   <string name="CreateProfileActivity_problem_setting_profile">Πρόβλημα στον καθορισμό του προφίλ</string>
   <string name="CreateProfileActivity_profile_photo">Φωτογραφία προφίλ</string>
@@ -475,7 +476,7 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Το Signal χρειάζεται τα δικαιώματα Κάμερας για να μπορέσουμε να σκανάρουμε τον κωδικό QR, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πηγαίνετε στις ρυθμίσεις εφαρμογών, επιλέξτε τα \"Δικαιώματα\", και ενεργοποιήστε την \"Κάμερα\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Δεν μπορούμε να σκανάρουμε QR κωδικούς χωρίς τα δικαιώματα Κάμερας</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Μηνήματα που εξαφανίζονται</string>
+  <string name="ExpirationDialog_disappearing_messages">Μηνύματα που εξαφανίζονται</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Τα μηνύματά σας δε θα λήξουν.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Μηνύματα που στέλνονται και λαμβάνονται σε αυτή τη συνομιλία θα εξαφανίζονται %s αφού τα δειτε.</string>
   <!--PassphrasePromptActivity-->
@@ -698,7 +699,7 @@
   <string name="MessageNotifier_locked_message">Κλειδωμένο μήνυμα</string>
   <string name="MessageNotifier_media_message_with_text">Μήνυμα Πολυμέσων: %s</string>
   <string name="MessageNotifier_message_delivery_failed">Η παράδοση μηνύματος απέτυχε.</string>
-  <string name="MessageNotifier_failed_to_deliver_message">Αποτυχία παράδοσης του μήνυματος.</string>
+  <string name="MessageNotifier_failed_to_deliver_message">Αποτυχία παράδοσης του μηνύματος.</string>
   <string name="MessageNotifier_error_delivering_message">Πρόβλημα κατά την παράδοση του μηνύματος.</string>
   <string name="MessageNotifier_mark_all_as_read">Σημείωση όλων ως αναγνωσμένα</string>
   <string name="MessageNotifier_mark_read">Σημείωση ως αναγνωσμένο</string>
@@ -1267,6 +1268,25 @@
   <string name="InsightsDashboardFragment__send">Αποστολή</string>
   <string name="FirstInviteReminder__title">Πρόσκληση στο Signal</string>
   <string name="InsightsReminder__invite">Πρόσκληση</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Επόμενο</string>
+  <!--CreateKbsPinFragment-->
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">Επιβεβαιώστε το PIN σας.</string>
+  <!--KbsSplashFragment-->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__skip">Παράλειψη</string>
+  <string name="KbsReminderDialog__submit">Αποστολή</string>
+  <string name="KbsReminderDialog__forgot_pin">Ξεχάσατε το PIN;</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__next">Επόμενο</string>
+  <string name="AccountLockedFragment__learn_more">Μάθετε περισσότερα</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Επόμενο</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Ξεχάσατε το PIN;</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">Λανθασμένο ΡΙΝ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">Ξεχάσατε το PIN;</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Μεταφορά εικονίδιου</string>
   <string name="ConversationListFragment_loading">Φόρτωση…</string>

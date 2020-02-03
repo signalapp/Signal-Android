@@ -270,6 +270,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">U verifikua</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Gabim në caktim fotoje profili</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problem në rregullim profili</string>
   <string name="CreateProfileActivity_profile_photo">Foto profili</string>
@@ -789,7 +790,14 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Që të shihni për njoftime së fundi, hapni Signal-in.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">Reagoi ndaj mesazhit tuaj: %1$s</string> -->
+  <string name="MessageNotifier_reacted_s_to_s">Reagoi me %1$s ndaj: \"%2$s\".</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">Reagoi me %1$s ndaj videos tuaj</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">Reagoi me %1$s ndaj figurës tuaj</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">Reagoi me %1$s ndaj kartelës tuaj</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">Reagoi me %1$s ndaj audios tuaj.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagoi me %1$s ndaj fotos tuaj për një parje të vetme.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagoi me %1$s ndaj videos tuaj për një parje të vetme.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">Reagoi me %1$s ndaj ngjitësit tuaj.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Parazgjedhje</string>
   <string name="NotificationChannel_calls">Thirrje</string>
@@ -1396,6 +1404,61 @@
   <string name="SecondInviteReminder__description">Ftojeni %1$s</string>
   <string name="InsightsReminder__view_insights">Shihni Prirje</string>
   <string name="InsightsReminder__invite">Ftoni</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Pasuesi</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">Krijo PIN alfanumerik</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">Krijo PIN numerik</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">PIN-i duhet të jetë të paktën %1$d shenja</string>
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">PIN-i duhet të jetë të paktën %1$d shenja</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">Krijoni një PIN të ri</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">Ngaqë jeni ende të futur, mund të krijoni një PIN të ri. Kur të keni dalë, s’ka mënyrë për të rikthyer PIN-in tuaj.</string> -->
+  <string name="CreateKbsPinFragment__create_your_pin">Krijoni PIN-in tuaj</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PIN-et i shtojnë llogarisë tuaj një shtresë ekstra. Shkruajeni PIN-in tuaj dhe mbajeni në një vend të parrezik. S’mund të rikthehet.</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-et s’përputhen. Riprovoni.</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">Ripohoni PIN-in tuaj.</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">Krijimi i PIN-it dështoi</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN-i juaj s’u ruajt.Do t’ju kujtojmë më vonë të krijoni një PIN.</string>
+  <string name="ConfirmKbsPinFragment__pin_created">PIN-i u krijua.</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">Ju paraqesim PIN-et</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">Shtojini llogarisë tuaj një tjetër nivel sigurie. %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">Lexoni më tepër këtu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string> -->
+  <string name="KbsSplashFragment__registration_lock_equals_pin">Kyçje Regjistrimi = PIN</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Kyçi juaj i Regjistrimit tani quhet PIN, dhe bën edhe më tepër se aq. Përditësojeni që tani. %1$s</string>
+  <string name="KbsSplashFragment__read_more_about_pins">Lexoni më tepër rreth PIN-esh.</string>
+  <string name="KbsSplashFragment__update_pin">Përditësoni PIN-in</string>
+  <string name="KbsSplashFragment__create_your_pin">Krijoni PIN-in tuaj</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">Kujtomë më vonë</string> -->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">Jepni PIN-in tuaj për Signal-in</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Për t’ju ndihmuar të fiksoni në kujtesë PIN,-in tuaj, do t’ju kërkojmë në mënyrë periodike ta jepni. Me kalimin e kohës do t’jua kërkojmë më rrallë.</string>
+  <string name="KbsReminderDialog__skip">Anashkaloje</string>
+  <string name="KbsReminderDialog__submit">Parashtroje</string>
+  <string name="KbsReminderDialog__forgot_pin">Harruat PIN-in?</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">PIN i pasaktë. Riprovoni.</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__account_locked">LLogari e kyçur</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Llogaria juaj është kyçur për të mbrojtur privatësinë dhe sigurinë. Pas %1$d ditësh mosveprimtarie në llogarinë tuaj, do të jeni në gjendje të riregjistroni këtë numër telefoni pa u dashur PIN. Krejt lënda do të fshihet.</string>
+  <string name="AccountLockedFragment__next">Pasuesi</string>
+  <string name="AccountLockedFragment__learn_more">Mësoni Më Tepër</string>
+  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">Jepni PIN-in tuaj</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">Jepni PIN-in që krijuar për llogarinë tuaj. Ky është tjetër gjë nga kodi juaj i verifikimit me SMS.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">Jepni PIN alfanumerik</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">Jepni PIN numerik</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Pasuesi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">PIN i pasaktë. Riprovoni.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">PIN i pasaktë. Edhe %1$d prova.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Harruat PIN-in?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">PIN i pasaktë</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">Ju mbeten edhe %1$d prova. Nëse ju mbarohen provat, llogaria juaj do të kyçet për %2$d ditë. Pas %3$d ditësh mosveprimtarie, mund ta riregjistroni pa u dashur PIN. Llogaria juaj do të spastrohet dhe krejt lënda do të fshihet.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">Harruat PIN-in tuaj?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">Për privatësinë dhe sigurinë tuaj, nuk ka mënyrë për rimarrje të PIN-it tuaj. Nëse ju mbarohen provat, mund ta riverifikoni me SMS, pas %1$d ditësh mosveprimtarie. Në rast të tillë, llogaria juaj do të spastrohet dhe krejt lënda do të fshihet.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikonë bartjesh</string>
   <string name="ConversationListFragment_loading">Po ngarkohet…</string>
@@ -1453,6 +1516,10 @@
   <string name="preferences_app_protection__screen_lock">Kyçje ekrani</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">kyçni hyrjen në Signal përmes kyçje ekrani ose shenja gishtash Android</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Kohë mbarimi plogështie për kyçje ekrani</string>
+  <string name="preferences_app_protection__signal_pin">PIN Signal-i</string>
+  <string name="preferences_app_protection__pin">PIN</string>
+  <string name="preferences_app_protection__change">Ndryshojeni</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">PIN-i juaj i shton llogarisë tuaj një shtresë ekstra sigurie dhe ndihmon në kopjeruajtjen e llogarisë tuaj. Do t’ju kërkohet një i tillë kur regjistroni numrin e telefonit tuaj me Signal-in. Nëse harroni PIN-in tuaj, do të kyçeni jashtë llogarisë tuaj për 7 ditë.</string>
   <string name="AppProtectionPreferenceFragment_none">Asnjë</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN-i i Kyçjes së Regjistrimit s\’është i njëjtë me kodin e verifikimit SMS që sapo morët. Ju lutemi, jepni PIN-in që formësuat më herët te aplikacioni.</string>
   <string name="registration_activity__registration_lock_pin">PIN Kyçjeje Regjistrimi</string>

@@ -282,6 +282,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Potvrđeno</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Greška prilikom podešavanja fotografije profila</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problem kod podešavanja profila</string>
   <string name="CreateProfileActivity_profile_photo">Fotografija profila</string>
@@ -807,7 +808,6 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Otvorite Signal da provjerite zadnja obavještenja.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">Reagovalo na Vašu poruku: %1$s</string> -->
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Standardno</string>
   <string name="NotificationChannel_calls">Pozivi</string>
@@ -1422,6 +1422,22 @@
   <string name="SecondInviteReminder__description">Pozovite %1$s</string>
   <string name="InsightsReminder__view_insights">Pogledajte statistiku</string>
   <string name="InsightsReminder__invite">Pozovi</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Dalje</string>
+  <!--CreateKbsPinFragment-->
+  <!--ConfirmKbsPinFragment-->
+  <!--KbsSplashFragment-->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__skip">Preskoči</string>
+  <string name="KbsReminderDialog__submit">Šalji</string>
+  <string name="KbsReminderDialog__forgot_pin">Zaboravili ste PIN?</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__next">Dalje</string>
+  <string name="AccountLockedFragment__learn_more">Saznaj više</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Dalje</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Zaboravili ste PIN?</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Sličica transporta</string>
   <string name="ConversationListFragment_loading">Učitavanje…</string>

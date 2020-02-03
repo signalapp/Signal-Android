@@ -270,6 +270,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Doğrulandı</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Profil fotoğrafı kaydedilirken hata</string>
   <string name="CreateProfileActivity_problem_setting_profile">Profil ayarlanırken hata</string>
   <string name="CreateProfileActivity_profile_photo">Profil fotoğrafı</string>
@@ -793,7 +794,14 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Yakın zamandaki bildirimler için Signal\'i açın.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kişi</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">İletinize karşılık verdi: %1$s</string> -->
+  <string name="MessageNotifier_reacted_s_to_s">\"%2$s\" iletisine karşılık verdi: %1$s</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">Videonuza karşılık verdi: %1$s</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">Görüntünüze karşılık verdi: %1$s</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">Dosyanıza karşılık verdi: %1$s</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">Sesinize karşılık verdi: %1$s</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Tek görümlük fotoğrafınıza karşılık verdi: %1$s</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Tek görümlük videonuza karşılık verdi: %1$s</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">Çıkartmanıza karşılık verdi: %1$s</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Varsayılan</string>
   <string name="NotificationChannel_calls">Aramalar</string>
@@ -1401,6 +1409,61 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="SecondInviteReminder__description">%1$s kişisini davet et</string>
   <string name="InsightsReminder__view_insights">İçgörüleri Görüntüle</string>
   <string name="InsightsReminder__invite">Davet et</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">İleri</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">Alfanumerik PIN oluştur</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">Sayısal PIN oluştur</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">PIN en az %1$d karakterden oluşmalıdır</string>
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">PIN en az %1$d haneli olmalıdır</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">Yeni PIN oluştur</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">Hesabınız halen açık olduğu için yeni bir PIN oluşturabilirsiniz. Çıkış yaptığınızda, PIN\'inizi kurtarmanın bir yolu yoktur.</string> -->
+  <string name="CreateKbsPinFragment__create_your_pin">PIN\'inizi oluşturun</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PIN\'ler hesabınıza fazladan bir güvenlik katmanı ekler. PIN\'inizi bir yere yazın ve güvende tutun. Kurtarmanın yolu yoktur.</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__pins_dont_match">PIN\'ler eşleşmiyor. Tekrar deneyin.</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">PIN kodunuzu doğrulayın.</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN oluşturma başarısız oldu</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN\'iniz kaydedilmedi. PIN oluşturmanız için daha sonra hatırlatacağız.</string>
+  <string name="ConfirmKbsPinFragment__pin_created">PIN oluşturuldu.</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">Karşınızda PIN\'ler</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">Hesabınızın güvenliğine bir katman daha ekleyin. %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">Dahasını buradan okuyabilirsiniz.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string> -->
+  <string name="KbsSplashFragment__registration_lock_equals_pin">Kayıt Kilidi = PIN</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Kayıt Kilidi yerine artık PIN kullanılıyor ve daha fazlasını yapıyor. Şimdi güncelleyin. %1$s</string>
+  <string name="KbsSplashFragment__read_more_about_pins">PIN\'ler hakkında dahasını okuyun</string>
+  <string name="KbsSplashFragment__update_pin">PIN\'i güncelle</string>
+  <string name="KbsSplashFragment__create_your_pin">PIN\'inizi oluşturun</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">Daha sonra hatırlat</string> -->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">Signal PIN\'inizi girin</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">PIN\'inizi hatırlamanıza yardımcı olmak için, arada sırada girmenizi isteyeceğiz. Zaman geçtikçe daha az soracağız.</string>
+  <string name="KbsReminderDialog__skip">Atla</string>
+  <string name="KbsReminderDialog__submit">Gönder</string>
+  <string name="KbsReminderDialog__forgot_pin">PIN\'inizi mi unuttunuz?</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">Yanlış PIN. Tekrar deneyin.</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__account_locked">Hesap kilitlendi</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Gizlilik ve güvenliğiniz için hesabınız kilitlendi. Hesabınızda %1$d gün boyunca hareketsizlik olduğunda, PIN olmadan bu telefon numarası ile yeniden kaydolabilirsiniz. Tüm içerik silinecektir. </string>
+  <string name="AccountLockedFragment__next">İleri</string>
+  <string name="AccountLockedFragment__learn_more">Dahasını Öğrenin</string>
+  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">PIN\'inizi girin</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">Bu hesap için oluşturduğunuz PIN kodunu girin. Bu SMS doğrulama kodunuzdan farklıdır.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">Alfanumerik PIN\'i Girin</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">Sayısal PIN\'i Girin</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">İleri</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">Yanlış PIN. Tekrar deneyin.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">Yanlış PIN. %1$d deneme hakkınız kaldı.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">PIN\'inizi mi unuttunuz?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">Yanlış PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">%1$d deneme hakkınız kaldı. Hakkınız biterse hesabınız %2$d günlüğüne kilitlenecektir. %3$d gün eylemsizlikten sonra, PIN\'iniz olmadan tekrar kaydolabileceksiniz. Hesabınız ve tüm içeriğiniz silinecektir.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">PIN\'inizi mi unuttunuz?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">Gizlilik ve güvenliğiniz için PIN\'inizi kurtarmanın yolu yoktur. Eğer deneme hakkınız biterse, %1$d gün eylemsizlik sonrasında SMS ile tekrar doğrulayabilirsiniz. Bu durumda hesabınız ve tüm içeriğiniz silinecektir.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ulaştırma simgesi</string>
   <string name="ConversationListFragment_loading">Yükleniyor…</string>
@@ -1458,6 +1521,10 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences_app_protection__screen_lock">Ekran kilidi</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Signal erişimini Android kilit ekranı ile veya parmak izi ile kilitleyin</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Ekran kilidi zaman aşımı</string>
+  <string name="preferences_app_protection__signal_pin">Signal PIN\'i</string>
+  <string name="preferences_app_protection__pin">PIN</string>
+  <string name="preferences_app_protection__change">Değiştir</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">PIN\'iniz hesabınıza fazladan güvenlik katmanı ekler ve hesabınızı güvence altına alır. Signal\'e telefon numaranızı kaydederken sorulacaktır. Eğer PIN\'inizi unutursanız, hesabınıza 7 gün boyunca erişemezsiniz.</string>
   <string name="AppProtectionPreferenceFragment_none">Hiçbiri</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Kaydolma Kilidi PIN\'iniz size gönderilen doğrulama koduyla aynı değildir. Lütfen önceden ayarlamış olduğunuz PIN\'inizi giriniz.  </string>
   <string name="registration_activity__registration_lock_pin">Kaydolma Kilidi PIN\'i</string>

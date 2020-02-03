@@ -1214,6 +1214,22 @@
   <string name="InsightsDashboardFragment__send">발신</string>
   <string name="FirstInviteReminder__title">Signal로 초대</string>
   <string name="InsightsReminder__invite">초대</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">다음</string>
+  <!--CreateKbsPinFragment-->
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">번호를 확인하세요.</string>
+  <!--KbsSplashFragment-->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__skip">건너뛰기</string>
+  <string name="KbsReminderDialog__submit">제출</string>
+  <string name="KbsReminderDialog__forgot_pin">번호를 잊으셨나요?</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__next">다음</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">다음</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">번호를 잊으셨나요?</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">전송 아이콘</string>
   <string name="ConversationListFragment_loading">불러오는 중</string>

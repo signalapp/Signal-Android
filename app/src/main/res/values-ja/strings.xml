@@ -256,6 +256,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">検証済み</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">プロフィール</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">プロフィール画像の設定でエラー</string>
   <string name="CreateProfileActivity_problem_setting_profile">プロフィールの設定でエラー</string>
   <string name="CreateProfileActivity_profile_photo">プロフィール画像</string>
@@ -286,7 +287,7 @@
   <string name="DeviceListActivity_network_failed">ネットワークエラー！</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">無名のデバイス</string>
-  <string name="DeviceListItem_linked_s">リンクした日: %s</string>
+  <string name="DeviceListItem_linked_s">リンク: %s</string>
   <string name="DeviceListItem_last_active_s">最終利用: %s</string>
   <string name="DeviceListItem_today">今日</string>
   <!--DocumentView-->
@@ -652,7 +653,7 @@
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">グループが更新されました</string>
   <string name="ThreadRecord_left_the_group">グループを抜けました</string>
-  <string name="ThreadRecord_secure_session_reset">セキュアセッションがリセットされました</string>
+  <string name="ThreadRecord_secure_session_reset">セキュアセッションがリセットされました。</string>
   <string name="ThreadRecord_draft">下書き:</string>
   <string name="ThreadRecord_called">発信</string>
   <string name="ThreadRecord_called_you">着信</string>
@@ -761,7 +762,14 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">通知を確認するため、Signalを開いてください</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">連絡先</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">あなたのメッセージへの反応: %1$s</string> -->
+  <string name="MessageNotifier_reacted_s_to_s">「%2$s」に %1$s</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">あなたのビデオに %1$s</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">あなたの画像に %1$s</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">あなたのファイルに %1$s</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">あなたの音声に %1$s</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">あなたの使い捨て写真に %1$s</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">あなたの使い捨てビデオに %1$s</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">あなたのステッカーに %1$s</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">既定</string>
   <string name="NotificationChannel_calls">通話</string>
@@ -1115,7 +1123,7 @@
   <string name="preferences__pref_enter_sends_title">エンターキーで送信</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">エンターキーを押すとテキストメッセージが送信されます</string>
   <string name="preferences__send_link_previews">リンクプレビューを送る</string>
-  <string name="preferences__previews_are_supported_for">プレビューはImgur、Instagram、Pinterest、RedditおよびYouTubeリンクをサポートしています</string>
+  <string name="preferences__previews_are_supported_for">プレビューはImgur、Instagram、Pinterest、RedditおよびYouTubeリンクをサポートしています。</string>
   <string name="preferences__choose_identity">認証を選択</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">連絡先リストからあなたの連絡先を選んでください。</string>
   <string name="preferences__change_passphrase">パスフレーズを変更</string>
@@ -1123,7 +1131,7 @@
   <string name="preferences__enable_passphrase">パスフレーズでの画面ロックを有効にする</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">パスフレーズで画面と通知をロックします</string>
   <string name="preferences__screen_security">画面セキュリティ</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">アプリ内や「最近使ったアプリ」でスクリーンショットを表示しない</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">アプリ内や「最近使ったアプリ」でスクリーンショットを表示しません</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">一定時間後に自動ロック</string>
   <string name="preferences__inactivity_timeout_passphrase">パスフレーズのタイムアウト</string>
   <string name="preferences__inactivity_timeout_interval">タイムアウトの時間</string>
@@ -1183,13 +1191,13 @@
   <string name="preferences__free_private_messages_and_calls">Signalユーザーに無料で安全なメッセージと通話</string>
   <string name="preferences__submit_debug_log">デバッグログを提出</string>
   <string name="preferences__support_wifi_calling">Wi-Fi通話互換モード</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Wi-FiでのSMS/MMS送受信を有効にする (Wi-Fi通話の有効時のみ)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Wi-FiでのSMS/MMS送信を使用している場合に有効にします (Wi-Fi通話の有効時のみ)</string>
   <string name="preferences__incognito_keyboard">プライバシーキーボード</string>
   <string name="preferences__read_receipts">既読通知</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">既読通知を無効にすると、相手の既読通知も受け取れません。</string>
   <string name="preferences__typing_indicators">入力中アイコン</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">入力中アイコンが無効の場合、相手の入力中アイコンも表示されません。</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">キーボード予測入力を無効化</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">自動学習機能の無効化をリクエストします</string>
   <string name="preferences_app_protection__blocked_contacts">ブロックした連絡先</string>
   <string name="preferences_chats__when_using_mobile_data">モバイルデータ通信利用時</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi利用時</string>
@@ -1203,7 +1211,7 @@
   <string name="preferences_storage__audio">音声</string>
   <string name="preferences_storage__review_storage">ストレージを確認する</string>
   <string name="preferences_advanced__use_system_emoji">システムの絵文字を使う</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal独自の絵文字機能を無効にする</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal独自の絵文字を無効にします</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">すべての通話をSignalサーバに中継して、相手にIP アドレスを知られることを防ぎます。ただし、通話の品質は下がります。</string>
   <string name="preferences_advanced__always_relay_calls">通話を常に中継する</string>
   <string name="preferences_app_protection__app_access">アプリのアクセス</string>
@@ -1359,6 +1367,61 @@
   <string name="SecondInviteReminder__description">%1$s を招待</string>
   <string name="InsightsReminder__view_insights">統計を見る</string>
   <string name="InsightsReminder__invite">招待する</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">次へ</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">英数字のPINを作成</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">数字のPINを作成</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">PINは%1$d文字以上にしてください</string>
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">PINは%1$d桁以上の数字にしてください</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">新しいPINを登録</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">ログイン中は新しいPINを作成できますが、ログアウトするとPINは回復できません。</string> -->
+  <string name="CreateKbsPinFragment__create_your_pin">あなたのPINを作成</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PINはアカウントのセキュリティを強化します。PINを書きとめて安全な場所に保管してください。PINの回復はできません。</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__pins_dont_match">PINが一致しません。再度試してください。</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">PINを確認してください。</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">PINの作成に失敗しました</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PINは保存されませんでした。あとでPINの作成について改めて伺います。 </string>
+  <string name="ConfirmKbsPinFragment__pin_created">PINを作成しました。</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">PINのご紹介</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">アカウントのセキュリティを強化します。 %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">さらに表示</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string> -->
+  <string name="KbsSplashFragment__registration_lock_equals_pin">登録ロック = PIN</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">登録ロックは今後PINと呼ばれ、より多機能になります。いますぐアップデートしてください。 %1$s</string>
+  <string name="KbsSplashFragment__read_more_about_pins">PINの詳細について</string>
+  <string name="KbsSplashFragment__update_pin">PINをアップデート</string>
+  <string name="KbsSplashFragment__create_your_pin">あなたのPINを作成</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">あとで通知</string> -->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">SignalのPINを入力</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">あなたがPINを忘れないよう、Signalは定期的に確認します。頻度は次第に減ってゆきます。</string>
+  <string name="KbsReminderDialog__skip">スキップ</string>
+  <string name="KbsReminderDialog__submit">送信する</string>
+  <string name="KbsReminderDialog__forgot_pin">PINを忘れましたか？</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">PINが違います。再度試してください。</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__account_locked">アカウントをロックしました</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">プライバシーとセキュリティ保護のため、あなたのアカウントをロックしました。%1$d日間の休止後に、PINなしでこの電話番号を再登録できるようになります。メッセージ等はすべて消去されます。</string>
+  <string name="AccountLockedFragment__next">次へ</string>
+  <string name="AccountLockedFragment__learn_more">詳細を知る</string>
+  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">PINを入力</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">アカウントを作成するときに決めたPINを入力してください。（SMSの認証コードとは違います）</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">英数字のPINを入力</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">数字のPINを入力</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">次へ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">PINが違います。再度試してください。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">PINが違います。あと%1$d回試せます。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">PINを忘れましたか？</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">PINが違います</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">あと%1$d回試せます。試し終わるとアカウントが%2$d日間ロックされます。%3$d日間の休止後にPINなしで再登録できますが、アカウントはリセットされ、メッセージ等もすべて削除されます。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">PINを忘れましたか？</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">プライバシーとセキュリティ保護のため、PINを回復することはできません。試行上限を過ぎると、%1$d日間の休止後にSMSで再認証できます。その場合アカウントはリセットされ、メッセージ等もすべて削除されます。</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">転送アイコン</string>
   <string name="ConversationListFragment_loading">読み込んでいます…</string>
@@ -1414,8 +1477,12 @@
   <string name="BackupUtil_never">なし</string>
   <string name="BackupUtil_unknown">不明</string>
   <string name="preferences_app_protection__screen_lock">画面ロック</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Signalを画面ロックや指紋認証でロックする</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Signalを画面ロックや指紋認証でロックします</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">画面ロックのタイムアウト</string>
+  <string name="preferences_app_protection__signal_pin">Signal PIN</string>
+  <string name="preferences_app_protection__pin">PIN</string>
+  <string name="preferences_app_protection__change">変更する</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">PINはセキュリティを強化し、アカウントを保護します。PINはSignalに電話番号を登録する際に要求されます。PINを忘れると、アカウントは7日間ロックされます。</string>
   <string name="AppProtectionPreferenceFragment_none">なし</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">登録ロックPINは、先程SMSで受信した検証コードとは異なります。以前Signalで設定したPINを入力してください。</string>
   <string name="registration_activity__registration_lock_pin">登録ロックPIN</string>

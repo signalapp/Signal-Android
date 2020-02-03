@@ -271,6 +271,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Megerősítve</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Hiba történt a profilkép beállítása során</string>
   <string name="CreateProfileActivity_problem_setting_profile">Probléma profil beállításakor</string>
   <string name="CreateProfileActivity_profile_photo">Profilkép</string>
@@ -796,7 +797,14 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Nyisd meg a Signal-t a legújabb értesítések megtekintéséhez!</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Névjegy</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">Reakció az üzenetedre: %1$s</string> -->
+  <string name="MessageNotifier_reacted_s_to_s">%1$s reakció erre: \"%2$s\"</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">Reakció a videódra: %1$s</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">Reakció a képedre: %1$s</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">Reakció a fájlodra: %1$s</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">Reakció a hangfájlodra: %1$s</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reakció az egyszer megtekinthető fotódra: %1$s</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reakció az egyszer megtekinthető videódra: %1$s</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">Reakció a matricádra: %1$s</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Alapértelmezett</string>
   <string name="NotificationChannel_calls">Hívások</string>
@@ -1403,6 +1411,59 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="SecondInviteReminder__description">%1$s meghívása</string>
   <string name="InsightsReminder__view_insights">Statisztikák megtekintése</string>
   <string name="InsightsReminder__invite">Meghívás</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Tovább</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">Alfanumerikus PIN kód létrehozása</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">Számjegyekből álló PIN kód létrehozása</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">A PIN kódnak legalább %1$d karakterből kell állnia.</string>
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">A PIN kódnak legalább %1$d számjegyből kell állnia.</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">Új PIN létrehozása</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">Mivel még be vagy jelentkezve, ezért lehetőséged van új PIN kódot megadni. Kijelentkezés után már nem lesz lehetőséged a PIN kód visszaállítására.</string> -->
+  <string name="CreateKbsPinFragment__create_your_pin">PIN létrehozása</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">A PIN kód extra biztonságot nyújt Signal fiókod számára. Jegyezd fel PIN kódodat és tárold biztonságos helyen, mert nem lehet visszaállítani.</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__pins_dont_match">A PIN kódok nem egyeznek. Próbáld újra!</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">PIN visszaellenőrzése.</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN kód létrehozása sikertelen.</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">A PIN kódodat nem sikerült elmenteni. Később újra megpróbálkozunk vele.</string>
+  <string name="ConfirmKbsPinFragment__pin_created">PIN kód létrehozva.</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">A PIN kódok bemutatása</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">Adj egy extra réteg biztonságot fiókodhoz! %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">Bővebben itt.</string> -->
+  <string name="KbsSplashFragment__registration_lock_equals_pin">Regisztrációs kód = PIN</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">A regisztrációs zárat mostantól PIN kódnak hívják, és többet tud. Frissítsd most! %1$s</string>
+  <string name="KbsSplashFragment__read_more_about_pins">Bővebben a PIN kódokról.</string>
+  <string name="KbsSplashFragment__update_pin">PIN kód frissítése</string>
+  <string name="KbsSplashFragment__create_your_pin">PIN létrehozása</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">Emlékeztess később</string> -->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">Add meg Signal PIN kódodat</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">A PIN kód megjegyzése érdekében időnként megkérünk annak begépelésére. Az idő múlásával ez egyre ritkábban fog megtörténni.</string>
+  <string name="KbsReminderDialog__skip">Kihagyás</string>
+  <string name="KbsReminderDialog__submit">Küldés</string>
+  <string name="KbsReminderDialog__forgot_pin">Elfelejtetted PIN kódodat?</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">Hibás PIN kód. Próbáld újra!</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__account_locked">Fiók zárolva</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Biztonságod és személyes adataid védelme érdekében fiókodat zároltuk. %1$d nap inaktivitást követően újraregisztrálhatod ezt a telefonszámot a PIN kód használata nélkül. Az összes adat törlődni fog.</string>
+  <string name="AccountLockedFragment__next">Tovább</string>
+  <string name="AccountLockedFragment__learn_more">Tudj meg többet</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">Add meg PIN kódodat</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">Gépeld be a fiókodhoz létrehozott PIN kódodat. Ez nem azonos az SMS-ben regisztrációkor kapott ellenőrző kóddal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">Add meg az alfanumerikus PIN kódot</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">Add meg a számjegyekből álló PIN kódot</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Tovább</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">Hibás PIN kód. Próbáld újra!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">Hibás PIN kód. Még %1$d alkalommal próbálkozhatsz.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Elfelejtetted PIN kódodat?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">Hibás PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">Még %1$d próbálkozásod maradt. Ha kifogysz belőlük, fiókodat %2$d napra zárolni fogjuk. %3$d nap inaktivitást követően újra regisztrálhatsz PIN kódod használata nélkül. A fiókod adatai és minden kapcsolódó tartalom törölve lesz.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">Elfelejtett PIN?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">Személyes adataid védelme és biztonságod érdekében nincs lehetőség a PIN kód visszaállítására. Ha kifogysz a lehetőségekből, SMS-ben újra megerősítheted telefonszámodat %1$d nap inaktivitást követően. Ebben az esetben fiókod az összes kapcsolódó adattal együtt törlésre kerül.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Átvitel ikon</string>
   <string name="ConversationListFragment_loading">Betöltés…</string>
@@ -1460,6 +1521,10 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences_app_protection__screen_lock">Képernyőzár</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Signal-hoz való hozzáférés védelme Android képernyőzárral vagy ujjlenyomattal</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Képernyő lezárása ennyi tétlenséget követően</string>
+  <string name="preferences_app_protection__signal_pin">Signal PIN</string>
+  <string name="preferences_app_protection__pin">PIN</string>
+  <string name="preferences_app_protection__change">Változtatás</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">A PIN kód növeli fiókod biztonságát. Minden olyan esetben meg kell adnod, amikor telefonszámodat a Signal-ra beregisztrálod. Amennyiben elfelejted PIN kódodat, 7 napra ki leszel tiltva fiókodból.</string>
   <string name="AppProtectionPreferenceFragment_none">Egyik sem</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">A regisztrációs zár PIN nem ugyanaz, mint az SMS ellenőrző kód, amit az imént kaptál. Kérlek add meg a PIN kódot, amelyet korábban az alkalmazásban állítottál be!</string>
   <string name="registration_activity__registration_lock_pin">Regisztrációs zár PIN</string>

@@ -270,6 +270,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Varmennettu</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Profiili</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Virhe asetettaessa profiilikuvaa</string>
   <string name="CreateProfileActivity_problem_setting_profile">Virhe asetettaessa profiilia</string>
   <string name="CreateProfileActivity_profile_photo">Profiilikuva</string>
@@ -788,7 +789,14 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Avaa Signal tarkistaaksesi viimeisimmät ilmoitukset.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Yhteystieto</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">Reagoi viestiisi: %1$s</string> -->
+  <string name="MessageNotifier_reacted_s_to_s">Reagoi %1$s viestiin: \"%2$s\"</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">Reagoi %1$s videollesi.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">Reagoi %1$s kuvallesi.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">Reagoi %1$s tiedostollesi.</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">Reagoi %1$s ääniviestillesi.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagoi %1$s kerran katsottavalle kuvallesi.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagoi %1$s kerran katsottavalle videollesi.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">Reagoi %1$s tarrallesi.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Oletus</string>
   <string name="NotificationChannel_calls">Puhelut</string>
@@ -1045,6 +1053,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Jotta Signal voi lähettää mediatiedostoja ja ryhmäviestejä puhelinoperaattorisi kautta, täytyy MMS-asetusten olla määritelty. Tällä hetkellä nämä asetukset eivät ole saatavilla laitteessasi, mikä voi johtua laitteesi operaattorilukituksesta tai muista rajoittavista asetuksista.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Jotta voit lähettää mediatiedostoja ja ryhmäviestejä, napauta \"OK\" ja täydennä pyydetyt asetukset. Puhelinoperaattorisi MMS-asetukset yleensä löytyvät, kun haet Internetistä operaattorisi nimellä ja termillä \"APN\". Tämä asetusten säätö tarvitsee tehdä vain kerran.</string>
   <!--profile_create_activity-->
+  <string name="CreateProfileActivity_first_name_required">Etunimi (vaaditaan)</string>
+  <string name="CreateProfileActivity_last_name_optional">Sukunimi (valinnainen)</string>
   <string name="CreateProfileActivity_next">Seuraava</string>
   <string name="CreateProfileActivity__username">Käyttäjätunnus</string>
   <string name="CreateProfileActivity__create_a_username">Luo käyttäjätunnus</string>
@@ -1394,6 +1404,61 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="SecondInviteReminder__description">Kutsu %1$s</string>
   <string name="InsightsReminder__view_insights">Näytä tilastot</string>
   <string name="InsightsReminder__invite">Kutsu</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Seuraava</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">Luo aakkosnumeerinen PIN-koodi</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">Luo numeerinen PIN-koodi</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">PIN-koodin on oltava vähintään %1$d merkkiä</string>
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">PIN-koodin on oltava vähintään %1$d numeroa</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">Luo uusi PIN-koodi</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">Voit luoda uuden PIN-koodin koska olet edelleen kirjautuneena sisään. PIN-koodia ei voi palauttaa kun olet kirjautunut ulos.</string> -->
+  <string name="CreateKbsPinFragment__create_your_pin">Luo PIN-koodisi</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PIN-koodit lisäävät ylimääräisen suojaustason tilillesi. Kirjoita PIN-koodi muistiin ja säilytä sitä turvallisessa paikassa. Sitä ei voida palauttaa.</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-koodit eivät täsmää. Yritä uudelleen.</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">Vahvista PIN-koodisi.</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN-koodin luominen epäonnistui</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN-koodiasi ei tallennettu. Pyydämme sinua luomaan PIN-koodin myöhemmin.</string>
+  <string name="ConfirmKbsPinFragment__pin_created">PIN-koodi luotu.</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">Esittelemme PIN-koodit</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">Lisää tilillesi toinen suojaustaso. %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">Lue lisää täältä.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string> -->
+  <string name="KbsSplashFragment__registration_lock_equals_pin">Rekisteröinnin lukitus = PIN-koodi</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Rekisteröinnin lukitusta kutsutaan nyt PIN-koodiksi, ja se tekee enemmän. Päivitä se nyt. %1$s</string>
+  <string name="KbsSplashFragment__read_more_about_pins">Lue lisää PIN-koodeista</string>
+  <string name="KbsSplashFragment__update_pin">Päivitä PIN</string>
+  <string name="KbsSplashFragment__create_your_pin">Luo PIN-koodisi</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">Muistuta minua myöhemmin</string> -->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">Syötä Signal PIN-koodisi</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Pyydämme sinulta PIN-koodia ajoittain sen muistamisen helpottamiseksi. Pyynnöt harvenevat ajan myötä.</string>
+  <string name="KbsReminderDialog__skip">Ohita</string>
+  <string name="KbsReminderDialog__submit">Lähetä</string>
+  <string name="KbsReminderDialog__forgot_pin">Unohditko PIN-koodin?</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">Väärä PIN-koodi. Yritä uudelleen.</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__account_locked">Tili lukittu</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Tilisi on lukittu yksityisyytesi ja turvallisuutesi suojaamiseksi. Kun %1$d päivää on kulunut ilman toimintaa tililläsi, voit rekisteröidä tämän puhelinnumeron uudelleen ilman, että tarvitset PIN-koodia. Kaikki sisältö pyyhitään.</string>
+  <string name="AccountLockedFragment__next">Seuraava</string>
+  <string name="AccountLockedFragment__learn_more">Lue lisää</string>
+  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">Syötä PIN-koodisi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">Syötä PIN-koodi jonka loit tilillesi. Tämä on eri kuin SMS-vahvistuskoodisi.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">Syötä aakkosnumeerinen PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">Syötä numeerinen PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Seuraava</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">Väärä PIN-koodi. Yritä uudelleen.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">Väärä PIN-koodi. %1$d yritystä jäljellä.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Unohditko PIN-koodin?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">Väärä PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">Sinulla on %1$d yritystä jäljellä. Jos yrityksesi loppuvat, tilisi lukitaan %2$d päiväksi. %3$d päivän toimettomuuden jälkeen voit rekisteröityä uudelleen ilman PIN-koodia. Tilisi pyyhitään ja kaikki sisältö poistetaan.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">Unohditko PIN-koodisi?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">Yksityisyyden ja turvallisuuden vuoksi PIN-koodia ei voi palauttaa. Jos yrityksesi loppuvat, voit rekisteröityä uudelleen tekstiviestillä %1$d päivän toimettomuuden jälkeen. Tässä tapauksessa tilisi pyyhkiytyy ja kaikki sisältö poistetaan.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Tyypin kuvake</string>
   <string name="ConversationListFragment_loading">Ladataan…</string>
@@ -1451,6 +1516,10 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences_app_protection__screen_lock">Näytön lukitus</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lukitse Signal Androidin näytön lukituksella tai sormenjäljellä</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Automaattisen näytön lukituksen odotusaika</string>
+  <string name="preferences_app_protection__signal_pin">Signal PIN</string>
+  <string name="preferences_app_protection__pin">PIN</string>
+  <string name="preferences_app_protection__change">Muuta</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">PIN-koodisi lisää ylimääräisen suojaustason ja varmuuskopioi tilisi. PIN-koodia kysytään, kun rekisteröit puhelinnumerosi Signalin kanssa. Jos unohdat PIN-koodisi, sinut lukitaan tililtäsi 7 päiväksi.</string>
   <string name="AppProtectionPreferenceFragment_none">Ei mitään</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Rekisteröinnin lukituksen PIN-koodi ei ole sama kuin se vahvistustekstiviesti, jonka juuri sait. Syötä se PIN-koodi, jonka aikaisemmin asetit ohjelmassa.</string>
   <string name="registration_activity__registration_lock_pin">Rekisteröinnin lukituksen PIN-koodi</string>
@@ -1478,6 +1547,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Rekisteröinnin lukitus auttaa suojaamaan puhelinnumeroasi luvattomilta rekisteröintiyrityksiltä. Voit ottaa tämän ominaisuuden pois käytöstä milloin tahansa Signalin yksityisyysasetuksista.</string>
   <string name="RegistrationLockDialog_registration_lock">Rekisteröinnin lukitus</string>
   <string name="RegistrationLockDialog_enable">Ota käyttöön</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">Rekisteröinnin lukituksen PIN-koodi on oltava vähintään %d numeroa.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Syöttämäsi PIN-koodit eivät täsmää.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Virhe yhdistettäessä palveluun</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Otetaanko rekisteröinnin lukituksen PIN-koodi pois käytöstä?</string>

@@ -265,6 +265,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Potvrđeno</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Greška prilikom postavljanja profilne slike</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problem kod postavljanja profila</string>
   <string name="CreateProfileActivity_profile_photo">Profilna slika</string>
@@ -1290,6 +1291,23 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="InsightsDashboardFragment__send">Šalji</string>
   <string name="FirstInviteReminder__title">Pozovi u Signal</string>
   <string name="InsightsReminder__invite">Pozivnica</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Sljedeće</string>
+  <!--CreateKbsPinFragment-->
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">Potvrdite svoj PIN.</string>
+  <!--KbsSplashFragment-->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__skip">Preskoči</string>
+  <string name="KbsReminderDialog__submit">Pošalji</string>
+  <string name="KbsReminderDialog__forgot_pin">Zaboravljen PIN?</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__next">Sljedeće</string>
+  <string name="AccountLockedFragment__learn_more">Saznaj više</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Sljedeće</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Zaboravljen PIN?</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
   <string name="ConversationListFragment_loading">Učitavanje…</string>

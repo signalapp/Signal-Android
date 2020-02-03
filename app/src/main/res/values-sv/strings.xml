@@ -270,6 +270,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Bekräftat</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Det gick inte att ställa in profilbild</string>
   <string name="CreateProfileActivity_problem_setting_profile">Gick inte välja profil</string>
   <string name="CreateProfileActivity_profile_photo">Profilbild</string>
@@ -788,7 +789,14 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Öppna Signal för att kontrollera efter senaste aviseringar.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">Reagerade på ditt meddelande: %1$s</string> -->
+  <string name="MessageNotifier_reacted_s_to_s">Reagerade %1$s på: \"%2$s\".</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">Reagerade %1$s på din video.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">Reagerade %1$s på din bild.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">Reagerade %1$s på din fil</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">Reagerade %1$s på din ljudfil.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagerade %1$s på ditt visa-en-gång foto.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagerade %1$s på ditt visa-en-gång video.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">Reagerade %1$s på dina klistermärken.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Standard</string>
   <string name="NotificationChannel_calls">Samtal</string>
@@ -1045,6 +1053,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal kräver MMS-inställningar för att leverera medie- och gruppmeddelanden via din mobiloperatör. Din enhet gör inte den här informationen tillgänglig, vilket ibland stämmer för låsta enheter och andra restriktiva konfigurationer.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">För att skicka medie- och gruppmeddelande, tryck \'OK\' och fyll i de begärda inställningarna. MMS-inställningarna för din operatör kan generellt hittas genom att söka efter \'din operatör APN\'. Du behöver bara göra det här en gång.</string>
   <!--profile_create_activity-->
+  <string name="CreateProfileActivity_first_name_required">Förnamn (krävs)</string>
+  <string name="CreateProfileActivity_last_name_optional">Efternamn (valfritt)</string>
   <string name="CreateProfileActivity_next">Nästa</string>
   <string name="CreateProfileActivity__username">Användarnamn</string>
   <string name="CreateProfileActivity__create_a_username">Skapa ett användarnamn</string>
@@ -1394,6 +1404,61 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SecondInviteReminder__description">Bjud in %1$s</string>
   <string name="InsightsReminder__view_insights">Visa statistik</string>
   <string name="InsightsReminder__invite">Bjud in</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Nästa</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">Skapa alfanumerisk PIN-kod</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">Skapa numerisk PIN-kod</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">PIN-kod måste vara minst %1$d tecken</string>
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">PIN-kod måste vara minst %1$d siffror</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">Skapa en ny PIN-kod</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">Eftersom du fortfarande är inloggad kan du skapa en ny PIN-kod. När du är utloggad finns det inget sätt att återställa din PIN-kod.</string> -->
+  <string name="CreateKbsPinFragment__create_your_pin">Skapa din PIN-kod</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PIN-koder lägger till ett extra lager av säkerhet till ditt konto. Skriv ner din PIN-kod och förvara den på ett säkert ställe. Den kan inte återvinnas.</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-koder matchar inte. Försök igen.</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">Bekräfta din PIN-kod.</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">Det gick inte att skapa PIN-kod</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Din PIN-kod sparades inte. Vi uppmanar dig att skapa en PIN-kod senare.</string>
+  <string name="ConfirmKbsPinFragment__pin_created">PIN-kod skapad.</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">Introducerar PIN-koder</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">Lägg till en säkerhetsnivå till ditt konto. %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">Läs mer här.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string> -->
+  <string name="KbsSplashFragment__registration_lock_equals_pin">Registreringslås = PIN-kod</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Ditt registreringslås kallas nu en PIN-kod, och den gör mer. Uppdatera nu. %1$s</string>
+  <string name="KbsSplashFragment__read_more_about_pins">Läs mer om PIN-koder.</string>
+  <string name="KbsSplashFragment__update_pin">Uppdatera PIN-kod</string>
+  <string name="KbsSplashFragment__create_your_pin">Skapa din PIN-kod</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">Påminn mig senare</string> -->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">Ange din Signal PIN-kod</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">För att hjälpa dig att memorera din PIN-kod ber vi dig att skriva in den regelbundet. Vi ber dig färre gånger med tiden.</string>
+  <string name="KbsReminderDialog__skip">Hoppa över</string>
+  <string name="KbsReminderDialog__submit">Skicka</string>
+  <string name="KbsReminderDialog__forgot_pin">Glömt PIN-kod?</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">Felaktig PIN-kod. Försök igen.</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__account_locked">Kontot är låst</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Ditt konto har låsts för att skydda din integritet och säkerhet. Efter %1$d dagar av inaktivitet i ditt konto kommer du att kunna omregistrera detta telefonnummer utan att behöva din pin-kod. Allt innehåll kommer att tas bort.</string>
+  <string name="AccountLockedFragment__next">Nästa</string>
+  <string name="AccountLockedFragment__learn_more">Läs mer</string>
+  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">Ange din PIN-kod</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">Ange PIN-koden du skapade för ditt konto. Denna skiljer sig från din SMS-verifieringskod.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">Ange alfanumerisk PIN-kod</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">Ange numerisk PIN-kod</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Nästa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">Felaktig PIN-kod. Försök igen.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">Felaktig PIN-kod. %1$d försök kvar.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Glömt PIN-kod?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">Felaktig PIN-kod</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">Du har %1$d försök kvar. Om dina försök tar slut kommer ditt konto att låsas i %2$d dagar. Efter %3$d dagars inaktivitet kan du registrera dig igen utan din PIN-kod. Ditt konto och allt innehåll tas bort.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">Har du glömt din PIN-kod?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">För din integritet och säkerhet finns det inget sätt att återställa din PIN-kod. Om dina försök tar slut kan du åter-verifiera med SMS efter %1$d dagar av inaktivitet. I det här fallet kommer ditt konto och allt innehåll tas bort.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportikon</string>
   <string name="ConversationListFragment_loading">Hämtar in…</string>
@@ -1451,6 +1516,10 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_app_protection__screen_lock">Skärmlås</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lås åtkomst till Signal med Androids skärmlås eller fingeravtryck</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Skärmlåsets tidsgräns för inaktivitet </string>
+  <string name="preferences_app_protection__signal_pin">Signal PIN-kod</string>
+  <string name="preferences_app_protection__pin">PIN-kod</string>
+  <string name="preferences_app_protection__change">Ändra</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Din PIN-kod lägger till ett extra lager av säkerhet och säkerhetskopierar ditt konto. Du kommer att bli ombedd för det när du registrerar ditt telefonnummer med Signal. Om du glömmer din PIN-kod kommer du att vara låst från ditt konto i 7 dagar.</string>
   <string name="AppProtectionPreferenceFragment_none">Ingen</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN-koden för registreringslåset är inte samma som den SMS-bekräftelsekod du precis fick. Ange PIN-koden du tidigare ställde in i appen.</string>
   <string name="registration_activity__registration_lock_pin">PIN-kod för registreringslås</string>
@@ -1478,6 +1547,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registreringslås hjälper till att skydda ditt mobilnummer från obehöriga registreringsförsök. Denna funktion kan när som helst stängas av under Signals integritetsskyddinställningar.</string>
   <string name="RegistrationLockDialog_registration_lock">Registreringslås</string>
   <string name="RegistrationLockDialog_enable">Aktivera</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">PIN-koden för registreringslåset måste vara minst %d siffror.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">De två PIN-koderna du skrev in matchade inte.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Fel vid anslutning till tjänsten</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Stäng av PIN-kod för registreringslås?</string>

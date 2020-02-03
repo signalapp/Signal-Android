@@ -256,6 +256,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Terverifikasi</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Gagal mengatur foto profil</string>
   <string name="CreateProfileActivity_problem_setting_profile">Masalah pengaturan profil</string>
   <string name="CreateProfileActivity_profile_photo">Foto profil</string>
@@ -772,7 +773,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Buka Signal untuk memeriksa notifikasi terbaru.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontak</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">%1$sorang mengomentari pesan Anda</string> -->
+  <string name="MessageNotifier_reacted_s_to_s">Menanggapi %1$s ke: \"%2$s\".</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Standar</string>
   <string name="NotificationChannel_calls">Panggilan</string>
@@ -1021,6 +1022,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal memerlukan pengaturan MMS untuk mengirimkan media dan pesan grup melalui jaringan operator. Perangkat Anda tidak dapat menyediakan informasi ini, yang bisa terjadi pada perangkat terkunci dan konfigurasi terbatas lainnya.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Untuk mengirim pesan media dan pesan grup, ketuk \'OK\' dan selesaikan pengaturan yang diminta. Pengaturan MMS untuk operator Anda biasanya dapat ditemukan dengan mencari \'APN operator Anda\'. Anda hanya perlu melakukan ini sekali saja.</string>
   <!--profile_create_activity-->
+  <string name="CreateProfileActivity_first_name_required">Nama depan (diperlukan)</string>
+  <string name="CreateProfileActivity_last_name_optional">Nama belakang (opsional)</string>
   <string name="CreateProfileActivity_next">Berikutnya</string>
   <string name="CreateProfileActivity__username">Nama Pengguna</string>
   <string name="CreateProfileActivity__create_a_username">Buat nama pengguna</string>
@@ -1368,6 +1371,60 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SecondInviteReminder__description">Undang %1$s</string>
   <string name="InsightsReminder__view_insights">Lihat Insight</string>
   <string name="InsightsReminder__invite">Undang</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Berikutnya</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">Buat PIN alfanumerik</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">Buat PIN numerik</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">PIN harus terdiri dari minimal %1$d karakter</string>
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">PIN harus terdiri dari minimal %1$d digit</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">Buat PIN baru</string>
+  <string name="CreateKbsPinFragment__create_your_pin">Buat PIN Anda</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PIN menambahkan lapisan ekstra keamanan terhadap akun Anda. Tulis PIN dan simpan di tempat yang aman. PIN tidak dapat dipulihkan.</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__pins_dont_match">PIN tidak cocok. Coba lagi.</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">Konfirmasi PIN Anda.</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">Pembuatan PIN gagal</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN Anda tidak disimpan. Signal akan meminta Anda membuat PIN lagi nanti.</string>
+  <string name="ConfirmKbsPinFragment__pin_created">PIN dibuat.</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">Memperkenalkan PIN</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">Tingkatkan keamanan terhadap akun Anda. %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">Baca lebih lanjut di sini.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string> -->
+  <string name="KbsSplashFragment__registration_lock_equals_pin">Kunci Pendaftaran = PIN</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Kunci Pendaftaran Anda sekarang bernama PIN, dan ia melakukan hal lebih. Perbarui sekarang. %1$s</string>
+  <string name="KbsSplashFragment__read_more_about_pins">Baca lebih lanjut mengenai PIN.</string>
+  <string name="KbsSplashFragment__update_pin">Perbarui PIN</string>
+  <string name="KbsSplashFragment__create_your_pin">Buat PIN Anda</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">Ingatkan saya nanti</string> -->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">Masukkan PIN Signal Anda</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Untuk membantu Anda mengingat PIN, kami akan meminta Anda untuk memasukkannya secara berkala. Kami akan memintanya lebih jarang dari waktu ke waktu.</string>
+  <string name="KbsReminderDialog__skip">Lewati</string>
+  <string name="KbsReminderDialog__submit">Kirimkan</string>
+  <string name="KbsReminderDialog__forgot_pin">Lupa PIN?</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">PIN Salah. Coba lagi.</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__account_locked">Akun terkunci</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Akun Anda terkunci untuk melindungi privasi dan keamanan Anda. Setelah %1$d hari tidak aktif Anda akan dapat mendaftarkan ulang nomor telpon ini tanpa memerlukan pin. Semua konten akan dihapus </string>
+  <string name="AccountLockedFragment__next">Berikutnya</string>
+  <string name="AccountLockedFragment__learn_more">Pelajari Lebih Lanjut</string>
+  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">Masukkan PIN Anda</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">Masukkan PIN yang Anda buat untuk akun Anda. Ini berbeda dari kode verifikasi SMS.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">Masukan PIN alfanumerik</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">Masukkan PIN numerik</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Berikutnya</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">PIN Salah. Coba lagi.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">PIN salah. %1$d percobaan tersisa.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Lupa PIN?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">PIN Salah</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">Anda memiliki %1$d percobaan tersisa. Jika Anda kehabisan percobaan, akun Anda akan dikunci selama %2$d hari. Setelah %3$dhari tidak aktif, Anda dapat mendaftar ulang tanpa PIN. Akun Anda dan semua konten di dalamnya akan dihapus.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">Lupa PIN Anda?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">Untuk privasi dan keamanan Anda, tidak ada cara untuk memulihkan PIN Anda. Jika Anda kehabisan percobaan, Anda bisa melakukan verifikasi ulang dengan SMS setelah %1$d hari tidak aktif. Dalam kasus ini, akun Anda dan semua konten di dalamnya akan dihapus.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pindahkan ikon</string>
   <string name="ConversationListFragment_loading">Memuat…</string>
@@ -1425,6 +1482,10 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_app_protection__screen_lock">Layar terkunci</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Kunci akses Signal Anda dengan kunci layar Android atau sidik jari</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Batas waktu kunci layar tanpa aktivitas</string>
+  <string name="preferences_app_protection__signal_pin">PIN SIgnal</string>
+  <string name="preferences_app_protection__pin">PIN</string>
+  <string name="preferences_app_protection__change">Ubah</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Pin Anda menambahkan lapisan ekstra keamanan dan pencadangan akun Anda. Anda akan dimintai PIN tersebut saat Anda mendaftarkan nomor telepon Anda di Signal. Jika lupa PIN, Anda akan terkunci dari akun Anda selama 7 hari.</string>
   <string name="AppProtectionPreferenceFragment_none">Kosong</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN Kunci Pendaftaran berbeda dengan SMS kode verifikasi yang baru Anda terima. Harap masukkan konfigurasi PIN yang sebelumnya telah Anda buat. </string>
   <string name="registration_activity__registration_lock_pin">PIN Kunci Pendaftaran</string>
@@ -1452,6 +1513,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Kunci Pendaftaran membantu melindungi nomor telepon Anda dari upaya pendaftaran tanpa izin. Fitur ini dapat ditinjau kembali setiap saat dalam pengaturan privasi Signal</string>
   <string name="RegistrationLockDialog_registration_lock">Kunci Pendaftaran</string>
   <string name="RegistrationLockDialog_enable">Aktifkan</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">PIN Kunci Pendaftaran harus terdiri dari minimal %d digit.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Kedua PIN yang Anda masukkan tidak cocok.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Gagal menyambung ke layanan</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Nonaktifkan PIN Kunci Pendaftaran?</string>

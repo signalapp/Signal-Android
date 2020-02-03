@@ -270,6 +270,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Verificat</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Perfil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Error en establir la foto del perfil</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problema en establir el perfil</string>
   <string name="CreateProfileActivity_profile_photo">Foto del perfil</string>
@@ -788,7 +789,14 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Obre el Signal per comprovar si hi ha notificacions noves.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contacte</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_reacted_to_your_message">Ha reaccionat al vostre missatge: %1$s</string> -->
+  <string name="MessageNotifier_reacted_s_to_s">%1$s ha reaccionat a : \"%2$s\".</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">%1$s ha reaccionat al vostre vídeo.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">%1$s ha reaccionat al vostre missatge.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">%1$s ha reaccionat al vostre fitxer.</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">%1$s ha reaccionat al vostre àudio.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">%1$s  ha reaccionat a la vostra foto d\'una visualització.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">%1$s  ha reaccionat al vostre vídeo d\'una visualització.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s ha reaccionat al vostre adhesiu.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Per defecte</string>
   <string name="NotificationChannel_calls">Trucades</string>
@@ -1396,6 +1404,61 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="SecondInviteReminder__description">Convida %1$s</string>
   <string name="InsightsReminder__view_insights">Mostra l\'Interior</string>
   <string name="InsightsReminder__invite">Convida</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Següent</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">Creeu un PIN alfanumèric</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">Creeu un PIN numèric</string>
+  <!--CreateKbsPinFragment-->
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">El PIN ha de tenir un mínim de %1$d caràcters.</string>
+  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">El PIN ha de tenir un mínim de %1$d dígits.</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">Crea un PIN nou</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">Com que encara teniu la sessió oberta, podeu crear un PIN nou. Un cop fora, no hi ha manera de recuperar el PIN.</string> -->
+  <string name="CreateKbsPinFragment__create_your_pin">Creeu el PIN</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">Els PIN afegeixen una capa de seguretat extra al compte. Preneu-ne nota i deseu-lo en un lloc segur. No es pot recuperar.</string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__pins_dont_match">Els codis no coincideixen. Torneu-ho a provar.</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">Confirmeu el vostre PIN.</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">Ha fallat crear el PIN.</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">El PIN no s\'ha desat. Us demanarem de crear-lo més tard.</string>
+  <string name="ConfirmKbsPinFragment__pin_created">PIN creat.</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">S\'introdueixen els PIN</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">Afegiu una altra capa de seguretat al compte. %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">Llegiu-ne més aquí.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string> -->
+  <string name="KbsSplashFragment__registration_lock_equals_pin">Bloqueig de registre = PIN</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">El bloqueig de registre ara s\'anomena PIN i serveix per a molt més. Actualitzeu-lo ara. %1$s</string>
+  <string name="KbsSplashFragment__read_more_about_pins">Llegiu més informació sobre els PIN.</string>
+  <string name="KbsSplashFragment__update_pin">Actualitza el PIN</string>
+  <string name="KbsSplashFragment__create_your_pin">Creeu el PIN</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">Recorda-m\'ho més tard.</string> -->
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">Marqueu el PIN del Signal</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Per ajudar-vos a recordar el PIN, us el demanarem periòdicament. Amb el temps, ho farem menys.</string>
+  <string name="KbsReminderDialog__skip">Omet</string>
+  <string name="KbsReminderDialog__submit">Envia</string>
+  <string name="KbsReminderDialog__forgot_pin">Heu oblidat el PIN?</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">PIN incorrecte. Torneu-ho a provar.</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__account_locked">Compte bloquejat</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Hem bloquejat el compte per protegir la vostra privadesa i seguretat. Al cap de %1$d dies d’inactivitat, podreu tornar a registrar aquest número de telèfon sense necessitar el PIN. Se n\'esborrarà tot el contingut.</string>
+  <string name="AccountLockedFragment__next">Següent</string>
+  <string name="AccountLockedFragment__learn_more">Més informació</string>
+  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
+  <!--KbsLockFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">Marqueu el PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">Introduïu el PIN que heu creat per al compte. Això és diferent del codi de verificació d\'SMS.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">Escriviu un PIN alfanumèric</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">Marqueu un PIN numèric</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Següent</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">PIN incorrecte. Torneu-ho a provar.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">PIN incorrecte.  Us resten %1$d intents.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Heu oblidat el PIN?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">PIN incorrecte</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">Us resten %1$d intents. Si se us acaben, el compte es bloquejarà durant %2$d dies. Al cap de %3$d dies d\'inactivitat, podeu tornar-vos-hi a registrar sense el PIN. El compte s\'esborrarà i se\'n suprimirà tot el contingut.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">Heu oblidat el PIN?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">Per a la vostra privadesa i seguretat, no hi ha manera de recuperar el PIN. Si ja no us resta cap intent, podeu tornar a verificar el compte amb un SMS al cap de %1$d dies d\'inactivitat. En aquest cas, el compte s\'esborrarà i se\'n suprimirà el contingut.</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona de trànsit</string>
   <string name="ConversationListFragment_loading">Es carrega…</string>
@@ -1453,6 +1516,10 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences_app_protection__screen_lock">Bloqueig de pantalla</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Bloca l\'accés al Signal amb el bloqueig de pantalla de l\'Android o amb l\'empremta.</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Temps d\'inactivitat per al bloqueig de pantalla</string>
+  <string name="preferences_app_protection__signal_pin">PIN del Signal</string>
+  <string name="preferences_app_protection__pin">PIN</string>
+  <string name="preferences_app_protection__change">Canvieu-lo</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">El PIN afegeix una capa extra de seguretat i protegeix el compte. Se us demanarà quan registreu el número de telèfon al Signal. Si l\'oblideu, se us bloquejarà el compte durant 7 dies.</string>
   <string name="AppProtectionPreferenceFragment_none">Cap</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">El PIN de bloqueig del registre no és el mateix que el codi de verificació de l\'SMS que heu rebut. Si us plau, escriviu el PIN que heu configurat a l\'aplicació.</string>
   <string name="registration_activity__registration_lock_pin">PIN de bloqueig del registre</string>
