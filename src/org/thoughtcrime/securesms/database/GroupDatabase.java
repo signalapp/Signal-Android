@@ -68,7 +68,7 @@ public class GroupDatabase extends Database {
           ACTIVE + " INTEGER DEFAULT 1, " +
           AVATAR_DIGEST + " BLOB, " +
           AVATAR_URL + " TEXT, " +
-          ADMINS + "TEXT, " +
+          ADMINS + " TEXT, " +
           MMS + " INTEGER DEFAULT 0);";
 
   public static final String[] CREATE_INDEXS = {

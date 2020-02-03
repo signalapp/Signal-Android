@@ -852,7 +852,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     Optional<Attachment>        sticker        = getStickerAttachment(message.getSticker());
 
     // If message is from group then we need to map it to the correct sender
-    Address sender = message.isGroupUpdate() ? Address.fromSerialized(content.getSender()) : primaryDeviceRecipient.getAddress();
+    Address sender = message.isGroupMessage() ? Address.fromSerialized(content.getSender()) : primaryDeviceRecipient.getAddress();
     IncomingMediaMessage        mediaMessage   = new IncomingMediaMessage(sender, message.getTimestamp(), -1,
        message.getExpiresInSeconds() * 1000L, false, content.isNeedsReceipt(), message.getBody(), message.getGroupInfo(), message.getAttachments(),
         quote, sharedContacts, linkPreviews, sticker);
@@ -1037,7 +1037,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       notifyTypingStoppedFromIncomingMessage(primaryDeviceRecipient, content.getSender(), content.getSenderDevice());
 
       // If message is from group then we need to map it to the correct sender
-      Address sender = message.isGroupUpdate() ? Address.fromSerialized(content.getSender()) : primaryDeviceRecipient.getAddress();
+      Address sender = message.isGroupMessage() ? Address.fromSerialized(content.getSender()) : primaryDeviceRecipient.getAddress();
       IncomingTextMessage _textMessage = new IncomingTextMessage(sender,
                                                                 content.getSenderDevice(),
                                                                 message.getTimestamp(), body,
@@ -1278,7 +1278,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private void updateFriendRequestStatusIfNeeded(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
-    if (!content.isFriendRequest() || message.isGroupUpdate() || message.isSessionRequest()) { return; }
+    if (!content.isFriendRequest() || message.isGroupMessage() || message.isSessionRequest()) { return; }
     // This handles the case where another user sends us a regular message without authorisation
     Promise<Boolean, Exception> promise = PromiseUtil.timeout(MultiDeviceUtilities.shouldAutomaticallyBecomeFriendsWithDevice(content.getSender(), context), 8000);
     boolean shouldBecomeFriends = PromiseUtil.get(promise, false);
@@ -1743,7 +1743,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private Recipient getSyncMessageDestination(SentTranscriptMessage message) {
-    if (message.getMessage().getGroupInfo().isPresent()) {
+    if (message.getMessage().isGroupMessage()) {
       return Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get())), false);
     } else {
       return Recipient.from(context, Address.fromSerialized(message.getDestination().get()), false);
@@ -1751,7 +1751,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private Recipient getSyncMessagePrimaryDestination(SentTranscriptMessage message) {
-    if (message.getMessage().getGroupInfo().isPresent()) {
+    if (message.getMessage().isGroupMessage()) {
       return getSyncMessageDestination(message);
     } else {
       return getPrimaryDeviceRecipient(message.getDestination().get());
@@ -1759,7 +1759,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private Recipient getMessageDestination(SignalServiceContent content, SignalServiceDataMessage message) {
-    if (message.getGroupInfo().isPresent()) {
+    if (message.isGroupMessage()) {
       return Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getGroupInfo().get())), false);
     } else {
       return Recipient.from(context, Address.fromSerialized(content.getSender()), false);
@@ -1767,7 +1767,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private Recipient getMessagePrimaryDestination(SignalServiceContent content, SignalServiceDataMessage message) {
-    if (message.getGroupInfo().isPresent()) {
+    if (message.isGroupMessage()) {
       return getMessageDestination(content, message);
     } else {
       return getPrimaryDeviceRecipient(content.getSender());
@@ -1866,7 +1866,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private boolean isGroupChatMessage(SignalServiceContent content) {
-    return content.getDataMessage().isPresent() && content.getDataMessage().get().getGroupInfo().isPresent();
+    return content.getDataMessage().isPresent() && content.getDataMessage().get().isGroupMessage();
   }
 
   private void resetRecipientToPush(@NonNull Recipient recipient) {
