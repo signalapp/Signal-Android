@@ -40,13 +40,27 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="64dp" />
 
-            <ImageView
-                android:id="@+id/joinPublicChatButton"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_globe"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true" />
+                android:layout_centerVertical="true">
+
+                <ImageView
+                    android:id="@+id/createClosedGroupButton"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_group_white_24dp" />
+
+                <ImageView
+                    android:id="@+id/joinPublicChatButton"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="@dimen/medium_spacing"
+                    android:src="@drawable/ic_globe" />
+
+            </LinearLayout>
 
         </RelativeLayout>
 
