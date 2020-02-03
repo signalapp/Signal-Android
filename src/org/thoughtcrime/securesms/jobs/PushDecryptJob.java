@@ -851,8 +851,13 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     Optional<List<LinkPreview>> linkPreviews   = getLinkPreviews(message.getPreviews(), message.getBody().or(""));
     Optional<Attachment>        sticker        = getStickerAttachment(message.getSticker());
 
-    // If message is from group then we need to map it to the correct sender
-    Address sender = message.isGroupMessage() ? Address.fromSerialized(content.getSender()) : primaryDeviceRecipient.getAddress();
+    Address sender = primaryDeviceRecipient.getAddress();
+
+    // If message is from group then we need to map it to get the sender of the message
+    if (message.isGroupMessage()) {
+      sender = getPrimaryDeviceRecipient(content.getSender()).getAddress();
+    }
+
     IncomingMediaMessage        mediaMessage   = new IncomingMediaMessage(sender, message.getTimestamp(), -1,
        message.getExpiresInSeconds() * 1000L, false, content.isNeedsReceipt(), message.getBody(), message.getGroupInfo(), message.getAttachments(),
         quote, sharedContacts, linkPreviews, sticker);
@@ -1036,8 +1041,13 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     } else {
       notifyTypingStoppedFromIncomingMessage(primaryDeviceRecipient, content.getSender(), content.getSenderDevice());
 
-      // If message is from group then we need to map it to the correct sender
-      Address sender = message.isGroupMessage() ? Address.fromSerialized(content.getSender()) : primaryDeviceRecipient.getAddress();
+      Address sender = primaryDeviceRecipient.getAddress();
+
+      // If message is from group then we need to map it to get the sender of the message
+      if (message.isGroupMessage()) {
+        sender = getPrimaryDeviceRecipient(content.getSender()).getAddress();
+      }
+
       IncomingTextMessage _textMessage = new IncomingTextMessage(sender,
                                                                 content.getSenderDevice(),
                                                                 message.getTimestamp(), body,

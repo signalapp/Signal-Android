@@ -70,6 +70,7 @@ public class GroupMessageProcessor {
     String                id       = GroupUtil.getEncodedId(group);
     Optional<GroupRecord> record   = database.getGroup(id);
 
+    // TODO: Allow processing messages from secondary devices
     if (record.isPresent() && group.getType() == Type.UPDATE) {
       return handleGroupUpdate(context, content, group, record.get(), outgoing);
     } else if (!record.isPresent() && group.getType() == Type.UPDATE) {
@@ -230,8 +231,9 @@ public class GroupMessageProcessor {
     GroupContext.Builder builder = createGroupContext(group);
     builder.setType(GroupContext.Type.QUIT);
 
-    if (members.contains(Address.fromExternal(context, content.getSender()))) {
-      database.remove(id, Address.fromExternal(context, content.getSender()));
+    String hexEncodedPublicKey = getMasterHexEncodedPublicKey(context, content.getSender());
+    if (members.contains(Address.fromExternal(context, hexEncodedPublicKey))) {
+      database.remove(id, Address.fromExternal(context, hexEncodedPublicKey));
       if (outgoing) database.setActive(id, false);
 
       return storeMessage(context, content, group, builder.build(), outgoing);
