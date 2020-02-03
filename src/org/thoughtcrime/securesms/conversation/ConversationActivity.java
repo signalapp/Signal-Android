@@ -1152,10 +1152,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       if (threadId != -1 && leaveMessage.isPresent()) {
         MessageSender.send(this, leaveMessage.get(), threadId, false, null);
 
+        // We need to remove the master device from the group
+        String masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this);
+        String localNumber = masterHexEncodedPublicKey != null ? masterHexEncodedPublicKey : TextSecurePreferences.getLocalNumber(this);
+
         GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(this);
         String        groupId       = groupRecipient.getAddress().toGroupString();
         groupDatabase.setActive(groupId, false);
-        groupDatabase.remove(groupId, Address.fromSerialized(TextSecurePreferences.getLocalNumber(this)));
+        groupDatabase.remove(groupId, Address.fromSerialized(localNumber));
 
         initializeEnabledCheck();
       } else {
