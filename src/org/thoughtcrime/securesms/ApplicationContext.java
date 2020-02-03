@@ -534,18 +534,18 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   public void createDefaultPublicChatsIfNeeded() {
     List<LokiPublicChat> defaultPublicChats = LokiPublicChatAPI.Companion.getDefaultChats(BuildConfig.DEBUG);
-    for (LokiPublicChat publiChat : defaultPublicChats) {
-      long threadID = GroupManager.getPublicChatThreadId(publiChat.getId(), this);
-      String migrationKey = publiChat.getId() + "_migrated";
+    for (LokiPublicChat publicChat : defaultPublicChats) {
+      long threadID = GroupManager.getPublicChatThreadId(publicChat.getId(), this);
+      String migrationKey = publicChat.getId() + "_migrated";
       boolean isChatMigrated = TextSecurePreferences.getBooleanPreference(this, migrationKey, false);
-      boolean isChatSetUp = TextSecurePreferences.isChatSetUp(this, publiChat.getId());
-      if (!isChatSetUp || !publiChat.isDeletable()) {
-        lokiPublicChatManager.addChat(publiChat.getServer(), publiChat.getChannel(), publiChat.getDisplayName());
-        TextSecurePreferences.markChatSetUp(this, publiChat.getId());
+      boolean isChatSetUp = TextSecurePreferences.isChatSetUp(this, publicChat.getId());
+      if (!isChatSetUp || !publicChat.isDeletable()) {
+        lokiPublicChatManager.addChat(publicChat.getServer(), publicChat.getChannel(), publicChat.getDisplayName());
+        TextSecurePreferences.markChatSetUp(this, publicChat.getId());
         TextSecurePreferences.setBooleanPreference(this, migrationKey, true);
       } else if (threadID > -1 && !isChatMigrated) {
         // Migrate the old public chats
-        DatabaseFactory.getLokiThreadDatabase(this).setPublicChat(publiChat, threadID);
+        DatabaseFactory.getLokiThreadDatabase(this).setPublicChat(publicChat, threadID);
         TextSecurePreferences.setBooleanPreference(this, migrationKey, true);
       }
     }
