@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 import org.whispersystems.signalservice.api.KeyBackupService;
 import org.whispersystems.signalservice.api.KeyBackupServicePinException;
+import org.whispersystems.signalservice.api.KeyBackupSystemNoDataException;
 import org.whispersystems.signalservice.api.RegistrationLockData;
 import org.whispersystems.signalservice.api.kbs.HashedPin;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
@@ -305,7 +306,7 @@ public final class RegistrationLockDialog {
               TextSecurePreferences.setRegistrationLockLastReminderTime(context, System.currentTimeMillis());
               TextSecurePreferences.setRegistrationLockNextReminderInterval(context, RegistrationLockReminders.INITIAL_INTERVAL);
               return true;
-            } catch (IOException | UnauthenticatedResponseException | KeyBackupServicePinException e) {
+            } catch (IOException | UnauthenticatedResponseException | KeyBackupServicePinException | KeyBackupSystemNoDataException e) {
               Log.w(TAG, e);
               return false;
             }

@@ -171,11 +171,11 @@ public final class EnterCodeFragment extends BaseRegistrationFragment {
           }
 
           @Override
-          public void onKbsAccountLocked(long timeRemaining) {
-            model.setTimeRemaining(timeRemaining);
-            RegistrationLockFragmentDirections.ActionAccountLocked action = RegistrationLockFragmentDirections.actionAccountLocked(timeRemaining);
-
-            Navigation.findNavController(requireView()).navigate(action);
+          public void onKbsAccountLocked(@Nullable Long timeRemaining) {
+            if (timeRemaining != null) {
+              model.setTimeRemaining(timeRemaining);
+            }
+            Navigation.findNavController(requireView()).navigate(RegistrationLockFragmentDirections.actionAccountLocked());
           }
 
           @Override

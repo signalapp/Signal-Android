@@ -124,7 +124,7 @@ public final class KeyBackupService {
 
     @Override
     public RegistrationLockData restorePin(HashedPin hashedPin)
-      throws UnauthenticatedResponseException, IOException, KeyBackupServicePinException
+      throws UnauthenticatedResponseException, IOException, KeyBackupServicePinException, KeyBackupSystemNoDataException
     {
       int           attempt = 0;
       SecureRandom  random  = new SecureRandom();
@@ -157,7 +157,7 @@ public final class KeyBackupService {
     }
 
     private RegistrationLockData restorePin(HashedPin hashedPin, TokenResponse token)
-      throws UnauthenticatedResponseException, IOException, TokenException
+      throws UnauthenticatedResponseException, IOException, TokenException, KeyBackupSystemNoDataException
     {
       try {
         final int               remainingTries    = token.getTries();
@@ -190,14 +190,15 @@ public final class KeyBackupService {
             throw new TokenException(nextToken, canRetry);
           case MISSING:
             Log.i(TAG, "Restore OK! No data though");
-            return null;
+            throw new KeyBackupSystemNoDataException();
           case NOT_YET_VALID:
             throw new UnauthenticatedResponseException("Key is not valid yet, clock mismatch");
+          default:
+            throw new AssertionError("Unexpected case");
         }
       } catch (InvalidCiphertextException e) {
         throw new UnauthenticatedResponseException(e);
       }
-      return null;
     }
 
     private RemoteAttestation getAndVerifyRemoteAttestation() throws UnauthenticatedResponseException, IOException {
@@ -277,7 +278,7 @@ public final class KeyBackupService {
   public interface RestoreSession extends HashSession {
 
     RegistrationLockData restorePin(HashedPin hashedPin)
-      throws UnauthenticatedResponseException, IOException, KeyBackupServicePinException;
+      throws UnauthenticatedResponseException, IOException, KeyBackupServicePinException, KeyBackupSystemNoDataException;
   }
 
   public interface PinChangeSession extends HashSession {

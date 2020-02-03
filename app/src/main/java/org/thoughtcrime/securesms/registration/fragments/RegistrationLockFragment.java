@@ -192,7 +192,7 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
 
           if (triesRemaining == 0) {
             Log.w(TAG, "Account locked. User out of attempts on KBS.");
-            lockAccount(timeRemaining);
+            onAccountLocked();
             return;
           }
 
@@ -226,10 +226,12 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
         }
 
         @Override
-        public void onKbsAccountLocked(long timeRemaining) {
-          getModel().setTimeRemaining(timeRemaining);
+        public void onKbsAccountLocked(@Nullable Long timeRemaining) {
+          if (timeRemaining != null) {
+            model.setTimeRemaining(timeRemaining);
+          }
 
-          lockAccount(timeRemaining);
+          onAccountLocked();
         }
 
         @Override
@@ -254,10 +256,8 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
     return (int) TimeUnit.MILLISECONDS.toDays(timeRemainingMs) + 1;
   }
 
-  private void lockAccount(long timeRemaining) {
-    RegistrationLockFragmentDirections.ActionAccountLocked action = RegistrationLockFragmentDirections.actionAccountLocked(timeRemaining);
-
-    Navigation.findNavController(requireView()).navigate(action);
+  private void onAccountLocked() {
+    Navigation.findNavController(requireView()).navigate(RegistrationLockFragmentDirections.actionAccountLocked());
   }
 
   private void updateKeyboard(@NonNull PinKeyboardType keyboard) {

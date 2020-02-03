@@ -35,6 +35,7 @@ import org.whispersystems.libsignal.util.KeyHelper;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.KeyBackupService;
 import org.whispersystems.signalservice.api.KeyBackupServicePinException;
+import org.whispersystems.signalservice.api.KeyBackupSystemNoDataException;
 import org.whispersystems.signalservice.api.RegistrationLockData;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.kbs.HashedPin;
@@ -94,6 +95,9 @@ public final class CodeVerificationRequest {
           kbsToken = kbsTokenResponse;
           verifyAccount(context, credentials, code, pin, kbsTokenResponse, basicStorageCredentials, fcmToken);
           return Result.SUCCESS;
+        } catch (KeyBackupSystemNoDataException e) {
+          Log.w(TAG, "No data found on KBS");
+          return Result.KBS_ACCOUNT_LOCKED;
         } catch (KeyBackupSystemWrongPinException e) {
           kbsToken = e.getTokenResponse();
           return Result.KBS_WRONG_PIN;
@@ -156,7 +160,7 @@ public final class CodeVerificationRequest {
             break;
           case KBS_ACCOUNT_LOCKED:
             Log.w(TAG, "KBS Account is locked");
-            callback.onKbsAccountLocked(lockedException.getTimeRemaining());
+            callback.onKbsAccountLocked(lockedException != null ? lockedException.getTimeRemaining() : null);
             break;
         }
       }
@@ -184,7 +188,7 @@ public final class CodeVerificationRequest {
                                     @Nullable TokenResponse kbsTokenResponse,
                                     @Nullable String kbsStorageCredentials,
                                     @Nullable String fcmToken)
-    throws IOException, KeyBackupSystemWrongPinException
+    throws IOException, KeyBackupSystemWrongPinException, KeyBackupSystemNoDataException
   {
     boolean isV2KbsPin                  = kbsTokenResponse != null;
     int     registrationId              = KeyHelper.generateRegistrationId(false);
@@ -284,7 +288,7 @@ public final class CodeVerificationRequest {
   private static @Nullable RegistrationLockData restoreMasterKey(@Nullable String pin,
                                                                  @Nullable String basicStorageCredentials,
                                                                  @NonNull TokenResponse tokenResponse)
-    throws IOException, KeyBackupSystemWrongPinException
+    throws IOException, KeyBackupSystemWrongPinException, KeyBackupSystemNoDataException
   {
     if (pin == null) return null;
 
@@ -304,7 +308,7 @@ public final class CodeVerificationRequest {
       if (kbsData != null) {
         Log.i(TAG, "Found registration lock token on KBS.");
       } else {
-        Log.i(TAG, "No KBS data found.");
+        throw new AssertionError("Null not expected");
       }
       return kbsData;
     } catch (UnauthenticatedResponseException e) {
@@ -340,11 +344,11 @@ public final class CodeVerificationRequest {
     void onIncorrectKbsRegistrationLockPin(@NonNull TokenResponse kbsTokenResponse);
 
     /**
-     * V2 (KBS) pin is set, but there is no data on KBS
+     * V2 (KBS) pin is set, but there is no data on KBS.
      *
-     * @param timeRemaining Time until pin expires and number can be reused.
+     * @param timeRemaining Non-null if known.
      */
-    void onKbsAccountLocked(long timeRemaining);
+    void onKbsAccountLocked(@Nullable Long timeRemaining);
 
     void onRateLimited();
 

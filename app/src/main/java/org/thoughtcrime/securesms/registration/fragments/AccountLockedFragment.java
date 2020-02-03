@@ -11,11 +11,12 @@ import android.widget.TextView;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import org.thoughtcrime.securesms.R;
 
-public class AccountLockedFragment extends Fragment {
+import java.util.concurrent.TimeUnit;
+
+public class AccountLockedFragment extends BaseRegistrationFragment {
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -24,14 +25,16 @@ public class AccountLockedFragment extends Fragment {
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    AccountLockedFragmentArgs args = AccountLockedFragmentArgs.fromBundle(requireArguments());
+    super.onViewCreated(view, savedInstanceState);
 
     TextView description = view.findViewById(R.id.account_locked_description);
 
-    description.setText(getString(R.string.AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy, args.getTimeRemaining()));
+    getModel().getTimeRemaining().observe(getViewLifecycleOwner(),
+      t -> description.setText(getString(R.string.AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy, durationToDays(t)))
+    );
 
-    view.findViewById(R.id.account_locked_next).setOnClickListener(this::onNextClicked);
-    view.findViewById(R.id.account_locked_learn_more).setOnClickListener(this::onLearnMoreClicked);
+    view.findViewById(R.id.account_locked_next).setOnClickListener(v -> onNext());
+    view.findViewById(R.id.account_locked_learn_more).setOnClickListener(v -> learnMore());
 
     requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
       @Override
@@ -41,16 +44,18 @@ public class AccountLockedFragment extends Fragment {
     });
   }
 
-  private void onNextClicked(@NonNull View unused) {
-    onNext();
+  private void learnMore() {
+    Intent intent = new Intent(Intent.ACTION_VIEW);
+    intent.setData(Uri.parse(getString(R.string.AccountLockedFragment__learn_more_url)));
+    startActivity(intent);
   }
 
-  private void onLearnMoreClicked(@NonNull View unused) {
-    Intent intent = new Intent(Intent.ACTION_VIEW);
+  private static long durationToDays(Long duration) {
+    return duration != null ? getLockoutDays(duration) : 7;
+  }
 
-    intent.setData(Uri.parse(getString(R.string.AccountLockedFragment__learn_more_url)));
-
-    startActivity(intent);
+  private static int getLockoutDays(long timeRemainingMs) {
+    return (int) TimeUnit.MILLISECONDS.toDays(timeRemainingMs) + 1;
   }
 
   private void onNext() {

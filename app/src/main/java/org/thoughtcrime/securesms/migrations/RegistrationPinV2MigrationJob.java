@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.KeyBackupService;
 import org.whispersystems.signalservice.api.KeyBackupServicePinException;
+import org.whispersystems.signalservice.api.KeyBackupSystemNoDataException;
 import org.whispersystems.signalservice.api.RegistrationLockData;
 import org.whispersystems.signalservice.api.kbs.HashedPin;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
@@ -55,7 +56,7 @@ public final class RegistrationPinV2MigrationJob extends BaseJob {
   }
 
   @Override
-  protected void onRun() throws IOException, UnauthenticatedResponseException, KeyBackupServicePinException {
+  protected void onRun() throws IOException, UnauthenticatedResponseException, KeyBackupServicePinException, KeyBackupSystemNoDataException {
     if (!TextSecurePreferences.isV1RegistrationLockEnabled(context)) {
       Log.i(TAG, "Registration lock disabled");
       return;

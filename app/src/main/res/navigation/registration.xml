@@ -157,12 +157,7 @@
         android:id="@+id/accountLockedFragment"
         android:name="org.thoughtcrime.securesms.registration.fragments.AccountLockedFragment"
         android:label="fragment_account_locked"
-        tools:layout="@layout/account_locked_fragment">
-
-        <argument
-            android:name="timeRemaining"
-            app:argType="long" />
-    </fragment>
+        tools:layout="@layout/account_locked_fragment"/>
 
     <fragment
         android:id="@+id/captchaFragment"

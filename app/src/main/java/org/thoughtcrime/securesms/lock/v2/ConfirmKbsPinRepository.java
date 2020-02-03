@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.whispersystems.signalservice.api.KeyBackupService;
 import org.whispersystems.signalservice.api.KeyBackupServicePinException;
+import org.whispersystems.signalservice.api.KeyBackupSystemNoDataException;
 import org.whispersystems.signalservice.api.RegistrationLockData;
 import org.whispersystems.signalservice.api.kbs.HashedPin;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
@@ -59,7 +60,7 @@ final class ConfirmKbsPinRepository {
         ApplicationDependencies.getMegaphoneRepository().markFinished(Megaphones.Event.PINS_FOR_ALL);
 
         return PinSetResult.SUCCESS;
-      } catch (IOException | UnauthenticatedResponseException | KeyBackupServicePinException e) {
+      } catch (IOException | UnauthenticatedResponseException | KeyBackupServicePinException | KeyBackupSystemNoDataException e) {
         Log.w(TAG, e);
         return PinSetResult.FAILURE;
       }
