@@ -20,6 +20,7 @@ import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage.Action;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
 import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
 import java.util.Collections;
@@ -100,6 +101,10 @@ public class TypingSendJob extends BaseJob implements InjectableType {
 
     // Loki - Don't send typing indicators in group chats or to ourselves
     if (recipient.isGroupRecipient()) { return; }
+
+
+    LokiThreadFriendRequestStatus friendRequestStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadId);
+    if (friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) { return; }
 
     boolean isOurDevice = PromiseUtil.get(MultiDeviceUtilities.isOneOfOurDevices(context, recipient.getAddress()), false);
     if (!isOurDevice) {
