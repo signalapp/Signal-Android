@@ -73,8 +73,8 @@
     <string name="AttachmentKeyboard_file">File</string>
     <string name="AttachmentKeyboard_contact">Contact</string>
     <string name="AttachmentKeyboard_location">Location</string>
-    <string name="AttachmentKeyboard_Signal_requires_the_storage_permission">Signal requires the Storage permission to show your recent photos and videos.</string>
-    <string name="AttachmentKeyboard_grant_access">Grant Access</string>
+    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal needs permission to show your photos and videos.</string>
+    <string name="AttachmentKeyboard_give_access">Give Access</string>
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Can\'t find an app to select media.</string>
