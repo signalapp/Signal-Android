@@ -472,6 +472,11 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     selectedRevealAnim.setDuration(duration);
     reveals.add(selectedRevealAnim);
 
+    Animator toolbarRevealAnim = AnimatorInflaterCompat.loadAnimator(getContext(), android.R.animator.fade_in);
+    toolbarRevealAnim.setTarget(toolbar);
+    toolbarRevealAnim.setDuration(duration);
+    reveals.add(toolbarRevealAnim);
+
     revealAnimatorSet.setInterpolator(INTERPOLATOR);
     revealAnimatorSet.playTogether(reveals);
 
@@ -498,6 +503,11 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     selectedHideAnim.setTarget(selectedView);
     selectedHideAnim.setDuration(duration);
     hides.add(selectedHideAnim);
+
+    Animator toolbarHideAnim = AnimatorInflaterCompat.loadAnimator(getContext(), android.R.animator.fade_out);
+    toolbarHideAnim.setTarget(toolbar);
+    toolbarHideAnim.setDuration(duration);
+    hides.add(toolbarHideAnim);
 
     hideAnimatorSet.addListener(new AnimationCompleteListener() {
       @Override
