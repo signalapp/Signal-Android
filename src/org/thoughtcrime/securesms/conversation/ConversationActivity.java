@@ -2077,7 +2077,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void setBlockedUserState(Recipient recipient, boolean isSecureText, boolean isDefaultSms) {
-    if (recipient.isGroupRecipient() && (recipient.getName().equals("Loki News") || recipient.getName().equals("Loki Messenger Updates"))) {
+    if (recipient.isGroupRecipient() && (recipient.getName().equals("Loki News") || recipient.getName().equals("Session Updates"))) {
       unblockButton.setVisibility(View.GONE);
       composePanel.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.GONE);
@@ -3187,7 +3187,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     } else if (recipient.isMuted()) {
       muteIndicatorImageView.setVisibility(View.VISIBLE);
       actionBarSubtitleTextView.setText("Muted until " + DateUtils.getFormattedDateTime(recipient.mutedUntil, "EEE, MMM d, yyyy HH:mm", Locale.getDefault()));
-    } else if (recipient.isGroupRecipient() && recipient.getName() != null && !recipient.getName().equals("Loki Messenger Updates") && !recipient.getName().equals("Loki News")) {
+    } else if (recipient.isGroupRecipient() && recipient.getName() != null && !recipient.getName().equals("Session Updates") && !recipient.getName().equals("Loki News")) {
       LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadId);
       if (publicChat != null) {
         Integer userCount = DatabaseFactory.getLokiAPIDatabase(this).getUserCount(publicChat.getChannel(), publicChat.getServer());

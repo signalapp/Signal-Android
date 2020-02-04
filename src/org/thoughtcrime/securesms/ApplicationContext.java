@@ -516,7 +516,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   private LokiRSSFeed lokiMessengerUpdatesFeed() {
-    return new LokiRSSFeed("loki.network.messenger-updates.feed", "https://loki.network/category/messenger-updates/feed", "Loki Messenger Updates", false);
+    return new LokiRSSFeed("loki.network.messenger-updates.feed", "https://loki.network/category/messenger-updates/feed", "Session Updates", false);
   }
 
   public void createDefaultPublicChatsIfNeeded() {
@@ -563,7 +563,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         lokiNewsFeedPoller = null;
       });
     }
-    // The user can't delete the Loki Messenger Updates RSS feed
+    // The user can't delete the Session Updates RSS feed
     if (lokiMessengerUpdatesFeedPoller == null) {
       lokiMessengerUpdatesFeedPoller = new LokiRSSFeedPoller(this, lokiMessengerUpdatesFeed());
     }
