@@ -104,6 +104,7 @@
     <attr name="reactions_pill_selected_background" format="reference" />
     <attr name="reactions_pill_text_color" format="color" />
     <attr name="reactions_pill_selected_text_color" format="color" />
+    <attr name="reactions_screen_shade_color" />
 
     <attr name="camera_button_style" />
 

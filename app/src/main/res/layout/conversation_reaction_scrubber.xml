@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="0"
-        android:background="@color/transparent_black_20" />
+        android:background="?reactions_screen_shade_color" />
 
     <include
         android:id="@+id/conversation_reaction_toolbar"

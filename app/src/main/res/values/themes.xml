@@ -277,6 +277,7 @@
         <item name="reactions_pill_selected_background">@drawable/reaction_pill_background_selected_light</item>
         <item name="reactions_pill_text_color">@color/core_grey_60</item>
         <item name="reactions_pill_selected_text_color">@color/core_grey_75</item>
+        <item name="reactions_screen_shade_color">@color/transparent_black_40</item>
 
         <item name="conversation_item_bubble_background">@color/core_grey_05</item>
         <item name="conversation_item_sent_text_primary_color">@color/core_grey_90</item>
@@ -545,6 +546,7 @@
         <item name="reactions_pill_selected_background">@drawable/reaction_pill_background_selected_dark</item>
         <item name="reactions_pill_text_color">@color/core_grey_35</item>
         <item name="reactions_pill_selected_text_color">@color/core_grey_15</item>
+        <item name="reactions_screen_shade_color">@color/transparent_black_60</item>
 
         <item name="emoji_tab_strip_background">@color/core_grey_85</item>
         <item name="emoji_tab_indicator">@color/core_grey_65</item>
