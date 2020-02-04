@@ -75,7 +75,7 @@ public class Megaphone {
   }
 
   public @Nullable EventListener getSnoozeListener() {
-    return buttonListener;
+    return snoozeListener;
   }
 
   public @Nullable EventListener getOnVisibleListener() {
