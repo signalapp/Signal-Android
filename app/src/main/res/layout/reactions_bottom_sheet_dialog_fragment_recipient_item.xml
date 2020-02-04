@@ -40,6 +40,7 @@
         android:layout_marginStart="16dp"
         android:gravity="center"
         android:textSize="22dp"
+        app:emoji_forceCustom="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

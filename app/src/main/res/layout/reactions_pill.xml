@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -16,6 +17,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:textSize="16dp"
+      app:emoji_forceCustom="true"
       tools:ignore="SpUsage" />
 
   <Space

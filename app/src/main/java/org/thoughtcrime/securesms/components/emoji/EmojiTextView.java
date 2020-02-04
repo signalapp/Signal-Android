@@ -23,6 +23,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 public class EmojiTextView extends AppCompatTextView {
 
   private final boolean scaleEmojis;
+  private final boolean forceCustom;
 
   private static final char ELLIPSIS = '…';
 
@@ -49,6 +50,7 @@ public class EmojiTextView extends AppCompatTextView {
     TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.EmojiTextView, 0, 0);
     scaleEmojis = a.getBoolean(R.styleable.EmojiTextView_scaleEmojis, false);
     maxLength   = a.getInteger(R.styleable.EmojiTextView_emoji_maxLength, -1);
+    forceCustom = a.getBoolean(R.styleable.EmojiTextView_emoji_forceCustom, false);
     a.recycle();
 
     a = context.obtainStyledAttributes(attrs, new int[]{android.R.attr.textSize});
@@ -166,7 +168,7 @@ public class EmojiTextView extends AppCompatTextView {
   }
 
   private boolean useSystemEmoji() {
-   return TextSecurePreferences.isSystemEmojiPreferred(getContext());
+   return !forceCustom && TextSecurePreferences.isSystemEmojiPreferred(getContext());
   }
 
   @Override
