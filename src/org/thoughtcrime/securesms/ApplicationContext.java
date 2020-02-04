@@ -31,7 +31,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.multidex.MultiDexApplication;
 
-import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.security.ProviderInstaller;
 
 import org.conscrypt.Conscrypt;
@@ -65,14 +64,14 @@ import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
-import org.thoughtcrime.securesms.loki.redesign.messaging.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.LokiPublicChatManager;
-import org.thoughtcrime.securesms.loki.redesign.messaging.LokiRSSFeedPoller;
-import org.thoughtcrime.securesms.loki.redesign.messaging.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.redesign.messaging.BackgroundPollWorker;
 import org.thoughtcrime.securesms.loki.redesign.messaging.BackgroundPublicChatPollWorker;
+import org.thoughtcrime.securesms.loki.redesign.messaging.LokiAPIDatabase;
+import org.thoughtcrime.securesms.loki.redesign.messaging.LokiRSSFeedPoller;
+import org.thoughtcrime.securesms.loki.redesign.messaging.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.redesign.utilities.Broadcaster;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
@@ -114,7 +113,6 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import dagger.ObjectGraph;
-import io.fabric.sdk.android.Fabric;
 import kotlin.Unit;
 import network.loki.messenger.BuildConfig;
 import okhttp3.Cache;
@@ -186,10 +184,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
     // Loki - Set up P2P API if needed
     setUpP2PAPI();
-    // Loki - Set up beta analytics
-    if (!BuildConfig.DEBUG) {
-      Fabric.with(this, new Crashlytics());
-    }
     // Loki - Set the cache
     LokiDotNetAPI.setCache(new Cache(this.getCacheDir(), OK_HTTP_CACHE_SIZE));
     // Loki - Update device mappings
