@@ -107,20 +107,9 @@ public class UnidentifiedAccessUtil {
   private static @Nullable byte[] getTargetUnidentifiedAccessKey(@NonNull Recipient recipient) {
     byte[] theirProfileKey = recipient.resolve().getProfileKey();
 
-    switch (recipient.resolve().getUnidentifiedAccessMode()) {
-      case UNKNOWN:
-        if (theirProfileKey == null) return Util.getSecretBytes(16);
-        else                         return UnidentifiedAccess.deriveAccessKeyFrom(theirProfileKey);
-      case DISABLED:
-        return null;
-      case ENABLED:
-        if (theirProfileKey == null) return null;
-        else                         return UnidentifiedAccess.deriveAccessKeyFrom(theirProfileKey);
-      case UNRESTRICTED:
-        return Util.getSecretBytes(16);
-      default:
-        throw new AssertionError("Unknown mode: " + recipient.getUnidentifiedAccessMode().getMode());
-    }
+    if (theirProfileKey == null) return Util.getSecretBytes(16);
+    else                         return UnidentifiedAccess.deriveAccessKeyFrom(theirProfileKey);
+    
   }
 
   private static @Nullable byte[] getUnidentifiedAccessCertificate(Context context) {
