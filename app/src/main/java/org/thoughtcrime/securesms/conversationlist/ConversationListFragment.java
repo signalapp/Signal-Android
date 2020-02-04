@@ -363,7 +363,7 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
 
   @Override
   public void onMegaphoneToastRequested(@NonNull String string) {
-    Snackbar.make(fab, string, Snackbar.LENGTH_SHORT).show();
+    Snackbar.make(fab, string, Snackbar.LENGTH_LONG).show();
   }
 
   @Override
