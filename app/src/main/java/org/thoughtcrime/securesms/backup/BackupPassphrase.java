@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.backup;
 
 import android.content.Context;
 import android.os.Build;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -12,26 +13,30 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 /**
  * Allows the getting and setting of the backup passphrase, which is stored encrypted on API >= 23.
  */
-public class BackupPassphrase {
+public final class BackupPassphrase {
+
+  private BackupPassphrase() {
+  }
 
   private static final String TAG = BackupPassphrase.class.getSimpleName();
 
-  public static String get(@NonNull Context context) {
+  public static @Nullable String get(@NonNull Context context) {
     String passphrase          = TextSecurePreferences.getBackupPassphrase(context);
     String encryptedPassphrase = TextSecurePreferences.getEncryptedBackupPassphrase(context);
 
     if (Build.VERSION.SDK_INT < 23 || (passphrase == null && encryptedPassphrase == null)) {
-      return passphrase;
+      return stripSpaces(passphrase);
     }
 
     if (encryptedPassphrase == null) {
       Log.i(TAG, "Migrating to encrypted passphrase.");
       set(context, passphrase);
       encryptedPassphrase = TextSecurePreferences.getEncryptedBackupPassphrase(context);
+      if (encryptedPassphrase == null) throw new AssertionError("Passphrase migration failed");
     }
 
     KeyStoreHelper.SealedData data = KeyStoreHelper.SealedData.fromString(encryptedPassphrase);
-    return new String(KeyStoreHelper.unseal(data));
+    return stripSpaces(new String(KeyStoreHelper.unseal(data)));
   }
 
   public static void set(@NonNull Context context, @Nullable String passphrase) {
@@ -43,5 +48,9 @@ public class BackupPassphrase {
       TextSecurePreferences.setEncryptedBackupPassphrase(context, encryptedPassphrase.serialize());
       TextSecurePreferences.setBackupPassphrase(context, null);
     }
+  }
+
+  private static String stripSpaces(@Nullable String passphrase) {
+    return passphrase != null ? passphrase.replace(" ", "") : null;
   }
 }
