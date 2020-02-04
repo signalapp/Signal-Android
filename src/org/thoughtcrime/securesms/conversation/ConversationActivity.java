@@ -874,7 +874,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case R.id.menu_group_recipients:          handleDisplayGroupRecipients();                    return true;
     case R.id.menu_distribution_broadcast:    handleDistributionBroadcastEnabled(item);          return true;
     case R.id.menu_distribution_conversation: handleDistributionConversationEnabled(item);       return true;
-    case R.id.menu_edit_group:                handleEditPushGroup();                             return true;
+//    case R.id.menu_edit_group:                handleEditPushGroup();                             return true;
     case R.id.menu_leave:                     handleLeavePushGroup();                            return true;
     case R.id.menu_invite:                    handleInviteLink();                                return true;
     case R.id.menu_mute_notifications:        handleMuteNotifications();                         return true;
@@ -2112,7 +2112,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void setGroupShareProfileReminder(@NonNull Recipient recipient) {
     if (recipient.isPushGroupRecipient() && !recipient.isProfileSharing() && !recipient.getAddress().isPublicChat() && !recipient.getAddress().isRSSFeed()) {
       groupShareProfileView.get().setRecipient(recipient);
-      groupShareProfileView.get().setVisibility(View.VISIBLE);
+      groupShareProfileView.get().setVisibility(View.GONE); // Loki - Always hide for now
     } else if (groupShareProfileView.resolved()) {
       groupShareProfileView.get().setVisibility(View.GONE);
     }

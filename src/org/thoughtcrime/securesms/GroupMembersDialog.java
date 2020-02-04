@@ -2,14 +2,12 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.LinkedList;
@@ -64,16 +62,17 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, List<Recipient>> {
 
     @Override
     public void onClick(DialogInterface dialogInterface, int item) {
-      Recipient recipient = groupMembers.get(item);
-
-      if (recipient.getContactUri() != null) {
-        Intent intent = new Intent(context, RecipientPreferenceActivity.class);
-        intent.putExtra(RecipientPreferenceActivity.ADDRESS_EXTRA, recipient.getAddress());
-
-        context.startActivity(intent);
-      } else {
-        context.startActivity(RecipientExporter.export(recipient).asAddContactIntent());
-      }
+      // Loki - Do nothing
+//      Recipient recipient = groupMembers.get(item);
+//
+//      if (recipient.getContactUri() != null) {
+//        Intent intent = new Intent(context, RecipientPreferenceActivity.class);
+//        intent.putExtra(RecipientPreferenceActivity.ADDRESS_EXTRA, recipient.getAddress());
+//
+//        context.startActivity(intent);
+//      } else {
+//        context.startActivity(RecipientExporter.export(recipient).asAddContactIntent());
+//      }
     }
   }
 
