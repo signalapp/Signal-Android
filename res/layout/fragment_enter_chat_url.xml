@@ -16,7 +16,7 @@
         android:layout_marginLeft="@dimen/large_spacing"
         android:layout_marginTop="@dimen/large_spacing"
         android:layout_marginRight="@dimen/large_spacing"
-        android:hint="https://chat.lokinet.org" />
+        android:hint="https://chat.getsession.org" />
 
     <TextView
         android:layout_width="match_parent"

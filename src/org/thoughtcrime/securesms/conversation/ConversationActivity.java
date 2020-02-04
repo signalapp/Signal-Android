@@ -874,7 +874,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case R.id.menu_group_recipients:          handleDisplayGroupRecipients();                    return true;
     case R.id.menu_distribution_broadcast:    handleDistributionBroadcastEnabled(item);          return true;
     case R.id.menu_distribution_conversation: handleDistributionConversationEnabled(item);       return true;
-//    case R.id.menu_edit_group:                handleEditPushGroup();                             return true;
+    case R.id.menu_edit_group:                handleEditPushGroup();                             return true;
     case R.id.menu_leave:                     handleLeavePushGroup();                            return true;
     case R.id.menu_invite:                    handleInviteLink();                                return true;
     case R.id.menu_mute_notifications:        handleMuteNotifications();                         return true;
@@ -1172,9 +1172,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleEditPushGroup() {
-    Intent intent = new Intent(ConversationActivity.this, GroupCreateActivity.class);
-    intent.putExtra(GroupCreateActivity.GROUP_ADDRESS_EXTRA, recipient.getAddress());
-    startActivityForResult(intent, GROUP_EDIT);
+    AlertDialog.Builder alert = new AlertDialog.Builder(this);
+    alert.setMessage("The ability to add members to a closed group is coming soon.");
+    alert.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());
+    alert.create().show();
   }
 
   private void handleDistributionBroadcastEnabled(MenuItem item) {

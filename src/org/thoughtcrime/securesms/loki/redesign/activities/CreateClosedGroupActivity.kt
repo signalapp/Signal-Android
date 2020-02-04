@@ -95,8 +95,11 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
             return Toast.makeText(this, "Please enter a shorter group name", Toast.LENGTH_LONG).show()
         }
         val selectedMembers = this.selectedMembers
-        if (selectedMembers.count() < 1) {
-            return Toast.makeText(this, "Please pick at least 1 group member", Toast.LENGTH_LONG).show()
+        if (selectedMembers.count() < 2) {
+            return Toast.makeText(this, "Please pick at least 2 group members", Toast.LENGTH_LONG).show()
+        }
+        if (selectedMembers.count() > 10) {
+            return Toast.makeText(this, "A closed group cannot have more than 10 members", Toast.LENGTH_LONG).show()
         }
         val recipients = selectedMembers.map {
             Recipient.from(this, Address.fromSerialized(it), false)
