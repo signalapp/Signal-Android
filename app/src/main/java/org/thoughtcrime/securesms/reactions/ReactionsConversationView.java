@@ -16,7 +16,6 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.ThemeUtil;
@@ -34,6 +33,7 @@ public class ReactionsConversationView extends LinearLayout {
 
   private boolean              outgoing;
   private List<ReactionRecord> records;
+  private int                  bubbleWidth;
 
   public ReactionsConversationView(Context context) {
     super(context);
@@ -54,17 +54,21 @@ public class ReactionsConversationView extends LinearLayout {
     }
   }
 
+
+
   public void clear() {
     removeAllViews();
   }
 
   public void setReactions(@NonNull List<ReactionRecord> records, int bubbleWidth) {
-    if (records.equals(this.records)) {
+    if (records.equals(this.records) && this.bubbleWidth == bubbleWidth) {
       return;
     }
 
     this.records.clear();
     this.records.addAll(records);
+
+    this.bubbleWidth = bubbleWidth;
 
     List<Reaction> reactions = buildSortedReactionsList(records);
 

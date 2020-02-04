@@ -905,22 +905,22 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   }
 
   private void setReactions(@NonNull MessageRecord current) {
+    bodyBubble.setOnSizeChangedListener(null);
+
     if (current.getReactions().isEmpty()) {
       reactionsView.clear();
       return;
     }
 
-    bodyBubble.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-      @Override
-      public void onGlobalLayout() {
-        setReactionsWithWidth(current);
-        bodyBubble.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-      }
-    });
+    if (bodyBubble.getWidth() != 0) {
+      setReactionsWithWidth(current, bodyBubble.getWidth());
+    }
+
+    bodyBubble.setOnSizeChangedListener((width, height) -> setReactionsWithWidth(current, width));
   }
 
-  private void setReactionsWithWidth(@NonNull MessageRecord current) {
-    reactionsView.setReactions(current.getReactions(), bodyBubble.getWidth());
+  private void setReactionsWithWidth(@NonNull MessageRecord current, int width) {
+    reactionsView.setReactions(current.getReactions(), width);
     reactionsView.setOnClickListener(v -> {
       if (eventListener == null) return;
 
