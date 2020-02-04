@@ -67,7 +67,7 @@ public class MaskView extends View {
   protected void onDraw(@NonNull Canvas canvas) {
     super.onDraw(canvas);
 
-    if (target == null) {
+    if (target == null || !target.isAttachedToWindow()) {
       return;
     }
 
