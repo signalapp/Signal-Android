@@ -63,6 +63,7 @@ public class MegaphoneRepository {
   public void getNextMegaphone(@NonNull Callback<Megaphone> callback) {
     executor.execute(() -> {
       if (enabled) {
+        init();
         callback.onResult(Megaphones.getNextMegaphone(context, databaseCache));
       } else {
         callback.onResult(null);
