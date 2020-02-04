@@ -27,7 +27,6 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
@@ -170,6 +169,8 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
       // Only send messages to the contacts we have sessions with
       List<Address> validTargets = Stream.of(target).filter(member -> {
+        if (member.isPublicChat()) { return true; }
+
         // Our device is always valid
         if (member.serialize().equalsIgnoreCase(localNumber)) { return true; }
 
