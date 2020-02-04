@@ -111,7 +111,7 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
     // region Polling
     private fun getDataMessage(message: LokiPublicChatMessage): SignalServiceDataMessage {
         val id = group.id.toByteArray()
-        val serviceGroup = SignalServiceGroup(SignalServiceGroup.Type.UPDATE, id, null, null, null)
+        val serviceGroup = SignalServiceGroup(SignalServiceGroup.Type.UPDATE, id, SignalServiceGroup.GroupType.PUBLIC_CHAT, null, null, null, null)
         val quote = if (message.quote != null) {
             SignalServiceDataMessage.Quote(message.quote!!.quotedMessageTimestamp, SignalServiceAddress(message.quote!!.quoteeHexEncodedPublicKey), message.quote!!.quotedMessageBody, listOf())
         } else {

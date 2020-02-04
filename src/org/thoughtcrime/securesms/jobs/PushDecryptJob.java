@@ -291,6 +291,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       // Loki - Handle friend request acceptance if needed
       acceptFriendRequestIfNeeded(content);
 
+      // Loki - Session requests
+      handleSessionRequestIfNeeded(content);
+
       // Loki - Store pre key bundle
       // We shouldn't store it if it's a pairing message
       if (!content.getPairingAuthorisation().isPresent()) {
@@ -335,7 +338,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           }
         } else {
           // Loki - Don't process session restore message any further
-          if (message.isSessionRestore()) { return; }
+          if (message.isSessionRestore() || message.isSessionRequest()) { return; }
+
           if (message.isEndSession()) handleEndSessionMessage(content, smsMessageId);
           else if (message.isGroupUpdate()) handleGroupMessage(content, message, smsMessageId);
           else if (message.isExpirationUpdate())
@@ -345,7 +349,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           else if (message.getBody().isPresent())
             handleTextMessage(content, message, smsMessageId, Optional.absent());
 
-          if (message.getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false))) {
+          if (message.getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getGroupInfo().get()))) {
             handleUnknownGroupMessage(content, message.getGroupInfo().get());
           }
 
@@ -601,9 +605,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private void handleUnknownGroupMessage(@NonNull SignalServiceContent content,
                                          @NonNull SignalServiceGroup group)
   {
-    ApplicationContext.getInstance(context)
-                      .getJobManager()
-                      .add(new RequestGroupInfoJob(content.getSender(), group.getGroupId()));
+    if (group.getGroupType() == SignalServiceGroup.GroupType.SIGNAL) {
+      ApplicationContext.getInstance(context)
+              .getJobManager()
+              .add(new RequestGroupInfoJob(content.getSender(), group.getGroupId()));
+    }
   }
 
   private void handleExpirationUpdate(@NonNull SignalServiceContent content,
@@ -690,7 +696,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
             Log.d("Loki", "Sent friend request to " + pubKey);
           } else if (status == LokiThreadFriendRequestStatus.REQUEST_RECEIVED) {
             // Accept the incoming friend request
-            becomeFriendsWithContact(pubKey, false);
+            becomeFriendsWithContact(pubKey, false, false);
             // Send them an accept message back
             MessageSender.sendBackgroundMessage(context, pubKey);
             Log.d("Loki", "Became friends with " + deviceContact.getNumber());
@@ -728,7 +734,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         threadId = handleSynchronizeSentTextMessage(message);
       }
 
-      if (message.getMessage().getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get().getGroupId(), false))) {
+      if (message.getMessage().getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get()))) {
         handleUnknownGroupMessage(content, message.getMessage().getGroupInfo().get());
       }
 
@@ -738,7 +744,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         Recipient recipient = null;
 
         if      (message.getDestination().isPresent())            recipient = Recipient.from(context, Address.fromSerialized(message.getDestination().get()), false);
-        else if (message.getMessage().getGroupInfo().isPresent()) recipient = Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get().getGroupId(), false)), false);
+        else if (message.getMessage().getGroupInfo().isPresent()) recipient = Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get())), false);
 
 
         if (recipient != null && !recipient.isSystemContact() && !recipient.isProfileSharing()) {
@@ -845,8 +851,16 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     Optional<List<LinkPreview>> linkPreviews   = getLinkPreviews(message.getPreviews(), message.getBody().or(""));
     Optional<Attachment>        sticker        = getStickerAttachment(message.getSticker());
 
-    // If message is from group then we need to map it to the correct sender
-    Address sender = message.isGroupUpdate() ? Address.fromSerialized(content.getSender()) : primaryDeviceRecipient.getAddress();
+    Address sender = primaryDeviceRecipient.getAddress();
+
+    // If message is from group then we need to map it to get the sender of the message
+    if (message.isGroupMessage()) {
+      sender = getPrimaryDeviceRecipient(content.getSender()).getAddress();
+    }
+
+    // Ignore messages from ourselves
+    if (sender.serialize().equalsIgnoreCase(TextSecurePreferences.getLocalNumber(context))) { return; }
+
     IncomingMediaMessage        mediaMessage   = new IncomingMediaMessage(sender, message.getTimestamp(), -1,
        message.getExpiresInSeconds() * 1000L, false, content.isNeedsReceipt(), message.getBody(), message.getGroupInfo(), message.getAttachments(),
         quote, sharedContacts, linkPreviews, sticker);
@@ -1030,8 +1044,16 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     } else {
       notifyTypingStoppedFromIncomingMessage(primaryDeviceRecipient, content.getSender(), content.getSenderDevice());
 
-      // If message is from group then we need to map it to the correct sender
-      Address sender = message.isGroupUpdate() ? Address.fromSerialized(content.getSender()) : primaryDeviceRecipient.getAddress();
+      Address sender = primaryDeviceRecipient.getAddress();
+
+      // If message is from group then we need to map it to get the sender of the message
+      if (message.isGroupMessage()) {
+        sender = getPrimaryDeviceRecipient(content.getSender()).getAddress();
+      }
+
+      // Ignore messages from ourselves
+      if (sender.serialize().equalsIgnoreCase(TextSecurePreferences.getLocalNumber(context))) { return; }
+
       IncomingTextMessage _textMessage = new IncomingTextMessage(sender,
                                                                 content.getSenderDevice(),
                                                                 message.getTimestamp(), body,
@@ -1217,10 +1239,29 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private void acceptFriendRequestIfNeeded(@NonNull SignalServiceContent content) {
     // If we get anything other than a friend request, we can assume that we have a session with the other user
     if (content.isFriendRequest() || isGroupChatMessage(content)) { return; }
-    becomeFriendsWithContact(content.getSender(), true);
+    becomeFriendsWithContact(content.getSender(), true, false);
   }
 
-  private void becomeFriendsWithContact(String pubKey, boolean syncContact) {
+  private void handleSessionRequestIfNeeded(@NonNull SignalServiceContent content) {
+    if (content.isFriendRequest() && isSessionRequest(content)) {
+      // Check if the session request from a member in one of our groups or our friend
+      LokiStorageAPI.shared.getPrimaryDevicePublicKey(content.getSender()).success(primaryDevicePublicKey -> {
+        String sender = primaryDevicePublicKey != null ? primaryDevicePublicKey : content.getSender();
+        long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(sender), false));
+        LokiThreadFriendRequestStatus threadFriendRequestStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID);
+        boolean isOurFriend = threadFriendRequestStatus == LokiThreadFriendRequestStatus.FRIENDS;
+        boolean isInOneOfOurGroups = DatabaseFactory.getGroupDatabase(context).signalGroupsHaveMember(sender);
+        boolean shouldAcceptSessionRequest = isOurFriend || isInOneOfOurGroups;
+        if (shouldAcceptSessionRequest) {
+          // Send a background message to acknowledge session request
+          MessageSender.sendBackgroundMessage(context, content.getSender());
+        }
+        return Unit.INSTANCE;
+      });
+    }
+  }
+
+  private void becomeFriendsWithContact(String pubKey, boolean syncContact, boolean force) {
     LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
     Recipient contactID = Recipient.from(context, Address.fromSerialized(pubKey), false);
     if (contactID.isGroupRecipient()) return;
@@ -1228,6 +1269,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(contactID);
     LokiThreadFriendRequestStatus threadFriendRequestStatus = lokiThreadDatabase.getFriendRequestStatus(threadID);
     if (threadFriendRequestStatus == LokiThreadFriendRequestStatus.FRIENDS) { return; }
+
+    // We shouldn't be able to skip from None -> Friends in normal circumstances.
+    // Multi-device is the exception to this rule because we want to automatically be friends with a secondary device
+    if (!force && threadFriendRequestStatus == LokiThreadFriendRequestStatus.NONE) { return; }
+
     // If the thread's friend request status is not `FRIENDS`, but we're receiving a message,
     // it must be a friend request accepted message. Declining a friend request doesn't send a message.
     lokiThreadDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
@@ -1248,13 +1294,13 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private void updateFriendRequestStatusIfNeeded(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
-    if (!content.isFriendRequest() || message.isGroupUpdate()) { return; }
+    if (!content.isFriendRequest() || message.isGroupMessage() || message.isSessionRequest()) { return; }
     // This handles the case where another user sends us a regular message without authorisation
     Promise<Boolean, Exception> promise = PromiseUtil.timeout(MultiDeviceUtilities.shouldAutomaticallyBecomeFriendsWithDevice(content.getSender(), context), 8000);
     boolean shouldBecomeFriends = PromiseUtil.get(promise, false);
     if (shouldBecomeFriends) {
       // Become friends AND update the message they sent
-      becomeFriendsWithContact(content.getSender(), true);
+      becomeFriendsWithContact(content.getSender(), true, true);
       // Send them an accept message back
       MessageSender.sendBackgroundMessage(context, content.getSender());
     } else {
@@ -1561,10 +1607,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     long threadId;
 
     if (typingMessage.getGroupId().isPresent()) {
+      // Typing messages should only apply to signal groups, thus we use `getEncodedId`
       Address   groupAddress   = Address.fromSerialized(GroupUtil.getEncodedId(typingMessage.getGroupId().get(), false));
       Recipient groupRecipient = Recipient.from(context, groupAddress, false);
 
-      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
+      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(groupRecipient);
     } else {
       // See if we need to redirect the message
       author = getPrimaryDeviceRecipient(content.getSender());
@@ -1712,15 +1759,15 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private Recipient getSyncMessageDestination(SentTranscriptMessage message) {
-    if (message.getMessage().getGroupInfo().isPresent()) {
-      return Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get().getGroupId(), false)), false);
+    if (message.getMessage().isGroupMessage()) {
+      return Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get())), false);
     } else {
       return Recipient.from(context, Address.fromSerialized(message.getDestination().get()), false);
     }
   }
 
   private Recipient getSyncMessagePrimaryDestination(SentTranscriptMessage message) {
-    if (message.getMessage().getGroupInfo().isPresent()) {
+    if (message.getMessage().isGroupMessage()) {
       return getSyncMessageDestination(message);
     } else {
       return getPrimaryDeviceRecipient(message.getDestination().get());
@@ -1728,15 +1775,15 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private Recipient getMessageDestination(SignalServiceContent content, SignalServiceDataMessage message) {
-    if (message.getGroupInfo().isPresent()) {
-      return Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false)), false);
+    if (message.isGroupMessage()) {
+      return Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getGroupInfo().get())), false);
     } else {
       return Recipient.from(context, Address.fromSerialized(content.getSender()), false);
     }
   }
 
   private Recipient getMessagePrimaryDestination(SignalServiceContent content, SignalServiceDataMessage message) {
-    if (message.getGroupInfo().isPresent()) {
+    if (message.isGroupMessage()) {
       return getMessageDestination(content, message);
     } else {
       return getPrimaryDeviceRecipient(content.getSender());
@@ -1794,7 +1841,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         return true;
       } else if (conversation.isGroupRecipient()) {
         GroupDatabase    groupDatabase = DatabaseFactory.getGroupDatabase(context);
-        Optional<String> groupId       = message.getGroupInfo().isPresent() ? Optional.of(GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false))
+        Optional<String> groupId       = message.getGroupInfo().isPresent() ? Optional.of(GroupUtil.getEncodedId(message.getGroupInfo().get()))
                                                                             : Optional.absent();
 
         if (groupId.isPresent() && groupDatabase.isUnknownGroup(groupId.get())) {
@@ -1830,8 +1877,12 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     return false;
   }
 
+  private boolean isSessionRequest(SignalServiceContent content) {
+    return content.getDataMessage().isPresent() && content.getDataMessage().get().isSessionRequest();
+  }
+
   private boolean isGroupChatMessage(SignalServiceContent content) {
-    return content.getDataMessage().isPresent() && content.getDataMessage().get().getGroupInfo().isPresent();
+    return content.getDataMessage().isPresent() && content.getDataMessage().get().isGroupMessage();
   }
 
   private void resetRecipientToPush(@NonNull Recipient recipient) {

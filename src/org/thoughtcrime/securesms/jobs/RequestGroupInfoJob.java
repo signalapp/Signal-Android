@@ -71,7 +71,7 @@ public class RequestGroupInfoJob extends BaseJob implements InjectableType {
   @Override
   public void onRun() throws IOException, UntrustedIdentityException {
     SignalServiceGroup       group   = SignalServiceGroup.newBuilder(Type.REQUEST_INFO)
-                                                         .withId(groupId)
+                                                         .withId(groupId, SignalServiceGroup.GroupType.SIGNAL)
                                                          .build();
 
     SignalServiceDataMessage message = SignalServiceDataMessage.newBuilder()

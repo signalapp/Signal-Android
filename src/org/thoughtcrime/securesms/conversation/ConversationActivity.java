@@ -740,9 +740,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     MenuInflater inflater = this.getMenuInflater();
     menu.clear();
 
-    boolean isLokiPublicChat = isGroupConversation(); // TODO: Figure out a better way of determining this
+    boolean isLokiGroupChat = recipient.getAddress().isPublicChat() || recipient.getAddress().isRSSFeed();
 
-    if (isSecureText && !isLokiPublicChat) { // TODO:
+    if (isSecureText && !isLokiGroupChat) {
       if (recipient.getExpireMessages() > 0) {
         inflater.inflate(R.menu.conversation_expiring_on, menu);
 
@@ -762,7 +762,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       if (isSecureText) inflater.inflate(R.menu.conversation_callable_secure, menu);
       else              inflater.inflate(R.menu.conversation_callable_insecure, menu);
        */
-    } else if (isGroupConversation() && !isLokiPublicChat) {
+    } else if (isGroupConversation() && !isLokiGroupChat) {
       inflater.inflate(R.menu.conversation_group_options, menu);
 
       if (!isPushGroupConversation()) {
@@ -1152,10 +1152,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       if (threadId != -1 && leaveMessage.isPresent()) {
         MessageSender.send(this, leaveMessage.get(), threadId, false, null);
 
+        // We need to remove the master device from the group
+        String masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this);
+        String localNumber = masterHexEncodedPublicKey != null ? masterHexEncodedPublicKey : TextSecurePreferences.getLocalNumber(this);
+
         GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(this);
         String        groupId       = groupRecipient.getAddress().toGroupString();
         groupDatabase.setActive(groupId, false);
-        groupDatabase.remove(groupId, Address.fromSerialized(TextSecurePreferences.getLocalNumber(this)));
+        groupDatabase.remove(groupId, Address.fromSerialized(localNumber));
 
         initializeEnabledCheck();
       } else {
@@ -2077,7 +2081,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void setBlockedUserState(Recipient recipient, boolean isSecureText, boolean isDefaultSms) {
-    if (recipient.isGroupRecipient() && (recipient.getName().equals("Loki News") || recipient.getName().equals("Session Updates"))) {
+    if (recipient.isGroupRecipient() && recipient.getAddress().isRSSFeed()) {
       unblockButton.setVisibility(View.GONE);
       composePanel.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.GONE);
@@ -2106,7 +2110,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void setGroupShareProfileReminder(@NonNull Recipient recipient) {
-    if (recipient.isPushGroupRecipient() && !recipient.isProfileSharing()) {
+    if (recipient.isPushGroupRecipient() && !recipient.isProfileSharing() && !recipient.getAddress().isPublicChat() && !recipient.getAddress().isRSSFeed()) {
       groupShareProfileView.get().setRecipient(recipient);
       groupShareProfileView.get().setVisibility(View.VISIBLE);
     } else if (groupShareProfileView.resolved()) {
@@ -2461,7 +2465,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     // Loki - Send a friend request if we're not yet friends with the user in question
     LokiThreadFriendRequestStatus friendRequestStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadId);
-    outgoingMessage.isFriendRequest = (friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS); // Needed for stageOutgoingMessage(...)
+    outgoingMessage.isFriendRequest = !isGroupConversation() && friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS; // Needed for stageOutgoingMessage(...)
 
     Permissions.with(this)
                .request(Manifest.permission.SEND_SMS, Manifest.permission.READ_SMS)
@@ -2521,7 +2525,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     // Loki - Send a friend request if we're not yet friends with the user in question
     LokiThreadFriendRequestStatus friendRequestStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadId);
-    message.isFriendRequest = (friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS); // Needed for stageOutgoingMessage(...)
+    message.isFriendRequest = !isGroupConversation() && friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS; // Needed for stageOutgoingMessage(...)
 
     Permissions.with(this)
                .request(Manifest.permission.SEND_SMS)

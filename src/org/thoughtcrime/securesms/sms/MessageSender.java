@@ -17,7 +17,6 @@
 package org.thoughtcrime.securesms.sms;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -60,11 +59,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
-import org.whispersystems.signalservice.api.SignalServiceMessageSender;
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
-import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
 import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
@@ -143,6 +138,10 @@ public class MessageSender {
   public static void sendRestoreSessionMessage(Context context, String contactHexEncodedPublicKey) {
     ApplicationContext.getInstance(context).getJobManager().add(new PushBackgroundMessageSendJob(BackgroundMessage.createSessionRestore(contactHexEncodedPublicKey)));
   }
+
+  public static void sendBackgroundSessionRequest(Context context, String contactHexEncodedPublicKey) {
+    ApplicationContext.getInstance(context).getJobManager().add(new PushBackgroundMessageSendJob(BackgroundMessage.createSessionRequest(contactHexEncodedPublicKey)));
+  }
   // endregion
 
   public static long send(final Context context,
@@ -202,7 +201,7 @@ public class MessageSender {
           if (attachment != null) { message.getAttachments().add(attachment); }
           long messageID = database.insertMessageOutbox(message, allocatedThreadId, forceSms, insertListener);
           // Loki - Set the message's friend request status as soon as it has hit the database
-          if (message.isFriendRequest) {
+          if (message.isFriendRequest && !recipient.getAddress().isGroup() && !message.isGroup()) {
             FriendRequestHandler.updateFriendRequestState(context, FriendRequestHandler.ActionType.Sending, messageID, allocatedThreadId);
           }
           sendMediaMessage(context, recipient, forceSms, messageID, message.getExpiresIn());
@@ -215,7 +214,7 @@ public class MessageSender {
       try {
         long messageID = database.insertMessageOutbox(message, allocatedThreadId, forceSms, insertListener);
         // Loki - Set the message's friend request status as soon as it has hit the database
-        if (message.isFriendRequest) {
+        if (message.isFriendRequest && !recipient.getAddress().isGroup() && !message.isGroup()) {
           FriendRequestHandler.updateFriendRequestState(context, FriendRequestHandler.ActionType.Sending, messageID, allocatedThreadId);
         }
         sendMediaMessage(context, recipient, forceSms, messageID, message.getExpiresIn());

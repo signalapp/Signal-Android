@@ -33,6 +33,9 @@ data class BackgroundMessage private constructor(val data: Map<String, Any>) {
 
     @JvmStatic
     fun createSessionRestore(recipient: String) = BackgroundMessage(mapOf( "recipient" to recipient, "friendRequest" to true, "sessionRestore" to true ))
+
+    @JvmStatic
+    fun createSessionRequest(recipient: String) = BackgroundMessage(mapOf("recipient" to recipient, "friendRequest" to true, "sessionRequest" to true))
             
     internal fun parse(serialized: String): BackgroundMessage {
       val data = JsonUtil.fromJson(serialized, Map::class.java) as? Map<String, Any> ?: throw AssertionError("JSON parsing failed")
@@ -97,6 +100,10 @@ class PushBackgroundMessageSendJob private constructor(
 
     if (message.get("sessionRestore", false)) {
       dataMessage.asSessionRestore(true)
+    }
+
+    if (message.get("sessionRequest", false)) {
+      dataMessage.asSessionRequest(true)
     }
 
     val messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender()

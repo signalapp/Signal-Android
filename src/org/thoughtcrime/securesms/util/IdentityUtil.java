@@ -74,8 +74,9 @@ public class IdentityUtil {
     GroupDatabase.GroupRecord groupRecord;
 
     while ((groupRecord = reader.getNext()) != null) {
+      if (groupRecord.isRSSFeed() || groupRecord.isPublicChat()) { continue; }
       if (groupRecord.getMembers().contains(recipient.getAddress()) && groupRecord.isActive() && !groupRecord.isMms()) {
-        SignalServiceGroup group = new SignalServiceGroup(groupRecord.getId());
+        SignalServiceGroup group = new SignalServiceGroup(groupRecord.getId(), SignalServiceGroup.GroupType.SIGNAL);
 
         if (remote) {
           IncomingTextMessage incoming = new IncomingTextMessage(recipient.getAddress(), 1, time, null, Optional.of(group), 0, false);
@@ -126,8 +127,9 @@ public class IdentityUtil {
     GroupDatabase.GroupRecord groupRecord;
 
     while ((groupRecord = reader.getNext()) != null) {
+      if (groupRecord.isRSSFeed() || groupRecord.isPublicChat()) { continue; }
       if (groupRecord.getMembers().contains(recipient.getAddress()) && groupRecord.isActive()) {
-        SignalServiceGroup            group       = new SignalServiceGroup(groupRecord.getId());
+        SignalServiceGroup            group       = new SignalServiceGroup(groupRecord.getId(), SignalServiceGroup.GroupType.SIGNAL);
         IncomingTextMessage           incoming    = new IncomingTextMessage(recipient.getAddress(), 1, time, null, Optional.of(group), 0, false);
         IncomingIdentityUpdateMessage groupUpdate = new IncomingIdentityUpdateMessage(incoming);
 

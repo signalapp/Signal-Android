@@ -40,9 +40,9 @@ public class AvatarDownloadJob extends BaseJob implements InjectableType {
 
   @Inject SignalServiceMessageReceiver receiver;
 
-  private byte[] groupId;
+  private String groupId;
 
-  public AvatarDownloadJob(@NonNull byte[] groupId) {
+  public AvatarDownloadJob(@NonNull String groupId) {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
                            .setMaxAttempts(10)
@@ -50,14 +50,14 @@ public class AvatarDownloadJob extends BaseJob implements InjectableType {
          groupId);
   }
 
-  private AvatarDownloadJob(@NonNull Job.Parameters parameters, @NonNull byte[] groupId) {
+  private AvatarDownloadJob(@NonNull Job.Parameters parameters, @NonNull String groupId) {
     super(parameters);
     this.groupId = groupId;
   }
 
   @Override
   public @NonNull Data serialize() {
-    return new Data.Builder().putString(KEY_GROUP_ID, GroupUtil.getEncodedId(groupId, false)).build();
+    return new Data.Builder().putString(KEY_GROUP_ID, groupId).build();
   }
 
   @Override
@@ -67,9 +67,8 @@ public class AvatarDownloadJob extends BaseJob implements InjectableType {
 
   @Override
   public void onRun() throws IOException {
-    String                encodeId   = GroupUtil.getEncodedId(groupId, false);
     GroupDatabase         database   = DatabaseFactory.getGroupDatabase(context);
-    Optional<GroupRecord> record     = database.getGroup(encodeId);
+    Optional<GroupRecord> record     = database.getGroup(groupId);
     File                  attachment = null;
 
     try {
@@ -97,7 +96,7 @@ public class AvatarDownloadJob extends BaseJob implements InjectableType {
         InputStream                    inputStream = receiver.retrieveAttachment(pointer, attachment, MAX_AVATAR_SIZE);
         Bitmap                         avatar      = BitmapUtil.createScaledBitmap(context, new AttachmentModel(attachment, key, 0, digest), 500, 500);
 
-        database.updateAvatar(encodeId, avatar);
+        database.updateAvatar(groupId, avatar);
         inputStream.close();
       }
     } catch (BitmapDecodingException | NonSuccessfulResponseCodeException | InvalidMessageException e) {
@@ -120,11 +119,7 @@ public class AvatarDownloadJob extends BaseJob implements InjectableType {
   public static final class Factory implements Job.Factory<AvatarDownloadJob> {
     @Override
     public @NonNull AvatarDownloadJob create(@NonNull Parameters parameters, @NonNull Data data) {
-      try {
-        return new AvatarDownloadJob(parameters, GroupUtil.getDecodedId(data.getString(KEY_GROUP_ID)));
-      } catch (IOException e) {
-        throw new AssertionError(e);
-      }
+      return new AvatarDownloadJob(parameters, data.getString(KEY_GROUP_ID));
     }
   }
 }

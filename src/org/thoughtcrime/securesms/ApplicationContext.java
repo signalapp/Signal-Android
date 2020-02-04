@@ -521,18 +521,18 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   public void createDefaultPublicChatsIfNeeded() {
     List<LokiPublicChat> defaultPublicChats = LokiPublicChatAPI.Companion.getDefaultChats(BuildConfig.DEBUG);
-    for (LokiPublicChat publiChat : defaultPublicChats) {
-      long threadID = GroupManager.getThreadId(publiChat.getId(), this);
-      String migrationKey = publiChat.getId() + "_migrated";
+    for (LokiPublicChat publicChat : defaultPublicChats) {
+      long threadID = GroupManager.getPublicChatThreadId(publicChat.getId(), this);
+      String migrationKey = publicChat.getId() + "_migrated";
       boolean isChatMigrated = TextSecurePreferences.getBooleanPreference(this, migrationKey, false);
-      boolean isChatSetUp = TextSecurePreferences.isChatSetUp(this, publiChat.getId());
-      if (!isChatSetUp || !publiChat.isDeletable()) {
-        lokiPublicChatManager.addChat(publiChat.getServer(), publiChat.getChannel(), publiChat.getDisplayName());
-        TextSecurePreferences.markChatSetUp(this, publiChat.getId());
+      boolean isChatSetUp = TextSecurePreferences.isChatSetUp(this, publicChat.getId());
+      if (!isChatSetUp || !publicChat.isDeletable()) {
+        lokiPublicChatManager.addChat(publicChat.getServer(), publicChat.getChannel(), publicChat.getDisplayName());
+        TextSecurePreferences.markChatSetUp(this, publicChat.getId());
         TextSecurePreferences.setBooleanPreference(this, migrationKey, true);
       } else if (threadID > -1 && !isChatMigrated) {
         // Migrate the old public chats
-        DatabaseFactory.getLokiThreadDatabase(this).setPublicChat(publiChat, threadID);
+        DatabaseFactory.getLokiThreadDatabase(this).setPublicChat(publicChat, threadID);
         TextSecurePreferences.setBooleanPreference(this, migrationKey, true);
       }
     }
@@ -545,7 +545,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     for (LokiRSSFeed feed : feeds) {
       boolean isFeedSetUp = TextSecurePreferences.isChatSetUp(this, feed.getId());
       if (!isFeedSetUp || !feed.isDeletable()) {
-        GroupManager.createGroup(feed.getId(), this, new HashSet<>(), null, feed.getDisplayName(), false);
+        GroupManager.createRSSFeedGroup(feed.getId(), this, null, feed.getDisplayName());
         TextSecurePreferences.markChatSetUp(this, feed.getId());
       }
     }
@@ -554,7 +554,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private void createRSSFeedPollersIfNeeded() {
     // Only create the RSS feed pollers if their threads aren't deleted
     LokiRSSFeed lokiNewsFeed = lokiNewsFeed();
-    long lokiNewsFeedThreadID = GroupManager.getThreadId(lokiNewsFeed.getId(), this);
+    long lokiNewsFeedThreadID = GroupManager.getRSSFeedThreadId(lokiNewsFeed.getId(), this);
     if (lokiNewsFeedThreadID >= 0 && lokiNewsFeedPoller == null) {
       lokiNewsFeedPoller = new LokiRSSFeedPoller(this, lokiNewsFeed);
       // Set up deletion listeners if needed

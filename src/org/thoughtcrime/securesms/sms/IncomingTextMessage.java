@@ -78,7 +78,7 @@ public class IncomingTextMessage implements Parcelable {
     this.unidentified         = unidentified;
 
     if (group.isPresent()) {
-      this.groupId = Address.fromSerialized(GroupUtil.getEncodedId(group.get().getGroupId(), false));
+      this.groupId = Address.fromSerialized(GroupUtil.getEncodedId(group.get()));
     } else {
       this.groupId = null;
     }

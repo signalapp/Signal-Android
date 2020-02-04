@@ -85,7 +85,7 @@ public class MultiDeviceGroupUpdateJob extends BaseJob implements InjectableType
       reader = DatabaseFactory.getGroupDatabase(context).getGroups();
 
       while ((record = reader.getNext()) != null) {
-        if (!record.isMms()) {
+        if (!record.isMms() && !record.isPublicChat() && !record.isRSSFeed()) {
           List<String> members = new LinkedList<>();
 
           for (Address member : record.getMembers()) {
