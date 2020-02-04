@@ -539,7 +539,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     }
 
     private void update(float min, float max) {
-      Preconditions.checkArgument(min < max, "Min must be less than max");
+      Preconditions.checkArgument(min <= max, "Min must be less than max");
       this.min = min;
       this.max = max;
     }
