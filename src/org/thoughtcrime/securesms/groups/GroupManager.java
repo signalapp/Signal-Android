@@ -78,7 +78,10 @@ public class GroupManager {
     final Set<Address>  memberAddresses = getMemberAddresses(members);
     final Set<Address>  adminAddresses  = getMemberAddresses(admins);
 
-    memberAddresses.add(Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)));
+    String masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+    String ourNumber = masterHexEncodedPublicKey != null ? masterHexEncodedPublicKey : TextSecurePreferences.getLocalNumber(context);
+
+    memberAddresses.add(Address.fromSerialized(ourNumber));
     groupDatabase.create(groupId, name, new LinkedList<>(memberAddresses), null, null, new LinkedList<>(adminAddresses));
 
     if (!mms) {

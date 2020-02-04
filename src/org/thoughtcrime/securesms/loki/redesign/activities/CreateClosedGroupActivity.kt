@@ -101,7 +101,8 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
         val recipients = selectedMembers.map {
             Recipient.from(this, Address.fromSerialized(it), false)
         }.toSet()
-        val local = Recipient.from(this, Address.fromSerialized(TextSecurePreferences.getLocalNumber(this)), false)
+        val ourNumber = TextSecurePreferences.getMasterHexEncodedPublicKey(this) ?: TextSecurePreferences.getLocalNumber(this)
+        val local = Recipient.from(this, Address.fromSerialized(ourNumber), false)
         CreateClosedGroupTask(WeakReference(this), null, name.toString(), recipients, setOf(local)).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
     }
 

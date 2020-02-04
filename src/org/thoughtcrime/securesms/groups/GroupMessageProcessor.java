@@ -70,7 +70,6 @@ public class GroupMessageProcessor {
     String                id       = GroupUtil.getEncodedId(group);
     Optional<GroupRecord> record   = database.getGroup(id);
 
-    // TODO: Allow processing messages from secondary devices
     if (record.isPresent() && group.getType() == Type.UPDATE) {
       return handleGroupUpdate(context, content, group, record.get(), outgoing);
     } else if (!record.isPresent() && group.getType() == Type.UPDATE) {

@@ -4,6 +4,7 @@
         <domain includeSubdomains="true">imaginary.stream</domain>
         <domain includeSubdomains="true">storage.seed1.loki.network</domain>
         <domain includeSubdomains="true">storage.seed2.loki.network</domain>
+        <domain includeSubdomains="true">public.loki.foundation:22023</domain>
         <domain includeSubdomains="true">127.0.0.1</domain>
     </domain-config>
 </network-security-config>

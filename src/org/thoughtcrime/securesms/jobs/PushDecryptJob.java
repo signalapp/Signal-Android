@@ -858,6 +858,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       sender = getPrimaryDeviceRecipient(content.getSender()).getAddress();
     }
 
+    // Ignore messages from ourselves
+    if (sender.serialize().equalsIgnoreCase(TextSecurePreferences.getLocalNumber(context))) { return; }
+
     IncomingMediaMessage        mediaMessage   = new IncomingMediaMessage(sender, message.getTimestamp(), -1,
        message.getExpiresInSeconds() * 1000L, false, content.isNeedsReceipt(), message.getBody(), message.getGroupInfo(), message.getAttachments(),
         quote, sharedContacts, linkPreviews, sticker);
@@ -1047,6 +1050,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       if (message.isGroupMessage()) {
         sender = getPrimaryDeviceRecipient(content.getSender()).getAddress();
       }
+
+      // Ignore messages from ourselves
+      if (sender.serialize().equalsIgnoreCase(TextSecurePreferences.getLocalNumber(context))) { return; }
 
       IncomingTextMessage _textMessage = new IncomingTextMessage(sender,
                                                                 content.getSenderDevice(),
