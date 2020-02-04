@@ -149,7 +149,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientM
       Collections.sort(users); // Sort to provide a level of stability
       profilePictureView.setHexEncodedPublicKey(users.size() > 0 ? users.get(0) : "");
       profilePictureView.setAdditionalHexEncodedPublicKey(users.size() > 1 ? users.get(1) : "");
-      profilePictureView.setRSSFeed(name.equals("Loki News") || name.equals("Loki Messenger Updates"));
+      profilePictureView.setRSSFeed(name.equals("Loki News") || name.equals("Session Updates"));
     } else {
       profilePictureView.setHexEncodedPublicKey(this.number);
       profilePictureView.setAdditionalHexEncodedPublicKey(null);

@@ -6,7 +6,6 @@ buildscript {
     ext.kovenant_version = "3.3.0"
     ext.identicon_version = "v11"
     ext.rss_parser_version = "2.0.4"
-    ext.mixpanel_version = "5.+"
     ext.crashlytics_version = "2.10.1"
 
     repositories {
@@ -196,7 +195,6 @@ dependencies {
     implementation "nl.komponents.kovenant:kovenant-android:$kovenant_version"
     implementation "com.github.lelloman:android-identicons:$identicon_version"
     implementation "com.prof.rssparser:rssparser:$rss_parser_version"
-    implementation "com.mixpanel.android:mixpanel-android:$mixpanel_version"
     implementation("com.crashlytics.sdk.android:crashlytics:$crashlytics_version@aar") {
         transitive = true
     }
@@ -237,10 +235,10 @@ android {
         project.ext.set("archivesBaseName", "Signal")
 
         buildConfigField "long", "BUILD_TIMESTAMP", getLastCommitTimestamp() + "L"
-        buildConfigField "String", "SIGNAL_URL", "\"https://textsecure-service.whispersystems.org\""
-        buildConfigField "String", "SIGNAL_CDN_URL", "\"https://cdn.signal.org\""
-        buildConfigField "String", "SIGNAL_CONTACT_DISCOVERY_URL", "\"https://api.directory.signal.org\""
-        buildConfigField "String", "SIGNAL_SERVICE_STATUS_URL", "\"uptime.signal.org\""
+        buildConfigField "String", "SIGNAL_URL", "\"\""
+        buildConfigField "String", "SIGNAL_CDN_URL", "\"\""
+        buildConfigField "String", "SIGNAL_CONTACT_DISCOVERY_URL", "\"\""
+        buildConfigField "String", "SIGNAL_SERVICE_STATUS_URL", "\"\""
         buildConfigField "String", "CONTENT_PROXY_HOST", "\"contentproxy.signal.org\""
         buildConfigField "int", "CONTENT_PROXY_PORT", "443"
         buildConfigField "String", "USER_AGENT", "\"OWA\""

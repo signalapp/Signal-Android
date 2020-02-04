@@ -53,7 +53,7 @@ class ConversationView : LinearLayout {
             val randomUsers = users.sorted() // Sort to provide a level of stability
             profilePictureView.hexEncodedPublicKey = randomUsers.getOrNull(0) ?: ""
             profilePictureView.additionalHexEncodedPublicKey = randomUsers.getOrNull(1) ?: ""
-            profilePictureView.isRSSFeed = thread.recipient.name == "Loki News" || thread.recipient.name == "Loki Messenger Updates"
+            profilePictureView.isRSSFeed = thread.recipient.name == "Loki News" || thread.recipient.name == "Session Updates"
         } else {
             profilePictureView.hexEncodedPublicKey = thread.recipient.address.toString()
             profilePictureView.additionalHexEncodedPublicKey = null

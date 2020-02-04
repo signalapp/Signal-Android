@@ -61,7 +61,7 @@ class ProfilePictureView : RelativeLayout {
             glide.clear(imageView)
             if (hexEncodedPublicKey.isNotEmpty()) {
                 val signalProfilePicture = Recipient.from(context, Address.fromSerialized(hexEncodedPublicKey), false).contactPhoto
-                if (signalProfilePicture != null && (signalProfilePicture as? ProfileContactPhoto)?.avatarObject != "0") {
+                if (signalProfilePicture != null && (signalProfilePicture as? ProfileContactPhoto)?.avatarObject != "0" && (signalProfilePicture as? ProfileContactPhoto)?.avatarObject != "") {
                     glide.load(signalProfilePicture).diskCacheStrategy(DiskCacheStrategy.ALL).circleCrop().into(imageView)
                 } else {
                     val size = resources.getDimensionPixelSize(sizeID)

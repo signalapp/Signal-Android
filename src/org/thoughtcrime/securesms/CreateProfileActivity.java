@@ -60,7 +60,6 @@ import org.whispersystems.signalservice.api.util.StreamDetails;
 import org.whispersystems.signalservice.loki.api.LokiDotNetAPI;
 import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
-import org.whispersystems.signalservice.loki.utilities.Analytics;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -119,8 +118,6 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
     initializeProfileAvatar(getIntent().getBooleanExtra(EXCLUDE_SYSTEM, false));
 
     ApplicationContext.getInstance(this).injectDependencies(this);
-
-    Analytics.Companion.getShared().track("Display Name Screen Viewed");
   }
 
   @Override
@@ -385,8 +382,6 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
       @Override
       protected Boolean doInBackground(Void... params) {
         Context context    = CreateProfileActivity.this;
-
-        Analytics.Companion.getShared().track("Display Name Updated");
 
         TextSecurePreferences.setProfileName(context, name);
         LokiPublicChatAPI publicChatAPI = ApplicationContext.getInstance(context).getLokiPublicChatAPI();

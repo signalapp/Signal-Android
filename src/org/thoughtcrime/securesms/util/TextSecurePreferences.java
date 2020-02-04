@@ -367,7 +367,11 @@ public class TextSecurePreferences {
   }
 
   public static boolean isLinkPreviewsEnabled(Context context) {
-    return getBooleanPreference(context, LINK_PREVIEWS, true);
+    return getBooleanPreference(context, LINK_PREVIEWS, false);
+  }
+
+  public static void setLinkPreviewsEnabled(Context context, boolean enabled) {
+    setBooleanPreference(context, LINK_PREVIEWS, enabled);
   }
 
   public static boolean isGifSearchInGridLayout(Context context) {

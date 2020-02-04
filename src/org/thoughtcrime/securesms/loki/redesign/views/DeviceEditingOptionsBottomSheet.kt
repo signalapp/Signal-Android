@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki
+package org.thoughtcrime.securesms.loki.redesign.views
 
 import android.os.Bundle
 import android.support.design.widget.BottomSheetDialogFragment
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_device_list_bottom_sheet.*
 import network.loki.messenger.R
 
-public class DeviceListBottomSheetFragment : BottomSheetDialogFragment() {
+public class DeviceEditingOptionsBottomSheet : BottomSheetDialogFragment() {
     var onEditTapped: (() -> Unit)? = null
     var onUnlinkTapped: (() -> Unit)? = null
 

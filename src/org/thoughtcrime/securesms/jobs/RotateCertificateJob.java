@@ -9,7 +9,6 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
@@ -56,10 +55,11 @@ public class RotateCertificateJob extends BaseJob implements InjectableType {
 
   @Override
   public void onRun() throws IOException {
-    synchronized (RotateCertificateJob.class) {
-      byte[] certificate = accountManager.getSenderCertificate();
-      TextSecurePreferences.setUnidentifiedAccessCertificate(context, certificate);
-    }
+    // Loki - Do nothing
+//    synchronized (RotateCertificateJob.class) {
+//      byte[] certificate = accountManager.getSenderCertificate();
+//      TextSecurePreferences.setUnidentifiedAccessCertificate(context, certificate);
+//    }
   }
 
   @Override

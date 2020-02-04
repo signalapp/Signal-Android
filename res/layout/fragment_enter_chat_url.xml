@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/large_spacing"
-        android:layout_marginTop="@dimen/medium_spacing"
+        android:layout_marginTop="@dimen/small_spacing"
         android:layout_marginRight="@dimen/large_spacing"
         android:textSize="@dimen/small_font_size"
         android:textColor="@color/text"
@@ -40,7 +40,19 @@
         android:id="@+id/joinPublicChatButton"
         android:layout_width="196dp"
         android:layout_height="@dimen/medium_button_height"
-        android:layout_marginBottom="@dimen/medium_spacing"
         android:text="Next" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/large_spacing"
+        android:layout_marginTop="@dimen/small_spacing"
+        android:layout_marginRight="@dimen/large_spacing"
+        android:layout_marginBottom="@dimen/small_spacing"
+        android:textSize="@dimen/very_small_font_size"
+        android:textColor="@color/text"
+        android:alpha="0.6"
+        android:textAlignment="center"
+        android:text="Open groups can be joined by anyone and do not provide full metadata protection" />
 
 </LinearLayout>

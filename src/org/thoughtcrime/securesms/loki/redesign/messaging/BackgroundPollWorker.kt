@@ -10,7 +10,6 @@ import org.thoughtcrime.securesms.service.PersistentAlarmManagerListener
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope
 import org.whispersystems.signalservice.loki.api.LokiAPI
-import org.whispersystems.signalservice.loki.utilities.Analytics
 import java.util.concurrent.TimeUnit
 
 class BackgroundPollWorker : PersistentAlarmManagerListener() {
@@ -30,7 +29,6 @@ class BackgroundPollWorker : PersistentAlarmManagerListener() {
 
     override fun onAlarm(context: Context, scheduledTime: Long): Long {
         if (scheduledTime != 0L) {
-            Analytics.shared.track("Performed Background Fetch")
             val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
             val lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(context)
             try {
