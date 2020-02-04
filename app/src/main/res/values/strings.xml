@@ -669,6 +669,7 @@
 
     <!-- ReactionsBottomSheetDialogFragment -->
     <string name="ReactionsBottomSheetDialogFragment_all">All %1$d</string>
+    <string name="ReactionsBottomSheetDialogFragment_you">%1$s (You)</string>
 
     <!-- ReactionsConversationView -->
     <string name="ReactionsConversationView_plus">+%1$d</string>
