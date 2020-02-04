@@ -6,10 +6,12 @@
     android:orientation="horizontal"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginStart="1dp"
+    android:layout_marginEnd="1dp"
     android:paddingStart="7dp"
     android:paddingEnd="7dp"
-    android:paddingTop="5dp"
-    android:paddingBottom="5dp"
+    android:paddingTop="3dp"
+    android:paddingBottom="3dp"
     android:gravity="center">
 
   <org.thoughtcrime.securesms.components.emoji.EmojiTextView

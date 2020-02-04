@@ -29,7 +29,8 @@ import java.util.Map;
 
 public class ReactionsConversationView extends LinearLayout {
 
-  private static final int OUTER_MARGIN = ViewUtil.dpToPx(6);
+  // Normally 6dp, but we have 1dp left+right margin on the pills themselves
+  private static final int OUTER_MARGIN = ViewUtil.dpToPx(5);
 
   private boolean              outgoing;
   private List<ReactionRecord> records;
