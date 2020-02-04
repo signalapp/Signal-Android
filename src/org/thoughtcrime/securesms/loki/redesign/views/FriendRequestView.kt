@@ -13,6 +13,7 @@ import android.widget.TextView
 import com.github.ybq.android.spinkit.style.DoubleBounce
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.loki.getColorWithID
 import org.thoughtcrime.securesms.loki.toPx
@@ -120,6 +121,10 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
         val contactID = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(message!!.threadId)!!.address.toString()
         val contactDisplayName = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(contactID) ?: contactID
         val friendRequestStatus = lokiMessageDatabase.getFriendRequestStatus(message.id)
+        if (message is MediaMmsMessageRecord) {
+            visibility = View.GONE
+            return
+        }
         if (!message.isOutgoing) {
             visibility = if (friendRequestStatus == LokiMessageFriendRequestStatus.NONE) View.GONE else View.VISIBLE
             buttonLinearLayout.visibility = if (friendRequestStatus != LokiMessageFriendRequestStatus.REQUEST_PENDING) View.GONE else View.VISIBLE
