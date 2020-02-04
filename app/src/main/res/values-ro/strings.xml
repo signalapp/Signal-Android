@@ -57,6 +57,12 @@
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(locație)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(răspuns)</string>
+  <!--AttachmentKeyboard-->
+  <string name="AttachmentKeyboard_gallery">Galerie</string>
+  <string name="AttachmentKeyboard_gif">GIF</string>
+  <string name="AttachmentKeyboard_file">Fișier</string>
+  <string name="AttachmentKeyboard_contact">Contact</string>
+  <string name="AttachmentKeyboard_location">Locație</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nu pot găsi o aplicație pentru selecție media.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal are nevoie de permisiunea pentru spațiul de stocare pentru a putea atașa poze, filme sau audio, dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Spațiu de stocare\".</string>
@@ -472,7 +478,8 @@
   <string name="MediaOverviewActivity_sent_by_you">Trimis de dvs.</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Trimis de %1$s către %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Trimis de dvs. către %1$s</string>
-  <!--- NotificationBarManager-->
+  <!--Megaphones-->
+  <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Apel Signal în curs</string>
   <string name="NotificationBarManager__establishing_signal_call">Se realizează un apel Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Apel de intrare Signal</string>
@@ -577,6 +584,8 @@
   <string name="RatingManager_no_thanks">Nu, mulţumesc</string>
   <string name="RatingManager_later">Mai târziu</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Uuups, se pare că aplicația Magazinul Play nu este instalată pe dispozitivul tău.</string>
+  <!--ReactionsBottomSheetDialogFragment-->
+  <!--ReactionsConversationView-->
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Blochez acest contact?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Nu o să mai primești mesaje și apeluri de la acest contact.</string>
@@ -1437,8 +1446,10 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="CreateKbsPinFragment__create_your_pin">Creeați-vă PIN-ul</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Confirmați PIN-ul dvs.</string>
+  <string name="ConfirmKbsPinFragment__re_enter_pin">Introduceți din nou PIN-ul</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Vă prezentăm PIN-uri</string>
+  <string name="KbsSplashFragment__learn_more">Află mai multe</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Blocarea Înregistrării = PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Creeați-vă PIN-ul</string>
   <!--KBS Reminder Dialog-->
@@ -1450,12 +1461,14 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="AccountLockedFragment__next">Următorul</string>
   <string name="AccountLockedFragment__learn_more">Află mai multe</string>
   <!--KbsLockFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">Introduceți PIN-ul dvs.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">Introduceți codul PIN pe care l-ați creat pentru contul dvs. Acesta este diferit față de codul dvs. de verificare prin SMS.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Următorul</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Ați uitat PIN-ul?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">PIN incorect</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">Ați uitat PIN-ul?</string> -->
+  <string name="RegistrationLockFragment__enter_your_pin">Introduceți PIN-ul dvs.</string>
+  <string name="RegistrationLockFragment__enter_the_pin_you_created">Introduceți codul PIN pe care l-ați creat pentru contul dvs. Acesta este diferit față de codul dvs. de verificare prin SMS.</string>
+  <string name="RegistrationLockFragment__next">Următorul</string>
+  <string name="RegistrationLockFragment__forgot_pin">Ați uitat PIN-ul?</string>
+  <string name="RegistrationLockFragment__incorrect_pin">PIN incorect</string>
+  <string name="RegistrationLockFragment__forgot_your_pin">Ați uitat PIN-ul?</string>
+  <!--KBS Megaphone-->
+  <string name="KbsMegaphone__introducing_pins">Vă prezentăm PIN-uri</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pictogramă transport</string>
   <string name="ConversationListFragment_loading">Se încarcă…</string>
@@ -1497,6 +1510,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="BackupDialog_disable_and_delete_all_local_backups">Dezactivez și șterg toate backup-urile locale?</string>
   <string name="BackupDialog_delete_backups_statement">Șterge backup-urile</string>
   <string name="BackupDialog_copied_to_clipboard">S-a copiat în clipboard</string>
+  <string name="BackupDialog_verify">Verifică</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal necesită permisiunea de acces la stocarea externă pentru a putea crea backup-uri, dar i-a fost refuzat permanent. Vă rog continuați la setări aplicație, selectați \"Permisiuni\" și activați \"Stocare\". </string>
   <string name="ChatsPreferenceFragment_last_backup_s">Ultimul backup: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">În curs</string>
@@ -1514,6 +1528,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Blocați accesul la Signal prin ecranul de blocare Android sau prin amprentă</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Expirare timp blocare ecran pentru inactivitate</string>
   <string name="preferences_app_protection__pin">PIN</string>
+  <string name="preferences_app_protection__create">Creează</string>
   <string name="AppProtectionPreferenceFragment_none">Niciuna</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Codul PIN de Blocare a Înregistrării nu este același cu codul de verificare pe care tocmai l-ați primit prin SMS. Vă rugăm să introduceți PIN-ul configurat anterior în aplicație.</string>
   <string name="registration_activity__registration_lock_pin">PIN de blocare a înregistrării</string>

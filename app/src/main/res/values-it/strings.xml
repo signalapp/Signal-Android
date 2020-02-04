@@ -54,6 +54,12 @@
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(posizione)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(risposta)</string>
+  <!--AttachmentKeyboard-->
+  <string name="AttachmentKeyboard_gallery">Galleria</string>
+  <string name="AttachmentKeyboard_gif">GIF</string>
+  <string name="AttachmentKeyboard_file">File</string>
+  <string name="AttachmentKeyboard_contact">Contatto</string>
+  <string name="AttachmentKeyboard_location">Posizione</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Impossibile trovare un\'app per selezionare il file.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal richiede l\'autorizzazione all\'accesso della memoria per allegare foto, video o audio, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Archiviazione\".</string>
@@ -452,7 +458,10 @@
   <string name="MediaOverviewActivity_sent_by_you">Inviato da te</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Inviato da %1$s a %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Inviato da te a %1$s</string>
-  <!--- NotificationBarManager-->
+  <!--Megaphones-->
+  <string name="Megaphones_introducing_reactions">Ti presentiamo le reazioni</string>
+  <string name="Megaphones_remind_me_later">Ricordamelo più tardi</string>
+  <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chiamata con Signal in corso</string>
   <string name="NotificationBarManager__establishing_signal_call">Preparazione chiamata Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Chiamata Signal in arrivo</string>
@@ -556,6 +565,8 @@
   <string name="RatingManager_no_thanks">No grazie</string>
   <string name="RatingManager_later">Più tardi</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Oops, sembra che l\'app del Play Store non sia installata sul tuo dispositivo.</string>
+  <!--ReactionsBottomSheetDialogFragment-->
+  <!--ReactionsConversationView-->
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Bloccare questo contatto?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Non riceverai più messaggi e chiamate da questo contatto.</string>
@@ -1416,29 +1427,23 @@
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">Crea PIN alfanumerico</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">Crea PIN numerico</string>
   <!--CreateKbsPinFragment-->
-  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">Il PIN deve essere almeno di %1$d caratteri</string>
-  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">Il PIN deve essere almeno di %1$d cifre</string>
   <string name="CreateKbsPinFragment__create_a_new_pin">Crea un nuovo PIN</string>
-  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">Poiché sei ancora collegato, puoi creare un nuovo PIN. Quando sei disconnesso, non c\'è modo di recuperare il tuo PIN.</string> -->
   <string name="CreateKbsPinFragment__create_your_pin">Crea il tuo PIN</string>
-  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">Il PIN aggiunge un ulteriore strato di sicurezza al tuo account. Scrivi il tuo PIN e conservalo in un luogo sicuro. Non può essere recuperato.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">I PIN non corrispondono. Riprova.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Conferma il tuo PIN</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Creazione PIN fallita</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Il tuo PIN non è stato salvato. Ti chiederemo di creare un PIN più tardi.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN creato.</string>
+  <string name="ConfirmKbsPinFragment__re_enter_pin">Reinserisci PIN</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Ti presentiamo i PIN</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">Aggiungi un altro livello di sicurezza al tuo account. %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">Scopri di più qui.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string> -->
+  <string name="KbsSplashFragment__learn_more">Scopri di più</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Blocco registrazione = PIN</string>
-  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Il tuo blocco registrazione ora è chiamato PIN e fa di più. Aggiornalo ora. %1$s</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Il tuo blocco registrazione ora è chiamato PIN e fa di più. Aggiornalo ora.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Scopri di più sui PIN.</string>
   <string name="KbsSplashFragment__update_pin">Aggiorna PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Crea il tuo PIN</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">Ricordamelo più tardi</string> -->
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Inserisci il tuo PIN di Signal</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Per aiutarti a memorizzare il tuo PIN, ti chiederemo di inserirlo periodicamente. Lo chiederemo di meno nel corso del tempo.</string>
@@ -1451,20 +1456,23 @@
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Il tuo account è stato bloccato per proteggere la tua privacy e la tua sicurezza. Dopo %1$d giorni di inattività sarai in grado di registrare nuovamente questo numero di telefono senza bisogno del tuo PIN. Tutti i contenuti saranno cancellati.</string>
   <string name="AccountLockedFragment__next">Avanti</string>
   <string name="AccountLockedFragment__learn_more">Scopri di più</string>
-  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
   <!--KbsLockFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">Inserisci il tuo PIN</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">Inserisci il PIN che hai creato per il tuo account. Questo è diverso dal tuo codice di verifica SMS.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">Inserisci PIN alfanumerico</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">Inserisci PIN numerico</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Avanti</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">PIN errato. Riprova.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">PIN errato. %1$d tentativi rimanenti.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">PIN dimenticato?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">PIN errato</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">Hai %1$d tentativi rimanenti. Se esaurisci i tentativi il tuo account verrà bloccato per %2$d giorni. Dopo %3$d giorni di inattività, potrai registrarti nuovamente senza il tuo PIN. Il tuo account sarà cancellato e tutti i contenuti eliminati.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">Hai dimenticato il tuo PIN?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">Per la tua privacy e sicurezza, non c\'è modo di recuperare il tuo PIN. Se esaurisci i tentativi, puoi ripetere la verifica con SMS dopo %1$d giorni di inattività. In questo caso, il tuo account sarà cancellato e tutti i contenuti eliminati.</string> -->
+  <string name="RegistrationLockFragment__enter_your_pin">Inserisci il tuo PIN</string>
+  <string name="RegistrationLockFragment__enter_the_pin_you_created">Inserisci il PIN che hai creato per il tuo account. Questo è diverso dal tuo codice di verifica SMS.</string>
+  <string name="RegistrationLockFragment__enter_alphanumeric_pin">Inserisci PIN alfanumerico</string>
+  <string name="RegistrationLockFragment__enter_numeric_pin">Inserisci PIN numerico</string>
+  <string name="RegistrationLockFragment__next">Avanti</string>
+  <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN errato. Riprova.</string>
+  <string name="RegistrationLockFragment__forgot_pin">PIN dimenticato?</string>
+  <string name="RegistrationLockFragment__incorrect_pin">PIN errato</string>
+  <string name="RegistrationLockFragment__forgot_your_pin">Hai dimenticato il tuo PIN?</string>
+  <!--KBS Megaphone-->
+  <string name="KbsMegaphone__create_a_pin">Crea un PIN</string>
+  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">I PIN aggiungono un altro livello di sicurezza al tuo account Signal.</string>
+  <string name="KbsMegaphone__create_pin">Crea PIN</string>
+  <string name="KbsMegaphone__introducing_pins">Ti presentiamo i PIN</string>
+  <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Il tuo blocco registrazione ora è chiamato PIN. Aggiornarlo richiede pochi secondi.</string>
+  <string name="KbsMegaphone__update_pin">Aggiorna PIN</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona trasporto</string>
   <string name="ConversationListFragment_loading">Caricamento…</string>
@@ -1506,6 +1514,7 @@
   <string name="BackupDialog_disable_and_delete_all_local_backups">Disabilitare e cancellare tutti i backup locali?</string>
   <string name="BackupDialog_delete_backups_statement">Cancellare i backup</string>
   <string name="BackupDialog_copied_to_clipboard">Aggiunto agli appunti</string>
+  <string name="BackupDialog_verify">Verifica</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal richiede l\'autorizzazione per creare backup in memoria, ma è stata negata in modo permanente. Si prega di continuare con le impostazioni dell\'app, selezionare \"Autorizzazioni\", quindi abilitare \"Archiviazione\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Ultimo backup: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">In corso</string>
@@ -1525,6 +1534,7 @@
   <string name="preferences_app_protection__signal_pin">PIN di Signal</string>
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Cambia</string>
+  <string name="preferences_app_protection__create">Crea</string>
   <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Il PIN aggiunge un ulteriore strato di sicurezza ed esegue il backup del tuo account. Ti verrà chiesto quando registri il tuo numero di telefono con Signal. Se dimentichi il tuo PIN, non avrai accesso al tuo account per 7 giorni.</string>
   <string name="AppProtectionPreferenceFragment_none">Nessuna</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Il PIN di blocco della registrazione non è uguale al codice di verifica SMS appena ricevuto. Inserire il PIN precedentemente configurato nell\'applicazione.</string>

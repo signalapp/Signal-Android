@@ -54,6 +54,12 @@
   <string name="DraftDatabase_Draft_video_snippet">(காணொளி)</string>
   <string name="DraftDatabase_Draft_location_snippet">(இடம்)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(பதில்)</string>
+  <!--AttachmentKeyboard-->
+  <string name="AttachmentKeyboard_gallery">கேலரி</string>
+  <string name="AttachmentKeyboard_gif">GIF</string>
+  <string name="AttachmentKeyboard_file">கோப்பு</string>
+  <string name="AttachmentKeyboard_contact">தொடர்பு</string>
+  <string name="AttachmentKeyboard_location">இடம்</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">மீடியாவை தேர்வுசெய்யும் ஒரு பயன்பாட்டை கண்டுபிடிக்க முடியவில்லை.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">புகைப்படங்கள், வீடியோக்கள் அல்லது ஆடியோவை இணைக்கவும் Signal க்கு சேமிப்பக அனுமதி தேவைப்படுகிறது, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகள் மெனுவில் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து \"சேமிப்பகத்தை\" இயக்கவும்.</string>
@@ -452,7 +458,9 @@
   <string name="MediaOverviewActivity_sent_by_you">அனுப்பியதுநீங்கள்</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">அனுப்பியது %1$s க்கு%2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">%1$sக்கு நீங்கள் அனுப்பியது </string>
-  <!--- NotificationBarManager-->
+  <!--Megaphones-->
+  <string name="Megaphones_remind_me_later">பிறகு என்னிடம் ஞாபகபடுத்து</string>
+  <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal அழைப்புப் போய்க்கொண்டிருக்கிறது</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal அழைப்பு நிறுவுப்படுகிறது</string>
   <string name="NotificationBarManager__incoming_signal_call">உள்வரும் Signal அழைப்பு</string>
@@ -556,6 +564,8 @@
   <string name="RatingManager_no_thanks">தேவையில்லை,நன்றி</string>
   <string name="RatingManager_later">பிறகு</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">அச்சச்சோ, உங்கள் சாதனத்தில் Play Store பயன்பாடு நிறுவப்பட்டதாகத் தெரியவில்லை.</string>
+  <!--ReactionsBottomSheetDialogFragment-->
+  <!--ReactionsConversationView-->
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">இந்த தொடர்பைத் தடுக்கவா?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">இந்த தொடர்பிலிருந்து நீங்கள் இனி செய்திகளையும் அழைப்புகளையும் பெற மாட்டீர்கள்.</string>
@@ -1415,29 +1425,22 @@
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">எண்ணெழுத்து பின்னை உருவாக்கவும்</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">எண் பின்னை உருவாக்கவும் </string>
   <!--CreateKbsPinFragment-->
-  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">பின் குறைந்தது %1$d எழுத்துக்களாக இருக்க வேண்டும்</string>
-  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">பின் குறைந்தது %1$d இலக்கங்கள் இருக்க வேண்டும்</string>
   <string name="CreateKbsPinFragment__create_a_new_pin">புதிய பின்னை உருவாக்கவும்</string>
-  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">நீங்கள் இன்னும் உள்நுழைந்திருப்பதால், புதிய PIN ஐ உருவாக்கலாம். நீங்கள் வெளியேறும்போது, ​​உங்கள் பின்னை மீட்டெடுக்க வழி இல்லை.</string> -->
   <string name="CreateKbsPinFragment__create_your_pin">உங்கள் பின்னை உருவாக்கவும்</string>
-  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">பின்ஸ் உங்கள் கணக்கில் கூடுதல் பாதுகாப்பு அடுக்கைச் சேர்க்கிறது. உங்கள் பின்னை எழுதி பாதுகாப்பான இடத்தில் வைக்கவும். அதை மீட்டெடுக்க முடியாது.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">பின்ஸ் பொருந்தவில்லை. மீண்டும் முயற்சி செய்.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">உங்கள் பின்னை உறுதிப்படுத்தவும்.</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">பின் உருவாக்கம் தோல்வியடைந்தது</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">உங்கள் பின் சேமிக்கப்படவில்லை. பின்னை உருவாக்க நாங்கள் உங்களைத் தூண்டுவோம்.</string>
   <string name="ConfirmKbsPinFragment__pin_created">பின் உருவாக்கப்பட்டது.</string>
+  <string name="ConfirmKbsPinFragment__re_enter_pin">பின்னை மீண்டும் உள்ளிடவும்</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">பின்களை  அறிமுகப்படுத்துகிறது</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">உங்கள் கணக்கில் மற்றொரு நிலை பாதுகாப்பைச் சேர்க்கவும். %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">மேலும் படிக்க இங்கே.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string> -->
+  <string name="KbsSplashFragment__learn_more">மேலும் அறிக</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">பதிவு பூட்டு = பின்</string>
-  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">உங்கள் பதிவு பூட்டு இப்போது \'பின்\' என அழைக்கப்படுகிறது, மேலும் இது மேலும் செய்கிறது. இப்போது புதுப்பிக்கவும். %1$s</string>
   <string name="KbsSplashFragment__read_more_about_pins">பின்ஸைப் பற்றி மேலும் வாசிக்க.</string>
   <string name="KbsSplashFragment__update_pin">பின்னைப் புதுப்பிக்கவும்</string>
   <string name="KbsSplashFragment__create_your_pin">உங்கள் பின்னை உருவாக்கவும்</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">பிறகு என்னிடம் ஞாபகபடுத்து</string> -->
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">உங்கள் Signal பின்னை உள்ளிடவும்</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">உங்கள் பின்னை மனப்பாடம் செய்ய உங்களுக்கு உதவ, அதை அவ்வப்போது உள்ளிடுமாறு கேட்டுக்கொள்கிறோம். காலப்போக்கில் நாங்கள் உங்களிடம் குறைவாகக் கேட்கிறோம்.</string>
@@ -1450,20 +1453,19 @@
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">பாதுகாப்பைப் பாதுகாக்க உங்கள் கணக்கு பூட்டப்பட்டுள்ளது. உங்கள் கணக்கில் %1$d நாட்கள் செயலற்ற நிலையில் இருந்தபின், உங்கள் பின் தேவையில்லாமல் இந்த தொலைபேசி எண்ணை மீண்டும் பதிவு செய்ய முடியும். எல்லா உள்ளடக்கமும் நீக்கப்படும்</string>
   <string name="AccountLockedFragment__next">அடுத்தது</string>
   <string name="AccountLockedFragment__learn_more">மேலும் அறிக</string>
-  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
   <!--KbsLockFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">உங்கள் பின்னை உள்ளிடவும்</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">உங்கள் கணக்கிற்கு நீங்கள் உருவாக்கிய பின்னை உள்ளிடவும். இது உங்கள் எஸ்எம்எஸ் சரிபார்ப்புக் குறியீட்டிலிருந்து வேறுபட்டது.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">எண்ணெழுத்து பின்னை உள்ளிடவும்</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">எண் பின்னை உள்ளிடவும்</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">அடுத்தது</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">தவறான பின். மீண்டும் முயற்சி செய்.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">தவறான பின். %1$d மீதமுள்ள முயற்சிகள்.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">பின் மறந்துவிட்டீர்களா?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">தவறான பின்</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">உங்களிடம்%1$d முயற்சிகள் உள்ளன. உங்களின் மீதமுள்ள முயற்சிகள் முடிந்தால், உங்கள் கணக்கு%2$d நாட்களுக்கு பூட்டப்படும். %3$d நாட்கள் செயலற்ற நிலைக்குப் பிறகு, உங்கள் பின் இல்லாமல் மீண்டும் பதிவு செய்யலாம். உங்கள் கணக்கு அழிக்கப்பட்டு அனைத்து உள்ளடக்கமும் நீக்கப்படும்</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">உங்கள் பின்னை மறந்துவிட்டீர்களா?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">உங்கள் தனியுரிமை மற்றும் பாதுகாப்பிற்காக, உங்கள் பின்னை மீட்டெடுக்க வழி இல்லை. உங்களின் முயற்சிகள் முடிந்தால்,%1$d நாட்கள் செயலற்ற நிலைக்குப் பிறகு நீங்கள் SMS உடன் மீண்டும் சரிபார்க்கலாம். இந்த வழக்கில், உங்கள் கணக்கு அழிக்கப்பட்டு அனைத்து உள்ளடக்கமும் நீக்கப்படும்.</string> -->
+  <string name="RegistrationLockFragment__enter_your_pin">உங்கள் பின்னை உள்ளிடவும்</string>
+  <string name="RegistrationLockFragment__enter_the_pin_you_created">உங்கள் கணக்கிற்கு நீங்கள் உருவாக்கிய பின்னை உள்ளிடவும். இது உங்கள் எஸ்எம்எஸ் சரிபார்ப்புக் குறியீட்டிலிருந்து வேறுபட்டது.</string>
+  <string name="RegistrationLockFragment__enter_alphanumeric_pin">எண்ணெழுத்து பின்னை உள்ளிடவும்</string>
+  <string name="RegistrationLockFragment__enter_numeric_pin">எண் பின்னை உள்ளிடவும்</string>
+  <string name="RegistrationLockFragment__next">அடுத்தது</string>
+  <string name="RegistrationLockFragment__incorrect_pin_try_again">தவறான பின். மீண்டும் முயற்சி செய்.</string>
+  <string name="RegistrationLockFragment__forgot_pin">பின் மறந்துவிட்டீர்களா?</string>
+  <string name="RegistrationLockFragment__incorrect_pin">தவறான பின்</string>
+  <string name="RegistrationLockFragment__forgot_your_pin">உங்கள் பின்னை மறந்துவிட்டீர்களா?</string>
+  <!--KBS Megaphone-->
+  <string name="KbsMegaphone__introducing_pins">பின்களை  அறிமுகப்படுத்துகிறது</string>
+  <string name="KbsMegaphone__update_pin">பின்னைப் புதுப்பிக்கவும்</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">போக்குவரத்து குறும்படம்</string>
   <string name="ConversationListFragment_loading">ஏற்றுதல் …</string>
@@ -1505,6 +1507,7 @@
   <string name="BackupDialog_disable_and_delete_all_local_backups">எல்லா உள்ளூர் காப்புப்பிரதிகளையும் முடக்கி நீக்கவா?</string>
   <string name="BackupDialog_delete_backups_statement">காப்புப்பிரதிகளை நீக்கு</string>
   <string name="BackupDialog_copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
+  <string name="BackupDialog_verify">சரிபார்க்கவும்</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">காப்புப்பிரதிகளை உருவாக்க Signal கு வெளிப்புற சேமிப்பக அனுமதி தேவைப்படுகிறது, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகளைத் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து \"சேமிப்பகத்தை\" இயக்கவும்.</string>
   <string name="ChatsPreferenceFragment_last_backup_s">கடைசி காப்புப்பதிவு பயனர் தரவு: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">நடந்து கொண்டிருக்கிறது</string>
@@ -1524,6 +1527,7 @@
   <string name="preferences_app_protection__signal_pin">Signal பின்</string>
   <string name="preferences_app_protection__pin">பின்</string>
   <string name="preferences_app_protection__change">மாற்றம்</string>
+  <string name="preferences_app_protection__create">உருவாக்கவும்</string>
   <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">உங்கள் பின் கூடுதல் பாதுகாப்பு அடுக்கைச் சேர்த்து உங்கள் கணக்கில் காப்புப் பிரதி எடுக்கிறது. உங்கள் தொலைபேசி எண்ணை Signal. பதிவுசெய்யும்போது உங்களிடம் கேட்கப்படும். உங்கள் பின்னை மறந்துவிட்டால், உங்கள் கணக்கில் 7 நாட்கள் பூட்டப்படுவீர்கள்.</string>
   <string name="AppProtectionPreferenceFragment_none">எதுவும் இல்லை</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">பதிவு பூட்டு பின் நீங்கள் பெற்ற எஸ்எம்எஸ் சரிபார்ப்புக் குறியீட்டைப் போன்றது அல்ல. பயன்பாட்டில் நீங்கள் முன்பு கட்டமைத்த பின்னை உள்ளிடவும்.</string>

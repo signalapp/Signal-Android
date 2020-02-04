@@ -54,6 +54,12 @@
   <string name="DraftDatabase_Draft_video_snippet">(vídeo)</string>
   <string name="DraftDatabase_Draft_location_snippet">(local)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(resposta)</string>
+  <!--AttachmentKeyboard-->
+  <string name="AttachmentKeyboard_gallery">Galeria</string>
+  <string name="AttachmentKeyboard_gif">GIF</string>
+  <string name="AttachmentKeyboard_file">Arquivo</string>
+  <string name="AttachmentKeyboard_contact">Contato</string>
+  <string name="AttachmentKeyboard_location">Local</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Não foi possível encontrar um aplicativo para selecionar arquivos.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">O Signal precisa da permissão Armazenamento para anexar fotos, vídeos ou áudio, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Armazenamento\".</string>
@@ -452,7 +458,9 @@
   <string name="MediaOverviewActivity_sent_by_you">Enviado por você</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Enviado por %1$s para %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Enviado por você para %1$s</string>
-  <!--- NotificationBarManager-->
+  <!--Megaphones-->
+  <string name="Megaphones_remind_me_later">Me lembre mais tarde</string>
+  <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chamada Signal em andamento</string>
   <string name="NotificationBarManager__establishing_signal_call">Estabelecendo chamada Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Recebendo chamada Signal</string>
@@ -556,6 +564,8 @@
   <string name="RatingManager_no_thanks">Não, obrigado</string>
   <string name="RatingManager_later">Mais tarde</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ops, o aplicativo Play Store parece não estar instalado no seu dispositivo.</string>
+  <!--ReactionsBottomSheetDialogFragment-->
+  <!--ReactionsConversationView-->
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Bloquear este contato?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Você não receberá mais mensagens e chamadas deste contato.</string>
@@ -1416,12 +1426,8 @@
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">Criar um PIN alfanumérico</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">Criar PIN numérico</string>
   <!--CreateKbsPinFragment-->
-  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">O PIN deve ter no mínimo %1$d caracteres</string>
-  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">O PIN deve ter no mínimo %1$d dígitos</string>
   <string name="CreateKbsPinFragment__create_a_new_pin">Criar um novo PIN</string>
-  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">Como você ainda está logado, você pode criar um novo PIN. Uma vez fora do aplicativo, não haverá como recuperar seu PIN.</string> -->
   <string name="CreateKbsPinFragment__create_your_pin">Criar seu PIN</string>
-  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">Os PINs adicionam uma camada extra de segurança à sua conta. Anote seu PIN e guarde-o em um local seguro. Ele não poderá ser recuperado.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Os PINs não correspondem. Tente outra vez.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Confirme seu PIN.</string>
@@ -1430,15 +1436,11 @@
   <string name="ConfirmKbsPinFragment__pin_created">PIN criado.</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Apresentando os PINs</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">Adicione mais uma camada de segurança à sua conta. %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">Leia mais aqui.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/recuperacao-de-informacoes-restritas/</string> -->
+  <string name="KbsSplashFragment__learn_more">Saiba Mais</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Desbloqueio de Cadastro = PIN</string>
-  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Seu Desbloqueio de Cadastro agora será chamado de PIN, e faz mais que bloquear. Atualizar ele agora. %1$s</string>
   <string name="KbsSplashFragment__read_more_about_pins">Leia mais sobre PINs.</string>
   <string name="KbsSplashFragment__update_pin">Atualizar PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Criar seu PIN</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">Me lembre mais tarde</string> -->
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Digitar seu PIN do Signal</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Para ajudar você a memorizar seu PIN, pediremos que você o insira periodicamente. Esses pedidos diminuirão com o passar do tempo.</string>
@@ -1451,20 +1453,19 @@
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Sua conta foi bloqueada para proteger sua privacidade e segurança. Após %1$d dias de inatividade em sua conta, você poderá registrar novamente esse número de telefone sem precisar do seu PIN. Todo o conteúdo será excluído.</string>
   <string name="AccountLockedFragment__next">Avançar</string>
   <string name="AccountLockedFragment__learn_more">Saiba Mais</string>
-  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/recuperacao-de-informacoes-restritas/</string>
   <!--KbsLockFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">Digite seu PIN</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">Digite o PIN que você criou para sua conta. Isso é diferente do seu código de verificação por SMS.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">Digite o PIN alfanumérico</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">Digite o PIN numérico</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Avançar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">PIN incorreto. Tente novamente.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">PIN incorreto. %1$d tentativas restantes. </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Esqueceu seu PIN?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">PIN incorreto</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">Você tem %1$d tentativas restantes. Se você esgotar as tentativas, sua conta será bloqueada por %2$d dias. Após %3$d dias de inatividade, você pode se registrar novamente sem o seu PIN. Sua conta será apagada e todo o conteúdo excluído.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">Esqueceu seu PIN?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">Para sua privacidade e segurança, não há como recuperar seu PIN. Se você esgotar suas tentativas, poderá verificar novamente utilizando SMS após %1$d dias de inatividade. Nesse caso, sua conta será apagada e todo o conteúdo excluído.</string> -->
+  <string name="RegistrationLockFragment__enter_your_pin">Digite seu PIN</string>
+  <string name="RegistrationLockFragment__enter_the_pin_you_created">Digite o PIN que você criou para sua conta. Isso é diferente do seu código de verificação por SMS.</string>
+  <string name="RegistrationLockFragment__enter_alphanumeric_pin">Digite o PIN alfanumérico</string>
+  <string name="RegistrationLockFragment__enter_numeric_pin">Digite o PIN numérico</string>
+  <string name="RegistrationLockFragment__next">Avançar</string>
+  <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN incorreto. Tente novamente.</string>
+  <string name="RegistrationLockFragment__forgot_pin">Esqueceu seu PIN?</string>
+  <string name="RegistrationLockFragment__incorrect_pin">PIN incorreto</string>
+  <string name="RegistrationLockFragment__forgot_your_pin">Esqueceu seu PIN?</string>
+  <!--KBS Megaphone-->
+  <string name="KbsMegaphone__introducing_pins">Apresentando os PINs</string>
+  <string name="KbsMegaphone__update_pin">Atualizar PIN</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ícone do transporte</string>
   <string name="ConversationListFragment_loading">Carregando…</string>
@@ -1506,6 +1507,7 @@
   <string name="BackupDialog_disable_and_delete_all_local_backups">Desabilitar e excluir todos os backups locais?</string>
   <string name="BackupDialog_delete_backups_statement">Excluir backups</string>
   <string name="BackupDialog_copied_to_clipboard">Copiado para a área de transferência</string>
+  <string name="BackupDialog_verify">Verificar</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">O Signal precisa da permissão ao armazenamento externo para fazer backup, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Armazenamento\". </string>
   <string name="ChatsPreferenceFragment_last_backup_s">Último backup: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Em andamento</string>
@@ -1525,6 +1527,7 @@
   <string name="preferences_app_protection__signal_pin">PIN do Signal</string>
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Alterar</string>
+  <string name="preferences_app_protection__create">Criar</string>
   <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Seu PIN adiciona uma camada extra de segurança e recupera sua conta. Ele será solicitado no momento em que você registrar seu número de telefone no Signal. Se você esquecer seu PIN, sua conta ficará bloqueada por 7 dias.</string>
   <string name="AppProtectionPreferenceFragment_none">Nenhuma</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">O PIN de Desbloqueio de Cadastro não é igual ao código de verificação que você acabou de receber. Por favor, insira o PIN definido anteriormente por meio do aplicativo.</string>

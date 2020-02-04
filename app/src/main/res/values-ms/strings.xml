@@ -51,6 +51,12 @@
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(lokasi)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(balas)</string>
+  <!--AttachmentKeyboard-->
+  <string name="AttachmentKeyboard_gallery">Galeri</string>
+  <string name="AttachmentKeyboard_gif">GIF</string>
+  <string name="AttachmentKeyboard_file">Fail</string>
+  <string name="AttachmentKeyboard_contact">Kenalan</string>
+  <string name="AttachmentKeyboard_location">Lokasi</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Tidak dapat mencari aplikasi untuk memilih media.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal memerlukan kebenaran Storan untuk melampirkan foto, video atau audio, tetapi telah ditolak secara kekal. Sila terus ke menu tetapan aplikasi, pilih \"Kebenaran\", dan dayakan \"Storan\".</string>
@@ -398,7 +404,8 @@
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
   <string name="MediaOverviewActivity_image">Imej</string>
-  <!--- NotificationBarManager-->
+  <!--Megaphones-->
+  <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Panggilan Signal sedang berjalan</string>
   <string name="NotificationBarManager__establishing_signal_call">Mewujudkan panggilan Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Panggilan masuk Signal</string>
@@ -499,6 +506,8 @@
   <string name="RatingManager_no_thanks">Tidak, terima kasih</string>
   <string name="RatingManager_later">Nanti</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Whoops, aplikasi Play Store tidak kelihatan dipasang pada peranti anda.</string>
+  <!--ReactionsBottomSheetDialogFragment-->
+  <!--ReactionsConversationView-->
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Sekat kenalan ini?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Anda tidak akan menerima mesej dan panggilan daripada kenalan ini.</string>
@@ -1278,8 +1287,10 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Cipta PIN anda</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Sahkan PIN anda.</string>
+  <string name="ConfirmKbsPinFragment__re_enter_pin">Masukkan semula PIN</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Memperkenalkan PIN</string>
+  <string name="KbsSplashFragment__learn_more">Ketahui Lebih Lanjut</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Kunci Pendaftaran = PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Cipta PIN anda</string>
   <!--KBS Reminder Dialog-->
@@ -1291,12 +1302,14 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="AccountLockedFragment__next">Seterusnya</string>
   <string name="AccountLockedFragment__learn_more">Ketahui Lebih Lanjut</string>
   <!--KbsLockFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">Masukkan PIN anda</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">Masukkan PIN yang anda buat untuk akaun anda. Ini berbeza dengan kod pengesahan SMS anda.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Seterusnya</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Terlupa PIN?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">PIN tidak betul</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">Lupa PIN anda?</string> -->
+  <string name="RegistrationLockFragment__enter_your_pin">Masukkan PIN anda</string>
+  <string name="RegistrationLockFragment__enter_the_pin_you_created">Masukkan PIN yang anda buat untuk akaun anda. Ini berbeza dengan kod pengesahan SMS anda.</string>
+  <string name="RegistrationLockFragment__next">Seterusnya</string>
+  <string name="RegistrationLockFragment__forgot_pin">Terlupa PIN?</string>
+  <string name="RegistrationLockFragment__incorrect_pin">PIN tidak betul</string>
+  <string name="RegistrationLockFragment__forgot_your_pin">Lupa PIN anda?</string>
+  <!--KBS Megaphone-->
+  <string name="KbsMegaphone__introducing_pins">Memperkenalkan PIN</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pindah ikon</string>
   <string name="ConversationListFragment_loading">Memuatkan…</string>
@@ -1355,6 +1368,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Kunci akses Signal dengan kunci skrin Android atau cap jari</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Kunci skrin tidak aktif tamat masa</string>
   <string name="preferences_app_protection__pin">PIN</string>
+  <string name="preferences_app_protection__create">Cipta</string>
   <string name="AppProtectionPreferenceFragment_none">Tiada</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN Kunci Pendaftaran tidak sama dengan kod pengesahan SMS yang anda terima. Sila masukkan PIN yang dikonfigurasikan anda dalam aplikasi.</string>
   <string name="registration_activity__registration_lock_pin">PIN Kunci Pendaftaran</string>

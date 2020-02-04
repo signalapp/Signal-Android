@@ -57,6 +57,12 @@
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(lokacija)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(odgovor)</string>
+  <!--AttachmentKeyboard-->
+  <string name="AttachmentKeyboard_gallery">Galerija</string>
+  <string name="AttachmentKeyboard_gif">GIF</string>
+  <string name="AttachmentKeyboard_file">Datoteka</string>
+  <string name="AttachmentKeyboard_contact">Kontakt</string>
+  <string name="AttachmentKeyboard_location">Lokacija</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nije pronađena aplikacija za biranje priloga.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signalu je potrebno dopuštenje da pristupi memoriji uređaja kako bi mogao priložiti slike, video i audiozapise, ali je ono trajno uskraćeno. Molimo nastavite do postavki aplikacije, odaberite \"Dozvole\" i aktivirajte stavku \"Prostor za pohranu\".</string>
@@ -470,7 +476,8 @@
   <string name="MediaOverviewActivity_sent_by_you">Vi ste poslali</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Poslao/la %1$s za %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Vi ste poslali za %1$s</string>
-  <!--- NotificationBarManager-->
+  <!--Megaphones-->
+  <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal poziv u toku</string>
   <string name="NotificationBarManager__establishing_signal_call">Uspostavljam Signal poziv</string>
   <string name="NotificationBarManager__incoming_signal_call">Dolazni Signal poziv</string>
@@ -574,6 +581,8 @@
   <string name="RatingManager_no_thanks">Ne, hvala</string>
   <string name="RatingManager_later">Kasnije</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Uh, izgleda da Play Store nije instaliran na Vašem uređaju.</string>
+  <!--ReactionsBottomSheetDialogFragment-->
+  <!--ReactionsConversationView-->
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Blokirati ovu osobu?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Nećete više primati poruke i pozive od ove osobe.</string>
@@ -1428,6 +1437,7 @@
   <!--CreateKbsPinFragment-->
   <!--ConfirmKbsPinFragment-->
   <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__learn_more">Saznaj više</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__skip">Preskoči</string>
   <string name="KbsReminderDialog__submit">Šalji</string>
@@ -1436,8 +1446,9 @@
   <string name="AccountLockedFragment__next">Dalje</string>
   <string name="AccountLockedFragment__learn_more">Saznaj više</string>
   <!--KbsLockFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Dalje</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Zaboravili ste PIN?</string> -->
+  <string name="RegistrationLockFragment__next">Dalje</string>
+  <string name="RegistrationLockFragment__forgot_pin">Zaboravili ste PIN?</string>
+  <!--KBS Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Sličica transporta</string>
   <string name="ConversationListFragment_loading">Učitavanje…</string>
@@ -1479,6 +1490,7 @@
   <string name="BackupDialog_disable_and_delete_all_local_backups">Onemogućiti i obrisati sve lokalne rezervne kopije?</string>
   <string name="BackupDialog_delete_backups_statement">Obriši rezervne kopije</string>
   <string name="BackupDialog_copied_to_clipboard">Kopirano u međuspremnik</string>
+  <string name="BackupDialog_verify">Verifikuj</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signalu je potrebno dopuštenje da pristupi memoriji uređaja kako bi mogao kreirati rezervne kopije, ali je ono trajno uskraćeno. Molimo nastavite do postavki aplikacije, odaberite \"Dozvole\" i aktivirajte stavku \"Prostor za pohranu\". </string>
   <string name="ChatsPreferenceFragment_last_backup_s">Zadnja kreirana kopija: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">U toku</string>
@@ -1495,6 +1507,7 @@
   <string name="preferences_app_protection__screen_lock">Zaključavanje ekrana</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Zaključaj pristup Signalu pomoću Androidovog zaključavanja ekrana ili otiska prsta</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Zaključavanje ekrana nakon neaktivnosti</string>
+  <string name="preferences_app_protection__create">Kreiraj</string>
   <string name="AppProtectionPreferenceFragment_none">Nijedno</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN za zaključavanje registracije nije isto što i kōd za provjeru koji ste upravo primili putem SMS poruke. Molimo unesite PIN koji ste ranije konfigurisali kroz aplikaciju.</string>
   <string name="registration_activity__registration_lock_pin">PIN za zaključavanje registracije</string>

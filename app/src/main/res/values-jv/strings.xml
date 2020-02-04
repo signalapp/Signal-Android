@@ -51,6 +51,12 @@
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(lokasi)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(wangsulan)</string>
+  <!--AttachmentKeyboard-->
+  <string name="AttachmentKeyboard_gallery">Galeri</string>
+  <string name="AttachmentKeyboard_gif">GIF</string>
+  <string name="AttachmentKeyboard_file">File</string>
+  <string name="AttachmentKeyboard_contact">Kontak</string>
+  <string name="AttachmentKeyboard_location">Lokasi</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Mboten saged manggih aplikasi kangge mileh media.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal betah izin Penyimpenan kangge ngirimaken foto, video, lan suwanten, nanging izin kesebat sampun dipuntolak sacara permanen. Bikak pilehan panatanan aplikasi, pileh \"Izin\", lajeng aktifaken \"Penyimpenan\".</string>
@@ -432,7 +438,9 @@
   <string name="MediaOverviewActivity_sent_by_you">Dikirimaken dening sampeyan</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Dikirimaken dening %1$s kangge %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Dikirimaken dening sampeyan kangge %1$s</string>
-  <!--- NotificationBarManager-->
+  <!--Megaphones-->
+  <string name="Megaphones_remind_me_later">Elingaken malih mangke</string>
+  <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Telepon Signal taksih dipuntumindakaken</string>
   <string name="NotificationBarManager__establishing_signal_call">Netapaken telepon Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Telepon Signal ingkang mlebet</string>
@@ -535,6 +543,8 @@
   <string name="RatingManager_no_thanks">Mboten usah</string>
   <string name="RatingManager_later">Mangke</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Aduh, kadosipun aplikasi Play Store mboten dipunpasangaken ing pirantos sampeyan.</string>
+  <!--ReactionsBottomSheetDialogFragment-->
+  <!--ReactionsConversationView-->
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Blokir kontak niki?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Sampeyan bakalan mboten saged nampi pesen lan telepon saking kontak niki malih.</string>
@@ -1384,12 +1394,8 @@
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">Damel PIN alfanumerik</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">Damel PIN wilangan</string>
   <!--CreateKbsPinFragment-->
-  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">PIN betah paling sekedhik %1$d karakter</string>
-  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">PIN betah paling sekedhik %1$d digit</string>
   <string name="CreateKbsPinFragment__create_a_new_pin">Damel PIN ingkang enggal</string>
-  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">Amargi sampeyan taksih log in, sampeyan saged damel PIN ingkang enggal. Menawi sampeyan sampun log out, sampeyan mboten saged mulihaken malih PIN sampeyan.</string> -->
   <string name="CreateKbsPinFragment__create_your_pin">Damel PIN sampeyan</string>
-  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PIN bakal mewahi lapisan keamanan ekstra kangge akun sampeyan. Serataken PIN sampeyan lan jagi supados aman amargi PIN kasebut mboten saged dipunpulihaken.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN mboten gathuk. Cobi malih.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Konfirmasi PIN sampeyan.</string>
@@ -1398,15 +1404,11 @@
   <string name="ConfirmKbsPinFragment__pin_created">PIN dipundamelaken.</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Nepangaken PIN</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">Mewahi lapisan keamanan bentenanipun kangge akun sampeyan. %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">Sapepakipun.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string> -->
+  <string name="KbsSplashFragment__learn_more">Sapepakipun</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Kunci Pendaftaran = PIN</string>
-  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Sakmenika Kunci Pendaftaran sampeyan bakal kanaman PIN ingkang saged numindakaken prakawis benten. Enggalaken sakmenika. %1$s</string>
   <string name="KbsSplashFragment__read_more_about_pins">Sapepakipun babagan PIN.</string>
   <string name="KbsSplashFragment__update_pin">Enggalaken PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Damel PIN sampeyan</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">Elingaken malih mangke</string> -->
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Lebetaken PIN Signal sampeyan</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Kangge mbiantu sampeyan ngeling-eling PIN kasebut, kala-kala Signal bakal nedhakaken supados sampeyan nglebetaken PIN kasebut. Tambah dangu, tumindak niki bakal tambah sekedhik.</string>
@@ -1419,20 +1421,19 @@
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Akun sampeyan sampun dikunci kangge ngelindhungi privasi lan keamanan sampeyan. Menawi akun mboten aktif ngantos %1$d dinten, sampeyan bakal saged ndaftaraken malih nomor telepon niki tanpa betah PIN. Sedaya isi akun bakal dibrusak.</string>
   <string name="AccountLockedFragment__next">Salajengipun</string>
   <string name="AccountLockedFragment__learn_more">Sapepakipun</string>
-  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
   <!--KbsLockFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">Lebetaken PIN sampeyan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">Lebetaken PIN ingkang dipundamelaken kangge akun sampeyan. PIN niki beda kaliyan kode verifikasi SMS.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">Lebetaken PIN alfanumerik</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">Lebetaken PIN wilangan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Salajengipun</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">PIN klintu. Cobi malih.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">PIN klintu. %1$d upaya malih.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Kesupen PIN sampeyan?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">PIN klintu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">Sampeyan gadhah %1$d upaya malih. Menawi upaya kasebut telas, akun sampeyan bakal dikunci ngantos %2$d dinten. Saksampune mboten aktif ngantos %3$d dinten, sampeyan saged ndaftaraken malih tanpa PIN. Akun sampeyan bakal dipunresikaken, sedaya isi bakal dibrusak.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">Kesupen PIN sampeyan?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">Kangge njagi privasi lan keamanan sampeyan, PIN mboten saged dipulihaken. Menawi upaya kasebut telas, sampeyan namung saged ngeverifikasi malih ngangge SMS saksampune mboten aktif ngantos %1$d dinten. Menawi niki kedadosan, akun sampeyan bakal dipunresikaken, sedaya isinipun bakal dibrusak.</string> -->
+  <string name="RegistrationLockFragment__enter_your_pin">Lebetaken PIN sampeyan</string>
+  <string name="RegistrationLockFragment__enter_the_pin_you_created">Lebetaken PIN ingkang dipundamelaken kangge akun sampeyan. PIN niki beda kaliyan kode verifikasi SMS.</string>
+  <string name="RegistrationLockFragment__enter_alphanumeric_pin">Lebetaken PIN alfanumerik</string>
+  <string name="RegistrationLockFragment__enter_numeric_pin">Lebetaken PIN wilangan</string>
+  <string name="RegistrationLockFragment__next">Salajengipun</string>
+  <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN klintu. Cobi malih.</string>
+  <string name="RegistrationLockFragment__forgot_pin">Kesupen PIN sampeyan?</string>
+  <string name="RegistrationLockFragment__incorrect_pin">PIN klintu</string>
+  <string name="RegistrationLockFragment__forgot_your_pin">Kesupen PIN sampeyan?</string>
+  <!--KBS Megaphone-->
+  <string name="KbsMegaphone__introducing_pins">Nepangaken PIN</string>
+  <string name="KbsMegaphone__update_pin">Enggalaken PIN</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikon Transportasi</string>
   <string name="ConversationListFragment_loading">Taksih ngunggahi…</string>
@@ -1493,6 +1494,7 @@
   <string name="preferences_app_protection__signal_pin">PIN Signal</string>
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Gantos</string>
+  <string name="preferences_app_protection__create">Damel</string>
   <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">PIN sampeyan mewahi lapisan keamanan ekstra lan ndamelaken serep kangge akun kasebut. PIN niki bakal ditedhakaken kala sampeyan ndaftaraken nomer telepon sampeyan kangge Signal. Menawi sampeyan kesupen PIN kasebut, akun sampeyan bakal dipunkunci ngantos 7 dinten.</string>
   <string name="AppProtectionPreferenceFragment_none">Mboten enten</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN Kunci Pendaftaran mboten sami kaliyan kode verifikasi SMS ingkang nembe sampeyan tampi. Lebetaken PIN ingkang sampeyan tetapaken ing aplikasi saderengipun.</string>

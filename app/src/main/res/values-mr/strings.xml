@@ -54,6 +54,12 @@
   <string name="DraftDatabase_Draft_video_snippet">(व्हिडिओ)</string>
   <string name="DraftDatabase_Draft_location_snippet">(स्थान)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(प्रतिसाद द्या)</string>
+  <!--AttachmentKeyboard-->
+  <string name="AttachmentKeyboard_gallery">गॅलरी</string>
+  <string name="AttachmentKeyboard_gif">GIF</string>
+  <string name="AttachmentKeyboard_file">फाईल</string>
+  <string name="AttachmentKeyboard_contact">संपर्क</string>
+  <string name="AttachmentKeyboard_location">स्थान</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">मिडिया निवडण्यासाठी अॅप सापडत नाही.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">फोटो, व्हिडिओ, किंवा ऑडिओ, संलग्न करण्यासाठी Signal ला संचयन परवानगीची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"संचयन\" सक्षम करा.</string>
@@ -452,7 +458,9 @@
   <string name="MediaOverviewActivity_sent_by_you">आपल्या द्वारे पाठवले</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s द्वारा %2$s यास पाठवले</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">%1$s यास आपल्याद्वारे पाठवले</string>
-  <!--- NotificationBarManager-->
+  <!--Megaphones-->
+  <string name="Megaphones_remind_me_later">मला नंतर आठवण करून द्या</string>
+  <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal कॉल प्रगती मध्ये</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal कॉल प्रस्थापित करत आहे</string>
   <string name="NotificationBarManager__incoming_signal_call">येणारा Signal कॉल</string>
@@ -556,6 +564,8 @@
   <string name="RatingManager_no_thanks">नाही धन्यवाद</string>
   <string name="RatingManager_later">नंतर</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">अरेरे, प्ले स्टोअर अॅप आपल्या डिव्हाईस वर स्थापित केलेले दिसत नाही.</string>
+  <!--ReactionsBottomSheetDialogFragment-->
+  <!--ReactionsConversationView-->
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">हा संपर्क अवरोधित करायचा?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">आपल्याला यापुढे या संपर्काकडून संदेश आणि कॉल प्राप्त होणार नाहीत.</string>
@@ -1413,29 +1423,22 @@
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">अल्फान्यूमेरिक PIN तयार करा</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">न्यूमेरिक PIN तयार करा</string>
   <!--CreateKbsPinFragment-->
-  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">PIN कमीतकमी %1$d कॅरेक्टर असावा</string>
-  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">PIN कमीतकमी %1$d अंकी असावा</string>
   <string name="CreateKbsPinFragment__create_a_new_pin">एक नवीन PIN तयार करा</string>
-  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">कारण आपण आताही लॉग ईन केलेले आहात, आपण नवीन PIN तयार करू शकता. जेव्हा आपण लॉग आऊट केलेले असता, आपल्याकडे PIN पुनर्प्राप्त करण्याचा कुठलाही मार्ग नसतो.</string> -->
   <string name="CreateKbsPinFragment__create_your_pin">आपला PIN तयार करा</string>
-  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PIN आपल्या खात्याला सुरक्षेचा एक अतिरिक्त थर जोडतात. आपला PIN लिहून ठेवा आणि त्यास एका सुरक्षित जागेवर ठेवा. तो पुनर्प्राप्त केला जाऊ शकत नाही.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN जुळत नाहीत. पुन्हा प्रयत्न करा.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">आपल्या PIN ची पुष्टी करा.</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN तयार करणे अयशस्वी</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">आपला PIN जतन केला गेला नाही. आम्ही नंतर आपल्याला PIN तयार करण्यासाठी सूचित करू.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN तयार केले</string>
+  <string name="ConfirmKbsPinFragment__re_enter_pin">PIN पुन्हा प्रविष्ट करा</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">PIN ची ओळख करून देत आहे</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">सुरक्षेचा एक अतिरिक्त थर आपले खात्याला जोडा. %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">अधिक येथे वाचा.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string> -->
+  <string name="KbsSplashFragment__learn_more">अधिक जाणा</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">नोंदणी लॉक = PIN</string>
-  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">आपले नोंदणी लॉक आता PIN म्हणून ओळखले जाते, आणि ते अधिक करते. त्यास आता अद्यतनित. %1$s</string>
   <string name="KbsSplashFragment__read_more_about_pins">PIN बद्दल अधिक येथे वाचा.</string>
   <string name="KbsSplashFragment__update_pin">PIN अद्यतनित करा</string>
   <string name="KbsSplashFragment__create_your_pin">आपला PIN तयार करा</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">मला नंतर आठवण करून द्या</string> -->
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">आपला Signal PIN प्रविष्ट करा</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">आपल्याला PIN लक्षात ठेवण्यासाठी, आम्ही आपल्याला तो वेळोवेळी तो प्रविष्ट करण्यास विचारू. काही काळानंतर आम्ही आपल्याला कमी विचारू.</string>
@@ -1448,20 +1451,19 @@
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">आपल्या गोपनीयतेसाठी आणि सुरक्षेसाठी आपले खाते लॉक केले गेले आहे. आपल्या खात्यामध्ये %1$d दिवसांच्या निष्क्रियतेनंतर आपल्या PIN विना आपल्याला या फोन नंबर सोबत पुन्हा नोंदणी करता येईल. सर्व मजकूर हटविला जाईल.</string>
   <string name="AccountLockedFragment__next">पुढे</string>
   <string name="AccountLockedFragment__learn_more">अधिक जाणा</string>
-  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
   <!--KbsLockFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">आपला PIN प्रविष्ट करा</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">आपल्या खात्यासाठी आपण तयार केलेला PIN प्रविष्ट करा. हे आपल्या SMS सत्यापन कोडपेक्षा वेगळे आहे.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">अल्फान्यूमेरिक PIN प्रविष्ट करा</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">न्यूमेरिक PIN प्रविष्ट करा</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">पुढे</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">चुकीचा PIN.पुन्हा प्रयत्न करा.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">चुकीचा PIN. %1$d प्रयत्न उर्वरित.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">PIN विसरलात?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">चुकीचा PIN</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">आपल्याकडे %1$d प्रयत्न उर्वरित आहेत. जर आपले प्रयत्न संपले तर आपले खाते %2$d दिवसांकरिता लॉक केले जाईल. %3$d दिवसांच्या निष्क्रियतेनंतर आपण विना PIN पुन्हा नोंदणी करू शकता. आपले खाते साफ केले जाईल आणि सर्व मजकूर हटविला जाईल.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">आपला PIN विसरलात?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">आपल्या गोपनीयतेसाठी आणि सुरक्षेसाठी, आपला PIN पुनर्स्थापित करण्याचा कुठलाही मार्ग नाही. जर आपले प्रयत्न संपले, तर आपण %1$d दिवसांच्या निष्क्रियतेनंतर SMS सोबत आपण पुनःसत्यापित करू शकता. या परिस्थितीमध्ये, आपले खाते साफ केले जाईल आणि सर्व मजकूर हटविला जाईल.</string> -->
+  <string name="RegistrationLockFragment__enter_your_pin">आपला PIN प्रविष्ट करा</string>
+  <string name="RegistrationLockFragment__enter_the_pin_you_created">आपल्या खात्यासाठी आपण तयार केलेला PIN प्रविष्ट करा. हे आपल्या SMS सत्यापन कोडपेक्षा वेगळे आहे.</string>
+  <string name="RegistrationLockFragment__enter_alphanumeric_pin">अल्फान्यूमेरिक PIN प्रविष्ट करा</string>
+  <string name="RegistrationLockFragment__enter_numeric_pin">न्यूमेरिक PIN प्रविष्ट करा</string>
+  <string name="RegistrationLockFragment__next">पुढे</string>
+  <string name="RegistrationLockFragment__incorrect_pin_try_again">चुकीचा PIN.पुन्हा प्रयत्न करा.</string>
+  <string name="RegistrationLockFragment__forgot_pin">PIN विसरलात?</string>
+  <string name="RegistrationLockFragment__incorrect_pin">चुकीचा PIN</string>
+  <string name="RegistrationLockFragment__forgot_your_pin">आपला PIN विसरलात?</string>
+  <!--KBS Megaphone-->
+  <string name="KbsMegaphone__introducing_pins">PIN ची ओळख करून देत आहे</string>
+  <string name="KbsMegaphone__update_pin">PIN अद्यतनित करा</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">वाहतूक चिन्ह</string>
   <string name="ConversationListFragment_loading">लोड होत आहे…</string>
@@ -1522,6 +1524,7 @@
   <string name="preferences_app_protection__signal_pin">Signal PIN</string>
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">बदला</string>
+  <string name="preferences_app_protection__create">तयार करा</string>
   <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">आपला PIN सुरक्षेचा एक अतिरिक्त थर जोडतो आणि आपले खाते बॅक अप करतो. आपण Signal सोबत आपला फोन नंबर नोंदवताना आपल्याला त्याचासाठी विचारले जाईल. जर आपण आपला PIN विसरलात, कर आपण आपल्या खात्यापासून 7 दिवसांकरिता लॉक केले जाल.</string>
   <string name="AppProtectionPreferenceFragment_none">कुठलेही नाही</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">आपल्याला आता प्राप्त झालेल्या SMS सत्यापन कोड आणि नोंदणी लॉक PIN सारखे नाहीत. कृपया आपण अॅपलिकेशनमध्ये पूर्वी कॉन्फिगर केलेले PIN प्रविष्ट करा.</string>

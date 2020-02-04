@@ -60,6 +60,12 @@
   <string name="DraftDatabase_Draft_video_snippet">(fideo)</string>
   <string name="DraftDatabase_Draft_location_snippet">(lleoliad)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(ateb)</string>
+  <!--AttachmentKeyboard-->
+  <string name="AttachmentKeyboard_gallery">Oriel</string>
+  <string name="AttachmentKeyboard_gif">GIF</string>
+  <string name="AttachmentKeyboard_file">Ffeil</string>
+  <string name="AttachmentKeyboard_contact">Cysylltiad</string>
+  <string name="AttachmentKeyboard_location">Lleoliad</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Methu canfod rhaglen i ddewis cyfryngau.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Mae ar Signal angen caniatâd Storio er mwyn atodi lluniau, fideos neu sain, ond mae wedi\'i wrthod yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Storio".</string>
@@ -494,7 +500,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="MediaOverviewActivity_sent_by_you">Anfonwyd gennych chi</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Anfonwyd gan %1$s i %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Anfonwyd gennych chi i %1$s</string>
-  <!--- NotificationBarManager-->
+  <!--Megaphones-->
+  <string name="Megaphones_remind_me_later">Atgoffwch fi\'n hwyrach</string>
+  <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Ar ganol galwad Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Sicrhau galwad Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Galwad Signal wedi cyrraedd</string>
@@ -599,6 +607,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="RatingManager_no_thanks">Dim diolch</string>
   <string name="RatingManager_later">Yn hwyrach</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Wps, nid yw ap y Play Store i weld wedi cael ei osod ar eich dyfais.</string>
+  <!--ReactionsBottomSheetDialogFragment-->
+  <!--ReactionsConversationView-->
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Rhwystro\'r cysllwt hwn?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Ni fyddwch bellach yn derbyn negeseuon a galwadau oddi wrth y cyswllt hwn.</string>
@@ -1476,12 +1486,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">Crëwch PIN alffaniwmerig</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">`Crëwch PIn rhifol</string>
   <!--CreateKbsPinFragment-->
-  <string name="CreateKbsPinFragment__pin_must_be_at_least_characters">Rhaid i\'r PIN fod yn o leiaf %1$d nod</string>
-  <string name="CreateKbsPinFragment__pin_must_be_at_least_digits">Rhaid i\'r PIN fod yn o leiaf %1$d nod</string>
   <string name="CreateKbsPinFragment__create_a_new_pin">Crëwch PIN newydd</string>
-  <!-- Removed by excludeNonTranslatables <string name="CreateKbsPinFragment__because_youre_still_logged_in">Gan eich bod wedi eich mewngofnodi o hyd, gallwch greu PIN newydd. Pan fyddwch wedi allgofnodi, does dim modd i adfer eich PIN.</string> -->
   <string name="CreateKbsPinFragment__create_your_pin">Crëwch eich PIN</string>
-  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">Mae PIN yn ychwanegu haen ychwanegol o ddiogelwch i\'ch cyfrif. Ysgrifennwch eich PIN i lawr a\'i gadw mewn man diogel. Nid oes modd ei adfer.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Nid yw\'r PIN yn cyfateb. Ceisiwch eto.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Cadarnhewch eich PIN.</string>
@@ -1490,15 +1496,11 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConfirmKbsPinFragment__pin_created">Crëwyd y PIN.</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Yn Cyflwyno PIN</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__add_another_level_of_security_to_your_account">Ychwanegwch lefel arall o ddiogelwch i\'ch cyfrif. %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_here">Darllenwch ragor yma.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_link">https://signal.org/blog/secure-value-recovery/</string> -->
+  <string name="KbsSplashFragment__learn_more">Dysgu Rhagor</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Clo Cofrestru = PIN</string>
-  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Mae eich Clo Cofrestru nawr yn cael ei alw\'n PIN, ac mae\'n gwneud mwy. Diweddarwch nawr. %1$s</string>
   <string name="KbsSplashFragment__read_more_about_pins">Darllenwch ragor am PIN</string>
   <string name="KbsSplashFragment__update_pin">Diweddaru PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Crëwch eich PIN</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__remind_me_later">Atgoffwch fi\'n hwyrach</string> -->
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Rhowch eich PIN Signal</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">I helpu i chi gofio\'ch PIN, byddwn yn gofyn i chi ei roi o bryd i\'w gilydd. Byddwn yn gofyn yn llai aml dros amser.</string>
@@ -1511,20 +1513,19 @@ Send neges heb ei ddiogelu?</string>
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Mae eich cyfrif wedi ei gloi i ddiogelu eich preifatrwydd a diogelwch. Ar ôl %1$d diwrnod heb weithgarwch ar eich cyfrif bydd modd i chi ailgofrestru\'r rhif ffôn yma heb fod angen eich PIN. Bydd yr holl gynnwys yn cael ei ddileu.</string>
   <string name="AccountLockedFragment__next">Nesaf</string>
   <string name="AccountLockedFragment__learn_more">Dysgu Rhagor</string>
-  <string name="AccountLockedFragment__learn_more_url">https://signal.org/blog/secure-value-recovery/</string>
   <!--KbsLockFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_your_pin">Rhowch eich PIN</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_the_pin_you_created">Rhowch y PIN rydych wedi\'i greu ar gyfer eich cyfrif. Mae hwn yn wahanol i\'ch cod dilysu SMS.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_alphanumeric_pin">Rhowch PIN alffaniwmerig</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__enter_numeric_pin">Rhowch PIN rhifol</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__next">Nesaf</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_try_again">PIN anghywir. Ceisiwch eto.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin_d_attempts_remaining">PIN anghywir. %1$d ymgais ar ôl.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_pin">Wedi anghofio PIN?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__incorrect_pin">PIN anghywir</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__you_have_d_attempts_remaining">Mae gennych %1$d ymgais ar ôl. Os fyddwch yn rhedeg allan o geisiadau bydd eich cyfri\'\'n cael ei gloi am %2$d diwrnod. Ar ôl %3$d diwrnod o anweithgaredd gallwch ailgofrestru heb eich PIN. Bydd eich cyfrif wedi ei dynnu a\'r holl ddata ei ddileu.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__forgot_your_pin">Wedi anghofio eich PIN?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">Er lles eich preifatrwydd a\'ch diogelwch, does dim modd i adfer eich PIN. Os fyddwch yn rhedeg allan o geisiadau bydd modd ail ddilysu gyda SMS ar ôl %1$d diwrnod o anweithgaredd. Yn yr achos yma, bydd eich cyfrif yn cael ei dynnu a\'r holl ddata ei ddileu.</string> -->
+  <string name="RegistrationLockFragment__enter_your_pin">Rhowch eich PIN</string>
+  <string name="RegistrationLockFragment__enter_the_pin_you_created">Rhowch y PIN rydych wedi\'i greu ar gyfer eich cyfrif. Mae hwn yn wahanol i\'ch cod dilysu SMS.</string>
+  <string name="RegistrationLockFragment__enter_alphanumeric_pin">Rhowch PIN alffaniwmerig</string>
+  <string name="RegistrationLockFragment__enter_numeric_pin">Rhowch PIN rhifol</string>
+  <string name="RegistrationLockFragment__next">Nesaf</string>
+  <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN anghywir. Ceisiwch eto.</string>
+  <string name="RegistrationLockFragment__forgot_pin">Wedi anghofio PIN?</string>
+  <string name="RegistrationLockFragment__incorrect_pin">PIN anghywir</string>
+  <string name="RegistrationLockFragment__forgot_your_pin">Wedi anghofio eich PIN?</string>
+  <!--KBS Megaphone-->
+  <string name="KbsMegaphone__introducing_pins">Yn Cyflwyno PIN</string>
+  <string name="KbsMegaphone__update_pin">Diweddaru PIN</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Eicon trafnidiaeth</string>
   <string name="ConversationListFragment_loading">Llwytho…</string>
