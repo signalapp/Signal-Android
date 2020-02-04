@@ -361,17 +361,23 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       }
 
       // Add secondary devices to the list. We shouldn't add our secondary devices
-      for (Address member : memberSet) {
-        if (!member.isPhone() || member.serialize().equalsIgnoreCase(localNumber)) { continue; }
-        try {
-          List<String> secondaryDevices = PromiseUtil.timeout(LokiStorageAPI.shared.getSecondaryDevicePublicKeys(member.serialize()), 5000).get();
-          memberSet.addAll(Stream.of(secondaryDevices).map(string -> {
-            // Loki - Calling .map(Address::fromSerialized) is causing errors, thus we use the long method :(
-            return Address.fromSerialized(string);
-          }).toList());
-        } catch (Exception e) {
-          // Timed out, go to the next member
+      try {
+        Set<Address> originalMemberSet = new HashSet<>(memberSet);
+        for (Address member : originalMemberSet) {
+          if (!member.isPhone() || member.serialize().equalsIgnoreCase(localNumber)) { continue; }
+
+          try {
+            List<String> secondaryDevices = PromiseUtil.timeout(LokiStorageAPI.shared.getSecondaryDevicePublicKeys(member.serialize()), 5000).get();
+            memberSet.addAll(Stream.of(secondaryDevices).map(string -> {
+              // Loki - Calling .map(Address::fromSerialized) is causing errors, thus we use the long method :(
+              return Address.fromSerialized(string);
+            }).toList());
+          } catch (Exception e) {
+            // Timed out, go to the next member
+          }
         }
+      } catch (Exception e) {
+        Log.e("PushGroupSend", "Error occurred while adding secondary devices: " + e);
       }
 
       return new LinkedList<>(memberSet);
