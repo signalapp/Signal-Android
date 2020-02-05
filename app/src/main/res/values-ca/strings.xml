@@ -42,6 +42,7 @@
   <string name="ApplicationPreferencesActivity_Off">Inactiu</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Bloqueig de pantalla %1$s, bloqueig del registre %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Bloqueig de pantalla %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema: %1$s, Llengua: %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -60,6 +61,8 @@
   <string name="AttachmentKeyboard_file">Fitxer</string>
   <string name="AttachmentKeyboard_contact">Contacte</string>
   <string name="AttachmentKeyboard_location">Ubicació</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">El Signal necessita permís per mostrar les vostres fotografies i vídeos.</string>
+  <string name="AttachmentKeyboard_give_access">Permet-hi l\'accés</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">No s\'ha trobat cap aplicació compatible.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">El Signal necessita el permís de l\'emmagatzematge per tal d\'adjuntar fotografies, vídeos o àudio, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi l\'emmagatzematge.</string>
@@ -460,6 +463,7 @@
   <string name="MediaOverviewActivity_sent_by_you_to_s">Ho heu enviat a %1$s</string>
   <!--Megaphones-->
   <string name="Megaphones_introducing_reactions">S\'introdueixen les reaccions</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Mantingueu un toc sobre qualsevol missatge per compartir com us sentiu.</string>
   <string name="Megaphones_remind_me_later">Recorda-m\'ho més tard.</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Trucada del Signal en curs</string>
@@ -565,7 +569,9 @@
   <string name="RatingManager_later">Després</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Sembla que no heu instal·lat la Play Store al vostre dispositiu.</string>
   <!--ReactionsBottomSheetDialogFragment-->
+  <string name="ReactionsBottomSheetDialogFragment_all">Tot %1$d</string>
   <!--ReactionsConversationView-->
+  <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Voleu blocar aquest contacte?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">No rebreu missatges ni trucades d\'aquest contacte.</string>
@@ -1421,8 +1427,21 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">Creeu un PIN alfanumèric</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">Creeu un PIN numèric</string>
   <!--CreateKbsPinFragment-->
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
+    <item quantity="one">El PIN ha de tenir %1$d caràcter com a mínim.</item>
+    <item quantity="other">El PIN ha de tenir un mínim de %1$d caràcters.</item>
+  </plurals>
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
+    <item quantity="one">El PIN ha de tenir %1$d dígit com a mínim.</item>
+    <item quantity="other">El PIN ha de tenir un mínim de %1$d dígits.</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Crea un PIN nou</string>
+  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
+    <item quantity="one">Podeu triar un PIN nou perquè aquest dispositiu està registrat. Si l\'oblideu, pot ser que hàgiu d\'esperar %1$d dia per tornar-vos a registrar.</item>
+    <item quantity="other">Podeu triar un PIN nou perquè aquest dispositiu està registrat. Si l\'oblideu, pot ser que hàgiu d\'esperar %1$d dies per tornar-vos a registrar.</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Creeu el PIN</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">Els PIN afegeixen una capa de seguretat extra al compte. És important recordar-lo perquè no es pot recuperar.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Els codis no coincideixen. Torneu-ho a provar.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Confirmeu el vostre PIN.</string>
@@ -1430,9 +1449,12 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">El PIN no s\'ha desat. Us demanarem de crear-lo més tard.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN creat.</string>
   <string name="ConfirmKbsPinFragment__re_enter_pin">Torneu a marcar el PIN</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">Es crea un PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">S\'introdueixen els PIN</string>
+  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">Els PIN afegeixen una altra capa de seguretat al compte. Creeu-ne un ara.</string>
   <string name="KbsSplashFragment__learn_more">Més informació</string>
+  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Bloqueig de registre = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">El bloqueig de registre ara s\'anomena PIN i serveix per a molt més. Actualitzeu-lo ara.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Llegiu més informació sobre els PIN.</string>
@@ -1450,6 +1472,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Hem bloquejat el compte per protegir la vostra privadesa i seguretat. Al cap de %1$d dies d’inactivitat, podreu tornar a registrar aquest número de telèfon sense necessitar el PIN. Se n\'esborrarà tot el contingut.</string>
   <string name="AccountLockedFragment__next">Següent</string>
   <string name="AccountLockedFragment__learn_more">Més informació</string>
+  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Marqueu el PIN</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Introduïu el PIN que heu creat per al compte. Això és diferent del codi de verificació d\'SMS.</string>
@@ -1460,6 +1483,27 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="RegistrationLockFragment__forgot_pin">Heu oblidat el PIN?</string>
   <string name="RegistrationLockFragment__incorrect_pin">PIN incorrecte</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Heu oblidat el PIN?</string>
+  <string name="RegistrationLockFragment__not_many_tries_left">No resta cap intent!</string>
+  <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
+    <item quantity="one">Per a la vostra privadesa i seguretat, no hi ha manera de recuperar el PIN. Si no el podeu recordar, podeu refer la verificació amb un SMS al cap de %1$d dia d\'inactivitat. En aquest cas, el compte s\'esborrarà i se\'n suprimirà el contingut.</item>
+    <item quantity="other">Per a la vostra privadesa i seguretat, no hi ha manera de recuperar el PIN. Si no el podeu recordar, podeu refer la verificació amb un SMS al cap de %1$d dies d\'inactivitat. En aquest cas, el compte s\'esborrarà i se\'n suprimirà el contingut.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
+    <item quantity="one">PIN incorrecte.  Us resta %1$d intent.</item>
+    <item quantity="other">PIN incorrecte.  Us resten %1$d intents.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
+    <item quantity="one">Si no us resten intents, el compte es bloquejarà durant %1$d dia. Al cap de %1$d dia d\'inactivitat, podreu tornar a registrar-vos-hi sense el PIN. El compte s\'esborrarà i se\'n suprimirà tot el contingut.</item>
+    <item quantity="other">Si no us resten intents, el compte es bloquejarà durant %1$d dies. Al cap de %1$d dies d\'inactivitat, podreu tornar a registrar-vos-hi sense el PIN. El compte s\'esborrarà i se\'n suprimirà tot el contingut.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
+    <item quantity="one">Us resta %1$d intent.</item>
+    <item quantity="other">Us resten %1$d intents.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__d_attempts_remaining">
+    <item quantity="one">Resta %1$d intent.</item>
+    <item quantity="other">Resten %1$d intents.</item>
+  </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Crea un PIN</string>
   <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">Els PIN afegeixen una altra capa de seguretat al compte del Signal.</string>
@@ -1467,6 +1511,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="KbsMegaphone__introducing_pins">S\'introdueixen els PIN</string>
   <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">El bloqueig de registre ara s\'anomena PIN. Actualitzar-lo és cosa de segons.</string>
   <string name="KbsMegaphone__update_pin">Actualitza el PIN</string>
+  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Us ho recordarem més tard. Crear un PIN serà obligatori d\'aquí a %1$d dies.</string>
+  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Us ho recordarem més tard. Confirmar el PIN serà obligatori d\'aquí a %1$d dies.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona de trànsit</string>
   <string name="ConversationListFragment_loading">Es carrega…</string>
@@ -1491,6 +1537,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences_chats__chat_backups">Còpies de seguretat de xats</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Fes una còpia de seguretat dels xats a l\'emmagatzematge extern</string>
   <string name="preferences_chats__create_backup">Crea una còpia de seguretat</string>
+  <string name="preferences_chats__verify_backup_passphrase">Verifiqueu la contrasenya de còpia de seguretat</string>
+  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Proveu la contrasenya de còpia de seguretat i verifiqueu que coincideix.</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Escriviu la contrasenya de la còpia de seguretat.</string>
   <string name="RegistrationActivity_restore">Restaura</string>
   <string name="RegistrationActivity_backup_failure_downgrade">No es poden importar còpies de seguretat de versions més noves del Signal.</string>
@@ -1508,7 +1556,10 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="BackupDialog_disable_and_delete_all_local_backups">Voleu inhabilitar i suprimir totes les còpies de seguretat locals?</string>
   <string name="BackupDialog_delete_backups_statement">Suprimeix les còpies de seguretat</string>
   <string name="BackupDialog_copied_to_clipboard">Copiat al porta-retalls</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">Escriviu la contrasenya de còpia de seguretat per verificar-la.</string>
   <string name="BackupDialog_verify">Verificació</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Heu escrit correctament la contrasenya de còpia de seguretat.</string>
+  <string name="BackupDialog_passphrase_was_not_correct">La contrasenya no és correcta.</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">El Signal necessita el permís de l\'emmagatzematge extern per tal de crear còpies de seguretat. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi l\'emmagatzematge.</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Darrera còpia de seguretat: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">En curs</string>
@@ -1543,6 +1594,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences_app_protection__registration_lock_pin">PIN de bloqueig del registre</string>
   <string name="preferences_app_protection__registration_lock">Bloqueig del registre</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Heu d\'escriure el PIN de bloqueig del registre</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">El PIN té un mínim de %d dígits o caràcters.</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">PIN de bloqueig del registre incorrecte</string>
   <string name="RegistrationActivity_too_many_attempts">Massa intents</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Heu introduït un PIN de bloqueig de registre incorrecte massa vegades. Si us plau, torneu-ho a provar d\'aquí a un dia.</string>

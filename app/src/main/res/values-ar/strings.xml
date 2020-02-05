@@ -1577,7 +1577,6 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">الرقم التعريفي الشخصي غير صحيح. يرجى إعادة المحاولة.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">تم إقفال الحساب</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">تم إقفال حسابك لحماية خصوصيتك وأمنك.بعد مرور %1$d يوم من عدم وجود نشاط على  حسابك، سيكون بإمكانك إعادة التسجيل برقم هاتفك دون الحاجة إلى الرقم التعريفي الشخصي . سيتم حذف جميع المحتوى على حسابك.</string>
   <string name="AccountLockedFragment__next">التالي</string>
   <string name="AccountLockedFragment__learn_more">أعرف أكثر</string>
   <!--KbsLockFragment-->

@@ -1445,7 +1445,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="KbsReminderDialog__incorrect_pin_try_again">Felaktig PIN-kod. Försök igen.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Kontot är låst</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Ditt konto har låsts för att skydda din integritet och säkerhet. Efter %1$d dagar av inaktivitet i ditt konto kommer du att kunna omregistrera detta telefonnummer utan att behöva din pin-kod. Allt innehåll kommer att tas bort.</string>
   <string name="AccountLockedFragment__next">Nästa</string>
   <string name="AccountLockedFragment__learn_more">Läs mer</string>
   <!--KbsLockFragment-->

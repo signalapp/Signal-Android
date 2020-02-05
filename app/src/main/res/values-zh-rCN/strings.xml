@@ -1419,7 +1419,6 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">PIN 错误，请重试。</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">帐户已锁定</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">为了保护你的隐私与安全，已锁定你的帐户。帐户在 %1$d 天不活动之后，可用该电话号码重新注册，并且无需 PIN 密码。所有内容将删除。</string>
   <string name="AccountLockedFragment__next">下一步</string>
   <string name="AccountLockedFragment__learn_more">了解更多</string>
   <!--KbsLockFragment-->

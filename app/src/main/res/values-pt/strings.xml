@@ -42,6 +42,7 @@
   <string name="ApplicationPreferencesActivity_Off">Desligadas</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Bloqueio de ecrã %1$s, Bloqueio de registo %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Ecrã de bloqueio %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Idioma %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -57,9 +58,11 @@
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galeria</string>
   <string name="AttachmentKeyboard_gif">GIF</string>
-  <string name="AttachmentKeyboard_file">Arquivo</string>
-  <string name="AttachmentKeyboard_contact">Contato</string>
-  <string name="AttachmentKeyboard_location">Local</string>
+  <string name="AttachmentKeyboard_file">Ficheiro</string>
+  <string name="AttachmentKeyboard_contact">Contacto</string>
+  <string name="AttachmentKeyboard_location">Localização</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">O Signal necessita de permissão para exibir as suas fotografias e vídeos.</string>
+  <string name="AttachmentKeyboard_give_access">Conceder acesso</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Não foi possível encontrar uma aplicação para selecionar a multimédia.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">O Signal requer permissão de acesso ao armazenamento de forma a poder anexar fotografias, vídeo e áudio, mas esta foi negada permanentemente. Por favor, aceda ao menu de definições das aplicações do seu telemóvel, selecione a aplicação Signal, e em \"Permissões\" ative \"Armazenamento\" ou \"Memória\". </string>
@@ -459,6 +462,8 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Enviado por %1$s para %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Enviado por si para %1$s</string>
   <!--Megaphones-->
+  <string name="Megaphones_introducing_reactions">Introdução às reações</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Toque e mantenha em qualquer mensagem para partilhar rapidamente o que sente.</string>
   <string name="Megaphones_remind_me_later">Lembrar-me mais tarde</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chamada do Signal em curso</string>
@@ -564,7 +569,9 @@
   <string name="RatingManager_later">Mais tarde</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Oops, a aplicação Play Store parece não estar instalada no seu dispositivo.</string>
   <!--ReactionsBottomSheetDialogFragment-->
+  <string name="ReactionsBottomSheetDialogFragment_all">Todos(as) %1$d</string>
   <!--ReactionsConversationView-->
+  <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Bloquear este contacto?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Deixará de receber mensagens ou chamadas deste contacto.</string>
@@ -1422,8 +1429,21 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">Criar um PIN alfanumérico</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">Criar um PIN numérico</string>
   <!--CreateKbsPinFragment-->
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
+    <item quantity="one">O PIN deverá conter pelo menos %1$d caracter</item>
+    <item quantity="other">O PIN deverá conter pelo menos %1$d caracteres</item>
+  </plurals>
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
+    <item quantity="one">O PIN deverá conter %1$d dígito</item>
+    <item quantity="other">O PIN deverá conter pelo menos %1$d dígitos</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Criar um novo PIN</string>
+  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
+    <item quantity="one">Você pode escolher um PIN novo porque este dispositivo está registado. Se se esquecer do seu PIN, poderá necessitar de %1$d dia para registar de novo.</item>
+    <item quantity="other">Você pode escolher um PIN novo porque este dispositivo está registado. Se se esquecer do seu PIN, poderá necessitar de %1$d dias para registar de novo.</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Criar o seu PIN</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">Os PINs adicionam uma camada extra de segurança à sua conta. É importante recordar-se dele PIN visto o mesmo não poder ser recuperado.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Os PINs não coincidem. Tente novamente.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Confirme o seu PIN</string>
@@ -1431,10 +1451,14 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">O seu PIN não foi guardado. Iremos pedir-lhe para criar o PIN mais tarde.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN criado.</string>
   <string name="ConfirmKbsPinFragment__re_enter_pin">Reintroduza o PIN</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">A criar PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Introdução aos PINs</string>
+  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">Os PINs adicionam outro nível de segurança à sua conta. Crie um agora.</string>
   <string name="KbsSplashFragment__learn_more">Saber mais</string>
+  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Bloqueio do registo = PIN</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">O seu \'Bloqueio de registo\' é agora chamado de PIN, e faz muito mais. Atualize agora.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Ler mais acerca dos PINs.</string>
   <string name="KbsSplashFragment__update_pin">Atualizar PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Crie o seu PIN</string>
@@ -1447,9 +1471,10 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="KbsReminderDialog__incorrect_pin_try_again">PIN incorreto. Tente novamente.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Conta bloqueada</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">A sua conta foi bloqueada de forma a proteger a sua privacidade e segurança. Após %1$d dias de inatividade da sua conta, você será capaz de voltar a registar este número de telemóvel sem necessitar do seu pin. Todo o conteúdo será eliminado.</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">A sua conta foi bloqueada para proteger a sua privacidade e segurança. Após %1$d dias de inatividade  ser-lhe-á permitido voltar a registar este número de telemóvel sem necessitar do seu PIN. Todo o conteúdo será eliminado.</string>
   <string name="AccountLockedFragment__next">Seguinte</string>
   <string name="AccountLockedFragment__learn_more">Saber mais</string>
+  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Introduza o seu PIN</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Introduza o PIN que criou para a sua conta. Ele é diferente do seu código de verificação SMS.</string>
@@ -1460,9 +1485,36 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="RegistrationLockFragment__forgot_pin">Esqueceu-se do PIN?</string>
   <string name="RegistrationLockFragment__incorrect_pin">PIN incorreto</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Esqueceu-se do seu PIN?</string>
+  <string name="RegistrationLockFragment__not_many_tries_left">Restam poucas tentativas!</string>
+  <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
+    <item quantity="one">Para sua segurança e privacidade, não existe forma de recuperar o seu PIN. Se não se consegue recordar do seu PIN, pode reverificá-lo através de SMS após %1$d dia de inatividade. Neste caso, a sua conta será limpa e todo o conteúdo eliminado.</item>
+    <item quantity="other">Para sua segurança e privacidade, não existe forma de recuperar o seu PIN. Se não se consegue recordar do seu PIN, pode reverificá-lo através de SMS após %1$d dias de inatividade. Neste caso, a sua conta será limpa e todo o conteúdo eliminado.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
+    <item quantity="one">PIN incorreto. Resta-lhe %1$d tentativa.</item>
+    <item quantity="other">PIN incorreto. Restam-lhe %1$d tentativas</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
+    <item quantity="one">Se esgotar todas as tentativas, a sua conta será bloqueada por %1$d dia. Após %1$d dia de inatividade, pode voltar a registar novamente sem o seu PIN. A sua conta será limpa e todo o conteúdo será eliminado.</item>
+    <item quantity="other">Se esgotar todas as tentativas, a sua conta será bloqueada por %1$d dias. Após %1$d dias de inatividade, pode voltar a registar novamente sem o seu PIN. A sua conta será limpa e todo o conteúdo será eliminado.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
+    <item quantity="one">Resta-lhe %1$d tentativa.</item>
+    <item quantity="other">Restam-lhe %1$d tentativas.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__d_attempts_remaining">
+    <item quantity="one">%1$d tentativa restante.</item>
+    <item quantity="other">%1$d tentativas restantes.</item>
+  </plurals>
   <!--KBS Megaphone-->
+  <string name="KbsMegaphone__create_a_pin">Criar um PIN</string>
+  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">Os PINs adicionam outra camada de segurança à sua conta do Signal.</string>
+  <string name="KbsMegaphone__create_pin">Criar PIN</string>
   <string name="KbsMegaphone__introducing_pins">Introdução aos PINs</string>
+  <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">O seu \'Bloqueio de registo\' é agora chamado de PIN. A atualização apenas demora uns segundos.</string>
   <string name="KbsMegaphone__update_pin">Atualizar PIN</string>
+  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Iremos lembrá-lo(a) mais tarde. Criar um PIN será obrigatório dentro de %1$d dias.</string>
+  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Iremos lembrá-lo(a) mais tarde. Confirmar o seu PIN será obrigatório dentro de %1$d dias.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ícone de transporte</string>
   <string name="ConversationListFragment_loading">A carregar…</string>
@@ -1487,6 +1539,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences_chats__chat_backups">Cópias de segurança de conversas</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Executar cópia de segurança para armazenamento externo</string>
   <string name="preferences_chats__create_backup">Criar cópia de segurança</string>
+  <string name="preferences_chats__verify_backup_passphrase">Verificar a frase-passe de segurança</string>
+  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Teste a sua frase-passe e confirme se coincide</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Introduza a frase-passe da cópia de segurança</string>
   <string name="RegistrationActivity_restore">Restaurar</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Não é possível importar cópias de segurança de novas versões do Signal</string>
@@ -1504,7 +1558,10 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="BackupDialog_disable_and_delete_all_local_backups">Desativar e eliminar todas as cópias de segurança locais?</string>
   <string name="BackupDialog_delete_backups_statement">Eliminar cópias de segurança</string>
   <string name="BackupDialog_copied_to_clipboard">Copiado para a área de transferência</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">Introduza a sua frase-passe para verificar</string>
   <string name="BackupDialog_verify">Verificar</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Introduziu com sucesso a sua frase-passe de segurança</string>
+  <string name="BackupDialog_passphrase_was_not_correct">Frase-passe incorreta</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">O Signal requer permissão de acesso ao armazenamento externo para criar cópias de segurança, mas esta foi negada permanentemente. Por favor, aceda às definições das aplicações do seu telemóvel, selecione a aplicação Signal e nas \"Permissões\" ative \"Armazenamento\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Última cópia de segurança: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Em progresso</string>
@@ -1539,6 +1596,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences_app_protection__registration_lock_pin">PIN de bloqueio de registo</string>
   <string name="preferences_app_protection__registration_lock">Bloqueio de registo</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Tem de introduzir o seu PIN de bloqueio de registo</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">O seu PIN tem pelo menos %d dígitos ou caracteres</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">PIN de bloqueio de registo incorreto</string>
   <string name="RegistrationActivity_too_many_attempts">Demasiadas tentativas</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Introduziu demasiadas vezes incorretamente o PIN de bloqueio do registo. Por favor, tente novamente dentro de um dia.</string>

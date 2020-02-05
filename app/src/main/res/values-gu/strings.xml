@@ -1443,7 +1443,6 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">ખોટો પિન. ફરીથી પ્રયત્ન કરો.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">એકાઉન્ટ લૉક કર્યું</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">તમારી ગોપનીયતા અને સુરક્ષાને સુરક્ષિત કરવા માટે તમારું એકાઉન્ટ લૉક થઈ ગયું છે. તમારા એકાઉન્ટ માં %1$d દિવસની નિષ્ક્રિયતા પછી તમે તમારા PIN ની જરૂર વગર આ ફોન નંબરને ફરીથી રજીસ્ટર કરી શકશો. બધી સામગ્રી કાઢી નાખવામાં આવશે.</string>
   <string name="AccountLockedFragment__next">આગળ</string>
   <string name="AccountLockedFragment__learn_more">વધુ શીખો</string>
   <!--KbsLockFragment-->

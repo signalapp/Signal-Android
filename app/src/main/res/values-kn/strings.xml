@@ -1449,7 +1449,6 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">ತಪ್ಪಾದ ಪಿನ್. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸು.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">ಖಾತೆಯನ್ನು ಲಾಕ್ ಮಾಡಲಾಗಿದೆ</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">ನಿಮ್ಮ ರಕ್ಷಿಸಲು ಖಾತೆಯನ್ನು ಲಾಕ್ ಮಾಡಲಾಗಿದೆ ನಿಮ್ಮ ಗೌಪ್ಯತೆ ಮತ್ತುಭದ್ರತೆ. ನಂತರ %1$d ನಿಷ್ಕ್ರಿಯತೆಯ ದಿನಗಳು ನಿಮ್ಮ ಖಾತೆ ನೀವು\'ಇದನ್ನು ಮರು ನೋಂದಾಯಿಸಲು ನನಗೆ ಸಾಧ್ಯವಾಗುತ್ತದೆ ದೂರವಾಣಿ ಅಗತ್ಯವಿಲ್ಲದೆ ಸಂಖ್ಯೆ ನಿಮ್ಮ ಪಿನ್. ಎಲ್ಲಾ ವಿಷಯವನ್ನು ಅಳಿಸಲಾಗುತ್ತದೆ.</string>
   <string name="AccountLockedFragment__next">ಮುಂದೆ</string>
   <string name="AccountLockedFragment__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
   <!--KbsLockFragment-->

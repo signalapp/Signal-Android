@@ -565,7 +565,9 @@
   <string name="RatingManager_later">Hiljem</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ups, tundub et Play poe rakendus puudub sinu seadmest.</string>
   <!--ReactionsBottomSheetDialogFragment-->
+  <string name="ReactionsBottomSheetDialogFragment_all">Kõik %1$d</string>
   <!--ReactionsConversationView-->
+  <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Blokeerid selle kontakti?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Sa ei saa sellelt kontaktilt enam sõnumeid ja kõnesid vastu võtta.</string>

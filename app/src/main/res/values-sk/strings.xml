@@ -46,6 +46,7 @@
   <string name="ApplicationPreferencesActivity_Off">Vypnuté</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Zámok obrazovky %1$s, Registračný zámok %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Zámok obrazovky %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">%1$s motív,  jazyk: %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -66,6 +67,8 @@
   <string name="AttachmentKeyboard_file">Súbor</string>
   <string name="AttachmentKeyboard_contact">Kontakt</string>
   <string name="AttachmentKeyboard_location">Poloha</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Na zobrazenie vašich fotiek a videí k nim Signal potrebuje prístup.</string>
+  <string name="AttachmentKeyboard_give_access">Udeliť prístup</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nenašla sa aplikácia pre výber médií.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal potrebuje prístup k úložisku aby k správam mohol pridať obrázkové, video a zvukové prílohy, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Úložisko\".</string>
@@ -500,6 +503,7 @@
   <string name="MediaOverviewActivity_sent_by_you_to_s">Vami odoslané adresátovi %1$s</string>
   <!--Megaphones-->
   <string name="Megaphones_introducing_reactions">Predstavujeme reakcie</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Ťuknutím a podržaním akejkoľvek správy rýchlo zdieľajte, ako sa cítite.</string>
   <string name="Megaphones_remind_me_later">Pripomenúť neskôr</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Prebieha Signal hovor</string>
@@ -607,7 +611,9 @@
   <string name="RatingManager_later">Neskôr</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Joj, vyzerá to, že Obchod Google Play nie je nainštalovaný na vašom zariadení.</string>
   <!--ReactionsBottomSheetDialogFragment-->
+  <string name="ReactionsBottomSheetDialogFragment_all">Všetky %1$d</string>
   <!--ReactionsConversationView-->
+  <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Zablokovať tento kontakt?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Už nebudete od tohto kontaktu dostávať správy a hovory.</string>
@@ -1490,8 +1496,27 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">Vytvoriť alfanumerický PIN kód</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">Vytvoriť numerický PIN kód</string>
   <!--CreateKbsPinFragment-->
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
+    <item quantity="one">PIN kód musí mať min. %1$d znak</item>
+    <item quantity="few">PIN kód musí mať min. %1$d znakov</item>
+    <item quantity="many">PIN kód musí mať min. %1$d znakov</item>
+    <item quantity="other">PIN kód musí mať min. %1$d znakov</item>
+  </plurals>
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
+    <item quantity="one">PIN kód musí mať min. %1$d číslicu</item>
+    <item quantity="few">PIN kód musí mať min. %1$d číslic</item>
+    <item quantity="many">PIN kód musí mať min. %1$d číslic</item>
+    <item quantity="other">PIN kód musí mať min. %1$d číslic</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Vytvoriť nový PIN</string>
+  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
+    <item quantity="one">Pretože toto zariadenie je registrované, môžete si vybrať nový PIN kód. Ak zabudnete svoj PIN kód, pravdepodobne budete musieť čakať %1$d deň na opätovnú registráciu.</item>
+    <item quantity="few">Pretože toto zariadenie je registrované, môžete si vybrať nový PIN kód. Ak zabudnete svoj PIN kód, pravdepodobne budete musieť čakať %1$d dní na opätovnú registráciu.</item>
+    <item quantity="many">Pretože toto zariadenie je registrované, môžete si vybrať nový PIN kód. Ak zabudnete svoj PIN kód, pravdepodobne budete musieť čakať %1$d dní na opätovnú registráciu.</item>
+    <item quantity="other">Pretože toto zariadenie je registrované, môžete si vybrať nový PIN kód. Ak zabudnete svoj PIN kód, pravdepodobne budete musieť čakať %1$d dní na opätovnú registráciu.</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Vytvorte si PIN</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PIN kódy pridávajú k vášmu účtu ďalšiu vrstvu zabezpečenia. Keďže tento PIN kód nie je možné obnoviť, je dôležité, aby ste si ho zapamätali.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN kódy sa nezhodujú. Skúste to znova.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Potvrďte svoj PIN.</string>
@@ -1499,9 +1524,12 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Váš PIN kód sa neuložil. Vyzveme vás vytvoriť si PIN kód neskôr.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN kód sa vytvoril.</string>
   <string name="ConfirmKbsPinFragment__re_enter_pin">Znovu zadajte PIN</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">Vytvára sa PIN kód…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Predstavujeme PINy</string>
+  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">PIN kódy pridávajú k vášmu účtu ďalšiu vrstvu zabezpečenia. Vytvorte si ho teraz.</string>
   <string name="KbsSplashFragment__learn_more">Dozvedieť sa viac</string>
+  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registračný zámok = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Váš Registračný zámok sa teraz volá PIN kód a dokáže viac. Aktualizujte ho teraz.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Prečítajte si viac o PIN kódoch.</string>
@@ -1519,6 +1547,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Váš účet sa uzamkol z dôvodu ochrany vášho súkromia a zabezpečenia. Po %1$d dňoch nečinnosti vo vašom účte budete môcť opätovne zaregistrovať toto telefónne číslo bez potreby PIN kódu. Všetok obsah sa odstráni.</string>
   <string name="AccountLockedFragment__next">Ďalší</string>
   <string name="AccountLockedFragment__learn_more">Dozvedieť sa viac</string>
+  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Zadajte svoj PIN</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Zadajte PIN, ktorý ste si pre váš účet vytvorili. Nie je to to isté ako SMS overovací kód.</string>
@@ -1529,6 +1558,37 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="RegistrationLockFragment__forgot_pin">Zabudli ste PIN?</string>
   <string name="RegistrationLockFragment__incorrect_pin">Nesprávny PIN</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Zabudli ste svoj PIN?</string>
+  <string name="RegistrationLockFragment__not_many_tries_left">Ostáva už len zopár pokusov!</string>
+  <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
+    <item quantity="one">Kvôli vášmu súkromiu a bezpečnosti nie je možné PIN nijakým spôsobom obnoviť. Ak svoj PIN zabudnete, po %1$d dni neaktivity si budete môcť overiť svoj účet prostredníctvom SMS. V tom prípade bude váš účet zmazaný a celý jeho obsah sa odstráni.</item>
+    <item quantity="few">Kvôli vášmu súkromiu a bezpečnosti nie je možné PIN nijakým spôsobom obnoviť. Ak svoj PIN zabudnete, po %1$d dňoch neaktivity si budete môcť overiť svoj účet prostredníctvom SMS. V tom prípade bude váš účet zmazaný a celý jeho obsah sa odstráni.</item>
+    <item quantity="many">Kvôli vášmu súkromiu a bezpečnosti nie je možné PIN nijakým spôsobom obnoviť. Ak svoj PIN zabudnete, po %1$d dňoch neaktivity si budete môcť overiť svoj účet prostredníctvom SMS. V tom prípade bude váš účet zmazaný a celý jeho obsah sa odstráni.</item>
+    <item quantity="other">Kvôli vášmu súkromiu a bezpečnosti nie je možné PIN nijakým spôsobom obnoviť. Ak svoj PIN zabudnete, po %1$d dňoch neaktivity si budete môcť overiť svoj účet prostredníctvom SMS. V tom prípade bude váš účet zmazaný a celý jeho obsah sa odstráni.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
+    <item quantity="one">Nesprávny PIN kód. Zostáva %1$d pokus.</item>
+    <item quantity="few">Nesprávny PIN kód. Zostáva %1$d pokusov.</item>
+    <item quantity="many">Nesprávny PIN kód. Zostáva %1$d pokusov.</item>
+    <item quantity="other">Nesprávny PIN kód. Zostáva %1$d pokusov.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
+    <item quantity="one">Ak miniete všetky pokusy, váš účet sa na %1$d deň zablokuje. Po %1$d dni nečinnosti sa môžete znova zaregistrovať bez potreby PIN kódu. Váš účet sa vymaže a všetok obsah sa odstráni.</item>
+    <item quantity="few">Ak miniete všetky pokusy, váš účet sa na %1$d dní zablokuje. Po %1$d dňoch nečinnosti sa môžete znova zaregistrovať bez potreby PIN kódu. Váš účet sa vymaže a všetok obsah sa odstráni.</item>
+    <item quantity="many">Ak miniete všetky pokusy, váš účet sa na %1$d dní zablokuje. Po %1$d dňoch nečinnosti sa môžete znova zaregistrovať bez potreby PIN kódu. Váš účet sa vymaže a všetok obsah sa odstráni.</item>
+    <item quantity="other">Ak miniete všetky pokusy, váš účet sa na %1$d dní zablokuje. Po %1$d dňoch nečinnosti sa môžete znova zaregistrovať bez potreby PIN kódu. Váš účet sa vymaže a všetok obsah sa odstráni.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
+    <item quantity="one">Zostáva vám %1$d pokus.</item>
+    <item quantity="few">Zostáva vám %1$d pokusov.</item>
+    <item quantity="many">Zostáva vám %1$d pokusov.</item>
+    <item quantity="other">Zostáva vám %1$d pokusov.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__d_attempts_remaining">
+    <item quantity="one">Zostáva %1$d pokus.</item>
+    <item quantity="few">Zostáva %1$d pokusov.</item>
+    <item quantity="many">Zostáva %1$d pokusov.</item>
+    <item quantity="other">Zostáva %1$d pokusov.</item>
+  </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Vytvoriť PIN</string>
   <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">PIN kódy pridajú k vášmu účtu Signal ďalšiu vrstvu zabezpečenia.</string>
@@ -1536,6 +1596,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="KbsMegaphone__introducing_pins">Predstavujeme PINy</string>
   <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Váš Registračný zámok sa teraz volá PIN kód. Jeho aktualizácia vám zaberie pár sekúnd.</string>
   <string name="KbsMegaphone__update_pin">Aktualizovať PIN kód</string>
+  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Pripomenieme vám to neskôr. Povinnosť vytvoriť si PIN kód budete mať o %1$d dní.</string>
+  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Pripomenieme vám to neskôr. Povinnosť potvrdiť svoj PIN kód budete mať o %1$d dní.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona prenosu</string>
   <string name="ConversationListFragment_loading">Načítava sa…</string>
@@ -1560,6 +1622,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_chats__chat_backups">Zálohy chatu</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Zálohovať chaty na úložisko</string>
   <string name="preferences_chats__create_backup">Vytvoriť zálohu</string>
+  <string name="preferences_chats__verify_backup_passphrase">Overiť heslo pre zálohy</string>
+  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Otestujte svoje heslo pre zálohy a overte, či sa zhoduje</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Zadajte heslo pre zálohy</string>
   <string name="RegistrationActivity_restore">Obnovenie</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Zálohy z novšej verzie Signal sa nedajú importovať.</string>
@@ -1577,7 +1641,10 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="BackupDialog_disable_and_delete_all_local_backups">Zakázať a vymazať všetky lokálne zálohy?</string>
   <string name="BackupDialog_delete_backups_statement">Vymazať zálohy</string>
   <string name="BackupDialog_copied_to_clipboard">Skopírované do schránky</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">Pre overenie zadajte svoje heslo pre zálohy</string>
   <string name="BackupDialog_verify">Overiť</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Úspešne ste zadali svoje heslo pre zálohy</string>
+  <string name="BackupDialog_passphrase_was_not_correct">Heslo nebolo správne</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal potrebuje prístup k úložisku aby mohol vytvárať zálohy, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Úložisko\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Posledná záloha: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Prebieha</string>
@@ -1612,6 +1679,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_app_protection__registration_lock_pin">PIN registračného zámku</string>
   <string name="preferences_app_protection__registration_lock">Registračný zámok</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Musíte zadať svoj PIN registračného zámku</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Váš PIN kód má min. %d číslic alebo znakov</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Nesprávny PIN registračného zámku</string>
   <string name="RegistrationActivity_too_many_attempts">Príliš veľa pokusov</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Urobili ste príliš veľa pokusov o zadanie PINu registračného zámku. Skúste to znovu za deň.</string>

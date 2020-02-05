@@ -46,6 +46,7 @@
   <string name="ApplicationPreferencesActivity_Off">I ffwrdd</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Clo sgrin %1$s, Clo cofrestru %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Clo sgrin %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Thema %1$s, Iaith %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -501,6 +502,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Anfonwyd gan %1$s i %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Anfonwyd gennych chi i %1$s</string>
   <!--Megaphones-->
+  <string name="Megaphones_introducing_reactions">Yn Cyflwyno Adweithiau</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Tapiwch a dal unrhyw neges i rannu\'n sydyn eich teimladau.</string>
   <string name="Megaphones_remind_me_later">Atgoffwch fi\'n hwyrach</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Ar ganol galwad Signal</string>
@@ -608,7 +611,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="RatingManager_later">Yn hwyrach</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Wps, nid yw ap y Play Store i weld wedi cael ei osod ar eich dyfais.</string>
   <!--ReactionsBottomSheetDialogFragment-->
+  <string name="ReactionsBottomSheetDialogFragment_all">Y cyfan o %1$d</string>
   <!--ReactionsConversationView-->
+  <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Rhwystro\'r cysllwt hwn?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Ni fyddwch bellach yn derbyn negeseuon a galwadau oddi wrth y cyswllt hwn.</string>
@@ -1486,18 +1491,42 @@ Send neges heb ei ddiogelu?</string>
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">Crëwch PIN alffaniwmerig</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">`Crëwch PIn rhifol</string>
   <!--CreateKbsPinFragment-->
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
+    <item quantity="one">Rhaid i\'r PIN fod yn o leiaf %1$d nod</item>
+    <item quantity="two">Rhaid i\'r PIN fod yn o leiaf %1$d nod</item>
+    <item quantity="many">Rhaid i\'r PIN fod yn o leiaf %1$d nod</item>
+    <item quantity="other">Rhaid i\'r PIN fod yn o leiaf %1$d nod</item>
+  </plurals>
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
+    <item quantity="one">Rhaid i\'r PIN fod yn o leiaf %1$d digid</item>
+    <item quantity="two">Rhaid i\'r PIN fod yn o leiaf %1$d digid</item>
+    <item quantity="many">Rhaid i\'r PIN fod yn o leiaf %1$d digid</item>
+    <item quantity="other">Rhaid i\'r PIN fod yn o leiaf %1$d digid</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Crëwch PIN newydd</string>
+  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
+    <item quantity="one">Gallwch ddewis PIN newydd gan fod y ddyfais wedi ei chofrestru. Os fyddwch yn anghofio eich PIN, efallai y bydd angen i chi aros am %1$d diwrnod i chi gofrestru eto.</item>
+    <item quantity="two">Gallwch ddewis PIN newydd gan fod y ddyfais wedi ei chofrestru. Os fyddwch yn anghofio eich PIN, efallai y bydd angen i chi aros am %1$d diwrnod i chi gofrestru eto.</item>
+    <item quantity="many">Gallwch ddewis PIN newydd gan fod y ddyfais wedi ei chofrestru. Os fyddwch yn anghofio eich PIN, efallai y bydd angen i chi aros am %1$d diwrnod i chi gofrestru eto.</item>
+    <item quantity="other">Gallwch ddewis PIN newydd gan fod y ddyfais wedi ei chofrestru. Os fyddwch yn anghofio eich PIN, efallai y bydd angen i chi aros am %1$d diwrnod i chi gofrestru eto.</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Crëwch eich PIN</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">Mae PIN yn ychwanegu haen ychwanegol o ddiogelwch i\'ch cyfrif. Mae\'n bwysig i gofio\'r PIN gan nad oes modd ei adfer.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Nid yw\'r PIN yn cyfateb. Ceisiwch eto.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Cadarnhewch eich PIN.</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Methodd creu\'r PIN</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Nid yw eich PIN wedi\'i gadw. Byddwn yn eich atgoffa i greu PIN maes o law.</string>
   <string name="ConfirmKbsPinFragment__pin_created">Crëwyd y PIN.</string>
+  <string name="ConfirmKbsPinFragment__re_enter_pin">Rhoi\'r PIN eto</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">Yn creu PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Yn Cyflwyno PIN</string>
+  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">Mae PIN yn ychwanegu haen ychwanegol o ddiogelwch i\'ch cyfrif. Crëwch un nawr.</string>
   <string name="KbsSplashFragment__learn_more">Dysgu Rhagor</string>
+  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Clo Cofrestru = PIN</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Mae eich Clo Cofrestru nawr yn cael ei alw\'n PIN, ac mae\'n gwneud mwy. Diweddarwch nawr. </string>
   <string name="KbsSplashFragment__read_more_about_pins">Darllenwch ragor am PIN</string>
   <string name="KbsSplashFragment__update_pin">Diweddaru PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Crëwch eich PIN</string>
@@ -1510,9 +1539,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="KbsReminderDialog__incorrect_pin_try_again">PIN anghywir. Ceisiwch eto.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Cyfrif wedi\'i gloi</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Mae eich cyfrif wedi ei gloi i ddiogelu eich preifatrwydd a diogelwch. Ar ôl %1$d diwrnod heb weithgarwch ar eich cyfrif bydd modd i chi ailgofrestru\'r rhif ffôn yma heb fod angen eich PIN. Bydd yr holl gynnwys yn cael ei ddileu.</string>
   <string name="AccountLockedFragment__next">Nesaf</string>
   <string name="AccountLockedFragment__learn_more">Dysgu Rhagor</string>
+  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Rhowch eich PIN</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Rhowch y PIN rydych wedi\'i greu ar gyfer eich cyfrif. Mae hwn yn wahanol i\'ch cod dilysu SMS.</string>
@@ -1523,9 +1552,34 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationLockFragment__forgot_pin">Wedi anghofio PIN?</string>
   <string name="RegistrationLockFragment__incorrect_pin">PIN anghywir</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Wedi anghofio eich PIN?</string>
+  <string name="RegistrationLockFragment__not_many_tries_left">Dim llawer o geisiadau ar ôl!</string>
+  <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
+    <item quantity="one">Er lles eich preifatrwydd a\'ch diogelwch, does dim modd i adfer eich PIN. Os fyddwch yn rhedeg allan o geisiadau bydd modd ail ddilysu gyda SMS ar ôl %1$d diwrnod o anweithgaredd. Yn yr achos yma, bydd eich cyfrif yn cael ei dynnu a\'r holl ddata ei ddileu.</item>
+    <item quantity="two">Er lles eich preifatrwydd a\'ch diogelwch, does dim modd i adfer eich PIN. Os fyddwch yn rhedeg allan o geisiadau bydd modd ail ddilysu gyda SMS ar ôl %1$d diwrnod o anweithgaredd. Yn yr achos yma, bydd eich cyfrif yn cael ei dynnu a\'r holl ddata ei ddileu.</item>
+    <item quantity="many">Er lles eich preifatrwydd a\'ch diogelwch, does dim modd i adfer eich PIN. Os fyddwch yn rhedeg allan o geisiadau bydd modd ail ddilysu gyda SMS ar ôl %1$d diwrnod o anweithgaredd. Yn yr achos yma, bydd eich cyfrif yn cael ei dynnu a\'r holl ddata ei ddileu.</item>
+    <item quantity="other">Er lles eich preifatrwydd a\'ch diogelwch, does dim modd i adfer eich PIN. Os fyddwch yn rhedeg allan o geisiadau bydd modd ail ddilysu gyda SMS ar ôl %1$d diwrnod o anweithgaredd. Yn yr achos yma, bydd eich cyfrif yn cael ei dynnu a\'r holl ddata ei ddileu.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
+    <item quantity="one">PIN anghywir. %1$d ymgais ar ôl.</item>
+    <item quantity="two">PIN anghywir. %1$d ymgais ar ôl.</item>
+    <item quantity="many">PIN anghywir. %1$d ymgais ar ôl.</item>
+    <item quantity="other">PIN anghywir. %1$d ymgais ar ôl.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__d_attempts_remaining">
+    <item quantity="one"> %1$d ymgais ar ôl.</item>
+    <item quantity="two"> %1$d ymgais ar ôl.</item>
+    <item quantity="many"> %1$d ymgais ar ôl.</item>
+    <item quantity="other"> %1$d ymgais ar ôl.</item>
+  </plurals>
   <!--KBS Megaphone-->
+  <string name="KbsMegaphone__create_a_pin">Crëwch PIN</string>
+  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">Mae PIN yn ychwanegu haen ychwanegol o ddiogelwch i\'ch cyfrif Signal.</string>
+  <string name="KbsMegaphone__create_pin">Crëwch PIN</string>
   <string name="KbsMegaphone__introducing_pins">Yn Cyflwyno PIN</string>
+  <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Mae eich Clo Cofrestru nawr yn cael ei alw\'n PIN. Diweddarwch mewn eiliadau </string>
   <string name="KbsMegaphone__update_pin">Diweddaru PIN</string>
+  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Byddwn yn eich atgoffa\'n ddiweddarach. Bydd creu PIN yn dod yn orfodol ymhen %1$d diwrnod.</string>
+  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Byddwn yn eich atgoffa\'n ddiweddarach. Bydd creu PIN yn dod yn orfodol ymhen %1$d diwrnod.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Eicon trafnidiaeth</string>
   <string name="ConversationListFragment_loading">Llwytho…</string>
@@ -1550,6 +1604,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences_chats__chat_backups">Copïau wrth gefn o sgyrsiau</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Cadw sgyrsiau wrth gefn i storfa allanol</string>
   <string name="preferences_chats__create_backup">Creu copi wrth gefn</string>
+  <string name="preferences_chats__verify_backup_passphrase">Dilysu cyfrinymadrodd wrth gefn</string>
+  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Profwch eich cyfrinymadrodd wrth gefn a dilysu ei fod yn cydweddu.</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Rhoi\'r cyfrinymadrodd wrth gefn</string>
   <string name="RegistrationActivity_restore">Adfer</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Methu mewnforio o fersiynau mwy diweddar o Signal</string>
@@ -1567,6 +1623,10 @@ Send neges heb ei ddiogelu?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Analluogi a dileu\'r copïau wrth gefn lleol?</string>
   <string name="BackupDialog_delete_backups_statement">Dileu copïau wrth gefn</string>
   <string name="BackupDialog_copied_to_clipboard">Wedi\'i gopïo i\'r clipfwrdd</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">Rhowch eich cyfrinymadrodd wrth gefn i ddilysu</string>
+  <string name="BackupDialog_verify">Dilysu</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Rydych wedi cyflwyno eich cyfrinymadrodd wrth gefn yn llwyddiannus</string>
+  <string name="BackupDialog_passphrase_was_not_correct">Nid oedd y cyfrinymadrodd yn gywir</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Mae ar Signal angen caniatâd storio allanol er mwyn creu copïau wrth gefn, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Storio".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Copi wrth gefn diwethaf %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Cynnydd</string>
@@ -1586,6 +1646,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences_app_protection__signal_pin">PIN Signal</string>
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Newid</string>
+  <string name="preferences_app_protection__create">Creu</string>
   <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Mae eich PIN yn ychwanegu haen ychwanegol o ddiogelwch ac yn cadw eich cyfrif wrth gefn. Byddwn yn gofyn amdano pan fyddwch yn cofrestru eich rhif ffôn gyda Signal. Os fyddwch yn anghofio eich PIN, byddwch yn cael eich cloi allan o\'ch cyfrif am 7 diwrnod.</string>
   <string name="AppProtectionPreferenceFragment_none">Dim</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Nid yw\'r Clo Cofrestru PIN  yr un fath â\'r cod dilysu SMS rydych newydd ei dderbyn. Rhowch y PIN a ffurfiwyd gennych yn flaenorol yr ap .</string>

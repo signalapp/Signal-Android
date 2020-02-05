@@ -1450,7 +1450,6 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">తప్పు పిన్. మళ్ళీ ప్రయత్నించండి.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">ఖాతా లాక్ చేయబడింది</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">మీ గోప్యత మరియు భద్రతను రక్షించడానికి మీ ఖాతా లాక్ చేయబడింది. మీ ఖాతాలో %1$d రోజుల నిష్క్రియాత్మకత తర్వాత మీరు మీ పిన్ అవసరం లేకుండా ఈ ఫోన్ నంబర్‌ను తిరిగి నమోదు చేయగలరు. మొత్తం కంటెంట్ తొలగించబడుతుంది.</string>
   <string name="AccountLockedFragment__next">తరువాత</string>
   <string name="AccountLockedFragment__learn_more">ఇంకా నేర్చుకో</string>
   <!--KbsLockFragment-->

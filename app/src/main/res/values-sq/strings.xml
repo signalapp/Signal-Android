@@ -459,6 +459,7 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Dërguar nga %1$s për %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Dërguar nga ju për %1$s</string>
   <!--Megaphones-->
+  <string name="Megaphones_introducing_reactions">Ju Prezantojmë Reagimet</string>
   <string name="Megaphones_remind_me_later">Kujtomë më vonë</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Thirrje Signal në zhvillim e sipër</string>
@@ -1433,6 +1434,7 @@
   <string name="KbsSplashFragment__introducing_pins">Ju paraqesim PIN-et</string>
   <string name="KbsSplashFragment__learn_more">Mësoni Më Tepër</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Kyçje Regjistrimi = PIN</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Kyçi juaj i Regjistrimit tani quhet PIN, dhe bën edhe më tepër se aq. Përditësojeni që tani.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Lexoni më tepër rreth PIN-esh.</string>
   <string name="KbsSplashFragment__update_pin">Përditësoni PIN-in</string>
   <string name="KbsSplashFragment__create_your_pin">Krijoni PIN-in tuaj</string>
@@ -1445,7 +1447,6 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">PIN i pasaktë. Riprovoni.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">LLogari e kyçur</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Llogaria juaj është kyçur për të mbrojtur privatësinë dhe sigurinë. Pas %1$d ditësh mosveprimtarie në llogarinë tuaj, do të jeni në gjendje të riregjistroni këtë numër telefoni pa u dashur PIN. Krejt lënda do të fshihet.</string>
   <string name="AccountLockedFragment__next">Pasuesi</string>
   <string name="AccountLockedFragment__learn_more">Mësoni Më Tepër</string>
   <!--KbsLockFragment-->
@@ -1459,7 +1460,11 @@
   <string name="RegistrationLockFragment__incorrect_pin">PIN i pasaktë</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Harruat PIN-in tuaj?</string>
   <!--KBS Megaphone-->
+  <string name="KbsMegaphone__create_a_pin">Krijoni PIN</string>
+  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">PIN-i i shton llogarisë tuaj një tjetër shtresë sigurie llogarisë tuaj Signal.</string>
+  <string name="KbsMegaphone__create_pin">Krijoni PIN</string>
   <string name="KbsMegaphone__introducing_pins">Ju paraqesim PIN-et</string>
+  <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Kyçi juaj i Regjistrimit tani quhet PIN. Përditësimi ha vetëm pak sekonda.</string>
   <string name="KbsMegaphone__update_pin">Përditësoni PIN-in</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikonë bartjesh</string>

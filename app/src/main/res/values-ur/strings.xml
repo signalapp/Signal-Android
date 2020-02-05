@@ -1443,7 +1443,6 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">غلط پن. دوبارہ کوشش کریں.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">اکاؤنٹ مقفل ہے</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">آپ کی نجی معلومات کی حفاظتی اور حفاظت کے لیئے آپ کا اکاؤنٹ مقفل کردیا گیا ہے۔ آپ کے اکاؤنٹ میں%1$d دنوں کے غیر فعال ہونے کے بعد آپ اپنے پن کی ضرورت کے بغیر اس فون نمبر کو دوبارہ رجسٹر کرسکیں گے۔ تمام مشمولات کو حذف کردیا جائے گا۔</string>
   <string name="AccountLockedFragment__next">اگلا</string>
   <string name="AccountLockedFragment__learn_more">مزید پڑھیں</string>
   <!--KbsLockFragment-->

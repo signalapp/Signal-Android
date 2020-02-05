@@ -1450,7 +1450,6 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">தவறான பின். மீண்டும் முயற்சி செய்.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">கணக்கில் பூட்டப்பட்டுள்ளது</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">பாதுகாப்பைப் பாதுகாக்க உங்கள் கணக்கு பூட்டப்பட்டுள்ளது. உங்கள் கணக்கில் %1$d நாட்கள் செயலற்ற நிலையில் இருந்தபின், உங்கள் பின் தேவையில்லாமல் இந்த தொலைபேசி எண்ணை மீண்டும் பதிவு செய்ய முடியும். எல்லா உள்ளடக்கமும் நீக்கப்படும்</string>
   <string name="AccountLockedFragment__next">அடுத்தது</string>
   <string name="AccountLockedFragment__learn_more">மேலும் அறிக</string>
   <!--KbsLockFragment-->

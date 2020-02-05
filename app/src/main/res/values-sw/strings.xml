@@ -55,7 +55,7 @@
   <string name="DraftDatabase_Draft_location_snippet">(eneo)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(jibu)</string>
   <!--AttachmentKeyboard-->
-  <string name="AttachmentKeyboard_gallery">Matunzio</string>
+  <string name="AttachmentKeyboard_gallery">Picha</string>
   <string name="AttachmentKeyboard_gif">GIF</string>
   <string name="AttachmentKeyboard_file">Faili</string>
   <string name="AttachmentKeyboard_contact">Mwasiliani</string>
@@ -460,7 +460,7 @@ Gusa ikoni hii kwenye kicharazio chako:</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Umetumwa na %1$s kwa %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Umetumwa na wewe kwa %1$s</string>
   <!--Megaphones-->
-  <string name="Megaphones_remind_me_later">Nikumbushe baadaya</string>
+  <string name="Megaphones_remind_me_later">Nikumbushe baadaye</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Simu ya Signal inaendelea</string>
   <string name="NotificationBarManager__establishing_signal_call">Inaanzisha simu ya Signal</string>
@@ -799,14 +799,14 @@ nambari yako ya simu</string>
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Fungua Signal kuangalia taarifa mpya</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Mawasiliano</string>
-  <string name="MessageNotifier_reacted_s_to_s">Aliitikia %1$skwa: \"%2$s\".</string>
-  <string name="MessageNotifier_reacted_s_to_your_video">Aliitikia %1$s kwa video yako.</string>
-  <string name="MessageNotifier_reacted_s_to_your_image">Aliitikia %1$s kwa taswira yako.</string>
-  <string name="MessageNotifier_reacted_s_to_your_file">Aliitikia %1$s kwa faili yako.</string>
-  <string name="MessageNotifier_reacted_s_to_your_audio">Aliitikia %1$s kwa sauti yako.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Aliitikia %1$s kwa picha yako ya mtazamo-mmoja.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Aliitikia %1$s kwa video yako ya mtazamo-mmoja.</string>
-  <string name="MessageNotifier_reacted_s_to_your_sticker">Aliitikia %1$s kwa kibandiko chako.</string>
+  <string name="MessageNotifier_reacted_s_to_s">Ametoa hisia %1$skwa: \"%2$s\".</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">Ametoa hisia%1$s kwa video yako.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">Ametoa hisia%1$s kwa picha yako.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">Ametoa hisia %1$s kwa faili yako.</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">Ametoa hisia %1$s kwa sauti yako.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Ametoa hisia %1$s kwa picha yako ya mtazamo-mmoja.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Ametoa hisia %1$s kwa video yako ya mtazamo-mmoja.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">Ametoa hisia%1$s kwa kibandiko chako.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Chaguo Msingi</string>
   <string name="NotificationChannel_calls">Simu</string>
@@ -1418,49 +1418,48 @@ nambari yako ya simu</string>
   <!--Edit KBS Pin-->
   <!--BaseKbsPinFragment-->
   <string name="BaseKbsPinFragment__next">Ifuatayo</string>
-  <string name="BaseKbsPinFragment__create_alphanumeric_pin">Buni PINI ya herufi na maneno</string>
-  <string name="BaseKbsPinFragment__create_numeric_pin">Buni PINI ya herufi</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">Unda Nenosiri lenye herufi na nambari</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">Unda Nenosiri lenye nambari</string>
   <!--CreateKbsPinFragment-->
-  <string name="CreateKbsPinFragment__create_a_new_pin">Buni PINI mpya</string>
-  <string name="CreateKbsPinFragment__create_your_pin">Buni PINI yako</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">Unda Nenosiri jipya</string>
+  <string name="CreateKbsPinFragment__create_your_pin">Unda Nenosiri lako</string>
   <!--ConfirmKbsPinFragment-->
-  <string name="ConfirmKbsPinFragment__pins_dont_match">PINI hazifanani. Jaribu tena.</string>
-  <string name="ConfirmKbsPinFragment__confirm_your_pin">Thibitisha PINI yako.</string>
-  <string name="ConfirmKbsPinFragment__pin_creation_failed">Imeshindwa kubuni PINI</string>
-  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PINI yako haikuhifadhiwa. Tutakuarifu baadaye ubuni PINI.</string>
-  <string name="ConfirmKbsPinFragment__pin_created">PINI imebuniwa.</string>
+  <string name="ConfirmKbsPinFragment__pins_dont_match">Nenosiri hazifanani. Jaribu tena.</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">Thibitisha Nenosiri lako.</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">Uundaji Nenosiri umefeli</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Nenosiri lako halikuhifadhiwa. Tutakuarifu baadaye uliunde tena</string>
+  <string name="ConfirmKbsPinFragment__pin_created">Nenosiri limeundwa</string>
   <!--KbsSplashFragment-->
-  <string name="KbsSplashFragment__introducing_pins">Kujulisha kuhusu PINI.</string>
-  <string name="KbsSplashFragment__learn_more">Fahamu Zaidi</string>
-  <string name="KbsSplashFragment__registration_lock_equals_pin">Kufuli ya Usajili = PINI</string>
-  <string name="KbsSplashFragment__read_more_about_pins">Soma zaidi kuhusu PINI.</string>
-  <string name="KbsSplashFragment__update_pin">Sasisha PINI</string>
-  <string name="KbsSplashFragment__create_your_pin">Buni PINI yako</string>
+  <string name="KbsSplashFragment__introducing_pins">Uanzishaji Nenosiri</string>
+  <string name="KbsSplashFragment__learn_more">Jifunze Zaidi</string>
+  <string name="KbsSplashFragment__registration_lock_equals_pin">Kufuli ya Usajili = Nenosiri</string>
+  <string name="KbsSplashFragment__read_more_about_pins">Soma zaidi kuhusu Nenosiri</string>
+  <string name="KbsSplashFragment__update_pin">Sasisha Nenosiri</string>
+  <string name="KbsSplashFragment__create_your_pin">Unda Nenosiri lako</string>
   <!--KBS Reminder Dialog-->
-  <string name="KbsReminderDialog__enter_your_signal_pin">Weka PINI yako ya Signal</string>
-  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Ili kukusaidia kukariri PINI yako, tutakuuliza uiingize mara kwa mara. Tunapunguza kukuuliza baada ya muda.</string>
+  <string name="KbsReminderDialog__enter_your_signal_pin">Ingiza Nenosiri lako ya Signal</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Ili kukusaidia kukariri Nenosiri lako, tutakuuliza uliingize mara kwa mara. Tunapunguza kukuuliza baada ya muda.</string>
   <string name="KbsReminderDialog__skip">Ruka</string>
   <string name="KbsReminderDialog__submit">Wasilisha</string>
   <string name="KbsReminderDialog__forgot_pin">Umesahau Nenosiri?</string>
-  <string name="KbsReminderDialog__incorrect_pin_try_again">PINI si sahihi. Jaribu tena.</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">Nenosiri sio sahihi. Jaribu tena.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Akaunti imefungwa</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Akaunti yako imefungwa ili kulinda faragha yako na usalama wako. Baada ya siku %1$d za kimya kwenye akaunti yako utaweza kusajili upya nambari hii wa simu bila kuhitaji pini yako. Yote yaliyomo yatafutwa.</string>
   <string name="AccountLockedFragment__next">Ifuatayo</string>
-  <string name="AccountLockedFragment__learn_more">Fahamu Zaidi</string>
+  <string name="AccountLockedFragment__learn_more">Jifunze Zaidi</string>
   <!--KbsLockFragment-->
-  <string name="RegistrationLockFragment__enter_your_pin">Weka PINI yako</string>
-  <string name="RegistrationLockFragment__enter_the_pin_you_created">Weka PINI uliyobuni kwa hii akaunti. Hii ni tofauti na msimbo wako wa kuhakikisha kupitia Ujumbe Mfupi.</string>
-  <string name="RegistrationLockFragment__enter_alphanumeric_pin">Weka PINI yako ya herufi na maneno</string>
-  <string name="RegistrationLockFragment__enter_numeric_pin">Weka PINI yako ya herufi</string>
+  <string name="RegistrationLockFragment__enter_your_pin">Ingiza Nenosiri lako</string>
+  <string name="RegistrationLockFragment__enter_the_pin_you_created">Ingiza Nenosiri ulilobuni kwa hii akaunti. Hii ni tofauti na nambari za kuthibitisha kupitia Ujumbe mfupi.</string>
+  <string name="RegistrationLockFragment__enter_alphanumeric_pin">Ingiza Nenosiri la herufi na nambari</string>
+  <string name="RegistrationLockFragment__enter_numeric_pin">Ingiza Nenosiri lenye nambari </string>
   <string name="RegistrationLockFragment__next">Ifuatayo</string>
-  <string name="RegistrationLockFragment__incorrect_pin_try_again">PINI si sahihi. Jaribu tena.</string>
+  <string name="RegistrationLockFragment__incorrect_pin_try_again">Nenosiri sio sahihi. Jaribu tena.</string>
   <string name="RegistrationLockFragment__forgot_pin">Umesahau Nenosiri?</string>
-  <string name="RegistrationLockFragment__incorrect_pin">PINI si sahihi</string>
-  <string name="RegistrationLockFragment__forgot_your_pin">Je, umesahau PINI yako?</string>
+  <string name="RegistrationLockFragment__incorrect_pin">Nenosiri sio sahihi</string>
+  <string name="RegistrationLockFragment__forgot_your_pin">Umesahau Nenosiri lako?</string>
   <!--KBS Megaphone-->
-  <string name="KbsMegaphone__introducing_pins">Kujulisha kuhusu PINI.</string>
-  <string name="KbsMegaphone__update_pin">Sasisha PINI</string>
+  <string name="KbsMegaphone__introducing_pins">Kuanzisha Nenosiri</string>
+  <string name="KbsMegaphone__update_pin">Sasisha Nenosiri</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikoni ya usafiri</string>
   <string name="ConversationListFragment_loading">Inafunguka</string>
@@ -1519,10 +1518,10 @@ nambari yako ya simu</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">
 Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Muda wa kuisha Screen Lock isipokuwa na shughuli</string>
-  <string name="preferences_app_protection__signal_pin">PINI ya Signal</string>
-  <string name="preferences_app_protection__pin">PINI</string>
+  <string name="preferences_app_protection__signal_pin">Nenosiri la Signal</string>
+  <string name="preferences_app_protection__pin">Nenosiri</string>
   <string name="preferences_app_protection__change">Badilisha</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">PINI yako inaongeza safu mpya ya usalama na inaweka hifadhi ya akaunti yako. Utaitishwa utakaposajili nambari yako ya simu kwenye Signal. Ukisahau PINI yako, utafungiwa nje ya akaunti yako kwa siku saba.</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Nenosiri lako linaongeza safu mpya ya usalama na linahifadhi nakili ya akaunti yako. Utaitishwa utakaposajili nambari yako ya simu kwenye Signal. Ukisahau Nenosiri lako, utafungiwa nje ya akaunti yako kwa siku saba.</string>
   <string name="AppProtectionPreferenceFragment_none">Hakuna</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Nambari ya PIN ya Usajili si sawa na msimbo wa uthibitisho wa SMS unayopokea tu. Tafadhali ingiza PIN uliyoiweka hapo awali katika programu.</string>
   <string name="registration_activity__registration_lock_pin">Nenosiri la usajili</string>

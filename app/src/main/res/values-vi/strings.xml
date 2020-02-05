@@ -1413,7 +1413,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="KbsReminderDialog__incorrect_pin_try_again">PIN không đúng. Hãy thử lại.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Tài khoản bị khoá.</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Tài khoản của bạn đã bị khoá để bảo vệ sự riêng tư và bảo mật của bạn. Sau %1$d ngày không sử dụng bạn sẽ có thể đăng ký lại số điện thoại này mà không cần mã PIN của mình. Mọi dữ liệu sẽ bị xoá.</string>
   <string name="AccountLockedFragment__next">Tiếp</string>
   <string name="AccountLockedFragment__learn_more">Tìm hiểu thêm</string>
   <!--KbsLockFragment-->

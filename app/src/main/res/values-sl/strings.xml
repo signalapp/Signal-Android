@@ -67,8 +67,8 @@
   <string name="AttachmentKeyboard_file">Datoteka</string>
   <string name="AttachmentKeyboard_contact">Stik</string>
   <string name="AttachmentKeyboard_location">Lokacija</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_Signal_requires_the_storage_permission">Za prikaz vaših fotografij in videov potrebuje aplikacija Signal dovoljenje za dostop do shrambe.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_grant_access">Dodeli dostop</string> -->
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Aplikacija Signal rabi dovoljenje za prikaz vaših fotografij in videov.</string>
+  <string name="AttachmentKeyboard_give_access">Dodeli dostop</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Ne najdem aplikacije za izbor datotek.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Dostop do shrambe je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do sistemskega pomnilnika za pripenjanje fotografij, videa in zvoka k sporočilom. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Shramba\".</string>
@@ -1536,7 +1536,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="KbsReminderDialog__incorrect_pin_try_again">Napačen PIN. Poskusite znova.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Račun je zaklenjen</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Zaradi zaščite vaše varnosti in zasebnosti je bil vaš račun zaklenjen. Po %1$d dneh neaktivnosti se boste zopet lahko prijavili s to številko brez vnosa PINa. Vsa vsebina bo izbrisana.</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Zaradi zaščite vaše varnosti in zasebnosti je bil vaš račun zaklenjen. Po %1$d dneh neaktivnosti računa se boste zopet lahko prijavili s to telefonsko številko brez vnosa kode PIN. Vsa vsebina bo izbrisana.</string>
   <string name="AccountLockedFragment__next">Naprej</string>
   <string name="AccountLockedFragment__learn_more">Več o tem…</string>
   <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
@@ -1671,7 +1671,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_app_protection__registration_lock_pin">PIN za prijavo v omrežje</string>
   <string name="preferences_app_protection__registration_lock">Zaklep prijave na strežnik</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Vnesti morate kodo PIN za prijavo v omrežje</string>
-  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Vaš PIN vsebuje vsaj %d številke ali znake</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Vaš PIN vsebuje vsaj %d številk ali znakov</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Napačna koda PIN za prijavo v omrežje</string>
   <string name="RegistrationActivity_too_many_attempts">Preveč poskusov</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Prevečkrat ste vnesli napačen PIN za prijavo v omrežje Signal. Poskusite znova jutri.</string>

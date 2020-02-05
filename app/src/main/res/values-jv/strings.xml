@@ -1418,7 +1418,6 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">PIN klintu. Cobi malih.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Akun dipunkunci</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Akun sampeyan sampun dikunci kangge ngelindhungi privasi lan keamanan sampeyan. Menawi akun mboten aktif ngantos %1$d dinten, sampeyan bakal saged ndaftaraken malih nomor telepon niki tanpa betah PIN. Sedaya isi akun bakal dibrusak.</string>
   <string name="AccountLockedFragment__next">Salajengipun</string>
   <string name="AccountLockedFragment__learn_more">Sapepakipun</string>
   <!--KbsLockFragment-->

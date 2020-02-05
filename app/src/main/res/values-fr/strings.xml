@@ -1442,7 +1442,6 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">Le NIP est erroné. Veuillez ressayer.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Le compte est verrouillé</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Votre compte a été verrouillé afin de protéger vos données personnelles et votre sécurité. Après %1$d jours d’inactivité dans votre compte, vous pouvez réinscrire ce numéro de téléphone sans avoir besoin de votre NIP. Tout le contenu sera supprimé.</string>
   <string name="AccountLockedFragment__next">Suivant</string>
   <string name="AccountLockedFragment__learn_more">En savoir plus</string>
   <!--KbsLockFragment-->

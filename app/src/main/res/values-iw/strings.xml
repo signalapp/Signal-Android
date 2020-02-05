@@ -46,6 +46,7 @@
   <string name="ApplicationPreferencesActivity_Off">כבוי</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">נעילת מסך %1$s, נעילת הרשמה %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">נעילת מסך %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">ערכת נושא %1$s, שפה %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -66,6 +67,8 @@
   <string name="AttachmentKeyboard_file">קובץ</string>
   <string name="AttachmentKeyboard_contact">איש קשר</string>
   <string name="AttachmentKeyboard_location">מיקום</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal צריך הרשאה כדי להראות את התצלומים והסרטונים שלך.</string>
+  <string name="AttachmentKeyboard_give_access">תן גישה</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">לא ניתן למצוא יישום לבחירת מדיה.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal דורש את הרשאת האחסון על מנת לצרף תצלומים, סרטונים, או שמע, אבל היא נדחתה לצמיתות. אנא המשך אל תפריט הגדרות היישום, בחר \"הרשאות\" ואפשר את \"אחסון\".</string>
@@ -499,6 +502,7 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">נשלח על ידי %1$s אל %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">נשלח על ידך אל %1$s</string>
   <!--Megaphones-->
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">הקש והחזק הודעה כלשהי כדי לשתף בזריזות איך אתה מרגיש.</string>
   <string name="Megaphones_remind_me_later">הזכר לי מאוחר יותר</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">שיחת Signal בתהליך</string>
@@ -607,7 +611,9 @@
   <string name="RatingManager_later">מאוחר יותר</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">אוי, נראה שיישום חנות Play אינו מותקן במכשיר שלך.</string>
   <!--ReactionsBottomSheetDialogFragment-->
+  <string name="ReactionsBottomSheetDialogFragment_all">כל ה־%1$d</string>
   <!--ReactionsConversationView-->
+  <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">לחסום איש קשר זה?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">לא תקבל יותר הודעות ושיחות מאיש קשר זה.</string>
@@ -1490,8 +1496,27 @@
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">צור PIN אלפאנומרי</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">צור PIN מספרי</string>
   <!--CreateKbsPinFragment-->
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
+    <item quantity="one">PIN חייב להיות לפחות תו %1$d</item>
+    <item quantity="two">PIN חייב להיות לפחות %1$d תווים</item>
+    <item quantity="many">PIN חייב להיות לפחות %1$d תווים </item>
+    <item quantity="other">PIN חייב להיות לפחות%1$d תווים</item>
+  </plurals>
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
+    <item quantity="one">PIN חייב להיות לפחות ספרה %1$d</item>
+    <item quantity="two">PIN חייב להיות לפחות %1$d ספרות</item>
+    <item quantity="many">PIN חייב להיות לפחות %1$d ספרות</item>
+    <item quantity="other">PIN חייב להיות לפחות %1$d ספרות</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">צור PIN חדש</string>
+  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
+    <item quantity="one">אתה יכול לבחור PIN חדש מאחר שמכשיר זה רשום. אם תשכח את ה־PIN שלך, תצטרך להמתין יום %1$d כדי להירשם שוב.</item>
+    <item quantity="two">אתה יכול לבחור PIN חדש מאחר שמכשיר זה רשום. אם תשכח את ה־PIN שלך, תצטרך להמתין %1$d ימים כדי להירשם שוב.</item>
+    <item quantity="many">אתה יכול לבחור PIN חדש מאחר שמכשיר זה רשום. אם תשכח את ה־PIN שלך, תצטרך להמתין %1$d ימים כדי להירשם שוב.</item>
+    <item quantity="other">אתה יכול לבחור PIN חדש מאחר שמכשיר זה רשום. אם תשכח את ה־PIN שלך, תצטרך להמתין %1$d ימים כדי להירשם שוב.</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">צור את ה־PIN שלך</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">קודי PIN מוסיפים שכבת אקסטרה של אבטחה אל החשבון שלך. זה חשוב לזכור PIN זה מאחר שהוא בלתי ניתן להשבה.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">קודי PIN אינם תואמים. נסה שוב.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">אמת את ה־PIN שלך.</string>
@@ -1499,10 +1524,14 @@
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">ה־PIN שלך לא נשמר. ניידע אותך ליצור PIN מאוחר יותר.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN נוצר.</string>
   <string name="ConfirmKbsPinFragment__re_enter_pin">הכנס מחדש PIN</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">יוצר PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">היכרות עם PIN</string>
+  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">קודי PIN מוסיפים שכבה נוספת של אבטחה אל החשבון שלך. צור אחד עכשיו.</string>
   <string name="KbsSplashFragment__learn_more">למד עוד</string>
+  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/he-il/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">נעילת הרשמה = PIN</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">נעילת ההרשמה שלך נקראת כעת PIN, והיא עושה יותר. עדכן אותה כעת.</string>
   <string name="KbsSplashFragment__read_more_about_pins">למד עוד על PIN.</string>
   <string name="KbsSplashFragment__update_pin">עדכן PIN</string>
   <string name="KbsSplashFragment__create_your_pin">צור את ה־PIN שלך</string>
@@ -1518,6 +1547,7 @@
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">החשבון שלך ננעל כדי להגן על הפרטיות והאבטחה שלך. לאחר %1$d ימים של אי־פעילות בחשבון שלך, תוכל להירשם שוב עם מספר טלפון זה ללא צורך ב־PIN שלך. כל התוכן יימחק.</string>
   <string name="AccountLockedFragment__next">הבא</string>
   <string name="AccountLockedFragment__learn_more">למד עוד</string>
+  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/he-il/articles/360007059792-Registration-Lock</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">הכנס את ה־PIN שלך</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">הכנס את ה־PIN שיצרת עבור החשבון שלך. הוא שונה מקוד הוידוא שלך במסרון.</string>
@@ -1528,9 +1558,46 @@
   <string name="RegistrationLockFragment__forgot_pin">שכחת PIN?</string>
   <string name="RegistrationLockFragment__incorrect_pin">PIN שגוי</string>
   <string name="RegistrationLockFragment__forgot_your_pin">שכחת את ה־PIN שלך?</string>
+  <string name="RegistrationLockFragment__not_many_tries_left">אין הרבה ניסיונות נותרים!</string>
+  <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
+    <item quantity="one">למען פרטיותך ואבטחתך, אין דרך להשיב את ה־PIN שלך. אם אינך זוכר את ה־PIN שלך, תוכל לוודא מחדש עם מסרון לאחר יום %1$d של אי־פעילות. במקרה זה, חשבונך ינוקה וכל התוכן יימחק.</item>
+    <item quantity="two">למען פרטיותך ואבטחתך, אין דרך להשיב את ה־PIN שלך. אם אינך זוכר את ה־PIN שלך, תוכל לוודא מחדש עם מסרון לאחר %1$d ימים של אי־פעילות. במקרה זה, חשבונך ינוקה וכל התוכן יימחק.</item>
+    <item quantity="many">למען פרטיותך ואבטחתך, אין דרך להשיב את ה־PIN שלך. אם אינך זוכר את ה־PIN שלך, תוכל לוודא מחדש עם מסרון לאחר %1$d ימים של אי־פעילות. במקרה זה, חשבונך ינוקה וכל התוכן יימחק.</item>
+    <item quantity="other">למען פרטיותך ואבטחתך, אין דרך להשיב את ה־PIN שלך. אם אינך זוכר את ה־PIN שלך, תוכל לוודא מחדש עם מסרון לאחר %1$d ימים של אי־פעילות. במקרה זה, חשבונך ינוקה וכל התוכן יימחק.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
+    <item quantity="one">PIN שגוי. ניסיון %1$d נותר.</item>
+    <item quantity="two">PIN שגוי. %1$d ניסיונות נותרים.</item>
+    <item quantity="many">PIN שגוי. %1$d ניסיונות נותרים.</item>
+    <item quantity="other">PIN שגוי. %1$d ניסיונות נותרים.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
+    <item quantity="one">אם הניסיונות יאזלו, חשבונך יינעל למשך יום %1$d. לאחר יום %1$d של אי־פעילות, תוכל להירשם שוב בלי ה־PIN שלך. חשבונך ינוקה וכל התוכן יימחק.</item>
+    <item quantity="two">אם הניסיונות יאזלו, חשבונך יינעל למשך %1$d ימים. לאחר %1$d ימים של אי־פעילות, תוכל להירשם שוב בלי ה־PIN שלך. חשבונך ינוקה וכל התוכן יימחק.</item>
+    <item quantity="many">אם הניסיונות יאזלו, חשבונך יינעל למשך %1$d ימים. לאחר %1$d ימים של אי־פעילות, תוכל להירשם שוב בלי ה־PIN שלך. חשבונך ינוקה וכל התוכן יימחק.</item>
+    <item quantity="other">אם הניסיונות יאזלו, חשבונך יינעל למשך %1$d ימים. לאחר %1$d ימים של אי־פעילות, תוכל להירשם שוב בלי ה־PIN שלך. חשבונך ינוקה וכל התוכן יימחק.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
+    <item quantity="one">יש לך ניסיון %1$d נותר.</item>
+    <item quantity="two">יש לך %1$d ניסיונות נותרים.</item>
+    <item quantity="many">יש לך %1$d ניסיונות נותרים.</item>
+    <item quantity="other">יש לך %1$d ניסיונות נותרים.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__d_attempts_remaining">
+    <item quantity="one">ניסיון %1$d נותר.</item>
+    <item quantity="two">%1$d ניסיונות נותרים.</item>
+    <item quantity="many">%1$d ניסיונות נותרים.</item>
+    <item quantity="other">%1$d ניסיונות נותרים.</item>
+  </plurals>
   <!--KBS Megaphone-->
+  <string name="KbsMegaphone__create_a_pin">צור PIN</string>
+  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">קודי PIN מוסיפים שכבה נוספת של אבטחה אל חשבון Signal שלך.</string>
+  <string name="KbsMegaphone__create_pin">צור PIN</string>
   <string name="KbsMegaphone__introducing_pins">היכרות עם PIN</string>
+  <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">נעילת ההרשמה שלך נקראת כעת PIN. עדכון שלה לוקח שניות.</string>
   <string name="KbsMegaphone__update_pin">עדכן PIN</string>
+  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">נזכיר לך מאוחר יותר. יצירת PIN תהיה חובה עוד %1$d ימים.</string>
+  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">נזכיר לך מאוחר יותר. אימות PIN יהיה חובה עוד %1$d ימים.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">צלמית תעבורה</string>
   <string name="ConversationListFragment_loading">טוען…</string>
@@ -1555,6 +1622,8 @@
   <string name="preferences_chats__chat_backups">גיבויי התכתבויות</string>
   <string name="preferences_chats__backup_chats_to_external_storage">גבה התכתבויות באחסון חיצוני</string>
   <string name="preferences_chats__create_backup">צור גיבוי</string>
+  <string name="preferences_chats__verify_backup_passphrase">וודא משפט־סיסמת גיבוי</string>
+  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">בחן את משפט־סיסמת הגיבוי שלך ווודא שהוא תואם</string>
   <string name="RegistrationActivity_enter_backup_passphrase">הכנס משפט־סיסמה של גיבוי</string>
   <string name="RegistrationActivity_restore">שחזר</string>
   <string name="RegistrationActivity_backup_failure_downgrade">לא ניתן לייבא גיבויים מגרסאות חדשות יותר של Signal</string>
@@ -1572,7 +1641,10 @@
   <string name="BackupDialog_disable_and_delete_all_local_backups">להשבית ולמחוק את כל הגיבויים המקומיים?</string>
   <string name="BackupDialog_delete_backups_statement">מחק גיבויים</string>
   <string name="BackupDialog_copied_to_clipboard">הועתק ללוח</string>
-  <string name="BackupDialog_verify">אימות</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">הכנס את משפט־סיסמת הגיבוי שלך כדי לוודא</string>
+  <string name="BackupDialog_verify">וודא</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">הכנסת בהצלחה את משפט־סיסמת הגיבוי שלך</string>
+  <string name="BackupDialog_passphrase_was_not_correct">משפט־הסיסמה לא היה נכון</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal דורש הרשאת אחסון חיצוני על מנת ליצור גיבויים, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"אחסון\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">גיבוי אחרון: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">בתהליך</string>
@@ -1607,6 +1679,7 @@
   <string name="preferences_app_protection__registration_lock_pin">PIN נעילת הרשמה</string>
   <string name="preferences_app_protection__registration_lock">נעילת הרשמה</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">אתה חייב להכניס את PIN נעילת ההרשמה שלך</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">לקוד ה־PIN שלך צריכים להיות לפחות %d ספרות או תווים</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">PIN נעילת הרשמה שגוי</string>
   <string name="RegistrationActivity_too_many_attempts">יותר מדי ניסיונות</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">עשית יותר מדי ניסיונות נעילת הרשמה לא נכונים. אנא נסה שוב עוד יום.</string>

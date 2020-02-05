@@ -42,6 +42,7 @@
   <string name="ApplicationPreferencesActivity_Off">Malŝaltita</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Ekranŝloso %1$s, bloko de registriĝo %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Ekranŝloso %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Etoso %1$s, lingvo %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -60,6 +61,8 @@
   <string name="AttachmentKeyboard_file">Dosiero</string>
   <string name="AttachmentKeyboard_contact">Kontakto</string>
   <string name="AttachmentKeyboard_location">Loko</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal bezonas permeson por montri viajn fotojn kaj videaĵojn.</string>
+  <string name="AttachmentKeyboard_give_access">Permesi aliron</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Ne eblas trovi aplikaĵon por malfermi aŭdvidaĵon.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal bezonas la Konservejo-permeson por almeti bildojn, videojn aŭ aŭdaĵojn, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Konservejo“.</string>
@@ -459,6 +462,8 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Sendita de %1$s al %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Sendita de vi al %1$s</string>
   <!--Megaphones-->
+  <string name="Megaphones_introducing_reactions">Jen la reagoj</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Tuŝadu iun mesaĝon por rapide esprimi viajn sentojn.</string>
   <string name="Megaphones_remind_me_later">Memorigi min poste</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-alvoko fariĝanta</string>
@@ -565,7 +570,9 @@
   <string name="RatingManager_later">Poste</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Nu, la aplikaĵo „Play Store“ ŝajne ne estas instalita sur via aparato.</string>
   <!--ReactionsBottomSheetDialogFragment-->
+  <string name="ReactionsBottomSheetDialogFragment_all">Ĉiuj %1$d</string>
   <!--ReactionsConversationView-->
+  <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Ĉu bloki ĉi tiun kontakton?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Vi ne plu ricevos mesaĝojn kaj alvokojn el tiu kontakto.</string>
@@ -1425,18 +1432,36 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">Krei literciferan PIN</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">Krei ciferan PIN</string>
   <!--CreateKbsPinFragment-->
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
+    <item quantity="one">PIN estu almenaŭ %1$d signon longa</item>
+    <item quantity="other">Via PIN estu almenaŭ %1$d signojn longa</item>
+  </plurals>
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
+    <item quantity="one">PIN estu almenaŭ %1$d ciferan longa</item>
+    <item quantity="other">Via PIN estu almenaŭ %1$d ciferajn longa</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Krei novan PIN</string>
+  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
+    <item quantity="one">Vi povas elekti novan PIN, ĉar via aparato estas registrita. Se vi forgesos vian PIN, vi bezonos atendi %1$d tagon antaŭ ol registriĝi ree.</item>
+    <item quantity="other">Vi povas elekti novan PIN, ĉar via aparato estas registrita. Se vi forgesos vian PIN, vi bezonos atendi %1$d tagojn antaŭ ol registriĝi ree.</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Krei vian PIN</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PIN aldonas plian tavolon de sekurigo ĉe via konto. Skribu vian PIN kaj konservu ĝin sekurloke: ĝi ne estas rehavebla.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">La du PIN-oj malsamas. Re-provu.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Konfirmu vian PIN.</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Kreo de la PIN malsukcesis</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Via PIN ne konserviĝis. Ni petos vin krei PIN-on poste.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN kreiĝis.</string>
+  <string name="ConfirmKbsPinFragment__re_enter_pin">Reentajpu vian PIN</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">Kreo de PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Jen la „persona identiga numero“ (PIN)</string>
+  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">PIN aldonas plian tavolon de sekurigo ĉe via konto. Kreu unu nun.</string>
   <string name="KbsSplashFragment__learn_more">Scii pli</string>
+  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Bloko de registriĝo = PIN</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">„Bloko de registriĝo“ nomiĝas nun „PIN“, kaj ĝi faras pli. Ĝisdatigu ĝin nun.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Legu pli pri PIN.</string>
   <string name="KbsSplashFragment__update_pin">Ĝisdatigi PIN-on</string>
   <string name="KbsSplashFragment__create_your_pin">Krei vian PIN</string>
@@ -1452,6 +1477,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Via konto ŝlosiĝis por protekti vian privatecon kaj sekurecon. Post %1$d tagoj de neaktiveco, vi povos re-registrigi tiun telefonnumeron sen bezono de via PIN. Ĉiu enhavo foriĝos.</string>
   <string name="AccountLockedFragment__next">Sekva</string>
   <string name="AccountLockedFragment__learn_more">Scii pli</string>
+  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Entajpu vian PIN</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Entajpu la PIN-on, kiun vi kreis por via konto. Ĝi ne estas la sama kiel la SMS-kontrolkodo.</string>
@@ -1462,9 +1488,36 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="RegistrationLockFragment__forgot_pin">Ĉu vi forgesis vian personan identigan numeron?</string>
   <string name="RegistrationLockFragment__incorrect_pin">Malĝusta PIN</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Ĉu vi forgesis vian PIN?</string>
+  <string name="RegistrationLockFragment__not_many_tries_left">Ne restas multe da provoj!</string>
+  <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
+    <item quantity="one">Pro via protekto kaj sekureco, tute ne eblas rehavi vian PIN. Se vi ne plu povas reprovi, vi povos re-kontroli vian konton per SMS post %1$d tago de neaktivaĵoj. Ĉi-okaze, via konto kaj ĉiu enhavo forviŝiĝos.</item>
+    <item quantity="other">Pro via protekto kaj sekureco, tute ne eblas rehavi vian PIN. Se vi ne plu povas reprovi, vi povos re-kontroli vian konton per SMS post %1$d tagoj de neaktivaĵoj. Ĉi-okaze, via konto kaj ĉiu enhavo forviŝiĝos.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
+    <item quantity="one">Malĝusta PIN. Restas %1$d provo.</item>
+    <item quantity="other">Malĝusta PIN. Restas %1$d provoj.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
+    <item quantity="one">Se vi ne plu havas provojn, via konto ŝlosiĝos dum %1$d tago. Post %1$d tago sen aktivaĵoj, vi povos re-registriĝi sen via PIN. Via konto kaj ĉiu enhavo forviŝiĝos.</item>
+    <item quantity="other">Se vi ne plu havas provojn, via konto ŝlosiĝos dum %1$d tagoj. Post %1$d tagoj sen aktivaĵoj, vi povos re-registriĝi sen via PIN. Via konto kaj ĉiu enhavo forviŝiĝos.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
+    <item quantity="one">Restas %1$d provo al vi.</item>
+    <item quantity="other">Restas %1$d provoj al vi.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__d_attempts_remaining">
+    <item quantity="one">Restas %1$d provon.</item>
+    <item quantity="other">Restas %1$d provoj.</item>
+  </plurals>
   <!--KBS Megaphone-->
+  <string name="KbsMegaphone__create_a_pin">Krei  PIN-on</string>
+  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">PIN aldonas plian tavolon de sekurigo al via Signal-konto.</string>
+  <string name="KbsMegaphone__create_pin">Krei  PIN-on</string>
   <string name="KbsMegaphone__introducing_pins">Jen la „persona identiga numero“ (PIN)</string>
+  <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Via „bloko de registriĝo“ nomiĝas nun „PIN“, kaj ĝi faras pli. Ĝisdatigo al tio estas rapida.</string>
   <string name="KbsMegaphone__update_pin">Ĝisdatigi PIN-on</string>
+  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Ni memorigos vin poste. Kreado de PIN nepros post %1$d tagoj.</string>
+  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Ni memorigos vin poste. Konfirmado de PIN nepros post %1$d tagoj.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Piktogramo pri sendometodo</string>
   <string name="ConversationListFragment_loading">Ŝargado…</string>
@@ -1489,6 +1542,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences_chats__chat_backups">Mesaĝaj savkopioj</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Savkopii mesaĝojn al ekstera konservejo</string>
   <string name="preferences_chats__create_backup">Krei savkopion</string>
+  <string name="preferences_chats__verify_backup_passphrase">Kontrolu la savkopian pasfrazon</string>
+  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Provu vian savkopian pasfrazon kaj kontrolu ties kongruon</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Entajpu la savkopian pasfrazon</string>
   <string name="RegistrationActivity_restore">Restaŭri</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Ne eblas importi savkopiojn el pli novaj versioj de Signal</string>
@@ -1506,6 +1561,10 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="BackupDialog_disable_and_delete_all_local_backups">Ĉu malŝalti kaj forviŝi ĉiujn lokajn savkopiojn?</string>
   <string name="BackupDialog_delete_backups_statement">Forviŝi savkopiojn</string>
   <string name="BackupDialog_copied_to_clipboard">Kopiita al tondujo</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">Entajpu vian savkopian pasfrazon por kontroli</string>
+  <string name="BackupDialog_verify">Kontroli</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Vi sukcese entajpis vian savkopian pasfrazon</string>
+  <string name="BackupDialog_passphrase_was_not_correct">La pasfrazo malĝustas</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal bezonas la permeson aliri al ekstera konservejo por krei sekurkopiojn, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Konservejo“.</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Lasta savkopiado: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Farata</string>
@@ -1525,7 +1584,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences_app_protection__signal_pin">Signal-PIN</string>
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Ŝanĝi</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Via PIN aldonas plian tavolon de sekurigo ĉe via konto. Oni petos ĝin al vi, kiam vi registros vian telefonnumeron ĉe Signal. Se vi forgesas vian PIN, vi ne plus povos aliri vian konton dum 7 tagoj.</string>
+  <string name="preferences_app_protection__create">Krei</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Via PIN aldonas plian tavolon de sekurigo ĉe via konto. Oni petos ĝin al vi, kiam vi registros vian telefonnumeron ĉe Signal. Se vi forgesas vian PIN, vi ne plu povos aliri vian konton dum 7 tagoj.</string>
   <string name="AppProtectionPreferenceFragment_none">Neniu</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">La persona identiga numero de bloko de registriĝo ne estas la sama kodo kiel la SMS-kontrolkodo, kiun vi ĵus ricevis. Bv. entajpi la personan identigan numeron, kiun vi antaŭe agordis en la aplikaĵo.</string>
   <string name="registration_activity__registration_lock_pin">PIN de bloko de registriĝo</string>
@@ -1539,6 +1599,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences_app_protection__registration_lock_pin">PIN de bloko de registriĝo</string>
   <string name="preferences_app_protection__registration_lock">Bloko de registriĝo</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Vi entajpu vian personan identigan numeron de bloko de registriĝo</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">PIN estu almenaŭ %d signojn longa</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Neĝusta PIN de bloko de registriĝo</string>
   <string name="RegistrationActivity_too_many_attempts">Tro da provoj</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Vi tro faris neĝustajn provojn kun via persona identiga numero de bloko de registriĝo. Bv. reprovi post unu tago.</string>

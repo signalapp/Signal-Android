@@ -46,6 +46,7 @@
   <string name="ApplicationPreferencesActivity_Off">Отключено</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Блокировка экрана %1$s, Блокировка регистрации %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Блокировка экрана %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Тема %1$s, Язык %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -66,6 +67,8 @@
   <string name="AttachmentKeyboard_file">Файл</string>
   <string name="AttachmentKeyboard_contact">Контакт</string>
   <string name="AttachmentKeyboard_location">Место</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal требуется разрешение, чтобы показывать ваши недавние фото и видео.</string>
+  <string name="AttachmentKeyboard_give_access">Разрешить доступ</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Не найдено приложение для выбора медиа-файлов.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal требуется разрешение на доступ к хранилищу для прикрепления фото, видео или аудио, но оно было вами отклонено. Нажмите «Продолжить», чтобы перейти в настройки приложения, откройте «Разрешения» и включите «Хранилище».</string>
@@ -500,6 +503,7 @@
   <string name="MediaOverviewActivity_sent_by_you_to_s">Вы отправили %1$s</string>
   <!--Megaphones-->
   <string name="Megaphones_introducing_reactions">Представляем реакции</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Нажмите и удерживайте любое сообщение, чтобы быстро ответить вашими чувствами.</string>
   <string name="Megaphones_remind_me_later">Напомните мне позже</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Выполняется звонок через Signal</string>
@@ -607,7 +611,9 @@
   <string name="RatingManager_later">Позже</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Похоже, приложение «Play Маркет» не установлено на вашем устройстве.</string>
   <!--ReactionsBottomSheetDialogFragment-->
+  <string name="ReactionsBottomSheetDialogFragment_all">Все %1$d</string>
   <!--ReactionsConversationView-->
+  <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Заблокировать этот контакт?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Вы больше не будете получать сообщения или звонки от этого контакта.</string>
@@ -1484,8 +1490,27 @@
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">Создать буквенно-цифровой PIN-код</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">Создать цифровой PIN-код</string>
   <!--CreateKbsPinFragment-->
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
+    <item quantity="one">PIN-код должен быть не короче %1$d символа</item>
+    <item quantity="few">PIN-код должен быть не короче %1$d символов</item>
+    <item quantity="many">PIN-код должен быть не короче %1$d символов</item>
+    <item quantity="other">PIN-код должен быть не короче %1$d символов</item>
+  </plurals>
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
+    <item quantity="one">PIN-код должен быть не короче %1$d цифры</item>
+    <item quantity="few">PIN-код должен быть не короче %1$d цифр</item>
+    <item quantity="many">PIN-код должен быть не короче %1$d цифр</item>
+    <item quantity="other">PIN-код должен быть не короче %1$d цифр</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Создать новый PIN-код</string>
+  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
+    <item quantity="one">Вы можете выбрать новый PIN-код, так как это устройство зарегистрировано. Если вы забудете свой PIN-код, возможно, вам потребуется подождать %1$d день, чтобы зарегистрироваться заново.</item>
+    <item quantity="few">Вы можете выбрать новый PIN-код, так как это устройство зарегистрировано. Если вы забудете свой PIN-код, возможно, вам потребуется подождать %1$d дня, чтобы зарегистрироваться заново.</item>
+    <item quantity="many">Вы можете выбрать новый PIN-код, так как это устройство зарегистрировано. Если вы забудете свой PIN-код, возможно, вам потребуется подождать %1$d дней, чтобы зарегистрироваться заново.</item>
+    <item quantity="other">Вы можете выбрать новый PIN-код, так как это устройство зарегистрировано. Если вы забудете свой PIN-код, возможно, вам потребуется подождать %1$d дней, чтобы зарегистрироваться заново.</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Создать PIN-код</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PIN-код добавляет дополнительный уровень безопасности к вашей учётной записи. Важно запомнить этот PIN, так как он не может быть восстановлен.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-коды не совпадают. Попробуйте ещё раз.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Подтвердите свой PIN-код.</string>
@@ -1493,9 +1518,12 @@
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Ваш PIN-код не был сохранён. Мы попросим вас создать PIN-код позднее.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN-код создан.</string>
   <string name="ConfirmKbsPinFragment__re_enter_pin">Введите PIN-код ещё раз</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">Создание PIN-кода…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Представляем PIN-коды</string>
+  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">PIN-коды добавляют дополнительный уровень безопасности к вашей учётной записи. Создайте ваш PIN-код сейчас.</string>
   <string name="KbsSplashFragment__learn_more">Узнать больше</string>
+  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/ru/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Блокировка регистрации = PIN-код</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Блокировка регистрации теперь называется просто «PIN-код», и он делает больше. Обновите его сейчас.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Узнать больше о PIN-кодах.</string>
@@ -1513,6 +1541,7 @@
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Ваша учётная запись была заблокирована, чтобы защитить вашу конфиденциальность и безопасность. Если в течение %1$d дней эта учётная запись не будет активна, вы сможете зарегистрировать этот номер телефона заново без ввода PIN-кода. Всё содержимое будет стёрто.</string>
   <string name="AccountLockedFragment__next">Далее</string>
   <string name="AccountLockedFragment__learn_more">Узнать больше</string>
+  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/ru/articles/360007059792-Registration-Lock</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Введите свой PIN-код</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Введите PIN-код, который вы создали для своей учётной записи. Это не то же самое. что проверочный код из SMS.</string>
@@ -1523,6 +1552,37 @@
   <string name="RegistrationLockFragment__forgot_pin">Забыли PIN-код?</string>
   <string name="RegistrationLockFragment__incorrect_pin">Неверный PIN-код</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Забыли свой PIN-код?</string>
+  <string name="RegistrationLockFragment__not_many_tries_left">Осталось не много попыток!</string>
+  <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
+    <item quantity="one">Для вашей конфиденциальности и безопасности способа восстановить PIN-код не предусмотрено. Если вы не сможете вспомнить свой PIN-код, вы сможете заново зарегистрироваться через SMS, если в течение %1$d дня не будет активности. При этом ваша учётная запись будет стёрта, а всё содержимое удалено.</item>
+    <item quantity="few">Для вашей конфиденциальности и безопасности способа восстановить PIN-код не предусмотрено. Если вы не сможете вспомнить свой PIN-код, вы сможете заново зарегистрироваться через SMS, если в течение %1$d дней не будет активности. При этом ваша учётная запись будет стёрта, а всё содержимое удалено.</item>
+    <item quantity="many">Для вашей конфиденциальности и безопасности способа восстановить PIN-код не предусмотрено. Если вы не сможете вспомнить свой PIN-код, вы сможете заново зарегистрироваться через SMS, если в течение %1$d дней не будет активности. При этом ваша учётная запись будет стёрта, а всё содержимое удалено.</item>
+    <item quantity="other">Для вашей конфиденциальности и безопасности способа восстановить PIN-код не предусмотрено. Если вы не сможете вспомнить свой PIN-код, вы сможете заново зарегистрироваться через SMS, если в течение %1$d дней не будет активности. При этом ваша учётная запись будет стёрта, а всё содержимое удалено.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
+    <item quantity="one">Неверный PIN-код. Осталась %1$d попытка.</item>
+    <item quantity="few">Неверный PIN-код. Осталось %1$d попытки.</item>
+    <item quantity="many">Неверный PIN-код. Осталось %1$d попыток.</item>
+    <item quantity="other">Неверный PIN-код. Осталось %1$d попыток.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
+    <item quantity="one">Если вы исчерпаете попытки, ваша учётная запись будет заблокирована на %1$d день. Если в течение %1$d дня в ней не будет активности, вы сможете зарегистрироваться заново без ввода PIN-кода. При этом учётная запись будет стёрта, а всё содержимое удалено.</item>
+    <item quantity="few">Если вы исчерпаете попытки, ваша учётная запись будет заблокирована на %1$d дней. Если в течение %1$d дней в ней не будет активности, вы сможете зарегистрироваться заново без ввода PIN-кода. При этом учётная запись будет стёрта, а всё содержимое удалено.</item>
+    <item quantity="many">Если вы исчерпаете попытки, ваша учётная запись будет заблокирована на %1$d дней. Если в течение %1$d дней в ней не будет активности, вы сможете зарегистрироваться заново без ввода PIN-кода. При этом учётная запись будет стёрта, а всё содержимое удалено.</item>
+    <item quantity="other">Если вы исчерпаете попытки, ваша учётная запись будет заблокирована на %1$d дней. Если в течение %1$d дней в ней не будет активности, вы сможете зарегистрироваться заново без ввода PIN-кода. При этом учётная запись будет стёрта, а всё содержимое удалено.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
+    <item quantity="one">У вас осталась %1$d попытка.</item>
+    <item quantity="few">У вас осталось %1$d попытки.</item>
+    <item quantity="many">У вас осталось %1$d попыток.</item>
+    <item quantity="other">У вас осталось %1$d попыток.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__d_attempts_remaining">
+    <item quantity="one">Осталась %1$d попытка.</item>
+    <item quantity="few">Осталось %1$d попытки.</item>
+    <item quantity="many">Осталось %1$d попыток.</item>
+    <item quantity="other">Осталось %1$d попыток.</item>
+  </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Создать PIN-код</string>
   <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">PIN-коды добавляют дополнительный уровень безопасности к вашей учётной записи.</string>
@@ -1530,6 +1590,8 @@
   <string name="KbsMegaphone__introducing_pins">Представляем PIN-коды</string>
   <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Блокировка регистрации теперь называется «PIN-код». Его обновление занимает несколько секунд.</string>
   <string name="KbsMegaphone__update_pin">Обновить PIN-код</string>
+  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Мы напомним вам позже. Создание PIN-кода станет обязательным через %1$d дней.</string>
+  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Мы напомним вам позже. Проверка вашего PIN-кода станет обязательной через %1$d дней.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Значок транспорта</string>
   <string name="ConversationListFragment_loading">Загружаем…</string>
@@ -1554,6 +1616,8 @@
   <string name="preferences_chats__chat_backups">Резервные копии чатов</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Делать резервные копии чатов во внешнее хранилище</string>
   <string name="preferences_chats__create_backup">Создать резервную копию</string>
+  <string name="preferences_chats__verify_backup_passphrase">Проверить парольную фразу резервной копии</string>
+  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Испытайте парольную фразу своей резервной копии и убедитесь, что она подходит</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Введите парольную фразу резервной копии</string>
   <string name="RegistrationActivity_restore">Восстановить</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Невозможно импортировать резервную копию из более новых версий Signal</string>
@@ -1571,7 +1635,10 @@
   <string name="BackupDialog_disable_and_delete_all_local_backups">Отключить и удалить все локальные резервные копии?</string>
   <string name="BackupDialog_delete_backups_statement">Удалить резервные копии</string>
   <string name="BackupDialog_copied_to_clipboard">Скопировано в буфер обмена</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">Введите парольную фразу своей резервной копии, чтобы проверить её</string>
   <string name="BackupDialog_verify">Подтверждение</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Вы успешно ввели парольную фразу своей резервной копии</string>
+  <string name="BackupDialog_passphrase_was_not_correct">Парольная фраза была неправильной</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal требуется разрешение на доступ к хранилищу для создания резервных копий, но оно было вами отклонено. Нажмите «Продолжить», чтобы перейти в настройки приложения, откройте «Разрешения» и включите «Хранилище».</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Последняя резервная копия: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">В процессе</string>
@@ -1606,6 +1673,7 @@
   <string name="preferences_app_protection__registration_lock_pin">PIN-код блокировки регистрации</string>
   <string name="preferences_app_protection__registration_lock">Блокировка регистрации</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Вам необходимо ввести свой PIN-код блокировки регистрации</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Ваш PIN-код содержит не менее %d цифр или символов</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Неправильный PIN-код блокировки регистрации</string>
   <string name="RegistrationActivity_too_many_attempts">Слишком много попыток</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Вы неправильно ввели PIN-код слишком много раз. Пожалуйста, повторите попытку завтра.</string>

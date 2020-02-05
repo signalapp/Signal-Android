@@ -1445,7 +1445,6 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">ভুল পিন। আবার চেষ্টা করুন|</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">একাউন্ট লক করা হয়েছে</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">আপনার গোপনীয়তা এবং সুরক্ষা সুরক্ষার জন্য আপনার অ্যাকাউন্টটি লক করা হয়েছে। আপনার অ্যাকাউন্টে %1$d দিনের নিষ্ক্রিয়তার পরে আপনি আপনার পিনের প্রয়োজন ছাড়াই এই ফোন নম্বরটি পুনরায় নিবন্ধন করতে সক্ষম হবেন। সমস্ত সামগ্রী মুছে ফেলা হবে।</string>
   <string name="AccountLockedFragment__next">পরবর্তী</string>
   <string name="AccountLockedFragment__learn_more">আরও জানুন</string>
   <!--KbsLockFragment-->

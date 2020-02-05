@@ -1443,7 +1443,6 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">गलत पिन। पुनः प्रयास करें।</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">खाता बंद</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">आपकी गोपनीयता और सुरक्षा की रक्षा के लिए आपका खाता लॉक कर दिया गया है। आपके खाते में निष्क्रियता के %1$d दिनों के बाद आप अपने पिन की आवश्यकता के बिना इस फोन नंबर को फिर से पंजीकृत करने में सक्षम होंगे। सभी सामग्री हटा दी जाएगी।</string>
   <string name="AccountLockedFragment__next">अगला</string>
   <string name="AccountLockedFragment__learn_more">और जानें</string>
   <!--KbsLockFragment-->

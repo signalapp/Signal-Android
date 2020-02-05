@@ -1445,7 +1445,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="KbsReminderDialog__incorrect_pin_try_again">Väärä PIN-koodi. Yritä uudelleen.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Tili lukittu</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Tilisi on lukittu yksityisyytesi ja turvallisuutesi suojaamiseksi. Kun %1$d päivää on kulunut ilman toimintaa tililläsi, voit rekisteröidä tämän puhelinnumeron uudelleen ilman, että tarvitset PIN-koodia. Kaikki sisältö pyyhitään.</string>
   <string name="AccountLockedFragment__next">Seuraava</string>
   <string name="AccountLockedFragment__learn_more">Lue lisää</string>
   <!--KbsLockFragment-->

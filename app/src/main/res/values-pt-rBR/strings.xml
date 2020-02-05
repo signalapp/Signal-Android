@@ -1450,7 +1450,6 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">PIN incorreto. Tente novamente.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Conta bloqueada</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Sua conta foi bloqueada para proteger sua privacidade e segurança. Após %1$d dias de inatividade em sua conta, você poderá registrar novamente esse número de telefone sem precisar do seu PIN. Todo o conteúdo será excluído.</string>
   <string name="AccountLockedFragment__next">Avançar</string>
   <string name="AccountLockedFragment__learn_more">Saiba Mais</string>
   <!--KbsLockFragment-->

@@ -1412,7 +1412,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="KbsReminderDialog__incorrect_pin_try_again">PIN Salah. Coba lagi.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Akun terkunci</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Akun Anda terkunci untuk melindungi privasi dan keamanan Anda. Setelah %1$d hari tidak aktif Anda akan dapat mendaftarkan ulang nomor telpon ini tanpa memerlukan pin. Semua konten akan dihapus </string>
   <string name="AccountLockedFragment__next">Berikutnya</string>
   <string name="AccountLockedFragment__learn_more">Pelajari Lebih Lanjut</string>
   <!--KbsLockFragment-->

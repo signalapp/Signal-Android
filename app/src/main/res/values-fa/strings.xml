@@ -1447,7 +1447,6 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">پین نادرست. دوباره تلاش کنید.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">حساب کاربری قفل شد</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">حساب کاربری شما به منظور محافظت از حریم خصوصی و امنیت شما قفل شده است. پس از %1$d روز عدم فعالیت در حساب می توانید دوباره با این شماره تلفن بدون نیاز به پین خود ثبت‌نام کنید. تمام محتویات پاک خواهند شد.</string>
   <string name="AccountLockedFragment__next">بعدی</string>
   <string name="AccountLockedFragment__learn_more">اطلاعات بیشتر</string>
   <!--KbsLockFragment-->

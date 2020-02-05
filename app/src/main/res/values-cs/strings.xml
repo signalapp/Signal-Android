@@ -1514,7 +1514,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="KbsReminderDialog__incorrect_pin_try_again">Nesprávný PIN. Zkuste to znovu.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Účet uzamčen</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Váš účet byl uzamčen kvůli ochraně soukromí a bezpečnosti. Po %1$d dnech nečinnosti na vašem účtu můžete znovu zaregistrovat toto telefonní číslo, aniž budete potřebovat vaše PIN. Veškerý obsah účtu bude smazán.</string>
   <string name="AccountLockedFragment__next">Další</string>
   <string name="AccountLockedFragment__learn_more">Dozvědět se více</string>
   <!--KbsLockFragment-->

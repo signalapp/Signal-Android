@@ -1419,7 +1419,6 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">รหัส PINs ไม่ถูกต้อง ลองดูอีกครั้ง</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">บัญชีถูกล็อก</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">บัญชีของคุณถูกล็อกเพื่อปกป้องความเป็นส่วนตัวและความปลอดภัยของคุณ หลังจากไม่มีการเคลื่อนไหว %1$d วันในบัญชีของคุณ คุณจะสามารถลงทะเบียนได้อีกครั้งด้วยเบอร์โทรศัพท์นี้โดยไม่ต้องใช้รหัส PIN เนื้อหาทั้งหมดจะถูกลบ</string>
   <string name="AccountLockedFragment__next">ต่อไป</string>
   <string name="AccountLockedFragment__learn_more">เรียนรู้เพิ่มเติม</string>
   <!--KbsLockFragment-->
