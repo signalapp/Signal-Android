@@ -454,4 +454,8 @@
     <declare-styleable name="ReactionsConversationView">
       <attr name="rcv_outgoing" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="AdaptiveActionsToolbar">
+        <attr name="aat_max_shown" format="integer" />
+    </declare-styleable>
 </resources>

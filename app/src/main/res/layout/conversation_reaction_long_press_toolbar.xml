@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+<org.thoughtcrime.securesms.util.views.AdaptiveActionsToolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:background="@color/action_mode_status_bar"
     android:theme="@style/TextSecure.DarkActionBar.Conversation"
-    app:navigationIcon="@drawable/ic_x_conversation"
-    app:menu="@menu/conversation_reactions_long_press_menu">
+    app:menu="@menu/conversation_reactions_long_press_menu"
+    app:navigationIcon="@drawable/ic_x_conversation">
 
-</androidx.appcompat.widget.Toolbar>
+</org.thoughtcrime.securesms.util.views.AdaptiveActionsToolbar>

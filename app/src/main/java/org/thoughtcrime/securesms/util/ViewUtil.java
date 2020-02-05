@@ -29,6 +29,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
+
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -201,6 +203,14 @@ public class ViewUtil {
 
   public static int dpToPx(int dp) {
     return Math.round(dp * Resources.getSystem().getDisplayMetrics().density);
+  }
+
+  public static int dpToSp(int dp) {
+    return (int) (dpToPx(dp) / Resources.getSystem().getDisplayMetrics().scaledDensity);
+  }
+
+  public static int spToPx(float sp) {
+    return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, Resources.getSystem().getDisplayMetrics());
   }
 
   public static void updateLayoutParams(@NonNull View view, int width, int height) {
