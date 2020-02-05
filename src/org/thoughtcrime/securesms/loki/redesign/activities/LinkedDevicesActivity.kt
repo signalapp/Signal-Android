@@ -15,11 +15,7 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.devicelist.Device
-import org.thoughtcrime.securesms.loki.redesign.views.DeviceEditingOptionsBottomSheet
-import org.thoughtcrime.securesms.loki.redesign.dialogs.EditDeviceNameDialog
-import org.thoughtcrime.securesms.loki.redesign.dialogs.EditDeviceNameDialogDelegate
-import org.thoughtcrime.securesms.loki.redesign.dialogs.LinkDeviceMasterModeDialog
-import org.thoughtcrime.securesms.loki.redesign.dialogs.LinkDeviceMasterModeDialogDelegate
+import org.thoughtcrime.securesms.loki.redesign.dialogs.*
 import org.thoughtcrime.securesms.loki.signAndSendPairingAuthorisationMessage
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.TextSecurePreferences

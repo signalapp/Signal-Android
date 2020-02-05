@@ -1250,6 +1250,14 @@ public class TextSecurePreferences {
   public static long getRestorationTime(Context context) {
     return getLongPreference(context, "restoration_time", 0);
   }
+
+  public static boolean getHasSeenOpenGroupSuggestionSheet(Context context) {
+    return getBooleanPreference(context, "has_seen_open_group_suggestion_sheet", false);
+  }
+
+  public static void setHasSeenOpenGroupSuggestionSheet(Context context) {
+    setBooleanPreference(context, "has_seen_open_group_suggestion_sheet", true);
+  }
   // endregion
 
   public static void clearAll(Context context) {

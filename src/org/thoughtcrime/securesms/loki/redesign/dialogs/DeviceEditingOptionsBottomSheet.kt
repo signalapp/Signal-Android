@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.redesign.views
+package org.thoughtcrime.securesms.loki.redesign.dialogs
 
 import android.os.Bundle
 import android.support.design.widget.BottomSheetDialogFragment

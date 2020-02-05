@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.DeviceListLoader;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.devicelist.Device;
-import org.thoughtcrime.securesms.loki.redesign.views.DeviceEditingOptionsBottomSheet;
+import org.thoughtcrime.securesms.loki.redesign.dialogs.DeviceEditingOptionsBottomSheet;
 import org.thoughtcrime.securesms.loki.redesign.utilities.MnemonicUtilities;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;

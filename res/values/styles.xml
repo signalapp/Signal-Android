@@ -49,6 +49,14 @@
         <item name="buttonBarPositiveButtonStyle">@style/Session.AlertDialog.PositiveButtonStyle</item>
     </style>
 
+    <style name="SessionBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/SessionBottomSheetStyle</item>
+    </style>
+
+    <style name="SessionBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
     <style name="Session.AlertDialog.NegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
         <item name="android:textColor">@color/accent</item>
     </style>
