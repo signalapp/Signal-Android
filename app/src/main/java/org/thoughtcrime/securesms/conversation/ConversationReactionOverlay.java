@@ -23,7 +23,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
-import androidx.core.util.Preconditions;
 import androidx.vectordrawable.graphics.drawable.AnimatorInflaterCompat;
 
 import com.annimon.stream.Stream;
@@ -76,7 +75,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
   private int   scrubberDistanceFromTouchDown;
   private int   scrubberHeight;
   private int   scrubberWidth;
-  private int   halfActionBarHeight;
+  private int   actionBarHeight;
   private int   selectedVerticalTranslation;
   private int   scrubberHorizontalMargin;
   private int   animationEmojiStartDelayFactor;
@@ -121,7 +120,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     scrubberDistanceFromTouchDown = getResources().getDimensionPixelOffset(R.dimen.conversation_reaction_scrubber_distance);
     scrubberHeight                = getResources().getDimensionPixelOffset(R.dimen.conversation_reaction_scrubber_height);
     scrubberWidth                 = getResources().getDimensionPixelOffset(R.dimen.reaction_scrubber_width);
-    halfActionBarHeight           = (int) ThemeUtil.getThemedDimen(getContext(), R.attr.actionBarSize) / 2;
+    actionBarHeight               = (int) ThemeUtil.getThemedDimen(getContext(), R.attr.actionBarSize);
     selectedVerticalTranslation   = getResources().getDimensionPixelOffset(R.dimen.conversation_reaction_scrub_vertical_translation);
     scrubberHorizontalMargin      = getResources().getDimensionPixelOffset(R.dimen.conversation_reaction_scrub_horizontal_margin);
 
@@ -150,14 +149,15 @@ public final class ConversationReactionOverlay extends RelativeLayout {
       statusBarHeight = ViewUtil.getStatusBarHeight(this);
     }
 
-    final float scrubberTranslationY = Math.max(-scrubberDistanceFromTouchDown + halfActionBarHeight,
+    final float scrubberTranslationY = Math.max(-scrubberDistanceFromTouchDown + actionBarHeight,
                                                 lastSeenDownPoint.y - scrubberHeight - scrubberDistanceFromTouchDown - statusBarHeight);
 
     final float halfWidth            = scrubberWidth / 2f + scrubberHorizontalMargin;
     final float screenWidth          = getResources().getDisplayMetrics().widthPixels;
-    final float scrubberTranslationX = Util.clamp(lastSeenDownPoint.x - halfWidth,
+    final float downX                = getLayoutDirection() == LAYOUT_DIRECTION_LTR ? lastSeenDownPoint.x : screenWidth - lastSeenDownPoint.x;
+    final float scrubberTranslationX = Util.clamp(downX - halfWidth,
                                                   scrubberHorizontalMargin,
-                                                  screenWidth + scrubberHorizontalMargin - halfWidth * 2);
+                                                  screenWidth + scrubberHorizontalMargin - halfWidth * 2) * (getLayoutDirection() == LAYOUT_DIRECTION_LTR ? 1 : -1);
 
     backgroundView.setTranslationX(scrubberTranslationX);
     backgroundView.setTranslationY(scrubberTranslationY);
@@ -212,11 +212,27 @@ public final class ConversationReactionOverlay extends RelativeLayout {
 
     backgroundView.getGlobalVisibleRect(emojiStripViewBounds);
     emojiViews[0].getGlobalVisibleRect(emojiViewGlobalRect);
-    emojiStripViewBounds.left = emojiViewGlobalRect.left;
+    emojiStripViewBounds.left = getStart(emojiViewGlobalRect);
     emojiViews[emojiViews.length - 1].getGlobalVisibleRect(emojiViewGlobalRect);
-    emojiStripViewBounds.right = emojiViewGlobalRect.right;
+    emojiStripViewBounds.right = getEnd(emojiViewGlobalRect);
 
     segmentSize = emojiStripViewBounds.width() / (float) emojiViews.length;
+  }
+
+  private int getStart(@NonNull Rect rect) {
+    if (getLayoutDirection() == LAYOUT_DIRECTION_LTR) {
+      return rect.left;
+    } else {
+      return rect.right;
+    }
+  }
+
+  private int getEnd(@NonNull Rect rect) {
+    if (getLayoutDirection() == LAYOUT_DIRECTION_LTR) {
+      return rect.right;
+    } else {
+      return rect.left;
+    }
   }
 
   public boolean applyTouchEvent(@NonNull MotionEvent motionEvent) {
@@ -533,13 +549,16 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     }
 
     private void update(float min, float max) {
-      Preconditions.checkArgument(min <= max, "Min must be less than max");
       this.min = min;
       this.max = max;
     }
 
     public boolean contains(float value) {
-      return this.min < value && this.max > value;
+      if (min < max) {
+        return this.min < value && this.max > value;
+      } else {
+        return this.min > value && this.max < value;
+      }
     }
   }
 

@@ -827,8 +827,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void onBackPressed() {
     Log.d(TAG, "onBackPressed()");
-    if (container.isInputOpen()) container.hideCurrentInput(composeText);
-    else                         super.onBackPressed();
+    if (reactionOverlay.isShowing())  reactionOverlay.hide();
+    else if (container.isInputOpen()) container.hideCurrentInput(composeText);
+    else                              super.onBackPressed();
   }
 
   @Override
