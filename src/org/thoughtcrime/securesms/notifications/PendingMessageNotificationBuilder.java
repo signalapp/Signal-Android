@@ -6,18 +6,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
-import org.thoughtcrime.securesms.ConversationListActivity;
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+
+import network.loki.messenger.R;
 
 public class PendingMessageNotificationBuilder extends AbstractNotificationBuilder {
 
   public PendingMessageNotificationBuilder(Context context, NotificationPrivacyPreference privacy) {
     super(context, privacy);
 
-    Intent intent = new Intent(context, ConversationListActivity.class);
+    Intent intent = new Intent(context, HomeActivity.class);
 
     setSmallIcon(R.drawable.ic_notification);
     setColor(context.getResources().getColor(R.color.textsecure_primary));

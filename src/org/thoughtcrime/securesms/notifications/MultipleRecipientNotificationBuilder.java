@@ -8,8 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 
-import org.thoughtcrime.securesms.ConversationListActivity;
-import network.loki.messenger.R;
+import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -17,6 +16,8 @@ import org.thoughtcrime.securesms.util.Util;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import network.loki.messenger.R;
 
 public class MultipleRecipientNotificationBuilder extends AbstractNotificationBuilder {
 
@@ -28,7 +29,7 @@ public class MultipleRecipientNotificationBuilder extends AbstractNotificationBu
     setColor(context.getResources().getColor(R.color.textsecure_primary));
     setSmallIcon(R.drawable.ic_notification);
     setContentTitle(context.getString(R.string.app_name));
-    setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, ConversationListActivity.class), 0));
+    setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, HomeActivity.class), 0));
     setCategory(NotificationCompat.CATEGORY_MESSAGE);
     setGroupSummary(true);
 
