@@ -6,6 +6,7 @@ import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.registration.service.CodeVerificationRequest;
 import org.thoughtcrime.securesms.registration.service.RegistrationService;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
+import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 
 import java.util.concurrent.TimeUnit;
@@ -75,6 +77,11 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
       }
       return false;
     });
+
+    pinEntry.setFocusable(true);
+    if (pinEntry.requestFocus()) {
+      ServiceUtil.getInputMethodManager(pinEntry.getContext()).showSoftInput(pinEntry, 0);
+    }
 
     pinButton.setOnClickListener((v) -> {
       hideKeyboard(requireContext(), pinEntry);

@@ -95,7 +95,6 @@ public final class RegistrationLockDialog {
     DisplayMetrics metrics       = new DisplayMetrics();
     display.getMetrics(metrics);
 
-    dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
     dialog.show();
     dialog.getWindow().setLayout((int)(metrics.widthPixels * .80), ViewGroup.LayoutParams.WRAP_CONTENT);
 
@@ -108,7 +107,11 @@ public final class RegistrationLockDialog {
     SpannableString reminderText = new SpannableString(context.getString(R.string.KbsReminderDialog__to_help_you_memorize_your_pin));
     SpannableString forgotText   = new SpannableString(context.getString(R.string.KbsReminderDialog__forgot_pin));
 
-    pinEditText.requestFocus();
+    pinEditText.post(() -> {
+      if (pinEditText.requestFocus()) {
+        ServiceUtil.getInputMethodManager(pinEditText.getContext()).showSoftInput(pinEditText, 0);
+      }
+    });
 
     switch (SignalStore.kbsValues().getKeyboardType()) {
       case NUMERIC:
