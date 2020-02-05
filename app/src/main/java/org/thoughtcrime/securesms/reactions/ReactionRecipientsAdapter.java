@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.reactions;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,13 +45,13 @@ final class ReactionRecipientsAdapter extends RecyclerView.Adapter<ReactionRecip
     return data.size();
   }
 
-  final static class ViewHolder extends RecyclerView.ViewHolder {
+  final class ViewHolder extends RecyclerView.ViewHolder {
 
     private final AvatarImageView avatar;
     private final TextView        recipient;
     private final TextView        emoji;
 
-    private ViewHolder(@NonNull View itemView) {
+    public ViewHolder(@NonNull View itemView) {
       super(itemView);
 
       avatar    = itemView.findViewById(R.id.reactions_bottom_view_recipient_avatar);
@@ -61,7 +60,7 @@ final class ReactionRecipientsAdapter extends RecyclerView.Adapter<ReactionRecip
     }
 
     void bind(@NonNull Reaction reaction) {
-      this.recipient.setText(getReactionSenderDisplayName(itemView.getContext(), reaction.getSender()));
+      this.recipient.setText(reaction.getSender().getDisplayName(itemView.getContext()));
       this.emoji.setText(reaction.getEmoji());
 
       if (reaction.getSender().isLocalNumber()) {
@@ -69,16 +68,6 @@ final class ReactionRecipientsAdapter extends RecyclerView.Adapter<ReactionRecip
         AvatarUtil.loadIconIntoImageView(reaction.getSender(), avatar);
       } else {
         this.avatar.setAvatar(GlideApp.with(avatar), reaction.getSender(), false);
-      }
-    }
-
-    private static @NonNull String getReactionSenderDisplayName(@NonNull Context context, @NonNull Recipient sender) {
-      String displayName = sender.getDisplayName(context);
-
-      if (sender.isLocalNumber()) {
-        return context.getString(R.string.ReactionsBottomSheetDialogFragment_you, displayName);
-      } else {
-        return displayName;
       }
     }
   }
