@@ -58,6 +58,8 @@ public class ReactionsConversationView extends LinearLayout {
 
 
   public void clear() {
+    this.records.clear();
+    this.bubbleWidth = 0;
     removeAllViews();
   }
 
