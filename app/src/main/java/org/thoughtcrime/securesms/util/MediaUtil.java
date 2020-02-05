@@ -58,6 +58,7 @@ public class MediaUtil {
   public static final String VCARD             = "text/x-vcard";
   public static final String LONG_TEXT         = "text/x-signal-plain";
   public static final String VIEW_ONCE         = "application/x-signal-view-once";
+  public static final String UNKNOWN           = "*/*";
 
   public static SlideType getSlideTypeFromContentType(@NonNull String contentType) {
     if (isGif(contentType)) {

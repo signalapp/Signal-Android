@@ -142,11 +142,11 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   /**
    * Get an intent to launch the media send flow starting with the picker.
    */
-  public static Intent buildGalleryIntent(@NonNull Context context, @NonNull Recipient recipient, @NonNull String body, @NonNull TransportOption transport) {
+  public static Intent buildGalleryIntent(@NonNull Context context, @NonNull Recipient recipient, @Nullable String body, @NonNull TransportOption transport) {
     Intent intent = new Intent(context, MediaSendActivity.class);
     intent.putExtra(KEY_RECIPIENT, recipient.getId());
     intent.putExtra(KEY_TRANSPORT, transport);
-    intent.putExtra(KEY_BODY, body);
+    intent.putExtra(KEY_BODY, body == null ? "" : body);
     return intent;
   }
 

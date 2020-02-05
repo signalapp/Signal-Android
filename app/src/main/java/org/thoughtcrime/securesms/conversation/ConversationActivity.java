@@ -1322,11 +1322,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     final StickerLocator stickerLocator = getIntent().getParcelableExtra(STICKER_EXTRA);
 
     if (stickerLocator != null && draftMedia != null) {
+      Log.d(TAG, "Handling shared sticker.");
       sendSticker(stickerLocator, draftMedia, 0, true);
       return new SettableFuture<>(false);
     }
 
     if (!Util.isEmpty(mediaList)) {
+      Log.d(TAG, "Handling shared Media.");
       Intent sendIntent = MediaSendActivity.buildEditorIntent(this, mediaList, recipient.get(), draftText, sendButton.getSelectedTransport());
       startActivityForResult(sendIntent, MEDIA_SENDER);
       return new SettableFuture<>(false);
@@ -1339,6 +1341,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     if (draftMedia != null && draftMediaType != null) {
+      Log.d(TAG, "Handling shared Data.");
       return setMedia(draftMedia, draftMediaType);
     }
 
@@ -2633,7 +2636,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     slideDeck.addSlide(stickerSlide);
 
     sendMediaMessage(transport.isSms(), "", slideDeck, null, Collections.emptyList(), Collections.emptyList(), expiresIn, false, subscriptionId, initiating, clearCompose);
-
   }
 
   private void silentlySetComposeText(String text) {

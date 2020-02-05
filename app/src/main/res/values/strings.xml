@@ -371,6 +371,7 @@
 
     <!-- ShareActivity -->
     <string name="ShareActivity_share_with">Share with</string>
+    <string name="ShareActivity_multiple_attachments_are_only_supported">Multiple attachments are only supported for images and videos</string>
 
     <!-- ExperienceUpgradeActivity -->
     <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Welcome to Signal.</string>

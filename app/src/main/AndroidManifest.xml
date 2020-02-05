@@ -148,7 +148,7 @@
     <activity android:name=".preferences.MmsPreferencesActivity"
                android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name=".ShareActivity"
+    <activity android:name=".sharing.ShareActivity"
               android:theme="@style/TextSecure.LightNoActionBar"
               android:excludeFromRecents="true"
               android:launchMode="singleTask"
@@ -156,7 +156,6 @@
               android:noHistory="true"
               android:windowSoftInputMode="stateHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
-
         <intent-filter>
             <action android:name="android.intent.action.SEND" />
             <category android:name="android.intent.category.DEFAULT"/>
@@ -169,8 +168,15 @@
             <data android:mimeType="*/*"/>
         </intent-filter>
 
-        <meta-data
-                android:name="android.service.chooser.chooser_target_service"
+        <intent-filter>
+            <action android:name="android.intent.action.SEND_MULTIPLE" />
+            <category android:name="android.intent.category.DEFAULT"/>
+            <data android:mimeType="image/*" />
+            <data android:mimeType="video/*" />
+        </intent-filter>
+
+      <meta-data
+          android:name="android.service.chooser.chooser_target_service"
                 android:value=".service.DirectShareService" />
 
     </activity>

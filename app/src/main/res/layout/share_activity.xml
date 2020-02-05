@@ -56,11 +56,4 @@
             android:visibility="invisible"
             tools:visibility="invisible"/>
 
-    <com.pnikosis.materialishprogress.ProgressWheel android:id="@+id/progress_wheel"
-                                                    android:layout_width="70dp"
-                                                    android:layout_height="70dp"
-                                                    android:layout_centerInParent="true"
-                                                    wheel:matProg_barColor="?title_text_color_primary"
-                                                    wheel:matProg_progressIndeterminate="true" />
-
 </RelativeLayout>

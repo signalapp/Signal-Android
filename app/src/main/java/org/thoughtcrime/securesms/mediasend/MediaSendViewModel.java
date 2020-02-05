@@ -51,9 +51,6 @@ class MediaSendViewModel extends ViewModel {
 
   private static final String TAG = MediaSendViewModel.class.getSimpleName();
 
-  private static final int MAX_PUSH = 32;
-  private static final int MAX_SMS  = 1;
-
   private final Application                        application;
   private final MediaRepository                    repository;
   private final MediaUploadRepository              uploadRepository;
@@ -122,11 +119,11 @@ class MediaSendViewModel extends ViewModel {
 
     if (transport.isSms()) {
       isSms            = true;
-      maxSelection     = MAX_SMS;
+      maxSelection     = MediaSendConstants.MAX_SMS;
       mediaConstraints = MediaConstraints.getMmsMediaConstraints(transport.getSimSubscriptionId().or(-1));
     } else {
       isSms            = false;
-      maxSelection     = MAX_PUSH;
+      maxSelection     = MediaSendConstants.MAX_PUSH;
       mediaConstraints = MediaConstraints.getPushMediaConstraints();
     }
 
@@ -151,7 +148,9 @@ class MediaSendViewModel extends ViewModel {
 
         if (filteredMedia.size() != newMedia.size()) {
           error.setValue(Error.ITEM_TOO_LARGE);
-        } else if (filteredMedia.size() > maxSelection) {
+        }
+
+        if (filteredMedia.size() > maxSelection) {
           filteredMedia = filteredMedia.subList(0, maxSelection);
           error.setValue(Error.TOO_MANY_ITEMS);
         }
