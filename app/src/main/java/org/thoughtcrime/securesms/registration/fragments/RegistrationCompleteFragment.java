@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
 import org.thoughtcrime.securesms.lock.v2.PinUtil;
 import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
+import org.thoughtcrime.securesms.util.CensorshipUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 
 public final class RegistrationCompleteFragment extends BaseRegistrationFragment {
@@ -41,7 +42,7 @@ public final class RegistrationCompleteFragment extends BaseRegistrationFragment
       next.putExtra(EditProfileActivity.SHOW_TOOLBAR, false);
 
       Context context = requireContext();
-      if (FeatureFlags.pinsForAll() && !PinUtil.userHasPin(context)) {
+      if (FeatureFlags.pinsForAll() && !PinUtil.userHasPin(context) && !CensorshipUtil.isCensored(requireContext())) {
         activity.startActivity(chainIntents(CreateKbsPinActivity.getIntentForPinCreate(context), next));
       } else {
         activity.startActivity(next);

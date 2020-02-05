@@ -70,6 +70,10 @@ public class Megaphone {
     return buttonTextRes;
   }
 
+  public boolean hasButton() {
+    return buttonTextRes != 0;
+  }
+
   public @Nullable EventListener getButtonClickListener() {
     return buttonListener;
   }

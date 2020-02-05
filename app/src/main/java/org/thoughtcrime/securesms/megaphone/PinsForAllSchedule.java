@@ -1,9 +1,13 @@
 package org.thoughtcrime.securesms.megaphone;
 
+import android.content.Context;
+
 import androidx.annotation.VisibleForTesting;
 
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
+import org.thoughtcrime.securesms.util.CensorshipUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -21,15 +25,17 @@ class PinsForAllSchedule implements MegaphoneSchedule {
   private final MegaphoneSchedule schedule = new RecurringSchedule(TimeUnit.DAYS.toMillis(2));
 
   static boolean shouldDisplayFullScreen(long firstVisible, long currentTime) {
-    if (pinCreationFailedDuringRegistration()) {
-      return true;
-    }
-
-    if (firstVisible == 0L) {
-      return false;
-    } else {
-      return currentTime - firstVisible >= TimeUnit.DAYS.toMillis(DAYS_UNTIL_FULLSCREEN);
-    }
+    return false;
+    // TODO [greyson]
+//    if (pinCreationFailedDuringRegistration()) {
+//      return true;
+//    }
+//
+//    if (firstVisible == 0L) {
+//      return false;
+//    } else {
+//      return currentTime - firstVisible >= TimeUnit.DAYS.toMillis(DAYS_UNTIL_FULLSCREEN);
+//    }
   }
 
   static long getDaysRemaining(long firstVisible, long currentTime) {
@@ -52,6 +58,10 @@ class PinsForAllSchedule implements MegaphoneSchedule {
   }
 
   private static boolean isEnabled() {
+    if (CensorshipUtil.isCensored(ApplicationDependencies.getApplication())) {
+      return false;
+    }
+
     if (FeatureFlags.pinsForAllMegaphoneKillSwitch()) {
       return false;
     }

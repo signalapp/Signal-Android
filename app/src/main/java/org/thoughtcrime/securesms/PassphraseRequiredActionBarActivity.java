@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.CensorshipUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.Locale;
@@ -184,7 +185,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   }
 
   private boolean userMustSetKbsPin() {
-    return !SignalStore.registrationValues().isRegistrationComplete() && !PinUtil.userHasPin(this);
+    return !SignalStore.registrationValues().isRegistrationComplete() && !PinUtil.userHasPin(this) && !CensorshipUtil.isCensored(this);
   }
 
   private boolean userMustSetProfileName() {

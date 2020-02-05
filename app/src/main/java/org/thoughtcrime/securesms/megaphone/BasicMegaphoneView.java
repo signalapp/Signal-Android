@@ -77,7 +77,7 @@ public class BasicMegaphoneView extends FrameLayout {
       bodyText.setVisibility(GONE);
     }
 
-    if (megaphone.getButtonText() != 0) {
+    if (megaphone.hasButton()) {
       actionButton.setVisibility(VISIBLE);
       actionButton.setText(megaphone.getButtonText());
       actionButton.setOnClickListener(v -> {
@@ -99,7 +99,7 @@ public class BasicMegaphoneView extends FrameLayout {
         }
       });
     } else {
-      actionButton.setVisibility(GONE);
+      snoozeButton.setVisibility(GONE);
     }
   }
 }

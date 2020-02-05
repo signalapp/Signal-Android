@@ -115,13 +115,9 @@ public final class Megaphones {
       long daysRemaining = PinsForAllSchedule.getDaysRemaining(record.getFirstVisible(), System.currentTimeMillis());
 
       if (PinUtil.userHasPin(ApplicationDependencies.getApplication())) {
-        return buildPinsForAllMegaphoneForUserWithPin(
-            builder.enableSnooze((megaphone, listener) -> listener.onMegaphoneToastRequested(context.getString(R.string.KbsMegaphone__well_remind_you_later_confirming_your_pin, daysRemaining)))
-        );
+        return buildPinsForAllMegaphoneForUserWithPin(builder.enableSnooze(null));
       } else {
-        return buildPinsForAllMegaphoneForUserWithoutPin(
-            builder.enableSnooze((megaphone, listener) -> listener.onMegaphoneToastRequested(context.getString(R.string.KbsMegaphone__well_remind_you_later_creating_a_pin, daysRemaining)))
-        );
+        return buildPinsForAllMegaphoneForUserWithoutPin(builder.enableSnooze(null));
       }
     }
   }
