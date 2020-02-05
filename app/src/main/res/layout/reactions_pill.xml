@@ -10,8 +10,8 @@
     android:layout_marginEnd="1dp"
     android:paddingStart="7dp"
     android:paddingEnd="7dp"
-    android:paddingTop="3dp"
-    android:paddingBottom="3dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
     android:gravity="center">
 
   <org.thoughtcrime.securesms.components.emoji.EmojiTextView
@@ -19,6 +19,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:textSize="16dp"
+      android:includeFontPadding="false"
       app:emoji_forceCustom="true"
       tools:ignore="SpUsage" />
 
@@ -31,7 +32,6 @@
       android:id="@+id/reactions_pill_count"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:padding="1dp"
       android:textSize="14dp"
       android:fontFamily="sans-serif-medium"
       android:textColor="?reactions_pill_text_color"
