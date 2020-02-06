@@ -633,7 +633,8 @@ public class SubmitLogFragment extends Fragment {
     Map<String, Boolean> disk         = FeatureFlags.getDiskValues();
     Map<String, Boolean> forced       = FeatureFlags.getForcedValues();
     int                  remoteLength = Stream.of(memory.keySet()).map(String::length).max(Integer::compareTo).orElse(0);
-    int                  forcedLength = Stream.of(disk.keySet()).map(String::length).max(Integer::compareTo).orElse(0);
+    int                  diskLength   = Stream.of(disk.keySet()).map(String::length).max(Integer::compareTo).orElse(0);
+    int                  forcedLength = Stream.of(forced.keySet()).map(String::length).max(Integer::compareTo).orElse(0);
 
     out.append("-- Memory\n");
     for (Map.Entry<String, Boolean> entry : memory.entrySet()) {
@@ -643,7 +644,7 @@ public class SubmitLogFragment extends Fragment {
 
     out.append("-- Disk\n");
     for (Map.Entry<String, Boolean> entry : disk.entrySet()) {
-      out.append(Util.rightPad(entry.getKey(), forcedLength)).append(": ").append(entry.getValue()).append("\n");
+      out.append(Util.rightPad(entry.getKey(), diskLength)).append(": ").append(entry.getValue()).append("\n");
     }
     out.append("\n");
 

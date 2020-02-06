@@ -58,6 +58,7 @@ public final class FeatureFlags {
    * We will only store remote values for flags in this set. If you want a flag to be controllable
    * remotely, place it in here.
    */
+
   private static final Set<String> REMOTE_CAPABLE = Sets.newHashSet(
       PINS_FOR_ALL,
       PINS_MEGAPHONE_KILL_SWITCH
