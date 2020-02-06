@@ -129,7 +129,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     initAnimators();
   }
 
-  public void show(@NonNull Activity activity, @NonNull View maskTarget, @NonNull MessageRecord messageRecord) {
+  public void show(@NonNull Activity activity, @NonNull View maskTarget, @NonNull MessageRecord messageRecord, int maskPaddingBottom) {
 
     if (overlayState != OverlayState.HIDDEN) {
       return;
@@ -168,6 +168,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     verticalScrubBoundary.update(lastSeenDownPoint.y - distanceFromTouchDownPointToTopOfScrubberDeadZone,
                                  lastSeenDownPoint.y + distanceFromTouchDownPointToBottomOfScrubberDeadZone);
 
+    maskView.setPadding(0, 0, 0, maskPaddingBottom);
     maskView.setTarget(maskTarget);
 
     hideAnimatorSet.end();
@@ -177,7 +178,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     if (Build.VERSION.SDK_INT >= 21) {
       this.activity = activity;
       originalStatusBarColor = activity.getWindow().getStatusBarColor();
-      activity.getWindow().setStatusBarColor(ContextCompat.getColor(activity, R.color.core_grey_45));
+      activity.getWindow().setStatusBarColor(ContextCompat.getColor(activity, R.color.action_mode_status_bar));
     }
   }
 
