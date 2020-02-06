@@ -35,9 +35,11 @@ import com.dd.CircularProgressButton;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.avatar.AvatarSelection;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.PinUtil;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.megaphone.Megaphones;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.ProfileMediaConstraints;
@@ -327,6 +329,8 @@ public class EditProfileFragment extends Fragment {
         if (!PinUtil.shouldShowPinCreationDuringRegistration(requireContext())) {
           SignalStore.registrationValues().setRegistrationComplete();
         }
+
+        ApplicationDependencies.getMegaphoneRepository().markFinished(Megaphones.Event.PROFILE_NAMES_FOR_ALL);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) handleFinishedLollipop();
         else                                                       handleFinishedLegacy();

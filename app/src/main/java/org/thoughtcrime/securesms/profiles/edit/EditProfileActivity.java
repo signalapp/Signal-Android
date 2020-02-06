@@ -19,9 +19,9 @@ public class EditProfileActivity extends BaseActionBarActivity implements EditPr
   public static final String EXCLUDE_SYSTEM    = "exclude_system";
   public static final String DISPLAY_USERNAME  = "display_username";
   public static final String NEXT_BUTTON_TEXT  = "next_button_text";
-  public static final String SHOW_TOOLBAR = "show_back_arrow";
+  public static final String SHOW_TOOLBAR      = "show_back_arrow";
 
-  private final DynamicTheme dynamicTheme    = new DynamicRegistrationTheme();
+  private final DynamicTheme dynamicTheme = new DynamicRegistrationTheme();
 
   @Override
   public void onCreate(Bundle bundle) {
@@ -32,8 +32,10 @@ public class EditProfileActivity extends BaseActionBarActivity implements EditPr
     setContentView(R.layout.profile_create_activity);
 
     if (bundle == null) {
-      NavGraph graph = Navigation.findNavController(this, R.id.nav_host_fragment).getGraph();
-      Navigation.findNavController(this, R.id.nav_host_fragment).setGraph(graph, getIntent().getExtras());
+      Bundle   extras = getIntent().getExtras();
+      NavGraph graph  = Navigation.findNavController(this, R.id.nav_host_fragment).getGraph();
+
+      Navigation.findNavController(this, R.id.nav_host_fragment).setGraph(graph, extras != null ? extras : new Bundle());
     }
   }
 

@@ -1797,6 +1797,14 @@
     <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">We\'ll remind you later. Creating a PIN will become mandatory in %1$d days.</string>
     <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">We\'ll remind you later. Confirming your PIN will become mandatory in %1$d days.</string>
 
+    <!-- Profile Names Megaphone -->
+    <string name="ProfileNamesMegaphone__add_a_profile_name">Add a profile name</string>
+    <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">This will be displayed when you start a new conversation or share it.</string>
+    <string name="ProfileNamesMegaphone__add_profile_name">Add Profile Name</string>
+    <string name="ProfileNamesMegaphone__confirm_your_profile_name">Confirm your Profile Name</string>
+    <string name="ProfileNamesMegaphone__your_profile_can_now_include">Your profile can now include an optional last name.</string>
+    <string name="ProfileNamesMegaphone__confirm_name">Confirm Name</string>
+
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
     <string name="ConversationListFragment_loading">Loading…</string>
