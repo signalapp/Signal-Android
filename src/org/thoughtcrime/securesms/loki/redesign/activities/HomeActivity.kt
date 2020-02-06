@@ -22,16 +22,13 @@ import android.text.style.ForegroundColorSpan
 import android.view.View
 import kotlinx.android.synthetic.main.activity_home.*
 import network.loki.messenger.R
-import nl.komponents.kovenant.ui.successUi
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
-import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.loki.getColorWithID
-import org.thoughtcrime.securesms.loki.redesign.dialogs.OpenGroupSuggestionBottomSheet
 import org.thoughtcrime.securesms.loki.redesign.utilities.push
 import org.thoughtcrime.securesms.loki.redesign.utilities.show
 import org.thoughtcrime.securesms.loki.redesign.views.ConversationView
@@ -150,32 +147,32 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         if (hasViewedSeed || !isMasterDevice) {
             seedReminderView.visibility = View.GONE
         }
-        if (!TextSecurePreferences.getHasSeenOpenGroupSuggestionSheet(this)) {
-            val bottomSheet = OpenGroupSuggestionBottomSheet()
-            bottomSheet.onJoinTapped = {
-                TextSecurePreferences.setHasSeenOpenGroupSuggestionSheet(this)
-                bottomSheet.dismiss()
-                // TODO: Duplication of the code in JoinPublicChatActivity
-                val application = ApplicationContext.getInstance(this)
-                val channel: Long = 1
-                val displayName = TextSecurePreferences.getProfileName(this)
-                val lokiPublicChatAPI = application.lokiPublicChatAPI!!
-                val url = "https://chat.getsession.org"
-                application.lokiPublicChatManager.addChat(url, channel).successUi {
-                    lokiPublicChatAPI.getMessages(channel, url)
-                    lokiPublicChatAPI.setDisplayName(displayName, url)
-                    lokiPublicChatAPI.join(channel, url)
-                    val profileKey: ByteArray = ProfileKeyUtil.getProfileKey(this)
-                    val profileUrl: String? = TextSecurePreferences.getProfileAvatarUrl(this)
-                    lokiPublicChatAPI.setProfilePicture(url, profileKey, profileUrl)
-                }
-            }
-            bottomSheet.onDismissTapped = {
-                TextSecurePreferences.setHasSeenOpenGroupSuggestionSheet(this)
-                bottomSheet.dismiss()
-            }
-            bottomSheet.show(supportFragmentManager, bottomSheet.tag)
-        }
+//        if (!TextSecurePreferences.getHasSeenOpenGroupSuggestionSheet(this)) {
+//            val bottomSheet = OpenGroupSuggestionBottomSheet()
+//            bottomSheet.onJoinTapped = {
+//                TextSecurePreferences.setHasSeenOpenGroupSuggestionSheet(this)
+//                bottomSheet.dismiss()
+//                // TODO: Duplication of the code in JoinPublicChatActivity
+//                val application = ApplicationContext.getInstance(this)
+//                val channel: Long = 1
+//                val displayName = TextSecurePreferences.getProfileName(this)
+//                val lokiPublicChatAPI = application.lokiPublicChatAPI!!
+//                val url = "https://chat.getsession.org"
+//                application.lokiPublicChatManager.addChat(url, channel).successUi {
+//                    lokiPublicChatAPI.getMessages(channel, url)
+//                    lokiPublicChatAPI.setDisplayName(displayName, url)
+//                    lokiPublicChatAPI.join(channel, url)
+//                    val profileKey: ByteArray = ProfileKeyUtil.getProfileKey(this)
+//                    val profileUrl: String? = TextSecurePreferences.getProfileAvatarUrl(this)
+//                    lokiPublicChatAPI.setProfilePicture(url, profileKey, profileUrl)
+//                }
+//            }
+//            bottomSheet.onDismissTapped = {
+//                TextSecurePreferences.setHasSeenOpenGroupSuggestionSheet(this)
+//                bottomSheet.dismiss()
+//            }
+//            bottomSheet.show(supportFragmentManager, bottomSheet.tag)
+//        }
     }
     // endregion
 
