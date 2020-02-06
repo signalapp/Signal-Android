@@ -51,7 +51,7 @@ public final class FeatureFlags {
   private static final String MESSAGE_REQUESTS           = generateKey("messageRequests");
   private static final String USERNAMES                  = generateKey("usernames");
   private static final String STORAGE_SERVICE            = generateKey("storageService");
-  private static final String PINS_FOR_ALL               = generateKey("beta.pinsForAll"); // TODO [alex] remove beta prefix
+  private static final String PINS_FOR_ALL               = generateKey("pinsForAll");
   private static final String PINS_MEGAPHONE_KILL_SWITCH = generateKey("pinsMegaphoneKillSwitch");
 
   /**
@@ -59,7 +59,8 @@ public final class FeatureFlags {
    * remotely, place it in here.
    */
   private static final Set<String> REMOTE_CAPABLE = Sets.newHashSet(
-    PINS_MEGAPHONE_KILL_SWITCH
+      PINS_FOR_ALL,
+      PINS_MEGAPHONE_KILL_SWITCH
   );
 
   /**
@@ -87,7 +88,7 @@ public final class FeatureFlags {
    * Flags in this set will stay true forever once they receive a true value from a remote config.
    */
   private static final Set<String> STICKY = Sets.newHashSet(
-    PINS_FOR_ALL // TODO [alex] -- add android.beta.pinsForAll to sticky set when we remove prefix
+    PINS_FOR_ALL
   );
 
   private static final Map<String, Boolean> REMOTE_VALUES = new TreeMap<>();
@@ -154,7 +155,9 @@ public final class FeatureFlags {
 
   /** Enables new KBS UI and notices but does not require user to set a pin */
   public static boolean pinsForAll() {
-    return SignalStore.registrationValues().pinWasRequiredAtRegistration() || getValue(PINS_FOR_ALL, false);
+    return SignalStore.registrationValues().pinWasRequiredAtRegistration() ||
+           SignalStore.kbsValues().hasMigratedToPinsForAll()               ||
+           getValue(PINS_FOR_ALL, false);
   }
 
   /** Safety flag to disable Pins for All Megaphone */

@@ -127,4 +127,8 @@ public final class KbsValues {
   public @NonNull PinKeyboardType getKeyboardType() {
     return PinKeyboardType.fromCode(store.getString(KEYBOARD_TYPE, null));
   }
+
+  public boolean hasMigratedToPinsForAll() {
+    return store.getString(KEYBOARD_TYPE, null) != null;
+  }
 }
