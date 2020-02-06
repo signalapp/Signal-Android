@@ -31,9 +31,9 @@ import java.util.concurrent.TimeUnit;
  * - Create a new string constant using {@link #generateKey(String)})
  * - Add a method to retrieve the value using {@link #getValue(String, boolean)}. You can also add
  *   other checks here, like requiring other flags.
- * - If you would like to force a value for testing, place an entry in {@link #FORCED_VALUES}. When
- *   launching a feature that is planned to be updated via a remote config, do not forget to
- *   remove the entry!
+ * - If you want to be able to change a flag remotely, place it in {@link #REMOTE_CAPABLE}.
+ * - If you would like to force a value for testing, place an entry in {@link #FORCED_VALUES}.
+ *   Do not commit changes to this map!
  *
  * Other interesting things you can do:
  * - Make a flag {@link #HOT_SWAPPABLE}
@@ -55,16 +55,21 @@ public final class FeatureFlags {
   private static final String PINS_MEGAPHONE_KILL_SWITCH = generateKey("pinsMegaphoneKillSwitch");
 
   /**
-   * Values in this map will take precedence over any value. If you do not wish to have any sort of
-   * override, simply don't put a value in this map. You should never commit additions to this map
-   * for flags that you plan on updating remotely.
+   * We will only store remote values for flags in this set. If you want a flag to be controllable
+   * remotely, place it in here.
    */
+  private static final Set<String> REMOTE_CAPABLE = Sets.newHashSet(
+    PINS_MEGAPHONE_KILL_SWITCH
+  );
+
+  /**
+   * Values in this map will take precedence over any value. This should only be used for local
+   * development. Given that you specify a default when retrieving a value, and that we only store
+   * remote values for things in {@link #REMOTE_CAPABLE}, there should be no need to ever *commit*
+   * an addition to this map.
+   */
+  @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
   private static final Map<String, Boolean> FORCED_VALUES = new HashMap<String, Boolean>() {{
-    put(UUIDS, false);
-    put(PROFILE_DISPLAY, false);
-    put(MESSAGE_REQUESTS, false);
-    put(USERNAMES, false);
-    put(STORAGE_SERVICE, false);
   }};
 
   /**
@@ -108,7 +113,7 @@ public final class FeatureFlags {
   public static synchronized void update(@NonNull Map<String, Boolean> config) {
     Map<String, Boolean> memory = REMOTE_VALUES;
     Map<String, Boolean> disk   = parseStoredConfig();
-    UpdateResult         result = updateInternal(config, memory, disk, HOT_SWAPPABLE, STICKY);
+    UpdateResult         result = updateInternal(config, memory, disk, REMOTE_CAPABLE, HOT_SWAPPABLE, STICKY);
 
     SignalStore.setRemoteConfig(mapToJson(result.getDisk()).toString());
     REMOTE_VALUES.clear();
@@ -158,8 +163,13 @@ public final class FeatureFlags {
   }
 
   /** Only for rendering debug info. */
-  public static synchronized @NonNull Map<String, Boolean> getRemoteValues() {
+  public static synchronized @NonNull Map<String, Boolean> getMemoryValues() {
     return new TreeMap<>(REMOTE_VALUES);
+  }
+
+  /** Only for rendering debug info. */
+  public static synchronized @NonNull Map<String, Boolean> getDiskValues() {
+    return new TreeMap<>(parseStoredConfig());
   }
 
   /** Only for rendering debug info. */
@@ -171,6 +181,7 @@ public final class FeatureFlags {
   static @NonNull UpdateResult updateInternal(@NonNull Map<String, Boolean> remote,
                                               @NonNull Map<String, Boolean> localMemory,
                                               @NonNull Map<String, Boolean> localDisk,
+                                              @NonNull Set<String>          remoteCapable,
                                               @NonNull Set<String>          hotSwap,
                                               @NonNull Set<String>          sticky)
   {
@@ -183,7 +194,7 @@ public final class FeatureFlags {
     allKeys.addAll(localMemory.keySet());
 
     Stream.of(allKeys)
-          .filter(k -> k.startsWith(PREFIX))
+          .filter(remoteCapable::contains)
           .forEach(key -> {
             Boolean remoteValue = remote.get(key);
             Boolean diskValue   = localDisk.get(key);

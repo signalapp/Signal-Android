@@ -17,15 +17,17 @@ public class FeatureFlagsTest {
   private static final String B = key("b");
 
   @Test
-  public void updateInternal_newValue_ignoreMissingPrefix() {
-    UpdateResult result = FeatureFlags.updateInternal(mapOf("noprefix", true),
+  public void updateInternal_newValue_ignoreNotInRemoteCapable() {
+    UpdateResult result = FeatureFlags.updateInternal(mapOf("A", true,
+                                                            "B", true),
                                                       mapOf(),
                                                       mapOf(),
+                                                      setOf("A"),
                                                       setOf(),
                                                       setOf());
 
     assertEquals(mapOf(), result.getMemory());
-    assertEquals(mapOf(), result.getDisk());
+    assertEquals(mapOf("A", true), result.getDisk());
   }
 
   @Test
@@ -33,6 +35,7 @@ public class FeatureFlagsTest {
     UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true),
                                                       mapOf(),
                                                       mapOf(),
+                                                      setOf(A),
                                                       setOf(),
                                                       setOf());
 
@@ -46,6 +49,7 @@ public class FeatureFlagsTest {
                                                       mapOf(),
                                                       mapOf(),
                                                       setOf(A),
+                                                      setOf(A),
                                                       setOf());
 
     assertEquals(mapOf(A, true), result.getMemory());
@@ -57,6 +61,7 @@ public class FeatureFlagsTest {
     UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true),
                                                       mapOf(),
                                                       mapOf(),
+                                                      setOf(A),
                                                       setOf(),
                                                       setOf(A));
 
@@ -70,6 +75,7 @@ public class FeatureFlagsTest {
                                                       mapOf(),
                                                       mapOf(),
                                                       setOf(A),
+                                                      setOf(A),
                                                       setOf(A));
 
     assertEquals(mapOf(A, true), result.getMemory());
@@ -79,8 +85,9 @@ public class FeatureFlagsTest {
   @Test
   public void updateInternal_replaceValue() {
     UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true),
-        mapOf(A, false),
-        mapOf(A, false),
+                                                      mapOf(A, false),
+                                                      mapOf(A, false),
+                                                      setOf(A),
                                                       setOf(),
                                                       setOf());
 
@@ -94,6 +101,7 @@ public class FeatureFlagsTest {
                                                       mapOf(A, false),
                                                       mapOf(A, false),
                                                       setOf(A),
+                                                      setOf(A),
                                                       setOf());
 
     assertEquals(mapOf(A, true), result.getMemory());
@@ -105,6 +113,7 @@ public class FeatureFlagsTest {
     UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true),
                                                       mapOf(A, false),
                                                       mapOf(A, false),
+                                                      setOf(A),
                                                       setOf(A),
                                                       setOf(A));
 
@@ -118,6 +127,7 @@ public class FeatureFlagsTest {
                                                       mapOf(A, true),
                                                       mapOf(A, true),
                                                       setOf(A),
+                                                      setOf(A),
                                                       setOf(A));
 
     assertEquals(mapOf(A, true), result.getMemory());
@@ -127,8 +137,9 @@ public class FeatureFlagsTest {
   @Test
   public void updateInternal_removeValue() {
     UpdateResult result = FeatureFlags.updateInternal(mapOf(),
-        mapOf(A, true),
                                                       mapOf(A, true),
+                                                      mapOf(A, true),
+                                                      setOf(A),
                                                       setOf(),
                                                       setOf());
 
@@ -142,6 +153,7 @@ public class FeatureFlagsTest {
                                                       mapOf(A, true),
                                                       mapOf(A, true),
                                                       setOf(A),
+                                                      setOf(A),
                                                       setOf());
 
     assertEquals(mapOf(), result.getMemory());
@@ -151,8 +163,9 @@ public class FeatureFlagsTest {
   @Test
   public void updateInternal_removeValue_stickyAlreadyEnabled() {
     UpdateResult result = FeatureFlags.updateInternal(mapOf(),
-        mapOf(A, true),
                                                       mapOf(A, true),
+                                                      mapOf(A, true),
+                                                      setOf(A),
                                                       setOf(),
                                                       setOf(A));
 
@@ -165,6 +178,7 @@ public class FeatureFlagsTest {
     UpdateResult result = FeatureFlags.updateInternal(mapOf(),
                                                       mapOf(A, false),
                                                       mapOf(A, false),
+                                                      setOf(A),
                                                       setOf(),
                                                       setOf(A));
 
@@ -178,6 +192,7 @@ public class FeatureFlagsTest {
                                                       mapOf(A, true),
                                                       mapOf(A, true),
                                                       setOf(A),
+                                                      setOf(A),
                                                       setOf(A));
 
     assertEquals(mapOf(A, true), result.getMemory());
@@ -189,6 +204,7 @@ public class FeatureFlagsTest {
     UpdateResult result = FeatureFlags.updateInternal(mapOf(),
                                                       mapOf(A, false),
                                                       mapOf(A, false),
+                                                      setOf(A),
                                                       setOf(A),
                                                       setOf(A));
 
@@ -202,6 +218,7 @@ public class FeatureFlagsTest {
                                                             B, false),
                                                       mapOf(),
                                                       mapOf(),
+                                                      setOf(A, B),
                                                       setOf(),
                                                       setOf());
 
@@ -217,6 +234,7 @@ public class FeatureFlagsTest {
                                                             B, true),
                                                       mapOf(A, true,
                                                             B, true),
+                                                      setOf(A, B),
                                                       setOf(),
                                                       setOf());
 
