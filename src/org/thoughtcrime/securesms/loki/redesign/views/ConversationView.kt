@@ -49,11 +49,16 @@ class ConversationView : LinearLayout {
         populateUserHexEncodedPublicKeyCacheIfNeeded(thread.threadId, context) // FIXME: This is a terrible place to do this
         unreadMessagesIndicatorView.visibility = if (thread.unreadCount > 0) View.VISIBLE else View.INVISIBLE
         if (thread.recipient.isGroupRecipient) {
-            val users = LokiAPI.userHexEncodedPublicKeyCache[thread.threadId]?.toList() ?: listOf()
-            val randomUsers = users.sorted() // Sort to provide a level of stability
-            profilePictureView.hexEncodedPublicKey = randomUsers.getOrNull(0) ?: ""
-            profilePictureView.additionalHexEncodedPublicKey = randomUsers.getOrNull(1) ?: ""
-            profilePictureView.isRSSFeed = thread.recipient.name == "Loki News" || thread.recipient.name == "Session Updates"
+            if ("Session Public Chat" == thread.recipient.name) {
+                profilePictureView.hexEncodedPublicKey = ""
+                profilePictureView.isRSSFeed = true
+            } else {
+                val users = LokiAPI.userHexEncodedPublicKeyCache[thread.threadId]?.toList() ?: listOf()
+                val randomUsers = users.sorted() // Sort to provide a level of stability
+                profilePictureView.hexEncodedPublicKey = randomUsers.getOrNull(0) ?: ""
+                profilePictureView.additionalHexEncodedPublicKey = randomUsers.getOrNull(1) ?: ""
+                profilePictureView.isRSSFeed = thread.recipient.name == "Loki News" || thread.recipient.name == "Session Updates"
+            }
         } else {
             profilePictureView.hexEncodedPublicKey = thread.recipient.address.toString()
             profilePictureView.additionalHexEncodedPublicKey = null
