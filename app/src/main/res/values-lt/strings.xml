@@ -67,6 +67,7 @@
   <string name="AttachmentKeyboard_file">Failas</string>
   <string name="AttachmentKeyboard_contact">Adresatas</string>
   <string name="AttachmentKeyboard_location">Vieta</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal reikia leidimo rodyti jūsų nuotraukas ir vaizdo įrašus.</string>
   <string name="AttachmentKeyboard_give_access">Suteikti prieigą</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nerasta programėlė medijos pasirinkimui.</string>
@@ -498,7 +499,7 @@
   <string name="MediaOverviewActivity_image">Paveikslas</string>
   <string name="MediaOverviewActivity_sent_by_s">Išsiuntė %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Išsiuntėte jūs</string>
-  <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s išsiuntė žinutę %2$s.</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s išsiuntė naudotojui ar grupei %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Jūs išsiuntėte naudotojui %1$s</string>
   <!--Megaphones-->
   <string name="Megaphones_introducing_reactions">Pristatome reakcijas</string>
@@ -612,7 +613,6 @@
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Oi, atrodo, kad Play Store programėlė nėra įdiegta jūsų įrenginyje.</string>
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Visi %1$d</string>
-  <!-- Removed by excludeNonTranslatables <string name="ReactionsBottomSheetDialogFragment_you">%1$s (Jūs)</string> -->
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--RecipientPreferencesActivity-->
@@ -1487,6 +1487,7 @@
   <string name="InsightsModalFragment__view_insights">Rodyti įžvalgas</string>
   <string name="FirstInviteReminder__title">Pakviesti į Signal</string>
   <string name="FirstInviteReminder__description">Jūs galėtumėte %1$d%% padidinti siunčiamų šifruotų žinučių skaičių</string>
+  <string name="SecondInviteReminder__title">Apsaugokite daugiau pokalbių</string>
   <string name="SecondInviteReminder__description">Pakviesti %1$s</string>
   <string name="InsightsReminder__view_insights">Rodyti įžvalgas</string>
   <string name="InsightsReminder__invite">Pakviesti</string>
@@ -1496,6 +1497,18 @@
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">Sukurti tekstinį PIN kodą</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">Sukurti skaitinį PIN kodą</string>
   <!--CreateKbsPinFragment-->
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
+    <item quantity="one">PIN kode privalo būti bent %1$d simbolis</item>
+    <item quantity="few">PIN kode privalo būti bent %1$d simboliai</item>
+    <item quantity="many">PIN kode privalo būti bent %1$d simbolių</item>
+    <item quantity="other">PIN kode privalo būti bent %1$d simbolis</item>
+  </plurals>
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
+    <item quantity="one">PIN kode privalo būti bent %1$d skaitmuo</item>
+    <item quantity="few">PIN kode privalo būti bent %1$d skaitmenys</item>
+    <item quantity="many">PIN kode privalo būti bent %1$d skaitmenų</item>
+    <item quantity="other">PIN kode privalo būti bent %1$d skaitmuo</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Sukurti naują PIN kodą</string>
   <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
     <item quantity="one">Kadangi šis įrenginys yra registruotas, galite pasirinkti naują PIN kodą. Jei pamiršite savo PIN kodą, turėsite laukti %1$d dieną, kol galėsite vėl registruoti.</item>
@@ -1547,11 +1560,23 @@
   <string name="RegistrationLockFragment__incorrect_pin">Neteisingas PIN</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Pamiršote savo PIN?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Liko tik keli bandymai!</string>
+  <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
+    <item quantity="one">Dėl jūsų privatumo ir saugumo, nėra jokio būdo atkurti savo PIN kodą. Jei negalėsite prisiminti savo PIN kodą, po %1$d dienos neveiklumo galėsite jį iš naujo patvirtinti naudodami SMS žinutę. Tokiu atveju jūsų paskyra bus išvalyta, o visas turinys ištrintas.</item>
+    <item quantity="few">Dėl jūsų privatumo ir saugumo, nėra jokio būdo atkurti savo PIN kodą. Jei negalėsite prisiminti savo PIN kodą, po %1$d dienų neveiklumo galėsite jį iš naujo patvirtinti naudodami SMS žinutę. Tokiu atveju jūsų paskyra bus išvalyta, o visas turinys ištrintas.</item>
+    <item quantity="many">Dėl jūsų privatumo ir saugumo, nėra jokio būdo atkurti savo PIN kodą. Jei negalėsite prisiminti savo PIN kodą, po %1$d dienų neveiklumo galėsite jį iš naujo patvirtinti naudodami SMS žinutę. Tokiu atveju jūsų paskyra bus išvalyta, o visas turinys ištrintas.</item>
+    <item quantity="other">Dėl jūsų privatumo ir saugumo, nėra jokio būdo atkurti savo PIN kodą. Jei negalėsite prisiminti savo PIN kodą, po %1$d dienos neveiklumo galėsite jį iš naujo patvirtinti naudodami SMS žinutę. Tokiu atveju jūsų paskyra bus išvalyta, o visas turinys ištrintas.</item>
+  </plurals>
   <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
     <item quantity="one">Neteisingas PIN kodas. Liko %1$d bandymas.</item>
     <item quantity="few">Neteisingas PIN kodas. Liko %1$d bandymai.</item>
     <item quantity="many">Neteisingas PIN kodas. Liko %1$d bandymų.</item>
     <item quantity="other">Neteisingas PIN kodas. Liko %1$d bandymas.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
+    <item quantity="one">Jei išnaudosite visus bandymus, jūsų paskyra bus užrakinta %1$d dienai. Po %1$d dienos neveiklumo galėsite iš naujo registruotis be savo PIN kodo. Jūsų paskyra bus išvalyta, o visas turinys ištrintas.</item>
+    <item quantity="few">Jei išnaudosite visus bandymus, jūsų paskyra bus užrakinta %1$d dienoms. Po %1$d dienų neveiklumo galėsite iš naujo registruotis be savo PIN kodo. Jūsų paskyra bus išvalyta, o visas turinys ištrintas.</item>
+    <item quantity="many">Jei išnaudosite visus bandymus, jūsų paskyra bus užrakinta %1$d dienų. Po %1$d dienų neveiklumo galėsite iš naujo registruotis be savo PIN kodo. Jūsų paskyra bus išvalyta, o visas turinys ištrintas.</item>
+    <item quantity="other">Jei išnaudosite visus bandymus, jūsų paskyra bus užrakinta %1$d dienai. Po %1$d dienos neveiklumo galėsite iš naujo registruotis be savo PIN kodo. Jūsų paskyra bus išvalyta, o visas turinys ištrintas.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
     <item quantity="one">Jums liko %1$d bandymas.</item>
@@ -1572,6 +1597,8 @@
   <string name="KbsMegaphone__introducing_pins">Pristatome PIN kodus</string>
   <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Dabar, jūsų registracijos užraktas yra vadinamas PIN kodu. Jo atnaujinimas trunka tik keletą sekundžių.</string>
   <string name="KbsMegaphone__update_pin">Atnaujinti PIN kodą</string>
+  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Priminsime jums vėliau. PIN kodo sukūrimas po %1$d dienų taps privalomu.</string>
+  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Priminsime jums vėliau. PIN kodo patvirtinimas po %1$d dienų taps privalomu.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Perdavimo piktograma</string>
   <string name="ConversationListFragment_loading">Įkeliama…</string>
@@ -1596,6 +1623,8 @@
   <string name="preferences_chats__chat_backups">Pokalbių atsarginės kopijos</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Daryti pokalbių atsargines kopijas į išorinę saugyklą</string>
   <string name="preferences_chats__create_backup">Daryti atsarginę kopiją</string>
+  <string name="preferences_chats__verify_backup_passphrase">Patikrinti atsarginės kopijos slaptafrazę</string>
+  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Išbandyti savo atsarginės kopijos slaptafrazę ir patikrinti ar ji sutampa</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Įveskite atsarginės kopijos slaptafrazę</string>
   <string name="RegistrationActivity_restore">Atkurti</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Nepavyksta importuoti atsarginių kopijų iš naujesnių Signal versijų</string>
@@ -1613,7 +1642,9 @@
   <string name="BackupDialog_disable_and_delete_all_local_backups">Išjungti ir ištrinti visas vietines atsargines kopijas?</string>
   <string name="BackupDialog_delete_backups_statement">Ištrinti atsargines kopijas</string>
   <string name="BackupDialog_copied_to_clipboard">Nukopijuota į iškarpinę</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">Norėdami patikrinti, įveskite atsarginės kopijos slaptafrazę</string>
   <string name="BackupDialog_verify">Patvirtinti</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Jūs sėkmingai įvedėte savo atsarginės kopijos slaptafrazę</string>
   <string name="BackupDialog_passphrase_was_not_correct">Slaptafrazė buvo neteisinga</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Norint daryti atsargines kopijas, Signal reikia išorinės saugyklos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"Saugyklą\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Paskiausia atsarginė kopija: %s</string>
@@ -1649,6 +1680,7 @@
   <string name="preferences_app_protection__registration_lock_pin">Registracijos užrakto PIN</string>
   <string name="preferences_app_protection__registration_lock">Registracijos užraktas</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Privalote įvesti savo Registracijos užrakto PIN</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Jūsų PIN kode yra bent %d skaitmenys ar simboliai</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Neteisingas Registracijojs užrakto PIN</string>
   <string name="RegistrationActivity_too_many_attempts">Per daug bandymų</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Jūs atlikote per daug neteisingų Registracijos užrakto PIN bandymų. Po vienos dienos bandykite dar kartą.</string>

@@ -568,6 +568,7 @@ Signal inahitaji ruhusa ya Kamera ili kuskani msimbo wa QR, lakini imekataliwa k
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Duh, programu ya Play Store inaonekana haijasakinishwa kwenye kifaa chako.</string>
   <!--ReactionsBottomSheetDialogFragment-->
   <!--ReactionsConversationView-->
+  <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Zuia mwasiliani huyu?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Hautapokea tena ujumbe na simu kutoka kwa mwasiliani huyu</string>
@@ -1521,6 +1522,7 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="preferences_app_protection__signal_pin">Nenosiri la Signal</string>
   <string name="preferences_app_protection__pin">Nenosiri</string>
   <string name="preferences_app_protection__change">Badilisha</string>
+  <string name="preferences_app_protection__create">Unda</string>
   <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Nenosiri lako linaongeza safu mpya ya usalama na linahifadhi nakili ya akaunti yako. Utaitishwa utakaposajili nambari yako ya simu kwenye Signal. Ukisahau Nenosiri lako, utafungiwa nje ya akaunti yako kwa siku saba.</string>
   <string name="AppProtectionPreferenceFragment_none">Hakuna</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Nambari ya PIN ya Usajili si sawa na msimbo wa uthibitisho wa SMS unayopokea tu. Tafadhali ingiza PIN uliyoiweka hapo awali katika programu.</string>

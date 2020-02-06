@@ -569,7 +569,6 @@
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Hëm, aplikacioni Play Store s\’duket të jetë i instaluar në pajisjen tuaj.</string>
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Krejt %1$d</string>
-  <!-- Removed by excludeNonTranslatables <string name="ReactionsBottomSheetDialogFragment_you">%1$s (Ju)</string> -->
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--RecipientPreferencesActivity-->

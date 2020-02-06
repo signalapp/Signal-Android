@@ -442,6 +442,8 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Dikirim oleh %1$s untuk %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Dikirim oleh Anda untuk %1$s</string>
   <!--Megaphones-->
+  <string name="Megaphones_introducing_reactions">Memperkenalkan Reaksi</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Ketuk dan tahan pesan manapun untuk langsung membagikan perasaanmu.</string>
   <string name="Megaphones_remind_me_later">Ingatkan saya nanti</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Panggilan Signal berlangsung</string>
@@ -789,6 +791,13 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontak</string>
   <string name="MessageNotifier_reacted_s_to_s">Menanggapi %1$s ke: \"%2$s\".</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">Bereaksi %1$sterhadap video Anda.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">Bereaksi %1$s terhadap gambar Anda.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">Bereaksi %1$s terhadap berkas Anda.</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">Bereaksi %1$s terhadap audio Anda.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Bereaksi %1$s terhadap foto sekali-lihat Anda.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Bereaksi %1$s terhadap video sekali-lihat Anda.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">Bereaksi %1$s terhadap stiker Anda.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Standar</string>
   <string name="NotificationChannel_calls">Panggilan</string>

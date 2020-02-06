@@ -571,7 +571,6 @@
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Oops, sembra che l\'app del Play Store non sia installata sul tuo dispositivo.</string>
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Tutte %1$d</string>
-  <!-- Removed by excludeNonTranslatables <string name="ReactionsBottomSheetDialogFragment_you">%1$s (Tu)</string> -->
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--RecipientPreferencesActivity-->
@@ -596,7 +595,7 @@
   <string name="RedPhone_answering">In risposta</string>
   <string name="RedPhone_ending_call">Chiamata in chiusura</string>
   <string name="RedPhone_dialing">Composizione numero</string>
-  <string name="RedPhone_ringing">Suona</string>
+  <string name="RedPhone_ringing">Sta squillando</string>
   <string name="RedPhone_busy">Occupato</string>
   <string name="RedPhone_connected">Connesso</string>
   <string name="RedPhone_recipient_unavailable">Destinatario non disponibile</string>
@@ -1259,8 +1258,8 @@
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Se gli indicatori di scrittura sono disabilitati, non sarai in grado di vedere quando gli altri utenti stanno digitando.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Richiedi alla tastiera di disattivare l\'apprendimento delle parole digitate</string>
   <string name="preferences_app_protection__blocked_contacts">Contatti bloccati</string>
-  <string name="preferences_chats__when_using_mobile_data">Su rete cellulare</string>
-  <string name="preferences_chats__when_using_wifi">Su Wi-Fi</string>
+  <string name="preferences_chats__when_using_mobile_data">Via rete cellulare</string>
+  <string name="preferences_chats__when_using_wifi">Via Wi-Fi</string>
   <string name="preferences_chats__when_roaming">In roaming</string>
   <string name="preferences_chats__media_auto_download">Download automatico file</string>
   <string name="preferences_chats__message_trimming">Cancellazione messaggi</string>
@@ -1286,7 +1285,7 @@
   <string name="preferences_chats__show_invitation_prompts">Mostra i messaggi di invito</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Visualizza messaggio di invito per i contatti senza Signal</string>
   <string name="preferences_chats__message_text_size">Dimensione carattere messaggio</string>
-  <string name="preferences_events__contact_joined_signal">Quando un nuovo contatto si unisce a Signal</string>
+  <string name="preferences_events__contact_joined_signal">Quando un contatto si unisce a Signal</string>
   <string name="preferences_notifications__priority">Priorità</string>
   <string name="preferences_communication__category_sealed_sender">Mittente sigillato</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Mostra indicatori</string>
@@ -1384,7 +1383,7 @@
   <string name="reminder_header_sms_import_title">Importa gli SMS di sistema</string>
   <string name="reminder_header_sms_import_text">Tocca per copiare i messaggi SMS del tuo telefono nel database criptato di Signal.</string>
   <string name="reminder_header_push_title">Attiva i messaggi e le chiamate con Signal</string>
-  <string name="reminder_header_push_text">Migliora la tua esperienza messaggi.</string>
+  <string name="reminder_header_push_text">Migliora la tua esperienza nel comunicare.</string>
   <string name="reminder_header_invite_title">Invita su Signal</string>
   <string name="reminder_header_invite_text">Porta la tua conversazione con %1$s ad un nuovo livello.</string>
   <string name="reminder_header_share_title">Invita i tuoi amici!</string>

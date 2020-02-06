@@ -61,6 +61,8 @@
   <string name="AttachmentKeyboard_file">Fil</string>
   <string name="AttachmentKeyboard_contact">Kontakt</string>
   <string name="AttachmentKeyboard_location">Lokation</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal kræver adgang for at vise dine billeder og videoer</string>
+  <string name="AttachmentKeyboard_give_access">Giv adgang</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Ingen app tilgængelig til valg af data</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal kræver tilladelse til at tilgå din hukommelse, for at kunne vedhæfte billeder, videoer eller lydfiler, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Hukommelse\"</string>
@@ -1433,6 +1435,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <!--CreateKbsPinFragment-->
   <string name="CreateKbsPinFragment__create_a_new_pin">Opret en ny PIN</string>
   <string name="CreateKbsPinFragment__create_your_pin">Opret din PIN</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PINs tilføjer et ekstra lag af sikkerhed til den konto. Det er vigtigt at huske din PIN, da den ikke kan gendannes</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN´s passer ikke. Prøv igen</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Bekræft din PIN</string>
@@ -1443,8 +1446,11 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="ConfirmKbsPinFragment__creating_pin">Opretter PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Introducerer PIN´s</string>
+  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">PINs tilføjer et ekstra lag af sikkerhed til din konto. Opret en nu</string>
   <string name="KbsSplashFragment__learn_more">Lær mere</string>
+  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registreringsnøgle = PIN</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Din registreringskode kaldes nu en PIN, og den gør mere. Opdater den nu</string>
   <string name="KbsSplashFragment__read_more_about_pins">Læs mere om PIN´s</string>
   <string name="KbsSplashFragment__update_pin">Opdatér PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Opret din PIN</string>
@@ -1457,8 +1463,10 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="KbsReminderDialog__incorrect_pin_try_again">Forkert PIN. Prøv igen</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Konto låst</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Din konto er blevet låst for at beskytte din konto og privatliv. Eftere %1$d dages inaktivitet på din konto, vil det igen blive muligt at genregistrere dette mobilnummer uden PIN er nødvendigt. Alt indhold vil blive slettet</string>
   <string name="AccountLockedFragment__next">Næste</string>
   <string name="AccountLockedFragment__learn_more">Lær mere</string>
+  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Skriv din PIN</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Skriv den PIN du oprettede til din konto. Den er anderledes end din SMS verifikationskode</string>
@@ -1475,7 +1483,10 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">PINs tilføjer et ekstra lag af sikkerhed til din Signal konto</string>
   <string name="KbsMegaphone__create_pin">Opret PIN</string>
   <string name="KbsMegaphone__introducing_pins">Introducerer PIN´s</string>
+  <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Din registreringskode kaldes nu en PIN. Opdater den på få sekunder</string>
   <string name="KbsMegaphone__update_pin">Opdatér PIN</string>
+  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Du vil blive påmindet senere. Oprettelse af PIN vil blive krævet om %1$d dage</string>
+  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Du vil blive påmindet senere. Bekræftelse af din PIN vil blive krævet om %1$d dage</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport ikon</string>
   <string name="ConversationListFragment_loading">Henter…</string>
@@ -1500,6 +1511,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="preferences_chats__chat_backups">Chat backups</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Backup chats til ekstern placering</string>
   <string name="preferences_chats__create_backup">Opret backup</string>
+  <string name="preferences_chats__verify_backup_passphrase">Verificer kodeord for backup</string>
+  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Test dit kodeord for backup og verificer at det virker</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Skriv kodeord for backup</string>
   <string name="RegistrationActivity_restore">Gendan</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Kan ikke importere backups fra nyere versioner af Signal</string>
@@ -1517,7 +1530,10 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="BackupDialog_disable_and_delete_all_local_backups">Deaktivér og slet alle lokale backup\'s?</string>
   <string name="BackupDialog_delete_backups_statement">Slet backup\'s</string>
   <string name="BackupDialog_copied_to_clipboard">Kopieret til udklipsholder</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">Skriv dit kodeord for backup for verificering</string>
   <string name="BackupDialog_verify">Verificér</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Dit kodeord for backup er oprettet</string>
+  <string name="BackupDialog_passphrase_was_not_correct">Forkert kodeord</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal kræver tilladelse til at tilgå ekstern placering for at oprette backups, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Hukommelse\"</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Sidste backup: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Pågående</string>
@@ -1552,6 +1568,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="preferences_app_protection__registration_lock_pin">Registreringskode</string>
   <string name="preferences_app_protection__registration_lock">Registreringslås</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Du skal indtaste din registreringskode</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Din PIN består af mindst %d tal eller bogstaver</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Forkert registreringskode</string>
   <string name="RegistrationActivity_too_many_attempts">For mange forsøg</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Du har skrevet den forkerte sikkerhedskode (PIN) for mange gange. Venligst vent én dag og prøv igen</string>

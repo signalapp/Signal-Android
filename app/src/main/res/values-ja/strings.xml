@@ -529,45 +529,44 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">この会話内で送受信されるメッセージは閲覧後 %s で消えます。</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">パスフレーズを入力してください</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Signalアイコン</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Signal アイコン</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">パスフレーズを設定する</string>
-  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">不正なパスフレーズです！</string>
-  <string name="PassphrasePromptActivity_unlock_signal">Signalのロックを解除する</string>
+  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">パスフレーズが無効です！</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Signal のロックを解除する</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">地図</string>
   <string name="PlacePickerActivity_not_a_valid_address">無効なアドレスです</string>
-  <string name="PlacePickerActivity_drop_pin">ピンを刺す</string>
+  <string name="PlacePickerActivity_drop_pin">ピン止めする</string>
   <string name="PlacePickerActivity_accept_address">アドレスを受け入れる</string>
   <!--PlayServicesProblemFragment-->
-  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">インストールされているGoogle Play開発者サービスのバージョンは正しく動作していません。Google Play開発者サービスを再インストールして再度試してください。</string>
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">インストールされている Google Play Service のバージョンは正しく動作していません。再インストールしてからもう一度お試しください。</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">アプリを評価</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">このアプリが気に入ったら、評価アンケートへのご協力をお願いします。</string>
   <string name="RatingManager_rate_now">評価する！</string>
-  <string name="RatingManager_no_thanks">しません</string>
-  <string name="RatingManager_later">後で</string>
-  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">おっと、Playストアアプリはこのデバイスにインストールされていないようです。</string>
+  <string name="RatingManager_no_thanks">今はしない</string>
+  <string name="RatingManager_later">後でする</string>
+  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Play Store アプリはこのデバイスにインストールされていないようです。</string>
   <!--ReactionsBottomSheetDialogFragment-->
-  <string name="ReactionsBottomSheetDialogFragment_all">すべて %1$d</string>
-  <!-- Removed by excludeNonTranslatables <string name="ReactionsBottomSheetDialogFragment_you">%1$s (あなた)</string> -->
+  <string name="ReactionsBottomSheetDialogFragment_all">絵文字合計 %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">この連絡先をブロックしますか？</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">この連絡先からメッセージや通話を受け取ることはなくなります。</string>
+  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">今後この連絡先からはメッセージや通話を受信しなくなります。</string>
   <string name="RecipientPreferenceActivity_block_and_leave_group">このグループを抜けてブロックしますか？</string>
   <string name="RecipientPreferenceActivity_block_group">このグループをブロックしますか？</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group_description">このグループからメッセージや通知を受け取ることはなくなります。</string>
-  <string name="RecipientPreferenceActivity_block">ブロックする</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group_description">今後このグループからはメッセージや更新を受信しなくなります。</string>
+  <string name="RecipientPreferenceActivity_block">ブロック</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">この連絡先のブロックを解除しますか？</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">この連絡先からのメッセージや通話を受信できるようになります。</string>
   <string name="RecipientPreferenceActivity_unblock_this_group_question">このグループのブロックを解除しますか？</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_description">既存のメンバーは、あなたをグループに再加入させることができるようになります。</string>
-  <string name="RecipientPreferenceActivity_error_leaving_group">グループ脱退でエラー</string>
-  <string name="RecipientPreferenceActivity_unblock">ブロックを解除する</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_description">既存のメンバーはもう一度あなたをグループに追加できるようになります。</string>
+  <string name="RecipientPreferenceActivity_error_leaving_group">グループを抜ける際にエラーが発生しました</string>
+  <string name="RecipientPreferenceActivity_unblock">ブロックを解除</string>
   <string name="RecipientPreferenceActivity_enabled">有効</string>
   <string name="RecipientPreferenceActivity_disabled">無効</string>
-  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">メッセージが１つでも送信または受信されると利用可能になります</string>
+  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">メッセージが送信または受信され次第利用可能になります。</string>
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">無名グループ</string>
   <!--RedPhone-->
@@ -579,8 +578,8 @@
   <string name="RedPhone_connected">接続完了</string>
   <string name="RedPhone_recipient_unavailable">応答なし</string>
   <string name="RedPhone_network_failed">ネットワークエラー！</string>
-  <string name="RedPhone_number_not_registered">未登録番号</string>
-  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">ダイヤル先は安全な音声通話をサポートしていません！</string>
+  <string name="RedPhone_number_not_registered">未登録番号です！</string>
+  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">ダイヤル先は保護された音声通話に対応していません！</string>
   <string name="RedPhone_got_it">分かりました</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">国を選択してください</string>
@@ -588,7 +587,7 @@
   <string name="RegistrationActivity_you_must_specify_your_phone_number">電話番号を入力してください</string>
   <string name="RegistrationActivity_invalid_number">無効な番号</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">指定された番号 (%s) は無効です。</string>
-  <string name="RegistrationActivity_missing_google_play_services">Google Play開発者サービスがありません</string>
+  <string name="RegistrationActivity_missing_google_play_services">Google Play Services がありません</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">この端末にはGoogle Play開発者サービスがありません。Signalは使用できますが、信頼性や性能は下がる可能性があります。\n\n上級者でない方や、メーカー公式のAndroidをご利用の方、何かの間違いだと思う方などは support@signal.org まで連絡してください。</string>
   <string name="RegistrationActivity_i_understand">分かりました</string>
   <string name="RegistrationActivity_play_services_error">Google Play開発者サービスのエラー</string>

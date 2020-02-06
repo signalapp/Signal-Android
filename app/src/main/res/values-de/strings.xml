@@ -15,12 +15,12 @@
   <string name="ApplicationPreferencesActivity_currently_s">Derzeit: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du hast noch keine Passphrase festgelegt!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">%d Nachricht je Unterhaltung</item>
-    <item quantity="other">%d Nachrichten je Unterhaltung</item>
+    <item quantity="one">%d Nachricht je Unterhaltung</item>
+    <item quantity="other">%d Nachrichten je Unterhaltung</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Alle alten Nachrichten löschen?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
-    <item quantity="one">Dies löscht sofort alle Nachrichten bis auf die letzte Nachricht pro Unterhaltung.</item>
+    <item quantity="one">Dies löscht sofort alle Nachrichten bis auf die letzte Nachricht je Unterhaltung.</item>
     <item quantity="other">Dies löscht sofort alle Nachrichten bis auf die letzten %d Nachrichten je Unterhaltung.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Löschen</string>
@@ -97,7 +97,7 @@
   <string name="CameraContacts_recent_contacts">Letzte Kontakte</string>
   <string name="CameraContacts_signal_contacts">Signal-Kontakte</string>
   <string name="CameraContacts_signal_groups">Signal-Gruppen</string>
-  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Du kannst mit maximal %d Unterhaltungen teilen.</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Du kannst mit maximal %d Unterhaltungen teilen.</string>
   <string name="CameraContacts_select_signal_recipients">Signal-Empfänger auswählen</string>
   <string name="CameraContacts_no_signal_contacts">Keine Signal-Kontakte</string>
   <string name="CameraContacts_you_can_only_use_the_camera_button">Mit der Kameraschaltfläche kannst du Fotos nur an Signal-Kontakte senden.</string>
@@ -221,7 +221,7 @@
   <string name="ConversationFragment_save_to_sd_card">Im Gerätespeicher speichern?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="one">Wenn du diesen Medieninhalt im Gerätespeicher speicherst, können installierte Apps darauf zugreifen.\n\nTrotzdem fortfahren?</item>
-    <item quantity="other">Wenn du alle %1$d Medieninhalte im Gerätespeicher speicherst, können installierte Apps darauf zugreifen.\n\nTrotzdem fortfahren?</item>
+    <item quantity="other">Wenn du alle %1$d Medieninhalte im Gerätespeicher speicherst, können installierte Apps darauf zugreifen.\n\nTrotzdem fortfahren?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">Fehler beim Speichern des Anhangs im Gerätespeicher!</item>
@@ -230,11 +230,11 @@
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kein Schreibzugriff auf Gerätespeicher!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Anhang speichern</item>
-    <item quantity="other">%1$d Anhänge speichern</item>
+    <item quantity="other">%1$d Anhänge speichern</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
     <item quantity="one">Anhang wird im Gerätespeicher gespeichert …</item>
-    <item quantity="other">%1$d Anhänge werden im Gerätespeicher gespeichert …</item>
+    <item quantity="other">%1$d Anhänge werden im Gerätespeicher gespeichert …</item>
   </plurals>
   <string name="ConversationFragment_pending">Ausstehend …</string>
   <string name="ConversationFragment_push">Internet (Signal)</string>
@@ -265,12 +265,12 @@
   <string name="ConversationListFragment_deleting_selected_conversations">Ausgewählte Unterhaltungen werden gelöscht …</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">Unterhaltung archiviert</item>
-    <item quantity="other">%d Unterhaltungen archiviert</item>
+    <item quantity="other">%d Unterhaltungen archiviert</item>
   </plurals>
   <string name="ConversationListFragment_undo">RÜCKGÄNGIG</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Unterhaltung in Eingang verschoben</item>
-    <item quantity="other">%d Unterhaltungen in Eingang verschoben</item>
+    <item quantity="other">%d Unterhaltungen in Eingang verschoben</item>
   </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Schlüsselaustauschnachricht</string>
@@ -396,12 +396,12 @@
   <string name="InviteActivity_invitations_sent">Einladungen versendet!</string>
   <string name="InviteActivity_invite_to_signal">Zu Signal einladen</string>
   <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">SMS AN %d FREUND SENDEN</item>
-    <item quantity="other">SMS AN %d FREUNDE SENDEN</item>
+    <item quantity="one">SMS AN %d FREUND SENDEN</item>
+    <item quantity="other">SMS AN %d FREUNDE SENDEN</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">%d SMS-Einladung senden?</item>
-    <item quantity="other">%d SMS-Einladungen senden?</item>
+    <item quantity="one">%d SMS-Einladung senden?</item>
+    <item quantity="other">%d SMS-Einladungen senden?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Lass uns zu »Signal« wechseln: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Es sieht so aus, als hättest du keine zum Teilen geeignete Apps installiert.</string>
@@ -492,8 +492,8 @@
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal benötigt Zugriff auf deine Kontakte, um sie anzeigen zu können.</string>
   <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal benötigt die Berechtigung »Kontakte« für das Anzeigen deiner Kontakte, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kontakte«.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
-    <item quantity="one">Du kannst nicht mehr als %d Element teilen.</item>
-    <item quantity="other">Du kannst nicht mehr als %d Elemente teilen.</item>
+    <item quantity="one">Du kannst nicht mehr als %d Element teilen.</item>
+    <item quantity="other">Du kannst nicht mehr als %d Elemente teilen.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">Empfänger auswählen</string>
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Hier antippen, um diese Nachricht nach dem Ansehen verschwinden zu lassen.</string>
@@ -569,7 +569,6 @@
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Hoppla, die Play-Store-App scheint nicht auf deinem Gerät installiert zu sein.</string>
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Alle %1$d</string>
-  <!-- Removed by excludeNonTranslatables <string name="ReactionsBottomSheetDialogFragment_you">%1$s (Du)</string> -->
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--RecipientPreferencesActivity-->
@@ -621,8 +620,8 @@
   <string name="RegistrationActivity_unable_to_connect_to_service">Keine Verbindung zum Dienst möglich. Bitte überprüfe deine Netzverbindung und versuche es erneut.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Zum einfachen Verifizieren deiner Rufnummer kann Signal deinen Verifikationscode ermitteln, falls du Signal Zugriff auf deine SMS-Nachrichten gewährst.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
-    <item quantity="one">Du bist jetzt %d Schritt davon entfernt, ein Diagnoseprotokoll zu übermitteln.</item>
-    <item quantity="other">Nur noch %d Schritte, und du kannst ein Diagnoseprotokoll übermitteln.</item>
+    <item quantity="one">Nur noch %d Schritt, und du kannst ein Diagnoseprotokoll übermitteln.</item>
+    <item quantity="other">Nur noch %d Schritte, und du kannst ein Diagnoseprotokoll übermitteln.</item>
   </plurals>
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Bist du ein Mensch?</string>
   <string name="RegistrationActivity_failed_to_verify_the_captcha">Captcha konnte nicht verifiziert werden</string>
@@ -1362,8 +1361,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Deine Signal-Version ist veraltet</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Deine Version von Signal wird in %d Tag ablaufen. Bitte antippen, um auf die neueste Version zu aktualisieren.</item>
-    <item quantity="other">Deine Version von Signal wird in %d Tagen ablaufen. Bitte antippen, um auf die neueste Version zu aktualisieren.</item>
+    <item quantity="one">Deine Version von Signal wird in %d Tag ablaufen. Bitte antippen, um auf die neueste Version zu aktualisieren.</item>
+    <item quantity="other">Deine Version von Signal wird in %d Tagen ablaufen. Bitte antippen, um auf die neueste Version zu aktualisieren.</item>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">Deine Version von Signal wird heute ablaufen. Bitte antippen, um auf die neueste Version zu aktualisieren.</string>
   <string name="reminder_header_expired_build">Deine Signal-Version ist abgelaufen!</string>
@@ -1481,8 +1480,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="RegistrationLockFragment__forgot_your_pin">PIN vergessen?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Du hast nur noch wenige Versuche!</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-    <item quantity="one">Zugunsten deiner Privatsphäre und Sicherheit kann deine PIN nicht wiederhergestellt werden. Falls du sie vergisst, kannst du dich nach %1$d Tag ohne Aktivität mittels SMS erneut verifizieren. Dein Konto wird dabei zurückgesetzt und alle Inhalte werden gelöscht.</item>
-    <item quantity="other">Zugunsten deiner Privatsphäre und Sicherheit kann deine PIN nicht wiederhergestellt werden. Falls du sie vergisst, kannst du dich nach %1$d Tagen ohne Aktivität mittels SMS erneut verifizieren. Dein Konto wird dabei zurückgesetzt und alle Inhalte werden gelöscht.</item>
+    <item quantity="one">Zugunsten deiner Privatsphäre und Sicherheit kann deine PIN nicht wiederhergestellt werden. Falls du sie vergisst, kannst du dich nach %1$d Tag ohne Aktivität mittels SMS erneut verifizieren. Dein Konto wird dabei zurückgesetzt und alle Inhalte werden gelöscht.</item>
+    <item quantity="other">Zugunsten deiner Privatsphäre und Sicherheit kann deine PIN nicht wiederhergestellt werden. Falls du sie vergisst, kannst du dich nach %1$d Tagen ohne Aktivität mittels SMS erneut verifizieren. Dein Konto wird dabei zurückgesetzt und alle Inhalte werden gelöscht.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
     <item quantity="one">Falsche PIN. %1$d verbleibender Versuch.</item>
@@ -1493,8 +1492,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
     <item quantity="other">Falls du alle Versuche aufbrauchst, wird dein Konto für %1$d Tage gesperrt. Nach %1$d Tagen ohne Aktivität kannst du dich ohne deine PIN erneut registrieren. Dein Konto wird dabei zurückgesetzt und alle Inhalte werden gelöscht.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
-    <item quantity="one">Du hast noch %1$d Versuch.</item>
-    <item quantity="other">Du hast noch %1$d Versuche.</item>
+    <item quantity="one">Du hast noch %1$d Versuch.</item>
+    <item quantity="other">Du hast noch %1$d Versuche.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__d_attempts_remaining">
     <item quantity="one">%1$d verbleibender Versuch.</item>
@@ -1596,7 +1595,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Du hast deine PIN für die Registrierungssperre zu oft falsch eingegeben. Bitte versuche es in einem Tag wieder.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Fehler beim Verbinden mit Dienst</string>
   <string name="RegistrationActivity_oh_no">Oh nein!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Ohne deine PIN für die Registrierungssperre kann diese Rufnummer erst 7 Tage nach der letzten Aktivität auf Signal wieder registriert werden. Es verbleiben noch %d Tage.</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Ohne deine PIN für die Registrierungssperre kann diese Rufnummer erst 7 Tage nach der letzten Aktivität auf Signal wieder registriert werden. Es verbleiben noch %d Tage.</string>
   <string name="RegistrationActivity_registration_lock_pin">PIN für Registrierungssperre</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Für diese Rufnummer ist eine Registrierungssperre aktiviert. Bitte gib die PIN für die Registrierungssperre ein.</string>
   <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Deine Rufnummer ist durch eine Registrierungssperre geschützt. Damit du die PIN für die Registrierungssperre nicht vergisst, fragt Signal regelmäßig nach ihr.</string>
@@ -1605,13 +1604,13 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Die Registrierungssperre hilft, deine Rufnummer vor unbefugten Registrierungsversuchen zu schützen. Du kannst diese Funktion jederzeit in den Datenschutzeinstellungen von Signal deaktivieren.</string>
   <string name="RegistrationLockDialog_registration_lock">Registrierungssperre</string>
   <string name="RegistrationLockDialog_enable">Aktivieren</string>
-  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">Die PIN für die Registrierungssperre muss aus mindestens %d Ziffern bestehen.</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">Die PIN für die Registrierungssperre muss aus mindestens %d Ziffern bestehen.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Die beiden PIN-Eingaben stimmen nicht überein.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Fehler beim Verbinden mit Dienst</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Registrierungssperre deaktivieren?</string>
   <string name="RegistrationLockDialog_disable">Deaktivieren</string>
   <string name="RegistrationActivity_pin_incorrect">PIN falsch</string>
-  <string name="RegistrationActivity_you_have_d_tries_remaining">Du hast noch %d Versuche</string>
+  <string name="RegistrationActivity_you_have_d_tries_remaining">Du hast noch %d Versuche</string>
   <string name="preferences_chats__backups">Datensicherungen</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal ist gesperrt</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">ZUM ENTSPERREN ANTIPPEN</string>

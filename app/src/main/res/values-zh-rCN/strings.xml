@@ -40,6 +40,7 @@
   <string name="ApplicationPreferencesActivity_Off">关</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">短信：%1$s，彩信：%2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">屏幕锁定：%1$s，注册锁定：%2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">屏幕锁定%1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">主题：%1$s，语言：%2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -57,6 +58,8 @@
   <string name="AttachmentKeyboard_file">文件</string>
   <string name="AttachmentKeyboard_contact">联系人</string>
   <string name="AttachmentKeyboard_location">位置</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal 需要访问你允许照片和视频的权限。</string>
+  <string name="AttachmentKeyboard_give_access">获取权限</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">未找到选择媒体的应用。</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal 需“存储”权限，来发送图片、视频和音频，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“存储”。</string>
@@ -439,6 +442,8 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">由 %1$s 发送至 %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">由您发送至 %1$s</string>
   <!--Megaphones-->
+  <string name="Megaphones_introducing_reactions">隆重推出“反应”功能</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">长按以分享这一刻你的感受。</string>
   <string name="Megaphones_remind_me_later">稍后提醒</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">正在处理 Signal 呼叫</string>
@@ -544,7 +549,9 @@
   <string name="RatingManager_later">稍后</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">糟糕, 你的设备上未安装 Google Play 商店。</string>
   <!--ReactionsBottomSheetDialogFragment-->
+  <string name="ReactionsBottomSheetDialogFragment_all">全部%1$d</string>
   <!--ReactionsConversationView-->
+  <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">屏蔽该联系人？</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">将不再接收该联系人的消息和呼叫。</string>
@@ -1394,8 +1401,18 @@
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">创建字母数字 PIN</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">时间数字 PIN</string>
   <!--CreateKbsPinFragment-->
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
+    <item quantity="other">PIN码至少得由%1$d个字母组成</item>
+  </plurals>
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
+    <item quantity="other">PIN码至少得由1$d个纯数字组成</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">新建 PIN</string>
+  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
+    <item quantity="other">因为这个设备已经登录过，你可以创建一个新的PIN码。如果你忘记你的PIN码，你可能需要等%1$d天来重新注册。</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">创建 PIN 密码</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PIN码可以为你的账户添加一层额外的保护。记住PIN码是很重要的，因为它是不能被找回的。</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN 不匹配，请重试。</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">确认你的 PIN。</string>
@@ -1403,10 +1420,14 @@
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN 没有保存。我们将稍后提示您创建 PIN。</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN 已创建。</string>
   <string name="ConfirmKbsPinFragment__re_enter_pin">重新输入 PIN</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">创建PIN码…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">推出 PIN 密码功能</string>
+  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">PIN可以为你的账户添加一层额外的保护。现在就创建一个吧。</string>
   <string name="KbsSplashFragment__learn_more">了解更多</string>
+  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">注册锁定 = PIN</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">你的登录锁现在叫做PIN码，但它不止如此。现在就创建一个吧。</string>
   <string name="KbsSplashFragment__read_more_about_pins">了解更多 PIN 信息。</string>
   <string name="KbsSplashFragment__update_pin">更新 PIN</string>
   <string name="KbsSplashFragment__create_your_pin">创建 PIN</string>
@@ -1419,8 +1440,10 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">PIN 错误，请重试。</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">帐户已锁定</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">你的账户已经锁定以保护你的安全及隐私。你的账户在%1$d天的不活跃之后，你可以在不需要PIN码的情况下用重新用手机号注册。不过所有的数据都会被删除。</string>
   <string name="AccountLockedFragment__next">下一步</string>
   <string name="AccountLockedFragment__learn_more">了解更多</string>
+  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">请输入 PIN</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">输入帐户的 PIN 密码。该密码不是短信验证码。</string>
@@ -1431,9 +1454,31 @@
   <string name="RegistrationLockFragment__forgot_pin">忘记 PIN？</string>
   <string name="RegistrationLockFragment__incorrect_pin">PIN 错误</string>
   <string name="RegistrationLockFragment__forgot_your_pin">忘记 PIN？</string>
+  <string name="RegistrationLockFragment__not_many_tries_left">可尝试的次数不多了！</string>
+  <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
+    <item quantity="other">为了保护你的隐私和安全，你无法找回你的PIN码。如果您记不住您的PIN码，你可以在%1$d天的账户不活跃后用短信重新验证。在这种情况下，你的账户会被抹除并且所有的信息都会被删除。</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
+    <item quantity="other">密码错误。还能尝试%1$d次。</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
+    <item quantity="other">如果尝试次数用尽，你的账户将会被锁定%1$d天。账户在%1$d天不活跃后，你可以在没有你的PIN码的情况下重新注册。你的账户会被抹除并且所有数据都会被删除。</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
+    <item quantity="other">你还能尝试%1$d次。</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__d_attempts_remaining">
+    <item quantity="other">还能尝试%1$d次。</item>
+  </plurals>
   <!--KBS Megaphone-->
-  <string name="KbsMegaphone__introducing_pins">推出 PIN 密码功能</string>
+  <string name="KbsMegaphone__create_a_pin">创建你的密码</string>
+  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">PIN码可以为你的账户添加一层额外的保护。</string>
+  <string name="KbsMegaphone__create_pin">创建密码</string>
+  <string name="KbsMegaphone__introducing_pins">隆重推出 PIN 密码功能</string>
+  <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">请把手机远离或靠近以扫描二维码。</string>
   <string name="KbsMegaphone__update_pin">更新 PIN</string>
+  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">稍后您会被提示。在%1$d天内会强制要求创建PIN码。</string>
+  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">稍后您会被提示。在%1$d天内会强制要求确认你的PIN码。</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">传输图标</string>
   <string name="ConversationListFragment_loading">正在加载…</string>
@@ -1458,6 +1503,8 @@
   <string name="preferences_chats__chat_backups">聊天备份</string>
   <string name="preferences_chats__backup_chats_to_external_storage">备份聊天至外部存储</string>
   <string name="preferences_chats__create_backup">创建备份</string>
+  <string name="preferences_chats__verify_backup_passphrase">验证备用密码短语</string>
+  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">验证你的备用密码短语并且确保它能够匹配</string>
   <string name="RegistrationActivity_enter_backup_passphrase">输入备份密码</string>
   <string name="RegistrationActivity_restore">恢复</string>
   <string name="RegistrationActivity_backup_failure_downgrade">无法从较新版本的 Signal 导入备份</string>
@@ -1475,7 +1522,10 @@
   <string name="BackupDialog_disable_and_delete_all_local_backups">禁用并删除全部本地备份？</string>
   <string name="BackupDialog_delete_backups_statement">删除备份</string>
   <string name="BackupDialog_copied_to_clipboard">已复制到剪切板</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">输入你的备用密码短语以验证</string>
   <string name="BackupDialog_verify">验证</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">你已经成功地输入了你的备用密码短语</string>
+  <string name="BackupDialog_passphrase_was_not_correct">密码短语错误</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal 需外部存储权限，来创建备份，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“存储”。</string>
   <string name="ChatsPreferenceFragment_last_backup_s">最近备份：%s</string>
   <string name="ChatsPreferenceFragment_in_progress">进行中</string>
@@ -1510,6 +1560,7 @@
   <string name="preferences_app_protection__registration_lock_pin">注册锁定 PIN</string>
   <string name="preferences_app_protection__registration_lock">注册锁定</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">必须输入注册锁定 PIN</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">您的密码必须是由至少%d位数字或字母组成</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">注册锁定 PIN 错误</string>
   <string name="RegistrationActivity_too_many_attempts">尝试次数过多</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">注册锁定 PIN 输入错误过多，请一天后重试。</string>
