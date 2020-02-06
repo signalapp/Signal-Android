@@ -458,6 +458,7 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Sendt av %1$s til %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Sendt av deg til %1$s</string>
   <!--Megaphones-->
+  <string name="Megaphones_introducing_reactions">Vi introduserer reaksjoner</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtale pågår</string>
   <string name="NotificationBarManager__establishing_signal_call">Setter opp Signal-anrop</string>
@@ -696,6 +697,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ThreadRecord_missed_call">Ubesvart anrop</string>
   <string name="ThreadRecord_media_message">Mediemelding</string>
   <string name="ThreadRecord_sticker">Klistremerke</string>
+  <string name="ThreadRecord_view_once_photo">Vis en gang bilde</string>
+  <string name="ThreadRecord_view_once_video">Vis en gang video</string>
+  <string name="ThreadRecord_view_once_media">Vis en gang media</string>
   <string name="ThreadRecord_s_is_on_signal"> %s er på Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Forsvinnende meldinger deaktivert</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Utløpstid for meldinger endret til %s</string>
@@ -786,6 +790,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MessageNotifier_mark_read">Merk som lest</string>
   <string name="MessageNotifier_media_message">Mediemelding</string>
   <string name="MessageNotifier_sticker">Klistremerke</string>
+  <string name="MessageNotifier_view_once_photo">Vis en gang bilde</string>
+  <string name="MessageNotifier_view_once_video">Vis en gang video</string>
   <string name="MessageNotifier_reply">Svar</string>
   <string name="MessageNotifier_signal_message">Signal-melding</string>
   <string name="MessageNotifier_unsecured_sms">Usikret SMS</string>
@@ -930,6 +936,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="QuoteView_audio">Lyd</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Bilde</string>
+  <string name="QuoteView_view_once_media">Vis en gang media</string>
   <string name="QuoteView_sticker">Klistremerke</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Deg</string>
@@ -1406,11 +1413,14 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Opprett PIN-koden</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Bekreft din PIN.</string>
+  <string name="ConfirmKbsPinFragment__pin_created">PIN laget.</string>
   <string name="ConfirmKbsPinFragment__re_enter_pin">Skriv inn PIN-koden på nytt</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Vi introduserer PIN-koder</string>
   <string name="KbsSplashFragment__learn_more">Lær mer</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registreringslås = PIN</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Din registreringskode kalles nå PIN, og den gjør mer. Oppdater den nå.</string>
+  <string name="KbsSplashFragment__update_pin">Oppdater PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Opprett PIN-koden</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Skriv inn din Signal PIN</string>
@@ -1428,7 +1438,12 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="RegistrationLockFragment__incorrect_pin">Feil PIN-kode</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Glemt PIN-koden din?</string>
   <!--KBS Megaphone-->
+  <string name="KbsMegaphone__create_a_pin">Lag en PIN</string>
+  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">En PIN gir din Signal konto et ekstra lag sikkerhet.</string>
+  <string name="KbsMegaphone__create_pin">Lag PIN</string>
   <string name="KbsMegaphone__introducing_pins">Vi introduserer PIN-koder</string>
+  <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Din registreringslås kalles nå PIN. Oppdatering tar noen sekunder.</string>
+  <string name="KbsMegaphone__update_pin">Oppdater PIN</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
   <string name="ConversationListFragment_loading">Laster…</string>

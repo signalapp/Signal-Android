@@ -61,6 +61,8 @@
   <string name="AttachmentKeyboard_file">Fájl</string>
   <string name="AttachmentKeyboard_contact">Névjegy</string>
   <string name="AttachmentKeyboard_location">Hely</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">A Signal-nak engedélyre van szüksége fotók és videók megjelenítéséhez.</string>
+  <string name="AttachmentKeyboard_give_access">Hozzáférés engedélyezése</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nem található alkalmazás médiafájl kiválasztásához.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">A Signal-nak szüksége van a Tárhely engedélyre, hogy fotókat, videókat vagy hangokat csatolhasson, de ez jelenleg meg van tagadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Tárhely\"-t.</string>
@@ -1473,6 +1475,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="KbsReminderDialog__incorrect_pin_try_again">Hibás PIN kód. Próbáld újra!</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Fiók zárolva</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Biztonságod és személyes adataid védelme érdekében fiókodat zároltuk. %1$d nap inaktivitást követően újraregisztrálhatod ezt a telefonszámot a PIN kód használata nélkül. Az összes adat törlésre kerül.</string>
   <string name="AccountLockedFragment__next">Tovább</string>
   <string name="AccountLockedFragment__learn_more">Tudj meg többet</string>
   <!--KbsLockFragment-->
@@ -1596,6 +1599,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences_app_protection__registration_lock_pin">Regisztrációs zár PIN kód</string>
   <string name="preferences_app_protection__registration_lock">Regisztrációs zár</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Meg kell adnod a regisztrációs zár PIN kódodat</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">A PIN kódnak legalább %d számjegyből vagy karakterből kell állnia.</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Hibás regisztrációs zár PIN kód</string>
   <string name="RegistrationActivity_too_many_attempts">Túl sok próbálkozás</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Túl sokszor próbáltad megadni regisztrációs zár PIN kódodat. Kérlek próbáld újra egy nap múlva!</string>

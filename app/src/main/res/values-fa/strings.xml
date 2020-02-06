@@ -33,7 +33,7 @@
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">غیرفعال کردن پیام‌ها و تماس‌های Signal از طریق لغو عضو‌‌یت از سرور. در آینده برای استفاده از Signal باید دوباره از طریق شماره‌تلفن خود ثبت‌نام کنید.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">خطا در اتصال به سرور!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">پیامک فعال شد</string>
-  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">برای تغییر برنامه پیامک پیش فرض خود لمس کنید</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">برای تغییر برنامهٔ پیامک پیش‌فرض خود لمس کنید</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">پیامک غیرفعال شد</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">برای قرار دادن Signal به برنامه پیامک پیش فرض خود لمس کنید</string>
   <string name="ApplicationPreferencesActivity_on">روشن</string>
@@ -42,6 +42,7 @@
   <string name="ApplicationPreferencesActivity_Off">خاموش</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">پیامک %1$s، فراپیام %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">قفل صفحه %1$s، قفل ثبت‌نام %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">قفل صفحه %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">قالب %1$s، زبان %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -56,10 +57,12 @@
   <string name="DraftDatabase_Draft_quote_snippet">(پاسخ)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">گالری</string>
-  <string name="AttachmentKeyboard_gif">جیف</string>
+  <string name="AttachmentKeyboard_gif">گیف</string>
   <string name="AttachmentKeyboard_file">فایل</string>
   <string name="AttachmentKeyboard_contact">مخاطب</string>
-  <string name="AttachmentKeyboard_location">موقعیت</string>
+  <string name="AttachmentKeyboard_location">مکان</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal به مجوز دسترسی برای نشان دادن عکس‌ها و ویدئوهای شما احتیاج دارد.</string>
+  <string name="AttachmentKeyboard_give_access">اجازهٔ دسترسی داده شود</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">برنامه‌ای برای انتخاب رسانه پیدا نشد.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal برای پیوست کردن فایل‌های تصویری و صوتی نیاز به دسترسی به حافظهٔ دارد اما این اجازه داده نشده است. لطفاً به منو تنظیمات برنامه‌ رفته، \" مجوزها\" را انتخاب کنید و \"حافظهٔ\" را فعال کنید.</string>
@@ -222,9 +225,9 @@
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">خطا در هنگام ذخیره‌ پیوست در حافظه!</item>
-    <item quantity="other">خطا در هنگام ذخیره پیوست ها در حافظهٔ!</item>
+    <item quantity="other">خطا در هنگام ذخیرهٔ پیوست‌ها در حافظه!</item>
   </plurals>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">قادر به ذخیره‌ سازی نیست!</string>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">قادر به ذخیره‌‌سازی نیست!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">در حال ذخیره پیوست</item>
     <item quantity="other">در حال ذخیره‌ %1$d پیوست</item>
@@ -459,6 +462,8 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">ارسال شده از طرف %1$s به %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">ارسال شده توسط شما به %1$s</string>
   <!--Megaphones-->
+  <string name="Megaphones_introducing_reactions">معرفی واکنش‌ها</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">با نگاه داشتن دست خود بر روی پیام‌ها احساس‌تان را در میان بگذارید.</string>
   <string name="Megaphones_remind_me_later">بعداً به من یادآوری کن</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">تماس Signal در جریان است</string>
@@ -564,7 +569,9 @@
   <string name="RatingManager_later">بعدا</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">اوه، به نظر می آید برنامه پلی استور روی دستگاه شما نصب نمی باشد.</string>
   <!--ReactionsBottomSheetDialogFragment-->
+  <string name="ReactionsBottomSheetDialogFragment_all">همهٔ %1$d</string>
   <!--ReactionsConversationView-->
+  <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">مسدود کردن این مخاطب؟</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">شما ديگر هیچ تماس و پيامی از این مخاطب دريافت نخواهید کرد.</string>
@@ -1223,7 +1230,7 @@
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">حذف خودکار پیام های قدیمی زمانی که یک مکالمه از طول مشخص شده بیشتر شد</string>
   <string name="preferences__delete_old_messages">حذف پیام‌ های قدیمی</string>
   <string name="preferences__chats">گپ ها و رسانه ها</string>
-  <string name="preferences__storage">حافظهٔ</string>
+  <string name="preferences__storage">حافظه</string>
   <string name="preferences__conversation_length_limit">محدودیت طول مکالمه</string>
   <string name="preferences__trim_all_conversations_now">حذف پیام‌های قدیمی، همین حالا</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">اسکن تمام مکالمه ها و اعمال محدودیت طول مکالمه</string>
@@ -1257,7 +1264,7 @@
   <string name="preferences_storage__videos">ویدئو‌ ها</string>
   <string name="preferences_storage__files">فایل‌ ها</string>
   <string name="preferences_storage__audio">صوت</string>
-  <string name="preferences_storage__review_storage">بازبینی حافظهٔ</string>
+  <string name="preferences_storage__review_storage">بازبینی حافظه</string>
   <string name="preferences_advanced__use_system_emoji">استفاده از شکلک‌ های سیستم</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">غیرفعال کردن پشتیبانی از شکلک‌ های داخل Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">گذراندن تمامی تماس‌ها از سرور Signal به منظور جلوگیری از آشکار شدن نشانی IP شما برای مخاطبانتان. فعال‌سازی این گزینه باعث کاهش کیفیت تماس می‌گردد.</string>
@@ -1395,26 +1402,26 @@
   <string name="trimmer__old_messages_successfully_deleted">پیام‌های قدیمی با موفقیت حذف شدند</string>
   <!--Insights-->
   <string name="Insights__percent">%</string>
-  <string name="Insights__title">بینش‌ ها</string>
-  <string name="InsightsDashboardFragment__title">بینش‌ ها</string>
+  <string name="Insights__title">بینش‌ها</string>
+  <string name="InsightsDashboardFragment__title">بینش‌ها</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">به صورت خودکار (پروتکل سیگنال) Signal Protocol، %1$d%% از پیام‌ های خروجی شما در %2$d روز گذشته محافظت کرده است. مکالمه های بین کاربران Signal همیشه به صورت سرتاسر رمزگذاری می شود.</string>
   <string name="InsightsDashboardFragment__boost_your_signal">تقویت Signal</string>
   <string name="InsightsDashboardFragment__not_enough_data">داده کافی وجود ندارد</string>
-  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">درصد بینش ها بر اساس تعداد پیام‌های خروجی در %1$d روز گذشته که حذف نشده اند یا ناپدید نشده اند محاسبه می شود.</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">درصد بینش‌ها بر اساس تعداد پیام‌های خروجی در %1$d روز گذشته که حذف نشده‌اند یا ناپدید نشده‌اند محاسبه می‌شود.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">شروع یک مکالمه</string>
   <string name="InsightsDashboardFragment__invite_your_contacts">ارتباط امن برقرار کنید و امکانات جدید که از محدودیت‌های پیامک رمزگذاری نشده فراتر می‌روند را با دعوت مخاطبان بیشتر به Signal فعال کنید.</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">این آمار ها به صورت محلی بر روی دستگاه شما تولید شده‌اند و فقط شما توانایی دیدن آن‌ ها را دارید. آن ها هیچوقت به جایی ارسال نمی شوند.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">پیام های رمزگذاری شده</string>
   <string name="InsightsDashboardFragment__cancel">لغو</string>
   <string name="InsightsDashboardFragment__send">ارسال</string>
-  <string name="InsightsModalFragment__title">معرفی بینش‌ ها</string>
+  <string name="InsightsModalFragment__title">معرفی بینش‌‌ها</string>
   <string name="InsightsModalFragment__description">ببینید چه تعداد از پیام‌های خروجی شما به صورت امن ارسال شده اند، سپس درصد Signal خود را با دعوت مخاطبان جدید تقویت کنید.</string>
-  <string name="InsightsModalFragment__view_insights">دیدن بینش‌ ها</string>
+  <string name="InsightsModalFragment__view_insights">دیدن بینش‌ها</string>
   <string name="FirstInviteReminder__title">دعوت به Signal</string>
   <string name="FirstInviteReminder__description">شما می‌توانید پیام‌ های رمزگذاری‌ شده ارسالی‌ خود را به میزان %1$d%% افزایش دهید</string>
   <string name="SecondInviteReminder__title">Signal خود را تقویت کنید</string>
   <string name="SecondInviteReminder__description">دعوت %1$s</string>
-  <string name="InsightsReminder__view_insights">دیدن بینش‌ ها</string>
+  <string name="InsightsReminder__view_insights">دیدن بینش‌ها</string>
   <string name="InsightsReminder__invite">دعوت</string>
   <!--Edit KBS Pin-->
   <!--BaseKbsPinFragment-->
@@ -1422,19 +1429,36 @@
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">ایجاد پین الفبایی‌ عددی</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">ایجاد پین عددی</string>
   <!--CreateKbsPinFragment-->
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
+    <item quantity="one">پین باید حداقل شامل %1$d کاراکتر باشد</item>
+    <item quantity="other">پین باید حداقل شامل %1$d کاراکتر باشد</item>
+  </plurals>
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
+    <item quantity="one">پین باید حداقل شامل %1$d رقم باشد</item>
+    <item quantity="other">پین باید حداقل شامل %1$d رقم باشد</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">یک پین جدید ایجاد کنید</string>
+  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
+    <item quantity="one">از آنجایی که این دستگاه ثبت شده است، شما می‌توانید یک پین جدید بسازید. اگر پین خود را فراموش کنید، برای ثبت دوباره، باید به مدت %1$d روز صبر کنید.</item>
+    <item quantity="other">از آنجایی که این دستگاه ثبت شده است، شما می‌توانید یک پین جدید بسازید. اگر پین خود را فراموش کنید، برای ثبت دوباره، باید به مدت %1$d روز صبر کنید.</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">پین خود را ایجاد کنید</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">پین‌ها یک لایهٔ امنیتی دیگر به حساب شما اضافه می‌کنند. مهم است که این پین را بخاطر داشته باشید، زیرا قابل بازیابی نیست.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">پین‌ها مطابقت ندارند. دوباره تلاش کنید.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">پین خود را تایید کنید</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">پین ایجاد نشد</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">پین شما ذخیره نشد. ما بعداً از شما خواهیم خواست تا یک پین دیگر ایجاد کنید.</string>
   <string name="ConfirmKbsPinFragment__pin_created">پین ایجاد شد.</string>
-  <string name="ConfirmKbsPinFragment__re_enter_pin">وارد کردن دوباره پین</string>
+  <string name="ConfirmKbsPinFragment__re_enter_pin">دوباره پین را وارد کنید</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">ایجاد پین…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">تعریف پین‌ها</string>
+  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">پین‌ها یک لایهٔ امنیتی دیگر به حساب شما اضافه می‌کنند. یک پین ایجاد کنید.</string>
   <string name="KbsSplashFragment__learn_more">اطلاعات بیشتر</string>
+  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">قفل ثبت‌نام = پین</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">قفل ثبت‌نام شما اکنون پین نام دارد، و کارهای بیشتری را انجام می‌دهد. هم‌اکنون آن را به‌روزرسانی کنید.</string>
   <string name="KbsSplashFragment__read_more_about_pins">درباره پین‌ها بیشتر بخوانید.</string>
   <string name="KbsSplashFragment__update_pin">به‌روزرسانی پین</string>
   <string name="KbsSplashFragment__create_your_pin">پین خود را ایجاد کنید</string>
@@ -1447,21 +1471,50 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">پین نادرست. دوباره تلاش کنید.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">حساب کاربری قفل شد</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">حساب شما به منظور حفاظت از حریم خصوصی و امنیت شما قفل شده است. پس از %1$d روز عدم فعالیت در حساب می توانید دوباره با این شماره تلفن بدون نیاز به پین خود ثبت‌نام کنید. تمام محتویات پاک خواهند شد.</string>
   <string name="AccountLockedFragment__next">بعدی</string>
   <string name="AccountLockedFragment__learn_more">اطلاعات بیشتر</string>
+  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">پین خود را وارد کنید</string>
-  <string name="RegistrationLockFragment__enter_the_pin_you_created">پین ایجاد شده برای حساب خود را وارد کنید. این با کد تأیید پیامک شما تفاوت دارد.</string>
-  <string name="RegistrationLockFragment__enter_alphanumeric_pin">پین حرفی‌عددی وارد کنید</string>
-  <string name="RegistrationLockFragment__enter_numeric_pin">پین عددی وارد کنید</string>
+  <string name="RegistrationLockFragment__enter_the_pin_you_created">پین ایجاد شده برای حساب خود را وارد کنید. این کد با کد تأیید پیامکی شما تفاوت دارد.</string>
+  <string name="RegistrationLockFragment__enter_alphanumeric_pin">پین حرفی‌-عددی را وارد کنید</string>
+  <string name="RegistrationLockFragment__enter_numeric_pin">پین عددی را وارد کنید</string>
   <string name="RegistrationLockFragment__next">بعدی</string>
   <string name="RegistrationLockFragment__incorrect_pin_try_again">پین نادرست. دوباره تلاش کنید.</string>
-  <string name="RegistrationLockFragment__forgot_pin">پین را فراموش کرده اید؟</string>
+  <string name="RegistrationLockFragment__forgot_pin">پین را فراموش کرده‌اید؟</string>
   <string name="RegistrationLockFragment__incorrect_pin">پین نادرست</string>
   <string name="RegistrationLockFragment__forgot_your_pin">پین خود را فراموش کرده‌اید؟</string>
+  <string name="RegistrationLockFragment__not_many_tries_left"> فرصت امتحان زیادی باقی نمانده است</string>
+  <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
+    <item quantity="one">به منظور حفظ حریم خصوصی و امنیت شما، هیچ راهی برای بازیابی پین وجود ندارد. اگر نمی‌توانید پین خود را بخاطر بیاورید، می‌توانید پس از %1$d روز عدم فعالیت، از طریق پیامک دوباره تأیید هویت کنید. در این صورت، حساب کاربری شما پاک و محتویات آن حذف خواهد شد.</item>
+    <item quantity="other">به منظور حفظ حریم خصوصی و امنیت شما، هیچ راهی برای بازیابی پین وجود ندارد. اگر نمی‌توانید پین خود را بخاطر بیاورید، می‌توانید پس از %1$d روز عدم فعالیت، از طریق پیامک تأیید هویت کنید. در این صورت، حساب کاربری شما پاک و محتویات آن حذف خواهد شد.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
+    <item quantity="one">پین نادرست. %1$d تلاش دیگر باقی مانده است.</item>
+    <item quantity="other">پین نادرست. %1$d تلاش دیگر باقی مانده است.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
+    <item quantity="one">اگر فرصت امتحان دیگر باقی نمانده باشد، حساب شما برای %1$d روز قفل خواهد شد. پس از %1$d روز عدم فعالیت، می‌توانید بدون پین دوباره ثبت نام کنید. حساب شما پاک و محتویات آن حذف خواهد شد.</item>
+    <item quantity="other">اگر فرصت امتحان دیگر باقی نمانده باشد، حساب شما برای %1$d روز قفل خواهد شد. پس از %1$d روز عدم فعالیت، می‌توانید بدون پین دوباره ثبت نام کنید. حساب کاربری شما پاک و محتویات آن حذف خواهد شد.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
+    <item quantity="one">%1$d تلاش باقی مانده است.</item>
+    <item quantity="other">%1$d تلاش باقی مانده است.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__d_attempts_remaining">
+    <item quantity="one">%1$d تلاش باقی مانده است.</item>
+    <item quantity="other">%1$d تلاش باقی مانده است.</item>
+  </plurals>
   <!--KBS Megaphone-->
-  <string name="KbsMegaphone__introducing_pins">تعریف پین‌ها</string>
+  <string name="KbsMegaphone__create_a_pin">یک پین جدید ایجاد کنید</string>
+  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">پین‌ها یک لایهٔ امنیتی دیگر به حساب ‌Signal شما اضافه می‌کنند.</string>
+  <string name="KbsMegaphone__create_pin">ایجاد پین</string>
+  <string name="KbsMegaphone__introducing_pins">معرفی پین‌ها</string>
+  <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">قفل ثبت‌نام شما اکنون پین نام دارد. به‌روزرسانی آن فقط چند ثانیه زمان می‌برد.</string>
   <string name="KbsMegaphone__update_pin">به‌روزرسانی پین</string>
+  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">در آینده به شما یادآوری خواهیم کرد. ایجاد پین از %1$d روز دیگر الزامی خواهد شد.</string>
+  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">در آینده به شما یادآوری خواهیم کرد. ایجاد پین از %1$d روز دیگر الزامی خواهد شد.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">نگارک انتقال</string>
   <string name="ConversationListFragment_loading">در حال بارگذاری…</string>
@@ -1484,8 +1537,10 @@
   <string name="registration_activity__skip">پرش</string>
   <string name="registration_activity__register">ثبت نام</string>
   <string name="preferences_chats__chat_backups">پشتیبان‌های گپ</string>
-  <string name="preferences_chats__backup_chats_to_external_storage">پشتیبان گیری از گپ‌ها در حافظهٔ خارجی</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">پشتیبان‌گیری از گفتگوها در حافظهٔ خارجی</string>
   <string name="preferences_chats__create_backup">ایجاد پشتیبان</string>
+  <string name="preferences_chats__verify_backup_passphrase">گذرواژهٔ پشتیبان را تصدیق کنید</string>
+  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">گذرواژهٔ پشتیبان خود را امتحان کرده و از همخوانی داشتن آن اطمینان حاصل کنید.</string>
   <string name="RegistrationActivity_enter_backup_passphrase">وارد کردن گذرواژه پشتیبان</string>
   <string name="RegistrationActivity_restore">بازیابی</string>
   <string name="RegistrationActivity_backup_failure_downgrade">عدم توانایی در درون برد پشتیبان‌ها از نسخه‌های جدیدتر Signal</string>
@@ -1503,7 +1558,10 @@
   <string name="BackupDialog_disable_and_delete_all_local_backups">غیرفعال کردن و پاک کردن همه پشتیبان‌های محلی؟</string>
   <string name="BackupDialog_delete_backups_statement">حذف پشتیبان‌ها</string>
   <string name="BackupDialog_copied_to_clipboard">روی کلیپ بورد کپی شد</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">گذرواژهٔ پشتیبان را برای تصدیق وارد کنید</string>
   <string name="BackupDialog_verify">تآیید</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">گذرواژهٔ پشتیبان با موفقیت وارد شد</string>
+  <string name="BackupDialog_passphrase_was_not_correct">گذرواژه نادرست بود</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal برای پشتیبان گیری نیاز به مجوز حافظهٔ دارد، اما اجازه آن داده نشده است. لطفاً به تنظیمات برنامه رفته، \"مجوزها\" را انتخاب کنید و \"حافظهٔ\" را فعال کنید.</string>
   <string name="ChatsPreferenceFragment_last_backup_s">آخرین پشتیبان: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">در حال انجام</string>
@@ -1538,6 +1596,7 @@
   <string name="preferences_app_protection__registration_lock_pin">پین قفل ثبت‌نام</string>
   <string name="preferences_app_protection__registration_lock">قفل ثبت‌نام</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">شما باید پین قفل ثبت‌نام خود را وارد کنید</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">پین حداقل شامل %d رقم یا کاراکتر است</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">پین قفل ثبت‌نام نادرست</string>
   <string name="RegistrationActivity_too_many_attempts">تلاش های بیش از حد</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">شما چندین بار پین قفل ثبت‌نام را اشتباه وارد کردید. لطفاً یک روز دیگر دوباره تلاش کنید.</string>

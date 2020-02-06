@@ -42,6 +42,7 @@
   <string name="ApplicationPreferencesActivity_Off">Désactivé</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">Textos %1$s, messages multimédias %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Verrouillage de l’écran %1$s, blocage de l’inscription %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Verrouillage de l’écran %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Thème %1$s, langue %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -60,6 +61,8 @@
   <string name="AttachmentKeyboard_file">Fichier</string>
   <string name="AttachmentKeyboard_contact">Contact</string>
   <string name="AttachmentKeyboard_location">Position</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal a besoin d’une autorisation pour afficher vos photos et vidéos.</string>
+  <string name="AttachmentKeyboard_give_access">Accorder l’accès</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Impossible de trouver une appli pour sélectionner le média.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal exige l’autorisation Stockage afin de joindre des photos, des vidéos ou du son, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Stockage ».</string>
@@ -113,7 +116,7 @@
   <string name="CommunicationActions_call">Appeler</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Votre numéro de sécurité avec %1$s a changé. Cela pourrait signifier soit que quelqu’un tente d’intercepter votre communication, soit que %2$s a simplement réinstallé Signal.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Vous devriez peut-être vérifier votre numéro de sécurité avec ce contact.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Vous devriez peut-être confirmer votre numéro de sécurité avec ce contact.</string>
   <string name="ConfirmIdentityDialog_accept">Accepter</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Conversations récentes</string>
@@ -459,6 +462,8 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Envoyé par %1$s à %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Envoyé par vous à %1$s</string>
   <!--Megaphones-->
+  <string name="Megaphones_introducing_reactions">Nous présentons les réactions</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Touchez et maintenez n’importe quel message pour partager rapidement ce que vous ressentez.</string>
   <string name="Megaphones_remind_me_later">Me le rappeler plus tard</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Appel Signal en cours</string>
@@ -565,7 +570,10 @@
   <string name="RatingManager_later">Ultérieurement</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Oups, il semble que la logithèque Play Store n’est pas installée sur votre appareil.</string>
   <!--ReactionsBottomSheetDialogFragment-->
+  <string name="ReactionsBottomSheetDialogFragment_all">Tous les %1$d</string>
+  <!-- Removed by excludeNonTranslatables <string name="ReactionsBottomSheetDialogFragment_you">%1$s (vous)</string> -->
   <!--ReactionsConversationView-->
+  <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Bloquer ce contact ?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Vous ne recevrez plus ni message ni appel de ce contact.</string>
@@ -613,13 +621,13 @@
   <string name="RegistrationActivity_less_information">Moins de précisions</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal a besoin d’accéder à vos contacts et médias afin de se connecter avec vos amis, échanger des messages et effectuer des appels sécurisés</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Impossible de se connecter au service. Veuillez vérifier la connexion réseau et ressayer.</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Pour vérifier facilement votre numéro de téléphone, Signal peut automatiquement détecter votre code de vérification si vous autorisez Signal à lire les textos.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Pour confirmer facilement votre numéro de téléphone, Signal peut automatiquement détecter votre code de vérification si vous autorisez Signal à lire les textos.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Vous êtes maintenant à %d étape d’envoyer un journal de débogage.</item>
     <item quantity="other">Vous êtes maintenant à %d étapes d’envoyer un journal de débogage.</item>
   </plurals>
-  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Nous devons vérifier que vous êtes un être humain.</string>
-  <string name="RegistrationActivity_failed_to_verify_the_captcha">Échec de vérification du CAPTCHA</string>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Nous devons confirmer que vous êtes un être humain.</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">Échec de confirmation du CAPTCHA</string>
   <string name="RegistrationActivity_next">Suivant</string>
   <string name="RegistrationActivity_continue">Poursuivre</string>
   <string name="RegistrationActivity_continue_d_attempts_left">Poursuivre (%d essais restants)</string>
@@ -736,7 +744,7 @@
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Les noms d’utilisateur doivent comporter entre %1$d et %2$d caractères.</string>
   <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Les autres utilisateurs de Signal peuvent envoyer des demandes de messages à votre nom d’utilisateur unique sans connaître votre numéro de téléphone. Choisir un nom d’utilisateur est facultatif.</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Votre contact utilise une ancienne version de Signal. Veuillez lui demander de la mettre à jour avant de vérifier votre numéro de sécurité.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Votre contact utilise une ancienne version de Signal. Veuillez lui demander de la mettre à jour avant de confirmer votre numéro de sécurité.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Votre contact utilise une version plus récente de Signal dont le format de code QR est incompatible. Veuillez mettre Signal à jour pour comparer.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Le code QR balayé n’est pas un code de vérification du numéro de sécurité correctement formaté. Veuillez ressayer de le balayer.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Partager le numéro de sécurité par…</string>
@@ -849,7 +857,7 @@
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal exige les autorisations Microphone et Appareil photo afin d’effectuer et de recevoir des appels, mais elles ont été refusées définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Microphone » et « Appareil photo ».</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Le numéro de sécurité de votre conversation avec %1$s a changé. Cela pourrait signifier soit que quelqu’un tente d’intercepter votre communication, soit que %2$s a simplement réinstallé Signal.</string>
-  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Vous devriez peut-être vérifier votre numéro de sécurité avec ce contact.</string>
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Vous devriez peut-être confirmer votre numéro de sécurité avec ce contact.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Nouveau numéro de sécurité</string>
   <string name="WebRtcCallScreen_accept">Accepter</string>
   <string name="WebRtcCallScreen_end_call">Raccrocher</string>
@@ -1085,7 +1093,7 @@
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NUMÉRO DE TÉLÉPHONE</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal facilite la communication en utilisant vos numéro de téléphone et carnet d’adresses existants. Les amis et contacts qui savent déjà comment vous joindre par téléphone pourront facilement vous contacter avec Signal.\n\nL’inscription transmet des renseignements de contact au serveur. Ils ne sont pas conservés.</string>
-  <string name="registration_activity__verify_your_number">Vérifier votre numéro</string>
+  <string name="registration_activity__verify_your_number">Confirmer votre numéro</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Veuillez saisir votre numéro de téléphone mobile afin de recevoir un code de vérification. Les frais de l’opérateur peuvent s’appliquer.</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Saisir un nom ou un numéro</small></string>
@@ -1118,7 +1126,7 @@
   <string name="AndroidManifest__create_passphrase">Créer une phrase de passe</string>
   <string name="AndroidManifest__select_contacts">Sélectionner des contacts</string>
   <string name="AndroidManifest__change_passphrase">Changer la phrase de passe</string>
-  <string name="AndroidManifest__verify_safety_number">Vérifier le numéro de sécurité</string>
+  <string name="AndroidManifest__verify_safety_number">Confirmer le numéro de sécurité</string>
   <string name="AndroidManifest__log_submit">Envoyer le journal de débogage</string>
   <string name="AndroidManifest__media_preview">Aperçu du média</string>
   <string name="AndroidManifest__message_details">Détails du message</string>
@@ -1417,19 +1425,36 @@
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">Créer un NIP alphanumérique</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">Créer un NIP numérique</string>
   <!--CreateKbsPinFragment-->
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
+    <item quantity="one">Votre NIP doit comporter au moins %1$d caractère</item>
+    <item quantity="other">Votre NIP doit comporter au moins %1$d caractères</item>
+  </plurals>
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
+    <item quantity="one">Votre NIP doit comporter au moins %1$d chiffre</item>
+    <item quantity="other">Votre NIP doit comporter au moins %1$d chiffres</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Créer un nouveau NIP</string>
+  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
+    <item quantity="one">Vous pouvez choisir un nouveau NIP, car cet appareil est inscrit. Si vous oubliez votre NIP, vous pourriez devoir attendre %1$d jour avant de vous réinscrire.</item>
+    <item quantity="other">Vous pouvez choisir un nouveau NIP, car cet appareil est inscrit. Si vous oubliez votre NIP, vous pourriez devoir attendre %1$d jours avant de vous réinscrire.</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Créer votre NIP</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">Les NIP ajoutent une couche supplémentaire de sécurité à votre compte. Il est important de mémoriser ce NIP, car il ne peut pas être récupéré.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Les NIP ne correspondent pas. Veuillez ressayez.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Confirmez votre NIP</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Échec de création du NIP</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Votre NIP n’a pas été enregistré. Nous vous inviterons à en créer un ultérieurement.</string>
   <string name="ConfirmKbsPinFragment__pin_created">Votre NIP a été créé.</string>
-  <string name="ConfirmKbsPinFragment__re_enter_pin">Saisissez à nouveau votre NIP.</string>
+  <string name="ConfirmKbsPinFragment__re_enter_pin">Saisissez le NIP de nouveau.</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">Création du NIP…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Nous présentons les NIP</string>
+  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">Les NIP ajoutent un niveau supplémentaire de sécurité à votre compte. Créez-en un maintenant.</string>
   <string name="KbsSplashFragment__learn_more">En savoir plus</string>
+  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/fr/articles/360007059792-Verrouillage-d-inscription</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Blocage de l’inscription = NIP</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Votre blocage de l’inscription s’appelle désormais un NIP et il accomplit encore plus. Mettez-le à jour maintenant.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Apprenez-en davantage sur les NIP.</string>
   <string name="KbsSplashFragment__update_pin">Mettre le NIP à jour</string>
   <string name="KbsSplashFragment__create_your_pin">Créer votre NIP</string>
@@ -1442,21 +1467,50 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">Le NIP est erroné. Veuillez ressayer.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Le compte est verrouillé</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Votre compte a été verrouillé afin de protéger vos données personnelles et votre sécurité. Après %1$d jours d’inactivité dans votre compte, vous pourrez réinscrire ce numéro de téléphone sans avoir besoin de votre NIP. Tout le contenu sera supprimé.</string>
   <string name="AccountLockedFragment__next">Suivant</string>
   <string name="AccountLockedFragment__learn_more">En savoir plus</string>
+  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/fr/articles/360007059792-Verrouillage-d-inscription</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Saisissez votre NIP</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Saisissez le NIP que vous avez créé pour votre compte. Il est différent de votre code de vérification reçu par texto.</string>
-  <string name="RegistrationLockFragment__enter_alphanumeric_pin">Saisir un NIP alphanumérique</string>
-  <string name="RegistrationLockFragment__enter_numeric_pin">Saisir un NIP numérique</string>
+  <string name="RegistrationLockFragment__enter_alphanumeric_pin">Saisissez un NIP alphanumérique</string>
+  <string name="RegistrationLockFragment__enter_numeric_pin">Saisissez un NIP numérique</string>
   <string name="RegistrationLockFragment__next">Suivant</string>
   <string name="RegistrationLockFragment__incorrect_pin_try_again">Le NIP est erroné. Veuillez ressayer.</string>
   <string name="RegistrationLockFragment__forgot_pin">Avez-vous oublié votre NIP ?</string>
   <string name="RegistrationLockFragment__incorrect_pin">Le NIP est erroné</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Avez-vous oublié votre NIP ?</string>
+  <string name="RegistrationLockFragment__not_many_tries_left">Il vous reste peu d’essais !</string>
+  <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
+    <item quantity="one">Pour des raisons de sécurité et de protection de vos données personnelles, votre NIP ne peut pas être récupéré. Si vous avez oublié votre NIP, vous pourrez reconfirmer votre numéro par texto après %1$d jour d’inactivité. Dans ce cas, votre compte sera effacé et toutes ses données supprimées.</item>
+    <item quantity="other">Pour des raisons de sécurité et de protection de vos données personnelles, votre NIP ne peut pas être récupéré. Si vous avez oublié votre NIP, vous pourrez reconfirmer votre numéro par texto après %1$d jours d’inactivité. Dans ce cas, votre compte sera effacé et toutes ses données supprimées.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
+    <item quantity="one">Le NIP est erroné. Il reste %1$d essai.</item>
+    <item quantity="other">Le NIP est erroné. Il reste %1$d essais.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
+    <item quantity="one">Si vous épuisez le nombre d’essais, votre compte sera verrouillé pendant %1$d jour. Après %1$d jour d’inactivité, vous pourrez vous réinscrire sans votre NIP. Votre compte sera effacé et son contenu supprimé.</item>
+    <item quantity="other">Si vous épuisez le nombre d’essais, votre compte sera verrouillé pendant %1$d jours. Après %1$d jours d’inactivité, vous pourrez vous réinscrire sans votre NIP. Votre compte sera effacé et son contenu supprimé.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
+    <item quantity="one">Il vous reste %1$d essai.</item>
+    <item quantity="other">Il vous reste %1$d essais.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__d_attempts_remaining">
+    <item quantity="one">Il reste %1$d essai.</item>
+    <item quantity="other">Il reste %1$d essais.</item>
+  </plurals>
   <!--KBS Megaphone-->
+  <string name="KbsMegaphone__create_a_pin">Créer un NIP</string>
+  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">Les NIP ajoutent une couche supplémentaire de sécurité à votre compte Signal.</string>
+  <string name="KbsMegaphone__create_pin">Créer un NIP</string>
   <string name="KbsMegaphone__introducing_pins">Nous présentons les NIP</string>
+  <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Votre blocage de l’inscription s’appelle désormais un NIP. Le mettre à jour ne prendra que quelques secondes.</string>
   <string name="KbsMegaphone__update_pin">Mettre le NIP à jour</string>
+  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Nous vous le rappellerons plus tard. La création d’un NIP deviendra obligatoire dans %1$d jours.</string>
+  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Nous vous le rappellerons plus tard. La confirmation de votre NIP deviendra obligatoire dans %1$d jours.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icône de transport</string>
   <string name="ConversationListFragment_loading">Chargement…</string>
@@ -1481,7 +1535,9 @@
   <string name="preferences_chats__chat_backups">Sauvegardes des conversations</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Sauvegarder les conversations dans la mémoire externe</string>
   <string name="preferences_chats__create_backup">Créer une sauvegarde</string>
-  <string name="RegistrationActivity_enter_backup_passphrase">Saisir la phrase de passe de la sauvegarde</string>
+  <string name="preferences_chats__verify_backup_passphrase">Confirmer la phrase de passe de la sauvegarde</string>
+  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Testez la phrase de passe de la sauvegarde et confirmez qu’elle correspond</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Saisissez la phrase de passe de la sauvegarde</string>
   <string name="RegistrationActivity_restore">Restaurer</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Impossible d’importer des sauvegardes de versions de Signal plus récentes.</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">La phrase de passe de la sauvegarde est erronée</string>
@@ -1498,7 +1554,10 @@
   <string name="BackupDialog_disable_and_delete_all_local_backups">Désactiver et supprimer toutes les sauvegardes locales ?</string>
   <string name="BackupDialog_delete_backups_statement">Supprimer les sauvegardes</string>
   <string name="BackupDialog_copied_to_clipboard">Copié dans le presse-papiers</string>
-  <string name="BackupDialog_verify">Vérifier</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">Saisissez la phrase de passe de la sauvegarde pour la confirmer</string>
+  <string name="BackupDialog_verify">Confirmer</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Vous avez saisi avec succès la phrase de passe de votre sauvegarde</string>
+  <string name="BackupDialog_passphrase_was_not_correct">La phrase de passe était erronée</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal exige l’autorisation d’accès à la mémoire externe afin de créer des sauvegardes, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Stockage ».</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Dernière sauvegarde : %s</string>
   <string name="ChatsPreferenceFragment_in_progress">En cours</string>
@@ -1533,9 +1592,10 @@
   <string name="preferences_app_protection__registration_lock_pin">NIP de blocage de l’inscription</string>
   <string name="preferences_app_protection__registration_lock">Blocage de l’inscription</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Vous devez saisir votre NIP de blocage de l’inscription</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Votre NIP comporte au moins %d chiffres ou caractères</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Le NIP de blocage de l’inscription est erroné.</string>
-  <string name="RegistrationActivity_too_many_attempts">Trop de tentatives</string>
-  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Vous avez effectué trop de tentatives infructueuses de saisie du NIP de blocage de l’inscription. Veuillez ressayer dans un jour.</string>
+  <string name="RegistrationActivity_too_many_attempts">Trop d’essais</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Vous avez effectué trop d’essais infructueux de saisie du NIP de blocage de l’inscription. Veuillez ressayer dans un jour.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Erreur de connexion au service</string>
   <string name="RegistrationActivity_oh_no">Oh non !</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">L’inscription de ce numéro de téléphone sera possible sans votre NIP de blocage de l’inscription sept jours après la dernière activité de ce numéro de téléphone sur Signal. Il vous reste %d jours.</string>

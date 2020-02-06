@@ -803,7 +803,7 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Bude Signal domin duba sabobbin sanarwa.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Lambar sadarwa</string>
-  <string name="MessageNotifier_reacted_s_to_s">Ya/ta yi martanin %1$s akan: \"%2$s\".</string>
+  <string name="MessageNotifier_reacted_s_to_s">Ya/ta yi martani %1$s akan: \"%2$s\".</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Ya/ta yi martanin %1$s akan bidiyonka/ki.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Ya/ta yi martanin %1$s akan hotonka/ki.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Ya/ta yi martanin %1$s akan fayil dinka/ki.</string>
@@ -1068,7 +1068,7 @@
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Domin tura sakon midiya ko na rukuni, taba \'OK\' ka/ki kammala tambayar saiti da aka turo. Kowa zai iya samun saitin MMS din layinka/ki ta hanyar neman \'your carrier APN\', sau daya tak kake/kike bukatar wannan saitin.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Sunan farko (ana bukata)</string>
-  <string name="CreateProfileActivity_last_name_optional">Sunan karshe (Ka/kina da zabi)</string>
+  <string name="CreateProfileActivity_last_name_optional">Sunan karshe (zaKa/ki iya tsalake wannan idan ana bukatan yin hakan)</string>
   <string name="CreateProfileActivity_next">Na gaba</string>
   <string name="CreateProfileActivity__username">Sunan mai amfani</string>
   <string name="CreateProfileActivity__create_a_username">Kirkiri sunan da ake bukatan amfani da</string>
@@ -1430,38 +1430,38 @@
   <string name="ConfirmKbsPinFragment__pins_dont_match">An samu kuskuren lambobin sirri. Kara gwadawa.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Tabbabtar da lambobin sirrinka/ki.</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Kirkiran lambobin sirri ya gaza</string>
-  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Ba\'a ajiye lambobin sirrinka/ki ba. Zamu sa ka/ki kirkiri wani anjima.</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Ba\'a ajiye lambobin sirrinka/ki ba. Zamu baka/ki damar kirkiram wasu lambobin sirri, anjima.</string>
   <string name="ConfirmKbsPinFragment__pin_created">An kirkiri lambobin sirri.</string>
   <!--KbsSplashFragment-->
-  <string name="KbsSplashFragment__introducing_pins">Gabatarwa da lbobin sirri</string>
+  <string name="KbsSplashFragment__introducing_pins">Gabatar da lambobin sirri</string>
   <string name="KbsSplashFragment__learn_more">Karin bayani</string>
-  <string name="KbsSplashFragment__registration_lock_equals_pin">Kullin rijista = Lambobin sirri</string>
-  <string name="KbsSplashFragment__read_more_about_pins">Karanta karin bayanin lambobin sirri.</string>
+  <string name="KbsSplashFragment__registration_lock_equals_pin">Makullin rijista = Lambobin sirri</string>
+  <string name="KbsSplashFragment__read_more_about_pins">Karanta karin bayanin akan ambobin sirri.</string>
   <string name="KbsSplashFragment__update_pin">Sabunta lambobin sirri</string>
   <string name="KbsSplashFragment__create_your_pin">Kirkiri lambobin sirrinka/ki</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Shigar da lambobin sirrin Signal dinka/ki</string>
-  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Domin tayakaki haddace lambobin sirrinka/ki, zamu rinka tambayan lambobin lokaci-lokaci. Zamu rage tambaya nan gaba.</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Domin tayaka/ki haddace lambobin sirrinka/ki, zamu rinka tambayan lambobin lokaci-lokaci. Zamu rage tambaya nan gaba.</string>
   <string name="KbsReminderDialog__skip">Tsallake</string>
   <string name="KbsReminderDialog__submit">Aika</string>
   <string name="KbsReminderDialog__forgot_pin">An manta da lambobin sirri?</string>
-  <string name="KbsReminderDialog__incorrect_pin_try_again">Lambobin sirrinnan ba dai dai bane. Kara gwada.</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">Lambobin sirrinnan ba dai dai bane. Kara gwadawa.</string>
   <!--AccountLockedFragment-->
-  <string name="AccountLockedFragment__account_locked">Asusu na kulle</string>
+  <string name="AccountLockedFragment__account_locked">Akawunt na kulle</string>
   <string name="AccountLockedFragment__next">Na gaba</string>
   <string name="AccountLockedFragment__learn_more">Karin bayani</string>
   <!--KbsLockFragment-->
-  <string name="RegistrationLockFragment__enter_your_pin">Shigar da lambobim sirri</string>
-  <string name="RegistrationLockFragment__enter_the_pin_you_created">Sa lambobin sirri da ka/kika kirkirawa asusunka/ki. Waddannan lambobin, daban suke da waddanda aka turo maka/ki ta SMS.</string>
+  <string name="RegistrationLockFragment__enter_your_pin">Shigar da lambobim sirrinka/ki</string>
+  <string name="RegistrationLockFragment__enter_the_pin_you_created">Sa lambobin sirri da ka/kika kirkirarwa asusunka/ki. Waddannan lambobin, daban suke da waddanda aka turo maka/ki ta SMS.</string>
   <string name="RegistrationLockFragment__enter_alphanumeric_pin">Shigar da lambobin sirri mai haruffa.</string>
   <string name="RegistrationLockFragment__enter_numeric_pin">Shigar da lambobin sirri mai lambobi zalla</string>
   <string name="RegistrationLockFragment__next">Na gaba</string>
-  <string name="RegistrationLockFragment__incorrect_pin_try_again">Lambobin sirrinnan ba dai dai bane. Kara gwada.</string>
+  <string name="RegistrationLockFragment__incorrect_pin_try_again">Lambobin sirrinnan ba dai dai bane. Kara gwadawa.</string>
   <string name="RegistrationLockFragment__forgot_pin">An manta da lambobin sirri?</string>
   <string name="RegistrationLockFragment__incorrect_pin">Lambobin sirrin ba daidai bane</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Ka/kin manta lambobin sirri?</string>
   <!--KBS Megaphone-->
-  <string name="KbsMegaphone__introducing_pins">Gabatarwa da lbobin sirri</string>
+  <string name="KbsMegaphone__introducing_pins">Gabatar da lambobin sirri</string>
   <string name="KbsMegaphone__update_pin">Sabunta lambobin sirri</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Gusar da alamar hoto</string>

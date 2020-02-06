@@ -40,6 +40,7 @@
   <string name="ApplicationPreferencesActivity_Off">Mati</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Kunci layar %1$s, Kunci pendaftaran%2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Kunci layar %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Bahasa %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -57,6 +58,8 @@
   <string name="AttachmentKeyboard_file">Berkas</string>
   <string name="AttachmentKeyboard_contact">Kontak</string>
   <string name="AttachmentKeyboard_location">Lokasi</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal memerlukan izin untuk menampilkan foto dan video Anda.</string>
+  <string name="AttachmentKeyboard_give_access">Berikan Akses</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Tidak bisa menemukan aplikasi untuk membuka media yang dipilih.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal memerlukan izin Penyimpanan untuk melampirkan foto, video, atau audio, tetapi saat ini izin ditolak secara permanen. Harap lanjutkan ke menu pengaturan aplikasi, Pilih \"Izin\", dan aktifkan \"Penyimpanan\".</string>
@@ -544,7 +547,9 @@
   <string name="RatingManager_later">Nanti</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Eiittts, aplikasi Play Store nampaknya tidak terpasang pada perangkat anda.</string>
   <!--ReactionsBottomSheetDialogFragment-->
+  <string name="ReactionsBottomSheetDialogFragment_all">Semua %1$d</string>
   <!--ReactionsConversationView-->
+  <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Blokir kontak ini?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Anda tidak akan menerima pesan dan panggilan dari kontak ini lagi.</string>
@@ -1387,8 +1392,18 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">Buat PIN alfanumerik</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">Buat PIN numerik</string>
   <!--CreateKbsPinFragment-->
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
+    <item quantity="other">PIN harus terdiri dari minimal %1$d karakter</item>
+  </plurals>
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
+    <item quantity="other">PIN harus terdiri dari minimal %1$d digit</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Buat PIN baru</string>
+  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
+    <item quantity="other">Anda dapat membuat PIN baru karena perangkat ini telah terdaftar. Jika Anda lupa PIN, Anda perlu menunggu %1$d hari untuk mendaftar lagi.</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Buat PIN Anda</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PIN menambahkan lapisan ekstra keamanan terhadap akun Anda. Sangat penting untuk mengingat PIN ini karena ia tidak dapat dipulihkan.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN tidak cocok. Coba lagi.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Konfirmasi PIN Anda.</string>
@@ -1396,10 +1411,14 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN Anda tidak disimpan. Signal akan meminta Anda membuat PIN lagi nanti.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN dibuat.</string>
   <string name="ConfirmKbsPinFragment__re_enter_pin">Masukkan ulang PIN</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">Membuat PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Memperkenalkan PIN</string>
+  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">PIN menambah tingkatan keamanan terhadap akun Anda. Buat sekarang.</string>
   <string name="KbsSplashFragment__learn_more">Pelajari Lebih Lanjut</string>
+  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Kunci Pendaftaran = PIN</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Kunci Pendaftaran Anda sekarang bernama PIN, dan ia melakukan hal lebih. Perbarui sekarang.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Baca lebih lanjut mengenai PIN.</string>
   <string name="KbsSplashFragment__update_pin">Perbarui PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Buat PIN Anda</string>
@@ -1412,8 +1431,10 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="KbsReminderDialog__incorrect_pin_try_again">PIN Salah. Coba lagi.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Akun terkunci</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Akun Anda terkunci untuk melindungi privasi dan keamanan Anda. Setelah %1$d hari tidak aktif Anda akan dapat mendaftarkan ulang nomor telpon ini tanpa memerlukan PIN. Semua konten akan dihapus.</string>
   <string name="AccountLockedFragment__next">Berikutnya</string>
   <string name="AccountLockedFragment__learn_more">Pelajari Lebih Lanjut</string>
+  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Masukkan PIN Anda</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Masukkan PIN yang Anda buat untuk akun Anda. Ini berbeda dari kode verifikasi SMS.</string>
@@ -1424,9 +1445,31 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="RegistrationLockFragment__forgot_pin">Lupa PIN?</string>
   <string name="RegistrationLockFragment__incorrect_pin">PIN Salah</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Lupa PIN Anda?</string>
+  <string name="RegistrationLockFragment__not_many_tries_left">Tidak banyak percobaan tersedia!</string>
+  <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
+    <item quantity="other">Untuk privasi dan keamanan Anda, tidak ada cara untuk memulihkan PIN Anda. Jika Anda tidak dapat mengingat PIN Anda, Anda bisa melakukan verifikasi ulang dengan SMS setelah %1$d hari tidak aktif. Dalam kasus ini, akun Anda dan semua konten di dalamnya akan dihapus.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
+    <item quantity="other">PIN salah. %1$d percobaan tersisa.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
+    <item quantity="other">Jika Anda kehabisan percobaan, akun Anda akan dikunci selama %1$d hari. Setelah %1$d hari tidak aktif, Anda dapat melakukan pendaftaran ulang tanpa PIN. Akun Anda dan semua konten di dalamnya akan dihapus.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
+    <item quantity="other">Anda memiliki %1$d percobaan tersisa.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__d_attempts_remaining">
+    <item quantity="other">%1$d percobaan tersisa.</item>
+  </plurals>
   <!--KBS Megaphone-->
+  <string name="KbsMegaphone__create_a_pin">Buat PIN</string>
+  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">PIN menambah lapisan keamanan terhadap akun Signal Anda.</string>
+  <string name="KbsMegaphone__create_pin">Buat PIN</string>
   <string name="KbsMegaphone__introducing_pins">Memperkenalkan PIN</string>
+  <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Kunci Pendaftaran Anda sekarang bernama PIN. Memperbaruinya memakan waktu beberapa detik.</string>
   <string name="KbsMegaphone__update_pin">Perbarui PIN</string>
+  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Kami akan mengingatkan Anda nanti. Membuat PIN akan menjadi kewajiban dalam %1$d hari.</string>
+  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Kami akan mengingatkan Anda nanti. Mengonfirmasi PIN akan menjadi kewajiban dalam %1$d hari.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pindahkan ikon</string>
   <string name="ConversationListFragment_loading">Memuat…</string>
@@ -1451,6 +1494,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_chats__chat_backups">Cadangan obrolan</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Cadangkan obrolan ke penyimpanan eksternal</string>
   <string name="preferences_chats__create_backup">Buat cadangan</string>
+  <string name="preferences_chats__verify_backup_passphrase">Verifikasi frasa sandi cadangan</string>
+  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Uji frasa sandi cadangan Anda dan verifikasikan bahwa ia cocok</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Masukkan frasa sandi cadangan</string>
   <string name="RegistrationActivity_restore">Pulihkan</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Tidak bisa mengimpor cadangan dari versi Signal yang lebih baru</string>
@@ -1468,7 +1513,10 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="BackupDialog_disable_and_delete_all_local_backups">Nonaktifkan dan hapus semua cadangan lokal?</string>
   <string name="BackupDialog_delete_backups_statement">Hapus cadangan</string>
   <string name="BackupDialog_copied_to_clipboard">Disalin ke papan klip</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">Masukkan frasa sandi cadangan Anda untuk memverifikasi</string>
   <string name="BackupDialog_verify">Memeriksa</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Anda sukses memasukkan frasa sandi cadangan</string>
+  <string name="BackupDialog_passphrase_was_not_correct">Frasa sandi salah</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal memerlukan izin penyimpanan eksternal untuk membuat cadangan, tetapi saat ini izin ditolak secara permanen. Harap lanjutkan ke menu pengaturan aplikasi, pilih \"Izin\", dan aktifkan \"Penyimpanan\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Terakhir melakukan cadangan: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Sedang berjalan</string>
@@ -1503,6 +1551,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_app_protection__registration_lock_pin">PIN Kunci Pendaftaran</string>
   <string name="preferences_app_protection__registration_lock">Kunci Pendaftaran</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Anda harus memasukkan PIN Kunci Pendaftaran Anda</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">PIN Anda harus terdiri dari minimal %d digit atau karakter</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">PIN Kunci Pendaftaran Salah</string>
   <string name="RegistrationActivity_too_many_attempts">Terlalu banyak mencoba</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Anda membuat terlalu banyak kesalahan saat memasukkan PIN Kunci Pendaftaran. Silakan coba lagi setelah 24 jam.</string>

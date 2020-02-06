@@ -67,6 +67,8 @@
   <string name="AttachmentKeyboard_file">Ffeil</string>
   <string name="AttachmentKeyboard_contact">Cysylltiad</string>
   <string name="AttachmentKeyboard_location">Lleoliad</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Mae Signal angen caniatâd i ddangos eich lluniau a\'ch fideos diweddar.</string>
+  <string name="AttachmentKeyboard_give_access">Caniatáu Mynediad</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Methu canfod rhaglen i ddewis cyfryngau.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Mae ar Signal angen caniatâd Storio er mwyn atodi lluniau, fideos neu sain, ond mae wedi\'i wrthod yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Storio".</string>
@@ -1539,6 +1541,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="KbsReminderDialog__incorrect_pin_try_again">PIN anghywir. Ceisiwch eto.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Cyfrif wedi\'i gloi</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Mae eich cyfrif wedi ei gloi i ddiogelu eich preifatrwydd a diogelwch. Ar ôl %1$d diwrnod heb weithgarwch ar eich cyfrif bydd modd i chi ailgofrestru\'r rhif ffôn yma heb fod angen eich PIN. Bydd yr holl gynnwys yn cael ei ddileu.</string>
   <string name="AccountLockedFragment__next">Nesaf</string>
   <string name="AccountLockedFragment__learn_more">Dysgu Rhagor</string>
   <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
@@ -1661,6 +1664,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences_app_protection__registration_lock_pin">PIN Clo Cofrestru</string>
   <string name="preferences_app_protection__registration_lock">Clo Cofrestru</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Rhaid i chi nodi\'ch PIN Clo Cofrestru</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Mae gan eich PIN o leiaf %d digid neu nod</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">PIN Clo Cofrestru Anghywir</string>
   <string name="RegistrationActivity_too_many_attempts">Gormod o geisiadau</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Rydych wedi gwneud gormod o geisiadau PIN Clo Cofrestru anghywir. Ceisiwch eto ymhen diwrnod.</string>

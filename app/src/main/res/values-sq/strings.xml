@@ -42,6 +42,7 @@
   <string name="ApplicationPreferencesActivity_Off">Off</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Kyçje ekrani %1$s, kyçje Regjistrimi %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Kyçje ekrani %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Temë %1$s, Gjuhë %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -60,6 +61,8 @@
   <string name="AttachmentKeyboard_file">Kartelë</string>
   <string name="AttachmentKeyboard_contact">Kontakt</string>
   <string name="AttachmentKeyboard_location">Vendndodhje</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal-i lyp leje të shfaqë fotot dhe videot tuaja.</string>
+  <string name="AttachmentKeyboard_give_access">Lejo Hyrje</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">S\’gjendet dot aplikacion për përzgjedhje mediash.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Që të mund të bashkëngjisë foto, video, ose audio, Signal-i lyp leje Depozitimi, por kjo i është mohuar. Ju lutemi, vazhdoni për te menuja e rregullimeve të aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Depozitim\".</string>
@@ -460,6 +463,7 @@
   <string name="MediaOverviewActivity_sent_by_you_to_s">Dërguar nga ju për %1$s</string>
   <!--Megaphones-->
   <string name="Megaphones_introducing_reactions">Ju Prezantojmë Reagimet</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Prekeni dhe mbajeni të prekur cilindo mesazh që të ndani me të tjerët se si ndjeheni prej tij.</string>
   <string name="Megaphones_remind_me_later">Kujtomë më vonë</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Thirrje Signal në zhvillim e sipër</string>
@@ -564,7 +568,10 @@
   <string name="RatingManager_later">Më vonë</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Hëm, aplikacioni Play Store s\’duket të jetë i instaluar në pajisjen tuaj.</string>
   <!--ReactionsBottomSheetDialogFragment-->
+  <string name="ReactionsBottomSheetDialogFragment_all">Krejt %1$d</string>
+  <!-- Removed by excludeNonTranslatables <string name="ReactionsBottomSheetDialogFragment_you">%1$s (Ju)</string> -->
   <!--ReactionsConversationView-->
+  <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Të bllokohet ky kontakt?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">S\’do të merrni më mesazhe dhe thirrje nga ky kontakt.</string>
@@ -1421,8 +1428,21 @@
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">Krijo PIN alfanumerik</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">Krijo PIN numerik</string>
   <!--CreateKbsPinFragment-->
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
+    <item quantity="one">PIN-i duhet të jetë të paktën %1$d shenjë</item>
+    <item quantity="other">PIN-i duhet të jetë të paktën %1$d shenja</item>
+  </plurals>
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
+    <item quantity="one">PIN-i duhet të jetë të paktën %1$d shifër</item>
+    <item quantity="other">PIN-i duhet të jetë të paktën %1$d shifra</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Krijoni një PIN të ri</string>
+  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
+    <item quantity="one">Mund të zgjidhni një PIN të ri, ngaqë kjo pajisje është e regjistruar. Nëse e harroni PIN-in tuaj, mund të duhet të prisni %1$d ditë për ta riregjistruar.</item>
+    <item quantity="other">Mund të zgjidhni një PIN të ri, ngaqë kjo pajisje është e regjistruar. Nëse e harroni PIN-in tuaj, mund të duhet të prisni %1$d ditë për ta riregjistruar.</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Krijoni PIN-in tuaj</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PIN-et shtojnë te llogaria juaj një shtresë sigurie ekstra. Është e rëndësishme të mbani mend këtë PIN, ngaqë s’mund të rimerret.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-et s’përputhen. Riprovoni.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Ripohoni PIN-in tuaj.</string>
@@ -1430,9 +1450,12 @@
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN-i juaj s’u ruajt.Do t’ju kujtojmë më vonë të krijoni një PIN.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN-i u krijua.</string>
   <string name="ConfirmKbsPinFragment__re_enter_pin">Rijepeni PIN-in</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">Po krijohet PIN-i…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Ju paraqesim PIN-et</string>
+  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">PIN-et i shtojnë llogarisë tuaj një tjetër shtresë sigurie. Krijoni tani një të tillë.</string>
   <string name="KbsSplashFragment__learn_more">Mësoni Më Tepër</string>
+  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Kyçje Regjistrimi = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Kyçi juaj i Regjistrimit tani quhet PIN, dhe bën edhe më tepër se aq. Përditësojeni që tani.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Lexoni më tepër rreth PIN-esh.</string>
@@ -1447,8 +1470,10 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">PIN i pasaktë. Riprovoni.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">LLogari e kyçur</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Llogaria juaj është kyçur për të mbrojtur privatësinë dhe sigurinë. Pas %1$d ditësh mosveprimtarie në llogarinë tuaj, do të jeni në gjendje të riregjistroni këtë numër telefoni pa u dashur PIN. Krejt lënda do të fshihet.</string>
   <string name="AccountLockedFragment__next">Pasuesi</string>
   <string name="AccountLockedFragment__learn_more">Mësoni Më Tepër</string>
+  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Jepni PIN-in tuaj</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Jepni PIN-in që krijuar për llogarinë tuaj. Ky është tjetër gjë nga kodi juaj i verifikimit me SMS.</string>
@@ -1459,6 +1484,29 @@
   <string name="RegistrationLockFragment__forgot_pin">Harruat PIN-in?</string>
   <string name="RegistrationLockFragment__incorrect_pin">PIN i pasaktë</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Harruat PIN-in tuaj?</string>
+  <string name="RegistrationLockFragment__not_many_tries_left">S’ka edhe shumë prova!</string>
+  <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
+    <item quantity="one">Për privatësinë dhe sigurinë tuaj, s’ka mënyrë për të rimarrë PIN-in 
+tuaj. Nëse s’mbani mend PIN-in tuaj, mund  të ribëni verifikimin me SMS pas %1$d dite pa veprimtari. Në këtë rast, llogaria juaj do të 
+spastrohet dhe krejt lënda do të fshihet.</item>
+    <item quantity="other">Për privatësinë dhe sigurinë tuaj, s’ka mënyrë për të rimarrë PIN-in tuaj. Nëse s’mbani mend PIN-in tuaj, mund  të ribëni verifikimin me SMS pas %1$d ditësh pa veprimtari. Në këtë rast, llogaria juaj do të spastrohet dhe krejt lënda do të fshihet.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
+    <item quantity="one">PIN i pasaktë. Edhe  %1$d provë.</item>
+    <item quantity="other">PIN i pasaktë. Edhe %1$d prova.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
+    <item quantity="one">Nëse ju mbarohen provat, llogaria juaj do të kyçet për %1$d ditë. Pas %1$d dite pa veprimtari, mund ta riregjistroni pa u dashur PIN juaj. Llogaria juaj do të spastrohet dhe krejt lënda do të fshihet.</item>
+    <item quantity="other">Nëse ju mbarohen provat, llogaria juaj do të kyçet për %1$d ditë. Pas %1$d ditësh pa veprimtari, mund ta riregjistroni pa u dashur PIN-i juaj. Llogaria juaj do të spastrohet dhe krejt lënda do të fshihet.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
+    <item quantity="one">Ju mbetet edhe %1$d provë.</item>
+    <item quantity="other">Ju mbeten edhe %1$d prova.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__d_attempts_remaining">
+    <item quantity="one">Edhe %1$d provë.</item>
+    <item quantity="other">Edhe %1$d prova.</item>
+  </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Krijoni PIN</string>
   <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">PIN-i i shton llogarisë tuaj një tjetër shtresë sigurie llogarisë tuaj Signal.</string>
@@ -1466,6 +1514,8 @@
   <string name="KbsMegaphone__introducing_pins">Ju paraqesim PIN-et</string>
   <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Kyçi juaj i Regjistrimit tani quhet PIN. Përditësimi ha vetëm pak sekonda.</string>
   <string name="KbsMegaphone__update_pin">Përditësoni PIN-in</string>
+  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Do t’jua kujtojmë më vonë. Krijimi i një PIN-i do të jetë i detyrueshëm pas %1$d ditësh.</string>
+  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Do t’jua kujtojmë më vonë. Ripohimi i PIN-it tuaj do të jetë i detyrueshëm pas %1$d ditësh.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikonë bartjesh</string>
   <string name="ConversationListFragment_loading">Po ngarkohet…</string>
@@ -1490,6 +1540,8 @@
   <string name="preferences_chats__chat_backups">Kopjeruajtje fjalosjesh</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Kopjeruaji fjalosje te depozitë e jashtme</string>
   <string name="preferences_chats__create_backup">Krijo kopjeruajtje</string>
+  <string name="preferences_chats__verify_backup_passphrase">Verifikoni frazëkalim kopjeruajtjeje</string>
+  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Testoni frazëkalimin tuaj për kopjeruajtjen dhe verifikoni që përputhet</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Jepni frazëkalim kopjeruajtjeje</string>
   <string name="RegistrationActivity_restore">Riktheje</string>
   <string name="RegistrationActivity_backup_failure_downgrade">S\’mund të importohen kopjeruajtje prej versionesh më të rinj të Signal-it</string>
@@ -1507,7 +1559,10 @@
   <string name="BackupDialog_disable_and_delete_all_local_backups">Të çaktivizohen dhe fshihen krejt kopjeruajtjet vendore?</string>
   <string name="BackupDialog_delete_backups_statement">Fshiji kopjeruajtjet</string>
   <string name="BackupDialog_copied_to_clipboard">U kopjua në të papastër</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">Jepni frazëkalimin tuaj të kopjeruajtjes që duhet verifikuar</string>
   <string name="BackupDialog_verify">Verifiko</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">E dhatë me sukses frazëkalimin tuaj të kopjeruajtjes</string>
+  <string name="BackupDialog_passphrase_was_not_correct">Frazëkalimi s’qe i saktë</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Që të mund të krijohen kopjeruajtje, Signal-i lyp leje mbi depozitë të jashtme, por kjo i është mohuar. Ju lutemi, kaloni te rregullime aplikacioni, përzgjidhni \"Leje\" dhe aktivizoni \"Depozitim\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Kopjeruajtja e fundit: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Në kryerje e sipër</string>
@@ -1542,6 +1597,7 @@
   <string name="preferences_app_protection__registration_lock_pin">PIN Kyçjeje Regjistrimi</string>
   <string name="preferences_app_protection__registration_lock">Kyçje Regjistrimi</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Duhet të jepni PIN-in tuaj të Kyçjes së Regjistrimit</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">PIN-i juaj ka të paktën %d shifra ose shenja</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">PIN Kyçjeje Regjistrimi i pasaktë</string>
   <string name="RegistrationActivity_too_many_attempts">Shumë përpjekje</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Keni bërë shumë përpjekje të pasakta dhënieje PIN-i Kyçjeje Regjistrimi. Ju lutemi, riprovoni pas një dite.</string>

@@ -569,6 +569,7 @@
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Hoppla, die Play-Store-App scheint nicht auf deinem Gerät installiert zu sein.</string>
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Alle %1$d</string>
+  <!-- Removed by excludeNonTranslatables <string name="ReactionsBottomSheetDialogFragment_you">%1$s (Du)</string> -->
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--RecipientPreferencesActivity-->
@@ -1171,7 +1172,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__pref_enter_sends_title">Eingabetaste sendet</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Antippen der Eingabetaste versendet Nachrichten sofort</string>
   <string name="preferences__send_link_previews">Link-Vorschauen senden</string>
-  <string name="preferences__previews_are_supported_for">Vorschauen werden unterstützt für Links von Imgur, Instagram, Pinterest, Reddit und YouTube.</string>
+  <string name="preferences__previews_are_supported_for">Vorschauen werden unterstützt für Links von Imgur, Instagram, Pinterest, Reddit und YouTube</string>
   <string name="preferences__choose_identity">Kontakt auswählen</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Wähle deinen Kontakt aus der Kontaktliste.</string>
   <string name="preferences__change_passphrase">Passphrase ändern</string>
@@ -1242,9 +1243,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivieren, falls das Gerät SMS/MMS über WLAN nutzt (nur bei aktivierter WLAN-Telefonie)</string>
   <string name="preferences__incognito_keyboard">Inkognito-Tastatur</string>
   <string name="preferences__read_receipts">Lesebestätigungen</string>
-  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Bei deaktivierten Lesebestätigungen wirst du auch die Lesebestätigungen anderer nicht sehen können</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Bei deaktivierten Lesebestätigungen kannst du auch die Lesebestätigungen anderer nicht sehen</string>
   <string name="preferences__typing_indicators">Tipp-Indikatoren</string>
-  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Bei deaktivierten Tipp-Indikatoren wirst du auch die Tipp-Indikatoren anderer nicht sehen können</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Bei deaktivierten Tipp-Indikatoren kannst du auch die Tipp-Indikatoren anderer nicht sehen</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Tastatur auffordern, personalisiertes Lernen auszuschalten</string>
   <string name="preferences_app_protection__blocked_contacts">Blockierte Kontakte</string>
   <string name="preferences_chats__when_using_mobile_data">Bei mobiler Datenverbindung</string>
@@ -1464,7 +1465,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="KbsReminderDialog__incorrect_pin_try_again">Falsche PIN. Bitte erneut versuchen.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Konto gesperrt</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Dein Konto wurde gesperrt, um deine Privatsphäre und Sicherheit zu schützen. Nach Ablauf von %1$d Tagen ohne Kontoaktivität kannst du diese Rufnummer erneut registrieren, ohne deine PIN zu benötigen. Alle Inhalte werden dabei gelöscht.</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Dein Konto wurde gesperrt, um deine Privatsphäre und Sicherheit zu schützen. Nach Ablauf von %1$d Tagen ohne Kontoaktivität kannst du diese Rufnummer ohne PIN erneut registrieren. Alle Inhalte werden dabei gelöscht.</string>
   <string name="AccountLockedFragment__next">Weiter</string>
   <string name="AccountLockedFragment__learn_more">Mehr erfahren</string>
   <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/de/articles/360007059792-Registration-Lock</string>
@@ -1589,7 +1590,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_app_protection__registration_lock_pin">PIN für Registrierungssperre</string>
   <string name="preferences_app_protection__registration_lock">Registrierungssperre</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Du musst deine PIN für die Registrierungssperre eingeben</string>
-  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Deine PIN muss aus mindestens %d Ziffern oder Zeichen bestehen</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Deine PIN besteht aus mindestens %d Ziffern oder Zeichen</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Falsche PIN für Registrierungssperre</string>
   <string name="RegistrationActivity_too_many_attempts">Zu viele Versuche</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Du hast deine PIN für die Registrierungssperre zu oft falsch eingegeben. Bitte versuche es in einem Tag wieder.</string>

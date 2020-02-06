@@ -502,6 +502,7 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">נשלח על ידי %1$s אל %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">נשלח על ידך אל %1$s</string>
   <!--Megaphones-->
+  <string name="Megaphones_introducing_reactions">היכרות עם תגובות</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">הקש והחזק הודעה כלשהי כדי לשתף בזריזות איך אתה מרגיש.</string>
   <string name="Megaphones_remind_me_later">הזכר לי מאוחר יותר</string>
   <!--NotificationBarManager-->
@@ -612,6 +613,7 @@
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">אוי, נראה שיישום חנות Play אינו מותקן במכשיר שלך.</string>
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">כל ה־%1$d</string>
+  <!-- Removed by excludeNonTranslatables <string name="ReactionsBottomSheetDialogFragment_you">%1$s (אתה)</string> -->
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--RecipientPreferencesActivity-->
@@ -1500,7 +1502,7 @@
     <item quantity="one">PIN חייב להיות לפחות תו %1$d</item>
     <item quantity="two">PIN חייב להיות לפחות %1$d תווים</item>
     <item quantity="many">PIN חייב להיות לפחות %1$d תווים </item>
-    <item quantity="other">PIN חייב להיות לפחות%1$d תווים</item>
+    <item quantity="other">PIN חייב להיות לפחות %1$d תווים</item>
   </plurals>
   <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
     <item quantity="one">PIN חייב להיות לפחות ספרה %1$d</item>
@@ -1529,7 +1531,7 @@
   <string name="KbsSplashFragment__introducing_pins">היכרות עם PIN</string>
   <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">קודי PIN מוסיפים שכבה נוספת של אבטחה אל החשבון שלך. צור אחד עכשיו.</string>
   <string name="KbsSplashFragment__learn_more">למד עוד</string>
-  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/he-il/articles/360007059792-Registration-Lock</string>
+  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/he/articles/360007059792-נעילת-הרשמה</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">נעילת הרשמה = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">נעילת ההרשמה שלך נקראת כעת PIN, והיא עושה יותר. עדכן אותה כעת.</string>
   <string name="KbsSplashFragment__read_more_about_pins">למד עוד על PIN.</string>
@@ -1544,10 +1546,10 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">PIN שגוי. נסה שוב.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">החשבון ננעל</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">החשבון שלך ננעל כדי להגן על הפרטיות והאבטחה שלך. לאחר %1$d ימים של אי־פעילות בחשבון שלך, תוכל להירשם שוב עם מספר טלפון זה ללא צורך ב־PIN שלך. כל התוכן יימחק.</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">חשבונך ננעל כדי להגן על פרטיותך ואבטחתך. לאחר %1$d ימים של אי־פעילות בחשבונך, תוכל להירשם שוב עם מספר טלפון זה ללא צורך ב־PIN שלך. כל התוכן יימחק.</string>
   <string name="AccountLockedFragment__next">הבא</string>
   <string name="AccountLockedFragment__learn_more">למד עוד</string>
-  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/he-il/articles/360007059792-Registration-Lock</string>
+  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/he/articles/360007059792-נעילת-הרשמה</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">הכנס את ה־PIN שלך</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">הכנס את ה־PIN שיצרת עבור החשבון שלך. הוא שונה מקוד הוידוא שלך במסרון.</string>
@@ -1593,7 +1595,7 @@
   <string name="KbsMegaphone__create_a_pin">צור PIN</string>
   <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">קודי PIN מוסיפים שכבה נוספת של אבטחה אל חשבון Signal שלך.</string>
   <string name="KbsMegaphone__create_pin">צור PIN</string>
-  <string name="KbsMegaphone__introducing_pins">היכרות עם PIN</string>
+  <string name="KbsMegaphone__introducing_pins">היכרות עם קודי PIN</string>
   <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">נעילת ההרשמה שלך נקראת כעת PIN. עדכון שלה לוקח שניות.</string>
   <string name="KbsMegaphone__update_pin">עדכן PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">נזכיר לך מאוחר יותר. יצירת PIN תהיה חובה עוד %1$d ימים.</string>

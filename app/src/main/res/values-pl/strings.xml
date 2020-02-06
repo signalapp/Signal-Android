@@ -612,6 +612,7 @@
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ups, prawdopodobnie aplikacja Google Play nie jest zainstalowana na Twoim urządzeniu.</string>
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Wszystkie %1$d</string>
+  <!-- Removed by excludeNonTranslatables <string name="ReactionsBottomSheetDialogFragment_you">%1$s (Ty)</string> -->
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--RecipientPreferencesActivity-->
@@ -1486,8 +1487,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--Edit KBS Pin-->
   <!--BaseKbsPinFragment-->
   <string name="BaseKbsPinFragment__next">Dalej</string>
-  <string name="BaseKbsPinFragment__create_alphanumeric_pin">Stwórz alfanumeryczny PIN</string>
-  <string name="BaseKbsPinFragment__create_numeric_pin">Stwórz liczbowy PIN</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">Utwórz alfanumeryczny PIN</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">Utwórz liczbowy PIN</string>
   <!--CreateKbsPinFragment-->
   <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
     <item quantity="one">PIN musi mieć przynajmniej %1$d znak</item>
@@ -1509,54 +1510,54 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
     <item quantity="other">To urządzenie jest zarejestrowane, więc możesz wybrać nowy PIN. Jeśli zapomnisz swojego PINu, będziesz musiał(a) zaczekać %1$d dni, aby ponownie się zarejestrować.</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Utwórz swój PIN</string>
-  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">Numery PIN zapewniają dodatkową ochronę Twojego konta. Zapamiętaj ten PIN, gdyż nie da się go odzyskać.</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">Kody PIN zapewniają dodatkową ochronę Twojego konta. Zapamiętaj ten PIN, gdyż nie da się go odzyskać.</string>
   <!--ConfirmKbsPinFragment-->
-  <string name="ConfirmKbsPinFragment__pins_dont_match">Numery PIN się różnią. Spróbuj ponownie.</string>
+  <string name="ConfirmKbsPinFragment__pins_dont_match">Kody PIN się różnią. Spróbuj ponownie.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Potwierdź swój PIN</string>
-  <string name="ConfirmKbsPinFragment__pin_creation_failed">Tworzenie PINu nie powiodło się</string>
-  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Twój PIN nie został zapisany. Później poprosimy Cię o stworzenie PINu.</string>
-  <string name="ConfirmKbsPinFragment__pin_created">Stworzono PIN.</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">Utworzenie PINu nie powiodło się</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Twój PIN nie został zapisany. Później poprosimy Cię o utworzenie PINu.</string>
+  <string name="ConfirmKbsPinFragment__pin_created">Utworzono PIN.</string>
   <string name="ConfirmKbsPinFragment__re_enter_pin">Ponownie wpisz PIN</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Tworzenie PINu…</string>
   <!--KbsSplashFragment-->
-  <string name="KbsSplashFragment__introducing_pins">Przedstawiamy numery PIN</string>
-  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">Numer PIN zapewnia dodatkową ochronę Twojego konta. Stwórz go teraz.</string>
+  <string name="KbsSplashFragment__introducing_pins">Przedstawiamy kody PIN</string>
+  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">PIN zapewnia dodatkową ochronę Twojego konta. Utwórz go teraz.</string>
   <string name="KbsSplashFragment__learn_more">Dowiedz się więcej</string>
   <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Blokada rejestracji = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Twoja blokada rejestracji nazywa się teraz PIN, i ma nowe funkcje. Uaktualnij ją teraz.</string>
-  <string name="KbsSplashFragment__read_more_about_pins">Dowiedz się więcej o numerach PIN</string>
+  <string name="KbsSplashFragment__read_more_about_pins">Dowiedz się więcej o kodach PIN.</string>
   <string name="KbsSplashFragment__update_pin">Uaktualnij PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Utwórz swój PIN</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Wpisz swój PIN Signal</string>
-  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Aby pomóc Ci zapamiętać Twój numer PIN, będziemy co jakiś czas o niego pytać. Z czasem pytania będą coraz rzadsze.</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Aby pomóc Ci zapamiętać Twój kod PIN, będziemy co jakiś czas o niego pytać. Z czasem pytania będą coraz rzadsze.</string>
   <string name="KbsReminderDialog__skip">Pomiń</string>
   <string name="KbsReminderDialog__submit">Wyślij</string>
   <string name="KbsReminderDialog__forgot_pin">Zapomniałeś(aś) PIN?</string>
   <string name="KbsReminderDialog__incorrect_pin_try_again">Nieprawidłowy PIN. Spróbuj ponownie.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Konto zablokowane.</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Twoje konto zostało zablokowane, aby chronić Twoją prywatność i bezpieczeństwo. Po %1$d dniach nieaktywności będziesz móc ponownie zarejestrować ten numer telefonu bez użycia numeru PIN. Cała zawartość Twojego konta zostanie usunięta.</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Twoje konto zostało zablokowane, aby chronić Twoją prywatność i bezpieczeństwo. Po %1$d dniach nieaktywności będziesz móc ponownie zarejestrować ten numer telefonu bez użycia PINu. Cała zawartość Twojego konta zostanie usunięta.</string>
   <string name="AccountLockedFragment__next">Dalej</string>
   <string name="AccountLockedFragment__learn_more">Dowiedz się więcej</string>
   <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Wpisz swój PIN</string>
-  <string name="RegistrationLockFragment__enter_the_pin_you_created">Wpisz numer PIN, który utworzyłeś(aś) dla swojego konta. Ten numer nie jest Twoim kodem weryfikacyjnym SMS.</string>
+  <string name="RegistrationLockFragment__enter_the_pin_you_created">Wpisz kod PIN, który utworzyłeś(aś) dla swojego konta. Ten kod nie jest Twoim kodem weryfikacyjnym SMS.</string>
   <string name="RegistrationLockFragment__enter_alphanumeric_pin">Wpisz alfanumeryczny PIN</string>
   <string name="RegistrationLockFragment__enter_numeric_pin">Wpisz liczbowy PIN</string>
   <string name="RegistrationLockFragment__next">Dalej</string>
   <string name="RegistrationLockFragment__incorrect_pin_try_again">Nieprawidłowy PIN. Spróbuj ponownie.</string>
   <string name="RegistrationLockFragment__forgot_pin">Zapomniałeś(aś) PIN?</string>
-  <string name="RegistrationLockFragment__incorrect_pin">Nieprawidłowy kod PIN</string>
-  <string name="RegistrationLockFragment__forgot_your_pin">Zapomniałeś(aś) kodu PIN?</string>
+  <string name="RegistrationLockFragment__incorrect_pin">Nieprawidłowy PIN</string>
+  <string name="RegistrationLockFragment__forgot_your_pin">Zapomniałeś(aś) swój PIN?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Pozostało niewiele prób!</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">Dla Twojej prywatności i bezpieczeństwa, nie ma sposobu na odzyskanie Twojego numeru PIN. Jeśli nie możesz przypomnieć sobie PINu, możesz ponownie zweryfikować numer przez SMS, po %1$d dniu nieaktywności. W tym przypadku Twoje konto zostanie skasowane, a cała zawartość usunięta.</item>
     <item quantity="few">Dla Twojej prywatności i bezpieczeństwa, nie ma sposobu na odzyskanie Twojego numeru PIN. Jeśli nie możesz przypomnieć sobie PINu, możesz ponownie zweryfikować numer przez SMS, po %1$d dniach nieaktywności. W tym przypadku Twoje konto zostanie skasowane, a cała zawartość usunięta.</item>
     <item quantity="many">Dla Twojej prywatności i bezpieczeństwa, nie ma sposobu na odzyskanie Twojego numeru PIN. Jeśli nie możesz przypomnieć sobie PINu, możesz ponownie zweryfikować numer przez SMS, po %1$d dniach nieaktywności. W tym przypadku Twoje konto zostanie skasowane, a cała zawartość usunięta.</item>
-    <item quantity="other">Dla Twojej prywatności i bezpieczeństwa, nie ma sposobu na odzyskanie Twojego numeru PIN. Jeśli nie możesz przypomnieć sobie PINu, możesz ponownie zweryfikować numer przez SMS, po %1$d dni nieaktywności. W tym przypadku Twoje konto zostanie skasowane, a cała zawartość usunięta.</item>
+    <item quantity="other">Dla Twojej prywatności i bezpieczeństwa, nie ma sposobu na odzyskanie Twojego kodu PIN. Jeśli nie możesz przypomnieć sobie PINu, możesz ponownie zweryfikować numer przez SMS, po %1$d dni nieaktywności. W tym przypadku Twoje konto zostanie skasowane, a cała zawartość usunięta.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
     <item quantity="one">Nieprawidłowy kod PIN. Pozostała %1$d próba.</item>
@@ -1568,7 +1569,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
     <item quantity="one">Jeśli skończą Ci się próby, Twoje konto zostanie zablokowane na %1$ddzień. Po %1$d dniu nieaktywności możesz zarejestrować się ponownie, bez użycia numeru PIN. Twoje konto zostanie skasowane, a cała jego zawartość usunięta.</item>
     <item quantity="few">Jeśli skończą Ci się próby, Twoje konto zostanie zablokowane na %1$d dni. Po %1$d dniach nieaktywności możesz zarejestrować się ponownie, bez użycia numeru PIN. Twoje konto zostanie skasowane, a cała jego zawartość usunięta.</item>
     <item quantity="many">Jeśli skończą Ci się próby, Twoje konto zostanie zablokowane na %1$d dni. Po %1$d dniach nieaktywności możesz zarejestrować się ponownie, bez użycia numeru PIN. Twoje konto zostanie skasowane, a cała jego zawartość usunięta.</item>
-    <item quantity="other">Jeśli skończą Ci się próby, Twoje konto zostanie zablokowane na %1$d dni. Po %1$d dniach nieaktywności możesz zarejestrować się ponownie, bez użycia numeru PIN. Twoje konto zostanie skasowane, a cała jego zawartość usunięta.</item>
+    <item quantity="other">Jeśli skończą Ci się próby, Twoje konto zostanie zablokowane na %1$d dni. Po %1$d dniach nieaktywności możesz zarejestrować się ponownie, bez użycia kodu PIN. Twoje konto zostanie skasowane, a cała jego zawartość usunięta.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
     <item quantity="one">Pozostała Ci %1$d próba</item>
@@ -1584,9 +1585,9 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Utwórz PIN</string>
-  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">Numer PIN zapewnia dodatkową ochronę Twojego konta Signal.</string>
+  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">PIN zapewnia dodatkową ochronę Twojego konta Signal.</string>
   <string name="KbsMegaphone__create_pin">Utwórz PIN</string>
-  <string name="KbsMegaphone__introducing_pins">Przedstawiamy numery PIN</string>
+  <string name="KbsMegaphone__introducing_pins">Przedstawiamy kody PIN</string>
   <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Twoja blokada rejestracji nazywa się teraz PIN. Aktualizacja potrwa kilka sekund.</string>
   <string name="KbsMegaphone__update_pin">Uaktualnij PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Przypomnimy Ci o tym później. Utworzenie PINu stanie się obowiązkowe za %1$d dni.</string>
@@ -1658,7 +1659,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Zmień</string>
   <string name="preferences_app_protection__create">Utwórz</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Twój PIN zapewnia dodatkową warstwę ochrony i pozwala Ci na odzyskanie konta. Zostaniesz o niego poproszony(a), gdy będziesz rejestrować swój numer telefonu w Signal. Jeśli zapomnisz swojego numeru PIN, zostaniesz odcięty(a) od swojego konta na 7 dni.</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Twój PIN zapewnia dodatkową warstwę ochrony i pozwala Ci na odzyskanie konta. Zostaniesz o niego poproszony(a), gdy będziesz rejestrować swój numer telefonu w Signal. Jeśli zapomnisz swojego kodu PIN, zostaniesz odcięty(a) od swojego konta na 7 dni.</string>
   <string name="AppProtectionPreferenceFragment_none">Brak</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Kod PIN blokady rejestracji różni się od kodu weryfikacyjnego SMS, który właśnie otrzymałeś(aś). Wprowadź kod PIN skonfigurowany wcześniej w aplikacji.</string>
   <string name="registration_activity__registration_lock_pin">PIN blokady rejestracji</string>

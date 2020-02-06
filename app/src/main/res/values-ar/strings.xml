@@ -246,7 +246,7 @@
     <item quantity="two">حفظ %1$d وسيط في الذاكرة يسمح ﻷي تطبيق آخر على الهاتف من النفاذ له. \n\nاستمر؟</item>
     <item quantity="few">حفظ %1$d وسيط في الذاكرة يسمح ﻷي تطبيق آخر على الهاتف من النفاذ له. \n\nاستمر؟</item>
     <item quantity="many">حفظ %1$d وسيط في الذاكرة يسمح ﻷي تطبيق آخر على الهاتف من النفاذ له. \n\nاستمر؟</item>
-    <item quantity="other">حفظ جميع ال %1$d ملف متعدد الوسائط في الذاكرة سيسمح ﻷي تطبيق آخر على جهازك بالنفاذ إليها.\n\n استمرار؟</item>
+    <item quantity="other">حفظ جميع ال %1$d ملف متعدد الوسائط في الذاكرة سيسمح ﻷي تطبيق آخر على جهازك بالنفاذ إليها.\n\n استمرار؟</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="zero">وقع خطأ أثناء حفظ المرفقات في مساحة التخزين!</item>

@@ -40,6 +40,7 @@
   <string name="ApplicationPreferencesActivity_Off">關</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">螢幕鎖定 %1$s，註冊鎖定 %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">螢幕鎖%1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">主題 %1$s，語言 %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -57,6 +58,8 @@
   <string name="AttachmentKeyboard_file">檔案</string>
   <string name="AttachmentKeyboard_contact">聯絡人</string>
   <string name="AttachmentKeyboard_location">位置</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal 需要權限以顯示你的照片及影片。</string>
+  <string name="AttachmentKeyboard_give_access">取得連結</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">找不到合適的應用程式來選擇媒體檔案。</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal 需要儲存的權限，以存取照片、影片或聲音檔。但是現在被設定為永久拒絕存取。請到應用程式設定中，選擇「權限」及開啟「儲存」。 </string>
@@ -439,6 +442,8 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">透過%1$s傳送給%2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">由你傳送給%1$s</string>
   <!--Megaphones-->
+  <string name="Megaphones_introducing_reactions">介紹\"反應\"</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">點擊並按住任何訊息以分享你的感覺。</string>
   <string name="Megaphones_remind_me_later">稍後提醒我</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal 通話進行中</string>
@@ -543,7 +548,10 @@
   <string name="RatingManager_later">稍後</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">糟糕，您的設備上未安裝 Google Play 商店。</string>
   <!--ReactionsBottomSheetDialogFragment-->
+  <string name="ReactionsBottomSheetDialogFragment_all">所有%1$d</string>
+  <!-- Removed by excludeNonTranslatables <string name="ReactionsBottomSheetDialogFragment_you">%1$s(你)</string> -->
   <!--ReactionsConversationView-->
+  <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">封鎖此聯絡人？</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">您將不會再次收到來自此聯絡人的訊息與通話。</string>
@@ -1391,8 +1399,18 @@
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">建立字母數字PIN碼</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">建立數字PIN碼</string>
   <!--CreateKbsPinFragment-->
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
+    <item quantity="other">PIN碼必須至少%1$d個字母</item>
+  </plurals>
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
+    <item quantity="other">PIN碼必需至少%1$d個字元</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">建立一個新 PIN 碼</string>
+  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
+    <item quantity="other">你可以選擇一個新的PIN碼，因為此裝置已被註冊。 如果你忘記了PIN碼，則可能需要等待%1$d天才能重新註冊。</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">建立你的 PIN 碼</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PIN碼為你的帳號增加了一層額外的安全保護。 記住此PIN碼很重要，因為它無法恢復。</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN碼不符合。請重試一次。</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">確認你的 PIN 碼。</string>
@@ -1400,10 +1418,14 @@
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">你的PIN碼還沒被儲存。我們稍後會提示你建立PIN碼。</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN碼已建立。</string>
   <string name="ConfirmKbsPinFragment__re_enter_pin">重新輸入 PIN 碼</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">建立PIN碼中…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">介紹 PIN 碼</string>
+  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">PIN碼為你的帳號增加了另一層級的安全性。 請現在建立一個。</string>
   <string name="KbsSplashFragment__learn_more">了解更多</string>
+  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">註冊鎖 = PIN 碼</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">你的註冊鎖現在稱為PIN碼，並且功能更多。 請立即更新。</string>
   <string name="KbsSplashFragment__read_more_about_pins">了解更多有關PIN碼。</string>
   <string name="KbsSplashFragment__update_pin">升級PIN碼</string>
   <string name="KbsSplashFragment__create_your_pin">建立你的 PIN 碼</string>
@@ -1416,8 +1438,10 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">不正確的PIN碼。請再試一次。</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">帳號已被鎖定</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">你的帳號已被鎖定，以保護你的隱私和安全。 帳號停用%1$d天後，你無需密碼即可重新註冊該電話號碼。 所有內容將被刪除。</string>
   <string name="AccountLockedFragment__next">下一步</string>
   <string name="AccountLockedFragment__learn_more">了解更多</string>
+  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">輸入你的 PIN 碼</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">輸入你為帳戶建立的 PIN 碼。 這與你的簡訊驗證碼不同。</string>
@@ -1428,9 +1452,31 @@
   <string name="RegistrationLockFragment__forgot_pin">忘記 PIN 碼？</string>
   <string name="RegistrationLockFragment__incorrect_pin">錯誤的 PIN 碼</string>
   <string name="RegistrationLockFragment__forgot_your_pin">忘記你的 PIN 碼？</string>
+  <string name="RegistrationLockFragment__not_many_tries_left">沒剩幾次嘗試次數!</string>
+  <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
+    <item quantity="other">為了你的隱私和安全，無法恢復你的PIN碼。 如果你忘記了PIN碼，可以在停用%1$d天後透過SMS重新進行驗證。 在這種情況下，你的帳號將被刪除，所有內容都將被刪除。</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
+    <item quantity="other">PIN碼錯誤。剩下%1$d次嘗試次數。</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
+    <item quantity="other">如果嘗試次數用完，你的帳戶將被鎖定%1$d天。 停用%1$d天後，你無需輸入PIN碼即可重新註冊。 你的帳戶將被刪除，所有內容都將被刪除。</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
+    <item quantity="other">你只剩%1$d次的嘗試次數。</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__d_attempts_remaining">
+    <item quantity="other">只剩%1$d次的嘗試次數。</item>
+  </plurals>
   <!--KBS Megaphone-->
+  <string name="KbsMegaphone__create_a_pin">建立一個PIN碼</string>
+  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">PIN碼為你的Signal帳號增加了另一層安全保護。</string>
+  <string name="KbsMegaphone__create_pin">建立PIN碼</string>
   <string name="KbsMegaphone__introducing_pins">介紹 PIN 碼</string>
+  <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">你的註冊鎖現在稱為PIN碼。 更新需要幾秒鐘。</string>
   <string name="KbsMegaphone__update_pin">升級PIN碼</string>
+  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">我們稍後會提醒你。 建立PIN碼將在%1$d天之內成為強制性的。</string>
+  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">我們稍後會提醒你。 在%1$d天之內，必須確認你的PIN碼。</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">傳輸圖示</string>
   <string name="ConversationListFragment_loading">讀取中…</string>
@@ -1455,6 +1501,8 @@
   <string name="preferences_chats__chat_backups">聊天備份</string>
   <string name="preferences_chats__backup_chats_to_external_storage">備份聊天到外部儲存空間</string>
   <string name="preferences_chats__create_backup">建立備份</string>
+  <string name="preferences_chats__verify_backup_passphrase">驗證備份碼</string>
+  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">測試你的備份碼，並驗證其是否相符</string>
   <string name="RegistrationActivity_enter_backup_passphrase">輸入備份密碼</string>
   <string name="RegistrationActivity_restore">還原</string>
   <string name="RegistrationActivity_backup_failure_downgrade">無法從較新版本的 Signal 匯入備份檔</string>
@@ -1472,7 +1520,10 @@
   <string name="BackupDialog_disable_and_delete_all_local_backups">關閉及刪除所有本機備份？</string>
   <string name="BackupDialog_delete_backups_statement">刪除備份</string>
   <string name="BackupDialog_copied_to_clipboard">已複製到剪貼簿</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">輸入你的備份碼以確認</string>
   <string name="BackupDialog_verify">驗證</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">你已成功的輸入你的備份碼</string>
+  <string name="BackupDialog_passphrase_was_not_correct">備份碼錯誤</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">為了要建立備份，Signal 需要外部空間的權限，但是已被永久拒絕。請到應用程式設定，選擇「權限」及開啟「儲存」。</string>
   <string name="ChatsPreferenceFragment_last_backup_s">上一次備份︰%s</string>
   <string name="ChatsPreferenceFragment_in_progress">處理中</string>
@@ -1507,6 +1558,7 @@
   <string name="preferences_app_protection__registration_lock_pin">註冊鎖定 PIN 碼</string>
   <string name="preferences_app_protection__registration_lock">註冊鎖定</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">你必須輸入你的註冊鎖定 PIN 碼</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">你的PIN碼至少要%d個字元或字母</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">不正確的註冊鎖定 PIN 碼</string>
   <string name="RegistrationActivity_too_many_attempts">您已重複嘗試太多次</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">你已經嘗試太多不正確的註冊鎖定 PIN 碼。請一天後再重試。</string>

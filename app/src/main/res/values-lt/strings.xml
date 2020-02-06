@@ -498,9 +498,11 @@
   <string name="MediaOverviewActivity_image">Paveikslas</string>
   <string name="MediaOverviewActivity_sent_by_s">Išsiuntė %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Išsiuntėte jūs</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s išsiuntė žinutę %2$s.</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Jūs išsiuntėte naudotojui %1$s</string>
   <!--Megaphones-->
   <string name="Megaphones_introducing_reactions">Pristatome reakcijas</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Bakstelėkite ir palaikykite ant bet kurios žinutės, norėdami greitai pasidalinti tuo, ką jaučiate.</string>
   <string name="Megaphones_remind_me_later">Priminti vėliau</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal skambutis yra eigoje</string>
@@ -610,6 +612,7 @@
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Oi, atrodo, kad Play Store programėlė nėra įdiegta jūsų įrenginyje.</string>
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Visi %1$d</string>
+  <!-- Removed by excludeNonTranslatables <string name="ReactionsBottomSheetDialogFragment_you">%1$s (Jūs)</string> -->
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--RecipientPreferencesActivity-->
@@ -872,7 +875,7 @@
   <string name="NotificationChannel_group_messages">Žinutės</string>
   <string name="NotificationChannel_missing_display_name">Nežinoma</string>
   <!--ProfileEditNameFragment-->
-  <string name="ProfileEditNameFragment_successfully_set_profile_name">Profilio pavadinimas sėkmingai nustatytas.</string>
+  <string name="ProfileEditNameFragment_successfully_set_profile_name">Profilio vardas sėkmingai nustatytas.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">Susidurta su tinklo klaida.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Spartusis atsakymas neprieinamas, kai Signal yra užrakinta!</string>
@@ -1480,6 +1483,7 @@
   <string name="InsightsDashboardFragment__cancel">Atsisakyti</string>
   <string name="InsightsDashboardFragment__send">Siųsti</string>
   <string name="InsightsModalFragment__title">Pristatome įžvalgas</string>
+  <string name="InsightsModalFragment__description">Sužinokite kiek iš jūsų išsiunčiamų žinučių buvo išsiųsta saugiai, o tuomet greitai pakvieskite naujus adresatus, kad padidintumėte savo Signal procentinę dalį.</string>
   <string name="InsightsModalFragment__view_insights">Rodyti įžvalgas</string>
   <string name="FirstInviteReminder__title">Pakviesti į Signal</string>
   <string name="FirstInviteReminder__description">Jūs galėtumėte %1$d%% padidinti siunčiamų šifruotų žinučių skaičių</string>
@@ -1493,7 +1497,14 @@
   <string name="BaseKbsPinFragment__create_numeric_pin">Sukurti skaitinį PIN kodą</string>
   <!--CreateKbsPinFragment-->
   <string name="CreateKbsPinFragment__create_a_new_pin">Sukurti naują PIN kodą</string>
+  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
+    <item quantity="one">Kadangi šis įrenginys yra registruotas, galite pasirinkti naują PIN kodą. Jei pamiršite savo PIN kodą, turėsite laukti %1$d dieną, kol galėsite vėl registruoti.</item>
+    <item quantity="few">Kadangi šis įrenginys yra registruotas, galite pasirinkti naują PIN kodą. Jei pamiršite savo PIN kodą, turėsite laukti %1$d dienas, kol galėsite vėl registruoti.</item>
+    <item quantity="many">Kadangi šis įrenginys yra registruotas, galite pasirinkti naują PIN kodą. Jei pamiršite savo PIN kodą, turėsite laukti %1$d dienų, kol galėsite vėl registruoti.</item>
+    <item quantity="other">Kadangi šis įrenginys yra registruotas, galite pasirinkti naują PIN kodą. Jei pamiršite savo PIN kodą, turėsite laukti %1$d dieną, kol galėsite vėl registruoti.</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Susikurti PIN kodą</string>
+  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PIN kodai prideda jūsų paskyrai papildomą saugumo sluoksnį. Svarbu įsiminti savo PIN kodą, nes jis negali būti atkurtas.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN kodai nesutampa. Bandykite dar kartą.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Patvirtinkite savo PIN.</string>
@@ -1504,20 +1515,24 @@
   <string name="ConfirmKbsPinFragment__creating_pin">Kuriamas PIN kodas…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Pristatome PIN kodus</string>
+  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">PIN kodai prideda jūsų paskyrai papildomą saugumo lygmenį. Susikurkite PIN kodą dabar.</string>
   <string name="KbsSplashFragment__learn_more">Sužinoti daugiau</string>
   <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registracijos užraktas = PIN</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Dabar, registracijos užraktas yra vadinamas PIN kodu ir jis atlieka daugiau. Atnaujinkite jį dabar.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Skaitykite daugiau apie PIN kodus.</string>
   <string name="KbsSplashFragment__update_pin">Atnaujinti PIN kodą</string>
   <string name="KbsSplashFragment__create_your_pin">Susikurti PIN kodą</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Įveskite savo Signal PIN</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Tam, kad įsimintumėte savo PIN kodą, mes periodiškai prašysime jį įvesti. Bėgant laikui, mes tai darysime rečiau.</string>
   <string name="KbsReminderDialog__skip">Praleisti</string>
   <string name="KbsReminderDialog__submit">Pateikti</string>
   <string name="KbsReminderDialog__forgot_pin">Pamiršote PIN?</string>
   <string name="KbsReminderDialog__incorrect_pin_try_again">Neteisingas PIN kodas. Bandykite dar kartą.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Paskyra užrakinta</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Siekiant apsaugoti jūsų privatumą ir saugumą, jūsų paskyra buvo užrakinta. Po %1$d dienų neveiklumo, galėsite iš naujo registruoti šį telefono numerį be būtinybės įvesti PIN kodą. Visas turinys bus ištrintas.</string>
   <string name="AccountLockedFragment__next">Kitas</string>
   <string name="AccountLockedFragment__learn_more">Sužinoti daugiau</string>
   <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
@@ -1525,13 +1540,35 @@
   <string name="RegistrationLockFragment__enter_your_pin">Įveskite savo PIN kodą</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Įveskite savo paskyrai sukurtą PIN kodą. Tai yra kas kita, nei jūsų SMS patvirtinimo kodas.</string>
   <string name="RegistrationLockFragment__enter_alphanumeric_pin">Įvesti tekstinį PIN kodą</string>
+  <string name="RegistrationLockFragment__enter_numeric_pin">Įvesti skaitinį PIN kodą</string>
   <string name="RegistrationLockFragment__next">Kitas</string>
   <string name="RegistrationLockFragment__incorrect_pin_try_again">Neteisingas PIN kodas. Bandykite dar kartą.</string>
   <string name="RegistrationLockFragment__forgot_pin">Pamiršote PIN?</string>
   <string name="RegistrationLockFragment__incorrect_pin">Neteisingas PIN</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Pamiršote savo PIN?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Liko tik keli bandymai!</string>
+  <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
+    <item quantity="one">Neteisingas PIN kodas. Liko %1$d bandymas.</item>
+    <item quantity="few">Neteisingas PIN kodas. Liko %1$d bandymai.</item>
+    <item quantity="many">Neteisingas PIN kodas. Liko %1$d bandymų.</item>
+    <item quantity="other">Neteisingas PIN kodas. Liko %1$d bandymas.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
+    <item quantity="one">Jums liko %1$d bandymas.</item>
+    <item quantity="few">Jums liko %1$d bandymai.</item>
+    <item quantity="many">Jums liko %1$d bandymų.</item>
+    <item quantity="other">Jums liko %1$d bandymas.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__d_attempts_remaining">
+    <item quantity="one">Liko %1$d bandymas.</item>
+    <item quantity="few">Liko %1$d bandymai.</item>
+    <item quantity="many">Liko %1$d bandymų.</item>
+    <item quantity="other">Liko %1$d bandymas.</item>
+  </plurals>
   <!--KBS Megaphone-->
+  <string name="KbsMegaphone__create_a_pin">Sukurti PIN kodą</string>
+  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">PIN kodai prideda jūsų paskyrai papildomą saugumo sluoksnį.</string>
+  <string name="KbsMegaphone__create_pin">Susikurkite PIN kodą</string>
   <string name="KbsMegaphone__introducing_pins">Pristatome PIN kodus</string>
   <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Dabar, jūsų registracijos užraktas yra vadinamas PIN kodu. Jo atnaujinimas trunka tik keletą sekundžių.</string>
   <string name="KbsMegaphone__update_pin">Atnaujinti PIN kodą</string>
@@ -1577,6 +1614,7 @@
   <string name="BackupDialog_delete_backups_statement">Ištrinti atsargines kopijas</string>
   <string name="BackupDialog_copied_to_clipboard">Nukopijuota į iškarpinę</string>
   <string name="BackupDialog_verify">Patvirtinti</string>
+  <string name="BackupDialog_passphrase_was_not_correct">Slaptafrazė buvo neteisinga</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Norint daryti atsargines kopijas, Signal reikia išorinės saugyklos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"Saugyklą\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Paskiausia atsarginė kopija: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Eigoje</string>
@@ -1597,6 +1635,7 @@
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Keisti</string>
   <string name="preferences_app_protection__create">Sukurti</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Jūsų PIN kodas prideda jūsų paskyrai papildomą saugumo sluoksnį ir padaro jūsų paskyros atsarginę kopiją. Jūsų bus prašoma jį įvesti, kai registruosite savo telefono numerį su Signal. Jei pamiršite PIN kodą, būsite 7 dienoms užblokuoti nuo savo paskyros.</string>
   <string name="AppProtectionPreferenceFragment_none">Nėra</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Registracijos užrakto PIN nėra tas pats, kas jūsų gautas SMS patvirtinimo kodas. Įveskite PIN, kurį esate anksčiau sukonfigūravę programėlėje.</string>
   <string name="registration_activity__registration_lock_pin">Registracijos užrakto PIN</string>
@@ -1645,5 +1684,11 @@
   <string name="MessageRequestProfileView_member_of_two_groups"> %1$s ir %2$s grupių dalyvis</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s ir %3$s grupių narys</string>
   <string name="MessageRequestProfileView_members">%1$d nariai</string>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="one">dar %d</item>
+    <item quantity="few">dar %d</item>
+    <item quantity="many">dar %d</item>
+    <item quantity="other">dar %d</item>
+  </plurals>
   <!--EOF-->
 </resources>
