@@ -226,7 +226,18 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
 
     if (privacy.isDisplayContact() && threadRecipient.isGroupRecipient()) {
-      stringBuilder.append(Util.getBoldedString(individualRecipient.toShortString() + ": "));
+      long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(threadRecipient);
+      LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID);
+      String hexEncodedPublicKey = individualRecipient.getAddress().toString();
+      String displayName;
+      if (publicChat != null) {
+        displayName = DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(publicChat.getId(), hexEncodedPublicKey);
+      } else {
+        displayName = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(hexEncodedPublicKey);
+      }
+      if (displayName != null) {
+        stringBuilder.append(Util.getBoldedString(displayName + ": "));
+      }
     }
 
     if (privacy.isDisplayMessage()) {
