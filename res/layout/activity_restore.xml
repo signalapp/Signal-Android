@@ -55,17 +55,16 @@
         android:layout_marginRight="@dimen/massive_spacing"
         android:text="Continue" />
 
-    <Button
-        android:id="@+id/termsButton"
+    <TextView
+        android:id="@+id/termsTextView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/onboarding_button_bottom_offset"
         android:layout_marginLeft="@dimen/massive_spacing"
         android:layout_marginRight="@dimen/massive_spacing"
         android:gravity="center"
-        android:background="@color/transparent"
-        android:textAllCaps="false"
+        android:textColorLink="@color/text"
         android:textSize="@dimen/very_small_font_size"
         android:textColor="@color/text"
-        android:text="By using this service, you agree to our Terms and Conditions and Privacy Statement" />
+        android:text="By using this service, you agree to our Terms of Service and Privacy Policy" />
 
 </LinearLayout>
