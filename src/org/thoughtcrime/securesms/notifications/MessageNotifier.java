@@ -311,6 +311,7 @@ public class MessageNotifier {
     builder.setDeleteIntent(notificationState.getDeleteIntent(context));
     builder.setOnlyAlertOnce(!signal);
     builder.setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_SUMMARY);
+    builder.setAutoCancel(true);
 
     long timestamp = notifications.get(0).getTimestamp();
     if (timestamp != 0) builder.setWhen(timestamp);
