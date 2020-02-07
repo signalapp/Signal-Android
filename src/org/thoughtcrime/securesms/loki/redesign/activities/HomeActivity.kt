@@ -282,6 +282,12 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             viewHolder.itemView.alpha = alpha
             viewHolder.itemView.translationX = dx
         }
+
+        override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
+            super.clearView(recyclerView, viewHolder)
+            viewHolder.itemView.alpha = 1.0f
+            viewHolder.itemView.translationX = 0.0f
+        }
     }
     // endregion
 }
