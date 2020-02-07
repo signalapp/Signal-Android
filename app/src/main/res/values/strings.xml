@@ -1703,7 +1703,7 @@
         <item quantity="other">You can choose a new PIN because this device is registered. If you forget your PIN, you may need to wait %1$d days to register again.</item>
     </plurals>
     <string name="CreateKbsPinFragment__create_your_pin">Create your PIN</string>
-    <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PINs add an extra layer of security to your account. It\'s important to remember this PIN, as it can\'t be recovered.</string>
+    <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PINs add extra security to your account and can\'t be recovered. You\'ll need your PIN to register with Signal again.</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">PINs don\'t match. Try again.</string>

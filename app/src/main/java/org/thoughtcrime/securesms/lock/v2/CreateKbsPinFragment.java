@@ -34,13 +34,13 @@ public class CreateKbsPinFragment extends BaseKbsPinFragment<CreateKbsPinViewMod
                                                                   PIN_LOCKOUT_DAYS,
                                                                   PIN_LOCKOUT_DAYS));
     } else {
-      getDescription().setText(R.string.CreateKbsPinFragment__pins_add_an_extra_layer_of_security);
+      getDescription().setText(R.string.CreateKbsPinFragment__pins_add_extra_security_to_your_account);
     }
   }
 
   private void initializeViewStatesForPinCreate() {
     getTitle().setText(R.string.CreateKbsPinFragment__create_your_pin);
-    getDescription().setText(R.string.CreateKbsPinFragment__pins_add_an_extra_layer_of_security);
+    getDescription().setText(R.string.CreateKbsPinFragment__pins_add_extra_security_to_your_account);
   }
 
   @Override
