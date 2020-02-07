@@ -6,7 +6,10 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableStringBuilder
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.text.style.StyleSpan
+import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_restore.*
 import network.loki.messenger.R
@@ -38,11 +41,23 @@ class RestoreActivity : BaseActionBarActivity() {
         setContentView(R.layout.activity_restore)
         mnemonicEditText.imeOptions = mnemonicEditText.imeOptions or 16777216 // Always use incognito keyboard
         restoreButton.setOnClickListener { restore() }
-        val termsExplanation = SpannableStringBuilder("By using this service, you agree to our Terms and Conditions and Privacy Statement")
-        termsExplanation.setSpan(StyleSpan(Typeface.BOLD), 40, 60, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        termsExplanation.setSpan(StyleSpan(Typeface.BOLD), 65, 82, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        termsButton.text = termsExplanation
-        termsButton.setOnClickListener { showTerms() }
+        val termsExplanation = SpannableStringBuilder("By using this service, you agree to our Terms of Service and Privacy Policy")
+        termsExplanation.setSpan(StyleSpan(Typeface.BOLD), 40, 56, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        termsExplanation.setSpan(object : ClickableSpan() {
+
+            override fun onClick(widget: View) {
+                openURL("https://getsession.org/legal/#tos")
+            }
+        }, 40, 56, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        termsExplanation.setSpan(StyleSpan(Typeface.BOLD), 61, 75, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        termsExplanation.setSpan(object : ClickableSpan() {
+
+            override fun onClick(widget: View) {
+                openURL("https://getsession.org/privacy-policy/")
+            }
+        }, 61, 75, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        termsTextView.movementMethod = LinkMovementMethod.getInstance()
+        termsTextView.text = termsExplanation
     }
     // endregion
 
@@ -97,9 +112,9 @@ class RestoreActivity : BaseActionBarActivity() {
         }
     }
 
-    private fun showTerms() {
+    private fun openURL(url: String) {
         try {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/loki-project/loki-messenger-android/blob/master/privacy-policy.md"))
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             startActivity(intent)
         } catch (e: Exception) {
             Toast.makeText(this, "Couldn't open link", Toast.LENGTH_SHORT).show()
