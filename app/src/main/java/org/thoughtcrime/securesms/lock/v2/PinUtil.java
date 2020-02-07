@@ -18,6 +18,6 @@ public final class PinUtil {
   }
 
   public static boolean shouldShowPinCreationDuringRegistration(@NonNull Context context) {
-    return FeatureFlags.pinsForAll() && !PinUtil.userHasPin(context) && !CensorshipUtil.isCensored(context);
+    return FeatureFlags.pinsForAll() && !PinUtil.userHasPin(context);
   }
 }

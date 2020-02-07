@@ -58,10 +58,6 @@ class PinsForAllSchedule implements MegaphoneSchedule {
   }
 
   private static boolean isEnabled() {
-    if (CensorshipUtil.isCensored(ApplicationDependencies.getApplication())) {
-      return false;
-    }
-
     if (FeatureFlags.pinsForAllMegaphoneKillSwitch()) {
       return false;
     }
