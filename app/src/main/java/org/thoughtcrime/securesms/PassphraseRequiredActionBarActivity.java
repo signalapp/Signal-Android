@@ -175,10 +175,10 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
       return STATE_WELCOME_PUSH_SCREEN;
     } else if (ExperienceUpgradeActivity.isUpdate(this)) {
       return STATE_EXPERIENCE_UPGRADE;
-    } else if (userMustSetKbsPin()) {
-      return STATE_CREATE_KBS_PIN;
     } else if (userMustSetProfileName()) {
       return STATE_CREATE_PROFILE_NAME;
+    } else if (userMustSetKbsPin()) {
+      return STATE_CREATE_KBS_PIN;
     } else {
       return STATE_NORMAL;
     }

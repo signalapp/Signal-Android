@@ -36,16 +36,16 @@ public final class RegistrationCompleteFragment extends BaseRegistrationFragment
 
 
     if (!isReregister()) {
-      final Intent main = new Intent(activity, MainActivity.class);
-      final Intent next = chainIntents(new Intent(activity, EditProfileActivity.class), main);
+      final Intent main    = new Intent(activity, MainActivity.class);
+      final Intent profile = new Intent(activity, EditProfileActivity.class);
 
-      next.putExtra(EditProfileActivity.SHOW_TOOLBAR, false);
+      profile.putExtra(EditProfileActivity.SHOW_TOOLBAR, false);
 
-      Context context = requireContext();
-      if (FeatureFlags.pinsForAll() && !PinUtil.userHasPin(context) && !CensorshipUtil.isCensored(requireContext())) {
-        activity.startActivity(chainIntents(CreateKbsPinActivity.getIntentForPinCreate(context), next));
+      if (PinUtil.shouldShowPinCreationDuringRegistration(requireContext())) {
+        Intent kbs = CreateKbsPinActivity.getIntentForPinCreate(requireContext());
+        activity.startActivity(chainIntents(chainIntents(profile, kbs), main));
       } else {
-        activity.startActivity(next);
+        activity.startActivity(chainIntents(profile, main));
       }
     }
 
