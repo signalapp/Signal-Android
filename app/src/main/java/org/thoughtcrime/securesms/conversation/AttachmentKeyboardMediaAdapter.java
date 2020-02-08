@@ -107,7 +107,7 @@ class AttachmentKeyboardMediaAdapter extends RecyclerView.Adapter<AttachmentKeyb
       time -= TimeUnit.HOURS.toMillis(hours);
 
       long minutes = TimeUnit.MILLISECONDS.toMinutes(time);
-      time -= TimeUnit.MINUTES.toHours(time);
+      time -= TimeUnit.MINUTES.toMillis(minutes);
 
       long seconds = TimeUnit.MILLISECONDS.toSeconds(time);
 
