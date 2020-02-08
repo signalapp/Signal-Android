@@ -12,7 +12,7 @@ public class MegaphoneViewBuilder {
 
   public static @Nullable View build(@NonNull Context context,
                                      @NonNull Megaphone megaphone,
-                                     @NonNull MegaphoneListener listener)
+                                     @NonNull MegaphoneActionController listener)
   {
     switch (megaphone.getStyle()) {
       case BASIC:
@@ -28,7 +28,7 @@ public class MegaphoneViewBuilder {
 
   private static @NonNull View buildBasicMegaphone(@NonNull Context context,
                                                    @NonNull Megaphone megaphone,
-                                                   @NonNull MegaphoneListener listener)
+                                                   @NonNull MegaphoneActionController listener)
   {
     BasicMegaphoneView view = new BasicMegaphoneView(context);
     view.present(megaphone, listener);
@@ -37,7 +37,7 @@ public class MegaphoneViewBuilder {
 
   private static @NonNull View buildReactionsMegaphone(@NonNull Context context,
                                                        @NonNull Megaphone megaphone,
-                                                       @NonNull MegaphoneListener listener)
+                                                       @NonNull MegaphoneActionController listener)
   {
     ReactionsMegaphoneView view = new ReactionsMegaphoneView(context);
     view.present(megaphone, listener);

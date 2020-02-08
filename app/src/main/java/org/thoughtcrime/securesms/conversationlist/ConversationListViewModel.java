@@ -69,8 +69,8 @@ class ConversationListViewModel extends ViewModel {
     megaphoneRepository.markFinished(event);
   }
 
-  void onMegaphoneSnoozed(@NonNull Megaphone snoozed) {
-    megaphoneRepository.markSeen(snoozed.getEvent());
+  void onMegaphoneSnoozed(@NonNull Megaphones.Event event) {
+    megaphoneRepository.markSeen(event);
     megaphone.postValue(null);
   }
 

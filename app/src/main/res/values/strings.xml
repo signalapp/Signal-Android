@@ -545,6 +545,9 @@
     <string name="Megaphones_introducing_reactions">Introducing Reactions</string>
     <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Tap and hold any message to quickly share how you feel.</string>
     <string name="Megaphones_remind_me_later">Remind me later</string>
+    <string name="Megaphones_verify_your_signal_pin">Verify your Signal PIN</string>
+    <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">We\'ll occasionally ask you to verify your PIN so that you remember it.</string>
+    <string name="Megaphones_verify_pin">Verify PIN</string>
 
     <!-- NotificationBarManager -->
     <string name="NotificationBarManager_signal_call_in_progress">Signal call in progress</string>
@@ -774,6 +777,13 @@
     <string name="SharedContactView_add_to_contacts">Add to Contacts</string>
     <string name="SharedContactView_invite_to_signal">Invite to Signal</string>
     <string name="SharedContactView_message">Signal Message</string>
+
+    <!-- SignalPinReminders -->
+    <string name="SignalPinReminders_well_remind_you_again_later">We\'ll remind you again later.</string>
+    <string name="SignalPinReminders_well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
+    <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
+    <string name="SignalPinReminders_well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
+    <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
 
     <!-- Slide -->
     <string name="Slide_image">Image</string>

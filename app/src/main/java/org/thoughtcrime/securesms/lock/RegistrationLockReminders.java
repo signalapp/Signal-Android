@@ -25,9 +25,6 @@ public class RegistrationLockReminders {
   public static final long INITIAL_INTERVAL = INTERVALS.first();
 
   public static boolean needsReminder(@NonNull Context context) {
-    if (!TextSecurePreferences.isV1RegistrationLockEnabled(context) &&
-        !SignalStore.kbsValues().isV2RegistrationLockEnabled()) return false;
-
     long lastReminderTime = TextSecurePreferences.getRegistrationLockLastReminderTime(context);
     long nextIntervalTime = TextSecurePreferences.getRegistrationLockNextReminderInterval(context);
 

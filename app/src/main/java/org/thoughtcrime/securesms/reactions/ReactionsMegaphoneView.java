@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.megaphone.Megaphone;
-import org.thoughtcrime.securesms.megaphone.MegaphoneListener;
+import org.thoughtcrime.securesms.megaphone.MegaphoneActionController;
 
 public class ReactionsMegaphoneView extends FrameLayout {
 
@@ -31,7 +31,7 @@ public class ReactionsMegaphoneView extends FrameLayout {
     this.closeButton = findViewById(R.id.reactions_megaphone_x);
   }
 
-  public void present(@NonNull Megaphone megaphone, @NonNull MegaphoneListener listener) {
-    this.closeButton.setOnClickListener(v -> listener.onMegaphoneCompleted(megaphone));
+  public void present(@NonNull Megaphone megaphone, @NonNull MegaphoneActionController listener) {
+    this.closeButton.setOnClickListener(v -> listener.onMegaphoneCompleted(megaphone.getEvent()));
   }
 }

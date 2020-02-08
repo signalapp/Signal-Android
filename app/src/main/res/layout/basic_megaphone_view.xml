@@ -12,7 +12,8 @@
       android:paddingStart="8dp"
       android:paddingEnd="8dp"
       android:paddingBottom="8dp"
-      android:background="?megaphone_background">
+      android:background="?megaphone_background"
+      android:clickable="true">
 
     <ImageView
         android:id="@+id/basic_megaphone_image"

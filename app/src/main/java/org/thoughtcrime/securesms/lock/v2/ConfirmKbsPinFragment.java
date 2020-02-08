@@ -108,6 +108,7 @@ public class ConfirmKbsPinFragment extends BaseKbsPinFragment<ConfirmKbsPinViewM
             requireActivity().setResult(Activity.RESULT_OK);
             closeNavGraphBranch();
             SignalStore.registrationValues().setRegistrationComplete();
+            SignalStore.pinValues().onPinChange();
           }
         });
         break;

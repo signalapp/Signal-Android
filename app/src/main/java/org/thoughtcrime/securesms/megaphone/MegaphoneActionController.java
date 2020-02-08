@@ -1,11 +1,12 @@
 package org.thoughtcrime.securesms.megaphone;
 
+import android.app.Activity;
 import android.content.Intent;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 
-public interface MegaphoneListener {
+public interface MegaphoneActionController {
   /**
    * When a megaphone wants to navigate to a specific intent.
    */
@@ -22,12 +23,17 @@ public interface MegaphoneListener {
   void onMegaphoneToastRequested(@NonNull String string);
 
   /**
+   * When a megaphone needs a raw activity reference. Favor more specific methods when possible.
+   */
+  @NonNull Activity getMegaphoneActivity();
+
+  /**
    * When a megaphone has been snoozed via "remind me later" or a similar option.
    */
-  void onMegaphoneSnooze(@NonNull Megaphone megaphone);
+  void onMegaphoneSnooze(@NonNull Megaphones.Event event);
 
   /**
    * Called when a megaphone completed its goal.
    */
-  void onMegaphoneCompleted(@NonNull Megaphone  megaphone);
+  void onMegaphoneCompleted(@NonNull Megaphones.Event event);
 }

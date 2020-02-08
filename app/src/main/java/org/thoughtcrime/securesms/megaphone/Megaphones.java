@@ -12,6 +12,11 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.model.MegaphoneRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.lock.RegistrationLockDialog;
+import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
+import org.thoughtcrime.securesms.lock.SignalPinReminderDialog;
+import org.thoughtcrime.securesms.lock.SignalPinReminders;
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
 import org.thoughtcrime.securesms.lock.v2.KbsMigrationActivity;
 import org.thoughtcrime.securesms.lock.v2.PinUtil;
@@ -76,6 +81,7 @@ public final class Megaphones {
     return new LinkedHashMap<Event, MegaphoneSchedule>() {{
       put(Event.REACTIONS, new ForeverSchedule(true));
       put(Event.PINS_FOR_ALL, new PinsForAllSchedule());
+      put(Event.PIN_REMINDER, new PinReminderSchedule());
     }};
   }
 
@@ -84,7 +90,9 @@ public final class Megaphones {
       case REACTIONS:
         return buildReactionsMegaphone();
       case PINS_FOR_ALL:
-        return buildPinsForAllMegaphone(context, record);
+        return buildPinsForAllMegaphone(record);
+      case PIN_REMINDER:
+        return buildPinReminderMegaphone(context);
       default:
         throw new IllegalArgumentException("Event not handled!");
     }
@@ -96,7 +104,7 @@ public final class Megaphones {
                         .build();
   }
 
-  private static @NonNull Megaphone buildPinsForAllMegaphone(@NonNull Context context, @NonNull MegaphoneRecord record) {
+  private static @NonNull Megaphone buildPinsForAllMegaphone(@NonNull MegaphoneRecord record) {
     if (PinsForAllSchedule.shouldDisplayFullScreen(record.getFirstVisible(), System.currentTimeMillis())) {
       return new Megaphone.Builder(Event.PINS_FOR_ALL, Megaphone.Style.FULLSCREEN)
                           .setMandatory(true)
@@ -125,7 +133,7 @@ public final class Megaphones {
   private static @NonNull Megaphone buildPinsForAllMegaphoneForUserWithPin(@NonNull Megaphone.Builder builder) {
     return builder.setTitle(R.string.KbsMegaphone__introducing_pins)
                   .setBody(R.string.KbsMegaphone__your_registration_lock_is_now_called_a_pin)
-                  .setButtonText(R.string.KbsMegaphone__update_pin, (megaphone, listener) -> {
+                  .setActionButton(R.string.KbsMegaphone__update_pin, (megaphone, listener) -> {
                     Intent intent = CreateKbsPinActivity.getIntentForPinChangeFromSettings(ApplicationDependencies.getApplication());
 
                     listener.onMegaphoneNavigationRequested(intent, CreateKbsPinActivity.REQUEST_NEW_PIN);
@@ -136,7 +144,7 @@ public final class Megaphones {
   private static @NonNull Megaphone buildPinsForAllMegaphoneForUserWithoutPin(@NonNull Megaphone.Builder builder) {
     return builder.setTitle(R.string.KbsMegaphone__create_a_pin)
                   .setBody(R.string.KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account)
-                  .setButtonText(R.string.KbsMegaphone__create_pin, (megaphone, listener) -> {
+                  .setActionButton(R.string.KbsMegaphone__create_pin, (megaphone, listener) -> {
                     Intent intent = CreateKbsPinActivity.getIntentForPinCreate(ApplicationDependencies.getApplication());
 
                     listener.onMegaphoneNavigationRequested(intent, CreateKbsPinActivity.REQUEST_NEW_PIN);
@@ -144,9 +152,40 @@ public final class Megaphones {
                   .build();
   }
 
+  private static @NonNull Megaphone buildPinReminderMegaphone(@NonNull Context context) {
+    return new Megaphone.Builder(Event.PIN_REMINDER, Megaphone.Style.BASIC)
+                        .setTitle(R.string.Megaphones_verify_your_signal_pin)
+                        .setBody(R.string.Megaphones_well_occasionally_ask_you_to_verify_your_pin)
+                        .setImage(R.drawable.kbs_pin_megaphone)
+                        .setActionButton(R.string.Megaphones_verify_pin, (megaphone, controller) -> {
+                          SignalPinReminderDialog.show(controller.getMegaphoneActivity(), controller::onMegaphoneNavigationRequested, new SignalPinReminderDialog.Callback() {
+                            @Override
+                            public void onReminderDismissed(boolean includedFailure) {
+                              if (includedFailure) {
+                                SignalStore.pinValues().onEntryFailure();
+                              }
+                            }
+
+                            @Override
+                            public void onReminderCompleted(boolean includedFailure) {
+                              if (includedFailure) {
+                                SignalStore.pinValues().onEntryFailure();
+                              } else {
+                                SignalStore.pinValues().onEntrySuccess();
+                              }
+
+                              controller.onMegaphoneSnooze(Event.PIN_REMINDER);
+                              controller.onMegaphoneToastRequested(context.getString(SignalPinReminders.getReminderString(SignalStore.pinValues().getCurrentInterval())));
+                            }
+                          });
+                        })
+                        .build();
+  }
+
   public enum Event {
     REACTIONS("reactions"),
-    PINS_FOR_ALL("pins_for_all");
+    PINS_FOR_ALL("pins_for_all"),
+    PIN_REMINDER("pin_reminder");
 
     private final String key;
 

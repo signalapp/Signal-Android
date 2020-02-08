@@ -321,7 +321,7 @@
 
         <item name="media_keyboard_button_color">@color/core_grey_60</item>
 
-        <item name="megaphone_background">@color/core_white</item>
+        <item name="megaphone_background">@color/core_grey_05</item>
         <item name="megaphone_background_shadow">@drawable/megaphone_background_shadow</item>
         <item name="megaphone_body_text_color">@color/core_grey_65</item>
         <item name="megaphone_reactions_shade">@color/core_grey_02</item>
