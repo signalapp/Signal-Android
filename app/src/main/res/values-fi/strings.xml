@@ -41,7 +41,8 @@
   <string name="ApplicationPreferencesActivity_off">pois</string>
   <string name="ApplicationPreferencesActivity_Off">Poissa päältä</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Näytön suojaus %1$s, rekisteröinnin suojaus %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Näytön lukitus %1$s, Rekisteröinnin lukitus %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Näytön lukitus %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Teema %1$s, Kieli %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -60,6 +61,8 @@
   <string name="AttachmentKeyboard_file">Tiedosto</string>
   <string name="AttachmentKeyboard_contact">Yhteystieto</string>
   <string name="AttachmentKeyboard_location">Sijainti</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal tarvitsee käyttöoikeutta kuvien ja videoiden näyttämistä varten.</string>
+  <string name="AttachmentKeyboard_give_access">Myönnä käyttöoikeus</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Median valintaan ei löytynyt sovellusta.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal tarvitsee lupaa käyttää laitteesi tallennustilaa kuvien, videoiden tai äänitiedostojen liittämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tallennustila\".</string>
@@ -328,7 +331,7 @@
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal tukee nyt turvallisia videopuheluita.</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal tukee nyt turvallisia videopuheluita. Jatka napauttamalla.</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Oletko valmis kuvaamista varten?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Nyt voit jakaa profiilikuvasi ja nimesi ystäviesi kanssa Signalissa</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Nyt voit jakaa profiilikuvasi ja -nimesi ystäviesi kanssa Signalissa</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signaali-profiilit ovat täällä</string>
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Esittelemme kirjoitustilaindikaattorin.</string>
   <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Voit nyt vaihtoehtoisesti nähdä ja jakaa milloin viestejä kirjoitetaan.</string>
@@ -459,7 +462,12 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s lähettämä henkilölle %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Sinun lähettämä henkilölle %1$s</string>
   <!--Megaphones-->
+  <string name="Megaphones_introducing_reactions">Esittelemme reaktiot</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Napauta ja paina mitä tahansa viestiä jakaaksesi nopeasti tunteesi.</string>
   <string name="Megaphones_remind_me_later">Muistuta minua myöhemmin</string>
+  <string name="Megaphones_verify_your_signal_pin">Varmenna Signal PIN-koodisi</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Tulemme toisinaan pyytämään sinua varmentamaan PIN-koodisi, jotta muistat sen.</string>
+  <string name="Megaphones_verify_pin">Varmenna PIN</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-puhelu käynnissä</string>
   <string name="NotificationBarManager__establishing_signal_call">Muodostetaan Signal-puhelua</string>
@@ -564,7 +572,9 @@
   <string name="RatingManager_later">Myöhemmin</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ups, vaikuttaa siltä, että Play Store -sovellus ei ole asennettuna laitteeseesi.</string>
   <!--ReactionsBottomSheetDialogFragment-->
+  <string name="ReactionsBottomSheetDialogFragment_all">Kaikki %1$d</string>
   <!--ReactionsConversationView-->
+  <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Estä tämä yhteystieto?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Jatkossa et enää saa viestejä etkä puheluita tältä yhteystiedolta.</string>
@@ -654,6 +664,12 @@ puhelinnumero</string>
   <string name="SharedContactView_add_to_contacts">Lisää yhteystietoihin</string>
   <string name="SharedContactView_invite_to_signal">Kutsu Signaliin</string>
   <string name="SharedContactView_message">Signal-viesti</string>
+  <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">Muistutamme sinua myöhemmin uudelleen.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Muistutamme sinua jälleen huomenna.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Muistutamme sinua jälleen muutaman päivän päästä.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Muistutamme sinua uudelleen viikon kuluttua.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Muistutamme sinua jälleen parin viikon kuluttua.</string>
   <!--Slide-->
   <string name="Slide_image">Kuva</string>
   <string name="Slide_sticker">Tarra</string>
@@ -1420,8 +1436,21 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">Luo aakkosnumeerinen PIN-koodi</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">Luo numeerinen PIN-koodi</string>
   <!--CreateKbsPinFragment-->
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
+    <item quantity="one">PIN-koodin on oltava vähintään %1$d merkki</item>
+    <item quantity="other">PIN-koodin on oltava vähintään %1$d merkkiä</item>
+  </plurals>
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
+    <item quantity="one">PIN-koodin on oltava vähintään %1$d numero</item>
+    <item quantity="other">PIN-koodin on oltava vähintään %1$d numeroa</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Luo uusi PIN-koodi</string>
+  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
+    <item quantity="one">Voit valita uuden PIN-koodin, koska tämä laite on rekisteröity. Jos unohdat PIN-koodisi, voit joutua odottamaan %1$d päivän rekisteröityäksesi uudelleen.</item>
+    <item quantity="other">Voit valita uuden PIN-koodin, koska tämä laite on rekisteröity. Jos unohdat PIN-koodisi, voit joutua odottamaan %1$d päivää rekisteröityäksesi uudelleen.</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Luo PIN-koodisi</string>
+  <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN-koodit lisäävät tilisi turvallisuutta, eikä niitä voi palauttaa. Tarvitset PIN-koodisi rekisteröityäksesi Signaliin uudestaan.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-koodit eivät täsmää. Yritä uudelleen.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Vahvista PIN-koodisi.</string>
@@ -1429,10 +1458,14 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN-koodiasi ei tallennettu. Pyydämme sinua luomaan PIN-koodin myöhemmin.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN-koodi luotu.</string>
   <string name="ConfirmKbsPinFragment__re_enter_pin">Syötä PIN-koodi uudelleen</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">Luodaan PIN-koodia…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Esittelemme PIN-koodit</string>
+  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">PIN-koodit lisäävät tilillesi toisen suojaustason. Luo sellainen nyt.</string>
   <string name="KbsSplashFragment__learn_more">Lue lisää</string>
+  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Rekisteröinnin lukitus = PIN-koodi</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Rekisteröinnin lukitusta kutsutaan nyt PIN-koodiksi, ja se tekee enemmän. Päivitä se nyt.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Lue lisää PIN-koodeista</string>
   <string name="KbsSplashFragment__update_pin">Päivitä PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Luo PIN-koodisi</string>
@@ -1447,6 +1480,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="AccountLockedFragment__account_locked">Tili lukittu</string>
   <string name="AccountLockedFragment__next">Seuraava</string>
   <string name="AccountLockedFragment__learn_more">Lue lisää</string>
+  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Syötä PIN-koodisi</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Syötä PIN-koodi jonka loit tilillesi. Tämä on eri kuin SMS-vahvistuskoodisi.</string>
@@ -1457,9 +1491,31 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="RegistrationLockFragment__forgot_pin">Unohditko PIN-koodin?</string>
   <string name="RegistrationLockFragment__incorrect_pin">Väärä PIN</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Unohditko PIN-koodisi?</string>
+  <string name="RegistrationLockFragment__not_many_tries_left">Ei monta yritystä jäljellä!</string>
+  <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
+    <item quantity="one">Yksityisyytesi ja turvallisuutesi vuoksi PIN-koodia ei voida palauttaa. Jos et muista PIN-koodiasi, voit rekisteröityä uudelleen tekstiviestillä %1$d päivän toimettomuuden jälkeen. Tässä tapauksessa tilisi pyyhkiytyy ja kaikki sisältö poistetaan.</item>
+    <item quantity="other">Yksityisyytesi ja turvallisuutesi vuoksi PIN-koodia ei voida palauttaa. Jos et muista PIN-koodiasi, voit rekisteröityä uudelleen tekstiviestillä %1$d päivän toimettomuuden jälkeen. Tässä tapauksessa tilisi pyyhkiytyy ja kaikki sisältö poistetaan.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
+    <item quantity="one">Väärä PIN-koodi. %1$d yritys jäljellä.</item>
+    <item quantity="other">Väärä PIN-koodi. %1$d yritystä jäljellä.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
+    <item quantity="one">Sinulla on %1$d yritys jäljellä.</item>
+    <item quantity="other">Sinulla on %1$d yritystä jäljellä.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__d_attempts_remaining">
+    <item quantity="one">%1$d yritys jäljellä.</item>
+    <item quantity="other">%1$d yritystä jäljellä.</item>
+  </plurals>
   <!--KBS Megaphone-->
+  <string name="KbsMegaphone__create_a_pin">Luo PIN-koodi</string>
+  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">PIN-koodit lisäävät Signal-tilillesi toisen suojaustason.</string>
+  <string name="KbsMegaphone__create_pin">Luo PIN-koodi</string>
   <string name="KbsMegaphone__introducing_pins">Esittelemme PIN-koodit</string>
+  <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Rekisteröinnin lukitusta kutsutaan nyt PIN-koodiksi. Päivittäminen kestää sekunteja.</string>
   <string name="KbsMegaphone__update_pin">Päivitä PIN</string>
+  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Muistutamme sinua myöhemmin. PIN-koodin luomisesta tulee pakollinen %1$d päivän kuluttua.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Tyypin kuvake</string>
   <string name="ConversationListFragment_loading">Ladataan…</string>
@@ -1484,6 +1540,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences_chats__chat_backups">Keskustelujen varmuuskopiot</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Varmuuskopioi keskustelut ulkoiseen tallennustilaan</string>
   <string name="preferences_chats__create_backup">Luo varmuuskopio</string>
+  <string name="preferences_chats__verify_backup_passphrase">Varmista varmuuskopion salalause</string>
+  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Tarkista varmuuskopiosi salalause ja varmista että se täsmää</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Syötä varmuuskopion salalause</string>
   <string name="RegistrationActivity_restore">Palauta</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Varmuuskopioita ei voida tuoda Signalin uudemmista versioista</string>
@@ -1501,7 +1559,10 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="BackupDialog_disable_and_delete_all_local_backups">Otetaanko paikalliset varmuuskopiot pois käytöstä ja poistetaanko ne?</string>
   <string name="BackupDialog_delete_backups_statement">Poista varmuuskopiot</string>
   <string name="BackupDialog_copied_to_clipboard">Kopioitu leikepöydälle</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">Syötä varmuuskopion salalause varmistaaksesi</string>
   <string name="BackupDialog_verify">Vahvista</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Varmuuskopion salalauseen syöttö onnistui</string>
+  <string name="BackupDialog_passphrase_was_not_correct">Salalause ei ollut oikea</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal tarvitsee lupaa käyttää laitteesi tallennustilaa varmuuskopioiden luomista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tallennustila\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Viimeksi varmuuskopioitu: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Meneillään</string>
@@ -1536,6 +1597,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences_app_protection__registration_lock_pin">Rekisteröinnin lukituksen PIN-koodi</string>
   <string name="preferences_app_protection__registration_lock">Rekisteröinnin lukitus</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Sinun täytyy syöttää rekisteröinnin lukituksen PIN-koodisi</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">PIN-koodissasi on vähintään %d numeroa tai merkkiä</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Virheellinen rekisteröinnin lukituksen PIN-koodi</string>
   <string name="RegistrationActivity_too_many_attempts">Liian monta yritystä</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Olet syöttänyt rekisteröinnin lukituksen PIN-koodin väärin liian monta kertaa. Ole hyvä ja yritä uudelleen seuraavana päivänä.</string>

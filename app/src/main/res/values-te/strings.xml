@@ -660,6 +660,7 @@
   <string name="SharedContactView_add_to_contacts">పరిచయాలకు జోడించు</string>
   <string name="SharedContactView_invite_to_signal">Signal కు ఆహ్వానించండి</string>
   <string name="SharedContactView_message">Signal సందేశం</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">చిత్రం</string>
   <string name="Slide_sticker">స్టికర్</string>

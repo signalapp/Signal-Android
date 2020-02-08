@@ -656,6 +656,7 @@ zenbakia (%s) baliogabea da.
   <string name="SharedContactView_add_to_contacts">Gehitu kontaktu-zerrendan</string>
   <string name="SharedContactView_invite_to_signal">Gonbidatu Signal erabiltzera</string>
   <string name="SharedContactView_message">Signal mezua</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">Irudia</string>
   <string name="Slide_sticker">Eranskailua</string>

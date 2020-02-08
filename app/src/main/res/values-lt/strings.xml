@@ -709,6 +709,7 @@
   <string name="SharedContactView_add_to_contacts">Pridėti į adresatus</string>
   <string name="SharedContactView_invite_to_signal">Pakviesti į Signal</string>
   <string name="SharedContactView_message">Signal žinutė</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">Paveikslas</string>
   <string name="Slide_sticker">Lipdukas</string>
@@ -1517,7 +1518,6 @@
     <item quantity="other">Kadangi šis įrenginys yra registruotas, galite pasirinkti naują PIN kodą. Jei pamiršite savo PIN kodą, turėsite laukti %1$d dieną, kol galėsite vėl registruoti.</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Susikurti PIN kodą</string>
-  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PIN kodai prideda jūsų paskyrai papildomą saugumo sluoksnį. Svarbu įsiminti savo PIN kodą, nes jis negali būti atkurtas.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN kodai nesutampa. Bandykite dar kartą.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Patvirtinkite savo PIN.</string>

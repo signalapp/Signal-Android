@@ -656,6 +656,7 @@
   <string name="SharedContactView_add_to_contacts">संपर्कात जोडा</string>
   <string name="SharedContactView_invite_to_signal">Signal वर आमंत्रित करा</string>
   <string name="SharedContactView_message">Signal संदेश</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">चित्र</string>
   <string name="Slide_sticker">स्टिकर</string>

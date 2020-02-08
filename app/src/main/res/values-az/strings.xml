@@ -573,6 +573,7 @@
   <string name="SharedContactView_add_to_contacts">Əlaqələrə əlavə et</string>
   <string name="SharedContactView_invite_to_signal">Signala dəvət et</string>
   <string name="SharedContactView_message">Signal Mesajı</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">Şəkil</string>
   <string name="Slide_sticker">Sticker</string>

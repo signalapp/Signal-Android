@@ -570,6 +570,7 @@
   <string name="SharedContactView_add_to_contacts">Добавяне към контакти</string>
   <string name="SharedContactView_invite_to_signal">Покани в Signal</string>
   <string name="SharedContactView_message">Signal-ско съобщение</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">Изображение</string>
   <string name="Slide_sticker">Стикер</string>

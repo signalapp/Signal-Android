@@ -603,6 +603,7 @@
   <string name="SharedContactView_add_to_contacts">ਸੰਪਰਕਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
   <string name="SharedContactView_invite_to_signal">Signal ਲਈ ਸੱਦੋ</string>
   <string name="SharedContactView_message">Signal ਸੁਨੇਹਾ</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">ਤਸਵੀਰ</string>
   <string name="Slide_sticker">ਸਟਿੱਕਰ</string>

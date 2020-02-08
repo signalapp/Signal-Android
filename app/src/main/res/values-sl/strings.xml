@@ -505,6 +505,9 @@
   <string name="Megaphones_introducing_reactions">Predstavljamo vam Odzive</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Za hiter odziv tapnite in držite prst na katerem koli sporočilu.</string>
   <string name="Megaphones_remind_me_later">Spomni me kasneje</string>
+  <string name="Megaphones_verify_your_signal_pin">Potrdite svoj Signal PIN</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Občasno vas bomo opozorili na vnos kode PIN, da si jo boste lažje zapomnili.</string>
+  <string name="Megaphones_verify_pin">Potrdi PIN</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Klic Signal poteka</string>
   <string name="NotificationBarManager__establishing_signal_call">Vzpostavljam klic Signal</string>
@@ -702,6 +705,12 @@
   <string name="SharedContactView_add_to_contacts">Dodaj med stike</string>
   <string name="SharedContactView_invite_to_signal">Povabi k uporabi</string>
   <string name="SharedContactView_message">Sporočilo Signal</string>
+  <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">Čez nekaj časa vas bomo znova opozorili.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Jutri vas bomo znova opozorili.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Čez nekaj dni vas bomo znova opozorili.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Čez en teden vas bomo znova opozorili.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Čez nekaj tednov vas bomo znova opozorili.</string>
   <!--Slide-->
   <string name="Slide_image">Slika</string>
   <string name="Slide_sticker">Nalepka</string>
@@ -1508,7 +1517,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
     <item quantity="other">Naprava je registrirana, zato lahko izberete nov PIN. Če ga boste pozabili, boste morali na ponovno prijavo čakati %1$d dni.</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Ustvarite svoj PIN</string>
-  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">S kodo PIN boste izboljšali varnost svojega računa. Kode PIN ni mogoče obnoviti, zato si jo dobro zapomnite.</string>
+  <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">S kodo PIN boste izboljšali varnost svojega računa Signal. Koda PIN ni obnovljiva. Le z njo se boste lahko znova prijavili v svoj račun Signal.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN se ne ujema. Poskusite znova.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Potrdite svoj PIN.</string>
@@ -1529,7 +1538,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="KbsSplashFragment__create_your_pin">Ustvarite svoj PIN</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Vnesite svoj Signal PIN</string>
-  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Da si boste lažje zapomnili svoj PIN, vas bomo večkrat vprašali po nje. Sčasoma se bo frekvenca prošenj za vnos zmanjšala.</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Da si boste lažje zapomnili svoj PIN, vas bomo večkrat vprašali po njem. Sčasoma se bo frekvenca prošenj za vnos zmanjšala.</string>
   <string name="KbsReminderDialog__skip">Preskoči</string>
   <string name="KbsReminderDialog__submit">Oddaj</string>
   <string name="KbsReminderDialog__forgot_pin">Ste pozabili PIN?</string>
@@ -1657,7 +1666,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Zamenjava</string>
   <string name="preferences_app_protection__create">Ustvari</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">S PINom boste izboljšali svojo varnost in zasebnost ter omogočili varnostno kopijo svojega računa. Po PINu boste vprašani vsakič, ko se boste želeli na novo prijaviti s svojo telefonsko številko. Če boste nanj pozabili, boste za 7 dni ostali zaklenjeni iz svojega računa Signal.</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">S kodo PIN boste izboljšali svojo varnost in zasebnost ter omogočili varnostno kopijo svojega računa. Po PINu boste vprašani vsakič, ko se boste želeli na novo prijaviti s svojo telefonsko številko. Če boste nanj pozabili, boste za 7 dni ostali zaklenjeni iz svojega računa Signal.</string>
   <string name="AppProtectionPreferenceFragment_none">Brez</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Koda PIN za prijavo v omrežje ni enaka potrditveni kodi SMS, ki ste jo prejeli ravnokar. Prosimo, vnesite PIN, ki ste ga predhodno določili za zaklepanje.</string>
   <string name="registration_activity__registration_lock_pin">PIN za prijavo v omrežje</string>

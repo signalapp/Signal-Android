@@ -654,6 +654,7 @@
   <string name="SharedContactView_add_to_contacts">পরিচিতিতে যুক্ত করুন</string>
   <string name="SharedContactView_invite_to_signal">Signal এ আমন্ত্রণ জানান</string>
   <string name="SharedContactView_message">Signal বার্তা</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">ছবি</string>
   <string name="Slide_sticker">স্টিকার</string>

@@ -675,6 +675,7 @@
   <string name="SharedContactView_add_to_contacts">Dodajte među kontakte</string>
   <string name="SharedContactView_invite_to_signal">Pozovite na Signal</string>
   <string name="SharedContactView_message">Signal poruka</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">Slika</string>
   <string name="Slide_sticker">Naljepnica</string>

@@ -605,6 +605,7 @@
   <string name="SharedContactView_add_to_contacts">Додај у контакте</string>
   <string name="SharedContactView_invite_to_signal">Слање позивнице за Signal</string>
   <string name="SharedContactView_message">Порука на Signalу</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">Слика</string>
   <string name="Slide_sticker">Налепница</string>

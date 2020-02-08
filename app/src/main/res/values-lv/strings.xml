@@ -631,6 +631,7 @@ tālruņa numurs</string>
   <string name="SharedContactView_add_to_contacts">Pievienot kontaktiem</string>
   <string name="SharedContactView_invite_to_signal">Uzaicināt uz Signal</string>
   <string name="SharedContactView_message">Signal ziņa</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">Atēls</string>
   <string name="Slide_sticker">Uzlīme</string>

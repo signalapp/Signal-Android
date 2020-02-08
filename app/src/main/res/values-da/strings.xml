@@ -665,6 +665,7 @@ nummer (%s) er ugyldigt</string>
   <string name="SharedContactView_add_to_contacts">Føj til kontakter</string>
   <string name="SharedContactView_invite_to_signal">Invitér til Signal</string>
   <string name="SharedContactView_message">Signalbesked</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">Billede</string>
   <string name="Slide_sticker">Klistermærke</string>
@@ -1435,7 +1436,6 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <!--CreateKbsPinFragment-->
   <string name="CreateKbsPinFragment__create_a_new_pin">Opret en ny PIN</string>
   <string name="CreateKbsPinFragment__create_your_pin">Opret din PIN</string>
-  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PINs tilføjer et ekstra lag af sikkerhed til den konto. Det er vigtigt at huske din PIN, da den ikke kan gendannes</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN´s passer ikke. Prøv igen</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Bekræft din PIN</string>

@@ -631,6 +631,7 @@
   <string name="SharedContactView_add_to_contacts">បន្ថែមចូល បញ្ជីទំនាក់ទំនង</string>
   <string name="SharedContactView_invite_to_signal">អញ្ជើញចូលប្រើSignal</string>
   <string name="SharedContactView_message">សារ Signal </string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">រូបភាព</string>
   <string name="Slide_sticker">ស្ទីកគ័រ</string>

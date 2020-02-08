@@ -485,6 +485,9 @@
   <string name="Megaphones_introducing_reactions">Vă prezentăm \'Reacții\'</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Atingeți și mențineți apăsat orice mesaj pentru a partaja rapid cum vă simțiți.</string>
   <string name="Megaphones_remind_me_later">Amintește-mi mai târziu</string>
+  <string name="Megaphones_verify_your_signal_pin">Verificați PIN-ul dvs. Signal.</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Ocazional vom solicita să vă confirmați codul PIN pentru a-l memora mai ușor.</string>
+  <string name="Megaphones_verify_pin">Verificați PIN-ul</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Apel Signal în curs</string>
   <string name="NotificationBarManager__establishing_signal_call">Se realizează un apel Signal</string>
@@ -684,6 +687,12 @@ furnizat (%s) este invalid.</string>
   <string name="SharedContactView_add_to_contacts">Adăugați la contacte</string>
   <string name="SharedContactView_invite_to_signal">Invitați la Signal</string>
   <string name="SharedContactView_message">Mesaj Signal</string>
+  <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">Vă reamintim mai târziu.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Vă reamintim mâine.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Vă reamintim în câteva zile.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Vă reamintim într-o săptămână.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Vă reamintim în câteva săptămâni.</string>
   <!--Slide-->
   <string name="Slide_image">Imagine</string>
   <string name="Slide_sticker">Autocolant</string>
@@ -1264,7 +1273,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__storage">Spaţiu stocare</string>
   <string name="preferences__conversation_length_limit">Limita mărime conversație</string>
   <string name="preferences__trim_all_conversations_now">Scurtează acum toate conversaţiile </string>
-  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Verifică toate conversațiile și aplică limite de mărime a conversației</string>
+  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Verifică toate conversațiile și aplică limitele de mărime a conversației</string>
   <string name="preferences__linked_devices">Dispozitive asociate</string>
   <string name="preferences__light_theme">Deschisă</string>
   <string name="preferences__dark_theme">Închisă</string>
@@ -1320,7 +1329,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_communication__sealed_sender_display_indicators_description">Afișează o icoană de status când selectezi \"Detalii mesaj\" din mesajele care au fost trimise folosind funcția expeditor ascuns.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Permite oricui</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Activează funcția de expeditor ascuns pentru mesajele primite de la non-contacte și persoane cu care nu ai partajat profilul tău.</string>
-  <string name="preferences_communication__sealed_sender_learn_more">Află mai multe</string>
+  <string name="preferences_communication__sealed_sender_learn_more">Aflați mai multe</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -1479,7 +1488,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
     <item quantity="other">Puteți alege un PIN nou, deoarece acest dispozitiv este înregistrat. Dacă uitați codul PIN, poate fi necesar să așteptați %1$d zile pentru a vă înregistra din nou.</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Creați-vă PIN-ul</string>
-  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PIN-urile adaugă încă un nivel adițional de securitate la contul dvs. Este important să vă amintiți acest PIN, deoarece nu poate fi recuperat.</string>
+  <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN-ul adăuga un nivel suplimentar contului dvs. și nu poate fi recuperat. Veți avea nevoie de PIN-ul dvs. pentru a vă înregistra din nou la Signal.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-urile nu se potrivesc. Încercați din nou.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Confirmați PIN-ul dvs.</string>
@@ -1490,7 +1499,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ConfirmKbsPinFragment__creating_pin">Se creează PIN-ul…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Vă prezentăm PIN-uri</string>
-  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">PIN-urile adaugă încă un nivel adițional de securitate la contul dvs. Creați unul acum.</string>
+  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">PIN-urile adaugă un nivel adițional de securitate la contul dvs. Creați unul acum.</string>
   <string name="KbsSplashFragment__learn_more">Află mai multe</string>
   <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Blocarea Înregistrării = PIN</string>
@@ -1509,7 +1518,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="AccountLockedFragment__account_locked">Cont blocat</string>
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Contul dvs. a fost blocat pentru a vă proteja confidențialitatea și securitatea. După %1$d zile de inactivitate în contul dvs., veți putea să vă reînregistrați acest număr de telefon fără a avea nevoie de codul PIN. Tot conținutul va fi șters.</string>
   <string name="AccountLockedFragment__next">Următorul</string>
-  <string name="AccountLockedFragment__learn_more">Află mai multe</string>
+  <string name="AccountLockedFragment__learn_more">Aflați mai multe</string>
   <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Introduceți PIN-ul dvs.</string>
@@ -1549,7 +1558,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Creați un PIN</string>
-  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">PIN-urile adaugă încă un nivel adițional de securitate la contul dvs. Signal.</string>
+  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">PIN-urile adaugă un nivel adițional de securitate la contul dvs. Signal.</string>
   <string name="KbsMegaphone__create_pin">Creați PIN</string>
   <string name="KbsMegaphone__introducing_pins">Vă prezentăm PIN-uri</string>
   <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Blocarea înregistrării este numită acum PIN. Actualizarea lui durează câteva secunde.</string>
@@ -1572,7 +1581,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Deblocați pentru a finaliza actualizarea</string>
   <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Vă rog deblocați Signal pentru a finaliza actualizarea</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Parolă backup</string>
-  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Backup-urile se vor salva pe stocarea externă și vor fi criptate cu parola de mai jos. Trebuie sa aveți această parola pentru a putea restaura un backup.</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Backup-urile se vor salva pe stocarea externă și vor fi criptate cu parola de mai jos. Trebuie să aveți această parolă pentru a putea restaura un backup.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Am scris parola. Fără ea nu voi putea restaura un backup.</string>
   <string name="registration_activity__restore_backup">Restaurare backup</string>
   <string name="registration_activity__skip">Omite</string>
@@ -1623,7 +1632,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Schimbați</string>
   <string name="preferences_app_protection__create">Creează</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Codul dvs. PIN adaugă un strat suplimentar de securitate și face backup pentru contul dvs. Vi se va cere acest lucru atunci când vă înregistrați numărul de telefon cu Signal. Dacă uitați codul PIN, veți fi blocat din cont timp de 7 zile.</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Codul dvs. PIN adaugă un nivel suplimentar de securitate și facilitează backup-ul contului dvs. Vi se va cere PIN-ul atunci când vă înregistrați numărul de telefon cu Signal. Dacă uitați codul PIN, veți fi blocat din cont timp de 7 zile.</string>
   <string name="AppProtectionPreferenceFragment_none">Niciuna</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Codul PIN de Blocare a Înregistrării nu este același cu codul de verificare pe care tocmai l-ați primit prin SMS. Vă rugăm să introduceți PIN-ul configurat anterior în aplicație.</string>
   <string name="registration_activity__registration_lock_pin">PIN de blocare a înregistrării</string>

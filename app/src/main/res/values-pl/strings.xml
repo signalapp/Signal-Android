@@ -505,6 +505,9 @@
   <string name="Megaphones_introducing_reactions">Przedstawiamy reakcje</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Stuknij i przytrzymaj wiadomość, aby szybko pokazać jak się czujesz. </string>
   <string name="Megaphones_remind_me_later">Przypomnij później</string>
+  <string name="Megaphones_verify_your_signal_pin">Zweryfikuj swój PIN Signal</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Co jakiś czas będziemy prosić Cię o weryfikację PINu, abyś go zapamiętał(a).</string>
+  <string name="Megaphones_verify_pin">Zweryfikuj PIN</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Połączenie Signal w toku</string>
   <string name="NotificationBarManager__establishing_signal_call">Nawiązywanie połączenia Signal</string>
@@ -704,6 +707,12 @@
   <string name="SharedContactView_add_to_contacts">Dodaj do kontaktów</string>
   <string name="SharedContactView_invite_to_signal">Zaproś do używania Signal</string>
   <string name="SharedContactView_message">Wiadomość Signal</string>
+  <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">Przypomnimy Ci o tym ponownie później.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Przypomnimy Ci o tym ponownie jutro.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Przypomnimy Ci o tym ponownie za kilka dni.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Przypomnimy Ci o tym ponownie za tydzień.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Przypomnimy Ci o tym ponownie za kilka tygodni.</string>
   <!--Slide-->
   <string name="Slide_image">Obraz</string>
   <string name="Slide_sticker">Naklejka</string>
@@ -1509,7 +1518,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
     <item quantity="other">To urządzenie jest zarejestrowane, więc możesz wybrać nowy PIN. Jeśli zapomnisz swojego PINu, będziesz musiał(a) zaczekać %1$d dni, aby ponownie się zarejestrować.</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Utwórz swój PIN</string>
-  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">Kody PIN zapewniają dodatkową ochronę Twojego konta. Zapamiętaj ten PIN, gdyż nie da się go odzyskać.</string>
+  <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">Kody PIN zapewniają dodatkową ochronę Twojego konta i nie da się ich odzyskać. Będziesz potrzebować swojego PINu, aby ponownie zarejestrować się w Signal.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Kody PIN się różnią. Spróbuj ponownie.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Potwierdź swój PIN</string>

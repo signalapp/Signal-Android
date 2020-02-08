@@ -148,8 +148,8 @@
   <string name="ConversationItem_copied_text">Copiado %s</string>
   <string name="ConversationItem_from_s">de %s</string>
   <string name="ConversationItem_to_s">para %s</string>
-  <string name="ConversationItem_read_more">  Saiba mais</string>
-  <string name="ConversationItem_download_more">  Mais downloads</string>
+  <string name="ConversationItem_read_more">  Leia mais</string>
+  <string name="ConversationItem_download_more">  Baixe mais</string>
   <string name="ConversationItem_pending">  Pendente</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Reiniciar sessão segura?</string>
@@ -658,6 +658,7 @@
   <string name="SharedContactView_add_to_contacts">Adicionar a Contatos</string>
   <string name="SharedContactView_invite_to_signal">Convidar para o Signal</string>
   <string name="SharedContactView_message">Mensagem no Signal</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">Imagem</string>
   <string name="Slide_sticker">Figurinha</string>

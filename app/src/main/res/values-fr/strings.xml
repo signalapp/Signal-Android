@@ -659,6 +659,7 @@
   <string name="SharedContactView_add_to_contacts">Ajouter aux contacts</string>
   <string name="SharedContactView_invite_to_signal">Inviter à Signal</string>
   <string name="SharedContactView_message">Message Signal</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">Image</string>
   <string name="Slide_sticker">Autocollant</string>
@@ -1438,7 +1439,7 @@
     <item quantity="other">Vous pouvez choisir un nouveau NIP, car cet appareil est inscrit. Si vous oubliez votre NIP, vous pourriez devoir attendre %1$d jours avant de vous réinscrire.</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Créer votre NIP</string>
-  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">Les NIP ajoutent une couche supplémentaire de sécurité à votre compte. Il est important de mémoriser ce NIP, car il ne peut pas être récupéré.</string>
+  <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">Les NIP renforcent la sécurité de votre compte et ne peuvent pas être récupérés. Vous aurez besoin de votre NIP pour vous réinscrire sur Signal.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Les NIP ne correspondent pas. Veuillez ressayez.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Confirmez votre NIP</string>

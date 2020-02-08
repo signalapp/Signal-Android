@@ -636,6 +636,7 @@
   <string name="SharedContactView_add_to_contacts">Minggahaken dhateng Kontak</string>
   <string name="SharedContactView_invite_to_signal">Ajak ngginakaken Signal</string>
   <string name="SharedContactView_message">Pesen Signal</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">Gambar</string>
   <string name="Slide_sticker">Stiker</string>

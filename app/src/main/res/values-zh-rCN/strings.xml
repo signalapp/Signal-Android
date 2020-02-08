@@ -643,6 +643,7 @@
   <string name="SharedContactView_add_to_contacts">添加到联系人</string>
   <string name="SharedContactView_invite_to_signal">邀请使用 Signal</string>
   <string name="SharedContactView_message">Signal 消息</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">图片</string>
   <string name="Slide_sticker">表情</string>
@@ -1412,7 +1413,6 @@
     <item quantity="other">因为这个设备已经登录过，你可以创建一个新的PIN码。如果你忘记你的PIN码，你可能需要等%1$d天来重新注册。</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">创建 PIN 密码</string>
-  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PIN码可以为你的账户添加一层额外的保护。记住PIN码是很重要的，因为它是不能被找回的。</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN 不匹配，请重试。</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">确认你的 PIN。</string>

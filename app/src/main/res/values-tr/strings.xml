@@ -666,6 +666,7 @@
   <string name="SharedContactView_add_to_contacts">Kişilere Ekle</string>
   <string name="SharedContactView_invite_to_signal">Signal\'e davet et</string>
   <string name="SharedContactView_message">Signal İletisi</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">Görüntü</string>
   <string name="Slide_sticker">Çıkartma</string>
@@ -1441,6 +1442,10 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
     <item quantity="other">PIN en az %1$d haneli olmalıdır</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Yeni PIN oluştur</string>
+  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
+    <item quantity="one">Bu cihaz kaydedildiği için yeni bir PIN kodu seçebilirsiniz. Eğer PIN\'inizi unutursanız, yeniden kaydolmak için %1$d gün beklemeniz gerekebilir.</item>
+    <item quantity="other">Bu cihaz kaydedildiği için yeni bir PIN kodu seçebilirsiniz. Eğer PIN\'inizi unutursanız, yeniden kaydolmak için %1$d gün beklemeniz gerekebilir.</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">PIN\'inizi oluşturun</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN\'ler eşleşmiyor. Tekrar deneyin.</string>
@@ -1475,7 +1480,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/tr/articles/360007059792-Registration-Lock</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">PIN\'inizi girin</string>
-  <string name="RegistrationLockFragment__enter_the_pin_you_created">Bu hesap için oluşturduğunuz PIN kodunu girin. Bu SMS doğrulama kodunuzdan farklıdır.</string>
+  <string name="RegistrationLockFragment__enter_the_pin_you_created">Bu hesap için oluşturduğunuz PIN kodunu girin. Bu kod, SMS doğrulama kodunuzdan farklıdır.</string>
   <string name="RegistrationLockFragment__enter_alphanumeric_pin">Alfanumerik PIN\'i Girin</string>
   <string name="RegistrationLockFragment__enter_numeric_pin">Sayısal PIN\'i Girin</string>
   <string name="RegistrationLockFragment__next">İleri</string>
@@ -1509,7 +1514,10 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">PIN\'ler hesabınızın güvenliğine bir katman daha ekler.</string>
   <string name="KbsMegaphone__create_pin">PIN oluştur</string>
   <string name="KbsMegaphone__introducing_pins">Karşınızda PIN\'ler</string>
+  <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Kayıt Kilidi yerine artık PIN kullanılıyor ve daha fazlasını yapıyor. PIN\'ler farklı olduğu için mevcut olanı güncellemeniz gerekiyor, yalnızca birkaç saniye sürer.</string>
   <string name="KbsMegaphone__update_pin">PIN\'i güncelle</string>
+  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Size daha sonra hatırlatacağız. %1$d gün sonra PIN oluşturmanız zorunlu olacaktır.</string>
+  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Size daha sonra hatırlatacağız. %1$d gün sonra PIN\'inizi onaylamanız zorunlu olacaktır.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ulaştırma simgesi</string>
   <string name="ConversationListFragment_loading">Yükleniyor…</string>
@@ -1534,6 +1542,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences_chats__chat_backups">Sohbet yedekleri</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Sohbetleri harici depolamaya yedekle</string>
   <string name="preferences_chats__create_backup">Yedek oluştur</string>
+  <string name="preferences_chats__verify_backup_passphrase">Yedek parolasını doğrula</string>
+  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Yedek parolanızı deneyin ve eşleştiğinden emin olun</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Yedek parolasını giriniz</string>
   <string name="RegistrationActivity_restore">Geri yükle</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Signal\'in daha yeni sürümlerinden yedek alınamaz</string>
@@ -1553,6 +1563,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="BackupDialog_copied_to_clipboard">Panoya kopyalandı</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Doğrulamak için yedek parolanızı girin</string>
   <string name="BackupDialog_verify">Doğrula</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Yedek parolanızı başarıyla girdiniz</string>
+  <string name="BackupDialog_passphrase_was_not_correct">Parolanız doğru değil</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal, yedek oluşturabilmek için Depolama iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Depolama\"yı etkinleştirin.</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Son yedek: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Devam etmekte</string>
@@ -1587,6 +1599,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences_app_protection__registration_lock_pin">Kaydolma Kilidi PIN\'i</string>
   <string name="preferences_app_protection__registration_lock">Kaydolma Kilidi</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Kaydolma Kilidi PIN\'inizi girmek zorundasınız</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">PIN\'iniz en az %d haneli veya karakterli</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Geçersiz Kaydolma Kilidi PIN\'i</string>
   <string name="RegistrationActivity_too_many_attempts">Çok fazla deneme yapıldı</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Çok fazla Kaydolma Kilidi PIN denemesi yaptınız. Lütfen bir gün içerisinde tekrar deneyin.</string>

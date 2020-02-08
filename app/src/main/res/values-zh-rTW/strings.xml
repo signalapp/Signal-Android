@@ -640,6 +640,7 @@
   <string name="SharedContactView_add_to_contacts">新增至連絡人</string>
   <string name="SharedContactView_invite_to_signal">邀請至 Signal</string>
   <string name="SharedContactView_message">Signal 訊息</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">圖片</string>
   <string name="Slide_sticker">貼圖</string>
@@ -1409,7 +1410,6 @@
     <item quantity="other">你可以選擇一個新的PIN碼，因為此裝置已被註冊。 如果你忘記了PIN碼，則可能需要等待%1$d天才能重新註冊。</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">建立你的 PIN 碼</string>
-  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PIN碼為你的帳號增加了一層額外的安全保護。 記住此PIN碼很重要，因為它無法恢復。</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN碼不符合。請重試一次。</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">確認你的 PIN 碼。</string>

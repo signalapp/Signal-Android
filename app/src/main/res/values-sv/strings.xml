@@ -42,6 +42,7 @@
   <string name="ApplicationPreferencesActivity_Off">Av</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Skärmlås %1$s, registreringslås %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Skärmlås %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, språk %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -60,6 +61,8 @@
   <string name="AttachmentKeyboard_file">Fil</string>
   <string name="AttachmentKeyboard_contact">Kontakt</string>
   <string name="AttachmentKeyboard_location">Plats</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal behöver behörighet för att visa dina foton och videoklipp.</string>
+  <string name="AttachmentKeyboard_give_access">Ge åtkomst</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Kan inte hitta app för att välja media.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal behöver behörigheten Lagring för att bifoga bilder, video och ljud men har nekats den permanent. Fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Lagring\".</string>
@@ -459,7 +462,12 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Skickad av %1$s till %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Skickad av dig till %1$s</string>
   <!--Megaphones-->
+  <string name="Megaphones_introducing_reactions">Introducerar Reaktioner</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Tryck och håll ett meddelande för att snabbt dela hur du känner.</string>
   <string name="Megaphones_remind_me_later">Påminn mig senare</string>
+  <string name="Megaphones_verify_your_signal_pin">Verifiera din Signal PIN-kod</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Vi ber dig ibland att verifiera din PIN-kod så att du kommer ihåg den.</string>
+  <string name="Megaphones_verify_pin">Verifiera PIN-kod</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtal pågår</string>
   <string name="NotificationBarManager__establishing_signal_call">Upprättar Signal-samtal</string>
@@ -564,7 +572,9 @@
   <string name="RatingManager_later">Senare</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ojoj, appen Play Butik verkar inte finnas installerad på din enhet.</string>
   <!--ReactionsBottomSheetDialogFragment-->
+  <string name="ReactionsBottomSheetDialogFragment_all">Alla %1$d</string>
   <!--ReactionsConversationView-->
+  <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Blockera denna kontakt?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Du kommer inte längre få meddelanden eller samtal från denna kontakt.</string>
@@ -654,6 +664,12 @@ angav (%s) är ogiltigt.</string>
   <string name="SharedContactView_add_to_contacts">Lägg till i kontakter</string>
   <string name="SharedContactView_invite_to_signal">Bjud in till Signal</string>
   <string name="SharedContactView_message">Signal-meddelande</string>
+  <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">Vi påminner dig igen senare.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Vi påminner dig igen imorgon.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Vi påminner dig om några dagar.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Vi påminner dig om en vecka.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Vi påminner dig om ett par veckor.</string>
   <!--Slide-->
   <string name="Slide_image">Bilder</string>
   <string name="Slide_sticker">Klistermärke</string>
@@ -1420,8 +1436,21 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">Skapa alfanumerisk PIN-kod</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">Skapa numerisk PIN-kod</string>
   <!--CreateKbsPinFragment-->
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
+    <item quantity="one">PIN-kod måste vara minst %1$d tecken</item>
+    <item quantity="other">PIN-kod måste vara minst %1$d tecken</item>
+  </plurals>
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
+    <item quantity="one">PIN-kod måste vara minst %1$d siffra</item>
+    <item quantity="other">PIN-kod måste vara minst %1$d siffror</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Skapa en ny PIN-kod</string>
+  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
+    <item quantity="one">Du kan välja en ny PIN-kod eftersom den här enheten är registrerad. Om du glömmer din PIN-kod kan du behöva vänta %1$d dag för att registrera igen.</item>
+    <item quantity="other">Du kan välja en ny PIN-kod eftersom den här enheten är registrerad. Om du glömmer din PIN-kod kan du behöva vänta %1$d dagar för att registrera igen.</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Skapa din PIN-kod</string>
+  <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN-koder lägger till extra säkerhet till ditt konto och kan inte återställas. Du behöver din PIN-kod för att registrera med Signal igen.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-koder matchar inte. Försök igen.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Bekräfta din PIN-kod.</string>
@@ -1429,10 +1458,14 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Din PIN-kod sparades inte. Vi uppmanar dig att skapa en PIN-kod senare.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN-kod skapad.</string>
   <string name="ConfirmKbsPinFragment__re_enter_pin">Ange PIN-kod igen</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">Skapar PIN-kod…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Introducerar PIN-koder</string>
+  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">PIN-koder lägger till en annan säkerhetsnivå till ditt konto. Skapa en nu.</string>
   <string name="KbsSplashFragment__learn_more">Läs mer</string>
+  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registreringslås = PIN-kod</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Ditt registreringslås kallas nu en PIN-kod och den gör mer. Uppdatera nu.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Läs mer om PIN-koder.</string>
   <string name="KbsSplashFragment__update_pin">Uppdatera PIN-kod</string>
   <string name="KbsSplashFragment__create_your_pin">Skapa din PIN-kod</string>
@@ -1445,8 +1478,10 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="KbsReminderDialog__incorrect_pin_try_again">Felaktig PIN-kod. Försök igen.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Kontot är låst</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Ditt konto har låsts för att skydda din integritet och säkerhet. Efter %1$d dagar av inaktivitet i ditt konto kommer du att kunna omregistrera detta telefonnummer utan att behöva din PIN-kod. Allt innehåll kommer att tas bort.</string>
   <string name="AccountLockedFragment__next">Nästa</string>
   <string name="AccountLockedFragment__learn_more">Läs mer</string>
+  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Ange din PIN-kod</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Ange PIN-koden du skapade för ditt konto. Denna skiljer sig från din SMS-verifieringskod.</string>
@@ -1457,9 +1492,36 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="RegistrationLockFragment__forgot_pin">Glömt PIN-kod?</string>
   <string name="RegistrationLockFragment__incorrect_pin">Felaktig PIN-kod</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Har du glömt din PIN-kod?</string>
+  <string name="RegistrationLockFragment__not_many_tries_left">Inte många försök kvar!</string>
+  <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
+    <item quantity="one">För din integritet och säkerhet finns det inget sätt att återställa din PIN-kod. Om du inte kan komma ihåg din PIN-kod kan du verifiera med SMS efter %1$d dag av inaktivitet. I det här fallet kommer ditt konto att rensas och allt innehåll tas bort.</item>
+    <item quantity="other">För din integritet och säkerhet finns det inget sätt att återställa din PIN-kod. Om du inte kan komma ihåg din PIN-kod kan du verifiera med SMS efter %1$d dagar av inaktivitet. I det här fallet kommer ditt konto att rensas och allt innehåll tas bort.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
+    <item quantity="one">Felaktig PIN-kod. %1$d försök kvar.</item>
+    <item quantity="other">Felaktig PIN-kod. %1$d försök kvar.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
+    <item quantity="one">Om du får slut på försök kommer ditt konto att vara låst i %1$d dag. Efter %1$d dag av inaktivitet kan du registrera dig igen utan din PIN-kod. Ditt konto rensas och allt innehåll tas bort.</item>
+    <item quantity="other">Om du får slut på försök kommer ditt konto att vara låst i %1$d dagar. Efter %1$d dagar av inaktivitet kan du registrera dig igen utan din PIN-kod. Ditt konto rensas och allt innehåll tas bort.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
+    <item quantity="one">Du har %1$d försök kvar.</item>
+    <item quantity="other">Du har %1$d försök kvar.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__d_attempts_remaining">
+    <item quantity="one">%1$d försök kvar.</item>
+    <item quantity="other">%1$d försök kvar.</item>
+  </plurals>
   <!--KBS Megaphone-->
+  <string name="KbsMegaphone__create_a_pin">Skapa en PIN-kod</string>
+  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">PIN-koder lägga till ett annat lager av säkerhet till ditt Signal-konto.</string>
+  <string name="KbsMegaphone__create_pin">Skapa PIN-kod</string>
   <string name="KbsMegaphone__introducing_pins">Introducerar PIN-koder</string>
+  <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Ditt registreringslås kallas nu en PIN-kod. Uppdatera det tar några sekunder.</string>
   <string name="KbsMegaphone__update_pin">Uppdatera PIN-kod</string>
+  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Vi påminner dig senare. Att skapa en PIN-kod blir obligatorisk om %1$d dagar.</string>
+  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Vi påminner dig senare. Bekräfta din PIN-kod blir obligatorisk om %1$d dagar.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportikon</string>
   <string name="ConversationListFragment_loading">Hämtar in…</string>
@@ -1484,6 +1546,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_chats__chat_backups">Säkerhetskopior av konversationer</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Säkerhetskopiera konversationer till externt lagringsutrymme</string>
   <string name="preferences_chats__create_backup">Skapa säkerhetskopia</string>
+  <string name="preferences_chats__verify_backup_passphrase">Verifiera lösenord för säkerhetskopian</string>
+  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Testa ditt lösenord för säkerhetskopian och kontrollera att den matchar</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Ange lösenord för säkerhetskopian</string>
   <string name="RegistrationActivity_restore">Återställ</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Kan inte importera säkerhetskopior från nyare versioner av Signal</string>
@@ -1501,7 +1565,10 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Inaktivera och ta bort alla lokala säkerhetskopior?</string>
   <string name="BackupDialog_delete_backups_statement">Ta bort säkerhetskopior</string>
   <string name="BackupDialog_copied_to_clipboard">Kopierade till urklipp</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">Ange lösenord för säkerhetskopian för att verifiera</string>
   <string name="BackupDialog_verify">Verifiera</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Du har angett lösenord för säkerhetskopian</string>
+  <string name="BackupDialog_passphrase_was_not_correct">Lösenordet var inte korrekt</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal behöver behörigheten Lagring för att skapa säkerhetskopior men har nekats den permanent. Fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Lagring\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Senaste säkerhetskopia: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Pågår</string>
@@ -1536,6 +1603,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_app_protection__registration_lock_pin">PIN-kod för registreringslåset</string>
   <string name="preferences_app_protection__registration_lock">Registreringslås</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Du måste ange din PIN-kod för registreringslåset</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Din PIN-kod måste vara minst %d siffror eller tecken</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Felaktig PIN-kod för registreringslåset</string>
   <string name="RegistrationActivity_too_many_attempts">För många försök</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Du har gjort för många PIN-kodsförsök. Vänligen försök igen efter ett dygn.</string>

@@ -708,6 +708,7 @@ telefónne číslo
   <string name="SharedContactView_add_to_contacts">Pridať medzi kontakty</string>
   <string name="SharedContactView_invite_to_signal">Pozvať do Signalu</string>
   <string name="SharedContactView_message">Signal správa</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">Obrázok</string>
   <string name="Slide_sticker">Nálepka</string>
@@ -1516,7 +1517,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
     <item quantity="other">Pretože toto zariadenie je registrované, môžete si vybrať nový PIN kód. Ak zabudnete svoj PIN kód, pravdepodobne budete musieť čakať %1$d dní na opätovnú registráciu.</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Vytvorte si PIN</string>
-  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PIN kódy pridávajú k vášmu účtu ďalšiu vrstvu zabezpečenia. Keďže tento PIN kód nie je možné obnoviť, je dôležité, aby ste si ho zapamätali.</string>
+  <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN kódy pridávajú k vášmu účtu ďalšiu vrstvu zabezpečenia a nie je možné ich obnoviť. Svoj PIN kód budete potrebovať pri opätovnej registrácii do Signalu.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN kódy sa nezhodujú. Skúste to znova.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Potvrďte svoj PIN.</string>

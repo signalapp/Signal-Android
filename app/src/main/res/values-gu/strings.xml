@@ -654,6 +654,7 @@
   <string name="SharedContactView_add_to_contacts">સંપર્કોમાં ઉમેરો</string>
   <string name="SharedContactView_invite_to_signal">Signal માટે આમંત્રણ આપો</string>
   <string name="SharedContactView_message">Signal મેસેજ</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">છબી</string>
   <string name="Slide_sticker">સ્ટીકર</string>
@@ -1319,6 +1320,7 @@
   <string name="conversation_list_item_view__contact_photo_image">સંપર્ક ફોટો છબી</string>
   <string name="conversation_list_item_view__archived">આર્કાઇવ કરેલ</string>
   <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">ઇનબોક્સમાં કંઈ નહિ</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">હવે કંઈ નથી રહ્યુ.\n તમે પકડાઈ ગયા છો!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">નવો સંવાદ</string>
   <string name="conversation_list_fragment__open_camera_description">કેમેરો ખોલો </string>

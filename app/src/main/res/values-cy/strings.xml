@@ -707,6 +707,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="SharedContactView_add_to_contacts">Ychwanegu at Cysylltiadau</string>
   <string name="SharedContactView_invite_to_signal">Gwahodd i Signal</string>
   <string name="SharedContactView_message">Neges Signal</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">Llun</string>
   <string name="Slide_sticker">Sticer</string>
@@ -1513,7 +1514,6 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="other">Gallwch ddewis PIN newydd gan fod y ddyfais wedi ei chofrestru. Os fyddwch yn anghofio eich PIN, efallai y bydd angen i chi aros am %1$d diwrnod i chi gofrestru eto.</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Crëwch eich PIN</string>
-  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">Mae PIN yn ychwanegu haen ychwanegol o ddiogelwch i\'ch cyfrif. Mae\'n bwysig i gofio\'r PIN gan nad oes modd ei adfer.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Nid yw\'r PIN yn cyfateb. Ceisiwch eto.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Cadarnhewch eich PIN.</string>
@@ -1567,6 +1567,18 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="two">PIN anghywir. %1$d ymgais ar ôl.</item>
     <item quantity="many">PIN anghywir. %1$d ymgais ar ôl.</item>
     <item quantity="other">PIN anghywir. %1$d ymgais ar ôl.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
+    <item quantity="one">Os fyddwch yn rhedeg allan o geisiadau bydd eich cyfri\'\'n cael ei gloi am %1$d diwrnod. Ar ôl %1$d diwrnod o anweithgaredd gallwch ailgofrestru heb eich PIN. Bydd eich cyfrif wedi ei dynnu a\'r holl ddata ei ddileu.</item>
+    <item quantity="two">Os fyddwch yn rhedeg allan o geisiadau bydd eich cyfri\'\'n cael ei gloi am %1$d diwrnod. Ar ôl %1$d diwrnod o anweithgaredd gallwch ailgofrestru heb eich PIN. Bydd eich cyfrif wedi ei dynnu a\'r holl ddata ei ddileu.</item>
+    <item quantity="many">Os fyddwch yn rhedeg allan o geisiadau bydd eich cyfri\'\'n cael ei gloi am %1$d diwrnod. Ar ôl %1$d diwrnod o anweithgaredd gallwch ailgofrestru heb eich PIN. Bydd eich cyfrif wedi ei dynnu a\'r holl ddata ei ddileu.</item>
+    <item quantity="other">Os fyddwch yn rhedeg allan o geisiadau bydd eich cyfri\'\'n cael ei gloi am %1$d diwrnod. Ar ôl %1$d diwrnod o anweithgaredd gallwch ailgofrestru heb eich PIN. Bydd eich cyfrif wedi ei dynnu a\'r holl ddata ei ddileu.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
+    <item quantity="one">Mae gennych %1$d cais ar ôl.</item>
+    <item quantity="two">Mae gennych %1$d cais ar ôl.</item>
+    <item quantity="many">Mae gennych %1$d cais ar ôl.</item>
+    <item quantity="other">Mae gennych %1$d cais ar ôl.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__d_attempts_remaining">
     <item quantity="one"> %1$d ymgais ar ôl.</item>

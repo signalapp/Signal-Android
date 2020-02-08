@@ -466,6 +466,9 @@ weergaven.</string>
   <string name="Megaphones_introducing_reactions">We introduceren ‘reacties’</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Je kunt vanaf nu een bericht aantikken en vasthouden om snel en gemakkelijk te laten weten hoe je je er over voelt.</string>
   <string name="Megaphones_remind_me_later">Herinner me later</string>
+  <string name="Megaphones_verify_your_signal_pin">Verifieer je Signal-pincode</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Signal zal je af te toe vragen om je pincode opnieuw in te voeren, om te controleren of je hem goed onthouden hebt.</string>
+  <string name="Megaphones_verify_pin">Pincode verifiëren </string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-oproep aan de gang</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal-oproep aan het opzetten</string>
@@ -668,6 +671,12 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SharedContactView_add_to_contacts">Toevoegen aan contacten</string>
   <string name="SharedContactView_invite_to_signal">Uitnodigen voor Signal</string>
   <string name="SharedContactView_message">Signal-bericht</string>
+  <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">Signal zal je er  opnieuw aan herinneren dat je je pincode nog moet verifiëren.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Signal zal je er morgen opnieuw aan herinneren dat je je pincode nog moet verifiëren.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Signal zal je er binnen een aantal dagen opnieuw aan herinneren dat je je pincode nog moet verifiëren.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Signal zal je er na een week opnieuw aan herinneren dat je je pincode nog moet verifiëren.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Signal zal je er binnen een aantal weken opnieuw aan herinneren dat je je pincode nog moet verifiëren.</string>
   <!--Slide-->
   <string name="Slide_image">Afbeelding</string>
   <string name="Slide_sticker">Sticker</string>
@@ -1452,7 +1461,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
     <item quantity="other">Omdat dit apparaat is geregistreerd kun je er voor kiezen een nieuwe pincode in te stellen. Als je je pincode vergeet, dan moet je misschien %1$d dagen wachten voor je je telefoonnummer weer kunt registreren.</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Pincode aanmaken</string>
-  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">Pincodes voegen een extra niveau van beveiliging toe aan je account. Het is belangrijk dat je je pincode onthoud, want je kunt deze later niet terugzien.</string>
+  <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">Pincodes voegen een extra niveau van beveiliging toe aan je account. Je moet je pincode onthouden want je kunt hem niet terugzien. Je hebt je pincode nodig als je je telefoonnummer in de toekomst opnieuw bij Signal wilt registreren.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">De pincodes komen niet overeen, probeer het opnieuw.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Bevestig je pincode.</string>
@@ -1475,7 +1484,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="KbsReminderDialog__enter_your_signal_pin">Voer je Signal-pincode in</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Om je te helpen je pincode te onthouden zal Signal je periodiek vragen om je pincode in te voeren. Na verloop van tijd zal Signal dit minder vaak vragen.</string>
   <string name="KbsReminderDialog__skip">Overslaan</string>
-  <string name="KbsReminderDialog__submit">Aanvragen</string>
+  <string name="KbsReminderDialog__submit">Bevestigen</string>
   <string name="KbsReminderDialog__forgot_pin">Pincode vergeten?</string>
   <string name="KbsReminderDialog__incorrect_pin_try_again">Foutieve pincode, probeer het opnieuw.</string>
   <!--AccountLockedFragment-->

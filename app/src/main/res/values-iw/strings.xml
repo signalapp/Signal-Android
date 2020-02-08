@@ -709,6 +709,7 @@
   <string name="SharedContactView_add_to_contacts">הוסף לאנשי קשר</string>
   <string name="SharedContactView_invite_to_signal">הזמן אל Signal</string>
   <string name="SharedContactView_message">הודעת Signal</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">תמונה</string>
   <string name="Slide_sticker">מדבקה</string>
@@ -1517,7 +1518,6 @@
     <item quantity="other">אתה יכול לבחור PIN חדש מאחר שמכשיר זה רשום. אם תשכח את ה־PIN שלך, תצטרך להמתין %1$d ימים כדי להירשם שוב.</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">צור את ה־PIN שלך</string>
-  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">קודי PIN מוסיפים שכבת אקסטרה של אבטחה אל החשבון שלך. זה חשוב לזכור PIN זה מאחר שהוא בלתי ניתן להשבה.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">קודי PIN אינם תואמים. נסה שוב.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">אמת את ה־PIN שלך.</string>

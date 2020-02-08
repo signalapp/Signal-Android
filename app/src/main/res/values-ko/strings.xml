@@ -621,6 +621,7 @@
   <string name="SharedContactView_add_to_contacts">주소록에 추가</string>
   <string name="SharedContactView_invite_to_signal">Signal로 초대</string>
   <string name="SharedContactView_message">Signal 메시지</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">이미지</string>
   <string name="Slide_sticker">스티커</string>

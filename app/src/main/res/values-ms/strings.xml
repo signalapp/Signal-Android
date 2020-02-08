@@ -589,6 +589,7 @@
   <string name="SharedContactView_add_to_contacts">Tambah kepada Kenalan</string>
   <string name="SharedContactView_invite_to_signal">Jemput ke Signal</string>
   <string name="SharedContactView_message">Mesej Signal</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">Imej</string>
   <string name="Slide_sticker">Pelekat</string>

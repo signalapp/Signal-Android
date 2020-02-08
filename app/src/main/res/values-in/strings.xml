@@ -643,6 +643,7 @@ isikan (%s) tidak valid.
   <string name="SharedContactView_add_to_contacts">Tambahkan ke Kontak</string>
   <string name="SharedContactView_invite_to_signal">Undang ke Signal</string>
   <string name="SharedContactView_message">Pesan Signal</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">Gambar</string>
   <string name="Slide_sticker">Stiker</string>
@@ -1412,7 +1413,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
     <item quantity="other">Anda dapat membuat PIN baru karena perangkat ini telah terdaftar. Jika Anda lupa PIN, Anda perlu menunggu %1$d hari untuk mendaftar lagi.</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Buat PIN Anda</string>
-  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PIN menambahkan lapisan ekstra keamanan terhadap akun Anda. Sangat penting untuk mengingat PIN ini karena ia tidak dapat dipulihkan.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN tidak cocok. Coba lagi.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Konfirmasi PIN Anda.</string>

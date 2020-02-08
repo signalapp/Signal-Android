@@ -654,6 +654,7 @@ skrev inn (%s) er ugyldig.</string>
   <string name="SharedContactView_add_to_contacts">Legg til kontakt</string>
   <string name="SharedContactView_invite_to_signal">Inviter til Signal</string>
   <string name="SharedContactView_message">Signal-melding</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">Bilde</string>
   <string name="Slide_sticker">Klistremerke</string>

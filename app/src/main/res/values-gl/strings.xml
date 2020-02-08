@@ -609,6 +609,7 @@
   <string name="SharedContactView_add_to_contacts">Engadir a contactos</string>
   <string name="SharedContactView_invite_to_signal">Convidar a Signal</string>
   <string name="SharedContactView_message">Mensaxe de Signal</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">Imaxe</string>
   <string name="Slide_sticker">Adhesivo</string>

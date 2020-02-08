@@ -60,15 +60,16 @@
   <string name="AttachmentKeyboard_file">கோப்பு</string>
   <string name="AttachmentKeyboard_contact">தொடர்பு</string>
   <string name="AttachmentKeyboard_location">இடம்</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">புகைப்படங்கள் மற்றும் காணொளிகளை காட்ட Signal-க்கு அனுமதி தேவை.</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">மீடியாவை தேர்வுசெய்யும் ஒரு பயன்பாட்டை கண்டுபிடிக்க முடியவில்லை.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">புகைப்படங்கள், வீடியோக்கள் அல்லது ஆடியோவை இணைக்கவும் Signal க்கு சேமிப்பக அனுமதி தேவைப்படுகிறது, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகள் மெனுவில் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து \"சேமிப்பகத்தை\" இயக்கவும்.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">புகைப்படங்கள், காணொளிகள் அல்லது ஆடியோவை இணைக்கவும் Signal க்கு சேமிப்பக அனுமதி தேவைப்படுகிறது, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகள் மெனுவில் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து \"சேமிப்பகத்தை\" இயக்கவும்.</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">தொடர்பு தகவலை இணைக்கவும் Signal க்கு தொடர்புகளின் அனுமதி தேவைப்படுகிறது, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகள் மெனுவில் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து, \"தொடர்புகளை\" இயக்கவும்.</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">இருப்பிடத்தை இணைக்கவும், Signal க்கு இருப்பிட அனுமதி தேவைப்படுகிறது, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகள் மெனுவில் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து, \"இருப்பிடம்\" ஐ இயக்கவும்.</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">புகைப்படங்களை எடுக்க Signal க்கு கேமரா அனுமதி தேவைப்படுகிறது, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகள் மெனுவில் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து \"கேமரா\" ஐ இயக்கவும்.</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">மீடியா பதிவேற்றுகிறது …</string>
-  <string name="AttachmentUploadJob_compressing_video_start">வீடியோ சுறுக்கப்படுகிறது  …</string>
+  <string name="AttachmentUploadJob_compressing_video_start">காணொளி சுறுக்கப்படுகிறது…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">ஒலி இயக்குவதில் பிழை!</string>
   <!--BlockedContactsActivity-->
@@ -86,7 +87,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">படத்தைச் சேமிப்பதில் தோல்வி </string>
   <!--CameraXFragment-->
-  <string name="CameraXFragment_tap_for_photo_hold_for_video">புகைப்படத்திற்கு தட்டவும், வீடியோவிற்கு தொடர்ந்து அழுத்தவும் </string>
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">புகைப்படத்திற்கு தட்டவும், காணொளிக்கு தொடர்ந்து அழுத்தவும் </string>
   <string name="CameraXFragment_capture_description">பிடிப்பு</string>
   <string name="CameraXFragment_change_camera_description">கேமராவை மாற்றவும்</string>
   <string name="CameraXFragment_open_gallery_description">கேலரியை திற </string>
@@ -107,7 +108,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">இணைய உலாவி இல்லை.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">ஒரு செல்லுலார் அழைப்பு ஏற்கனவே செயல்பாட்டில் உள்ளது.</string>
-  <string name="CommunicationActions_start_video_call">வீடியோ அழைப்பைத் தொடங்கவா?</string>
+  <string name="CommunicationActions_start_video_call">காணொளி அழைப்பைத் தொடங்கவா?</string>
   <string name="CommunicationActions_start_voice_call">குரல் அழைப்பைத் தொடங்கவா?</string>
   <string name="CommunicationActions_cancel">ரத்து</string>
   <string name="CommunicationActions_call">அழைப்பு</string>
@@ -187,12 +188,12 @@
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">ஆடியோ செய்திகளை அனுப்ப Signal க்கு மைக்ரோஃபோன் அனுமதி தேவைப்படுகிறது, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகளைத் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து, \"மைக்ரோஃபோனை\" இயக்கவும்.</string>
   <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">%s ஐ அழைக்க, Signal க்கு உங்கள் மைக்ரோஃபோன் மற்றும் கேமராவை அணுக வேண்டும்.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal லை அழைக்க மைக்ரோஃபோன் மற்றும் கேமரா அனுமதிகள் தேவை%s, ஆனால் அவை நிரந்தரமாக மறுக்கப்பட்டுள்ளன. பயன்பாடு அமைப்புகளைத் தொடரவும், \"அனுமதி\" என்பதைத் தேர்ந்தெடுத்து, \"மைக்ரோஃபோன்\" மற்றும் \"கேமரா\" ஐ இயக்கவும்.</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">புகைப்படங்கள் மற்றும் வீடியோவைப் பிடிக்க, கேமராவுக்கு Signal அணுகலை அனுமதிக்கவும்.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">புகைப்படங்கள் அல்லது வீடியோ எடுக்க Signal லுக்கு கேமரா அனுமதி தேவை, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகளைத் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து \"கேமரா\" ஐ இயக்கவும்.</string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">புகைப்படங்கள் அல்லது வீடியோ எடுக்க Signal லுக்கு கேமரா அனுமதி தேவை</string>
-  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">ஒலியுடன் வீடியோக்களைப் பிடிக்க மைக்ரோஃபோன் அனுமதியை இயக்கவும்.</string>
-  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">வீடியோக்களைப் பதிவு செய்ய Signal மைக்ரோஃபோன் அனுமதி தேவை, ஆனால் அவை மறுக்கப்பட்டுள்ளன. பயன்பாட்டு பயன்பாடு தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து, \"மைக்ரோஃபோன்\" மற்றும் \"கேமரா\" ஐ இயக்கவும்.</string>
-  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">வீடியோக்களைப் பதிவு செய்ய Signal மைக்ரோஃபோன் அனுமதி தேவை.</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">புகைப்படங்கள் மற்றும் காணொளி பிடிக்க, Signal-ஐ கேமராவை அணுக அனுமதிக்கவும்.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">புகைப்படங்கள் அல்லது வீடியோ எடுக்க Signal-க்கு கேமரா அனுமதி தேவை, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. செயலியின் அமைப்புகளுக்கு சென்று, \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து \"கேமரா\"-ஐ இயலச் செய்யவும்.</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">புகைப்படங்கள் அல்லது காணொளி எடுக்க Signal-க்கு கேமரா அனுமதி தேவை</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">ஒலியுடன் காணொளிகளைப் பிடிக்க மைக்ரோஃபோன் அனுமதியை இயலச் செய்யவும்.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">காணொளிகளைப் பதிவு செய்ய Signal மைக்ரோஃபோன் அனுமதி தேவை, ஆனால் அது மறுக்கப்பட்டது. செயலியின் அமைப்புகளுக்கு சென்று, \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து  \"மைக்ரோஃபோன்\" மற்றும் \"கேமரா\" என்பவற்றை இயலச் செய்யவும்.</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">காணொளிகளைப் பதிவு செய்ய Signal-க்கு மைக்ரோஃபோன் அனுமதி தேவை.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal எஸ்எம்எஸ் / எம்எம்எஸ் செய்திகளை அனுப்ப முடியாது, ஏனெனில் இது உங்கள் இயல்புநிலை எஸ்எம்எஸ் பயன்பாடு அல்ல. உங்கள் அண்ட்ராய்டு அமைப்புகளில் இதை மாற்ற விரும்புகிறீர்களா?</string>
   <string name="ConversationActivity_yes">ஆம்</string>
@@ -323,10 +324,10 @@
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Signalக்கு வரவேற்கிறது!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure தற்போது Signal</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure மற்றும் RedPhone இப்போது ஒரு பயன்பாடு: Signal. ஆராய தட்டவும்.</string>
-  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">வீடியோ அழைப்புகளைப் பாதுகாக்க ஹலோ சொல்லுங்கள்.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal இப்போது பாதுகாப்பான வீடியோ அழைப்பை ஆதரிக்கிறது. இயல்பானதைப் போன்ற ஒரு Signal அழைப்பைத் தொடங்கவும், ஹலோ அலை, வீடியோ பொத்தானைத் தட்டவும், .</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal இப்போது பாதுகாப்பான வீடியோ அழைப்பை ஆதரிக்கிறது.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal இப்போது பாதுகாப்பான வீடியோ அழைப்பை ஆதரிக்கிறது. ஆராய தட்டவும்.</string>
+  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">பாதுகாப்பான காணொளி அழைப்புகளுக்கு வணக்கம் சொல்லுங்கள்.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal இப்போது பாதுகாப்பான காணொளி அழைப்பை ஆதரிக்கிறது. இயல்பானதைப் போன்ற ஒரு Signal அழைப்பைத் தொடங்கவும், காணொளி பொத்தானைத் தட்டி வணக்கம் என கை வீசவும்.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal இப்போது பாதுகாப்பான காணொளி அழைப்பை ஆதரிக்கிறது.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal இப்போது பாதுகாப்பான காணொளி அழைப்பை ஆதரிக்கிறது. ஆராய தட்டவும்.</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">உங்கள் நெருக்கத்திற்கு தயாரா?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">இப்போது நீங்கள் ஒரு சுயவிவர புகைப்படத்தையும் பெயரையும் Signal நண்பர்களுடன் பகிர்ந்து கொள்ளலாம்</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal சுயவிவரங்கள் இங்கே உள்ளன</string>
@@ -638,7 +639,7 @@
   <string name="RegistrationActivity_call">அழை</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">புகைப்படத்தைக் காண்க</string>
-  <string name="RevealableMessageView_view_video">வீடியோவைக் காண்க</string>
+  <string name="RevealableMessageView_view_video">காணொளியை காண்க</string>
   <string name="RevealableMessageView_viewed">பார்க்கப்பட்டவை</string>
   <string name="RevealableMessageView_media">ஊடகம்</string>
   <!--ScribbleActivity-->
@@ -657,6 +658,7 @@
   <string name="SharedContactView_add_to_contacts">தொடர்பு பட்டியலில் சேர்க்க</string>
   <string name="SharedContactView_invite_to_signal">Signalக்கு அழை</string>
   <string name="SharedContactView_message">Signal செய்தி</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">உருவம்</string>
   <string name="Slide_sticker">ஓட்டி</string>
@@ -802,14 +804,14 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">சமீபத்திய அறிவிப்புகளைச் சரிபார்க்க Signal திறக்கவும்.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">தொடர்பு</string>
-  <string name="MessageNotifier_reacted_s_to_s"> %1$s க்கு: \"%2$s\" வினைபுரிந்தது</string>
-  <string name="MessageNotifier_reacted_s_to_your_video">உங்கள் வீடியோவுக்கு%1$sவினைபுரிந்தது ..</string>
-  <string name="MessageNotifier_reacted_s_to_your_image"> உங்கள் படத்திற்கு%1$s வினைபுரிந்தது.</string>
-  <string name="MessageNotifier_reacted_s_to_your_file">உங்கள் கோப்பிற்கு %1$s வினைபுரிந்தது ..</string>
-  <string name="MessageNotifier_reacted_s_to_your_audio"> உங்கள் காணொளிக்கு %1$s வினைபுரிந்தது.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">உங்கள் காண்க-ஒருமுறை புகைப்படத்திற்கு %1$s வினைபுரிந்தது</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">உங்கள் காண்க-ஒருமுறை  காணொளிக்கு %1$s வினைபுரிந்தது</string>
-  <string name="MessageNotifier_reacted_s_to_your_sticker">உங்கள் ஒட்டிக்கு %1$s வினைபுரிந்தது .</string>
+  <string name="MessageNotifier_reacted_s_to_s">%1$s என வினைபுரிந்தார்: \"%2$s\" க்கு.</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">உங்கள் காணொளிக்கு %1$s என வினைபுரிந்தார்.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">உங்கள் படத்திற்கு %1$s என வினைபுரிந்தார்.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">உங்கள் கோப்பிற்கு %1$s என வினைபுரிந்தார்.</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">உங்கள் கேட்பொலிக்கு %1$s என வினைபுரிந்தார்.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">உங்கள் காண்க-ஒருமுறை புகைப்படத்திற்கு %1$s என வினைபுரிந்தார்.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">உங்கள் காண்க-ஒருமுறை காணொளிக்கு %1$s வினைபுரிந்தார்.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">உங்கள் ஒட்டிக்கு %1$s என வினைபுரிந்தார்.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">இயல்புநிலை</string>
   <string name="NotificationChannel_calls">அழைப்புகள்</string>
@@ -838,7 +840,7 @@
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">புதிய செய்தி</string>
   <!--ThumbnailView-->
-  <string name="ThumbnailView_Play_video_description">வீடியோவை இயக்கு</string>
+  <string name="ThumbnailView_Play_video_description">காணொளியை ஓட்டு</string>
   <string name="ThumbnailView_Has_a_caption_description">ஒரு தலைப்பு உள்ளது</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
@@ -849,7 +851,7 @@
   <string name="UnauthorizedReminder_device_no_longer_registered">சாதனம் இனி பதிவு செய்யப்படவில்லை</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">உங்கள் தொலைபேசி எண்ணை Signal வேறு சாதனத்தில் பதிவு செய்ததால் இது நிகழலாம். மீண்டும் பதிவு செய்ய தட்டவும்.</string>
   <!--VideoPlayer-->
-  <string name="VideoPlayer_error_playing_video">வீடியோ விளையாடுவதில் பிழை</string>
+  <string name="VideoPlayer_error_playing_video">காணொளியை ஓட்டுவதில் பிழை ஏற்பட்டது</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%s இலிருந்து அழைப்பிற்கு பதிலளிக்க, உங்கள் மைக்ரோஃபோனுக்கு Signal அணுகலை வழங்கவும்.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">அழைப்புகளைச் செய்ய அல்லது பெற Signal கு மைக்ரோஃபோன் மற்றும் கேமரா அனுமதிகள் தேவை, ஆனால் அவை நிரந்தரமாக மறுக்கப்பட்டுள்ளன. பயன்பாடு அமைப்புகளைத் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து, \"மைக்ரோஃபோன்\" மற்றும் \"கேமரா\" ஐ இயக்கவும்.</string>
@@ -860,7 +862,7 @@
   <string name="WebRtcCallScreen_accept">ஏற்க</string>
   <string name="WebRtcCallScreen_end_call">அழைப்பைத் துண்டி</string>
   <!--WebRtcCallControls-->
-  <string name="WebRtcCallControls_tap_to_enable_your_video">உங்கள் வீடியோவை இயக்க தட்டவும்</string>
+  <string name="WebRtcCallControls_tap_to_enable_your_video">உங்கள் காணொளியை இயக்க தட்டவும்</string>
   <!--WebRtcCallControls Content Descriptions-->
   <string name="WebRtcCallControls_contact_photo_description">தொடர்பின் புகைப்படம்</string>
   <string name="WebRtcCallControls_speaker_button_description">ஒலி பெருக்கி</string>
@@ -881,7 +883,7 @@
   <string name="attachment_type_selector__location_description">இருப்பிடம்</string>
   <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
-  <string name="attachment_type_selector__gallery_description">படம் அல்லது வீடியோ</string>
+  <string name="attachment_type_selector__gallery_description">படம் அல்லது காணொளி</string>
   <string name="attachment_type_selector__file_description">கோப்பு</string>
   <string name="attachment_type_selector__gallery">கேலரி</string>
   <string name="attachment_type_selector__file">கோப்பு</string>
@@ -1257,7 +1259,7 @@
   <string name="preferences_chats__message_trimming">செய்தி ஒழுங்கமைத்தல்</string>
   <string name="preferences_storage__storage_usage">சேமிப்பக பயன்பாடு</string>
   <string name="preferences_storage__photos">புகைப்படங்கள்</string>
-  <string name="preferences_storage__videos">வீடியோக்கள்</string>
+  <string name="preferences_storage__videos">காணொளிகள்</string>
   <string name="preferences_storage__files">கோப்புகள்</string>
   <string name="preferences_storage__audio">ஒலி</string>
   <string name="preferences_storage__review_storage">விமர்சனம் சேமிப்பு</string>
@@ -1294,7 +1296,7 @@
   <string name="conversation_callable_insecure__menu_call">அழை</string>
   <!--conversation_callable_secure-->
   <string name="conversation_callable_secure__menu_call">Signal அழைப்பு</string>
-  <string name="conversation_callable_secure__menu_video">Signal வீடியோ அழைப்பு</string>
+  <string name="conversation_callable_secure__menu_video">Signal காணொளி அழைப்பு</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">செய்தி விவரங்கள்</string>
   <string name="conversation_context__menu_copy_text">உரை நகலெடு</string>

@@ -119,7 +119,7 @@
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">شاید بخواهید که شماره امنیتی خود را با این مخاطب تأیید کنید.</string>
   <string name="ConfirmIdentityDialog_accept">پذیرش</string>
   <!--ContactsCursorLoader-->
-  <string name="ContactsCursorLoader_recent_chats">آخرین گپ‌ها</string>
+  <string name="ContactsCursorLoader_recent_chats">آخرین گفتگوها</string>
   <string name="ContactsCursorLoader_contacts">مخاطب‌ها</string>
   <string name="ContactsCursorLoader_groups">گروه‌ها‌</string>
   <string name="ContactsCursorLoader_phone_number_search">جستجوی شماره‌تلفن</string>
@@ -405,7 +405,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">بیایید از Signal استفاده کنیم:  %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">به نظر می رسد شما هیچ برنامه ای برای اشتراک گذاری ندارید.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">دوستان واقعی به دوستان خود اجازه گپ زدن رمزگذاری نشده را نمی دهند.</string>
+  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">دوستان واقعی به دوستان خود اجازهٔ گفتگوی رمزگذاری نشده را نمی‌دهند.</string>
   <!--Job-->
   <string name="Job_working_in_the_background">در حال کار در پس‌زمینه…</string>
   <!--MessageDetailsRecipient-->
@@ -663,6 +663,7 @@
   <string name="SharedContactView_add_to_contacts">افزودن به مخاطبان</string>
   <string name="SharedContactView_invite_to_signal">دعوت به Signal</string>
   <string name="SharedContactView_message">پیام Signal</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">تصویر</string>
   <string name="Slide_sticker">استیکر</string>
@@ -795,7 +796,7 @@
   <string name="MessageNotifier_message_delivery_failed">تحویل پیام ناموفق بود.</string>
   <string name="MessageNotifier_failed_to_deliver_message">عدم موفقیت در تحویل پیام.</string>
   <string name="MessageNotifier_error_delivering_message">خطا در تحویل پیام.</string>
-  <string name="MessageNotifier_mark_all_as_read">علامت گذاری همه به صورت خوانده شده</string>
+  <string name="MessageNotifier_mark_all_as_read">علامت‌گذاری همه به صورت خوانده شده</string>
   <string name="MessageNotifier_mark_read">علامت گذاری به صورت خوانده شده</string>
   <string name="MessageNotifier_media_message">پیام رسانه‌ای</string>
   <string name="MessageNotifier_sticker">استیکر</string>
@@ -1088,7 +1089,7 @@
   <string name="recipient_preferences__block">مسدود سازی</string>
   <string name="recipient_preferences__color">رنگ</string>
   <string name="recipient_preferences__view_safety_number">نمایش شماره امنیتی</string>
-  <string name="recipient_preferences__chat_settings">تنظیمات گپ</string>
+  <string name="recipient_preferences__chat_settings">تنظیمات گفتگو</string>
   <string name="recipient_preferences__privacy">حریم خصوصی</string>
   <string name="recipient_preferences__call_settings">تنظیمات تماس</string>
   <string name="recipient_preferences__ringtone">زنگ گوشی</string>
@@ -1229,7 +1230,7 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">درخواست گزارش تحویل برای هر پیامک ارسالی از جانب شما</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">حذف خودکار پیام های قدیمی زمانی که یک مکالمه از طول مشخص شده بیشتر شد</string>
   <string name="preferences__delete_old_messages">حذف پیام‌ های قدیمی</string>
-  <string name="preferences__chats">گپ ها و رسانه ها</string>
+  <string name="preferences__chats">گفتگوها و رسانه‌ها</string>
   <string name="preferences__storage">حافظه</string>
   <string name="preferences__conversation_length_limit">محدودیت طول مکالمه</string>
   <string name="preferences__trim_all_conversations_now">حذف پیام‌های قدیمی، همین حالا</string>
@@ -1271,10 +1272,10 @@
   <string name="preferences_advanced__always_relay_calls">تمامی تماس‌ها از سرور سیگنال عبور داده شود.</string>
   <string name="preferences_app_protection__app_access">دسترسی برنامه</string>
   <string name="preferences_app_protection__communication">ارتباطات</string>
-  <string name="preferences_chats__chats">گپ ها</string>
+  <string name="preferences_chats__chats">گفتگوها</string>
   <string name="preferences_notifications__messages">پیام ها</string>
   <string name="preferences_notifications__events">رخداد ها</string>
-  <string name="preferences_notifications__in_chat_sounds">صدا های درون-گپ</string>
+  <string name="preferences_notifications__in_chat_sounds">صداها در حین گفتگو</string>
   <string name="preferences_notifications__show">نمایش</string>
   <string name="preferences_notifications__calls">تماس ها</string>
   <string name="preferences_notifications__ringtone">زنگ گوشی</string>
@@ -1359,7 +1360,7 @@
   <string name="text_secure_normal__menu_new_group">گروه جدید</string>
   <string name="text_secure_normal__menu_settings">تنظیمات</string>
   <string name="text_secure_normal__menu_clear_passphrase">قفل</string>
-  <string name="text_secure_normal__mark_all_as_read">علامت گذاری همه به صورت خوانده شده</string>
+  <string name="text_secure_normal__mark_all_as_read">علامت‌گذاری همه به صورت خوانده شده</string>
   <string name="text_secure_normal__invite_friends">دعوت دوستان</string>
   <string name="text_secure_normal__help">راهنما</string>
   <!--verify_display_fragment-->
@@ -1443,7 +1444,6 @@
     <item quantity="other">از آنجایی که این دستگاه ثبت شده است، شما می‌توانید یک پین جدید بسازید. اگر پین خود را فراموش کنید، برای ثبت دوباره، باید به مدت %1$d روز صبر کنید.</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">پین خود را ایجاد کنید</string>
-  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">پین‌ها یک لایهٔ امنیتی دیگر به حساب شما اضافه می‌کنند. مهم است که این پین را بخاطر داشته باشید، زیرا قابل بازیابی نیست.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">پین‌ها مطابقت ندارند. دوباره تلاش کنید.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">پین خود را تایید کنید</string>
@@ -1536,7 +1536,7 @@
   <string name="registration_activity__restore_backup">بازیابی پشتیبان</string>
   <string name="registration_activity__skip">پرش</string>
   <string name="registration_activity__register">ثبت نام</string>
-  <string name="preferences_chats__chat_backups">پشتیبان‌های گپ</string>
+  <string name="preferences_chats__chat_backups">پشتیبان‌های گفتگو</string>
   <string name="preferences_chats__backup_chats_to_external_storage">پشتیبان‌گیری از گفتگوها در حافظهٔ خارجی</string>
   <string name="preferences_chats__create_backup">ایجاد پشتیبان</string>
   <string name="preferences_chats__verify_backup_passphrase">گذرواژهٔ پشتیبان را تصدیق کنید</string>

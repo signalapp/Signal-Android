@@ -312,7 +312,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Ошибка при установке профиля</string>
   <string name="CreateProfileActivity_profile_photo">Фото профиля</string>
   <string name="CreateProfileActivity_set_up_your_profile">Настройте свой профиль</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">SignalПрофили Signal защищены сквозным шифрованием, и сервис Signal никогда не имеет доступа к этой информации.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Профили Signal защищены сквозным шифрованием, и сервис Signal никогда не имеет доступа к этой информации.</string>
   <string name="CreateProfileActivity_set_avatar_description">Установить аватар</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Пользовательское: %s</string>
@@ -505,6 +505,9 @@
   <string name="Megaphones_introducing_reactions">Представляем реакции</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Нажмите и удерживайте любое сообщение, чтобы быстро ответить вашими чувствами.</string>
   <string name="Megaphones_remind_me_later">Напомните мне позже</string>
+  <string name="Megaphones_verify_your_signal_pin">Подтвердите свой PIN-код Signal</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Иногда мы будем просить вас подтвердить ваш PIN-код, чтобы вы его помнили.</string>
+  <string name="Megaphones_verify_pin">Подтвердить PIN-код</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Выполняется звонок через Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Установление звонка через Signal</string>
@@ -702,6 +705,12 @@
   <string name="SharedContactView_add_to_contacts">Добавить в контакты</string>
   <string name="SharedContactView_invite_to_signal">Пригласить в Signal</string>
   <string name="SharedContactView_message">Сообщение Signal</string>
+  <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">Мы напомним вам снова позже.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Мы напомним вам снова завтра.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Мы напомним вам снова через несколько дней.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Мы напомним вам снова через неделю.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Мы напомним вам снова через пару недель.</string>
   <!--Slide-->
   <string name="Slide_image">Изображение</string>
   <string name="Slide_sticker">Стикер</string>
@@ -1510,7 +1519,7 @@
     <item quantity="other">Вы можете выбрать новый PIN-код, так как это устройство зарегистрировано. Если вы забудете свой PIN-код, возможно, вам потребуется подождать %1$d дней, чтобы зарегистрироваться заново.</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Создать PIN-код</string>
-  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PIN-код добавляет дополнительный уровень безопасности к вашей учётной записи. Важно запомнить этот PIN, так как он не может быть восстановлен.</string>
+  <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN-коды улучшают безопасность вашей учётной записи и не могут быть восстановлены. Вам потребуется ваш PIN-код, чтобы зарегистрироваться в Signal заново.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-коды не совпадают. Попробуйте ещё раз.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Подтвердите свой PIN-код.</string>

@@ -632,6 +632,7 @@ mã quốc gia bạn</string>
   <string name="SharedContactView_add_to_contacts">Thêm vào danh bạ</string>
   <string name="SharedContactView_invite_to_signal">Mời dùng Signal</string>
   <string name="SharedContactView_message">Tin nhắn Signal</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">Ảnh</string>
   <string name="Slide_sticker">Nhãn dán</string>

@@ -656,6 +656,7 @@
   <string name="SharedContactView_add_to_contacts">Kara lambobin sadarwa</string>
   <string name="SharedContactView_invite_to_signal">Gayyace shi/ta Signal.</string>
   <string name="SharedContactView_message">Sakon Signal</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">Hoto</string>
   <string name="Slide_sticker">Sitika</string>

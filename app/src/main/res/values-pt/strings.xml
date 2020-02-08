@@ -661,6 +661,7 @@ especificou (%s) é inválido.</string>
   <string name="SharedContactView_add_to_contacts">Adicionar aos contactos</string>
   <string name="SharedContactView_invite_to_signal">Convidar para o Signal</string>
   <string name="SharedContactView_message">Mensagem do Signal</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">Imagem</string>
   <string name="Slide_sticker">Autocolante</string>
@@ -1443,7 +1444,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
     <item quantity="other">Você pode escolher um PIN novo porque este dispositivo está registado. Se se esquecer do seu PIN, poderá necessitar de %1$d dias para registar de novo.</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Criar o seu PIN</string>
-  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">Os PINs adicionam uma camada extra de segurança à sua conta. É importante recordar-se dele PIN visto o mesmo não poder ser recuperado.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Os PINs não coincidem. Tente novamente.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Confirme o seu PIN</string>

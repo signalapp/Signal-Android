@@ -744,6 +744,7 @@
   <string name="SharedContactView_add_to_contacts">الإضافة إلى جهات الاتصال</string>
   <string name="SharedContactView_invite_to_signal">الدعوة إلى Signal</string>
   <string name="SharedContactView_message">رسالة Signal</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">صورة</string>
   <string name="Slide_sticker">ملصق</string>

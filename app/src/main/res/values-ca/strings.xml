@@ -661,6 +661,7 @@ especificat (%s) no és vàlid.</string>
   <string name="SharedContactView_add_to_contacts">Afegeix als contactes</string>
   <string name="SharedContactView_invite_to_signal">Convida al Signal</string>
   <string name="SharedContactView_message">Missatge del Signal</string>
+  <!--SignalPinReminders-->
   <!--Slide-->
   <string name="Slide_image">Imatge</string>
   <string name="Slide_sticker">Adhesiu</string>
@@ -1441,7 +1442,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
     <item quantity="other">Podeu triar un PIN nou perquè aquest dispositiu està registrat. Si l\'oblideu, pot ser que hàgiu d\'esperar %1$d dies per tornar-vos a registrar.</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Creeu el PIN</string>
-  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">Els PIN afegeixen una capa de seguretat extra al compte. És important recordar-lo perquè no es pot recuperar.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Els codis no coincideixen. Torneu-ho a provar.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Confirmeu el vostre PIN.</string>

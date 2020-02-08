@@ -465,6 +465,9 @@
   <string name="Megaphones_introducing_reactions">Jen la reagoj</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Tuŝadu iun mesaĝon por rapide esprimi viajn sentojn.</string>
   <string name="Megaphones_remind_me_later">Memorigi min poste</string>
+  <string name="Megaphones_verify_your_signal_pin">Kontrolu vian Signal-PIN-on</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Tempaltempe ni petos vin kontroli vian PIN, por ke vi rememoru ĝin.</string>
+  <string name="Megaphones_verify_pin">Kontroli PIN-on</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-alvoko fariĝanta</string>
   <string name="NotificationBarManager__establishing_signal_call">Starigo de Signal-alvoko</string>
@@ -665,6 +668,12 @@
   <string name="SharedContactView_add_to_contacts">Aldoni al kontaktaro</string>
   <string name="SharedContactView_invite_to_signal">Inviti al Signal</string>
   <string name="SharedContactView_message">Signal-mesaĝo</string>
+  <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">Ni memorigos vin poste.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Ni memorigos vin morgaŭ.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Ni memorigos vin post kelkaj tagoj.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Ni memorigos vin venontsemajne.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Ni memorigos vin post du semajnoj.</string>
   <!--Slide-->
   <string name="Slide_image">Bildo</string>
   <string name="Slide_sticker">Glumarko</string>
@@ -1446,7 +1455,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
     <item quantity="other">Vi povas elekti novan PIN, ĉar via aparato estas registrita. Se vi forgesos vian PIN, vi bezonos atendi %1$d tagojn antaŭ ol registriĝi ree.</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Krei vian PIN</string>
-  <string name="CreateKbsPinFragment__pins_add_an_extra_layer_of_security">PIN aldonas plian tavolon de sekurigo ĉe via konto. Skribu vian PIN kaj konservu ĝin sekurloke: ĝi ne estas rehavebla.</string>
+  <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN aldonas plian tavolon de sekurigo ĉe via konto, kaj ĝi ne estas rehavebla. Vi bezonos vian PIN por re-registriĝi al Signal. </string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">La du PIN-oj malsamas. Re-provu.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Konfirmu vian PIN.</string>
