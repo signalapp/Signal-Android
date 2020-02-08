@@ -57,14 +57,6 @@
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="basic_megaphone_image,basic_megaphone_body,basic_megaphone_title"/>
 
-    <Space
-        android:id="@+id/basic_megaphone_spacer"
-        android:layout_width="0dp"
-        android:layout_height="8dp"
-        app:layout_constraintTop_toBottomOf="@id/basic_megaphone_content_barrier"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
     <Button
         android:id="@+id/basic_megaphone_action"
         android:layout_width="0dp"
@@ -72,7 +64,7 @@
         android:layout_marginTop="4dp"
         style="@style/Button.Borderless"
         app:layout_constraintStart_toEndOf="@id/basic_megaphone_snooze"
-        app:layout_constraintTop_toBottomOf="@id/basic_megaphone_spacer"
+        app:layout_constraintTop_toBottomOf="@id/basic_megaphone_content_barrier"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="*sigh*"
         tools:visibility="visible"/>
@@ -84,7 +76,7 @@
         android:layout_marginTop="4dp"
         android:text="@string/Megaphones_remind_me_later"
         style="@style/Button.Borderless"
-        app:layout_constraintTop_toBottomOf="@id/basic_megaphone_spacer"
+        app:layout_constraintTop_toBottomOf="@id/basic_megaphone_content_barrier"
         app:layout_constraintEnd_toStartOf="@id/basic_megaphone_action"
         app:layout_constraintStart_toStartOf="parent"
         tools:visibility="visible"/>
