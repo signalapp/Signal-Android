@@ -133,7 +133,10 @@ class EnterChatURLFragment : Fragment() {
     private fun joinPublicChatIfPossible() {
         val inputMethodManager = context!!.getSystemService(BaseActionBarActivity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(chatURLEditText.windowToken, 0)
-        val chatURL = chatURLEditText.text.trim().toString().toLowerCase().replace("http://", "https://")
+        var chatURL = chatURLEditText.text.trim().toString().toLowerCase().replace("http://", "https://")
+        if (!chatURL.toLowerCase().startsWith("https")) {
+            chatURL = "https://$chatURL"
+        }
         (activity!! as JoinPublicChatActivity).joinPublicChatIfPossible(chatURL)
     }
 }
