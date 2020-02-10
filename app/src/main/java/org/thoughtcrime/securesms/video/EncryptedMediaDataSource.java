@@ -22,6 +22,6 @@ public final class EncryptedMediaDataSource {
   }
 
   public static MediaDataSource createForDiskBlob(@NonNull AttachmentSecret attachmentSecret, @NonNull File mediaFile) {
-    return new ModernEncryptedMediaDataSource(attachmentSecret, mediaFile, null, 0);
+    return new ModernEncryptedMediaDataSource(attachmentSecret, mediaFile, null, mediaFile.length() - 32);
   }
 }
