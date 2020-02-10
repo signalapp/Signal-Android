@@ -4,6 +4,8 @@ package org.whispersystems.signalservice.api.crypto;
 import junit.framework.TestCase;
 
 import org.conscrypt.Conscrypt;
+import org.signal.zkgroup.InvalidInputException;
+import org.signal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.ByteArrayInputStream;
@@ -16,8 +18,8 @@ public class ProfileCipherTest extends TestCase {
     Security.insertProviderAt(Conscrypt.newProvider(), 1);
   }
 
-  public void testEncryptDecrypt() throws InvalidCiphertextException {
-    byte[]        key       = Util.getSecretBytes(32);
+  public void testEncryptDecrypt() throws InvalidCiphertextException, InvalidInputException {
+    ProfileKey    key       = new ProfileKey(Util.getSecretBytes(32));
     ProfileCipher cipher    = new ProfileCipher(key);
     byte[]        name      = cipher.encryptName("Clement\0Duval".getBytes(), ProfileCipher.NAME_PADDED_LENGTH);
     byte[]        plaintext = cipher.decryptName(name);
@@ -25,7 +27,7 @@ public class ProfileCipherTest extends TestCase {
   }
 
   public void testEmpty() throws Exception {
-    byte[]        key       = Util.getSecretBytes(32);
+    ProfileKey    key       = new ProfileKey(Util.getSecretBytes(32));
     ProfileCipher cipher    = new ProfileCipher(key);
     byte[]        name      = cipher.encryptName("".getBytes(), 26);
     byte[]        plaintext = cipher.decryptName(name);
@@ -34,7 +36,7 @@ public class ProfileCipherTest extends TestCase {
   }
 
   public void testStreams() throws Exception {
-    byte[]                    key  = Util.getSecretBytes(32);
+    ProfileKey                key  = new ProfileKey(Util.getSecretBytes(32));
     ByteArrayOutputStream     baos = new ByteArrayOutputStream();
     ProfileCipherOutputStream out  = new ProfileCipherOutputStream(baos, key);
 

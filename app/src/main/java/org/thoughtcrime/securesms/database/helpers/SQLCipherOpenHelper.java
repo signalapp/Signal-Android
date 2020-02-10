@@ -109,8 +109,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int MEGAPHONES                       = 45;
   private static final int MEGAPHONE_FIRST_APPEARANCE       = 46;
   private static final int PROFILE_KEY_TO_DB                = 47;
+  private static final int PROFILE_KEY_CREDENTIALS          = 48;
 
-  private static final int    DATABASE_VERSION = 47;
+  private static final int    DATABASE_VERSION = 48;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -741,6 +742,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
             throw new AssertionError("No rows updated!");
           }
         }
+      }
+
+      if (oldVersion < PROFILE_KEY_CREDENTIALS) {
+        db.execSQL("ALTER TABLE recipient ADD COLUMN profile_key_credential TEXT DEFAULT NULL");
       }
 
       db.setTransactionSuccessful();

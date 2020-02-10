@@ -8,11 +8,21 @@ package org.whispersystems.signalservice.api;
 
 import com.google.protobuf.ByteString;
 
+import org.signal.zkgroup.VerificationFailedException;
+import org.signal.zkgroup.profiles.ClientZkProfileOperations;
+import org.signal.zkgroup.profiles.ProfileKey;
+import org.signal.zkgroup.profiles.ProfileKeyCredential;
+import org.signal.zkgroup.profiles.ProfileKeyCredentialRequest;
+import org.signal.zkgroup.profiles.ProfileKeyCredentialRequestContext;
+import org.signal.zkgroup.profiles.ProfileKeyVersion;
 import org.whispersystems.libsignal.InvalidVersionException;
+import org.whispersystems.libsignal.util.Hex;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.FeatureFlags;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
+import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
@@ -25,10 +35,10 @@ import org.whispersystems.signalservice.internal.websocket.WebSocketConnection;
 import org.whispersystems.util.Base64;
 
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -47,10 +57,15 @@ public class SignalServiceMessagePipe {
 
   private final WebSocketConnection           websocket;
   private final Optional<CredentialsProvider> credentialsProvider;
+  private final ClientZkProfileOperations     clientZkProfile;
 
-  SignalServiceMessagePipe(WebSocketConnection websocket, Optional<CredentialsProvider> credentialsProvider) {
+  SignalServiceMessagePipe(WebSocketConnection websocket,
+                           Optional<CredentialsProvider> credentialsProvider,
+                           ClientZkProfileOperations clientZkProfile)
+  {
     this.websocket           = websocket;
     this.credentialsProvider = credentialsProvider;
+    this.clientZkProfile     = clientZkProfile;
 
     this.websocket.connect();
   }
@@ -149,7 +164,12 @@ public class SignalServiceMessagePipe {
     }
   }
 
-  public SignalServiceProfile getProfile(SignalServiceAddress address, Optional<UnidentifiedAccess> unidentifiedAccess) throws IOException {
+  public ProfileAndCredential getProfile(SignalServiceAddress address,
+                                         Optional<ProfileKey> profileKey,
+                                         Optional<UnidentifiedAccess> unidentifiedAccess,
+                                         SignalServiceProfile.RequestType requestType)
+    throws IOException
+  {
     try {
       List<String> headers = new LinkedList<>();
 
@@ -157,12 +177,30 @@ public class SignalServiceMessagePipe {
         headers.add("Unidentified-Access-Key:" + Base64.encodeBytes(unidentifiedAccess.get().getUnidentifiedAccessKey()));
       }
 
-      WebSocketRequestMessage requestMessage = WebSocketRequestMessage.newBuilder()
-                                                                      .setId(new SecureRandom().nextLong())
-                                                                      .setVerb("GET")
-                                                                      .setPath(String.format("/v1/profile/%s", address.getIdentifier()))
-                                                                      .addAllHeaders(headers)
-                                                                      .build();
+      Optional<UUID>                     uuid           = address.getUuid();
+      SecureRandom                       random         = new SecureRandom();
+      ProfileKeyCredentialRequestContext requestContext = null;
+
+      WebSocketRequestMessage.Builder builder = WebSocketRequestMessage.newBuilder()
+                                                                       .setId(random.nextLong())
+                                                                       .setVerb("GET")
+                                                                       .addAllHeaders(headers);
+
+      if (FeatureFlags.VERSIONED_PROFILES && requestType == SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL && uuid.isPresent() && profileKey.isPresent()) {
+        ProfileKeyVersion                  profileKeyIdentifier = profileKey.get().getProfileKeyVersion();
+        UUID                               target               = uuid.get();
+                                           requestContext       = clientZkProfile.createProfileKeyCredentialRequestContext(random, target, profileKey.get());
+        ProfileKeyCredentialRequest        request              = requestContext.getRequest();
+
+        String version           = profileKeyIdentifier.serialize();
+        String credentialRequest = Hex.toStringCondensed(request.serialize());
+
+        builder.setPath(String.format("/v1/profile/%s/%s/%s", target, version, credentialRequest));
+      } else {
+        builder.setPath(String.format("/v1/profile/%s", address.getIdentifier()));
+      }
+
+      WebSocketRequestMessage requestMessage = builder.build();
 
       Pair<Integer, String> response = websocket.sendRequest(requestMessage).get(10, TimeUnit.SECONDS);
 
@@ -170,8 +208,13 @@ public class SignalServiceMessagePipe {
         throw new IOException("Non-successful response: " + response.first());
       }
 
-      return JsonUtil.fromJson(response.second(), SignalServiceProfile.class);
-    } catch (InterruptedException | ExecutionException | TimeoutException e) {
+      SignalServiceProfile signalServiceProfile = JsonUtil.fromJson(response.second(), SignalServiceProfile.class);
+      ProfileKeyCredential profileKeyCredential = requestContext != null && signalServiceProfile.getProfileKeyCredentialResponse() != null
+                                                  ? clientZkProfile.receiveProfileKeyCredential(requestContext, signalServiceProfile.getProfileKeyCredentialResponse())
+                                                  : null;
+
+      return new ProfileAndCredential(signalServiceProfile, requestType, Optional.fromNullable(profileKeyCredential));
+    } catch (InterruptedException | ExecutionException | TimeoutException | VerificationFailedException e) {
       throw new IOException(e);
     }
   }

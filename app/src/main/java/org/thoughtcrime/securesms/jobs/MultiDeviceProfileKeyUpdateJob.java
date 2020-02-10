@@ -3,14 +3,14 @@ package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
 
+import org.signal.zkgroup.profiles.ProfileKey;
+import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
+import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
-
-import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -66,7 +66,7 @@ public class MultiDeviceProfileKeyUpdateJob extends BaseJob {
       return;
     }
 
-    Optional<byte[]>           profileKey = Optional.of(ProfileKeyUtil.getProfileKey(context));
+    Optional<ProfileKey>       profileKey = Optional.of(ProfileKeyUtil.getSelfProfileKey());
     ByteArrayOutputStream      baos       = new ByteArrayOutputStream();
     DeviceContactsOutputStream out        = new DeviceContactsOutputStream(baos);
 

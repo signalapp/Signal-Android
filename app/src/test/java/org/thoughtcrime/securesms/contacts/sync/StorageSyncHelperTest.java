@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.contacts.sync;
 import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
+import com.google.common.collect.Sets;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,13 +22,13 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import edu.emory.mathcs.backport.java.util.Arrays;
-
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 
-public class StorageSyncHelperTest {
+public final class StorageSyncHelperTest {
 
   private static final UUID UUID_A = UuidUtil.parseOrThrow("ebef429e-695e-4f51-bcc4-526a60ac68c7");
   private static final UUID UUID_B = UuidUtil.parseOrThrow("32119989-77fb-4e18-af70-81d55185c6b1");
@@ -253,8 +254,63 @@ public class StorageSyncHelperTest {
     assertByteListEquals(byteListOf(1), result.getDeletes());
   }
 
-  private static <E> Set<E> setOf(E... vals) {
-    return new LinkedHashSet<E>(Arrays.asList(vals));
+  @Test
+  public void contacts_with_same_profile_key_contents_are_equal() {
+    byte[] profileKey     = new byte[32];
+    byte[] profileKeyCopy = profileKey.clone();
+
+    SignalContactRecord a = contactBuilder(1, UUID_A, E164_A, "a").setProfileKey(profileKey).build();
+    SignalContactRecord b = contactBuilder(1, UUID_A, E164_A, "a").setProfileKey(profileKeyCopy).build();
+
+    assertEquals(a, b);
+    assertEquals(a.hashCode(), b.hashCode());
+
+    assertFalse(contactUpdate(a, b).profileKeyChanged());
+  }
+
+  @Test
+  public void contacts_with_different_profile_key_contents_are_not_equal() {
+    byte[] profileKey     = new byte[32];
+    byte[] profileKeyCopy = profileKey.clone();
+    profileKeyCopy[0] = 1;
+
+    SignalContactRecord a = contactBuilder(1, UUID_A, E164_A, "a").setProfileKey(profileKey).build();
+    SignalContactRecord b = contactBuilder(1, UUID_A, E164_A, "a").setProfileKey(profileKeyCopy).build();
+
+    assertNotEquals(a, b);
+    assertNotEquals(a.hashCode(), b.hashCode());
+
+    assertTrue(contactUpdate(a, b).profileKeyChanged());
+  }
+
+  @Test
+  public void contacts_with_same_identity_key_contents_are_equal() {
+    byte[] profileKey     = new byte[32];
+    byte[] profileKeyCopy = profileKey.clone();
+
+    SignalContactRecord a = contactBuilder(1, UUID_A, E164_A, "a").setIdentityKey(profileKey).build();
+    SignalContactRecord b = contactBuilder(1, UUID_A, E164_A, "a").setIdentityKey(profileKeyCopy).build();
+
+    assertEquals(a, b);
+    assertEquals(a.hashCode(), b.hashCode());
+  }
+
+  @Test
+  public void contacts_with_different_identity_key_contents_are_not_equal() {
+    byte[] profileKey     = new byte[32];
+    byte[] profileKeyCopy = profileKey.clone();
+    profileKeyCopy[0] = 1;
+
+    SignalContactRecord a = contactBuilder(1, UUID_A, E164_A, "a").setIdentityKey(profileKey).build();
+    SignalContactRecord b = contactBuilder(1, UUID_A, E164_A, "a").setIdentityKey(profileKeyCopy).build();
+
+    assertNotEquals(a, b);
+    assertNotEquals(a.hashCode(), b.hashCode());
+  }
+
+  @SafeVarargs
+  private static <E> Set<E> setOf(E... values) {
+    return Sets.newHashSet(values);
   }
 
   private static Set<SignalStorageRecord> recordSetOf(SignalContactRecord... contactRecords) {
@@ -267,14 +323,21 @@ public class StorageSyncHelperTest {
     return  storageRecords;
   }
 
+  private static SignalContactRecord.Builder contactBuilder(int key,
+                                                            UUID uuid,
+                                                            String e164,
+                                                            String profileName)
+  {
+    return new SignalContactRecord.Builder(byteArray(key), new SignalServiceAddress(uuid, e164))
+                                  .setProfileName(profileName);
+  }
+
   private static SignalContactRecord contact(int key,
                                              UUID uuid,
                                              String e164,
                                              String profileName)
   {
-    return new SignalContactRecord.Builder(byteArray(key), new SignalServiceAddress(uuid, e164))
-                                   .setProfileName(profileName)
-                                   .build();
+    return contactBuilder(key, uuid, e164, profileName).build();
   }
 
   private static StorageSyncHelper.ContactUpdate contactUpdate(SignalContactRecord oldContact, SignalContactRecord newContact) {

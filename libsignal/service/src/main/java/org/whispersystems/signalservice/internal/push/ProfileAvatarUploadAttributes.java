@@ -4,8 +4,6 @@ package org.whispersystems.signalservice.internal.push;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ProfileAvatarUploadAttributes {
-  @JsonProperty
-  private String url;
 
   @JsonProperty
   private String key;
@@ -29,10 +27,6 @@ public class ProfileAvatarUploadAttributes {
   private String signature;
 
   public ProfileAvatarUploadAttributes() {}
-
-  public String getUrl() {
-    return url;
-  }
 
   public String getKey() {
     return key;

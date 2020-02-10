@@ -312,4 +312,7 @@ public final class FeatureFlags {
       return disk;
     }
   }
+
+  /** Read and write versioned profile information. */
+  public static final boolean VERSIONED_PROFILES = org.whispersystems.signalservice.FeatureFlags.VERSIONED_PROFILES;
 }

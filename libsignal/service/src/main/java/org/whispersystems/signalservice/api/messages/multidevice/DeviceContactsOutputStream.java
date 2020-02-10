@@ -85,7 +85,7 @@ public class DeviceContactsOutputStream extends ChunkedOutputStream {
     }
 
     if (contact.getProfileKey().isPresent()) {
-      contactDetails.setProfileKey(ByteString.copyFrom(contact.getProfileKey().get()));
+      contactDetails.setProfileKey(ByteString.copyFrom(contact.getProfileKey().get().serialize()));
     }
 
     if (contact.getExpirationTimer().isPresent()) {

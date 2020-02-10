@@ -1,15 +1,27 @@
 package org.whispersystems.signalservice.api.profiles;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import org.signal.zkgroup.InvalidInputException;
+import org.signal.zkgroup.profiles.ProfileKeyCredentialResponse;
+import org.whispersystems.libsignal.logging.Log;
+import org.whispersystems.signalservice.FeatureFlags;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
 
 import java.util.UUID;
 
 public class SignalServiceProfile {
+
+  public enum RequestType {
+    PROFILE,
+    PROFILE_AND_CREDENTIAL
+  }
+
+  private static final String TAG = SignalServiceProfile.class.getSimpleName();
 
   @JsonProperty
   private String identityKey;
@@ -36,6 +48,12 @@ public class SignalServiceProfile {
   @JsonSerialize(using = JsonUtil.UuidSerializer.class)
   @JsonDeserialize(using = JsonUtil.UuidDeserializer.class)
   private UUID uuid;
+
+  @JsonProperty
+  private byte[] credential;
+
+  @JsonIgnore
+  private RequestType requestType;
 
   public SignalServiceProfile() {}
 
@@ -71,6 +89,14 @@ public class SignalServiceProfile {
     return uuid;
   }
 
+  public RequestType getRequestType() {
+    return requestType;
+  }
+
+  public void setRequestType(RequestType requestType) {
+    this.requestType = requestType;
+  }
+
   public static class Capabilities {
     @JsonProperty
     private boolean uuid;
@@ -79,6 +105,19 @@ public class SignalServiceProfile {
 
     public boolean isUuid() {
       return uuid;
+    }
+  }
+
+  public ProfileKeyCredentialResponse getProfileKeyCredentialResponse() {
+    if (!FeatureFlags.VERSIONED_PROFILES) return null;
+
+    if (credential == null) return null;
+
+    try {
+      return new ProfileKeyCredentialResponse(credential);
+    } catch (InvalidInputException e) {
+      Log.w(TAG, e);
+      return null;
     }
   }
 }

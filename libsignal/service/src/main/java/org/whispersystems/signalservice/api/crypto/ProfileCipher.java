@@ -1,6 +1,7 @@
 package org.whispersystems.signalservice.api.crypto;
 
 
+import org.signal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.libsignal.util.ByteUtil;
 import org.whispersystems.signalservice.internal.util.Util;
 
@@ -21,9 +22,9 @@ public class ProfileCipher {
 
   public static final int NAME_PADDED_LENGTH = 53;
 
-  private final byte[] key;
+  private final ProfileKey key;
 
-  public ProfileCipher(byte[] key) {
+  public ProfileCipher(ProfileKey key) {
     this.key = key;
   }
 
@@ -40,7 +41,7 @@ public class ProfileCipher {
       byte[] nonce = Util.getSecretBytes(12);
 
       Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
-      cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "AES"), new GCMParameterSpec(128, nonce));
+      cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key.serialize(), "AES"), new GCMParameterSpec(128, nonce));
 
       return ByteUtil.combine(nonce, cipher.doFinal(inputPadded));
     } catch (NoSuchAlgorithmException | InvalidAlgorithmParameterException | BadPaddingException | NoSuchPaddingException | IllegalBlockSizeException | InvalidKeyException e) {
@@ -58,7 +59,7 @@ public class ProfileCipher {
       System.arraycopy(input, 0, nonce, 0, nonce.length);
 
       Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
-      cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "AES"), new GCMParameterSpec(128, nonce));
+      cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key.serialize(), "AES"), new GCMParameterSpec(128, nonce));
 
       byte[] paddedPlaintext = cipher.doFinal(input, nonce.length, input.length - nonce.length);
       int    plaintextLength = 0;

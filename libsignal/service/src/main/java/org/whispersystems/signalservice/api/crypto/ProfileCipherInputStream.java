@@ -1,6 +1,7 @@
 package org.whispersystems.signalservice.api.crypto;
 
 
+import org.signal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.FilterInputStream;
@@ -24,7 +25,7 @@ public class ProfileCipherInputStream extends FilterInputStream {
 
   private boolean finished = false;
 
-  public ProfileCipherInputStream(InputStream in, byte[] key) throws IOException {
+  public ProfileCipherInputStream(InputStream in, ProfileKey key) throws IOException {
     super(in);
 
     try {
@@ -33,7 +34,7 @@ public class ProfileCipherInputStream extends FilterInputStream {
       byte[] nonce = new byte[12];
       Util.readFully(in, nonce);
 
-      this.cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "AES"), new GCMParameterSpec(128, nonce));
+      this.cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key.serialize(), "AES"), new GCMParameterSpec(128, nonce));
     } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException e) {
       throw new AssertionError(e);
     } catch (InvalidKeyException e) {

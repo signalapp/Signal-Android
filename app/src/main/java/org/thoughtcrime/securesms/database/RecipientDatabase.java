@@ -14,6 +14,8 @@ import com.google.android.gms.common.util.ArrayUtils;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
+import org.signal.zkgroup.profiles.ProfileKey;
+import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.sync.StorageSyncHelper;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
@@ -31,7 +33,6 @@ import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidKeyException;
-import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
@@ -80,6 +81,7 @@ public class RecipientDatabase extends Database {
   private static final String SYSTEM_CONTACT_URI       = "system_contact_uri";
   private static final String SYSTEM_INFO_PENDING      = "system_info_pending";
   private static final String PROFILE_KEY              = "profile_key";
+  private static final String PROFILE_KEY_CREDENTIAL   = "profile_key_credential";
   private static final String SIGNAL_PROFILE_AVATAR    = "signal_profile_avatar";
   private static final String PROFILE_SHARING          = "profile_sharing";
   private static final String UNIDENTIFIED_ACCESS_MODE = "unidentified_access_mode";
@@ -100,7 +102,8 @@ public class RecipientDatabase extends Database {
   private static final String[] RECIPIENT_PROJECTION = new String[] {
       UUID, USERNAME, PHONE, EMAIL, GROUP_ID,
       BLOCKED, MESSAGE_RINGTONE, CALL_RINGTONE, MESSAGE_VIBRATE, CALL_VIBRATE, MUTE_UNTIL, COLOR, SEEN_INVITE_REMINDER, DEFAULT_SUBSCRIPTION_ID, MESSAGE_EXPIRATION_TIME, REGISTERED,
-      PROFILE_KEY, SYSTEM_DISPLAY_NAME, SYSTEM_PHOTO_URI, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, SYSTEM_CONTACT_URI,
+      PROFILE_KEY, PROFILE_KEY_CREDENTIAL,
+      SYSTEM_DISPLAY_NAME, SYSTEM_PHOTO_URI, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, SYSTEM_CONTACT_URI,
       PROFILE_GIVEN_NAME, PROFILE_FAMILY_NAME, SIGNAL_PROFILE_AVATAR, PROFILE_SHARING, NOTIFICATION_CHANNEL,
       UNIDENTIFIED_ACCESS_MODE,
       FORCE_SMS_SELECTION, UUID_SUPPORTED, STORAGE_SERVICE_KEY, DIRTY
@@ -242,6 +245,7 @@ public class RecipientDatabase extends Database {
                                             SYSTEM_CONTACT_URI       + " TEXT DEFAULT NULL, " +
                                             SYSTEM_INFO_PENDING      + " INTEGER DEFAULT 0, " +
                                             PROFILE_KEY              + " TEXT DEFAULT NULL, " +
+                                            PROFILE_KEY_CREDENTIAL   + " TEXT DEFAULT NULL, " +
                                             PROFILE_GIVEN_NAME       + " TEXT DEFAULT NULL, " +
                                             PROFILE_FAMILY_NAME      + " TEXT DEFAULT NULL, " +
                                             PROFILE_JOINED_NAME      + " TEXT DEFAULT NULL, " +
@@ -428,6 +432,10 @@ public class RecipientDatabase extends Database {
 
         RecipientId recipientId = getByStorageKeyOrThrow(update.getNewContact().getKey());
 
+        if (update.profileKeyChanged()) {
+          clearProfileKeyCredential(recipientId);
+        }
+
         try {
           Optional<IdentityRecord> oldIdentityRecord = identityDatabase.getIdentity(recipientId);
           IdentityKey              identityKey       = update.getNewContact().getIdentityKey().isPresent() ? new IdentityKey(update.getNewContact().getIdentityKey().get(), 0) : null;
@@ -562,42 +570,44 @@ public class RecipientDatabase extends Database {
   }
 
   @NonNull RecipientSettings getRecipientSettings(@NonNull Cursor cursor) {
-    long    id                     = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
-    UUID    uuid                   = UuidUtil.parseOrNull(cursor.getString(cursor.getColumnIndexOrThrow(UUID)));
-    String  username               = cursor.getString(cursor.getColumnIndexOrThrow(USERNAME));
-    String  e164                   = cursor.getString(cursor.getColumnIndexOrThrow(PHONE));
-    String  email                  = cursor.getString(cursor.getColumnIndexOrThrow(EMAIL));
-    String  groupId                = cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID));
-    boolean blocked                = cursor.getInt(cursor.getColumnIndexOrThrow(BLOCKED))                == 1;
-    String  messageRingtone        = cursor.getString(cursor.getColumnIndexOrThrow(MESSAGE_RINGTONE));
-    String  callRingtone           = cursor.getString(cursor.getColumnIndexOrThrow(CALL_RINGTONE));
-    int     messageVibrateState    = cursor.getInt(cursor.getColumnIndexOrThrow(MESSAGE_VIBRATE));
-    int     callVibrateState       = cursor.getInt(cursor.getColumnIndexOrThrow(CALL_VIBRATE));
-    long    muteUntil              = cursor.getLong(cursor.getColumnIndexOrThrow(MUTE_UNTIL));
-    String  serializedColor        = cursor.getString(cursor.getColumnIndexOrThrow(COLOR));
-    int     insightsBannerTier     = cursor.getInt(cursor.getColumnIndexOrThrow(SEEN_INVITE_REMINDER));
-    int     defaultSubscriptionId  = cursor.getInt(cursor.getColumnIndexOrThrow(DEFAULT_SUBSCRIPTION_ID));
-    int     expireMessages         = cursor.getInt(cursor.getColumnIndexOrThrow(MESSAGE_EXPIRATION_TIME));
-    int     registeredState        = cursor.getInt(cursor.getColumnIndexOrThrow(REGISTERED));
-    String  profileKeyString       = cursor.getString(cursor.getColumnIndexOrThrow(PROFILE_KEY));
-    String  systemDisplayName      = cursor.getString(cursor.getColumnIndexOrThrow(SYSTEM_DISPLAY_NAME));
-    String  systemContactPhoto     = cursor.getString(cursor.getColumnIndexOrThrow(SYSTEM_PHOTO_URI));
-    String  systemPhoneLabel       = cursor.getString(cursor.getColumnIndexOrThrow(SYSTEM_PHONE_LABEL));
-    String  systemContactUri       = cursor.getString(cursor.getColumnIndexOrThrow(SYSTEM_CONTACT_URI));
-    String  profileGivenName       = cursor.getString(cursor.getColumnIndexOrThrow(PROFILE_GIVEN_NAME));
-    String  profileFamilyName      = cursor.getString(cursor.getColumnIndexOrThrow(PROFILE_FAMILY_NAME));
-    String  signalProfileAvatar    = cursor.getString(cursor.getColumnIndexOrThrow(SIGNAL_PROFILE_AVATAR));
-    boolean profileSharing         = cursor.getInt(cursor.getColumnIndexOrThrow(PROFILE_SHARING))      == 1;
-    String  notificationChannel    = cursor.getString(cursor.getColumnIndexOrThrow(NOTIFICATION_CHANNEL));
-    int     unidentifiedAccessMode = cursor.getInt(cursor.getColumnIndexOrThrow(UNIDENTIFIED_ACCESS_MODE));
-    boolean forceSmsSelection      = cursor.getInt(cursor.getColumnIndexOrThrow(FORCE_SMS_SELECTION))  == 1;
-    boolean uuidSupported          = cursor.getInt(cursor.getColumnIndexOrThrow(UUID_SUPPORTED))       == 1;
-    String  storageKeyRaw          = cursor.getString(cursor.getColumnIndexOrThrow(STORAGE_SERVICE_KEY));
-    String  identityKeyRaw         = cursor.getString(cursor.getColumnIndexOrThrow(IDENTITY_KEY));
-    int     identityStatusRaw      = cursor.getInt(cursor.getColumnIndexOrThrow(IDENTITY_STATUS));
+    long    id                         = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
+    UUID    uuid                       = UuidUtil.parseOrNull(cursor.getString(cursor.getColumnIndexOrThrow(UUID)));
+    String  username                   = cursor.getString(cursor.getColumnIndexOrThrow(USERNAME));
+    String  e164                       = cursor.getString(cursor.getColumnIndexOrThrow(PHONE));
+    String  email                      = cursor.getString(cursor.getColumnIndexOrThrow(EMAIL));
+    String  groupId                    = cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID));
+    boolean blocked                    = cursor.getInt(cursor.getColumnIndexOrThrow(BLOCKED))                == 1;
+    String  messageRingtone            = cursor.getString(cursor.getColumnIndexOrThrow(MESSAGE_RINGTONE));
+    String  callRingtone               = cursor.getString(cursor.getColumnIndexOrThrow(CALL_RINGTONE));
+    int     messageVibrateState        = cursor.getInt(cursor.getColumnIndexOrThrow(MESSAGE_VIBRATE));
+    int     callVibrateState           = cursor.getInt(cursor.getColumnIndexOrThrow(CALL_VIBRATE));
+    long    muteUntil                  = cursor.getLong(cursor.getColumnIndexOrThrow(MUTE_UNTIL));
+    String  serializedColor            = cursor.getString(cursor.getColumnIndexOrThrow(COLOR));
+    int     insightsBannerTier         = cursor.getInt(cursor.getColumnIndexOrThrow(SEEN_INVITE_REMINDER));
+    int     defaultSubscriptionId      = cursor.getInt(cursor.getColumnIndexOrThrow(DEFAULT_SUBSCRIPTION_ID));
+    int     expireMessages             = cursor.getInt(cursor.getColumnIndexOrThrow(MESSAGE_EXPIRATION_TIME));
+    int     registeredState            = cursor.getInt(cursor.getColumnIndexOrThrow(REGISTERED));
+    String  profileKeyString           = cursor.getString(cursor.getColumnIndexOrThrow(PROFILE_KEY));
+    String  profileKeyCredentialString = cursor.getString(cursor.getColumnIndexOrThrow(PROFILE_KEY_CREDENTIAL));
+    String  systemDisplayName          = cursor.getString(cursor.getColumnIndexOrThrow(SYSTEM_DISPLAY_NAME));
+    String  systemContactPhoto         = cursor.getString(cursor.getColumnIndexOrThrow(SYSTEM_PHOTO_URI));
+    String  systemPhoneLabel           = cursor.getString(cursor.getColumnIndexOrThrow(SYSTEM_PHONE_LABEL));
+    String  systemContactUri           = cursor.getString(cursor.getColumnIndexOrThrow(SYSTEM_CONTACT_URI));
+    String  profileGivenName           = cursor.getString(cursor.getColumnIndexOrThrow(PROFILE_GIVEN_NAME));
+    String  profileFamilyName          = cursor.getString(cursor.getColumnIndexOrThrow(PROFILE_FAMILY_NAME));
+    String  signalProfileAvatar        = cursor.getString(cursor.getColumnIndexOrThrow(SIGNAL_PROFILE_AVATAR));
+    boolean profileSharing             = cursor.getInt(cursor.getColumnIndexOrThrow(PROFILE_SHARING))      == 1;
+    String  notificationChannel        = cursor.getString(cursor.getColumnIndexOrThrow(NOTIFICATION_CHANNEL));
+    int     unidentifiedAccessMode     = cursor.getInt(cursor.getColumnIndexOrThrow(UNIDENTIFIED_ACCESS_MODE));
+    boolean forceSmsSelection          = cursor.getInt(cursor.getColumnIndexOrThrow(FORCE_SMS_SELECTION))  == 1;
+    boolean uuidSupported              = cursor.getInt(cursor.getColumnIndexOrThrow(UUID_SUPPORTED))       == 1;
+    String  storageKeyRaw              = cursor.getString(cursor.getColumnIndexOrThrow(STORAGE_SERVICE_KEY));
+    String  identityKeyRaw             = cursor.getString(cursor.getColumnIndexOrThrow(IDENTITY_KEY));
+    int     identityStatusRaw          = cursor.getInt(cursor.getColumnIndexOrThrow(IDENTITY_STATUS));
 
     MaterialColor color;
-    byte[] profileKey = null;
+    byte[]        profileKey           = null;
+    byte[]        profileKeyCredential = null;
 
     try {
       color = serializedColor == null ? null : MaterialColor.fromSerialized(serializedColor);
@@ -612,6 +622,15 @@ public class RecipientDatabase extends Database {
       } catch (IOException e) {
         Log.w(TAG, e);
         profileKey = null;
+      }
+
+      if (profileKeyCredentialString != null) {
+        try {
+          profileKeyCredential = Base64.decode(profileKeyCredentialString);
+        } catch (IOException e) {
+          Log.w(TAG, e);
+          profileKeyCredential = null;
+        }
       }
     }
 
@@ -637,7 +656,8 @@ public class RecipientDatabase extends Database {
                                  Util.uri(messageRingtone), Util.uri(callRingtone),
                                  color, defaultSubscriptionId, expireMessages,
                                  RegisteredState.fromId(registeredState),
-                                 profileKey, systemDisplayName, systemContactPhoto,
+                                 profileKey, profileKeyCredential,
+                                 systemDisplayName, systemContactPhoto,
                                  systemPhoneLabel, systemContactUri,
                                  ProfileName.fromParts(profileGivenName, profileFamilyName), signalProfileAvatar, profileSharing,
                                  notificationChannel, UnidentifiedAccessMode.fromMode(unidentifiedAccessMode),
@@ -776,9 +796,56 @@ public class RecipientDatabase extends Database {
     Recipient.live(id).refresh();
   }
 
-  public void setProfileKey(@NonNull RecipientId id, @Nullable byte[] profileKey) {
+  /**
+   * Updates the profile key.
+   * <p>
+   * If it changes, it clears out the profile key credential.
+   */
+  public void setProfileKey(@NonNull RecipientId id, @Nullable ProfileKey profileKey) {
+    String        selection         = ID + " = ?";
+    String[]      args              = new String[]{id.serialize()};
+    ContentValues valuesToCompare   = new ContentValues(1);
+    ContentValues valuesToSet       = new ContentValues(2);
+    String        encodedProfileKey = profileKey == null ? null : Base64.encodeBytes(profileKey.serialize());
+
+    valuesToCompare.put(PROFILE_KEY, encodedProfileKey);
+
+    valuesToSet.put(PROFILE_KEY, encodedProfileKey);
+    valuesToSet.putNull(PROFILE_KEY_CREDENTIAL);
+
+    SqlUtil.UpdateQuery updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, valuesToCompare);
+
+    if (update(updateQuery, valuesToSet)) {
+      markDirty(id, DirtyState.UPDATE);
+      Recipient.live(id).refresh();
+    }
+  }
+
+  /**
+   * Updates the profile key credential as long as the profile key matches.
+   */
+  public void setProfileKeyCredential(@NonNull RecipientId id,
+                                      @NonNull ProfileKey profileKey,
+                                      @NonNull ProfileKeyCredential profileKeyCredential)
+  {
+    String        selection = ID + " = ? AND " + PROFILE_KEY + " = ?";
+    String[]      args      = new String[]{id.serialize(), Base64.encodeBytes(profileKey.serialize())};
+    ContentValues values    = new ContentValues(1);
+
+    values.put(PROFILE_KEY_CREDENTIAL, Base64.encodeBytes(profileKeyCredential.serialize()));
+
+    SqlUtil.UpdateQuery updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, values);
+
+    if (update(updateQuery, values)) {
+      // TODO [greyson] If we sync this in future, mark dirty
+      //markDirty(id, DirtyState.UPDATE);
+      Recipient.live(id).refresh();
+    }
+  }
+
+  private void clearProfileKeyCredential(@NonNull RecipientId id) {
     ContentValues values = new ContentValues(1);
-    values.put(PROFILE_KEY, profileKey == null ? null : Base64.encodeBytes(profileKey));
+    values.putNull(PROFILE_KEY_CREDENTIAL);
     if (update(id, values)) {
       markDirty(id, DirtyState.UPDATE);
       Recipient.live(id).refresh();
@@ -1224,14 +1291,23 @@ public class RecipientDatabase extends Database {
    * Will update the database with the content values you specified. It will make an intelligent
    * query such that this will only return true if a row was *actually* updated.
    */
-  private boolean update(@NonNull RecipientId id, ContentValues contentValues) {
-    SQLiteDatabase database  = databaseHelper.getWritableDatabase();
-    String         selection = ID + " = ?";
-    String[]       args      = new String[]{id.serialize()};
+  private boolean update(@NonNull RecipientId id, @NonNull ContentValues contentValues) {
+    String              selection   = ID + " = ?";
+    String[]            args        = new String[]{id.serialize()};
+    SqlUtil.UpdateQuery updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, contentValues);
 
-    Pair<String, String[]> result = SqlUtil.buildTrueUpdateQuery(selection, args, contentValues);
+    return update(updateQuery, contentValues);
+  }
 
-    return database.update(TABLE_NAME, contentValues, result.first(), result.second()) > 0;
+  /**
+   * Will update the database with the {@param contentValues} you specified.
+   * <p>
+   * This will only return true if a row was *actually* updated with respect to the where clause of the {@param updateQuery}.
+   */
+  private boolean update(@NonNull SqlUtil.UpdateQuery updateQuery, @NonNull ContentValues contentValues) {
+    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+
+    return database.update(TABLE_NAME, contentValues, updateQuery.getWhere(), updateQuery.getWhereArgs()) > 0;
   }
 
   private @NonNull Optional<RecipientId> getByColumn(@NonNull String column, String value) {
@@ -1374,6 +1450,7 @@ public class RecipientDatabase extends Database {
     private final int                             expireMessages;
     private final RegisteredState                 registered;
     private final byte[]                          profileKey;
+    private final byte[]                          profileKeyCredential;
     private final String                          systemDisplayName;
     private final String                          systemContactPhoto;
     private final String                          systemPhoneLabel;
@@ -1406,6 +1483,7 @@ public class RecipientDatabase extends Database {
                       int expireMessages,
                       @NonNull  RegisteredState registered,
                       @Nullable byte[] profileKey,
+                      @Nullable byte[] profileKeyCredential,
                       @Nullable String systemDisplayName,
                       @Nullable String systemContactPhoto,
                       @Nullable String systemPhoneLabel,
@@ -1439,6 +1517,7 @@ public class RecipientDatabase extends Database {
       this.expireMessages         = expireMessages;
       this.registered             = registered;
       this.profileKey             = profileKey;
+      this.profileKeyCredential   = profileKeyCredential;
       this.systemDisplayName      = systemDisplayName;
       this.systemContactPhoto     = systemContactPhoto;
       this.systemPhoneLabel       = systemPhoneLabel;
@@ -1526,6 +1605,10 @@ public class RecipientDatabase extends Database {
 
     public @Nullable byte[] getProfileKey() {
       return profileKey;
+    }
+
+    public @Nullable byte[] getProfileKeyCredential() {
+      return profileKeyCredential;
     }
 
     public @Nullable String getSystemDisplayName() {

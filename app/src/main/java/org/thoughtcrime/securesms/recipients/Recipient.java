@@ -78,6 +78,7 @@ public class Recipient {
   private final int                    expireMessages;
   private final RegisteredState        registered;
   private final byte[]                 profileKey;
+  private final byte[]                 profileKeyCredential;
   private final String                 name;
   private final Uri                    systemContactPhoto;
   private final String                 customLabel;
@@ -297,6 +298,7 @@ public class Recipient {
     this.expireMessages         = 0;
     this.registered             = RegisteredState.UNKNOWN;
     this.profileKey             = null;
+    this.profileKeyCredential   = null;
     this.name                   = null;
     this.systemContactPhoto     = null;
     this.customLabel            = null;
@@ -336,6 +338,7 @@ public class Recipient {
     this.expireMessages         = details.expireMessages;
     this.registered             = details.registered;
     this.profileKey             = details.profileKey;
+    this.profileKeyCredential   = details.profileKeyCredential;
     this.name                   = details.name;
     this.systemContactPhoto     = details.systemContactPhoto;
     this.customLabel            = details.customLabel;
@@ -664,6 +667,14 @@ public class Recipient {
 
   public @Nullable byte[] getProfileKey() {
     return profileKey;
+  }
+
+  public @Nullable byte[] getProfileKeyCredential() {
+    return profileKeyCredential;
+  }
+
+  public boolean hasProfileKeyCredential() {
+    return profileKeyCredential != null;
   }
 
   public @Nullable byte[] getStorageServiceKey() {

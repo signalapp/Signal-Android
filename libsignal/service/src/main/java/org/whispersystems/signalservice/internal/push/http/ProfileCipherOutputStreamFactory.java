@@ -1,6 +1,7 @@
 package org.whispersystems.signalservice.internal.push.http;
 
 
+import org.signal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.crypto.DigestingOutputStream;
 import org.whispersystems.signalservice.api.crypto.ProfileCipherOutputStream;
 
@@ -9,9 +10,9 @@ import java.io.OutputStream;
 
 public class ProfileCipherOutputStreamFactory implements OutputStreamFactory {
 
-  private final byte[] key;
+  private final ProfileKey key;
 
-  public ProfileCipherOutputStreamFactory(byte[] key) {
+  public ProfileCipherOutputStreamFactory(ProfileKey key) {
     this.key = key;
   }
 

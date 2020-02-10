@@ -6,10 +6,11 @@ import android.os.AsyncTask;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
+import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
@@ -28,7 +29,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.IdentityKeyPair;
 import org.whispersystems.libsignal.state.PreKeyRecord;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
@@ -39,6 +39,7 @@ import org.whispersystems.signalservice.api.KeyBackupServicePinException;
 import org.whispersystems.signalservice.api.KeyBackupSystemNoDataException;
 import org.whispersystems.signalservice.api.RegistrationLockData;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.kbs.HashedPin;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
@@ -191,17 +192,17 @@ public final class CodeVerificationRequest {
                                     @Nullable String fcmToken)
     throws IOException, KeyBackupSystemWrongPinException, KeyBackupSystemNoDataException
   {
-    boolean isV2KbsPin                  = kbsTokenResponse != null;
-    int     registrationId              = KeyHelper.generateRegistrationId(false);
-    boolean universalUnidentifiedAccess = TextSecurePreferences.isUniversalUnidentifiedAccess(context);
-    byte[]  profileKey                  = findExistingProfileKey(context, credentials.getE164number());
+    boolean    isV2KbsPin                  = kbsTokenResponse != null;
+    int        registrationId              = KeyHelper.generateRegistrationId(false);
+    boolean    universalUnidentifiedAccess = TextSecurePreferences.isUniversalUnidentifiedAccess(context);
+    ProfileKey profileKey                  = findExistingProfileKey(context, credentials.getE164number());
 
     if (profileKey == null) {
-      profileKey = Util.getSecretBytes(32);
+      profileKey = ProfileKeyUtil.createNew();
       Log.i(TAG, "No profile key found, created a new one");
     }
 
-    byte[] unidentifiedAccessKey = UnidentifiedAccessUtil.getSelfUnidentifiedAccessKey(profileKey);
+    byte[] unidentifiedAccessKey = UnidentifiedAccess.deriveAccessKeyFrom(profileKey);
 
     TextSecurePreferences.setLocalRegistrationId(context, registrationId);
     SessionUtil.archiveAllSessions(context);
@@ -269,12 +270,12 @@ public final class CodeVerificationRequest {
     }
   }
 
-  private static @Nullable byte[] findExistingProfileKey(@NonNull Context context, @NonNull String e164number) {
+  private static @Nullable ProfileKey findExistingProfileKey(@NonNull Context context, @NonNull String e164number) {
     RecipientDatabase     recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
     Optional<RecipientId> recipient         = recipientDatabase.getByE164(e164number);
 
     if (recipient.isPresent()) {
-      return Recipient.resolved(recipient.get()).getProfileKey();
+      return ProfileKeyUtil.profileKeyOrNull(Recipient.resolved(recipient.get()).getProfileKey());
     }
 
     return null;

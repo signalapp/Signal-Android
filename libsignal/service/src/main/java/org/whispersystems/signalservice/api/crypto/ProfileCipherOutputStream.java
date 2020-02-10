@@ -1,5 +1,7 @@
 package org.whispersystems.signalservice.api.crypto;
 
+import org.signal.zkgroup.profiles.ProfileKey;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.security.InvalidAlgorithmParameterException;
@@ -18,13 +20,13 @@ public class ProfileCipherOutputStream extends DigestingOutputStream {
 
   private final Cipher cipher;
 
-  public ProfileCipherOutputStream(OutputStream out, byte[] key) throws IOException {
+  public ProfileCipherOutputStream(OutputStream out, ProfileKey key) throws IOException {
     super(out);
     try {
       this.cipher = Cipher.getInstance("AES/GCM/NoPadding");
 
       byte[] nonce  = generateNonce();
-      this.cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "AES"), new GCMParameterSpec(128, nonce));
+      this.cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key.serialize(), "AES"), new GCMParameterSpec(128, nonce));
 
       super.write(nonce, 0, nonce.length);
     } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException e) {

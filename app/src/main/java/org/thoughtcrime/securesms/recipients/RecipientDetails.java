@@ -47,6 +47,7 @@ public class RecipientDetails {
   final Optional<Integer>      defaultSubscriptionId;
   final RegisteredState        registered;
   final byte[]                 profileKey;
+  final byte[]                 profileKeyCredential;
   final String                 profileAvatar;
   final boolean                profileSharing;
   final boolean                systemContact;
@@ -90,6 +91,7 @@ public class RecipientDetails {
     this.defaultSubscriptionId           = settings.getDefaultSubscriptionId();
     this.registered                      = settings.getRegistered();
     this.profileKey                      = settings.getProfileKey();
+    this.profileKeyCredential            = settings.getProfileKeyCredential();
     this.profileAvatar                   = settings.getProfileAvatar();
     this.profileSharing                  = settings.isProfileSharing();
     this.systemContact                   = systemContact;
@@ -134,6 +136,7 @@ public class RecipientDetails {
     this.defaultSubscriptionId  = Optional.absent();
     this.registered             = RegisteredState.UNKNOWN;
     this.profileKey             = null;
+    this.profileKeyCredential   = null;
     this.profileAvatar          = null;
     this.profileSharing         = false;
     this.systemContact          = true;

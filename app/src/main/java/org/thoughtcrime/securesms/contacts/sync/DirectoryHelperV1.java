@@ -23,7 +23,6 @@ import com.annimon.stream.Stream;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
@@ -37,19 +36,16 @@ import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.recipients.RecipientUtil;
-import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.sms.IncomingJoinedMessage;
+import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
-import org.whispersystems.signalservice.api.SignalServiceMessagePipe;
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
+import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
-import org.whispersystems.signalservice.api.util.UuidUtil;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
+import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -343,25 +339,8 @@ class DirectoryHelperV1 {
   }
 
   private static boolean isUuidRegistered(@NonNull Context context, @NonNull Recipient recipient) throws IOException {
-    Optional<UnidentifiedAccessPair> unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, recipient);
-    SignalServiceMessagePipe         authPipe           = IncomingMessageObserver.getPipe();
-    SignalServiceMessagePipe         unidentifiedPipe   = IncomingMessageObserver.getUnidentifiedPipe();
-    SignalServiceMessagePipe         pipe               = unidentifiedPipe != null && unidentifiedAccess.isPresent() ? unidentifiedPipe : authPipe;
-    SignalServiceAddress             address            = RecipientUtil.toSignalServiceAddress(context, recipient);
-
-    if (pipe != null) {
-      try {
-        pipe.getProfile(address, unidentifiedAccess.get().getTargetUnidentifiedAccess());
-        return true;
-      } catch (NotFoundException e) {
-        return false;
-      } catch (IOException e) {
-        Log.w(TAG, "Websocket request failed. Falling back to REST.");
-      }
-    }
-
     try {
-      ApplicationDependencies.getSignalServiceMessageReceiver().retrieveProfile(address, unidentifiedAccess.get().getTargetUnidentifiedAccess());
+      ProfileUtil.retrieveProfile(context, recipient, SignalServiceProfile.RequestType.PROFILE);
       return true;
     } catch (NotFoundException e) {
       return false;

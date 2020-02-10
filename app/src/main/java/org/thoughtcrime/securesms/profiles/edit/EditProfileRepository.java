@@ -20,17 +20,14 @@ import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.profiles.SystemProfileUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.service.IncomingMessageObserver;
+import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.SignalServiceMessagePipe;
-import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -132,29 +129,13 @@ class EditProfileRepository {
   @WorkerThread
   private @NonNull Optional<String> getUsernameInternal() {
     try {
-      SignalServiceProfile profile = retrieveOwnProfile();
+      SignalServiceProfile profile = ProfileUtil.retrieveProfile(context, Recipient.self(), SignalServiceProfile.RequestType.PROFILE).getProfile();
       TextSecurePreferences.setLocalUsername(context, profile.getUsername());
       DatabaseFactory.getRecipientDatabase(context).setUsername(Recipient.self().getId(), profile.getUsername());
     } catch (IOException e) {
       Log.w(TAG, "Failed to retrieve username remotely! Using locally-cached version.");
     }
     return Optional.fromNullable(TextSecurePreferences.getLocalUsername(context));
-  }
-
-  private SignalServiceProfile retrieveOwnProfile() throws IOException {
-    SignalServiceAddress         address  = new SignalServiceAddress(TextSecurePreferences.getLocalUuid(context), TextSecurePreferences.getLocalNumber(context));
-    SignalServiceMessageReceiver receiver = ApplicationDependencies.getSignalServiceMessageReceiver();
-    SignalServiceMessagePipe     pipe     = IncomingMessageObserver.getPipe();
-
-    if (pipe != null) {
-      try {
-        return pipe.getProfile(address, Optional.absent());
-      } catch (IOException e) {
-        Log.w(TAG, e);
-      }
-    }
-
-    return receiver.retrieveProfile(address, Optional.absent());
   }
 
   public enum UploadResult {

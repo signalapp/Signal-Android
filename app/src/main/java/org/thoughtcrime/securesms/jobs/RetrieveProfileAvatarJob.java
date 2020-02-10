@@ -1,9 +1,12 @@
 package org.thoughtcrime.securesms.jobs;
 
 
-import androidx.annotation.NonNull;
 import android.text.TextUtils;
 
+import androidx.annotation.NonNull;
+
+import org.signal.zkgroup.profiles.ProfileKey;
+import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -37,8 +40,8 @@ public class RetrieveProfileAvatarJob extends BaseJob {
   private static final String KEY_PROFILE_AVATAR = "profile_avatar";
   private static final String KEY_RECIPIENT      = "recipient";
 
-  private String    profileAvatar;
-  private Recipient recipient;
+  private final String    profileAvatar;
+  private final Recipient recipient;
 
   public RetrieveProfileAvatarJob(Recipient recipient, String profileAvatar) {
     this(new Job.Parameters.Builder()
@@ -73,7 +76,7 @@ public class RetrieveProfileAvatarJob extends BaseJob {
   @Override
   public void onRun() throws IOException {
     RecipientDatabase database   = DatabaseFactory.getRecipientDatabase(context);
-    byte[]            profileKey = recipient.resolve().getProfileKey();
+    ProfileKey        profileKey = ProfileKeyUtil.profileKeyOrNull(recipient.resolve().getProfileKey());
 
     if (profileKey == null) {
       Log.w(TAG, "Recipient profile key is gone!");

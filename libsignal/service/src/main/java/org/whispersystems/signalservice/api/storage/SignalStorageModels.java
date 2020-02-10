@@ -46,8 +46,8 @@ public final class SignalStorageModels {
   }
 
   public static SignalContactRecord remoteToLocalContactRecord(byte[] storageKey, ContactRecord contact) throws IOException {
-    SignalServiceAddress        address   = new SignalServiceAddress(UuidUtil.parseOrNull(contact.getServiceUuid()), contact.getServiceE164());
-    SignalContactRecord.Builder builder   = new SignalContactRecord.Builder(storageKey, address);
+    SignalServiceAddress        address = new SignalServiceAddress(UuidUtil.parseOrNull(contact.getServiceUuid()), contact.getServiceE164());
+    SignalContactRecord.Builder builder = new SignalContactRecord.Builder(storageKey, address);
 
     if (contact.hasBlocked()) {
       builder.setBlocked(contact.getBlocked());

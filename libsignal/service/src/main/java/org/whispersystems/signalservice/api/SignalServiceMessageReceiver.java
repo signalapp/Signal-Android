@@ -6,8 +6,14 @@
 
 package org.whispersystems.signalservice.api;
 
+import org.signal.zkgroup.ServerPublicParams;
+import org.signal.zkgroup.VerificationFailedException;
+import org.signal.zkgroup.profiles.ClientZkProfileOperations;
+import org.signal.zkgroup.profiles.ProfileKey;
+import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.FeatureFlags;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream;
 import org.whispersystems.signalservice.api.crypto.ProfileCipherInputStream;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
@@ -16,6 +22,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPoin
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.messages.SignalServiceStickerManifest;
+import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
@@ -54,6 +61,7 @@ public class SignalServiceMessageReceiver {
   private final String                     signalAgent;
   private final ConnectivityListener       connectivityListener;
   private final SleepTimer                 sleepTimer;
+  private final ClientZkProfileOperations  clientZkProfile;
 
   /**
    * Construct a SignalServiceMessageReceiver.
@@ -91,6 +99,7 @@ public class SignalServiceMessageReceiver {
     this.signalAgent          = signalAgent;
     this.connectivityListener = listener;
     this.sleepTimer           = timer;
+    this.clientZkProfile      = new ClientZkProfileOperations(new ServerPublicParams(urls.getZkGroupServerPublicParams()));
   }
 
   /**
@@ -110,10 +119,21 @@ public class SignalServiceMessageReceiver {
     return retrieveAttachment(pointer, destination, maxSizeBytes, null);
   }
 
-  public SignalServiceProfile retrieveProfile(SignalServiceAddress address, Optional<UnidentifiedAccess> unidentifiedAccess)
-    throws IOException
+  public ProfileAndCredential retrieveProfile(SignalServiceAddress address,
+                                              Optional<ProfileKey> profileKey,
+                                              Optional<UnidentifiedAccess> unidentifiedAccess,
+                                              SignalServiceProfile.RequestType requestType)
+    throws IOException, VerificationFailedException
   {
-    return socket.retrieveProfile(address, unidentifiedAccess);
+    Optional<UUID> uuid = address.getUuid();
+
+    if (FeatureFlags.VERSIONED_PROFILES && requestType == SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL && uuid.isPresent() && profileKey.isPresent()) {
+      return socket.retrieveProfile(uuid.get(), profileKey.get(), unidentifiedAccess);
+    } else {
+      return new ProfileAndCredential(socket.retrieveProfile(address, unidentifiedAccess),
+                                      SignalServiceProfile.RequestType.PROFILE,
+                                      Optional.<ProfileKeyCredential>absent());
+    }
   }
 
   public SignalServiceProfile retrieveProfileByUsername(String username, Optional<UnidentifiedAccess> unidentifiedAccess)
@@ -122,7 +142,7 @@ public class SignalServiceMessageReceiver {
     return socket.retrieveProfileByUsername(username, unidentifiedAccess);
   }
 
-  public InputStream retrieveProfileAvatar(String path, File destination, byte[] profileKey, int maxSizeBytes)
+  public InputStream retrieveProfileAvatar(String path, File destination, ProfileKey profileKey, int maxSizeBytes)
     throws IOException
   {
     socket.retrieveProfileAvatar(path, destination, maxSizeBytes);
@@ -203,7 +223,7 @@ public class SignalServiceMessageReceiver {
                                                             sleepTimer,
                                                             urls.getNetworkInterceptors());
 
-    return new SignalServiceMessagePipe(webSocket, Optional.of(credentialsProvider));
+    return new SignalServiceMessagePipe(webSocket, Optional.of(credentialsProvider), clientZkProfile);
   }
 
   public SignalServiceMessagePipe createUnidentifiedMessagePipe() {
@@ -213,7 +233,7 @@ public class SignalServiceMessageReceiver {
                                                             sleepTimer,
                                                             urls.getNetworkInterceptors());
 
-    return new SignalServiceMessagePipe(webSocket, Optional.of(credentialsProvider));
+    return new SignalServiceMessagePipe(webSocket, Optional.of(credentialsProvider), clientZkProfile);
   }
 
   public List<SignalServiceEnvelope> retrieveMessages() throws IOException {

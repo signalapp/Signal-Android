@@ -18,6 +18,7 @@ import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord.IdentityState;
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
+import org.whispersystems.signalservice.api.util.OptionalUtil;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -362,7 +363,7 @@ public final class StorageSyncHelper {
     private final SignalContactRecord oldContact;
     private final SignalContactRecord newContact;
 
-    public ContactUpdate(@NonNull SignalContactRecord oldContact, @NonNull SignalContactRecord newContact) {
+    ContactUpdate(@NonNull SignalContactRecord oldContact, @NonNull SignalContactRecord newContact) {
       this.oldContact = oldContact;
       this.newContact = newContact;
     }
@@ -375,6 +376,10 @@ public final class StorageSyncHelper {
     public @NonNull
     SignalContactRecord getNewContact() {
       return newContact;
+    }
+
+    public boolean profileKeyChanged() {
+      return !OptionalUtil.byteArrayEquals(oldContact.getProfileKey(), newContact.getProfileKey());
     }
 
     @Override
@@ -494,7 +499,7 @@ public final class StorageSyncHelper {
     private final WriteOperationResult     writeResult;
     private final Map<RecipientId, byte[]> storageKeyUpdates;
 
-    public LocalWriteResult(WriteOperationResult writeResult, Map<RecipientId, byte[]> storageKeyUpdates) {
+    private LocalWriteResult(WriteOperationResult writeResult, Map<RecipientId, byte[]> storageKeyUpdates) {
       this.writeResult       = writeResult;
       this.storageKeyUpdates = storageKeyUpdates;
     }
@@ -510,17 +515,17 @@ public final class StorageSyncHelper {
 
   private static final class ContactRecordMergeResult {
     final Set<SignalContactRecord> localInserts;
-    final Set<ContactUpdate> localUpdates;
+    final Set<ContactUpdate>       localUpdates;
     final Set<SignalContactRecord> remoteInserts;
-    final Set<ContactUpdate> remoteUpdates;
+    final Set<ContactUpdate>       remoteUpdates;
 
     ContactRecordMergeResult(@NonNull Set<SignalContactRecord> localInserts,
                              @NonNull Set<ContactUpdate> localUpdates,
                              @NonNull Set<SignalContactRecord> remoteInserts,
                              @NonNull Set<ContactUpdate> remoteUpdates)
     {
-      this.localInserts = localInserts;
-      this.localUpdates = localUpdates;
+      this.localInserts  = localInserts;
+      this.localUpdates  = localUpdates;
       this.remoteInserts = remoteInserts;
       this.remoteUpdates = remoteUpdates;
     }

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.database;
+package org.thoughtcrime.securesms.util;
 
 import android.app.Application;
 import android.content.ContentValues;
@@ -7,15 +7,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
-import org.thoughtcrime.securesms.util.SqlUtil;
-import org.whispersystems.libsignal.util.Pair;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = Config.NONE, application = Application.class)
-public class SqlUtilTest {
+public final class SqlUtilTest {
 
   @Test
   public void buildTrueUpdateQuery_simple() {
@@ -25,10 +23,10 @@ public class SqlUtilTest {
     ContentValues values = new ContentValues();
     values.put("a", 2);
 
-    Pair<String, String[]> result = SqlUtil.buildTrueUpdateQuery(selection, args, values);
+    SqlUtil.UpdateQuery updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, values);
 
-    assertEquals("(_id = ?) AND (a != ? OR a IS NULL)", result.first());
-    assertArrayEquals(new String[] { "1", "2" }, result.second());
+    assertEquals("(_id = ?) AND (a != ? OR a IS NULL)", updateQuery.getWhere());
+    assertArrayEquals(new String[] { "1", "2" }, updateQuery.getWhereArgs());
   }
 
   @Test
@@ -39,10 +37,10 @@ public class SqlUtilTest {
     ContentValues values = new ContentValues();
     values.put("a", 4);
 
-    Pair<String, String[]> result = SqlUtil.buildTrueUpdateQuery(selection, args, values);
+    SqlUtil.UpdateQuery updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, values);
 
-    assertEquals("(_id = ? AND (foo = ? OR bar != ?)) AND (a != ? OR a IS NULL)", result.first());
-    assertArrayEquals(new String[] { "1", "2", "3", "4" }, result.second());
+    assertEquals("(_id = ? AND (foo = ? OR bar != ?)) AND (a != ? OR a IS NULL)", updateQuery.getWhere());
+    assertArrayEquals(new String[] { "1", "2", "3", "4" }, updateQuery.getWhereArgs());
   }
 
   @Test
@@ -55,10 +53,10 @@ public class SqlUtilTest {
     values.put("b", 3);
     values.put("c", 4);
 
-    Pair<String, String[]> result = SqlUtil.buildTrueUpdateQuery(selection, args, values);
+    SqlUtil.UpdateQuery updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, values);
 
-    assertEquals("(_id = ?) AND (a != ? OR a IS NULL OR b != ? OR b IS NULL OR c != ? OR c IS NULL)", result.first());
-    assertArrayEquals(new String[] { "1", "2", "3", "4"}, result.second());
+    assertEquals("(_id = ?) AND (a != ? OR a IS NULL OR b != ? OR b IS NULL OR c != ? OR c IS NULL)", updateQuery.getWhere());
+    assertArrayEquals(new String[] { "1", "2", "3", "4"}, updateQuery.getWhereArgs());
   }
 
   @Test
@@ -69,10 +67,10 @@ public class SqlUtilTest {
     ContentValues values = new ContentValues();
     values.put("a", (String) null);
 
-    Pair<String, String[]> result = SqlUtil.buildTrueUpdateQuery(selection, args, values);
+    SqlUtil.UpdateQuery updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, values);
 
-    assertEquals("(_id = ?) AND (a NOT NULL)", result.first());
-    assertArrayEquals(new String[] { "1" }, result.second());
+    assertEquals("(_id = ?) AND (a NOT NULL)", updateQuery.getWhere());
+    assertArrayEquals(new String[] { "1" }, updateQuery.getWhereArgs());
   }
 
   @Test
@@ -87,9 +85,9 @@ public class SqlUtilTest {
     values.put("d", (String) null);
     values.put("e", (String) null);
 
-    Pair<String, String[]> result = SqlUtil.buildTrueUpdateQuery(selection, args, values);
+    SqlUtil.UpdateQuery updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, values);
 
-    assertEquals("(_id = ?) AND (a NOT NULL OR b != ? OR b IS NULL OR c != ? OR c IS NULL OR d NOT NULL OR e NOT NULL)", result.first());
-    assertArrayEquals(new String[] { "1", "2", "3" }, result.second());
+    assertEquals("(_id = ?) AND (a NOT NULL OR b != ? OR b IS NULL OR c != ? OR c IS NULL OR d NOT NULL OR e NOT NULL)", updateQuery.getWhere());
+    assertArrayEquals(new String[] { "1", "2", "3" }, updateQuery.getWhereArgs());
   }
 }

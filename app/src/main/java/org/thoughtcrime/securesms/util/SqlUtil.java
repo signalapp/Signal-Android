@@ -7,8 +7,6 @@ import androidx.annotation.NonNull;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
-import org.whispersystems.libsignal.util.Pair;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -46,9 +44,9 @@ public final class SqlUtil {
    * change. In other words, if {@link SQLiteDatabase#update(String, ContentValues, String, String[])}
    * returns > 0, then you know something *actually* changed.
    */
-  public static @NonNull Pair<String, String[]> buildTrueUpdateQuery(@NonNull String selection,
-                                                                     @NonNull String[] args,
-                                                                     @NonNull ContentValues contentValues)
+  public static @NonNull UpdateQuery buildTrueUpdateQuery(@NonNull String selection,
+                                                          @NonNull String[] args,
+                                                          @NonNull ContentValues contentValues)
   {
     StringBuilder                  qualifier = new StringBuilder();
     Set<Map.Entry<String, Object>> valueSet  = contentValues.valueSet();
@@ -73,6 +71,24 @@ public final class SqlUtil {
       i++;
     }
 
-    return new Pair<>("(" + selection + ") AND (" + qualifier + ")", fullArgs.toArray(new String[0]));
+    return new UpdateQuery("(" + selection + ") AND (" + qualifier + ")", fullArgs.toArray(new String[0]));
+  }
+
+  public static class UpdateQuery {
+    private final String   where;
+    private final String[] whereArgs;
+
+    private UpdateQuery(@NonNull String where, @NonNull String[] whereArgs) {
+      this.where     = where;
+      this.whereArgs = whereArgs;
+    }
+
+    public String getWhere() {
+      return where;
+    }
+
+    public String[] getWhereArgs() {
+      return whereArgs;
+    }
   }
 }

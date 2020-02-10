@@ -6,6 +6,8 @@
 
 package org.whispersystems.signalservice.api.messages.multidevice;
 
+import org.signal.zkgroup.InvalidInputException;
+import org.signal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.InvalidMessageException;
@@ -44,7 +46,7 @@ public class DeviceContactsInputStream extends ChunkedInputStream {
     Optional<SignalServiceAttachmentStream> avatar        = Optional.absent();
     Optional<String>                        color         = details.hasColor() ? Optional.of(details.getColor()) : Optional.<String>absent();
     Optional<VerifiedMessage>               verified      = Optional.absent();
-    Optional<byte[]>                        profileKey    = Optional.absent();
+    Optional<ProfileKey>                    profileKey    = Optional.absent();
     boolean                                 blocked       = false;
     Optional<Integer>                       expireTimer   = Optional.absent();
     Optional<Integer>                       inboxPosition = Optional.absent();
@@ -84,7 +86,11 @@ public class DeviceContactsInputStream extends ChunkedInputStream {
     }
 
     if (details.hasProfileKey()) {
-      profileKey = Optional.fromNullable(details.getProfileKey().toByteArray());
+      try {
+        profileKey = Optional.fromNullable(new ProfileKey(details.getProfileKey().toByteArray()));
+      } catch (InvalidInputException e) {
+        Log.w(TAG, "Invalid profile key ignored", e);
+      }
     }
 
     if (details.hasExpireTimer() && details.getExpireTimer() > 0) {

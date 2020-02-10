@@ -4,6 +4,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import org.signal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -11,15 +12,10 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileName;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.util.StreamDetails;
-
-import java.io.ByteArrayInputStream;
 
 public final class ProfileUploadJob extends BaseJob {
 
@@ -47,8 +43,17 @@ public final class ProfileUploadJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    uploadProfileName();
-    uploadAvatar();
+    ProfileKey  profileKey  = ProfileKeyUtil.getSelfProfileKey();
+    ProfileName profileName = TextSecurePreferences.getProfileName(context);
+
+    try (StreamDetails avatar = AvatarHelper.getSelfProfileAvatarStream(context)) {
+      if (FeatureFlags.VERSIONED_PROFILES) {
+        accountManager.setVersionedProfile(profileKey, profileName.serialize(), avatar);
+      } else {
+        accountManager.setProfileName(profileKey, profileName.serialize());
+        accountManager.setProfileAvatar(profileKey, avatar);
+      }
+    }
   }
 
   @Override
@@ -68,33 +73,6 @@ public final class ProfileUploadJob extends BaseJob {
 
   @Override
   public void onFailure() {
-  }
-
-  private void uploadProfileName() throws Exception {
-    ProfileName profileName = TextSecurePreferences.getProfileName(context);
-    accountManager.setProfileName(ProfileKeyUtil.getProfileKey(context), profileName.serialize());
-  }
-
-  private void uploadAvatar() throws Exception {
-    final RecipientId selfId = Recipient.self().getId();
-    final byte[]      avatar;
-
-    if (AvatarHelper.getAvatarFile(context, selfId).exists() && AvatarHelper.getAvatarFile(context, selfId).length() > 0) {
-      avatar = Util.readFully(AvatarHelper.getInputStreamFor(context, Recipient.self().getId()));
-    } else {
-      avatar = null;
-    }
-
-    final StreamDetails avatarDetails;
-    if (avatar == null || avatar.length == 0) {
-      avatarDetails = null;
-    } else {
-      avatarDetails = new StreamDetails(new ByteArrayInputStream(avatar),
-                                        MediaUtil.IMAGE_JPEG,
-                                        avatar.length);
-    }
-
-    accountManager.setProfileAvatar(ProfileKeyUtil.getProfileKey(context), avatarDetails);
   }
 
   public static class Factory implements Job.Factory {

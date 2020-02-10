@@ -9,6 +9,7 @@ package org.whispersystems.signalservice.api;
 
 import com.google.protobuf.ByteString;
 
+import org.signal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.IdentityKeyPair;
 import org.whispersystems.libsignal.InvalidKeyException;
@@ -17,18 +18,20 @@ import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.state.PreKeyRecord;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.FeatureFlags;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.crypto.ProfileCipherOutputStream;
 import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo;
+import org.whispersystems.signalservice.api.profiles.SignalServiceProfileWrite;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.api.storage.SignalStorageCipher;
+import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
 import org.whispersystems.signalservice.api.storage.SignalStorageModels;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
-import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.StreamDetails;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
@@ -56,6 +59,7 @@ import org.whispersystems.signalservice.internal.util.Util;
 import org.whispersystems.util.Base64;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.security.KeyStore;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -559,19 +563,27 @@ public class SignalServiceAccountManager {
     return this.pushServiceSocket.getTurnServerInfo();
   }
 
-  public void setProfileName(byte[] key, String name)
+  public void setProfileName(ProfileKey key, String name)
       throws IOException
   {
+    if (FeatureFlags.VERSIONED_PROFILES) {
+      throw new AssertionError();
+    }
+
     if (name == null) name = "";
 
-    String ciphertextName = Base64.encodeBytesWithoutPadding(new ProfileCipher(key).encryptName(name.getBytes("UTF-8"), ProfileCipher.NAME_PADDED_LENGTH));
+    String ciphertextName = Base64.encodeBytesWithoutPadding(new ProfileCipher(key).encryptName(name.getBytes(StandardCharsets.UTF_8), ProfileCipher.NAME_PADDED_LENGTH));
 
     this.pushServiceSocket.setProfileName(ciphertextName);
   }
 
-  public void setProfileAvatar(byte[] key, StreamDetails avatar)
+  public void setProfileAvatar(ProfileKey key, StreamDetails avatar)
       throws IOException
   {
+    if (FeatureFlags.VERSIONED_PROFILES) {
+      throw new AssertionError();
+    }
+
     ProfileAvatarData profileAvatarData = null;
 
     if (avatar != null) {
@@ -582,6 +594,33 @@ public class SignalServiceAccountManager {
     }
 
     this.pushServiceSocket.setProfileAvatar(profileAvatarData);
+  }
+
+  public void setVersionedProfile(ProfileKey profileKey, String name, StreamDetails avatar)
+    throws IOException
+  {
+    if (!FeatureFlags.VERSIONED_PROFILES) {
+      throw new AssertionError();
+    }
+
+    if (name == null) name = "";
+
+    byte[]            ciphertextName    = new ProfileCipher(profileKey).encryptName(name.getBytes(StandardCharsets.UTF_8), ProfileCipher.NAME_PADDED_LENGTH);
+    boolean           hasAvatar         = avatar != null;
+    ProfileAvatarData profileAvatarData = null;
+
+    if (hasAvatar) {
+      profileAvatarData = new ProfileAvatarData(avatar.getStream(),
+                                                ProfileCipherOutputStream.getCiphertextLength(avatar.getLength()),
+                                                avatar.getContentType(),
+                                                new ProfileCipherOutputStreamFactory(profileKey));
+    }
+
+    this.pushServiceSocket.writeProfile(new SignalServiceProfileWrite(profileKey.getProfileKeyVersion().serialize(),
+                                                                      ciphertextName,
+                                                                      hasAvatar,
+                                                                      profileKey.getCommitment().serialize()),
+                                                                      profileAvatarData);
   }
 
   public void setUsername(String username) throws IOException {

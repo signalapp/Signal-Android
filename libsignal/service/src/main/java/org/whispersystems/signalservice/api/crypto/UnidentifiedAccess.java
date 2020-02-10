@@ -3,6 +3,7 @@ package org.whispersystems.signalservice.api.crypto;
 
 import org.signal.libsignal.metadata.certificate.InvalidCertificateException;
 import org.signal.libsignal.metadata.certificate.SenderCertificate;
+import org.signal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.libsignal.util.ByteUtil;
 
 import java.security.InvalidAlgorithmParameterException;
@@ -36,13 +37,13 @@ public class UnidentifiedAccess {
     return unidentifiedCertificate;
   }
 
-  public static byte[] deriveAccessKeyFrom(byte[] profileKey) {
+  public static byte[] deriveAccessKeyFrom(ProfileKey profileKey) {
     try {
       byte[]         nonce  = new byte[12];
       byte[]         input  = new byte[16];
 
       Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
-      cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(profileKey, "AES"), new GCMParameterSpec(128, nonce));
+      cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(profileKey.serialize(), "AES"), new GCMParameterSpec(128, nonce));
 
       byte[] ciphertext = cipher.doFinal(input);
 
