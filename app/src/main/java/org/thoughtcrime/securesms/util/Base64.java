@@ -16,4 +16,12 @@ public final class Base64 {
   public static @NonNull String encodeBytes(@NonNull byte[] source) {
     return org.whispersystems.util.Base64.encodeBytes(source);
   }
+
+  public static @NonNull byte[] decodeOrThrow(@NonNull String s) {
+    try {
+      return org.whispersystems.util.Base64.decode(s);
+    } catch (IOException e) {
+      throw new AssertionError();
+    }
+  }
 }

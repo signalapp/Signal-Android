@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
 
+import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -47,7 +48,7 @@ public class RefreshAttributesJob extends BaseJob {
   public void onRun() throws IOException {
     int       registrationId              = TextSecurePreferences.getLocalRegistrationId(context);
     boolean   fetchesMessages             = TextSecurePreferences.isFcmDisabled(context);
-    byte[]    unidentifiedAccessKey       = UnidentifiedAccessUtil.getSelfUnidentifiedAccessKey(context);
+    byte[]    unidentifiedAccessKey       = UnidentifiedAccessUtil.getSelfUnidentifiedAccessKey(ProfileKeyUtil.getProfileKey(context));
     boolean   universalUnidentifiedAccess = TextSecurePreferences.isUniversalUnidentifiedAccess(context);
     String    pin                         = null;
     String    registrationLockToken       = null;

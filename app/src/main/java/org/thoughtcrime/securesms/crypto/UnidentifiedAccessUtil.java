@@ -42,7 +42,7 @@ public class UnidentifiedAccessUtil {
   {
     try {
       byte[] theirUnidentifiedAccessKey       = getTargetUnidentifiedAccessKey(recipient);
-      byte[] ourUnidentifiedAccessKey         = getSelfUnidentifiedAccessKey(context);
+      byte[] ourUnidentifiedAccessKey         = getSelfUnidentifiedAccessKey(ProfileKeyUtil.getProfileKey(context));
       byte[] ourUnidentifiedAccessCertificate = recipient.resolve().isUuidSupported() && Recipient.self().isUuidSupported()
                                                   ? TextSecurePreferences.getUnidentifiedAccessCertificate(context)
                                                   : TextSecurePreferences.getUnidentifiedAccessCertificateLegacy(context);
@@ -75,7 +75,7 @@ public class UnidentifiedAccessUtil {
 
   public static Optional<UnidentifiedAccessPair> getAccessForSync(@NonNull Context context) {
     try {
-      byte[] ourUnidentifiedAccessKey         = getSelfUnidentifiedAccessKey(context);
+      byte[] ourUnidentifiedAccessKey         = getSelfUnidentifiedAccessKey(ProfileKeyUtil.getProfileKey(context));
       byte[] ourUnidentifiedAccessCertificate = Recipient.self().isUuidSupported() ? TextSecurePreferences.getUnidentifiedAccessCertificate(context)
                                                                                    : TextSecurePreferences.getUnidentifiedAccessCertificateLegacy(context);
 
@@ -97,8 +97,8 @@ public class UnidentifiedAccessUtil {
     }
   }
 
-  public static @NonNull byte[] getSelfUnidentifiedAccessKey(@NonNull Context context) {
-    return UnidentifiedAccess.deriveAccessKeyFrom(ProfileKeyUtil.getProfileKey(context));
+  public static @NonNull byte[] getSelfUnidentifiedAccessKey(@NonNull byte[] selfProfileKey) {
+    return UnidentifiedAccess.deriveAccessKeyFrom(selfProfileKey);
   }
 
   private static @Nullable byte[] getTargetUnidentifiedAccessKey(@NonNull Recipient recipient) {

@@ -22,12 +22,13 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.PinHashing;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.migrations.RegistrationPinV2MigrationJob;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.IdentityKeyPair;
 import org.whispersystems.libsignal.state.PreKeyRecord;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
@@ -192,8 +193,15 @@ public final class CodeVerificationRequest {
   {
     boolean isV2KbsPin                  = kbsTokenResponse != null;
     int     registrationId              = KeyHelper.generateRegistrationId(false);
-    byte[]  unidentifiedAccessKey       = UnidentifiedAccessUtil.getSelfUnidentifiedAccessKey(context);
     boolean universalUnidentifiedAccess = TextSecurePreferences.isUniversalUnidentifiedAccess(context);
+    byte[]  profileKey                  = findExistingProfileKey(context, credentials.getE164number());
+
+    if (profileKey == null) {
+      profileKey = Util.getSecretBytes(32);
+      Log.i(TAG, "No profile key found, created a new one");
+    }
+
+    byte[] unidentifiedAccessKey = UnidentifiedAccessUtil.getSelfUnidentifiedAccessKey(profileKey);
 
     TextSecurePreferences.setLocalRegistrationId(context, registrationId);
     SessionUtil.archiveAllSessions(context);
@@ -227,6 +235,7 @@ public final class CodeVerificationRequest {
 
     TextSecurePreferences.setLocalNumber(context, credentials.getE164number());
     TextSecurePreferences.setLocalUuid(context, uuid);
+    recipientDatabase.setProfileKey(selfId, profileKey);
     ApplicationDependencies.getRecipientCache().clearSelf();
 
     TextSecurePreferences.setFcmToken(context, fcmToken);
@@ -258,6 +267,17 @@ public final class CodeVerificationRequest {
       TextSecurePreferences.setRegistrationLockLastReminderTime(context, System.currentTimeMillis());
       TextSecurePreferences.setRegistrationLockNextReminderInterval(context, RegistrationLockReminders.INITIAL_INTERVAL);
     }
+  }
+
+  private static @Nullable byte[] findExistingProfileKey(@NonNull Context context, @NonNull String e164number) {
+    RecipientDatabase     recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+    Optional<RecipientId> recipient         = recipientDatabase.getByE164(e164number);
+
+    if (recipient.isPresent()) {
+      return Recipient.resolved(recipient.get()).getProfileKey();
+    }
+
+    return null;
   }
 
   private static void repostPinToResetTries(@NonNull Context context, @Nullable String pin, @NonNull RegistrationLockData kbsData) {

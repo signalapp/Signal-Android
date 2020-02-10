@@ -123,7 +123,6 @@ public class TextSecurePreferences {
   private static final String MULTI_DEVICE_PROVISIONED_PREF    = "pref_multi_device";
   public  static final String DIRECT_CAPTURE_CAMERA_ID         = "pref_direct_capture_camera_id";
   private static final String ALWAYS_RELAY_CALLS_PREF          = "pref_turn_only";
-  private static final String PROFILE_KEY_PREF                 = "pref_profile_key";
   private static final String PROFILE_NAME_PREF                = "pref_profile_name";
   private static final String PROFILE_AVATAR_ID_PREF           = "pref_profile_avatar_id";
   public  static final String READ_RECEIPTS_PREF               = "pref_read_receipts";
@@ -433,14 +432,6 @@ public class TextSecurePreferences {
 
   public static void setIsGifSearchInGridLayout(Context context, boolean isGrid) {
     setBooleanPreference(context, GIF_GRID_LAYOUT, isGrid);
-  }
-
-  public static @Nullable String getProfileKey(Context context) {
-    return getStringPreference(context, PROFILE_KEY_PREF, null);
-  }
-
-  public static void setProfileKey(Context context, String key) {
-    setStringPreference(context, PROFILE_KEY_PREF, key);
   }
 
   public static void setProfileName(Context context, ProfileName name) {

@@ -3,7 +3,8 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -14,6 +15,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.util.StreamDetails;
+import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -48,9 +50,12 @@ public class RotateProfileKeyJob extends BaseJob {
 
   @Override
   public void onRun() throws Exception {
-    SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
-    byte[]                      profileKey     = ProfileKeyUtil.rotateProfileKey(context);
+    SignalServiceAccountManager accountManager    = ApplicationDependencies.getSignalServiceAccountManager();
+    RecipientDatabase           recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+    byte[]                      profileKey        = Util.getSecretBytes(32);
+    Recipient                   self              = Recipient.self();
 
+    recipientDatabase.setProfileKey(self.getId(), profileKey);
     accountManager.setProfileName(profileKey, TextSecurePreferences.getProfileName(context).serialize());
     accountManager.setProfileAvatar(profileKey, getProfileAvatar());
 

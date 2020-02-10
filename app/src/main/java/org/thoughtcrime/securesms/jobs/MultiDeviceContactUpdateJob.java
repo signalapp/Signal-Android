@@ -4,15 +4,14 @@ import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -42,8 +41,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -201,14 +198,17 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
                                     archived.contains(recipient.getId())));
       }
 
-      if (ProfileKeyUtil.hasProfileKey(context)) {
-        Recipient self = Recipient.self();
+
+      Recipient self       = Recipient.self();
+      byte[]    profileKey = self.getProfileKey();
+
+      if (profileKey != null) {
         out.write(new DeviceContact(RecipientUtil.toSignalServiceAddress(context, self),
                                     Optional.absent(),
                                     Optional.absent(),
                                     Optional.of(self.getColor().serialize()),
                                     Optional.absent(),
-                                    Optional.of(ProfileKeyUtil.getProfileKey(context)),
+                                    Optional.of(profileKey),
                                     false,
                                     self.getExpireMessages() > 0 ? Optional.of(self.getExpireMessages()) : Optional.absent(),
                                     Optional.fromNullable(inboxPositions.get(self.getId())),
