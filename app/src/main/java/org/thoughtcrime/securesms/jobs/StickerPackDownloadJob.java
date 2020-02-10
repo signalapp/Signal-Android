@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.stickers.BlessedPacks;
 import org.thoughtcrime.securesms.util.Hex;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
@@ -101,7 +102,7 @@ public class StickerPackDownloadJob extends BaseJob {
 
   @Override
   protected void onRun() throws IOException, InvalidMessageException {
-    if (isReferencePack && !DatabaseFactory.getAttachmentDatabase(context).containsStickerPackId(packId)) {
+    if (isReferencePack && !DatabaseFactory.getAttachmentDatabase(context).containsStickerPackId(packId) && !BlessedPacks.contains(packId)) {
       Log.w(TAG, "There are no attachments with the requested packId present for this reference pack. Skipping.");
       return;
     }

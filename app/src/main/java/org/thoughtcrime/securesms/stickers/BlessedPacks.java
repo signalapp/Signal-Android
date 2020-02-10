@@ -2,6 +2,11 @@ package org.thoughtcrime.securesms.stickers;
 
 import androidx.annotation.NonNull;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import org.whispersystems.signalservice.internal.util.JsonUtil;
+
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,12 +15,16 @@ import java.util.Set;
  */
 public final class BlessedPacks {
 
-  public static final Pack ZOZO   = new Pack("fb535407d2f6497ec074df8b9c51dd1d", "17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd");
-  public static final Pack BANDIT = new Pack("9acc9e8aba563d26a4994e69263e3b25", "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12");
+  public static final Pack ZOZO        = new Pack("fb535407d2f6497ec074df8b9c51dd1d", "17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd");
+  public static final Pack BANDIT      = new Pack("9acc9e8aba563d26a4994e69263e3b25", "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12");
+  public static final Pack SWOON_HANDS = new Pack("e61fa0867031597467ccc036cc65d403", "13ae7b1a7407318280e9b38c1261ded38e0e7138b9f964a6ccbb73e40f737a9b");
+  public static final Pack SWOON_FACES = new Pack("cca32f5b905208b7d0f1e17f23fdc185", "8bf8e95f7a45bdeafe0c8f5b002ef01ab95b8f1b5baac4019ccd6b6be0b1837a");
 
   private static final Set<String> BLESSED_PACK_IDS = new HashSet<String>() {{
     add(ZOZO.getPackId());
     add(BANDIT.getPackId());
+    add(SWOON_HANDS.getPackId());
+    add(SWOON_FACES.getPackId());
   }};
 
   public static boolean contains(@NonNull String packId) {
@@ -23,10 +32,12 @@ public final class BlessedPacks {
   }
 
   public static class Pack {
-    private final String packId;
-    private final String packKey;
+    @JsonProperty private final String packId;
+    @JsonProperty private final String packKey;
 
-    public Pack(@NonNull String packId, @NonNull String packKey) {
+    public Pack(@NonNull @JsonProperty("packId") String packId,
+                @NonNull @JsonProperty("packKey") String packKey)
+    {
       this.packId  = packId;
       this.packKey = packKey;
     }
@@ -37,6 +48,18 @@ public final class BlessedPacks {
 
     public @NonNull String getPackKey() {
       return packKey;
+    }
+
+    public @NonNull String toJson() {
+      return JsonUtil.toJson(this);
+    }
+
+    public static @NonNull Pack fromJson(@NonNull String json) {
+      try {
+        return JsonUtil.fromJson(json, Pack.class);
+      } catch (IOException e) {
+        throw new AssertionError(e);
+      }
     }
   }
 }
