@@ -41,7 +41,7 @@ import org.thoughtcrime.securesms.util.BitmapUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.ProfileCipher
 import org.whispersystems.signalservice.api.util.StreamDetails
-import org.whispersystems.signalservice.loki.api.LokiStorageAPI
+import org.whispersystems.signalservice.loki.api.LokiFileServerAPI
 import java.io.ByteArrayInputStream
 import java.io.File
 import java.security.SecureRandom
@@ -159,7 +159,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         val encodedProfileKey = ProfileKeyUtil.generateEncodedProfileKey(this)
         val profileKey = ProfileKeyUtil.getProfileKeyFromEncodedString(encodedProfileKey)
         if (isUpdatingProfilePicture && profilePicture != null) {
-            val storageAPI = LokiStorageAPI.shared
+            val storageAPI = LokiFileServerAPI.shared
             val deferred = deferred<Unit, Exception>()
             AsyncTask.execute {
                 val stream = StreamDetails(ByteArrayInputStream(profilePicture), "image/jpeg", profilePicture.size.toLong())

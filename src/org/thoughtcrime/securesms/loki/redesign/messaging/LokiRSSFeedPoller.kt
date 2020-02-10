@@ -14,7 +14,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.loki.api.LokiRSSFeed
-import org.whispersystems.signalservice.loki.api.LokiRSSProxy
+import org.whispersystems.signalservice.loki.api.LokiRSSFeedProxy
 import org.whispersystems.signalservice.loki.utilities.successBackground
 import java.text.SimpleDateFormat
 import java.util.regex.Pattern
@@ -48,7 +48,7 @@ class LokiRSSFeedPoller(private val context: Context, private val feed: LokiRSSF
     }
 
     private fun poll() {
-        LokiRSSProxy.fetch(feed.url).successBackground { xml ->
+        LokiRSSFeedProxy.fetch(feed.url).successBackground { xml ->
             val items = XMLParser(xml).call()
             items.reversed().forEach { item ->
                 val title = item.title ?: return@forEach

@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
+import org.whispersystems.signalservice.loki.api.LokiFileServerAPI;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -83,7 +83,7 @@ public class TypingStatusSender {
   }
 
   private void sendTyping(long threadId, boolean typingStarted) {
-    LokiStorageAPI storageAPI = LokiStorageAPI.Companion.getShared();
+    LokiFileServerAPI storageAPI = LokiFileServerAPI.Companion.getShared();
     ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
     Recipient recipient = threadDatabase.getRecipientForThreadId(threadId);
 
@@ -91,7 +91,7 @@ public class TypingStatusSender {
       ApplicationContext.getInstance(context).getJobManager().add(new TypingSendJob(threadId, typingStarted));
       return;
     }
-    LokiStorageAPI.shared.getAllDevicePublicKeys(recipient.getAddress().serialize()).success(devices -> {
+    LokiFileServerAPI.shared.getAllDevicePublicKeys(recipient.getAddress().serialize()).success(devices -> {
       for (String device : devices) {
         Recipient deviceRecipient = Recipient.from(context, Address.fromSerialized(device), false);
         long deviceThreadID = threadDatabase.getThreadIdIfExistsFor(deviceRecipient);

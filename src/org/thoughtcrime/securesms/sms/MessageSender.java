@@ -60,7 +60,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
-import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
+import org.whispersystems.signalservice.loki.api.LokiFileServerAPI;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
 import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
@@ -99,7 +99,7 @@ public class MessageSender {
     sendBackgroundMessage(context, contactHexEncodedPublicKey);
 
     // Go through the other devices and only send background messages if we're friends or we have received friend request
-    LokiStorageAPI.shared.getAllDevicePublicKeys(contactHexEncodedPublicKey).success(devices -> {
+    LokiFileServerAPI.shared.getAllDevicePublicKeys(contactHexEncodedPublicKey).success(devices -> {
       Util.runOnMain(() -> {
         for (String device : devices) {
           // Don't send message to the device we already have sent to
@@ -234,7 +234,7 @@ public class MessageSender {
                                                  final int     ttl) {
     String ourPublicKey = TextSecurePreferences.getLocalNumber(context);
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
-    LokiStorageAPI.shared.getAllDevicePublicKeys(ourPublicKey).success(devices -> {
+    LokiFileServerAPI.shared.getAllDevicePublicKeys(ourPublicKey).success(devices -> {
       Util.runOnMain(() -> {
         for (String device : devices) {
           // Don't send to ourselves
