@@ -85,18 +85,23 @@ public class MultiDeviceGroupUpdateJob extends BaseJob implements InjectableType
       reader = DatabaseFactory.getGroupDatabase(context).getGroups();
 
       while ((record = reader.getNext()) != null) {
-        if (!record.isMms() && !record.isPublicChat() && !record.isRSSFeed()) {
+        if (record.isSignalGroup()) {
           List<String> members = new LinkedList<>();
+          List<String> admins  = new LinkedList<>();
 
           for (Address member : record.getMembers()) {
             members.add(member.serialize());
+          }
+
+          for (Address admin : record.getAdmins()) {
+            admins.add(admin.serialize());
           }
 
           Recipient         recipient       = Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(record.getId(), record.isMms())), false);
           Optional<Integer> expirationTimer = recipient.getExpireMessages() > 0 ? Optional.of(recipient.getExpireMessages()) : Optional.absent();
 
           out.write(new DeviceGroup(record.getId(), Optional.fromNullable(record.getTitle()),
-                                    members, getAvatar(record.getAvatar()),
+                                    members, admins, getAvatar(record.getAvatar()),
                                     record.isActive(), expirationTimer,
                                     Optional.of(recipient.getColor().serialize()),
                                     recipient.isBlocked()));
@@ -120,8 +125,7 @@ public class MultiDeviceGroupUpdateJob extends BaseJob implements InjectableType
 
   @Override
   public boolean onShouldRetry(@NonNull Exception exception) {
-    if (exception instanceof PushNetworkException) return true;
-    return false;
+    return exception instanceof PushNetworkException;
   }
 
   @Override

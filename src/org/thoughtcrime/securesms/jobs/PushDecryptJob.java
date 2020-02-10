@@ -107,6 +107,7 @@ import org.whispersystems.libsignal.state.PreKeyBundle;
 import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Preview;
@@ -123,6 +124,8 @@ import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMess
 import org.whispersystems.signalservice.api.messages.multidevice.ContactsMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceContact;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceContactsInputStream;
+import org.whispersystems.signalservice.api.messages.multidevice.DeviceGroup;
+import org.whispersystems.signalservice.api.messages.multidevice.DeviceGroupsInputStream;
 import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.RequestMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SentTranscriptMessage;
@@ -389,6 +392,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         else if (syncMessage.getVerified().isPresent())              handleSynchronizeVerifiedMessage(syncMessage.getVerified().get());
         else if (syncMessage.getStickerPackOperations().isPresent()) handleSynchronizeStickerPackOperation(syncMessage.getStickerPackOperations().get());
         else if (syncMessage.getContacts().isPresent())              handleContactSyncMessage(syncMessage.getContacts().get());
+        else if (syncMessage.getGroups().isPresent())                handleGroupSyncMessage(content, syncMessage.getGroups().get());
         else                                                         Log.w(TAG, "Contains no known sync types...");
       } else if (content.getCallMessage().isPresent()) {
         Log.i(TAG, "Got call message...");
@@ -716,6 +720,32 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       }
     } catch (Exception e) {
       Log.d("Loki", "Failed to sync contact: " + e + ".");
+    }
+  }
+
+  private void handleGroupSyncMessage(@NonNull SignalServiceContent content, @NonNull SignalServiceAttachment groupMessage) {
+    if (groupMessage.isStream()) {
+      Log.d("Loki", "Received group sync message");
+      try {
+        InputStream in = groupMessage.asStream().getInputStream();
+        DeviceGroupsInputStream groupsInputStream = new DeviceGroupsInputStream(in);
+        List<DeviceGroup> groups = groupsInputStream.readAll();
+        for (DeviceGroup group : groups) {
+          SignalServiceGroup serviceGroup = new SignalServiceGroup(
+                  SignalServiceGroup.Type.UPDATE,
+                  group.getId(),
+                  SignalServiceGroup.GroupType.SIGNAL,
+                  group.getName().orNull(),
+                  group.getMembers(),
+                  group.getAvatar().orNull(),
+                  group.getAdmins()
+          );
+          SignalServiceDataMessage dataMessage = new SignalServiceDataMessage(content.getTimestamp(), serviceGroup, null, null);
+          GroupMessageProcessor.process(context, content, dataMessage, false);
+        }
+      } catch (Exception e) {
+        Log.d("Loki", "Failed to sync group: " + e);
+      }
     }
   }
 
