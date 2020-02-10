@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.loki.signAndSendPairingAuthorisationMessage
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
-import org.whispersystems.signalservice.loki.api.LokiStorageAPI
+import org.whispersystems.signalservice.loki.api.LokiFileServerAPI
 import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 
 class LinkedDevicesActivity : PassphraseRequiredActionBarActivity, LoaderManager.LoaderCallbacks<List<Device>>, DeviceClickListener, EditDeviceNameDialogDelegate, LinkDeviceMasterModeDialogDelegate {
@@ -119,7 +119,7 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity, LoaderManager
         val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)
         val database = DatabaseFactory.getLokiAPIDatabase(this)
         database.removePairingAuthorisation(userHexEncodedPublicKey, slaveDeviceHexEncodedPublicKey)
-        LokiStorageAPI.shared.updateUserDeviceMappings().success {
+        LokiFileServerAPI.shared.updateUserDeviceMappings().success {
             MessageSender.sendUnpairRequest(this, slaveDeviceHexEncodedPublicKey)
         }
         LoaderManager.getInstance(this).restartLoader(0, null, this)

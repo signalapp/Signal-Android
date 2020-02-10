@@ -131,7 +131,7 @@ import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.loki.api.DeviceLinkingSession;
 import org.whispersystems.signalservice.loki.api.LokiAPI;
-import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
+import org.whispersystems.signalservice.loki.api.LokiFileServerAPI;
 import org.whispersystems.signalservice.loki.api.PairingAuthorisation;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
@@ -1177,7 +1177,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     // Send a background message to the primary device
     MessageSender.sendBackgroundMessage(context, authorisation.getPrimaryDevicePublicKey());
     // Propagate the updates to the file server
-    LokiStorageAPI storageAPI = LokiStorageAPI.Companion.getShared();
+    LokiFileServerAPI storageAPI = LokiFileServerAPI.Companion.getShared();
     storageAPI.updateUserDeviceMappings();
     // Update display names
     if (content.senderDisplayName.isPresent() && content.senderDisplayName.get().length() > 0) {
@@ -1245,7 +1245,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private void handleSessionRequestIfNeeded(@NonNull SignalServiceContent content) {
     if (content.isFriendRequest() && isSessionRequest(content)) {
       // Check if the session request from a member in one of our groups or our friend
-      LokiStorageAPI.shared.getPrimaryDevicePublicKey(content.getSender()).success(primaryDevicePublicKey -> {
+      LokiFileServerAPI.shared.getPrimaryDevicePublicKey(content.getSender()).success(primaryDevicePublicKey -> {
         String sender = primaryDevicePublicKey != null ? primaryDevicePublicKey : content.getSender();
         long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(sender), false));
         LokiThreadFriendRequestStatus threadFriendRequestStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID);
@@ -1284,7 +1284,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     // Allow profile sharing with contact
     DatabaseFactory.getRecipientDatabase(context).setProfileSharing(contactID, true);
     // Update the last message if needed
-    LokiStorageAPI.shared.getPrimaryDevicePublicKey(pubKey).success(primaryDevice -> {
+    LokiFileServerAPI.shared.getPrimaryDevicePublicKey(pubKey).success(primaryDevice -> {
       Util.runOnMain(() -> {
         long primaryDeviceThreadID = primaryDevice == null ? threadID : DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(primaryDevice), false));
         FriendRequestHandler.updateLastFriendRequestMessage(context, primaryDeviceThreadID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
@@ -1799,7 +1799,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
    */
   private Recipient getPrimaryDeviceRecipient(String pubKey) {
     try {
-      String primaryDevice = PromiseUtil.timeout(LokiStorageAPI.shared.getPrimaryDevicePublicKey(pubKey), 5000).get();
+      String primaryDevice = PromiseUtil.timeout(LokiFileServerAPI.shared.getPrimaryDevicePublicKey(pubKey), 5000).get();
       String publicKey = (primaryDevice != null) ? primaryDevice : pubKey;
       // If the public key matches our primary device then we need to forward the message to ourselves (Note to self)
       String ourPrimaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);

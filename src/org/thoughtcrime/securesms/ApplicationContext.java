@@ -103,7 +103,7 @@ import org.whispersystems.signalservice.loki.api.LokiP2PAPIDelegate;
 import org.whispersystems.signalservice.loki.api.LokiPublicChat;
 import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
 import org.whispersystems.signalservice.loki.api.LokiRSSFeed;
-import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
+import org.whispersystems.signalservice.loki.api.LokiFileServerAPI;
 
 import java.security.Security;
 import java.util.ArrayList;
@@ -188,7 +188,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     LokiDotNetAPI.setCache(new Cache(this.getCacheDir(), OK_HTTP_CACHE_SIZE));
     // Loki - Update device mappings
     if (setUpStorageAPIIfNeeded()) {
-      LokiStorageAPI.Companion.getShared().updateUserDeviceMappings();
+      LokiFileServerAPI.Companion.getShared().updateUserDeviceMappings();
       if (TextSecurePreferences.needsRevocationCheck(this)) {
         checkNeedsRevocation();
       }
@@ -466,7 +466,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       boolean isDebugMode = BuildConfig.DEBUG;
       byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).getPrivateKey().serialize();
       LokiAPIDatabaseProtocol database = DatabaseFactory.getLokiAPIDatabase(this);
-      LokiStorageAPI.Companion.configure(isDebugMode, userHexEncodedPublicKey, userPrivateKey, database);
+      LokiFileServerAPI.Companion.configure(isDebugMode, userHexEncodedPublicKey, userPrivateKey, database);
       return true;
     }
     return false;

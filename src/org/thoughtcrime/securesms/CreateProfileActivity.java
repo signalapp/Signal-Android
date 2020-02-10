@@ -59,7 +59,7 @@ import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.util.StreamDetails;
 import org.whispersystems.signalservice.loki.api.LokiDotNetAPI;
 import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
-import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
+import org.whispersystems.signalservice.loki.api.LokiFileServerAPI;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -407,7 +407,7 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
             //Loki - Upload the profile photo here
             if (avatar != null) {
               Log.d("Loki", "Start uploading profile photo");
-              LokiStorageAPI storageAPI = LokiStorageAPI.shared;
+              LokiFileServerAPI storageAPI = LokiFileServerAPI.shared;
               LokiDotNetAPI.UploadResult result = storageAPI.uploadProfilePicture(storageAPI.getServer(), profileKey, avatar);
               Log.d("Loki", "Profile photo uploaded, the url is " + result.getUrl());
               TextSecurePreferences.setProfileAvatarUrl(context, result.getUrl());

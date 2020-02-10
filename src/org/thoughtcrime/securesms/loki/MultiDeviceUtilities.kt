@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.loki.api.LokiStorageAPI
+import org.whispersystems.signalservice.loki.api.LokiFileServerAPI
 import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
 import org.whispersystems.signalservice.loki.utilities.recover
@@ -32,12 +32,12 @@ fun checkForRevocation(context: Context) {
   val primaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context) ?: return
   val ourDevice = TextSecurePreferences.getLocalNumber(context)
 
-  LokiStorageAPI.shared.fetchDeviceMappings(primaryDevice).bind { mappings ->
+  LokiFileServerAPI.shared.fetchDeviceMappings(primaryDevice).bind { mappings ->
     val ourMapping = mappings.find { it.secondaryDevicePublicKey == ourDevice }
     if (ourMapping != null) throw Error("Device has not been revoked")
     // remove pairing authorisations for our device
     DatabaseFactory.getLokiAPIDatabase(context).removePairingAuthorisations(ourDevice)
-    LokiStorageAPI.shared.updateUserDeviceMappings()
+    LokiFileServerAPI.shared.updateUserDeviceMappings()
   }.successUi {
     TextSecurePreferences.setNeedsRevocationCheck(context, false)
     ApplicationContext.getInstance(context).clearData()
@@ -49,7 +49,7 @@ fun checkForRevocation(context: Context) {
 
 fun getAllDeviceFriendRequestStatuses(context: Context, hexEncodedPublicKey: String): Promise<Map<String, LokiThreadFriendRequestStatus>, Exception> {
   val lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context)
-  return LokiStorageAPI.shared.getAllDevicePublicKeys(hexEncodedPublicKey).map { keys ->
+  return LokiFileServerAPI.shared.getAllDevicePublicKeys(hexEncodedPublicKey).map { keys ->
     val map = mutableMapOf<String, LokiThreadFriendRequestStatus>()
     for (devicePublicKey in keys) {
       val device = Recipient.from(context, Address.fromSerialized(devicePublicKey), false)
@@ -63,7 +63,7 @@ fun getAllDeviceFriendRequestStatuses(context: Context, hexEncodedPublicKey: Str
 
 fun getAllDevicePublicKeysWithFriendStatus(context: Context, hexEncodedPublicKey: String): Promise<Map<String, Boolean>, Unit> {
   val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
-  return LokiStorageAPI.shared.getAllDevicePublicKeys(hexEncodedPublicKey).map { keys ->
+  return LokiFileServerAPI.shared.getAllDevicePublicKeys(hexEncodedPublicKey).map { keys ->
     val devices = keys.toMutableSet()
     if (hexEncodedPublicKey != userHexEncodedPublicKey) {
       devices.remove(userHexEncodedPublicKey)
@@ -92,7 +92,7 @@ fun shouldAutomaticallyBecomeFriendsWithDevice(publicKey: String, context: Conte
     return Promise.of(true)
   }
 
-  return LokiStorageAPI.shared.getPrimaryDevicePublicKey(publicKey).bind { primaryDevicePublicKey ->
+  return LokiFileServerAPI.shared.getPrimaryDevicePublicKey(publicKey).bind { primaryDevicePublicKey ->
     // If the public key doesn't have any other devices then go through regular friend request logic
     if (primaryDevicePublicKey == null) {
       return@bind Promise.of(false)
@@ -157,7 +157,7 @@ fun signAndSendPairingAuthorisationMessage(context: Context, pairingAuthorisatio
     Log.d("Loki", "Failed to send pairing authorization message to ${address.serialize()}.")
   }
 
-  val updatePromise = LokiStorageAPI.shared.updateUserDeviceMappings().fail {
+  val updatePromise = LokiFileServerAPI.shared.updateUserDeviceMappings().fail {
     Log.d("Loki", "Failed to update device mapping")
   }
 
@@ -177,7 +177,7 @@ fun isOneOfOurDevices(context: Context, address: Address): Promise<Boolean, Exce
   }
 
   val ourPublicKey = TextSecurePreferences.getLocalNumber(context)
-  return LokiStorageAPI.shared.getAllDevicePublicKeys(ourPublicKey).map { devices ->
+  return LokiFileServerAPI.shared.getAllDevicePublicKeys(ourPublicKey).map { devices ->
     devices.contains(address.serialize())
   }
 }

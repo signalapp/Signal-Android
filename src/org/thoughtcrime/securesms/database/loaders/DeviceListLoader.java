@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.redesign.utilities.MnemonicUtilities;
 import org.thoughtcrime.securesms.util.AsyncLoader;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
+import org.whispersystems.signalservice.loki.api.LokiFileServerAPI;
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec;
 
 import java.io.File;
@@ -33,7 +33,7 @@ public class DeviceListLoader extends AsyncLoader<List<Device>> {
   public List<Device> loadInBackground() {
     try {
       String ourPublicKey = TextSecurePreferences.getLocalNumber(getContext());
-      List<String> secondaryDevicePublicKeys = LokiStorageAPI.shared.getSecondaryDevicePublicKeys(ourPublicKey).get();
+      List<String> secondaryDevicePublicKeys = LokiFileServerAPI.shared.getSecondaryDevicePublicKeys(ourPublicKey).get();
       List<Device> devices = Stream.of(secondaryDevicePublicKeys).map(this::mapToDevice).toList();
       Collections.sort(devices, new DeviceComparator());
       return devices;
