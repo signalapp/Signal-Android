@@ -120,15 +120,7 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
 
     if (privacy.isDisplayContact() && threadRecipients.isGroupRecipient()) {
-      long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(threadRecipients);
-      LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID);
-      String hexEncodedPublicKey = individualRecipient.getAddress().toString();
-      String displayName;
-      if (publicChat != null) {
-        displayName = DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(publicChat.getId(), hexEncodedPublicKey);
-      } else {
-        displayName = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(hexEncodedPublicKey);
-      }
+      String displayName = NotificationUtilities.getOpenGroupDisplayName(individualRecipient, threadRecipients, context);
       if (displayName != null) {
         stringBuilder.append(Util.getBoldedString(displayName + ": "));
       }
@@ -226,15 +218,7 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
 
     if (privacy.isDisplayContact() && threadRecipient.isGroupRecipient()) {
-      long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(threadRecipient);
-      LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID);
-      String hexEncodedPublicKey = individualRecipient.getAddress().toString();
-      String displayName;
-      if (publicChat != null) {
-        displayName = DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(publicChat.getId(), hexEncodedPublicKey);
-      } else {
-        displayName = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(hexEncodedPublicKey);
-      }
+      String displayName = NotificationUtilities.getOpenGroupDisplayName(individualRecipient, threadRecipient, context);
       if (displayName != null) {
         stringBuilder.append(Util.getBoldedString(displayName + ": "));
       }
