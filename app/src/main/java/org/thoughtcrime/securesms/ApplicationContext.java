@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
+import org.thoughtcrime.securesms.jobs.StorageSyncJob;
 import org.thoughtcrime.securesms.logging.AndroidLogger;
 import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger;
 import org.thoughtcrime.securesms.logging.Log;
@@ -54,6 +55,7 @@ import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.SignalUncaughtExceptionHandler;
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
+import org.thoughtcrime.securesms.migrations.StorageServiceMigrationJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -134,6 +136,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     FeatureFlags.init();
     NotificationChannels.create(this);
     RefreshPreKeysJob.scheduleIfNecessary();
+    StorageSyncJob.scheduleIfNecessary();
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
 
     if (Build.VERSION.SDK_INT < 21) {

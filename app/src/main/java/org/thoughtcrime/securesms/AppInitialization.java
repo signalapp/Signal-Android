@@ -30,7 +30,7 @@ public final class AppInitialization {
     TextSecurePreferences.setLastExperienceVersionCode(context, Util.getCanonicalVersionCode());
     TextSecurePreferences.setHasSeenStickerIntroTooltip(context, true);
     ApplicationDependencies.getMegaphoneRepository().onFirstEverAppLaunch();
-    SignalStore.registrationValues().onNewInstall();
+    SignalStore.onFirstEverAppLaunch();
     ApplicationDependencies.getJobManager().add(StickerPackDownloadJob.forInstall(BlessedPacks.ZOZO.getPackId(), BlessedPacks.ZOZO.getPackKey(), false));
     ApplicationDependencies.getJobManager().add(StickerPackDownloadJob.forInstall(BlessedPacks.BANDIT.getPackId(), BlessedPacks.BANDIT.getPackKey(), false));
     ApplicationDependencies.getJobManager().add(StickerPackDownloadJob.forReference(BlessedPacks.SWOON_HANDS.getPackId(), BlessedPacks.SWOON_HANDS.getPackKey()));
@@ -39,7 +39,7 @@ public final class AppInitialization {
 
   public static void onPostBackupRestore(@NonNull Context context) {
     ApplicationDependencies.getMegaphoneRepository().onFirstEverAppLaunch();
-    SignalStore.registrationValues().onNewInstall();
+    SignalStore.onFirstEverAppLaunch();
     ApplicationDependencies.getJobManager().add(StickerPackDownloadJob.forInstall(BlessedPacks.ZOZO.getPackId(), BlessedPacks.ZOZO.getPackKey(), false));
     ApplicationDependencies.getJobManager().add(StickerPackDownloadJob.forInstall(BlessedPacks.BANDIT.getPackId(), BlessedPacks.BANDIT.getPackKey(), false));
     ApplicationDependencies.getJobManager().add(StickerPackDownloadJob.forReference(BlessedPacks.SWOON_HANDS.getPackId(), BlessedPacks.SWOON_HANDS.getPackKey()));

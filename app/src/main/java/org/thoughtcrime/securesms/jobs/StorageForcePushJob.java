@@ -16,12 +16,12 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
+import org.whispersystems.signalservice.api.storage.StorageKey;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
@@ -30,12 +30,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Forces remote storage to match our local state. This should only be done after a key change or
- * when we detect that the remote data is badly-encrypted.
+ * Forces remote storage to match our local state. This should only be done when we detect that the
+ * remote data is badly-encrypted (which should only happen after re-registering without a PIN).
  */
 public class StorageForcePushJob extends BaseJob {
 
@@ -45,10 +47,10 @@ public class StorageForcePushJob extends BaseJob {
 
   public StorageForcePushJob() {
     this(new Parameters.Builder().addConstraint(NetworkConstraint.KEY)
-                                     .setQueue(StorageSyncJob.QUEUE_KEY)
-                                     .setMaxInstances(1)
-                                     .setLifespan(TimeUnit.DAYS.toMillis(1))
-                                     .build());
+                                 .setQueue(StorageSyncJob.QUEUE_KEY)
+                                 .setMaxInstances(1)
+                                 .setLifespan(TimeUnit.DAYS.toMillis(1))
+                                 .build());
   }
 
   private StorageForcePushJob(@NonNull Parameters parameters) {
@@ -67,45 +69,42 @@ public class StorageForcePushJob extends BaseJob {
 
   @Override
   protected void onRun() throws IOException, RetryLaterException {
-    if (!FeatureFlags.storageService()) throw new AssertionError();
-
-    MasterKey kbsMasterKey = SignalStore.kbsValues().getPinBackedMasterKey();
-
-    if (kbsMasterKey == null) {
-      Log.w(TAG, "No KBS master key is set! Must abort.");
-      return;
-    }
-
-    byte[]                      storageServiceKey  = kbsMasterKey.deriveStorageServiceKey();
+    StorageKey                  storageServiceKey  = SignalStore.storageServiceValues().getOrCreateStorageMasterKey().deriveStorageServiceKey();
     SignalServiceAccountManager accountManager     = ApplicationDependencies.getSignalServiceAccountManager();
     RecipientDatabase           recipientDatabase  = DatabaseFactory.getRecipientDatabase(context);
     StorageKeyDatabase          storageKeyDatabase = DatabaseFactory.getStorageKeyDatabase(context);
 
     long                     currentVersion = accountManager.getStorageManifestVersion();
-    Map<RecipientId, byte[]> oldContactKeys = recipientDatabase.getAllStorageSyncKeysMap();
-    List<byte[]>             oldUnknownKeys = storageKeyDatabase.getAllKeys();
+    Map<RecipientId, byte[]> oldStorageKeys = recipientDatabase.getAllStorageSyncKeysMap();
 
-    long                      newVersion     = currentVersion + 1;
-    Map<RecipientId, byte[]>  newContactKeys = generateNewKeys(oldContactKeys);
-    List<byte[]>              keysToDelete   = Util.concatenatedList(new ArrayList<>(oldContactKeys.values()), oldUnknownKeys);
-    List<SignalStorageRecord> inserts        = Stream.of(oldContactKeys.keySet())
-                                                     .map(recipientDatabase::getRecipientSettings)
-                                                     .withoutNulls()
-                                                     .map(StorageSyncHelper::localToRemoteContact)
-                                                     .map(r -> SignalStorageRecord.forContact(r.getKey(), r))
-                                                     .toList();
-
-    SignalStorageManifest manifest = new SignalStorageManifest(newVersion, new ArrayList<>(newContactKeys.values()));
-
-    try {
-      accountManager.writeStorageRecords(storageServiceKey, manifest, inserts, keysToDelete);
-    } catch (InvalidKeyException e) {
-      Log.w(TAG, "Hit an invalid key exception, which likely indicates a conflict.");
-      throw new RetryLaterException();
+    if (currentVersion < 1) {
+      throw new IllegalStateException("We should never be force-pushing a manifest as the first version!");
     }
 
+    long                      newVersion     = currentVersion + 1;
+    Map<RecipientId, byte[]>  newStorageKeys = generateNewKeys(oldStorageKeys);
+    List<SignalStorageRecord> inserts        = Stream.of(oldStorageKeys.keySet())
+                                                     .map(recipientDatabase::getRecipientSettings)
+                                                     .withoutNulls()
+                                                     .map(s -> StorageSyncHelper.localToRemoteRecord(s, Objects.requireNonNull(newStorageKeys.get(s.getId()))))
+                                                     .toList();
+
+    SignalStorageManifest manifest = new SignalStorageManifest(newVersion, new ArrayList<>(newStorageKeys.values()));
+
+    try {
+      Log.i(TAG, String.format(Locale.ENGLISH, "Force-pushing data. Inserting %d keys.", inserts.size()));
+      if (accountManager.resetStorageRecords(storageServiceKey, manifest, inserts).isPresent()) {
+        Log.w(TAG, "Hit a conflict. Trying again.");
+        throw new RetryLaterException();
+      }
+    } catch (InvalidKeyException e) {
+      Log.w(TAG, "Hit an invalid key exception, which likely indicates a conflict.");
+      throw new RetryLaterException(e);
+    }
+
+    Log.i(TAG, "Force push succeeded. Updating local manifest version to: " + newVersion);
     TextSecurePreferences.setStorageManifestVersion(context, newVersion);
-    recipientDatabase.applyStorageSyncKeyUpdates(newContactKeys);
+    recipientDatabase.applyStorageSyncKeyUpdates(newStorageKeys);
     storageKeyDatabase.deleteAll();
   }
 
@@ -129,10 +128,8 @@ public class StorageForcePushJob extends BaseJob {
   }
 
   public static final class Factory implements Job.Factory<StorageForcePushJob> {
-
     @Override
-    public @NonNull
-    StorageForcePushJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull StorageForcePushJob create(@NonNull Parameters parameters, @NonNull Data data) {
       return new StorageForcePushJob(parameters);
     }
   }

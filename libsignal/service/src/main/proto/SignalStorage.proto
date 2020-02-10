@@ -33,16 +33,19 @@ message WriteOperation {
   optional StorageManifest manifest   = 1;
   repeated StorageItem     insertItem = 2;
   repeated bytes           deleteKey  = 3;
+  optional bool            clearAll   = 4;
 }
 
 message StorageRecord {
   enum Type {
     UNKNOWN = 0;
     CONTACT = 1;
+    GROUPV1 = 2;
   }
 
   optional uint32        type    = 1;
   optional ContactRecord contact = 2;
+  optional GroupV1Record groupV1 = 3;
 }
 
 message ContactRecord {
@@ -58,9 +61,10 @@ message ContactRecord {
   }
 
   message Profile {
-    optional string name     = 1;
-    optional bytes  key      = 2;
-    optional string username = 3;
+    optional string givenName  = 1;
+    optional string familyName = 4;
+    optional bytes  key        = 2;
+    optional string username   = 3;
   }
 
   optional string   serviceUuid  = 1;
@@ -70,6 +74,12 @@ message ContactRecord {
   optional bool     blocked      = 5;
   optional bool     whitelisted  = 6;
   optional string   nickname     = 7;
+}
+
+message GroupV1Record {
+  optional bytes id          = 1;
+  optional bool  blocked     = 2;
+  optional bool  whitelisted = 3;
 }
 
 message ManifestRecord {

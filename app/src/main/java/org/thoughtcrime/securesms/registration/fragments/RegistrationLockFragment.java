@@ -6,7 +6,6 @@ import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -21,13 +20,17 @@ import androidx.navigation.Navigation;
 import com.dd.CircularProgressButton;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.jobs.StorageSyncJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.registration.service.CodeVerificationRequest;
 import org.thoughtcrime.securesms.registration.service.RegistrationService;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 
 import java.util.concurrent.TimeUnit;
@@ -172,10 +175,7 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
 
         @Override
         public void onSuccessfulRegistration() {
-          cancelSpinning(pinButton);
-          SignalStore.kbsValues().setKeyboardType(getPinEntryKeyboardType());
-
-          Navigation.findNavController(requireView()).navigate(RegistrationLockFragmentDirections.actionSuccessfulRegistration());
+          handleSuccessfulPinEntry();
         }
 
         @Override
@@ -299,6 +299,30 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
 
     if (pinEntry.requestFocus()) {
       ServiceUtil.getInputMethodManager(pinEntry.getContext()).showSoftInput(pinEntry, 0);
+    }
+  }
+
+  private void handleSuccessfulPinEntry() {
+    SignalStore.kbsValues().setKeyboardType(getPinEntryKeyboardType());
+
+    if (FeatureFlags.storageServiceRestore()) {
+      long startTime = System.currentTimeMillis();
+      SimpleTask.run(() -> {
+        return ApplicationDependencies.getJobManager().runSynchronously(new StorageSyncJob(), TimeUnit.SECONDS.toMillis(10));
+      }, result -> {
+        long elapsedTime = System.currentTimeMillis() - startTime;
+
+        if (result.isPresent()) {
+          Log.i(TAG, "Storage Service restore completed: " + result.get().name() + ". (Took " + elapsedTime + " ms)");
+        } else {
+          Log.i(TAG, "Storage Service restore failed to complete in the allotted time. (" + elapsedTime + " ms elapsed)");
+        }
+        cancelSpinning(pinButton);
+        Navigation.findNavController(requireView()).navigate(RegistrationLockFragmentDirections.actionSuccessfulRegistration());
+      });
+    } else {
+      cancelSpinning(pinButton);
+      Navigation.findNavController(requireView()).navigate(RegistrationLockFragmentDirections.actionSuccessfulRegistration());
     }
   }
 }

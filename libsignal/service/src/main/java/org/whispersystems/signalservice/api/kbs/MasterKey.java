@@ -1,5 +1,6 @@
 package org.whispersystems.signalservice.api.kbs;
 
+import org.whispersystems.signalservice.api.storage.StorageKey;
 import org.whispersystems.signalservice.internal.util.Hex;
 import org.whispersystems.util.StringUtil;
 
@@ -30,8 +31,8 @@ public final class MasterKey {
     return Hex.toStringCondensed(derive("Registration Lock"));
   }
 
-  public byte[] deriveStorageServiceKey() {
-    return derive("Storage Service Encryption");
+  public StorageKey deriveStorageServiceKey() {
+    return new StorageKey(derive("Storage Service Encryption"));
   }
 
   private byte[] derive(String keyName) {

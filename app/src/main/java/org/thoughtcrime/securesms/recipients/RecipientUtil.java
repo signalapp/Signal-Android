@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceMessageRequestResponseJob;
 import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.jobs.StorageSyncJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
@@ -86,6 +87,7 @@ public class RecipientUtil {
     }
 
     ApplicationDependencies.getJobManager().add(new MultiDeviceBlockedUpdateJob());
+    ApplicationDependencies.getJobManager().add(new StorageSyncJob());
   }
 
   @WorkerThread
@@ -96,6 +98,7 @@ public class RecipientUtil {
 
     DatabaseFactory.getRecipientDatabase(context).setBlocked(recipient.getId(), false);
     ApplicationDependencies.getJobManager().add(new MultiDeviceBlockedUpdateJob());
+    ApplicationDependencies.getJobManager().add(new StorageSyncJob());
 
     if (FeatureFlags.messageRequests()) {
       ApplicationDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forAccept(recipient.getId()));

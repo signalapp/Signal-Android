@@ -2,16 +2,17 @@ package org.whispersystems.signalservice.api.messages.multidevice;
 
 
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.storage.StorageKey;
 
 public class KeysMessage {
 
-  private final Optional<byte[]> storageService;
+  private final Optional<StorageKey> storageService;
 
-  public KeysMessage(Optional<byte[]> storageService) {
+  public KeysMessage(Optional<StorageKey> storageService) {
     this.storageService = storageService;
   }
 
-  public Optional<byte[]> getStorageService() {
+  public Optional<StorageKey> getStorageService() {
     return storageService;
   }
 }

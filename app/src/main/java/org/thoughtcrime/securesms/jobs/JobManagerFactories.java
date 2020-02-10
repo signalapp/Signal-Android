@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.migrations.RecipientSearchMigrationJob;
 import org.thoughtcrime.securesms.migrations.RegistrationPinV2MigrationJob;
 import org.thoughtcrime.securesms.migrations.StickerAdditionMigrationJob;
 import org.thoughtcrime.securesms.migrations.StickerLaunchMigrationJob;
+import org.thoughtcrime.securesms.migrations.StorageServiceMigrationJob;
 import org.thoughtcrime.securesms.migrations.UuidMigrationJob;
 
 import java.util.Arrays;
@@ -116,6 +117,7 @@ public final class JobManagerFactories {
       put(RegistrationPinV2MigrationJob.KEY,         new RegistrationPinV2MigrationJob.Factory());
       put(StickerLaunchMigrationJob.KEY,             new StickerLaunchMigrationJob.Factory());
       put(StickerAdditionMigrationJob.KEY,           new StickerAdditionMigrationJob.Factory());
+      put(StorageServiceMigrationJob.KEY,            new StorageServiceMigrationJob.Factory());
       put(UuidMigrationJob.KEY,                      new UuidMigrationJob.Factory());
 
       // Dead jobs

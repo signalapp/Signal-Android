@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.whispersystems.libsignal.IdentityKeyPair;
 import org.whispersystems.libsignal.state.PreKeyRecord;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
@@ -166,7 +167,7 @@ public final class CodeVerificationRequest {
             break;
         }
       }
-    }.execute();
+    }.executeOnExecutor(SignalExecutors.UNBOUNDED);
   }
 
   private static TokenResponse getToken(@Nullable String basicStorageCredentials) throws IOException {

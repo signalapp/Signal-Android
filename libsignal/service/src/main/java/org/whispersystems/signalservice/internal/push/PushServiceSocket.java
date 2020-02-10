@@ -39,6 +39,7 @@ import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedE
 import org.whispersystems.signalservice.api.push.exceptions.CaptchaRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.ContactManifestMismatchException;
 import org.whispersystems.signalservice.api.push.exceptions.ExpectationFailedException;
+import org.whispersystems.signalservice.api.push.exceptions.NoContentException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
@@ -787,6 +788,16 @@ public class PushServiceSocket {
     return StorageManifest.parseFrom(response.body().bytes());
   }
 
+  public StorageManifest getStorageManifestIfDifferentVersion(String authToken, long version) throws IOException {
+    Response response = makeStorageRequest(authToken, "/v1/storage/manifest/version/" + version, "GET", null);
+
+    if (response.body() == null) {
+      throw new IOException("Missing body!");
+    }
+
+    return StorageManifest.parseFrom(response.body().bytes());
+  }
+
   public StorageItems readStorageItems(String authToken, ReadOperation operation) throws IOException {
     Response response = makeStorageRequest(authToken, "/v1/storage/read", "PUT", operation.toByteArray());
 
@@ -1119,8 +1130,8 @@ public class PushServiceSocket {
                                                            .readTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
                                                            .build();
 
-      Log.w(TAG, "Push service URL: " + connectionHolder.getUrl());
-      Log.w(TAG, "Opening URL: " + String.format("%s%s", connectionHolder.getUrl(), urlFragment));
+      Log.d(TAG, "Push service URL: " + connectionHolder.getUrl());
+      Log.d(TAG, "Opening URL: " + String.format("%s%s", connectionHolder.getUrl(), urlFragment));
 
       Request.Builder request = new Request.Builder();
       request.url(String.format("%s%s", connectionHolder.getUrl(), urlFragment));
@@ -1262,6 +1273,8 @@ public class PushServiceSocket {
                                                         .readTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
                                                         .build();
 
+    Log.d(TAG, "Opening URL: " + String.format("%s%s", connectionHolder.getUrl(), path));
+
     Request.Builder request = new Request.Builder().url(connectionHolder.getUrl() + path);
 
     if (body != null) {
@@ -1289,7 +1302,7 @@ public class PushServiceSocket {
     try {
       response = call.execute();
 
-      if (response.isSuccessful()) {
+      if (response.isSuccessful() && response.code() != 204) {
         return response;
       }
     } catch (IOException e) {
@@ -1301,6 +1314,8 @@ public class PushServiceSocket {
     }
 
     switch (response.code()) {
+      case 204:
+        throw new NoContentException("No content!");
       case 401:
       case 403:
         throw new AuthorizationFailedException("Authorization failed!");

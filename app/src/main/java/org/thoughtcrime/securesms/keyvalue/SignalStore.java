@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.SignalUncaughtExceptionHandler;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 
 /**
  * Simple, encrypted key-value store.
@@ -14,6 +15,11 @@ public final class SignalStore {
   private static final String MESSAGE_REQUEST_ENABLE_TIME   = "message_request_enable_time";
 
   private SignalStore() {}
+
+  public static void onFirstEverAppLaunch() {
+    registrationValues().onFirstEverAppLaunch();
+    storageServiceValues().setFirstStorageSyncCompleted(false);
+  }
 
   public static @NonNull KbsValues kbsValues() {
     return new KbsValues(getStore());
@@ -29,6 +35,10 @@ public final class SignalStore {
 
   public static @NonNull RemoteConfigValues remoteConfigValues() {
     return new RemoteConfigValues(getStore());
+  }
+
+  public static @NonNull StorageServiceValues storageServiceValues() {
+    return new StorageServiceValues(getStore());
   }
 
   public static long getLastPrekeyRefreshTime() {

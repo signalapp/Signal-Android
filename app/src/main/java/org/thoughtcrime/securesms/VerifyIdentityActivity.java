@@ -44,6 +44,7 @@ import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.jobs.StorageSyncJob;
 import org.thoughtcrime.securesms.logging.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -604,6 +605,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
                                                                          remoteIdentity,
                                                                          isChecked ? VerifiedStatus.VERIFIED :
                                                                                      VerifiedStatus.DEFAULT));
+            ApplicationDependencies.getJobManager().add(new StorageSyncJob());
 
             IdentityUtil.markIdentityVerified(getActivity(), recipient.get(), isChecked, false);
           }

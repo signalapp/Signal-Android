@@ -654,10 +654,17 @@ public final class PushProcessMessageJob extends BaseJob {
   }
 
   private static void handleSynchronizeFetchMessage(@NonNull SignalServiceSyncMessage.FetchType fetchType) {
-    if (fetchType == SignalServiceSyncMessage.FetchType.LOCAL_PROFILE) {
-      ApplicationDependencies.getJobManager().add(new RefreshOwnProfileJob());
-    } else {
-      Log.w(TAG, "Received a fetch message for an unknown type.");
+    Log.i(TAG, "Received fetch request with type: " + fetchType);
+
+    switch (fetchType) {
+      case LOCAL_PROFILE:
+        ApplicationDependencies.getJobManager().add(new RefreshOwnProfileJob());
+        break;
+      case STORAGE_MANIFEST:
+        ApplicationDependencies.getJobManager().add(new StorageSyncJob());
+        break;
+      default:
+        Log.w(TAG, "Received a fetch message for an unknown type.");
     }
   }
 
@@ -777,7 +784,7 @@ public final class PushProcessMessageJob extends BaseJob {
     }
 
     if (message.isKeysRequest()) {
-//      ApplicationDependencies.getJobManager().add(new );
+      ApplicationDependencies.getJobManager().add(new MultiDeviceKeysUpdateJob());
     }
   }
 

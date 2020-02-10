@@ -39,8 +39,7 @@ public final class ProfileName implements Parcelable {
     return givenName;
   }
 
-  public @NonNull
-  String getFamilyName() {
+  public @NonNull String getFamilyName() {
     return familyName;
   }
 

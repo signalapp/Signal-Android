@@ -14,7 +14,7 @@ public final class RegistrationValues {
     this.store = store;
   }
 
-  public synchronized void onNewInstall() {
+  public synchronized void onFirstEverAppLaunch() {
     store.beginWrite()
          .putBoolean(REGISTRATION_COMPLETE, false)
          // TODO [greyson] [pins] Maybe re-enable in the future
@@ -23,7 +23,7 @@ public final class RegistrationValues {
   }
 
   public synchronized void clearRegistrationComplete() {
-    onNewInstall();
+    onFirstEverAppLaunch();
   }
 
   public synchronized void setRegistrationComplete() {

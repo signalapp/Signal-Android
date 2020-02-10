@@ -49,11 +49,11 @@ public final class FeatureFlags {
   private static final String UUIDS                      = "android.uuids";
   private static final String MESSAGE_REQUESTS           = "android.messageRequests";
   private static final String USERNAMES                  = "android.usernames";
-  private static final String STORAGE_SERVICE            = "android.storageService";
   private static final String PINS_FOR_ALL               = "android.pinsForAll";
   private static final String PINS_MEGAPHONE_KILL_SWITCH = "android.pinsMegaphoneKillSwitch";
   private static final String PROFILE_NAMES_MEGAPHONE    = "android.profileNamesMegaphone";
   private static final String VIDEO_TRIMMING             = "android.videoTrimming";
+  private static final String STORAGE_SERVICE            = "android.storageService";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -65,7 +65,8 @@ public final class FeatureFlags {
       PINS_FOR_ALL,
       PINS_MEGAPHONE_KILL_SWITCH,
       PROFILE_NAMES_MEGAPHONE,
-      MESSAGE_REQUESTS
+      MESSAGE_REQUESTS,
+      STORAGE_SERVICE
   );
 
   /**
@@ -86,15 +87,16 @@ public final class FeatureFlags {
    * more burden on the reader to ensure that the app experience remains consistent.
    */
   private static final Set<String> HOT_SWAPPABLE = Sets.newHashSet(
-    VIDEO_TRIMMING,
-    PINS_MEGAPHONE_KILL_SWITCH
+      VIDEO_TRIMMING,
+      PINS_MEGAPHONE_KILL_SWITCH,
+      STORAGE_SERVICE
   );
 
   /**
    * Flags in this set will stay true forever once they receive a true value from a remote config.
    */
   private static final Set<String> STICKY = Sets.newHashSet(
-    PINS_FOR_ALL
+      PINS_FOR_ALL
   );
 
   /**
@@ -179,11 +181,6 @@ public final class FeatureFlags {
     return value;
   }
 
-  /** Storage service. */
-  public static boolean storageService() {
-    return getValue(STORAGE_SERVICE, false);
-  }
-
   /** Enables new KBS UI and notices but does not require user to set a pin */
   public static boolean pinsForAll() {
     return SignalStore.registrationValues().pinWasRequiredAtRegistration() ||
@@ -205,6 +202,16 @@ public final class FeatureFlags {
   /** Allow trimming videos. */
   public static boolean videoTrimming() {
     return getValue(VIDEO_TRIMMING, false);
+  }
+
+  /** Whether or not we can actually restore data on a new installation. NOT remote-configurable. */
+  public static boolean storageServiceRestore() {
+    return false;
+  }
+
+  /** Whether or not we sync to the storage service. */
+  public static boolean storageService() {
+    return getValue(STORAGE_SERVICE, false);
   }
 
   /** Only for rendering debug info. */

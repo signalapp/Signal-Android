@@ -4,18 +4,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.database.IdentityDatabase;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord.IdentityState;
+import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
@@ -28,10 +32,13 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
+
+import javax.crypto.KeyGenerator;
 
 public final class StorageSyncHelper {
 
@@ -42,7 +49,7 @@ public final class StorageSyncHelper {
   private static KeyGenerator testKeyGenerator = null;
 
   /**
-   * Given the local state of pending storage mutatations, this will generate a result that will
+   * Given the local state of pending storage mutations, this will generate a result that will
    * include that data that needs to be written to the storage service, as well as any changes you
    * need to write back to local storage (like storage keys that might have changed for updated
    * contacts).
@@ -64,17 +71,17 @@ public final class StorageSyncHelper {
                                                                                 @NonNull List<RecipientSettings> deletes)
   {
     Set<ByteBuffer>          completeKeys      = new LinkedHashSet<>(Stream.of(currentLocalKeys).map(ByteBuffer::wrap).toList());
-    Set<SignalContactRecord> contactInserts    = new LinkedHashSet<>();
-    Set<ByteBuffer>          contactDeletes    = new LinkedHashSet<>();
+    Set<SignalStorageRecord> storageInserts    = new LinkedHashSet<>();
+    Set<ByteBuffer>          storageDeletes    = new LinkedHashSet<>();
     Map<RecipientId, byte[]> storageKeyUpdates = new HashMap<>();
 
     for (RecipientSettings insert : inserts) {
-      contactInserts.add(localToRemoteContact(insert));
+      storageInserts.add(localToRemoteRecord(insert));
     }
 
     for (RecipientSettings delete : deletes) {
       byte[] key = Objects.requireNonNull(delete.getStorageKey());
-      contactDeletes.add(ByteBuffer.wrap(key));
+      storageDeletes.add(ByteBuffer.wrap(key));
       completeKeys.remove(ByteBuffer.wrap(key));
     }
 
@@ -82,21 +89,20 @@ public final class StorageSyncHelper {
       byte[] oldKey = Objects.requireNonNull(update.getStorageKey());
       byte[] newKey = generateKey();
 
-      contactInserts.add(localToRemoteContact(update, newKey));
-      contactDeletes.add(ByteBuffer.wrap(oldKey));
+      storageInserts.add(localToRemoteRecord(update, newKey));
+      storageDeletes.add(ByteBuffer.wrap(oldKey));
       completeKeys.remove(ByteBuffer.wrap(oldKey));
       completeKeys.add(ByteBuffer.wrap(newKey));
       storageKeyUpdates.put(update.getId(), newKey);
     }
 
-    if (contactInserts.isEmpty() && contactDeletes.isEmpty()) {
+    if (storageInserts.isEmpty() && storageDeletes.isEmpty()) {
       return Optional.absent();
     } else {
-      List<SignalStorageRecord> storageInserts       = Stream.of(contactInserts).map(c -> SignalStorageRecord.forContact(c.getKey(), c)).toList();
-      List<byte[]>              contactDeleteBytes   = Stream.of(contactDeletes).map(ByteBuffer::array).toList();
+      List<byte[]>              contactDeleteBytes   = Stream.of(storageDeletes).map(ByteBuffer::array).toList();
       List<byte[]>              completeKeysBytes    = Stream.of(completeKeys).map(ByteBuffer::array).toList();
       SignalStorageManifest     manifest             = new SignalStorageManifest(currentManifestVersion + 1, completeKeysBytes);
-      WriteOperationResult      writeOperationResult = new WriteOperationResult(manifest, storageInserts, contactDeleteBytes);
+      WriteOperationResult      writeOperationResult = new WriteOperationResult(manifest, new ArrayList<>(storageInserts), contactDeleteBytes);
 
       return Optional.of(new LocalWriteResult(writeOperationResult, storageKeyUpdates));
     }
@@ -142,17 +148,35 @@ public final class StorageSyncHelper {
     List<SignalContactRecord> remoteOnlyContacts = Stream.of(remoteOnlyRecords).filter(r -> r.getContact().isPresent()).map(r -> r.getContact().get()).toList();
     List<SignalContactRecord> localOnlyContacts  = Stream.of(localOnlyRecords).filter(r -> r.getContact().isPresent()).map(r -> r.getContact().get()).toList();
 
+    List<SignalGroupV1Record> remoteOnlyGroupV1 = Stream.of(remoteOnlyRecords).filter(r -> r.getGroupV1().isPresent()).map(r -> r.getGroupV1().get()).toList();
+    List<SignalGroupV1Record> localOnlyGroupV1  = Stream.of(localOnlyRecords).filter(r -> r.getGroupV1().isPresent()).map(r -> r.getGroupV1().get()).toList();
+
     List<SignalStorageRecord> remoteOnlyUnknowns = Stream.of(remoteOnlyRecords).filter(SignalStorageRecord::isUnknown).toList();
     List<SignalStorageRecord> localOnlyUnknowns  = Stream.of(localOnlyRecords).filter(SignalStorageRecord::isUnknown).toList();
 
     ContactRecordMergeResult contactMergeResult = resolveContactConflict(remoteOnlyContacts, localOnlyContacts);
+    GroupV1RecordMergeResult groupV1MergeResult = resolveGroupV1Conflict(remoteOnlyGroupV1, localOnlyGroupV1);
+
+    Set<SignalStorageRecord> remoteInserts = new HashSet<>();
+    remoteInserts.addAll(Stream.of(contactMergeResult.remoteInserts).map(SignalStorageRecord::forContact).toList());
+    remoteInserts.addAll(Stream.of(groupV1MergeResult.remoteInserts).map(SignalStorageRecord::forGroupV1).toList());
+
+    Set<RecordUpdate> remoteUpdates = new HashSet<>();
+    remoteUpdates.addAll(Stream.of(contactMergeResult.remoteUpdates)
+                               .map(c -> new RecordUpdate(SignalStorageRecord.forContact(c.getOld()), SignalStorageRecord.forContact(c.getNew())))
+                               .toList());
+    remoteUpdates.addAll(Stream.of(groupV1MergeResult.remoteUpdates)
+                               .map(c -> new RecordUpdate(SignalStorageRecord.forGroupV1(c.getOld()), SignalStorageRecord.forGroupV1(c.getNew())))
+                               .toList());
 
     return new MergeResult(contactMergeResult.localInserts,
                            contactMergeResult.localUpdates,
-                           contactMergeResult.remoteInserts,
-                           contactMergeResult.remoteUpdates,
+                           groupV1MergeResult.localInserts,
+                           groupV1MergeResult.localUpdates,
                            new LinkedHashSet<>(remoteOnlyUnknowns),
-                           new LinkedHashSet<>(localOnlyUnknowns));
+                           new LinkedHashSet<>(localOnlyUnknowns),
+                           remoteInserts,
+                           remoteUpdates);
   }
 
   /**
@@ -169,7 +193,11 @@ public final class StorageSyncHelper {
       completeKeys.add(ByteBuffer.wrap(insert.getKey()));
     }
 
-    for (SignalContactRecord insert : mergeResult.getRemoteContactInserts()) {
+    for (SignalGroupV1Record insert : mergeResult.getLocalGroupV1Inserts()) {
+      completeKeys.add(ByteBuffer.wrap(insert.getKey()));
+    }
+
+    for (SignalStorageRecord insert : mergeResult.getRemoteInserts()) {
       completeKeys.add(ByteBuffer.wrap(insert.getKey()));
     }
 
@@ -178,34 +206,47 @@ public final class StorageSyncHelper {
     }
 
     for (ContactUpdate update : mergeResult.getLocalContactUpdates()) {
-      completeKeys.remove(ByteBuffer.wrap(update.getOldContact().getKey()));
-      completeKeys.add(ByteBuffer.wrap(update.getNewContact().getKey()));
+      completeKeys.remove(ByteBuffer.wrap(update.getOld().getKey()));
+      completeKeys.add(ByteBuffer.wrap(update.getNew().getKey()));
     }
 
-    for (ContactUpdate update : mergeResult.getRemoteContactUpdates()) {
-      completeKeys.remove(ByteBuffer.wrap(update.getOldContact().getKey()));
-      completeKeys.add(ByteBuffer.wrap(update.getNewContact().getKey()));
+    for (GroupV1Update update : mergeResult.getLocalGroupV1Updates()) {
+      completeKeys.remove(ByteBuffer.wrap(update.getOld().getKey()));
+      completeKeys.add(ByteBuffer.wrap(update.getNew().getKey()));
+    }
+
+    for (RecordUpdate update : mergeResult.getRemoteUpdates()) {
+      completeKeys.remove(ByteBuffer.wrap(update.getOld().getKey()));
+      completeKeys.add(ByteBuffer.wrap(update.getNew().getKey()));
     }
 
     SignalStorageManifest manifest = new SignalStorageManifest(currentManifestVersion + 1, Stream.of(completeKeys).map(ByteBuffer::array).toList());
 
-    List<SignalContactRecord> contactInserts = new ArrayList<>();
-    contactInserts.addAll(mergeResult.getRemoteContactInserts());
-    contactInserts.addAll(Stream.of(mergeResult.getRemoteContactUpdates()).map(ContactUpdate::getNewContact).toList());
+    List<SignalStorageRecord> inserts = new ArrayList<>();
+    inserts.addAll(mergeResult.getRemoteInserts());
+    inserts.addAll(Stream.of(mergeResult.getRemoteUpdates()).map(RecordUpdate::getNew).toList());
 
-    List<SignalStorageRecord> inserts = Stream.of(contactInserts).map(c -> SignalStorageRecord.forContact(c.getKey(), c)).toList();
-
-    List<byte[]> deletes = Stream.of(mergeResult.getRemoteContactUpdates()).map(ContactUpdate::getOldContact).map(SignalContactRecord::getKey).toList();
+    List<byte[]> deletes = Stream.of(mergeResult.getRemoteUpdates()).map(RecordUpdate::getOld).map(SignalStorageRecord::getKey).toList();
 
     return new WriteOperationResult(manifest, inserts, deletes);
   }
 
-  public static @NonNull SignalContactRecord localToRemoteContact(@NonNull RecipientSettings recipient) {
-    if (recipient.getStorageKey() == null) {
+  public static @NonNull SignalStorageRecord localToRemoteRecord(@NonNull RecipientSettings settings) {
+    if (settings.getStorageKey() == null) {
       throw new AssertionError("Must have a storage key!");
     }
 
-    return localToRemoteContact(recipient, recipient.getStorageKey());
+    return localToRemoteRecord(settings, settings.getStorageKey());
+  }
+
+  public static @NonNull SignalStorageRecord localToRemoteRecord(@NonNull RecipientSettings settings, @NonNull byte[] key) {
+    if (settings.getGroupType() == RecipientDatabase.GroupType.NONE) {
+      return SignalStorageRecord.forContact(localToRemoteContact(settings, key));
+    } else if (settings.getGroupType() == RecipientDatabase.GroupType.SIGNAL_V1) {
+      return SignalStorageRecord.forGroupV1(localToRemoteGroupV1(settings, key));
+    } else {
+      throw new AssertionError("Unsupported type!");
+    }
   }
 
   private static @NonNull SignalContactRecord localToRemoteContact(@NonNull RecipientSettings recipient, byte[] storageKey) {
@@ -215,12 +256,24 @@ public final class StorageSyncHelper {
 
     return new SignalContactRecord.Builder(storageKey, new SignalServiceAddress(recipient.getUuid(), recipient.getE164()))
                                    .setProfileKey(recipient.getProfileKey())
-                                   .setProfileName(recipient.getProfileName().serialize())
+                                   .setGivenName(recipient.getProfileName().getGivenName())
+                                   .setFamilyName(recipient.getProfileName().getFamilyName())
                                    .setBlocked(recipient.isBlocked())
                                    .setProfileSharingEnabled(recipient.isProfileSharing())
                                    .setIdentityKey(recipient.getIdentityKey())
                                    .setIdentityState(localToRemoteIdentityState(recipient.getIdentityStatus()))
                                    .build();
+  }
+
+  private static @NonNull SignalGroupV1Record localToRemoteGroupV1(@NonNull RecipientSettings recipient, byte[] storageKey) {
+    if (recipient.getGroupId() == null) {
+      throw new AssertionError("Must have a groupId!");
+    }
+
+    return new SignalGroupV1Record.Builder(storageKey, GroupUtil.getDecodedIdOrThrow(recipient.getGroupId()))
+                                  .setBlocked(recipient.isBlocked())
+                                  .setProfileSharingEnabled(recipient.isProfileSharing())
+                                  .build();
   }
 
   public static @NonNull IdentityDatabase.VerifiedStatus remoteToLocalIdentityStatus(@NonNull IdentityState identityState) {
@@ -246,16 +299,17 @@ public final class StorageSyncHelper {
     UUID                 uuid           = remote.getAddress().getUuid().or(local.getAddress().getUuid()).orNull();
     String               e164           = remote.getAddress().getNumber().or(local.getAddress().getNumber()).orNull();
     SignalServiceAddress address        = new SignalServiceAddress(uuid, e164);
-    String               profileName    = remote.getProfileName().or(local.getProfileName()).orNull();
+    String               givenName      = remote.getGivenName().or(local.getGivenName()).or("");
+    String               familyName     = remote.getFamilyName().or(local.getFamilyName()).or("");
     byte[]               profileKey     = remote.getProfileKey().or(local.getProfileKey()).orNull();
-    String               username       = remote.getUsername().or(local.getUsername()).orNull();
+    String               username       = remote.getUsername().or(local.getUsername()).or("");
     IdentityState        identityState  = remote.getIdentityState();
     byte[]               identityKey    = remote.getIdentityKey().or(local.getIdentityKey()).orNull();
-    String               nickname       = local.getNickname().orNull(); // TODO [greyson] Update this when we add real nickname support
+    String               nickname       = local.getNickname().or(""); // TODO [greyson] Update this when we add real nickname support
     boolean              blocked        = remote.isBlocked();
-    boolean              profileSharing = remote.isProfileSharingEnabled() | local.isProfileSharingEnabled();
-    boolean              matchesRemote  = doParamsMatchContact(remote, address, profileName, profileKey, username, identityState, identityKey, blocked, profileSharing, nickname);
-    boolean              matchesLocal   = doParamsMatchContact(local, address, profileName, profileKey, username, identityState, identityKey, blocked, profileSharing, nickname);
+    boolean              profileSharing = remote.isProfileSharingEnabled() || local.isProfileSharingEnabled();
+    boolean              matchesRemote  = doParamsMatchContact(remote, address, givenName, familyName, profileKey, username, identityState, identityKey, blocked, profileSharing, nickname);
+    boolean              matchesLocal   = doParamsMatchContact(local, address, givenName, familyName, profileKey, username, identityState, identityKey, blocked, profileSharing, nickname);
 
     if (remote.getProtoVersion() > 0) {
       Log.w(TAG, "Inbound model has version " + remote.getProtoVersion() + ", but our version is 0.");
@@ -267,15 +321,38 @@ public final class StorageSyncHelper {
       return local;
     } else {
       return new SignalContactRecord.Builder(generateKey(), address)
-                                     .setProfileName(profileName)
-                                     .setProfileKey(profileKey)
-                                     .setUsername(username)
-                                     .setIdentityState(identityState)
-                                     .setIdentityKey(identityKey)
-                                     .setBlocked(blocked)
-                                     .setProfileSharingEnabled(profileSharing)
-                                     .setNickname(nickname)
-                                     .build();
+                                    .setGivenName(givenName)
+                                    .setFamilyName(familyName)
+                                    .setProfileKey(profileKey)
+                                    .setUsername(username)
+                                    .setIdentityState(identityState)
+                                    .setIdentityKey(identityKey)
+                                    .setBlocked(blocked)
+                                    .setProfileSharingEnabled(profileSharing)
+                                    .setNickname(nickname)
+                                    .build();
+    }
+  }
+
+  @VisibleForTesting
+  static @NonNull SignalGroupV1Record mergeGroupV1(@NonNull SignalGroupV1Record remote,
+                                                   @NonNull SignalGroupV1Record local)
+  {
+    boolean blocked        = remote.isBlocked();
+    boolean profileSharing = remote.isProfileSharingEnabled() || local.isProfileSharingEnabled();
+
+    boolean matchesRemote = blocked == remote.isBlocked() && profileSharing == remote.isProfileSharingEnabled();
+    boolean matchesLocal  = blocked == local.isBlocked()  && profileSharing == local.isProfileSharingEnabled();
+
+    if (matchesRemote) {
+      return remote;
+    } else if (matchesLocal) {
+      return local;
+    } else {
+      return new SignalGroupV1Record.Builder(generateKey(), remote.getGroupId())
+                                    .setBlocked(blocked)
+                                    .setProfileSharingEnabled(blocked)
+                                    .build();
     }
   }
 
@@ -294,7 +371,8 @@ public final class StorageSyncHelper {
 
   private static boolean doParamsMatchContact(@NonNull SignalContactRecord contact,
                                               @NonNull SignalServiceAddress address,
-                                              @Nullable String profileName,
+                                              @Nullable String givenName,
+                                              @Nullable String familyName,
                                               @Nullable byte[] profileKey,
                                               @Nullable String username,
                                               @Nullable IdentityState identityState,
@@ -303,15 +381,16 @@ public final class StorageSyncHelper {
                                               boolean profileSharing,
                                               @Nullable String nickname)
   {
-    return Objects.equals(contact.getAddress(), address)                  &&
-           Objects.equals(contact.getProfileName().orNull(), profileName) &&
-           Arrays.equals(contact.getProfileKey().orNull(), profileKey)    &&
-           Objects.equals(contact.getUsername().orNull(), username)       &&
-           Objects.equals(contact.getIdentityState(), identityState)      &&
-           Arrays.equals(contact.getIdentityKey().orNull(), identityKey)  &&
-           contact.isBlocked() == blocked                                 &&
-           contact.isProfileSharingEnabled() == profileSharing            &&
-           Objects.equals(contact.getNickname().orNull(), nickname);
+    return Objects.equals(contact.getAddress(), address)                 &&
+           Objects.equals(contact.getGivenName().or(""), givenName)      &&
+           Objects.equals(contact.getFamilyName().or(""), familyName)    &&
+           Arrays.equals(contact.getProfileKey().orNull(), profileKey)   &&
+           Objects.equals(contact.getUsername().or(""), username)        &&
+           Objects.equals(contact.getIdentityState(), identityState)     &&
+           Arrays.equals(contact.getIdentityKey().orNull(), identityKey) &&
+           contact.isBlocked() == blocked                                &&
+           contact.isProfileSharingEnabled() == profileSharing           &&
+           Objects.equals(contact.getNickname().or(""), nickname);
   }
 
   private static @NonNull ContactRecordMergeResult resolveContactConflict(@NonNull Collection<SignalContactRecord> remoteOnlyRecords,
@@ -359,6 +438,40 @@ public final class StorageSyncHelper {
     return new ContactRecordMergeResult(localInserts, localUpdates, remoteInserts, remoteUpdates);
   }
 
+  private static @NonNull GroupV1RecordMergeResult resolveGroupV1Conflict(@NonNull Collection<SignalGroupV1Record> remoteOnlyRecords,
+                                                                          @NonNull Collection<SignalGroupV1Record> localOnlyRecords)
+  {
+    Map<String, SignalGroupV1Record> remoteByGroupId = Stream.of(remoteOnlyRecords).collect(Collectors.toMap(g -> GroupUtil.getEncodedId(g.getGroupId(), false), g -> g));
+    Map<String, SignalGroupV1Record> localByGroupId  = Stream.of(localOnlyRecords).collect(Collectors.toMap(g -> GroupUtil.getEncodedId(g.getGroupId(), false), g -> g));
+
+    Set<SignalGroupV1Record> localInserts  = new LinkedHashSet<>(remoteOnlyRecords);
+    Set<SignalGroupV1Record> remoteInserts = new LinkedHashSet<>(localOnlyRecords);
+    Set<GroupV1Update>       localUpdates  = new LinkedHashSet<>();
+    Set<GroupV1Update>       remoteUpdates = new LinkedHashSet<>();
+
+    for (Map.Entry<String, SignalGroupV1Record> entry : remoteByGroupId.entrySet()) {
+      SignalGroupV1Record remote = entry.getValue();
+      SignalGroupV1Record local  = localByGroupId.get(entry.getKey());
+
+      if (local != null) {
+        SignalGroupV1Record merged = mergeGroupV1(remote, local);
+
+        if (!merged.equals(remote)) {
+          remoteUpdates.add(new GroupV1Update(remote, merged));
+        }
+
+        if (!merged.equals(local)) {
+          localUpdates.add(new GroupV1Update(local, merged));
+        }
+
+        localInserts.remove(remote);
+        remoteInserts.remove(local);
+      }
+    }
+
+    return new GroupV1RecordMergeResult(localInserts, localUpdates, remoteInserts, remoteUpdates);
+  }
+
   public static final class ContactUpdate {
     private final SignalContactRecord oldContact;
     private final SignalContactRecord newContact;
@@ -368,13 +481,11 @@ public final class StorageSyncHelper {
       this.newContact = newContact;
     }
 
-    public @NonNull
-    SignalContactRecord getOldContact() {
+    public @NonNull SignalContactRecord getOld() {
       return oldContact;
     }
 
-    public @NonNull
-    SignalContactRecord getNewContact() {
+    public @NonNull SignalContactRecord getNew() {
       return newContact;
     }
 
@@ -394,6 +505,72 @@ public final class StorageSyncHelper {
     @Override
     public int hashCode() {
       return Objects.hash(oldContact, newContact);
+    }
+  }
+
+  public static final class GroupV1Update {
+    private final SignalGroupV1Record oldGroup;
+    private final SignalGroupV1Record newGroup;
+
+
+    public GroupV1Update(@NonNull SignalGroupV1Record oldGroup, @NonNull SignalGroupV1Record newGroup) {
+      this.oldGroup = oldGroup;
+      this.newGroup = newGroup;
+    }
+
+    public @NonNull SignalGroupV1Record getOld() {
+      return oldGroup;
+    }
+
+    public @NonNull SignalGroupV1Record getNew() {
+      return newGroup;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      GroupV1Update that = (GroupV1Update) o;
+      return oldGroup.equals(that.oldGroup) &&
+          newGroup.equals(that.newGroup);
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash(oldGroup, newGroup);
+    }
+  }
+
+  @VisibleForTesting
+  static class RecordUpdate {
+    private final SignalStorageRecord oldRecord;
+    private final SignalStorageRecord newRecord;
+
+    RecordUpdate(@NonNull SignalStorageRecord oldRecord, @NonNull SignalStorageRecord newRecord) {
+      this.oldRecord = oldRecord;
+      this.newRecord = newRecord;
+    }
+
+    public @NonNull SignalStorageRecord getOld() {
+      return oldRecord;
+    }
+
+    public @NonNull SignalStorageRecord getNew() {
+      return newRecord;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      RecordUpdate that = (RecordUpdate) o;
+      return oldRecord.equals(that.oldRecord) &&
+          newRecord.equals(that.newRecord);
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash(oldRecord, newRecord);
     }
   }
 
@@ -422,25 +599,31 @@ public final class StorageSyncHelper {
   public static final class MergeResult {
     private final Set<SignalContactRecord> localContactInserts;
     private final Set<ContactUpdate>       localContactUpdates;
-    private final Set<SignalContactRecord> remoteContactInserts;
-    private final Set<ContactUpdate>       remoteContactUpdates;
+    private final Set<SignalGroupV1Record> localGroupV1Inserts;
+    private final Set<GroupV1Update>       localGroupV1Updates;
     private final Set<SignalStorageRecord> localUnknownInserts;
     private final Set<SignalStorageRecord> localUnknownDeletes;
+    private final Set<SignalStorageRecord> remoteInserts;
+    private final Set<RecordUpdate>        remoteUpdates;
 
     @VisibleForTesting
     MergeResult(@NonNull Set<SignalContactRecord> localContactInserts,
-                @NonNull Set<ContactUpdate> localContactUpdates,
-                @NonNull Set<SignalContactRecord> remoteContactInserts,
-                @NonNull Set<ContactUpdate> remoteContactUpdates,
+                @NonNull Set<ContactUpdate>       localContactUpdates,
+                @NonNull Set<SignalGroupV1Record> localGroupV1Inserts,
+                @NonNull Set<GroupV1Update>       localGroupV1Updates,
                 @NonNull Set<SignalStorageRecord> localUnknownInserts,
-                @NonNull Set<SignalStorageRecord> localUnknownDeletes)
+                @NonNull Set<SignalStorageRecord> localUnknownDeletes,
+                @NonNull Set<SignalStorageRecord> remoteInserts,
+                @NonNull Set<RecordUpdate>        remoteUpdates)
     {
       this.localContactInserts  = localContactInserts;
       this.localContactUpdates  = localContactUpdates;
-      this.remoteContactInserts = remoteContactInserts;
-      this.remoteContactUpdates = remoteContactUpdates;
+      this.localGroupV1Inserts  = localGroupV1Inserts;
+      this.localGroupV1Updates  = localGroupV1Updates;
       this.localUnknownInserts  = localUnknownInserts;
       this.localUnknownDeletes  = localUnknownDeletes;
+      this.remoteInserts        = remoteInserts;
+      this.remoteUpdates        = remoteUpdates;
     }
 
     public @NonNull Set<SignalContactRecord> getLocalContactInserts() {
@@ -451,12 +634,12 @@ public final class StorageSyncHelper {
       return localContactUpdates;
     }
 
-    public @NonNull Set<SignalContactRecord> getRemoteContactInserts() {
-      return remoteContactInserts;
+    public @NonNull Set<SignalGroupV1Record> getLocalGroupV1Inserts() {
+      return localGroupV1Inserts;
     }
 
-    public @NonNull Set<ContactUpdate> getRemoteContactUpdates() {
-      return remoteContactUpdates;
+    public @NonNull Set<GroupV1Update> getLocalGroupV1Updates() {
+      return localGroupV1Updates;
     }
 
     public @NonNull Set<SignalStorageRecord> getLocalUnknownInserts() {
@@ -465,6 +648,21 @@ public final class StorageSyncHelper {
 
     public @NonNull Set<SignalStorageRecord> getLocalUnknownDeletes() {
       return localUnknownDeletes;
+    }
+
+    public @NonNull Set<SignalStorageRecord> getRemoteInserts() {
+      return remoteInserts;
+    }
+
+    public @NonNull Set<RecordUpdate> getRemoteUpdates() {
+      return remoteUpdates;
+    }
+
+    @Override
+    public @NonNull String toString() {
+      return String.format(Locale.ENGLISH,
+                           "localContactInserts: %d, localContactUpdates: %d, localGroupInserts: %d, localGroupUpdates: %d, localUnknownInserts: %d, localUnknownDeletes: %d, remoteInserts: %d, remoteUpdates: %d",
+                           localContactInserts.size(), localContactUpdates.size(), localGroupV1Inserts.size(), localGroupV1Updates.size(), localUnknownInserts.size(), localUnknownDeletes.size(), remoteInserts.size(), remoteUpdates.size());
     }
   }
 
@@ -492,6 +690,20 @@ public final class StorageSyncHelper {
 
     public @NonNull List<byte[]> getDeletes() {
       return deletes;
+    }
+
+    public boolean isEmpty() {
+      return inserts.isEmpty() && deletes.isEmpty();
+    }
+
+    @Override
+    public @NonNull String toString() {
+      return String.format(Locale.ENGLISH,
+                           "ManifestVersion: %d, Total Keys: %d, Inserts: %d, Deletes: %d",
+                           manifest.getVersion(),
+                           manifest.getStorageKeys().size(),
+                           inserts.size(),
+                           deletes.size());
     }
   }
 
@@ -523,6 +735,24 @@ public final class StorageSyncHelper {
                              @NonNull Set<ContactUpdate> localUpdates,
                              @NonNull Set<SignalContactRecord> remoteInserts,
                              @NonNull Set<ContactUpdate> remoteUpdates)
+    {
+      this.localInserts  = localInserts;
+      this.localUpdates  = localUpdates;
+      this.remoteInserts = remoteInserts;
+      this.remoteUpdates = remoteUpdates;
+    }
+  }
+
+  private static final class GroupV1RecordMergeResult {
+    final Set<SignalGroupV1Record> localInserts;
+    final Set<GroupV1Update>       localUpdates;
+    final Set<SignalGroupV1Record> remoteInserts;
+    final Set<GroupV1Update>       remoteUpdates;
+
+    GroupV1RecordMergeResult(@NonNull Set<SignalGroupV1Record> localInserts,
+                             @NonNull Set<GroupV1Update> localUpdates,
+                             @NonNull Set<SignalGroupV1Record> remoteInserts,
+                             @NonNull Set<GroupV1Update> remoteUpdates)
     {
       this.localInserts  = localInserts;
       this.localUpdates  = localUpdates;

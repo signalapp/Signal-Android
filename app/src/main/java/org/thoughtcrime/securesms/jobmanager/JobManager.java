@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.jobmanager.persistence.JobStorage;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,9 +24,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Allows the scheduling of durable jobs that will be run as early as possible.
@@ -157,6 +161,43 @@ public class JobManager implements ConstraintObserver.Notifier {
    */
   public void cancel(@NonNull String id) {
     executor.execute(() -> jobController.cancelJob(id));
+  }
+
+  /**
+   * Runs the specified job synchronously. Beware: All normal dependencies are respected, meaning
+   * you must take great care where you call this. It could take a very long time to complete!
+   *
+   * @return If the job completed, this will contain its completion state. If it timed out or
+   *         otherwise didn't complete, this will be absent.
+   */
+  @WorkerThread
+  public Optional<JobTracker.JobState> runSynchronously(@NonNull Job job, long timeout) {
+    CountDownLatch                       latch       = new CountDownLatch(1);
+    AtomicReference<JobTracker.JobState> resultState = new AtomicReference<>();
+
+    addListener(job.getId(), new JobTracker.JobListener() {
+      @Override
+      public void onStateChanged(@NonNull JobTracker.JobState jobState) {
+        if (jobState.isComplete()) {
+          removeListener(this);
+          resultState.set(jobState);
+          latch.countDown();
+        }
+      }
+    });
+
+    add(job);
+
+    try {
+      if (!latch.await(timeout, TimeUnit.MILLISECONDS)) {
+        return Optional.absent();
+      }
+    } catch (InterruptedException e) {
+      Log.w(TAG, "Interrupted during runSynchronously()", e);
+      return Optional.absent();
+    }
+
+    return Optional.fromNullable(resultState.get());
   }
 
   /**

@@ -40,7 +40,7 @@ public class ApplicationMigrations {
 
   private static final int LEGACY_CANONICAL_VERSION = 455;
 
-  public static final int CURRENT_VERSION = 10;
+  public static final int CURRENT_VERSION = 11;
 
   private static final class Version {
     static final int LEGACY             = 1;
@@ -53,6 +53,7 @@ public class ApplicationMigrations {
     static final int STICKERS_LAUNCH    = 8;
     static final int TEST_ARGON2        = 9;
     static final int SWOON_STICKERS     = 10;
+    static final int STORAGE_SERVICE    = 11;
   }
 
   /**
@@ -203,6 +204,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.SWOON_STICKERS) {
       jobs.put(Version.SWOON_STICKERS, new StickerAdditionMigrationJob(BlessedPacks.SWOON_HANDS, BlessedPacks.SWOON_FACES));
+    }
+
+    if (lastSeenVersion < Version.STORAGE_SERVICE) {
+      jobs.put(Version.STORAGE_SERVICE, new StorageServiceMigrationJob());
     }
 
     return jobs;

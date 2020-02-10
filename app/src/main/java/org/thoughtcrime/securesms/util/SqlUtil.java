@@ -74,6 +74,15 @@ public final class SqlUtil {
     return new UpdateQuery("(" + selection + ") AND (" + qualifier + ")", fullArgs.toArray(new String[0]));
   }
 
+  public static String[] appendArg(@NonNull String[] args, String addition) {
+    String[] output = new String[args.length + 1];
+
+    System.arraycopy(args, 0, output, 0, args.length);
+    output[output.length - 1] = addition;
+
+    return output;
+  }
+
   public static class UpdateQuery {
     private final String   where;
     private final String[] whereArgs;
