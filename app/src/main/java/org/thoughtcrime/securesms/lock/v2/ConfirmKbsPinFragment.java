@@ -116,6 +116,7 @@ public class ConfirmKbsPinFragment extends BaseKbsPinFragment<ConfirmKbsPinViewM
         startEndAnimationOnNextProgressRepetition(R.raw.lottie_kbs_failure, new AnimationCompleteListener() {
           @Override
           public void onAnimationEnd(Animator animation) {
+            SignalStore.registrationValues().setRegistrationComplete();
             displayFailedDialog();
           }
         });
