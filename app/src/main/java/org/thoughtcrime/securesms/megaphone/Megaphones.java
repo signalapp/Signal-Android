@@ -13,13 +13,12 @@ import org.thoughtcrime.securesms.database.model.MegaphoneRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.lock.RegistrationLockDialog;
-import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
 import org.thoughtcrime.securesms.lock.SignalPinReminderDialog;
 import org.thoughtcrime.securesms.lock.SignalPinReminders;
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
 import org.thoughtcrime.securesms.lock.v2.KbsMigrationActivity;
 import org.thoughtcrime.securesms.lock.v2.PinUtil;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 
 import java.util.LinkedHashMap;
@@ -41,6 +40,8 @@ import java.util.Objects;
  *   based on whatever properties you're interested in.
  */
 public final class Megaphones {
+
+  private static final String TAG = Log.tag(Megaphones.class);
 
   private Megaphones() {}
 
@@ -81,7 +82,7 @@ public final class Megaphones {
     return new LinkedHashMap<Event, MegaphoneSchedule>() {{
       put(Event.REACTIONS, new ForeverSchedule(true));
       put(Event.PINS_FOR_ALL, new PinsForAllSchedule());
-      put(Event.PIN_REMINDER, new PinReminderSchedule());
+      put(Event.PIN_REMINDER, new SignalPinReminderSchedule());
     }};
   }
 
@@ -161,15 +162,17 @@ public final class Megaphones {
                           SignalPinReminderDialog.show(controller.getMegaphoneActivity(), controller::onMegaphoneNavigationRequested, new SignalPinReminderDialog.Callback() {
                             @Override
                             public void onReminderDismissed(boolean includedFailure) {
+                              Log.i(TAG, "[PinReminder] onReminderDismissed(" + includedFailure + ")");
                               if (includedFailure) {
-                                SignalStore.pinValues().onEntryFailure();
+                                SignalStore.pinValues().onEntrySkipWithWrongGuess();
                               }
                             }
 
                             @Override
                             public void onReminderCompleted(boolean includedFailure) {
+                              Log.i(TAG, "[PinReminder] onReminderCompleted(" + includedFailure + ")");
                               if (includedFailure) {
-                                SignalStore.pinValues().onEntryFailure();
+                                SignalStore.pinValues().onEntrySuccessWithWrongGuess();
                               } else {
                                 SignalStore.pinValues().onEntrySuccess();
                               }

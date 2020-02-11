@@ -26,6 +26,7 @@ import androidx.core.app.DialogCompat;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
@@ -41,6 +42,8 @@ public final class SignalPinReminderDialog {
   private static final String TAG = Log.tag(SignalPinReminderDialog.class);
 
   public static void show(@NonNull Context context, @NonNull Launcher launcher, @NonNull Callback mainCallback) {
+    Log.i(TAG, "Showing PIN reminder dialog.");
+
     AlertDialog dialog = new AlertDialog.Builder(context, ThemeUtil.isDarkTheme(context) ? R.style.RationaleDialogDark_SignalAccent : R.style.RationaleDialogLight_SignalAccent)
                                         .setView(R.layout.kbs_pin_reminder_view)
                                         .setCancelable(false)
@@ -55,11 +58,11 @@ public final class SignalPinReminderDialog {
     dialog.show();
     dialog.getWindow().setLayout((int)(metrics.widthPixels * .80), ViewGroup.LayoutParams.WRAP_CONTENT);
 
-    TextInputLayout pinWrapper  = (TextInputLayout) DialogCompat.requireViewById(dialog, R.id.pin_wrapper);
-    EditText        pinEditText = (EditText) DialogCompat.requireViewById(dialog, R.id.pin);
-    TextView        reminder    = (TextView) DialogCompat.requireViewById(dialog, R.id.reminder);
-    View            skip        = DialogCompat.requireViewById(dialog, R.id.skip);
-    View            submit      = DialogCompat.requireViewById(dialog, R.id.submit);
+    EditText pinEditText = (EditText) DialogCompat.requireViewById(dialog, R.id.pin);
+    TextView pinStatus   = (TextView) DialogCompat.requireViewById(dialog, R.id.pin_status);
+    TextView reminder    = (TextView) DialogCompat.requireViewById(dialog, R.id.reminder);
+    View     skip        = DialogCompat.requireViewById(dialog, R.id.skip);
+    View     submit      = DialogCompat.requireViewById(dialog, R.id.submit);
 
     SpannableString reminderText = new SpannableString(context.getString(R.string.KbsReminderDialog__to_help_you_memorize_your_pin));
     SpannableString forgotText   = new SpannableString(context.getString(R.string.KbsReminderDialog__forgot_pin));
@@ -92,7 +95,7 @@ public final class SignalPinReminderDialog {
     reminder.setText(new SpannableStringBuilder(reminderText).append(" ").append(forgotText));
     reminder.setMovementMethod(LinkMovementMethod.getInstance());
 
-    PinVerifier.Callback callback = getPinWatcherCallback(context, dialog, pinWrapper, mainCallback);
+    PinVerifier.Callback callback = getPinWatcherCallback(context, dialog, pinEditText, pinStatus, mainCallback);
     PinVerifier          verifier = SignalStore.kbsValues().isV2RegistrationLockEnabled()
                                     ? new V2PinVerifier()
                                     : new V1PinVerifier(context);
@@ -102,16 +105,29 @@ public final class SignalPinReminderDialog {
       mainCallback.onReminderDismissed(callback.hadWrongGuess());
     });
 
+    submit.setEnabled(false);
     submit.setOnClickListener(v -> {
       Editable pinEditable = pinEditText.getText();
 
       verifier.verifyPin(pinEditable == null ? null : pinEditable.toString(), callback);
     });
+
+    pinEditText.addTextChangedListener(new SimpleTextWatcher() {
+      @Override
+      public void onTextChanged(String text) {
+        if (text.length() >= KbsConstants.MINIMUM_POSSIBLE_PIN_LENGTH) {
+          submit.setEnabled(true);
+        } else {
+          submit.setEnabled(false);
+        }
+      }
+    });
   }
 
   private static PinVerifier.Callback getPinWatcherCallback(@NonNull Context context,
                                                             @NonNull AlertDialog dialog,
-                                                            @NonNull TextInputLayout inputWrapper,
+                                                            @NonNull EditText inputText,
+                                                            @NonNull TextView statusText,
                                                             @NonNull Callback mainCallback)
   {
     return new PinVerifier.Callback() {
@@ -119,14 +135,17 @@ public final class SignalPinReminderDialog {
 
       @Override
       public void onPinCorrect() {
+        Log.i(TAG, "Correct PIN entry.");
         dialog.dismiss();
         mainCallback.onReminderCompleted(hadWrongGuess);
       }
 
       @Override
       public void onPinWrong() {
+        Log.i(TAG, "Incorrect PIN entry.");
         hadWrongGuess = true;
-        inputWrapper.setError(context.getString(R.string.KbsReminderDialog__incorrect_pin_try_again));
+        inputText.getText().clear();
+        statusText.setText(context.getString(R.string.KbsReminderDialog__incorrect_pin_try_again));
       }
 
       @Override

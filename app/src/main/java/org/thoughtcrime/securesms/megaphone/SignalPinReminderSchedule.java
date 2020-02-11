@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.megaphone;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 
-final class PinReminderSchedule implements MegaphoneSchedule {
+final class SignalPinReminderSchedule implements MegaphoneSchedule {
 
   @Override
   public boolean shouldDisplay(int seenCount, long lastSeen, long firstVisible, long currentTime) {

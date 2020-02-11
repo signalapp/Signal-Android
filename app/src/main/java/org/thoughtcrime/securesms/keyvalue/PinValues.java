@@ -20,7 +20,7 @@ public final class PinValues {
 
   public void onEntrySuccess() {
     long nextInterval = SignalPinReminders.getNextInterval(getCurrentInterval());
-    Log.w(TAG, "onEntrySuccess() nextInterval: " + nextInterval);
+    Log.i(TAG, "onEntrySuccess() nextInterval: " + nextInterval);
 
     store.beginWrite()
          .putLong(LAST_SUCCESSFUL_ENTRY, System.currentTimeMillis())
@@ -28,18 +28,29 @@ public final class PinValues {
          .apply();
   }
 
-  public void onEntryFailure() {
+  public void onEntrySuccessWithWrongGuess() {
     long nextInterval = SignalPinReminders.getPreviousInterval(getCurrentInterval());
-    Log.w(TAG, "onEntryFailure() nextInterval: " + nextInterval);
+    Log.i(TAG, "onEntrySuccessWithWrongGuess() nextInterval: " + nextInterval);
+
+    store.beginWrite()
+         .putLong(LAST_SUCCESSFUL_ENTRY, System.currentTimeMillis())
+         .putLong(NEXT_INTERVAL, nextInterval)
+         .apply();
+  }
+
+  public void onEntrySkipWithWrongGuess() {
+    long nextInterval = SignalPinReminders.getPreviousInterval(getCurrentInterval());
+    Log.i(TAG, "onEntrySkipWithWrongGuess() nextInterval: " + nextInterval);
 
     store.beginWrite()
          .putLong(NEXT_INTERVAL, nextInterval)
          .apply();
   }
 
+
   public void onPinChange() {
     long nextInterval = SignalPinReminders.INITIAL_INTERVAL;
-    Log.w(TAG, "onPinChange() nextInterval: " + nextInterval);
+    Log.i(TAG, "onPinChange() nextInterval: " + nextInterval);
 
     store.beginWrite()
          .putLong(NEXT_INTERVAL, nextInterval)

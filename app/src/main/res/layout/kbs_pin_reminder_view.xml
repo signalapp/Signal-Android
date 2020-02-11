@@ -5,7 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="20dp">
+    android:padding="20dp"
+    tools:layout_width="300dp">
 
     <TextView
         android:id="@+id/pin_reminder_title"
@@ -19,25 +20,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/pin_wrapper"
+
+    <EditText
+        android:id="@+id/pin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="105sp"
+        android:paddingTop="40dp"
+        android:gravity="center"
+        android:textColor="?attr/registration_lock_reminder_view_pin_text_color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pin_reminder_title"
+        tools:text="******"/>
+
+    <TextView
+        android:id="@+id/pin_status"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingStart="80dp"
-        android:paddingTop="40dp"
-        android:paddingEnd="80dp"
-        app:layout_constraintTop_toBottomOf="@id/pin_reminder_title"
+        android:gravity="center"
+        android:textColor="@color/core_red"
+        app:layout_constraintTop_toBottomOf="@id/pin"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="@string/KbsReminderDialog__incorrect_pin_try_again">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/pin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="?attr/registration_lock_reminder_view_pin_text_color" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+    </TextView>
 
     <TextView
         android:id="@+id/reminder"
@@ -47,7 +55,7 @@
         android:paddingTop="40dp"
         android:paddingBottom="40dp"
         style="@style/Signal.Text.Preview"
-        app:layout_constraintTop_toBottomOf="@id/pin_wrapper"
+        app:layout_constraintTop_toBottomOf="@id/pin_status"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="@string/KbsReminderDialog__to_help_you_memorize_your_pin" />
