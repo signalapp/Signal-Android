@@ -43,140 +43,152 @@ import java.util.UUID;
  */
 public class ApplicationDependencyProvider implements ApplicationDependencies.Provider {
 
-  private static final String TAG = Log.tag(ApplicationDependencyProvider.class);
+    private static final String TAG = Log.tag(ApplicationDependencyProvider.class);
 
-  private final Application                context;
-  private final SignalServiceNetworkAccess networkAccess;
+    private final Application context;
+    private final SignalServiceNetworkAccess networkAccess;
 
-  public ApplicationDependencyProvider(@NonNull Application context, @NonNull SignalServiceNetworkAccess networkAccess) {
-    this.context       = context;
-    this.networkAccess = networkAccess;
-  }
-
-  @Override
-  public @NonNull SignalServiceAccountManager provideSignalServiceAccountManager() {
-    return new SignalServiceAccountManager(networkAccess.getConfiguration(context),
-                                           new DynamicCredentialsProvider(context),
-                                           BuildConfig.SIGNAL_AGENT);
-  }
-
-  @Override
-  public @NonNull SignalServiceMessageSender provideSignalServiceMessageSender() {
-      return new SignalServiceMessageSender(networkAccess.getConfiguration(context),
-                                            new DynamicCredentialsProvider(context),
-                                            new SignalProtocolStoreImpl(context),
-                                            BuildConfig.SIGNAL_AGENT,
-                                            TextSecurePreferences.isMultiDevice(context),
-                                            Optional.fromNullable(IncomingMessageObserver.getPipe()),
-                                            Optional.fromNullable(IncomingMessageObserver.getUnidentifiedPipe()),
-                                            Optional.of(new SecurityEventListener(context)));
-  }
-
-  @Override
-  public @NonNull SignalServiceMessageReceiver provideSignalServiceMessageReceiver() {
-    SleepTimer sleepTimer = TextSecurePreferences.isFcmDisabled(context) ? new AlarmSleepTimer(context)
-                                                                         : new UptimeSleepTimer();
-    return new SignalServiceMessageReceiver(networkAccess.getConfiguration(context),
-                                            new DynamicCredentialsProvider(context),
-                                            BuildConfig.SIGNAL_AGENT,
-                                            new PipeConnectivityListener(),
-                                            sleepTimer);
-  }
-
-  @Override
-  public @NonNull SignalServiceNetworkAccess provideSignalServiceNetworkAccess() {
-    return networkAccess;
-  }
-
-  @Override
-  public @NonNull IncomingMessageProcessor provideIncomingMessageProcessor() {
-    return new IncomingMessageProcessor(context);
-  }
-
-  @Override
-  public @NonNull MessageRetriever provideMessageRetriever() {
-    return new MessageRetriever();
-  }
-
-  @Override
-  public @NonNull LiveRecipientCache provideRecipientCache() {
-    return new LiveRecipientCache(context);
-  }
-
-  @Override
-  public @NonNull JobManager provideJobManager() {
-    return new JobManager(context, new JobManager.Configuration.Builder()
-                                                               .setDataSerializer(new JsonDataSerializer())
-                                                               .setJobFactories(JobManagerFactories.getJobFactories(context))
-                                                               .setConstraintFactories(JobManagerFactories.getConstraintFactories(context))
-                                                               .setConstraintObservers(JobManagerFactories.getConstraintObservers(context))
-                                                               .setJobStorage(new FastJobStorage(DatabaseFactory.getJobDatabase(context)))
-                                                               .setJobMigrator(new JobMigrator(TextSecurePreferences.getJobManagerVersion(context), JobManager.CURRENT_VERSION, JobManagerFactories.getJobMigrations(context)))
-                                                               .build());
-  }
-
-  @Override
-  public @NonNull FrameRateTracker provideFrameRateTracker() {
-    return new FrameRateTracker(context);
-  }
-
-  @Override
-  public @NonNull KeyValueStore provideKeyValueStore() {
-    return new KeyValueStore(context);
-  }
-
-  private static class DynamicCredentialsProvider implements CredentialsProvider {
-
-    private final Context context;
-
-    private DynamicCredentialsProvider(Context context) {
-      this.context = context.getApplicationContext();
+    public ApplicationDependencyProvider(@NonNull Application context, @NonNull SignalServiceNetworkAccess networkAccess) {
+        this.context = context;
+        this.networkAccess = networkAccess;
     }
 
     @Override
-    public UUID getUuid() {
-      return TextSecurePreferences.getLocalUuid(context);
+    public @NonNull
+    SignalServiceAccountManager provideSignalServiceAccountManager() {
+        return new SignalServiceAccountManager(
+                networkAccess.getConfiguration(context),
+                new DynamicCredentialsProvider(context),
+                BuildConfig.SIGNAL_AGENT);
     }
 
     @Override
-    public String getE164() {
-      return TextSecurePreferences.getLocalNumber(context);
+    public @NonNull
+    SignalServiceMessageSender provideSignalServiceMessageSender() {
+        return new SignalServiceMessageSender(
+                networkAccess.getConfiguration(context),
+                new DynamicCredentialsProvider(context),
+                new SignalProtocolStoreImpl(context),
+                BuildConfig.SIGNAL_AGENT,
+                TextSecurePreferences.isMultiDevice(context),
+                Optional.fromNullable(IncomingMessageObserver.getPipe()),
+                Optional.fromNullable(IncomingMessageObserver.getUnidentifiedPipe()),
+                Optional.of(new SecurityEventListener(context)));
     }
 
     @Override
-    public String getPassword() {
-      return TextSecurePreferences.getPushServerPassword(context);
+    public @NonNull
+    SignalServiceMessageReceiver provideSignalServiceMessageReceiver() {
+        SleepTimer sleepTimer = TextSecurePreferences.isFcmDisabled(context) ? new AlarmSleepTimer(context)
+                : new UptimeSleepTimer();
+        return new SignalServiceMessageReceiver(networkAccess.getConfiguration(context),
+                new DynamicCredentialsProvider(context),
+                BuildConfig.SIGNAL_AGENT,
+                new PipeConnectivityListener(),
+                sleepTimer);
     }
 
     @Override
-    public String getSignalingKey() {
-      return TextSecurePreferences.getSignalingKey(context);
-    }
-  }
-
-  private class PipeConnectivityListener implements ConnectivityListener {
-
-    @Override
-    public void onConnected() {
-      Log.i(TAG, "onConnected()");
-      TextSecurePreferences.setUnauthorizedReceived(context, false);
+    public @NonNull
+    SignalServiceNetworkAccess provideSignalServiceNetworkAccess() {
+        return networkAccess;
     }
 
     @Override
-    public void onConnecting() {
-      Log.i(TAG, "onConnecting()");
+    public @NonNull
+    IncomingMessageProcessor provideIncomingMessageProcessor() {
+        return new IncomingMessageProcessor(context);
     }
 
     @Override
-    public void onDisconnected() {
-      Log.w(TAG, "onDisconnected()");
+    public @NonNull
+    MessageRetriever provideMessageRetriever() {
+        return new MessageRetriever();
     }
 
     @Override
-    public void onAuthenticationFailure() {
-      Log.w(TAG, "onAuthenticationFailure()");
-      TextSecurePreferences.setUnauthorizedReceived(context, true);
-      EventBus.getDefault().post(new ReminderUpdateEvent());
+    public @NonNull
+    LiveRecipientCache provideRecipientCache() {
+        return new LiveRecipientCache(context);
     }
-  }
+
+    @Override
+    public @NonNull
+    JobManager provideJobManager() {
+        return new JobManager(context, new JobManager.Configuration.Builder()
+                .setDataSerializer(new JsonDataSerializer())
+                .setJobFactories(JobManagerFactories.getJobFactories(context))
+                .setConstraintFactories(JobManagerFactories.getConstraintFactories(context))
+                .setConstraintObservers(JobManagerFactories.getConstraintObservers(context))
+                .setJobStorage(new FastJobStorage(DatabaseFactory.getJobDatabase(context)))
+                .setJobMigrator(new JobMigrator(TextSecurePreferences.getJobManagerVersion(context), JobManager.CURRENT_VERSION, JobManagerFactories.getJobMigrations(context)))
+                .build());
+    }
+
+    @Override
+    public @NonNull
+    FrameRateTracker provideFrameRateTracker() {
+        return new FrameRateTracker(context);
+    }
+
+    @Override
+    public @NonNull
+    KeyValueStore provideKeyValueStore() {
+        return new KeyValueStore(context);
+    }
+
+    private static class DynamicCredentialsProvider implements CredentialsProvider {
+
+        private final Context context;
+
+        private DynamicCredentialsProvider(Context context) {
+            this.context = context.getApplicationContext();
+        }
+
+        @Override
+        public UUID getUuid() {
+            return TextSecurePreferences.getLocalUuid(context);
+        }
+
+        @Override
+        public String getE164() {
+            return TextSecurePreferences.getLocalNumber(context);
+        }
+
+        @Override
+        public String getPassword() {
+            return TextSecurePreferences.getPushServerPassword(context);
+        }
+
+        @Override
+        public String getSignalingKey() {
+            return TextSecurePreferences.getSignalingKey(context);
+        }
+    }
+
+    private class PipeConnectivityListener implements ConnectivityListener {
+
+        @Override
+        public void onConnected() {
+            Log.i(TAG, "onConnected()");
+            TextSecurePreferences.setUnauthorizedReceived(context, false);
+        }
+
+        @Override
+        public void onConnecting() {
+            Log.i(TAG, "onConnecting()");
+        }
+
+        @Override
+        public void onDisconnected() {
+            Log.w(TAG, "onDisconnected()");
+        }
+
+        @Override
+        public void onAuthenticationFailure() {
+            Log.w(TAG, "onAuthenticationFailure()");
+            TextSecurePreferences.setUnauthorizedReceived(context, true);
+            EventBus.getDefault().post(new ReminderUpdateEvent());
+        }
+    }
 }

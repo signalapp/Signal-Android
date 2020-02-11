@@ -4,6 +4,7 @@ import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -13,63 +14,63 @@ import androidx.annotation.Nullable;
  */
 public class DatabaseContentProviders {
 
-  public static class ConversationList extends NoopContentProvider {
-    public static final Uri CONTENT_URI = Uri.parse("content://org.thoughtcrime.securesms.database.conversationlist");
-  }
-
-  public static class Conversation extends NoopContentProvider {
-    private static final String CONTENT_URI_STRING = "content://org.thoughtcrime.securesms.database.conversation/";
-
-    public static Uri getUriForThread(long threadId) {
-      return Uri.parse(CONTENT_URI_STRING + threadId);
-    }
-  }
-
-  public static class Attachment extends NoopContentProvider {
-    public static final Uri CONTENT_URI = Uri.parse("content://org.thoughtcrime.securesms.database.attachment");
-  }
-
-  public static class Sticker extends NoopContentProvider {
-    public static final Uri CONTENT_URI = Uri.parse("content://org.thoughtcrime.securesms.database.sticker");
-  }
-
-  public static class StickerPack extends NoopContentProvider {
-    public static final Uri CONTENT_URI = Uri.parse("content://org.thoughtcrime.securesms.database.stickerpack");
-  }
-
-  private static abstract class NoopContentProvider extends ContentProvider {
-
-    @Override
-    public boolean onCreate() {
-      return false;
+    public static class ConversationList extends NoopContentProvider {
+        public static final Uri CONTENT_URI = Uri.parse("content://org.thoughtcrime.securesms.database.conversationlist");
     }
 
-    @Nullable
-    @Override
-    public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
-      return null;
+    public static class Conversation extends NoopContentProvider {
+        private static final String CONTENT_URI_STRING = "content://org.thoughtcrime.securesms.database.conversation/";
+
+        public static Uri getUriForThread(long threadId) {
+            return Uri.parse(CONTENT_URI_STRING + threadId);
+        }
     }
 
-    @Nullable
-    @Override
-    public String getType(@NonNull Uri uri) {
-      return null;
+    public static class Attachment extends NoopContentProvider {
+        public static final Uri CONTENT_URI = Uri.parse("content://org.thoughtcrime.securesms.database.attachment");
     }
 
-    @Nullable
-    @Override
-    public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
-      return null;
+    public static class Sticker extends NoopContentProvider {
+        public static final Uri CONTENT_URI = Uri.parse("content://org.thoughtcrime.securesms.database.sticker");
     }
 
-    @Override
-    public int delete(@NonNull Uri uri, @Nullable String selection, @Nullable String[] selectionArgs) {
-      return 0;
+    public static class StickerPack extends NoopContentProvider {
+        public static final Uri CONTENT_URI = Uri.parse("content://org.thoughtcrime.securesms.database.stickerpack");
     }
 
-    @Override
-    public int update(@NonNull Uri uri, @Nullable ContentValues values, @Nullable String selection, @Nullable String[] selectionArgs) {
-      return 0;
+    private static abstract class NoopContentProvider extends ContentProvider {
+
+        @Override
+        public boolean onCreate() {
+            return false;
+        }
+
+        @Nullable
+        @Override
+        public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
+            return null;
+        }
+
+        @Nullable
+        @Override
+        public String getType(@NonNull Uri uri) {
+            return null;
+        }
+
+        @Nullable
+        @Override
+        public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
+            return null;
+        }
+
+        @Override
+        public int delete(@NonNull Uri uri, @Nullable String selection, @Nullable String[] selectionArgs) {
+            return 0;
+        }
+
+        @Override
+        public int update(@NonNull Uri uri, @Nullable ContentValues values, @Nullable String selection, @Nullable String[] selectionArgs) {
+            return 0;
+        }
     }
-  }
 }

@@ -47,303 +47,312 @@ import static org.whispersystems.signalservice.internal.websocket.WebSocketProto
 
 public class WebSocketConnection extends WebSocketListener {
 
-  private static final String TAG                       = WebSocketConnection.class.getSimpleName();
-  private static final int    KEEPALIVE_TIMEOUT_SECONDS = 55;
+    private static final String TAG = WebSocketConnection.class.getSimpleName();
+    private static final int KEEPALIVE_TIMEOUT_SECONDS = 55;
 
-  private final LinkedList<WebSocketRequestMessage>              incomingRequests = new LinkedList<>();
-  private final Map<Long, SettableFuture<Pair<Integer, String>>> outgoingRequests = new HashMap<>();
+    private final LinkedList<WebSocketRequestMessage> incomingRequests = new LinkedList<>();
+    private final Map<Long, SettableFuture<Pair<Integer, String>>> outgoingRequests = new HashMap<>();
 
-  private final String                        wsUri;
-  private final TrustStore                    trustStore;
-  private final Optional<CredentialsProvider> credentialsProvider;
-  private final String                        signalAgent;
-  private final ConnectivityListener          listener;
-  private final SleepTimer                    sleepTimer;
-  private final List<Interceptor>             interceptors;
+    private final String wsUri;
+    private final TrustStore trustStore;
+    private final Optional<CredentialsProvider> credentialsProvider;
+    private final String signalAgent;
+    private final ConnectivityListener listener;
+    private final SleepTimer sleepTimer;
+    private final List<Interceptor> interceptors;
 
-  private WebSocket           client;
-  private KeepAliveSender     keepAliveSender;
-  private int                 attempts;
-  private boolean             connected;
+    private WebSocket client;
+    private KeepAliveSender keepAliveSender;
+    private int attempts;
+    private boolean connected;
 
-  public WebSocketConnection(String httpUri,
-                             TrustStore trustStore,
-                             Optional<CredentialsProvider> credentialsProvider,
-                             String signalAgent,
-                             ConnectivityListener listener,
-                             SleepTimer timer,
-                             List<Interceptor> interceptors)
-  {
-    this.trustStore          = trustStore;
-    this.credentialsProvider = credentialsProvider;
-    this.signalAgent         = signalAgent;
-    this.listener            = listener;
-    this.sleepTimer          = timer;
-    this.interceptors        = interceptors;
-    this.attempts            = 0;
-    this.connected           = false;
+    public WebSocketConnection(String httpUri,
+                               TrustStore trustStore,
+                               Optional<CredentialsProvider> credentialsProvider,
+                               String signalAgent,
+                               ConnectivityListener listener,
+                               SleepTimer timer,
+                               List<Interceptor> interceptors) {
+        this.trustStore = trustStore;
+        this.credentialsProvider = credentialsProvider;
+        this.signalAgent = signalAgent;
+        this.listener = listener;
+        this.sleepTimer = timer;
+        this.interceptors = interceptors;
+        this.attempts = 0;
+        this.connected = false;
 
-    String uri = httpUri.replace("https://", "wss://").replace("http://", "ws://");
+        String uri = httpUri.replace("https://", "wss://").replace("http://", "ws://");
 
-    if (credentialsProvider.isPresent()) this.wsUri = uri + "/v1/websocket/?login=%s&password=%s";
-    else                                 this.wsUri = uri + "/v1/websocket/";
-  }
-
-  public synchronized void connect() {
-    Log.w(TAG, "WSC connect()...");
-
-    if (client == null) {
-      String filledUri;
-
-      if (credentialsProvider.isPresent()) {
-        String identifier = credentialsProvider.get().getUuid() != null ? credentialsProvider.get().getUuid().toString() : credentialsProvider.get().getE164();
-        filledUri = String.format(wsUri, identifier, credentialsProvider.get().getPassword());
-      } else {
-        filledUri = wsUri;
-      }
-
-      Pair<SSLSocketFactory, X509TrustManager> socketFactory = createTlsSocketFactory(trustStore);
-
-      OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
-                                                           .sslSocketFactory(new Tls12SocketFactory(socketFactory.first()), socketFactory.second())
-                                                           .connectionSpecs(Util.immutableList(ConnectionSpec.RESTRICTED_TLS))
-                                                           .readTimeout(KEEPALIVE_TIMEOUT_SECONDS + 10, TimeUnit.SECONDS)
-                                                           .connectTimeout(KEEPALIVE_TIMEOUT_SECONDS + 10, TimeUnit.SECONDS);
-
-      for (Interceptor interceptor : interceptors) {
-        clientBuilder.addInterceptor(interceptor);
-      }
-
-      OkHttpClient okHttpClient = clientBuilder.build();
-
-      Request.Builder requestBuilder = new Request.Builder().url(filledUri);
-
-      if (signalAgent != null) {
-        requestBuilder.addHeader("X-Signal-Agent", signalAgent);
-      }
-
-      if (listener != null) {
-        listener.onConnecting();
-      }
-
-      this.connected = false;
-      this.client    = okHttpClient.newWebSocket(requestBuilder.build(), this);
-    }
-  }
-
-  public synchronized void disconnect() {
-    Log.w(TAG, "WSC disconnect()...");
-
-    if (client != null) {
-      client.close(1000, "OK");
-      client    = null;
-      connected = false;
-    }
-
-    if (keepAliveSender != null) {
-      keepAliveSender.shutdown();
-      keepAliveSender = null;
-    }
-  }
-
-  public synchronized WebSocketRequestMessage readRequest(long timeoutMillis)
-      throws TimeoutException, IOException
-  {
-    if (client == null) {
-      throw new IOException("Connection closed!");
-    }
-
-    long startTime = System.currentTimeMillis();
-
-    while (client != null && incomingRequests.isEmpty() && elapsedTime(startTime) < timeoutMillis) {
-      Util.wait(this, Math.max(1, timeoutMillis - elapsedTime(startTime)));
-    }
-
-    if      (incomingRequests.isEmpty() && client == null) throw new IOException("Connection closed!");
-    else if (incomingRequests.isEmpty())                   throw new TimeoutException("Timeout exceeded");
-    else                                                   return incomingRequests.removeFirst();
-  }
-
-  public synchronized Future<Pair<Integer, String>> sendRequest(WebSocketRequestMessage request) throws IOException {
-    if (client == null || !connected) throw new IOException("No connection!");
-
-    WebSocketMessage message = WebSocketMessage.newBuilder()
-                                               .setType(WebSocketMessage.Type.REQUEST)
-                                               .setRequest(request)
-                                               .build();
-
-    SettableFuture<Pair<Integer, String>> future = new SettableFuture<>();
-    outgoingRequests.put(request.getId(), future);
-
-    if (!client.send(ByteString.of(message.toByteArray()))) {
-      throw new IOException("Write failed!");
-    }
-
-    return future;
-  }
-
-  public synchronized void sendResponse(WebSocketResponseMessage response) throws IOException {
-    if (client == null) {
-      throw new IOException("Connection closed!");
-    }
-
-    WebSocketMessage message = WebSocketMessage.newBuilder()
-                                               .setType(WebSocketMessage.Type.RESPONSE)
-                                               .setResponse(response)
-                                               .build();
-
-    if (!client.send(ByteString.of(message.toByteArray()))) {
-      throw new IOException("Write failed!");
-    }
-  }
-
-  private synchronized void sendKeepAlive() throws IOException {
-    if (keepAliveSender != null && client != null) {
-      byte[] message = WebSocketMessage.newBuilder()
-                                       .setType(WebSocketMessage.Type.REQUEST)
-                                       .setRequest(WebSocketRequestMessage.newBuilder()
-                                                                          .setId(System.currentTimeMillis())
-                                                                          .setPath("/v1/keepalive")
-                                                                          .setVerb("GET")
-                                                                          .build()).build()
-                                       .toByteArray();
-
-      if (!client.send(ByteString.of(message))) {
-        throw new IOException("Write failed!");
-      }
-    }
-  }
-
-  @Override
-  public synchronized void onOpen(WebSocket webSocket, Response response) {
-    if (client != null && keepAliveSender == null) {
-      Log.w(TAG, "onConnected()");
-      attempts        = 0;
-      connected       = true;
-      keepAliveSender = new KeepAliveSender();
-      keepAliveSender.start();
-
-      if (listener != null) listener.onConnected();
-    }
-  }
-
-  @Override
-  public synchronized void onMessage(WebSocket webSocket, ByteString payload) {
-    Log.w(TAG, "WSC onMessage()");
-    try {
-      WebSocketMessage message = WebSocketMessage.parseFrom(payload.toByteArray());
-
-      Log.w(TAG, "Message Type: " + message.getType().getNumber());
-
-      if (message.getType().getNumber() == WebSocketMessage.Type.REQUEST_VALUE)  {
-        incomingRequests.add(message.getRequest());
-      } else if (message.getType().getNumber() == WebSocketMessage.Type.RESPONSE_VALUE) {
-        SettableFuture<Pair<Integer, String>> listener = outgoingRequests.get(message.getResponse().getId());
-        if (listener != null) listener.set(new Pair<>(message.getResponse().getStatus(),
-                                                      new String(message.getResponse().getBody().toByteArray())));
-      }
-
-      notifyAll();
-    } catch (InvalidProtocolBufferException e) {
-      Log.w(TAG, e);
-    }
-  }
-
-  @Override
-  public synchronized void onClosed(WebSocket webSocket, int code, String reason) {
-    Log.w(TAG, "onClose()...");
-    this.connected = false;
-
-    Iterator<Map.Entry<Long, SettableFuture<Pair<Integer, String>>>> iterator = outgoingRequests.entrySet().iterator();
-
-    while (iterator.hasNext()) {
-      Map.Entry<Long, SettableFuture<Pair<Integer, String>>> entry = iterator.next();
-      entry.getValue().setException(new IOException("Closed: " + code + ", " + reason));
-      iterator.remove();
-    }
-
-    if (keepAliveSender != null) {
-      keepAliveSender.shutdown();
-      keepAliveSender = null;
-    }
-
-    if (listener != null) {
-      listener.onDisconnected();
-    }
-
-    Util.wait(this, Math.min(++attempts * 200, TimeUnit.SECONDS.toMillis(15)));
-
-    if (client != null) {
-      client.close(1000, "OK");
-      client    = null;
-      connected = false;
-      connect();
-    }
-
-    notifyAll();
-  }
-
-  @Override
-  public synchronized void onFailure(WebSocket webSocket, Throwable t, Response response) {
-    Log.w(TAG, "onFailure()");
-    Log.w(TAG, t);
-
-    if (response != null && (response.code() == 401 || response.code() == 403)) {
-      if (listener != null) listener.onAuthenticationFailure();
-    }
-
-    if (client != null) {
-      onClosed(webSocket, 1000, "OK");
-    }
-  }
-
-  @Override
-  public void onMessage(WebSocket webSocket, String text) {
-    Log.w(TAG, "onMessage(text)! " + text);
-  }
-
-  @Override
-  public synchronized void onClosing(WebSocket webSocket, int code, String reason) {
-    Log.w(TAG, "onClosing()!...");
-    webSocket.close(1000, "OK");
-  }
-
-  private long elapsedTime(long startTime) {
-    return System.currentTimeMillis() - startTime;
-  }
-
-  private Pair<SSLSocketFactory, X509TrustManager> createTlsSocketFactory(TrustStore trustStore) {
-    try {
-      SSLContext     context       = SSLContext.getInstance("TLS");
-      TrustManager[] trustManagers = BlacklistingTrustManager.createFor(trustStore);
-      context.init(null, trustManagers, null);
-
-      return new Pair<>(context.getSocketFactory(), (X509TrustManager)trustManagers[0]);
-    } catch (NoSuchAlgorithmException | KeyManagementException e) {
-      throw new AssertionError(e);
-    }
-  }
-
-  private class KeepAliveSender extends Thread {
-
-    private AtomicBoolean stop = new AtomicBoolean(false);
-
-    public void run() {
-      while (!stop.get()) {
-        try {
-          sleepTimer.sleep(TimeUnit.SECONDS.toMillis(KEEPALIVE_TIMEOUT_SECONDS));
-
-          Log.w(TAG, "Sending keep alive...");
-          sendKeepAlive();
-        } catch (Throwable e) {
-          Log.w(TAG, e);
+        if (credentialsProvider.isPresent()) {
+            this.wsUri = uri + "/v1/websocket/?login=%s&password=%s";
+        } else {
+            this.wsUri = uri + "/v1/websocket/";
         }
-      }
+
+        Log.d(TAG, "wsUri = " + wsUri);
     }
 
-    public void shutdown() {
-      stop.set(true);
+    public synchronized void connect() {
+        Log.w(TAG, "WSC connect()...");
+
+        if (client == null) {
+            String filledUri;
+
+            if (credentialsProvider.isPresent()) {
+                String identifier = credentialsProvider.get().getUuid() != null ? credentialsProvider.get().getUuid().toString() : credentialsProvider.get().getE164();
+                filledUri = String.format(wsUri, identifier, credentialsProvider.get().getPassword());
+            } else {
+                filledUri = wsUri;
+            }
+
+            Pair<SSLSocketFactory, X509TrustManager> socketFactory = createTlsSocketFactory(trustStore);
+
+            OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
+                    .sslSocketFactory(new Tls12SocketFactory(socketFactory.first()), socketFactory.second())
+                    .connectionSpecs(Util.immutableList(ConnectionSpec.RESTRICTED_TLS))
+                    .readTimeout(KEEPALIVE_TIMEOUT_SECONDS + 10, TimeUnit.SECONDS)
+                    .connectTimeout(KEEPALIVE_TIMEOUT_SECONDS + 10, TimeUnit.SECONDS);
+
+            for (Interceptor interceptor : interceptors) {
+                clientBuilder.addInterceptor(interceptor);
+            }
+
+            OkHttpClient okHttpClient = clientBuilder.build();
+
+            Request.Builder requestBuilder = new Request.Builder().url(filledUri);
+
+            if (signalAgent != null) {
+                requestBuilder.addHeader("X-Signal-Agent", signalAgent);
+            }
+
+            if (listener != null) {
+                listener.onConnecting();
+            }
+
+            this.connected = false;
+            this.client = okHttpClient.newWebSocket(requestBuilder.build(), this);
+        }
     }
-  }
+
+    public synchronized void disconnect() {
+        Log.w(TAG, "WSC disconnect()...");
+
+        if (client != null) {
+            client.close(1000, "OK");
+            client = null;
+            connected = false;
+        }
+
+        if (keepAliveSender != null) {
+            keepAliveSender.shutdown();
+            keepAliveSender = null;
+        }
+    }
+
+    public synchronized WebSocketRequestMessage readRequest(long timeoutMillis)
+            throws TimeoutException, IOException {
+        Log.w(TAG, "readRequest");
+        if (client == null) {
+            throw new IOException("Connection closed!");
+        }
+
+        long startTime = System.currentTimeMillis();
+
+        while (client != null && incomingRequests.isEmpty() && elapsedTime(startTime) < timeoutMillis) {
+            Util.wait(this, Math.max(1, timeoutMillis - elapsedTime(startTime)));
+        }
+
+        if (incomingRequests.isEmpty() && client == null)
+            throw new IOException("Connection closed!");
+        else if (incomingRequests.isEmpty()) throw new TimeoutException("Timeout exceeded");
+        else return incomingRequests.removeFirst();
+    }
+
+    public synchronized Future<Pair<Integer, String>> sendRequest(WebSocketRequestMessage request) throws IOException {
+        Log.w(TAG, "sendRequest");
+        if (client == null || !connected) throw new IOException("No connection!");
+
+        WebSocketMessage message = WebSocketMessage.newBuilder()
+                .setType(WebSocketMessage.Type.REQUEST)
+                .setRequest(request)
+                .build();
+
+        SettableFuture<Pair<Integer, String>> future = new SettableFuture<>();
+        outgoingRequests.put(request.getId(), future);
+
+        if (!client.send(ByteString.of(message.toByteArray()))) {
+            throw new IOException("Write failed!");
+        }
+
+        return future;
+    }
+
+    public synchronized void sendResponse(WebSocketResponseMessage response) throws IOException {
+        Log.w(TAG, "sendResponse");
+        if (client == null) {
+            throw new IOException("Connection closed!");
+        }
+
+        WebSocketMessage message = WebSocketMessage.newBuilder()
+                .setType(WebSocketMessage.Type.RESPONSE)
+                .setResponse(response)
+                .build();
+
+        if (!client.send(ByteString.of(message.toByteArray()))) {
+            throw new IOException("Write failed!");
+        }
+    }
+
+    private synchronized void sendKeepAlive() throws IOException {
+        if (keepAliveSender != null && client != null) {
+            byte[] message = WebSocketMessage.newBuilder()
+                    .setType(WebSocketMessage.Type.REQUEST)
+                    .setRequest(WebSocketRequestMessage.newBuilder()
+                            .setId(System.currentTimeMillis())
+                            .setPath("/v1/keepalive")
+                            .setVerb("GET")
+                            .build()).build()
+                    .toByteArray();
+
+            if (!client.send(ByteString.of(message))) {
+                throw new IOException("Write failed!");
+            }
+        }
+    }
+
+    @Override
+    public synchronized void onOpen(WebSocket webSocket, Response response) {
+        if (client != null && keepAliveSender == null) {
+            Log.w(TAG, "onConnected()");
+            attempts = 0;
+            connected = true;
+            keepAliveSender = new KeepAliveSender();
+            keepAliveSender.start();
+
+            if (listener != null) listener.onConnected();
+        }
+    }
+
+    @Override
+    public synchronized void onMessage(WebSocket webSocket, ByteString payload) {
+        Log.w(TAG, "WSC onMessage()");
+        try {
+            WebSocketMessage message = WebSocketMessage.parseFrom(payload.toByteArray());
+
+            Log.w(TAG, "Message Type: " + message.getType().getNumber());
+
+            if (message.getType().getNumber() == WebSocketMessage.Type.REQUEST_VALUE) {
+                incomingRequests.add(message.getRequest());
+            } else if (message.getType().getNumber() == WebSocketMessage.Type.RESPONSE_VALUE) {
+                SettableFuture<Pair<Integer, String>> listener = outgoingRequests.get(message.getResponse().getId());
+                if (listener != null) {
+                    Pair pair = new Pair<>(message.getResponse().getStatus(),
+                            new String(message.getResponse().getBody().toByteArray()));
+                    listener.set(pair);
+                }
+            }
+
+            notifyAll();
+        } catch (InvalidProtocolBufferException e) {
+            Log.w(TAG, e);
+        }
+    }
+
+    @Override
+    public synchronized void onClosed(WebSocket webSocket, int code, String reason) {
+        Log.w(TAG, "onClose()...");
+        this.connected = false;
+
+        Iterator<Map.Entry<Long, SettableFuture<Pair<Integer, String>>>> iterator = outgoingRequests.entrySet().iterator();
+
+        while (iterator.hasNext()) {
+            Map.Entry<Long, SettableFuture<Pair<Integer, String>>> entry = iterator.next();
+            entry.getValue().setException(new IOException("Closed: " + code + ", " + reason));
+            iterator.remove();
+        }
+
+        if (keepAliveSender != null) {
+            keepAliveSender.shutdown();
+            keepAliveSender = null;
+        }
+
+        if (listener != null) {
+            listener.onDisconnected();
+        }
+
+        Util.wait(this, Math.min(++attempts * 200, TimeUnit.SECONDS.toMillis(15)));
+
+        if (client != null) {
+            client.close(1000, "OK");
+            client = null;
+            connected = false;
+            connect();
+        }
+
+        notifyAll();
+    }
+
+    @Override
+    public synchronized void onFailure(WebSocket webSocket, Throwable t, Response response) {
+        Log.w(TAG, "onFailure()");
+        Log.w(TAG, t);
+
+        if (response != null && (response.code() == 401 || response.code() == 403)) {
+            if (listener != null) listener.onAuthenticationFailure();
+        }
+
+        if (client != null) {
+            onClosed(webSocket, 1000, "OK");
+        }
+    }
+
+    @Override
+    public void onMessage(WebSocket webSocket, String text) {
+        Log.w(TAG, "onMessage(text)! " + text);
+    }
+
+    @Override
+    public synchronized void onClosing(WebSocket webSocket, int code, String reason) {
+        Log.w(TAG, "onClosing()!...");
+        webSocket.close(1000, "OK");
+    }
+
+    private long elapsedTime(long startTime) {
+        return System.currentTimeMillis() - startTime;
+    }
+
+    private Pair<SSLSocketFactory, X509TrustManager> createTlsSocketFactory(TrustStore trustStore) {
+        try {
+            SSLContext context = SSLContext.getInstance("TLS");
+            TrustManager[] trustManagers = BlacklistingTrustManager.createFor(trustStore);
+            context.init(null, trustManagers, null);
+
+            return new Pair<>(context.getSocketFactory(), (X509TrustManager) trustManagers[0]);
+        } catch (NoSuchAlgorithmException | KeyManagementException e) {
+            throw new AssertionError(e);
+        }
+    }
+
+    private class KeepAliveSender extends Thread {
+        private AtomicBoolean stop = new AtomicBoolean(false);
+
+        public void run() {
+            while (!stop.get()) {
+                try {
+                    sleepTimer.sleep(TimeUnit.SECONDS.toMillis(KEEPALIVE_TIMEOUT_SECONDS));
+
+                    Log.w(TAG, "Sending keep alive...");
+                    sendKeepAlive();
+                } catch (Throwable e) {
+                    Log.w(TAG, e);
+                }
+            }
+        }
+
+        public void shutdown() {
+            stop.set(true);
+        }
+    }
 
 }

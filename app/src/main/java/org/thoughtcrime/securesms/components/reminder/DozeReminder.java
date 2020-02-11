@@ -15,6 +15,9 @@ import android.view.View;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
+/**
+ * TODAY 电池优化类
+ */
 @SuppressLint("BatteryLife")
 public class DozeReminder extends Reminder {
 

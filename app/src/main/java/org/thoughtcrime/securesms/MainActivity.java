@@ -8,7 +8,6 @@ import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
 public class MainActivity extends PassphraseRequiredActionBarActivity {
-
   private final DynamicTheme  dynamicTheme = new DynamicNoActionBarTheme();
   private final MainNavigator navigator    = new MainNavigator(this);
 

@@ -24,171 +24,202 @@ import org.whispersystems.signalservice.api.SignalServiceMessageSender;
  * Location for storing and retrieving application-scoped singletons. Users must call
  * {@link #init(Application, Provider)} before using any of the methods, preferably early on in
  * {@link Application#onCreate()}.
- *
+ * <p>
  * All future application-scoped singletons should be written as normal objects, then placed here
  * to manage their singleton-ness.
  */
 public class ApplicationDependencies {
 
-  private static Application application;
-  private static Provider    provider;
+    private static Application application;
+    private static Provider provider;
 
-  private static SignalServiceAccountManager  accountManager;
-  private static SignalServiceMessageSender   messageSender;
-  private static SignalServiceMessageReceiver messageReceiver;
-  private static IncomingMessageProcessor     incomingMessageProcessor;
-  private static MessageRetriever             messageRetriever;
-  private static LiveRecipientCache           recipientCache;
-  private static JobManager                   jobManager;
-  private static FrameRateTracker             frameRateTracker;
-  private static KeyValueStore                keyValueStore;
+    private static SignalServiceAccountManager accountManager;
+    private static SignalServiceMessageSender messageSender;
+    private static SignalServiceMessageReceiver messageReceiver;
+    private static IncomingMessageProcessor incomingMessageProcessor;
+    private static MessageRetriever messageRetriever;
+    private static LiveRecipientCache recipientCache;
+    private static JobManager jobManager;
+    private static FrameRateTracker frameRateTracker;
+    private static KeyValueStore keyValueStore;
 
-  public static synchronized void init(@NonNull Application application, @NonNull Provider provider) {
-    if (ApplicationDependencies.application != null || ApplicationDependencies.provider != null) {
-      throw new IllegalStateException("Already initialized!");
+    public static synchronized void init(@NonNull Application application, @NonNull Provider provider) {
+        if (ApplicationDependencies.application != null || ApplicationDependencies.provider != null) {
+            throw new IllegalStateException("Already initialized!");
+        }
+
+        ApplicationDependencies.application = application;
+        ApplicationDependencies.provider = provider;
     }
 
-    ApplicationDependencies.application = application;
-    ApplicationDependencies.provider    = provider;
-  }
-
-  public static @NonNull Application getApplication() {
-    assertInitialization();
-    return application;
-  }
-
-  public static synchronized @NonNull SignalServiceAccountManager getSignalServiceAccountManager() {
-    assertInitialization();
-
-    if (accountManager == null) {
-      accountManager = provider.provideSignalServiceAccountManager();
+    public static @NonNull
+    Application getApplication() {
+        assertInitialization();
+        return application;
     }
 
-    return accountManager;
-  }
+    public static synchronized @NonNull
+    SignalServiceAccountManager getSignalServiceAccountManager() {
+        assertInitialization();
 
-  public static synchronized @NonNull KeyBackupService getKeyBackupService() {
-    return getSignalServiceAccountManager().getKeyBackupService(IasKeyStore.getIasKeyStore(application),
-                                                                BuildConfig.KEY_BACKUP_ENCLAVE_NAME,
-                                                                BuildConfig.KEY_BACKUP_MRENCLAVE,
-                                                                10);
-  }
+        if (accountManager == null) {
+            accountManager = provider.provideSignalServiceAccountManager();
+        }
 
-  public static synchronized @NonNull SignalServiceMessageSender getSignalServiceMessageSender() {
-    assertInitialization();
-
-    if (messageSender == null) {
-      messageSender = provider.provideSignalServiceMessageSender();
-    } else {
-      messageSender.setMessagePipe(IncomingMessageObserver.getPipe(), IncomingMessageObserver.getUnidentifiedPipe());
-      messageSender.setIsMultiDevice(TextSecurePreferences.isMultiDevice(application));
+        return accountManager;
     }
 
-    return messageSender;
-  }
-
-  public static synchronized @NonNull SignalServiceMessageReceiver getSignalServiceMessageReceiver() {
-    assertInitialization();
-
-    if (messageReceiver == null) {
-      messageReceiver = provider.provideSignalServiceMessageReceiver();
+    public static synchronized @NonNull
+    KeyBackupService getKeyBackupService() {
+        return getSignalServiceAccountManager().getKeyBackupService(IasKeyStore.getIasKeyStore(application),
+                BuildConfig.KEY_BACKUP_ENCLAVE_NAME,
+                BuildConfig.KEY_BACKUP_MRENCLAVE,
+                10);
     }
 
-    return messageReceiver;
-  }
+    public static synchronized @NonNull
+    SignalServiceMessageSender getSignalServiceMessageSender() {
+        assertInitialization();
 
-  public static synchronized void resetSignalServiceMessageReceiver() {
-    assertInitialization();
-    messageReceiver = null;
-  }
+        if (messageSender == null) {
+            messageSender = provider.provideSignalServiceMessageSender();
+        } else {
+            messageSender.setMessagePipe(IncomingMessageObserver.getPipe(), IncomingMessageObserver.getUnidentifiedPipe());
+            messageSender.setIsMultiDevice(TextSecurePreferences.isMultiDevice(application));
+        }
 
-  public static synchronized @NonNull SignalServiceNetworkAccess getSignalServiceNetworkAccess() {
-    assertInitialization();
-    return provider.provideSignalServiceNetworkAccess();
-  }
-
-  public static synchronized @NonNull IncomingMessageProcessor getIncomingMessageProcessor() {
-    assertInitialization();
-
-    if (incomingMessageProcessor == null) {
-      incomingMessageProcessor = provider.provideIncomingMessageProcessor();
+        return messageSender;
     }
 
-    return incomingMessageProcessor;
-  }
+    public static synchronized @NonNull
+    SignalServiceMessageReceiver getSignalServiceMessageReceiver() {
+        assertInitialization();
 
-  public static synchronized @NonNull MessageRetriever getMessageRetriever() {
-    assertInitialization();
+        if (messageReceiver == null) {
+            messageReceiver = provider.provideSignalServiceMessageReceiver();
+        }
 
-    if (messageRetriever == null) {
-      messageRetriever = provider.provideMessageRetriever();
+        return messageReceiver;
     }
 
-    return messageRetriever;
-  }
-
-  public static synchronized @NonNull LiveRecipientCache getRecipientCache() {
-    assertInitialization();
-
-    if (recipientCache == null) {
-      recipientCache = provider.provideRecipientCache();
+    public static synchronized void resetSignalServiceMessageReceiver() {
+        assertInitialization();
+        messageReceiver = null;
     }
 
-    return recipientCache;
-  }
-
-  public static synchronized @NonNull JobManager getJobManager() {
-    assertInitialization();
-
-    if (jobManager == null) {
-      jobManager = provider.provideJobManager();
+    public static synchronized @NonNull
+    SignalServiceNetworkAccess getSignalServiceNetworkAccess() {
+        assertInitialization();
+        return provider.provideSignalServiceNetworkAccess();
     }
 
-    return jobManager;
-  }
+    public static synchronized @NonNull
+    IncomingMessageProcessor getIncomingMessageProcessor() {
+        assertInitialization();
 
-  public static synchronized @NonNull FrameRateTracker getFrameRateTracker() {
-    assertInitialization();
+        if (incomingMessageProcessor == null) {
+            incomingMessageProcessor = provider.provideIncomingMessageProcessor();
+        }
 
-    if (frameRateTracker == null) {
-      frameRateTracker = provider.provideFrameRateTracker();
+        return incomingMessageProcessor;
     }
 
-    return frameRateTracker;
-  }
+    public static synchronized @NonNull
+    MessageRetriever getMessageRetriever() {
+        assertInitialization();
 
-  public static synchronized @NonNull KeyValueStore getKeyValueStore() {
-    assertInitialization();
+        if (messageRetriever == null) {
+            messageRetriever = provider.provideMessageRetriever();
+        }
 
-    if (keyValueStore == null) {
-      keyValueStore = provider.provideKeyValueStore();
+        return messageRetriever;
     }
 
-    return keyValueStore;
-  }
+    public static synchronized @NonNull
+    LiveRecipientCache getRecipientCache() {
+        assertInitialization();
 
-  private static void assertInitialization() {
-    if (application == null || provider == null) {
-      throw new UninitializedException();
+        if (recipientCache == null) {
+            recipientCache = provider.provideRecipientCache();
+        }
+
+        return recipientCache;
     }
-  }
 
-  public interface Provider {
-    @NonNull SignalServiceAccountManager provideSignalServiceAccountManager();
-    @NonNull SignalServiceMessageSender provideSignalServiceMessageSender();
-    @NonNull SignalServiceMessageReceiver provideSignalServiceMessageReceiver();
-    @NonNull SignalServiceNetworkAccess provideSignalServiceNetworkAccess();
-    @NonNull IncomingMessageProcessor provideIncomingMessageProcessor();
-    @NonNull MessageRetriever provideMessageRetriever();
-    @NonNull LiveRecipientCache provideRecipientCache();
-    @NonNull JobManager provideJobManager();
-    @NonNull FrameRateTracker provideFrameRateTracker();
-    @NonNull KeyValueStore provideKeyValueStore();
-  }
+    public static synchronized @NonNull
+    JobManager getJobManager() {
+        assertInitialization();
 
-  private static class UninitializedException extends IllegalStateException {
-    private UninitializedException() {
-      super("You must call init() first!");
+        if (jobManager == null) {
+            jobManager = provider.provideJobManager();
+        }
+
+        return jobManager;
     }
-  }
+
+    public static synchronized @NonNull
+    FrameRateTracker getFrameRateTracker() {
+        assertInitialization();
+
+        if (frameRateTracker == null) {
+            frameRateTracker = provider.provideFrameRateTracker();
+        }
+
+        return frameRateTracker;
+    }
+
+    public static synchronized @NonNull
+    KeyValueStore getKeyValueStore() {
+        assertInitialization();
+
+        if (keyValueStore == null) {
+            keyValueStore = provider.provideKeyValueStore();
+        }
+
+        return keyValueStore;
+    }
+
+    private static void assertInitialization() {
+        if (application == null || provider == null) {
+            throw new UninitializedException();
+        }
+    }
+
+    public interface Provider {
+        @NonNull
+        SignalServiceAccountManager provideSignalServiceAccountManager();
+
+        @NonNull
+        SignalServiceMessageSender provideSignalServiceMessageSender();
+
+        @NonNull
+        SignalServiceMessageReceiver provideSignalServiceMessageReceiver();
+
+        @NonNull
+        SignalServiceNetworkAccess provideSignalServiceNetworkAccess();
+
+        @NonNull
+        IncomingMessageProcessor provideIncomingMessageProcessor();
+
+        @NonNull
+        MessageRetriever provideMessageRetriever();
+
+        @NonNull
+        LiveRecipientCache provideRecipientCache();
+
+        @NonNull
+        JobManager provideJobManager();
+
+        @NonNull
+        FrameRateTracker provideFrameRateTracker();
+
+        @NonNull
+        KeyValueStore provideKeyValueStore();
+    }
+
+    private static class UninitializedException extends IllegalStateException {
+        private UninitializedException() {
+            super("You must call init() first!");
+        }
+    }
 }

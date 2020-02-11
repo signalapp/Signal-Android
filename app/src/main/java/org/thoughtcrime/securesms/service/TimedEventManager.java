@@ -20,74 +20,75 @@ import org.thoughtcrime.securesms.util.ServiceUtil;
  */
 public abstract class TimedEventManager<E> {
 
-  private final Application application;
-  private final Handler     handler;
+    private final Application application;
+    private final Handler handler;
 
-  public TimedEventManager(@NonNull Application application, @NonNull String threadName) {
-    HandlerThread handlerThread = new HandlerThread(threadName);
-    handlerThread.start();
+    public TimedEventManager(@NonNull Application application, @NonNull String threadName) {
+        HandlerThread handlerThread = new HandlerThread(threadName);
+        handlerThread.start();
 
-    this.application = application;
-    this.handler     = new Handler(handlerThread.getLooper());
-  }
+        this.application = application;
+        this.handler = new Handler(handlerThread.getLooper());
+    }
 
-  /**
-   * Should be called whenever the underlying data of events has changed. Will appropriately
-   * schedule new event executions.
-   */
-  public void scheduleIfNecessary() {
-    handler.removeCallbacksAndMessages(null);
+    /**
+     * Should be called whenever the underlying data of events has changed. Will appropriately
+     * schedule new event executions.
+     */
+    public void scheduleIfNecessary() {
+        handler.removeCallbacksAndMessages(null);
 
-    handler.post(() -> {
-      E event = getNextClosestEvent();
+        handler.post(() -> {
+            E event = getNextClosestEvent();
 
-      if (event != null) {
-        long delay = getDelayForEvent(event);
+            if (event != null) {
+                long delay = getDelayForEvent(event);
 
-        handler.postDelayed(() -> {
-          executeEvent(event);
-          scheduleIfNecessary();
-        }, delay);
+                handler.postDelayed(() -> {
+                    executeEvent(event);
+                    scheduleIfNecessary();
+                }, delay);
 
-        scheduleAlarm(application, delay);
-      }
-    });
-  }
+                scheduleAlarm(application, delay);
+            }
+        });
+    }
 
-  /**
-   * @return The next event that should be executed, or {@code null} if there are no events to execute.
-   */
-  @WorkerThread
-  protected @Nullable abstract E getNextClosestEvent();
+    /**
+     * @return The next event that should be executed, or {@code null} if there are no events to execute.
+     */
+    @WorkerThread
+    protected @Nullable
+    abstract E getNextClosestEvent();
 
-  /**
-   * Execute the provided event.
-   */
-  @WorkerThread
-  protected abstract void executeEvent(@NonNull E event);
+    /**
+     * Execute the provided event.
+     */
+    @WorkerThread
+    protected abstract void executeEvent(@NonNull E event);
 
-  /**
-   * @return How long before the provided event should be executed.
-   */
-  @WorkerThread
-  protected abstract long getDelayForEvent(@NonNull E event);
+    /**
+     * @return How long before the provided event should be executed.
+     */
+    @WorkerThread
+    protected abstract long getDelayForEvent(@NonNull E event);
 
-  /**
-   * Schedules an alarm to call {@link #scheduleIfNecessary()} after the specified delay. You can
-   * use {@link #setAlarm(Context, long, Class)} as a helper method.
-   */
-  @AnyThread
-  protected abstract void scheduleAlarm(@NonNull Application application, long delay);
+    /**
+     * Schedules an alarm to call {@link #scheduleIfNecessary()} after the specified delay. You can
+     * use {@link #setAlarm(Context, long, Class)} as a helper method.
+     */
+    @AnyThread
+    protected abstract void scheduleAlarm(@NonNull Application application, long delay);
 
-  /**
-   * Helper method to set an alarm.
-   */
-  protected static void setAlarm(@NonNull Context context, long delay, @NonNull Class alarmClass) {
-    Intent        intent        = new Intent(context, alarmClass);
-    PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
-    AlarmManager  alarmManager  = ServiceUtil.getAlarmManager(context);
+    /**
+     * Helper method to set an alarm.
+     */
+    protected static void setAlarm(@NonNull Context context, long delay, @NonNull Class alarmClass) {
+        Intent intent = new Intent(context, alarmClass);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        AlarmManager alarmManager = ServiceUtil.getAlarmManager(context);
 
-    alarmManager.cancel(pendingIntent);
-    alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + delay, pendingIntent);
-  }
+        alarmManager.cancel(pendingIntent);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + delay, pendingIntent);
+    }
 }
