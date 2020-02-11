@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
+import android.text.SpannableStringBuilder;
 
 import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
@@ -45,10 +46,14 @@ public class MultipleRecipientNotificationBuilder extends AbstractNotificationBu
     setNumber(messageCount);
   }
 
-  public void setMostRecentSender(Recipient recipient) {
+  public void setMostRecentSender(Recipient recipient, Recipient threadRecipient) {
+    String displayName = recipient.toShortString();
+    if (threadRecipient.isGroupRecipient()) {
+      displayName = NotificationUtilities.getOpenGroupDisplayName(recipient, threadRecipient, context);
+    }
     if (privacy.isDisplayContact()) {
       setContentText(context.getString(R.string.MessageNotifier_most_recent_from_s,
-                                       recipient.toShortString()));
+              displayName));
     }
 
     if (recipient.getNotificationChannel() != null) {
@@ -64,11 +69,20 @@ public class MultipleRecipientNotificationBuilder extends AbstractNotificationBu
     extend(new NotificationCompat.WearableExtender().addAction(markAllAsReadAction));
   }
 
-  public void addMessageBody(@NonNull Recipient sender, @Nullable CharSequence body) {
+  public void addMessageBody(@NonNull Recipient sender, Recipient threadRecipient, @Nullable CharSequence body) {
+    String displayName = sender.toShortString();
+    if (threadRecipient.isGroupRecipient()) {
+      displayName = NotificationUtilities.getOpenGroupDisplayName(sender, threadRecipient, context);
+    }
     if (privacy.isDisplayMessage()) {
-      messageBodies.add(getStyledMessage(sender, body));
+      SpannableStringBuilder builder = new SpannableStringBuilder();
+      builder.append(Util.getBoldedString(displayName));
+      builder.append(": ");
+      builder.append(body == null ? "" : body);
+
+      messageBodies.add(builder);
     } else if (privacy.isDisplayContact()) {
-      messageBodies.add(Util.getBoldedString(sender.toShortString()));
+      messageBodies.add(Util.getBoldedString(displayName));
     }
 
     if (privacy.isDisplayContact() && sender.getContactUri() != null) {
