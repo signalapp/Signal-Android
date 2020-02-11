@@ -2353,7 +2353,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void setInputPanelEnabled(boolean enabled) {
     Util.runOnMain(() -> {
       updateToggleButtonState();
-      String hint = enabled ? "Message" : "Pending message request";
+      String hint = enabled ? "Message" : "Pending session request";
       inputPanel.setHint(hint);
       inputPanel.setEnabled(enabled);
       if (enabled) {
