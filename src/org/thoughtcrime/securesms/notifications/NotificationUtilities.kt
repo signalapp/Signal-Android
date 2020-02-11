@@ -9,14 +9,10 @@ fun getOpenGroupDisplayName(recipient: Recipient, threadRecipient: Recipient, co
     val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(threadRecipient)
     val publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID)
     val hexEncodedPublicKey = recipient.address.toString()
-    val displayName: String?
-    displayName = if (publicChat != null) {
+    val displayName = if (publicChat != null) {
         DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(publicChat.id, hexEncodedPublicKey)
     } else {
         DatabaseFactory.getLokiUserDatabase(context).getDisplayName(hexEncodedPublicKey)
     }
-    if (displayName == null) {
-        return hexEncodedPublicKey
-    }
-    return displayName
+    return displayName ?: hexEncodedPublicKey
 }
