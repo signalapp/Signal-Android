@@ -911,7 +911,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">Ripeti la nuova password</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Inserisci nome o numero</string>
-  <string name="contact_selection_activity__invite_to_signal">Invita a Signal</string>
+  <string name="contact_selection_activity__invite_to_signal">Invita ad usare Signal</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Cancella testo inserito</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Mostra tastiera</string>
@@ -1393,7 +1393,7 @@
   <string name="reminder_header_sms_import_text">Tocca per copiare i messaggi SMS del tuo telefono nel database criptato di Signal.</string>
   <string name="reminder_header_push_title">Attiva i messaggi e le chiamate con Signal</string>
   <string name="reminder_header_push_text">Migliora la tua esperienza nel comunicare.</string>
-  <string name="reminder_header_invite_title">Invita su Signal</string>
+  <string name="reminder_header_invite_title">Invita ad usare Signal</string>
   <string name="reminder_header_invite_text">Porta la tua conversazione con %1$s ad un nuovo livello.</string>
   <string name="reminder_header_share_title">Invita i tuoi amici!</string>
   <string name="reminder_header_share_text">Più amici usano Signal, più migliora.</string>
@@ -1536,7 +1536,7 @@
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal necessita l\'accesso agli SMS per poterli inviare, ma è stato negato in modo permanente. Si prega di continuare con le impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"SMS\".</string>
   <string name="Permissions_continue">Continua</string>
   <string name="Permissions_not_now">Non ora</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal richiede l\'autorizzazione alla lettura dei contatti per permetterti la ricerca, ma è stata negata in modo permanente. Si prega di continuare con il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Contatti\".</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal richiede l\'autorizzazione alla lettura dei contatti per permetterti la ricerca, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Contatti\".</string>
   <string name="conversation_activity__enable_signal_messages">ABILITA MESSAGGI SIGNAL</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrazione del database di Signal</string>
   <string name="PushDecryptJob_new_locked_message">Nuovo messaggio bloccato</string>
@@ -1585,7 +1585,7 @@
   <string name="RegistrationActivity_call_me_instead_available_in">Chiamami \n (Disponibile tra %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Contatta l\'assistenza Signal</string>
   <string name="RegistrationActivity_code_support_subject">Registrazione Signal - Codice di verifica per Android</string>
-  <string name="RegistrationActivity_code_support_body">Oggetto: Registrazione Signal - Codice di verifica per Android\nInformazioni dispositivo: %1$s\nVersione Android: %2$s\nVersione Signal: %3$s\nLocalità: %4$s</string>
+  <string name="RegistrationActivity_code_support_body">Oggetto: Registrazione Signal - Codice di verifica per Android\nInformazioni dispositivo: %1$s\nVersione Android: %2$s\nVersione Signal: %3$s\nLocazione: %4$s</string>
   <string name="BackupUtil_never">Mai</string>
   <string name="BackupUtil_unknown">Sconosciuto</string>
   <string name="preferences_app_protection__screen_lock">Blocco schermo</string>

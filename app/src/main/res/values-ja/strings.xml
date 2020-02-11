@@ -445,6 +445,9 @@
   <string name="Megaphones_introducing_reactions">リアクションのご紹介</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">メッセージを長押しして、手軽にリアクションできます。</string>
   <string name="Megaphones_remind_me_later">あとで通知</string>
+  <string name="Megaphones_verify_your_signal_pin">あなたのSignal PINを確認してください</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">PINを忘れないよう、時々確認を行います。</string>
+  <string name="Megaphones_verify_pin">PINの確認</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal 通話中</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal 通話を接続しています</string>
@@ -637,6 +640,11 @@
   <string name="SharedContactView_invite_to_signal">Signal に招待する</string>
   <string name="SharedContactView_message">Signal メッセージ</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">あとで再度お知らせします。</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">明日、再度お知らせします。</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">数日後に再度お知らせします。</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">1週間後に再度お知らせします。</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">2週間後に再度お知らせします。</string>
   <!--Slide-->
   <string name="Slide_image">画像</string>
   <string name="Slide_sticker">ステッカー</string>
@@ -1075,7 +1083,7 @@
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s に対する暗号化を検証したい場合は、上記の番号が相手デバイスの番号と一致するか確認してください。代わりに、相手のデバイスの QR コードを読み取るか、こちらの QR コードを相手に読み取ってもらうこともできます。<a href="https://signal.org/redirect/safety-numbers">詳細を見る。</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">タップしてスキャンする</string>
   <string name="verify_display_fragment__loading">読み込んでいます…</string>
-  <string name="verify_display_fragment__verified">検証済み</string>
+  <string name="verify_display_fragment__verified">この連絡先は確認済みです</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">安全番号を共有する</string>
   <!--webrtc_answer_decline_button-->
@@ -1402,6 +1410,7 @@
     <item quantity="other">このデバイスを登録したため、新しい PIN を選択できます。PIN を忘れると、再登録まで %1$d 日間待たなければならないことがあります。</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">PIN を作成</string>
+  <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PINはアカウントのセキュリティを強化します。Signalに再登録する際に必要になり、回復はできません。</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN が一致しません。再度試してください。</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">PIN を確認してください。</string>

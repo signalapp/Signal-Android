@@ -465,6 +465,9 @@
   <string name="Megaphones_introducing_reactions">Nous présentons les réactions</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Touchez et maintenez n’importe quel message pour partager rapidement ce que vous ressentez.</string>
   <string name="Megaphones_remind_me_later">Me le rappeler plus tard</string>
+  <string name="Megaphones_verify_your_signal_pin">Confirmer votre NIP Signal</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Nous vous demanderons de temps en temps de confirmer votre NIP afin que vous vous en souveniez.</string>
+  <string name="Megaphones_verify_pin">Confirmer le NIP</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Appel Signal en cours</string>
   <string name="NotificationBarManager__establishing_signal_call">Établissement de l’appel Signal</string>
@@ -660,6 +663,11 @@
   <string name="SharedContactView_invite_to_signal">Inviter à Signal</string>
   <string name="SharedContactView_message">Message Signal</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">Nous vous le rappellerons de nouveau ultérieurement.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Nous vous le rappellerons de nouveau demain.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Nous vous le rappellerons de nouveau dans quelques jours.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Nous vous le rappellerons de nouveau dans une semaine.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Nous vous le rappellerons de nouveau dans quelques semaines.</string>
   <!--Slide-->
   <string name="Slide_image">Image</string>
   <string name="Slide_sticker">Autocollant</string>
@@ -1509,8 +1517,8 @@
   <string name="KbsMegaphone__introducing_pins">Nous présentons les NIP</string>
   <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Votre blocage de l’inscription s’appelle désormais un NIP. Le mettre à jour ne prendra que quelques secondes.</string>
   <string name="KbsMegaphone__update_pin">Mettre le NIP à jour</string>
-  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Nous vous le rappellerons plus tard. La création d’un NIP deviendra obligatoire dans %1$d jours.</string>
-  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Nous vous le rappellerons plus tard. La confirmation de votre NIP deviendra obligatoire dans %1$d jours.</string>
+  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Nous vous le rappellerons ultérieurement. La création d’un NIP deviendra obligatoire dans %1$d jours.</string>
+  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Nous vous le rappellerons ultérieurement. La confirmation de votre NIP deviendra obligatoire dans %1$d jours.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icône de transport</string>
   <string name="ConversationListFragment_loading">Chargement…</string>

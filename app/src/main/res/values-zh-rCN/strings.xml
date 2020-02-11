@@ -445,6 +445,8 @@
   <string name="Megaphones_introducing_reactions">隆重推出“反应”功能</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">长按以分享这一刻你的感受。</string>
   <string name="Megaphones_remind_me_later">稍后提醒</string>
+  <string name="Megaphones_verify_your_signal_pin">验证您Signal帐号的PIN</string>
+  <string name="Megaphones_verify_pin">验证PIN</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">正在处理 Signal 呼叫</string>
   <string name="NotificationBarManager__establishing_signal_call">正在建立 Signal 呼叫</string>
@@ -644,6 +646,11 @@
   <string name="SharedContactView_invite_to_signal">邀请使用 Signal</string>
   <string name="SharedContactView_message">Signal 消息</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">我们稍后会再次提示您。</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">我们明天会再次提示您。</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">我们会在几天后再次提示您。</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">我们会在一周后再次提示您。</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">我们会在几周后再次提示您。</string>
   <!--Slide-->
   <string name="Slide_image">图片</string>
   <string name="Slide_sticker">表情</string>
@@ -1413,6 +1420,7 @@
     <item quantity="other">因为这个设备已经登录过，你可以创建一个新的PIN码。如果你忘记你的PIN码，你可能需要等%1$d天来重新注册。</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">创建 PIN 密码</string>
+  <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN让您的帐户更安全，但是PIN不可找回。您再次注册Signal时需要您的Signal PIN。</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN 不匹配，请重试。</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">确认你的 PIN。</string>

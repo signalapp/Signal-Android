@@ -148,7 +148,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Ĉu retropaŝi al neĉifrita MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Ĉi tiu mesaĝo <b>ne</b> estos ĉifrita, ĉar la ricevonto ne plu estas uzanto de Signal.\n\nĈu sendi nesekurigitan mesaĝon?</string>
   <string name="ConversationItem_unable_to_open_media">Ne povas trovi aplikaĵon, kiu kapablas malfermi ĉi tiun aŭdvidaĵon.</string>
-  <string name="ConversationItem_copied_text">Kopinta %s</string>
+  <string name="ConversationItem_copied_text">%s kopiita</string>
   <string name="ConversationItem_from_s">de %s</string>
   <string name="ConversationItem_to_s">al %s</string>
   <string name="ConversationItem_read_more">  Legi pli</string>
@@ -1072,8 +1072,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="message_recipients_list_item__resending">Resendado…</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
-    <item quantity="one">%1$s aniĝis al la grupo.</item>
-    <item quantity="other">%1$s aniĝis al la grupo.</item>
+    <item quantity="one">%1$s estis aldonita al la grupo.</item>
+    <item quantity="other">%1$s estis aldonitaj al la grupo.</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">La grupnomo estas de nun „%1$s“.</string>
   <!--profile_group_share_view-->

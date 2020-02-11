@@ -465,6 +465,9 @@
   <string name="Megaphones_introducing_reactions">Karşınızda Karşılıklar</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Nasıl hissettiğinizi hızlıca paylaşmak için herhangi bir iletinin üzerine dokunup basılı tutun.</string>
   <string name="Megaphones_remind_me_later">Daha sonra hatırlat</string>
+  <string name="Megaphones_verify_your_signal_pin">Signal PIN\'inizi doğrulayın</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">PIN\'inizi hatırlamanız için arada sırada doğrulamanızı isteyeceğiz.</string>
+  <string name="Megaphones_verify_pin">PIN\'i doğrula</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal araması sürüyor</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal araması kuruluyor</string>
@@ -667,6 +670,11 @@
   <string name="SharedContactView_invite_to_signal">Signal\'e davet et</string>
   <string name="SharedContactView_message">Signal İletisi</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">Size daha sonra hatırlatacağız</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Size yarın hatırlatacağız.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Size birkaç gün içinde hatırlatacağız.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Size bir hafta içinde hatırlatacağız</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Size birkaç hafta içinde hatırlatacağız.</string>
   <!--Slide-->
   <string name="Slide_image">Görüntü</string>
   <string name="Slide_sticker">Çıkartma</string>
@@ -1447,6 +1455,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
     <item quantity="other">Bu cihaz kaydedildiği için yeni bir PIN kodu seçebilirsiniz. Eğer PIN\'inizi unutursanız, yeniden kaydolmak için %1$d gün beklemeniz gerekebilir.</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">PIN\'inizi oluşturun</string>
+  <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN\'ler hesabınıza fazladan bir güvenlik katmanı ekler ve unutulduğunda kurtarılamazlardır. Signal\'e yeniden kaydolurken PIN\'inize ihtiyacınız olacaktır.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN\'ler eşleşmiyor. Tekrar deneyin.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">PIN kodunuzu doğrulayın.</string>
@@ -1461,7 +1470,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="KbsSplashFragment__learn_more">Dahasını Öğrenin</string>
   <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/tr/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Kayıt Kilidi = PIN</string>
-  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Kayıt Kilidi yerine artık PIN kullanılıyor ve daha fazlasını yapıyor. Şimdi güncelleyin.</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Kayıt Kilidi yerine artık PIN kullanılıyor. Şimdi güncelleyin.</string>
   <string name="KbsSplashFragment__read_more_about_pins">PIN\'ler hakkında dahasını okuyun</string>
   <string name="KbsSplashFragment__update_pin">PIN\'i güncelle</string>
   <string name="KbsSplashFragment__create_your_pin">PIN\'inizi oluşturun</string>
@@ -1506,15 +1515,15 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
     <item quantity="other">%1$d deneme hakkınız kaldı.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__d_attempts_remaining">
-    <item quantity="one">%1$d deneme hakkı kaldı.</item>
-    <item quantity="other">%1$d deneme hakkı kaldı.</item>
+    <item quantity="one">%1$d deneme hakkınız kaldı.</item>
+    <item quantity="other">%1$d deneme hakkınız kaldı.</item>
   </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">PIN oluştur</string>
   <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">PIN\'ler hesabınızın güvenliğine bir katman daha ekler.</string>
   <string name="KbsMegaphone__create_pin">PIN oluştur</string>
   <string name="KbsMegaphone__introducing_pins">Karşınızda PIN\'ler</string>
-  <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Kayıt Kilidi yerine artık PIN kullanılıyor ve daha fazlasını yapıyor. PIN\'ler farklı olduğu için mevcut olanı güncellemeniz gerekiyor, yalnızca birkaç saniye sürer.</string>
+  <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Kayıt Kilidi yerine artık PIN kullanılıyor. PIN\'ler farklı olduğu için mevcut olanı güncellemeniz gerekiyor, yalnızca birkaç saniye sürer.</string>
   <string name="KbsMegaphone__update_pin">PIN\'i güncelle</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Size daha sonra hatırlatacağız. %1$d gün sonra PIN oluşturmanız zorunlu olacaktır.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Size daha sonra hatırlatacağız. %1$d gün sonra PIN\'inizi onaylamanız zorunlu olacaktır.</string>
@@ -1563,7 +1572,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="BackupDialog_copied_to_clipboard">Panoya kopyalandı</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Doğrulamak için yedek parolanızı girin</string>
   <string name="BackupDialog_verify">Doğrula</string>
-  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Yedek parolanızı başarıyla girdiniz</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Yedek parolanızı doğru girdiniz</string>
   <string name="BackupDialog_passphrase_was_not_correct">Parolanız doğru değil</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal, yedek oluşturabilmek için Depolama iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Depolama\"yı etkinleştirin.</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Son yedek: %s</string>

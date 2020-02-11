@@ -58,7 +58,7 @@
   <string name="AttachmentKeyboard_gallery">ಗ್ಯಾಲರಿ</string>
   <string name="AttachmentKeyboard_gif">GIF</string>
   <string name="AttachmentKeyboard_file">ಫೈಲ್</string>
-  <string name="AttachmentKeyboard_contact">ಸಂಪರ್ಕಿಸಿ</string>
+  <string name="AttachmentKeyboard_contact">ಸಂಪರ್ಕ</string>
   <string name="AttachmentKeyboard_location">ಸ್ಥಳ</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">ಈ ಮೀಡಿಯಾ ತೆರೆಯಲು ಸಾಮರ್ಥ್ಯವಿರುವ ಅಪ್ಲಿಕೇಶನ್ ಹುಡುಕಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ.</string>
@@ -163,7 +163,7 @@
   <string name="ConversationActivity_message_is_empty_exclamation">ಸಂದೇಶ ಖಾಲಿಯಾಗಿದೆ!</string>
   <string name="ConversationActivity_group_members">ಸಮೂಹದ ಸದಸ್ಯರು</string>
   <string name="ConversationActivity_invalid_recipient">ಸ್ವೀಕರಿಸುವವರು ಅಮಾನ್ಯ!</string>
-  <string name="ConversationActivity_added_to_home_screen">ಸೇರಿಸಲಾಗಿದೆ ಮುಖಪುಟ ಪರದೆ</string>
+  <string name="ConversationActivity_added_to_home_screen"> ಮುಖಪುಟ ಪರದೆಗೆ ಸೇರಿಸಲಾಗಿದೆ</string>
   <string name="ConversationActivity_calls_not_supported">ಕರೆಗಳ ಬೆಂಬಲವಿರುವುದಿಲ್ಲ</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ಈ ಸಾಧನದಲ್ಲಿ ಡಯಲ್ ಕ್ರಮಗಳ ಬೆಂಬಲ ಕಂಡುಬರುತ್ತಿಲ್ಲ.</string>
   <string name="ConversationActivity_leave_group">ಸಮೂಹವನ್ನು ಬಿಡುವಿರ?</string>
@@ -408,7 +408,7 @@
   <string name="InviteActivity_no_app_to_share_to">ಹಂಚಿಕೊಳ್ಳಲು ತಾವು ಯಾವುದೇ ಅಪ್ಲಿಕೇಶನ್ಗಳು ಹೊಂದಿಲ್ಲ ಎಂದಣಿಸುತ್ತದೆ.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">ಸ್ನೇಹಿತರು ಸ್ನೇಹಿತರನ್ನು ಗೂಢಲಿಪಿಕರಿಸದೆ ಹರಟಲು ಬೀಡುವುದಿಲ್ಲ.</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">ಹಿನ್ನೆಲೆಯಲ್ಲಿ ಕೆಲಸ…</string>
+  <string name="Job_working_in_the_background">ಹಿನ್ನೆಲೆಯಲ್ಲಿ ಕೆಲಸವನ್ನು ಮಾಡುತ್ತಿದ್ದೇವೆ…</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">ಕಳುಹಿಸಲು ವಿಫಲವಾಗಿದೆ</string>
   <string name="MessageDetailsRecipient_new_safety_number">ಹೊಸ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ</string>
@@ -520,7 +520,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">ನೀವು ಗುರುತಿಸಲಾಗಿದೆ ನಿಮ್ಮ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ಜೊತೆ %s ಪರಿಶೀಲಿಸಲಾಗಿಲ್ಲ</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">ನೀವು ಗುರುತಿಸಲಾಗಿದೆ ನಿಮ್ಮ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ಜೊತೆ %s ಇನ್ನೊಬ್ಬರಿಂದ ಪರಿಶೀಲಿಸಲಾಗಿಲ್ಲ ಸಾಧನ</string>
   <!--PassphraseChangeActivity-->
-  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">ಗುಪ್ತಪದಗಳು ಹೊಂದಿಕೆಯಾಗುವುದಿಲ್ಲ</string>
+  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">ಗುಪ್ತಪದಗಳು ಹೊಂದಿಕೆಯಾಗುತಿಲ್ಲ</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">ಹಳೆಯ ಗುಪ್ತಪದ ತಪ್ಪಾಗಿದೆ!</string>
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">ಹೊಸ ಗುಪ್ತ ಪದವನ್ನು ನಮೂದಿಸಿ!</string>
   <!--DeviceProvisioningActivity-->
@@ -529,12 +529,12 @@
   <string name="DeviceProvisioningActivity_continue">ಮುಂದುವರಿಸು</string>
   <string name="DeviceProvisioningActivity_content_intro">ಮಾಡಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ</string>
   <string name="DeviceProvisioningActivity_content_bullets">
-        • ಎಲ್ಲವನ್ನೂ ಓದಿ ನಿಮ್ಮ ಸಂದೇಶಗಳು
-        \n• ಕಳುಹಿಸು ಸಂದೇಶಗಳು ನಿಮ್ಮ ಹೆಸರು
+        • ನಿಮ್ಮ ಎಲ್ಲಾ ಸಂದೇಶಗಳನ್ನೂ ಓದಿ 
+        \n• ನಿಮ್ಮ ಹೆಸರಲ್ಲಿ ಸಂದೇಶಗಳು ಕಳುಹಿಸು
     </string>
-  <string name="DeviceProvisioningActivity_content_progress_title">ಲಿಂಕ್ ಮಾಡಲಾಗುತ್ತಿದೆಸಾಧನ</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">ಹೊಸದನ್ನು ಲಿಂಕ್ ಮಾಡಲಾಗುತ್ತಿದೆಸಾಧನ…</string>
-  <string name="DeviceProvisioningActivity_content_progress_success">ಸಾಧನವನ್ನು ಅನುಮೋದಿಸಲಾಗಿದೆ!</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">ಸಾಧನ ಲಿಂಕ್ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">ಹೊಸ ಸಾಧನ ವನ್ನು ಲಿಂಕ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">ಸಾಧನ ಅನುಮೋದಿಸಲಾಗಿದೆ!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">ಯಾವುದೇ ಸಾಧನವನ್ನು ಕಂಡುಹಿಡಿಯಲಾಗಿಲ್ಲ.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">ನೆಟ್ವರ್ಕ್ ದೋಷ.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">ಮಾನ್ಯವಲ್ಲದ QR ಕೋಡ್.</string>
@@ -956,7 +956,7 @@
   <string name="QuoteView_you">ನೀವು</string>
   <string name="QuoteView_original_missing">ಮೂಲ ಸಂದೇಶ ಕಂಡುಬಂದಿಲ್ಲ</string>
   <!--conversation_fragment-->
-  <string name="conversation_fragment__scroll_to_the_bottom_content_description">ಫೋಟೋ</string>
+  <string name="conversation_fragment__scroll_to_the_bottom_content_description">ಕೆಳಗದೆಗೆ ಸ್ಕ್ರಾಲ್ ಮಾಡಿ</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">ಲೋಡ್ ದೇಶಗಳು…</string>
   <string name="country_selection_fragment__search">ಹುಡುಕಿ</string>
@@ -1112,7 +1112,7 @@
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">ಹಂಚಿಕೊಳ್ಳಿ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ</string>
   <!--webrtc_answer_decline_button-->
-  <string name="webrtc_answer_decline_button__swipe_up_to_answer">ಸ್ವೈಪ್ ಮಾಡಿ ಉತ್ತರಿಸಲು</string>
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">ಉತ್ತರಿಸಲು ಮೇಲಕ್ಕೆ  ಸ್ವೈಪ್ ಮಾಡಿ</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">ಸ್ವೈಪ್ ಮಾಡಿತಿರಸ್ಕರಿಸಲು ಕೆಳಗೆ</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">ಈ ಕೆಲವು ವಿಷಯಗಳತ್ತ ನಿಮ್ಮ ಗಮನದ ಅಗತ್ಯವಿದೆ.</string>
@@ -1220,7 +1220,7 @@
   <string name="preferences__mmsc_url">MMSC URL</string>
   <string name="preferences__mms_proxy_host">ಎಂಎಂಎಸ್ ಪ್ರಾಕ್ಸಿ ಅತಿಥೆಯ</string>
   <string name="preferences__mms_proxy_port">ಎಂಎಂಎಸ್ ಪ್ರಾಕ್ಸಿ ಬಂದರು</string>
-  <string name="preferences__mmsc_username">ಎಮ್ ಎಮ್ ಎಸ್ ಸಿ ಬಳಕೆದಾರ </string>
+  <string name="preferences__mmsc_username">ಎಮ್ ಎಮ್ ಎಸ್ ಸಿ ಬಳಕೆದಾರ ಹೆಸರು </string>
   <string name="preferences__mmsc_password">ಎಮ್ ಎಮ್ ಎಸ್ ಸಿ ಪಾಸ್ವರ್ಡ್</string>
   <string name="preferences__sms_delivery_reports">ಎಸ್. ಎಮ್. ಎಸ್ ವಿತರಣಾ ವರದಿಗಳು</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">ನೀವು ಕಳುಹಿಸುವ ಪ್ರತಿ ಎಸ್.ಎಮ್.ಎಸ್ ಸಂದೇಶಕ್ಕೂ ವಿತರಣಾ ವರದಿಯನ್ನು ವಿನಂತಿಸಿ</string>
@@ -1229,7 +1229,7 @@
   <string name="preferences__chats">ಬೆಕ್ಕುಗಳುಮತ್ತು ಮಾಧ್ಯಮ</string>
   <string name="preferences__storage">ಸಂಗ್ರಹಣೆ</string>
   <string name="preferences__conversation_length_limit">ಸಂವಾದದ ಉದ್ದ ಮಿತಿ</string>
-  <string name="preferences__trim_all_conversations_now">ಎಲ್ಲವನ್ನೂ ಟ್ರಿಮ್ ಮಾಡಿ ಸಂಭಾಷಣೆಗಳು ಈಗ</string>
+  <string name="preferences__trim_all_conversations_now">ಎಲ್ಲಾ ಸಂಭಾಷಣೆಗಳನ್ನೂ ಈಗ ಟ್ರಿಮ್ ಮಾಡಿ  </string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">ಸ್ಕ್ಯಾನ್ ಮಾಡಿ ಎಲ್ಲದರ ಮೂಲಕ ಸಂಭಾಷಣೆಗಳು ಮತ್ತು ಸಂಭಾಷಣೆಯ ಉದ್ದದ ಮಿತಿಗಳನ್ನು ಜಾರಿಗೊಳಿಸಿ</string>
   <string name="preferences__linked_devices">ಲಿಂಕ್ ಮಾಡಲಾಗಿದೆ ಸಾಧನಗಳು</string>
   <string name="preferences__light_theme">ಲಘು ವಿನ್ಯಾಸ </string>
@@ -1559,7 +1559,7 @@
   <string name="RegistrationLockDialog_error_connecting_to_the_service">ಸೇವೆಗೆ ಸಂಪರ್ಕಿಸುವಲ್ಲಿ ದೋಷ</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ ನೋಂದಣಿ ಲಾಕ್ ಪಿನ್?</string>
   <string name="RegistrationLockDialog_disable">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
-  <string name="RegistrationActivity_pin_incorrect">ಪಿನ್ತಪ್ಪು</string>
+  <string name="RegistrationActivity_pin_incorrect">ಪಿನ್ ತಪ್ಪು</string>
   <string name="RegistrationActivity_you_have_d_tries_remaining">ನೀವು ಹೊಂದಿವೆ %d ಉಳಿದಿದೆ</string>
   <string name="preferences_chats__backups">ಬ್ಯಾಕಪ್‌ಗಳು</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal ಕ್ ಮಾಡಲಾಗಿದೆ</string>

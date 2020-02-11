@@ -40,6 +40,7 @@
   <string name="ApplicationPreferencesActivity_Off">Tắt</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Khóa màn hình %1$s, Khóa đăng kí %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Khóa màn hình %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Chủ đề %1$s, Ngôn ngữ %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -57,6 +58,8 @@
   <string name="AttachmentKeyboard_file">Tệp</string>
   <string name="AttachmentKeyboard_contact">Liên hệ</string>
   <string name="AttachmentKeyboard_location">Vị trí</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal cần quyền truy cập bộ nhớ để hiển thị ảnh và video của bạn.</string>
+  <string name="AttachmentKeyboard_give_access">Cấp quyền</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Không tìm thấy ứng dụng để chọn tệp đa phương tiện.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal cần quyền truy cập Bộ nhớ để đính kèm ảnh, video hoặc âm thanh, nhưng đã bị từ chối vĩnh viễn. Vui lòng mở cài đặt ứng dụng, chọn \"Quyền\" và bật \"Bộ nhớ\".</string>
@@ -439,7 +442,12 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Được gửi từ %1$s tới %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Được gửi từ bạn tới %1$s</string>
   <!--Megaphones-->
+  <string name="Megaphones_introducing_reactions">Xin giới thiệu tính năng Bày tỏ cảm xúc</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Nhấn giữ một tin nhắn để bày tỏ cảm xúc.</string>
   <string name="Megaphones_remind_me_later">Nhắc tôi sau</string>
+  <string name="Megaphones_verify_your_signal_pin">Xác minh mã PIN Signal của bạn</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Thỉnh thoảng chúng tôi sẽ yêu cầu bạn nhập lại mã PIN để giúp bạn ghi nhớ.</string>
+  <string name="Megaphones_verify_pin">Xác minh mã PIN</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Đang tiến hành cuộc gọi Signal </string>
   <string name="NotificationBarManager__establishing_signal_call">Đang thiết lập cuộc gọi Signal</string>
@@ -544,6 +552,7 @@
   <string name="RatingManager_later">Lúc khác</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Whoops, có vẻ như CH Play không được cài trên thiết bị này.</string>
   <!--ReactionsBottomSheetDialogFragment-->
+  <string name="ReactionsBottomSheetDialogFragment_all">Tất cả %1$d</string>
   <!--ReactionsConversationView-->
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Chặn liên lạc này?</string>
@@ -633,6 +642,11 @@ mã quốc gia bạn</string>
   <string name="SharedContactView_invite_to_signal">Mời dùng Signal</string>
   <string name="SharedContactView_message">Tin nhắn Signal</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">Chúng tôi sẽ lại nhắc bạn sau.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Chúng tôi sẽ lại nhắc bạn vào ngày mai.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Chúng tôi sẽ lại nhắc bạn sau vài ngày.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Chúng tôi sẽ lại nhắc bạn sau một tuần.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Chúng tôi sẽ lại nhắc bạn sau vài tuần.</string>
   <!--Slide-->
   <string name="Slide_image">Ảnh</string>
   <string name="Slide_sticker">Nhãn dán</string>
@@ -1389,8 +1403,18 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">Tạo mã PIN bao gồm chữ và số</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">Tạo mã PIN bao gồm số</string>
   <!--CreateKbsPinFragment-->
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
+    <item quantity="other">PIN phải có tối thiểu %1$d kí tự</item>
+  </plurals>
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
+    <item quantity="other">PIN phải có tối thiểu %1$d chữ số</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Tạo mã PIN mới</string>
+  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
+    <item quantity="other">Bạn có thể chọn mã PIN mới vì thiết bị này đã được đăng kí. Nếu bạn quên mã PIN, bạn có thể phải chờ %1$d ngày để được đăng kí lại.</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Tạo mã PIN của bạn</string>
+  <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">Mã PIN thêm một lớp bảo mật cho tài khoản của bạn. Mã PIN không thể được khôi phục. Bạn sẽ cần mã PIN để đăng kí lại với Signal.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Mã PIN không khớp. Vui lòng thử lại.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Xác nhận mã PIN của bạn.</string>
@@ -1398,10 +1422,13 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Mã PIN của bạn chưa được lưu. Chúng tôi sẽ nhắc bạn tạo mã PIN sau.</string>
   <string name="ConfirmKbsPinFragment__pin_created">Mã PIN đã được tạo.</string>
   <string name="ConfirmKbsPinFragment__re_enter_pin">Nhập lại mã PIN</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">Đang tạo mã PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Giới thiệu mã PIN</string>
+  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">Mã PIN thêm một lớp bảo mật cho tài khoản của bạn. Tạo mã PIN ngay.</string>
   <string name="KbsSplashFragment__learn_more">Tìm hiểu thêm</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Khóa Đăng ký = PIN</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Khóa đăng kí giờ trở thành mã PIN hữu dụng hơn. Cập nhật mã PIN ngay.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Đọc thêm về mã PIN.</string>
   <string name="KbsSplashFragment__update_pin">Cập nhật mã PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Tạo mã PIN của bạn</string>
@@ -1414,6 +1441,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="KbsReminderDialog__incorrect_pin_try_again">PIN không đúng. Hãy thử lại.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Tài khoản bị khoá.</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Tài khoản của bạn đã bị khóa để đảm bảo sự riêng tư và bảo mật. Sau %1$d ngày không sử dụng bạn có thể đăng kí lại số điện thoại mà không cần mã PIN nhưng toàn bộ dữ liệu sẽ bị xóa.</string>
   <string name="AccountLockedFragment__next">Tiếp</string>
   <string name="AccountLockedFragment__learn_more">Tìm hiểu thêm</string>
   <!--KbsLockFragment-->
@@ -1426,9 +1454,31 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="RegistrationLockFragment__forgot_pin">Quên mã PIN?</string>
   <string name="RegistrationLockFragment__incorrect_pin">Mã PIN không chính xác</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Quên mã PIN của bạn?</string>
+  <string name="RegistrationLockFragment__not_many_tries_left">Không còn nhiều lần thử đâu!</string>
+  <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
+    <item quantity="other">Để đảm bảo quyền riêng tư và bảo mật của bạn, không có cách nào khôi phục mã PIN. Nếu bạn không nhớ mã PIN, bạn có thể đăng kí lại số điện thoại này sau %1$d ngày không sử dụng. Trong trường hợp này, dữ liệu tài khoản của bạn sẽ bị xóa.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
+    <item quantity="other">Sai mã PIN. Còn %1$d lần thử.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
+    <item quantity="other">Nếu bạn dùng hết số lần thử, tài khoản của bạn sẽ bị khóa %1$d ngày. Sau %1$d ngày không sử dụng, bạn có thể đăng kí lại mà không cần mã PIN nhưng toàn bộ dữ liệu tài khoản của bạn sẽ bị xóa.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
+    <item quantity="other">Bạn còn %1$d lần thử.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__d_attempts_remaining">
+    <item quantity="other">Còn %1$d lần thử.</item>
+  </plurals>
   <!--KBS Megaphone-->
+  <string name="KbsMegaphone__create_a_pin">Tạo mã PIN</string>
+  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">Mã PIN thêm một lớp bảo mật cho tài khoản Signal của bạn.</string>
+  <string name="KbsMegaphone__create_pin">Tạo mã PIN</string>
   <string name="KbsMegaphone__introducing_pins">Giới thiệu mã PIN</string>
+  <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Khóa đăng kí giờ trở thành mã PIN. Cập nhật mã PIN chỉ tốn vài giây.</string>
   <string name="KbsMegaphone__update_pin">Cập nhật mã PIN</string>
+  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Chúng tôi sẽ nhắc bạn sau. Việc tạo mã PIN sẽ trở nên bắt buộc sau %1$d ngày.</string>
+  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Chúng tôi sẽ nhắc bạn sau. Xác minh mã PIN của bạn sẽ trở nên bắt buộc sau %1$d ngày.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Biểu tượng chuyển tải</string>
   <string name="ConversationListFragment_loading">Đang tải…</string>
@@ -1453,6 +1503,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences_chats__chat_backups">Sao lưu tin nhắn</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Sao lưu tin nhắn vào bộ nhớ trong</string>
   <string name="preferences_chats__create_backup">Tạo bản sao lưu</string>
+  <string name="preferences_chats__verify_backup_passphrase">Xác minh mật khẩu sao lưu</string>
+  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Kiểm tra mật khẩu sao lưu của bạn xem có khớp không</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Điền mật khẩu sao lưu</string>
   <string name="RegistrationActivity_restore">Khôi phục</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Không thể khôi phục bản sao lưu tạo từ phiên bản Signal mới hơn</string>
@@ -1470,7 +1522,10 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="BackupDialog_disable_and_delete_all_local_backups">Tắt và xoá tất cả sao lưu trên thiết bị?</string>
   <string name="BackupDialog_delete_backups_statement">Xoá bản sao lưu</string>
   <string name="BackupDialog_copied_to_clipboard">Đã chép vào bảng ghi tạm</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">Điền mật khẩu sao lưu của bạn để xác minh</string>
   <string name="BackupDialog_verify">Kiểm chứng</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Bạn đã điền mật khẩu sao lưu thành công</string>
+  <string name="BackupDialog_passphrase_was_not_correct">Mật khẩu không chính xác</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal cần quyền truy cập bộ nhớ để tạo bản sao lưu, nhưng đã bị từ chối vĩnh viễn. Vui lòng mở cài đặt ứng dụng, chọn \"Quyền\" và bật \"Bộ nhớ\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Sao lưu gần đây nhất: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Đang thực hiện</string>
@@ -1505,6 +1560,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences_app_protection__registration_lock_pin">Mã PIN Khóa Đăng ký</string>
   <string name="preferences_app_protection__registration_lock">Khóa Đăng ký</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Bạn phải điền mã PIN Khóa Đăng ký của bạn</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Mã PIN phải có tối thiểu %d chữ số hoặc kí tự</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Mã PIN Khóa Đăng ký không đúng</string>
   <string name="RegistrationActivity_too_many_attempts">Đã thử quá nhiều lần</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Bạn đã điền sai mã PIN Khóa Đăng ký quá nhiều lần. Vui lòng thử lại vào hôm sau.</string>

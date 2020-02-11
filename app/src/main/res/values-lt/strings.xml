@@ -505,6 +505,9 @@
   <string name="Megaphones_introducing_reactions">Pristatome reakcijas</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Bakstelėkite ir palaikykite ant bet kurios žinutės, norėdami greitai pasidalinti tuo, ką jaučiate.</string>
   <string name="Megaphones_remind_me_later">Priminti vėliau</string>
+  <string name="Megaphones_verify_your_signal_pin">Patvirtinkite savo Signal PIN kodą</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Retkarčiais, tam kad prisimintumėte savo PIN kodą, prašysime jūsų jį patvirtinti.</string>
+  <string name="Megaphones_verify_pin">Patvirtinti PIN kodą</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal skambutis yra eigoje</string>
   <string name="NotificationBarManager__establishing_signal_call">Užmezgiamas Signal skambutis</string>
@@ -710,6 +713,11 @@
   <string name="SharedContactView_invite_to_signal">Pakviesti į Signal</string>
   <string name="SharedContactView_message">Signal žinutė</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">Vėliau priminsime jums dar kartą.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Rytoj priminsime jums dar kartą.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Po kelių dienų priminsime jums dar kartą.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Po savaitės priminsime jums dar kartą.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Po kelių savaičių priminsime jums dar kartą.</string>
   <!--Slide-->
   <string name="Slide_image">Paveikslas</string>
   <string name="Slide_sticker">Lipdukas</string>
@@ -1518,6 +1526,7 @@
     <item quantity="other">Kadangi šis įrenginys yra registruotas, galite pasirinkti naują PIN kodą. Jei pamiršite savo PIN kodą, turėsite laukti %1$d dieną, kol galėsite vėl registruoti.</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Susikurti PIN kodą</string>
+  <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN kodai prideda jūsų paskyrai papildomo saugumo ir negali būti atkurti. Norint vėl registruotis Signal, jums reikės jūsų PIN kodo.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN kodai nesutampa. Bandykite dar kartą.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Patvirtinkite savo PIN.</string>

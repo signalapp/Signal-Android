@@ -40,6 +40,7 @@
   <string name="ApplicationPreferencesActivity_Off">사용 안함</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">화면 잠금 %1$s, 등록 잠금 %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">화면 잠금 %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">테마 %1$s, 언어 %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -57,6 +58,8 @@
   <string name="AttachmentKeyboard_file">파일</string>
   <string name="AttachmentKeyboard_contact">연락처</string>
   <string name="AttachmentKeyboard_location">위치</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal이 사진이나 동영상을 찍으려면 권한이 필요합니다.</string>
+  <string name="AttachmentKeyboard_give_access">액세스 허용</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">미디어를 선택할 수 있는 앱이 없습니다.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal에 사진이나 비디오 또는 오디오를 첨부하려면 저장공간 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \"권한\"을 선택한 후 \"저장공간\" 항목을 허용하세요.</string>
@@ -262,6 +265,7 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">검증됨</string>
   <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">프로필</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">프로필 사진 설정 중 오류 발생</string>
   <string name="CreateProfileActivity_problem_setting_profile">프로필 설정 중 오류 발생</string>
   <string name="CreateProfileActivity_profile_photo">프로필 사진</string>
@@ -438,6 +442,10 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s(이)가 %2$s에게 보냄</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">내가 %1$s에게 보냄</string>
   <!--Megaphones-->
+  <string name="Megaphones_introducing_reactions">리액션을 소개합니다.</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">아무 메시지나 길게 탭하여 내 기분을 빠르게 공유해 보세요.</string>
+  <string name="Megaphones_remind_me_later">나중에 알림</string>
+  <string name="Megaphones_verify_your_signal_pin">Signal 번호 인증</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal 통화 중</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal 통화 연결 중</string>
@@ -527,6 +535,7 @@
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">지도</string>
   <string name="PlacePickerActivity_not_a_valid_address">잘못된 주소</string>
+  <string name="PlacePickerActivity_drop_pin">핀 고정</string>
   <string name="PlacePickerActivity_accept_address">주소 허용</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">설치된 Google Play 서비스 버전은 제대로 작동하지 않습니다. Google Play 서비스를 재설치 하고 다시 시도해 주세요.</string>
@@ -594,6 +603,8 @@
   <string name="RegistrationActivity_failed_to_verify_the_captcha">CAPTCHA 인증에 실패했습니다</string>
   <string name="RegistrationActivity_next">다음</string>
   <string name="RegistrationActivity_continue">확인</string>
+  <string name="RegistrationActivity_continue_d_attempts_left">계속(%d회 남음)</string>
+  <string name="RegistrationActivity_continue_last_attempt">계속(마지막 시도!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">내 개인정보는 내 손에서만.\n안전하게 메시지를 보내세요.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">시작하려면 휴대전화 번호를 입력하세요</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">인증 코드를 보내드립니다. 통신사 요금이 적용될 수 있습니다.</string>
@@ -604,6 +615,7 @@
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">사진 보기</string>
   <string name="RevealableMessageView_view_video">비디오 보기</string>
+  <string name="RevealableMessageView_viewed">조회함</string>
   <string name="RevealableMessageView_media">미디어</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">이미지 변경점을 저장할 수 없음</string>
@@ -663,6 +675,9 @@
   <string name="ThreadRecord_missed_call">부재중 전화</string>
   <string name="ThreadRecord_media_message">미디어 메시지</string>
   <string name="ThreadRecord_sticker">스티커</string>
+  <string name="ThreadRecord_view_once_photo">이미지 한 번 보기</string>
+  <string name="ThreadRecord_view_once_video">동영상 한 번 보기</string>
+  <string name="ThreadRecord_view_once_media">미디어 한 번 보기</string>
   <string name="ThreadRecord_s_is_on_signal">%s님이 Signal에 연결되어 있습니다1</string>
   <string name="ThreadRecord_disappearing_messages_disabled">사라지는 메시지 기능 꺼짐</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">사라지는 메시지 시간을 %s(으)로 설정했습니다.</string>
@@ -691,6 +706,11 @@
   <string name="UsernameEditFragment_username">사용자 이름</string>
   <string name="UsernameEditFragment_submit">제출</string>
   <string name="UsernameEditFragment_delete">삭제</string>
+  <string name="UsernameEditFragment_successfully_set_username">사용자 이름이 성공적으로 설정되었습니다.</string>
+  <string name="UsernameEditFragment_successfully_removed_username">사용자 이름이 성공적으로 삭제되었습니다.</string>
+  <string name="UsernameEditFragment_encountered_a_network_error">네트워크 오류가 발생했습니다.</string>
+  <string name="UsernameEditFragment_this_username_is_taken">사용 중인 사용자 이름입니다.</string>
+  <string name="UsernameEditFragment_this_username_is_available">사용할 수 있는 사용자 이름입니다.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">해당 연락처는 오래된 버전의 Signal을 쓰고 있습니다. 안전 번호를 검증하기 전에 먼저 업데이트를 요청하세요.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">해당 연락처는 상위 버전 Signal의 호환되지 않는 QR 코드 형식을 사용하고 있습니다. 앱을 업데이트하세요.</string>
@@ -742,6 +762,8 @@
   <string name="MessageNotifier_mark_read">읽음으로 표시</string>
   <string name="MessageNotifier_media_message">미디어 메시지</string>
   <string name="MessageNotifier_sticker">스티커</string>
+  <string name="MessageNotifier_view_once_photo">사진 한 번 조회</string>
+  <string name="MessageNotifier_view_once_video">동영상 한 번 보기</string>
   <string name="MessageNotifier_reply">답장</string>
   <string name="MessageNotifier_signal_message">Signal 메시지</string>
   <string name="MessageNotifier_unsecured_sms">비보안 SMS</string>
@@ -760,6 +782,7 @@
   <string name="NotificationChannel_group_messages">메시지</string>
   <string name="NotificationChannel_missing_display_name">알 수 없음</string>
   <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_encountered_a_network_error">네트워크 오류가 발생했습니다.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal 잠겨 있는 경우 빠른 응답 사용할 수 없음</string>
   <string name="QuickResponseService_problem_sending_message">메시지 보내지 못함</string>
@@ -875,6 +898,7 @@
   <string name="QuoteView_audio">오디오</string>
   <string name="QuoteView_video">비디오eos</string>
   <string name="QuoteView_photo">사진</string>
+  <string name="QuoteView_view_once_media">미디어 한 번 보기</string>
   <string name="QuoteView_sticker">스티커</string>
   <string name="QuoteView_document">문서</string>
   <string name="QuoteView_you">나</string>

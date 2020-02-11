@@ -332,7 +332,7 @@
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal tukee nyt turvallisia videopuheluita. Jatka napauttamalla.</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Oletko valmis kuvaamista varten?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Nyt voit jakaa profiilikuvasi ja -nimesi ystäviesi kanssa Signalissa</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signaali-profiilit ovat täällä</string>
+  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal-profiilit ovat täällä</string>
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Esittelemme kirjoitustilaindikaattorin.</string>
   <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Voit nyt vaihtoehtoisesti nähdä ja jakaa milloin viestejä kirjoitetaan.</string>
   <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Haluatko ottaa sen käyttöön nyt?</string>
@@ -376,7 +376,7 @@
   <string name="GroupCreateActivity_youre_already_in_the_group">Olet jo ryhmässä.</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Jaa profiilikuvasi ja -nimesi tämän ryhmän kanssa?</string>
-  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Haluatko tehdä profiilikuvasi ja nimesi näkyväksi kaikille tämän ryhmän nykyisille ja tuleville jäsenille?</string>
+  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Haluatko tehdä profiilikuvasi ja -nimesi näkyväksi kaikille tämän ryhmän nykyisille ja tuleville jäsenille?</string>
   <string name="GroupShareProfileView_make_visible">Haluan</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Minä</string>
@@ -834,7 +834,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="NotificationChannel_group_messages">Viestit</string>
   <string name="NotificationChannel_missing_display_name">Tuntematon</string>
   <!--ProfileEditNameFragment-->
-  <string name="ProfileEditNameFragment_successfully_set_profile_name">Profiilin nimen asetus onnistui.</string>
+  <string name="ProfileEditNameFragment_successfully_set_profile_name">Profiilinimen asetus onnistui.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">Verkkovirhe.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Pikavastaus ei toimi, kun Signal on lukittu!</string>
@@ -1478,6 +1478,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="KbsReminderDialog__incorrect_pin_try_again">Väärä PIN-koodi. Yritä uudelleen.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Tili lukittu</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Tilisi on lukittu yksityisyytesi ja turvallisuutesi suojaamiseksi. Kun %1$d päivää on kulunut ilman toimintaa tililläsi, voit rekisteröidä tämän puhelinnumeron uudelleen ilman, että tarvitset PIN-koodia. Kaikki sisältö pyyhitään.</string>
   <string name="AccountLockedFragment__next">Seuraava</string>
   <string name="AccountLockedFragment__learn_more">Lue lisää</string>
   <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
@@ -1500,6 +1501,10 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
     <item quantity="one">Väärä PIN-koodi. %1$d yritys jäljellä.</item>
     <item quantity="other">Väärä PIN-koodi. %1$d yritystä jäljellä.</item>
   </plurals>
+  <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
+    <item quantity="one">Jos yrityksesi loppuvat, tilisi lukitaan %1$d päiväksi. %1$d päivän toimettomuuden jälkeen voit rekisteröityä uudelleen ilman PIN-koodia. Tilisi pyyhitään ja kaikki sisältö poistetaan.</item>
+    <item quantity="other">Jos yrityksesi loppuvat, tilisi lukitaan %1$d päiväksi. %1$d päivän toimettomuuden jälkeen voit rekisteröityä uudelleen ilman PIN-koodia. Tilisi pyyhitään ja kaikki sisältö poistetaan.</item>
+  </plurals>
   <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
     <item quantity="one">Sinulla on %1$d yritys jäljellä.</item>
     <item quantity="other">Sinulla on %1$d yritystä jäljellä.</item>
@@ -1516,6 +1521,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Rekisteröinnin lukitusta kutsutaan nyt PIN-koodiksi. Päivittäminen kestää sekunteja.</string>
   <string name="KbsMegaphone__update_pin">Päivitä PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Muistutamme sinua myöhemmin. PIN-koodin luomisesta tulee pakollinen %1$d päivän kuluttua.</string>
+  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Muistutamme sinua myöhemmin. PIN-koodin vahvistamisesta tulee pakollinen %1$d päivän kuluttua.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Tyypin kuvake</string>
   <string name="ConversationListFragment_loading">Ladataan…</string>

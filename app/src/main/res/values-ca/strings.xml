@@ -33,7 +33,7 @@
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Inhabiliteu els missatges i les trucades del Signal cancel·lant el registre del servidor. Haureu de tornar a registrar el número de telèfon per usar-los de nou.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">S\'ha produït un error en connectar amb el servidor.</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS habilitats</string>
-  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Toqueu per a canviar l\'aplicació d\'SMS predeterminada</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Toqueu per canviar l\'aplicació d\'SMS predeterminada</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS inhabilitats</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Toqueu perquè el Signal sigui l\'aplicació d\'SMS predeterminada</string>
   <string name="ApplicationPreferencesActivity_on">actiu</string>
@@ -141,7 +141,7 @@
   <string name="ContactShareEditActivity_invalid_contact">El contacte seleccionat no és vàlid.</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Ha fallat l\'enviament. Toqueu per saber-ne més.</string>
-  <string name="ConversationItem_received_key_exchange_message_tap_to_process">S\'ha rebut el missatge de l\'intercanvi de la clau, toqueu per a processar-lo.</string>
+  <string name="ConversationItem_received_key_exchange_message_tap_to_process">S\'ha rebut el missatge de l\'intercanvi de la clau, toqueu per processar-lo.</string>
   <string name="ConversationItem_group_action_left">%1$s ha abandonat el grup.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Ha fallat l\'enviament. Toqueu per al mode no segur.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Voleu canviar a SMS sense encriptar?</string>
@@ -284,7 +284,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problema en establir el perfil</string>
   <string name="CreateProfileActivity_profile_photo">Foto del perfil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Establiu el perfil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Els perfils del Signal estan xifrats d\'extrem a extrem, i el servei del Signal no té accés a aquesta informació.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Els perfils del Signal estan encriptats de cap a cap i el servei del Signal no té accés a aquesta informació.</string>
   <string name="CreateProfileActivity_set_avatar_description">Estableix l\'avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Ús de la personalització: %s</string>
@@ -465,6 +465,9 @@
   <string name="Megaphones_introducing_reactions">S\'introdueixen les reaccions</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Mantingueu un toc sobre qualsevol missatge per compartir com us sentiu.</string>
   <string name="Megaphones_remind_me_later">Recorda-m\'ho més tard.</string>
+  <string name="Megaphones_verify_your_signal_pin">Verifiqueu el PIN del Signal</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">De tant en tant us demanarem de verificar el PIN perquè el recordeu.</string>
+  <string name="Megaphones_verify_pin">Verifica el PIN</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Trucada del Signal en curs</string>
   <string name="NotificationBarManager__establishing_signal_call">S\'estableix la trucada del Signal</string>
@@ -662,6 +665,11 @@ especificat (%s) no és vàlid.</string>
   <string name="SharedContactView_invite_to_signal">Convida al Signal</string>
   <string name="SharedContactView_message">Missatge del Signal</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">Us ho recordarem més tard.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Us ho recordarem demà.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Us ho recordarem d\'aquí a uns dies.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Us ho recordarem d\'aquí a una setmana.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Us ho recordarem d\'aquí a un parell de setmanes.</string>
   <!--Slide-->
   <string name="Slide_image">Imatge</string>
   <string name="Slide_sticker">Adhesiu</string>
@@ -851,8 +859,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
     <item quantity="other">%d elements</item>
   </plurals>
   <!--UnauthorizedReminder-->
-  <string name="UnauthorizedReminder_device_no_longer_registered">L\'aparell ja no està registrat</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Possiblement això és perquè vau registrar el vostre número de telèfon al Signal en una aparell diferent. Feu un toc per a tornar a registrar-lo.</string>
+  <string name="UnauthorizedReminder_device_no_longer_registered">El dispositiu ja no està registrat.</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Potser és així perquè vau registrar el número de telèfon al Signal des d\'un dispositiu diferent. Feu un toc per a tornar a registrar-lo.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">S\'ha produït un error en reproduir el vídeo</string>
   <!--WebRtcCallActivity-->
@@ -1403,7 +1411,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Interior</string>
   <string name="InsightsDashboardFragment__title">Interior</string>
-  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">El Protocol de Signal ha protegit automàticament %1$d%% dels missatges de sortida durant els darrers %2$d dies. Les converses entre usuaris del Signal sempre estan encriptades de punt a punt.</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">El Protocol de Signal ha protegit automàticament %1$d%% dels missatges de sortida durant els darrers %2$d dies. Les converses entre usuaris del Signal sempre estan encriptades de cap a cap.</string>
   <string name="InsightsDashboardFragment__boost_your_signal">Impuls de Signal</string>
   <string name="InsightsDashboardFragment__not_enough_data">Dades insuficients</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">El percentatge d’Interior es calcula a partir dels missatges de sortida dels darrers %1$d dies que no han desaparegut ni s’han suprimit.</string>
@@ -1442,6 +1450,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
     <item quantity="other">Podeu triar un PIN nou perquè aquest dispositiu està registrat. Si l\'oblideu, pot ser que hàgiu d\'esperar %1$d dies per tornar-vos a registrar.</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Creeu el PIN</string>
+  <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">Els PIN afegeixen seguretat extra al compte i no es poden recuperar. Us caldrà el PIN per registrar-vos al Signal un altre cop.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Els codis no coincideixen. Torneu-ho a provar.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Confirmeu el vostre PIN.</string>
@@ -1618,7 +1627,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="RegistrationActivity_you_have_d_tries_remaining">Us resten %d intents.</string>
   <string name="preferences_chats__backups">Còpies de seguretat</string>
   <string name="prompt_passphrase_activity__signal_is_locked">El Signal està blocat</string>
-  <string name="prompt_passphrase_activity__tap_to_unlock">TOQUEU PER A DESBLOCAR-LO</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">TOQUEU PER DESBLOCAR-LO</string>
   <string name="RegistrationLockDialog_reminder">Recordatori:</string>
   <string name="recipient_preferences__about">Quant a</string>
   <string name="Recipient_unknown">Desconegut</string>

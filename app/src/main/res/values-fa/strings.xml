@@ -465,6 +465,8 @@
   <string name="Megaphones_introducing_reactions">معرفی واکنش‌ها</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">با نگاه داشتن دست خود بر روی پیام‌ها احساس‌تان را در میان بگذارید.</string>
   <string name="Megaphones_remind_me_later">بعداً به من یادآوری کن</string>
+  <string name="Megaphones_verify_your_signal_pin">پین Signal خود را تأیید کنید</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">هرازچندگاهی پین از شما پرسیده می‌شود تا آن را فراموش نکنید.</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">تماس Signal در جریان است</string>
   <string name="NotificationBarManager__establishing_signal_call">در حال برقراری تماس Signal</string>
@@ -1097,7 +1099,8 @@
   <string name="redphone_call_card__signal_call">تماس Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">شماره تلفن</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal ارتباط با استفاده از شماره تلفن فعلی و دفترچه آدرس را آسان میکند. دوستان و مخاطبانی که می دانند به چه شکل از طریق تلفن با شما تماس بگیرند قادر خواهند بود تا به آسانی از طریق Signal ارتباط برقرار کنند.\n\n ثبت نام برخی اطلاعات مخاطب را به سرور ارسال میکند. چیزی ذخیره نمی شود.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal با استفاده از شماره و دفترچهٔ تلفن شما ارتباط را آسان می‌کند. دوستان و مخاطبانی که می‌دانند به چه شکل از طریق تلفن با شما تماس بگیرند قادر خواهند بود تا به آسانی با شما از طریق Signal ارتباط برقرار کنند. 
+ثبت نام برخی اطلاعات مخاطب را به سرور ارسال می‌کند. چیزی ذخیره نمی‌شود.</string>
   <string name="registration_activity__verify_your_number">شماره خود را تایید کنید</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">لطفاً شماره تلفن همراه خود را جهت دریافت کد تأیید وارد نمایید. اپراتور شما ممکن است مبلغی در ازای این کار دریافت کند.</string>
   <!--recipients_panel-->

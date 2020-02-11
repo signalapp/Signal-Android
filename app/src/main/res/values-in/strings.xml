@@ -443,8 +443,11 @@
   <string name="MediaOverviewActivity_sent_by_you_to_s">Dikirim oleh Anda untuk %1$s</string>
   <!--Megaphones-->
   <string name="Megaphones_introducing_reactions">Memperkenalkan Reaksi</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Ketuk dan tahan pesan manapun untuk langsung membagikan perasaanmu.</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Ketuk dan tahan pada pesan manapun untuk langsung membagikan perasaanmu.</string>
   <string name="Megaphones_remind_me_later">Ingatkan saya nanti</string>
+  <string name="Megaphones_verify_your_signal_pin">Verifikasi PIN Signal Anda</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Kami sesekali akan meminta Anda untuk melakukan verifikasi PIN agar Anda dapat mengingatnya.</string>
+  <string name="Megaphones_verify_pin">Verifikasi PIN</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Panggilan Signal berlangsung</string>
   <string name="NotificationBarManager__establishing_signal_call">Menyiapkan panggilan Signal</string>
@@ -644,6 +647,11 @@ isikan (%s) tidak valid.
   <string name="SharedContactView_invite_to_signal">Undang ke Signal</string>
   <string name="SharedContactView_message">Pesan Signal</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">Kami akan mengingatkan Anda lagi nanti.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Kami akan mengingatkan Anda lagi besok.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Kami akan mengingatkan Anda lagi dalam beberapa hari.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Kami akan mengingatkan Anda lagi dalam seminggu.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Kami akan mengingatkan Anda lagi dalam beberapa minggu.</string>
   <!--Slide-->
   <string name="Slide_image">Gambar</string>
   <string name="Slide_sticker">Stiker</string>
@@ -791,13 +799,13 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Buka Signal untuk memeriksa notifikasi terbaru.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontak</string>
-  <string name="MessageNotifier_reacted_s_to_s">Menanggapi %1$s ke: \"%2$s\".</string>
+  <string name="MessageNotifier_reacted_s_to_s">Bereaksi %1$s ke: \"%2$s\".</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Bereaksi %1$sterhadap video Anda.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Bereaksi %1$s terhadap gambar Anda.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Bereaksi %1$s terhadap berkas Anda.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Bereaksi %1$s terhadap audio Anda.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Bereaksi %1$s terhadap foto sekali-lihat Anda.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Bereaksi %1$s terhadap video sekali-lihat Anda.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Bereaksi %1$s terhadap foto satu-tayangan Anda.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Bereaksi %1$s terhadap video satu-tayangan Anda.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Bereaksi %1$s terhadap stiker Anda.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Standar</string>
@@ -1378,7 +1386,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="Insights__title">Insight</string>
   <string name="InsightsDashboardFragment__title">Insight</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protokol Signal melindungi %1$d%% pesan keluar Anda secara otomatis selama %2$dhari terakhir. Percakapan antara pengguna Signal selalu dienkripsi ujung-ke-ujung.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Perkuat keamanan Signal</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Amankan lebih banyak percakapan</string>
   <string name="InsightsDashboardFragment__not_enough_data">Data tidak cukup</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Insight Anda dihitung dari pesan terkirim dalam %1$d hari terakhir yang masih dapat dilihat dan belum terhapus.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Mulai percakapan</string>
@@ -1388,7 +1396,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="InsightsDashboardFragment__cancel">Batal</string>
   <string name="InsightsDashboardFragment__send">Kirim</string>
   <string name="InsightsModalFragment__title">Memperkenalkan Insight</string>
-  <string name="InsightsModalFragment__description">Cari tahu berapa pesan yang berhasil terkirim secara aman, kemudian undang kontak baru untuk meningkatkan persentasi Signal Anda.</string>
+  <string name="InsightsModalFragment__description">Cari tahu berapa pesan yang berhasil terkirim secara aman, kemudian undang kontak baru untuk mengamankan lebih banyak percakapan di Signal.</string>
   <string name="InsightsModalFragment__view_insights">Lihat Insight</string>
   <string name="FirstInviteReminder__title">Undang ke Signal</string>
   <string name="FirstInviteReminder__description">Anda dapat meningkatkan jumlah pesan terenkripsi sebanyak %1$d%%.</string>
@@ -1413,6 +1421,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
     <item quantity="other">Anda dapat membuat PIN baru karena perangkat ini telah terdaftar. Jika Anda lupa PIN, Anda perlu menunggu %1$d hari untuk mendaftar lagi.</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Buat PIN Anda</string>
+  <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN menambah keamanan tambahan ke akun Anda dan tidak dapat dipulihkan setelah diatur. Anda akan membutuhkan PIN ini untuk mendaftarkan ulang nomor Anda ke Signal.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN tidak cocok. Coba lagi.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Konfirmasi PIN Anda.</string>
@@ -1472,7 +1481,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Buat PIN</string>
-  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">PIN menambah lapisan keamanan terhadap akun Signal Anda.</string>
+  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">PIN menambah lapisan keamanan ke akun Signal Anda.</string>
   <string name="KbsMegaphone__create_pin">Buat PIN</string>
   <string name="KbsMegaphone__introducing_pins">Memperkenalkan PIN</string>
   <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Kunci Pendaftaran Anda sekarang bernama PIN. Memperbaruinya memakan waktu beberapa detik.</string>
@@ -1504,7 +1513,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_chats__backup_chats_to_external_storage">Cadangkan obrolan ke penyimpanan eksternal</string>
   <string name="preferences_chats__create_backup">Buat cadangan</string>
   <string name="preferences_chats__verify_backup_passphrase">Verifikasi frasa sandi cadangan</string>
-  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Uji frasa sandi cadangan Anda dan verifikasikan bahwa ia cocok</string>
+  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Uji frasa sandi cadangan Anda dan verifikasi kecocokannya</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Masukkan frasa sandi cadangan</string>
   <string name="RegistrationActivity_restore">Pulihkan</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Tidak bisa mengimpor cadangan dari versi Signal yang lebih baru</string>
@@ -1546,7 +1555,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Ubah</string>
   <string name="preferences_app_protection__create">Buat</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Pin Anda menambahkan lapisan ekstra keamanan dan pencadangan akun Anda. Anda akan dimintai PIN tersebut saat Anda mendaftarkan nomor telepon Anda di Signal. Jika lupa PIN, Anda akan terkunci dari akun Anda selama 7 hari.</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">PIN Anda menambahkan lapisan ekstra keamanan dan mencadangkan akun Anda. Anda akan dimintai PIN tersebut saat Anda mendaftarkan nomor telepon Anda di Signal. Jika lupa PIN, akun Anda akan terkunci selama 7 hari.</string>
   <string name="AppProtectionPreferenceFragment_none">Kosong</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN Kunci Pendaftaran berbeda dengan SMS kode verifikasi yang baru Anda terima. Harap masukkan konfigurasi PIN yang sebelumnya telah Anda buat. </string>
   <string name="registration_activity__registration_lock_pin">PIN Kunci Pendaftaran</string>

@@ -507,6 +507,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="Megaphones_introducing_reactions">Yn Cyflwyno Adweithiau</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Tapiwch a dal unrhyw neges i rannu\'n sydyn eich teimladau.</string>
   <string name="Megaphones_remind_me_later">Atgoffwch fi\'n hwyrach</string>
+  <string name="Megaphones_verify_your_signal_pin">Dilyswch eich PIN Signal</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Byddwn yn gofyn i chi o bryd i\'w gilydd i ddilysu eich PIN fel eich bod yn ei gofio.</string>
+  <string name="Megaphones_verify_pin">Dilysu\'r PIN</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Ar ganol galwad Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Sicrhau galwad Signal</string>
@@ -708,6 +711,11 @@ Send neges heb ei ddiogelu?</string>
   <string name="SharedContactView_invite_to_signal">Gwahodd i Signal</string>
   <string name="SharedContactView_message">Neges Signal</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">Byddwn yn eich atgoffa\'n hwyrach.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Byddwn yn eich atgoffa yfory.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Byddwn yn eich atgoffa eto ymhen ychydig ddyddiau.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Byddwn yn eich atgoffa ymhen wythnos.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Byddwn yn eich atgoffa ymhen ychydig wythnosau.</string>
   <!--Slide-->
   <string name="Slide_image">Llun</string>
   <string name="Slide_sticker">Sticer</string>
@@ -1514,6 +1522,7 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="other">Gallwch ddewis PIN newydd gan fod y ddyfais wedi ei chofrestru. Os fyddwch yn anghofio eich PIN, efallai y bydd angen i chi aros am %1$d diwrnod i chi gofrestru eto.</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Crëwch eich PIN</string>
+  <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">Mae\'r PIN yn ychwanegu diogelwch ychwanegol i\'ch cyfrif ac nid oes modd ei adfer. Bydd angen y PIN arnoch chi i gofrestru gyda Signal eto.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Nid yw\'r PIN yn cyfateb. Ceisiwch eto.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Cadarnhewch eich PIN.</string>

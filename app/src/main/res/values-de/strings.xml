@@ -465,7 +465,7 @@
   <string name="Megaphones_introducing_reactions">Einführung von Reaktionen</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Tippe länger auf eine Nachricht, um schnell deine Reaktion mitzuteilen.</string>
   <string name="Megaphones_remind_me_later">Später erinnern</string>
-  <string name="Megaphones_verify_your_signal_pin">Überprüfe deine Signal-PIN</string>
+  <string name="Megaphones_verify_your_signal_pin">Überprüfung deiner Signal-PIN</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Wir fragen dich gelegentlich nach deiner PIN, damit du sie nicht vergisst.</string>
   <string name="Megaphones_verify_pin">PIN überprüfen</string>
   <!--NotificationBarManager-->

@@ -240,14 +240,14 @@
   <string name="ConversationFragment_push">Data (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
-  <string name="ConversationFragment_deleting">Raderar</string>
+  <string name="ConversationFragment_deleting">Tar bort</string>
   <string name="ConversationFragment_deleting_messages">Tar bort meddelanden…</string>
   <string name="ConversationFragment_quoted_message_not_found">Hittade inte originalmeddelandet.</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Originalmeddelandet inte längre tillgänglig.</string>
   <string name="ConversationFragment_failed_to_open_message">Det gick inte att öppna meddelandet</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Du kan dra åt höger på ett meddelande för att snabbt svara</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Du kan dra åt vänster på ett meddelande för att snabbt svara</string>
-  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Filer för utgående visa-en-gång media raderas automatiskt efter att de har skickats</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Filer för utgående visa-en-gång media tas bort automatiskt efter att de har skickats</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Du har redan sett det här meddelandet</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Det finns ingen webbläsare installerad på din enhet.</string>
@@ -261,7 +261,7 @@
     <item quantity="one">Detta kommer permanent radera den valda konversationen.</item>
     <item quantity="other">Detta kommer permanent ta bort alla %1$d valda konversationer.</item>
   </plurals>
-  <string name="ConversationListFragment_deleting">Raderar</string>
+  <string name="ConversationListFragment_deleting">Tar bort</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Tar bort valda konversationer…</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">Konversation arkiverad</item>
@@ -433,7 +433,7 @@
     <item quantity="one">Detta tar permanent bort den valda filen. Varje meddelandetext som är associerad med det här objektet kommer också att tas bort.</item>
     <item quantity="other">Detta tar permanent bort alla %1$d valda filer. Varje meddelandetext som är associerad med dessa objekt kommer också att tas bort.</item>
   </plurals>
-  <string name="MediaOverviewActivity_Media_delete_progress_title">Raderar</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Tar bort</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Tar bort meddelanden…</string>
   <string name="MediaOverviewActivity_Select_all">Markera alla</string>
   <string name="MediaOverviewActivity_collecting_attachments">Samlar bilagor…</string>
@@ -1144,7 +1144,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="AndroidManifest__linked_devices">Länkade enheter</string>
   <string name="AndroidManifest__invite_friends">Bjud in vänner</string>
   <string name="AndroidManifest_archived_conversations">Arkiverade konversationer</string>
-  <string name="AndroidManifest_remove_photo">Radera bild</string>
+  <string name="AndroidManifest_remove_photo">Ta bort bild</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importera</string>
   <string name="arrays__use_default">Använd standardinställning</string>
@@ -1404,7 +1404,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="new_conversation_activity__refresh">Uppdatera</string>
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
-  <string name="trimmer__deleting">Raderar</string>
+  <string name="trimmer__deleting">Tar bort</string>
   <string name="trimmer__deleting_old_messages">Tar bort gamla meddelanden…</string>
   <string name="trimmer__old_messages_successfully_deleted">Gamla meddelanden har tagits bort</string>
   <!--Insights-->

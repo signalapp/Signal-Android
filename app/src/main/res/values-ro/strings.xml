@@ -4,7 +4,7 @@
   <string name="no">Nu</string>
   <string name="delete">Ștergeți</string>
   <string name="please_wait">Vă rugăm să așteptați…</string>
-  <string name="save">Salvează</string>
+  <string name="save">Salvați</string>
   <string name="note_to_self">Notă personală</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Mesaj nou</string>
@@ -486,7 +486,7 @@
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Atingeți și mențineți apăsat orice mesaj pentru a partaja rapid cum vă simțiți.</string>
   <string name="Megaphones_remind_me_later">Amintește-mi mai târziu</string>
   <string name="Megaphones_verify_your_signal_pin">Verificați PIN-ul dvs. Signal.</string>
-  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Ocazional vom solicita să vă confirmați codul PIN pentru a-l memora mai ușor.</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Ocazional vă vom solicita să vă confirmați codul PIN pentru a-l reține mai ușor.</string>
   <string name="Megaphones_verify_pin">Verificați PIN-ul</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Apel Signal în curs</string>
@@ -1079,7 +1079,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Doriți să importaţi mesajele dvs. text existente în baza de date criptată Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Baza de date a sistemului nu va fi modificată în nici un fel.</string>
-  <string name="database_migration_activity__skip">Omite</string>
+  <string name="database_migration_activity__skip">Omiteți</string>
   <string name="database_migration_activity__import">Importă</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">S-ar putea să dureze câteva momente. Vă rugăm să aveți răbdare, vă vom notifica când importul este complet.</string>
   <string name="database_migration_activity__importing">SE IMPORTĂ</string>
@@ -1508,10 +1508,10 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="KbsSplashFragment__update_pin">Actualizați PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Creați-vă PIN-ul</string>
   <!--KBS Reminder Dialog-->
-  <string name="KbsReminderDialog__enter_your_signal_pin">Introduceți PIN-ul dvs Signal.</string>
+  <string name="KbsReminderDialog__enter_your_signal_pin">Introduceți PIN-ul dvs. Signal</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Pentru a vă ajuta să memorați codul PIN, vă vom rugă să îl introduceți periodic. În timp, o să-l cerem mai rar.</string>
-  <string name="KbsReminderDialog__skip">Omite</string>
-  <string name="KbsReminderDialog__submit">Trimite</string>
+  <string name="KbsReminderDialog__skip">Omiteți</string>
+  <string name="KbsReminderDialog__submit">Trimiteți</string>
   <string name="KbsReminderDialog__forgot_pin">Ați uitat PIN-ul?</string>
   <string name="KbsReminderDialog__incorrect_pin_try_again">PIN incorect. Încercați din nou.</string>
   <!--AccountLockedFragment-->
@@ -1584,7 +1584,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Backup-urile se vor salva pe stocarea externă și vor fi criptate cu parola de mai jos. Trebuie să aveți această parolă pentru a putea restaura un backup.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Am scris parola. Fără ea nu voi putea restaura un backup.</string>
   <string name="registration_activity__restore_backup">Restaurare backup</string>
-  <string name="registration_activity__skip">Omite</string>
+  <string name="registration_activity__skip">Omiteți</string>
   <string name="registration_activity__register">Înregistrare</string>
   <string name="preferences_chats__chat_backups">Backup-uri pt. conversații</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Salvează conversațiile pe stocarea externă</string>

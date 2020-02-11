@@ -246,7 +246,7 @@
     <item quantity="two">حفظ %1$d وسيط في الذاكرة يسمح ﻷي تطبيق آخر على الهاتف من النفاذ له. \n\nاستمر؟</item>
     <item quantity="few">حفظ %1$d وسيط في الذاكرة يسمح ﻷي تطبيق آخر على الهاتف من النفاذ له. \n\nاستمر؟</item>
     <item quantity="many">حفظ %1$d وسيط في الذاكرة يسمح ﻷي تطبيق آخر على الهاتف من النفاذ له. \n\nاستمر؟</item>
-    <item quantity="other">حفظ جميع ال %1$d ملف متعدد الوسائط في الذاكرة سيسمح ﻷي تطبيق آخر على جهازك بالنفاذ إليها.\n\n استمرار؟</item>
+    <item quantity="other">حفظ جميع الـ %1$d ملف متعدد الوسائط في الذاكرة سيسمح ﻷي تطبيق آخر على جهازك بالنفاذ إليها.\n\n استمرار؟</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="zero">وقع خطأ أثناء حفظ المرفقات في مساحة التخزين!</item>
@@ -1019,7 +1019,7 @@
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">قفل التسجيل الصوتي</string>
   <string name="conversation_activity__enable_signal_for_sms">تفعيل Signal لرسائل SMS</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">مرر للإلغاء</string>
+  <string name="conversation_input_panel__slide_to_cancel">مرِّر للإلغاء</string>
   <string name="conversation_input_panel__cancel">إلغاء</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">رسالة وسائط متعددة</string>

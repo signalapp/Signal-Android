@@ -505,6 +505,9 @@
   <string name="Megaphones_introducing_reactions">היכרות עם תגובות</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">הקש והחזק הודעה כלשהי כדי לשתף בזריזות איך אתה מרגיש.</string>
   <string name="Megaphones_remind_me_later">הזכר לי מאוחר יותר</string>
+  <string name="Megaphones_verify_your_signal_pin">וודא את Signal PIN שלך</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">נבקש ממך מדי פעם לוודא את ה־PIN שלך כך שתזכור אותו.</string>
+  <string name="Megaphones_verify_pin">וודא PIN</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">שיחת Signal בתהליך</string>
   <string name="NotificationBarManager__establishing_signal_call">מקים שיחת Signal</string>
@@ -710,6 +713,11 @@
   <string name="SharedContactView_invite_to_signal">הזמן אל Signal</string>
   <string name="SharedContactView_message">הודעת Signal</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">נזכיר לך שוב מאוחר יותר.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">נזכיר לך שוב מחר.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">נזכיר לך שוב עוד מספר ימים.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">נזכיר לך שוב עוד שבוע.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">נזכיר לך שוב עוד שבועיים.</string>
   <!--Slide-->
   <string name="Slide_image">תמונה</string>
   <string name="Slide_sticker">מדבקה</string>
@@ -1518,6 +1526,7 @@
     <item quantity="other">אתה יכול לבחור PIN חדש מאחר שמכשיר זה רשום. אם תשכח את ה־PIN שלך, תצטרך להמתין %1$d ימים כדי להירשם שוב.</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">צור את ה־PIN שלך</string>
+  <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">קודי PIN מוסיפים אקסטרה אבטחה אל החשבון שלך והם אינם ניתנים להשבה. תצטרך את ה־PIN שלך כדי להירשם שוב אל Signal.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">קודי PIN אינם תואמים. נסה שוב.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">אמת את ה־PIN שלך.</string>
