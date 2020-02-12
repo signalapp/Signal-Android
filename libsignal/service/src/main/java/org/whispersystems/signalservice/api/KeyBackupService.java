@@ -17,7 +17,6 @@ import org.whispersystems.signalservice.internal.keybackup.protos.BackupResponse
 import org.whispersystems.signalservice.internal.keybackup.protos.RestoreResponse;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.RemoteAttestationUtil;
-import org.whispersystems.signalservice.internal.storage.protos.SignalStorage;
 import org.whispersystems.signalservice.internal.util.Hex;
 import org.whispersystems.signalservice.internal.util.Util;
 
@@ -64,16 +63,6 @@ public final class KeyBackupService {
    * The supplied token will have to match for the change to be successful.
    */
   public PinChangeSession newPinChangeSession(TokenResponse currentToken)
-    throws IOException
-  {
-    return newSession(pushServiceSocket.getKeyBackupServiceAuthorization(), currentToken);
-  }
-
-  /**
-   * Use this to validate that the pin is still set on the server with the current token.
-   * Additionally this validates that no one has used any tries.
-   */
-  public RestoreSession newRestoreSession(TokenResponse currentToken)
     throws IOException
   {
     return newSession(pushServiceSocket.getKeyBackupServiceAuthorization(), currentToken);

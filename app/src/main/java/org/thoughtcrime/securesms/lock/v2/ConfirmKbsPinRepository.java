@@ -43,24 +43,17 @@ final class ConfirmKbsPinRepository {
         KeyBackupService.PinChangeSession pinChangeSession = keyBackupService.newPinChangeSession();
         HashedPin                         hashedPin        = PinHashing.hashPin(pinValue, pinChangeSession);
         RegistrationLockData              kbsData          = pinChangeSession.setPin(hashedPin, masterKey);
-        RegistrationLockData              restoredData     = keyBackupService.newRestoreSession(kbsData.getTokenResponse())
-                                                                             .restorePin(hashedPin);
 
-        if (!restoredData.getMasterKey().equals(masterKey)) {
-          throw new AssertionError("Failed to set the pin correctly");
-        } else {
-          Log.i(TAG, "Set and retrieved pin on KBS successfully");
-        }
-
-        kbsValues.setRegistrationLockMasterKey(restoredData, PinHashing.localPinHash(pinValue));
+        kbsValues.setRegistrationLockMasterKey(kbsData, PinHashing.localPinHash(pinValue));
         TextSecurePreferences.clearOldRegistrationLockPin(context);
         TextSecurePreferences.setRegistrationLockLastReminderTime(context, System.currentTimeMillis());
         TextSecurePreferences.setRegistrationLockNextReminderInterval(context, RegistrationLockReminders.INITIAL_INTERVAL);
         SignalStore.kbsValues().setKeyboardType(keyboard);
         ApplicationDependencies.getMegaphoneRepository().markFinished(Megaphones.Event.PINS_FOR_ALL);
 
+        Log.i(TAG, "Pin set on KBS");
         return PinSetResult.SUCCESS;
-      } catch (IOException | UnauthenticatedResponseException | KeyBackupServicePinException | KeyBackupSystemNoDataException e) {
+      } catch (IOException | UnauthenticatedResponseException e) {
         Log.w(TAG, e);
         return PinSetResult.FAILURE;
       }
