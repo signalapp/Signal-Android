@@ -25,7 +25,7 @@ import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
 class LinkDeviceMasterModeDialog : DialogFragment(), DeviceLinkingSessionListener {
     private val languageFileDirectory by lazy { MnemonicUtilities.getLanguageFileDirectory(context!!) }
     private lateinit var contentView: View
-    private var authorization: DeviceLink? = null
+    private var deviceLink: DeviceLink? = null
     var delegate: LinkDeviceMasterModeDialogDelegate? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -45,10 +45,10 @@ class LinkDeviceMasterModeDialog : DialogFragment(), DeviceLinkingSessionListene
         return result
     }
 
-    override fun requestUserAuthorization(authorization: DeviceLink) {
-        if (authorization.type != DeviceLink.Type.REQUEST || authorization.masterHexEncodedPublicKey != TextSecurePreferences.getLocalNumber(context!!) || this.authorization != null) { return }
+    override fun requestUserAuthorization(deviceLink: DeviceLink) {
+        if (deviceLink.type != DeviceLink.Type.REQUEST || deviceLink.masterHexEncodedPublicKey != TextSecurePreferences.getLocalNumber(context!!) || this.deviceLink != null) { return }
         Util.runOnMain {
-            this.authorization = authorization
+            this.deviceLink = deviceLink
             contentView.qrCodeImageView.visibility = View.GONE
             val titleTextViewLayoutParams = contentView.titleTextView.layoutParams as LinearLayout.LayoutParams
             titleTextViewLayoutParams.topMargin = toPx(8, resources)
@@ -56,13 +56,13 @@ class LinkDeviceMasterModeDialog : DialogFragment(), DeviceLinkingSessionListene
             contentView.titleTextView.text = "Linking Request Received"
             contentView.explanationTextView.text = "Please check that the words below match those shown on your other device"
             contentView.mnemonicTextView.visibility = View.VISIBLE
-            contentView.mnemonicTextView.text = MnemonicUtilities.getFirst3Words(MnemonicCodec(languageFileDirectory), authorization.slaveHexEncodedPublicKey)
+            contentView.mnemonicTextView.text = MnemonicUtilities.getFirst3Words(MnemonicCodec(languageFileDirectory), deviceLink.slaveHexEncodedPublicKey)
             contentView.authorizeButton.visibility = View.VISIBLE
         }
     }
 
     private fun authorizeDeviceLink() {
-        val authorization = this.authorization ?: return
+        val authorization = this.deviceLink ?: return
         delegate?.onDeviceLinkRequestAuthorized(authorization)
         DeviceLinkingSession.shared.stopListeningForLinkingRequests()
         DeviceLinkingSession.shared.removeListener(this)
@@ -72,8 +72,8 @@ class LinkDeviceMasterModeDialog : DialogFragment(), DeviceLinkingSessionListene
     private fun onDeviceLinkCanceled() {
         DeviceLinkingSession.shared.stopListeningForLinkingRequests()
         DeviceLinkingSession.shared.removeListener(this)
-        if (authorization != null) {
-            DatabaseFactory.getLokiPreKeyBundleDatabase(context).removePreKeyBundle(authorization!!.slaveHexEncodedPublicKey)
+        if (deviceLink != null) {
+            DatabaseFactory.getLokiPreKeyBundleDatabase(context).removePreKeyBundle(deviceLink!!.slaveHexEncodedPublicKey)
         }
         dismiss()
         delegate?.onDeviceLinkCanceled()

@@ -118,7 +118,7 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity, LoaderManager
     private fun unlinkDevice(slaveDeviceHexEncodedPublicKey: String) {
         val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)
         val database = DatabaseFactory.getLokiAPIDatabase(this)
-        database.removePairingAuthorisation(userHexEncodedPublicKey, slaveDeviceHexEncodedPublicKey)
+        database.removeDeviceLink(userHexEncodedPublicKey, slaveDeviceHexEncodedPublicKey)
         LokiFileServerAPI.shared.updateUserDeviceLinks().success {
             MessageSender.sendUnpairRequest(this, slaveDeviceHexEncodedPublicKey)
         }

@@ -12,7 +12,7 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.loki.getColorWithID
 import org.thoughtcrime.securesms.loki.toPx
 
-class SeparatorView : RelativeLayout {
+class LabeledSeparatorView : RelativeLayout {
 
     private val path = Path()
 

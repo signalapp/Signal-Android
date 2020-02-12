@@ -104,9 +104,9 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
         val recipients = selectedMembers.map {
             Recipient.from(this, Address.fromSerialized(it), false)
         }.toSet()
-        val ourNumber = TextSecurePreferences.getMasterHexEncodedPublicKey(this) ?: TextSecurePreferences.getLocalNumber(this)
-        val local = Recipient.from(this, Address.fromSerialized(ourNumber), false)
-        CreateClosedGroupTask(WeakReference(this), null, name.toString(), recipients, setOf(local)).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
+        val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this) ?: TextSecurePreferences.getLocalNumber(this)
+        val admin = Recipient.from(this, Address.fromSerialized(masterHexEncodedPublicKey), false)
+        CreateClosedGroupTask(WeakReference(this), null, name.toString(), recipients, setOf( admin )).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
     }
 
     private fun handleOpenConversation(threadId: Long, recipient: Recipient) {
@@ -122,7 +122,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
     // region Tasks
     internal class CreateClosedGroupTask(
             private val activity: WeakReference<CreateClosedGroupActivity>,
-            private val avatar: Bitmap?,
+            private val profilePicture: Bitmap?,
             private val name: String?,
             private val members: Set<Recipient>,
             private val admins: Set<Recipient>
@@ -130,24 +130,18 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
 
         override fun doInBackground(vararg params: Void?): Optional<GroupManager.GroupActionResult> {
             val activity = activity.get() ?: return Optional.absent()
-            return Optional.of(GroupManager.createGroup(activity, members, avatar, name, false, admins))
+            return Optional.of(GroupManager.createGroup(activity, members, profilePicture, name, false, admins))
         }
 
         override fun onPostExecute(result: Optional<GroupManager.GroupActionResult>) {
-            val activity = activity.get()
-            if (activity == null) {
-                super.onPostExecute(result)
-                return
-            }
-
+            val activity = activity.get() ?: return super.onPostExecute(result)
             if (result.isPresent && result.get().threadId > -1) {
                 if (!activity.isFinishing) {
                     activity.handleOpenConversation(result.get().threadId, result.get().groupRecipient)
                 }
             } else {
                 super.onPostExecute(result)
-                Toast.makeText(activity.applicationContext,
-                        R.string.GroupCreateActivity_contacts_invalid_number, Toast.LENGTH_LONG).show()
+                Toast.makeText(activity.applicationContext, "One of the members of your group has an invalid Session ID.", Toast.LENGTH_LONG).show()
             }
         }
     }

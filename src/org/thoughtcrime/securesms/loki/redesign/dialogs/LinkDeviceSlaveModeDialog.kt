@@ -23,7 +23,7 @@ import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
 class LinkDeviceSlaveModeDialog : DialogFragment(), DeviceLinkingSessionListener {
     private val languageFileDirectory by lazy { MnemonicUtilities.getLanguageFileDirectory(context!!) }
     private lateinit var contentView: View
-    private var authorization: DeviceLink? = null
+    private var deviceLink: DeviceLink? = null
     var delegate: LinkDeviceSlaveModeDialogDelegate? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -40,10 +40,10 @@ class LinkDeviceSlaveModeDialog : DialogFragment(), DeviceLinkingSessionListener
         return result
     }
 
-    override fun onDeviceLinkRequestAuthorized(authorization: DeviceLink) {
-        if (authorization.type != DeviceLink.Type.AUTHORIZATION || authorization.slaveHexEncodedPublicKey != TextSecurePreferences.getLocalNumber(context!!) || this.authorization != null) { return }
+    override fun onDeviceLinkRequestAuthorized(deviceLink: DeviceLink) {
+        if (deviceLink.type != DeviceLink.Type.AUTHORIZATION || deviceLink.slaveHexEncodedPublicKey != TextSecurePreferences.getLocalNumber(context!!) || this.deviceLink != null) { return }
         Util.runOnMain {
-            this.authorization = authorization
+            this.deviceLink = deviceLink
             DeviceLinkingSession.shared.stopListeningForLinkingRequests()
             DeviceLinkingSession.shared.removeListener(this)
             contentView.spinner.visibility = View.GONE
@@ -56,7 +56,7 @@ class LinkDeviceSlaveModeDialog : DialogFragment(), DeviceLinkingSessionListener
             contentView.cancelButton.visibility = View.GONE
             Handler().postDelayed({
                 dismiss()
-                delegate?.onDeviceLinkRequestAuthorized(authorization)
+                delegate?.onDeviceLinkRequestAuthorized(deviceLink)
             }, 4000)
         }
     }

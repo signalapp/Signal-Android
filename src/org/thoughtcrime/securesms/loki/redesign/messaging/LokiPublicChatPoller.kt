@@ -152,36 +152,36 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
 
     fun pollForNewMessages() {
         fun processIncomingMessage(message: LokiPublicChatMessage) {
-            // If the sender of the current message is not a secondary device, we need to set the display name in the database
-            val primaryDevice = LokiDeviceLinkUtilities.getMasterHexEncodedPublicKey(message.hexEncodedPublicKey).get()
-            if (primaryDevice == null) {
+            // If the sender of the current message is not a slave device, set the display name in the database
+            val masterHexEncodedPublicKey = LokiDeviceLinkUtilities.getMasterHexEncodedPublicKey(message.hexEncodedPublicKey).get()
+            if (masterHexEncodedPublicKey == null) {
                 val senderDisplayName = "${message.displayName} (...${message.hexEncodedPublicKey.takeLast(8)})"
                 DatabaseFactory.getLokiUserDatabase(context).setServerDisplayName(group.id, message.hexEncodedPublicKey, senderDisplayName)
             }
-            val senderPublicKey = primaryDevice ?: message.hexEncodedPublicKey
+            val senderHexEncodedPublicKey = masterHexEncodedPublicKey ?: message.hexEncodedPublicKey
             val serviceDataMessage = getDataMessage(message)
-            val serviceContent = SignalServiceContent(serviceDataMessage, senderPublicKey, SignalServiceAddress.DEFAULT_DEVICE_ID, message.timestamp, false, false)
+            val serviceContent = SignalServiceContent(serviceDataMessage, senderHexEncodedPublicKey, SignalServiceAddress.DEFAULT_DEVICE_ID, message.timestamp, false, false)
             if (serviceDataMessage.quote.isPresent || (serviceDataMessage.attachments.isPresent && serviceDataMessage.attachments.get().size > 0) || serviceDataMessage.previews.isPresent) {
                 PushDecryptJob(context).handleMediaMessage(serviceContent, serviceDataMessage, Optional.absent(), Optional.of(message.serverID))
             } else {
                 PushDecryptJob(context).handleTextMessage(serviceContent, serviceDataMessage, Optional.absent(), Optional.of(message.serverID))
             }
-            // Update profile avatar if needed
-            val senderRecipient = Recipient.from(context, Address.fromSerialized(senderPublicKey), false)
+            // Update profile picture if needed
+            val senderAsRecipient = Recipient.from(context, Address.fromSerialized(senderHexEncodedPublicKey), false)
             if (message.profilePicture != null && message.profilePicture!!.url.isNotEmpty()) {
                 val profileKey = message.profilePicture!!.profileKey
                 val url = message.profilePicture!!.url
-                if (senderRecipient.profileKey == null || !MessageDigest.isEqual(senderRecipient.profileKey, profileKey)) {
+                if (senderAsRecipient.profileKey == null || !MessageDigest.isEqual(senderAsRecipient.profileKey, profileKey)) {
                     val database = DatabaseFactory.getRecipientDatabase(context)
-                    database.setProfileKey(senderRecipient, profileKey)
-                    ApplicationContext.getInstance(context).jobManager.add(RetrieveProfileAvatarJob(senderRecipient, url))
+                    database.setProfileKey(senderAsRecipient, profileKey)
+                    ApplicationContext.getInstance(context).jobManager.add(RetrieveProfileAvatarJob(senderAsRecipient, url))
                 }
-            } else if (senderRecipient.profileAvatar.orEmpty().isNotEmpty()) {
-                // Unset the avatar if we had an avatar before and we're not friends with the person
-                val threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(senderRecipient)
-                val friendRequestStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadId)
+            } else if (senderAsRecipient.profileAvatar.orEmpty().isNotEmpty()) {
+                // Clear the profile picture if we had a profile picture before and we're not friends with the person
+                val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(senderAsRecipient)
+                val friendRequestStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID)
                 if (friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) {
-                    ApplicationContext.getInstance(context).jobManager.add(RetrieveProfileAvatarJob(senderRecipient, ""))
+                    ApplicationContext.getInstance(context).jobManager.add(RetrieveProfileAvatarJob(senderAsRecipient, ""))
                 }
             }
         }
@@ -190,16 +190,16 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
             val isDuplicate = DatabaseFactory.getLokiMessageDatabase(context).getMessageID(messageServerID) != null
             if (isDuplicate) { return }
             if (message.body.isEmpty() && message.attachments.isEmpty() && message.quote == null) { return }
-            val localNumber = TextSecurePreferences.getLocalNumber(context)
+            val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
             val dataMessage = getDataMessage(message)
-            val transcript = SentTranscriptMessage(localNumber, dataMessage.timestamp, dataMessage, dataMessage.expiresInSeconds.toLong(), Collections.singletonMap(localNumber, false))
+            val transcript = SentTranscriptMessage(userHexEncodedPublicKey, dataMessage.timestamp, dataMessage, dataMessage.expiresInSeconds.toLong(), Collections.singletonMap(userHexEncodedPublicKey, false))
             transcript.messageServerID = messageServerID
             if (dataMessage.quote.isPresent || (dataMessage.attachments.isPresent && dataMessage.attachments.get().size > 0) || dataMessage.previews.isPresent) {
                 PushDecryptJob(context).handleSynchronizeSentMediaMessage(transcript)
             } else {
                 PushDecryptJob(context).handleSynchronizeSentTextMessage(transcript)
             }
-            // If we got a message from our master device then make sure our mappings stay in sync
+            // If we got a message from our master device then make sure our mapping stays in sync
             val recipient = Recipient.from(context, Address.fromSerialized(message.hexEncodedPublicKey), false)
             if (recipient.isOurMasterDevice && message.profilePicture != null) {
                 val profileKey = message.profilePicture!!.profileKey
@@ -222,7 +222,7 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
             api.getMessages(group.channel, group.server)
         }.bind { messages ->
             if (messages.isNotEmpty()) {
-                // We need to fetch device mappings for all the devices we don't have
+                // We need to fetch the device mapping for any devices we don't have
                 uniqueDevices = messages.map { it.hexEncodedPublicKey }.toSet()
                 val devicesToUpdate = uniqueDevices.filter { !userDevices.contains(it) && LokiFileServerAPI.shared.hasDeviceLinkCacheExpired(hexEncodedPublicKey = it) }
                 if (devicesToUpdate.isNotEmpty()) {
@@ -231,14 +231,11 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
             }
             Promise.of(messages)
         }.successBackground {
-            // Get the set of primary device pubKeys FROM the secondary devices in uniqueDevices
             val newDisplayNameUpdatees = uniqueDevices.mapNotNull {
-                // This will return null if current device is primary
-                // So if it's non-null then we know the device is a secondary device
-                val primaryDevice = LokiDeviceLinkUtilities.getMasterHexEncodedPublicKey(it).get()
-                primaryDevice
+                // This will return null if the current device is a master device
+                LokiDeviceLinkUtilities.getMasterHexEncodedPublicKey(it).get()
             }.toSet()
-            // Fetch the display names of the primary devices
+            // Fetch the display names of the master devices
             displayNameUpdatees = displayNameUpdatees.union(newDisplayNameUpdatees)
         }.successBackground { messages ->
             // Process messages in the background
