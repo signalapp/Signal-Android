@@ -1180,13 +1180,14 @@ public final class PushProcessMessageJob extends BaseJob {
   {
     RecipientDatabase database          = DatabaseFactory.getRecipientDatabase(context);
     Recipient         recipient         = Recipient.externalPush(context, content.getSender());
-    ProfileKey        currentProfileKey = ProfileKeyUtil.profileKeyOrNull(recipient.getProfileKey());
     ProfileKey        messageProfileKey = ProfileKeyUtil.profileKeyOrNull(messageProfileKeyBytes);
 
-    if (messageProfileKey != null && !messageProfileKey.equals(currentProfileKey)) {
-      database.setProfileKey(recipient.getId(), messageProfileKey);
-      database.setUnidentifiedAccessMode(recipient.getId(), RecipientDatabase.UnidentifiedAccessMode.UNKNOWN);
-      ApplicationDependencies.getJobManager().add(new RetrieveProfileJob(recipient));
+    if (messageProfileKey != null) {
+      if (database.setProfileKey(recipient.getId(), messageProfileKey)) {
+        ApplicationDependencies.getJobManager().add(new RetrieveProfileJob(recipient));
+      }
+    } else {
+      Log.w(TAG, "Ignored invalid profile key seen in message");
     }
   }
 

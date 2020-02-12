@@ -799,25 +799,30 @@ public class RecipientDatabase extends Database {
   /**
    * Updates the profile key.
    * <p>
-   * If it changes, it clears out the profile key credential.
+   * If it changes, it clears out the profile key credential and resets the unidentified access mode.
+   * @return true iff changed.
    */
-  public void setProfileKey(@NonNull RecipientId id, @Nullable ProfileKey profileKey) {
+  public boolean setProfileKey(@NonNull RecipientId id, @NonNull ProfileKey profileKey) {
     String        selection         = ID + " = ?";
     String[]      args              = new String[]{id.serialize()};
     ContentValues valuesToCompare   = new ContentValues(1);
-    ContentValues valuesToSet       = new ContentValues(2);
-    String        encodedProfileKey = profileKey == null ? null : Base64.encodeBytes(profileKey.serialize());
+    ContentValues valuesToSet       = new ContentValues(3);
+    String        encodedProfileKey = Base64.encodeBytes(profileKey.serialize());
 
     valuesToCompare.put(PROFILE_KEY, encodedProfileKey);
 
     valuesToSet.put(PROFILE_KEY, encodedProfileKey);
     valuesToSet.putNull(PROFILE_KEY_CREDENTIAL);
+    valuesToSet.put(UNIDENTIFIED_ACCESS_MODE, UnidentifiedAccessMode.UNKNOWN.getMode());
 
     SqlUtil.UpdateQuery updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, valuesToCompare);
 
     if (update(updateQuery, valuesToSet)) {
       markDirty(id, DirtyState.UPDATE);
       Recipient.live(id).refresh();
+      return true;
+    } else {
+      return false;
     }
   }
 
