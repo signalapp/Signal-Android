@@ -422,7 +422,7 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
             ProfileKeyUtil.setEncodedProfileKey(context, newProfileKey);
 
             // Update profile key on the public chat server
-            ApplicationContext.getInstance(context).updatePublicChatProfileAvatarIfNeeded();
+            ApplicationContext.getInstance(context).updatePublicChatProfilePictureIfNeeded();
           } catch (Exception e) {
             Log.d("Loki", "Failed to upload profile photo: " + e);
             return false;

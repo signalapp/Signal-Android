@@ -191,7 +191,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     }
     // Loki - Set up public chat manager
     lokiPublicChatManager = new LokiPublicChatManager(this);
-    updatePublicChatProfileAvatarIfNeeded();
+    updatePublicChatProfilePictureIfNeeded();
   }
 
   @Override
@@ -202,6 +202,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     KeyCachingService.onAppForegrounded(this);
     // Loki - Start long polling if needed
     startLongPollingIfNeeded();
+    // Loki - Start open group polling if needed
     lokiPublicChatManager.startPollersIfNeeded();
   }
 
@@ -530,7 +531,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   public void createRSSFeedsIfNeeded() {
     ArrayList<LokiRSSFeed> feeds = new ArrayList<>();
-    feeds.add(lokiNewsFeed());
+//    feeds.add(lokiNewsFeed());
     feeds.add(lokiMessengerUpdatesFeed());
     for (LokiRSSFeed feed : feeds) {
       boolean isFeedSetUp = TextSecurePreferences.isChatSetUp(this, feed.getId());
@@ -586,7 +587,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     if (lokiMessengerUpdatesFeedPoller != null) lokiMessengerUpdatesFeedPoller.startIfNeeded();
   }
 
-  public void updatePublicChatProfileAvatarIfNeeded() {
+  public void updatePublicChatProfilePictureIfNeeded() {
     AsyncTask.execute(() -> {
       LokiPublicChatAPI publicChatAPI = null;
       try {

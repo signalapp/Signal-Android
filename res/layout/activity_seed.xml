@@ -1,158 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".loki.SeedActivity">
+    android:background="@drawable/default_session_background"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <org.thoughtcrime.securesms.loki.redesign.views.SeedReminderView
+        android:id="@+id/seedReminderView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:orientation="vertical"
-        android:animateLayoutChanges="true">
+        android:layout_marginLeft="@dimen/very_large_spacing"
+        android:layout_marginRight="@dimen/very_large_spacing"
+        android:textSize="@dimen/large_font_size"
+        android:textStyle="bold"
+        android:textColor="@color/text"
+        android:text="Meet your recovery phrase" />
 
-        <TextView
-            android:id="@+id/titleTextView"
-            style="@style/Signal.Text.Headline.Registration"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="@string/activity_key_pair_title"
-            android:textAlignment="center" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/very_large_spacing"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="@dimen/very_large_spacing"
+        android:textSize="@dimen/medium_font_size"
+        android:textColor="@color/text"
+        android:text="Your recovery phrase is the master key to your Session ID — you can use it to restore your Session ID if you lose access to your device. Store your recovery phrase in a safe place, and don’t give it to anyone. To restore your Session ID, launch Session and tap Continue your Session." />
 
-        <TextView
-            android:id="@+id/seedExplanationTextView1"
-            style="@style/Signal.Text.Body"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/activity_key_pair_seed_explanation_1"
-            android:textStyle="bold"
-            android:textAlignment="center" />
+    <TextView
+        style="@style/SessionIDTextView"
+        android:id="@+id/seedTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/very_large_spacing"
+        android:layout_marginTop="@dimen/medium_spacing"
+        android:layout_marginRight="@dimen/very_large_spacing"
+        android:gravity="center"
+        android:textSize="@dimen/medium_font_size"
+        android:textAlignment="center"
+        android:text="nautical novelty populate onion awkward bent etiquette plant submarine itches vipers september axis maximum populate" />
 
-        <TextView
-            android:id="@+id/mnemonicTextView"
-            style="@style/Signal.Text.Body"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:alpha="0.8"
-            android:textStyle="italic"
-            android:textAlignment="center"
-            tools:text="quick brown fox jump lazy dog" />
+    <TextView
+        android:id="@+id/revealButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:textAlignment="center"
+        android:textSize="@dimen/medium_font_size"
+        android:textColor="@color/text"
+        android:alpha="0.6"
+        android:text="Hold to reveal" />
 
-        <Button
-            android:id="@+id/copyButton"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:background="@color/transparent"
-            android:textColor="@color/signal_primary"
-            android:text="@string/activity_key_pair_copy_button_title"
-            android:elevation="0dp"
-            android:stateListAnimator="@null" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
-        <TextView
-            android:id="@+id/seedExplanationTextView2"
-            style="@style/Signal.Text.Body"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:visibility="gone"
-            android:text="@string/activity_key_pair_seed_explanation_2"
-            android:textAlignment="center" />
+    <Button
+        style="@style/MediumProminentOutlineButton"
+        android:id="@+id/copyButton"
+        android:layout_width="196dp"
+        android:layout_height="@dimen/medium_button_height"
+        android:layout_marginBottom="@dimen/medium_spacing"
+        android:text="Copy" />
 
-        <org.thoughtcrime.securesms.components.LabeledEditText
-            android:id="@+id/mnemonicEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="20dp"
-            android:visibility="gone"
-            app:labeledEditText_background="@color/loki_darkest_gray"
-            app:labeledEditText_label="@string/activity_key_pair_mnemonic_edit_text_label"/>
-
-        <TextView
-            android:id="@+id/linkExplanationTextView"
-            style="@style/Signal.Text.Body"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:visibility="gone"
-            android:text="@string/activity_key_pair_seed_explanation_3"
-            android:textAlignment="center" />
-
-        <org.thoughtcrime.securesms.components.LabeledEditText
-            android:id="@+id/publicKeyEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="20dp"
-            android:visibility="gone"
-            app:labeledEditText_background="@color/loki_darkest_gray"
-            app:labeledEditText_label="@string/activity_key_pair_public_key_edit_text_label"/>
-
-        <Button
-            android:id="@+id/scanQRButton"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/transparent"
-            android:elevation="0dp"
-            android:stateListAnimator="@null"
-            android:text="@string/fragment_scan_qr_code_title"
-            android:textColor="@color/signal_primary"
-            android:visibility="gone" />
-
-        <Button
-            android:id="@+id/toggleRestoreModeButton"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/transparent"
-            android:textColor="@color/signal_primary"
-            android:text="@string/activity_key_pair_toggle_mode_button_title_1"
-            android:elevation="0dp"
-            android:stateListAnimator="@null" />
-
-        <Button
-            android:id="@+id/toggleRegisterModeButton"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/transparent"
-            android:textColor="@color/signal_primary"
-            android:text="@string/activity_key_pair_toggle_mode_button_title_2"
-            android:visibility="gone"
-            android:elevation="0dp"
-            android:stateListAnimator="@null" />
-
-        <Button
-            android:id="@+id/toggleLinkModeButton"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/transparent"
-            android:textColor="@color/signal_primary"
-            android:text="@string/activity_key_pair_toggle_mode_button_title_3"
-            android:elevation="0dp"
-            android:stateListAnimator="@null" />
-
-        <com.dd.CircularProgressButton
-            android:id="@+id/mainButton"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="40dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/signal_primary"
-            android:textColor="@color/white"
-            app:cpb_colorIndicator="@color/white"
-            app:cpb_colorProgress="@color/textsecure_primary"
-            app:cpb_cornerRadius="4dp"
-            app:cpb_selectorIdle="@drawable/progress_button_state"
-            app:cpb_textIdle="@string/activity_key_pair_main_button_title_1" />
-
-    </LinearLayout>
-
-</ScrollView>
+</LinearLayout>

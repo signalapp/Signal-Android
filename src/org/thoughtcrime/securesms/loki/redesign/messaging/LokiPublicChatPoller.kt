@@ -208,7 +208,7 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
                     val database = DatabaseFactory.getRecipientDatabase(context)
                     database.setProfileKey(recipient, profileKey)
                     database.setProfileAvatar(recipient, url)
-                    ApplicationContext.getInstance(context).updatePublicChatProfileAvatarIfNeeded()
+                    ApplicationContext.getInstance(context).updatePublicChatProfilePictureIfNeeded()
                 }
             }
         }

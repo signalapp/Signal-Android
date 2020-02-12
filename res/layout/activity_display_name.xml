@@ -1,58 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/default_session_background"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:orientation="vertical">
+        android:layout_marginLeft="@dimen/very_large_spacing"
+        android:layout_marginRight="@dimen/very_large_spacing"
+        android:textSize="@dimen/large_font_size"
+        android:textStyle="bold"
+        android:textColor="@color/text"
+        android:text="Pick your display name" />
 
-        <TextView
-            android:id="@+id/titleTextView"
-            style="@style/Signal.Text.Headline.Registration"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="@string/activity_display_name_title"
-            android:textAlignment="center" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/very_large_spacing"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="@dimen/very_large_spacing"
+        android:textSize="@dimen/small_font_size"
+        android:textColor="@color/text"
+        android:text="This will be your name when you use Session." />
 
-        <TextView
-            android:id="@+id/subtitleTextView"
-            style="@style/Signal.Text.Body"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/activity_display_name_subtitle"
-            android:textAlignment="center" />
+    <EditText
+        style="@style/SmallSessionEditText"
+        android:id="@+id/displayNameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/very_large_spacing"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="@dimen/very_large_spacing"
+        android:hint="Enter a display name" />
 
-        <org.thoughtcrime.securesms.components.LabeledEditText
-            android:id="@+id/nameEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            app:labeledEditText_background="@color/loki_darkest_gray"
-            app:labeledEditText_label="@string/activity_display_name_name_edit_text_label"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
-        <com.dd.CircularProgressButton
-            android:id="@+id/nextButton"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="40dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/signal_primary"
-            android:textColor="@color/white"
-            app:cpb_colorIndicator="@color/white"
-            app:cpb_colorProgress="@color/textsecure_primary"
-            app:cpb_cornerRadius="4dp"
-            app:cpb_selectorIdle="@drawable/progress_button_state"
-            app:cpb_textIdle="@string/activity_display_name_button_title" />
+    <Button
+        style="@style/MediumProminentFilledButton"
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/medium_button_height"
+        android:layout_marginLeft="@dimen/massive_spacing"
+        android:layout_marginRight="@dimen/massive_spacing"
+        android:layout_marginBottom="@dimen/small_spacing"
+        android:text="Continue" />
 
-    </LinearLayout>
-
-</ScrollView>
+</LinearLayout>

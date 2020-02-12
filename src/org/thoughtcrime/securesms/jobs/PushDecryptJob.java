@@ -1543,7 +1543,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
       // Loki - If the recipient is our master device then we need to go and update our avatar mappings on the public chats
       if (recipient.isOurMasterDevice()) {
-        ApplicationContext.getInstance(context).updatePublicChatProfileAvatarIfNeeded();
+        ApplicationContext.getInstance(context).updatePublicChatProfilePictureIfNeeded();
       }
     }
   }
