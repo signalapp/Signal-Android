@@ -63,6 +63,8 @@ import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
+import org.thoughtcrime.securesms.ringrtc.IceCandidateParcel;
+import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
@@ -368,18 +370,21 @@ public final class PushProcessMessageJob extends BaseJob {
                                       @NonNull OfferMessage message,
                                       @NonNull Optional<Long> smsMessageId)
   {
-    Log.w(TAG, "handleCallOfferMessage...");
+    Log.i(TAG, "handleCallOfferMessage...");
 
     if (smsMessageId.isPresent()) {
       SmsDatabase database = DatabaseFactory.getSmsDatabase(context);
       database.markAsMissedCall(smsMessageId.get());
     } else {
-      Intent intent = new Intent(context, WebRtcCallService.class);
-      intent.setAction(WebRtcCallService.ACTION_INCOMING_CALL);
-      intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
-      intent.putExtra(WebRtcCallService.EXTRA_REMOTE_RECIPIENT, Recipient.externalPush(context, content.getSender()).getId());
-      intent.putExtra(WebRtcCallService.EXTRA_REMOTE_DESCRIPTION, message.getDescription());
-      intent.putExtra(WebRtcCallService.EXTRA_TIMESTAMP, content.getTimestamp());
+      Intent     intent     = new Intent(context, WebRtcCallService.class);
+      RemotePeer remotePeer = new RemotePeer(Recipient.externalPush(context, content.getSender()).getId());
+
+      intent.setAction(WebRtcCallService.ACTION_RECEIVE_OFFER)
+            .putExtra(WebRtcCallService.EXTRA_CALL_ID,           message.getId())
+            .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER,       remotePeer)
+            .putExtra(WebRtcCallService.EXTRA_REMOTE_DEVICE,     content.getSenderDevice())
+            .putExtra(WebRtcCallService.EXTRA_OFFER_DESCRIPTION, message.getDescription())
+            .putExtra(WebRtcCallService.EXTRA_TIMESTAMP,         content.getTimestamp());
 
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) context.startForegroundService(intent);
       else                                                context.startService(intent);
@@ -390,11 +395,14 @@ public final class PushProcessMessageJob extends BaseJob {
                                        @NonNull AnswerMessage message)
   {
     Log.i(TAG, "handleCallAnswerMessage...");
-    Intent intent = new Intent(context, WebRtcCallService.class);
-    intent.setAction(WebRtcCallService.ACTION_RESPONSE_MESSAGE);
-    intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
-    intent.putExtra(WebRtcCallService.EXTRA_REMOTE_RECIPIENT, Recipient.externalPush(context, content.getSender()).getId());
-    intent.putExtra(WebRtcCallService.EXTRA_REMOTE_DESCRIPTION, message.getDescription());
+    Intent     intent     = new Intent(context, WebRtcCallService.class);
+    RemotePeer remotePeer = new RemotePeer(Recipient.externalPush(context, content.getSender()).getId());
+
+    intent.setAction(WebRtcCallService.ACTION_RECEIVE_ANSWER)
+          .putExtra(WebRtcCallService.EXTRA_CALL_ID,            message.getId())
+          .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER,        remotePeer)
+          .putExtra(WebRtcCallService.EXTRA_REMOTE_DEVICE,      content.getSenderDevice())
+          .putExtra(WebRtcCallService.EXTRA_ANSWER_DESCRIPTION, message.getDescription());
 
     context.startService(intent);
   }
@@ -402,18 +410,25 @@ public final class PushProcessMessageJob extends BaseJob {
   private void handleCallIceUpdateMessage(@NonNull SignalServiceContent content,
                                           @NonNull List<IceUpdateMessage> messages)
   {
-    Log.w(TAG, "handleCallIceUpdateMessage... " + messages.size());
-    for (IceUpdateMessage message : messages) {
-      Intent intent = new Intent(context, WebRtcCallService.class);
-      intent.setAction(WebRtcCallService.ACTION_ICE_MESSAGE);
-      intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
-      intent.putExtra(WebRtcCallService.EXTRA_REMOTE_RECIPIENT, Recipient.externalPush(context, content.getSender()).getId());
-      intent.putExtra(WebRtcCallService.EXTRA_ICE_SDP, message.getSdp());
-      intent.putExtra(WebRtcCallService.EXTRA_ICE_SDP_MID, message.getSdpMid());
-      intent.putExtra(WebRtcCallService.EXTRA_ICE_SDP_LINE_INDEX, message.getSdpMLineIndex());
+    Log.i(TAG, "handleCallIceUpdateMessage... " + messages.size());
 
-      context.startService(intent);
+    ArrayList<IceCandidateParcel> iceCandidates = new ArrayList(messages.size());
+    long callId = -1;
+    for (IceUpdateMessage iceMessage : messages) {
+      iceCandidates.add(new IceCandidateParcel(iceMessage));
+      callId = iceMessage.getId();
     }
+
+    Intent     intent     = new Intent(context, WebRtcCallService.class);
+    RemotePeer remotePeer = new RemotePeer(Recipient.externalPush(context, content.getSender()).getId());
+
+    intent.setAction(WebRtcCallService.ACTION_RECEIVE_ICE_CANDIDATES)
+          .putExtra(WebRtcCallService.EXTRA_CALL_ID,       callId)
+          .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER,   remotePeer)
+          .putExtra(WebRtcCallService.EXTRA_REMOTE_DEVICE, content.getSenderDevice())
+          .putParcelableArrayListExtra(WebRtcCallService.EXTRA_ICE_CANDIDATES, iceCandidates);
+
+    context.startService(intent);
   }
 
   private void handleCallHangupMessage(@NonNull SignalServiceContent content,
@@ -424,10 +439,13 @@ public final class PushProcessMessageJob extends BaseJob {
     if (smsMessageId.isPresent()) {
       DatabaseFactory.getSmsDatabase(context).markAsMissedCall(smsMessageId.get());
     } else {
-      Intent intent = new Intent(context, WebRtcCallService.class);
-      intent.setAction(WebRtcCallService.ACTION_REMOTE_HANGUP);
-      intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
-      intent.putExtra(WebRtcCallService.EXTRA_REMOTE_RECIPIENT, Recipient.externalPush(context, content.getSender()).getId());
+      Intent     intent     = new Intent(context, WebRtcCallService.class);
+      RemotePeer remotePeer = new RemotePeer(Recipient.externalPush(context, content.getSender()).getId());
+
+      intent.setAction(WebRtcCallService.ACTION_RECEIVE_HANGUP)
+            .putExtra(WebRtcCallService.EXTRA_CALL_ID,       message.getId())
+            .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER,   remotePeer)
+            .putExtra(WebRtcCallService.EXTRA_REMOTE_DEVICE, content.getSenderDevice());
 
       context.startService(intent);
     }
@@ -436,10 +454,15 @@ public final class PushProcessMessageJob extends BaseJob {
   private void handleCallBusyMessage(@NonNull SignalServiceContent content,
                                      @NonNull BusyMessage message)
   {
-    Intent intent = new Intent(context, WebRtcCallService.class);
-    intent.setAction(WebRtcCallService.ACTION_REMOTE_BUSY);
-    intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
-    intent.putExtra(WebRtcCallService.EXTRA_REMOTE_RECIPIENT, Recipient.externalPush(context, content.getSender()).getId());
+    Log.i(TAG, "handleCallBusyMessage");
+
+    Intent     intent     = new Intent(context, WebRtcCallService.class);
+    RemotePeer remotePeer = new RemotePeer(Recipient.externalPush(context, content.getSender()).getId());
+
+    intent.setAction(WebRtcCallService.ACTION_RECEIVE_BUSY)
+          .putExtra(WebRtcCallService.EXTRA_CALL_ID,       message.getId())
+          .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER,   remotePeer)
+          .putExtra(WebRtcCallService.EXTRA_REMOTE_DEVICE, content.getSenderDevice());
 
     context.startService(intent);
   }

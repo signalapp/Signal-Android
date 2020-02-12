@@ -26,6 +26,11 @@ public class CameraState {
     return this.activeDirection != Direction.NONE;
   }
 
+  @Override
+  public String toString() {
+    return "count: " + cameraCount + ", activeDirection: " + activeDirection;
+  }
+
   public enum Direction {
     FRONT, BACK, NONE, PENDING
   }

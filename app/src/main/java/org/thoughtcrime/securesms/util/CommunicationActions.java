@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.WebRtcCallActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 
@@ -145,8 +146,8 @@ public class CommunicationActions {
                .withPermanentDenialDialog(activity.getString(R.string.ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s, recipient.getDisplayName(activity)))
                .onAllGranted(() -> {
                  Intent intent = new Intent(activity, WebRtcCallService.class);
-                 intent.setAction(WebRtcCallService.ACTION_OUTGOING_CALL);
-                 intent.putExtra(WebRtcCallService.EXTRA_REMOTE_RECIPIENT, recipient.getId());
+                 intent.setAction(WebRtcCallService.ACTION_OUTGOING_CALL)
+                       .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER, new RemotePeer(recipient.getId()));
                  activity.startService(intent);
 
                  Intent activityIntent = new Intent(activity, WebRtcCallActivity.class);

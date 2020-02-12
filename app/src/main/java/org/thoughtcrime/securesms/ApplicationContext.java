@@ -34,7 +34,7 @@ import com.google.android.gms.security.ProviderInstaller;
 
 import org.conscrypt.Conscrypt;
 import org.signal.aesgcmprovider.AesGcmProvider;
-import org.signal.ringrtc.CallConnectionFactory;
+import org.signal.ringrtc.CallManager;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -336,9 +336,9 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
         WebRtcAudioManager.setBlacklistDeviceForOpenSLESUsage(true);
       }
 
-      CallConnectionFactory.initialize(this, new RingRtcLogger());
+      CallManager.initialize(this, new RingRtcLogger());
     } catch (UnsatisfiedLinkError e) {
-      Log.w(TAG, e);
+      throw new AssertionError("Unable to load ringrtc library", e);
     }
   }
 
