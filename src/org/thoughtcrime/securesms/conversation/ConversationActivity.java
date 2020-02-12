@@ -404,6 +404,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     registerMessageStatusObserver("sendingMessage");
     registerMessageStatusObserver("messageSent");
     registerMessageStatusObserver("messageFailed");
+    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+
+      @Override
+      public void onReceive(Context context, Intent intent) {
+        Toast.makeText(ConversationActivity.this, "Your clock is out of sync with the service node network.", Toast.LENGTH_LONG).show();
+      }
+    };
+    broadcastReceivers.add(broadcastReceiver);
+    LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter("clockOutOfSync"));
 
     initializeReceivers();
     initializeActionBar();
