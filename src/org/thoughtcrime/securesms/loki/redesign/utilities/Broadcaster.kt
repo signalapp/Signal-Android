@@ -6,6 +6,11 @@ import android.support.v4.content.LocalBroadcastManager
 
 class Broadcaster(private val context: Context) : org.whispersystems.signalservice.loki.utilities.Broadcaster {
 
+    override fun broadcast(event: String) {
+        val intent = Intent(event)
+        LocalBroadcastManager.getInstance(context).sendBroadcast(intent)
+    }
+
     override fun broadcast(event: String, long: Long) {
         val intent = Intent(event)
         intent.putExtra("long", long)
