@@ -20,8 +20,9 @@ import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
+import org.whispersystems.signalservice.loki.api.DeviceLink
+import org.whispersystems.signalservice.loki.api.LokiDeviceLinkUtilities
 import org.whispersystems.signalservice.loki.api.LokiFileServerAPI
-import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
 import org.whispersystems.signalservice.loki.utilities.recover
 import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
@@ -32,12 +33,12 @@ fun checkForRevocation(context: Context) {
   val primaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context) ?: return
   val ourDevice = TextSecurePreferences.getLocalNumber(context)
 
-  LokiFileServerAPI.shared.fetchDeviceMappings(primaryDevice).bind { mappings ->
-    val ourMapping = mappings.find { it.secondaryDevicePublicKey == ourDevice }
+  LokiFileServerAPI.shared.getDeviceLinks(primaryDevice, true).bind { mappings ->
+    val ourMapping = mappings.find { it.slaveHexEncodedPublicKey == ourDevice }
     if (ourMapping != null) throw Error("Device has not been revoked")
     // remove pairing authorisations for our device
-    DatabaseFactory.getLokiAPIDatabase(context).removePairingAuthorisations(ourDevice)
-    LokiFileServerAPI.shared.updateUserDeviceMappings()
+    DatabaseFactory.getLokiAPIDatabase(context).clearDeviceLinks(ourDevice)
+    LokiFileServerAPI.shared.updateUserDeviceLinks()
   }.successUi {
     TextSecurePreferences.setNeedsRevocationCheck(context, false)
     ApplicationContext.getInstance(context).clearData()
@@ -49,7 +50,7 @@ fun checkForRevocation(context: Context) {
 
 fun getAllDeviceFriendRequestStatuses(context: Context, hexEncodedPublicKey: String): Promise<Map<String, LokiThreadFriendRequestStatus>, Exception> {
   val lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context)
-  return LokiFileServerAPI.shared.getAllDevicePublicKeys(hexEncodedPublicKey).map { keys ->
+  return LokiDeviceLinkUtilities.getAllLinkedDeviceHexEncodedPublicKeys(hexEncodedPublicKey).map { keys ->
     val map = mutableMapOf<String, LokiThreadFriendRequestStatus>()
     for (devicePublicKey in keys) {
       val device = Recipient.from(context, Address.fromSerialized(devicePublicKey), false)
@@ -63,7 +64,7 @@ fun getAllDeviceFriendRequestStatuses(context: Context, hexEncodedPublicKey: Str
 
 fun getAllDevicePublicKeysWithFriendStatus(context: Context, hexEncodedPublicKey: String): Promise<Map<String, Boolean>, Unit> {
   val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
-  return LokiFileServerAPI.shared.getAllDevicePublicKeys(hexEncodedPublicKey).map { keys ->
+  return LokiDeviceLinkUtilities.getAllLinkedDeviceHexEncodedPublicKeys(hexEncodedPublicKey).map { keys ->
     val devices = keys.toMutableSet()
     if (hexEncodedPublicKey != userHexEncodedPublicKey) {
       devices.remove(userHexEncodedPublicKey)
@@ -92,7 +93,7 @@ fun shouldAutomaticallyBecomeFriendsWithDevice(publicKey: String, context: Conte
     return Promise.of(true)
   }
 
-  return LokiFileServerAPI.shared.getPrimaryDevicePublicKey(publicKey).bind { primaryDevicePublicKey ->
+  return LokiDeviceLinkUtilities.getMasterHexEncodedPublicKey(publicKey).bind { primaryDevicePublicKey ->
     // If the public key doesn't have any other devices then go through regular friend request logic
     if (primaryDevicePublicKey == null) {
       return@bind Promise.of(false)
@@ -108,12 +109,12 @@ fun shouldAutomaticallyBecomeFriendsWithDevice(publicKey: String, context: Conte
   }
 }
 
-fun sendPairingAuthorisationMessage(context: Context, contactHexEncodedPublicKey: String, authorisation: PairingAuthorisation): Promise<Unit, Exception> {
+fun sendPairingAuthorisationMessage(context: Context, contactHexEncodedPublicKey: String, authorisation: DeviceLink): Promise<Unit, Exception> {
   val messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender()
   val address = SignalServiceAddress(contactHexEncodedPublicKey)
   val message = SignalServiceDataMessage.newBuilder().withPairingAuthorisation(authorisation)
   // A REQUEST should always act as a friend request. A GRANT should always be replying back as a normal message.
-  if (authorisation.type == PairingAuthorisation.Type.REQUEST) {
+  if (authorisation.type == DeviceLink.Type.REQUEST) {
     val preKeyBundle = DatabaseFactory.getLokiPreKeyBundleDatabase(context).generatePreKeyBundle(address.number)
     message.asFriendRequest(true).withPreKeyBundle(preKeyBundle)
   } else {
@@ -139,17 +140,17 @@ fun sendPairingAuthorisationMessage(context: Context, contactHexEncodedPublicKey
   }
 }
 
-fun signAndSendPairingAuthorisationMessage(context: Context, pairingAuthorisation: PairingAuthorisation) {
+fun signAndSendPairingAuthorisationMessage(context: Context, pairingAuthorisation: DeviceLink) {
   val userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(context).privateKey.serialize()
-  val signedPairingAuthorisation = pairingAuthorisation.sign(PairingAuthorisation.Type.GRANT, userPrivateKey)
-  if (signedPairingAuthorisation == null || signedPairingAuthorisation.type != PairingAuthorisation.Type.GRANT) {
+  val signedPairingAuthorisation = pairingAuthorisation.sign(DeviceLink.Type.AUTHORIZATION, userPrivateKey)
+  if (signedPairingAuthorisation == null || signedPairingAuthorisation.type != DeviceLink.Type.AUTHORIZATION) {
     Log.d("Loki", "Failed to sign pairing authorization.")
     return
   }
-  DatabaseFactory.getLokiAPIDatabase(context).insertOrUpdatePairingAuthorisation(signedPairingAuthorisation)
+  DatabaseFactory.getLokiAPIDatabase(context).addDeviceLink(signedPairingAuthorisation)
   TextSecurePreferences.setMultiDevice(context, true)
 
-  val address = Address.fromSerialized(pairingAuthorisation.secondaryDevicePublicKey);
+  val address = Address.fromSerialized(pairingAuthorisation.slaveHexEncodedPublicKey)
 
   val sendPromise = retryIfNeeded(8) {
     sendPairingAuthorisationMessage(context, address.serialize(), signedPairingAuthorisation)
@@ -157,7 +158,7 @@ fun signAndSendPairingAuthorisationMessage(context: Context, pairingAuthorisatio
     Log.d("Loki", "Failed to send pairing authorization message to ${address.serialize()}.")
   }
 
-  val updatePromise = LokiFileServerAPI.shared.updateUserDeviceMappings().fail {
+  val updatePromise = LokiFileServerAPI.shared.updateUserDeviceLinks().fail {
     Log.d("Loki", "Failed to update device mapping")
   }
 
@@ -177,7 +178,7 @@ fun isOneOfOurDevices(context: Context, address: Address): Promise<Boolean, Exce
   }
 
   val ourPublicKey = TextSecurePreferences.getLocalNumber(context)
-  return LokiFileServerAPI.shared.getAllDevicePublicKeys(ourPublicKey).map { devices ->
+  return LokiDeviceLinkUtilities.getAllLinkedDeviceHexEncodedPublicKeys(ourPublicKey).map { devices ->
     devices.contains(address.serialize())
   }
 }

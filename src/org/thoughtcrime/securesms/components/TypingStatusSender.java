@@ -9,14 +9,13 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
-import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.signalservice.loki.api.LokiDeviceLinkUtilities;
 import org.whispersystems.signalservice.loki.api.LokiFileServerAPI;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import kotlin.Unit;
@@ -91,7 +90,7 @@ public class TypingStatusSender {
       ApplicationContext.getInstance(context).getJobManager().add(new TypingSendJob(threadId, typingStarted));
       return;
     }
-    LokiFileServerAPI.shared.getAllDevicePublicKeys(recipient.getAddress().serialize()).success(devices -> {
+    LokiDeviceLinkUtilities.INSTANCE.getAllLinkedDeviceHexEncodedPublicKeys(recipient.getAddress().serialize()).success(devices -> {
       for (String device : devices) {
         Recipient deviceRecipient = Recipient.from(context, Address.fromSerialized(device), false);
         long deviceThreadID = threadDatabase.getThreadIdIfExistsFor(deviceRecipient);

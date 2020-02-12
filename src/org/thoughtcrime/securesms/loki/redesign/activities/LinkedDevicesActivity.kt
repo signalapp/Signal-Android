@@ -20,8 +20,8 @@ import org.thoughtcrime.securesms.loki.signAndSendPairingAuthorisationMessage
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
+import org.whispersystems.signalservice.loki.api.DeviceLink
 import org.whispersystems.signalservice.loki.api.LokiFileServerAPI
-import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 
 class LinkedDevicesActivity : PassphraseRequiredActionBarActivity, LoaderManager.LoaderCallbacks<List<Device>>, DeviceClickListener, EditDeviceNameDialogDelegate, LinkDeviceMasterModeDialogDelegate {
     private var devices = listOf<Device>()
@@ -119,14 +119,14 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity, LoaderManager
         val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)
         val database = DatabaseFactory.getLokiAPIDatabase(this)
         database.removePairingAuthorisation(userHexEncodedPublicKey, slaveDeviceHexEncodedPublicKey)
-        LokiFileServerAPI.shared.updateUserDeviceMappings().success {
+        LokiFileServerAPI.shared.updateUserDeviceLinks().success {
             MessageSender.sendUnpairRequest(this, slaveDeviceHexEncodedPublicKey)
         }
         LoaderManager.getInstance(this).restartLoader(0, null, this)
         Toast.makeText(this, "Your device was unlinked successfully", Toast.LENGTH_LONG).show()
     }
 
-    override fun onDeviceLinkRequestAuthorized(authorization: PairingAuthorisation) {
+    override fun onDeviceLinkRequestAuthorized(authorization: DeviceLink) {
         AsyncTask.execute {
             signAndSendPairingAuthorisationMessage(this, authorization)
             Util.runOnMain {

@@ -17,15 +17,15 @@ import org.thoughtcrime.securesms.loki.redesign.utilities.QRCodeUtilities
 import org.thoughtcrime.securesms.loki.toPx
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
+import org.whispersystems.signalservice.loki.api.DeviceLink
 import org.whispersystems.signalservice.loki.api.DeviceLinkingSession
 import org.whispersystems.signalservice.loki.api.DeviceLinkingSessionListener
-import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
 
 class LinkDeviceMasterModeDialog : DialogFragment(), DeviceLinkingSessionListener {
     private val languageFileDirectory by lazy { MnemonicUtilities.getLanguageFileDirectory(context!!) }
     private lateinit var contentView: View
-    private var authorization: PairingAuthorisation? = null
+    private var authorization: DeviceLink? = null
     var delegate: LinkDeviceMasterModeDialogDelegate? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -45,8 +45,8 @@ class LinkDeviceMasterModeDialog : DialogFragment(), DeviceLinkingSessionListene
         return result
     }
 
-    override fun requestUserAuthorization(authorization: PairingAuthorisation) {
-        if (authorization.type != PairingAuthorisation.Type.REQUEST || authorization.primaryDevicePublicKey != TextSecurePreferences.getLocalNumber(context!!) || this.authorization != null) { return }
+    override fun requestUserAuthorization(authorization: DeviceLink) {
+        if (authorization.type != DeviceLink.Type.REQUEST || authorization.masterHexEncodedPublicKey != TextSecurePreferences.getLocalNumber(context!!) || this.authorization != null) { return }
         Util.runOnMain {
             this.authorization = authorization
             contentView.qrCodeImageView.visibility = View.GONE
@@ -56,7 +56,7 @@ class LinkDeviceMasterModeDialog : DialogFragment(), DeviceLinkingSessionListene
             contentView.titleTextView.text = "Linking Request Received"
             contentView.explanationTextView.text = "Please check that the words below match those shown on your other device"
             contentView.mnemonicTextView.visibility = View.VISIBLE
-            contentView.mnemonicTextView.text = MnemonicUtilities.getFirst3Words(MnemonicCodec(languageFileDirectory), authorization.secondaryDevicePublicKey)
+            contentView.mnemonicTextView.text = MnemonicUtilities.getFirst3Words(MnemonicCodec(languageFileDirectory), authorization.slaveHexEncodedPublicKey)
             contentView.authorizeButton.visibility = View.VISIBLE
         }
     }
@@ -73,7 +73,7 @@ class LinkDeviceMasterModeDialog : DialogFragment(), DeviceLinkingSessionListene
         DeviceLinkingSession.shared.stopListeningForLinkingRequests()
         DeviceLinkingSession.shared.removeListener(this)
         if (authorization != null) {
-            DatabaseFactory.getLokiPreKeyBundleDatabase(context).removePreKeyBundle(authorization!!.secondaryDevicePublicKey)
+            DatabaseFactory.getLokiPreKeyBundleDatabase(context).removePreKeyBundle(authorization!!.slaveHexEncodedPublicKey)
         }
         dismiss()
         delegate?.onDeviceLinkCanceled()
@@ -82,6 +82,6 @@ class LinkDeviceMasterModeDialog : DialogFragment(), DeviceLinkingSessionListene
 
 interface LinkDeviceMasterModeDialogDelegate {
 
-    fun onDeviceLinkRequestAuthorized(authorization: PairingAuthorisation)
+    fun onDeviceLinkRequestAuthorized(authorization: DeviceLink)
     fun onDeviceLinkCanceled()
 }

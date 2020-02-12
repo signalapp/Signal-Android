@@ -68,13 +68,13 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.FriendRequestHandler;
-import org.thoughtcrime.securesms.loki.redesign.messaging.LokiAPIUtilities;
 import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
-import org.thoughtcrime.securesms.loki.redesign.messaging.LokiPreKeyBundleDatabase;
-import org.thoughtcrime.securesms.loki.redesign.messaging.LokiPreKeyRecordDatabase;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
+import org.thoughtcrime.securesms.loki.redesign.messaging.LokiAPIUtilities;
+import org.thoughtcrime.securesms.loki.redesign.messaging.LokiPreKeyBundleDatabase;
+import org.thoughtcrime.securesms.loki.redesign.messaging.LokiPreKeyRecordDatabase;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
@@ -129,10 +129,11 @@ import org.whispersystems.signalservice.api.messages.multidevice.StickerPackOper
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.loki.api.DeviceLink;
 import org.whispersystems.signalservice.loki.api.DeviceLinkingSession;
 import org.whispersystems.signalservice.loki.api.LokiAPI;
+import org.whispersystems.signalservice.loki.api.LokiDeviceLinkUtilities;
 import org.whispersystems.signalservice.loki.api.LokiFileServerAPI;
-import org.whispersystems.signalservice.loki.api.PairingAuthorisation;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiServiceMessage;
@@ -1102,20 +1103,20 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
   }
 
-  private boolean isValidPairingMessage(@NonNull PairingAuthorisation authorisation) {
+  private boolean isValidPairingMessage(@NonNull DeviceLink authorisation) {
     boolean isSecondaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context) != null;
     String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context);
-    boolean isRequest = (authorisation.getType() == PairingAuthorisation.Type.REQUEST);
+    boolean isRequest = (authorisation.getType() == DeviceLink.Type.REQUEST);
     if (authorisation.getRequestSignature() == null) {
       Log.d("Loki", "Ignoring pairing request message without a request signature.");
       return false;
     } else if (isRequest && isSecondaryDevice) {
       Log.d("Loki", "Ignoring unexpected pairing request message (the device is already paired as a secondary device).");
       return false;
-    } else if (isRequest && !authorisation.getPrimaryDevicePublicKey().equals(userHexEncodedPublicKey)) {
+    } else if (isRequest && !authorisation.getMasterHexEncodedPublicKey().equals(userHexEncodedPublicKey)) {
       Log.d("Loki", "Ignoring pairing request message addressed to another user.");
       return false;
-    } else if (isRequest && authorisation.getSecondaryDevicePublicKey().equals(userHexEncodedPublicKey)) {
+    } else if (isRequest && authorisation.getSlaveHexEncodedPublicKey().equals(userHexEncodedPublicKey)) {
       Log.d("Loki", "Ignoring pairing request message from self.");
       return false;
     }
@@ -1127,16 +1128,16 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     ApplicationContext.getInstance(context).getJobManager().add(new RetrieveProfileAvatarJob(primaryDevice, url));
   }
 
-  private void handlePairingMessage(@NonNull PairingAuthorisation authorisation, @NonNull SignalServiceContent content) {
+  private void handlePairingMessage(@NonNull DeviceLink authorisation, @NonNull SignalServiceContent content) {
     String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context);
-    if (authorisation.getType() == PairingAuthorisation.Type.REQUEST) {
+    if (authorisation.getType() == DeviceLink.Type.REQUEST) {
       handlePairingRequestMessage(authorisation, content);
-    } else if (authorisation.getSecondaryDevicePublicKey().equals(userHexEncodedPublicKey)) {
+    } else if (authorisation.getSlaveHexEncodedPublicKey().equals(userHexEncodedPublicKey)) {
       handlePairingAuthorisationMessage(authorisation, content);
     }
   }
 
-  private void handlePairingRequestMessage(@NonNull PairingAuthorisation authorisation, @NonNull SignalServiceContent content) {
+  private void handlePairingRequestMessage(@NonNull DeviceLink authorisation, @NonNull SignalServiceContent content) {
     boolean isValid = isValidPairingMessage(authorisation);
     DeviceLinkingSession linkingSession = DeviceLinkingSession.Companion.getShared();
     if (isValid && linkingSession.isListeningForLinkingRequests()) {
@@ -1146,7 +1147,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
   }
 
-  private void handlePairingAuthorisationMessage(@NonNull PairingAuthorisation authorisation, @NonNull SignalServiceContent content) {
+  private void handlePairingAuthorisationMessage(@NonNull DeviceLink authorisation, @NonNull SignalServiceContent content) {
     // Prepare
     boolean isSecondaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context) != null;
     if (isSecondaryDevice) {
@@ -1162,23 +1163,23 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       Log.d("Loki", "Ignoring pairing authorisation message.");
       return;
     }
-    if (authorisation.getType() != PairingAuthorisation.Type.GRANT) { return; }
-    Log.d("Loki", "Received pairing authorisation message from: " + authorisation.getPrimaryDevicePublicKey() + ".");
+    if (authorisation.getType() != DeviceLink.Type.AUTHORIZATION) { return; }
+    Log.d("Loki", "Received pairing authorisation message from: " + authorisation.getMasterHexEncodedPublicKey() + ".");
     // Save PreKeyBundle if for whatever reason we got one
     storePreKeyBundleIfNeeded(content);
     // Process
     DeviceLinkingSession.Companion.getShared().processLinkingAuthorization(authorisation);
     // Store the primary device's public key
     String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context);
-    DatabaseFactory.getLokiAPIDatabase(context).removePairingAuthorisations(userHexEncodedPublicKey);
-    DatabaseFactory.getLokiAPIDatabase(context).insertOrUpdatePairingAuthorisation(authorisation);
-    TextSecurePreferences.setMasterHexEncodedPublicKey(context, authorisation.getPrimaryDevicePublicKey());
+    DatabaseFactory.getLokiAPIDatabase(context).clearDeviceLinks(userHexEncodedPublicKey);
+    DatabaseFactory.getLokiAPIDatabase(context).addDeviceLink(authorisation);
+    TextSecurePreferences.setMasterHexEncodedPublicKey(context, authorisation.getMasterHexEncodedPublicKey());
     TextSecurePreferences.setMultiDevice(context, true);
     // Send a background message to the primary device
-    MessageSender.sendBackgroundMessage(context, authorisation.getPrimaryDevicePublicKey());
+    MessageSender.sendBackgroundMessage(context, authorisation.getMasterHexEncodedPublicKey());
     // Propagate the updates to the file server
     LokiFileServerAPI storageAPI = LokiFileServerAPI.Companion.getShared();
-    storageAPI.updateUserDeviceMappings();
+    storageAPI.updateUserDeviceLinks();
     // Update display names
     if (content.senderDisplayName.isPresent() && content.senderDisplayName.get().length() > 0) {
         TextSecurePreferences.setProfileName(context, content.senderDisplayName.get());
@@ -1245,7 +1246,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private void handleSessionRequestIfNeeded(@NonNull SignalServiceContent content) {
     if (content.isFriendRequest() && isSessionRequest(content)) {
       // Check if the session request from a member in one of our groups or our friend
-      LokiFileServerAPI.shared.getPrimaryDevicePublicKey(content.getSender()).success(primaryDevicePublicKey -> {
+      LokiDeviceLinkUtilities.INSTANCE.getMasterHexEncodedPublicKey(content.getSender()).success(primaryDevicePublicKey -> {
         String sender = primaryDevicePublicKey != null ? primaryDevicePublicKey : content.getSender();
         long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(sender), false));
         LokiThreadFriendRequestStatus threadFriendRequestStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID);
@@ -1284,7 +1285,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     // Allow profile sharing with contact
     DatabaseFactory.getRecipientDatabase(context).setProfileSharing(contactID, true);
     // Update the last message if needed
-    LokiFileServerAPI.shared.getPrimaryDevicePublicKey(pubKey).success(primaryDevice -> {
+    LokiDeviceLinkUtilities.INSTANCE.getMasterHexEncodedPublicKey(pubKey).success(primaryDevice -> {
       Util.runOnMain(() -> {
         long primaryDeviceThreadID = primaryDevice == null ? threadID : DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(primaryDevice), false));
         FriendRequestHandler.updateLastFriendRequestMessage(context, primaryDeviceThreadID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
@@ -1799,7 +1800,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
    */
   private Recipient getPrimaryDeviceRecipient(String pubKey) {
     try {
-      String primaryDevice = PromiseUtil.timeout(LokiFileServerAPI.shared.getPrimaryDevicePublicKey(pubKey), 5000).get();
+      String primaryDevice = PromiseUtil.timeout(LokiDeviceLinkUtilities.INSTANCE.getMasterHexEncodedPublicKey(pubKey), 5000).get();
       String publicKey = (primaryDevice != null) ? primaryDevice : pubKey;
       // If the public key matches our primary device then we need to forward the message to ourselves (Note to self)
       String ourPrimaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);

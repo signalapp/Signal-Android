@@ -15,15 +15,15 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.loki.redesign.utilities.MnemonicUtilities
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
+import org.whispersystems.signalservice.loki.api.DeviceLink
 import org.whispersystems.signalservice.loki.api.DeviceLinkingSession
 import org.whispersystems.signalservice.loki.api.DeviceLinkingSessionListener
-import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
 
 class LinkDeviceSlaveModeDialog : DialogFragment(), DeviceLinkingSessionListener {
     private val languageFileDirectory by lazy { MnemonicUtilities.getLanguageFileDirectory(context!!) }
     private lateinit var contentView: View
-    private var authorization: PairingAuthorisation? = null
+    private var authorization: DeviceLink? = null
     var delegate: LinkDeviceSlaveModeDialogDelegate? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -40,8 +40,8 @@ class LinkDeviceSlaveModeDialog : DialogFragment(), DeviceLinkingSessionListener
         return result
     }
 
-    override fun onDeviceLinkRequestAuthorized(authorization: PairingAuthorisation) {
-        if (authorization.type != PairingAuthorisation.Type.GRANT || authorization.secondaryDevicePublicKey != TextSecurePreferences.getLocalNumber(context!!) || this.authorization != null) { return }
+    override fun onDeviceLinkRequestAuthorized(authorization: DeviceLink) {
+        if (authorization.type != DeviceLink.Type.AUTHORIZATION || authorization.slaveHexEncodedPublicKey != TextSecurePreferences.getLocalNumber(context!!) || this.authorization != null) { return }
         Util.runOnMain {
             this.authorization = authorization
             DeviceLinkingSession.shared.stopListeningForLinkingRequests()
@@ -71,6 +71,6 @@ class LinkDeviceSlaveModeDialog : DialogFragment(), DeviceLinkingSessionListener
 
 interface LinkDeviceSlaveModeDialogDelegate {
 
-    fun onDeviceLinkRequestAuthorized(authorization: PairingAuthorisation)
+    fun onDeviceLinkRequestAuthorized(authorization: DeviceLink)
     fun onDeviceLinkCanceled()
 }

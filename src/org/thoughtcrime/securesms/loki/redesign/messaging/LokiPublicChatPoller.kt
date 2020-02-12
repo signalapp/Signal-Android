@@ -21,10 +21,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup
 import org.whispersystems.signalservice.api.messages.multidevice.SentTranscriptMessage
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.loki.api.LokiPublicChat
-import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI
-import org.whispersystems.signalservice.loki.api.LokiPublicChatMessage
-import org.whispersystems.signalservice.loki.api.LokiFileServerAPI
+import org.whispersystems.signalservice.loki.api.*
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
 import org.whispersystems.signalservice.loki.utilities.successBackground
 import java.security.MessageDigest
@@ -156,7 +153,7 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
     fun pollForNewMessages() {
         fun processIncomingMessage(message: LokiPublicChatMessage) {
             // If the sender of the current message is not a secondary device, we need to set the display name in the database
-            val primaryDevice = LokiFileServerAPI.shared.getPrimaryDevicePublicKey(message.hexEncodedPublicKey).get()
+            val primaryDevice = LokiDeviceLinkUtilities.getMasterHexEncodedPublicKey(message.hexEncodedPublicKey).get()
             if (primaryDevice == null) {
                 val senderDisplayName = "${message.displayName} (...${message.hexEncodedPublicKey.takeLast(8)})"
                 DatabaseFactory.getLokiUserDatabase(context).setServerDisplayName(group.id, message.hexEncodedPublicKey, senderDisplayName)
@@ -171,9 +168,9 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
             }
             // Update profile avatar if needed
             val senderRecipient = Recipient.from(context, Address.fromSerialized(senderPublicKey), false)
-            if (message.avatar != null && message.avatar!!.url.isNotEmpty()) {
-                val profileKey = message.avatar!!.profileKey
-                val url = message.avatar!!.url
+            if (message.profilePicture != null && message.profilePicture!!.url.isNotEmpty()) {
+                val profileKey = message.profilePicture!!.profileKey
+                val url = message.profilePicture!!.url
                 if (senderRecipient.profileKey == null || !MessageDigest.isEqual(senderRecipient.profileKey, profileKey)) {
                     val database = DatabaseFactory.getRecipientDatabase(context)
                     database.setProfileKey(senderRecipient, profileKey)
@@ -204,9 +201,9 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
             }
             // If we got a message from our master device then make sure our mappings stay in sync
             val recipient = Recipient.from(context, Address.fromSerialized(message.hexEncodedPublicKey), false)
-            if (recipient.isOurMasterDevice && message.avatar != null) {
-                val profileKey = message.avatar!!.profileKey
-                val url = message.avatar!!.url
+            if (recipient.isOurMasterDevice && message.profilePicture != null) {
+                val profileKey = message.profilePicture!!.profileKey
+                val url = message.profilePicture!!.url
                 if (recipient.profileKey == null || !MessageDigest.isEqual(recipient.profileKey, profileKey)) {
                     val database = DatabaseFactory.getRecipientDatabase(context)
                     database.setProfileKey(recipient, profileKey)
@@ -220,16 +217,16 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
         val userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(context).privateKey.serialize()
         val database = DatabaseFactory.getLokiAPIDatabase(context)
         LokiFileServerAPI.configure(false, userHexEncodedPublicKey, userPrivateKey, database)
-        LokiFileServerAPI.shared.getAllDevicePublicKeys(userHexEncodedPublicKey).bind { devices ->
+        LokiDeviceLinkUtilities.getAllLinkedDeviceHexEncodedPublicKeys(userHexEncodedPublicKey).bind { devices ->
             userDevices = devices
             api.getMessages(group.channel, group.server)
         }.bind { messages ->
             if (messages.isNotEmpty()) {
                 // We need to fetch device mappings for all the devices we don't have
                 uniqueDevices = messages.map { it.hexEncodedPublicKey }.toSet()
-                val devicesToUpdate = uniqueDevices.filter { !userDevices.contains(it) && LokiFileServerAPI.shared.hasCacheExpired(it) }
+                val devicesToUpdate = uniqueDevices.filter { !userDevices.contains(it) && LokiFileServerAPI.shared.hasDeviceLinkCacheExpired(hexEncodedPublicKey = it) }
                 if (devicesToUpdate.isNotEmpty()) {
-                    return@bind LokiFileServerAPI.shared.getDeviceMappings(devicesToUpdate.toSet()).then { messages }
+                    return@bind LokiFileServerAPI.shared.getDeviceLinks(devicesToUpdate.toSet()).then { messages }
                 }
             }
             Promise.of(messages)
@@ -238,7 +235,7 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
             val newDisplayNameUpdatees = uniqueDevices.mapNotNull {
                 // This will return null if current device is primary
                 // So if it's non-null then we know the device is a secondary device
-                val primaryDevice = LokiFileServerAPI.shared.getPrimaryDevicePublicKey(it).get()
+                val primaryDevice = LokiDeviceLinkUtilities.getMasterHexEncodedPublicKey(it).get()
                 primaryDevice
             }.toSet()
             // Fetch the display names of the primary devices
