@@ -297,7 +297,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
       // Loki - Store pre key bundle
       // We shouldn't store it if it's a pairing message
-      if (!content.getPairingAuthorisation().isPresent()) {
+      if (!content.getDeviceLink().isPresent()) {
         storePreKeyBundleIfNeeded(content);
       }
 
@@ -324,13 +324,13 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         });
       }
 
-      if (content.getPairingAuthorisation().isPresent()) {
-        handlePairingMessage(content.getPairingAuthorisation().get(), content);
+      if (content.getDeviceLink().isPresent()) {
+        handlePairingMessage(content.getDeviceLink().get(), content);
       } else if (content.getDataMessage().isPresent()) {
         SignalServiceDataMessage message        = content.getDataMessage().get();
         boolean                  isMediaMessage = message.getAttachments().isPresent() || message.getQuote().isPresent() || message.getSharedContacts().isPresent() || message.getPreviews().isPresent() || message.getSticker().isPresent();
 
-        if (!content.isFriendRequest() && message.isUnpairingRequest()) {
+        if (!content.isFriendRequest() && message.isUnlinkingRequest()) {
           // Make sure we got the request from our primary device
           String ourPrimaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
           if (ourPrimaryDevice != null && ourPrimaryDevice.equals(content.getSender())) {
@@ -339,7 +339,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           }
         } else {
           // Loki - Don't process session restore message any further
-          if (message.isSessionRestore() || message.isSessionRequest()) { return; }
+          if (message.isSessionRestorationRequest() || message.isSessionRequest()) { return; }
 
           if (message.isEndSession()) handleEndSessionMessage(content, smsMessageId);
           else if (message.isGroupUpdate()) handleGroupMessage(content, message, smsMessageId);
@@ -1538,7 +1538,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     if (recipient.getProfileKey() == null || !MessageDigest.isEqual(recipient.getProfileKey(), message.getProfileKey().get())) {
       database.setProfileKey(recipient, message.getProfileKey().get());
       database.setUnidentifiedAccessMode(recipient, RecipientDatabase.UnidentifiedAccessMode.UNKNOWN);
-      String url = content.senderProfileAvatarUrl.or("");
+      String url = content.senderProfilePictureURL.or("");
       ApplicationContext.getInstance(context).getJobManager().add(new RetrieveProfileAvatarJob(recipient, url));
 
       // Loki - If the recipient is our master device then we need to go and update our avatar mappings on the public chats
@@ -1832,7 +1832,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
     Recipient sender = Recipient.from(context, Address.fromSerialized(content.getSender()), false);
 
-    if (content.getPairingAuthorisation().isPresent()) {
+    if (content.getDeviceLink().isPresent()) {
       return false;
     } else if (content.getDataMessage().isPresent()) {
       SignalServiceDataMessage message      = content.getDataMessage().get();

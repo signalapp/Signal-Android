@@ -38,7 +38,7 @@ public class MessageSenderEventListener implements SignalServiceMessageSender.Ev
     FriendRequestHandler.updateFriendRequestState(context, FriendRequestHandler.ActionType.Sent, messageID, threadID);
   }
 
-  @Override public void onFriendRequestSendingFail(long messageID, long threadID) {
+  @Override public void onFriendRequestSendingFailed(long messageID, long threadID) {
     FriendRequestHandler.updateFriendRequestState(context, FriendRequestHandler.ActionType.Failed, messageID, threadID);
   }
 }
