@@ -26,7 +26,7 @@ import org.whispersystems.curve25519.Curve25519
 import org.whispersystems.libsignal.ecc.Curve
 import org.whispersystems.libsignal.ecc.ECKeyPair
 import org.whispersystems.libsignal.util.KeyHelper
-import org.whispersystems.signalservice.loki.api.PairingAuthorisation
+import org.whispersystems.signalservice.loki.api.DeviceLink
 import org.whispersystems.signalservice.loki.utilities.hexEncodedPublicKey
 import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
 
@@ -92,7 +92,7 @@ class LandingActivity : BaseActionBarActivity(), LinkDeviceSlaveModeDialogDelega
         TextSecurePreferences.setLocalNumber(this, userHexEncodedPublicKey)
         TextSecurePreferences.setHasSeenWelcomeScreen(this, true)
         TextSecurePreferences.setPromptedPushRegistration(this, true)
-        val authorisation = PairingAuthorisation(hexEncodedPublicKey, userHexEncodedPublicKey).sign(PairingAuthorisation.Type.REQUEST, keyPair!!.privateKey.serialize())
+        val authorisation = DeviceLink(hexEncodedPublicKey, userHexEncodedPublicKey).sign(DeviceLink.Type.REQUEST, keyPair!!.privateKey.serialize())
         if (authorisation == null) {
             Log.d("Loki", "Failed to sign device link request.")
             reset()
@@ -107,13 +107,13 @@ class LandingActivity : BaseActionBarActivity(), LinkDeviceSlaveModeDialogDelega
         linkDeviceDialog.show(supportFragmentManager, "Link Device Dialog")
         AsyncTask.execute {
             retryIfNeeded(8) {
-                sendPairingAuthorisationMessage(this@LandingActivity, authorisation.primaryDevicePublicKey, authorisation)
+                sendPairingAuthorisationMessage(this@LandingActivity, authorisation.masterHexEncodedPublicKey, authorisation)
             }
         }
     }
 
-    override fun onDeviceLinkRequestAuthorized(authorization: PairingAuthorisation) {
-        TextSecurePreferences.setMasterHexEncodedPublicKey(this, authorization.primaryDevicePublicKey)
+    override fun onDeviceLinkRequestAuthorized(deviceLink: DeviceLink) {
+        TextSecurePreferences.setMasterHexEncodedPublicKey(this, deviceLink.masterHexEncodedPublicKey)
         val intent = Intent(this, HomeActivity::class.java)
         show(intent)
         finish()

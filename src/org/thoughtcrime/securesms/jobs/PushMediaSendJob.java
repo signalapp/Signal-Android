@@ -22,7 +22,6 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -43,13 +42,12 @@ import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSy
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
-import org.whispersystems.signalservice.loki.api.LokiFileServerAPI;
+import org.whispersystems.signalservice.loki.api.LokiDeviceLinkUtilities;
 import org.whispersystems.signalservice.loki.messaging.LokiSyncMessage;
 import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -292,7 +290,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
         LokiSyncMessage syncMessage = null;
         if (shouldSendSyncMessage) {
           // Set the sync message destination the primary device, this way it will show that we sent a message to the primary device and not a secondary device
-          String primaryDevice = PromiseUtil.get(LokiFileServerAPI.shared.getPrimaryDevicePublicKey(address.getNumber()), null);
+          String primaryDevice = PromiseUtil.get(LokiDeviceLinkUtilities.INSTANCE.getMasterHexEncodedPublicKey(address.getNumber()), null);
           SignalServiceAddress primaryAddress = primaryDevice == null ? address : new SignalServiceAddress(primaryDevice);
           // We also need to use the original message id and not -1
           syncMessage = new LokiSyncMessage(primaryAddress, templateMessageId);

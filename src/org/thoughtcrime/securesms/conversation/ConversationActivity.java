@@ -232,10 +232,10 @@ import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.loki.api.DeviceLink;
 import org.whispersystems.signalservice.loki.api.LokiAPI;
+import org.whispersystems.signalservice.loki.api.LokiDeviceLinkUtilities;
 import org.whispersystems.signalservice.loki.api.LokiPublicChat;
-import org.whispersystems.signalservice.loki.api.LokiFileServerAPI;
-import org.whispersystems.signalservice.loki.api.PairingAuthorisation;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.Mention;
@@ -2290,7 +2290,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       if (threadID != this.threadId) {
         Recipient threadRecipient = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadID);
         if (threadRecipient != null && !threadRecipient.isGroupRecipient()) {
-          LokiFileServerAPI.shared.getAllDevicePublicKeys(threadRecipient.getAddress().serialize()).success(devices -> {
+          LokiDeviceLinkUtilities.INSTANCE.getAllLinkedDeviceHexEncodedPublicKeys(threadRecipient.getAddress().serialize()).success(devices -> {
             // We should update our input if this thread is a part of the other threads device
             if (devices.contains(recipient.getAddress().serialize())) {
               this.updateInputPanel();
@@ -3162,11 +3162,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   // region Loki
   private void updateTitleTextView(GlideRequests glide, Recipient recipient) {
     String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
-    List<PairingAuthorisation> deviceLinks = DatabaseFactory.getLokiAPIDatabase(this).getPairingAuthorisations(userHexEncodedPublicKey);
+    Set<DeviceLink> deviceLinks = DatabaseFactory.getLokiAPIDatabase(this).getDeviceLinks(userHexEncodedPublicKey);
     HashSet<String> userLinkedDeviceHexEncodedPublicKeys = new HashSet<>();
-    for (PairingAuthorisation deviceLink : deviceLinks) {
-      userLinkedDeviceHexEncodedPublicKeys.add(deviceLink.getPrimaryDevicePublicKey().toLowerCase());
-      userLinkedDeviceHexEncodedPublicKeys.add(deviceLink.getSecondaryDevicePublicKey().toLowerCase());
+    for (DeviceLink deviceLink : deviceLinks) {
+      userLinkedDeviceHexEncodedPublicKeys.add(deviceLink.getMasterHexEncodedPublicKey().toLowerCase());
+      userLinkedDeviceHexEncodedPublicKeys.add(deviceLink.getSlaveHexEncodedPublicKey().toLowerCase());
     }
     userLinkedDeviceHexEncodedPublicKeys.add(userHexEncodedPublicKey.toLowerCase());
     if (recipient == null) {

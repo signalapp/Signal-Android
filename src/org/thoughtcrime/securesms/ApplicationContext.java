@@ -96,14 +96,13 @@ import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.loki.api.LokiAPIDatabaseProtocol;
-import org.whispersystems.signalservice.loki.api.LokiDotNetAPI;
+import org.whispersystems.signalservice.loki.api.LokiFileServerAPI;
 import org.whispersystems.signalservice.loki.api.LokiLongPoller;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPI;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPIDelegate;
 import org.whispersystems.signalservice.loki.api.LokiPublicChat;
 import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
 import org.whispersystems.signalservice.loki.api.LokiRSSFeed;
-import org.whispersystems.signalservice.loki.api.LokiFileServerAPI;
 
 import java.security.Security;
 import java.util.ArrayList;
@@ -115,7 +114,6 @@ import java.util.concurrent.TimeUnit;
 import dagger.ObjectGraph;
 import kotlin.Unit;
 import network.loki.messenger.BuildConfig;
-import okhttp3.Cache;
 
 import static nl.komponents.kovenant.android.KovenantAndroid.startKovenant;
 import static nl.komponents.kovenant.android.KovenantAndroid.stopKovenant;
@@ -184,11 +182,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
     // Loki - Set up P2P API if needed
     setUpP2PAPI();
-    // Loki - Set the cache
-    LokiDotNetAPI.setCache(new Cache(this.getCacheDir(), OK_HTTP_CACHE_SIZE));
     // Loki - Update device mappings
     if (setUpStorageAPIIfNeeded()) {
-      LokiFileServerAPI.Companion.getShared().updateUserDeviceMappings();
+      LokiFileServerAPI.Companion.getShared().updateUserDeviceLinks();
       if (TextSecurePreferences.needsRevocationCheck(this)) {
         checkNeedsRevocation();
       }
