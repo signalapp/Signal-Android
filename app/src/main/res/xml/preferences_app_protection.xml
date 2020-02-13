@@ -115,7 +115,7 @@
             android:widgetLayout="@layout/kbs_pin_change_preference"
             android:key="pref_kbs_change"
             android:title="@string/preferences_app_protection__pin"
-            android:summary="@string/preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs" />
+            android:summary="@string/preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account" />
     </PreferenceCategory>
 
 </PreferenceScreen>
