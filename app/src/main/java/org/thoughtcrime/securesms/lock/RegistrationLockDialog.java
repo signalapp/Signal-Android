@@ -154,7 +154,7 @@ public final class RegistrationLockDialog {
       if (s == null) return;
       String pin = s.toString();
       if (TextUtils.isEmpty(pin)) return;
-      if (pin.length() < KbsConstants.MINIMUM_POSSIBLE_PIN_LENGTH) return;
+      if (pin.length() < KbsConstants.LEGACY_MINIMUM_PIN_LENGTH) return;
 
       if (PinHashing.verifyLocalPinHash(localPinHash, pin)) {
         dialog.dismiss();
@@ -186,9 +186,9 @@ public final class RegistrationLockDialog {
         String pinValue    = pin.getText().toString().replace(" ", "");
         String repeatValue = repeat.getText().toString().replace(" ", "");
 
-        if (pinValue.length() < KbsConstants.MINIMUM_POSSIBLE_PIN_LENGTH) {
+        if (pinValue.length() < KbsConstants.LEGACY_MINIMUM_PIN_LENGTH) {
           Toast.makeText(context,
-                         context.getString(R.string.RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits, KbsConstants.MINIMUM_POSSIBLE_PIN_LENGTH),
+                         context.getString(R.string.RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits, KbsConstants.LEGACY_MINIMUM_PIN_LENGTH),
                          Toast.LENGTH_LONG).show();
           return;
         }

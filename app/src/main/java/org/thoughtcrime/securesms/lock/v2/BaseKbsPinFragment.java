@@ -46,7 +46,7 @@ abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> extends
 
     viewModel = initializeViewModel();
     viewModel.getUserEntry().observe(getViewLifecycleOwner(), kbsPin -> {
-      boolean isEntryValid = kbsPin.length() >= KbsConstants.MINIMUM_NEW_PIN_LENGTH;
+      boolean isEntryValid = kbsPin.length() >= KbsConstants.MINIMUM_PIN_LENGTH;
 
       confirm.setEnabled(isEntryValid);
       confirm.setAlpha(isEntryValid ? 1f : 0.5f);

@@ -77,6 +77,6 @@ public class CreateKbsPinFragment extends BaseKbsPinFragment<CreateKbsPinViewMod
   }
 
   private String getPinLengthRestrictionText(@PluralsRes int plurals) {
-    return requireContext().getResources().getQuantityString(plurals, KbsConstants.MINIMUM_NEW_PIN_LENGTH, KbsConstants.MINIMUM_NEW_PIN_LENGTH);
+    return requireContext().getResources().getQuantityString(plurals, KbsConstants.MINIMUM_PIN_LENGTH, KbsConstants.MINIMUM_PIN_LENGTH);
   }
 }

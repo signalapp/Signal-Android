@@ -115,7 +115,7 @@ public final class SignalPinReminderDialog {
     pinEditText.addTextChangedListener(new SimpleTextWatcher() {
       @Override
       public void onTextChanged(String text) {
-        if (text.length() >= KbsConstants.MINIMUM_POSSIBLE_PIN_LENGTH) {
+        if (text.length() >= KbsConstants.minimumPossiblePinLength()) {
           submit.setEnabled(true);
         } else {
           submit.setEnabled(false);
@@ -192,7 +192,7 @@ public final class SignalPinReminderDialog {
       if (pin == null) return;
       if (TextUtils.isEmpty(pin)) return;
 
-      if (pin.length() < KbsConstants.MINIMUM_POSSIBLE_PIN_LENGTH) return;
+      if (pin.length() < KbsConstants.minimumPossiblePinLength()) return;
 
       if (PinHashing.verifyLocalPinHash(localPinHash, pin)) {
         callback.onPinCorrect();

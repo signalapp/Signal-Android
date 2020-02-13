@@ -1,13 +1,15 @@
 package org.thoughtcrime.securesms.lock.v2;
 
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
+
 public final class KbsConstants {
 
-  static final int MINIMUM_NEW_PIN_LENGTH = 6;
+  public static final int MINIMUM_PIN_LENGTH        = 6;
+  public static final int LEGACY_MINIMUM_PIN_LENGTH = 4;
 
-  /** Migrated pins from V1 might be 4 */
-  public static final int MINIMUM_POSSIBLE_PIN_LENGTH = 4;
+  private KbsConstants() { }
 
-  private KbsConstants() {
+  public static int minimumPossiblePinLength() {
+    return SignalStore.kbsValues().hasMigratedToPinsForAll() ? MINIMUM_PIN_LENGTH : LEGACY_MINIMUM_PIN_LENGTH;
   }
-
 }
