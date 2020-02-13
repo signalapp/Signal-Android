@@ -78,8 +78,10 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.IdentityUtil;
+import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
@@ -235,6 +237,13 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     this.avatar.setBackgroundColor(recipient.getColor().toActionBarColor(this));
     this.toolbarLayout.setTitle(recipient.toShortString(this));
     this.toolbarLayout.setContentScrimColor(recipient.getColor().toActionBarColor(this));
+    if (recipient.getUuid().isPresent()) {
+      toolbarLayout.setOnLongClickListener(v -> {
+        Util.copyToClipboard(this, recipient.getUuid().get().toString());
+        ServiceUtil.getVibrator(this).vibrate(200);
+        return true;
+      });
+    }
   }
 
   @Override

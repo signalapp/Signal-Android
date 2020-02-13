@@ -569,6 +569,10 @@ public class Util {
     }
   }
 
+  public static void copyToClipboard(@NonNull Context context, @NonNull String text) {
+    ServiceUtil.getClipboardManager(context).setPrimaryClip(ClipData.newPlainText("text", text));
+  }
+
   private static Handler getHandler() {
     if (handler == null) {
       synchronized (Util.class) {

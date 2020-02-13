@@ -5,6 +5,8 @@ import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.job.JobScheduler;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.hardware.display.DisplayManager;
 import android.location.LocationManager;
@@ -67,6 +69,10 @@ public class ServiceUtil {
 
   public static AccessibilityManager getAccessibilityManager(@NonNull Context context) {
     return (AccessibilityManager) context.getSystemService(Context.ACCESSIBILITY_SERVICE);
+  }
+
+  public static ClipboardManager getClipboardManager(@NonNull Context context) {
+    return (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
   }
 
   @RequiresApi(26)
