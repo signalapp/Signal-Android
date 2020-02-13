@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
   <string-array name="language_entries">
 <!-- zz --><item>@string/preferences__default</item>
@@ -143,12 +143,12 @@
       <item>vi</item>
   </string-array>
 
-    <string-array name="pref_theme_entries">
+  <string-array name="pref_theme_entries" tools:ignore="InconsistentArrays">
       <item>@string/preferences__light_theme</item>
       <item>@string/preferences__dark_theme</item>
   </string-array>
 
-  <string-array name="pref_theme_values" translatable="false">
+  <string-array name="pref_theme_values" translatable="false" tools:ignore="InconsistentArrays">
       <item>light</item>
       <item>dark</item>
   </string-array>
