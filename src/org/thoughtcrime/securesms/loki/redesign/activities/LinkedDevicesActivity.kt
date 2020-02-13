@@ -153,14 +153,14 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity, LoaderManager
                 Timer().schedule(4000) {
                     MessageSender.syncAllContacts(this@LinkedDevicesActivity, Address.fromSerialized(deviceLink.slaveHexEncodedPublicKey))
                 }
-            }.fail { exception ->
+            }.fail {
                 LokiFileServerAPI.shared.removeDeviceLink(deviceLink) // If this fails we have a problem
                 DatabaseFactory.getLokiPreKeyBundleDatabase(this).removePreKeyBundle(deviceLink.slaveHexEncodedPublicKey)
                 Util.runOnMain {
                     Toast.makeText(this, "Couldn't link device", Toast.LENGTH_LONG).show()
                 }
             }
-        }.failUi { exception ->
+        }.failUi {
             DatabaseFactory.getLokiPreKeyBundleDatabase(this).removePreKeyBundle(deviceLink.slaveHexEncodedPublicKey)
             Toast.makeText(this, "Couldn't link device", Toast.LENGTH_LONG).show()
         }

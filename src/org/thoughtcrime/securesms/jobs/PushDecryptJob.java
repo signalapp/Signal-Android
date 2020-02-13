@@ -1773,7 +1773,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
    */
   private Recipient getMasterRecipient(String hexEncodedPublicKey) {
     try {
-      String masterHexEncodedPublicKey = LokiDeviceLinkUtilities.INSTANCE.getMasterHexEncodedPublicKey(hexEncodedPublicKey).get();
+      String masterHexEncodedPublicKey = PromiseUtil.timeout(LokiDeviceLinkUtilities.INSTANCE.getMasterHexEncodedPublicKey(hexEncodedPublicKey), 5000).get();
       String targetHexEncodedPublicKey = (masterHexEncodedPublicKey != null) ? masterHexEncodedPublicKey : hexEncodedPublicKey;
       // If the public key matches our master device then we need to forward the message to ourselves (note to self)
       String ourMasterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
