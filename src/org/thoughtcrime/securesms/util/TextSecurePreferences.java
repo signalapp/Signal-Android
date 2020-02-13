@@ -1235,11 +1235,11 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, "database_reset_unpair", false);
   }
 
-  public static void setNeedsRevocationCheck(Context context, boolean needsCheck) {
-    setBooleanPreference(context, "needs_revocation", needsCheck);
+  public static void setNeedsIsRevokedSlaveDeviceCheck(Context context, boolean value) {
+    setBooleanPreference(context, "needs_revocation", value);
   }
 
-  public static boolean needsRevocationCheck(Context context) {
+  public static boolean getNeedsIsRevokedSlaveDeviceCheck(Context context) {
     return getBooleanPreference(context, "needs_revocation", false);
   }
 

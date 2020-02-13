@@ -190,6 +190,11 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         }.toSet()
     }
 
+    override fun clearDeviceLinks(hexEncodedPublicKey: String) {
+        val database = databaseHelper.writableDatabase
+        database.delete(deviceLinkCache, "$masterHexEncodedPublicKey = ? OR $slaveHexEncodedPublicKey = ?", arrayOf( hexEncodedPublicKey, hexEncodedPublicKey ))
+    }
+
     override fun addDeviceLink(deviceLink: DeviceLink) {
         val database = databaseHelper.writableDatabase
         val values = ContentValues()
@@ -200,14 +205,9 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         database.insertOrUpdate(deviceLinkCache, values, "$masterHexEncodedPublicKey = ? AND $slaveHexEncodedPublicKey = ?", arrayOf( deviceLink.masterHexEncodedPublicKey, deviceLink.slaveHexEncodedPublicKey ))
     }
 
-    override fun clearDeviceLinks(hexEncodedPublicKey: String) {
+    override fun removeDeviceLink(deviceLink: DeviceLink) {
         val database = databaseHelper.writableDatabase
-        database.delete(deviceLinkCache, "$masterHexEncodedPublicKey = ? OR $slaveHexEncodedPublicKey = ?", arrayOf( hexEncodedPublicKey, hexEncodedPublicKey ))
-    }
-
-    fun removeDeviceLink(masterHexEncodedPublicKey: String, slaveHexEncodedPublicKey: String) {
-        val database = databaseHelper.writableDatabase
-        database.delete(deviceLinkCache, "${Companion.masterHexEncodedPublicKey} = ? OR ${Companion.slaveHexEncodedPublicKey} = ?", arrayOf( masterHexEncodedPublicKey, slaveHexEncodedPublicKey ))
+        database.delete(deviceLinkCache, "$masterHexEncodedPublicKey = ? OR $slaveHexEncodedPublicKey = ?", arrayOf( deviceLink.masterHexEncodedPublicKey, deviceLink.slaveHexEncodedPublicKey ))
     }
 
     fun getUserCount(group: Long, server: String): Int? {

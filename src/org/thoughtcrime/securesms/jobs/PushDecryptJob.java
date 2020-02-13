@@ -133,7 +133,6 @@ import org.whispersystems.signalservice.loki.api.DeviceLink;
 import org.whispersystems.signalservice.loki.api.DeviceLinkingSession;
 import org.whispersystems.signalservice.loki.api.LokiAPI;
 import org.whispersystems.signalservice.loki.api.LokiDeviceLinkUtilities;
-import org.whispersystems.signalservice.loki.api.LokiFileServerAPI;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiServiceMessage;
@@ -336,7 +335,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           String ourMasterDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
           if (ourMasterDevice != null && ourMasterDevice.equals(content.getSender())) {
             TextSecurePreferences.setDatabaseResetFromUnpair(context, true);
-            MultiDeviceUtilities.checkForRevocation(context);
+            MultiDeviceUtilities.checkIsRevokedSlaveDevice(context);
           }
         } else {
           // Loki - Don't process session restore message any further
@@ -1170,8 +1169,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     TextSecurePreferences.setMultiDevice(context, true);
     // Send a background message to the master device
     MessageSender.sendBackgroundMessage(context, deviceLink.getMasterHexEncodedPublicKey());
-    // Propagate the updates to the file server
-    LokiFileServerAPI.Companion.getShared().updateUserDeviceLinks();
     // Update display name if needed
     if (content.senderDisplayName.isPresent() && content.senderDisplayName.get().length() > 0) {
         TextSecurePreferences.setProfileName(context, content.senderDisplayName.get());
@@ -1184,6 +1181,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     if (content.getSyncMessage().isPresent() && content.getSyncMessage().get().getContacts().isPresent()) {
       handleContactSyncMessage(content.getSyncMessage().get().getContacts().get());
     }
+    // The device link is propagated to the file server in LandingActivity.onDeviceLinkAuthorized because we can handle the error there
   }
 
   private void setDisplayName(String hexEncodedPublicKey, String profileName) {
@@ -1775,7 +1773,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
    */
   private Recipient getMasterRecipient(String hexEncodedPublicKey) {
     try {
-      String masterHexEncodedPublicKey = PromiseUtil.timeout(LokiDeviceLinkUtilities.INSTANCE.getMasterHexEncodedPublicKey(hexEncodedPublicKey), 5000).get();
+      String masterHexEncodedPublicKey = LokiDeviceLinkUtilities.INSTANCE.getMasterHexEncodedPublicKey(hexEncodedPublicKey).get();
       String targetHexEncodedPublicKey = (masterHexEncodedPublicKey != null) ? masterHexEncodedPublicKey : hexEncodedPublicKey;
       // If the public key matches our master device then we need to forward the message to ourselves (note to self)
       String ourMasterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context);

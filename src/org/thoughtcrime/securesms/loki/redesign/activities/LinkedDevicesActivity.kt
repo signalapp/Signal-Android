@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.loki.redesign.activities
 
-import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v4.app.LoaderManager
 import android.support.v4.content.Loader
@@ -12,16 +11,20 @@ import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_linked_devices.*
 import network.loki.messenger.R
+import nl.komponents.kovenant.ui.failUi
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
+import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.devicelist.Device
 import org.thoughtcrime.securesms.loki.redesign.dialogs.*
-import org.thoughtcrime.securesms.loki.signAndSendPairingAuthorisationMessage
+import org.thoughtcrime.securesms.loki.signAndSendDeviceLinkMessage
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.loki.api.DeviceLink
 import org.whispersystems.signalservice.loki.api.LokiFileServerAPI
+import java.util.*
+import kotlin.concurrent.schedule
 
 class LinkedDevicesActivity : PassphraseRequiredActionBarActivity, LoaderManager.LoaderCallbacks<List<Device>>, DeviceClickListener, EditDeviceNameDialogDelegate, LinkDeviceMasterModeDialogDelegate {
     private var devices = listOf<Device>()
@@ -118,20 +121,37 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity, LoaderManager
     private fun unlinkDevice(slaveDeviceHexEncodedPublicKey: String) {
         val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)
         val database = DatabaseFactory.getLokiAPIDatabase(this)
-        database.removeDeviceLink(userHexEncodedPublicKey, slaveDeviceHexEncodedPublicKey)
-        LokiFileServerAPI.shared.updateUserDeviceLinks().success {
-            MessageSender.sendUnpairRequest(this, slaveDeviceHexEncodedPublicKey)
+        val deviceLink = database.getDeviceLinks(userHexEncodedPublicKey).find { it.masterHexEncodedPublicKey == userHexEncodedPublicKey && it.slaveHexEncodedPublicKey == slaveDeviceHexEncodedPublicKey }
+        if (deviceLink == null) {
+            return Toast.makeText(this, "Couldn't unlink device.", Toast.LENGTH_LONG).show()
         }
-        LoaderManager.getInstance(this).restartLoader(0, null, this)
-        Toast.makeText(this, "Your device was unlinked successfully", Toast.LENGTH_LONG).show()
+        LokiFileServerAPI.shared.removeDeviceLink(deviceLink).success {
+            MessageSender.sendUnpairRequest(this, slaveDeviceHexEncodedPublicKey)
+            LoaderManager.getInstance(this).restartLoader(0, null, this)
+            Toast.makeText(this, "Your device was unlinked successfully", Toast.LENGTH_LONG).show()
+        }.fail {
+            Toast.makeText(this, "Couldn't unlink device.", Toast.LENGTH_LONG).show()
+        }
     }
 
-    override fun onDeviceLinkRequestAuthorized(authorization: DeviceLink) {
-        AsyncTask.execute {
-            signAndSendPairingAuthorisationMessage(this, authorization)
-            Util.runOnMain {
-                LoaderManager.getInstance(this).restartLoader(0, null, this)
+    override fun onDeviceLinkRequestAuthorized(deviceLink: DeviceLink) {
+        LokiFileServerAPI.shared.addDeviceLink(deviceLink).success {
+            signAndSendDeviceLinkMessage(this, deviceLink).success {
+                TextSecurePreferences.setMultiDevice(this, true)
+                Util.runOnMain {
+                    LoaderManager.getInstance(this).restartLoader(0, null, this)
+                }
+                Timer().schedule(4000) {
+                    MessageSender.syncAllContacts(this@LinkedDevicesActivity, Address.fromSerialized(deviceLink.slaveHexEncodedPublicKey))
+                }
+            }.fail {
+                LokiFileServerAPI.shared.removeDeviceLink(deviceLink) // If this fails we have a problem
+                Util.runOnMain {
+                    Toast.makeText(this, "Couldn't link device", Toast.LENGTH_LONG).show()
+                }
             }
+        }.failUi {
+            Toast.makeText(this, "Couldn't link device", Toast.LENGTH_LONG).show()
         }
     }
 

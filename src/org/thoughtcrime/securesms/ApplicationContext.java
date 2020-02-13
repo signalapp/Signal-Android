@@ -184,9 +184,12 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     setUpP2PAPI();
     // Loki - Update device mappings
     if (setUpStorageAPIIfNeeded()) {
-      LokiFileServerAPI.Companion.getShared().updateUserDeviceLinks();
-      if (TextSecurePreferences.needsRevocationCheck(this)) {
-        checkNeedsRevocation();
+      String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
+      if (userHexEncodedPublicKey != null) {
+        LokiFileServerAPI.Companion.getShared().getDeviceLinks(userHexEncodedPublicKey, true);
+        if (TextSecurePreferences.getNeedsIsRevokedSlaveDeviceCheck(this)) {
+          MultiDeviceUtilities.checkIsRevokedSlaveDevice(this);
+        }
       }
     }
     // Loki - Set up public chat manager
@@ -613,11 +616,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       }
     });
   }
-  // endregion
-
-  public void checkNeedsRevocation() {
-    MultiDeviceUtilities.checkForRevocation(this);
-  }
 
   public void checkNeedsDatabaseReset() {
     if (TextSecurePreferences.resetDatabase(this)) {
@@ -643,4 +641,5 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     this.startActivity(mainIntent);
     Runtime.getRuntime().exit(0);
   }
+  // endregion
 }
