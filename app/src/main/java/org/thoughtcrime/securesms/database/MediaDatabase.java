@@ -248,8 +248,8 @@ public class MediaDatabase extends Database {
   }
 
   public enum Sorting {
-    Newest (AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + " DESC, " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DISPLAY_ORDER + " DESC"),
-    Oldest (AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + " ASC, "  + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DISPLAY_ORDER + " DESC"),
+    Newest (AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + " DESC, " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DISPLAY_ORDER + " DESC, " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " DESC"),
+    Oldest (AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + " ASC, "  + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DISPLAY_ORDER + " DESC, " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " ASC"),
     Largest(AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.SIZE   + " DESC, " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DISPLAY_ORDER + " DESC");
 
     private final String postFix;
