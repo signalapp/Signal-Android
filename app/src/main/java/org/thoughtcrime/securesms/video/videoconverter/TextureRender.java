@@ -47,6 +47,14 @@ final class TextureRender {
         1.0f,  1.0f, 0, 1.f, 1.f,
     };
 
+    private final float[] mTriangleVerticesDataFlippedX = {
+        // X, Y, Z, U, V
+        -1.0f, -1.0f, 0, 1.f, 0.f,
+        1.0f, -1.0f, 0, 0.f, 0.f,
+        -1.0f,  1.0f, 0, 1.f, 1.f,
+        1.0f,  1.0f, 0, 0.f, 1.f,
+    };
+
     private final FloatBuffer mTriangleVertices;
 
     private static final String VERTEX_SHADER =
@@ -79,11 +87,12 @@ final class TextureRender {
     private int maPositionHandle;
     private int maTextureHandle;
 
-    TextureRender() {
+    TextureRender(boolean flipX) {
+        float[] verticesData = flipX ? mTriangleVerticesDataFlippedX : mTriangleVerticesData;
         mTriangleVertices = ByteBuffer.allocateDirect(
-            mTriangleVerticesData.length * FLOAT_SIZE_BYTES)
+            verticesData.length * FLOAT_SIZE_BYTES)
                 .order(ByteOrder.nativeOrder()).asFloatBuffer();
-        mTriangleVertices.put(mTriangleVerticesData).position(0);
+        mTriangleVertices.put(verticesData).position(0);
 
         Matrix.setIdentityM(mSTMatrix, 0);
     }

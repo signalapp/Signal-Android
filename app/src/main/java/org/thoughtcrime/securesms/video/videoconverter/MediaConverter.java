@@ -18,13 +18,9 @@
 
 package org.thoughtcrime.securesms.video.videoconverter;
 
-import android.content.Context;
 import android.media.MediaCodecInfo;
 import android.media.MediaCodecList;
-import android.media.MediaDataSource;
-import android.media.MediaExtractor;
 import android.media.MediaFormat;
-import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -53,7 +49,7 @@ public final class MediaConverter {
     public static final String VIDEO_CODEC_H264 = "video/avc";
     public static final String VIDEO_CODEC_H265 = "video/hevc";
 
-    private Input mInput;
+    private VideoInput mInput;
     private Output mOutput;
 
     private long mTimeFrom;
@@ -73,20 +69,8 @@ public final class MediaConverter {
     public MediaConverter() {
     }
 
-    @SuppressWarnings("unused")
-    public void setInput(final @NonNull File file) {
-        mInput = new FileInput(file);
-    }
-
-    @SuppressWarnings("unused")
-    public void setInput(final @NonNull Context context, final @NonNull Uri uri) {
-        mInput = new UriInput(context, uri);
-    }
-
-    @RequiresApi(23)
-    @SuppressWarnings("unused")
-    public void setInput(final @NonNull MediaDataSource mediaDataSource) {
-        mInput = new MediaDataSourceInput(mediaDataSource);
+    public void setInput(final @NonNull VideoInput videoInput) {
+        mInput = videoInput;
     }
 
     @SuppressWarnings("unused")
@@ -310,65 +294,6 @@ public final class MediaConverter {
             }
         }
         return null;
-    }
-
-    interface Input {
-        @NonNull
-        MediaExtractor createExtractor() throws IOException;
-    }
-
-    private static class FileInput implements Input {
-
-        final File file;
-
-        FileInput(final @NonNull File file) {
-            this.file = file;
-        }
-
-        @Override
-        public @NonNull
-        MediaExtractor createExtractor() throws IOException {
-            final MediaExtractor extractor = new MediaExtractor();
-            extractor.setDataSource(file.getAbsolutePath());
-            return extractor;
-        }
-    }
-
-    private static class UriInput implements Input {
-
-        final Uri uri;
-        final Context context;
-
-        UriInput(final @NonNull Context context, final @NonNull Uri uri) {
-            this.uri = uri;
-            this.context = context;
-        }
-
-        @Override
-        public @NonNull
-        MediaExtractor createExtractor() throws IOException {
-            final MediaExtractor extractor = new MediaExtractor();
-            extractor.setDataSource(context, uri, null);
-            return extractor;
-        }
-    }
-
-    @RequiresApi(23)
-    private static class MediaDataSourceInput implements Input {
-
-        private final MediaDataSource mediaDataSource;
-
-        MediaDataSourceInput(final @NonNull MediaDataSource mediaDataSource) {
-            this.mediaDataSource = mediaDataSource;
-        }
-
-        @Override
-        public @NonNull
-        MediaExtractor createExtractor() throws IOException {
-            final MediaExtractor extractor = new MediaExtractor();
-            extractor.setDataSource(mediaDataSource);
-            return extractor;
-        }
     }
 
     interface Output {

@@ -300,7 +300,7 @@ public class MediaUtil {
   }
 
   @WorkerThread
-  public static @Nullable Bitmap getVideoThumbnail(Context context, Uri uri) {
+  public static @Nullable Bitmap getVideoThumbnail(Context context, Uri uri, long timeUs) {
     if ("com.android.providers.media.documents".equals(uri.getAuthority())) {
       long videoId = Long.parseLong(uri.getLastPathSegment().split(":")[1]);
 
@@ -327,7 +327,7 @@ public class MediaUtil {
         MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
 
         MediaMetadataRetrieverUtil.setDataSource(mediaMetadataRetriever, mediaDataSource);
-        return mediaMetadataRetriever.getFrameAtTime(1000);
+        return mediaMetadataRetriever.getFrameAtTime(timeUs);
       } catch (IOException e) {
         Log.w(TAG, "failed to get thumbnail for video blob uri: " + uri, e);
         return null;

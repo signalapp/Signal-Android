@@ -46,8 +46,9 @@ import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
-import org.thoughtcrime.securesms.jobs.AttachmentCopyJob;
 import org.thoughtcrime.securesms.jobs.AttachmentCompressionJob;
+import org.thoughtcrime.securesms.jobs.AttachmentCopyJob;
+import org.thoughtcrime.securesms.jobs.AttachmentMarkUploadedJob;
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
@@ -437,15 +438,22 @@ public class MessageSender {
   private static void sendLocalMediaSelf(Context context, long messageId) {
     try {
       ExpiringMessageManager expirationManager  = ApplicationContext.getInstance(context).getExpiringMessageManager();
-      AttachmentDatabase     attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
       MmsDatabase            mmsDatabase        = DatabaseFactory.getMmsDatabase(context);
       MmsSmsDatabase         mmsSmsDatabase     = DatabaseFactory.getMmsSmsDatabase(context);
       OutgoingMediaMessage   message            = mmsDatabase.getOutgoingMessage(messageId);
       SyncMessageId          syncId             = new SyncMessageId(Recipient.self().getId(), message.getSentTimeMillis());
 
-      for (Attachment attachment : message.getAttachments()) {
-        attachmentDatabase.markAttachmentUploaded(messageId, attachment);
-      }
+      List<AttachmentCompressionJob> compressionJobs = Stream.of(message.getAttachments())
+                                                             .map(a -> AttachmentCompressionJob.fromAttachment((DatabaseAttachment) a, false, -1))
+                                                             .toList();
+
+      List<AttachmentMarkUploadedJob> fakeUploadJobs = Stream.of(message.getAttachments())
+                                                             .map(a -> new AttachmentMarkUploadedJob(messageId, ((DatabaseAttachment) a).getAttachmentId()))
+                                                             .toList();
+
+      ApplicationDependencies.getJobManager().startChain(compressionJobs)
+                                             .then(fakeUploadJobs)
+                                             .enqueue();
 
       mmsDatabase.markAsSent(messageId, true);
       mmsDatabase.markUnidentified(messageId, true);

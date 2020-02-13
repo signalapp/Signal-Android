@@ -609,7 +609,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
       for (Media mediaItem : result.getNonUploadedMedia()) {
         if (MediaUtil.isVideoType(mediaItem.getMimeType())) {
-          slideDeck.addSlide(new VideoSlide(this, mediaItem.getUri(), 0, mediaItem.getCaption().orNull()));
+          slideDeck.addSlide(new VideoSlide(this, mediaItem.getUri(), 0, mediaItem.getCaption().orNull(), mediaItem.getTransformProperties().orNull()));
         } else if (MediaUtil.isGif(mediaItem.getMimeType())) {
           slideDeck.addSlide(new GifSlide(this, mediaItem.getUri(), 0, mediaItem.getWidth(), mediaItem.getHeight(), mediaItem.getCaption().orNull()));
         } else if (MediaUtil.isImageType(mediaItem.getMimeType())) {
@@ -1904,7 +1904,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       openContactShareEditor(uri);
       return new SettableFuture<>(false);
     } else if (MediaType.IMAGE.equals(mediaType) || MediaType.GIF.equals(mediaType) || MediaType.VIDEO.equals(mediaType)) {
-      Media media = new Media(uri, MediaUtil.getMimeType(this, uri), 0, width, height, 0, 0, Optional.absent(), Optional.absent());
+      Media media = new Media(uri, MediaUtil.getMimeType(this, uri), 0, width, height, 0, 0, Optional.absent(), Optional.absent(), Optional.absent());
       startActivityForResult(MediaSendActivity.buildEditorIntent(ConversationActivity.this, Collections.singletonList(media), recipient.get(), composeText.getTextTrimmed(), sendButton.getSelectedTransport()), MEDIA_SENDER);
       return new SettableFuture<>(false);
     } else {
@@ -2617,7 +2617,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void sendSticker(@NonNull StickerLocator stickerLocator, @NonNull Uri uri, long size, boolean clearCompose) {
     if (sendButton.getSelectedTransport().isSms()) {
-      Media  media  = new Media(uri, MediaUtil.IMAGE_WEBP, System.currentTimeMillis(), StickerSlide.WIDTH, StickerSlide.HEIGHT, size, 0, Optional.absent(), Optional.absent());
+      Media  media  = new Media(uri, MediaUtil.IMAGE_WEBP, System.currentTimeMillis(), StickerSlide.WIDTH, StickerSlide.HEIGHT, size, 0, Optional.absent(), Optional.absent(), Optional.absent());
       Intent intent = MediaSendActivity.buildEditorIntent(this, Collections.singletonList(media), recipient.get(), composeText.getTextTrimmed(), sendButton.getSelectedTransport());
       startActivityForResult(intent, MEDIA_SENDER);
       return;

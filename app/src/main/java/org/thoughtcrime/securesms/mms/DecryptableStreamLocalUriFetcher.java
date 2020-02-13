@@ -30,7 +30,7 @@ class DecryptableStreamLocalUriFetcher extends StreamLocalUriFetcher {
   @Override
   protected InputStream loadResource(Uri uri, ContentResolver contentResolver) throws FileNotFoundException {
     if (MediaUtil.hasVideoThumbnail(uri)) {
-      Bitmap thumbnail = MediaUtil.getVideoThumbnail(context, uri);
+      Bitmap thumbnail = MediaUtil.getVideoThumbnail(context, uri, 1000);
 
       if (thumbnail != null) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();

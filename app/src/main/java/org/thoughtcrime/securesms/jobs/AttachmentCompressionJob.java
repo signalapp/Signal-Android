@@ -4,8 +4,6 @@ import android.content.Context;
 import android.media.MediaDataSource;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.R;
@@ -29,7 +27,6 @@ import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor.MemoryFileException;
 import org.thoughtcrime.securesms.video.InMemoryTranscoder;
 import org.thoughtcrime.securesms.video.VideoSizeException;
@@ -143,17 +140,20 @@ public final class AttachmentCompressionJob extends BaseJob {
       throws UndeliverableMessageException
   {
     try {
-      if (MediaUtil.isVideo(attachment) && MediaConstraints.isVideoTranscodeAvailable()) {
+      if (MediaUtil.isVideo(attachment)) {
         transcodeVideoIfNeededToDatabase(context, attachmentDatabase, attachment, constraints, EventBus.getDefault(), this::isCanceled);
+        if (!constraints.isSatisfied(context, attachment)) {
+          throw new UndeliverableMessageException("Size constraints could not be met on video!");
+        }
       } else if (constraints.isSatisfied(context, attachment)) {
         if (MediaUtil.isJpeg(attachment)) {
           MediaStream stripped = getResizedMedia(context, attachment, constraints);
-          attachmentDatabase.updateAttachmentData(attachment, stripped);
+          attachmentDatabase.updateAttachmentData(attachment, stripped, false);
           attachmentDatabase.markAttachmentAsTransformed(attachmentId);
         }
       } else if (constraints.canResize(attachment)) {
         MediaStream resized = getResizedMedia(context, attachment, constraints);
-        attachmentDatabase.updateAttachmentData(attachment, resized);
+        attachmentDatabase.updateAttachmentData(attachment, resized, false);
         attachmentDatabase.markAttachmentAsTransformed(attachmentId);
       } else {
         throw new UndeliverableMessageException("Size constraints could not be met!");
@@ -163,7 +163,6 @@ public final class AttachmentCompressionJob extends BaseJob {
     }
   }
 
-  @RequiresApi(26)
   private static void transcodeVideoIfNeededToDatabase(@NonNull Context context,
                                                        @NonNull AttachmentDatabase attachmentDatabase,
                                                        @NonNull DatabaseAttachment attachment,
@@ -172,6 +171,17 @@ public final class AttachmentCompressionJob extends BaseJob {
                                                        @NonNull InMemoryTranscoder.CancelationSignal cancelationSignal)
       throws UndeliverableMessageException
   {
+    AttachmentDatabase.TransformProperties transformProperties = attachment.getTransformProperties();
+
+    boolean allowSkipOnFailure = false;
+
+    if (!MediaConstraints.isVideoTranscodeAvailable()) {
+      if (transformProperties.isVideoEdited()) {
+        throw new UndeliverableMessageException("Video edited, but transcode is not available");
+      }
+      return;
+    }
+
     try (NotificationController notification = GenericForegroundService.startForegroundTask(context, context.getString(R.string.AttachmentUploadJob_compressing_video_start))) {
 
       notification.setIndeterminateProgress();
@@ -182,10 +192,14 @@ public final class AttachmentCompressionJob extends BaseJob {
           throw new UndeliverableMessageException("Cannot get media data source for attachment.");
         }
 
-        try (InMemoryTranscoder transcoder = new InMemoryTranscoder(context, dataSource, constraints.getCompressedVideoMaxSize(context))) {
+        allowSkipOnFailure = !transformProperties.isVideoEdited();
+        InMemoryTranscoder.Options options = null;
+        if (transformProperties.isVideoTrim()) {
+          options = new InMemoryTranscoder.Options(transformProperties.getVideoTrimStartTimeUs(), transformProperties.getVideoTrimEndTimeUs());
+        }
 
+        try (InMemoryTranscoder transcoder = new InMemoryTranscoder(context, dataSource, options, constraints.getCompressedVideoMaxSize(context))) {
           if (transcoder.isTranscodeRequired()) {
-
             MediaStream mediaStream = transcoder.transcode(percent -> {
               notification.setProgress(100, percent);
               eventBus.postSticky(new PartProgressEvent(attachment,
@@ -194,7 +208,7 @@ public final class AttachmentCompressionJob extends BaseJob {
                                                         percent));
             }, cancelationSignal);
 
-            attachmentDatabase.updateAttachmentData(attachment, mediaStream);
+            attachmentDatabase.updateAttachmentData(attachment, mediaStream, transformProperties.isVideoEdited());
             attachmentDatabase.markAttachmentAsTransformed(attachment.getAttachmentId());
           }
         }
@@ -203,7 +217,11 @@ public final class AttachmentCompressionJob extends BaseJob {
       if (attachment.getSize() > constraints.getVideoMaxSize(context)) {
         throw new UndeliverableMessageException("Duration not found, attachment too large to skip transcode", e);
       } else {
-        Log.w(TAG, "Problem with video source, but video small enough to skip transcode", e);
+        if (allowSkipOnFailure) {
+          Log.w(TAG, "Problem with video source, but video small enough to skip transcode", e);
+        } else {
+          throw new UndeliverableMessageException("Failed to transcode and cannot skip due to editing", e);
+        }
       }
     } catch (IOException | MmsException | VideoSizeException e) {
       throw new UndeliverableMessageException("Failed to transcode", e);

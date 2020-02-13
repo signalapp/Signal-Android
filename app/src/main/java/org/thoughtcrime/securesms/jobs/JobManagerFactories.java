@@ -26,8 +26,8 @@ import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
 import org.thoughtcrime.securesms.migrations.MigrationCompleteJob;
 import org.thoughtcrime.securesms.migrations.RecipientSearchMigrationJob;
 import org.thoughtcrime.securesms.migrations.RegistrationPinV2MigrationJob;
-import org.thoughtcrime.securesms.migrations.StickerLaunchMigrationJob;
 import org.thoughtcrime.securesms.migrations.StickerAdditionMigrationJob;
+import org.thoughtcrime.securesms.migrations.StickerLaunchMigrationJob;
 import org.thoughtcrime.securesms.migrations.UuidMigrationJob;
 
 import java.util.Arrays;
@@ -42,6 +42,7 @@ public final class JobManagerFactories {
       put(AttachmentCopyJob.KEY,                     new AttachmentCopyJob.Factory());
       put(AttachmentDownloadJob.KEY,                 new AttachmentDownloadJob.Factory());
       put(AttachmentUploadJob.KEY,                   new AttachmentUploadJob.Factory());
+      put(AttachmentMarkUploadedJob.KEY,             new AttachmentMarkUploadedJob.Factory());
       put(AttachmentCompressionJob.KEY,              new AttachmentCompressionJob.Factory());
       put(AvatarDownloadJob.KEY,                     new AvatarDownloadJob.Factory());
       put(CleanPreKeysJob.KEY,                       new CleanPreKeysJob.Factory());

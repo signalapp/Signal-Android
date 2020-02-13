@@ -69,7 +69,7 @@ final class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
      * EGL context and surface will be made current.  Creates a Surface that can be passed
      * to MediaCodec.configure().
      */
-    OutputSurface(int width, int height) throws TranscodingException {
+    OutputSurface(int width, int height, boolean flipX) throws TranscodingException {
         if (width <= 0 || height <= 0) {
             throw new IllegalArgumentException();
         }
@@ -77,7 +77,7 @@ final class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
         eglSetup(width, height);
         makeCurrent();
 
-        setup();
+        setup(flipX);
     }
 
     /**
@@ -85,15 +85,15 @@ final class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
      * passed to MediaCodec.configure().
      */
     OutputSurface() throws TranscodingException {
-        setup();
+        setup(false);
     }
 
     /**
      * Creates instances of TextureRender and SurfaceTexture, and a Surface associated
      * with the SurfaceTexture.
      */
-    private void setup() throws TranscodingException {
-        mTextureRender = new TextureRender();
+    private void setup(boolean flipX) throws TranscodingException {
+        mTextureRender = new TextureRender(flipX);
         mTextureRender.surfaceCreated();
 
         // Even if we don't access the SurfaceTexture after the constructor returns, we

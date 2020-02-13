@@ -33,6 +33,7 @@ import androidx.annotation.RequiresApi;
 import androidx.annotation.VisibleForTesting;
 
 import com.bumptech.glide.Glide;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import net.sqlcipher.DatabaseUtils;
@@ -166,8 +167,11 @@ public class AttachmentDatabase extends Database {
     "CREATE INDEX IF NOT EXISTS part_mms_id_index ON " + TABLE_NAME + " (" + MMS_ID + ");",
     "CREATE INDEX IF NOT EXISTS pending_push_index ON " + TABLE_NAME + " (" + TRANSFER_STATE + ");",
     "CREATE INDEX IF NOT EXISTS part_sticker_pack_id_index ON " + TABLE_NAME + " (" + STICKER_PACK_ID + ");",
-    "CREATE INDEX IF NOT EXISTS part_data_hash_index ON " + TABLE_NAME + " (" + DATA_HASH + ");"
+    "CREATE INDEX IF NOT EXISTS part_data_hash_index ON " + TABLE_NAME + " (" + DATA_HASH + ");",
+    "CREATE INDEX IF NOT EXISTS part_data_index ON " + TABLE_NAME + " (" + DATA + ");"
   };
+
+  private static final long STANDARD_THUMB_TIME = 1000;
 
   private final ExecutorService thumbnailExecutor = Util.newSingleThreadedLifoExecutor();
 
@@ -198,7 +202,7 @@ public class AttachmentDatabase extends Database {
     }
 
     try {
-      InputStream generatedStream = thumbnailExecutor.submit(new ThumbnailFetchCallable(attachmentId)).get();
+      InputStream generatedStream = thumbnailExecutor.submit(new ThumbnailFetchCallable(attachmentId, STANDARD_THUMB_TIME)).get();
 
       if (generatedStream == null) throw new FileNotFoundException("No thumbnail stream available: " + attachmentId);
       else                         return generatedStream;
@@ -525,7 +529,7 @@ public class AttachmentDatabase extends Database {
       notifyConversationListListeners();
     }
 
-    thumbnailExecutor.submit(new ThumbnailFetchCallable(attachmentId));
+    thumbnailExecutor.submit(new ThumbnailFetchCallable(attachmentId, STANDARD_THUMB_TIME));
   }
 
   private static @Nullable String getBlurHashStringOrNull(@Nullable BlurHash blurHash) {
@@ -671,9 +675,14 @@ public class AttachmentDatabase extends Database {
     return insertedAttachments;
   }
 
+  /**
+   * @param onlyModifyThisAttachment If false and more than one attachment shares this file, they will all up updated.
+   *                                 If true, then guarantees not to affect other attachments.
+   */
   public void updateAttachmentData(@NonNull DatabaseAttachment databaseAttachment,
-                                   @NonNull MediaStream mediaStream)
-      throws MmsException
+                                   @NonNull MediaStream mediaStream,
+                                   boolean onlyModifyThisAttachment)
+    throws MmsException, IOException
   {
     SQLiteDatabase database    = databaseHelper.getWritableDatabase();
     DataInfo       oldDataInfo = getAttachmentDataFileInfo(databaseAttachment.getAttachmentId(), DATA);
@@ -682,7 +691,16 @@ public class AttachmentDatabase extends Database {
       throw new MmsException("No attachment data found!");
     }
 
-    DataInfo dataInfo = setAttachmentData(oldDataInfo.file,
+    File destination = oldDataInfo.file;
+
+    if (onlyModifyThisAttachment) {
+      if (fileReferencedByMoreThanOneAttachment(destination)) {
+        Log.i(TAG, "Creating a new file as this one is used by more than one attachment");
+        destination = newFile();
+      }
+    }
+
+    DataInfo dataInfo = setAttachmentData(destination,
                                           mediaStream.getStream(),
                                           false,
                                           databaseAttachment.getAttachmentId());
@@ -700,19 +718,37 @@ public class AttachmentDatabase extends Database {
     Log.i(TAG, "[updateAttachmentData] Updated " + updateCount + " rows.");
   }
 
+  /**
+   * Returns true if the file referenced by two or more attachments.
+   * Returns false if the file is referenced by zero or one attachments.
+   */
+  private boolean fileReferencedByMoreThanOneAttachment(@NonNull File file) {
+    SQLiteDatabase database  = databaseHelper.getReadableDatabase();
+    String         selection = DATA + " = ?";
+    String[]       args      = new String[]{file.getAbsolutePath()};
+
+    try (Cursor cursor = database.query(TABLE_NAME, null, selection, args, null, null, null, "2")) {
+      return cursor != null && cursor.moveToFirst() && cursor.moveToNext();
+    }
+  }
+
   public void markAttachmentAsTransformed(@NonNull AttachmentId attachmentId) {
+    updateAttachmentTransformProperties(attachmentId, TransformProperties.forSkipTransform());
+  }
+
+  public void updateAttachmentTransformProperties(@NonNull AttachmentId attachmentId, @NonNull TransformProperties transformProperties) {
     DataInfo dataInfo = getAttachmentDataFileInfo(attachmentId, DATA);
 
     if (dataInfo == null) {
-      Log.w(TAG, "[markAttachmentAsTransformed] No data info found!");
+      Log.w(TAG, "[updateAttachmentTransformProperties] No data info found!");
       return;
     }
 
     ContentValues contentValues = new ContentValues();
-    contentValues.put(TRANSFORM_PROPERTIES, TransformProperties.forSkipTransform().serialize());
+    contentValues.put(TRANSFORM_PROPERTIES, transformProperties.serialize());
 
     int updateCount = updateAttachmentAndMatchingHashes(databaseHelper.getWritableDatabase(), attachmentId, dataInfo.hash, contentValues);
-    Log.i(TAG, "[markAttachmentAsTransformed] Updated " + updateCount + " rows.");
+    Log.i(TAG, "[updateAttachmentTransformProperties] Updated " + updateCount + " rows.");
   }
 
   public @NonNull File getOrCreateTransferFile(@NonNull AttachmentId attachmentId) throws IOException {
@@ -925,12 +961,16 @@ public class AttachmentDatabase extends Database {
       throws MmsException
   {
     try {
-      File partsDirectory = context.getDir(DIRECTORY, Context.MODE_PRIVATE);
-      File dataFile       = File.createTempFile("part", ".mms", partsDirectory);
+      File dataFile = newFile();
       return setAttachmentData(dataFile, in, isThumbnail, attachmentId);
     } catch (IOException e) {
       throw new MmsException(e);
     }
+  }
+
+  private File newFile() throws IOException {
+    File partsDirectory = context.getDir(DIRECTORY, Context.MODE_PRIVATE);
+    return File.createTempFile("part", ".mms", partsDirectory);
   }
 
   private @NonNull DataInfo setAttachmentData(@NonNull File destination,
@@ -1098,9 +1138,10 @@ public class AttachmentDatabase extends Database {
   {
     Log.d(TAG, "Inserting attachment for mms id: " + mmsId);
 
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
-    DataInfo       dataInfo = null;
-    long           uniqueId = System.currentTimeMillis();
+    SQLiteDatabase database        = databaseHelper.getWritableDatabase();
+    DataInfo       dataInfo        = null;
+    long           uniqueId        = System.currentTimeMillis();
+    long           thumbnailTimeUs;
 
     if (attachment.getDataUri() != null) {
       dataInfo = setAttachmentData(attachment.getDataUri(), false, null);
@@ -1135,8 +1176,15 @@ public class AttachmentDatabase extends Database {
     contentValues.put(HEIGHT, template.getHeight());
     contentValues.put(QUOTE, quote);
     contentValues.put(CAPTION, attachment.getCaption());
-    contentValues.put(BLUR_HASH, getBlurHashStringOrNull(attachment.getBlurHash()));
-    contentValues.put(TRANSFORM_PROPERTIES, template.getTransformProperties().serialize());
+    if (attachment.getTransformProperties().isVideoEdited()) {
+      contentValues.putNull(BLUR_HASH);
+      contentValues.put(TRANSFORM_PROPERTIES, attachment.getTransformProperties().serialize());
+      thumbnailTimeUs = Math.max(STANDARD_THUMB_TIME, attachment.getTransformProperties().videoTrimStartTimeUs);
+    } else {
+      contentValues.put(BLUR_HASH, getBlurHashStringOrNull(attachment.getBlurHash()));
+      contentValues.put(TRANSFORM_PROPERTIES, template.getTransformProperties().serialize());
+      thumbnailTimeUs = STANDARD_THUMB_TIME;
+    }
 
     if (attachment.isSticker()) {
       contentValues.put(STICKER_PACK_ID, attachment.getSticker().getPackId());
@@ -1148,7 +1196,11 @@ public class AttachmentDatabase extends Database {
       contentValues.put(DATA, dataInfo.file.getAbsolutePath());
       contentValues.put(SIZE, dataInfo.length);
       contentValues.put(DATA_RANDOM, dataInfo.random);
-      contentValues.put(DATA_HASH, dataInfo.hash);
+      if (attachment.getTransformProperties().isVideoEdited()) {
+        contentValues.putNull(DATA_HASH);
+      } else {
+        contentValues.put(DATA_HASH, dataInfo.hash);
+      }
     }
 
     boolean      notifyPacks  = attachment.isSticker() && !hasStickerAttachments();
@@ -1170,8 +1222,8 @@ public class AttachmentDatabase extends Database {
     }
 
     if (!hasThumbnail && dataInfo != null) {
-      if (MediaUtil.hasVideoThumbnail(attachment.getDataUri())) {
-        Bitmap bitmap = MediaUtil.getVideoThumbnail(context, attachment.getDataUri());
+      if (MediaUtil.hasVideoThumbnail(attachment.getDataUri()) && thumbnailTimeUs == STANDARD_THUMB_TIME) {
+        Bitmap bitmap = MediaUtil.getVideoThumbnail(context, attachment.getDataUri(), thumbnailTimeUs);
 
         if (bitmap != null) {
           try (ThumbnailData thumbnailData = new ThumbnailData(bitmap)) {
@@ -1179,11 +1231,11 @@ public class AttachmentDatabase extends Database {
           }
         } else {
           Log.w(TAG, "Retrieving video thumbnail failed, submitting thumbnail generation job...");
-          thumbnailExecutor.submit(new ThumbnailFetchCallable(attachmentId));
+          thumbnailExecutor.submit(new ThumbnailFetchCallable(attachmentId, thumbnailTimeUs));
         }
       } else {
         Log.i(TAG, "Submitting thumbnail generation job...");
-        thumbnailExecutor.submit(new ThumbnailFetchCallable(attachmentId));
+        thumbnailExecutor.submit(new ThumbnailFetchCallable(attachmentId, thumbnailTimeUs));
       }
     }
 
@@ -1241,9 +1293,11 @@ public class AttachmentDatabase extends Database {
   class ThumbnailFetchCallable implements Callable<InputStream> {
 
     private final AttachmentId attachmentId;
+    private final long         timeUs;
 
-    ThumbnailFetchCallable(AttachmentId attachmentId) {
+    ThumbnailFetchCallable(AttachmentId attachmentId, long timeUs) {
       this.attachmentId = attachmentId;
+      this.timeUs       = timeUs;
     }
 
     @Override
@@ -1263,7 +1317,7 @@ public class AttachmentDatabase extends Database {
 
       if (MediaUtil.isVideoType(attachment.getContentType())) {
 
-        try (ThumbnailData data = generateVideoThumbnail(attachmentId)) {
+        try (ThumbnailData data = generateVideoThumbnail(attachmentId, timeUs)) {
 
           if (data != null) {
             updateAttachmentThumbnail(attachmentId, data.toDataStream(), data.getAspectRatio());
@@ -1276,7 +1330,7 @@ public class AttachmentDatabase extends Database {
       return null;
     }
 
-    private ThumbnailData generateVideoThumbnail(AttachmentId attachmentId) throws IOException {
+    private ThumbnailData generateVideoThumbnail(AttachmentId attachmentId, long timeUs) throws IOException {
       if (Build.VERSION.SDK_INT < 23) {
         Log.w(TAG, "Video thumbnails not supported...");
         return null;
@@ -1288,7 +1342,7 @@ public class AttachmentDatabase extends Database {
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
         MediaMetadataRetrieverUtil.setDataSource(retriever, dataSource);
 
-        Bitmap bitmap = retriever.getFrameAtTime(1000);
+        Bitmap bitmap = retriever.getFrameAtTime(timeUs);
 
         Log.i(TAG, "Generated video thumbnail...");
         return bitmap != null ? new ThumbnailData(bitmap) : null;
@@ -1325,21 +1379,52 @@ public class AttachmentDatabase extends Database {
   public static final class TransformProperties {
 
     @JsonProperty private final boolean skipTransform;
+    @JsonProperty private final boolean videoTrim;
+    @JsonProperty private final long    videoTrimStartTimeUs;
+    @JsonProperty private final long    videoTrimEndTimeUs;
 
-    public TransformProperties(@JsonProperty("skipTransform") boolean skipTransform) {
-      this.skipTransform = skipTransform;
+    @JsonCreator
+    public TransformProperties(@JsonProperty("skipTransform") boolean skipTransform,
+                               @JsonProperty("videoTrim") boolean videoTrim,
+                               @JsonProperty("videoTrimStartTimeUs") long videoTrimStartTimeUs,
+                               @JsonProperty("videoTrimEndTimeUs") long videoTrimEndTimeUs)
+    {
+      this.skipTransform        = skipTransform;
+      this.videoTrim            = videoTrim;
+      this.videoTrimStartTimeUs = videoTrimStartTimeUs;
+      this.videoTrimEndTimeUs   = videoTrimEndTimeUs;
     }
 
     public static @NonNull TransformProperties empty() {
-      return new TransformProperties(false);
+      return new TransformProperties(false, false, 0, 0);
     }
 
     public static @NonNull TransformProperties forSkipTransform() {
-      return new TransformProperties(true);
+      return new TransformProperties(true, false, 0, 0);
+    }
+
+    public static @NonNull TransformProperties forVideoTrim(long videoTrimStartTimeUs, long videoTrimEndTimeUs) {
+      return new TransformProperties(false, true, videoTrimStartTimeUs, videoTrimEndTimeUs);
     }
 
     public boolean shouldSkipTransform() {
       return skipTransform;
+    }
+
+    public boolean isVideoEdited() {
+      return isVideoTrim();
+    }
+
+    public boolean isVideoTrim() {
+      return videoTrim;
+    }
+
+    public long getVideoTrimStartTimeUs() {
+      return videoTrimStartTimeUs;
+    }
+
+    public long getVideoTrimEndTimeUs() {
+      return videoTrimEndTimeUs;
     }
 
     @NonNull String serialize() {

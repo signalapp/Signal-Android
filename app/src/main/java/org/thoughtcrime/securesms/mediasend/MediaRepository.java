@@ -4,31 +4,28 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore.Images;
 import android.provider.MediaStore.Video;
 import android.provider.OpenableColumns;
+import android.util.Pair;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
-import android.util.Pair;
 
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.permissions.Permissions;
-import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.whispersystems.libsignal.util.guava.Optional;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -77,12 +74,12 @@ public class MediaRepository {
     SignalExecutors.BOUNDED.execute(() -> callback.onComplete(getMostRecentItem(context)));
   }
 
-  void renderMedia(@NonNull Context context,
-                   @NonNull List<Media> currentMedia,
-                   @NonNull Map<Media, EditorModel> modelsToRender,
-                   @NonNull Callback<LinkedHashMap<Media, Media>> callback)
+  static void transformMedia(@NonNull Context context,
+                             @NonNull List<Media> currentMedia,
+                             @NonNull Map<Media, MediaTransform> modelsToTransform,
+                             @NonNull Callback<LinkedHashMap<Media, Media>> callback)
   {
-    SignalExecutors.BOUNDED.execute(() -> callback.onComplete(renderMedia(context, currentMedia, modelsToRender)));
+    SignalExecutors.BOUNDED.execute(() -> callback.onComplete(transformMedia(context, currentMedia, modelsToTransform)));
   }
 
   @WorkerThread
@@ -220,7 +217,7 @@ public class MediaRepository {
         long   size        = cursor.getLong(cursor.getColumnIndexOrThrow(Images.Media.SIZE));
         long   duration    = !isImage ? cursor.getInt(cursor.getColumnIndexOrThrow(Video.Media.DURATION)) : 0;
 
-        media.add(new Media(uri, mimetype, date, width, height, size, duration, Optional.of(bucketId), Optional.absent()));
+        media.add(new Media(uri, mimetype, date, width, height, size, duration, Optional.of(bucketId), Optional.absent(), Optional.absent()));
       }
     }
 
@@ -249,35 +246,16 @@ public class MediaRepository {
   }
 
   @WorkerThread
-  private LinkedHashMap<Media, Media> renderMedia(@NonNull Context context,
-                                                  @NonNull List<Media> currentMedia,
-                                                  @NonNull Map<Media, EditorModel> modelsToRender)
+  private static LinkedHashMap<Media, Media> transformMedia(@NonNull Context context,
+                                                            @NonNull List<Media> currentMedia,
+                                                            @NonNull Map<Media, MediaTransform> modelsToTransform)
   {
     LinkedHashMap<Media, Media> updatedMedia = new LinkedHashMap<>(currentMedia.size());
-    ByteArrayOutputStream       outputStream = new ByteArrayOutputStream();
 
     for (Media media : currentMedia) {
-      EditorModel modelToRender = modelsToRender.get(media);
-      if (modelToRender != null) {
-        Bitmap bitmap = modelToRender.render(context);
-        try {
-          outputStream.reset();
-          bitmap.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
-
-          Uri uri = BlobProvider.getInstance()
-                                .forData(outputStream.toByteArray())
-                                .withMimeType(MediaUtil.IMAGE_JPEG)
-                                .createForSingleSessionOnDisk(context);
-
-          Media updated = new Media(uri, MediaUtil.IMAGE_JPEG, media.getDate(), bitmap.getWidth(), bitmap.getHeight(), outputStream.size(), 0, media.getBucketId(), media.getCaption());
-
-          updatedMedia.put(media, updated);
-        } catch (IOException e) {
-          Log.w(TAG, "Failed to render image. Using base image.");
-          updatedMedia.put(media, media);
-        } finally {
-          bitmap.recycle();
-        }
+      MediaTransform transformer = modelsToTransform.get(media);
+      if (transformer != null) {
+        updatedMedia.put(media, transformer.transform(context, media));
       } else {
         updatedMedia.put(media, media);
       }
@@ -333,7 +311,7 @@ public class MediaRepository {
       height = dimens.second;
     }
 
-    return new Media(media.getUri(), media.getMimeType(), media.getDate(), width, height, size, 0, media.getBucketId(), media.getCaption());
+    return new Media(media.getUri(), media.getMimeType(), media.getDate(), width, height, size, 0, media.getBucketId(), media.getCaption(), Optional.absent());
   }
 
   private Media getContentResolverPopulatedMedia(@NonNull Context context, @NonNull Media media) throws IOException {
@@ -359,7 +337,7 @@ public class MediaRepository {
       height = dimens.second;
     }
 
-    return new Media(media.getUri(), media.getMimeType(), media.getDate(), width, height, size, 0, media.getBucketId(), media.getCaption());
+    return new Media(media.getUri(), media.getMimeType(), media.getDate(), width, height, size, 0, media.getBucketId(), media.getCaption(), Optional.absent());
   }
 
   private static class FolderResult {

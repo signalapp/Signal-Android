@@ -1,13 +1,14 @@
 package org.thoughtcrime.securesms.mediapreview;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
 import org.thoughtcrime.securesms.mediasend.Media;
@@ -112,7 +113,8 @@ public class MediaPreviewViewModel extends ViewModel {
                      mediaRecord.getAttachment().getSize(),
                      0,
                      Optional.absent(),
-                     Optional.fromNullable(mediaRecord.getAttachment().getCaption()));
+                     Optional.fromNullable(mediaRecord.getAttachment().getCaption()),
+                     Optional.absent());
   }
 
   public LiveData<PreviewData> getPreviewData() {

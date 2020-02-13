@@ -62,7 +62,7 @@ final class AudioTrackConverter {
 
     static @Nullable
     AudioTrackConverter create(
-            final @NonNull MediaConverter.Input input,
+            final @NonNull VideoInput input,
             final long timeFrom,
             final long timeTo,
             final int audioBitrate) throws IOException {
@@ -106,6 +106,7 @@ final class AudioTrackConverter {
                         inputAudioFormat.getInteger(MediaFormat.KEY_CHANNEL_COUNT));
         outputAudioFormat.setInteger(MediaFormat.KEY_BIT_RATE, audioBitrate);
         outputAudioFormat.setInteger(MediaFormat.KEY_AAC_PROFILE, OUTPUT_AUDIO_AAC_PROFILE);
+        outputAudioFormat.setInteger(MediaFormat.KEY_MAX_INPUT_SIZE, 16 * 1024);
 
         // Create a MediaCodec for the desired codec, then configure it as an encoder with
         // our desired properties. Request a Surface to use for input.

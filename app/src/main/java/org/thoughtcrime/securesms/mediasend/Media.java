@@ -3,9 +3,14 @@ package org.thoughtcrime.securesms.mediasend;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.internal.util.JsonUtil;
+
+import java.io.IOException;
 
 /**
  * Represents a piece of media that the user has on their device.
@@ -22,8 +27,9 @@ public class Media implements Parcelable {
   private final long   size;
   private final long   duration;
 
-  private Optional<String> bucketId;
-  private Optional<String> caption;
+  private Optional<String>                                 bucketId;
+  private Optional<String>                                 caption;
+  private Optional<AttachmentDatabase.TransformProperties> transformProperties;
 
   public Media(@NonNull Uri uri,
                @NonNull String mimeType,
@@ -33,17 +39,19 @@ public class Media implements Parcelable {
                long size,
                long duration,
                Optional<String> bucketId,
-               Optional<String> caption)
+               Optional<String> caption,
+               Optional<AttachmentDatabase.TransformProperties> transformProperties)
   {
-    this.uri      = uri;
-    this.mimeType = mimeType;
-    this.date     = date;
-    this.width    = width;
-    this.height   = height;
-    this.size     = size;
-    this.duration = duration;
-    this.bucketId = bucketId;
-    this.caption  = caption;
+    this.uri                 = uri;
+    this.mimeType            = mimeType;
+    this.date                = date;
+    this.width               = width;
+    this.height              = height;
+    this.size                = size;
+    this.duration            = duration;
+    this.bucketId            = bucketId;
+    this.caption             = caption;
+    this.transformProperties = transformProperties;
   }
 
   protected Media(Parcel in) {
@@ -56,6 +64,12 @@ public class Media implements Parcelable {
     duration = in.readLong();
     bucketId = Optional.fromNullable(in.readString());
     caption  = Optional.fromNullable(in.readString());
+    try {
+      String json = in.readString();
+      transformProperties = json == null ? Optional.absent() : Optional.fromNullable(JsonUtil.fromJson(json, AttachmentDatabase.TransformProperties.class));
+    } catch (IOException e) {
+      throw new AssertionError(e);
+    }
   }
 
   public Uri getUri() {
@@ -98,6 +112,10 @@ public class Media implements Parcelable {
     this.caption = Optional.fromNullable(caption);
   }
 
+  public Optional<AttachmentDatabase.TransformProperties> getTransformProperties() {
+    return transformProperties;
+  }
+
   @Override
   public int describeContents() {
     return 0;
@@ -114,6 +132,7 @@ public class Media implements Parcelable {
     dest.writeLong(duration);
     dest.writeString(bucketId.orNull());
     dest.writeString(caption.orNull());
+    dest.writeString(transformProperties.transform(JsonUtil::toJson).orNull());
   }
 
   public static final Creator<Media> CREATOR = new Creator<Media>() {

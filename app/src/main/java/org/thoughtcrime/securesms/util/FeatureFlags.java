@@ -54,6 +54,7 @@ public final class FeatureFlags {
   private static final String PINS_FOR_ALL                    = generateKey("pinsForAll");
   private static final String PINS_MEGAPHONE_KILL_SWITCH      = generateKey("pinsMegaphoneKillSwitch");
   private static final String PROFILE_NAMES_MEGAPHONE_ENABLED = generateKey("profileNamesMegaphoneEnabled");
+  private static final String VIDEO_TRIMMING                  = generateKey("videoTrimming");
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -61,6 +62,7 @@ public final class FeatureFlags {
    */
 
   private static final Set<String> REMOTE_CAPABLE = Sets.newHashSet(
+      VIDEO_TRIMMING,
       PINS_FOR_ALL,
       PINS_MEGAPHONE_KILL_SWITCH,
       PROFILE_NAMES_MEGAPHONE_ENABLED
@@ -84,6 +86,7 @@ public final class FeatureFlags {
    * more burden on the reader to ensure that the app experience remains consistent.
    */
   private static final Set<String> HOT_SWAPPABLE = Sets.newHashSet(
+    VIDEO_TRIMMING,
     PINS_MEGAPHONE_KILL_SWITCH
   );
 
@@ -172,6 +175,11 @@ public final class FeatureFlags {
   public static boolean profileNamesMegaphoneEnabled() {
     return getValue(PROFILE_NAMES_MEGAPHONE_ENABLED, false) &&
            TextSecurePreferences.getFirstInstallVersion(ApplicationDependencies.getApplication()) < 600;
+  }
+
+  /** Allow trimming videos. */
+  public static boolean videoTrimming() {
+    return getValue(VIDEO_TRIMMING, false);
   }
 
   /** Only for rendering debug info. */

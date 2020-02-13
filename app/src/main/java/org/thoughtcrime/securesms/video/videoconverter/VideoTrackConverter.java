@@ -66,7 +66,7 @@ final class VideoTrackConverter {
 
     @RequiresApi(23)
     static @Nullable VideoTrackConverter create(
-            final @NonNull MediaConverter.Input input,
+            final @NonNull VideoInput input,
             final long timeFrom,
             final long timeTo,
             final int videoResolution,

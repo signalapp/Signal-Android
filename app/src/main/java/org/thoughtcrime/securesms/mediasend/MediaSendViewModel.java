@@ -1,24 +1,22 @@
 package org.thoughtcrime.securesms.mediasend;
 
 import android.app.Application;
+import android.content.Context;
+import android.net.Uri;
+import android.text.TextUtils;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import android.content.Context;
-import android.net.Uri;
-import androidx.annotation.NonNull;
-
-import android.text.TextUtils;
 
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
@@ -34,7 +32,6 @@ import org.thoughtcrime.securesms.util.MessageUtil;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.libsignal.util.guava.Preconditions;
 
@@ -303,7 +300,7 @@ class MediaSendViewModel extends ViewModel {
     captionVisible = false;
 
     List<Media> uncaptioned = Stream.of(getSelectedMediaOrDefault())
-                                    .map(m -> new Media(m.getUri(), m.getMimeType(), m.getDate(), m.getWidth(), m.getHeight(), m.getSize(), m.getDuration(), m.getBucketId(), Optional.absent()))
+                                    .map(m -> new Media(m.getUri(), m.getMimeType(), m.getDate(), m.getWidth(), m.getHeight(), m.getSize(), m.getDuration(), m.getBucketId(), Optional.absent(), Optional.absent()))
                                     .toList();
 
     selectedMedia.setValue(uncaptioned);
@@ -405,6 +402,10 @@ class MediaSendViewModel extends ViewModel {
     hudState.setValue(buildHudState());
   }
 
+  void onVideoBeginEdit(@NonNull Uri uri) {
+    cancelUpload(new Media(uri, "", 0, 0, 0, 0, 0, Optional.absent(), Optional.absent(), Optional.absent()));
+  }
+
   void onMediaCaptured(@NonNull Media media) {
     lastCameraCapture = Optional.of(media);
 
@@ -449,7 +450,7 @@ class MediaSendViewModel extends ViewModel {
     savedDrawState.putAll(state);
   }
 
-  @NonNull LiveData<MediaSendActivityResult> onSendClicked(Map<Media, EditorModel> modelsToRender, @NonNull List<Recipient> recipients) {
+  @NonNull LiveData<MediaSendActivityResult> onSendClicked(Map<Media, MediaTransform> modelsToTransform, @NonNull List<Recipient> recipients) {
     if (isSms && recipients.size() > 0) {
       throw new IllegalStateException("Provided recipients to send to, but this is SMS!");
     }
@@ -463,8 +464,12 @@ class MediaSendViewModel extends ViewModel {
 
     Util.runOnMainDelayed(dialogRunnable, 250);
 
-    repository.renderMedia(application, initialMedia, modelsToRender, (oldToNew) -> {
+    MediaRepository.transformMedia(application, initialMedia, modelsToTransform, (oldToNew) -> {
       List<Media> updatedMedia = new ArrayList<>(oldToNew.values());
+
+      for (Media media : updatedMedia){
+        Log.w(TAG, media.getUri().toString() + " : " + media.getTransformProperties().transform(t->"" + t.isVideoTrim()).or("null"));
+      }
 
       if (isSms || MessageSender.isLocalSelfSend(application, recipient, isSms)) {
         Log.i(TAG, "SMS or local self-send. Skipping pre-upload.");
@@ -477,7 +482,7 @@ class MediaSendViewModel extends ViewModel {
 
       if (splitMessage.getTextSlide().isPresent()) {
         Slide slide = splitMessage.getTextSlide().get();
-        uploadRepository.startUpload(new Media(Objects.requireNonNull(slide.getUri()), slide.getContentType(), System.currentTimeMillis(), 0, 0, slide.getFileSize(), 0, Optional.absent(), Optional.absent()), recipient);
+        uploadRepository.startUpload(new Media(Objects.requireNonNull(slide.getUri()), slide.getContentType(), System.currentTimeMillis(), 0, 0, slide.getFileSize(), 0, Optional.absent(), Optional.absent(), Optional.absent()), recipient);
       }
 
       uploadRepository.applyMediaUpdates(oldToNew, recipient);

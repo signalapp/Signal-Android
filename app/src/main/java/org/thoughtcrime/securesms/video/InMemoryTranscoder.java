@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
 import org.thoughtcrime.securesms.video.videoconverter.EncodingException;
 import org.thoughtcrime.securesms.video.videoconverter.MediaConverter;
+import org.thoughtcrime.securesms.video.videoconverter.VideoInput;
 
 import java.io.Closeable;
 import java.io.FileDescriptor;
@@ -46,15 +47,17 @@ public final class InMemoryTranscoder implements Closeable {
   private final boolean         transcodeRequired;
   private final long            fileSizeEstimate;
   private final int             outputFormat;
+  private final @Nullable Options options;
 
   private @Nullable MemoryFileDescriptor memoryFile;
 
   /**
    * @param upperSizeLimit A upper size to transcode to. The actual output size can be up to 10% smaller.
    */
-  public InMemoryTranscoder(@NonNull Context context, @NonNull MediaDataSource dataSource, long upperSizeLimit) throws IOException, VideoSourceException {
+  public InMemoryTranscoder(@NonNull Context context, @NonNull MediaDataSource dataSource, @Nullable Options options, long upperSizeLimit) throws IOException, VideoSourceException {
     this.context    = context;
     this.dataSource = dataSource;
+    this.options    = options;
 
     final MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
     try {
@@ -72,9 +75,9 @@ public final class InMemoryTranscoder implements Closeable {
     this.targetVideoBitRate = getTargetVideoBitRate(upperSizeLimitWithMargin, duration);
     this.upperSizeLimit     = upperSizeLimit;
 
-    this.transcodeRequired = inputBitRate >= targetVideoBitRate * 1.2 || inSize > upperSizeLimit || containsLocation(mediaMetadataRetriever);
+    this.transcodeRequired = inputBitRate >= targetVideoBitRate * 1.2 || inSize > upperSizeLimit || containsLocation(mediaMetadataRetriever) || options != null;
     if (!transcodeRequired) {
-      Log.i(TAG, "Video is within 20% of target bitrate, below the size limit and contained no location metadata.");
+      Log.i(TAG, "Video is within 20% of target bitrate, below the size limit, contained no location metadata or custom options.");
     }
 
     this.fileSizeEstimate   = (targetVideoBitRate + AUDIO_BITRATE) * duration / 8000;
@@ -84,7 +87,8 @@ public final class InMemoryTranscoder implements Closeable {
                               : OUTPUT_FORMAT;
   }
 
-  public @NonNull MediaStream transcode(@NonNull Progress progress, @Nullable CancelationSignal cancelationSignal)
+  public @NonNull MediaStream transcode(@NonNull Progress progress,
+                                        @Nullable CancelationSignal cancelationSignal)
       throws IOException, EncodingException, VideoSizeException
   {
     if (memoryFile != null) throw new AssertionError("Not expecting to reuse transcoder");
@@ -125,11 +129,20 @@ public final class InMemoryTranscoder implements Closeable {
 
     final MediaConverter converter = new MediaConverter();
 
-    converter.setInput(dataSource);
+    converter.setInput(new VideoInput.MediaDataSourceVideoInput(dataSource));
     converter.setOutput(memoryFileFileDescriptor);
     converter.setVideoResolution(outputFormat);
     converter.setVideoBitrate(targetVideoBitRate);
     converter.setAudioBitrate(AUDIO_BITRATE);
+
+    if (options != null) {
+      if (options.endTimeUs > 0) {
+        long timeFrom = options.startTimeUs / 1000;
+        long timeTo   = options.endTimeUs   / 1000;
+        converter.setTimeRange(timeFrom, timeTo);
+        Log.i(TAG, String.format(Locale.US, "Trimming:\nTotal duration: %d\nKeeping: %d..%d\nFinal duration:(%d)", duration, timeFrom, timeTo, timeTo - timeFrom));
+      }
+    }
 
     converter.setListener(percent -> {
       progress.onProgress(percent);
@@ -218,5 +231,15 @@ public final class InMemoryTranscoder implements Closeable {
 
   public interface CancelationSignal {
     boolean isCanceled();
+  }
+
+  public final static class Options {
+    final long startTimeUs;
+    final long endTimeUs;
+
+    public Options(long startTimeUs, long endTimeUs) {
+      this.startTimeUs = startTimeUs;
+      this.endTimeUs   = endTimeUs;
+    }
   }
 }

@@ -19,24 +19,25 @@ package org.thoughtcrime.securesms.mms;
 import android.content.Context;
 import android.content.res.Resources.Theme;
 import android.net.Uri;
+
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.blurhash.BlurHash;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ResUtil;
 
 public class VideoSlide extends Slide {
 
   public VideoSlide(Context context, Uri uri, long dataSize) {
-    this(context, uri, dataSize, null);
+    this(context, uri, dataSize, null, null);
   }
 
-  public VideoSlide(Context context, Uri uri, long dataSize, @Nullable String caption) {
-    super(context, constructAttachmentFromUri(context, uri, MediaUtil.VIDEO_UNSPECIFIED, dataSize, 0, 0, MediaUtil.hasVideoThumbnail(uri), null, caption, null, null, false, false));
+  public VideoSlide(Context context, Uri uri, long dataSize, @Nullable String caption, @Nullable AttachmentDatabase.TransformProperties transformProperties) {
+    super(context, constructAttachmentFromUri(context, uri, MediaUtil.VIDEO_UNSPECIFIED, dataSize, 0, 0, MediaUtil.hasVideoThumbnail(uri), null, caption, null, null, false, false, transformProperties));
   }
 
   public VideoSlide(Context context, Attachment attachment) {

@@ -78,7 +78,9 @@ class MediaUploadRepository {
   void applyMediaUpdates(@NonNull Map<Media, Media> oldToNew, @Nullable Recipient recipient) {
     executor.execute(() -> {
       for (Map.Entry<Media, Media> entry : oldToNew.entrySet()) {
-        if (!entry.getKey().equals(entry.getValue()) || !uploadResults.containsKey(entry.getValue())) {
+
+        boolean same = entry.getKey().equals(entry.getValue()) && (!entry.getValue().getTransformProperties().isPresent() || !entry.getValue().getTransformProperties().get().isVideoEdited());
+        if (!same || !uploadResults.containsKey(entry.getValue())) {
           cancelUploadInternal(entry.getKey());
           uploadMediaInternal(entry.getValue(), recipient);
         }
@@ -187,9 +189,9 @@ class MediaUploadRepository {
     }
   }
 
-  private static @NonNull Attachment asAttachment(@NonNull Context context, @NonNull Media media) {
+  public static @NonNull Attachment asAttachment(@NonNull Context context, @NonNull Media media) {
     if (MediaUtil.isVideoType(media.getMimeType())) {
-      return new VideoSlide(context, media.getUri(), 0, media.getCaption().orNull()).asAttachment();
+      return new VideoSlide(context, media.getUri(), 0, media.getCaption().orNull(), media.getTransformProperties().orNull()).asAttachment();
     } else if (MediaUtil.isGif(media.getMimeType())) {
       return new GifSlide(context, media.getUri(), 0, media.getWidth(), media.getHeight(), media.getCaption().orNull()).asAttachment();
     } else if (MediaUtil.isImageType(media.getMimeType())) {

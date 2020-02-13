@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:background="@color/core_grey_60"
+    tools:parentTag="android.widget.LinearLayout">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <org.thoughtcrime.securesms.video.videoconverter.VideoThumbnailsRangeSelectorView
+            android:id="@+id/video_timeline"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="16dp"
+            app:cursorColor="#fff"
+            app:cursorWidth="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:thumbColor="#fff"
+            app:thumbColorEdited="#ff0"
+            app:thumbTouchRadius="24dp"
+            app:thumbWidth="16dp" />
+
+        <FrameLayout
+            android:id="@+id/play_overlay"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:background="@drawable/circle_white"
+            android:longClickable="false"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible">
+
+            <ImageView
+                android:layout_width="19dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="12dp"
+                android:contentDescription="@string/ThumbnailView_Play_video_description"
+                android:scaleType="fitXY"
+                android:tint="@color/core_blue"
+                app:srcCompat="@drawable/triangle_right" />
+
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</merge>
