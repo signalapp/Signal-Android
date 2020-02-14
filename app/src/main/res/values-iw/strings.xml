@@ -1675,7 +1675,7 @@
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">שנה</string>
   <string name="preferences_app_protection__create">צור</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">ה־PIN שלך מוסיף שכבת אקסטרה של אבטחה ומגבה את חשבונך. תישאל לגביו כאשר תירשם עם מספר הטלפון שלך אל Signal. אם תשכח את ה־PIN שלך, תינעל מחוץ לחשבונך למשך 7 ימים.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">ה־PIN שלך מוסיף שכבת אקסטרה של אבטחה ומגבה את חשבונך. תישאל לגביו כאשר תירשם עם מספר הטלפון שלך אל Signal. אם תשכח את ה־PIN שלך, תינעל מחוץ לחשבונך למשך 7 ימים.</string> -->
   <string name="AppProtectionPreferenceFragment_none">ללא</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN נעילת ההרשמה אינו אותו דבר כמו קוד הוידוא שקיבלת. אנא הכנס את ה־PIN שתיצרת קודם לכן ביישום.</string>
   <string name="registration_activity__registration_lock_pin">PIN נעילת הרשמה</string>

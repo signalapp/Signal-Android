@@ -1524,7 +1524,7 @@ Locale: %4$s</string>
   <string name="preferences_app_protection__pin">पिन</string>
   <string name="preferences_app_protection__change">बदलो</string>
   <string name="preferences_app_protection__create">बनाएँ</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">आपका पिन सुरक्षा की एक अतिरिक्त परत जोड़ता है और आपके खाते का बैक अप लेता है। जब आप Signal के साथ अपना फ़ोन नंबर पंजीकृत करेंगे तो आपसे इसके लिए पूछा जाएगा। यदि आप अपना पिन भूल जाते हैं, तो आपको अपने खाते से 7 दिनों के लिए बंद कर दिया जाएगा।</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">आपका पिन सुरक्षा की एक अतिरिक्त परत जोड़ता है और आपके खाते का बैक अप लेता है। जब आप Signal के साथ अपना फ़ोन नंबर पंजीकृत करेंगे तो आपसे इसके लिए पूछा जाएगा। यदि आप अपना पिन भूल जाते हैं, तो आपको अपने खाते से 7 दिनों के लिए बंद कर दिया जाएगा।</string> -->
   <string name="AppProtectionPreferenceFragment_none">कुछ नहीं</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">पंजीकरण लॉक पिन आपके द्वारा प्राप्त किए गए एसएमएस सत्यापन कोड जैसा नहीं है। कृपया उस पिन को दर्ज करें जिसे आपने पहले एप्लिकेशन में कॉन्फ़िगर किया था।</string>
   <string name="registration_activity__registration_lock_pin">पंजीकरण लॉक पिन</string>

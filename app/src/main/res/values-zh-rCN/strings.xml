@@ -1554,7 +1554,7 @@
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">修改</string>
   <string name="preferences_app_protection__create">创建</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">PIN 密码为帐户恢复新增一层安全防护。使用电话号码注册 Signal 时需输入该密码。如果忘记 PIN，将在 7 天内无法注册使用 Signal。</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">PIN 密码为帐户恢复新增一层安全防护。使用电话号码注册 Signal 时需输入该密码。如果忘记 PIN，将在 7 天内无法注册使用 Signal。</string> -->
   <string name="AppProtectionPreferenceFragment_none">无</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">注册锁定 PIN 密码不是您刚刚收到的短信验证码。请输入之前在应用中设置的 PIN。</string>
   <string name="registration_activity__registration_lock_pin">注册锁定 PIN</string>

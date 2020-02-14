@@ -445,6 +445,9 @@
   <string name="Megaphones_introducing_reactions">介紹\"反應\"</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">點擊並按住任何訊息以分享你的感覺。</string>
   <string name="Megaphones_remind_me_later">稍後提醒我</string>
+  <string name="Megaphones_verify_your_signal_pin">驗證你的 Signal PIN碼</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">我們有時會要求你驗證PIN碼，以便你能記住它。</string>
+  <string name="Megaphones_verify_pin">驗證PIN碼</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal 通話進行中</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal 通話連線中</string>
@@ -641,6 +644,11 @@
   <string name="SharedContactView_invite_to_signal">邀請至 Signal</string>
   <string name="SharedContactView_message">Signal 訊息</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">我們稍後會再次提醒你。</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">我們明天再提醒你。</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">我們將在幾天後再次提醒你。</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">我們會在一周後再次提醒你。</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">我們會在幾週後再次提醒你。</string>
   <!--Slide-->
   <string name="Slide_image">圖片</string>
   <string name="Slide_sticker">貼圖</string>
@@ -1410,6 +1418,7 @@
     <item quantity="other">你可以選擇一個新的PIN碼，因為此裝置已被註冊。 如果你忘記了PIN碼，則可能需要等待%1$d天才能重新註冊。</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">建立你的 PIN 碼</string>
+  <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN碼可為你的帳號增加額外的安全性，並且無法恢復。你需要輸入PIN碼才能再次註冊Signal。</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN碼不符合。請重試一次。</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">確認你的 PIN 碼。</string>
@@ -1543,7 +1552,7 @@
   <string name="preferences_app_protection__pin">PIN 碼</string>
   <string name="preferences_app_protection__change">變更</string>
   <string name="preferences_app_protection__create">建立</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">你的PIN碼增加了多一層安全保護，並備份你的帳號。 在Signal上註冊電話號碼時，系統會要求你輸入。 如果你忘記了PIN碼，則將被鎖定7天。</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">你的PIN碼增加了多一層安全保護，並備份你的帳號。 在Signal上註冊電話號碼時，系統會要求你輸入。 如果你忘記了PIN碼，則將被鎖定7天。</string> -->
   <string name="AppProtectionPreferenceFragment_none">無</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">此註冊鎖定 PIN 碼，與你剛剛接受到的 SMS 驗證碼不相同。請輸入之前在應用程式設定的 PIN 碼。</string>
   <string name="registration_activity__registration_lock_pin">註冊鎖定 PIN 碼</string>

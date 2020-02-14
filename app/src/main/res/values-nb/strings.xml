@@ -459,6 +459,8 @@
   <string name="MediaOverviewActivity_sent_by_you_to_s">Sendt av deg til %1$s</string>
   <!--Megaphones-->
   <string name="Megaphones_introducing_reactions">Vi introduserer reaksjoner</string>
+  <string name="Megaphones_verify_your_signal_pin">Bekreft din Signal PIN</string>
+  <string name="Megaphones_verify_pin">Bekreft PIN</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtale pågår</string>
   <string name="NotificationBarManager__establishing_signal_call">Setter opp Signal-anrop</string>

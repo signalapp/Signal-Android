@@ -1671,7 +1671,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Newid</string>
   <string name="preferences_app_protection__create">Creu</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Mae eich PIN yn ychwanegu haen ychwanegol o ddiogelwch ac yn cadw eich cyfrif wrth gefn. Byddwn yn gofyn amdano pan fyddwch yn cofrestru eich rhif ffôn gyda Signal. Os fyddwch yn anghofio eich PIN, byddwch yn cael eich cloi allan o\'ch cyfrif am 7 diwrnod.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Mae eich PIN yn ychwanegu haen ychwanegol o ddiogelwch ac yn cadw eich cyfrif wrth gefn. Byddwn yn gofyn amdano pan fyddwch yn cofrestru eich rhif ffôn gyda Signal. Os fyddwch yn anghofio eich PIN, byddwch yn cael eich cloi allan o\'ch cyfrif am 7 diwrnod.</string> -->
   <string name="AppProtectionPreferenceFragment_none">Dim</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Nid yw\'r Clo Cofrestru PIN  yr un fath â\'r cod dilysu SMS rydych newydd ei dderbyn. Rhowch y PIN a ffurfiwyd gennych yn flaenorol yr ap .</string>
   <string name="registration_activity__registration_lock_pin">PIN Clo Cofrestru</string>

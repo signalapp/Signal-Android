@@ -506,6 +506,7 @@
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Ťuknutím a podržaním akejkoľvek správy rýchlo zdieľajte, ako sa cítite.</string>
   <string name="Megaphones_remind_me_later">Pripomenúť neskôr</string>
   <string name="Megaphones_verify_your_signal_pin">Overte svoj PIN pre Signal</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Občas vás požiadame o overenie PINu, aby ste ho nezabudli.</string>
   <string name="Megaphones_verify_pin">Overiť PIN</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Prebieha Signal hovor</string>
@@ -711,6 +712,11 @@ telefónne číslo
   <string name="SharedContactView_invite_to_signal">Pozvať do Signalu</string>
   <string name="SharedContactView_message">Signal správa</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">Pripomenieme vám to opäť neskôr.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Pripomenieme vám to opäť zajtra.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Pripomenieme vám to opät o niekoľko dní.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Pripomenieme vám to opät o týždeň.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Pripomenieme vám to opäť o pár týždňov.</string>
   <!--Slide-->
   <string name="Slide_image">Obrázok</string>
   <string name="Slide_sticker">Nálepka</string>
@@ -1668,7 +1674,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Zmeniť</string>
   <string name="preferences_app_protection__create">Vytvoriť</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">PIN kód pridáva ďalšiu vrstvu zabezpečenia a zálohuje váš účet. Budete oň požiadaný/požiadaná, keď si v Signale zaregistrujete svoje tefónne číslo. Ak zabudnete svoj PIN kód, váš účet sa na 7 dní uzamkne.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">PIN kód pridáva ďalšiu vrstvu zabezpečenia a zálohuje váš účet. Budete oň požiadaný/požiadaná, keď si v Signale zaregistrujete svoje tefónne číslo. Ak zabudnete svoj PIN kód, váš účet sa na 7 dní uzamkne.</string> -->
   <string name="AppProtectionPreferenceFragment_none">Žiadny</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN registračného zámku sa nezhoduje s verifikačným kódom ktorý ste obdržali v SMS správe. Zadajte prosím PIN, ktorý ste si v aplikácii nastavili.</string>
   <string name="registration_activity__registration_lock_pin">PIN registračného zámku</string>

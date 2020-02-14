@@ -1668,7 +1668,7 @@
   <string name="preferences_app_protection__pin">PIN-код</string>
   <string name="preferences_app_protection__change">Изменить</string>
   <string name="preferences_app_protection__create">Создать</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Ваш PIN-код добавляет дополнительный уровень безопасности и защищает вашу учётную запись. Его необходимо будет вводить при регистрации вашего номера телефона в Signal. Если вы забудете свой PIN-код, вы потеряете доступ к своей учётной записи на 7 дней.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Ваш PIN-код добавляет дополнительный уровень безопасности и защищает вашу учётную запись. Его необходимо будет вводить при регистрации вашего номера телефона в Signal. Если вы забудете свой PIN-код, вы потеряете доступ к своей учётной записи на 7 дней.</string> -->
   <string name="AppProtectionPreferenceFragment_none">Нет</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN-код блокировки регистрации — это не то же самое, что код подтверждения, который вы только что получили в SMS. Пожалуйста, введите PIN-код, который вы ранее задали в приложении.</string>
   <string name="registration_activity__registration_lock_pin">PIN-код блокировки регистрации</string>

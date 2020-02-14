@@ -1601,7 +1601,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_app_protection__pin">Pincode</string>
   <string name="preferences_app_protection__change">Wijzigen</string>
   <string name="preferences_app_protection__create">Aanmaken</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Een pincode voegt een extra niveau van beveiliging toe en stelt je in staat om je account te back-uppen. Als je een pincode instelt zal om die pincode worden gevraagd wanneer je je telefoonnummer registreert. Als je je pincode in de tussentijd vergeet, dan zul je voor 7 dagen geen toegang kunnen krijgen tot je account.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Een pincode voegt een extra niveau van beveiliging toe en stelt je in staat om je account te back-uppen. Als je een pincode instelt zal om die pincode worden gevraagd wanneer je je telefoonnummer registreert. Als je je pincode in de tussentijd vergeet, dan zul je voor 7 dagen geen toegang kunnen krijgen tot je account.</string> -->
   <string name="AppProtectionPreferenceFragment_none">Geen</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">De pincode voor registratievergrendeling is niet hetzelfde als de sms-verificatiecode die je net ontvangen hebt. Voer de pincode in die je hiervoor in de app ingesteld hebt.</string>
   <string name="registration_activity__registration_lock_pin">Registratievergrendeling</string>

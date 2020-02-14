@@ -1585,7 +1585,7 @@
   <string name="preferences_app_protection__pin">پین</string>
   <string name="preferences_app_protection__change">تغییر</string>
   <string name="preferences_app_protection__create">ایجاد</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">پین شما یک لایه امنیتی دیگر اضافه می کند و از حساب شما پشتیبان می گیرد. هنگامی که با شماره تلفن خود در Signal ثبت نام می کنید از شما خواسته خواهد شد. اگر پین خود را فراموش کردید، حساب شما به مدت 7 روز قفل خواهد شد.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">پین شما یک لایه امنیتی دیگر اضافه می کند و از حساب شما پشتیبان می گیرد. هنگامی که با شماره تلفن خود در Signal ثبت نام می کنید از شما خواسته خواهد شد. اگر پین خود را فراموش کردید، حساب شما به مدت 7 روز قفل خواهد شد.</string> -->
   <string name="AppProtectionPreferenceFragment_none">هیچ کدام</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">پین قفل ثبت‌نام همان کد تأییدی که الان از طریق پیامک دریافت کردید نیست. لطفاً رمزی را که قبلاً در برنامه تنظیم کرده بودید را وارد کنید.</string>
   <string name="registration_activity__registration_lock_pin">پین قفل ثبت‌نام</string>

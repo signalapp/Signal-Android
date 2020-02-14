@@ -154,7 +154,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Preklopim na nešifriran MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">To sporočilo <b>ne bo</b> šifrirano, ker prejemnik ni več uporabnik aplikacije Signal.\n\nPošljem nešifrirano?</string>
   <string name="ConversationItem_unable_to_open_media">Ne najdem aplikacije za odpiranje te vrste datotek.</string>
-  <string name="ConversationItem_copied_text">Prekopirano %s</string>
+  <string name="ConversationItem_copied_text">Kopirano %s</string>
   <string name="ConversationItem_from_s">od %s</string>
   <string name="ConversationItem_to_s">za %s</string>
   <string name="ConversationItem_read_more">Več informacij</string>
@@ -1096,7 +1096,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="log_submit_activity__uploading_logs">Prenašam sistemske zabeležbe …</string>
   <string name="log_submit_activity__success">Uspešno opravljeno!</string>
   <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Prekopirajte ta URL in ga dodajte k prijavi napake ali v elektronsko sporočilo podpori:\n\n<b>%1$s</b>\n</string>
-  <string name="log_submit_activity__copied_to_clipboard">Prekopirano v odložišče</string>
+  <string name="log_submit_activity__copied_to_clipboard">Kopirano v odložišče</string>
   <string name="log_submit_activity__choose_email_app">Izberite odjemalca za e-pošto</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Prosim preglejte to sistemsko zabeležbo mojega odjemalca: %1$s</string>
   <string name="log_submit_activity__network_failure">Napaka omrežja. Poskusite znova.</string>
@@ -1641,7 +1641,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="BackupDialog_delete_backups">Izbrišem varnostne kopije?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Izklop in izbris vseh varnostnih kopij?</string>
   <string name="BackupDialog_delete_backups_statement">Izbriši varnostne kopije</string>
-  <string name="BackupDialog_copied_to_clipboard">Prekopirano v odložišče</string>
+  <string name="BackupDialog_copied_to_clipboard">Kopirano v odložišče</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Vnesite geslo svoje varnostne kopije</string>
   <string name="BackupDialog_verify">Potrdi</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Uspešno ste vnesli geslo svoje varnostne kopije</string>
@@ -1666,7 +1666,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Zamenjava</string>
   <string name="preferences_app_protection__create">Ustvari</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">S kodo PIN boste izboljšali svojo varnost in zasebnost ter omogočili varnostno kopijo svojega računa. Po PINu boste vprašani vsakič, ko se boste želeli na novo prijaviti s svojo telefonsko številko. Če boste nanj pozabili, boste za 7 dni ostali zaklenjeni iz svojega računa Signal.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">S kodo PIN boste izboljšali svojo varnost in zasebnost ter omogočili varnostno kopijo svojega računa. Po PINu boste vprašani vsakič, ko se boste želeli na novo prijaviti s svojo telefonsko številko. Če boste nanj pozabili, boste za 7 dni ostali zaklenjeni iz svojega računa Signal.</string> -->
   <string name="AppProtectionPreferenceFragment_none">Brez</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Koda PIN za prijavo v omrežje ni enaka potrditveni kodi SMS, ki ste jo prejeli ravnokar. Prosimo, vnesite PIN, ki ste ga predhodno določili za zaklepanje.</string>
   <string name="registration_activity__registration_lock_pin">PIN za prijavo v omrežje</string>

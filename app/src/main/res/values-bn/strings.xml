@@ -1522,7 +1522,7 @@
   <string name="preferences_app_protection__pin">পিন</string>
   <string name="preferences_app_protection__change">পরিবর্তন</string>
   <string name="preferences_app_protection__create">তৈরি</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">আপনার পিন সুরক্ষার অতিরিক্ত স্তর যুক্ত করে এবং আপনার অ্যাকাউন্ট নিরাপদ করে। আপনি যখন সিগন্যালের সাথে আপনার ফোন নাম্বার নিবন্ধন করবেন তখন আপনাকে এটি জিজ্ঞাসা করা হবে। আপনি যদি আপনার পিনটি ভুলে যান তবে আপনাকে 7 দিনের জন্য আপনার অ্যাকাউন্ট থেকে লক্ করা হবে।</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">আপনার পিন সুরক্ষার অতিরিক্ত স্তর যুক্ত করে এবং আপনার অ্যাকাউন্ট নিরাপদ করে। আপনি যখন সিগন্যালের সাথে আপনার ফোন নাম্বার নিবন্ধন করবেন তখন আপনাকে এটি জিজ্ঞাসা করা হবে। আপনি যদি আপনার পিনটি ভুলে যান তবে আপনাকে 7 দিনের জন্য আপনার অ্যাকাউন্ট থেকে লক্ করা হবে।</string> -->
   <string name="AppProtectionPreferenceFragment_none">কেউ না</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">রেজিস্ট্রেশন লক পিনটি আপনি সদ্য প্রাপ্ত এসএমএস যাচাইকরণ কোডের সাথে মিলছে না। আপনি পূর্বে অ্যাপ্লিকেশনটিতে কনফিগার করা পিনটি প্রবেশ করুন।</string>
   <string name="registration_activity__registration_lock_pin">রেজিস্ট্রেশন লক এর পিন কোড</string>

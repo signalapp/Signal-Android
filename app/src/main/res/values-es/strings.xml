@@ -227,7 +227,7 @@
     <item quantity="one">¡Fallo al guardar el adjunto!</item>
     <item quantity="other">¡Fallo al guardar los adjuntos!</item>
   </plurals>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">¡No se pudo escribir en el almacenamiento!</string>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">¡No se pudo guardar en el almacenamiento!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Guardando adjunto</item>
     <item quantity="other">Guardando %1$d adjuntos</item>
@@ -252,7 +252,7 @@
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">No hay ningún navegador instalado</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_no_results_found_for_s_">No se encontraron resultados para \'%s\'</string>
+  <string name="ConversationListFragment_no_results_found_for_s_">No se encontraron resultados para «%s»</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">¿Eliminar el chat seleccionado?</item>
     <item quantity="other">¿Eliminar los chats seleccionados?</item>
@@ -795,7 +795,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MediaPreviewActivity_you">Tú</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Formato de contenido incompatible</string>
   <string name="MediaPreviewActivity_draft">Borrador</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal necesita acceso al almacenamiento del teléfono para guardar adjuntos si éste es externo. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Almacenamiento».</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal necesita acceso al almacenamiento del teléfono para guardar adjuntos en la tarjeta SD. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Almacenamiento».</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">No se puede guardar en una unidad de almacenamiento externo si Signal no tiene acceso</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">¿Eliminar mensaje?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Este mensaje se eliminará permanentemente.</string>
@@ -1056,7 +1056,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">La base de datos del sistema no será modificada o alterada de ningún modo.</string>
   <string name="database_migration_activity__skip">Saltar</string>
   <string name="database_migration_activity__import">Importar</string>
-  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Esto podría tardar un rato. Por favor, sé paciente, te informaremos en cuanto la importación se haya completado.</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Esto podría tardar un rato. Por favor, sé paciente, te informaremos en cuanto el proceso se haya completado.</string>
   <string name="database_migration_activity__importing">IMPORTANDO</string>
   <string name="import_fragment__import_system_sms_database">Importar base de datos de SMS del sistema</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importar la base de datos desde la aplicación de mensajería por defecto del sistema</string>
@@ -1109,7 +1109,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="redphone_call_card__signal_call">Llamada de Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NÚMERO DE TELÉFONO</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal hace fácil la comunicación usando tu número de teléfono y lista de contactos existentes. Los amigos y contactos que ya conocen tu teléfono podrán ponerse en contacto contigo a través de Signal.\n\nEl proceso de registro transmite alguna información acerca de tus contactos al servidor pero ésta no se almacena.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal hace fácil la comunicación usando tu número de teléfono y lista de contactos existentes. Los amigos y contactos que ya conocen tu teléfono podrán ponerse en contacto contigo a través de Signal.\n\nEl proceso de registro transmite una información mínima y cifrada sobre tus contactos al servidor pero éste no almacena tu lista de contactos.</string>
   <string name="registration_activity__verify_your_number">Verifica tu número</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Por favor, introduce tu número de móvil para recibir el código de verificación por SMS. Puede que tu proveedor aplique una tasa por recibir SMS.</string>
   <!--recipients_panel-->
@@ -1429,7 +1429,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="InsightsDashboardFragment__cancel">Cancelar</string>
   <string name="InsightsDashboardFragment__send">Enviar</string>
   <string name="InsightsModalFragment__title">Te mostramos tus Estadísticas</string>
-  <string name="InsightsModalFragment__description">Descubre cuántos de tus mensajes se han enviado de manera segura e invita a tus contactos a aumentar tu porcentaje en mensajes de Signal.</string>
+  <string name="InsightsModalFragment__description">Descubre cuántos de tus mensajes se han enviado de manera segura y anima a tus contactos a aumentar tu porcentaje en mensajes de Signal.</string>
   <string name="InsightsModalFragment__view_insights">Ver Estadísticas</string>
   <string name="FirstInviteReminder__title">Invitar a Signal</string>
   <string name="FirstInviteReminder__description">Puedes aumentar el número de mensajes cifrados que envías en %1$d%%</string>
@@ -1596,7 +1596,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Modificar</string>
   <string name="preferences_app_protection__create">Crear</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Tu PIN añade una capa de seguridad extra y protege tu cuenta. Te preguntaremos el PIN al registrar tu número desde otro dispositivo en Signal. Si olvidas tu PIN, bloquearemos tu cuenta durante 7 días.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Tu PIN añade una capa de seguridad extra y protege tu cuenta. Te preguntaremos el PIN al registrar tu número desde otro dispositivo en Signal. Si olvidas tu PIN, bloquearemos tu cuenta durante 7 días.</string> -->
   <string name="AppProtectionPreferenceFragment_none">Ninguno</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">El PIN de bloqueo de registro es distinto del código de verificación que acabas de recibir por SMS. Por favor, introduce el PIN que has configurado previamente en los ajustes de Signal.</string>
   <string name="registration_activity__registration_lock_pin">PIN de bloqueo de registro</string>

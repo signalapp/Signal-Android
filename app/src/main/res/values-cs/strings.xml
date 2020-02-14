@@ -1666,7 +1666,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Změnit</string>
   <string name="preferences_app_protection__create">Vytvořit</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">PIN přidává další vrstvu zabezpečení a zálohuje váš účet. O jeho zadání budete požádáni při registraci vašeho telefonního čísla u Signalu. Pokud váš PIN zapomenete, bude účet uzamčen po dobu 7 dní.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">PIN přidává další vrstvu zabezpečení a zálohuje váš účet. O jeho zadání budete požádáni při registraci vašeho telefonního čísla u Signalu. Pokud váš PIN zapomenete, bude účet uzamčen po dobu 7 dní.</string> -->
   <string name="AppProtectionPreferenceFragment_none">Nic</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN zámku registrace není stejný jako přijatý SMS kontrolní kód, který jste před chvílí obdrželi. Prosím zadejte PIN, který jste dříve nastavili v aplikaci.</string>
   <string name="registration_activity__registration_lock_pin">PIN zámku registrace</string>

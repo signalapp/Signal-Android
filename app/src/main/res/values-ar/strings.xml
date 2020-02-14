@@ -1659,7 +1659,7 @@
   <string name="preferences_app_protection__pin">الرقم التعريفي الشخصي</string>
   <string name="preferences_app_protection__change">تغيير</string>
   <string name="preferences_app_protection__create">إنشاء</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">يضيف الرقم التعريفي الشخصي طبقة إضافية من الأمان وهو طريقة لعمل نسخة احتياطية من حسابك. سيتم سؤالك عنه عند التسجيل برقمك الهاتفي في Signal. اذا نسيت الرقم التعريفي الشخصي سيتم إقفال حسابك لمدة 7 أيام.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">يضيف الرقم التعريفي الشخصي طبقة إضافية من الأمان وهو طريقة لعمل نسخة احتياطية من حسابك. سيتم سؤالك عنه عند التسجيل برقمك الهاتفي في Signal. اذا نسيت الرقم التعريفي الشخصي سيتم إقفال حسابك لمدة 7 أيام.</string> -->
   <string name="AppProtectionPreferenceFragment_none">لا شيء </string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">الرقم التعريفي الشخصي لحماية التسجيل مختلف عن رمز التحقق في رسالة SMS التي استقبلتها الآن. يُرجى إدخال الرقم التعريفي الشخصي الذي قمت بتحديده في إعدادات التطبيق من قبل.</string>
   <string name="registration_activity__registration_lock_pin">الرقم التعريفي الشخصي لحماية التسجيل</string>

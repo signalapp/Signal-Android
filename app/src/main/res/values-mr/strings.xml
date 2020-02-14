@@ -1525,7 +1525,7 @@
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">बदला</string>
   <string name="preferences_app_protection__create">तयार करा</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">आपला PIN सुरक्षेचा एक अतिरिक्त थर जोडतो आणि आपले खाते बॅक अप करतो. आपण Signal सोबत आपला फोन नंबर नोंदवताना आपल्याला त्याचासाठी विचारले जाईल. जर आपण आपला PIN विसरलात, कर आपण आपल्या खात्यापासून 7 दिवसांकरिता लॉक केले जाल.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">आपला PIN सुरक्षेचा एक अतिरिक्त थर जोडतो आणि आपले खाते बॅक अप करतो. आपण Signal सोबत आपला फोन नंबर नोंदवताना आपल्याला त्याचासाठी विचारले जाईल. जर आपण आपला PIN विसरलात, कर आपण आपल्या खात्यापासून 7 दिवसांकरिता लॉक केले जाल.</string> -->
   <string name="AppProtectionPreferenceFragment_none">कुठलेही नाही</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">आपल्याला आता प्राप्त झालेल्या SMS सत्यापन कोड आणि नोंदणी लॉक PIN सारखे नाहीत. कृपया आपण अॅपलिकेशनमध्ये पूर्वी कॉन्फिगर केलेले PIN प्रविष्ट करा.</string>
   <string name="registration_activity__registration_lock_pin">नोंदणी लॉक PIN</string>

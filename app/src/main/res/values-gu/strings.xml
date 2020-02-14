@@ -1521,7 +1521,7 @@
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">બદલો</string>
   <string name="preferences_app_protection__create">બનાવો</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">તમારો PIN સલામતીનો એક વધારાનો સ્તર ઉમેરશે અને તમારા એકાઉન્ટ નો બૅકઅપ લે. જ્યારે તમે Signal સાથે તમારો ફોન નંબર રજીસ્ટર છો ત્યારે તમને તેના માટે પૂછવામાં આવશે. જો તમે તમારો PIN ભૂલી જાઓ છો, તો તમને 7 દિવસ માટે તમારા એકાઉન્ટ માંથી લૉક આઉટ કરવામાં આવશે.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">તમારો PIN સલામતીનો એક વધારાનો સ્તર ઉમેરશે અને તમારા એકાઉન્ટ નો બૅકઅપ લે. જ્યારે તમે Signal સાથે તમારો ફોન નંબર રજીસ્ટર છો ત્યારે તમને તેના માટે પૂછવામાં આવશે. જો તમે તમારો PIN ભૂલી જાઓ છો, તો તમને 7 દિવસ માટે તમારા એકાઉન્ટ માંથી લૉક આઉટ કરવામાં આવશે.</string> -->
   <string name="AppProtectionPreferenceFragment_none">કંઈ નહીં</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">રજીસ્ટરેશન લૉક પિન તમે હમણાં જ પ્રાપ્ત કરેલા SMS ચકાસણી કોડ જેવો નથી. કૃપા કરીને એપ્લિકેશનમાં તમે પહેલાં ગોઠવેલો પિન દાખલ કરો.</string>
   <string name="registration_activity__registration_lock_pin">રજીસ્ટ્રેશન લૉક PIN</string>
