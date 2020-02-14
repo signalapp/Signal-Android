@@ -199,20 +199,21 @@ public final class Megaphones {
                                              .enableSnooze(null)
                                              .setImage(R.drawable.profile_megaphone);
 
-    Megaphone.EventListener eventListener = (megaphone, listener) -> {
-      listener.onMegaphoneSnooze(Event.PROFILE_NAMES_FOR_ALL);
-      listener.onMegaphoneNavigationRequested(new Intent(context, EditProfileActivity.class));
-    };
-
     if (TextSecurePreferences.getProfileName(ApplicationDependencies.getApplication()) == ProfileName.EMPTY) {
       return builder.setTitle(R.string.ProfileNamesMegaphone__add_a_profile_name)
                     .setBody(R.string.ProfileNamesMegaphone__this_will_be_displayed_when_you_start)
-                    .setActionButton(R.string.ProfileNamesMegaphone__add_profile_name, eventListener)
+                    .setActionButton(R.string.ProfileNamesMegaphone__add_profile_name, (megaphone, listener) -> {
+                      listener.onMegaphoneSnooze(Event.PROFILE_NAMES_FOR_ALL);
+                      listener.onMegaphoneNavigationRequested(new Intent(context, EditProfileActivity.class));
+                    })
                     .build();
     } else {
       return builder.setTitle(R.string.ProfileNamesMegaphone__confirm_your_profile_name)
                     .setBody(R.string.ProfileNamesMegaphone__your_profile_can_now_include)
-                    .setActionButton(R.string.ProfileNamesMegaphone__confirm_name, eventListener)
+                    .setActionButton(R.string.ProfileNamesMegaphone__confirm_name, (megaphone, listener) -> {
+                      listener.onMegaphoneCompleted(Event.PROFILE_NAMES_FOR_ALL);
+                      listener.onMegaphoneNavigationRequested(new Intent(context, EditProfileActivity.class));
+                    })
                     .build();
     }
   }
