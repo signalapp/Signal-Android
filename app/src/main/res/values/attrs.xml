@@ -86,15 +86,15 @@
     <attr name="emoji_text_color" format="color" />
 
     <attr name="emoji_category_recent" format="reference"/>
-    <attr name="emoji_category_people" format="reference"/>
-    <attr name="emoji_category_nature" format="reference"/>
-    <attr name="emoji_category_foods"  format="reference"/>
-    <attr name="emoji_category_activity" format="reference"/>
-    <attr name="emoji_category_places" format="reference"/>
+    <attr name="emoji_category_people_and_body" format="reference"/>
+    <attr name="emoji_category_animals_and_nature" format="reference"/>
+    <attr name="emoji_category_food_and_drink"  format="reference"/>
+    <attr name="emoji_category_activities" format="reference"/>
+    <attr name="emoji_category_travel_and_places" format="reference"/>
     <attr name="emoji_category_objects" format="reference"/>
-    <attr name="emoji_category_symbol" format="reference"/>
+    <attr name="emoji_category_symbols" format="reference"/>
     <attr name="emoji_category_flags" format="reference"/>
-    <attr name="emoji_category_emoticons" format="reference"/>
+    <attr name="emoji_category_smileys_and_emotion" format="reference"/>
     <attr name="emoji_variation_selector_background" format="reference|color" />
 
     <attr name="reactions_overlay_old_background" format="reference" />

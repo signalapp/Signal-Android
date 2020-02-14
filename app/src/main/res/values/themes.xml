@@ -259,15 +259,15 @@
         <item name="emoji_text_color">@color/black</item>
 
         <item name="emoji_category_recent">@drawable/ic_recent_light_20</item>
-        <item name="emoji_category_people">@drawable/ic_emoji_people_light_20</item>
-        <item name="emoji_category_nature">@drawable/ic_emoji_animal_light_20</item>
-        <item name="emoji_category_foods">@drawable/ic_emoji_food_light_20</item>
-        <item name="emoji_category_activity">@drawable/ic_emoji_activity_light_20</item>
-        <item name="emoji_category_places">@drawable/ic_emoji_travel_light_20</item>
+        <item name="emoji_category_people_and_body">@drawable/ic_emoji_people_light_20</item>
+        <item name="emoji_category_animals_and_nature">@drawable/ic_emoji_animal_light_20</item>
+        <item name="emoji_category_food_and_drink">@drawable/ic_emoji_food_light_20</item>
+        <item name="emoji_category_activities">@drawable/ic_emoji_activity_light_20</item>
+        <item name="emoji_category_travel_and_places">@drawable/ic_emoji_travel_light_20</item>
         <item name="emoji_category_objects">@drawable/ic_emoji_object_light_20</item>
-        <item name="emoji_category_symbol">@drawable/ic_emoji_symbol_light_20</item>
+        <item name="emoji_category_symbols">@drawable/ic_emoji_symbol_light_20</item>
         <item name="emoji_category_flags">@drawable/ic_emoji_flag_light_20</item>
-        <item name="emoji_category_emoticons">@drawable/ic_emoji_emoticon_light_20</item>
+        <item name="emoji_category_smileys_and_emotion">@drawable/ic_emoji_emoticon_light_20</item>
         <item name="emoji_variation_selector_background">@drawable/emoji_variation_selector_background_light</item>
 
         <item name="reactions_overlay_old_background">@drawable/reactions_old_background_dark</item>
@@ -556,15 +556,15 @@
         <item name="emoji_text_color">@color/white</item>
 
         <item name="emoji_category_recent">@drawable/ic_recent_dark_20</item>
-        <item name="emoji_category_people">@drawable/ic_emoji_people_dark_20</item>
-        <item name="emoji_category_nature">@drawable/ic_emoji_animal_dark_20</item>
-        <item name="emoji_category_foods">@drawable/ic_emoji_food_dark_20</item>
-        <item name="emoji_category_activity">@drawable/ic_emoji_activity_dark_20</item>
-        <item name="emoji_category_places">@drawable/ic_emoji_travel_dark_20</item>
+        <item name="emoji_category_people_and_body">@drawable/ic_emoji_people_dark_20</item>
+        <item name="emoji_category_animals_and_nature">@drawable/ic_emoji_animal_dark_20</item>
+        <item name="emoji_category_food_and_drink">@drawable/ic_emoji_food_dark_20</item>
+        <item name="emoji_category_activities">@drawable/ic_emoji_activity_dark_20</item>
+        <item name="emoji_category_travel_and_places">@drawable/ic_emoji_travel_dark_20</item>
         <item name="emoji_category_objects">@drawable/ic_emoji_object_dark_20</item>
-        <item name="emoji_category_symbol">@drawable/ic_emoji_symbol_dark_20</item>
+        <item name="emoji_category_symbols">@drawable/ic_emoji_symbol_dark_20</item>
         <item name="emoji_category_flags">@drawable/ic_emoji_flag_dark_20</item>
-        <item name="emoji_category_emoticons">@drawable/ic_emoji_emoticon_dark_20</item>
+        <item name="emoji_category_smileys_and_emotion">@drawable/ic_emoji_emoticon_dark_20</item>
         <item name="emoji_variation_selector_background">@drawable/emoji_variation_selector_background_dark</item>
 
         <item name="linkpreview_background_color">@color/core_grey_95</item>
