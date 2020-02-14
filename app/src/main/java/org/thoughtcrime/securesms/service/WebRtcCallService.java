@@ -521,10 +521,11 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   private void handleWiredHeadsetChange(Intent intent) {
     Log.i(TAG, "handleWiredHeadsetChange...");
 
-    if (activePeer.getState() == CallState.CONNECTED     ||
-        activePeer.getState() == CallState.DIALING       ||
-        activePeer.getState() == CallState.RECEIVED_BUSY ||
-        activePeer.getState() == CallState.REMOTE_RINGING)
+    if ((activePeer != null) &&
+        (activePeer.getState() == CallState.CONNECTED     ||
+         activePeer.getState() == CallState.DIALING       ||
+         activePeer.getState() == CallState.RECEIVED_BUSY ||
+         activePeer.getState() == CallState.REMOTE_RINGING))
     {
       AudioManager audioManager = ServiceUtil.getAudioManager(this);
       boolean      present      = intent.getBooleanExtra(EXTRA_AVAILABLE, false);
@@ -536,9 +537,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
         audioManager.setSpeakerphoneOn(true);
       }
 
-      if (activePeer != null) {
-        sendMessage(viewModelStateFor(activePeer), activePeer, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
-      }
+      sendMessage(viewModelStateFor(activePeer), activePeer, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
     }
   }
 
