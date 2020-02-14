@@ -1266,6 +1266,7 @@
   <string name="RegistrationLockFragment__next">Növbəti</string>
   <string name="RegistrationLockFragment__forgot_pin">PIN-i unutmusan?</string>
   <!--KBS Megaphone-->
+  <!--Profile Names Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ötürülmə ikonası</string>
   <string name="ConversationListFragment_loading">Yüklənir…</string>

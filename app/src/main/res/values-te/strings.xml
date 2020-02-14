@@ -1234,7 +1234,6 @@
   <string name="preferences__linked_devices">పరికరాలు అనుసంధానించు </string>
   <string name="preferences__light_theme">లైటు</string>
   <string name="preferences__dark_theme">గుప్తమైన</string>
-  <string name="preferences__system_theme">వ్యవస్థ</string>
   <string name="preferences__appearance">స్వరూపం</string>
   <string name="preferences__theme">థీమ్</string>
   <string name="preferences__default">అప్రమేయ</string>
@@ -1466,6 +1465,7 @@
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__introducing_pins">పిన్‌లను పరిచయం చేస్తోంది</string>
   <string name="KbsMegaphone__update_pin">పిన్‌ను నవీకరించండి</string>
+  <!--Profile Names Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">రవాణా చిహ్నం</string>
   <string name="ConversationListFragment_loading">లోడ్…</string>
@@ -1528,7 +1528,6 @@
   <string name="preferences_app_protection__pin">పిన్</string>
   <string name="preferences_app_protection__change">మార్పు</string>
   <string name="preferences_app_protection__create">సృష్టించు</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">మీ పిన్ అదనపు భద్రతా పొరను జోడిస్తుంది మరియు మీ ఖాతాను బ్యాకప్ చేస్తుంది. మీరు మీ ఫోన్ నంబర్‌ను Signal తో నమోదు చేసినప్పుడు మీరు అడుగుతారు. మీరు మీ పిన్‌ను మరచిపోతే, మీరు మీ ఖాతా నుండి 7 రోజులు లాక్ అవుతారు.</string> -->
   <string name="AppProtectionPreferenceFragment_none">ఏదీ కాదు</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">మీరు అందుకున్న SMS ధృవీకరణ కోడ్ వలె నమోదు లాక్ పిన్ అదే కాదు. దయచేసి మీరు మునుపు అనువర్తనం లో కాన్ఫిగర్ చేసిన పిన్ ను నమోదు చేయండి.</string>
   <string name="registration_activity__registration_lock_pin">నమోదు లాక్ పిన్</string>

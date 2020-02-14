@@ -1244,7 +1244,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__linked_devices">Länkade enheter</string>
   <string name="preferences__light_theme">Ljust</string>
   <string name="preferences__dark_theme">Mörkt</string>
-  <string name="preferences__system_theme">System</string>
   <string name="preferences__appearance">Utseende</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Standard</string>
@@ -1522,6 +1521,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="KbsMegaphone__update_pin">Uppdatera PIN-kod</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Vi påminner dig senare. Att skapa en PIN-kod blir obligatorisk om %1$d dagar.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Vi påminner dig senare. Bekräfta din PIN-kod blir obligatorisk om %1$d dagar.</string>
+  <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Detta visas när du startar en ny konversation eller delar den.</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Din profil kan nu innehålla ett valfritt efternamn.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportikon</string>
   <string name="ConversationListFragment_loading">Hämtar in…</string>
@@ -1589,7 +1591,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_app_protection__pin">PIN-kod</string>
   <string name="preferences_app_protection__change">Ändra</string>
   <string name="preferences_app_protection__create">Skapa</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Din PIN-kod lägger till ett extra lager av säkerhet och säkerhetskopierar ditt konto. Du kommer att bli ombedd för det när du registrerar ditt telefonnummer med Signal. Om du glömmer din PIN-kod kommer du att vara låst från ditt konto i 7 dagar.</string> -->
   <string name="AppProtectionPreferenceFragment_none">Ingen</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN-koden för registreringslåset är inte samma som den SMS-bekräftelsekod du precis fick. Ange PIN-koden du tidigare ställde in i appen.</string>
   <string name="registration_activity__registration_lock_pin">PIN-kod för registreringslås</string>

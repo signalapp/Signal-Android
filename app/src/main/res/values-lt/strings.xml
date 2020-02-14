@@ -47,7 +47,7 @@
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Ekrano užraktas %1$s, Registracijos užraktas %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Ekrano užraktas %1$s</string>
-  <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Kalba %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Apipavidalinimas %1$s, Kalba %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minutė</item>
@@ -348,6 +348,7 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Šis įrenginys nepalaiko „Play“ paslaugų. Bakstelėkite, norėdami išjungti sistemos baterijos optimizavimus, kurie neleidžia Signal gauti žinučių tol, kol įrenginys yra neaktyvus.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Bendrinti su</string>
+  <string name="ShareActivity_multiple_attachments_are_only_supported">Keli priedai yra palaikomi tik paveikslams ir vaizdo įrašams</string>
   <!--ExperienceUpgradeActivity-->
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Sveiki atvykę į Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure ir RedPhone dabar yra viena privati pokalbių programėlė kiekvienai situacijai: Signal.</string>
@@ -1312,9 +1313,9 @@
   <string name="preferences__linked_devices">Susieti įrenginiai</string>
   <string name="preferences__light_theme">Šviesi</string>
   <string name="preferences__dark_theme">Tamsi</string>
-  <string name="preferences__system_theme">Sisteminis</string>
+  <string name="preferences__system_theme">Sistemos numatytasis</string>
   <string name="preferences__appearance">Išvaizda</string>
-  <string name="preferences__theme">Tema</string>
+  <string name="preferences__theme">Apipavidalinimas</string>
   <string name="preferences__default">Numatytoji</string>
   <string name="preferences__language">Kalba</string>
   <string name="preferences__signal_messages_and_calls">Signal žinutės ir skambučiai</string>
@@ -1608,6 +1609,12 @@
   <string name="KbsMegaphone__update_pin">Atnaujinti PIN kodą</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Priminsime jums vėliau. PIN kodo sukūrimas po %1$d dienų taps privalomu.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Priminsime jums vėliau. PIN kodo patvirtinimas po %1$d dienų taps privalomu.</string>
+  <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__add_a_profile_name">Pridėkite profilio vardą</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">Pridėti profilio vardą</string>
+  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Patvirtinkite savo profilio vardą</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Dabar, į profilio vardą, pasirinktinai, galite įtraukti pavardę.</string>
+  <string name="ProfileNamesMegaphone__confirm_name">Patvirtinti vardą</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Perdavimo piktograma</string>
   <string name="ConversationListFragment_loading">Įkeliama…</string>
@@ -1675,7 +1682,7 @@
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Keisti</string>
   <string name="preferences_app_protection__create">Sukurti</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Jūsų PIN kodas prideda jūsų paskyrai papildomą saugumo sluoksnį ir padaro jūsų paskyros atsarginę kopiją. Jūsų bus prašoma jį įvesti, kai registruosite savo telefono numerį su Signal. Jei pamiršite PIN kodą, būsite 7 dienoms užblokuoti nuo savo paskyros.</string> -->
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account">Jūsų PIN kodas prideda jūsų paskyrai papildomą saugumo sluoksnį. Jūsų bus prašoma įvesti savo PIN kodą, kai registruosite savo telefono numerį su Signal. Jei pamiršite PIN kodą, būsite 7 dienoms užblokuoti nuo savo paskyros.</string>
   <string name="AppProtectionPreferenceFragment_none">Nėra</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Registracijos užrakto PIN nėra tas pats, kas jūsų gautas SMS patvirtinimo kodas. Įveskite PIN, kurį esate anksčiau sukonfigūravę programėlėje.</string>
   <string name="registration_activity__registration_lock_pin">Registracijos užrakto PIN</string>

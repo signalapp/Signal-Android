@@ -348,6 +348,7 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Это устройство не поддерживает Службы Google Play. Нажмите для отключения оптимизации энергопотребления, которая не позволяет Signal получать сообщения, когда он неактивен.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Поделиться с</string>
+  <string name="ShareActivity_multiple_attachments_are_only_supported">Несколько вложений поддерживаются только для изображений и видео</string>
   <!--ExperienceUpgradeActivity-->
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Добро пожаловать в Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure и RedPhone объединились в одно приложение для приватного общения в любых ситуациях: Signal</string>
@@ -1601,6 +1602,13 @@
   <string name="KbsMegaphone__update_pin">Обновить PIN-код</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Мы напомним вам позже. Создание PIN-кода станет обязательным через %1$d дней.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Мы напомним вам позже. Проверка вашего PIN-кода станет обязательной через %1$d дней.</string>
+  <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__add_a_profile_name">Добавьте имя профиля</string>
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Оно будет показано, если вы начнёте новый разговор или когда вы поделитесь им.</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">Добавить имя профиля</string>
+  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Подтвердите имя вашего профиля</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Ваш профиль теперь может содержать необязательную фамилию.</string>
+  <string name="ProfileNamesMegaphone__confirm_name">Проверьте имя</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Значок транспорта</string>
   <string name="ConversationListFragment_loading">Загружаем…</string>
@@ -1668,7 +1676,7 @@
   <string name="preferences_app_protection__pin">PIN-код</string>
   <string name="preferences_app_protection__change">Изменить</string>
   <string name="preferences_app_protection__create">Создать</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Ваш PIN-код добавляет дополнительный уровень безопасности и защищает вашу учётную запись. Его необходимо будет вводить при регистрации вашего номера телефона в Signal. Если вы забудете свой PIN-код, вы потеряете доступ к своей учётной записи на 7 дней.</string> -->
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account">PIN-код добавляет дополнительный уровень безопасности к вашей учётной записи. Его необходимо будет вводить при регистрации вашего номера телефона в Signal. Если вы забудете свой PIN-код, вы потеряете доступ к своей учётной записи на 7 дней.</string>
   <string name="AppProtectionPreferenceFragment_none">Нет</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN-код блокировки регистрации — это не то же самое, что код подтверждения, который вы только что получили в SMS. Пожалуйста, введите PIN-код, который вы ранее задали в приложении.</string>
   <string name="registration_activity__registration_lock_pin">PIN-код блокировки регистрации</string>

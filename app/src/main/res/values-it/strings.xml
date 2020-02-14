@@ -320,6 +320,7 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Questo dispositivo non supporta Google Play Services. Premi per disabilitare l\'ottimizzazione di sistema del consumo della batteria che impedisce a Signal di ricevere messaggi quando è inattivo.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Condividi con</string>
+  <string name="ShareActivity_multiple_attachments_are_only_supported">Gli allegati multipli sono supportati solo per immagini e video</string>
   <!--ExperienceUpgradeActivity-->
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Benvenuto su Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure e RedPhone ora fanno parte di un unico messenger, per ogni situazione: Signal.</string>
@@ -1250,7 +1251,7 @@
   <string name="preferences__linked_devices">Dispositivi collegati</string>
   <string name="preferences__light_theme">Chiaro</string>
   <string name="preferences__dark_theme">Scuro</string>
-  <string name="preferences__system_theme">Sistema</string>
+  <string name="preferences__system_theme">Predefinito di sistema</string>
   <string name="preferences__appearance">Aspetto</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Predefinito</string>
@@ -1528,6 +1529,13 @@
   <string name="KbsMegaphone__update_pin">Aggiorna PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Te lo ricorderemo più tardi. Creare un PIN diventerà obbligatorio tra %1$d giorni.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Te lo ricorderemo più tardi. Confermare il tuo PIN diventerà obbligatorio tra %1$d giorni.</string>
+  <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__add_a_profile_name">Aggiungi un nome profilo</string>
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Questo verrà visualizzato quando inizi una nuova conversazione o la condividi.</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">Aggiungi nome profilo</string>
+  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Conferma il tuo nome profilo</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Il tuo profilo può ora includere un cognome facoltativo.</string>
+  <string name="ProfileNamesMegaphone__confirm_name">Conferma nome</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona trasporto</string>
   <string name="ConversationListFragment_loading">Caricamento…</string>
@@ -1595,7 +1603,7 @@
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Cambia</string>
   <string name="preferences_app_protection__create">Crea</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Il PIN aggiunge un ulteriore strato di sicurezza ed esegue il backup del tuo account. Ti verrà chiesto quando registri il tuo numero di telefono con Signal. Se dimentichi il tuo PIN, non avrai accesso al tuo account per 7 giorni.</string> -->
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account">Il PIN aggiunge un ulteriore strato di sicurezza al tuo account. Ti verrà chiesto quando registri il tuo numero di telefono con Signal. Se dimentichi il tuo PIN, non avrai accesso al tuo account per 7 giorni.</string>
   <string name="AppProtectionPreferenceFragment_none">Nessuna</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Il PIN di blocco della registrazione non è uguale al codice di verifica SMS appena ricevuto. Inserire il PIN precedentemente configurato nell\'applicazione.</string>
   <string name="registration_activity__registration_lock_pin">PIN di blocco della registrazione</string>

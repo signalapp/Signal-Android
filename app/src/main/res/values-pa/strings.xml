@@ -1141,7 +1141,6 @@
   <string name="preferences__linked_devices">ਲਿੰਕ ਕੀਤੀਆਂ ਡਿਵਾਈਸਾਂ</string>
   <string name="preferences__light_theme">ਲਾਈਟ</string>
   <string name="preferences__dark_theme">ਹਨੇਰਾ </string>
-  <string name="preferences__system_theme">ਸਿਸਟਮ</string>
   <string name="preferences__appearance">ਦਿਖਾਵਾ </string>
   <string name="preferences__theme">ਥੀਮ</string>
   <string name="preferences__default">ਡਿਫੌਲਟ</string>
@@ -1330,6 +1329,7 @@
   <string name="RegistrationLockFragment__next">ਅਗਲਾ</string>
   <string name="RegistrationLockFragment__forgot_pin">ਕੀ PIN ਭੁੱਲ ਗਏ?</string>
   <!--KBS Megaphone-->
+  <!--Profile Names Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">ਆਵਾਜਾਈ ਆਈਕਨ</string>
   <string name="ConversationListFragment_loading">ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ …</string>

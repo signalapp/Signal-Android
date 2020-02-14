@@ -42,6 +42,7 @@
   <string name="ApplicationPreferencesActivity_Off">Av</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Skjermlås %1$s, registreringslås %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Skjermlås %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Språk %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -60,6 +61,7 @@
   <string name="AttachmentKeyboard_file">Fil</string>
   <string name="AttachmentKeyboard_contact">Kontakt</string>
   <string name="AttachmentKeyboard_location">Plassering</string>
+  <string name="AttachmentKeyboard_give_access">Gi tilgang</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Fann ingen program for valt medium.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal treng tilgang til lagring for å legga ved bilde, film eller lydklipp, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Lagring».</string>
@@ -459,6 +461,9 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Sent frå %1$s til %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Sent frå deg til %1$s</string>
   <!--Megaphones-->
+  <string name="Megaphones_remind_me_later">Minn meg på det seinare</string>
+  <string name="Megaphones_verify_your_signal_pin">Godkjenn Signal-PIN-koden din</string>
+  <string name="Megaphones_verify_pin">Stadfest PIN-kode</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtale i gang</string>
   <string name="NotificationBarManager__establishing_signal_call">Set opp Signal-anrop</string>
@@ -1058,6 +1063,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal krev MMS-oppsett for å levera media og gruppemeldingar via mobilnett. Eininga di gjer ikkje ikkje denne informasjonen tilgjengeleg. Dette er vanleg på einingar med restriktive oppsett.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Trykk «OK» og følg rettleiinga viss du vil senda medie- og gruppemeldingar. Du finn vanlegvis MMS-oppsettet for operatøren din ved å søkja på nettet etter «operatøren din APN». Du treng berre å gjera dette éin gong.</string>
   <!--profile_create_activity-->
+  <string name="CreateProfileActivity_first_name_required">Fornamn (krevst)</string>
+  <string name="CreateProfileActivity_last_name_optional">Etternamn (valfritt)</string>
   <string name="CreateProfileActivity_next">Neste</string>
   <string name="CreateProfileActivity__username">Brukarnamn</string>
   <string name="CreateProfileActivity__create_a_username">Lag eit brukarnamn</string>
@@ -1223,7 +1230,7 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences__linked_devices">Tilkopla einingar</string>
   <string name="preferences__light_theme">Lys</string>
   <string name="preferences__dark_theme">Mørk</string>
-  <string name="preferences__system_theme">System</string>
+  <string name="preferences__system_theme">Systemstandard</string>
   <string name="preferences__appearance">Utsjåande</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Forvald</string>
@@ -1413,9 +1420,24 @@ Du er à jour!</string>
   <!--Edit KBS Pin-->
   <!--BaseKbsPinFragment-->
   <string name="BaseKbsPinFragment__next">Neste</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">Lag alfanumerisk PIN</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">Lag numerisk PIN</string>
   <!--CreateKbsPinFragment-->
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
+    <item quantity="one">PIN må vera minst %1$d teikn</item>
+    <item quantity="other">PIN må vera minst %1$d teikn</item>
+  </plurals>
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
+    <item quantity="one">PIN må vera minst %1$d siffer</item>
+    <item quantity="other">PIN må vera minst %1$d siffer</item>
+  </plurals>
+  <string name="CreateKbsPinFragment__create_a_new_pin">Lag ny PIN</string>
+  <string name="CreateKbsPinFragment__create_your_pin">Lag din PIN</string>
   <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">Stadfest din PIN.</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">Klarte ikkje laga PIN</string>
   <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__create_your_pin">Lag din PIN</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__skip">Hopp over</string>
   <string name="KbsReminderDialog__submit">Send</string>
@@ -1426,6 +1448,7 @@ Du er à jour!</string>
   <string name="RegistrationLockFragment__next">Neste</string>
   <string name="RegistrationLockFragment__forgot_pin">Gløymt PIN-koden?</string>
   <!--KBS Megaphone-->
+  <!--Profile Names Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
   <string name="ConversationListFragment_loading">Lastar …</string>

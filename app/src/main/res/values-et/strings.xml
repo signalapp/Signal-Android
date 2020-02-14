@@ -42,6 +42,7 @@
   <string name="ApplicationPreferencesActivity_Off">Väljas</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Ekraanilukk %1$s, registreerimislukk %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Ekraanilukk %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">%1$s teema, %2$s keel</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -459,7 +460,10 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Saadetud %1$s poolt kontaktile %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Saadetud sinu poolt kontaktile %1$s</string>
   <!--Megaphones-->
+  <string name="Megaphones_introducing_reactions">Tutvustame reaktsioone</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Koputa ja hoia mistahes sõnumit, et kiirelt oma emotsiooni jagada.</string>
   <string name="Megaphones_remind_me_later">Tuleta hiljem meelde</string>
+  <string name="Megaphones_verify_pin">Kinnita PIN</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signali kõne käib</string>
   <string name="NotificationBarManager__establishing_signal_call">Alustan Signali kõnet</string>
@@ -1237,7 +1241,6 @@
   <string name="preferences__linked_devices">Lingitud seadmed</string>
   <string name="preferences__light_theme">Hele</string>
   <string name="preferences__dark_theme">Tume</string>
-  <string name="preferences__system_theme">Süsteem</string>
   <string name="preferences__appearance">Välimus</string>
   <string name="preferences__theme">Teema</string>
   <string name="preferences__default">Vaikimisi</string>
@@ -1437,6 +1440,7 @@
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Tutvustame PIN-koode</string>
   <string name="KbsSplashFragment__learn_more">Uuri täpsemalt</string>
+  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registreerimislukk = PIN-kood</string>
   <string name="KbsSplashFragment__update_pin">Uuenda PINi</string>
   <string name="KbsSplashFragment__create_your_pin">Loo enda PIN-kood</string>
@@ -1449,6 +1453,7 @@
   <string name="AccountLockedFragment__account_locked">Konto lukustatud</string>
   <string name="AccountLockedFragment__next">Edasi</string>
   <string name="AccountLockedFragment__learn_more">Uuri täpsemalt</string>
+  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Sisesta enda PIN-kood</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Sisesta PIN-kood, mille tegid enda konto jaoks. See erineb SMS-kontrollkoodist.</string>
@@ -1461,6 +1466,7 @@
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__introducing_pins">Tutvustame PIN-koode</string>
   <string name="KbsMegaphone__update_pin">Uuenda PINi</string>
+  <!--Profile Names Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transpordi ikoon</string>
   <string name="ConversationListFragment_loading">Laadimine…</string>

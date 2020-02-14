@@ -1216,7 +1216,6 @@
   <string name="preferences__linked_devices">Συνδεδεμένες συσκευές</string>
   <string name="preferences__light_theme">Φωτεινό</string>
   <string name="preferences__dark_theme">Σκοτεινό</string>
-  <string name="preferences__system_theme">Σύστημα</string>
   <string name="preferences__appearance">Εμφάνιση</string>
   <string name="preferences__theme">Θέμα</string>
   <string name="preferences__default">Προκαθορισμένο</string>
@@ -1404,6 +1403,7 @@
   <string name="RegistrationLockFragment__incorrect_pin">Λανθασμένο ΡΙΝ</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Ξεχάσατε το PIN;</string>
   <!--KBS Megaphone-->
+  <!--Profile Names Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Μεταφορά εικονίδιου</string>
   <string name="ConversationListFragment_loading">Φόρτωση…</string>

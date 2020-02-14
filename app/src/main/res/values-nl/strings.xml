@@ -320,6 +320,7 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dit apparaat biedt geen ondersteuning voor Google Play Services. Tik hier om de optimalisaties m.b.t. stroomverbruik uit te schakelen, die Signal momenteel verhinderen om berichten te ontvangen op de achtergrond.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Doorsturen naar</string>
+  <string name="ShareActivity_multiple_attachments_are_only_supported">Het verzenden van meerdere bijlagen is alleen mogelijk voor afbeeldingen en videos</string>
   <!--ExperienceUpgradeActivity-->
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Welkom bij Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure en RedPhone zijn vanaf nu samen één privéberichtenapp, geschikt voor iedere situatie: Signal.</string>
@@ -1255,7 +1256,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences__linked_devices">Gekoppelde apparaten</string>
   <string name="preferences__light_theme">Licht</string>
   <string name="preferences__dark_theme">Donker</string>
-  <string name="preferences__system_theme">Systeem</string>
+  <string name="preferences__system_theme">Systeemstandaard</string>
   <string name="preferences__appearance">Uiterlijk</string>
   <string name="preferences__theme">Thema</string>
   <string name="preferences__default">Systeemstandaard</string>
@@ -1534,6 +1535,13 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="KbsMegaphone__update_pin">Pincode bijwerken</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Je zult er later aan worden herinnert dat je nog een pincode moet aanmaken. Dit wordt binnen %1$d dagen verplicht.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Je zult er later aan worden herinnert dat je nog moet bevestigen dat je je huidige pincode nog bezit. Dit wordt binnen %1$d dagen verplicht.</string>
+  <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__add_a_profile_name">Voeg je naam toe aan je profiel</string>
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Je profielnaam zal worden weergegeven wanneer je een nieuw gesprek begint, of wanneer je expliciet toestemming geeft om je profiel zichtbaar te maken.</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">Een profielnaam toevoegen</string>
+  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Bevestig je naam</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Je kunt nu optioneel een achternaam toevoegen aan je profiel.</string>
+  <string name="ProfileNamesMegaphone__confirm_name">Naam bevestigen</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportmethodepictogram</string>
   <string name="ConversationListFragment_loading">Aan het laden…</string>
@@ -1601,12 +1609,12 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_app_protection__pin">Pincode</string>
   <string name="preferences_app_protection__change">Wijzigen</string>
   <string name="preferences_app_protection__create">Aanmaken</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Een pincode voegt een extra niveau van beveiliging toe en stelt je in staat om je account te back-uppen. Als je een pincode instelt zal om die pincode worden gevraagd wanneer je je telefoonnummer registreert. Als je je pincode in de tussentijd vergeet, dan zul je voor 7 dagen geen toegang kunnen krijgen tot je account.</string> -->
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account">Een pincode voegt een extra niveau van beveiliging toe aan je account. Als je een pincode instelt zal om die pincode worden gevraagd wanneer je je telefoonnummer  registreert. Als je je pincode in de tussentijd vergeet, dan zul je voor 7 dagen geen toegang kunnen krijgen tot je account.</string>
   <string name="AppProtectionPreferenceFragment_none">Geen</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">De pincode voor registratievergrendeling is niet hetzelfde als de sms-verificatiecode die je net ontvangen hebt. Voer de pincode in die je hiervoor in de app ingesteld hebt.</string>
   <string name="registration_activity__registration_lock_pin">Registratievergrendeling</string>
   <string name="registration_activity__forgot_pin">Pincode vergeten?</string>
-  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">Verzin een pincode, deze moet uit vier of meer cijfers bestaan. Als je de pincode vergeet, kun je voor maximaal 7 dagen geen toegang krijgen tot je Signal-account.</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">Verzin een pincode, deze moet uit vier of meer cijfers bestaan. Als je de pincode vergeet, dan kan het gebeuren dat je voor 7 dagen geen toegang kunt krijgen tot je account.</string>
   <string name="registration_lock_dialog_view__enter_pin">Voer pincode in</string>
   <string name="registration_lock_dialog_view__confirm_pin">Bevestig pincode</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Voer je pincode voor registratievergrendeling in</string>

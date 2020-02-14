@@ -348,6 +348,7 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Naprava ne podpira storitev Play Services. Tapnite za izklop optimizacije baterije, ki aplikaciji Signal preprečuje povezavo v času neaktivnosti naprave.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Deli z</string>
+  <string name="ShareActivity_multiple_attachments_are_only_supported">Več priponk je možnih le pri slikah in videu</string>
   <!--ExperienceUpgradeActivity-->
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Dobrodošli v aplikaciji Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure in RedPhone sta odslej združena v skupni aplikaciji za zasebno komuniciranje: Signal.</string>
@@ -1303,7 +1304,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__linked_devices">Povezane naprave</string>
   <string name="preferences__light_theme">Svetla</string>
   <string name="preferences__dark_theme">Temna</string>
-  <string name="preferences__system_theme">Sistemske</string>
+  <string name="preferences__system_theme">Privzeta sistemska</string>
   <string name="preferences__appearance">Izgled</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Privzeto</string>
@@ -1599,6 +1600,13 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="KbsMegaphone__update_pin">Posodobite PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Spomnili vas bomo kasneje. Uporaba kode PIN bo postala obvezna čez %1$d dni.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Spomnili vas bomo kasneje. Potrditev kode PIN bo obvezna čez %1$d dni.</string>
+  <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__add_a_profile_name">Dodaj ime profila</string>
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">To bo prikazano, ko boste začeli z novim pogovorom, ali ko boste delili pogovor.</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">Dodajanje imena profila</string>
+  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Potrdi ime svojega profila</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Vaš profil lahko od sedaj vsebuje tudi priimek.</string>
+  <string name="ProfileNamesMegaphone__confirm_name">Potrditev imena</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
   <string name="ConversationListFragment_loading">Nalaganje …</string>
@@ -1666,7 +1674,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Zamenjava</string>
   <string name="preferences_app_protection__create">Ustvari</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">S kodo PIN boste izboljšali svojo varnost in zasebnost ter omogočili varnostno kopijo svojega računa. Po PINu boste vprašani vsakič, ko se boste želeli na novo prijaviti s svojo telefonsko številko. Če boste nanj pozabili, boste za 7 dni ostali zaklenjeni iz svojega računa Signal.</string> -->
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account">S kodo PIN boste izboljšali varnost svojega računa Signal. Po njej boste vprašani vsakič, ko se boste želeli na novo prijaviti s svojo telefonsko številko. Če boste pozabili svoj PIN, boste za 7 dni ostali zaklenjeni iz svojega računa Signal.</string>
   <string name="AppProtectionPreferenceFragment_none">Brez</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Koda PIN za prijavo v omrežje ni enaka potrditveni kodi SMS, ki ste jo prejeli ravnokar. Prosimo, vnesite PIN, ki ste ga predhodno določili za zaklepanje.</string>
   <string name="registration_activity__registration_lock_pin">PIN za prijavo v omrežje</string>

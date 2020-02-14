@@ -1206,7 +1206,6 @@
   <string name="preferences__linked_devices">연결된 기기</string>
   <string name="preferences__light_theme">밝게</string>
   <string name="preferences__dark_theme">어둡게</string>
-  <string name="preferences__system_theme">시스템</string>
   <string name="preferences__appearance">모양</string>
   <string name="preferences__theme">테마</string>
   <string name="preferences__default">기본</string>
@@ -1475,6 +1474,7 @@
   <string name="KbsMegaphone__update_pin">번호 업데이트</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">나중에 알려드리겠습니다. %1$d일 후에는 반드시 번호를 생성해야 합니다.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">나중에 알려드리겠습니다. %1$d일 후에는 반드시 번호를 확인해야 합니다.</string>
+  <!--Profile Names Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">전송 아이콘</string>
   <string name="ConversationListFragment_loading">불러오는 중</string>
@@ -1542,7 +1542,6 @@
   <string name="preferences_app_protection__pin">번호</string>
   <string name="preferences_app_protection__change">변경</string>
   <string name="preferences_app_protection__create">만들기</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">번호를 통해 더욱 강력한 보안을 구현하고 계정을 백업할 수 있습니다. 번호는 전화번호로 Signal에 가입할 때 필요합니다. 번호를 잊었다면 7일 동안 계정이 잠깁니다.</string> -->
   <string name="AppProtectionPreferenceFragment_none">없음</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">등록 잠금 번호는 현재 전송된 SMS 인증 코드와는 다릅니다. 예전에 앱에서 설정했던 번호를 입력하세요.</string>
   <string name="registration_activity__registration_lock_pin">등록 잠금 번호</string>

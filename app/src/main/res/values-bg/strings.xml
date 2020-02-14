@@ -1270,6 +1270,7 @@
   <string name="RegistrationLockFragment__next">Следващ</string>
   <string name="RegistrationLockFragment__forgot_pin">Забравен ПИН?</string>
   <!--KBS Megaphone-->
+  <!--Profile Names Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Икона за транспорт</string>
   <string name="ConversationListFragment_loading">Зареждане…</string>

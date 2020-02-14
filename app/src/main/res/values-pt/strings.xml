@@ -1246,7 +1246,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences__linked_devices">Dispositivos associados</string>
   <string name="preferences__light_theme">Claro</string>
   <string name="preferences__dark_theme">Escuro</string>
-  <string name="preferences__system_theme">Sistema</string>
   <string name="preferences__appearance">Aspeto</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Pré-definição</string>
@@ -1524,6 +1523,9 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="KbsMegaphone__update_pin">Atualizar PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Iremos lembrá-lo(a) mais tarde. Criar um PIN será obrigatório dentro de %1$d dias.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Iremos lembrá-lo(a) mais tarde. Confirmar o seu PIN será obrigatório dentro de %1$d dias.</string>
+  <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Isto será exibido quando você começar uma nova conversa ou a partilhar.</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">O seu perfil pode agora incluir opcionalmente um apelido.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ícone de transporte</string>
   <string name="ConversationListFragment_loading">A carregar…</string>
@@ -1591,7 +1593,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Alterar</string>
   <string name="preferences_app_protection__create">Criar</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">O seu PIN adiciona uma camada extra de segurança e faz uma códia de segurança da sua conta. Ser-lhe-á pedida quando registar o seu número de telemóvel com o Signal. Se se esquecer do seu PIN, ficará bloqueado de aceder à sua conta durante 7 dias.</string> -->
   <string name="AppProtectionPreferenceFragment_none">Nenhum</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">O registo de um PIN de bloqueio não é o mesmo que o código de verificação SMS que acabou de receber. Por favor, insira o PIN que configurou previamente para a sua aplicação.</string>
   <string name="registration_activity__registration_lock_pin">PIN de bloqueio do registo</string>

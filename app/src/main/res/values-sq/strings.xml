@@ -1245,7 +1245,6 @@
   <string name="preferences__linked_devices">Pajisje të lidhura</string>
   <string name="preferences__light_theme">E çelët</string>
   <string name="preferences__dark_theme">E errët</string>
-  <string name="preferences__system_theme">Sistem</string>
   <string name="preferences__appearance">Dukje</string>
   <string name="preferences__theme">Temë</string>
   <string name="preferences__default">Parazgjedhje</string>
@@ -1524,6 +1523,10 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="KbsMegaphone__update_pin">Përditësoni PIN-in</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Do t’jua kujtojmë më vonë. Krijimi i një PIN-i do të jetë i detyrueshëm pas %1$d ditësh.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Do t’jua kujtojmë më vonë. Ripohimi i PIN-it tuaj do të jetë i detyrueshëm pas %1$d ditësh.</string>
+  <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Ky do të shfaqe kur nisni një bisedë të re ose e ndani me të tjerë.</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">Shtoni Emër Profili</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Profili juaj tani mund të përfshijë një mbiemër, në daçi.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikonë bartjesh</string>
   <string name="ConversationListFragment_loading">Po ngarkohet…</string>
@@ -1591,7 +1594,6 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Ndryshojeni</string>
   <string name="preferences_app_protection__create">Krijoni</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">PIN-i juaj i shton llogarisë tuaj një shtresë ekstra sigurie dhe ndihmon në kopjeruajtjen e llogarisë tuaj. Do t’ju kërkohet një i tillë kur regjistroni numrin e telefonit tuaj me Signal-in. Nëse harroni PIN-in tuaj, do të kyçeni jashtë llogarisë tuaj për 7 ditë.</string> -->
   <string name="AppProtectionPreferenceFragment_none">Asnjë</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN-i i Kyçjes së Regjistrimit s\’është i njëjtë me kodin e verifikimit SMS që sapo morët. Ju lutemi, jepni PIN-in që formësuat më herët te aplikacioni.</string>
   <string name="registration_activity__registration_lock_pin">PIN Kyçjeje Regjistrimi</string>

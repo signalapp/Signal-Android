@@ -348,6 +348,7 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Urządzenie nie wspiera Usług Play. Dotknij, aby wyłączyć systemową optymalizację baterii uniemożliwiającą odbieranie wiadomości w czasie braku aktywności.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Podziel się z</string>
+  <string name="ShareActivity_multiple_attachments_are_only_supported">Wysyłanie kilku załączników na raz jest obsługiwane tylko dla zdjęć i filmów.</string>
   <!--ExperienceUpgradeActivity-->
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Witamy w Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure i RedPhone są teraz jedną aplikacją: Signal.</string>
@@ -1304,7 +1305,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__linked_devices">Połączone urządzenia</string>
   <string name="preferences__light_theme">Jasny</string>
   <string name="preferences__dark_theme">Ciemny</string>
-  <string name="preferences__system_theme">System</string>
+  <string name="preferences__system_theme">Domyślne systemu</string>
   <string name="preferences__appearance">Wygląd</string>
   <string name="preferences__theme">Motyw</string>
   <string name="preferences__default">Domyślne</string>
@@ -1600,6 +1601,13 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="KbsMegaphone__update_pin">Uaktualnij PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Przypomnimy Ci o tym później. Utworzenie PINu stanie się obowiązkowe za %1$d dni.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Przypomnimy Ci o tym później. Potwierdzenie Twojego PINu stanie się obowiązkowe za %1$d dni.</string>
+  <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__add_a_profile_name">Dodaj nazwę profilu</string>
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">To zostanie wyświetlone, gdy rozpoczniesz nową konwersację lub ją udostępnisz.</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">Dodaj nazwę profilu</string>
+  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Potwierdź nazwę swojego profilu</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Twój profil może teraz zawierać opcjonalne nazwisko.</string>
+  <string name="ProfileNamesMegaphone__confirm_name">Potwierdź nazwę</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transportu</string>
   <string name="ConversationListFragment_loading">Wczytywanie…</string>
@@ -1667,7 +1675,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Zmień</string>
   <string name="preferences_app_protection__create">Utwórz</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Twój PIN zapewnia dodatkową warstwę ochrony i pozwala Ci na odzyskanie konta. Zostaniesz o niego poproszony(a), gdy będziesz rejestrować swój numer telefonu w Signal. Jeśli zapomnisz swojego kodu PIN, zostaniesz odcięty(a) od swojego konta na 7 dni.</string> -->
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account">Twój PIN zapewnia dodatkową warstwę ochrony dla Twojego konta. Zostaniesz o niego poproszony(a), gdy będziesz rejestrować swój numer telefonu w Signal. Jeśli zapomnisz swojego kodu PIN, zostaniesz odcięty(a) od swojego konta na 7 dni.</string>
   <string name="AppProtectionPreferenceFragment_none">Brak</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Kod PIN blokady rejestracji różni się od kodu weryfikacyjnego SMS, który właśnie otrzymałeś(aś). Wprowadź kod PIN skonfigurowany wcześniej w aplikacji.</string>
   <string name="registration_activity__registration_lock_pin">PIN blokady rejestracji</string>

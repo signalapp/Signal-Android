@@ -320,6 +320,7 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">El dispositiu no és compatible amb Play Services. Toqueu per inhabilitar les optimitzacions de la bateria que impedeixen que el Signal rebi missatges quan estigui inactiu.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Comparteix amb</string>
+  <string name="ShareActivity_multiple_attachments_are_only_supported">Els adjunts múltiples només s\'admeten per a imatges i vídeos.</string>
   <!--ExperienceUpgradeActivity-->
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Benvingut al Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure i RedPhone ara són un únic servei de missatgeria privada, per a qualsevol situació: Signal.</string>
@@ -1244,7 +1245,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__linked_devices">Dispositius enllaçats</string>
   <string name="preferences__light_theme">Clar</string>
   <string name="preferences__dark_theme">Fosc</string>
-  <string name="preferences__system_theme">Sistema</string>
+  <string name="preferences__system_theme">Per defecte del sistema</string>
   <string name="preferences__appearance">Aparença</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Per defecte</string>
@@ -1522,6 +1523,13 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="KbsMegaphone__update_pin">Actualitza el PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Us ho recordarem més tard. Crear un PIN serà obligatori d\'aquí a %1$d dies.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Us ho recordarem més tard. Confirmar el PIN serà obligatori d\'aquí a %1$d dies.</string>
+  <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__add_a_profile_name">Afegiu un nom de perfil</string>
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Es mostrarà quan inicieu una conversa nova o la compartiu.</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">Afegiu un nom de perfil</string>
+  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Confirmeu el nom de perfil</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">El perfil ara pot incloure un cognom addicional.</string>
+  <string name="ProfileNamesMegaphone__confirm_name">Confirmeu el nom</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona de trànsit</string>
   <string name="ConversationListFragment_loading">Es carrega…</string>
@@ -1589,7 +1597,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Canvieu-lo</string>
   <string name="preferences_app_protection__create">Crea</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">El PIN afegeix una capa extra de seguretat i protegeix el compte. Se us demanarà quan registreu el número de telèfon al Signal. Si l\'oblideu, se us bloquejarà el compte durant 7 dies.</string> -->
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account">El PIN afegeix una capa extra de seguretat al compte. Se us demanarà quan registreu el número de telèfon al Signal. Si l\'oblideu, se us bloquejarà el compte durant 7 dies.</string>
   <string name="AppProtectionPreferenceFragment_none">Cap</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">El PIN de bloqueig del registre no és el mateix que el codi de verificació de l\'SMS que heu rebut. Si us plau, escriviu el PIN que heu configurat a l\'aplicació.</string>
   <string name="registration_activity__registration_lock_pin">PIN de bloqueig del registre</string>

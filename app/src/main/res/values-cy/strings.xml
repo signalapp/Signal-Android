@@ -350,6 +350,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Nid yw\'r ddyfais hon yn cefnogi Play Services Tapiwch i analluogi gwelliannau batri system sy\'n atal Signal rhag adfer negeseuon tra\'n anweithredol.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Rhannu â</string>
+  <string name="ShareActivity_multiple_attachments_are_only_supported">Dim ond ar gyfer delweddau a fideos y mae atodiadau lluosog yn cael eu cynnal</string>
   <!--ExperienceUpgradeActivity-->
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Croeso i Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">Mae TextSecure a RedPhone bellach yn un negesydd preifat ar gyfer pob sefyllfa: Signal.</string>
@@ -1308,7 +1309,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences__linked_devices">Dyfeisiau cysylltiedig</string>
   <string name="preferences__light_theme">Golau</string>
   <string name="preferences__dark_theme">Tywyll</string>
-  <string name="preferences__system_theme">System</string>
+  <string name="preferences__system_theme">Rhagosodiad y system</string>
   <string name="preferences__appearance">Golwg</string>
   <string name="preferences__theme">Thema</string>
   <string name="preferences__default">Rhagosodiad</string>
@@ -1604,6 +1605,13 @@ Send neges heb ei ddiogelu?</string>
   <string name="KbsMegaphone__update_pin">Diweddaru PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Byddwn yn eich atgoffa\'n ddiweddarach. Bydd creu PIN yn dod yn orfodol ymhen %1$d diwrnod.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Byddwn yn eich atgoffa\'n ddiweddarach. Bydd creu PIN yn dod yn orfodol ymhen %1$d diwrnod.</string>
+  <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__add_a_profile_name">Ychwanegu enw proffil</string>
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Bydd hyn yn cael ei ddangos pan fyddwch yn cychwyn sgwrs newydd a\'i rannu.</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">Ychwanegu Enw Proffil</string>
+  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Cadarnhau eich Enw Proffil</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Gall eich proffil nawr gynnwys enw olaf dewisol.</string>
+  <string name="ProfileNamesMegaphone__confirm_name">Cadarnhau Enw</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Eicon trafnidiaeth</string>
   <string name="ConversationListFragment_loading">Llwytho…</string>
@@ -1671,7 +1679,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Newid</string>
   <string name="preferences_app_protection__create">Creu</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Mae eich PIN yn ychwanegu haen ychwanegol o ddiogelwch ac yn cadw eich cyfrif wrth gefn. Byddwn yn gofyn amdano pan fyddwch yn cofrestru eich rhif ffôn gyda Signal. Os fyddwch yn anghofio eich PIN, byddwch yn cael eich cloi allan o\'ch cyfrif am 7 diwrnod.</string> -->
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account">Mae eich PIN yn ychwanegu haen ychwanegol o ddiogelwch,i\'ch cyfrif. Byddwn yn gofyn amdano pan fyddwch yn cofrestru eich rhif ffôn gyda Signal. Os fyddwch yn anghofio eich PIN, byddwch yn cael eich cloi allan o\'ch cyfrif am 7 diwrnod.</string>
   <string name="AppProtectionPreferenceFragment_none">Dim</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Nid yw\'r Clo Cofrestru PIN  yr un fath â\'r cod dilysu SMS rydych newydd ei dderbyn. Rhowch y PIN a ffurfiwyd gennych yn flaenorol yr ap .</string>
   <string name="registration_activity__registration_lock_pin">PIN Clo Cofrestru</string>

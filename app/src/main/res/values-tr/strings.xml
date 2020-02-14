@@ -1249,7 +1249,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__linked_devices">Bağlı cihazlar</string>
   <string name="preferences__light_theme">Aydınlık</string>
   <string name="preferences__dark_theme">Karanlık</string>
-  <string name="preferences__system_theme">Sistem</string>
   <string name="preferences__appearance">Görünüm</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Varsayılan</string>
@@ -1527,6 +1526,9 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="KbsMegaphone__update_pin">PIN\'i güncelle</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Size daha sonra hatırlatacağız. %1$d gün sonra PIN oluşturmanız zorunlu olacaktır.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Size daha sonra hatırlatacağız. %1$d gün sonra PIN\'inizi onaylamanız zorunlu olacaktır.</string>
+  <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Yeni bir konuşma başlattığınızda veya paylaştığınızda gözükecektir.</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Profiliniz artık isteğe bağlı soy ad içerebilir.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ulaştırma simgesi</string>
   <string name="ConversationListFragment_loading">Yükleniyor…</string>
@@ -1594,7 +1596,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Değiştir</string>
   <string name="preferences_app_protection__create">Oluştur</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">PIN\'iniz hesabınıza fazladan güvenlik katmanı ekler ve hesabınızı güvence altına alır. Signal\'e telefon numaranızı kaydederken sorulacaktır. Eğer PIN\'inizi unutursanız, hesabınıza 7 gün boyunca erişemezsiniz.</string> -->
   <string name="AppProtectionPreferenceFragment_none">Hiçbiri</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Kaydolma Kilidi PIN\'iniz size gönderilen doğrulama koduyla aynı değildir. Lütfen önceden ayarlamış olduğunuz PIN\'inizi giriniz.  </string>
   <string name="registration_activity__registration_lock_pin">Kaydolma Kilidi PIN\'i</string>

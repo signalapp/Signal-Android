@@ -1237,7 +1237,6 @@ nambari yako ya simu</string>
   <string name="preferences__linked_devices">Vifaa vilivyounganishwa</string>
   <string name="preferences__light_theme">Mwanga</string>
   <string name="preferences__dark_theme">Giza</string>
-  <string name="preferences__system_theme">Mfumo</string>
   <string name="preferences__appearance">Muonekano</string>
   <string name="preferences__theme">mandhari</string>
   <string name="preferences__default">Chaguo Msingi</string>
@@ -1514,6 +1513,7 @@ nambari yako ya simu</string>
   <string name="KbsMegaphone__update_pin">Sasisha Nenosiri</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Tutakukumbusha baadaye. Kuunda Nenosiri kutakuwa lazima baada ya siku %1$d.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Tutakukumbusha baadaye. Kuthibitisha Nenosiri lako kutakuwa ni lazima baada ya siku %1$d.</string>
+  <!--Profile Names Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikoni ya usafiri</string>
   <string name="ConversationListFragment_loading">Inafunguka</string>
@@ -1582,7 +1582,6 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="preferences_app_protection__pin">Nenosiri</string>
   <string name="preferences_app_protection__change">Badilisha</string>
   <string name="preferences_app_protection__create">Unda</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Nenosiri lako linaongeza safu mpya ya usalama na linahifadhi nakili ya akaunti yako. Utaitishwa utakaposajili nambari yako ya simu kwenye Signal. Ukisahau Nenosiri lako, utafungiwa nje ya akaunti yako kwa siku saba.</string> -->
   <string name="AppProtectionPreferenceFragment_none">Hakuna</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Nambari ya PIN ya Usajili si sawa na msimbo wa uthibitisho wa SMS unayopokea tu. Tafadhali ingiza PIN uliyoiweka hapo awali katika programu.</string>
   <string name="registration_activity__registration_lock_pin">Nenosiri la usajili</string>

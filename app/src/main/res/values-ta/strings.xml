@@ -1249,7 +1249,6 @@
   <string name="preferences__linked_devices">இணைக்கப்பட்ட சாதனங்கள்</string>
   <string name="preferences__light_theme">வெளிச்சமிக்க</string>
   <string name="preferences__dark_theme">இருள்கொண்ட </string>
-  <string name="preferences__system_theme">அமைப்பு</string>
   <string name="preferences__appearance">தோற்றம்</string>
   <string name="preferences__theme">நிறவடிவமைப்பு</string>
   <string name="preferences__default">இயல்புநிலை</string>
@@ -1491,6 +1490,7 @@
   <string name="KbsMegaphone__introducing_pins">பின்களை  அறிமுகப்படுத்துகிறது</string>
   <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">உங்கள் பதிவு பூட்டு இப்போது பின் என அழைக்கப்படுகிறது. புதுப்பிக்க சில வினாடிகள் ஆகும்.</string>
   <string name="KbsMegaphone__update_pin">பின்னைப் புதுப்பிக்கவும்</string>
+  <!--Profile Names Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">போக்குவரத்து குறும்படம்</string>
   <string name="ConversationListFragment_loading">ஏற்றுதல் …</string>
@@ -1558,7 +1558,6 @@
   <string name="preferences_app_protection__pin">பின்</string>
   <string name="preferences_app_protection__change">மாற்றம்</string>
   <string name="preferences_app_protection__create">உருவாக்கவும்</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">உங்கள் பின் கூடுதல் பாதுகாப்பு அடுக்கைச் சேர்த்து உங்கள் கணக்கில் காப்புப் பிரதி எடுக்கிறது. உங்கள் தொலைபேசி எண்ணை Signal. பதிவுசெய்யும்போது உங்களிடம் கேட்கப்படும். உங்கள் பின்னை மறந்துவிட்டால், உங்கள் கணக்கில் 7 நாட்கள் பூட்டப்படுவீர்கள்.</string> -->
   <string name="AppProtectionPreferenceFragment_none">எதுவும் இல்லை</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">பதிவு பூட்டு பின் நீங்கள் பெற்ற எஸ்எம்எஸ் சரிபார்ப்புக் குறியீட்டைப் போன்றது அல்ல. பயன்பாட்டில் நீங்கள் முன்பு கட்டமைத்த பின்னை உள்ளிடவும்.</string>
   <string name="registration_activity__registration_lock_pin">பதிவு பூட்டு பின்</string>

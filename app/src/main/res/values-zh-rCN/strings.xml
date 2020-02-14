@@ -1218,7 +1218,6 @@
   <string name="preferences__linked_devices">已关联设备</string>
   <string name="preferences__light_theme">浅色</string>
   <string name="preferences__dark_theme">深色</string>
-  <string name="preferences__system_theme">系统</string>
   <string name="preferences__appearance">外观</string>
   <string name="preferences__theme">主题</string>
   <string name="preferences__default">默认</string>
@@ -1487,6 +1486,7 @@
   <string name="KbsMegaphone__update_pin">更新 PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">稍后您会被提示。在%1$d天内会强制要求创建PIN码。</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">稍后您会被提示。在%1$d天内会强制要求确认你的PIN码。</string>
+  <!--Profile Names Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">传输图标</string>
   <string name="ConversationListFragment_loading">正在加载…</string>
@@ -1554,7 +1554,6 @@
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">修改</string>
   <string name="preferences_app_protection__create">创建</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">PIN 密码为帐户恢复新增一层安全防护。使用电话号码注册 Signal 时需输入该密码。如果忘记 PIN，将在 7 天内无法注册使用 Signal。</string> -->
   <string name="AppProtectionPreferenceFragment_none">无</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">注册锁定 PIN 密码不是您刚刚收到的短信验证码。请输入之前在应用中设置的 PIN。</string>
   <string name="registration_activity__registration_lock_pin">注册锁定 PIN</string>

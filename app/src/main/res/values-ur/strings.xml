@@ -1227,7 +1227,6 @@
   <string name="preferences__linked_devices">منسلک مشینیں</string>
   <string name="preferences__light_theme">روشنی</string>
   <string name="preferences__dark_theme">اندھیرا</string>
-  <string name="preferences__system_theme">نظام</string>
   <string name="preferences__appearance">ظہور ہونا</string>
   <string name="preferences__theme">موضوع</string>
   <string name="preferences__default">پہلے سے طے شدہ</string>
@@ -1459,6 +1458,7 @@
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__introducing_pins">پن ز متعارف ہو رہے ہیں</string>
   <string name="KbsMegaphone__update_pin">پن کو اپ ڈیٹ کریں</string>
+  <!--Profile Names Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">ٹرانسپورٹ آئکن</string>
   <string name="ConversationListFragment_loading">لوڈ ہو رہا ہے۔۔۔</string>
@@ -1520,7 +1520,6 @@
   <string name="preferences_app_protection__pin">پن</string>
   <string name="preferences_app_protection__change">تبدیلی</string>
   <string name="preferences_app_protection__create">بنائیں</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">آپ کا پن سیکیورٹی کی ایک اضافی پرت کو جوڑتا ہے اور آپ کے اکاؤنٹ کا بیک اپ بناتا ہے۔ جب آپ اپنے فون نمبر کو Signal کے ساتھ رجسٹر کرتے ہیں تو آپ سے اس کے بارے میں پوچھا جائے گا۔ اگر آپ اپنا پن بھول جاتے ہیں تو ، آپ کو 7 دن کے لئے آپ کے اکاؤنٹ سے بند کر دیا جائے گا۔</string> -->
   <string name="AppProtectionPreferenceFragment_none">کوئی نہیں</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">رجسٹریشن لاک پن وہی نہیں ہے جو آپ نے ابھی موصول کردہ ایس ایم ایس کا تصدیقی کوڈ سے کیا ہے۔ براہ کرم درخواست میں جو پن آپ نے پہلے تشکیل کیا تھا اسے درج کریں۔</string>
   <string name="registration_activity__registration_lock_pin">رجسٹریشن لاک پن</string>

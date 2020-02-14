@@ -1234,7 +1234,6 @@
   <string name="preferences__linked_devices">ಲಿಂಕ್ ಮಾಡಲಾಗಿದೆ ಸಾಧನಗಳು</string>
   <string name="preferences__light_theme">ಲಘು ವಿನ್ಯಾಸ </string>
   <string name="preferences__dark_theme">ಗಾಢಬಣ್ಣದ ವಿನ್ಯಾಸ</string>
-  <string name="preferences__system_theme">ಸಿಸ್ಟಮ್</string>
   <string name="preferences__appearance">ಲಕ್ಷಣ</string>
   <string name="preferences__theme">ವಿನ್ಯಾಸ</string>
   <string name="preferences__default">ಪೂರ್ವನಿಯೋಜಿತ</string>
@@ -1465,6 +1464,7 @@
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__introducing_pins">ಪಿನ್‌ಗಳನ್ನು ಪರಿಚಯಿಸಲಾಗುತ್ತಿದೆ</string>
   <string name="KbsMegaphone__update_pin">ಪಿನ್ ನವೀಕರಿಸಿ</string>
+  <!--Profile Names Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">ಸಾರಿಗೆ ಮಾಧ್ಯಮದ ಚಿಹ್ನೆ</string>
   <string name="ConversationListFragment_loading">ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
@@ -1526,7 +1526,6 @@
   <string name="preferences_app_protection__pin">ಪಿನ್</string>
   <string name="preferences_app_protection__change">ಬದಲಾವಣೆ</string>
   <string name="preferences_app_protection__create">ರಚಿಸಿ</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">ನಿಮ್ಮ ಪಿನ್ ಸುರಕ್ಷತೆಯ ಹೆಚ್ಚುವರಿ ಪದರವನ್ನು ಸೇರಿಸುತ್ತದೆ ಮತ್ತು ಬ್ಯಾಕ್ ಅಪ್ ನಿಮ್ಮ ಖಾತೆ. ನೀವು\'ಯಾವಾಗ ಅದನ್ನು ಕೇಳಲಾಗುತ್ತದೆ ನೀವು ನೋಂದಣಿ ನಿಮ್ಮ ದೂರವಾಣಿ ಇದರೊಂದಿಗೆ ಸಂಖ್ಯೆ Signal. ವೇಳೆ ನೀವು ಮರೆತುಬಿಡಿ ನಿಮ್ಮ ಪಿನ್, ನೀವು\'ಹೊರಗೆ ಲಾಕ್ ಮಾಡಲಾಗುವುದು ನಿಮ್ಮ 7 ದಿನಗಳ ಖಾತೆ.</string> -->
   <string name="AppProtectionPreferenceFragment_none">ಯಾವುದೂ ಇಲ್ಲ</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">ದಿ ನೋಂದಣಿ ಲಾಕ್ ಪಿನ್ ನಂತೆಯೇ ಅಲ್ಲ ಎಸ್‌ಎಂಎಸ್ ಪರಿಶೀಲನೆ ಕೋಡ್ ನೀವು ಇದೀಗ ಸ್ವೀಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ನಮೂದಿಸಿ ದಿ ಪಿನ್ ನೀವು ಹಿಂದೆ ಕಾನ್ಫಿಗರ್ ಮಾಡಲಾಗಿದೆ ಅಪ್ಲಿಕೇಶನ್.</string>
   <string name="registration_activity__registration_lock_pin">ನೋಂದಣಿ ಲಾಕ್ ಪಿನ್</string>

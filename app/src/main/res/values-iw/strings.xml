@@ -1312,7 +1312,6 @@
   <string name="preferences__linked_devices">מכשירים מקושרים</string>
   <string name="preferences__light_theme">בהירה</string>
   <string name="preferences__dark_theme">כהה</string>
-  <string name="preferences__system_theme">מערכת</string>
   <string name="preferences__appearance">מַרְאֶה</string>
   <string name="preferences__theme">ערכת נושא</string>
   <string name="preferences__default">ברירת מחדל</string>
@@ -1608,6 +1607,10 @@
   <string name="KbsMegaphone__update_pin">עדכן PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">נזכיר לך מאוחר יותר. יצירת PIN תהיה חובה עוד %1$d ימים.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">נזכיר לך מאוחר יותר. אימות PIN יהיה חובה עוד %1$d ימים.</string>
+  <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">זה יוצג כאשר תתחיל שיחה חדשה או כאשר תשתף את זה.</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">הוסף שם פרופיל</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">הפרופיל שלך יכול להכיל כעת שם משפחה רשותי.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">צלמית תעבורה</string>
   <string name="ConversationListFragment_loading">טוען…</string>
@@ -1675,7 +1678,6 @@
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">שנה</string>
   <string name="preferences_app_protection__create">צור</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">ה־PIN שלך מוסיף שכבת אקסטרה של אבטחה ומגבה את חשבונך. תישאל לגביו כאשר תירשם עם מספר הטלפון שלך אל Signal. אם תשכח את ה־PIN שלך, תינעל מחוץ לחשבונך למשך 7 ימים.</string> -->
   <string name="AppProtectionPreferenceFragment_none">ללא</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN נעילת ההרשמה אינו אותו דבר כמו קוד הוידוא שקיבלת. אנא הכנס את ה־PIN שתיצרת קודם לכן ביישום.</string>
   <string name="registration_activity__registration_lock_pin">PIN נעילת הרשמה</string>

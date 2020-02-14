@@ -1241,7 +1241,6 @@
   <string name="preferences__linked_devices">دستگاه‌های پیوند داده شده</string>
   <string name="preferences__light_theme">روشن</string>
   <string name="preferences__dark_theme">تاریک</string>
-  <string name="preferences__system_theme">سیستم</string>
   <string name="preferences__appearance">ظاهر برنامه</string>
   <string name="preferences__theme">قالب</string>
   <string name="preferences__default">پیش فرض</string>
@@ -1518,6 +1517,7 @@
   <string name="KbsMegaphone__update_pin">به‌روزرسانی پین</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">در آینده به شما یادآوری خواهیم کرد. ایجاد پین از %1$d روز دیگر الزامی خواهد شد.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">در آینده به شما یادآوری خواهیم کرد. ایجاد پین از %1$d روز دیگر الزامی خواهد شد.</string>
+  <!--Profile Names Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">نگارک انتقال</string>
   <string name="ConversationListFragment_loading">در حال بارگذاری…</string>
@@ -1585,7 +1585,6 @@
   <string name="preferences_app_protection__pin">پین</string>
   <string name="preferences_app_protection__change">تغییر</string>
   <string name="preferences_app_protection__create">ایجاد</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">پین شما یک لایه امنیتی دیگر اضافه می کند و از حساب شما پشتیبان می گیرد. هنگامی که با شماره تلفن خود در Signal ثبت نام می کنید از شما خواسته خواهد شد. اگر پین خود را فراموش کردید، حساب شما به مدت 7 روز قفل خواهد شد.</string> -->
   <string name="AppProtectionPreferenceFragment_none">هیچ کدام</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">پین قفل ثبت‌نام همان کد تأییدی که الان از طریق پیامک دریافت کردید نیست. لطفاً رمزی را که قبلاً در برنامه تنظیم کرده بودید را وارد کنید.</string>
   <string name="registration_activity__registration_lock_pin">پین قفل ثبت‌نام</string>

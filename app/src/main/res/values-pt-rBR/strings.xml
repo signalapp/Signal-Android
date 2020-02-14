@@ -1235,7 +1235,6 @@
   <string name="preferences__linked_devices">Dispositivos vinculados</string>
   <string name="preferences__light_theme">Claro</string>
   <string name="preferences__dark_theme">Escuro</string>
-  <string name="preferences__system_theme">Sistema</string>
   <string name="preferences__appearance">Aparência</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Padrão</string>
@@ -1466,6 +1465,7 @@
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__introducing_pins">Apresentando os PINs</string>
   <string name="KbsMegaphone__update_pin">Atualizar PIN</string>
+  <!--Profile Names Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ícone do transporte</string>
   <string name="ConversationListFragment_loading">Carregando…</string>
@@ -1528,7 +1528,6 @@
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Alterar</string>
   <string name="preferences_app_protection__create">Criar</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Seu PIN adiciona uma camada extra de segurança e recupera sua conta. Ele será solicitado no momento em que você registrar seu número de telefone no Signal. Se você esquecer seu PIN, sua conta ficará bloqueada por 7 dias.</string> -->
   <string name="AppProtectionPreferenceFragment_none">Nenhuma</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">O PIN de Desbloqueio de Cadastro não é igual ao código de verificação que você acabou de receber. Por favor, insira o PIN definido anteriormente por meio do aplicativo.</string>
   <string name="registration_activity__registration_lock_pin">PIN de Desbloqueio de Cadastro</string>

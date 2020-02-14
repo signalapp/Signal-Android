@@ -1222,7 +1222,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__linked_devices">Sammenkoblede enheter</string>
   <string name="preferences__light_theme">Lys</string>
   <string name="preferences__dark_theme">Mørk</string>
-  <string name="preferences__system_theme">System</string>
   <string name="preferences__appearance">Utseende</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Forvalgt</string>
@@ -1447,6 +1446,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="KbsMegaphone__introducing_pins">Vi introduserer PIN-koder</string>
   <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Din registreringslås kalles nå PIN. Oppdatering tar noen sekunder.</string>
   <string name="KbsMegaphone__update_pin">Oppdater PIN</string>
+  <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Dette vil bli vist når du starter en ny samtale eller deler det.</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">Legg til profilnavn</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Din profil kan nå inkludere et etternavn som en opsjon.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
   <string name="ConversationListFragment_loading">Laster…</string>

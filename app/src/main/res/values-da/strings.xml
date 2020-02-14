@@ -1250,7 +1250,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="preferences__linked_devices">Forbundne enheder</string>
   <string name="preferences__light_theme">Lyst</string>
   <string name="preferences__dark_theme">Mørkt</string>
-  <string name="preferences__system_theme">System</string>
+  <string name="preferences__system_theme">System standard</string>
   <string name="preferences__appearance">Udseende</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Standard</string>
@@ -1496,6 +1496,13 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="KbsMegaphone__update_pin">Opdatér PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Du vil blive påmindet senere. Oprettelse af PIN vil blive krævet om %1$d dage</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Du vil blive påmindet senere. Bekræftelse af din PIN vil blive krævet om %1$d dage</string>
+  <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__add_a_profile_name">Tilføj et profilnavn</string>
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Dette vil blive vist når du starter en ny samtale eller deler den</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">Tilføj profilnavn</string>
+  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Bekræft dit profilnavn</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Din profil kan nu tilføjes dit efternavn</string>
+  <string name="ProfileNamesMegaphone__confirm_name">Bekræft navn</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport ikon</string>
   <string name="ConversationListFragment_loading">Henter…</string>
@@ -1563,7 +1570,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Skift</string>
   <string name="preferences_app_protection__create">Opret</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Din PIN tilføjer et ekstra lag af sikkerhed og laver en backup af din konto. Du vil blive spurgt om den når du registrerer dit nummer ved Signal. Hvis du glemmer din PIN, bliver du låst ude af din konto i 7 dage</string> -->
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account">Din PIN tilføjer et ekstra lag af sikkerhed og laver en backup af din konto. Du vil blive spurgt om den når du registrerer dit nummer ved Signal. Hvis du glemmer din PIN, bliver du låst ude af din konto i 7 dage</string>
   <string name="AppProtectionPreferenceFragment_none">Ingen</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Verifikationskode er ikke den samme, som den kode du netop har modtaget på SMS. Indtast venligst koden du tidligere har indtastet i applikationen</string>
   <string name="registration_activity__registration_lock_pin">Registreringskode</string>

@@ -1212,7 +1212,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences__linked_devices">Các thiết bị được liên kết</string>
   <string name="preferences__light_theme">Sáng</string>
   <string name="preferences__dark_theme">Tối</string>
-  <string name="preferences__system_theme">Hệ thống</string>
   <string name="preferences__appearance">Diện mạo</string>
   <string name="preferences__theme">Chủ đề</string>
   <string name="preferences__default">Mặc định</string>
@@ -1479,6 +1478,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="KbsMegaphone__update_pin">Cập nhật mã PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Chúng tôi sẽ nhắc bạn sau. Việc tạo mã PIN sẽ trở nên bắt buộc sau %1$d ngày.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Chúng tôi sẽ nhắc bạn sau. Xác minh mã PIN của bạn sẽ trở nên bắt buộc sau %1$d ngày.</string>
+  <!--Profile Names Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Biểu tượng chuyển tải</string>
   <string name="ConversationListFragment_loading">Đang tải…</string>
@@ -1546,7 +1546,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Thay đổi</string>
   <string name="preferences_app_protection__create">Tạo</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Mã PIN thêm một lớp bảo mật và sao lưu tài khoản của bạn. Bạn sẽ được hỏi nhập mã PIN khi bạn đăng ký số điện thoại của mình với Signal. Nếu bạn quên mã PIN của mình, bạn sẽ bị khoá khỏi tài khoản của mình trong 7 ngày.</string> -->
   <string name="AppProtectionPreferenceFragment_none">Không</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Mã PIN Khóa Đăng ký khác hoàn toàn mã xác minh SMS bạn vừa nhận được. Vui lòng điền mã PIN mà bạn sử dụng trước đó.</string>
   <string name="registration_activity__registration_lock_pin">Mã PIN Khóa Đăng ký</string>

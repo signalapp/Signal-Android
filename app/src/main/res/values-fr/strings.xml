@@ -320,6 +320,7 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Cet appareil ne prend pas les Services Google Play en charge. Touchez pour désactiver les optimisations système de la pile qui empêchent à Signal de récupérer les messages lors d’inactivité.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Partager avec</string>
+  <string name="ShareActivity_multiple_attachments_are_only_supported">Les fichiers joints multiples ne sont pris en charge que pour les images et les vidéos</string>
   <!--ExperienceUpgradeActivity-->
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Bienvenue sur Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure et RedPhone sont désormais regroupées en une seule appli de messagerie qui protège vos renseignements personnels, adaptée à toutes les situations : Signal.</string>
@@ -1241,7 +1242,7 @@
   <string name="preferences__linked_devices">Appareils reliés</string>
   <string name="preferences__light_theme">Clair</string>
   <string name="preferences__dark_theme">Sombre</string>
-  <string name="preferences__system_theme">Système</string>
+  <string name="preferences__system_theme">Valeur par défaut du système</string>
   <string name="preferences__appearance">Apparence</string>
   <string name="preferences__theme">Thème</string>
   <string name="preferences__default">Valeur par défaut</string>
@@ -1519,6 +1520,13 @@
   <string name="KbsMegaphone__update_pin">Mettre le NIP à jour</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Nous vous le rappellerons ultérieurement. La création d’un NIP deviendra obligatoire dans %1$d jours.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Nous vous le rappellerons ultérieurement. La confirmation de votre NIP deviendra obligatoire dans %1$d jours.</string>
+  <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__add_a_profile_name">Ajouter un nom de profil.</string>
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Il s’affichera quand vous lancerez une nouvelle conversation ou la partagerez.</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">Ajouter un nom de profil</string>
+  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Confirmez votre nom de profil</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Votre profil peut désormais comporter un nom de famille facultatif.</string>
+  <string name="ProfileNamesMegaphone__confirm_name">Confirmer le nom</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icône de transport</string>
   <string name="ConversationListFragment_loading">Chargement…</string>
@@ -1586,7 +1594,7 @@
   <string name="preferences_app_protection__pin">NIP</string>
   <string name="preferences_app_protection__change">Changer</string>
   <string name="preferences_app_protection__create">Créer</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Votre NIP ajoute une couche supplémentaire de sécurité et sauvegarde votre compte. Il vous sera demandé quand vous inscrirez votre numéro de téléphone auprès de Signal. Si vous oubliez votre NIP, votre compte sera verrouillé pendant sept jours.</string> -->
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account">Votre NIP ajoute une couche supplémentaire de sécurité à votre compte. Il vous sera demandé quand vous inscrirez votre numéro de téléphone auprès de Signal. Si vous oubliez votre NIP, votre compte sera verrouillé pendant sept jours.</string>
   <string name="AppProtectionPreferenceFragment_none">Aucun</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Le NIP de blocage de l’inscription ne correspond pas au code de vérification que vous venez de recevoir par texto. Veuillez saisir le NIP que vous avez précédemment défini dans l’application.</string>
   <string name="registration_activity__registration_lock_pin">NIP de blocage de l’inscription</string>

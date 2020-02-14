@@ -1205,7 +1205,6 @@
   <string name="preferences__linked_devices">อุปกรณ์ที่เชื่อมโยงอยู่</string>
   <string name="preferences__light_theme">สว่าง</string>
   <string name="preferences__dark_theme">มืด</string>
-  <string name="preferences__system_theme">ระบบ</string>
   <string name="preferences__appearance">ลักษณะ</string>
   <string name="preferences__theme">ธีม</string>
   <string name="preferences__default">ค่าเริ่มต้น</string>
@@ -1435,6 +1434,7 @@
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__introducing_pins">แนะนำรหัส PINs</string>
   <string name="KbsMegaphone__update_pin">อัปเดตรหัส PIN</string>
+  <!--Profile Names Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">ไอคอนขนส่ง</string>
   <string name="ConversationListFragment_loading">กำลังโหลด…</string>
@@ -1496,7 +1496,6 @@
   <string name="preferences_app_protection__pin"> รหัส PIN</string>
   <string name="preferences_app_protection__change">เปลี่ยน</string>
   <string name="preferences_app_protection__create">สร้าง</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">รหัส PIN ของคุณเพิ่มเลเยอร์ความปลอดภัยและสำรองบัญชีของคุณ คุณจะถูกถามเมื่อคุณลงทะเบียนหมายเลขโทรศัพท์ของคุณกับ Signal ถ้าคุณลืมรหัส PIN ของคุณ คุณจะถูกล็อกจากบัญชีของคุณเป็นเวลา 7 วัน</string> -->
   <string name="AppProtectionPreferenceFragment_none">ไม่มี</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">รหัส PIN ล็อกการลงทะเบียนไม่เหมือนกับรหัสการยืนยันทาง SMS ที่คุณเพิ่งได้รับ โปรดป้อนรหัส PIN ที่คุณได้กำหนดไว้ในโปรแกรมก่อนหน้านี้</string>
   <string name="registration_activity__registration_lock_pin">รหัส PIN ล็อกการลงทะเบียน</string>

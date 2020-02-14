@@ -1208,7 +1208,6 @@
   <string name="preferences__linked_devices">リンク済みデバイス</string>
   <string name="preferences__light_theme">明るい</string>
   <string name="preferences__dark_theme">暗い</string>
-  <string name="preferences__system_theme">システム</string>
   <string name="preferences__appearance">デザイン</string>
   <string name="preferences__theme">テーマ</string>
   <string name="preferences__default">既定</string>
@@ -1477,6 +1476,11 @@
   <string name="KbsMegaphone__update_pin">PIN をアップデート</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">後ほど再度お知らせします。PIN の作成は %1$d 日後に必須となります。</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">後ほど再度お知らせします。PIN の確認は %1$d 日後に必須となります。</string>
+  <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">これは共有したり新しい会話を始めた際に表示されます。</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">プロフィール名を追加する</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">プロフィールに任意で姓を追加できます。</string>
+  <string name="ProfileNamesMegaphone__confirm_name">名前の確認</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">転送アイコン</string>
   <string name="ConversationListFragment_loading">読み込んでいます…</string>
@@ -1544,7 +1548,6 @@
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">変更</string>
   <string name="preferences_app_protection__create">作成</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">PIN はセキュリティを強化し、アカウントを保護します。Signal に電話番号を登録する際に要求され、忘れた場合アカウントは 7 日間ロックされます。</string> -->
   <string name="AppProtectionPreferenceFragment_none">なし</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">登録ロック PIN は SMS で先程送信された認証コードと異なります。以前 Signal で設定した PIN を入力してください。</string>
   <string name="registration_activity__registration_lock_pin">登録ロック PIN</string>

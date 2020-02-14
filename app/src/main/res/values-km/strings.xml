@@ -1213,7 +1213,6 @@
   <string name="preferences__linked_devices">ភ្ជាប់ឧបករណ៍</string>
   <string name="preferences__light_theme">ភ្លឺ</string>
   <string name="preferences__dark_theme">ងងឹត</string>
-  <string name="preferences__system_theme">ប្រព័ន្ធ</string>
   <string name="preferences__appearance">រូបរាង</string>
   <string name="preferences__theme">ប្តូរទម្រង់រូបរាង</string>
   <string name="preferences__default">លំនាំដើម</string>
@@ -1482,6 +1481,9 @@
   <string name="KbsMegaphone__update_pin">បច្ចុប្បន្នភាពកូដ PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">យើងនឹងរំលឹកអ្នកពេលក្រោយ។ ការបង្កើតលេខកូដ PIN នឹងចាំបាច់ក្នុង %1$d ថ្ងៃ។</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">យើងនឹងរំលឹកអ្នកពេលក្រោយ។ ការបញ្ជាក់លេខកូដ PIN នឹងចាំបាច់ក្នុង %1$d ថ្ងៃ។</string>
+  <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">នេះនឹងបង្ហាញនៅពេលអ្នកចាប់ផ្តើមកិច្ចសន្ទនាថ្មី ឬចែករំលែកវា។</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">ពត៌មានផ្ទាល់ខ្លួនរបស់អ្នកឥឡូវអាចរួមបញ្ចូលត្រកូលស្រេចចិត្ត។</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">រូបសញ្ញាជញ្ជូន</string>
   <string name="ConversationListFragment_loading">កំពុងផ្ទុក…</string>
@@ -1549,7 +1551,6 @@
   <string name="preferences_app_protection__pin">លេខ PIN</string>
   <string name="preferences_app_protection__change">ផ្លាស់ប្តូរ</string>
   <string name="preferences_app_protection__create">បង្កើត</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">លេខកូដ PIN របស់អ្នកបន្ថែមស្រទាប់សុវត្ថិភាព និងបម្រុងទុកគណនីរបស់អ្នក។ អ្នកនឹងត្រូវសួរពីវា នៅពេលអ្នកចុះឈ្មោះលេខទូរស័ព្ទរបស់អ្នកជាមួយ Signal។ បើអ្នកភ្លេចលេខកូដ PIN របស់អ្នក អ្នកនឹងត្រូវជាប់សោរគណនីរបស់អ្នករយៈពេល ៧ ថ្ងៃ។</string> -->
   <string name="AppProtectionPreferenceFragment_none">គ្មាន</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">លេខPIN សម្រាប់ចាក់សោរការចុះឈ្មោះ មិនដូចគ្នានឹងលេខកូដផ្ទៀងផ្ទាត់ទទួលពីសារSMS ។ សូមបញ្ចូលលេខកូដដែលអ្នកបានកំណត់ពីមុន ក្នុងកម្មវិធីនេះ។</string>
   <string name="registration_activity__registration_lock_pin">លេខ PIN សម្រាប់ចាក់សោការចុះឈ្មោះ</string>

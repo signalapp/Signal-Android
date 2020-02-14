@@ -1311,7 +1311,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__linked_devices">Pripojené zariadenia</string>
   <string name="preferences__light_theme">Svetlý</string>
   <string name="preferences__dark_theme">Tmavý</string>
-  <string name="preferences__system_theme">Systémový</string>
   <string name="preferences__appearance">Vzhľad</string>
   <string name="preferences__theme">Motív</string>
   <string name="preferences__default">Štandardné nastavenie</string>
@@ -1607,6 +1606,11 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="KbsMegaphone__update_pin">Aktualizovať PIN kód</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Pripomenieme vám to neskôr. Povinnosť vytvoriť si PIN kód budete mať o %1$d dní.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Pripomenieme vám to neskôr. Povinnosť potvrdiť svoj PIN kód budete mať o %1$d dní.</string>
+  <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Toto sa zobrazí, keď začnete novú konverzáciu alebo keď ju budete zdieľať.</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">Pridať názov profilu</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Váš profil môže teraz voliteľne obsahovať priezvisko.</string>
+  <string name="ProfileNamesMegaphone__confirm_name">Potvrdiť názov</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona prenosu</string>
   <string name="ConversationListFragment_loading">Načítava sa…</string>
@@ -1674,7 +1678,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Zmeniť</string>
   <string name="preferences_app_protection__create">Vytvoriť</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">PIN kód pridáva ďalšiu vrstvu zabezpečenia a zálohuje váš účet. Budete oň požiadaný/požiadaná, keď si v Signale zaregistrujete svoje tefónne číslo. Ak zabudnete svoj PIN kód, váš účet sa na 7 dní uzamkne.</string> -->
   <string name="AppProtectionPreferenceFragment_none">Žiadny</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN registračného zámku sa nezhoduje s verifikačným kódom ktorý ste obdržali v SMS správe. Zadajte prosím PIN, ktorý ste si v aplikácii nastavili.</string>
   <string name="registration_activity__registration_lock_pin">PIN registračného zámku</string>

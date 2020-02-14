@@ -1165,7 +1165,6 @@
   <string name="preferences__linked_devices">Dispositivos vinculados</string>
   <string name="preferences__light_theme">Claro</string>
   <string name="preferences__dark_theme">Escuro</string>
-  <string name="preferences__system_theme">Sistema</string>
   <string name="preferences__appearance">Aparencia</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Por defecto</string>
@@ -1359,6 +1358,7 @@
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_pin">Crear PIN</string>
   <string name="KbsMegaphone__update_pin">Actualizar PIN</string>
+  <!--Profile Names Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona do tráfico</string>
   <string name="ConversationListFragment_loading">Cargando…</string>

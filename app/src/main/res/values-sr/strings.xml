@@ -1130,7 +1130,6 @@
   <string name="preferences__linked_devices">Повезани уређаји</string>
   <string name="preferences__light_theme">Светла</string>
   <string name="preferences__dark_theme">Тамна</string>
-  <string name="preferences__system_theme">Систем</string>
   <string name="preferences__appearance">Изглед</string>
   <string name="preferences__theme">Тема</string>
   <string name="preferences__default">Подразумеван</string>
@@ -1309,6 +1308,7 @@
   <string name="RegistrationLockFragment__next">Даље</string>
   <string name="RegistrationLockFragment__forgot_pin">Заборавили сте ПИН?</string>
   <!--KBS Megaphone-->
+  <!--Profile Names Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Икона преноса</string>
   <string name="ConversationListFragment_loading">Учитавање…</string>

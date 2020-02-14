@@ -1232,7 +1232,6 @@
   <string name="preferences__linked_devices">लिंक केलेले डिव्हाईस</string>
   <string name="preferences__light_theme">फिकट</string>
   <string name="preferences__dark_theme">गडद</string>
-  <string name="preferences__system_theme">सिस्टिम</string>
   <string name="preferences__appearance">स्वरूप</string>
   <string name="preferences__theme">थीम</string>
   <string name="preferences__default">पूर्वनिर्धारित</string>
@@ -1464,6 +1463,7 @@
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__introducing_pins">PIN ची ओळख करून देत आहे</string>
   <string name="KbsMegaphone__update_pin">PIN अद्यतनित करा</string>
+  <!--Profile Names Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">वाहतूक चिन्ह</string>
   <string name="ConversationListFragment_loading">लोड होत आहे…</string>
@@ -1525,7 +1525,6 @@
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">बदला</string>
   <string name="preferences_app_protection__create">तयार करा</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">आपला PIN सुरक्षेचा एक अतिरिक्त थर जोडतो आणि आपले खाते बॅक अप करतो. आपण Signal सोबत आपला फोन नंबर नोंदवताना आपल्याला त्याचासाठी विचारले जाईल. जर आपण आपला PIN विसरलात, कर आपण आपल्या खात्यापासून 7 दिवसांकरिता लॉक केले जाल.</string> -->
   <string name="AppProtectionPreferenceFragment_none">कुठलेही नाही</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">आपल्याला आता प्राप्त झालेल्या SMS सत्यापन कोड आणि नोंदणी लॉक PIN सारखे नाहीत. कृपया आपण अॅपलिकेशनमध्ये पूर्वी कॉन्फिगर केलेले PIN प्रविष्ट करा.</string>
   <string name="registration_activity__registration_lock_pin">नोंदणी लॉक PIN</string>

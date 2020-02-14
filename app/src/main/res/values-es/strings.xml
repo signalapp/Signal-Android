@@ -320,6 +320,7 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Este dispositivo no dispone de los servicios de Google Play. Toca para desactivar las optimizaciones de batería del sistema que impiden a Signal obtener mensajes mientras está inactivo.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Compartir con</string>
+  <string name="ShareActivity_multiple_attachments_are_only_supported">Sólo fotos y vídeos se pueden enviar como múltiples adjuntos</string>
   <!--ExperienceUpgradeActivity-->
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Bienvenido a Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure y RedPhone son ahora una sola aplicación de mensajería privada, para cualquier situación: Signal.</string>
@@ -1250,7 +1251,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__linked_devices">Dispositivos enlazados</string>
   <string name="preferences__light_theme">Claro</string>
   <string name="preferences__dark_theme">Oscuro</string>
-  <string name="preferences__system_theme">Sistema</string>
+  <string name="preferences__system_theme">Predeterminado del sistema</string>
   <string name="preferences__appearance">Apariencia</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Por defecto</string>
@@ -1529,6 +1530,13 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="KbsMegaphone__update_pin">Actualizar PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Te lo volveremos a recordar. Crear tu PIN será obligatorio en %1$d días.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Te lo volveremos a recordar. Confirmar tu PIN será obligatorio en %1$d días.</string>
+  <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__add_a_profile_name">Añadir nombre al perfil</string>
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Se mostrará al iniciar un nuevo chat o al compartirlo.</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">Añadir nombre al perfil</string>
+  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Confirma tu nombre de perfil</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Ahora tu perfil puede incluir opcionalmente tu(s) apellido(s)</string>
+  <string name="ProfileNamesMegaphone__confirm_name">Confirmar nombre</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icono de transporte</string>
   <string name="ConversationListFragment_loading">Cargando …</string>
@@ -1596,7 +1604,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Modificar</string>
   <string name="preferences_app_protection__create">Crear</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Tu PIN añade una capa de seguridad extra y protege tu cuenta. Te preguntaremos el PIN al registrar tu número desde otro dispositivo en Signal. Si olvidas tu PIN, bloquearemos tu cuenta durante 7 días.</string> -->
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account">El PIN añade una capa de seguridad extra a tu cuenta. Te preguntaremos el PIN al registrar tu número desde otro dispositivo en Signal. Si olvidas tu PIN, tu cuenta permanecerá bloqueada durante 7 días.</string>
   <string name="AppProtectionPreferenceFragment_none">Ninguno</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">El PIN de bloqueo de registro es distinto del código de verificación que acabas de recibir por SMS. Por favor, introduce el PIN que has configurado previamente en los ajustes de Signal.</string>
   <string name="registration_activity__registration_lock_pin">PIN de bloqueo de registro</string>

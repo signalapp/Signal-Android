@@ -306,6 +306,7 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">這個裝置不支援 Play 服務。輕觸關閉，因為系統電池效能最佳化會防止 Signal 在閒置時取得訊息。</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">分享給</string>
+  <string name="ShareActivity_multiple_attachments_are_only_supported">僅圖片和影片支援多個附檔</string>
   <!--ExperienceUpgradeActivity-->
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">歡迎來到 Signal。</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">從現在起 TextSecure 與 RedPhone 將會是同一個私密的訊息平台，最佳的解決方案：Signal。</string>
@@ -1216,7 +1217,7 @@
   <string name="preferences__linked_devices">已連結裝置</string>
   <string name="preferences__light_theme">明亮</string>
   <string name="preferences__dark_theme">深色</string>
-  <string name="preferences__system_theme">系統</string>
+  <string name="preferences__system_theme">系統預設</string>
   <string name="preferences__appearance">介面設定</string>
   <string name="preferences__theme">主題</string>
   <string name="preferences__default">預設</string>
@@ -1485,6 +1486,13 @@
   <string name="KbsMegaphone__update_pin">升級PIN碼</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">我們稍後會提醒你。 建立PIN碼將在%1$d天之內成為強制性的。</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">我們稍後會提醒你。 在%1$d天之內，必須確認你的PIN碼。</string>
+  <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__add_a_profile_name">新增一個個人資料名稱</string>
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">當你開始新的對話或分享時，將顯示此內容。</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">新增個人資訊名稱</string>
+  <string name="ProfileNamesMegaphone__confirm_your_profile_name">確認你的個人資料名稱</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">你的個人資料現在可以包含可選的姓氏。</string>
+  <string name="ProfileNamesMegaphone__confirm_name">確認名稱</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">傳輸圖示</string>
   <string name="ConversationListFragment_loading">讀取中…</string>
@@ -1552,7 +1560,7 @@
   <string name="preferences_app_protection__pin">PIN 碼</string>
   <string name="preferences_app_protection__change">變更</string>
   <string name="preferences_app_protection__create">建立</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">你的PIN碼增加了多一層安全保護，並備份你的帳號。 在Signal上註冊電話號碼時，系統會要求你輸入。 如果你忘記了PIN碼，則將被鎖定7天。</string> -->
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account">你的PIN碼為你的帳號增加了一層額外的安全保護。 在Signal上註冊電話號碼時，系統會要求你輸入。 如果你忘記了PIN碼，則將被鎖定7天。</string>
   <string name="AppProtectionPreferenceFragment_none">無</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">此註冊鎖定 PIN 碼，與你剛剛接受到的 SMS 驗證碼不相同。請輸入之前在應用程式設定的 PIN 碼。</string>
   <string name="registration_activity__registration_lock_pin">註冊鎖定 PIN 碼</string>

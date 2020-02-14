@@ -320,6 +320,7 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dieses Gerät unterstützt keine Google-Play-Dienste. Antippen, um Akkuoptimierungen zu deaktivieren, die Signal daran hindern, Nachrichten im Hintergrund zu empfangen.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Teilen mit</string>
+  <string name="ShareActivity_multiple_attachments_are_only_supported">Mehrere Anhänge werden nur für Bilder und Videos unterstützt</string>
   <!--ExperienceUpgradeActivity-->
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Willkommen bei Signal</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure und RedPhone sind jetzt gemeinsam ein sicherer Messenger für jede Situation: Signal.</string>
@@ -1239,7 +1240,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__linked_devices">Gekoppelte Geräte</string>
   <string name="preferences__light_theme">Hell</string>
   <string name="preferences__dark_theme">Dunkel</string>
-  <string name="preferences__system_theme">System</string>
+  <string name="preferences__system_theme">Systemstandard</string>
   <string name="preferences__appearance">Darstellung</string>
   <string name="preferences__theme">Design</string>
   <string name="preferences__default">Standard</string>
@@ -1517,6 +1518,13 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="KbsMegaphone__update_pin">PIN aktualisieren</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Wir erinnern dich später. Das Erstellen einer PIN wird in %1$d Tagen zwingend erforderlich.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Wir erinnern dich später. Das Bestätigen deiner PIN wird in %1$d Tagen zwingend erforderlich.</string>
+  <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__add_a_profile_name">Füge einen Profilnamen hinzu</string>
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Dies wird angezeigt, wenn du eine neue Unterhaltung beginnst oder teilst.</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">Profilname hinzufügen</string>
+  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Bestätige deinen Profilnamen</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Dein Profil kann jetzt einen optionalen Nachnamen enthalten.</string>
+  <string name="ProfileNamesMegaphone__confirm_name">Name bestätigen</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Übertragungssymbol</string>
   <string name="ConversationListFragment_loading">Wird geladen …</string>
@@ -1584,7 +1592,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Ändern</string>
   <string name="preferences_app_protection__create">Erstellen</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">Deine PIN fügt deinem Konto eine weitere Sicherheitsebene hinzu und ermöglicht zudem die Wiederherstellung deines Kontos. Du wirst nach ihr gefragt, wenn du deine Rufnummer bei Signal registrierst. Falls du deine PIN vergisst, wird dein Konto für 7 Tage gesperrt.</string> -->
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account">Deine PIN fügt deinem Konto eine weitere Sicherheitsebene hinzu. Du wirst nach ihr gefragt, wenn du deine Rufnummer bei Signal registrierst. Falls du deine PIN vergisst, wird dein Konto für 7 Tage gesperrt.</string>
   <string name="AppProtectionPreferenceFragment_none">Keine</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Die PIN für die Registrierungssperre ist unabhängig vom SMS-Verifikationscode, den du gerade erhalten hast. Bitte gib die PIN ein, die du zuvor in der App festgelegt hast.</string>
   <string name="registration_activity__registration_lock_pin">PIN für Registrierungssperre</string>

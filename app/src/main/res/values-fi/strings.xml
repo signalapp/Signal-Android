@@ -320,6 +320,7 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Tämä laite ei tue Play Servicesiä. Napauta tästä ottaaksesi pois päältä virransäästöominaisuudet, jotka estävät Signalia hakemasta viestejä taustalla.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Jaa</string>
+  <string name="ShareActivity_multiple_attachments_are_only_supported">Useiden tiedostojen liittämistä tuetaan vain kuvilla ja videoilla</string>
   <!--ExperienceUpgradeActivity-->
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Tervetuloa Signaliin.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure ja RedPhone ovat yhdistyneet nyt Signaliksi: yksityiset viestit ja puhelut samassa paketissa.</string>
@@ -1244,7 +1245,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__linked_devices">Yhdistetyt laitteet</string>
   <string name="preferences__light_theme">Vaalea</string>
   <string name="preferences__dark_theme">Tumma</string>
-  <string name="preferences__system_theme">Järjestelmä</string>
+  <string name="preferences__system_theme">Järjestelmän oletus</string>
   <string name="preferences__appearance">Ulkonäkö</string>
   <string name="preferences__theme">Teema</string>
   <string name="preferences__default">Oletus</string>
@@ -1522,6 +1523,13 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="KbsMegaphone__update_pin">Päivitä PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Muistutamme sinua myöhemmin. PIN-koodin luomisesta tulee pakollinen %1$d päivän kuluttua.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Muistutamme sinua myöhemmin. PIN-koodin vahvistamisesta tulee pakollinen %1$d päivän kuluttua.</string>
+  <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__add_a_profile_name">Lisää profiilinimi</string>
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Tämä tulee näkymään, kun aloitat uuden keskustelun tai jaat sen.</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">Lisää profiilinimi</string>
+  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Vahvista profiilinimesi</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Profiilisi voi nyt sisältää valinnaisen sukunimen.</string>
+  <string name="ProfileNamesMegaphone__confirm_name">Vahvista nimi</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Tyypin kuvake</string>
   <string name="ConversationListFragment_loading">Ladataan…</string>
@@ -1589,7 +1597,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Muuta</string>
   <string name="preferences_app_protection__create">Luo</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_and_backs">PIN-koodisi lisää ylimääräisen suojaustason ja varmuuskopioi tilisi. PIN-koodia kysytään, kun rekisteröit puhelinnumerosi Signalin kanssa. Jos unohdat PIN-koodisi, sinut lukitaan tililtäsi 7 päiväksi.</string> -->
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account">PIN-koodisi lisää ylimääräisen suojaustason tilillesi. Sitä kysytään sinulta, kun rekisteröit puhelinnumerosi Signalin kanssa. Jos unohdat PIN-koodisi, sinut lukitaan tililtäsi 7 päiväksi.</string>
   <string name="AppProtectionPreferenceFragment_none">Ei mitään</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Rekisteröinnin lukituksen PIN-koodi ei ole sama kuin se vahvistustekstiviesti, jonka juuri sait. Syötä se PIN-koodi, jonka aikaisemmin asetit ohjelmassa.</string>
   <string name="registration_activity__registration_lock_pin">Rekisteröinnin lukituksen PIN-koodi</string>
