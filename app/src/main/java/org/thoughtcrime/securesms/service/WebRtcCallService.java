@@ -542,8 +542,9 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   }
 
   private void handleScreenOffChange(Intent intent) {
-    if (activePeer.getState() == CallState.ANSWERING ||
-        activePeer.getState() == CallState.LOCAL_RINGING)
+    if ((activePeer != null) &&
+        (activePeer.getState() == CallState.ANSWERING ||
+         activePeer.getState() == CallState.LOCAL_RINGING))
     {
       Log.i(TAG, "Silencing incoming ringer...");
       audioManager.silenceIncomingRinger();
