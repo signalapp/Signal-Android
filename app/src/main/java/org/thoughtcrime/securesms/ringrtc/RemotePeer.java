@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.Remote;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
@@ -17,6 +18,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
  */
 public final class RemotePeer implements Remote, Parcelable
 {
+  private static final String TAG = Log.tag(RemotePeer.class);
+
   @NonNull private final RecipientId recipientId;
   @NonNull private       CallState   callState;
   @NonNull private       CallId      callId;
@@ -98,7 +101,7 @@ public final class RemotePeer implements Remote, Parcelable
 
   public void receivedBusy() {
     if (callState != CallState.DIALING) {
-      throw new IllegalStateException("Cannot transition to RECEIVED_BUSY from state: " + callState);
+      Log.w(TAG, "RECEIVED_BUSY from unexpected state: " + callState);
     }
 
     this.callState = CallState.RECEIVED_BUSY;
