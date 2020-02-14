@@ -69,12 +69,12 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.FriendRequestHandler;
 import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
+import org.thoughtcrime.securesms.loki.LokiSessionResetImplementation;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.redesign.messaging.LokiAPIUtilities;
 import org.thoughtcrime.securesms.loki.redesign.messaging.LokiPreKeyBundleDatabase;
-import org.thoughtcrime.securesms.loki.redesign.messaging.LokiPreKeyRecordDatabase;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
@@ -101,6 +101,8 @@ import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.libsignal.loki.LokiSessionResetProtocol;
+import org.whispersystems.libsignal.loki.LokiSessionResetStatus;
 import org.whispersystems.libsignal.state.PreKeyBundle;
 import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -137,7 +139,6 @@ import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiServiceMessage;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
-import org.whispersystems.signalservice.loki.messaging.LokiThreadSessionResetStatus;
 import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
 import java.io.InputStream;
@@ -270,9 +271,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       GroupDatabase            groupDatabase            = DatabaseFactory.getGroupDatabase(context);
       SignalProtocolStore      axolotlStore             = new SignalProtocolStoreImpl(context);
       LokiThreadDatabase       lokiThreadDatabase       = DatabaseFactory.getLokiThreadDatabase(context);
-      LokiPreKeyRecordDatabase lokiPreKeyRecordDatabase = DatabaseFactory.getLokiPreKeyRecordDatabase(context);
+      LokiSessionResetProtocol lokiSessionResetProtocol = new LokiSessionResetImplementation(context);
       SignalServiceAddress     localAddress             = new SignalServiceAddress(TextSecurePreferences.getLocalNumber(context));
-      LokiServiceCipher        cipher                   = new LokiServiceCipher(localAddress, axolotlStore, lokiThreadDatabase, lokiPreKeyRecordDatabase, UnidentifiedAccessUtil.getCertificateValidator());
+      LokiServiceCipher        cipher                   = new LokiServiceCipher(localAddress, axolotlStore, lokiSessionResetProtocol, UnidentifiedAccessUtil.getCertificateValidator());
 
       SignalServiceContent content = cipher.decrypt(envelope);
 
@@ -363,6 +364,18 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
             handleNeedsDeliveryReceipt(content, message);
           }
 
+          // If we received a friend request, but we were already friends with the user, reset the session
+          if (content.isFriendRequest() && !message.isGroupMessage()) {
+            Recipient sender = Recipient.from(context, Address.fromSerialized(content.getSender()), false);
+            ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
+            long threadID = threadDatabase.getThreadIdIfExistsFor(sender);
+            if (lokiThreadDatabase.getFriendRequestStatus(threadID) == LokiThreadFriendRequestStatus.FRIENDS) {
+              resetSession(content.getSender());
+              // Let our other devices know that we have reset the session
+              MessageSender.syncContact(context, sender.getAddress());
+            }
+          }
+
           // Loki - Handle friend request logic if needed
           updateFriendRequestStatusIfNeeded(content, message);
         }
@@ -402,11 +415,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
       if (envelope.isPreKeySignalMessage()) {
         ApplicationContext.getInstance(context).getJobManager().add(new RefreshPreKeysJob());
-      }
-
-      // Loki - Handle session reset logic
-      if (!content.isFriendRequest()) {
-        cipher.handleSessionResetRequestIfNeeded(content, cipher.getSessionStatus(content));
       }
     } catch (ProtocolInvalidVersionException e) {
       Log.w(TAG, e);
@@ -540,19 +548,19 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
 
     if (threadId != null) {
-      resetSession(content.getSender(), threadId);
+      resetSession(content.getSender());
       MessageNotifier.updateNotification(context, threadId);
     }
   }
 
-  private void resetSession(String hexEncodedPublicKey, long threadId) {
+  private void resetSession(String hexEncodedPublicKey) {
       TextSecureSessionStore sessionStore = new TextSecureSessionStore(context);
       LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
 
       Log.d("Loki", "Received a session reset request from: " + hexEncodedPublicKey + "; archiving the session.");
 
       sessionStore.archiveAllSessions(hexEncodedPublicKey);
-      lokiThreadDatabase.setSessionResetStatus(threadId, LokiThreadSessionResetStatus.REQUEST_RECEIVED);
+      lokiThreadDatabase.setSessionResetStatus(hexEncodedPublicKey, LokiSessionResetStatus.REQUEST_RECEIVED);
 
       Log.d("Loki", "Sending a ping back to " + hexEncodedPublicKey + ".");
       MessageSender.sendBackgroundMessage(context, hexEncodedPublicKey);
@@ -1203,21 +1211,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     if (lokiMessage.getPreKeyBundleMessage() == null) { return; }
     int registrationID = TextSecurePreferences.getLocalRegistrationId(context);
     LokiPreKeyBundleDatabase lokiPreKeyBundleDatabase = DatabaseFactory.getLokiPreKeyBundleDatabase(context);
-    ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
-    LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
     if (registrationID <= 0) { return; }
     Log.d("Loki", "Received a pre key bundle from: " + content.getSender() + ".");
     PreKeyBundle preKeyBundle = lokiMessage.getPreKeyBundleMessage().getPreKeyBundle(registrationID);
     lokiPreKeyBundleDatabase.setPreKeyBundle(content.getSender(), preKeyBundle);
-    // If we received a friend request, but we were already friends with the user, reset the session
-    if (content.isFriendRequest()) {
-      long threadID = threadDatabase.getThreadIdIfExistsFor(sender);
-      if (lokiThreadDatabase.getFriendRequestStatus(threadID) == LokiThreadFriendRequestStatus.FRIENDS) {
-        resetSession(content.getSender(), threadID);
-        // Let our other devices know that we have reset the session
-        MessageSender.syncContact(context, sender.getAddress());
-      }
-    }
+
   }
 
   private void handleSessionRequestIfNeeded(@NonNull SignalServiceContent content) {

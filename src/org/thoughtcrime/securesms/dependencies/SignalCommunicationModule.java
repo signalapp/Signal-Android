@@ -7,7 +7,6 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.CreateProfileActivity;
 import org.thoughtcrime.securesms.DeviceListFragment;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.gcm.FcmService;
@@ -48,6 +47,7 @@ import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.LokiSessionResetImplementation;
 import org.thoughtcrime.securesms.loki.PushMessageSyncSendJob;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
 import org.thoughtcrime.securesms.push.MessageSenderEventListener;
@@ -160,7 +160,7 @@ public class SignalCommunicationModule {
                                                           DatabaseFactory.getLokiThreadDatabase(context),
                                                           DatabaseFactory.getLokiMessageDatabase(context),
                                                           DatabaseFactory.getLokiPreKeyBundleDatabase(context),
-                                                          new TextSecureSessionStore(context),
+                                                          new LokiSessionResetImplementation(context),
                                                           DatabaseFactory.getLokiUserDatabase(context),
                                                           ((ApplicationContext)context.getApplicationContext()).broadcaster);
     } else {
