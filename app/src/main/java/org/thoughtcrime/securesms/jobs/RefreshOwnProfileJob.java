@@ -121,7 +121,7 @@ public class RefreshOwnProfileJob extends BaseJob {
       return;
     }
 
-    DatabaseFactory.getRecipientDatabase(context).setUuidSupported(Recipient.self().getId(), capabilities.isUuid());
+    DatabaseFactory.getRecipientDatabase(context).setCapabilities(Recipient.self().getId(), capabilities);
   }
 
   public static final class Factory implements Job.Factory<RefreshOwnProfileJob> {

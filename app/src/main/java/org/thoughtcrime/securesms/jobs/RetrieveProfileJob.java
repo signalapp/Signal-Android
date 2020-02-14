@@ -240,7 +240,7 @@ public class RetrieveProfileJob extends BaseJob {
       return;
     }
 
-    DatabaseFactory.getRecipientDatabase(context).setUuidSupported(recipient.getId(), capabilities.isUuid());
+    DatabaseFactory.getRecipientDatabase(context).setCapabilities(recipient.getId(), capabilities);
   }
 
   public static final class Factory implements Job.Factory<RetrieveProfileJob> {

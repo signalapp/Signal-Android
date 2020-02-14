@@ -101,10 +101,17 @@ public class SignalServiceProfile {
     @JsonProperty
     private boolean uuid;
 
+    @JsonProperty
+    private boolean gv2;
+
     public Capabilities() {}
 
     public boolean isUuid() {
       return uuid;
+    }
+
+    public boolean isGv2() {
+      return gv2;
     }
   }
 

@@ -113,8 +113,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int PROFILE_KEY_CREDENTIALS          = 48;
   private static final int ATTACHMENT_FILE_INDEX            = 49;
   private static final int STORAGE_SERVICE_ACTIVE           = 50;
+  private static final int GROUPS_V2_RECIPIENT_CAPABILITY   = 51;
 
-  private static final int    DATABASE_VERSION = 50;
+  private static final int    DATABASE_VERSION = 51;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -759,6 +760,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
             db.update("recipient", values, "_id = ?", new String[] { id });
           }
         }
+      }
+
+      if (oldVersion < GROUPS_V2_RECIPIENT_CAPABILITY) {
+        db.execSQL("ALTER TABLE recipient ADD COLUMN gv2_capability INTEGER DEFAULT 0");
       }
 
       db.setTransactionSuccessful();
