@@ -64,7 +64,7 @@ public class ShareViewModel extends ViewModel {
   protected void onCleared() {
     ShareData data = shareData.getValue() != null ? shareData.getValue().orNull() : null;
 
-    if (data != null && data.isExternal() && !mediaUsed) {
+    if (data != null && data.isExternal()  && data.isForIntent() && !mediaUsed) {
       Log.i(TAG, "Clearing out unused data.");
       BlobProvider.getInstance().delete(context, data.getUri());
     }
