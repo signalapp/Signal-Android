@@ -91,7 +91,7 @@ public class RecipientDatabase extends Database {
   private static final String PROFILE_SHARING          = "profile_sharing";
   private static final String UNIDENTIFIED_ACCESS_MODE = "unidentified_access_mode";
   private static final String FORCE_SMS_SELECTION      = "force_sms_selection";
-  private static final String UUID_SUPPORTED           = "uuid_supported";
+  private static final String UUID_CAPABILITY          = "uuid_supported";
   private static final String GROUPS_V2_CAPABILITY     = "gv2_capability";
   private static final String STORAGE_SERVICE_KEY      = "storage_service_key";
   private static final String DIRTY                    = "dirty";
@@ -113,7 +113,7 @@ public class RecipientDatabase extends Database {
       PROFILE_GIVEN_NAME, PROFILE_FAMILY_NAME, SIGNAL_PROFILE_AVATAR, PROFILE_SHARING, NOTIFICATION_CHANNEL,
       UNIDENTIFIED_ACCESS_MODE,
       FORCE_SMS_SELECTION,
-      UUID_SUPPORTED, GROUPS_V2_CAPABILITY,
+      UUID_CAPABILITY, GROUPS_V2_CAPABILITY,
       STORAGE_SERVICE_KEY, DIRTY
   };
 
@@ -281,7 +281,7 @@ public class RecipientDatabase extends Database {
                                             PROFILE_SHARING          + " INTEGER DEFAULT 0, " +
                                             UNIDENTIFIED_ACCESS_MODE + " INTEGER DEFAULT 0, " +
                                             FORCE_SMS_SELECTION      + " INTEGER DEFAULT 0, " +
-                                            UUID_SUPPORTED           + " INTEGER DEFAULT 0, " +
+                                            UUID_CAPABILITY          + " INTEGER DEFAULT " + Recipient.Capability.UNKNOWN.serialize() + ", " +
                                             GROUPS_V2_CAPABILITY     + " INTEGER DEFAULT " + Recipient.Capability.UNKNOWN.serialize() + ", " +
                                             STORAGE_SERVICE_KEY      + " TEXT UNIQUE DEFAULT NULL, " +
                                             DIRTY                    + " INTEGER DEFAULT " + DirtyState.CLEAN.getId() + ");";
@@ -697,8 +697,8 @@ public class RecipientDatabase extends Database {
     String  notificationChannel        = cursor.getString(cursor.getColumnIndexOrThrow(NOTIFICATION_CHANNEL));
     int     unidentifiedAccessMode     = cursor.getInt(cursor.getColumnIndexOrThrow(UNIDENTIFIED_ACCESS_MODE));
     boolean forceSmsSelection          = cursor.getInt(cursor.getColumnIndexOrThrow(FORCE_SMS_SELECTION))  == 1;
-    boolean uuidSupported              = cursor.getInt(cursor.getColumnIndexOrThrow(UUID_SUPPORTED))       == 1;
-    int     gv2SupportedValue          = cursor.getInt(cursor.getColumnIndexOrThrow(GROUPS_V2_CAPABILITY));
+    int     uuidCapabilityValue        = cursor.getInt(cursor.getColumnIndexOrThrow(UUID_CAPABILITY));
+    int     groupsV2CapabilityValue    = cursor.getInt(cursor.getColumnIndexOrThrow(GROUPS_V2_CAPABILITY));
     String  storageKeyRaw              = cursor.getString(cursor.getColumnIndexOrThrow(STORAGE_SERVICE_KEY));
     String  identityKeyRaw             = cursor.getString(cursor.getColumnIndexOrThrow(IDENTITY_KEY));
     int     identityStatusRaw          = cursor.getInt(cursor.getColumnIndexOrThrow(IDENTITY_STATUS));
@@ -749,7 +749,8 @@ public class RecipientDatabase extends Database {
                                  ProfileName.fromParts(profileGivenName, profileFamilyName), signalProfileAvatar, profileSharing,
                                  notificationChannel, UnidentifiedAccessMode.fromMode(unidentifiedAccessMode),
                                  forceSmsSelection,
-                                 uuidSupported, Recipient.Capability.deserialize(gv2SupportedValue),
+                                 Recipient.Capability.deserialize(uuidCapabilityValue),
+                                 Recipient.Capability.deserialize(groupsV2CapabilityValue),
                                  InsightsBannerTier.fromId(insightsBannerTier),
                                  storageKey, identityKey, identityStatus);
   }
@@ -880,7 +881,7 @@ public class RecipientDatabase extends Database {
 
   public void setCapabilities(@NonNull RecipientId id, @NonNull SignalServiceProfile.Capabilities capabilities) {
     ContentValues values = new ContentValues(2);
-    values.put(UUID_SUPPORTED, capabilities.isUuid() ? "1" : "0");
+    values.put(UUID_CAPABILITY,      Recipient.Capability.fromBoolean(capabilities.isUuid()).serialize());
     values.put(GROUPS_V2_CAPABILITY, Recipient.Capability.fromBoolean(capabilities.isGv2()).serialize());
     update(id, values);
     Recipient.live(id).refresh();
@@ -1586,7 +1587,7 @@ public class RecipientDatabase extends Database {
     private final String                          notificationChannel;
     private final UnidentifiedAccessMode          unidentifiedAccessMode;
     private final boolean                         forceSmsSelection;
-    private final boolean                         uuidSupported;
+    private final Recipient.Capability            uuidCapability;
     private final Recipient.Capability            groupsV2Capability;
     private final InsightsBannerTier              insightsBannerTier;
     private final byte[]                          storageKey;
@@ -1622,7 +1623,7 @@ public class RecipientDatabase extends Database {
                       @Nullable String notificationChannel,
                       @NonNull UnidentifiedAccessMode unidentifiedAccessMode,
                       boolean forceSmsSelection,
-                      boolean uuidSupported,
+                      Recipient.Capability uuidCapability,
                       Recipient.Capability groupsV2Capability,
                       @NonNull InsightsBannerTier insightsBannerTier,
                       @Nullable byte[] storageKey,
@@ -1658,7 +1659,7 @@ public class RecipientDatabase extends Database {
       this.notificationChannel    = notificationChannel;
       this.unidentifiedAccessMode = unidentifiedAccessMode;
       this.forceSmsSelection      = forceSmsSelection;
-      this.uuidSupported          = uuidSupported;
+      this.uuidCapability         = uuidCapability;
       this.groupsV2Capability     = groupsV2Capability;
       this.insightsBannerTier     = insightsBannerTier;
       this.storageKey             = storageKey;
@@ -1786,8 +1787,8 @@ public class RecipientDatabase extends Database {
       return forceSmsSelection;
     }
 
-    public boolean isUuidSupported() {
-      return uuidSupported;
+    public Recipient.Capability getUuidCapability() {
+      return uuidCapability;
     }
 
     public Recipient.Capability getGroupsV2Capability() {

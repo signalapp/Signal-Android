@@ -90,7 +90,7 @@ public class Recipient {
   private final String                 notificationChannel;
   private final UnidentifiedAccessMode unidentifiedAccessMode;
   private final boolean                forceSmsSelection;
-  private final boolean                uuidSupported;
+  private final Capability             uuidCapability;
   private final Capability             groupsV2Capability;
   private final InsightsBannerTier     insightsBannerTier;
   private final byte[]                 storageKey;
@@ -324,7 +324,7 @@ public class Recipient {
     this.notificationChannel    = null;
     this.unidentifiedAccessMode = UnidentifiedAccessMode.DISABLED;
     this.forceSmsSelection      = false;
-    this.uuidSupported          = false;
+    this.uuidCapability         = Capability.UNKNOWN;
     this.groupsV2Capability     = Capability.UNKNOWN;
     this.storageKey             = null;
     this.identityKey            = null;
@@ -365,7 +365,7 @@ public class Recipient {
     this.notificationChannel    = details.notificationChannel;
     this.unidentifiedAccessMode = details.unidentifiedAccessMode;
     this.forceSmsSelection      = details.forceSmsSelection;
-    this.uuidSupported          = details.uuidSuported;
+    this.uuidCapability         = details.uuidCapability;
     this.groupsV2Capability     = details.groupsV2Capability;
     this.storageKey             = details.storageKey;
     this.identityKey            = details.identityKey;
@@ -686,7 +686,7 @@ public class Recipient {
     if (FeatureFlags.usernames()) {
       return true;
     } else {
-      return FeatureFlags.uuids() && uuidSupported;
+      return FeatureFlags.uuids() && uuidCapability == Capability.SUPPORTED;
     }
   }
 
