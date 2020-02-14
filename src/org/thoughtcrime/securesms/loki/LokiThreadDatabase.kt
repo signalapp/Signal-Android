@@ -10,11 +10,11 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.redesign.utilities.*
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.whispersystems.libsignal.loki.LokiSessionResetStatus
 import org.whispersystems.signalservice.internal.util.JsonUtil
 import org.whispersystems.signalservice.loki.api.LokiPublicChat
 import org.whispersystems.signalservice.loki.messaging.LokiThreadDatabaseProtocol
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
-import org.whispersystems.signalservice.loki.messaging.LokiThreadSessionResetStatus
 import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation
 
 class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiThreadDatabaseProtocol {
@@ -23,11 +23,11 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
     companion object {
         private val friendRequestTableName = "loki_thread_friend_request_database"
         private val sessionResetTableName = "loki_thread_session_reset_database"
-        public val publicChatTableName = "loki_public_chat_database"
-        public val threadID = "thread_id"
+        val publicChatTableName = "loki_public_chat_database"
+        val threadID = "thread_id"
         private val friendRequestStatus = "friend_request_status"
         private val sessionResetStatus = "session_reset_status"
-        public val publicChat = "public_chat"
+        val publicChat = "public_chat"
         @JvmStatic val createFriendRequestTableCommand = "CREATE TABLE $friendRequestTableName ($threadID INTEGER PRIMARY KEY, $friendRequestStatus INTEGER DEFAULT 0);"
         @JvmStatic val createSessionResetTableCommand = "CREATE TABLE $sessionResetTableName ($threadID INTEGER PRIMARY KEY, $sessionResetStatus INTEGER DEFAULT 0);"
         @JvmStatic val createPublicChatTableCommand = "CREATE TABLE $publicChatTableName ($threadID INTEGER PRIMARY KEY, $publicChat TEXT);"
@@ -79,19 +79,21 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
             || friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_RECEIVED
     }
 
-    override fun getSessionResetStatus(threadID: Long): LokiThreadSessionResetStatus {
+    fun getSessionResetStatus(hexEncodedPublicKey: String): LokiSessionResetStatus {
+        val threadID = getThreadID(hexEncodedPublicKey)
         val database = databaseHelper.readableDatabase
         val result = database.get(sessionResetTableName, "${Companion.threadID} = ?", arrayOf( threadID.toString() )) { cursor ->
             cursor.getInt(sessionResetStatus)
         }
         return if (result != null) {
-            LokiThreadSessionResetStatus.values().first { it.rawValue == result }
+            LokiSessionResetStatus.values().first { it.rawValue == result }
         } else {
-            LokiThreadSessionResetStatus.NONE
+            LokiSessionResetStatus.NONE
         }
     }
 
-    override fun setSessionResetStatus(threadID: Long, sessionResetStatus: LokiThreadSessionResetStatus) {
+    fun setSessionResetStatus(hexEncodedPublicKey: String, sessionResetStatus: LokiSessionResetStatus) {
+        val threadID = getThreadID(hexEncodedPublicKey)
         val database = databaseHelper.writableDatabase
         val contentValues = ContentValues(2)
         contentValues.put(Companion.threadID, threadID)
