@@ -2413,13 +2413,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         sendTextMessage(forceSms, expiresIn, subscriptionId, initiating);
       }
     } catch (RecipientFormattingException ex) {
-      Toast.makeText(ConversationActivity.this,
-                     R.string.ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation,
-                     Toast.LENGTH_LONG).show();
       Log.w(TAG, ex);
     } catch (InvalidMessageException ex) {
-      // Toast.makeText(ConversationActivity.this, R.string.ConversationActivity_message_is_empty_exclamation,
-      //                Toast.LENGTH_SHORT).show();
       Log.w(TAG, ex);
     }
   }

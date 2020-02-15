@@ -289,11 +289,11 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       } else {
         LokiSyncMessage syncMessage = null;
         if (shouldSendSyncMessage) {
-          // Set the sync message destination the primary device, this way it will show that we sent a message to the primary device and not a secondary device
-          String primaryDevice = PromiseUtil.get(LokiDeviceLinkUtilities.INSTANCE.getMasterHexEncodedPublicKey(address.getNumber()), null);
-          SignalServiceAddress primaryAddress = primaryDevice == null ? address : new SignalServiceAddress(primaryDevice);
-          // We also need to use the original message id and not -1
-          syncMessage = new LokiSyncMessage(primaryAddress, templateMessageId);
+          // Set the sync message destination to the master device, this way it will show that we sent a message to the master device and not the slave device
+          String masterDevice = PromiseUtil.get(LokiDeviceLinkUtilities.INSTANCE.getMasterHexEncodedPublicKey(address.getNumber()), null);
+          SignalServiceAddress masterAddress = masterDevice == null ? address : new SignalServiceAddress(masterDevice);
+          // We also need to use the original message ID and not -1
+          syncMessage = new LokiSyncMessage(masterAddress, templateMessageId);
         }
         return messageSender.sendMessage(messageId, address, UnidentifiedAccessUtil.getAccessFor(context, recipient), mediaMessage, Optional.fromNullable(syncMessage)).getSuccess().isUnidentified();
       }

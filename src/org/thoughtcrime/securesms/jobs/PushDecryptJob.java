@@ -283,7 +283,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         return;
       }
 
-
       if (shouldIgnore(content)) {
         Log.i(TAG, "Ignoring message.");
         return;
@@ -869,7 +868,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     // Ignore messages from ourselves
     if (sender.serialize().equalsIgnoreCase(TextSecurePreferences.getLocalNumber(context))) { return; }
 
-    IncomingMediaMessage        mediaMessage   = new IncomingMediaMessage(sender, message.getTimestamp(), -1,
+    IncomingMediaMessage mediaMessage = new IncomingMediaMessage(sender, message.getTimestamp(), -1,
        message.getExpiresInSeconds() * 1000L, false, content.isNeedsReceipt(), message.getBody(), message.getGroupInfo(), message.getAttachments(),
         quote, sharedContacts, linkPreviews, sticker);
 
@@ -913,12 +912,12 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
     }
 
-    // Loki - Run db updates in the background, we should look into fixing this in the future
+    // Loki - Run database updates in the background, we should look into fixing this in the future
     AsyncTask.execute(() -> {
       // Loki - Store message server ID
       updateGroupChatMessageServerID(messageServerIDOrNull, insertResult);
 
-      // Loki - Update mapping of message to original thread id
+      // Loki - Update mapping of message to original thread ID
       if (insertResult.isPresent()) {
         ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
         LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
@@ -1036,10 +1035,10 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
                                 @NonNull Optional<Long> messageServerIDOrNull)
       throws StorageFailedException
   {
-    SmsDatabase database  = DatabaseFactory.getSmsDatabase(context);
-    String      body      = message.getBody().isPresent() ? message.getBody().get() : "";
+    SmsDatabase database          = DatabaseFactory.getSmsDatabase(context);
+    String      body              = message.getBody().isPresent() ? message.getBody().get() : "";
     Recipient   originalRecipient = getRecipientForMessage(content, message);
-    Recipient   masterRecipient = getMasterRecipientForMessage(content, message);
+    Recipient   masterRecipient   = getMasterRecipientForMessage(content, message);
 
     if (message.getExpiresInSeconds() != originalRecipient.getExpireMessages()) {
       handleExpirationUpdate(content, message, Optional.absent());
@@ -1062,14 +1061,14 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       // Ignore messages from ourselves
       if (sender.serialize().equalsIgnoreCase(TextSecurePreferences.getLocalNumber(context))) { return; }
 
-      IncomingTextMessage _textMessage = new IncomingTextMessage(sender,
-                                                                content.getSenderDevice(),
-                                                                message.getTimestamp(), body,
-                                                                message.getGroupInfo(),
-                                                                message.getExpiresInSeconds() * 1000L,
-                                                                content.isNeedsReceipt());
+      IncomingTextMessage tm = new IncomingTextMessage(sender,
+                                                       content.getSenderDevice(),
+                                                       message.getTimestamp(), body,
+                                                       message.getGroupInfo(),
+                                                       message.getExpiresInSeconds() * 1000L,
+                                                       content.isNeedsReceipt());
 
-      IncomingEncryptedMessage textMessage = new IncomingEncryptedMessage(_textMessage, body);
+      IncomingEncryptedMessage textMessage = new IncomingEncryptedMessage(tm, body);
 
       // Ignore the message if the body is empty
       if (textMessage.getMessageBody().length() == 0) { return; }
@@ -1087,7 +1086,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         MessageNotifier.updateNotification(context, threadId);
       }
 
-      // Loki - Run db updates in background, we should look into fixing this in the future
+      // Loki - Run database updates in background, we should look into fixing this in the future
       AsyncTask.execute(() -> {
         if (insertResult.isPresent()) {
           InsertResult result = insertResult.get();
@@ -1098,7 +1097,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           // Loki - Store message server ID
           updateGroupChatMessageServerID(messageServerIDOrNull, insertResult);
 
-          // Loki - Update mapping of message to original thread id
+          // Loki - Update mapping of message to original thread ID
           if (result.getMessageId() > -1) {
             ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
             LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
