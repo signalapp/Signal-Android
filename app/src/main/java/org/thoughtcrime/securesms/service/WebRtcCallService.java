@@ -456,7 +456,9 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       lockManager.updatePhoneState(getInCallPhoneState());
     }
 
-    sendMessage(viewModelStateFor(activePeer), activePeer, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
+    if (activePeer != null) {
+      sendMessage(viewModelStateFor(activePeer), activePeer, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
+    }
   }
 
   private void handleSetBluetoothAudio(Intent intent) {
@@ -475,7 +477,9 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       lockManager.updatePhoneState(getInCallPhoneState());
     }
 
-    sendMessage(viewModelStateFor(activePeer), activePeer, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
+    if (activePeer != null) {
+      sendMessage(viewModelStateFor(activePeer), activePeer, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
+    }
   }
 
   private void handleSetMuteAudio(Intent intent) {
