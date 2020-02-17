@@ -14,7 +14,6 @@ import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
@@ -30,7 +29,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
-import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
+import org.whispersystems.signalservice.loki.api.LokiDeviceLinkUtilities;
 import org.whispersystems.signalservice.loki.messaging.LokiSyncMessage;
 import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
@@ -201,7 +200,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
   {
     try {
       // rotateSenderCertificateIfNecessary();
-      Recipient              recipient = Recipient.from(context, destination, false);
+      Recipient                        recipient          = Recipient.from(context, destination, false);
       SignalServiceAddress             address            = getPushAddress(recipient.getAddress());
       Optional<byte[]>                 profileKey         = getProfileKey(recipient);
       Optional<UnidentifiedAccessPair> unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, recipient);
@@ -236,11 +235,11 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
       } else {
         LokiSyncMessage syncMessage = null;
         if (shouldSendSyncMessage) {
-          // Set the sync message destination to the primary device, this way it will show that we sent a message to the primary device and not a secondary device
-          String primaryDevice = PromiseUtil.get(LokiStorageAPI.shared.getPrimaryDevicePublicKey(address.getNumber()), null);
-          SignalServiceAddress primaryAddress = primaryDevice == null ? address : new SignalServiceAddress(primaryDevice);
-          // We also need to use the original message id and not -1
-          syncMessage = new LokiSyncMessage(primaryAddress, templateMessageId);
+          // Set the sync message destination to the master device, this way it will show that we sent a message to the master device and not the slave device
+          String masterDevice = PromiseUtil.get(LokiDeviceLinkUtilities.INSTANCE.getMasterHexEncodedPublicKey(address.getNumber()), null);
+          SignalServiceAddress masterAddress = masterDevice == null ? address : new SignalServiceAddress(masterDevice);
+          // We also need to use the original message ID and not -1
+          syncMessage = new LokiSyncMessage(masterAddress, templateMessageId);
         }
         return messageSender.sendMessage(messageId, address, unidentifiedAccess, textSecureMessage, Optional.fromNullable(syncMessage)).getSuccess().isUnidentified();
       }

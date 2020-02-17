@@ -6,7 +6,7 @@ import org.thoughtcrime.securesms.devicelist.Device
 import org.thoughtcrime.securesms.loki.redesign.utilities.MnemonicUtilities
 import org.thoughtcrime.securesms.util.AsyncLoader
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.loki.api.LokiStorageAPI
+import org.whispersystems.signalservice.loki.api.LokiDeviceLinkUtilities
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
 import java.io.File
 
@@ -20,7 +20,7 @@ class LinkedDevicesLoader(context: Context) : AsyncLoader<List<Device>>(context)
     override fun loadInBackground(): List<Device>? {
         try {
             val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
-            val slaveDeviceHexEncodedPublicKeys = LokiStorageAPI.shared.getSecondaryDevicePublicKeys(userHexEncodedPublicKey).get()
+            val slaveDeviceHexEncodedPublicKeys = LokiDeviceLinkUtilities.getSlaveHexEncodedPublicKeys(userHexEncodedPublicKey).get()
             return slaveDeviceHexEncodedPublicKeys.map { hexEncodedPublicKey ->
                 val shortID = MnemonicUtilities.getFirst3Words(mnemonicCodec, hexEncodedPublicKey)
                 val name = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(hexEncodedPublicKey)

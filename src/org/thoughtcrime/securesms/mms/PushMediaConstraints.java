@@ -3,13 +3,12 @@ package org.thoughtcrime.securesms.mms;
 import android.content.Context;
 
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.signalservice.loki.api.LokiFileServerAPI;
 
 public class PushMediaConstraints extends MediaConstraints {
 
   private static final int MAX_IMAGE_DIMEN_LOWMEM = 768;
   private static final int MAX_IMAGE_DIMEN        = 4096;
-  private static final int KB                     = 1024;
-  private static final int MB                     = 1024 * KB;
 
   @Override
   public int getImageMaxWidth(Context context) {
@@ -23,26 +22,26 @@ public class PushMediaConstraints extends MediaConstraints {
 
   @Override
   public int getImageMaxSize(Context context) {
-    return 6 * MB;
+    return LokiFileServerAPI.Companion.getMaxFileSize();
   }
 
   @Override
   public int getGifMaxSize(Context context) {
-    return 25 * MB;
+    return LokiFileServerAPI.Companion.getMaxFileSize();
   }
 
   @Override
   public int getVideoMaxSize(Context context) {
-    return 100 * MB;
+    return LokiFileServerAPI.Companion.getMaxFileSize();
   }
 
   @Override
   public int getAudioMaxSize(Context context) {
-    return 100 * MB;
+    return LokiFileServerAPI.Companion.getMaxFileSize();
   }
 
   @Override
   public int getDocumentMaxSize(Context context) {
-    return 100 * MB;
+    return LokiFileServerAPI.Companion.getMaxFileSize();
   }
 }

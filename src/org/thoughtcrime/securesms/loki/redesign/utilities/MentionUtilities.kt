@@ -53,7 +53,7 @@ object MentionUtilities {
             }
         }
         val result = SpannableString(text)
-        val userLinkedDeviceHexEncodedPublicKeys = DatabaseFactory.getLokiAPIDatabase(context).getPairingAuthorisations(userHexEncodedPublicKey).flatMap { listOf( it.primaryDevicePublicKey, it.secondaryDevicePublicKey ) }.toMutableSet()
+        val userLinkedDeviceHexEncodedPublicKeys = DatabaseFactory.getLokiAPIDatabase(context).getDeviceLinks(userHexEncodedPublicKey).flatMap { listOf( it.masterHexEncodedPublicKey, it.slaveHexEncodedPublicKey ) }.toMutableSet()
         userLinkedDeviceHexEncodedPublicKeys.add(userHexEncodedPublicKey)
         for (mention in mentions) {
             if (!userLinkedDeviceHexEncodedPublicKeys.contains(mention.second)) { continue }

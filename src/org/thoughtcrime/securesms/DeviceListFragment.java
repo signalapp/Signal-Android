@@ -190,7 +190,7 @@ public class DeviceListFragment extends ListFragment
   private void updateAddDeviceButtonVisibility() {
     if (addDeviceButton != null) {
       String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(getContext());
-      boolean isDeviceLinkingEnabled = DatabaseFactory.getLokiAPIDatabase(getContext()).getPairingAuthorisations(userHexEncodedPublicKey).isEmpty();
+      boolean isDeviceLinkingEnabled = DatabaseFactory.getLokiAPIDatabase(getContext()).getDeviceLinks(userHexEncodedPublicKey).isEmpty();
       addDeviceButton.setVisibility(isDeviceLinkingEnabled ? View.VISIBLE : View.INVISIBLE);
     }
   }

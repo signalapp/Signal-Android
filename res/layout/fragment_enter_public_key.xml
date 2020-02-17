@@ -30,7 +30,7 @@
         android:textAlignment="center"
         android:text="Users can share their Session ID by going into their account settings and tapping &quot;Share Session ID&quot;, or by sharing their QR code." />
     
-    <org.thoughtcrime.securesms.loki.redesign.views.SeparatorView
+    <org.thoughtcrime.securesms.loki.redesign.views.LabeledSeparatorView
         android:id="@+id/separatorView"
         android:layout_width="match_parent"
         android:layout_height="32dp"

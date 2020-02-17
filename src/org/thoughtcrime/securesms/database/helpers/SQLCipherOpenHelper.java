@@ -135,7 +135,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiAPIDatabase.getCreateGroupChatAuthTokenTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateLastMessageServerIDTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateLastDeletionServerIDTableCommand());
-    db.execSQL(LokiAPIDatabase.getCreatePairingAuthorisationTableCommand());
+    db.execSQL(LokiAPIDatabase.getCreateDeviceLinkTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateUserCountTableCommand());
     db.execSQL(LokiPreKeyBundleDatabase.getCreateTableCommand());
     db.execSQL(LokiPreKeyRecordDatabase.getCreateTableCommand());
@@ -518,7 +518,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       }
 
       if (oldVersion < lokiV3) {
-        db.execSQL(LokiAPIDatabase.getCreatePairingAuthorisationTableCommand());
+        db.execSQL(LokiAPIDatabase.getCreateDeviceLinkTableCommand());
         db.execSQL(LokiThreadDatabase.getCreatePublicChatTableCommand());
 
         db.execSQL("ALTER TABLE groups ADD COLUMN avatar_url TEXT");

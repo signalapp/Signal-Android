@@ -10,8 +10,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.BaseJob
 import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.whispersystems.libsignal.util.guava.Optional
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.internal.util.JsonUtil
@@ -99,7 +97,7 @@ class PushBackgroundMessageSendJob private constructor(
     }
 
     if (message.get("sessionRestore", false)) {
-      dataMessage.asSessionRestore(true)
+      dataMessage.asSessionRestorationRequest(true)
     }
 
     if (message.get("sessionRequest", false)) {

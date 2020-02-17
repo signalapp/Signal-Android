@@ -7,9 +7,9 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.redesign.utilities.*
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.whispersystems.signalservice.loki.api.DeviceLink
 import org.whispersystems.signalservice.loki.api.LokiAPIDatabaseProtocol
 import org.whispersystems.signalservice.loki.api.LokiAPITarget
-import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 
 // TODO: Clean this up a bit
 
@@ -48,14 +48,14 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         private val lastDeletionServerIDCacheIndex = "loki_api_last_deletion_server_id_cache_index"
         private val lastDeletionServerID = "last_deletion_server_id"
         @JvmStatic val createLastDeletionServerIDTableCommand = "CREATE TABLE $lastDeletionServerIDCache ($lastDeletionServerIDCacheIndex STRING PRIMARY KEY, $lastDeletionServerID INTEGER DEFAULT 0);"
-        // Pairing authorisation cache
-        private val pairingAuthorisationCache = "loki_pairing_authorisation_cache"
-        private val primaryDevicePublicKey = "primary_device"
-        private val secondaryDevicePublicKey = "secondary_device"
+        // Device link cache
+        private val deviceLinkCache = "loki_pairing_authorisation_cache"
+        private val masterHexEncodedPublicKey = "primary_device"
+        private val slaveHexEncodedPublicKey = "secondary_device"
         private val requestSignature = "request_signature"
-        private val grantSignature = "grant_signature"
-        @JvmStatic val createPairingAuthorisationTableCommand = "CREATE TABLE $pairingAuthorisationCache ($primaryDevicePublicKey TEXT, $secondaryDevicePublicKey TEXT, " +
-            "$requestSignature TEXT NULLABLE DEFAULT NULL, $grantSignature TEXT NULLABLE DEFAULT NULL, PRIMARY KEY ($primaryDevicePublicKey, $secondaryDevicePublicKey));"
+        private val authorizationSignature = "grant_signature"
+        @JvmStatic val createDeviceLinkTableCommand = "CREATE TABLE $deviceLinkCache ($masterHexEncodedPublicKey TEXT, $slaveHexEncodedPublicKey TEXT, " +
+            "$requestSignature TEXT NULLABLE DEFAULT NULL, $authorizationSignature TEXT NULLABLE DEFAULT NULL, PRIMARY KEY ($masterHexEncodedPublicKey, $slaveHexEncodedPublicKey));"
         // User count cache
         private val userCountCache = "loki_user_count_cache"
         private val publicChatID = "public_chat_id"
@@ -179,35 +179,35 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         database.delete(lastDeletionServerIDCache,"$lastDeletionServerIDCacheIndex = ?", wrap(index))
     }
 
-    override fun getPairingAuthorisations(hexEncodedPublicKey: String): List<PairingAuthorisation> {
+    override fun getDeviceLinks(hexEncodedPublicKey: String): Set<DeviceLink> {
         val database = databaseHelper.readableDatabase
-        return database.getAll(pairingAuthorisationCache, "$primaryDevicePublicKey = ? OR $secondaryDevicePublicKey = ?", arrayOf( hexEncodedPublicKey, hexEncodedPublicKey )) { cursor ->
-            val primaryDevicePubKey = cursor.getString(primaryDevicePublicKey)
-            val secondaryDevicePubKey = cursor.getString(secondaryDevicePublicKey)
+        return database.getAll(deviceLinkCache, "$masterHexEncodedPublicKey = ? OR $slaveHexEncodedPublicKey = ?", arrayOf( hexEncodedPublicKey, hexEncodedPublicKey )) { cursor ->
+            val masterHexEncodedPublicKey = cursor.getString(masterHexEncodedPublicKey)
+            val slaveHexEncodedPublicKey = cursor.getString(slaveHexEncodedPublicKey)
             val requestSignature: ByteArray? = if (cursor.isNull(cursor.getColumnIndexOrThrow(requestSignature))) null else cursor.getBase64EncodedData(requestSignature)
-            val grantSignature: ByteArray? = if (cursor.isNull(cursor.getColumnIndexOrThrow(grantSignature))) null else cursor.getBase64EncodedData(grantSignature)
-            PairingAuthorisation(primaryDevicePubKey, secondaryDevicePubKey, requestSignature, grantSignature)
-        }
+            val authorizationSignature: ByteArray? = if (cursor.isNull(cursor.getColumnIndexOrThrow(authorizationSignature))) null else cursor.getBase64EncodedData(authorizationSignature)
+            DeviceLink(masterHexEncodedPublicKey, slaveHexEncodedPublicKey, requestSignature, authorizationSignature)
+        }.toSet()
     }
 
-    override fun insertOrUpdatePairingAuthorisation(authorisation: PairingAuthorisation) {
+    override fun clearDeviceLinks(hexEncodedPublicKey: String) {
+        val database = databaseHelper.writableDatabase
+        database.delete(deviceLinkCache, "$masterHexEncodedPublicKey = ? OR $slaveHexEncodedPublicKey = ?", arrayOf( hexEncodedPublicKey, hexEncodedPublicKey ))
+    }
+
+    override fun addDeviceLink(deviceLink: DeviceLink) {
         val database = databaseHelper.writableDatabase
         val values = ContentValues()
-        values.put(primaryDevicePublicKey, authorisation.primaryDevicePublicKey)
-        values.put(secondaryDevicePublicKey, authorisation.secondaryDevicePublicKey)
-        if (authorisation.requestSignature != null) { values.put(requestSignature, Base64.encodeBytes(authorisation.requestSignature)) }
-        if (authorisation.grantSignature != null) { values.put(grantSignature, Base64.encodeBytes(authorisation.grantSignature)) }
-        database.insertOrUpdate(pairingAuthorisationCache, values, "$primaryDevicePublicKey = ? AND $secondaryDevicePublicKey = ?", arrayOf( authorisation.primaryDevicePublicKey, authorisation.secondaryDevicePublicKey ))
+        values.put(masterHexEncodedPublicKey, deviceLink.masterHexEncodedPublicKey)
+        values.put(slaveHexEncodedPublicKey, deviceLink.slaveHexEncodedPublicKey)
+        if (deviceLink.requestSignature != null) { values.put(requestSignature, Base64.encodeBytes(deviceLink.requestSignature)) }
+        if (deviceLink.authorizationSignature != null) { values.put(authorizationSignature, Base64.encodeBytes(deviceLink.authorizationSignature)) }
+        database.insertOrUpdate(deviceLinkCache, values, "$masterHexEncodedPublicKey = ? AND $slaveHexEncodedPublicKey = ?", arrayOf( deviceLink.masterHexEncodedPublicKey, deviceLink.slaveHexEncodedPublicKey ))
     }
 
-    override fun removePairingAuthorisations(hexEncodedPublicKey: String) {
+    override fun removeDeviceLink(deviceLink: DeviceLink) {
         val database = databaseHelper.writableDatabase
-        database.delete(pairingAuthorisationCache, "$primaryDevicePublicKey = ? OR $secondaryDevicePublicKey = ?", arrayOf( hexEncodedPublicKey, hexEncodedPublicKey ))
-    }
-
-    fun removePairingAuthorisation(primaryDevicePublicKey: String, secondaryDevicePublicKey: String) {
-        val database = databaseHelper.writableDatabase
-        database.delete(pairingAuthorisationCache, "${Companion.primaryDevicePublicKey} = ? OR ${Companion.secondaryDevicePublicKey} = ?", arrayOf( primaryDevicePublicKey, secondaryDevicePublicKey ))
+        database.delete(deviceLinkCache, "$masterHexEncodedPublicKey = ? OR $slaveHexEncodedPublicKey = ?", arrayOf( deviceLink.masterHexEncodedPublicKey, deviceLink.slaveHexEncodedPublicKey ))
     }
 
     fun getUserCount(group: Long, server: String): Int? {

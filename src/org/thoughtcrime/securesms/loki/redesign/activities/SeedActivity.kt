@@ -9,7 +9,7 @@ import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.widget.LinearLayout
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_seed_v2.*
+import kotlinx.android.synthetic.main.activity_seed.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
@@ -33,7 +33,7 @@ class SeedActivity : BaseActionBarActivity() {
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_seed_v2)
+        setContentView(R.layout.activity_seed)
         supportActionBar!!.title = "Your Recovery Phrase"
         val seedReminderViewTitle = SpannableString("You're almost finished! 90%")
         seedReminderViewTitle.setSpan(ForegroundColorSpan(resources.getColorWithID(R.color.accent, theme)), 24, 27, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)

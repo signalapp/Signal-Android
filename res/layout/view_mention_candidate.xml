@@ -23,7 +23,7 @@
             android:id="@+id/moderatorIconImageView"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:src="@drawable/icon_crown"
+            android:src="@drawable/ic_crown"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true" />
 

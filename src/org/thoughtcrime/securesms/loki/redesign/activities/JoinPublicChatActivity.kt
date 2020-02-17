@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
+import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.redesign.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.redesign.fragments.ScanQRCodeWrapperFragmentDelegate
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -72,6 +73,8 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
         val displayName = TextSecurePreferences.getProfileName(this)
         val lokiPublicChatAPI = application.lokiPublicChatAPI!!
         application.lokiPublicChatManager.addChat(url, channel).successUi {
+            DatabaseFactory.getLokiAPIDatabase(this).removeLastMessageServerID(channel, url)
+            DatabaseFactory.getLokiAPIDatabase(this).removeLastDeletionServerID(channel, url)
             lokiPublicChatAPI.getMessages(channel, url)
             lokiPublicChatAPI.setDisplayName(displayName, url)
             lokiPublicChatAPI.join(channel, url)
@@ -133,7 +136,10 @@ class EnterChatURLFragment : Fragment() {
     private fun joinPublicChatIfPossible() {
         val inputMethodManager = context!!.getSystemService(BaseActionBarActivity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(chatURLEditText.windowToken, 0)
-        val chatURL = chatURLEditText.text.trim().toString().toLowerCase().replace("http://", "https://")
+        var chatURL = chatURLEditText.text.trim().toString().toLowerCase().replace("http://", "https://")
+        if (!chatURL.toLowerCase().startsWith("https")) {
+            chatURL = "https://$chatURL"
+        }
         (activity!! as JoinPublicChatActivity).joinPublicChatIfPossible(chatURL)
     }
 }

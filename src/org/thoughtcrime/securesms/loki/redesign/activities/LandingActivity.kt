@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.loki.redesign.dialogs.LinkDeviceSlaveModeDialo
 import org.thoughtcrime.securesms.loki.redesign.utilities.push
 import org.thoughtcrime.securesms.loki.redesign.utilities.setUpActionBarSessionLogo
 import org.thoughtcrime.securesms.loki.redesign.utilities.show
-import org.thoughtcrime.securesms.loki.sendPairingAuthorisationMessage
+import org.thoughtcrime.securesms.loki.sendDeviceLinkMessage
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.Hex
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -26,7 +26,8 @@ import org.whispersystems.curve25519.Curve25519
 import org.whispersystems.libsignal.ecc.Curve
 import org.whispersystems.libsignal.ecc.ECKeyPair
 import org.whispersystems.libsignal.util.KeyHelper
-import org.whispersystems.signalservice.loki.api.PairingAuthorisation
+import org.whispersystems.signalservice.loki.api.DeviceLink
+import org.whispersystems.signalservice.loki.api.LokiFileServerAPI
 import org.whispersystems.signalservice.loki.utilities.hexEncodedPublicKey
 import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
 
@@ -92,11 +93,11 @@ class LandingActivity : BaseActionBarActivity(), LinkDeviceSlaveModeDialogDelega
         TextSecurePreferences.setLocalNumber(this, userHexEncodedPublicKey)
         TextSecurePreferences.setHasSeenWelcomeScreen(this, true)
         TextSecurePreferences.setPromptedPushRegistration(this, true)
-        val authorisation = PairingAuthorisation(hexEncodedPublicKey, userHexEncodedPublicKey).sign(PairingAuthorisation.Type.REQUEST, keyPair!!.privateKey.serialize())
-        if (authorisation == null) {
+        val deviceLink = DeviceLink(hexEncodedPublicKey, userHexEncodedPublicKey).sign(DeviceLink.Type.REQUEST, keyPair!!.privateKey.serialize())
+        if (deviceLink == null) {
             Log.d("Loki", "Failed to sign device link request.")
             reset()
-            return Toast.makeText(application, "Couldn't link device.", Toast.LENGTH_SHORT).show()
+            return Toast.makeText(application, "Couldn't link device.", Toast.LENGTH_LONG).show()
         }
         val application = ApplicationContext.getInstance(this)
         application.startLongPollingIfNeeded()
@@ -107,13 +108,14 @@ class LandingActivity : BaseActionBarActivity(), LinkDeviceSlaveModeDialogDelega
         linkDeviceDialog.show(supportFragmentManager, "Link Device Dialog")
         AsyncTask.execute {
             retryIfNeeded(8) {
-                sendPairingAuthorisationMessage(this@LandingActivity, authorisation.primaryDevicePublicKey, authorisation)
+                sendDeviceLinkMessage(this@LandingActivity, deviceLink.masterHexEncodedPublicKey, deviceLink)
             }
         }
     }
 
-    override fun onDeviceLinkRequestAuthorized(authorization: PairingAuthorisation) {
-        TextSecurePreferences.setMasterHexEncodedPublicKey(this, authorization.primaryDevicePublicKey)
+    override fun onDeviceLinkRequestAuthorized(deviceLink: DeviceLink) {
+        LokiFileServerAPI.shared.addDeviceLink(deviceLink)
+        TextSecurePreferences.setMasterHexEncodedPublicKey(this, deviceLink.masterHexEncodedPublicKey)
         val intent = Intent(this, HomeActivity::class.java)
         show(intent)
         finish()

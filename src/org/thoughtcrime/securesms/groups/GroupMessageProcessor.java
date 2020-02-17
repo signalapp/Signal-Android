@@ -36,7 +36,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup.Type;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
+import org.whispersystems.signalservice.loki.api.LokiDeviceLinkUtilities;
 import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
 import java.util.Collections;
@@ -318,7 +318,7 @@ public class GroupMessageProcessor {
     try {
       String masterHexEncodedPublicKey = hexEncodedPublicKey.equalsIgnoreCase(ourPublicKey)
               ? TextSecurePreferences.getMasterHexEncodedPublicKey(context)
-              : PromiseUtil.timeout(LokiStorageAPI.shared.getPrimaryDevicePublicKey(hexEncodedPublicKey), 5000).get();
+              : PromiseUtil.timeout(LokiDeviceLinkUtilities.INSTANCE.getMasterHexEncodedPublicKey(hexEncodedPublicKey), 5000).get();
       return masterHexEncodedPublicKey != null ? masterHexEncodedPublicKey : hexEncodedPublicKey;
     } catch (Exception e) {
       return hexEncodedPublicKey;
@@ -329,7 +329,7 @@ public class GroupMessageProcessor {
     String ourNumber = TextSecurePreferences.getLocalNumber(context);
     for (String member : members) {
       // Make sure we have session with all of the members secondary devices
-      LokiStorageAPI.shared.getAllDevicePublicKeys(member).success(devices -> {
+      LokiDeviceLinkUtilities.INSTANCE.getAllLinkedDeviceHexEncodedPublicKeys(member).success(devices -> {
         if (devices.contains(ourNumber)) { return Unit.INSTANCE; }
         for (String device : devices) {
           SignalProtocolAddress protocolAddress = new SignalProtocolAddress(device, SignalServiceAddress.DEFAULT_DEVICE_ID);

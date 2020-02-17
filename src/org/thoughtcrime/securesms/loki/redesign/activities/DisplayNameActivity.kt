@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_display_name_v2.*
+import kotlinx.android.synthetic.main.activity_display_name.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
@@ -19,7 +19,7 @@ class DisplayNameActivity : BaseActionBarActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setUpActionBarSessionLogo()
-        setContentView(R.layout.activity_display_name_v2)
+        setContentView(R.layout.activity_display_name)
         displayNameEditText.imeOptions = displayNameEditText.imeOptions or 16777216 // Always use incognito keyboard
         registerButton.setOnClickListener { register() }
     }

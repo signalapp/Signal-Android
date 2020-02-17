@@ -68,13 +68,13 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.FriendRequestHandler;
-import org.thoughtcrime.securesms.loki.redesign.messaging.LokiAPIUtilities;
 import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
-import org.thoughtcrime.securesms.loki.redesign.messaging.LokiPreKeyBundleDatabase;
-import org.thoughtcrime.securesms.loki.redesign.messaging.LokiPreKeyRecordDatabase;
+import org.thoughtcrime.securesms.loki.LokiSessionResetImplementation;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
+import org.thoughtcrime.securesms.loki.redesign.messaging.LokiAPIUtilities;
+import org.thoughtcrime.securesms.loki.redesign.messaging.LokiPreKeyBundleDatabase;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
@@ -101,6 +101,8 @@ import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.libsignal.loki.LokiSessionResetProtocol;
+import org.whispersystems.libsignal.loki.LokiSessionResetStatus;
 import org.whispersystems.libsignal.state.PreKeyBundle;
 import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -129,15 +131,14 @@ import org.whispersystems.signalservice.api.messages.multidevice.StickerPackOper
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.loki.api.DeviceLink;
 import org.whispersystems.signalservice.loki.api.DeviceLinkingSession;
 import org.whispersystems.signalservice.loki.api.LokiAPI;
-import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
-import org.whispersystems.signalservice.loki.api.PairingAuthorisation;
+import org.whispersystems.signalservice.loki.api.LokiDeviceLinkUtilities;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiServiceMessage;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
-import org.whispersystems.signalservice.loki.messaging.LokiThreadSessionResetStatus;
 import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
 import java.io.InputStream;
@@ -270,9 +271,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       GroupDatabase            groupDatabase            = DatabaseFactory.getGroupDatabase(context);
       SignalProtocolStore      axolotlStore             = new SignalProtocolStoreImpl(context);
       LokiThreadDatabase       lokiThreadDatabase       = DatabaseFactory.getLokiThreadDatabase(context);
-      LokiPreKeyRecordDatabase lokiPreKeyRecordDatabase = DatabaseFactory.getLokiPreKeyRecordDatabase(context);
+      LokiSessionResetProtocol lokiSessionResetProtocol = new LokiSessionResetImplementation(context);
       SignalServiceAddress     localAddress             = new SignalServiceAddress(TextSecurePreferences.getLocalNumber(context));
-      LokiServiceCipher        cipher                   = new LokiServiceCipher(localAddress, axolotlStore, lokiThreadDatabase, lokiPreKeyRecordDatabase, UnidentifiedAccessUtil.getCertificateValidator());
+      LokiServiceCipher        cipher                   = new LokiServiceCipher(localAddress, axolotlStore, lokiSessionResetProtocol, UnidentifiedAccessUtil.getCertificateValidator());
 
       SignalServiceContent content = cipher.decrypt(envelope);
 
@@ -282,21 +283,21 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         return;
       }
 
-
       if (shouldIgnore(content)) {
         Log.i(TAG, "Ignoring message.");
         return;
       }
 
       // Loki - Handle friend request acceptance if needed
-      acceptFriendRequestIfNeeded(content);
+      if (!content.isFriendRequest() && !isGroupChatMessage(content)) {
+        becomeFriendsWithContactIfNeeded(content.getSender(), true, false);
+      }
 
-      // Loki - Session requests
+      // Loki - Handle session request if needed
       handleSessionRequestIfNeeded(content);
 
-      // Loki - Store pre key bundle
-      // We shouldn't store it if it's a pairing message
-      if (!content.getPairingAuthorisation().isPresent()) {
+      // Loki - Store pre key bundle if needed
+      if (!content.getDeviceLink().isPresent()) {
         storePreKeyBundleIfNeeded(content);
       }
 
@@ -310,35 +311,35 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       // Loki - Store the sender display name if needed
       Optional<String> rawSenderDisplayName = content.senderDisplayName;
       if (rawSenderDisplayName.isPresent() && rawSenderDisplayName.get().length() > 0) {
-        // If we got a name from our primary device then we set our profile name to match it
-        String ourPrimaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
-        if (ourPrimaryDevice != null && content.getSender().equals(ourPrimaryDevice)) {
+        // If we got a name from our master device then set our display name to match
+        String ourMasterDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+        if (ourMasterDevice != null && content.getSender().equals(ourMasterDevice)) {
           TextSecurePreferences.setProfileName(context, rawSenderDisplayName.get());
         }
 
         // If we receive a message from our device then don't set the display name in the database (as we probably have a alias set for them)
-        MultiDeviceUtilities.isOneOfOurDevices(context, Address.fromSerialized(content.getSender())).success(isOneOfOurDevice -> {
-          if (!isOneOfOurDevice) { setDisplayName(content.getSender(), rawSenderDisplayName.get()); }
+        MultiDeviceUtilities.isOneOfOurDevices(context, Address.fromSerialized(content.getSender())).success( isOneOfOurDevices -> {
+          if (!isOneOfOurDevices) { setDisplayName(content.getSender(), rawSenderDisplayName.get()); }
           return Unit.INSTANCE;
         });
       }
 
-      if (content.getPairingAuthorisation().isPresent()) {
-        handlePairingMessage(content.getPairingAuthorisation().get(), content);
+      if (content.getDeviceLink().isPresent()) {
+        handleDeviceLinkMessage(content.getDeviceLink().get(), content);
       } else if (content.getDataMessage().isPresent()) {
         SignalServiceDataMessage message        = content.getDataMessage().get();
         boolean                  isMediaMessage = message.getAttachments().isPresent() || message.getQuote().isPresent() || message.getSharedContacts().isPresent() || message.getPreviews().isPresent() || message.getSticker().isPresent();
 
-        if (!content.isFriendRequest() && message.isUnpairingRequest()) {
-          // Make sure we got the request from our primary device
-          String ourPrimaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
-          if (ourPrimaryDevice != null && ourPrimaryDevice.equals(content.getSender())) {
+        if (!content.isFriendRequest() && message.isUnlinkingRequest()) {
+          // Make sure we got the request from our master device
+          String ourMasterDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+          if (ourMasterDevice != null && ourMasterDevice.equals(content.getSender())) {
             TextSecurePreferences.setDatabaseResetFromUnpair(context, true);
-            MultiDeviceUtilities.checkForRevocation(context);
+            MultiDeviceUtilities.checkIsRevokedSlaveDevice(context);
           }
         } else {
           // Loki - Don't process session restore message any further
-          if (message.isSessionRestore() || message.isSessionRequest()) { return; }
+          if (message.isSessionRestorationRequest() || message.isSessionRequest()) { return; }
 
           if (message.isEndSession()) handleEndSessionMessage(content, smsMessageId);
           else if (message.isGroupUpdate()) handleGroupMessage(content, message, smsMessageId);
@@ -362,6 +363,18 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
             handleNeedsDeliveryReceipt(content, message);
           }
 
+          // If we received a friend request, but we were already friends with the user, reset the session
+          if (content.isFriendRequest() && !message.isGroupMessage()) {
+            Recipient sender = Recipient.from(context, Address.fromSerialized(content.getSender()), false);
+            ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
+            long threadID = threadDatabase.getThreadIdIfExistsFor(sender);
+            if (lokiThreadDatabase.getFriendRequestStatus(threadID) == LokiThreadFriendRequestStatus.FRIENDS) {
+              resetSession(content.getSender());
+              // Let our other devices know that we have reset the session
+              MessageSender.syncContact(context, sender.getAddress());
+            }
+          }
+
           // Loki - Handle friend request logic if needed
           updateFriendRequestStatusIfNeeded(content, message);
         }
@@ -375,7 +388,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         else if (syncMessage.getRead().isPresent())                  handleSynchronizeReadMessage(syncMessage.getRead().get(), content.getTimestamp());
         else if (syncMessage.getVerified().isPresent())              handleSynchronizeVerifiedMessage(syncMessage.getVerified().get());
         else if (syncMessage.getStickerPackOperations().isPresent()) handleSynchronizeStickerPackOperation(syncMessage.getStickerPackOperations().get());
-        else if (syncMessage.getContacts().isPresent())              handleSynchronizeContactMessage(syncMessage.getContacts().get());
+        else if (syncMessage.getContacts().isPresent())              handleContactSyncMessage(syncMessage.getContacts().get());
         else                                                         Log.w(TAG, "Contains no known sync types...");
       } else if (content.getCallMessage().isPresent()) {
         Log.i(TAG, "Got call message...");
@@ -401,11 +414,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
       if (envelope.isPreKeySignalMessage()) {
         ApplicationContext.getInstance(context).getJobManager().add(new RefreshPreKeysJob());
-      }
-
-      // Loki - Handle session reset logic
-      if (!content.isFriendRequest()) {
-        cipher.handleSessionResetRequestIfNeeded(content, cipher.getSessionStatus(content));
       }
     } catch (ProtocolInvalidVersionException e) {
       Log.w(TAG, e);
@@ -539,19 +547,19 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
 
     if (threadId != null) {
-      resetSession(content.getSender(), threadId);
+      resetSession(content.getSender());
       MessageNotifier.updateNotification(context, threadId);
     }
   }
 
-  private void resetSession(String hexEncodedPublicKey, long threadId) {
+  private void resetSession(String hexEncodedPublicKey) {
       TextSecureSessionStore sessionStore = new TextSecureSessionStore(context);
       LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
 
       Log.d("Loki", "Received a session reset request from: " + hexEncodedPublicKey + "; archiving the session.");
 
       sessionStore.archiveAllSessions(hexEncodedPublicKey);
-      lokiThreadDatabase.setSessionResetStatus(threadId, LokiThreadSessionResetStatus.REQUEST_RECEIVED);
+      lokiThreadDatabase.setSessionResetStatus(hexEncodedPublicKey, LokiSessionResetStatus.REQUEST_RECEIVED);
 
       Log.d("Loki", "Sending a ping back to " + hexEncodedPublicKey + ".");
       MessageSender.sendBackgroundMessage(context, hexEncodedPublicKey);
@@ -593,7 +601,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   {
     GroupMessageProcessor.process(context, content, message, false);
 
-    if (message.getExpiresInSeconds() != 0 && message.getExpiresInSeconds() != getMessageDestination(content, message).getExpireMessages()) {
+    if (message.getExpiresInSeconds() != 0 && message.getExpiresInSeconds() != getRecipientForMessage(content, message).getExpireMessages()) {
       handleExpirationUpdate(content, message, Optional.absent());
     }
 
@@ -619,7 +627,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   {
     try {
       MmsDatabase          database     = DatabaseFactory.getMmsDatabase(context);
-      Recipient            recipient    = getMessageDestination(content, message);
+      Recipient            recipient    = getRecipientForMessage(content, message);
       IncomingMediaMessage mediaMessage = new IncomingMediaMessage(Address.fromSerialized(content.getSender()),
                                                                    message.getTimestamp(), -1,
                                                                    message.getExpiresInSeconds() * 1000L, true,
@@ -670,45 +678,44 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
   }
 
-  private void handleSynchronizeContactMessage(@NonNull ContactsMessage contactsMessage) {
-    if (contactsMessage.getContactsStream().isStream()) {
-      Log.d("Loki", "Received contact sync message");
+  private void handleContactSyncMessage(@NonNull ContactsMessage contactsMessage) {
+    if (!contactsMessage.getContactsStream().isStream()) { return; }
+    Log.d("Loki", "Received contact sync message.");
 
-      try {
-        InputStream in = contactsMessage.getContactsStream().asStream().getInputStream();
-        DeviceContactsInputStream contactsInputStream = new DeviceContactsInputStream(in);
-        List<DeviceContact> devices = contactsInputStream.readAll();
-        for (DeviceContact deviceContact : devices) {
-          // Check if we have the contact as a friend and that we're not trying to sync our own device
-          String pubKey = deviceContact.getNumber();
-          Address address = Address.fromSerialized(pubKey);
-          if (!address.isPhone() || address.toPhoneString().equals(TextSecurePreferences.getLocalNumber(context))) { continue; }
+    try {
+      InputStream in = contactsMessage.getContactsStream().asStream().getInputStream();
+      DeviceContactsInputStream contactsInputStream = new DeviceContactsInputStream(in);
+      List<DeviceContact> deviceContacts = contactsInputStream.readAll();
+      for (DeviceContact deviceContact : deviceContacts) {
+        // Check if we have the contact as a friend and that we're not trying to sync our own device
+        String hexEncodedPublicKey = deviceContact.getNumber();
+        Address address = Address.fromSerialized(hexEncodedPublicKey);
+        if (!address.isPhone() || address.toPhoneString().equals(TextSecurePreferences.getLocalNumber(context))) { continue; }
 
-          /*
-          If we're not friends with the contact we received or our friend request expired then we should send them a friend request
-          otherwise if we have received a friend request with from them then we should automatically accept the friend request
-           */
-          Recipient recipient = Recipient.from(context, address, false);
-          long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
-          LokiThreadFriendRequestStatus status = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadId);
-          if (status == LokiThreadFriendRequestStatus.NONE || status == LokiThreadFriendRequestStatus.REQUEST_EXPIRED) {
-            MessageSender.sendBackgroundFriendRequest(context, pubKey, "Please accept to enable messages to be synced across devices");
-            Log.d("Loki", "Sent friend request to " + pubKey);
-          } else if (status == LokiThreadFriendRequestStatus.REQUEST_RECEIVED) {
-            // Accept the incoming friend request
-            becomeFriendsWithContact(pubKey, false, false);
-            // Send them an accept message back
-            MessageSender.sendBackgroundMessage(context, pubKey);
-            Log.d("Loki", "Became friends with " + deviceContact.getNumber());
-          }
-
-          // TODO: Handle blocked - If user is not blocked then we should do the friend request logic otherwise add them to our block list
-          // TODO: Handle expiration timer - Update expiration timer?
-          // TODO: Handle avatar - Download and set avatar?
+        /*
+        If we're not friends with the contact we received or our friend request expired then we should send them a friend request.
+        Otherwise, if we have received a friend request from them, automatically accept the friend request.
+         */
+        Recipient recipient = Recipient.from(context, address, false);
+        long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+        LokiThreadFriendRequestStatus status = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID);
+        if (status == LokiThreadFriendRequestStatus.NONE || status == LokiThreadFriendRequestStatus.REQUEST_EXPIRED) {
+          MessageSender.sendBackgroundFriendRequest(context, hexEncodedPublicKey, "Please accept to enable messages to be synced across devices");
+          Log.d("Loki", "Sent friend request to " + hexEncodedPublicKey);
+        } else if (status == LokiThreadFriendRequestStatus.REQUEST_RECEIVED) {
+          // Accept the incoming friend request
+          becomeFriendsWithContactIfNeeded(hexEncodedPublicKey, false, false);
+          // Send them an accept message back
+          MessageSender.sendBackgroundMessage(context, hexEncodedPublicKey);
+          Log.d("Loki", "Became friends with " + deviceContact.getNumber());
         }
-      } catch (Exception e) {
-        Log.d("Loki", "Failed to sync contact: " + e);
+
+        // TODO: Handle blocked - If user is not blocked then we should do the friend request logic otherwise add them to our block list
+        // TODO: Handle expiration timer - Update expiration timer?
+        // TODO: Handle avatar - Download and set avatar?
       }
+    } catch (Exception e) {
+      Log.d("Loki", "Failed to sync contact: " + e + ".");
     }
   }
 
@@ -751,7 +758,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
         }
 
-        // Loki - If we received a sync message from our master device then we need to extract the avatar url
+        // Loki - If we received a sync message from our master device then we need to extract the profile picture url
         if (isSenderMasterDevice) {
           handleProfileKey(content, message.getMessage());
         }
@@ -841,27 +848,27 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
                                  @NonNull Optional<Long> messageServerIDOrNull)
       throws StorageFailedException
   {
-    Recipient originalRecipient = getMessageDestination(content, message);
-    Recipient primaryDeviceRecipient = getMessagePrimaryDestination(content, message);
+    Recipient originalRecipient = getRecipientForMessage(content, message);
+    Recipient masterRecipient = getMasterRecipientForMessage(content, message);
 
-    notifyTypingStoppedFromIncomingMessage(primaryDeviceRecipient, content.getSender(), content.getSenderDevice());
+    notifyTypingStoppedFromIncomingMessage(masterRecipient, content.getSender(), content.getSenderDevice());
 
     Optional<QuoteModel>        quote          = getValidatedQuote(message.getQuote());
     Optional<List<Contact>>     sharedContacts = getContacts(message.getSharedContacts());
     Optional<List<LinkPreview>> linkPreviews   = getLinkPreviews(message.getPreviews(), message.getBody().or(""));
     Optional<Attachment>        sticker        = getStickerAttachment(message.getSticker());
 
-    Address sender = primaryDeviceRecipient.getAddress();
+    Address sender = masterRecipient.getAddress();
 
     // If message is from group then we need to map it to get the sender of the message
     if (message.isGroupMessage()) {
-      sender = getPrimaryDeviceRecipient(content.getSender()).getAddress();
+      sender = getMasterRecipient(content.getSender()).getAddress();
     }
 
     // Ignore messages from ourselves
     if (sender.serialize().equalsIgnoreCase(TextSecurePreferences.getLocalNumber(context))) { return; }
 
-    IncomingMediaMessage        mediaMessage   = new IncomingMediaMessage(sender, message.getTimestamp(), -1,
+    IncomingMediaMessage mediaMessage = new IncomingMediaMessage(sender, message.getTimestamp(), -1,
        message.getExpiresInSeconds() * 1000L, false, content.isNeedsReceipt(), message.getBody(), message.getGroupInfo(), message.getAttachments(),
         quote, sharedContacts, linkPreviews, sticker);
 
@@ -905,12 +912,12 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
     }
 
-    // Loki - Run db updates in the background, we should look into fixing this in the future
+    // Loki - Run database updates in the background, we should look into fixing this in the future
     AsyncTask.execute(() -> {
       // Loki - Store message server ID
       updateGroupChatMessageServerID(messageServerIDOrNull, insertResult);
 
-      // Loki - Update mapping of message to original thread id
+      // Loki - Update mapping of message to original thread ID
       if (insertResult.isPresent()) {
         ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
         LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
@@ -1028,10 +1035,10 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
                                 @NonNull Optional<Long> messageServerIDOrNull)
       throws StorageFailedException
   {
-    SmsDatabase database  = DatabaseFactory.getSmsDatabase(context);
-    String      body      = message.getBody().isPresent() ? message.getBody().get() : "";
-    Recipient   originalRecipient = getMessageDestination(content, message);
-    Recipient   primaryDeviceRecipient = getMessagePrimaryDestination(content, message);
+    SmsDatabase database          = DatabaseFactory.getSmsDatabase(context);
+    String      body              = message.getBody().isPresent() ? message.getBody().get() : "";
+    Recipient   originalRecipient = getRecipientForMessage(content, message);
+    Recipient   masterRecipient   = getMasterRecipientForMessage(content, message);
 
     if (message.getExpiresInSeconds() != originalRecipient.getExpireMessages()) {
       handleExpirationUpdate(content, message, Optional.absent());
@@ -1042,26 +1049,26 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     if (smsMessageId.isPresent() && !message.getGroupInfo().isPresent()) {
       threadId = database.updateBundleMessageBody(smsMessageId.get(), body).second;
     } else {
-      notifyTypingStoppedFromIncomingMessage(primaryDeviceRecipient, content.getSender(), content.getSenderDevice());
+      notifyTypingStoppedFromIncomingMessage(masterRecipient, content.getSender(), content.getSenderDevice());
 
-      Address sender = primaryDeviceRecipient.getAddress();
+      Address sender = masterRecipient.getAddress();
 
       // If message is from group then we need to map it to get the sender of the message
       if (message.isGroupMessage()) {
-        sender = getPrimaryDeviceRecipient(content.getSender()).getAddress();
+        sender = getMasterRecipient(content.getSender()).getAddress();
       }
 
       // Ignore messages from ourselves
       if (sender.serialize().equalsIgnoreCase(TextSecurePreferences.getLocalNumber(context))) { return; }
 
-      IncomingTextMessage _textMessage = new IncomingTextMessage(sender,
-                                                                content.getSenderDevice(),
-                                                                message.getTimestamp(), body,
-                                                                message.getGroupInfo(),
-                                                                message.getExpiresInSeconds() * 1000L,
-                                                                content.isNeedsReceipt());
+      IncomingTextMessage tm = new IncomingTextMessage(sender,
+                                                       content.getSenderDevice(),
+                                                       message.getTimestamp(), body,
+                                                       message.getGroupInfo(),
+                                                       message.getExpiresInSeconds() * 1000L,
+                                                       content.isNeedsReceipt());
 
-      IncomingEncryptedMessage textMessage = new IncomingEncryptedMessage(_textMessage, body);
+      IncomingEncryptedMessage textMessage = new IncomingEncryptedMessage(tm, body);
 
       // Ignore the message if the body is empty
       if (textMessage.getMessageBody().length() == 0) { return; }
@@ -1079,7 +1086,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         MessageNotifier.updateNotification(context, threadId);
       }
 
-      // Loki - Run db updates in background, we should look into fixing this in the future
+      // Loki - Run database updates in background, we should look into fixing this in the future
       AsyncTask.execute(() -> {
         if (insertResult.isPresent()) {
           InsertResult result = insertResult.get();
@@ -1090,7 +1097,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           // Loki - Store message server ID
           updateGroupChatMessageServerID(messageServerIDOrNull, insertResult);
 
-          // Loki - Update mapping of message to original thread id
+          // Loki - Update mapping of message to original thread ID
           if (result.getMessageId() > -1) {
             ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
             LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
@@ -1102,95 +1109,86 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
   }
 
-  private boolean isValidPairingMessage(@NonNull PairingAuthorisation authorisation) {
+  private boolean isValidDeviceLinkMessage(@NonNull DeviceLink authorisation) {
     boolean isSecondaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context) != null;
     String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context);
-    boolean isRequest = (authorisation.getType() == PairingAuthorisation.Type.REQUEST);
+    boolean isRequest = (authorisation.getType() == DeviceLink.Type.REQUEST);
     if (authorisation.getRequestSignature() == null) {
       Log.d("Loki", "Ignoring pairing request message without a request signature.");
       return false;
     } else if (isRequest && isSecondaryDevice) {
       Log.d("Loki", "Ignoring unexpected pairing request message (the device is already paired as a secondary device).");
       return false;
-    } else if (isRequest && !authorisation.getPrimaryDevicePublicKey().equals(userHexEncodedPublicKey)) {
+    } else if (isRequest && !authorisation.getMasterHexEncodedPublicKey().equals(userHexEncodedPublicKey)) {
       Log.d("Loki", "Ignoring pairing request message addressed to another user.");
       return false;
-    } else if (isRequest && authorisation.getSecondaryDevicePublicKey().equals(userHexEncodedPublicKey)) {
+    } else if (isRequest && authorisation.getSlaveHexEncodedPublicKey().equals(userHexEncodedPublicKey)) {
       Log.d("Loki", "Ignoring pairing request message from self.");
       return false;
     }
     return authorisation.verify();
   }
 
-  private void handleProfileAvatar(SignalServiceContent content, String url) {
-    Recipient primaryDevice = getPrimaryDeviceRecipient(content.getSender());
-    ApplicationContext.getInstance(context).getJobManager().add(new RetrieveProfileAvatarJob(primaryDevice, url));
-  }
-
-  private void handlePairingMessage(@NonNull PairingAuthorisation authorisation, @NonNull SignalServiceContent content) {
+  private void handleDeviceLinkMessage(@NonNull DeviceLink deviceLink, @NonNull SignalServiceContent content) {
     String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context);
-    if (authorisation.getType() == PairingAuthorisation.Type.REQUEST) {
-      handlePairingRequestMessage(authorisation, content);
-    } else if (authorisation.getSecondaryDevicePublicKey().equals(userHexEncodedPublicKey)) {
-      handlePairingAuthorisationMessage(authorisation, content);
+    if (deviceLink.getType() == DeviceLink.Type.REQUEST) {
+      handleDeviceLinkRequestMessage(deviceLink, content);
+    } else if (deviceLink.getSlaveHexEncodedPublicKey().equals(userHexEncodedPublicKey)) {
+      handleDeviceLinkAuthorizedMessage(deviceLink, content);
     }
   }
 
-  private void handlePairingRequestMessage(@NonNull PairingAuthorisation authorisation, @NonNull SignalServiceContent content) {
-    boolean isValid = isValidPairingMessage(authorisation);
+  private void handleDeviceLinkRequestMessage(@NonNull DeviceLink deviceLink, @NonNull SignalServiceContent content) {
+    boolean isValid = isValidDeviceLinkMessage(deviceLink);
     DeviceLinkingSession linkingSession = DeviceLinkingSession.Companion.getShared();
-    if (isValid && linkingSession.isListeningForLinkingRequests()) {
-      // Loki - If we successfully received a request then we should store the PreKeyBundle
-      storePreKeyBundleIfNeeded(content);
-      linkingSession.processLinkingRequest(authorisation);
-    }
+    if (!isValid || !linkingSession.isListeningForLinkingRequests()) { return; }
+    storePreKeyBundleIfNeeded(content);
+    linkingSession.processLinkingRequest(deviceLink);
   }
 
-  private void handlePairingAuthorisationMessage(@NonNull PairingAuthorisation authorisation, @NonNull SignalServiceContent content) {
-    // Prepare
-    boolean isSecondaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context) != null;
-    if (isSecondaryDevice) {
-      Log.d("Loki", "Ignoring unexpected pairing authorisation message (the device is already paired as a secondary device).");
+  private void handleDeviceLinkAuthorizedMessage(@NonNull DeviceLink deviceLink, @NonNull SignalServiceContent content) {
+    // Check preconditions
+    boolean hasExistingDeviceLink = TextSecurePreferences.getMasterHexEncodedPublicKey(context) != null;
+    if (hasExistingDeviceLink) {
+      Log.d("Loki", "Ignoring unexpected device link message (the device is already linked as a slave device).");
       return;
     }
-    boolean isValid = isValidPairingMessage(authorisation);
+    boolean isValid = isValidDeviceLinkMessage(deviceLink);
     if (!isValid) {
-      Log.d("Loki", "Ignoring invalid pairing authorisation message.");
+      Log.d("Loki", "Ignoring invalid device link message.");
       return;
     }
     if (!DeviceLinkingSession.Companion.getShared().isListeningForLinkingRequests()) {
-      Log.d("Loki", "Ignoring pairing authorisation message.");
+      Log.d("Loki", "Ignoring device link message.");
       return;
     }
-    if (authorisation.getType() != PairingAuthorisation.Type.GRANT) { return; }
-    Log.d("Loki", "Received pairing authorisation message from: " + authorisation.getPrimaryDevicePublicKey() + ".");
-    // Save PreKeyBundle if for whatever reason we got one
+    if (deviceLink.getType() != DeviceLink.Type.AUTHORIZATION) { return; }
+    Log.d("Loki", "Received device link authorized message from: " + deviceLink.getMasterHexEncodedPublicKey() + ".");
+    // Save pre key bundle if we somehow got one
     storePreKeyBundleIfNeeded(content);
     // Process
-    DeviceLinkingSession.Companion.getShared().processLinkingAuthorization(authorisation);
-    // Store the primary device's public key
+    DeviceLinkingSession.Companion.getShared().processLinkingAuthorization(deviceLink);
+    // Store the master device's ID
     String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context);
-    DatabaseFactory.getLokiAPIDatabase(context).removePairingAuthorisations(userHexEncodedPublicKey);
-    DatabaseFactory.getLokiAPIDatabase(context).insertOrUpdatePairingAuthorisation(authorisation);
-    TextSecurePreferences.setMasterHexEncodedPublicKey(context, authorisation.getPrimaryDevicePublicKey());
+    DatabaseFactory.getLokiAPIDatabase(context).clearDeviceLinks(userHexEncodedPublicKey);
+    DatabaseFactory.getLokiAPIDatabase(context).addDeviceLink(deviceLink);
+    TextSecurePreferences.setMasterHexEncodedPublicKey(context, deviceLink.getMasterHexEncodedPublicKey());
     TextSecurePreferences.setMultiDevice(context, true);
-    // Send a background message to the primary device
-    MessageSender.sendBackgroundMessage(context, authorisation.getPrimaryDevicePublicKey());
-    // Propagate the updates to the file server
-    LokiStorageAPI storageAPI = LokiStorageAPI.Companion.getShared();
-    storageAPI.updateUserDeviceMappings();
-    // Update display names
+    // Send a background message to the master device
+    MessageSender.sendBackgroundMessage(context, deviceLink.getMasterHexEncodedPublicKey());
+    // Update display name if needed
     if (content.senderDisplayName.isPresent() && content.senderDisplayName.get().length() > 0) {
         TextSecurePreferences.setProfileName(context, content.senderDisplayName.get());
     }
-    // Profile avatar updates
+    // Update profile picture if needed
     if (content.getDataMessage().isPresent()) {
       handleProfileKey(content, content.getDataMessage().get());
     }
-    // Contact sync
+    // Handle contact sync if needed
     if (content.getSyncMessage().isPresent() && content.getSyncMessage().get().getContacts().isPresent()) {
-      handleSynchronizeContactMessage(content.getSyncMessage().get().getContacts().get());
+      handleContactSyncMessage(content.getSyncMessage().get().getContacts().get());
     }
+    // The device link is propagated to the file server in LandingActivity.onDeviceLinkAuthorized because we can handle the error there
   }
 
   private void setDisplayName(String hexEncodedPublicKey, String profileName) {
@@ -1199,95 +1197,69 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private void updateGroupChatMessageServerID(Optional<Long> messageServerIDOrNull, Optional<InsertResult> insertResult) {
-    if (insertResult.isPresent() && messageServerIDOrNull.isPresent()) {
-      long messageID = insertResult.get().getMessageId();
-      long messageServerID = messageServerIDOrNull.get();
-      DatabaseFactory.getLokiMessageDatabase(context).setServerID(messageID, messageServerID);
-    }
+    if (!insertResult.isPresent() || !messageServerIDOrNull.isPresent()) { return; }
+    long messageID = insertResult.get().getMessageId();
+    long messageServerID = messageServerIDOrNull.get();
+    DatabaseFactory.getLokiMessageDatabase(context).setServerID(messageID, messageServerID);
   }
 
   private void storePreKeyBundleIfNeeded(@NonNull SignalServiceContent content) {
     Recipient sender = Recipient.from(context, Address.fromSerialized(content.getSender()), false);
-    if (!sender.isGroupRecipient() && content.lokiServiceMessage.isPresent()) {
-      LokiServiceMessage lokiMessage = content.lokiServiceMessage.get();
-      if (lokiMessage.getPreKeyBundleMessage() != null) {
-        int registrationID = TextSecurePreferences.getLocalRegistrationId(context);
-        LokiPreKeyBundleDatabase lokiPreKeyBundleDatabase = DatabaseFactory.getLokiPreKeyBundleDatabase(context);
-        ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
-        LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
+    if (sender.isGroupRecipient() || !content.lokiServiceMessage.isPresent()) { return; }
+    LokiServiceMessage lokiMessage = content.lokiServiceMessage.get();
+    if (lokiMessage.getPreKeyBundleMessage() == null) { return; }
+    int registrationID = TextSecurePreferences.getLocalRegistrationId(context);
+    LokiPreKeyBundleDatabase lokiPreKeyBundleDatabase = DatabaseFactory.getLokiPreKeyBundleDatabase(context);
+    if (registrationID <= 0) { return; }
+    Log.d("Loki", "Received a pre key bundle from: " + content.getSender() + ".");
+    PreKeyBundle preKeyBundle = lokiMessage.getPreKeyBundleMessage().getPreKeyBundle(registrationID);
+    lokiPreKeyBundleDatabase.setPreKeyBundle(content.getSender(), preKeyBundle);
 
-        // Loki - Store the latest pre key bundle
-        if (registrationID > 0) {
-          Log.d("Loki", "Received a pre key bundle from: " + content.getSender() + ".");
-          PreKeyBundle preKeyBundle = lokiMessage.getPreKeyBundleMessage().getPreKeyBundle(registrationID);
-          lokiPreKeyBundleDatabase.setPreKeyBundle(content.getSender(), preKeyBundle);
-
-          // Loki - If we received a friend request, but we were already friends with this user, then reset the session
-          if (content.isFriendRequest()) {
-            long threadID = threadDatabase.getThreadIdIfExistsFor(sender);
-            if (lokiThreadDatabase.getFriendRequestStatus(threadID) == LokiThreadFriendRequestStatus.FRIENDS) {
-              resetSession(content.getSender(), threadID);
-              // Let our other devices know that we have reset the session
-              MessageSender.syncContact(context, sender.getAddress());
-            }
-          }
-        }
-      }
-    }
-  }
-
-  private void acceptFriendRequestIfNeeded(@NonNull SignalServiceContent content) {
-    // If we get anything other than a friend request, we can assume that we have a session with the other user
-    if (content.isFriendRequest() || isGroupChatMessage(content)) { return; }
-    becomeFriendsWithContact(content.getSender(), true, false);
   }
 
   private void handleSessionRequestIfNeeded(@NonNull SignalServiceContent content) {
-    if (content.isFriendRequest() && isSessionRequest(content)) {
-      // Check if the session request from a member in one of our groups or our friend
-      LokiStorageAPI.shared.getPrimaryDevicePublicKey(content.getSender()).success(primaryDevicePublicKey -> {
-        String sender = primaryDevicePublicKey != null ? primaryDevicePublicKey : content.getSender();
-        long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(sender), false));
-        LokiThreadFriendRequestStatus threadFriendRequestStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID);
-        boolean isOurFriend = threadFriendRequestStatus == LokiThreadFriendRequestStatus.FRIENDS;
-        boolean isInOneOfOurGroups = DatabaseFactory.getGroupDatabase(context).signalGroupsHaveMember(sender);
-        boolean shouldAcceptSessionRequest = isOurFriend || isInOneOfOurGroups;
-        if (shouldAcceptSessionRequest) {
-          // Send a background message to acknowledge session request
-          MessageSender.sendBackgroundMessage(context, content.getSender());
-        }
-        return Unit.INSTANCE;
-      });
-    }
+    if (!content.isFriendRequest() || !isSessionRequest(content)) { return; }
+    // Check if the session request came from a member in one of our groups or one of our friends
+    LokiDeviceLinkUtilities.INSTANCE.getMasterHexEncodedPublicKey(content.getSender()).success( masterHexEncodedPublicKey -> {
+      String sender = masterHexEncodedPublicKey != null ? masterHexEncodedPublicKey : content.getSender();
+      long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(sender), false));
+      LokiThreadFriendRequestStatus threadFriendRequestStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID);
+      boolean isOurFriend = threadFriendRequestStatus == LokiThreadFriendRequestStatus.FRIENDS;
+      boolean isInOneOfOurGroups = DatabaseFactory.getGroupDatabase(context).signalGroupsHaveMember(sender);
+      boolean shouldAcceptSessionRequest = isOurFriend || isInOneOfOurGroups;
+      if (shouldAcceptSessionRequest) {
+        MessageSender.sendBackgroundMessage(context, content.getSender()); // Send a background message to acknowledge
+      }
+      return Unit.INSTANCE;
+    });
   }
 
-  private void becomeFriendsWithContact(String pubKey, boolean syncContact, boolean force) {
+  private void becomeFriendsWithContactIfNeeded(String hexEncodedPublicKey, boolean requiresContactSync, boolean canSkip) {
+    // Ignore friend requests to group recipients
     LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
-    Recipient contactID = Recipient.from(context, Address.fromSerialized(pubKey), false);
+    Recipient contactID = Recipient.from(context, Address.fromSerialized(hexEncodedPublicKey), false);
     if (contactID.isGroupRecipient()) return;
-
+    // Ignore friend requests to recipients we're already friends with
     long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(contactID);
     LokiThreadFriendRequestStatus threadFriendRequestStatus = lokiThreadDatabase.getFriendRequestStatus(threadID);
     if (threadFriendRequestStatus == LokiThreadFriendRequestStatus.FRIENDS) { return; }
-
-    // We shouldn't be able to skip from None -> Friends in normal circumstances.
-    // Multi-device is the exception to this rule because we want to automatically be friends with a secondary device
-    if (!force && threadFriendRequestStatus == LokiThreadFriendRequestStatus.NONE) { return; }
-
-    // If the thread's friend request status is not `FRIENDS`, but we're receiving a message,
+    // We shouldn't be able to skip from NONE to FRIENDS under normal circumstances.
+    // Multi-device is the one exception to this rule because we want to automatically become friends with slave devices.
+    if (!canSkip && threadFriendRequestStatus == LokiThreadFriendRequestStatus.NONE) { return; }
+    // If the thread's friend request status is not `FRIENDS` or `NONE`, but we're receiving a message,
     // it must be a friend request accepted message. Declining a friend request doesn't send a message.
     lokiThreadDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
-    // Send out a contact sync message
-    if (syncContact) {
+    // Send out a contact sync message if needed
+    if (requiresContactSync) {
       MessageSender.syncContact(context, contactID.getAddress());
     }
-    // Allow profile sharing with contact
+    // Enable profile sharing with the recipient
     DatabaseFactory.getRecipientDatabase(context).setProfileSharing(contactID, true);
     // Update the last message if needed
-    LokiStorageAPI.shared.getPrimaryDevicePublicKey(pubKey).success(primaryDevice -> {
+    LokiDeviceLinkUtilities.INSTANCE.getMasterHexEncodedPublicKey(hexEncodedPublicKey).success( masterHexEncodedPublicKey -> {
       Util.runOnMain(() -> {
-        long primaryDeviceThreadID = primaryDevice == null ? threadID : DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(primaryDevice), false));
-        FriendRequestHandler.updateLastFriendRequestMessage(context, primaryDeviceThreadID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
+        long masterThreadID = (masterHexEncodedPublicKey == null) ? threadID : DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(masterHexEncodedPublicKey), false));
+        FriendRequestHandler.updateLastFriendRequestMessage(context, masterThreadID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
       });
       return Unit.INSTANCE;
     });
@@ -1295,25 +1267,24 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
   private void updateFriendRequestStatusIfNeeded(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
     if (!content.isFriendRequest() || message.isGroupMessage() || message.isSessionRequest()) { return; }
-    // This handles the case where another user sends us a regular message without authorisation
     Promise<Boolean, Exception> promise = PromiseUtil.timeout(MultiDeviceUtilities.shouldAutomaticallyBecomeFriendsWithDevice(content.getSender(), context), 8000);
     boolean shouldBecomeFriends = PromiseUtil.get(promise, false);
     if (shouldBecomeFriends) {
       // Become friends AND update the message they sent
-      becomeFriendsWithContact(content.getSender(), true, true);
+      becomeFriendsWithContactIfNeeded(content.getSender(), true, true);
       // Send them an accept message back
       MessageSender.sendBackgroundMessage(context, content.getSender());
     } else {
       // Do regular friend request logic checks
-      Recipient originalRecipient = getMessageDestination(content, message);
-      Recipient primaryDeviceRecipient = getMessagePrimaryDestination(content, message);
+      Recipient originalRecipient = getRecipientForMessage(content, message);
+      Recipient masterRecipient = getMasterRecipientForMessage(content, message);
       LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
 
       // Loki - Friend requests only work in direct chats
       if (!originalRecipient.getAddress().isPhone()) { return; }
 
       long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(originalRecipient);
-      long primaryDeviceThreadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(primaryDeviceRecipient);
+      long primaryDeviceThreadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(masterRecipient);
       LokiThreadFriendRequestStatus threadFriendRequestStatus = lokiThreadDatabase.getFriendRequestStatus(threadID);
 
       if (threadFriendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_SENT) {
@@ -1482,7 +1453,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private void triggerSessionRestorePrompt(@NonNull String sender) {
-    Recipient primaryRecipient = getPrimaryDeviceRecipient(sender);
+    Recipient primaryRecipient = getMasterRecipient(sender);
     if (!primaryRecipient.isGroupRecipient()) {
       long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(primaryRecipient);
       DatabaseFactory.getLokiThreadDatabase(context).addSessionRestoreDevice(threadID, sender);
@@ -1537,12 +1508,12 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     if (recipient.getProfileKey() == null || !MessageDigest.isEqual(recipient.getProfileKey(), message.getProfileKey().get())) {
       database.setProfileKey(recipient, message.getProfileKey().get());
       database.setUnidentifiedAccessMode(recipient, RecipientDatabase.UnidentifiedAccessMode.UNKNOWN);
-      String url = content.senderProfileAvatarUrl.or("");
+      String url = content.senderProfilePictureURL.or("");
       ApplicationContext.getInstance(context).getJobManager().add(new RetrieveProfileAvatarJob(recipient, url));
 
       // Loki - If the recipient is our master device then we need to go and update our avatar mappings on the public chats
       if (recipient.isOurMasterDevice()) {
-        ApplicationContext.getInstance(context).updatePublicChatProfileAvatarIfNeeded();
+        ApplicationContext.getInstance(context).updatePublicChatProfilePictureIfNeeded();
       }
     }
   }
@@ -1559,11 +1530,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private void handleDeliveryReceipt(@NonNull SignalServiceContent content,
                                      @NonNull SignalServiceReceiptMessage message)
   {
-    // Redirect message to primary device conversation
+    // Redirect message to master device conversation
     Address sender = Address.fromSerialized(content.getSender());
     if (sender.isPhone()) {
-      Recipient primaryDevice = getPrimaryDeviceRecipient(content.getSender());
-      sender = primaryDevice.getAddress();
+      Recipient masterDevice = getMasterRecipient(content.getSender());
+      sender = masterDevice.getAddress();
     }
 
     for (long timestamp : message.getTimestamps()) {
@@ -1579,11 +1550,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   {
     if (TextSecurePreferences.isReadReceiptsEnabled(context)) {
 
-      // Redirect message to primary device conversation
+      // Redirect message to master device conversation
       Address sender = Address.fromSerialized(content.getSender());
       if (sender.isPhone()) {
-        Recipient primaryDevice = getPrimaryDeviceRecipient(content.getSender());
-        sender = primaryDevice.getAddress();
+        Recipient masterDevice = getMasterRecipient(content.getSender());
+        sender = masterDevice.getAddress();
       }
 
       for (long timestamp : message.getTimestamps()) {
@@ -1614,7 +1585,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(groupRecipient);
     } else {
       // See if we need to redirect the message
-      author = getPrimaryDeviceRecipient(content.getSender());
+      author = getMasterRecipient(content.getSender());
       threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(author);
     }
 
@@ -1748,9 +1719,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private Optional<InsertResult> insertPlaceholder(@NonNull String sender, int senderDevice, long timestamp) {
-    Recipient primaryDevice = getPrimaryDeviceRecipient(sender);
-    SmsDatabase         database    = DatabaseFactory.getSmsDatabase(context);
-    IncomingTextMessage textMessage = new IncomingTextMessage(primaryDevice.getAddress(),
+    Recipient           masterDevice = getMasterRecipient(sender);
+    SmsDatabase         database     = DatabaseFactory.getSmsDatabase(context);
+    IncomingTextMessage textMessage  = new IncomingTextMessage(masterDevice.getAddress(),
                                                               senderDevice, timestamp, "",
                                                               Optional.absent(), 0, false);
 
@@ -1770,11 +1741,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     if (message.getMessage().isGroupMessage()) {
       return getSyncMessageDestination(message);
     } else {
-      return getPrimaryDeviceRecipient(message.getDestination().get());
+      return getMasterRecipient(message.getDestination().get());
     }
   }
 
-  private Recipient getMessageDestination(SignalServiceContent content, SignalServiceDataMessage message) {
+  private Recipient getRecipientForMessage(SignalServiceContent content, SignalServiceDataMessage message) {
     if (message.isGroupMessage()) {
       return Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getGroupInfo().get())), false);
     } else {
@@ -1782,34 +1753,34 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
   }
 
-  private Recipient getMessagePrimaryDestination(SignalServiceContent content, SignalServiceDataMessage message) {
+  private Recipient getMasterRecipientForMessage(SignalServiceContent content, SignalServiceDataMessage message) {
     if (message.isGroupMessage()) {
-      return getMessageDestination(content, message);
+      return getRecipientForMessage(content, message);
     } else {
-      return getPrimaryDeviceRecipient(content.getSender());
+      return getMasterRecipient(content.getSender());
     }
   }
 
   /**
-   * Get the primary device recipient of the passed in device.
+   * Get the master device recipient of the provided device.
    *
-   * If the device doesn't have a primary device then it will return the same device.
-   * If the device is our primary device then it will return our current device.
-   * Otherwise it will return the primary device.
+   * If the device doesn't have a master device this will return the same device.
+   * If the device is our master device then it will return our current device.
+   * Otherwise it will return the master device.
    */
-  private Recipient getPrimaryDeviceRecipient(String pubKey) {
+  private Recipient getMasterRecipient(String hexEncodedPublicKey) {
     try {
-      String primaryDevice = PromiseUtil.timeout(LokiStorageAPI.shared.getPrimaryDevicePublicKey(pubKey), 5000).get();
-      String publicKey = (primaryDevice != null) ? primaryDevice : pubKey;
-      // If the public key matches our primary device then we need to forward the message to ourselves (Note to self)
-      String ourPrimaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
-      if (ourPrimaryDevice != null && ourPrimaryDevice.equals(publicKey)) {
-        publicKey = TextSecurePreferences.getLocalNumber(context);
+      String masterHexEncodedPublicKey = PromiseUtil.timeout(LokiDeviceLinkUtilities.INSTANCE.getMasterHexEncodedPublicKey(hexEncodedPublicKey), 5000).get();
+      String targetHexEncodedPublicKey = (masterHexEncodedPublicKey != null) ? masterHexEncodedPublicKey : hexEncodedPublicKey;
+      // If the public key matches our master device then we need to forward the message to ourselves (note to self)
+      String ourMasterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+      if (ourMasterHexEncodedPublicKey != null && ourMasterHexEncodedPublicKey.equals(targetHexEncodedPublicKey)) {
+        targetHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context);
       }
-      return Recipient.from(context, Address.fromSerialized(publicKey), false);
+      return Recipient.from(context, Address.fromSerialized(targetHexEncodedPublicKey), false);
     } catch (Exception e) {
-      Log.d("Loki", "Failed to get primary device public key for " + pubKey + ". " + e.getMessage());
-      return Recipient.from(context, Address.fromSerialized(pubKey), false);
+      Log.d("Loki", "Failed to get master device for: " + hexEncodedPublicKey + ". " + e.getMessage());
+      return Recipient.from(context, Address.fromSerialized(hexEncodedPublicKey), false);
     }
   }
 
@@ -1831,11 +1802,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
     Recipient sender = Recipient.from(context, Address.fromSerialized(content.getSender()), false);
 
-    if (content.getPairingAuthorisation().isPresent()) {
+    if (content.getDeviceLink().isPresent()) {
       return false;
     } else if (content.getDataMessage().isPresent()) {
       SignalServiceDataMessage message      = content.getDataMessage().get();
-      Recipient                conversation = getMessageDestination(content, message);
+      Recipient                conversation = getRecipientForMessage(content, message);
 
       if (conversation.isGroupRecipient() && conversation.isBlocked()) {
         return true;

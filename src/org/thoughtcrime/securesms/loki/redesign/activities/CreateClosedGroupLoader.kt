@@ -12,9 +12,9 @@ class CreateClosedGroupLoader(context: Context) : AsyncLoader<List<String>>(cont
         val threadDatabase = DatabaseFactory.getThreadDatabase(context)
         val lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context)
         val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
-        val deviceLinks = DatabaseFactory.getLokiAPIDatabase(context).getPairingAuthorisations(userHexEncodedPublicKey)
+        val deviceLinks = DatabaseFactory.getLokiAPIDatabase(context).getDeviceLinks(userHexEncodedPublicKey)
         val userLinkedDeviceHexEncodedPublicKeys = deviceLinks.flatMap {
-            listOf( it.primaryDevicePublicKey.toLowerCase(), it.secondaryDevicePublicKey.toLowerCase() )
+            listOf( it.masterHexEncodedPublicKey.toLowerCase(), it.slaveHexEncodedPublicKey.toLowerCase() )
         }.toMutableSet()
         userLinkedDeviceHexEncodedPublicKeys.add(userHexEncodedPublicKey.toLowerCase())
         val cursor = threadDatabase.conversationList

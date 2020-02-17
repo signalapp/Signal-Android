@@ -60,7 +60,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
-import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
+import org.whispersystems.signalservice.loki.api.LokiDeviceLinkUtilities;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
 import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
@@ -99,7 +99,7 @@ public class MessageSender {
     sendBackgroundMessage(context, contactHexEncodedPublicKey);
 
     // Go through the other devices and only send background messages if we're friends or we have received friend request
-    LokiStorageAPI.shared.getAllDevicePublicKeys(contactHexEncodedPublicKey).success(devices -> {
+    LokiDeviceLinkUtilities.INSTANCE.getAllLinkedDeviceHexEncodedPublicKeys(contactHexEncodedPublicKey).success(devices -> {
       Util.runOnMain(() -> {
         for (String device : devices) {
           // Don't send message to the device we already have sent to
@@ -234,7 +234,7 @@ public class MessageSender {
                                                  final int     ttl) {
     String ourPublicKey = TextSecurePreferences.getLocalNumber(context);
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
-    LokiStorageAPI.shared.getAllDevicePublicKeys(ourPublicKey).success(devices -> {
+    LokiDeviceLinkUtilities.INSTANCE.getAllLinkedDeviceHexEncodedPublicKeys(ourPublicKey).success(devices -> {
       Util.runOnMain(() -> {
         for (String device : devices) {
           // Don't send to ourselves
@@ -306,8 +306,8 @@ public class MessageSender {
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
 
     // Just send the message normally if it's a group message or we're sending to one of our devices
-    String recipientPublicKey = recipient.getAddress().serialize();
-    if (GeneralUtilitiesKt.isPublicChat(context, recipientPublicKey) || PromiseUtil.get(MultiDeviceUtilities.isOneOfOurDevices(context, recipient.getAddress()), false)) {
+    String recipientHexEncodedPublicKey = recipient.getAddress().serialize();
+    if (GeneralUtilitiesKt.isPublicChat(context, recipientHexEncodedPublicKey) || PromiseUtil.get(MultiDeviceUtilities.isOneOfOurDevices(context, recipient.getAddress()), false)) {
       if (type == MessageType.MEDIA) {
         PushMediaSendJob.enqueue(context, jobManager, messageId, recipient.getAddress(), false);
       } else {
@@ -318,16 +318,16 @@ public class MessageSender {
 
     // If we get here then we are sending a message to a device that is not ours
     boolean[] hasSentSyncMessage = { false };
-    MultiDeviceUtilities.getAllDevicePublicKeysWithFriendStatus(context, recipientPublicKey).success(devices -> {
+    MultiDeviceUtilities.getAllDevicePublicKeysWithFriendStatus(context, recipientHexEncodedPublicKey).success(devices -> {
       int friendCount = MultiDeviceUtilities.getFriendCount(context, devices.keySet());
       Util.runOnMain(() -> {
         ArrayList<Job> jobs = new ArrayList<>();
         for (Map.Entry<String, Boolean> entry : devices.entrySet()) {
-          String devicePublicKey = entry.getKey();
+          String deviceHexEncodedPublicKey = entry.getKey();
           boolean isFriend = entry.getValue();
 
-          Address address = Address.fromSerialized(devicePublicKey);
-          long messageIDToUse = recipientPublicKey.equals(devicePublicKey) ? messageId : -1L;
+          Address address = Address.fromSerialized(deviceHexEncodedPublicKey);
+          long messageIDToUse = recipientHexEncodedPublicKey.equals(deviceHexEncodedPublicKey) ? messageId : -1L;
 
           if (isFriend) {
             // Send a normal message if the user is friends with the recipient
@@ -340,7 +340,7 @@ public class MessageSender {
             }
             if (shouldSendSyncMessage) { hasSentSyncMessage[0] = true; }
           } else {
-            // Send friend requests to non friends. If the user is friends with any
+            // Send friend requests to non-friends. If the user is friends with any
             // of the devices then send out a default friend request message.
             boolean isFriendsWithAny = (friendCount > 0);
             String defaultFriendRequestMessage = isFriendsWithAny ? "Please accept to enable messages to be synced across devices" : null;

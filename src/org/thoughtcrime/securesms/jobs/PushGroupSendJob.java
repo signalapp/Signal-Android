@@ -50,8 +50,8 @@ import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
+import org.whispersystems.signalservice.loki.api.LokiDeviceLinkUtilities;
 import org.whispersystems.signalservice.loki.api.LokiPublicChat;
-import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
 import java.io.IOException;
@@ -368,7 +368,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
           if (!member.isPhone() || member.serialize().equalsIgnoreCase(localNumber)) { continue; }
 
           try {
-            List<String> secondaryDevices = PromiseUtil.timeout(LokiStorageAPI.shared.getSecondaryDevicePublicKeys(member.serialize()), 5000).get();
+            Set<String> secondaryDevices = PromiseUtil.timeout(LokiDeviceLinkUtilities.INSTANCE.getSlaveHexEncodedPublicKeys(member.serialize()), 5000).get();
             memberSet.addAll(Stream.of(secondaryDevices).map(string -> {
               // Loki - Calling .map(Address::fromSerialized) is causing errors, thus we use the long method :(
               return Address.fromSerialized(string);

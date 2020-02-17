@@ -38,7 +38,7 @@
                 android:id="@+id/moderator_icon_image_view"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/icon_crown"
+                android:src="@drawable/ic_crown"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true" />
 

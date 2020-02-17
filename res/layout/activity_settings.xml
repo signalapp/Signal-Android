@@ -107,7 +107,7 @@
 
             </RelativeLayout>
 
-            <org.thoughtcrime.securesms.loki.redesign.views.SeparatorView
+            <org.thoughtcrime.securesms.loki.redesign.views.LabeledSeparatorView
                 android:id="@+id/separatorView"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
