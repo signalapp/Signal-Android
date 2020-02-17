@@ -1,12 +1,12 @@
 # Session Android
 
-[Download on the Google Play store](https://getsession.org/android)
+[Download on the Google Play Store](https://getsession.org/android)
 
 [Grab the APK here](https://github.com/loki-project/session-android/releases/latest)
 
 ## Summary
 
-Session integrates directly with [Loki Service Nodes](https://lokidocs.com/ServiceNodes/SNOverview/), which are a set of distributed, decentralized and Sybil resistant nodes. Service Nodes act as servers which store messages offline, and a set of nodes which allow for onion routing functionality obfuscating users IP Addresses. For a full understanding of how Session works, read the [Session Whitepaper](https://getsession.org/whitepaper).
+Session integrates directly with [Loki Service Nodes](https://lokidocs.com/ServiceNodes/SNOverview/), which are a set of distributed, decentralized and Sybil resistant nodes. Service Nodes act as servers which store messages offline, and a set of nodes which allow for onion routing functionality obfuscating users IP addresses. For a full understanding of how Session works, read the [Session Whitepaper](https://getsession.org/whitepaper).
 
 ![AndroidSession](https://i.imgur.com/0YC9TyI.png)
 
