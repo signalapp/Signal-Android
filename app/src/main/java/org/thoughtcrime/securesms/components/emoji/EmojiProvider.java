@@ -41,7 +41,7 @@ class EmojiProvider {
   private static final int EMOJI_RAW_HEIGHT = 64;
   private static final int EMOJI_RAW_WIDTH  = 64;
   private static final int EMOJI_VERT_PAD   = 0;
-  private static final int EMOJI_PER_ROW    = 32;
+  private static final int EMOJI_PER_ROW    = 16;
 
   private final float decodeScale;
   private final float verticalPad;

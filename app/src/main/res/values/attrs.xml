@@ -92,7 +92,7 @@
     <attr name="emoji_category_activity" format="reference"/>
     <attr name="emoji_category_places" format="reference"/>
     <attr name="emoji_category_objects" format="reference"/>
-    <attr name="emoji_category_symbol" format="reference"/>
+    <attr name="emoji_category_symbols" format="reference"/>
     <attr name="emoji_category_flags" format="reference"/>
     <attr name="emoji_category_emoticons" format="reference"/>
     <attr name="emoji_variation_selector_background" format="reference|color" />
