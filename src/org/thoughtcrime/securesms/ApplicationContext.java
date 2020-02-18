@@ -186,7 +186,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     if (setUpStorageAPIIfNeeded()) {
       String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
       if (userHexEncodedPublicKey != null) {
-        LokiFileServerAPI.Companion.getShared().getDeviceLinks(userHexEncodedPublicKey, true);
         if (TextSecurePreferences.getNeedsIsRevokedSlaveDeviceCheck(this)) {
           MultiDeviceUtilities.checkIsRevokedSlaveDevice(this);
         }
