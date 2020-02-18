@@ -423,7 +423,8 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
 
   private void handleDenyCall(Intent intent) {
     if (activePeer == null) {
-      throw new IllegalStateException("Deny with no active call");
+      Log.i(TAG, "handleDenyCall(): Ignoring for inactive call.");
+      return;
     }
 
     if (activePeer.getState() != CallState.LOCAL_RINGING) {
