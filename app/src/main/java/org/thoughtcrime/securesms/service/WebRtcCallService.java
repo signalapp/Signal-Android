@@ -1456,19 +1456,23 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
 
     @Override
     public void onSuccessContinue(V result) {
-      try {
-        callManager.messageSent(getCallId());
-      } catch (CallException e) {
-        callFailure("callManager.messageSent() failed: ", e);
+      if (callManager != null) {
+        try {
+          callManager.messageSent(getCallId());
+        } catch (CallException e) {
+          callFailure("callManager.messageSent() failed: ", e);
+        }
       }
     }
 
     @Override
     public void onStateChangeContinue() {
-      try {
-        callManager.messageSent(getCallId());
-      } catch (CallException e) {
-        callFailure("callManager.messageSent() failed: ", e);
+      if (callManager != null) {
+        try {
+          callManager.messageSent(getCallId());
+        } catch (CallException e) {
+          callFailure("callManager.messageSent() failed: ", e);
+        }
       }
     }
 
@@ -1476,10 +1480,12 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     public void onFailureContinue(Throwable error) {
       Log.w(TAG, error);
 
-      try {
-        callManager.messageSendFailure(getCallId());
-      } catch (CallException e) {
-        callFailure("callManager.messageSendFailure() failed: ", e);
+      if (callManager != null) {
+        try {
+          callManager.messageSendFailure(getCallId());
+        } catch (CallException e) {
+          callFailure("callManager.messageSendFailure() failed: ", e);
+        }
       }
 
       if (activePeer == null) {
