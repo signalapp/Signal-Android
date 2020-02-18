@@ -125,7 +125,9 @@ public class MultiDeviceGroupUpdateJob extends BaseJob implements InjectableType
 
   @Override
   public boolean onShouldRetry(@NonNull Exception exception) {
-    return exception instanceof PushNetworkException;
+    // Loki - Disabled because we have our own retrying
+    // if (exception instanceof PushNetworkException) return true;
+    return false;
   }
 
   @Override
@@ -143,7 +145,6 @@ public class MultiDeviceGroupUpdateJob extends BaseJob implements InjectableType
                                                                               .withLength(contactsFile.length())
                                                                               .build();
 
-    // TODO: Message ID
     messageSender.sendMessage(0, SignalServiceSyncMessage.forGroups(attachmentStream),
                               UnidentifiedAccessUtil.getAccessForSync(context));
   }
