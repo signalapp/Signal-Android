@@ -21,6 +21,8 @@ public class MegaphoneViewBuilder {
         return null;
       case REACTIONS:
         return buildReactionsMegaphone(context, megaphone, listener);
+      case POPUP:
+        return buildPopupMegaphone(context, megaphone, listener);
       default:
         throw new IllegalArgumentException("No view implemented for style!");
     }
@@ -40,6 +42,15 @@ public class MegaphoneViewBuilder {
                                                        @NonNull MegaphoneActionController listener)
   {
     ReactionsMegaphoneView view = new ReactionsMegaphoneView(context);
+    view.present(megaphone, listener);
+    return view;
+  }
+
+  private static @NonNull View buildPopupMegaphone(@NonNull Context context,
+                                                   @NonNull Megaphone megaphone,
+                                                   @NonNull MegaphoneActionController listener)
+  {
+    PopupMegaphoneView view = new PopupMegaphoneView(context);
     view.present(megaphone, listener);
     return view;
   }

@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
@@ -116,6 +117,8 @@ public class PushMediaSendJob extends PushSendJob {
 
     try {
       log(TAG, "Sending message: " + messageId);
+
+      RecipientUtil.shareProfileIfFirstSecureMessage(context, message.getRecipient());
 
       Recipient              recipient  = message.getRecipient().resolve();
       byte[]                 profileKey = recipient.getProfileKey();

@@ -129,6 +129,10 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     initAnimators();
   }
 
+  public void setListVerticalTranslation(float translationY) {
+    maskView.setTargetParentTranslationY(translationY);
+  }
+
   public void show(@NonNull Activity activity, @NonNull View maskTarget, @NonNull MessageRecord messageRecord, int maskPaddingBottom) {
 
     if (overlayState != OverlayState.HIDDEN) {

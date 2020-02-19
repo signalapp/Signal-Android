@@ -208,6 +208,10 @@ public class Data {
     }
   }
 
+  public Builder buildUpon() {
+    return new Builder(this);
+  }
+
 
   public static class Builder {
 
@@ -223,6 +227,23 @@ public class Data {
     private final Map<String, double[]>  doubleArrays  = new HashMap<>();
     private final Map<String, Boolean>   booleans      = new HashMap<>();
     private final Map<String, boolean[]> booleanArrays = new HashMap<>();
+
+    public Builder() { }
+
+    private Builder(@NonNull Data oldData) {
+      strings.putAll(oldData.strings);
+      stringArrays.putAll(oldData.stringArrays);
+      integers.putAll(oldData.integers);
+      integerArrays.putAll(oldData.integerArrays);
+      longs.putAll(oldData.longs);
+      longArrays.putAll(oldData.longArrays);
+      floats.putAll(oldData.floats);
+      floatArrays.putAll(oldData.floatArrays);
+      doubles.putAll(oldData.doubles);
+      doubleArrays.putAll(oldData.doubleArrays);
+      booleans.putAll(oldData.booleans);
+      booleanArrays.putAll(oldData.booleanArrays);
+    }
 
     public Builder putString(@NonNull String key, @Nullable String value) {
       strings.put(key, value);

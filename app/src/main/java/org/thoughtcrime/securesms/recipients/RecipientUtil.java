@@ -11,6 +11,8 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -109,15 +111,54 @@ public class RecipientUtil {
   }
 
   @WorkerThread
+  public static boolean isThreadMessageRequestAccepted(@NonNull Context context, long threadId) {
+    if (!FeatureFlags.messageRequests()) {
+      return true;
+    }
+
+    ThreadDatabase threadDatabase           = DatabaseFactory.getThreadDatabase(context);
+    Recipient      recipient                = threadDatabase.getRecipientForThreadId(threadId);
+    boolean        hasSentSecureMessage     = DatabaseFactory.getMmsSmsDatabase(context)
+                                                             .getOutgoingSecureConversationCount(threadId) != 0;
+    boolean        noSecureMessagesInThread = DatabaseFactory.getMmsSmsDatabase(context)
+                                                             .getSecureConversationCount(threadId) == 0;
+
+    if (recipient == null || hasSentSecureMessage || noSecureMessagesInThread) {
+      return true;
+    }
+
+    Recipient resolved = recipient.resolve();
+
+    return resolved.isProfileSharing() || resolved.isSystemContact();
+  }
+
+  @WorkerThread
   public static boolean isRecipientMessageRequestAccepted(@NonNull Context context, @Nullable Recipient recipient) {
     if (recipient == null || !FeatureFlags.messageRequests()) return true;
 
     Recipient resolved = recipient.resolve();
 
-    ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
-    long           threadId       = threadDatabase.getThreadIdFor(resolved);
-    boolean        hasSentMessage = threadDatabase.getLastSeenAndHasSent(threadId).second() == Boolean.TRUE;
+    long    threadId                 = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(resolved);
+    boolean hasSentMessage           = DatabaseFactory.getMmsSmsDatabase(context)
+                                                      .getOutgoingSecureConversationCount(threadId) != 0;
+    boolean noSecureMessagesInThread = DatabaseFactory.getMmsSmsDatabase(context)
+                                                      .getSecureConversationCount(threadId) == 0;
 
-    return hasSentMessage || resolved.isProfileSharing() || resolved.isSystemContact();
+    return noSecureMessagesInThread || hasSentMessage || resolved.isProfileSharing() || resolved.isSystemContact();
+  }
+
+  @WorkerThread
+  public static void shareProfileIfFirstSecureMessage(@NonNull Context context, @NonNull Recipient recipient) {
+    if (!FeatureFlags.messageRequests()) {
+      return;
+    }
+
+    long    threadId     = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(recipient);
+    boolean firstMessage = DatabaseFactory.getMmsSmsDatabase(context)
+                                          .getOutgoingSecureConversationCount(threadId) == 0;
+
+    if (firstMessage) {
+      DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient.getId(), true);
+    }
   }
 }

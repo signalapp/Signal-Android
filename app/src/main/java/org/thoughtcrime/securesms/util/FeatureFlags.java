@@ -47,7 +47,6 @@ public final class FeatureFlags {
   private static final long   FETCH_INTERVAL = TimeUnit.HOURS.toMillis(2);
 
   private static final String UUIDS                      = generateKey("uuids");
-  private static final String PROFILE_DISPLAY            = generateKey("profileDisplay");
   private static final String MESSAGE_REQUESTS           = generateKey("messageRequests");
   private static final String USERNAMES                  = generateKey("usernames");
   private static final String STORAGE_SERVICE            = generateKey("storageService");
@@ -65,7 +64,8 @@ public final class FeatureFlags {
       VIDEO_TRIMMING,
       PINS_FOR_ALL,
       PINS_MEGAPHONE_KILL_SWITCH,
-      PROFILE_NAMES_MEGAPHONE
+      PROFILE_NAMES_MEGAPHONE,
+      MESSAGE_REQUESTS
   );
 
   /**
@@ -139,7 +139,7 @@ public final class FeatureFlags {
 
   /** Favoring profile names when displaying contacts. */
   public static synchronized boolean profileDisplay() {
-    return getValue(PROFILE_DISPLAY, false);
+    return messageRequests();
   }
 
   /** MessageRequest stuff */
@@ -172,7 +172,7 @@ public final class FeatureFlags {
   }
 
   /** Safety switch for disabling profile names megaphone */
-  public static boolean profileNamesMegaphoneEnabled() {
+  public static boolean profileNamesMegaphone() {
     return getValue(PROFILE_NAMES_MEGAPHONE, false) &&
            TextSecurePreferences.getFirstInstallVersion(ApplicationDependencies.getApplication()) < 600;
   }

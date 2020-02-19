@@ -156,7 +156,7 @@ public class Megaphone {
   }
 
   enum Style {
-    REACTIONS, BASIC, FULLSCREEN
+    REACTIONS, BASIC, FULLSCREEN, POPUP
   }
 
   public interface EventListener {

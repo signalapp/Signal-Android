@@ -50,6 +50,7 @@ public class MegaphoneRepository {
   public void onFirstEverAppLaunch() {
     executor.execute(() -> {
       database.markFinished(Event.REACTIONS);
+      database.markFinished(Event.MESSAGE_REQUESTS);
       resetDatabaseCache();
     });
   }

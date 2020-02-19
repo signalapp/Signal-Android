@@ -47,6 +47,7 @@ public class EditProfileActivity extends BaseActionBarActivity implements EditPr
 
   @Override
   public void onProfileNameUploadCompleted() {
+    setResult(RESULT_OK);
     finish();
   }
 }

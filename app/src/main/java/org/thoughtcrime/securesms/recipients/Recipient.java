@@ -55,7 +55,8 @@ public class Recipient {
 
   public static final Recipient UNKNOWN = new Recipient(RecipientId.UNKNOWN, new RecipientDetails());
 
-  private static final String TAG = Log.tag(Recipient.class);
+  private static final FallbackPhotoProvider DEFAULT_FALLBACK_PHOTO_PROVIDER = new FallbackPhotoProvider();
+  private static final String                TAG = Log.tag(Recipient.class);
 
   private final RecipientId            id;
   private final boolean                resolving;
@@ -567,20 +568,28 @@ public class Recipient {
   }
 
   public @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted) {
-    return getFallbackContactPhoto().asDrawable(context, getColor().toAvatarColor(context), inverted);
+    return getFallbackContactPhotoDrawable(context, inverted, DEFAULT_FALLBACK_PHOTO_PROVIDER);
   }
 
-  public @NonNull Drawable getSmallFallbackContactPhotoDrawable(Context context, boolean inverted) {
-    return getFallbackContactPhoto().asSmallDrawable(context, getColor().toAvatarColor(context), inverted);
+  public @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted, @Nullable FallbackPhotoProvider fallbackPhotoProvider) {
+    return getFallbackContactPhoto(Util.firstNonNull(fallbackPhotoProvider, DEFAULT_FALLBACK_PHOTO_PROVIDER)).asDrawable(context, getColor().toAvatarColor(context), inverted);
+  }
+
+  public @NonNull Drawable getSmallFallbackContactPhotoDrawable(Context context, boolean inverted, @Nullable FallbackPhotoProvider fallbackPhotoProvider) {
+    return getFallbackContactPhoto(Util.firstNonNull(fallbackPhotoProvider, DEFAULT_FALLBACK_PHOTO_PROVIDER)).asSmallDrawable(context, getColor().toAvatarColor(context), inverted);
   }
 
   public @NonNull FallbackContactPhoto getFallbackContactPhoto() {
-    if      (localNumber)              return new ResourceContactPhoto(R.drawable.ic_note_to_self);
-    if      (isResolving())            return new TransparentContactPhoto();
-    else if (isGroupInternal())        return new ResourceContactPhoto(R.drawable.ic_group_outline_40, R.drawable.ic_group_outline_20, R.drawable.ic_group_large);
-    else if (isGroup())                return new ResourceContactPhoto(R.drawable.ic_group_outline_40, R.drawable.ic_group_outline_20, R.drawable.ic_group_large);
-    else if (!TextUtils.isEmpty(name)) return new GeneratedContactPhoto(name, R.drawable.ic_profile_outline_40);
-    else                               return new ResourceContactPhoto(R.drawable.ic_profile_outline_40, R.drawable.ic_profile_outline_20, R.drawable.ic_person_large);
+    return getFallbackContactPhoto(DEFAULT_FALLBACK_PHOTO_PROVIDER);
+  }
+
+  public @NonNull FallbackContactPhoto getFallbackContactPhoto(@NonNull FallbackPhotoProvider fallbackPhotoProvider) {
+    if      (localNumber)              return fallbackPhotoProvider.getPhotoForLocalNumber();
+    if      (isResolving())            return fallbackPhotoProvider.getPhotoForResolvingRecipient();
+    else if (isGroupInternal())        return fallbackPhotoProvider.getPhotoForGroup();
+    else if (isGroup())                return fallbackPhotoProvider.getPhotoForGroup();
+    else if (!TextUtils.isEmpty(name)) return fallbackPhotoProvider.getPhotoForRecipientWithName(name);
+    else                               return fallbackPhotoProvider.getPhotoForRecipientWithoutName();
   }
 
   public @Nullable ContactPhoto getContactPhoto() {
@@ -732,6 +741,29 @@ public class Recipient {
   @Override
   public int hashCode() {
     return Objects.hash(id);
+  }
+
+  public static class FallbackPhotoProvider {
+    public @NonNull FallbackContactPhoto getPhotoForLocalNumber() {
+      return new ResourceContactPhoto(R.drawable.ic_note_34, R.drawable.ic_note_24);
+    }
+
+    public @NonNull FallbackContactPhoto getPhotoForResolvingRecipient() {
+      return new TransparentContactPhoto();
+    }
+
+    public @NonNull FallbackContactPhoto getPhotoForGroup() {
+      return new ResourceContactPhoto(R.drawable.ic_group_outline_34, R.drawable.ic_group_outline_20, R.drawable.ic_group_outline_48);
+    }
+
+    public @NonNull FallbackContactPhoto getPhotoForRecipientWithName(String name) {
+      return new GeneratedContactPhoto(name, R.drawable.ic_profile_outline_40);
+    }
+
+    public @NonNull FallbackContactPhoto getPhotoForRecipientWithoutName() {
+      return new ResourceContactPhoto(R.drawable.ic_profile_outline_40, R.drawable.ic_profile_outline_20, R.drawable.ic_profile_outline_48);
+    }
+
   }
 
   private static class MissingAddressError extends AssertionError {

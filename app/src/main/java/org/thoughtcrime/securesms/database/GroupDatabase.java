@@ -165,12 +165,14 @@ public class GroupDatabase extends Database {
 
   public List<String> getGroupNamesContainingMember(RecipientId recipientId) {
     SQLiteDatabase database   = databaseHelper.getReadableDatabase();
+    String         table      = TABLE_NAME + " INNER JOIN " + ThreadDatabase.TABLE_NAME + " ON " + TABLE_NAME + "." + RECIPIENT_ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.RECIPIENT_ID;
     List<String>   groupNames = new LinkedList<>();
     String[]       projection = new String[]{TITLE, MEMBERS};
     String         query      = MEMBERS + " LIKE ?";
     String[]       args       = new String[]{"%" + recipientId.serialize() + "%"};
+    String         orderBy    = ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.DATE + " DESC";
 
-    try (Cursor cursor = database.query(TABLE_NAME, projection, query, args, null, null, null)) {
+    try (Cursor cursor = database.query(table, projection, query, args, null, null, orderBy)) {
       while (cursor != null && cursor.moveToNext()) {
         List<String> members = Util.split(cursor.getString(cursor.getColumnIndexOrThrow(MEMBERS)), ",");
 

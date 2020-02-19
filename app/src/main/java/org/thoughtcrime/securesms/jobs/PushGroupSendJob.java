@@ -28,8 +28,10 @@ import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -150,6 +152,10 @@ public class PushGroupSendJob extends PushSendJob {
 
     try {
       log(TAG, "Sending message: " + messageId);
+
+      if (FeatureFlags.messageRequests() && !message.getRecipient().resolve().isProfileSharing() && !database.isGroupQuitMessage(messageId)) {
+        RecipientUtil.shareProfileIfFirstSecureMessage(context, message.getRecipient());
+      }
 
       List<RecipientId> target;
 

@@ -20,10 +20,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Pair;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
@@ -81,7 +82,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 import static org.thoughtcrime.securesms.contactshare.Contact.Avatar;
 
@@ -242,6 +242,42 @@ public class MmsDatabase extends MessagingDatabase {
   @Override
   protected String getTypeField() {
     return MESSAGE_BOX;
+  }
+
+  public boolean isGroupQuitMessage(long messageId) {
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+    String[] columns = new String[]{ID};
+    String   query   = ID + " = ? AND " + MESSAGE_BOX + " & ?";
+    long     type    = Types.getOutgoingEncryptedMessageType() | Types.GROUP_QUIT_BIT;
+    String[] args    = new String[]{String.valueOf(messageId), String.valueOf(type)};
+
+    try (Cursor cursor = db.query(TABLE_NAME, columns, query, args, null, null, null, null)) {
+      if (cursor.getCount() == 1) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  public long getLatestGroupQuitTimestamp(long threadId, long quitTimeBarrier) {
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+    String[] columns = new String[]{DATE_SENT};
+    String   query   = THREAD_ID + " = ? AND " + MESSAGE_BOX + " & ? AND " + DATE_SENT + " < ?";
+    long     type    = Types.getOutgoingEncryptedMessageType() | Types.GROUP_QUIT_BIT;
+    String[] args    = new String[]{String.valueOf(threadId), String.valueOf(type), String.valueOf(quitTimeBarrier)};
+    String   orderBy = DATE_SENT + " DESC";
+    String   limit   = "1";
+
+    try (Cursor cursor = db.query(TABLE_NAME, columns, query, args, null, null, orderBy, limit)) {
+      if (cursor.moveToFirst()) {
+        return cursor.getLong(cursor.getColumnIndex(DATE_SENT));
+      }
+    }
+
+    return -1;
   }
 
   public int getMessageCountForThread(long threadId) {
@@ -533,14 +569,20 @@ public class MmsDatabase extends MessagingDatabase {
     database.beginTransaction();
 
     try {
-      cursor = database.query(TABLE_NAME, new String[] {ID, RECIPIENT_ID, DATE_SENT, MESSAGE_BOX, EXPIRES_IN, EXPIRE_STARTED}, where, arguments, null, null, null);
+      cursor = database.query(TABLE_NAME, new String[] {ID, RECIPIENT_ID, DATE_SENT, MESSAGE_BOX, EXPIRES_IN, EXPIRE_STARTED, THREAD_ID}, where, arguments, null, null, null);
 
       while(cursor != null && cursor.moveToNext()) {
-        if (Types.isSecureType(cursor.getLong(3))) {
-          SyncMessageId  syncMessageId  = new SyncMessageId(RecipientId.from(cursor.getLong(1)), cursor.getLong(2));
-          ExpirationInfo expirationInfo = new ExpirationInfo(cursor.getLong(0), cursor.getLong(4), cursor.getLong(5), true);
+        if (Types.isSecureType(cursor.getLong(cursor.getColumnIndex(MESSAGE_BOX)))) {
+          long           threadId       = cursor.getLong(cursor.getColumnIndex(THREAD_ID));
+          RecipientId    recipientId    = RecipientId.from(cursor.getLong(cursor.getColumnIndex(RECIPIENT_ID)));
+          long           dateSent       = cursor.getLong(cursor.getColumnIndex(DATE_SENT));
+          long           messageId      = cursor.getLong(cursor.getColumnIndex(ID));
+          long           expiresIn      = cursor.getLong(cursor.getColumnIndex(EXPIRES_IN));
+          long           expireStarted  = cursor.getLong(cursor.getColumnIndex(EXPIRE_STARTED));
+          SyncMessageId  syncMessageId  = new SyncMessageId(recipientId, dateSent);
+          ExpirationInfo expirationInfo = new ExpirationInfo(messageId, expiresIn, expireStarted, true);
 
-          result.add(new MarkedMessageInfo(syncMessageId, expirationInfo));
+          result.add(new MarkedMessageInfo(threadId, syncMessageId, expirationInfo));
         }
       }
 

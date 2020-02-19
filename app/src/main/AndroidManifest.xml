@@ -442,6 +442,11 @@
         </intent-filter>
     </activity>
 
+    <activity android:name=".messagerequests.MessageRequestMegaphoneActivity"
+              android:theme="@style/TextSecure.LightRegistrationTheme"
+              android:windowSoftInputMode="adjustResize"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
     <activity android:name=".contactshare.ContactShareEditActivity"
               android:theme="@style/TextSecure.LightTheme"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>

@@ -25,46 +25,26 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.List;
 
-public class MessageRequestFragmentRepository {
+public class MessageRequestRepository {
 
   private final Context       context;
-  private final RecipientId   recipientId;
-  private final long          threadId;
-  private final LiveRecipient liveRecipient;
 
-  public MessageRequestFragmentRepository(@NonNull Context context, @NonNull RecipientId recipientId, long threadId) {
+  public MessageRequestRepository(@NonNull Context context) {
     this.context       = context.getApplicationContext();
-    this.recipientId   = recipientId;
-    this.threadId      = threadId;
-    this.liveRecipient = Recipient.live(recipientId);
   }
 
-  public LiveRecipient getLiveRecipient() {
-    return liveRecipient;
+  public LiveRecipient getLiveRecipient(@NonNull RecipientId recipientId) {
+    return Recipient.live(recipientId);
   }
 
-  public void refreshRecipient() {
-    SignalExecutors.BOUNDED.execute(liveRecipient::refresh);
-  }
-
-  public void getMessageRecord(@NonNull Consumer<MessageRecord> onMessageRecordLoaded) {
-    SimpleTask.run(() -> {
-      MmsSmsDatabase mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(context);
-      try (Cursor cursor = mmsSmsDatabase.getConversation(threadId, 0, 1)) {
-        if (!cursor.moveToFirst()) return null;
-        return mmsSmsDatabase.readerFor(cursor).getCurrent();
-      }
-    }, onMessageRecordLoaded::accept);
-  }
-
-  public void getGroups(@NonNull Consumer<List<String>> onGroupsLoaded) {
+  public void getGroups(@NonNull RecipientId recipientId, @NonNull Consumer<List<String>> onGroupsLoaded) {
     SimpleTask.run(() -> {
       GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
       return groupDatabase.getGroupNamesContainingMember(recipientId);
     }, onGroupsLoaded::accept);
   }
 
-  public void getMemberCount(@NonNull Consumer<Integer> onMemberCountLoaded) {
+  public void getMemberCount(@NonNull RecipientId recipientId, @NonNull Consumer<Integer> onMemberCountLoaded) {
     SimpleTask.run(() -> {
       GroupDatabase                       groupDatabase = DatabaseFactory.getGroupDatabase(context);
       Optional<GroupDatabase.GroupRecord> groupRecord   = groupDatabase.getGroup(recipientId);
@@ -72,10 +52,15 @@ public class MessageRequestFragmentRepository {
     }, onMemberCountLoaded::accept);
   }
 
-  public void acceptMessageRequest(@NonNull Runnable onMessageRequestAccepted) {
+  public void getMessageRequestAccepted(long threadId, @NonNull Consumer<Boolean> recipientRequestAccepted) {
+    SimpleTask.run(() ->  RecipientUtil.isThreadMessageRequestAccepted(context, threadId),
+                   recipientRequestAccepted::accept);
+  }
+
+  public void acceptMessageRequest(@NonNull LiveRecipient liveRecipient, long threadId, @NonNull Runnable onMessageRequestAccepted) {
     SimpleTask.run(() -> {
       RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
-      recipientDatabase.setProfileSharing(recipientId, true);
+      recipientDatabase.setProfileSharing(liveRecipient.getId(), true);
       liveRecipient.refresh();
 
       List<MessagingDatabase.MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context)
@@ -87,7 +72,7 @@ public class MessageRequestFragmentRepository {
     }, v -> onMessageRequestAccepted.run());
   }
 
-  public void deleteMessageRequest(@NonNull Runnable onMessageRequestDeleted) {
+  public void deleteMessageRequest(long threadId, @NonNull Runnable onMessageRequestDeleted) {
     SimpleTask.run(() -> {
       ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
       threadDatabase.deleteConversation(threadId);
@@ -95,7 +80,7 @@ public class MessageRequestFragmentRepository {
     }, v -> onMessageRequestDeleted.run());
   }
 
-  public void blockMessageRequest(@NonNull Runnable onMessageRequestBlocked) {
+  public void blockMessageRequest(@NonNull LiveRecipient liveRecipient, @NonNull Runnable onMessageRequestBlocked) {
     SimpleTask.run(() -> {
       Recipient recipient = liveRecipient.resolve();
       RecipientUtil.block(context, recipient);

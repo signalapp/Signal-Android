@@ -16,6 +16,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
@@ -49,10 +50,11 @@ public final class AvatarImageView extends AppCompatImageView {
     DARK_THEME_OUTLINE_PAINT.setAntiAlias(true);
   }
 
-  private int             size;
-  private boolean         inverted;
-  private Paint           outlinePaint;
-  private OnClickListener listener;
+  private int                             size;
+  private boolean                         inverted;
+  private Paint                           outlinePaint;
+  private OnClickListener                 listener;
+  private Recipient.FallbackPhotoProvider fallbackPhotoProvider;
 
   private @Nullable RecipientContactPhoto recipientContactPhoto;
   private @NonNull  Drawable              unknownRecipientDrawable;
@@ -102,6 +104,10 @@ public final class AvatarImageView extends AppCompatImageView {
     super.setOnClickListener(listener);
   }
 
+  public void setFallbackPhotoProvider(Recipient.FallbackPhotoProvider fallbackPhotoProvider) {
+    this.fallbackPhotoProvider = fallbackPhotoProvider;
+  }
+
   public void setAvatar(@NonNull GlideRequests requestManager, @Nullable Recipient recipient, boolean quickContactEnabled) {
     if (recipient != null) {
       RecipientContactPhoto photo = new RecipientContactPhoto(recipient);
@@ -111,8 +117,8 @@ public final class AvatarImageView extends AppCompatImageView {
         recipientContactPhoto = photo;
 
         Drawable fallbackContactPhotoDrawable = size == SIZE_SMALL
-            ? photo.recipient.getSmallFallbackContactPhotoDrawable(getContext(), inverted)
-            : photo.recipient.getFallbackContactPhotoDrawable(getContext(), inverted);
+            ? photo.recipient.getSmallFallbackContactPhotoDrawable(getContext(), inverted, fallbackPhotoProvider)
+            : photo.recipient.getFallbackContactPhotoDrawable(getContext(), inverted, fallbackPhotoProvider);
 
         if (photo.contactPhoto != null) {
           requestManager.load(photo.contactPhoto)
@@ -130,7 +136,13 @@ public final class AvatarImageView extends AppCompatImageView {
     } else {
       recipientContactPhoto = null;
       requestManager.clear(this);
-      setImageDrawable(unknownRecipientDrawable);
+      if (fallbackPhotoProvider != null) {
+        setImageDrawable(fallbackPhotoProvider.getPhotoForRecipientWithoutName()
+                                              .asDrawable(getContext(), MaterialColor.STEEL.toAvatarColor(getContext()), inverted));
+      } else {
+        setImageDrawable(unknownRecipientDrawable);
+      }
+
       super.setOnClickListener(listener);
     }
   }

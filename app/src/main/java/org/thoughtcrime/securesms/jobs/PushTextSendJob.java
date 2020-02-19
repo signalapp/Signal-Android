@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
@@ -79,6 +80,8 @@ public class PushTextSendJob extends PushSendJob {
 
     try {
       log(TAG, "Sending message: " + messageId);
+
+      RecipientUtil.shareProfileIfFirstSecureMessage(context, record.getRecipient());
 
       Recipient              recipient  = record.getRecipient().resolve();
       byte[]                 profileKey = recipient.getProfileKey();

@@ -5,6 +5,10 @@
              android:layout_width="fill_parent"
              android:layout_height="match_parent">
 
+    <include layout="@layout/conversation_item_banner"
+        android:id="@+id/empty_conversation_banner"
+        android:visibility="gone" />
+
     <androidx.recyclerview.widget.RecyclerView
             android:id="@android:id/list"
             android:layout_width="match_parent"

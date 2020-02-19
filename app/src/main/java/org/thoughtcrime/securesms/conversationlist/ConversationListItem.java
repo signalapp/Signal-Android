@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.conversationlist.model.MessageResult;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.SearchUtil;
+import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -70,6 +71,7 @@ public class ConversationListItem extends RelativeLayout
 
   private Set<Long>           selectedThreads;
   private LiveRecipient       recipient;
+  private LiveRecipient       groupAddedBy;
   private long                threadId;
   private GlideRequests       glideRequests;
   private View                subjectContainer;
@@ -82,12 +84,19 @@ public class ConversationListItem extends RelativeLayout
   private AlertView           alertView;
   private TextView            unreadIndicator;
   private long                lastSeen;
+  private ThreadRecord        thread;
 
   private int             unreadCount;
   private AvatarImageView contactPhotoImage;
   private ThumbnailView   thumbnailView;
 
   private int distributionType;
+
+  private final RecipientForeverObserver groupAddedByObserver = adder -> {
+    if (isAttachedToWindow() && subjectView != null && thread != null) {
+      subjectView.setText(thread.getDisplayBody(getContext()));
+    }
+  };
 
   public ConversationListItem(Context context) {
     this(context, null);
@@ -137,6 +146,7 @@ public class ConversationListItem extends RelativeLayout
                    @Nullable String highlightSubstring)
   {
     if (this.recipient != null) this.recipient.removeForeverObserver(this);
+    if (this.groupAddedBy != null) this.groupAddedBy.removeForeverObserver(groupAddedByObserver);
 
     this.selectedThreads  = selectedThreads;
     this.recipient        = thread.getRecipient().live();
@@ -145,6 +155,7 @@ public class ConversationListItem extends RelativeLayout
     this.unreadCount      = thread.getUnreadCount();
     this.distributionType = thread.getDistributionType();
     this.lastSeen         = thread.getLastSeen();
+    this.thread           = thread;
 
     this.recipient.observeForever(this);
     if (highlightSubstring != null) {
@@ -166,6 +177,12 @@ public class ConversationListItem extends RelativeLayout
 
       this.subjectView.setVisibility(VISIBLE);
       this.subjectView.setText(getTrimmedSnippet(thread.getDisplayBody(getContext())));
+
+      if (thread.getGroupAddedBy() != null) {
+        groupAddedBy = Recipient.live(thread.getGroupAddedBy());
+        groupAddedBy.observeForever(groupAddedByObserver);
+      }
+
       this.subjectView.setTypeface(unreadCount == 0 ? LIGHT_TYPEFACE : BOLD_TYPEFACE);
       this.subjectView.setTextColor(unreadCount == 0 ? ThemeUtil.getThemedColor(getContext(), R.attr.conversation_list_item_subject_color)
                                                      : ThemeUtil.getThemedColor(getContext(), R.attr.conversation_list_item_unread_color));
@@ -199,6 +216,7 @@ public class ConversationListItem extends RelativeLayout
                    @Nullable String        highlightSubstring)
   {
     if (this.recipient != null) this.recipient.removeForeverObserver(this);
+    if (this.groupAddedBy != null) this.groupAddedBy.removeForeverObserver(groupAddedByObserver);
 
     this.selectedThreads = Collections.emptySet();
     this.recipient       = contact.live();
@@ -227,6 +245,7 @@ public class ConversationListItem extends RelativeLayout
                    @Nullable String        highlightSubstring)
   {
     if (this.recipient != null) this.recipient.removeForeverObserver(this);
+    if (this.groupAddedBy != null) this.groupAddedBy.removeForeverObserver(groupAddedByObserver);
 
     this.selectedThreads = Collections.emptySet();
     this.recipient       = messageResult.conversationRecipient.live();
@@ -254,6 +273,11 @@ public class ConversationListItem extends RelativeLayout
       this.recipient.removeForeverObserver(this);
       this.recipient = null;
       contactPhotoImage.setAvatar(glideRequests, null, true);
+    }
+
+    if (this.groupAddedBy != null) {
+      this.groupAddedBy.removeForeverObserver(groupAddedByObserver);
+      this.groupAddedBy = null;
     }
   }
 

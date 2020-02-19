@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -78,15 +79,20 @@ public class MarkReadReceiver extends BroadcastReceiver {
 
     ApplicationDependencies.getJobManager().add(new MultiDeviceReadUpdateJob(syncMessageIds));
 
-    Map<RecipientId, List<SyncMessageId>> recipientIdMap = Stream.of(markedReadMessages)
-                                                                 .map(MarkedMessageInfo::getSyncMessageId)
-                                                                 .collect(Collectors.groupingBy(SyncMessageId::getRecipientId));
+    Map<Long, List<MarkedMessageInfo>> threadToInfo = Stream.of(markedReadMessages)
+                                                            .collect(Collectors.groupingBy(MarkedMessageInfo::getThreadId));
 
-    for (Map.Entry<RecipientId, List<SyncMessageId>> entry : recipientIdMap.entrySet()) {
-      List<Long> timestamps = Stream.of(entry.getValue()).map(SyncMessageId::getTimetamp).toList();
+    Stream.of(threadToInfo).forEach(threadToInfoEntry -> {
+      Map<RecipientId, List<SyncMessageId>> idMapForThread = Stream.of(threadToInfoEntry.getValue())
+                                                                   .map(MarkedMessageInfo::getSyncMessageId)
+                                                                   .collect(Collectors.groupingBy(SyncMessageId::getRecipientId));
 
-      ApplicationDependencies.getJobManager().add(new SendReadReceiptJob(entry.getKey(), timestamps));
-    }
+      Stream.of(idMapForThread).forEach(entry -> {
+        List<Long> timestamps = Stream.of(entry.getValue()).map(SyncMessageId::getTimetamp).toList();
+
+        ApplicationDependencies.getJobManager().add(new SendReadReceiptJob(threadToInfoEntry.getKey(), entry.getKey(), timestamps));
+      });
+    });
   }
 
   private static void scheduleDeletion(Context context, ExpirationInfo expirationInfo) {

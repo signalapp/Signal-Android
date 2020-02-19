@@ -21,6 +21,7 @@ public class MaskView extends View {
   private ViewGroup activityContentView;
   private Paint     maskPaint;
   private Rect      drawingRect = new Rect();
+  private float     targetParentTranslationY;
 
   private final ViewTreeObserver.OnDrawListener onDrawListener = this::invalidate;
 
@@ -63,6 +64,10 @@ public class MaskView extends View {
     invalidate();
   }
 
+  public void setTargetParentTranslationY(float targetParentTranslationY) {
+    this.targetParentTranslationY = targetParentTranslationY;
+  }
+
   @Override
   protected void onDraw(@NonNull Canvas canvas) {
     super.onDraw(canvas);
@@ -75,6 +80,8 @@ public class MaskView extends View {
     activityContentView.offsetDescendantRectToMyCoords(target, drawingRect);
 
     drawingRect.bottom = Math.min(drawingRect.bottom, getBottom() - getPaddingBottom());
+    drawingRect.top    += targetParentTranslationY;
+    drawingRect.bottom += targetParentTranslationY;
 
     Bitmap mask       = Bitmap.createBitmap(target.getWidth(), drawingRect.height(), Bitmap.Config.ARGB_8888);
     Canvas maskCanvas = new Canvas(mask);

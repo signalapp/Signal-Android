@@ -19,15 +19,17 @@ package org.thoughtcrime.securesms.database;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DataSetObserver;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
-import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
+
+import org.thoughtcrime.securesms.R;
 
 /**
  * RecyclerView.Adapter that manages a Cursor, comparable to the CursorAdapter usable in ListView/GridView.
@@ -47,8 +49,24 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
   private @Nullable View    footer;
 
   private static class HeaderFooterViewHolder extends RecyclerView.ViewHolder {
-    public HeaderFooterViewHolder(View itemView) {
+
+    private ViewGroup container;
+
+    HeaderFooterViewHolder(@NonNull View itemView) {
       super(itemView);
+      this.container = (ViewGroup) itemView;
+    }
+
+    void bind(@Nullable View view) {
+      unbind();
+
+      if (view != null) {
+        container.addView(view);
+      }
+    }
+
+    void unbind() {
+      container.removeAllViews();
     }
   }
 
@@ -135,6 +153,8 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
   public final void onViewRecycled(@NonNull ViewHolder holder) {
     if (!(holder instanceof HeaderFooterViewHolder)) {
       onItemViewRecycled((VH)holder);
+    } else {
+      ((HeaderFooterViewHolder) holder).unbind();
     }
   }
 
@@ -143,9 +163,11 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
   @Override
   public @NonNull final ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     switch (viewType) {
-    case HEADER_TYPE: return new HeaderFooterViewHolder(header);
-    case FOOTER_TYPE: return new HeaderFooterViewHolder(footer);
-    default:          return onCreateItemViewHolder(parent, viewType);
+    case HEADER_TYPE:
+    case FOOTER_TYPE:
+      return new HeaderFooterViewHolder(LayoutInflater.from(context).inflate(R.layout.cursor_adapter_header_footer_view, parent, false));
+    default:
+      return onCreateItemViewHolder(parent, viewType);
     }
   }
 
@@ -154,7 +176,11 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
   @SuppressWarnings("unchecked")
   @Override
   public final void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
-    if (!isHeaderPosition(position) && !isFooterPosition(position)) {
+    if (isHeaderPosition(position)) {
+      ((HeaderFooterViewHolder) viewHolder).bind(header);
+    } else if (isFooterPosition(position)) {
+      ((HeaderFooterViewHolder) viewHolder).bind(footer);
+    } else {
       if (isFastAccessPosition(position)) onBindFastAccessItemViewHolder((VH)viewHolder, position);
       else                                onBindItemViewHolder((VH)viewHolder, getCursorAtPositionOrThrow(position));
     }
