@@ -1662,10 +1662,13 @@
     <string name="session_restore_banner_dismiss_button_title">Dismiss</string>
     <string name="session_restore_banner_restore_button_title">Restore</string>
 
-    <!-- Loki -->
-
     <!-- Session -->
     <string name="activity_register_public_key_copied_message">Copied to clipboard</string>
     <!-- Session -->
+
+    <!-- Home Activity -->
+    <string name="activity_home_conversation_deleted">Conversation deleted</string>
+    <string name="activity_home_leave_group_title">Are you sure you want to leave the group?</string>
+    <string name="activity_home_delete_conversation_title">Are you sure you want to delete the conversation?</string>
 
 </resources>
