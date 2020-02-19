@@ -151,6 +151,10 @@
             android:name="timeRemaining"
             app:argType="long" />
 
+        <argument
+            android:name="isV1RegistrationLock"
+            app:argType="boolean" />
+
     </fragment>
 
     <fragment

@@ -2,8 +2,10 @@ package org.thoughtcrime.securesms.lock.v2;
 
 import android.animation.Animator;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RawRes;
@@ -75,6 +77,7 @@ public class ConfirmKbsPinFragment extends BaseKbsPinFragment<ConfirmKbsPinViewM
         break;
       case CREATING_PIN:
         getLabel().setText(R.string.ConfirmKbsPinFragment__creating_pin);
+        getInput().setEnabled(false);
         break;
       case RE_ENTER_PIN:
         getLabel().setText(R.string.ConfirmKbsPinFragment__re_enter_pin);

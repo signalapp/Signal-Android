@@ -127,7 +127,7 @@ public final class EnterCodeFragment extends BaseRegistrationFragment {
               @Override
               public void onSuccess(Boolean r) {
                 Navigation.findNavController(requireView())
-                          .navigate(EnterCodeFragmentDirections.actionRequireKbsLockPin(timeRemaining));
+                          .navigate(EnterCodeFragmentDirections.actionRequireKbsLockPin(timeRemaining, true));
               }
             });
           }
@@ -141,7 +141,7 @@ public final class EnterCodeFragment extends BaseRegistrationFragment {
               @Override
               public void onSuccess(Boolean r) {
                 Navigation.findNavController(requireView())
-                          .navigate(EnterCodeFragmentDirections.actionRequireKbsLockPin(timeRemaining));
+                          .navigate(EnterCodeFragmentDirections.actionRequireKbsLockPin(timeRemaining, false));
               }
             });
           }

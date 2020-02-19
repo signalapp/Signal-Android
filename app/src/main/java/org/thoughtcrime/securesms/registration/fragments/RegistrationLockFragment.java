@@ -63,7 +63,13 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
     keyboardToggle = view.findViewById(R.id.kbs_lock_keyboard_toggle);
     forgotPin      = view.findViewById(R.id.kbs_lock_forgot_pin);
 
-    timeRemaining = RegistrationLockFragmentArgs.fromBundle(requireArguments()).getTimeRemaining();
+    RegistrationLockFragmentArgs args = RegistrationLockFragmentArgs.fromBundle(requireArguments());
+
+    timeRemaining = args.getTimeRemaining();
+
+    if (args.getIsV1RegistrationLock()) {
+      keyboardToggle.setVisibility(View.GONE);
+    }
 
     forgotPin.setVisibility(View.GONE);
     forgotPin.setOnClickListener(v -> handleForgottenPin(timeRemaining));
@@ -78,10 +84,7 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
       return false;
     });
 
-    pinEntry.setFocusable(true);
-    if (pinEntry.requestFocus()) {
-      ServiceUtil.getInputMethodManager(pinEntry.getContext()).showSoftInput(pinEntry, 0);
-    }
+    enableAndFocusPinEntry();
 
     pinButton.setOnClickListener((v) -> {
       hideKeyboard(requireContext(), pinEntry);
@@ -136,6 +139,8 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
   }
 
   private void handlePinEntry() {
+    pinEntry.setEnabled(false);
+
     final String pin = pinEntry.getText().toString();
 
     int trimmedLength = pin.replace(" ", "").length();
@@ -179,6 +184,7 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
 
           cancelSpinning(pinButton);
           pinEntry.getText().clear();
+          enableAndFocusPinEntry();
 
           errorLabel.setText(R.string.RegistrationLockFragment__incorrect_pin);
         }
@@ -192,6 +198,7 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
         public void onIncorrectKbsRegistrationLockPin(@NonNull TokenResponse tokenResponse) {
           cancelSpinning(pinButton);
           pinEntry.getText().clear();
+          enableAndFocusPinEntry();
 
           model.setKeyBackupCurrentToken(tokenResponse);
 
@@ -224,6 +231,7 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
         @Override
         public void onRateLimited() {
           cancelSpinning(pinButton);
+          enableAndFocusPinEntry();
 
           new AlertDialog.Builder(requireContext())
                          .setTitle(R.string.RegistrationActivity_too_many_attempts)
@@ -244,6 +252,7 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
         @Override
         public void onError() {
           cancelSpinning(pinButton);
+          enableAndFocusPinEntry();
 
           Toast.makeText(requireContext(), R.string.RegistrationActivity_error_connecting_to_service, Toast.LENGTH_LONG).show();
         }
@@ -281,6 +290,15 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
       return R.string.RegistrationLockFragment__enter_alphanumeric_pin;
     } else {
       return R.string.RegistrationLockFragment__enter_numeric_pin;
+    }
+  }
+
+  private void enableAndFocusPinEntry() {
+    pinEntry.setEnabled(true);
+    pinEntry.setFocusable(true);
+
+    if (pinEntry.requestFocus()) {
+      ServiceUtil.getInputMethodManager(pinEntry.getContext()).showSoftInput(pinEntry, 0);
     }
   }
 }
