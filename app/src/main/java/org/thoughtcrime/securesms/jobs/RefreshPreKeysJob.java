@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKeyPair;
@@ -17,9 +18,11 @@ import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class RefreshPreKeysJob extends BaseJob {
 
@@ -29,12 +32,25 @@ public class RefreshPreKeysJob extends BaseJob {
 
   private static final int PREKEY_MINIMUM = 10;
 
+  private static final long REFRESH_INTERVAL = TimeUnit.DAYS.toMillis(3);
+
   public RefreshPreKeysJob() {
     this(new Job.Parameters.Builder()
                            .setQueue("RefreshPreKeysJob")
                            .addConstraint(NetworkConstraint.KEY)
-                           .setMaxAttempts(5)
+                           .setMaxInstances(1)
+                           .setMaxAttempts(Parameters.UNLIMITED)
+                           .setLifespan(TimeUnit.DAYS.toMillis(30))
                            .build());
+  }
+
+  public static void scheduleIfNecessary() {
+    long timeSinceLastRefresh = System.currentTimeMillis() - SignalStore.getLastPrekeyRefreshTime();
+
+    if (timeSinceLastRefresh > REFRESH_INTERVAL) {
+      Log.i(TAG, "Scheduling a prekey refresh. Time since last schedule: " + timeSinceLastRefresh + " ms");
+      ApplicationDependencies.getJobManager().add(new RefreshPreKeysJob());
+    }
   }
 
   private RefreshPreKeysJob(@NonNull Job.Parameters parameters) {
@@ -53,14 +69,20 @@ public class RefreshPreKeysJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException {
-    if (!TextSecurePreferences.isPushRegistered(context)) return;
+    if (!TextSecurePreferences.isPushRegistered(context)) {
+      Log.w(TAG, "Not registered. Skipping.");
+      return;
+    }
 
     SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
 
     int availableKeys = accountManager.getPreKeysCount();
 
+    Log.i(TAG, "Available keys: " + availableKeys);
+
     if (availableKeys >= PREKEY_MINIMUM && TextSecurePreferences.isSignedPreKeyRegistered(context)) {
-      Log.i(TAG, "Available keys sufficient: " + availableKeys);
+      Log.i(TAG, "Available keys sufficient.");
+      SignalStore.setLastPrekeyRefreshTime(System.currentTimeMillis());
       return;
     }
 
@@ -76,6 +98,8 @@ public class RefreshPreKeysJob extends BaseJob {
     TextSecurePreferences.setSignedPreKeyRegistered(context, true);
 
     ApplicationDependencies.getJobManager().add(new CleanPreKeysJob());
+    SignalStore.setLastPrekeyRefreshTime(System.currentTimeMillis());
+    Log.i(TAG, "Successfully refreshed prekeys.");
   }
 
   @Override

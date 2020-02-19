@@ -17,6 +17,8 @@ import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
+import java.util.concurrent.TimeUnit;
+
 public class RotateSignedPreKeyJob extends BaseJob {
 
   public static final String KEY = "RotateSignedPreKeyJob";
@@ -27,7 +29,9 @@ public class RotateSignedPreKeyJob extends BaseJob {
     this(new Job.Parameters.Builder()
                            .setQueue("RotateSignedPreKeyJob")
                            .addConstraint(NetworkConstraint.KEY)
-                           .setMaxAttempts(5)
+                           .setMaxInstances(1)
+                           .setMaxAttempts(Parameters.UNLIMITED)
+                           .setLifespan(TimeUnit.DAYS.toMillis(2))
                            .build());
   }
 

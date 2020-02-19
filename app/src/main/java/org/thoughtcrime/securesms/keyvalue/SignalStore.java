@@ -14,6 +14,7 @@ public final class SignalStore {
 
   private static final String REMOTE_CONFIG                 = "remote_config";
   private static final String REMOTE_CONFIG_LAST_FETCH_TIME = "remote_config_last_fetch_time";
+  private static final String LAST_PREKEY_REFRESH_TIME      = "last_prekey_refresh_time";
 
   private SignalStore() {}
 
@@ -45,6 +46,13 @@ public final class SignalStore {
     putLong(REMOTE_CONFIG_LAST_FETCH_TIME, time);
   }
 
+  public static long getLastPrekeyRefreshTime() {
+    return getStore().getLong(LAST_PREKEY_REFRESH_TIME, 0);
+  }
+
+  public static void setLastPrekeyRefreshTime(long time) {
+    putLong(LAST_PREKEY_REFRESH_TIME, time);
+  }
 
   /**
    * Ensures any pending writes are finished. Only intended to be called by

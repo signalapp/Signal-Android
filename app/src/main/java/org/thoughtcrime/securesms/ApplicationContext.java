@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
+import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
@@ -138,6 +139,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     initializeCameraX();
     FeatureFlags.init();
     NotificationChannels.create(this);
+    RefreshPreKeysJob.scheduleIfNecessary();
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
 
     if (Build.VERSION.SDK_INT < 21) {
