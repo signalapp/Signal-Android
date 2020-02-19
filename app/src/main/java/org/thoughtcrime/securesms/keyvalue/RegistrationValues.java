@@ -17,7 +17,8 @@ public final class RegistrationValues {
   public synchronized void onNewInstall() {
     store.beginWrite()
          .putBoolean(REGISTRATION_COMPLETE, false)
-         .putBoolean(PIN_REQUIRED, true)
+         // TODO [greyson] [pins] Maybe re-enable in the future
+//         .putBoolean(PIN_REQUIRED, true)
          .commit();
   }
 

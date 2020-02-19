@@ -129,6 +129,6 @@ public final class KbsValues {
   }
 
   public boolean hasMigratedToPinsForAll() {
-    return store.getString(KEYBOARD_TYPE, null) != null;
+    return store.getString(KEYBOARD_TYPE, null) != null && store.getBoolean(V2_LOCK_ENABLED, false);
   }
 }

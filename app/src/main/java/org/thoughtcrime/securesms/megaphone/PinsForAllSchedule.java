@@ -26,7 +26,7 @@ class PinsForAllSchedule implements MegaphoneSchedule {
 
   static boolean shouldDisplayFullScreen(long firstVisible, long currentTime) {
     return false;
-    // TODO [greyson]
+    // TODO [greyson] [pins] Maybe re-enable if we ever do a blocking flow again
 //    if (pinCreationFailedDuringRegistration()) {
 //      return true;
 //    }
@@ -71,6 +71,10 @@ class PinsForAllSchedule implements MegaphoneSchedule {
     }
 
     if (SignalStore.registrationValues().pinWasRequiredAtRegistration()) {
+      return false;
+    }
+
+    if (SignalStore.kbsValues().hasMigratedToPinsForAll()) {
       return false;
     }
 
