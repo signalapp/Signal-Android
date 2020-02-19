@@ -322,7 +322,7 @@ public class BlobProvider {
       return this;
     }
 
-    public BlobBuilder withFileName(@NonNull String fileName) {
+    public BlobBuilder withFileName(@Nullable String fileName) {
       this.fileName = fileName;
       return this;
     }

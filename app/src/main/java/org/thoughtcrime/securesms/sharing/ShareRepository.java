@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.sharing;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
@@ -37,7 +36,7 @@ class ShareRepository {
   /**
    * Handles a single URI that may be local or external.
    */
-  void getResolved(@NonNull Uri uri, @Nullable String mimeType, @NonNull Callback<Optional<ShareData>> callback) {
+  void getResolved(@Nullable Uri uri, @Nullable String mimeType, @NonNull Callback<Optional<ShareData>> callback) {
     SignalExecutors.BOUNDED.execute(() -> {
       try {
         callback.onResult(Optional.of(getResolvedInternal(uri, mimeType)));
@@ -62,8 +61,6 @@ class ShareRepository {
     });
   }
 
-
-
   @WorkerThread
   private @NonNull ShareData getResolvedInternal(@Nullable Uri uri, @Nullable String mimeType) throws IOException  {
     Context context = ApplicationDependencies.getApplication();
@@ -72,11 +69,9 @@ class ShareRepository {
       return ShareData.forPrimitiveTypes();
     }
 
-    if (mimeType == null) {
-      mimeType = context.getContentResolver().getType(uri);
-    }
+    mimeType = getMimeType(context, uri, mimeType);
 
-    if (PartAuthority.isLocalUri(uri) && mimeType != null) {
+    if (PartAuthority.isLocalUri(uri)) {
       return ShareData.forIntentData(uri, mimeType, false);
     } else {
       InputStream stream = context.getContentResolver().openInputStream(uri);
@@ -85,38 +80,35 @@ class ShareRepository {
         throw new IOException("Failed to open stream!");
       }
 
-      long   size         = getSize(context, uri);
-      String fileName     = getFileName(context, uri);
-      String fillMimeType = Optional.fromNullable(mimeType).or(MediaUtil.UNKNOWN);
+      long   size     = getSize(context, uri);
+      String fileName = getFileName(context, uri);
 
       Uri blobUri;
 
-      if (MediaUtil.isImageType(fillMimeType) || MediaUtil.isVideoType(fillMimeType)) {
+      if (MediaUtil.isImageType(mimeType) || MediaUtil.isVideoType(mimeType)) {
         blobUri = BlobProvider.getInstance()
                               .forData(stream, size)
-                              .withMimeType(fillMimeType)
+                              .withMimeType(mimeType)
                               .withFileName(fileName)
                               .createForSingleSessionOnDisk(context);
       } else {
         blobUri = BlobProvider.getInstance()
                               .forData(stream, size)
-                              .withMimeType(fillMimeType)
+                              .withMimeType(mimeType)
                               .withFileName(fileName)
                               .createForMultipleSessionsOnDisk(context);
       }
 
-      return ShareData.forIntentData(blobUri, fillMimeType, true);
+      return ShareData.forIntentData(blobUri, mimeType, true);
     }
   }
 
   @WorkerThread
-  private @Nullable
-  ShareData getResolvedInternal(@NonNull List<Uri> uris) throws IOException  {
-    Context         context  = ApplicationDependencies.getApplication();
-    ContentResolver resolver = context.getContentResolver();
+  private @Nullable ShareData getResolvedInternal(@NonNull List<Uri> uris) throws IOException  {
+    Context context = ApplicationDependencies.getApplication();
 
     Map<Uri, String> mimeTypes = Stream.of(uris)
-                                       .map(uri -> new Pair<>(uri, Optional.fromNullable(resolver.getType(uri)).or(MediaUtil.UNKNOWN)))
+                                       .map(uri -> new Pair<>(uri, getMimeType(context, uri, null)))
                                        .filter(p -> MediaUtil.isImageType(p.second) || MediaUtil.isVideoType(p.second))
                                        .collect(Collectors.toMap(p -> p.first, p -> p.second));
 
@@ -173,6 +165,16 @@ class ShareRepository {
     }
   }
 
+  private static @NonNull String getMimeType(@NonNull Context context, @NonNull Uri uri, @Nullable String mimeType) {
+    String updatedMimeType = MediaUtil.getMimeType(context, uri);
+
+    if (updatedMimeType == null) {
+      updatedMimeType = MediaUtil.getCorrectedMimeType(mimeType);
+    }
+
+    return updatedMimeType != null ? updatedMimeType : MediaUtil.UNKNOWN;
+  }
+
   private static long getSize(@NonNull Context context, @NonNull Uri uri) throws IOException {
     long size = 0;
 
@@ -189,14 +191,14 @@ class ShareRepository {
     return size;
   }
 
-  private static @NonNull String getFileName(@NonNull Context context, @NonNull Uri uri) {
+  private static @Nullable String getFileName(@NonNull Context context, @NonNull Uri uri) {
     try (Cursor cursor = context.getContentResolver().query(uri, null, null, null, null)) {
       if (cursor != null && cursor.moveToFirst() && cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME) >= 0) {
         return cursor.getString(cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME));
       }
     }
 
-    return "";
+    return null;
   }
 
   private static long getDuration(@NonNull Context context, @NonNull Uri uri) {
