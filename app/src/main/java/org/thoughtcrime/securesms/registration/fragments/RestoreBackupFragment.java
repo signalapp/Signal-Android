@@ -32,6 +32,7 @@ import net.sqlcipher.database.SQLiteDatabase;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.thoughtcrime.securesms.AppInitialization;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.BackupPassphrase;
 import org.thoughtcrime.securesms.backup.FullBackupBase;
@@ -210,6 +211,7 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
           BackupPassphrase.set(context, passphrase);
           TextSecurePreferences.setBackupEnabled(context, true);
           LocalBackupListener.schedule(context);
+          AppInitialization.onPostBackupRestore(context);
 
           Log.i(TAG, "Backup restore complete.");
           return BackupImportResult.SUCCESS;

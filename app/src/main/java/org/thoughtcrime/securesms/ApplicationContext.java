@@ -246,18 +246,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     if (TextSecurePreferences.getFirstInstallVersion(this) == -1) {
       if (!SQLCipherOpenHelper.databaseFileExists(this)) {
         Log.i(TAG, "First ever app launch!");
-
-        InsightsOptOut.userRequestedOptOut(this);
-        TextSecurePreferences.setAppMigrationVersion(this, ApplicationMigrations.CURRENT_VERSION);
-        TextSecurePreferences.setJobManagerVersion(this, JobManager.CURRENT_VERSION);
-        TextSecurePreferences.setLastExperienceVersionCode(this, Util.getCanonicalVersionCode());
-        TextSecurePreferences.setHasSeenStickerIntroTooltip(this, true);
-        ApplicationDependencies.getMegaphoneRepository().onFirstEverAppLaunch();
-        SignalStore.registrationValues().onNewInstall();
-        ApplicationDependencies.getJobManager().add(StickerPackDownloadJob.forInstall(BlessedPacks.ZOZO.getPackId(), BlessedPacks.ZOZO.getPackKey(), false));
-        ApplicationDependencies.getJobManager().add(StickerPackDownloadJob.forInstall(BlessedPacks.BANDIT.getPackId(), BlessedPacks.BANDIT.getPackKey(), false));
-        ApplicationDependencies.getJobManager().add(StickerPackDownloadJob.forReference(BlessedPacks.SWOON_HANDS.getPackId(), BlessedPacks.SWOON_HANDS.getPackKey()));
-        ApplicationDependencies.getJobManager().add(StickerPackDownloadJob.forReference(BlessedPacks.SWOON_FACES.getPackId(), BlessedPacks.SWOON_FACES.getPackKey()));
+        AppInitialization.onFirstEverAppLaunch(this);
       }
 
       Log.i(TAG, "Setting first install version to " + BuildConfig.CANONICAL_VERSION_CODE);
