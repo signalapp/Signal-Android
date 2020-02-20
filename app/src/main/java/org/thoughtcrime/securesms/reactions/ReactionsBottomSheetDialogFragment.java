@@ -67,6 +67,7 @@ public final class ReactionsBottomSheetDialogFragment extends BottomSheetDialogF
     recipientRecyclerView = view.findViewById(R.id.reactions_bottom_view_recipient_recycler);
     emojiRecyclerView     = view.findViewById(R.id.reactions_bottom_view_emoji_recycler);
 
+    emojiRecyclerView.setNestedScrollingEnabled(false);
     messageId = getArguments().getLong(ARGS_MESSAGE_ID);
 
     setUpRecipientsRecyclerView();
