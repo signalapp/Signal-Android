@@ -102,7 +102,7 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, List<Recipient>> {
 
       for (Recipient recipient : members) {
         if (recipient.isLocalNumber()) {
-          recipientStrings.add(context.getString(R.string.GroupMembersDialog_me));
+          recipientStrings.add(context.getString(R.string.GroupMembersDialog_you));
         } else {
           String name = getRecipientName(recipient);
           recipientStrings.add(name);

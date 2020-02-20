@@ -448,7 +448,7 @@
     <string name="GroupShareProfileView_make_visible">Make visible</string>
 
     <!-- GroupMembersDialog -->
-    <string name="GroupMembersDialog_me">Me</string>
+    <string name="GroupMembersDialog_you">You</string>
 
     <!-- CropImageActivity -->
     <string name="CropImageActivity_group_avatar">Group avatar</string>
@@ -679,6 +679,9 @@
 
     <!-- ReactionsConversationView -->
     <string name="ReactionsConversationView_plus">+%1$d</string>
+
+    <!-- ReactionsRecipientAdapter -->
+    <string name="ReactionsRecipientAdapter_you">You</string>
 
     <!-- RecipientPreferencesActivity -->
     <string name="RecipientPreferenceActivity_block_this_contact_question">Block this contact?</string>
