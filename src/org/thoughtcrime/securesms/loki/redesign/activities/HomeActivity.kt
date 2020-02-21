@@ -11,7 +11,6 @@ import android.graphics.Paint
 import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Handler
-import android.support.design.widget.Snackbar
 import android.support.v4.app.LoaderManager
 import android.support.v4.content.Loader
 import android.support.v7.widget.LinearLayoutManager
@@ -232,8 +231,9 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
 
         @SuppressLint("StaticFieldLeak")
         override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-            val threadID = (viewHolder as HomeAdapter.ViewHolder).view.thread!!.threadId
-            val recipient = (viewHolder as HomeAdapter.ViewHolder).view.thread!!.recipient
+            viewHolder as HomeAdapter.ViewHolder
+            val threadID = viewHolder.view.thread!!.threadId
+            val recipient = viewHolder.view.thread!!.recipient
             val threadDatabase = DatabaseFactory.getThreadDatabase(activity)
             val deleteThread = object : Runnable {
 
@@ -246,44 +246,37 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
                             apiDatabase.removeLastDeletionServerID(publicChat.channel, publicChat.server)
                             ApplicationContext.getInstance(activity).lokiPublicChatAPI!!.leave(publicChat.channel, publicChat.server)
                         }
-
                         threadDatabase.deleteConversation(threadID)
-
                         MessageNotifier.updateNotification(activity)
                     }
                 }
             }
-
-            val message = if (recipient.isGroupRecipient) R.string.activity_home_leave_group_title else R.string.activity_home_delete_conversation_title
-            val alertDialogBuilder = AlertDialog.Builder(activity)
-            alertDialogBuilder.setMessage(message)
-            alertDialogBuilder.setPositiveButton(R.string.yes) { _, _ ->
+            val dialogMessage = if (recipient.isGroupRecipient) R.string.activity_home_leave_group_dialog_message else R.string.activity_home_delete_conversation_dialog_message
+            val dialog = AlertDialog.Builder(activity)
+            dialog.setMessage(dialogMessage)
+            dialog.setPositiveButton(R.string.yes) { _, _ ->
                 val isGroup = recipient.isGroupRecipient
-
-                // If we are deleting a group and it's active
-                // We need to send a leave message
+                // Send a leave group message if this is an active closed group
                 if (isGroup && DatabaseFactory.getGroupDatabase(activity).isActive(recipient.address.toGroupString())) {
                     if (!GroupUtil.leaveGroup(activity, recipient)) {
-                        Toast.makeText(activity, R.string.ConversationActivity_error_leaving_group, Toast.LENGTH_LONG).show()
+                        Toast.makeText(activity, "Couldn't leave group", Toast.LENGTH_LONG).show()
                         clearView(activity.recyclerView, viewHolder)
                         return@setPositiveButton
                     }
                 }
-
-                // Archive and forcefully delete the conversation in 10 seconds
+                // Archive the conversation and then delete it after 10 seconds (the case where the
+                // app was closed before the conversation could be deleted is handled in onCreate)
                 threadDatabase.archiveConversation(threadID)
                 val handler = Handler()
                 handler.postDelayed(deleteThread, 10000)
-
                 // Notify the user
-                val snackbarText = if (isGroup) R.string.MessageRecord_left_group else R.string.activity_home_conversation_deleted
-                val snackbar = Snackbar.make(activity.contentView, snackbarText, Snackbar.LENGTH_LONG)
-                snackbar.show()
+                val toastMessage = if (isGroup) R.string.MessageRecord_left_group else R.string.activity_home_conversation_deleted_message
+                Toast.makeText(activity, toastMessage, Toast.LENGTH_LONG).show()
             }
-            alertDialogBuilder.setNegativeButton(R.string.no) { _, _ ->
+            dialog.setNegativeButton(R.string.no) { _, _ ->
                 clearView(activity.recyclerView, viewHolder)
             }
-            alertDialogBuilder.show()
+            dialog.create().show()
         }
 
         override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dx: Float, dy: Float, actionState: Int, isCurrentlyActive: Boolean) {
