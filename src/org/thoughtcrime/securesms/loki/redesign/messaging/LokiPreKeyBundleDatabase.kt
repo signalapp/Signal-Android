@@ -55,7 +55,7 @@ class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : 
                 failureCount += 1
             }
         }
-        Log.w("Loki", "Failed to generate a valid PreKeyBundle for $hexEncodedPublicKey")
+        Log.w("Loki", "Failed to generate a valid pre key bundle for: $hexEncodedPublicKey.")
         return null
     }
 

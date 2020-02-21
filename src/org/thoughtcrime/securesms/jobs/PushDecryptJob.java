@@ -725,26 +725,26 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
   private void handleGroupSyncMessage(@NonNull SignalServiceContent content, @NonNull SignalServiceAttachment groupMessage) {
     if (groupMessage.isStream()) {
-      Log.d("Loki", "Received group sync message");
+      Log.d("Loki", "Received a group sync message.");
       try {
         InputStream in = groupMessage.asStream().getInputStream();
         DeviceGroupsInputStream groupsInputStream = new DeviceGroupsInputStream(in);
         List<DeviceGroup> groups = groupsInputStream.readAll();
         for (DeviceGroup group : groups) {
           SignalServiceGroup serviceGroup = new SignalServiceGroup(
-                  SignalServiceGroup.Type.UPDATE,
-                  group.getId(),
-                  SignalServiceGroup.GroupType.SIGNAL,
-                  group.getName().orNull(),
-                  group.getMembers(),
-                  group.getAvatar().orNull(),
-                  group.getAdmins()
+              SignalServiceGroup.Type.UPDATE,
+              group.getId(),
+              SignalServiceGroup.GroupType.SIGNAL,
+              group.getName().orNull(),
+              group.getMembers(),
+              group.getAvatar().orNull(),
+              group.getAdmins()
           );
           SignalServiceDataMessage dataMessage = new SignalServiceDataMessage(content.getTimestamp(), serviceGroup, null, null);
           GroupMessageProcessor.process(context, content, dataMessage, false);
         }
       } catch (Exception e) {
-        Log.d("Loki", "Failed to sync group: " + e);
+        Log.d("Loki", "Failed to sync group due to error: " + e + ".");
       }
     }
   }

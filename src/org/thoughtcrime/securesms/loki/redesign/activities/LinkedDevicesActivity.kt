@@ -22,7 +22,6 @@ import org.thoughtcrime.securesms.loki.redesign.dialogs.*
 import org.thoughtcrime.securesms.loki.signAndSendDeviceLinkMessage
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.loki.api.DeviceLink
 import org.whispersystems.signalservice.loki.api.LokiFileServerAPI
 import java.util.*
@@ -153,12 +152,11 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity, LoaderManager
                     MessageSender.syncAllGroups(this@LinkedDevicesActivity)
                     MessageSender.syncAllContacts(this@LinkedDevicesActivity, Address.fromSerialized(deviceLink.slaveHexEncodedPublicKey))
                 }
+            }.failUi {
+                Toast.makeText(this, "Couldn't link device", Toast.LENGTH_LONG).show()
             }.fail {
                 LokiFileServerAPI.shared.removeDeviceLink(deviceLink) // If this fails we have a problem
                 DatabaseFactory.getLokiPreKeyBundleDatabase(this).removePreKeyBundle(deviceLink.slaveHexEncodedPublicKey)
-                Util.runOnMain {
-                    Toast.makeText(this, "Couldn't link device", Toast.LENGTH_LONG).show()
-                }
             }
         }.failUi {
             DatabaseFactory.getLokiPreKeyBundleDatabase(this).removePreKeyBundle(deviceLink.slaveHexEncodedPublicKey)
