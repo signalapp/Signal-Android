@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.InviteActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
@@ -75,8 +76,8 @@ public class CameraContactSelectionFragment extends Fragment implements CameraCo
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    int            theme          = TextSecurePreferences.getTheme(inflater.getContext()).equals("light") ? R.style.TextSecure_LightTheme
-                                                                                                          : R.style.TextSecure_DarkTheme;
+    int            theme          = DynamicTheme.isDarkTheme(inflater.getContext()) ? R.style.TextSecure_DarkTheme
+                                                                                    : R.style.TextSecure_LightTheme;
     return ThemeUtil.getThemedInflater(inflater.getContext(), inflater, theme)
                     .inflate(R.layout.camera_contact_selection_fragment, container, false);
   }
