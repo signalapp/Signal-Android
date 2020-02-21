@@ -15,6 +15,7 @@ public class ConversationLoader extends AbstractCursorLoader {
   private       long    lastSeen;
   private       boolean hasSent;
   private       boolean isMessageRequestAccepted;
+  private       boolean hasPreMessageRequestMessages;
 
   public ConversationLoader(Context context, long threadId, int offset, int limit, long lastSeen) {
     super(context);
@@ -49,6 +50,10 @@ public class ConversationLoader extends AbstractCursorLoader {
     return isMessageRequestAccepted;
   }
 
+  public boolean hasPreMessageRequestMessages() {
+    return hasPreMessageRequestMessages;
+  }
+
   @Override
   public Cursor getCursor() {
     Pair<Long, Boolean> lastSeenAndHasSent = DatabaseFactory.getThreadDatabase(context).getLastSeenAndHasSent(threadId);
@@ -59,7 +64,8 @@ public class ConversationLoader extends AbstractCursorLoader {
       this.lastSeen = lastSeenAndHasSent.first();
     }
 
-    this.isMessageRequestAccepted = RecipientUtil.isThreadMessageRequestAccepted(context, threadId);
+    this.isMessageRequestAccepted     = RecipientUtil.isMessageRequestAccepted(context, threadId);
+    this.hasPreMessageRequestMessages = RecipientUtil.isPreMessageRequestThread(context, threadId);
 
     return DatabaseFactory.getMmsSmsDatabase(context).getConversation(threadId, offset, limit);
   }

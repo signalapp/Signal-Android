@@ -22,8 +22,6 @@ import android.database.Cursor;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Stream;
-
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteQueryBuilder;
 
@@ -35,7 +33,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.libsignal.util.Pair;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class MmsSmsDatabase extends Database {
@@ -88,24 +85,27 @@ public class MmsSmsDatabase extends Database {
     super(context, databaseHelper);
   }
 
-  public @Nullable RecipientId getRecipientIdForLatestAdd(long threadId) {
+  /**
+   * @return The user that added you to the group, otherwise null.
+   */
+  public @Nullable RecipientId getGroupAddedBy(long threadId) {
     long lastQuitChecked = System.currentTimeMillis();
     Pair<RecipientId, Long> pair;
 
     do {
-      pair = getRecipientIdForLatestAdd(threadId, lastQuitChecked);
+      pair = getGroupAddedBy(threadId, lastQuitChecked);
       if (pair.first() != null) {
         return pair.first();
       } else {
         lastQuitChecked = pair.second();
       }
 
-    } while (pair.second() != -1L);
+    } while (pair.second() != -1);
 
     return null;
   }
 
-  private @NonNull Pair<RecipientId, Long> getRecipientIdForLatestAdd(long threadId, long lastQuitChecked) {
+  private @NonNull Pair<RecipientId, Long> getGroupAddedBy(long threadId, long lastQuitChecked) {
     MmsDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(context);
     SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
     long        latestQuit  = mmsDatabase.getLatestGroupQuitTimestamp(threadId, lastQuitChecked);
@@ -223,6 +223,11 @@ public class MmsSmsDatabase extends Database {
     count    += DatabaseFactory.getMmsDatabase(context).getMessageCountForThread(threadId);
 
     return count;
+  }
+
+  public int getConversationCount(long threadId, long beforeTime) {
+    return DatabaseFactory.getSmsDatabase(context).getMessageCountForThread(threadId, beforeTime) +
+           DatabaseFactory.getMmsDatabase(context).getMessageCountForThread(threadId, beforeTime);
   }
 
   public int getInsecureSentCount(long threadId) {

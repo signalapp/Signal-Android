@@ -153,17 +153,19 @@ public class PushGroupSendJob extends PushSendJob {
     try {
       log(TAG, "Sending message: " + messageId);
 
-      if (FeatureFlags.messageRequests() && !message.getRecipient().resolve().isProfileSharing() && !database.isGroupQuitMessage(messageId)) {
+      if (!message.getRecipient().resolve().isProfileSharing() && !database.isGroupQuitMessage(messageId)) {
         RecipientUtil.shareProfileIfFirstSecureMessage(context, message.getRecipient());
       }
 
       List<RecipientId> target;
 
+      Recipient groupRecipient = message.getRecipient().fresh();
+
       if      (filterRecipient != null)            target = Collections.singletonList(Recipient.resolved(filterRecipient).getId());
       else if (!existingNetworkFailures.isEmpty()) target = Stream.of(existingNetworkFailures).map(nf -> nf.getRecipientId(context)).toList();
-      else                                         target = getGroupMessageRecipients(message.getRecipient().requireGroupId(), messageId);
+      else                                         target = getGroupMessageRecipients(groupRecipient.requireGroupId(), messageId);
 
-      List<SendMessageResult>   results                  = deliver(message, target);
+      List<SendMessageResult>   results                  = deliver(message, groupRecipient, target);
       List<NetworkFailure>      networkFailures          = Stream.of(results).filter(SendMessageResult::isNetworkFailure).map(result -> new NetworkFailure(Recipient.externalPush(context, result.getAddress()).getId())).toList();
       List<IdentityKeyMismatch> identityMismatches       = Stream.of(results).filter(result -> result.getIdentityFailure() != null).map(result -> new IdentityKeyMismatch(Recipient.externalPush(context, result.getAddress()).getId(), result.getIdentityFailure().getIdentityKey())).toList();
       Set<RecipientId>          successIds               = Stream.of(results).filter(result -> result.getSuccess() != null).map(SendMessageResult::getAddress).map(a -> Recipient.externalPush(context, a).getId()).collect(Collectors.toSet());
@@ -235,13 +237,13 @@ public class PushGroupSendJob extends PushSendJob {
     DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageId);
   }
 
-  private List<SendMessageResult> deliver(OutgoingMediaMessage message, @NonNull List<RecipientId> destinations)
+  private List<SendMessageResult> deliver(OutgoingMediaMessage message, @NonNull Recipient groupRecipient, @NonNull List<RecipientId> destinations)
       throws IOException, UntrustedIdentityException, UndeliverableMessageException {
     rotateSenderCertificateIfNecessary();
 
     SignalServiceMessageSender                 messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
-    String                                     groupId            = message.getRecipient().requireGroupId();
-    Optional<byte[]>                           profileKey         = getProfileKey(message.getRecipient());
+    String                                     groupId            = groupRecipient.requireGroupId();
+    Optional<byte[]>                           profileKey         = getProfileKey(groupRecipient);
     Optional<Quote>                            quote              = getQuoteFor(message);
     Optional<SignalServiceDataMessage.Sticker> sticker            = getStickerFor(message);
     List<SharedContact>                        sharedContacts     = getSharedContactsFor(message);
@@ -267,7 +269,7 @@ public class PushGroupSendJob extends PushSendJob {
       SignalServiceGroup         group            = new SignalServiceGroup(type, GroupUtil.getDecodedId(groupId), groupContext.getName(), members, avatar);
       SignalServiceDataMessage   groupDataMessage = SignalServiceDataMessage.newBuilder()
                                                                             .withTimestamp(message.getSentTimeMillis())
-                                                                            .withExpiration(message.getRecipient().getExpireMessages())
+                                                                            .withExpiration(groupRecipient.getExpireMessages())
                                                                             .asGroupMessage(group)
                                                                             .build();
 

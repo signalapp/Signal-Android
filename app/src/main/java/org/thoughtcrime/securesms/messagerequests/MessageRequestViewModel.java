@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.livedata.LiveDataTriple;
@@ -24,13 +25,13 @@ import java.util.List;
 
 public class MessageRequestViewModel extends ViewModel {
 
-  private final SingleLiveEvent<Status>       status                      = new SingleLiveEvent<>();
-  private final MutableLiveData<Recipient>    recipient                   = new MutableLiveData<>();
-  private final MutableLiveData<List<String>> groups                      = new MutableLiveData<>(Collections.emptyList());
-  private final MutableLiveData<Integer>      memberCount                 = new MutableLiveData<>(0);
-  private final MutableLiveData<Boolean>      shouldDisplayMessageRequest = new MutableLiveData<>();
-  private final LiveData<RecipientInfo>       recipientInfo               = Transformations.map(new LiveDataTriple<>(recipient, memberCount, groups),
-                                                                                                triple -> new RecipientInfo(triple.first(), triple.second(), triple.third()));
+  private final SingleLiveEvent<Status>       status        = new SingleLiveEvent<>();
+  private final MutableLiveData<Recipient>    recipient     = new MutableLiveData<>();
+  private final MutableLiveData<List<String>> groups        = new MutableLiveData<>(Collections.emptyList());
+  private final MutableLiveData<Integer>      memberCount   = new MutableLiveData<>(0);
+  private final MutableLiveData<DisplayState> displayState  = new MutableLiveData<>();
+  private final LiveData<RecipientInfo>       recipientInfo = Transformations.map(new LiveDataTriple<>(recipient, memberCount, groups),
+                                                                                  triple -> new RecipientInfo(triple.first(), triple.second(), triple.third()));
 
   private final MessageRequestRepository repository;
 
@@ -39,11 +40,7 @@ public class MessageRequestViewModel extends ViewModel {
 
   @SuppressWarnings("CodeBlock2Expr")
   private final RecipientForeverObserver recipientObserver = recipient -> {
-    if (Recipient.self().equals(recipient) || recipient.isBlocked() || recipient.isForceSmsSelection() || !recipient.isRegistered()) {
-      shouldDisplayMessageRequest.setValue(false);
-    } else {
-      loadMessageRequestAccepted();
-    }
+    loadMessageRequestAccepted(recipient);
     this.recipient.setValue(recipient);
   };
 
@@ -71,8 +68,8 @@ public class MessageRequestViewModel extends ViewModel {
     }
   }
 
-  public LiveData<Boolean> getShouldDisplayMessageRequest() {
-    return shouldDisplayMessageRequest;
+  public LiveData<DisplayState> getMessageRequestDisplayState() {
+    return displayState;
   }
 
   public LiveData<Recipient> getRecipient() {
@@ -83,28 +80,46 @@ public class MessageRequestViewModel extends ViewModel {
     return recipientInfo;
   }
 
-  public LiveData<Status> getMesasgeRequestStatus() {
+  public LiveData<Status> getMessageRequestStatus() {
     return status;
   }
 
+  public boolean shouldShowMessageRequest() {
+    return displayState.getValue() == DisplayState.DISPLAY_MESSAGE_REQUEST;
+  }
+
   @MainThread
-  public void accept() {
+  public void onAccept() {
     repository.acceptMessageRequest(liveRecipient, threadId, () -> {
-      status.setValue(Status.ACCEPTED);
+      status.postValue(Status.ACCEPTED);
     });
   }
 
   @MainThread
-  public void delete() {
-    repository.deleteMessageRequest(threadId, () -> {
-      status.setValue(Status.DELETED);
+  public void onDelete() {
+    repository.deleteMessageRequest(liveRecipient, threadId, () -> {
+      status.postValue(Status.DELETED);
     });
   }
 
   @MainThread
-  public void block() {
+  public void onBlock() {
     repository.blockMessageRequest(liveRecipient, () -> {
-      status.setValue(Status.BLOCKED);
+      status.postValue(Status.BLOCKED);
+    });
+  }
+
+  @MainThread
+  public void onUnblock() {
+    repository.unblockAndAccept(liveRecipient, threadId, () -> {
+      status.postValue(Status.ACCEPTED);
+    });
+  }
+
+  @MainThread
+  public void onBlockAndDelete() {
+    repository.blockAndDeleteMessageRequest(liveRecipient, threadId, () -> {
+      status.postValue(Status.BLOCKED);
     });
   }
 
@@ -114,33 +129,35 @@ public class MessageRequestViewModel extends ViewModel {
   }
 
   private void loadGroups() {
-    repository.getGroups(liveRecipient.getId(), this.groups::setValue);
+    repository.getGroups(liveRecipient.getId(), this.groups::postValue);
   }
 
   private void loadMemberCount() {
     repository.getMemberCount(liveRecipient.getId(), memberCount -> {
-      this.memberCount.setValue(memberCount == null ? 0 : memberCount);
+      this.memberCount.postValue(memberCount == null ? 0 : memberCount);
     });
   }
 
   @SuppressWarnings("ConstantConditions")
-  private void loadMessageRequestAccepted() {
-    repository.getMessageRequestAccepted(threadId, accepted -> shouldDisplayMessageRequest.setValue(!accepted));
-  }
-
-  public static class Factory implements ViewModelProvider.Factory {
-
-    private final Context context;
-
-    public Factory(Context context) {
-      this.context = context;
+  private void loadMessageRequestAccepted(@NonNull Recipient recipient) {
+    if (FeatureFlags.messageRequests() && recipient.isBlocked()) {
+      displayState.postValue(DisplayState.DISPLAY_MESSAGE_REQUEST);
+      return;
     }
 
-    @NonNull
-    @Override
-    public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-      return (T) new MessageRequestViewModel(new MessageRequestRepository(context.getApplicationContext()));
-    }
+    repository.getMessageRequestState(recipient, threadId, accepted -> {
+      switch (accepted) {
+        case ACCEPTED:
+          displayState.postValue(DisplayState.DISPLAY_NONE);
+          break;
+        case UNACCEPTED:
+          displayState.postValue(DisplayState.DISPLAY_MESSAGE_REQUEST);
+          break;
+        case LEGACY:
+          displayState.postValue(DisplayState.DISPLAY_LEGACY);
+          break;
+      }
+    });
   }
 
   public static class RecipientInfo {
@@ -174,4 +191,24 @@ public class MessageRequestViewModel extends ViewModel {
     DELETED,
     ACCEPTED
   }
+
+  public enum DisplayState {
+    DISPLAY_MESSAGE_REQUEST, DISPLAY_LEGACY, DISPLAY_NONE
+  }
+
+  public static class Factory implements ViewModelProvider.Factory {
+
+    private final Context context;
+
+    public Factory(Context context) {
+      this.context = context;
+    }
+
+    @Override
+    public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+      //noinspection unchecked
+      return (T) new MessageRequestViewModel(new MessageRequestRepository(context.getApplicationContext()));
+    }
+  }
+
 }

@@ -83,7 +83,7 @@ public class PushTextSendJob extends PushSendJob {
 
       RecipientUtil.shareProfileIfFirstSecureMessage(context, record.getRecipient());
 
-      Recipient              recipient  = record.getRecipient().resolve();
+      Recipient              recipient  = record.getRecipient().fresh();
       byte[]                 profileKey = recipient.getProfileKey();
       UnidentifiedAccessMode accessMode = recipient.getUnidentifiedAccessMode();
 
@@ -154,10 +154,11 @@ public class PushTextSendJob extends PushSendJob {
     try {
       rotateSenderCertificateIfNecessary();
 
+      Recipient                        messageRecipient   = message.getIndividualRecipient().fresh();
       SignalServiceMessageSender       messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
-      SignalServiceAddress             address            = getPushAddress(message.getIndividualRecipient());
-      Optional<byte[]>                 profileKey         = getProfileKey(message.getIndividualRecipient());
-      Optional<UnidentifiedAccessPair> unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, message.getIndividualRecipient());
+      SignalServiceAddress             address            = getPushAddress(messageRecipient);
+      Optional<byte[]>                 profileKey         = getProfileKey(messageRecipient);
+      Optional<UnidentifiedAccessPair> unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, messageRecipient);
 
       log(TAG, "Have access key to use: " + unidentifiedAccess.isPresent());
 

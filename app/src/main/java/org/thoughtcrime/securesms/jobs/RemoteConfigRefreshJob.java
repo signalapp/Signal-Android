@@ -43,7 +43,6 @@ public class RemoteConfigRefreshJob extends BaseJob {
   protected void onRun() throws Exception {
     Map<String, Boolean> config = ApplicationDependencies.getSignalServiceAccountManager().getRemoteConfig();
     FeatureFlags.update(config);
-    SignalStore.setRemoteConfigLastFetchTime(System.currentTimeMillis());
   }
 
   @Override

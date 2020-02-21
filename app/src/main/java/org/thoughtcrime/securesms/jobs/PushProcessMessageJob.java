@@ -95,6 +95,7 @@ import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.BlockedListMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.ConfigurationMessage;
+import org.whispersystems.signalservice.api.messages.multidevice.MessageRequestResponseMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.RequestMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SentTranscriptMessage;
@@ -286,15 +287,16 @@ public final class PushProcessMessageJob extends BaseJob {
 
         SignalServiceSyncMessage syncMessage = content.getSyncMessage().get();
 
-        if      (syncMessage.getSent().isPresent())                  handleSynchronizeSentMessage(content, syncMessage.getSent().get());
-        else if (syncMessage.getRequest().isPresent())               handleSynchronizeRequestMessage(syncMessage.getRequest().get());
-        else if (syncMessage.getRead().isPresent())                  handleSynchronizeReadMessage(syncMessage.getRead().get(), content.getTimestamp());
-        else if (syncMessage.getViewOnceOpen().isPresent())          handleSynchronizeViewOnceOpenMessage(syncMessage.getViewOnceOpen().get(), content.getTimestamp());
-        else if (syncMessage.getVerified().isPresent())              handleSynchronizeVerifiedMessage(syncMessage.getVerified().get());
-        else if (syncMessage.getStickerPackOperations().isPresent()) handleSynchronizeStickerPackOperation(syncMessage.getStickerPackOperations().get());
-        else if (syncMessage.getConfiguration().isPresent())         handleSynchronizeConfigurationMessage(syncMessage.getConfiguration().get());
-        else if (syncMessage.getBlockedList().isPresent())           handleSynchronizeBlockedListMessage(syncMessage.getBlockedList().get());
-        else if (syncMessage.getFetchType().isPresent())             handleSynchronizeFetchMessage(syncMessage.getFetchType().get());
+        if      (syncMessage.getSent().isPresent())                   handleSynchronizeSentMessage(content, syncMessage.getSent().get());
+        else if (syncMessage.getRequest().isPresent())                handleSynchronizeRequestMessage(syncMessage.getRequest().get());
+        else if (syncMessage.getRead().isPresent())                   handleSynchronizeReadMessage(syncMessage.getRead().get(), content.getTimestamp());
+        else if (syncMessage.getViewOnceOpen().isPresent())           handleSynchronizeViewOnceOpenMessage(syncMessage.getViewOnceOpen().get(), content.getTimestamp());
+        else if (syncMessage.getVerified().isPresent())               handleSynchronizeVerifiedMessage(syncMessage.getVerified().get());
+        else if (syncMessage.getStickerPackOperations().isPresent())  handleSynchronizeStickerPackOperation(syncMessage.getStickerPackOperations().get());
+        else if (syncMessage.getConfiguration().isPresent())          handleSynchronizeConfigurationMessage(syncMessage.getConfiguration().get());
+        else if (syncMessage.getBlockedList().isPresent())            handleSynchronizeBlockedListMessage(syncMessage.getBlockedList().get());
+        else if (syncMessage.getFetchType().isPresent())              handleSynchronizeFetchMessage(syncMessage.getFetchType().get());
+        else if (syncMessage.getMessageRequestResponse().isPresent()) handleSynchronizeMessageRequestResponse(syncMessage.getMessageRequestResponse().get());
         else                                                         Log.w(TAG, "Contains no known sync types...");
       } else if (content.getCallMessage().isPresent()) {
         Log.i(TAG, "Got call message...");
@@ -656,6 +658,48 @@ public final class PushProcessMessageJob extends BaseJob {
       ApplicationDependencies.getJobManager().add(new RefreshOwnProfileJob());
     } else {
       Log.w(TAG, "Received a fetch message for an unknown type.");
+    }
+  }
+
+  private void handleSynchronizeMessageRequestResponse(@NonNull MessageRequestResponseMessage response) {
+    RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+    ThreadDatabase    threadDatabase    = DatabaseFactory.getThreadDatabase(context);
+
+    Recipient recipient;
+
+    if (response.getPerson().isPresent()) {
+      recipient = Recipient.externalPush(context, response.getPerson().get());
+    } else if (response.getGroupId().isPresent()) {
+      String groupId = GroupUtil.getEncodedId(response.getGroupId().get(), false);
+      recipient = Recipient.externalGroup(context, groupId);
+    } else {
+      Log.w(TAG, "Message request response was missing a thread recipient! Skipping.");
+      return;
+    }
+
+    long threadId = threadDatabase.getThreadIdFor(recipient);
+
+    switch (response.getType()) {
+      case ACCEPT:
+        recipientDatabase.setProfileSharing(recipient.getId(), true);
+        recipientDatabase.setBlocked(recipient.getId(), false);
+        break;
+      case DELETE:
+        recipientDatabase.setProfileSharing(recipient.getId(), false);
+        if (threadId > 0) threadDatabase.deleteConversation(threadId);
+        break;
+      case BLOCK:
+        recipientDatabase.setBlocked(recipient.getId(), true);
+        recipientDatabase.setProfileSharing(recipient.getId(), false);
+        break;
+      case BLOCK_AND_DELETE:
+        recipientDatabase.setBlocked(recipient.getId(), true);
+        recipientDatabase.setProfileSharing(recipient.getId(), false);
+        if (threadId > 0) threadDatabase.deleteConversation(threadId);
+        break;
+      default:
+        Log.w(TAG, "Got an unknown response type! Skipping");
+        break;
     }
   }
 

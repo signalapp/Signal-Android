@@ -65,6 +65,7 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.MessageDetailsActivity;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.sharing.ShareActivity;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.components.ConversationTypingView;
 import org.thoughtcrime.securesms.components.TooltipPopup;
@@ -155,7 +156,6 @@ public class ConversationFragment extends Fragment
   private int                         activeOffset;
   private boolean                     firstLoad;
   private boolean                     isReacting;
-  private boolean                     shouldDisplayMessageRequest;
   private ActionMode                  actionMode;
   private Locale                      locale;
   private RecyclerView                list;
@@ -206,7 +206,7 @@ public class ConversationFragment extends Fragment
 
     new ConversationItemSwipeCallback(
             messageRecord -> actionMode == null &&
-                             canReplyToMessage(isActionMessage(messageRecord), messageRecord, shouldDisplayMessageRequest),
+                             canReplyToMessage(isActionMessage(messageRecord), messageRecord, messageRequestViewModel.shouldShowMessageRequest()),
             this::handleReplyMessage
     ).attachToRecyclerView(list);
 
@@ -334,12 +334,6 @@ public class ConversationFragment extends Fragment
       presentMessageRequestProfileView(requireContext(), recipientInfo, conversationBanner);
       presentMessageRequestProfileView(requireContext(), recipientInfo, emptyConversationBanner);
     });
-
-    messageRequestViewModel.getShouldDisplayMessageRequest().observe(getViewLifecycleOwner(), this::handleShouldDisplayMessageRequest);
-  }
-
-  private void handleShouldDisplayMessageRequest(boolean shouldDisplayMessageRequest) {
-    this.shouldDisplayMessageRequest = shouldDisplayMessageRequest;
   }
 
   private static void presentMessageRequestProfileView(@NonNull Context context, @NonNull MessageRequestViewModel.RecipientInfo recipientInfo, @Nullable ConversationBannerView conversationBanner) {
@@ -558,7 +552,7 @@ public class ConversationFragment extends Fragment
 
       menu.findItem(R.id.menu_context_forward).setVisible(!actionMessage && !sharedContact && !viewOnce);
       menu.findItem(R.id.menu_context_details).setVisible(!actionMessage);
-      menu.findItem(R.id.menu_context_reply).setVisible(canReplyToMessage(actionMessage, messageRecord, shouldDisplayMessageRequest));
+      menu.findItem(R.id.menu_context_reply).setVisible(canReplyToMessage(actionMessage, messageRecord, messageRequestViewModel.shouldShowMessageRequest()));
     }
     menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage && hasText);
   }
@@ -839,8 +833,8 @@ public class ConversationFragment extends Fragment
 
   @Override
   public void onLoadFinished(@NonNull Loader<Cursor> cursorLoader, Cursor cursor) {
-    int  count    = cursor.getCount();
-    ConversationLoader loader = (ConversationLoader)cursorLoader;
+    int                count  = cursor.getCount();
+    ConversationLoader loader = (ConversationLoader) cursorLoader;
 
     ConversationAdapter adapter = getListAdapter();
     if (adapter == null) {
@@ -859,7 +853,7 @@ public class ConversationFragment extends Fragment
       setLastSeen(loader.getLastSeen());
     }
 
-    if (FeatureFlags.messageRequests()) {
+    if (FeatureFlags.messageRequests() && !loader.hasPreMessageRequestMessages()) {
       clearHeaderIfNotTyping(adapter);
     } else {
       if (!loader.hasSent() && !recipient.get().isSystemContact() && !recipient.get().isGroup() && recipient.get().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
@@ -1139,10 +1133,10 @@ public class ConversationFragment extends Fragment
 
       if (actionMode != null) return;
 
-      if (messageRecord.isSecure()       &&
-          !messageRecord.isUpdate()      &&
-          !recipient.get().isBlocked()   &&
-          !shouldDisplayMessageRequest   &&
+      if (messageRecord.isSecure()                            &&
+          !messageRecord.isUpdate()                           &&
+          !recipient.get().isBlocked()                        &&
+          !messageRequestViewModel.shouldShowMessageRequest() &&
           ((ConversationAdapter) list.getAdapter()).getSelectedItems().isEmpty())
       {
         isReacting = true;

@@ -216,17 +216,31 @@ public class SmsDatabase extends MessagingDatabase {
 
   public int getMessageCountForThread(long threadId) {
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
-    Cursor cursor     = null;
 
-    try {
-      cursor = db.query(TABLE_NAME, new String[] {"COUNT(*)"}, THREAD_ID + " = ?",
-                        new String[] {threadId+""}, null, null, null);
+    String[] cols  = new String[] {"COUNT(*)"};
+    String   query = THREAD_ID + " = ?";
+    String[] args  = new String[]{String.valueOf(threadId)};
 
-      if (cursor != null && cursor.moveToFirst())
+    try (Cursor cursor = db.query(TABLE_NAME, cols, query, args, null, null, null)) {
+      if (cursor != null && cursor.moveToFirst()) {
         return cursor.getInt(0);
-    } finally {
-      if (cursor != null)
-        cursor.close();
+      }
+    }
+
+    return 0;
+  }
+
+  public int getMessageCountForThread(long threadId, long beforeTime) {
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+    String[] cols  = new String[] {"COUNT(*)"};
+    String   query = THREAD_ID + " = ? AND " + DATE_RECEIVED + " < ?";
+    String[] args  = new String[]{String.valueOf(threadId), String.valueOf(beforeTime)};
+
+    try (Cursor cursor = db.query(TABLE_NAME, cols, query, args, null, null, null)) {
+      if (cursor != null && cursor.moveToFirst()) {
+        return cursor.getInt(0);
+      }
     }
 
     return 0;

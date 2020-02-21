@@ -70,7 +70,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.pm.ShortcutInfoCompat;
 import androidx.core.content.pm.ShortcutManagerCompat;
 import androidx.core.graphics.drawable.IconCompat;
-import androidx.core.text.HtmlCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -152,6 +151,7 @@ import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.thoughtcrime.securesms.insights.InsightsLauncher;
 import org.thoughtcrime.securesms.invites.InviteReminderModel;
 import org.thoughtcrime.securesms.invites.InviteReminderRepository;
+import org.thoughtcrime.securesms.jobs.LeaveGroupJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
@@ -216,7 +216,6 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.HtmlUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MessageUtil;
@@ -1120,7 +1119,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       Optional<OutgoingGroupMediaMessage> leaveMessage   = GroupUtil.createGroupLeaveMessage(this, groupRecipient);
 
       if (threadId != -1 && leaveMessage.isPresent()) {
-        MessageSender.send(this, leaveMessage.get(), threadId, false, null);
+        ApplicationDependencies.getJobManager().add(LeaveGroupJob.create(groupRecipient));
 
         GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(this);
         String        groupId       = groupRecipient.requireGroupId();
@@ -2043,7 +2042,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void setBlockedUserState(Recipient recipient, boolean isSecureText, boolean isDefaultSms) {
-    if (recipient.isBlocked()) {
+    if (recipient.isBlocked() && !FeatureFlags.messageRequests()) {
       unblockButton.setVisibility(View.VISIBLE);
       composePanel.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.GONE);
@@ -2067,7 +2066,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void setGroupShareProfileReminder(@NonNull Recipient recipient) {
-    if (!shouldDisplayMessageRequestUi && recipient.isPushGroup() && !recipient.isProfileSharing()) {
+    if (FeatureFlags.messageRequests()) {
+      return;
+    }
+
+    if (recipient.isPushGroup() && !recipient.isProfileSharing()) {
       groupShareProfileView.get().setRecipient(recipient);
       groupShareProfileView.get().setVisibility(View.VISIBLE);
     } else if (groupShareProfileView.resolved()) {
@@ -2777,14 +2780,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onMessageRequest(@NonNull MessageRequestViewModel viewModel) {
-
-    messageRequestBottomView.setAcceptOnClickListener(v -> viewModel.accept());
-    messageRequestBottomView.setDeleteOnClickListener(v -> viewModel.delete());
-    messageRequestBottomView.setBlockOnClickListener(v -> viewModel.block());
+    messageRequestBottomView.setAcceptOnClickListener(v -> viewModel.onAccept());
+    messageRequestBottomView.setDeleteOnClickListener(v -> onMessageRequestDeleteClicked(viewModel));
+    messageRequestBottomView.setBlockOnClickListener(v -> onMessageRequestBlockClicked(viewModel));
+    messageRequestBottomView.setUnblockOnClickListener(v -> onMessageRequestUnblockClicked(viewModel));
 
     viewModel.getRecipient().observe(this, this::presentMessageRequestBottomViewTo);
-    viewModel.getShouldDisplayMessageRequest().observe(this, this::handleShouldDisplayMessageRequest);
-    viewModel.getMesasgeRequestStatus().observe(this, status -> {
+    viewModel.getMessageRequestDisplayState().observe(this, this::presentMessageRequestDisplayState);
+    viewModel.getMessageRequestStatus().observe(this, status -> {
       switch (status) {
         case ACCEPTED:
           messageRequestBottomView.setVisibility(View.GONE);
@@ -2909,14 +2912,104 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     updateLinkPreviewState();
   }
 
-  private void handleShouldDisplayMessageRequest(boolean shouldDisplayMessageRequest) {
-    shouldDisplayMessageRequestUi = shouldDisplayMessageRequest;
-    setGroupShareProfileReminder(recipient.get());
+  private void onMessageRequestDeleteClicked(@NonNull MessageRequestViewModel requestModel) {
+    Recipient recipient = requestModel.getRecipient().getValue();
+    if (recipient == null) {
+      Log.w(TAG, "[onMessageRequestDeleteClicked] No recipient!");
+      return;
+    }
 
+    AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                                                 .setNeutralButton(R.string.ConversationActivity_cancel, (d, w) -> d.dismiss());
+
+    if (recipient.isGroup() && recipient.isBlocked()) {
+      builder.setTitle(R.string.ConversationActivity_delete_conversation);
+      builder.setMessage(R.string.ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices);
+      builder.setPositiveButton(R.string.ConversationActivity_delete, (d, w) -> requestModel.onDelete());
+    } else if (recipient.isGroup()) {
+      builder.setTitle(R.string.ConversationActivity_delete_and_leave_group);
+      builder.setMessage(R.string.ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices);
+      builder.setNegativeButton(R.string.ConversationActivity_delete_and_leave, (d, w) -> requestModel.onDelete());
+    } else {
+      builder.setTitle(R.string.ConversationActivity_delete_conversation);
+      builder.setMessage(R.string.ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices);
+      builder.setNegativeButton(R.string.ConversationActivity_delete, (d, w) -> requestModel.onDelete());
+    }
+
+    builder.show();
+  }
+
+  private void onMessageRequestBlockClicked(@NonNull MessageRequestViewModel requestModel) {
+    Recipient recipient = requestModel.getRecipient().getValue();
+    if (recipient == null) {
+      Log.w(TAG, "[onMessageRequestBlockClicked] No recipient!");
+      return;
+    }
+
+    AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                                                 .setNeutralButton(R.string.ConversationActivity_cancel, (d, w) -> d.dismiss())
+                                                 .setPositiveButton(R.string.ConversationActivity_block_and_delete, (d, w) -> requestModel.onBlockAndDelete())
+                                                 .setNegativeButton(R.string.ConversationActivity_block, (d, w) -> requestModel.onBlock());
+
+    if (recipient.isGroup()) {
+      builder.setTitle(getString(R.string.ConversationActivity_block_and_leave_s, recipient.getDisplayName(this)));
+      builder.setMessage(R.string.ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates);
+    } else {
+      builder.setTitle(getString(R.string.ConversationActivity_block_s, recipient.getDisplayName(this)));
+      builder.setMessage(R.string.ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages);
+    }
+
+    builder.show();
+  }
+
+  private void onMessageRequestUnblockClicked(@NonNull MessageRequestViewModel requestModel) {
+    Recipient recipient = requestModel.getRecipient().getValue();
+    if (recipient == null) {
+      Log.w(TAG, "[onMessageRequestUnblockClicked] No recipient!");
+      return;
+    }
+
+    AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                                                 .setTitle(getString(R.string.ConversationActivity_unblock_s, recipient.getDisplayName(this)))
+                                                 .setNeutralButton(R.string.ConversationActivity_cancel, (d, w) -> d.dismiss())
+                                                 .setNegativeButton(R.string.ConversationActivity_unblock, (d, w) -> requestModel.onUnblock());
+
+    if (recipient.isGroup()) {
+      builder.setMessage(R.string.ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again);
+    } else {
+      builder.setMessage(R.string.ConversationActivity_you_will_be_able_to_message_and_call_each_other);
+    }
+
+    builder.show();
+  }
+
+  private void presentMessageRequestDisplayState(@NonNull MessageRequestViewModel.DisplayState displayState) {
     if (getIntent().hasExtra(TEXT_EXTRA) || getIntent().hasExtra(MEDIA_EXTRA) || getIntent().hasExtra(STICKER_EXTRA) || (isPushGroupConversation() && !isActiveGroup())) {
+      Log.d(TAG, "[presentMessageRequestDisplayState] Have extra, so ignoring provided state.");
       messageRequestBottomView.setVisibility(View.GONE);
     } else {
-      messageRequestBottomView.setVisibility(shouldDisplayMessageRequest ? View.VISIBLE : View.GONE);
+      Log.d(TAG, "[presentMessageRequestDisplayState] " + displayState);
+      switch (displayState) {
+        case DISPLAY_MESSAGE_REQUEST:
+          messageRequestBottomView.setVisibility(View.VISIBLE);
+          if (groupShareProfileView.resolved()) {
+            groupShareProfileView.get().setVisibility(View.GONE);
+          }
+          break;
+        case DISPLAY_LEGACY:
+          if (recipient.get().isGroup()) {
+            groupShareProfileView.get().setRecipient(recipient.get());
+            groupShareProfileView.get().setVisibility(View.VISIBLE);
+          }
+          messageRequestBottomView.setVisibility(View.GONE);
+          break;
+        case DISPLAY_NONE:
+          messageRequestBottomView.setVisibility(View.GONE);
+          if (groupShareProfileView.resolved()) {
+            groupShareProfileView.get().setVisibility(View.GONE);
+          }
+          break;
+      }
     }
 
     invalidateOptionsMenu();
@@ -3019,6 +3112,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void presentMessageRequestBottomViewTo(@Nullable Recipient recipient) {
     if (recipient == null) return;
 
-    messageRequestBottomView.setQuestionText(HtmlCompat.fromHtml(getString(R.string.MessageRequestBottomView_do_you_want_to_let, HtmlUtil.bold(recipient.getDisplayName(this))), 0));
+    messageRequestBottomView.setRecipient(recipient);
   }
 }

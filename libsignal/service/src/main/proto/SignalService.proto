@@ -340,19 +340,35 @@ message SyncMessage {
     optional bytes storageService = 1;
   }
 
-  optional Sent                 sent                 = 1;
-  optional Contacts             contacts             = 2;
-  optional Groups               groups               = 3;
-  optional Request              request              = 4;
-  repeated Read                 read                 = 5;
-  optional Blocked              blocked              = 6;
-  optional Verified             verified             = 7;
-  optional Configuration        configuration        = 9;
-  optional bytes                padding              = 8;
-  repeated StickerPackOperation stickerPackOperation = 10;
-  optional ViewOnceOpen         viewOnceOpen         = 11;
-  optional FetchLatest          fetchLatest          = 12;
-  optional Keys                 keys                 = 13;
+  message MessageRequestResponse {
+    enum Type {
+      UNKNOWN          = 0;
+      ACCEPT           = 1;
+      DELETE           = 2;
+      BLOCK            = 3;
+      BLOCK_AND_DELETE = 4;
+    }
+
+    optional string threadE164 = 1;
+    optional string threadUuid = 2;
+    optional bytes  groupId    = 3;
+    optional Type   type       = 4;
+  }
+
+  optional Sent                   sent                   = 1;
+  optional Contacts               contacts               = 2;
+  optional Groups                 groups                 = 3;
+  optional Request                request                = 4;
+  repeated Read                   read                   = 5;
+  optional Blocked                blocked                = 6;
+  optional Verified               verified               = 7;
+  optional Configuration          configuration          = 9;
+  optional bytes                  padding                = 8;
+  repeated StickerPackOperation   stickerPackOperation   = 10;
+  optional ViewOnceOpen           viewOnceOpen           = 11;
+  optional FetchLatest            fetchLatest            = 12;
+  optional Keys                   keys                   = 13;
+  optional MessageRequestResponse messageRequestResponse = 14;
 }
 
 message AttachmentPointer {

@@ -92,7 +92,7 @@ public class SendReadReceiptJob extends BaseJob {
   public void onRun() throws IOException, UntrustedIdentityException {
     if (!TextSecurePreferences.isReadReceiptsEnabled(context) || messageIds.isEmpty()) return;
 
-    if (!RecipientUtil.isThreadMessageRequestAccepted(context, threadId)) {
+    if (!RecipientUtil.isMessageRequestAccepted(context, threadId)) {
       Log.w(TAG, "Refusing to send receipts to untrusted recipient");
       return;
     }

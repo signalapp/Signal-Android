@@ -705,13 +705,13 @@ public class ThreadDatabase extends Database {
   }
 
   private @Nullable Extra getExtrasFor(MessageRecord record) {
-    boolean     messageRequestAccepted = RecipientUtil.isThreadMessageRequestAccepted(context, record.getThreadId());
+    boolean     messageRequestAccepted = RecipientUtil.isMessageRequestAccepted(context, record.getThreadId());
     RecipientId threadRecipientId      = getRecipientIdForThreadId(record.getThreadId());
 
     if (!messageRequestAccepted && threadRecipientId != null) {
       boolean isPushGroup = Recipient.resolved(threadRecipientId).isPushGroup();
       if (isPushGroup) {
-        RecipientId recipientId = DatabaseFactory.getMmsSmsDatabase(context).getRecipientIdForLatestAdd(record.getThreadId());
+        RecipientId recipientId = DatabaseFactory.getMmsSmsDatabase(context).getGroupAddedBy(record.getThreadId());
 
         if (recipientId != null) {
           return Extra.forGroupMessageRequest(recipientId);

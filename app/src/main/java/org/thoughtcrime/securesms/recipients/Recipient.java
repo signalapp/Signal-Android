@@ -231,6 +231,19 @@ public class Recipient {
   }
 
   /**
+   * A version of {@link #external(Context, String)} that should be used when you know the
+   * identifier is a groupId.
+   */
+  @WorkerThread
+  public static @NonNull Recipient externalGroup(@NonNull Context context, @NonNull String groupId) {
+    if (!GroupUtil.isEncodedGroup(groupId)) {
+      throw new IllegalArgumentException("Invalid groupId!");
+    }
+
+    return Recipient.resolved(DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId));
+  }
+
+  /**
    * Returns a fully-populated {@link Recipient} based off of a string identifier, creating one in
    * the database if necessary. The identifier may be a uuid, phone number, email,
    * or serialized groupId.
@@ -706,7 +719,11 @@ public class Recipient {
     return contactUri != null;
   }
 
-  public Recipient resolve() {
+  /**
+   * If this recipient is missing crucial data, this will return a populated copy. Otherwise it
+   * returns itself.
+   */
+  public @NonNull Recipient resolve() {
     if (resolving) {
       return live().resolve();
     } else {
@@ -716,6 +733,13 @@ public class Recipient {
 
   public boolean isResolving() {
     return resolving;
+  }
+
+  /**
+   * Forces retrieving a fresh copy of the recipient, regardless of its state.
+   */
+  public @NonNull Recipient fresh() {
+    return live().resolve();
   }
 
   public @NonNull LiveRecipient live() {

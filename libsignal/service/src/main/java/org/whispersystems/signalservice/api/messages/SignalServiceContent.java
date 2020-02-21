@@ -24,6 +24,7 @@ import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.BlockedListMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.ConfigurationMessage;
+import org.whispersystems.signalservice.api.messages.multidevice.MessageRequestResponseMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.RequestMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SentTranscriptMessage;
@@ -452,6 +453,44 @@ public final class SignalServiceContent {
         case LOCAL_PROFILE:    return SignalServiceSyncMessage.forFetchLatest(SignalServiceSyncMessage.FetchType.LOCAL_PROFILE);
         case STORAGE_MANIFEST: return SignalServiceSyncMessage.forFetchLatest(SignalServiceSyncMessage.FetchType.STORAGE_MANIFEST);
       }
+    }
+
+    if (content.hasMessageRequestResponse()) {
+      MessageRequestResponseMessage.Type type;
+
+      switch (content.getMessageRequestResponse().getType()) {
+        case ACCEPT:
+          type = MessageRequestResponseMessage.Type.ACCEPT;
+          break;
+        case DELETE:
+          type = MessageRequestResponseMessage.Type.DELETE;
+          break;
+        case BLOCK:
+          type = MessageRequestResponseMessage.Type.BLOCK;
+          break;
+        case BLOCK_AND_DELETE:
+          type = MessageRequestResponseMessage.Type.BLOCK_AND_DELETE;
+          break;
+        default:
+         type = MessageRequestResponseMessage.Type.UNKNOWN;
+         break;
+      }
+
+      MessageRequestResponseMessage responseMessage;
+
+      if (content.getMessageRequestResponse().hasGroupId()) {
+        responseMessage = MessageRequestResponseMessage.forGroup(content.getMessageRequestResponse().getGroupId().toByteArray(), type);
+      } else {
+        Optional<SignalServiceAddress> address = SignalServiceAddress.fromRaw(content.getMessageRequestResponse().getThreadUuid(), content.getMessageRequestResponse().getThreadE164());
+
+        if (address.isPresent()) {
+          responseMessage = MessageRequestResponseMessage.forIndividual(address.get(), type);
+        } else {
+          throw new ProtocolInvalidMessageException(new InvalidMessageException("Message request response has an invalid thread identifier!"), null, 0);
+        }
+      }
+
+      return SignalServiceSyncMessage.forMessageRequestResponse(responseMessage);
     }
 
     return SignalServiceSyncMessage.empty();

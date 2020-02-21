@@ -239,6 +239,23 @@
     <string name="ConversationActivity_sticker_pack_installed">Sticker pack installed</string>
     <string name="ConversationActivity_new_say_it_with_stickers">New! Say it with stickers</string>
 
+    <string name="ConversationActivity_block_s">Block %1$s?</string>
+    <string name="ConversationActivity_block_and_leave_s">Block and leave %1$s?</string>
+    <string name="ConversationActivity_unblock_s">Unblock %1$s?</string>
+    <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">You will be able to message and call each other.</string>
+    <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">Group members will be able to add you to this group again.</string>
+    <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">Blocked people will not be able to call you or send you messages.</string>
+    <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">You will leave this group and no longer receive messages or updates.</string>
+    <string name="ConversationActivity_block">Block</string>
+    <string name="ConversationActivity_block_and_delete">Block and delete</string>
+    <string name="ConversationActivity_cancel">Cancel</string>
+    <string name="ConversationActivity_delete_conversation">Delete conversation?</string>
+    <string name="ConversationActivity_delete_and_leave_group">Delete and leave group?</string>
+    <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">This conversation will be deleted from all of your devices.</string>
+    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">You will leave this group, and it will be deleted from all your devices.</string>
+    <string name="ConversationActivity_delete">Delete</string>
+    <string name="ConversationActivity_delete_and_leave">Delete and leave</string>
+
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
         <item quantity="one">%d unread message</item>
@@ -614,6 +631,27 @@
     <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">You marked your safety number with %s verified from another device</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">You marked your safety number with %s unverified</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">You marked your safety number with %s unverified from another device</string>
+
+    <!-- MessageRequestBottomView -->
+    <string name="MessageRequestBottomView_accept">Accept</string>
+    <string name="MessageRequestBottomView_delete">Delete</string>
+    <string name="MessageRequestBottomView_block">Block</string>
+    <string name="MessageRequestBottomView_unblock">Unblock</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Do you want to let %1$s message you? They won\'t know you\'ve seen their messages until you accept.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Do you want to join the group %1$s? They won\'t know you\'ve seen their messages until you accept.</string>
+    <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Unblock %1$s to message and call each other.</string>
+    <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Unblock to allow group members to add you to this group again.</string>
+    <string name="MessageRequestProfileView_member_of_one_group">Member of %1$s</string>
+    <string name="MessageRequestProfileView_member_of_two_groups">Member of %1$s and %2$s</string>
+    <string name="MessageRequestProfileView_member_of_many_groups">Member of %1$s, %2$s, and %3$s</string>
+    <plurals name="MessageRequestProfileView_members">
+        <item quantity="one">%1$d member</item>
+        <item quantity="other">%1$d members</item>
+    </plurals>
+    <plurals name="MessageRequestProfileView_member_of_others">
+        <item quantity="one">%d other</item>
+        <item quantity="other">%d others</item>
+    </plurals>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passphrases don\'t match!</string>
@@ -1932,21 +1970,6 @@
     <string name="RegistrationLockDialog_reminder">Reminder:</string>
     <string name="recipient_preferences__about">About</string>
     <string name="Recipient_unknown">Unknown</string>
-    <string name="MessageRequestBottomView_accept">Accept</string>
-    <string name="MessageRequestBottomView_delete">Delete</string>
-    <string name="MessageRequestBottomView_block">Block</string>
-    <string name="MessageRequestBottomView_do_you_want_to_let">Do you want to receive messages from %1$s?</string>
-    <string name="MessageRequestProfileView_member_of_one_group">Member of %1$s</string>
-    <string name="MessageRequestProfileView_member_of_two_groups">Member of %1$s and %2$s</string>
-    <string name="MessageRequestProfileView_member_of_many_groups">Member of %1$s, %2$s, and %3$s</string>
-    <plurals name="MessageRequestProfileView_members">
-        <item quantity="one">%1$d member</item>
-        <item quantity="other">%1$d members</item>
-    </plurals>
-    <plurals name="MessageRequestProfileView_member_of_others">
-        <item quantity="one">%d other</item>
-        <item quantity="other">%d others</item>
-    </plurals>
     <!-- EOF -->
 
 </resources>

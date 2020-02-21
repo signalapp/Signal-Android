@@ -1222,6 +1222,7 @@ public class RecipientDatabase extends Database {
 
       ContentValues setBlocked = new ContentValues();
       setBlocked.put(BLOCKED, 1);
+      setBlocked.put(PROFILE_SHARING, 0);
 
       for (String e164 : blockedE164) {
         db.update(TABLE_NAME, setBlocked, PHONE + " = ?", new String[] { e164 });

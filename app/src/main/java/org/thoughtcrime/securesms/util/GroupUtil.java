@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
-import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,6 +42,14 @@ public class GroupUtil {
     }
 
     return Hex.fromStringCondensed(groupId.split("!", 2)[1]);
+  }
+
+  public static byte[] getDecodedIdOrThrow(String groupId) {
+    try {
+      return getDecodedId(groupId);
+    } catch (IOException e) {
+      throw new AssertionError(e);
+    }
   }
 
   public static boolean isEncodedGroup(@NonNull String groupId) {
