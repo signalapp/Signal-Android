@@ -1666,6 +1666,8 @@
 
     <!-- Session -->
     <string name="activity_register_public_key_copied_message">Copied to clipboard</string>
-    <!-- Session -->
+    <string name="activity_home_leave_group_dialog_message">Are you sure you want to leave this group?</string>
+    <string name="activity_home_delete_conversation_dialog_message">Are you sure you want to delete this conversation?</string>
+    <string name="activity_home_conversation_deleted_message">Conversation deleted</string>
 
 </resources>

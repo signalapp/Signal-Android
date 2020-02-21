@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
+import android.widget.Toast;
 
 import com.google.protobuf.ByteString;
 
@@ -16,6 +17,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
+import org.thoughtcrime.securesms.sms.MessageSender;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 
@@ -111,6 +113,27 @@ public class GroupUtil {
     return Optional.of(new OutgoingGroupMediaMessage(groupRecipient, groupContext, null, System.currentTimeMillis(), 0, null, Collections.emptyList(), Collections.emptyList()));
   }
 
+  public static boolean leaveGroup(@NonNull Context context, Recipient groupRecipient) {
+    long                                threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
+    Optional<OutgoingGroupMediaMessage> leaveMessage   = GroupUtil.createGroupLeaveMessage(context, groupRecipient);
+
+    if (threadId < 0 || !leaveMessage.isPresent()) {
+      return false;
+    }
+
+    MessageSender.send(context, leaveMessage.get(), threadId, false, null);
+
+    // We need to remove the master device from the group
+    String masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+    String localNumber = masterHexEncodedPublicKey != null ? masterHexEncodedPublicKey : TextSecurePreferences.getLocalNumber(context);
+
+    GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
+    String        groupId       = groupRecipient.getAddress().toGroupString();
+    groupDatabase.setActive(groupId, false);
+    groupDatabase.remove(groupId, Address.fromSerialized(localNumber));
+
+    return true;
+  }
 
   public static @NonNull GroupDescription getDescription(@NonNull Context context, @Nullable String encodedGroup) {
     if (encodedGroup == null) {

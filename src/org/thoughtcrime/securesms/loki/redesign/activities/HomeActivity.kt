@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.loki.redesign.activities
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.database.Cursor
@@ -10,7 +11,6 @@ import android.graphics.Paint
 import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Handler
-import android.support.design.widget.Snackbar
 import android.support.v4.app.LoaderManager
 import android.support.v4.content.Loader
 import android.support.v7.widget.LinearLayoutManager
@@ -20,6 +20,7 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.view.View
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_home.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.ApplicationContext
@@ -36,6 +37,7 @@ import org.thoughtcrime.securesms.loki.redesign.views.SeedReminderViewDelegate
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.notifications.MessageNotifier
+import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import kotlin.math.abs
 
@@ -229,9 +231,10 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
 
         @SuppressLint("StaticFieldLeak")
         override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-            val threadID = (viewHolder as HomeAdapter.ViewHolder).view.thread!!.threadId
+            viewHolder as HomeAdapter.ViewHolder
+            val threadID = viewHolder.view.thread!!.threadId
+            val recipient = viewHolder.view.thread!!.recipient
             val threadDatabase = DatabaseFactory.getThreadDatabase(activity)
-            threadDatabase.archiveConversation(threadID)
             val deleteThread = object : Runnable {
 
                 override fun run() {
@@ -248,16 +251,32 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
                     }
                 }
             }
-            val handler = Handler()
-            handler.postDelayed(deleteThread, 5000)
-            val snackbar = Snackbar.make(activity.contentView, "Conversation Deleted", Snackbar.LENGTH_LONG)
-            snackbar.setAction("Undo") {
-                threadDatabase.unarchiveConversation(threadID)
-                handler.removeCallbacks(deleteThread)
-                animate(viewHolder, 0.0f)
+            val dialogMessage = if (recipient.isGroupRecipient) R.string.activity_home_leave_group_dialog_message else R.string.activity_home_delete_conversation_dialog_message
+            val dialog = AlertDialog.Builder(activity)
+            dialog.setMessage(dialogMessage)
+            dialog.setPositiveButton(R.string.yes) { _, _ ->
+                val isGroup = recipient.isGroupRecipient
+                // Send a leave group message if this is an active closed group
+                if (isGroup && DatabaseFactory.getGroupDatabase(activity).isActive(recipient.address.toGroupString())) {
+                    if (!GroupUtil.leaveGroup(activity, recipient)) {
+                        Toast.makeText(activity, "Couldn't leave group", Toast.LENGTH_LONG).show()
+                        clearView(activity.recyclerView, viewHolder)
+                        return@setPositiveButton
+                    }
+                }
+                // Archive the conversation and then delete it after 10 seconds (the case where the
+                // app was closed before the conversation could be deleted is handled in onCreate)
+                threadDatabase.archiveConversation(threadID)
+                val handler = Handler()
+                handler.postDelayed(deleteThread, 10000)
+                // Notify the user
+                val toastMessage = if (isGroup) R.string.MessageRecord_left_group else R.string.activity_home_conversation_deleted_message
+                Toast.makeText(activity, toastMessage, Toast.LENGTH_LONG).show()
             }
-            snackbar.setActionTextColor(activity.resources.getColorWithID(R.color.accent, activity.theme))
-            snackbar.show()
+            dialog.setNegativeButton(R.string.no) { _, _ ->
+                clearView(activity.recyclerView, viewHolder)
+            }
+            dialog.create().show()
         }
 
         override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dx: Float, dy: Float, actionState: Int, isCurrentlyActive: Boolean) {

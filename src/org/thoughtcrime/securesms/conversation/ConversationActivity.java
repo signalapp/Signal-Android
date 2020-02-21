@@ -1156,21 +1156,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     builder.setMessage(getString(R.string.ConversationActivity_are_you_sure_you_want_to_leave_this_group));
     builder.setPositiveButton(R.string.yes, (dialog, which) -> {
       Recipient                           groupRecipient = getRecipient();
-      long                                threadId       = DatabaseFactory.getThreadDatabase(this).getThreadIdFor(groupRecipient);
-      Optional<OutgoingGroupMediaMessage> leaveMessage   = GroupUtil.createGroupLeaveMessage(this, groupRecipient);
-
-      if (threadId != -1 && leaveMessage.isPresent()) {
-        MessageSender.send(this, leaveMessage.get(), threadId, false, null);
-
-        // We need to remove the master device from the group
-        String masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this);
-        String localNumber = masterHexEncodedPublicKey != null ? masterHexEncodedPublicKey : TextSecurePreferences.getLocalNumber(this);
-
-        GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(this);
-        String        groupId       = groupRecipient.getAddress().toGroupString();
-        groupDatabase.setActive(groupId, false);
-        groupDatabase.remove(groupId, Address.fromSerialized(localNumber));
-
+      if (GroupUtil.leaveGroup(this, groupRecipient)) {
         initializeEnabledCheck();
       } else {
         Toast.makeText(this, R.string.ConversationActivity_error_leaving_group, Toast.LENGTH_LONG).show();
