@@ -206,14 +206,11 @@ public class GroupMessageProcessor {
                                              @NonNull GroupRecord record)
   {
     String hexEncodedPublicKey = getMasterHexEncodedPublicKey(context, content.getSender());
-    String ourPublicKey = getMasterHexEncodedPublicKey(context, TextSecurePreferences.getLocalNumber(context));
-    // If the requester is a group member and we are admin then we should send them the group update
-    if (record.getMembers().contains(Address.fromSerialized(hexEncodedPublicKey)) && record.getAdmins().contains(Address.fromSerialized(ourPublicKey))) {
+    if (record.getMembers().contains(Address.fromSerialized(hexEncodedPublicKey))) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
                         .add(new PushGroupUpdateJob(content.getSender(), group.getGroupId()));
     }
-
     return null;
   }
 

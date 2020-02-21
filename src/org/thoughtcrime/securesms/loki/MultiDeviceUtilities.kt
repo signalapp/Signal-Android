@@ -128,7 +128,7 @@ fun sendDeviceLinkMessage(context: Context, hexEncodedPublicKey: String, deviceL
     }
     Promise.ofSuccess(Unit)
   } catch (e: Exception) {
-    Log.d("Loki", "Failed to send device link message to: $hexEncodedPublicKey.")
+    Log.d("Loki", "Failed to send device link message to: $hexEncodedPublicKey due to error: $e.")
     Promise.ofFail(e)
   }
 }

@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.loki.redesign.utilities.insertOrUpdate
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.libsignal.IdentityKey
+import org.whispersystems.libsignal.InvalidKeyException
 import org.whispersystems.libsignal.ecc.Curve
 import org.whispersystems.libsignal.state.PreKeyBundle
 import org.whispersystems.libsignal.util.KeyHelper
@@ -41,6 +42,25 @@ class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : 
     }
 
     fun generatePreKeyBundle(hexEncodedPublicKey: String): PreKeyBundle? {
+        var failureCount = 0
+        while (failureCount < 3) {
+            try {
+                val preKey = generatePreKeyBundle(hexEncodedPublicKey, failureCount > 0) ?: return null
+                // Verify the bundle is correct
+                if (!Curve.verifySignature(preKey.identityKey.publicKey, preKey.signedPreKey.serialize(), preKey.signedPreKeySignature)) {
+                    throw InvalidKeyException()
+                }
+                return preKey;
+            } catch (e: InvalidKeyException) {
+                failureCount += 1
+            }
+        }
+        Log.w("Loki", "Failed to generate a valid pre key bundle for: $hexEncodedPublicKey.")
+        return null
+    }
+
+    private fun generatePreKeyBundle(hexEncodedPublicKey: String, forceClean: Boolean): PreKeyBundle? {
+        if (hexEncodedPublicKey.isEmpty()) return null
         var registrationID = TextSecurePreferences.getLocalRegistrationId(context)
         if (registrationID == 0) {
             registrationID = KeyHelper.generateRegistrationId(false)
@@ -49,7 +69,7 @@ class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : 
         val deviceID = SignalServiceAddress.DEFAULT_DEVICE_ID
         val preKeyRecord = DatabaseFactory.getLokiPreKeyRecordDatabase(context).getOrCreatePreKeyRecord(hexEncodedPublicKey)
         val identityKeyPair = IdentityKeyUtil.getIdentityKeyPair(context)
-        if (TextSecurePreferences.isSignedPreKeyRegistered(context)) {
+        if (!forceClean && TextSecurePreferences.isSignedPreKeyRegistered(context)) {
             Log.d("Loki", "A signed pre key has already been registered.")
         } else {
             Log.d("Loki", "Registering a new signed pre key.")

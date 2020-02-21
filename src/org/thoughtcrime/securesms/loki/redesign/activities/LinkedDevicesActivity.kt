@@ -22,7 +22,6 @@ import org.thoughtcrime.securesms.loki.redesign.dialogs.*
 import org.thoughtcrime.securesms.loki.signAndSendDeviceLinkMessage
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.loki.api.DeviceLink
 import org.whispersystems.signalservice.loki.api.LokiFileServerAPI
 import java.util.*
@@ -145,20 +144,19 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity, LoaderManager
 
     override fun onDeviceLinkRequestAuthorized(deviceLink: DeviceLink) {
         LokiFileServerAPI.shared.addDeviceLink(deviceLink).success {
-            signAndSendDeviceLinkMessage(this, deviceLink).success {
+            signAndSendDeviceLinkMessage(this, deviceLink).successUi {
+                LoaderManager.getInstance(this).restartLoader(0, null, this)
+            }.success {
                 TextSecurePreferences.setMultiDevice(this, true)
-                Util.runOnMain {
-                    LoaderManager.getInstance(this).restartLoader(0, null, this)
-                }
                 Timer().schedule(4000) {
+                    MessageSender.syncAllGroups(this@LinkedDevicesActivity)
                     MessageSender.syncAllContacts(this@LinkedDevicesActivity, Address.fromSerialized(deviceLink.slaveHexEncodedPublicKey))
                 }
+            }.failUi {
+                Toast.makeText(this, "Couldn't link device", Toast.LENGTH_LONG).show()
             }.fail {
                 LokiFileServerAPI.shared.removeDeviceLink(deviceLink) // If this fails we have a problem
                 DatabaseFactory.getLokiPreKeyBundleDatabase(this).removePreKeyBundle(deviceLink.slaveHexEncodedPublicKey)
-                Util.runOnMain {
-                    Toast.makeText(this, "Couldn't link device", Toast.LENGTH_LONG).show()
-                }
             }
         }.failUi {
             DatabaseFactory.getLokiPreKeyBundleDatabase(this).removePreKeyBundle(deviceLink.slaveHexEncodedPublicKey)

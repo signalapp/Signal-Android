@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
+import org.thoughtcrime.securesms.jobs.MultiDeviceGroupUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
 import org.thoughtcrime.securesms.jobs.PushTextSendJob;
@@ -79,6 +80,10 @@ public class MessageSender {
 
   public static void syncAllContacts(Context context, Address recipient) {
     ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceContactUpdateJob(context, recipient, true));
+  }
+
+  public static void syncAllGroups(Context context) {
+    ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceGroupUpdateJob());
   }
 
   /**
