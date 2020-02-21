@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
   <string-array name="language_entries">
-<!-- zz --><item>@string/preferences__default</item>
+<!-- zz --><item>@string/preferences__system_default</item>
 <!-- en --><item>English</item>
 <!-- ar --><item>Arabic العربية</item>
 <!-- az --><item>Azərbaycan</item>

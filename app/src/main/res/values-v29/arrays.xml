@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
   <string-array name="pref_theme_entries" tools:ignore="InconsistentArrays">
-    <item>@string/preferences__system_theme</item>
+    <item>@string/preferences__system_default</item>
     <item>@string/preferences__light_theme</item>
     <item>@string/preferences__dark_theme</item>
   </string-array>
