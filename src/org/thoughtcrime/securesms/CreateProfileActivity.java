@@ -58,14 +58,15 @@ import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.util.StreamDetails;
 import org.whispersystems.signalservice.loki.api.LokiDotNetAPI;
-import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
 import org.whispersystems.signalservice.loki.api.LokiFileServerAPI;
+import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
@@ -73,6 +74,7 @@ import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 
+import kotlin.Unit;
 import network.loki.messenger.R;
 
 @SuppressLint("StaticFieldLeak")
@@ -408,7 +410,10 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
             if (avatar != null) {
               Log.d("Loki", "Start uploading profile photo");
               LokiFileServerAPI storageAPI = LokiFileServerAPI.shared;
-              LokiDotNetAPI.UploadResult result = storageAPI.uploadProfilePicture(storageAPI.getServer(), profileKey, avatar);
+              LokiDotNetAPI.UploadResult result = storageAPI.uploadProfilePicture(storageAPI.getServer(), profileKey, avatar, () -> {
+                TextSecurePreferences.setLastProfilePictureUpload(CreateProfileActivity.this, new Date().getTime());
+                return Unit.INSTANCE;
+              });
               Log.d("Loki", "Profile photo uploaded, the url is " + result.getUrl());
               TextSecurePreferences.setProfileAvatarUrl(context, result.getUrl());
             } else {

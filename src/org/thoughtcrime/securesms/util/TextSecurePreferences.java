@@ -1258,6 +1258,14 @@ public class TextSecurePreferences {
   public static void setHasSeenOpenGroupSuggestionSheet(Context context) {
     setBooleanPreference(context, "has_seen_open_group_suggestion_sheet", true);
   }
+
+  public static long getLastProfilePictureUpload(Context context) {
+    return getLongPreference(context, "last_profile_picture_upload", 0);
+  }
+
+  public static void setLastProfilePictureUpload(Context context, long newValue) {
+    setLongPreference(context, "last_profile_picture_upload", newValue);
+  }
   // endregion
 
   public static void clearAll(Context context) {
