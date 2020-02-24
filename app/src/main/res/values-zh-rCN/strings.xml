@@ -1412,7 +1412,7 @@
     <item quantity="other">PIN码至少得由%1$d个字母组成</item>
   </plurals>
   <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
-    <item quantity="other">PIN码至少得由1$d个纯数字组成</item>
+    <item quantity="other">PIN码至少得由%1$d个纯数字组成</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">新建 PIN</string>
   <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
