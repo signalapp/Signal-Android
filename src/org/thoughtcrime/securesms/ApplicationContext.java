@@ -75,6 +75,7 @@ import org.thoughtcrime.securesms.loki.redesign.messaging.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.redesign.utilities.Broadcaster;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -94,6 +95,7 @@ import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
 import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
+import org.whispersystems.signalservice.api.util.StreamDetails;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.loki.api.LokiAPIDatabaseProtocol;
 import org.whispersystems.signalservice.loki.api.LokiFileServerAPI;
@@ -104,8 +106,12 @@ import org.whispersystems.signalservice.loki.api.LokiPublicChat;
 import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
 import org.whispersystems.signalservice.loki.api.LokiRSSFeed;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.security.SecureRandom;
 import java.security.Security;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -191,6 +197,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         }
       }
     }
+    // Loki - Resubmit profile picture if needed
+    resubmitProfilePictureIfNeeded();
     // Loki - Set up public chat manager
     lokiPublicChatManager = new LokiPublicChatManager(this);
     updatePublicChatProfilePictureIfNeeded();
@@ -587,6 +595,30 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     createRSSFeedPollersIfNeeded();
     if (lokiNewsFeedPoller != null) lokiNewsFeedPoller.startIfNeeded();
     if (lokiMessengerUpdatesFeedPoller != null) lokiMessengerUpdatesFeedPoller.startIfNeeded();
+  }
+
+  private void resubmitProfilePictureIfNeeded() {
+    String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
+    if (userHexEncodedPublicKey == null) return;
+    long now = new Date().getTime();
+    long lastProfilePictureUpload = TextSecurePreferences.getLastProfilePictureUpload(this);
+    if (now - lastProfilePictureUpload <= 14 * 24 * 60 * 60 * 1000) return;
+    AsyncTask.execute(() -> {
+      String encodedProfileKey = ProfileKeyUtil.generateEncodedProfileKey(this);
+      byte[] profileKey = ProfileKeyUtil.getProfileKeyFromEncodedString(encodedProfileKey);
+      try {
+        File profilePicture = AvatarHelper.getAvatarFile(this, Address.fromSerialized(userHexEncodedPublicKey));
+        StreamDetails stream = new StreamDetails(new FileInputStream(profilePicture), "image/jpeg", profilePicture.length());
+        LokiFileServerAPI.shared.uploadProfilePicture(LokiFileServerAPI.shared.getServer(), profileKey, stream, () -> {
+          TextSecurePreferences.setLastProfilePictureUpload(this, new Date().getTime());
+          TextSecurePreferences.setProfileAvatarId(this, new SecureRandom().nextInt());
+          ProfileKeyUtil.setEncodedProfileKey(this, encodedProfileKey);
+          return Unit.INSTANCE;
+        });
+      } catch (Exception exception) {
+        // Do nothing
+      }
+    });
   }
 
   public void updatePublicChatProfilePictureIfNeeded() {

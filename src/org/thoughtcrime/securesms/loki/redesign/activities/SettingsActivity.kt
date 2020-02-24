@@ -45,6 +45,7 @@ import org.whispersystems.signalservice.loki.api.LokiFileServerAPI
 import java.io.ByteArrayInputStream
 import java.io.File
 import java.security.SecureRandom
+import java.util.*
 
 class SettingsActivity : PassphraseRequiredActionBarActivity() {
     private lateinit var glide: GlideRequests
@@ -163,7 +164,9 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
             val deferred = deferred<Unit, Exception>()
             AsyncTask.execute {
                 val stream = StreamDetails(ByteArrayInputStream(profilePicture), "image/jpeg", profilePicture.size.toLong())
-                val (_, url) = storageAPI.uploadProfilePicture(storageAPI.server, profileKey, stream)
+                val (_, url) = storageAPI.uploadProfilePicture(storageAPI.server, profileKey, stream) {
+                    TextSecurePreferences.setLastProfilePictureUpload(this@SettingsActivity, Date().time)
+                }
                 TextSecurePreferences.setProfileAvatarUrl(this, url)
                 deferred.resolve(Unit)
             }
