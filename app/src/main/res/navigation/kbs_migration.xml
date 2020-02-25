@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/kbs_pin_migration"
+    app:startDestination="@id/kbsSplashFragment">
+
+    <fragment
+        android:id="@+id/kbsSplashFragment"
+        android:name="org.thoughtcrime.securesms.lock.v2.KbsSplashFragment"
+        android:label="fragment_kbs_splash"
+        tools:layout="@layout/kbs_splash_fragment">
+
+        <action
+            android:id="@+id/action_createKbsPin"
+            app:destination="@id/create_kbs_pin"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" >
+
+            <argument
+                app:argType="boolean"
+                android:name="is_pin_change"
+                android:defaultValue="false" />
+
+        </action>
+
+    </fragment>
+
+    <include app:graph="@navigation/create_kbs_pin" />
+
+</navigation>

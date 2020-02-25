@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <objectAnimator
+        android:duration="@integer/reaction_scrubber_reveal_duration"
+        android:interpolator="@android:anim/linear_interpolator"
+        android:propertyName="translationY"
+        android:valueFrom="@dimen/reaction_scrubber_anim_start_translation_y"
+        android:valueTo="@dimen/reaction_scrubber_anim_end_translation_y" />
+
+    <objectAnimator
+        android:duration="@integer/reaction_scrubber_reveal_duration"
+        android:interpolator="@android:anim/linear_interpolator"
+        android:propertyName="alpha"
+        android:valueFrom="0"
+        android:valueTo="1" />
+</set>

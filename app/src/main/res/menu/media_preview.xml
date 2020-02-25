@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/media_preview__forward"
+          android:title="@string/media_preview__forward_title"
+          android:icon="?menu_forward_icon"
+          app:showAsAction="never"/>
+    <item android:id="@+id/save"
+          android:title="@string/media_preview__save_title"
+          android:icon="@drawable/ic_download_filled_white_24"
+          app:showAsAction="never"/>
+    <item android:id="@+id/media_preview__overview"
+          android:title="@string/media_preview__all_media_title"
+          android:icon="@drawable/ic_photo_library_white_24dp"
+          app:showAsAction="never"/>
+    <item android:id="@+id/delete"
+          android:title="@string/delete"
+          android:icon="?menu_trash_icon"
+          app:showAsAction="never"/>
+</menu>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:paddingTop="16dp"
+      android:paddingStart="8dp"
+      android:paddingEnd="8dp"
+      android:paddingBottom="8dp"
+      android:background="?megaphone_background"
+      android:clickable="true">
+
+    <ImageView
+        android:id="@+id/basic_megaphone_image"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="8dp"
+        android:scaleType="centerInside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/profile_splash"/>
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/basic_megaphone_title"
+        style="@style/Signal.Text.Body"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="sans-serif-medium"
+        app:layout_constraintStart_toEndOf="@id/basic_megaphone_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/basic_megaphone_image"
+        tools:text="Avengers HQ Destroyed!" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/basic_megaphone_body"
+        style="@style/Signal.Text.Preview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:textColor="?megaphone_body_text_color"
+        app:layout_constraintStart_toStartOf="@id/basic_megaphone_title"
+        app:layout_constraintTop_toBottomOf="@id/basic_megaphone_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Where was the 'hero' Spider-Man during the battle?" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/basic_megaphone_content_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="basic_megaphone_image,basic_megaphone_body,basic_megaphone_title"/>
+
+    <Button
+        android:id="@+id/basic_megaphone_action"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        style="@style/Button.Borderless"
+        app:layout_constraintStart_toEndOf="@id/basic_megaphone_snooze"
+        app:layout_constraintTop_toBottomOf="@id/basic_megaphone_content_barrier"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="*sigh*"
+        tools:visibility="visible"/>
+
+    <Button
+        android:id="@+id/basic_megaphone_snooze"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/Megaphones_remind_me_later"
+        style="@style/Button.Borderless"
+        app:layout_constraintTop_toBottomOf="@id/basic_megaphone_content_barrier"
+        app:layout_constraintEnd_toStartOf="@id/basic_megaphone_action"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible"/>
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+</merge>

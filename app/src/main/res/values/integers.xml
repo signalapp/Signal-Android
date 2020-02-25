@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="play_button_animation_duration">300</integer>
+    <integer name="reaction_scrubber_reveal_duration">400</integer>
+    <integer name="reaction_scrubber_reveal_emoji_duration">380</integer>
+    <integer name="reaction_scrubber_emoji_reveal_duration_start_delay_factor">10</integer>
+</resources>

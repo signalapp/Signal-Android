@@ -5,5 +5,5 @@ repositories {
 }
 
 dependencies {
-    compile 'com.android.tools.build:apksig:3.3.2'
+    implementation 'com.android.tools.build:apksig:3.5.1'
 }

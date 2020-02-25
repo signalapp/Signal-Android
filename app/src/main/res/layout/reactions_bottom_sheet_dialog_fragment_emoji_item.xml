@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="62dp"
+    android:layout_height="36dp"
+    android:layout_marginStart="6dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="4dp"
+    android:layout_marginBottom="8dp"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/reactions_bottom_view_emoji_item_emoji"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        app:emoji_forceCustom="true"
+        tools:ignore="SpUsage"
+        tools:text=":-)" />
+
+    <TextView
+        android:id="@+id/reactions_bottom_view_emoji_item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
+        android:gravity="center"
+        android:includeFontPadding="true"
+        android:textColor="?title_text_color_primary"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        tools:ignore="SpUsage"
+        tools:text="24" />
+</LinearLayout>

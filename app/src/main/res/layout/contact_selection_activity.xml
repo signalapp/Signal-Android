@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_gravity="center"
+              android:layout_height="fill_parent"
+              android:layout_width="fill_parent"
+              android:orientation="vertical"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <org.thoughtcrime.securesms.components.ContactFilterToolbar
+            android:id="@+id/toolbar"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:minHeight="?attr/actionBarSize"
+            android:elevation="4dp"
+            android:theme="?attr/actionBarStyle"
+            app:navigationIcon="@drawable/ic_arrow_left_24"
+            app:contentInsetStartWithNavigation="0dp"/>
+
+        <fragment android:id="@+id/contact_selection_list_fragment"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:name="org.thoughtcrime.securesms.ContactSelectionListFragment" />
+
+</LinearLayout>

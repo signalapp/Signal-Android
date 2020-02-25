@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.SquareFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <org.thoughtcrime.securesms.components.ThumbnailView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/media_preview_activity__media_content_description"
+        android:padding="2dp" />
+
+    <TextView
+        android:id="@+id/image_file_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="4dp"
+        android:background="@drawable/media_overview_size_pill_background"
+        android:gravity="center"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:visibility="gone"
+        tools:text="1.3 MB"
+        tools:visibility="visible" />
+
+    <FrameLayout
+        android:id="@+id/selected_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/MediaOverview_Media_selected_overlay"
+        android:visibility="gone"
+        tools:showIn="@layout/media_overview_gallery_item"
+        tools:visibility="visible">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@string/MediaOverviewActivity_Selected_description"
+            app:srcCompat="@drawable/ic_check_circle_solid_20" />
+
+    </FrameLayout>
+
+</org.thoughtcrime.securesms.components.SquareFrameLayout>

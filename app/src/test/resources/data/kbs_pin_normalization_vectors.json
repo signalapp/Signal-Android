@@ -1,0 +1,76 @@
+[
+  {
+    "name": "Empty",
+    "pin": "",
+    "bytes": ""
+  },
+  {
+    "pin": "password",
+    "bytes": "70617373776f7264"
+  },
+  {
+    "name": "Trailing space",
+    "pin": "password ",
+    "bytes": "70617373776f7264"
+  },
+  {
+    "name": "Leading and trailing spaces",
+    "pin": " password ",
+    "bytes": "70617373776f7264"
+  },
+  {
+    "name": "Space in word",
+    "pin": "pass word",
+    "bytes": "7061737320776f7264"
+  },
+  {
+    "name": "Leading and trailing spaces and space in word",
+    "pin": " pass word ",
+    "bytes": "7061737320776f7264"
+  },
+  {
+    "name": "Arabic digits",
+    "pin": "12345",
+    "bytes": "3132333435"
+  },
+  {
+    "name": "Leading and trailing spaces around digits",
+    "pin": " 12345 ",
+    "bytes": "3132333435"
+  },
+  {
+    "name": "Non-arabic digits",
+    "pin": "١٢٣٤٥",
+    "bytes": "3132333435"
+  },
+  {
+    "name": "Mixed digits",
+    "pin": "١٢٣4٥",
+    "bytes": "3132333435"
+  },
+  {
+    "name": "Non-arabic digits with non-digit",
+    "pin": "١٢٣٤٥A",
+    "bytes": "d9a1d9a2d9a3d9a4d9a541"
+  },
+  {
+    "name": "Leading and trailing spaces around non-arabic digits",
+    "pin": "  ١٢٣٤٥  ",
+    "bytes": "3132333435"
+  },
+  {
+    "name": "Space in non-arabic digits",
+    "pin": "١٢٣ ٤٥٦",
+    "bytes": "d9a1d9a2d9a320d9a4d9a5d9a6"
+  },
+  {
+    "name": "NFKD Test, Double Char",
+    "pin": "Ä",
+    "bytes": "41cc88"
+  },
+  {
+    "name": "NFKD Test, Single Char",
+    "pin": "Ä",
+    "bytes": "41cc88"
+  }
+]

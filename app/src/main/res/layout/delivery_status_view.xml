@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/pending_indicator"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginEnd="2dp"
+        android:layout_gravity="center_vertical|end"
+        android:src="@drawable/ic_delivery_status_sending"
+        android:visibility="gone" />
+
+    <ImageView android:id="@+id/sent_indicator"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center_vertical|end"
+               android:src="@drawable/ic_delivery_status_sent"
+               android:paddingStart="2dp"
+               android:visibility="gone"
+               android:contentDescription="@string/conversation_item_sent__delivered_description" />
+
+    <ImageView android:id="@+id/delivered_indicator"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center_vertical|end"
+               android:src="@drawable/ic_delivery_status_delivered"
+               android:paddingStart="2dp"
+               android:visibility="gone"
+               android:contentDescription="@string/conversation_item_sent__delivered_description"
+               tools:visibility="gone"/>
+
+    <ImageView android:id="@+id/read_indicator"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center_vertical|end"
+               android:src="@drawable/ic_delivery_status_read"
+               android:paddingStart="2dp"
+               android:visibility="gone"
+               android:contentDescription="@string/conversation_item_sent__message_read"
+               tools:visibility="visible"/>
+
+</merge>

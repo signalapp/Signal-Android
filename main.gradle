@@ -1,0 +1,26 @@
+wrapper {
+    distributionType = Wrapper.DistributionType.ALL
+}
+
+subprojects {
+    ext.lib_signal_service_version_number   = "2.15.3"
+    ext.lib_signal_service_group_info       = "org.whispersystems"
+    ext.lib_signal_metadata_version         = "0.1.0"
+
+    if (JavaVersion.current().isJava8Compatible()) {
+        allprojects {
+            tasks.withType(Javadoc) {
+                options.addStringOption('Xdoclint:none', '-quiet')
+            }
+        }
+    }
+}
+
+task qa {
+    group 'Verification'
+    description 'Quality Assurance. Run before pushing.'
+    dependsOn ':Signal-Android:testPlayReleaseUnitTest',
+            ':Signal-Android:lintPlayRelease',
+            ':libsignal-service:test',
+            ':Signal-Android:assemblePlayDebug'
+}

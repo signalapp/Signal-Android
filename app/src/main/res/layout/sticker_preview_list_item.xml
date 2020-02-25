@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImageView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sticker_install_item_image"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/sticker_preview_sticker_size"
+    android:layout_marginTop="6dp"
+    android:scaleType="centerInside"/>

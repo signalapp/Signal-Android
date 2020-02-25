@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape
+            android:innerRadius="20dp"
+            android:shape="ring"
+            android:thickness="6dp"
+            android:useLevel="false">
+
+            <solid android:color="@color/transparent_black_40" />
+
+        </shape>
+    </item>
+    <item>
+        <shape
+            android:innerRadius="20dp"
+            android:shape="ring"
+            android:thickness="6dp"
+            android:useLevel="true">
+
+            <solid android:color="@color/white" />
+
+        </shape>
+    </item>
+</layer-list>
