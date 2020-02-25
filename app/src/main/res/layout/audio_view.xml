@@ -29,13 +29,14 @@
             android:id="@+id/timestamp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
             android:layout_marginStart="76dip"
             android:autoLink="none"
             android:fontFamily="sans-serif-light"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="?conversation_item_sent_text_secondary_color"
             android:textSize="@dimen/conversation_item_date_text_size"
-            android:visibility="gone"
+            android:visibility="invisible"
             tools:text="00:15"
             tools:visibility="visible" />
 
