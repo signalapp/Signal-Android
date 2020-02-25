@@ -151,6 +151,7 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity, LoaderManager
                 Timer().schedule(4000) {
                     MessageSender.syncAllGroups(this@LinkedDevicesActivity)
                     MessageSender.syncAllContacts(this@LinkedDevicesActivity, Address.fromSerialized(deviceLink.slaveHexEncodedPublicKey))
+                    MessageSender.syncAllOpenGroups(this@LinkedDevicesActivity)
                 }
             }.failUi {
                 Toast.makeText(this, "Couldn't link device", Toast.LENGTH_LONG).show()

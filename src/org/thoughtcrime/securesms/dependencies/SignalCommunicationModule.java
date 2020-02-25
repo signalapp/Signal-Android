@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.LokiSessionResetImplementation;
+import org.thoughtcrime.securesms.loki.MultiDeviceOpenGroupUpdateJob;
 import org.thoughtcrime.securesms.loki.PushMessageSyncSendJob;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
 import org.thoughtcrime.securesms.push.MessageSenderEventListener;
@@ -115,7 +116,8 @@ import network.loki.messenger.BuildConfig;
                                      MultiDeviceStickerPackOperationJob.class,
                                      MultiDeviceStickerPackSyncJob.class,
                                      LinkPreviewRepository.class,
-                                     PushMessageSyncSendJob.class})
+                                     PushMessageSyncSendJob.class,
+                                     MultiDeviceOpenGroupUpdateJob.class})
 
 public class SignalCommunicationModule {
 
