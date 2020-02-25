@@ -111,7 +111,7 @@ public class Address implements Parcelable, Comparable<Address> {
 
   public boolean isGroup() { return GroupUtil.isEncodedGroup(address); }
 
-  public boolean isSignalGroup() { return !isPublicChat() && !isRSSFeed(); }
+  public boolean isSignalGroup() { return GroupUtil.isSignalGroup(address); }
 
   public boolean isPublicChat() { return GroupUtil.isPublicChat(address); }
 

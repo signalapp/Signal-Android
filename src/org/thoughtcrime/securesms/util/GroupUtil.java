@@ -87,6 +87,10 @@ public class GroupUtil {
     return groupId.startsWith(ENCODED_RSS_FEED_GROUP_PREFIX);
   }
 
+  public static boolean isSignalGroup(@NonNull String groupId) {
+    return groupId.startsWith(ENCODED_SIGNAL_GROUP_PREFIX);
+  }
+
   @WorkerThread
   public static Optional<OutgoingGroupMediaMessage> createGroupLeaveMessage(@NonNull Context context, @NonNull Recipient groupRecipient) {
     String        encodedGroupId = groupRecipient.getAddress().toGroupString();
