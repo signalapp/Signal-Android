@@ -138,6 +138,7 @@ import org.whispersystems.signalservice.loki.api.DeviceLink;
 import org.whispersystems.signalservice.loki.api.DeviceLinkingSession;
 import org.whispersystems.signalservice.loki.api.LokiAPI;
 import org.whispersystems.signalservice.loki.api.LokiDeviceLinkUtilities;
+import org.whispersystems.signalservice.loki.api.LokiFileServerAPI;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiServiceMessage;
@@ -704,6 +705,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
         LokiThreadFriendRequestStatus status = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID);
         if (status == LokiThreadFriendRequestStatus.NONE || status == LokiThreadFriendRequestStatus.REQUEST_EXPIRED) {
+          // TODO: We should ensure that our mapping has been uploaded to the server before sending out this message
           MessageSender.sendBackgroundFriendRequest(context, hexEncodedPublicKey, "Please accept to enable messages to be synced across devices");
           Log.d("Loki", "Sent friend request to " + hexEncodedPublicKey);
         } else if (status == LokiThreadFriendRequestStatus.REQUEST_RECEIVED) {
@@ -1206,6 +1208,17 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     TextSecurePreferences.setMultiDevice(context, true);
     // Send a background message to the master device
     MessageSender.sendBackgroundMessage(context, deviceLink.getMasterHexEncodedPublicKey());
+    /*
+     Update device link on the file server.
+     We put this here because after receiving the authorisation message, we will also receive all sync messages.
+     If these sync messages are contact syncs then we need to send them friend requests so that we can establish multi-device communication.
+     If our device mapping is not stored on the server before the other party receives our message, they will think that they got a friend request from a non-multi-device user.
+     */
+    try {
+      PromiseUtil.timeout(LokiFileServerAPI.shared.addDeviceLink(deviceLink), 8000).get();
+    } catch (Exception e) {
+      Log.w("Loki", "Failed to upload device links to the file server! " + e);
+    }
     // Update display name if needed
     if (content.senderDisplayName.isPresent() && content.senderDisplayName.get().length() > 0) {
         TextSecurePreferences.setProfileName(context, content.senderDisplayName.get());
@@ -1218,7 +1231,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     if (content.getSyncMessage().isPresent() && content.getSyncMessage().get().getContacts().isPresent()) {
       handleContactSyncMessage(content.getSyncMessage().get().getContacts().get());
     }
-    // The device link is propagated to the file server in LandingActivity.onDeviceLinkAuthorized because we can handle the error there
   }
 
   private void setDisplayName(String hexEncodedPublicKey, String profileName) {

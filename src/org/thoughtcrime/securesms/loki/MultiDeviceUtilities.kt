@@ -42,6 +42,12 @@ fun checkIsRevokedSlaveDevice(context: Context) {
   }
 }
 
+fun updateDeviceLinksOnServer(context: Context) {
+  val hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
+  val deviceLinks = DatabaseFactory.getLokiAPIDatabase(context).getDeviceLinks(hexEncodedPublicKey)
+  LokiFileServerAPI.shared.setDeviceLinks(deviceLinks)
+}
+
 fun getAllDeviceFriendRequestStatuses(context: Context, hexEncodedPublicKey: String): Promise<Map<String, LokiThreadFriendRequestStatus>, Exception> {
   val lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context)
   return LokiDeviceLinkUtilities.getAllLinkedDeviceHexEncodedPublicKeys(hexEncodedPublicKey).map { keys ->
