@@ -194,6 +194,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       if (userHexEncodedPublicKey != null) {
         if (TextSecurePreferences.getNeedsIsRevokedSlaveDeviceCheck(this)) {
           MultiDeviceUtilities.checkIsRevokedSlaveDevice(this);
+        } else {
+          // We always update our current device links onto the server in case we failed to do so upon linking
+          MultiDeviceUtilities.updateDeviceLinksOnServer(this);
         }
       }
     }
