@@ -199,7 +199,7 @@ dependencies {
     implementation "com.github.ybq:Android-SpinKit:1.4.0"
 }
 
-def canonicalVersionCode = 37
+def canonicalVersionCode = 38
 def canonicalVersionName = "1.0.3"
 
 def postFixSize = 10
