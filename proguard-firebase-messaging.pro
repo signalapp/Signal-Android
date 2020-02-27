@@ -1,1 +1,0 @@
--dontwarn com.google.firebase.analytics.connector.AnalyticsConnector

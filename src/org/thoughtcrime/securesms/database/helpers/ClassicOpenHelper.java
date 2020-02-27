@@ -1,24 +1,16 @@
 package org.thoughtcrime.securesms.database.helpers;
 
 
-import android.Manifest;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.net.Uri;
-import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import org.thoughtcrime.securesms.logging.Log;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.i18n.phonenumbers.NumberParseException;
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
-import com.google.i18n.phonenumbers.Phonenumber;
-import com.google.i18n.phonenumbers.ShortNumberInfo;
 
 import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
@@ -26,7 +18,6 @@ import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -37,8 +28,8 @@ import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.DelimiterUtil;
 import org.thoughtcrime.securesms.util.Hex;
@@ -1385,71 +1376,18 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
       add("AC");
     }};
 
-    private final Phonenumber.PhoneNumber localNumber;
     private final String                  localNumberString;
-    private final String                  localCountryCode;
 
-    private final PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.getInstance();
     private final Pattern         ALPHA_PATTERN   = Pattern.compile("[a-zA-Z]");
 
 
     public NumberMigrator(String localNumber) {
-      try {
-        this.localNumberString = localNumber;
-        this.localNumber       = phoneNumberUtil.parse(localNumber, null);
-        this.localCountryCode  = phoneNumberUtil.getRegionCodeForNumber(this.localNumber);
-      } catch (NumberParseException e) {
-        throw new AssertionError(e);
-      }
+      this.localNumberString = localNumber;
     }
 
     public String migrate(@Nullable String number) {
-      if (number == null)                             return "Unknown";
-      if (number.startsWith("__textsecure_group__!")) return number;
-      if (ALPHA_PATTERN.matcher(number).find())       return number.trim();
-
-      String bareNumber = number.replaceAll("[^0-9+]", "");
-
-      if (bareNumber.length() == 0) {
-        if (TextUtils.isEmpty(number.trim())) return "Unknown";
-        else                                  return number.trim();
-      }
-
-      // libphonenumber doesn't seem to be correct for Germany and Finland
-      if (bareNumber.length() <= 6 && ("DE".equals(localCountryCode) || "FI".equals(localCountryCode) || "SK".equals(localCountryCode))) {
-        return bareNumber;
-      }
-
-      // libphonenumber seems incorrect for Russia and a few other countries with 4 digit short codes.
-      if (bareNumber.length() <= 4 && !SHORT_COUNTRIES.contains(localCountryCode)) {
-        return bareNumber;
-      }
-
-      try {
-        Phonenumber.PhoneNumber parsedNumber = phoneNumberUtil.parse(bareNumber, localCountryCode);
-
-        if (ShortNumberInfo.getInstance().isPossibleShortNumberForRegion(parsedNumber, localCountryCode)) {
-          return bareNumber;
-        }
-
-        return phoneNumberUtil.format(parsedNumber, PhoneNumberUtil.PhoneNumberFormat.E164);
-      } catch (NumberParseException e) {
-        Log.w(TAG, e);
-        if (bareNumber.charAt(0) == '+')
-          return bareNumber;
-
-        String localNumberImprecise = localNumberString;
-
-        if (localNumberImprecise.charAt(0) == '+')
-          localNumberImprecise = localNumberImprecise.substring(1);
-
-        if (localNumberImprecise.length() == bareNumber.length() || bareNumber.length() > localNumberImprecise.length())
-          return "+" + number;
-
-        int difference = localNumberImprecise.length() - bareNumber.length();
-
-        return "+" + localNumberImprecise.substring(0, difference) + bareNumber;
-      }
+      if (number == null) return "Unknown";
+      return number;
     }
   }
 
