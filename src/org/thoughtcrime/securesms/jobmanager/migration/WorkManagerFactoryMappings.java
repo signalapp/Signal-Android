@@ -9,7 +9,6 @@ import org.thoughtcrime.securesms.jobs.AvatarDownloadJob;
 import org.thoughtcrime.securesms.jobs.CleanPreKeysJob;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
-import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.LocalBackupJob;
 import org.thoughtcrime.securesms.jobs.MmsDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsReceiveJob;
@@ -59,7 +58,6 @@ public class WorkManagerFactoryMappings {
     put(CleanPreKeysJob.class.getName(), CleanPreKeysJob.KEY);
     put(CreateSignedPreKeyJob.class.getName(), CreateSignedPreKeyJob.KEY);
     put(DirectoryRefreshJob.class.getName(), DirectoryRefreshJob.KEY);
-    put(FcmRefreshJob.class.getName(), FcmRefreshJob.KEY);
     put(LocalBackupJob.class.getName(), LocalBackupJob.KEY);
     put(MmsDownloadJob.class.getName(), MmsDownloadJob.KEY);
     put(MmsReceiveJob.class.getName(), MmsReceiveJob.KEY);

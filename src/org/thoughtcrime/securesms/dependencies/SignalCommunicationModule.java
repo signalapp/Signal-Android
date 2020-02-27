@@ -9,13 +9,11 @@ import org.thoughtcrime.securesms.DeviceListFragment;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
-import org.thoughtcrime.securesms.gcm.FcmService;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
 import org.thoughtcrime.securesms.jobs.AvatarDownloadJob;
 import org.thoughtcrime.securesms.jobs.CleanPreKeysJob;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
-import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
@@ -86,7 +84,6 @@ import network.loki.messenger.BuildConfig;
                                      MultiDeviceBlockedUpdateJob.class,
                                      DeviceListFragment.class,
                                      RefreshAttributesJob.class,
-                                     FcmRefreshJob.class,
                                      RequestGroupInfoJob.class,
                                      PushGroupUpdateJob.class,
                                      AvatarDownloadJob.class,
@@ -99,7 +96,6 @@ import network.loki.messenger.BuildConfig;
                                      MultiDeviceProfileKeyUpdateJob.class,
                                      SendReadReceiptJob.class,
                                      AppProtectionPreferenceFragment.class,
-                                     FcmService.class,
                                      RotateCertificateJob.class,
                                      SendDeliveryReceiptJob.class,
                                      RotateProfileKeyJob.class,
