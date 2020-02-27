@@ -62,7 +62,6 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
-import org.thoughtcrime.securesms.gcm.FcmUtil;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
@@ -485,13 +484,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
 
           String password = Util.getSecret(18);
 
-          Optional<String> fcmToken;
-
-          if (gcmSupported) {
-            fcmToken = FcmUtil.getToken();
-          } else {
-            fcmToken = Optional.absent();
-          }
+          Optional<String> fcmToken = Optional.absent();
 
           accountManager = AccountManagerFactory.createManager(RegistrationActivity.this, e164number, password);
           accountManager.requestSmsVerificationCode(smsRetrieverSupported, registrationState.captchaToken);

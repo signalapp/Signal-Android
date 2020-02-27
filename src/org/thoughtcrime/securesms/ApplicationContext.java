@@ -53,7 +53,6 @@ import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.FastJobStorage;
-import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.JobManagerFactories;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob;
@@ -115,7 +114,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 import dagger.ObjectGraph;
 import kotlin.Unit;
@@ -176,7 +174,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     initializeExpiringMessageManager();
     initializeTypingStatusRepository();
     initializeTypingStatusSender();
-    initializeGcmCheck();
     initializeSignedPreKeyCheck();
     initializePeriodicTasks();
     initializeCircumvention();
@@ -338,16 +335,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private void initializeDependencyInjection() {
     communicationModule = new SignalCommunicationModule(this, new SignalServiceNetworkAccess(this));
     this.objectGraph = ObjectGraph.create(communicationModule, new AxolotlStorageModule(this));
-  }
-
-  private void initializeGcmCheck() {
-    if (TextSecurePreferences.isPushRegistered(this)) {
-      long nextSetTime = TextSecurePreferences.getFcmTokenLastSetTime(this) + TimeUnit.HOURS.toMillis(6);
-
-      if (TextSecurePreferences.getFcmToken(this) == null || nextSetTime <= System.currentTimeMillis()) {
-        this.jobManager.add(new FcmRefreshJob());
-      }
-    }
   }
 
   private void initializeSignedPreKeyCheck() {
