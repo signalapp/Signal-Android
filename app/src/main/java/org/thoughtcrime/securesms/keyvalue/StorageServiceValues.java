@@ -32,6 +32,12 @@ public class StorageServiceValues {
     return new MasterKey(blob);
   }
 
+  public synchronized void rotateStorageMasterKey() {
+    store.beginWrite()
+         .putBlob(STORAGE_MASTER_KEY, MasterKey.createNew(new SecureRandom()).serialize())
+         .commit();
+  }
+
   public boolean hasFirstStorageSyncCompleted() {
     return !FeatureFlags.storageServiceRestore() || store.getBoolean(FIRST_STORAGE_SYNC_COMPLETED, true);
   }

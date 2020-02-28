@@ -53,7 +53,7 @@ public final class FeatureFlags {
   private static final String PINS_MEGAPHONE_KILL_SWITCH = "android.pinsMegaphoneKillSwitch";
   private static final String PROFILE_NAMES_MEGAPHONE    = "android.profileNamesMegaphone";
   private static final String VIDEO_TRIMMING             = "android.videoTrimming";
-  private static final String STORAGE_SERVICE            = "android.storageService";
+  private static final String STORAGE_SERVICE            = "android.storageService.2";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable

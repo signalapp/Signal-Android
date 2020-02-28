@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.InvalidKeyException;
@@ -28,6 +29,7 @@ import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -77,10 +79,6 @@ public class StorageForcePushJob extends BaseJob {
     long                     currentVersion = accountManager.getStorageManifestVersion();
     Map<RecipientId, byte[]> oldStorageKeys = recipientDatabase.getAllStorageSyncKeysMap();
 
-    if (currentVersion < 1) {
-      throw new IllegalStateException("We should never be force-pushing a manifest as the first version!");
-    }
-
     long                      newVersion     = currentVersion + 1;
     Map<RecipientId, byte[]>  newStorageKeys = generateNewKeys(oldStorageKeys);
     List<SignalStorageRecord> inserts        = Stream.of(oldStorageKeys.keySet())
@@ -92,10 +90,18 @@ public class StorageForcePushJob extends BaseJob {
     SignalStorageManifest manifest = new SignalStorageManifest(newVersion, new ArrayList<>(newStorageKeys.values()));
 
     try {
-      Log.i(TAG, String.format(Locale.ENGLISH, "Force-pushing data. Inserting %d keys.", inserts.size()));
-      if (accountManager.resetStorageRecords(storageServiceKey, manifest, inserts).isPresent()) {
-        Log.w(TAG, "Hit a conflict. Trying again.");
-        throw new RetryLaterException();
+      if (newVersion > 1) {
+        Log.i(TAG, String.format(Locale.ENGLISH, "Force-pushing data. Inserting %d keys.", inserts.size()));
+        if (accountManager.resetStorageRecords(storageServiceKey, manifest, inserts).isPresent()) {
+          Log.w(TAG, "Hit a conflict. Trying again.");
+          throw new RetryLaterException();
+        }
+      } else {
+        Log.i(TAG, String.format(Locale.ENGLISH, "First version, normal push. Inserting %d keys.", inserts.size()));
+        if (accountManager.writeStorageRecords(storageServiceKey, manifest, inserts, Collections.emptyList()).isPresent()) {
+          Log.w(TAG, "Hit a conflict. Trying again.");
+          throw new RetryLaterException();
+        }
       }
     } catch (InvalidKeyException e) {
       Log.w(TAG, "Hit an invalid key exception, which likely indicates a conflict.");

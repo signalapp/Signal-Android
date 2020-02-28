@@ -18,10 +18,12 @@ import javax.crypto.spec.SecretKeySpec;
  */
 public class SignalStorageCipher {
 
+  private static final int IV_LENGTH = 12;
+
   public static byte[] encrypt(StorageCipherKey key, byte[] data) {
     try {
       Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
-      byte[] iv     = Util.getSecretBytes(16);
+      byte[] iv     = Util.getSecretBytes(IV_LENGTH);
 
       cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key.serialize(), "AES"), new GCMParameterSpec(128, iv));
       byte[] ciphertext = cipher.doFinal(data);
@@ -35,7 +37,7 @@ public class SignalStorageCipher {
   public static byte[] decrypt(StorageCipherKey key, byte[] data) throws InvalidKeyException {
     try {
       Cipher   cipher     = Cipher.getInstance("AES/GCM/NoPadding");
-      byte[][] split      = Util.split(data, 16, data.length - 16);
+      byte[][] split      = Util.split(data, IV_LENGTH, data.length - IV_LENGTH);
       byte[]   iv         = split[0];
       byte[]   cipherText = split[1];
 

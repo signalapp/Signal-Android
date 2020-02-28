@@ -92,7 +92,10 @@ public class StorageSyncJob extends BaseJob {
 
   @Override
   protected void onRun() throws IOException, RetryLaterException {
-    if (!FeatureFlags.storageService()) return;
+    if (!FeatureFlags.storageService()) {
+      Log.i(TAG, "Not enabled. Skipping.");
+      return;
+    }
 
     try {
       boolean needsMultiDeviceSync = performSync();
