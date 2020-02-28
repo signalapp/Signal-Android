@@ -204,6 +204,10 @@
   <string name="ConversationActivity_no_results">Hakuna matokeo</string>
   <string name="ConversationActivity_sticker_pack_installed">Pakiti ya vibandiko imesakinishwa</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Mpya! Iseme kwa vibandiko</string>
+  <string name="ConversationActivity_block">Zuia</string>
+  <string name="ConversationActivity_cancel">Ghairi</string>
+  <string name="ConversationActivity_delete_conversation">Futa maongezi?</string>
+  <string name="ConversationActivity_delete">Futa</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d   majumbe haijasomewa</item>
@@ -380,7 +384,7 @@ Gusa ikoni hii kwenye kicharazio chako:</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Unataka kufanya jina lako la wasifu na picha vionekane kwa wanachama wote wa sasa na wa baadaye wa kikundi hiki?</string>
   <string name="GroupShareProfileView_make_visible">Onyesha</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">Mimi</string>
+  <string name="GroupMembersDialog_you">Wewe</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Kundi la avatar</string>
   <string name="CropImageActivity_profile_avatar">Umbo</string>
@@ -521,6 +525,18 @@ Gusa ikoni hii kwenye kicharazio chako:</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Umeweka alama kwa nambari yako ya usalama na %s kuwa imehakikishwa kutoka kwa kifaa kingine.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Umeweka alama kwenye nambari yako ya usalama na %s kuwa haijahakikishwa</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Umeweka alama kwenye nambari yako ya usalama na %s kuwa haijahakikishwa kutoka kwa kifaa kingine</string>
+  <!--MessageRequestBottomView-->
+  <string name="MessageRequestBottomView_accept">Kubali</string>
+  <string name="MessageRequestBottomView_delete">Futa</string>
+  <string name="MessageRequestBottomView_block">Zuia</string>
+  <string name="MessageRequestBottomView_unblock">Fungua</string>
+  <string name="MessageRequestProfileView_member_of_one_group">Mwanachama wa %1$s</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">Mwanachama wa %1$s na %2$s</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">Mwanachama wa %1$s, %2$s, na %3$s </string>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="one">Mwingine %d</item>
+    <item quantity="other">Wengine %d</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Nenosiro haiwiani</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Nenosiri la zamani lisilo sahihi</string>
@@ -575,6 +591,8 @@ Signal inahitaji ruhusa ya Kamera ili kuskani msimbo wa QR, lakini imekataliwa k
   <string name="ReactionsBottomSheetDialogFragment_all">Zote%1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
+  <!--ReactionsRecipientAdapter-->
+  <string name="ReactionsRecipientAdapter_you">Wewe</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Zuia mwasiliani huyu?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Hautapokea tena ujumbe na simu kutoka kwa mwasiliani huyu</string>
@@ -695,6 +713,11 @@ nambari yako ya simu</string>
   <string name="StickerPackPreviewActivity_remove">Ondoa</string>
   <string name="StickerPackPreviewActivity_stickers">Kibandiko</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Imeshindwa kupakia pakiti ya vibandiko</string>
+  <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_submit">Wasilisha</string>
+  <string name="SubmitDebugLogActivity_success">Mafanikio!</string>
+  <string name="SubmitDebugLogActivity_copied_to_clipboard">Imenakiliwa kwenye bodi ya kunakili</string>
+  <string name="SubmitDebugLogActivity_share">Shiriki</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Kikundi kimesasishwa</string>
   <string name="ThreadRecord_left_the_group">Kajiondoa kutoka kikundi</string>
@@ -1032,9 +1055,6 @@ nambari yako ya simu</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Faili hii itawekwa hadharani mkondoni ili wachangiaji watazame, unaweza kuikagua na kuihariri kabla ya kuiwasilisha.</string>
   <string name="log_submit_activity__loading_logs">Inapakia logi</string>
   <string name="log_submit_activity__uploading_logs">Inapakia logi</string>
-  <string name="log_submit_activity__success">Mafanikio!</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Nakili URL na uiongeze kwenye ripoti yako ya suala ama barua pepe-egemezi:\n\n<b>%1$s</b>\n</string>
-  <string name="log_submit_activity__copied_to_clipboard">Ilinakiliwa kwenye ubao wa kupogoa.</string>
   <string name="log_submit_activity__choose_email_app">Chagua program ya barua pepe</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Tafadhali hakiki faili hili kutoka kwa programu yangu: %1$s</string>
   <string name="log_submit_activity__network_failure">Mtandao umefeli. Tafadhali jaribu tena </string>
@@ -1138,6 +1158,7 @@ nambari yako ya simu</string>
   <string name="AndroidManifest__invite_friends">Alika marafiki</string>
   <string name="AndroidManifest_archived_conversations">Mazungumzo yaliyojalidiwa</string>
   <string name="AndroidManifest_remove_photo">Ondoa picha</string>
+  <!--Message Requests Megaphone-->
   <!--arrays.xml-->
   <string name="arrays__import_export">Ingiza</string>
   <string name="arrays__use_default">Tumia chaguo msingi</string>
@@ -1623,17 +1644,5 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="RegistrationLockDialog_reminder">Kikumbusho</string>
   <string name="recipient_preferences__about">Kuhusu</string>
   <string name="Recipient_unknown">Isiyojulikana</string>
-  <string name="MessageRequestBottomView_accept">Kubali</string>
-  <string name="MessageRequestBottomView_delete">Futa</string>
-  <string name="MessageRequestBottomView_block">Zuia</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let">Je, unataka kupokea ujumbe kutoka kwa %1$s?</string>
-  <string name="MessageRequestProfileView_member_of_one_group">Mwanachama wa %1$s</string>
-  <string name="MessageRequestProfileView_member_of_two_groups">Mwanachama wa %1$s na %2$s</string>
-  <string name="MessageRequestProfileView_member_of_many_groups">Mwanachama wa %1$s, %2$s, na %3$s </string>
-  <string name="MessageRequestProfileView_members">Wanachama %1$d</string>
-  <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">Mwingine %d</item>
-    <item quantity="other">Wengine %d</item>
-  </plurals>
   <!--EOF-->
 </resources>

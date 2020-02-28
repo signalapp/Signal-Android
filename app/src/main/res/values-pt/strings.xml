@@ -204,6 +204,22 @@
   <string name="ConversationActivity_no_results">Sem resultados</string>
   <string name="ConversationActivity_sticker_pack_installed">Pacote de autocolantes instalado</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Novidade! Comunique com autocolantes</string>
+  <string name="ConversationActivity_block_s">Bloquear %1$s?</string>
+  <string name="ConversationActivity_block_and_leave_s">Bloquear e abandonar %1$s?</string>
+  <string name="ConversationActivity_unblock_s">Desbloquear %1$s?</string>
+  <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">Poderá enviar mensagens e ligar um para o outro.</string>
+  <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">Os membros do grupo serão capazes de o adicionar novamente a este grupo.</string>
+  <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">As pessoas bloqueadas não serão capazes de lhe ligar ou enviar mensagens.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">Irá abandonar este grupo e deixará de poder receber mensagens ou atualizações.</string>
+  <string name="ConversationActivity_block">Bloquear</string>
+  <string name="ConversationActivity_block_and_delete">Bloquear e eliminar</string>
+  <string name="ConversationActivity_cancel">Cancelar</string>
+  <string name="ConversationActivity_delete_conversation">Eliminar conversa?</string>
+  <string name="ConversationActivity_delete_and_leave_group">Eliminar e abandonar o grupo? </string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Está conversa será eliminada de todos os seus dispositivos.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Irá abandonar este grupo, e ele será eliminado de todos os seus dispositivos.</string>
+  <string name="ConversationActivity_delete">Eliminar</string>
+  <string name="ConversationActivity_delete_and_leave">Eliminar e abandonar</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensagem não lida</item>
@@ -249,6 +265,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Pode deslizar qualquer mensagem para a esquerda para responder rapidamente</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Os ficheiros multimédia de visualização única são removidos automaticamente depois de terem sido enviados</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Já viu esta mensagem</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Pode adicionar notas para si próprio(a) com esta conversa. Se a sua conta tiver dispositivos ligados, as novas notas serão sincronizadas.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Não existe nenhum navegador instalado no seu dispositivo.</string>
   <!--ConversationListFragment-->
@@ -272,6 +289,8 @@
     <item quantity="one">Conversa movida para a caixa de entrada</item>
     <item quantity="other">%d conversas movidas para a caixa de entrada</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_created">Foi criado o seu nome de perfil.</string>
+  <string name="ConversationListFragment__your_profile_name_has_been_saved">O seu nome de perfil foi guardado.</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensagem de intercâmbio de chaves</string>
   <!--ConversationListItemAction-->
@@ -320,6 +339,7 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Este dispositivo não suporta os Play Services. Toque para desativar o sistema de otimização de bateria que impede o Signal de recolher mensagens enquanto inativo.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Partilhar com</string>
+  <string name="ShareActivity_multiple_attachments_are_only_supported">Apenas são suportados anexos múltiplos para imagens e vídeos.</string>
   <!--ExperienceUpgradeActivity-->
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Bem-vindo(a) ao Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure e RedPhone agora são uma aplicação de mensagens privadas para todas as situações: Signal.</string>
@@ -379,7 +399,7 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Quer tornar o seu nome e foto de perfil visíveis para todos os membros presentes e futuros deste grupo?</string>
   <string name="GroupShareProfileView_make_visible">Tornar visível</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">Eu</string>
+  <string name="GroupMembersDialog_you">Você</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar do grupo</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -523,6 +543,26 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Marcou o seu número de segurança com %s verificado a partir de outro dispositivo</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Marcou como não verificado o seu número de segurança com %s</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Marcou como não verificado o seu número de segurança com %s a partir de outro dispositivo</string>
+  <!--MessageRequestBottomView-->
+  <string name="MessageRequestBottomView_accept">Aceitar</string>
+  <string name="MessageRequestBottomView_delete">Eliminar</string>
+  <string name="MessageRequestBottomView_block">Bloquear</string>
+  <string name="MessageRequestBottomView_unblock">Desbloquear</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Deseja permitir que %1$s lhe envie mensagens? Eles não irão saber que viu as mensagens deles até que aceite.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Deseja juntar-se ao grupo %1$s? Eles não irão saber que viu as mensagens deles até que aceite. </string>
+  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Desbloquear %1$s para troca de mensagens e telefonemas.</string>
+  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Desbloquear para permitir que os membros do grupo o adicionem novamente a este grupo.</string>
+  <string name="MessageRequestProfileView_member_of_one_group">Membro de %1$s</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">Membro de %1$s e %2$s</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">Membro de %1$s, %2$s e %3$s</string>
+  <plurals name="MessageRequestProfileView_members">
+    <item quantity="one">%1$d membro</item>
+    <item quantity="other">%1$d membros</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="one">%d outro</item>
+    <item quantity="other">%d outros</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">As frases-passe não coincidem!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frase-passe anterior incorreta!</string>
@@ -575,6 +615,8 @@
   <string name="ReactionsBottomSheetDialogFragment_all">Todos(as) %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
+  <!--ReactionsRecipientAdapter-->
+  <string name="ReactionsRecipientAdapter_you">Você</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Bloquear este contacto?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Deixará de receber mensagens ou chamadas deste contacto.</string>
@@ -705,6 +747,17 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="StickerPackPreviewActivity_remove">Remover</string>
   <string name="StickerPackPreviewActivity_stickers">Autocolantes</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Falha ao carregar o pacote de autocolantes</string>
+  <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_edit">Editar</string>
+  <string name="SubmitDebugLogActivity_done">Concluído</string>
+  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Toque numa linha para a eliminar</string>
+  <string name="SubmitDebugLogActivity_submit">Submeter</string>
+  <string name="SubmitDebugLogActivity_failed_to_submit_logs">Ocorreu um erro ao tentar enviar os históricos</string>
+  <string name="SubmitDebugLogActivity_success">Efetuado com sucesso!</string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copie este URL e adicione-o ao seu relatório de problema ou e-mail de pedido de apoio:\n\n<b>%1$s</b></string>
+  <string name="SubmitDebugLogActivity_copied_to_clipboard">Copiado para a área de transferência</string>
+  <string name="SubmitDebugLogActivity_ok">Ok</string>
+  <string name="SubmitDebugLogActivity_share">Partilhar</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupo atualizado</string>
   <string name="ThreadRecord_left_the_group">Abandonou o grupo</string>
@@ -726,6 +779,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="ThreadRecord_you_marked_verified">Marcou como verificado</string>
   <string name="ThreadRecord_you_marked_unverified">Marcou como não verificado</string>
   <string name="ThreadRecord_message_could_not_be_processed">A mensagem não pode ser processada</string>
+  <string name="ThreadRecord_message_request">Pedido de mensagem</string>
+  <string name="ThreadRecord_s_added_you_to_the_group">%1$ss adicionou-o(a) ao grupo </string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Atualização do Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Está disponível uma nova versão do Signal, toque para atualizar</string>
@@ -1041,9 +1096,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="log_submit_activity__this_log_will_be_posted_online">Este registo será publicado on-line para que outros contribuidores possam ver. Pode examinar o registo e editá-lo antes de o submeter.</string>
   <string name="log_submit_activity__loading_logs">A carregar registos…</string>
   <string name="log_submit_activity__uploading_logs">A enviar registos…</string>
-  <string name="log_submit_activity__success">Efetuado com sucesso!</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Copie este URL e adicione-o ao seu relatório ou e-mail de pedido de apoio:\n\n<b>%1$s</b>\n</string>
-  <string name="log_submit_activity__copied_to_clipboard">Copiado para a área de transferência</string>
   <string name="log_submit_activity__choose_email_app">Escolha a aplicação de e-mail</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Por favor, reveja este registo da minha aplicação: %1$s</string>
   <string name="log_submit_activity__network_failure">Falha de rede. Por favor, tente novamente.</string>
@@ -1147,6 +1199,13 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="AndroidManifest__invite_friends">Convidar amigos</string>
   <string name="AndroidManifest_archived_conversations">Conversas arquivadas</string>
   <string name="AndroidManifest_remove_photo">Remover fotografia</string>
+  <!--Message Requests Megaphone-->
+  <string name="MessageRequestsMegaphone__message_requests">Pedidos de mensagem</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Os utilizadores podem agora escolher para aceitar uma nova conversa. Os nomes de perfil permitem que as pessoas saibam com quem estão a conversar.</string>
+  <string name="MessageRequestsMegaphone__add_profile_name">Adicionar nome de perfil</string>
+  <string name="MessageRequestsMegaphone__new_message_requests">Novidade: Pedidos de mensagem</string>
+  <string name="MessageRequestsMegaphone__add_name">Adicionar nome</string>
+  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Agora pode escolher para aceitar ou não uma conversa. Irá ver as opções para \"Aceitar\", \"Eliminar\", ou \"Bloquear\".</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar</string>
   <string name="arrays__use_default">Usar a opção predefinida</string>
@@ -1248,6 +1307,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences__dark_theme">Escuro</string>
   <string name="preferences__appearance">Aspeto</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__system_default">Configuração por omissão</string>
   <string name="preferences__default">Pré-definição</string>
   <string name="preferences__language">Idioma</string>
   <string name="preferences__signal_messages_and_calls">Mensagens e chamadas do Signal</string>
@@ -1524,8 +1584,12 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Iremos lembrá-lo(a) mais tarde. Criar um PIN será obrigatório dentro de %1$d dias.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Iremos lembrá-lo(a) mais tarde. Confirmar o seu PIN será obrigatório dentro de %1$d dias.</string>
   <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__add_a_profile_name">Adicione um nome do perfil</string>
   <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Isto será exibido quando você começar uma nova conversa ou a partilhar.</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">Adicionar um nome de perfil</string>
+  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Confirme o seu nome de perfil</string>
   <string name="ProfileNamesMegaphone__your_profile_can_now_include">O seu perfil pode agora incluir opcionalmente um apelido.</string>
+  <string name="ProfileNamesMegaphone__confirm_name">Confirmar nome</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ícone de transporte</string>
   <string name="ConversationListFragment_loading">A carregar…</string>
@@ -1593,6 +1657,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Alterar</string>
   <string name="preferences_app_protection__create">Criar</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account">O seu PIN adiciona uma camada extra de proteção à sua conta. Ser-lhe-á pedido quando registar o seu número de telemóvel com o Signal. Caso se esqueça do seu PIN, a sua conta será bloqueada durante 7 dias.</string>
   <string name="AppProtectionPreferenceFragment_none">Nenhum</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">O registo de um PIN de bloqueio não é o mesmo que o código de verificação SMS que acabou de receber. Por favor, insira o PIN que configurou previamente para a sua aplicação.</string>
   <string name="registration_activity__registration_lock_pin">PIN de bloqueio do registo</string>
@@ -1634,17 +1699,5 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="RegistrationLockDialog_reminder">Lembrete:</string>
   <string name="recipient_preferences__about">Sobre</string>
   <string name="Recipient_unknown">Desconhecido</string>
-  <string name="MessageRequestBottomView_accept">Aceitar</string>
-  <string name="MessageRequestBottomView_delete">Eliminar</string>
-  <string name="MessageRequestBottomView_block">Bloquear</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let">Deseja receber mensagens de %1$s?</string>
-  <string name="MessageRequestProfileView_member_of_one_group">Membro de %1$s</string>
-  <string name="MessageRequestProfileView_member_of_two_groups">Membro de %1$s e %2$s</string>
-  <string name="MessageRequestProfileView_member_of_many_groups">Membro de %1$s, %2$s e %3$s</string>
-  <string name="MessageRequestProfileView_members">%1$d membros</string>
-  <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">%d outro</item>
-    <item quantity="other">%d outros</item>
-  </plurals>
   <!--EOF-->
 </resources>

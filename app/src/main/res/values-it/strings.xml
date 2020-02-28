@@ -204,6 +204,22 @@
   <string name="ConversationActivity_no_results">Nessun risultato</string>
   <string name="ConversationActivity_sticker_pack_installed">Pacchetto adesivi installato</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Nuovo! Dillo con gli adesivi</string>
+  <string name="ConversationActivity_block_s">Bloccare %1$s?</string>
+  <string name="ConversationActivity_block_and_leave_s">Bloccare e abbandonare %1$s?</string>
+  <string name="ConversationActivity_unblock_s">Sbloccare %1$s?</string>
+  <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">Sarete in grado di scambiarvi messaggi e chiamarvi.</string>
+  <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">I membri del gruppo potranno aggiungerti di nuovo a questo gruppo.</string>
+  <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">Le persone bloccate non potranno chiamarti o inviarti messaggi.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">Abbandonerai questo gruppo e non riceverai più messaggi o aggiornamenti.</string>
+  <string name="ConversationActivity_block">Blocca</string>
+  <string name="ConversationActivity_block_and_delete">Blocca ed elimina</string>
+  <string name="ConversationActivity_cancel">Annulla</string>
+  <string name="ConversationActivity_delete_conversation">Eliminare la conversazione?</string>
+  <string name="ConversationActivity_delete_and_leave_group">Eliminare e abbandonare il gruppo?</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Questa conversazione verrà eliminata da tutti i tuoi dispositivi.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Abbandonerai questo gruppo e verrà eliminato da tutti i tuoi dispositivi.</string>
+  <string name="ConversationActivity_delete">Elimina</string>
+  <string name="ConversationActivity_delete_and_leave">Elimina e abbandona</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d messaggio non letto</item>
@@ -249,6 +265,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Puoi scorrere verso sinistra su qualsiasi messaggio per rispondere rapidamente</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">I file multimediali visualizzabili una volta in uscita sono automaticamente rimossi dopo l\'invio</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Hai già visualizzato questo messaggio</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Puoi aggiungere note per te stesso in questa conversazione. Se il tuo account ha dei dispositivi collegati, le nuove note verranno sincronizzate.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Sul tuo dispositivo non ci sono browser installati.</string>
   <!--ConversationListFragment-->
@@ -272,6 +289,8 @@
     <item quantity="one">Conversazione spostata nei messaggi in arrivo</item>
     <item quantity="other">%d conversazioni spostate nei messaggi in arrivo</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_created">Il tuo nome profilo è stato creato.</string>
+  <string name="ConversationListFragment__your_profile_name_has_been_saved">Il tuo nome profilo è stato salvato.</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Messaggio per lo scambio della chiave</string>
   <!--ConversationListItemAction-->
@@ -380,7 +399,7 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Vuoi rendere visibile il tuo nome e la foto profilo a tutti gli attuali e futuri membri di questo gruppo?</string>
   <string name="GroupShareProfileView_make_visible">Rendi visibile</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">Io</string>
+  <string name="GroupMembersDialog_you">Tu</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar del gruppo</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -524,6 +543,26 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Hai segnato il codice di sicurezza con %s come verificato da un altro dispositivo</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Hai segnato il codice di sicurezza con %s come non verificato</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Hai segnato il codice di sicurezza con %s come non verificato da un altro dispositivo</string>
+  <!--MessageRequestBottomView-->
+  <string name="MessageRequestBottomView_accept">Accetta</string>
+  <string name="MessageRequestBottomView_delete">Elimina</string>
+  <string name="MessageRequestBottomView_block">Blocca</string>
+  <string name="MessageRequestBottomView_unblock">Sblocca</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Vuoi permettere a %1$s di inviarti messaggi? Non sapranno che hai visto i loro messaggi finché non accetti.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Vuoi unirti al gruppo %1$s? Non sapranno che hai visto i loro messaggi finché non accetti.</string>
+  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Sblocca %1$s per scambiarvi messaggi e chiamarvi.</string>
+  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Sblocca per permettere ai membri del gruppo di aggiungerti di nuovo a questo gruppo.</string>
+  <string name="MessageRequestProfileView_member_of_one_group">Membro di %1$s</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">Membro di %1$s e %2$s</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">Membro di %1$s, %2$s, e %3$s</string>
+  <plurals name="MessageRequestProfileView_members">
+    <item quantity="one">%1$d membro</item>
+    <item quantity="other">%1$d membri</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="one">%d altro</item>
+    <item quantity="other">altri %d</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Le password non corrispondono!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Vecchia password errata!</string>
@@ -577,6 +616,8 @@
   <string name="ReactionsBottomSheetDialogFragment_all">Tutte %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
+  <!--ReactionsRecipientAdapter-->
+  <string name="ReactionsRecipientAdapter_you">Tu</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Bloccare questo contatto?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Non riceverai più messaggi e chiamate da questo contatto.</string>
@@ -710,6 +751,17 @@
   <string name="StickerPackPreviewActivity_remove">Elimina</string>
   <string name="StickerPackPreviewActivity_stickers">Adesivi</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Caricamento pacchetto adesivi fallito</string>
+  <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_edit">Modifica</string>
+  <string name="SubmitDebugLogActivity_done">Fatto</string>
+  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Tocca una linea per eliminarla</string>
+  <string name="SubmitDebugLogActivity_submit">Invia</string>
+  <string name="SubmitDebugLogActivity_failed_to_submit_logs">Invio dei log fallito</string>
+  <string name="SubmitDebugLogActivity_success">Completato!</string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copia questo URL e aggiungilo alla tua segnalazione o all\'email di supporto:\n\n<b>%1$s</b></string>
+  <string name="SubmitDebugLogActivity_copied_to_clipboard">Aggiunto agli appunti</string>
+  <string name="SubmitDebugLogActivity_ok">Ok</string>
+  <string name="SubmitDebugLogActivity_share">Condividi</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Gruppo aggiornato</string>
   <string name="ThreadRecord_left_the_group">Abbandona il gruppo</string>
@@ -731,6 +783,8 @@
   <string name="ThreadRecord_you_marked_verified">Hai segnato come verificato</string>
   <string name="ThreadRecord_you_marked_unverified">Hai segnato come non verificato</string>
   <string name="ThreadRecord_message_could_not_be_processed">Impossibile elaborare il messaggio</string>
+  <string name="ThreadRecord_message_request">Richiesta di messaggio</string>
+  <string name="ThreadRecord_s_added_you_to_the_group">%1$s ti ha aggiunto al gruppo</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Aggiornamento Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">È disponibile una nuova versione di Signal, tocca per aggiornare</string>
@@ -1046,9 +1100,6 @@
   <string name="log_submit_activity__this_log_will_be_posted_online">Questo log verrà postato pubblicamente online per i contributori, è possibile esaminarlo e modificarlo prima di inviare.</string>
   <string name="log_submit_activity__loading_logs">Caricamento log…</string>
   <string name="log_submit_activity__uploading_logs">Invio log…</string>
-  <string name="log_submit_activity__success">Completato!</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Copia questo URL e aggiungilo alla tua segnalazione o all\'email di supporto:\n\n<b>%1$s</b>\n</string>
-  <string name="log_submit_activity__copied_to_clipboard">Aggiunto agli appunti</string>
   <string name="log_submit_activity__choose_email_app">Scegli app email</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Per favore controllate questo mio log dell\'app: %1$s</string>
   <string name="log_submit_activity__network_failure">Errore di rete. Riprova.</string>
@@ -1152,6 +1203,13 @@
   <string name="AndroidManifest__invite_friends">Invita amici</string>
   <string name="AndroidManifest_archived_conversations">Conversazioni archiviate</string>
   <string name="AndroidManifest_remove_photo">Rimuovi foto</string>
+  <!--Message Requests Megaphone-->
+  <string name="MessageRequestsMegaphone__message_requests">Richieste di messaggi</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Gli utenti ora possono scegliere se accettare una nuova conversazione. I nomi profilo fanno sapere alle persone chi sta inviando loro i messaggi.</string>
+  <string name="MessageRequestsMegaphone__add_profile_name">Aggiungi nome profilo</string>
+  <string name="MessageRequestsMegaphone__new_message_requests">Nuovo: Richieste di messaggi</string>
+  <string name="MessageRequestsMegaphone__add_name">Aggiungi nome</string>
+  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Ora puoi scegliere se accettare una nuova conversazione. Vedrai le opzioni \"Accetta\", \"Elimina\" e \"Blocca\".</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importa</string>
   <string name="arrays__use_default">Usa predefinito</string>
@@ -1251,9 +1309,9 @@
   <string name="preferences__linked_devices">Dispositivi collegati</string>
   <string name="preferences__light_theme">Chiaro</string>
   <string name="preferences__dark_theme">Scuro</string>
-  <string name="preferences__system_theme">Predefinito di sistema</string>
   <string name="preferences__appearance">Aspetto</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__system_default">Predefinito di sistema</string>
   <string name="preferences__default">Predefinito</string>
   <string name="preferences__language">Lingua</string>
   <string name="preferences__signal_messages_and_calls">Messaggi e chiamate Signal</string>
@@ -1645,17 +1703,5 @@
   <string name="RegistrationLockDialog_reminder">Promemoria:</string>
   <string name="recipient_preferences__about">A riguardo</string>
   <string name="Recipient_unknown">Sconosciuto</string>
-  <string name="MessageRequestBottomView_accept">Accetta</string>
-  <string name="MessageRequestBottomView_delete">Elimina</string>
-  <string name="MessageRequestBottomView_block">Blocca</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let">Vuoi ricevere messaggi da %1$s?</string>
-  <string name="MessageRequestProfileView_member_of_one_group">Membro di %1$s</string>
-  <string name="MessageRequestProfileView_member_of_two_groups">Membro di %1$s e %2$s</string>
-  <string name="MessageRequestProfileView_member_of_many_groups">Membro di %1$s, %2$s, e %3$s</string>
-  <string name="MessageRequestProfileView_members">%1$d membri</string>
-  <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">%d altro</item>
-    <item quantity="other">altri %d</item>
-  </plurals>
   <!--EOF-->
 </resources>

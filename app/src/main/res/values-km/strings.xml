@@ -201,6 +201,9 @@
   <string name="ConversationActivity_no_results">គ្មានលទ្ធផល</string>
   <string name="ConversationActivity_sticker_pack_installed">កញ្ចប់ស្ទីកគ័របានដំឡើង</string>
   <string name="ConversationActivity_new_say_it_with_stickers">ថ្មី! និយាយជាមួយស្ទីកគ័រ</string>
+  <string name="ConversationActivity_block">រារាំង</string>
+  <string name="ConversationActivity_cancel">បោះបង់</string>
+  <string name="ConversationActivity_delete">លុប</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d សារមិនទាន់អាន</item>
@@ -239,6 +242,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">អ្នកអាចអូសទៅឆ្វេងលើសារណាមួយ ដើម្បីឆ្លើយតបរហ័ស</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">ឯកសារមេឌាមើល-ម្តង ដែលផ្ញើចេញ ត្រូវលុបចោលដោយស្វ័យប្រវត្តិបន្ទាប់ពីបានផ្ញើចេញ</string>
   <string name="ConversationFragment_you_already_viewed_this_message">អ្នកបានបើកមើលសារនេះ</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">អ្នកនៅតែអាចបន្ថែមកំណត់ត្រាសម្រាប់ខ្លួនអ្នកក្នុងការសន្ទនានេះ។ បើគណនីរបស់អ្នក មានឧបករណ៍ច្រើនបានតភ្ជាប់ កំណត់ត្រាថ្មីនឹងត្រូវធ្វើសមកាលកម្មផងដែរ។</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ពំុមានកម្មវិធីរុករកបានដំឡើងនៅលើឧបករណ៍របស់អ្នកទេ។</string>
   <!--ConversationListFragment-->
@@ -258,6 +262,7 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">ផ្លាស់ប្តូរការសន្ទនា %d ទៅកាន់ប្រអប់ទទួល</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_saved">ពត៌មានផ្ទាល់ខ្លួនរបស់អ្នក ត្រូវបានរក្សាទុក។</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">សារផ្លាស់ប្តូរសោរ</string>
   <!--ConversationListItemAction-->
@@ -365,7 +370,7 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">តើអ្នកចង់ដាក់បង្ហាញប្រវត្តរូប និងរូបភាពអ្នកទៅកាន់សមាជិកបច្ចុប្បន្ន និងអនាគតក្នុងក្រុមនេះទេ?</string>
   <string name="GroupShareProfileView_make_visible">ធ្វើឲ្យអាចមើលឃើញ</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">ខ្ញុំ</string>
+  <string name="GroupMembersDialog_you">អ្នក</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">រូបតំណាងក្រុម</string>
   <string name="CropImageActivity_profile_avatar">រូបតំណាង</string>
@@ -502,6 +507,17 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">អ្នកបានផ្ទៀងផ្ទាត់លេខសុវត្ថិភាព %sដោយបានផ្ទៀងផ្ទាត់ជាមួយឧបករណ៍ផ្សេង</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">អ្នកមិនបានផ្ទៀងផ្ទាត់លេខសុវត្ថិភាពជាមួយ​%s</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">អ្នកមិនបានផ្ទៀងផ្ទាត់លេខសុវត្ថិភាព %s ជាមួយឧបករណ៍ផ្សេងទៀត</string>
+  <!--MessageRequestBottomView-->
+  <string name="MessageRequestBottomView_accept">យល់ព្រម</string>
+  <string name="MessageRequestBottomView_delete">លុប</string>
+  <string name="MessageRequestBottomView_block">រារាំង</string>
+  <string name="MessageRequestBottomView_unblock">បើកវិញ</string>
+  <string name="MessageRequestProfileView_member_of_one_group">សមាជិកនៃ %1$s</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">សមាជិកនៃ %1$s និង%2$s</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">សមាជិកនៃ %1$s, %2$s, និង%3$s</string>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="other">%d ផ្សេងៗ</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">ឃ្លាសម្ងាត់មិនត្រូវគ្នា!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">ឃ្លាសម្ងាត់ចាស់មិនត្រឹមត្រូវ!</string>
@@ -554,6 +570,8 @@
   <string name="ReactionsBottomSheetDialogFragment_all">ទាំងអស់ %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
+  <!--ReactionsRecipientAdapter-->
+  <string name="ReactionsRecipientAdapter_you">អ្នក</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">បិទលេខទំនាក់ទំនងនេះ?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">អ្នកនឹងលែងទទួលសារ និងការហៅចូលពីលេខទំនាក់ទំនងនេះទៀតហើយ។</string>
@@ -681,6 +699,13 @@
   <string name="StickerPackPreviewActivity_remove">លុបចេញ</string>
   <string name="StickerPackPreviewActivity_stickers">ស្ទីកគ័រ</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">ការផ្ទុកកញ្ចប់ស្ទីកគ័របរាជ័យ</string>
+  <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_edit">កែប្រែ</string>
+  <string name="SubmitDebugLogActivity_done">បញ្ចប់</string>
+  <string name="SubmitDebugLogActivity_submit">បញ្ជូន</string>
+  <string name="SubmitDebugLogActivity_success">ជោគជ័យ!</string>
+  <string name="SubmitDebugLogActivity_copied_to_clipboard">បានចម្លងទៅ clipboard</string>
+  <string name="SubmitDebugLogActivity_share">ចែករំលែក</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">បានធ្វើបច្ចុប្បន្នភាពក្រុម</string>
   <string name="ThreadRecord_left_the_group">បានចាកចេញពីក្រុម</string>
@@ -702,6 +727,7 @@
   <string name="ThreadRecord_you_marked_verified">អ្នកបានផ្ទៀងផ្ទាត់</string>
   <string name="ThreadRecord_you_marked_unverified">អ្នកមិនបានផ្ទៀងផ្ទាត់</string>
   <string name="ThreadRecord_message_could_not_be_processed">សារមិនអាចដំណើរការ</string>
+  <string name="ThreadRecord_message_request">សារស្នើសុំ</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">បច្ចុប្បន្នភាព Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">កំណែថ្មីរបស់ Signal មានហើយ, ចុច ដើម្បីធ្វើបច្ចុប្បន្នភាព។</string>
@@ -1010,9 +1036,6 @@
   <string name="log_submit_activity__this_log_will_be_posted_online">កំណត់ត្រានេះនឹងត្រូវបិតផ្សាយជាសាធារណៈតាមអនឡាញ សម្រាប់អ្នកចូលរួម ដើម្បីបង្ហើញ អ្នកអាចត្រួតពិនិត្យ និងកែប្រែ មុនពេលដាក់បញ្ជូន។</string>
   <string name="log_submit_activity__loading_logs">កំពុងផ្ទុកកំណត់ត្រា…</string>
   <string name="log_submit_activity__uploading_logs">កំពុងបញ្ជូនកំណត់ត្រា…</string>
-  <string name="log_submit_activity__success">ជោគជ័យ!</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">ចម្លងតំណ URL នេះ និងបន្ថែមវាទៅក្នុងរបាយការណ៍បញ្ហារបស់អ្នក ឬអ៊ីមែលជំនួយ:\n\n<b>%1$s</b>\n</string>
-  <string name="log_submit_activity__copied_to_clipboard">បានចម្លងទៅ clipboard</string>
   <string name="log_submit_activity__choose_email_app">ជ្រើសរើសកម្មវិធីអ៊ីមែល</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">សូមពិនិត្យកំណត់ត្រានេះពីកម្មវិធីរបស់ខ្ញុំ៖ %1$s</string>
   <string name="log_submit_activity__network_failure">បញ្ហាបណ្តាញ។ សូមសាកល្បងម្តងទៀត។</string>
@@ -1115,6 +1138,7 @@
   <string name="AndroidManifest__invite_friends">អញ្ជើញមិត្តភក្តិ</string>
   <string name="AndroidManifest_archived_conversations">សន្ទនាក្នុងបណ្ណសារ</string>
   <string name="AndroidManifest_remove_photo">លុបរូបថតចេញ</string>
+  <!--Message Requests Megaphone-->
   <!--arrays.xml-->
   <string name="arrays__import_export">នាំចូល</string>
   <string name="arrays__use_default">ប្រើលំនាំដើម</string>
@@ -1592,16 +1616,5 @@
   <string name="RegistrationLockDialog_reminder">ក្រើនរំលឹក៖</string>
   <string name="recipient_preferences__about">អំពី</string>
   <string name="Recipient_unknown">មិនស្គាល់</string>
-  <string name="MessageRequestBottomView_accept">យល់ព្រម</string>
-  <string name="MessageRequestBottomView_delete">លុប</string>
-  <string name="MessageRequestBottomView_block">រារាំង</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let">តើអ្នកចង់ទទួលសារពី %1$s?</string>
-  <string name="MessageRequestProfileView_member_of_one_group">សមាជិកនៃ %1$s</string>
-  <string name="MessageRequestProfileView_member_of_two_groups">សមាជិកនៃ %1$s និង%2$s</string>
-  <string name="MessageRequestProfileView_member_of_many_groups">សមាជិកនៃ %1$s, %2$s, និង%3$s</string>
-  <string name="MessageRequestProfileView_members">%1$d សមាជិក</string>
-  <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="other">%d ផ្សេងៗ</item>
-  </plurals>
   <!--EOF-->
 </resources>

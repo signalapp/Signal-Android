@@ -152,7 +152,7 @@
   <string name="GroupCreateActivity_loading_group_details">Вчитување на детали за групата…</string>
   <!--GroupShareProfileView-->
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">Јас</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupMembersDialog_me">Јас</string> -->
   <!--InputPanel-->
   <!--InviteActivity-->
   <!--Job-->
@@ -356,7 +356,7 @@
   <string name="log_submit_activity__thanks">Ви благодариме за вашата помош!</string>
   <string name="log_submit_activity__submitting">Испраќање</string>
   <string name="log_submit_activity__button_got_it">Во ред</string>
-  <string name="log_submit_activity__success">Успешно!</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__success">Успешно!</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Стандардната системска база нема да биде променета на ниеден начин.</string>
   <string name="database_migration_activity__skip">Прескокни</string>

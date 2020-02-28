@@ -315,7 +315,7 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">သင့်နာမည်နှင့် ဓါတ်ပုံ ကိုဤအုပ်စု မှ လက်ရှိနှင့် နောင်တိုးပွားလာမည့် အဖွဲ့ဝင်များ မြင်ခွင့်ပြုလိုပါသလား? </string>
   <string name="GroupShareProfileView_make_visible">မြင်သာအောင်လုပ်မည်</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">ငါ</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupMembersDialog_me">ငါ</string> -->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">အဖွဲ့ကိုယ်စားပြုရုပ်ပုံ </string>
   <string name="CropImageActivity_profile_avatar">ရုပ်ပုံ</string>
@@ -792,8 +792,8 @@
   <string name="log_submit_activity__submitting">ပေးပို့တင်ပြခြင်း</string>
   <string name="log_submit_activity__no_browser_installed">Browser မတပ်ဆင်ရသေးပါ</string>
   <string name="log_submit_activity__button_got_it">ရပြီ</string>
-  <string name="log_submit_activity__success">အောင်မြင်!</string>
-  <string name="log_submit_activity__copied_to_clipboard">clipboard သို့ ကူးယူပါ</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__success">အောင်မြင်!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__copied_to_clipboard">clipboard သို့ ကူးယူပါ</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">သင်၏စာသားသတင်းစကားများကို Signal ၏encrypt အချက်အလက်အဖြစ်ကူးပြောင်းချင်ပါသလား?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">မူလဒေတာဘေ့စ်စနစ်ကို ပြောင်းလဲမည် မဟုတ်ပါ။</string>

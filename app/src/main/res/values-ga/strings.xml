@@ -325,7 +325,7 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Ba mhaith leat ainm agus grianghraf do phróifíl a cuir le fáil do chách, lucht na baicle seo anois agus sa todhchaí?</string>
   <string name="GroupShareProfileView_make_visible">Cuir le fáil</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">Mise</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupMembersDialog_me">Mise</string> -->
   <!--CropImageActivity-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Brúigh agus coinnigh síos é chun glórtheachtaireacht a thaifeadadh, scaoil chun í a sheoladh</string>
@@ -800,8 +800,8 @@ a shonrú</string>
   <string name="log_submit_activity__button_submit">Seol isteach é</string>
   <string name="log_submit_activity__button_got_it">Tuigim sin</string>
   <string name="log_submit_activity__button_compose_email">Cum ríomhphost</string>
-  <string name="log_submit_activity__success">D\'éirigh leis!</string>
-  <string name="log_submit_activity__copied_to_clipboard">Macasamhlaithe chuig an ngearrthaisce</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__success">D\'éirigh leis!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__copied_to_clipboard">Macasamhlaithe chuig an ngearrthaisce</string> -->
   <string name="log_submit_activity__choose_email_app">Roghnaigh feidhmchláir ríomhphoist</string>
   <string name="log_submit_activity__network_failure">Teip líonra. Déan arís é.</string>
   <!--database_migration_activity-->

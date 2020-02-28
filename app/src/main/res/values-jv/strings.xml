@@ -198,6 +198,9 @@
   <string name="ConversationActivity_no_results">Mboten enten asil</string>
   <string name="ConversationActivity_sticker_pack_installed">Paket stiker dipunpasang</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Enggal! Ngobrol ngginakaken stiker</string>
+  <string name="ConversationActivity_block">Blokir</string>
+  <string name="ConversationActivity_cancel">Batalaken</string>
+  <string name="ConversationActivity_delete">Brusak</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d pesen ingkang dereng dipunwaos</item>
@@ -362,7 +365,7 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Sampeyan kersa menawi foto lan nami profil sampeyan saged ditingali anggota lan bakal anggota grup niki mboten?</string>
   <string name="GroupShareProfileView_make_visible">Nyagedaken dipuntingali</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">Kula</string>
+  <string name="GroupMembersDialog_you">Sampeyan</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar grup</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -494,6 +497,17 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Sampeyan nandhai nomer keamanan sampeyan kaliyan %s dados terverifikasi saking pirantos ingkang benten</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Sampeyan nandhai nomer keamanan sampeyan kaliyan %s dados mboten terverifikasi</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Sampeyan nandhai nomer keamanan sampeyan kaliyan %s dados mboten terverifikasi saking pirantos ingkang benten</string>
+  <!--MessageRequestBottomView-->
+  <string name="MessageRequestBottomView_accept">Setujoni</string>
+  <string name="MessageRequestBottomView_delete">Brusak</string>
+  <string name="MessageRequestBottomView_block">Blokir</string>
+  <string name="MessageRequestBottomView_unblock">Uculaken blokiranipun</string>
+  <string name="MessageRequestProfileView_member_of_one_group">Anggota ing %1$s</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">Anggota ing %1$s lan %2$s</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">Anggota ing %1$s, %2$s, lan %3$s</string>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="other">%d bentenipun</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Tembung sandi mboten gathuk!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Tembung sandi ingkang dangu klintu!</string>
@@ -545,6 +559,8 @@
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Aduh, kadosipun aplikasi Play Store mboten dipunpasangaken ing pirantos sampeyan.</string>
   <!--ReactionsBottomSheetDialogFragment-->
   <!--ReactionsConversationView-->
+  <!--ReactionsRecipientAdapter-->
+  <string name="ReactionsRecipientAdapter_you">Sampeyan</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Blokir kontak niki?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Sampeyan bakalan mboten saged nampi pesen lan telepon saking kontak niki malih.</string>
@@ -672,6 +688,11 @@
   <string name="StickerPackPreviewActivity_remove">Brusak</string>
   <string name="StickerPackPreviewActivity_stickers">Stiker</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Gagal ngunggahi paket stiker</string>
+  <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_submit">Ajengaken</string>
+  <string name="SubmitDebugLogActivity_success">Sukses!</string>
+  <string name="SubmitDebugLogActivity_copied_to_clipboard">Dipunsalin dhateng clipboard</string>
+  <string name="SubmitDebugLogActivity_share">Unjukaken</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grup nembe dipunenggalaken</string>
   <string name="ThreadRecord_left_the_group">Medal saking grup</string>
@@ -1001,9 +1022,6 @@
   <string name="log_submit_activity__this_log_will_be_posted_online">Log niki bakal dipunkirimaken sacara online kangge publik supados kontributor saged ningali. Sampeyan saged mriksa lan nggantos log kasebut sadereng dipunajengaken.</string>
   <string name="log_submit_activity__loading_logs">Taksih ngunggahi log…</string>
   <string name="log_submit_activity__uploading_logs">Taksih ngenggali log…</string>
-  <string name="log_submit_activity__success">Sukses!</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Salin URL niki lan minggahaken dhateng laporan masalah utawi email dukungan:\n\n<b>%1$s</b>\n</string>
-  <string name="log_submit_activity__copied_to_clipboard">Dipunsalin dhateng clipboard</string>
   <string name="log_submit_activity__choose_email_app">Pileh aplikasi email</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Priksa malih log niki saking aplikasi kula: %1$s</string>
   <string name="log_submit_activity__network_failure">Jaringan gagal. Cobi malih.</string>
@@ -1106,6 +1124,7 @@
   <string name="AndroidManifest__invite_friends">Ajak kanca</string>
   <string name="AndroidManifest_archived_conversations">Obrolan ingkang dipunarsipaken</string>
   <string name="AndroidManifest_remove_photo">Brusak foto</string>
+  <!--Message Requests Megaphone-->
   <!--arrays.xml-->
   <string name="arrays__import_export">Impor</string>
   <string name="arrays__use_default">Ginakaken default</string>
@@ -1535,16 +1554,5 @@
   <string name="RegistrationLockDialog_reminder">Pangeling:</string>
   <string name="recipient_preferences__about">Babagan</string>
   <string name="Recipient_unknown">Mboten kasumarepan</string>
-  <string name="MessageRequestBottomView_accept">Setujoni</string>
-  <string name="MessageRequestBottomView_delete">Brusak</string>
-  <string name="MessageRequestBottomView_block">Blokir</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let">Kersa nampi pesen saking %1$s?</string>
-  <string name="MessageRequestProfileView_member_of_one_group">Anggota ing %1$s</string>
-  <string name="MessageRequestProfileView_member_of_two_groups">Anggota ing %1$s lan %2$s</string>
-  <string name="MessageRequestProfileView_member_of_many_groups">Anggota ing %1$s, %2$s, lan %3$s</string>
-  <string name="MessageRequestProfileView_members">%1$d anggota</string>
-  <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="other">%d bentenipun</item>
-  </plurals>
   <!--EOF-->
 </resources>

@@ -201,6 +201,10 @@
   <string name="ConversationActivity_no_results">Tidak ada hasil</string>
   <string name="ConversationActivity_sticker_pack_installed">Paket stiker terpasang</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Baru! Katakan dengan stiker</string>
+  <string name="ConversationActivity_block">Blokir</string>
+  <string name="ConversationActivity_cancel">Batal</string>
+  <string name="ConversationActivity_delete_conversation">Hapus percakapan?</string>
+  <string name="ConversationActivity_delete">Hapus</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d pesan belum dibaca</item>
@@ -365,7 +369,7 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Apakah anda ingin nama dan profil anda ditampilkan untuk semua anggota group saat ini dan yang akan datang? </string>
   <string name="GroupShareProfileView_make_visible">Tampilkan</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">Saya</string>
+  <string name="GroupMembersDialog_you">Anda</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar grup</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -502,6 +506,17 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Anda menandai nomor keamanan anda dengan %s terverifikasi dari perangkat lain</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Anda menandai nomor keamanan anda dengan %s tidak terverifikasi</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Anda menandai nomor keamanan anda dengan %s tidak terverifikasi dari perangkat lain</string>
+  <!--MessageRequestBottomView-->
+  <string name="MessageRequestBottomView_accept">Terima</string>
+  <string name="MessageRequestBottomView_delete">Hapus</string>
+  <string name="MessageRequestBottomView_block">Blokir</string>
+  <string name="MessageRequestBottomView_unblock">Buka blokir</string>
+  <string name="MessageRequestProfileView_member_of_one_group">Anggota dari %1$s</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">Anggota dari %1$s dan %2$s</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">Anggota dari %1$s, %2$s, dan %3$s</string>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="other">%d lainnya</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Frasa sandi tidak cocok!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Frasa sandi lama salah!</string>
@@ -555,6 +570,8 @@
   <string name="ReactionsBottomSheetDialogFragment_all">Semua %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
+  <!--ReactionsRecipientAdapter-->
+  <string name="ReactionsRecipientAdapter_you">Anda</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Blokir kontak ini?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Anda tidak akan menerima pesan dan panggilan dari kontak ini lagi.</string>
@@ -687,6 +704,13 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="StickerPackPreviewActivity_remove">Hapus</string>
   <string name="StickerPackPreviewActivity_stickers">Stiker</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Gagal memuat paket stiker</string>
+  <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_edit">Sunting</string>
+  <string name="SubmitDebugLogActivity_done">Selesai</string>
+  <string name="SubmitDebugLogActivity_submit">Kirimkan</string>
+  <string name="SubmitDebugLogActivity_success">Sukses!</string>
+  <string name="SubmitDebugLogActivity_copied_to_clipboard">Disalin ke papan klip</string>
+  <string name="SubmitDebugLogActivity_share">Bagikan</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grup diperbarui</string>
   <string name="ThreadRecord_left_the_group">Meninggalkan grup</string>
@@ -708,6 +732,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ThreadRecord_you_marked_verified">Anda telah menandai terverifikasi</string>
   <string name="ThreadRecord_you_marked_unverified">Anda telah menandai tidak terverifikasi</string>
   <string name="ThreadRecord_message_could_not_be_processed">Pesan tidak dapat diproses</string>
+  <string name="ThreadRecord_message_request">Permintaan Pesan</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Pembaharuan Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Versi baru Signal tersedia, ketuk untuk memperbarui</string>
@@ -1016,9 +1041,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="log_submit_activity__this_log_will_be_posted_online">Catatan ini akan diunggah secara publik agar para kontributor dapat melihat, Anda dapat memeriksa kembali dan menyunting sebelum mengunggahnya.</string>
   <string name="log_submit_activity__loading_logs">Memuat catatan…</string>
   <string name="log_submit_activity__uploading_logs">Mengunggah catatan…</string>
-  <string name="log_submit_activity__success">Sukses!</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Salin URL ini dan tambahkan ke laporan isu Anda atau email dukungan:\n\n <b>%1$s</b> \n </string>
-  <string name="log_submit_activity__copied_to_clipboard">Disalin ke papan klip</string>
   <string name="log_submit_activity__choose_email_app">Pilih aplikasi email</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Mohon periksa catatan ini dari aplikasi saya: %1$s</string>
   <string name="log_submit_activity__network_failure">Kesalahan jaringan. Silakan coba lagi.</string>
@@ -1121,6 +1143,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="AndroidManifest__invite_friends">Undang teman</string>
   <string name="AndroidManifest_archived_conversations">Arsip percakapan</string>
   <string name="AndroidManifest_remove_photo">Buang foto</string>
+  <!--Message Requests Megaphone-->
   <!--arrays.xml-->
   <string name="arrays__import_export">Impor</string>
   <string name="arrays__use_default">Gunakan standar</string>
@@ -1596,16 +1619,5 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="RegistrationLockDialog_reminder">Pengingat:</string>
   <string name="recipient_preferences__about">Tentang</string>
   <string name="Recipient_unknown">Tidak dikenal</string>
-  <string name="MessageRequestBottomView_accept">Terima</string>
-  <string name="MessageRequestBottomView_delete">Hapus</string>
-  <string name="MessageRequestBottomView_block">Blokir</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let">Apakah Anda ingin menerima pesan dari %1$s?</string>
-  <string name="MessageRequestProfileView_member_of_one_group">Anggota dari %1$s</string>
-  <string name="MessageRequestProfileView_member_of_two_groups">Anggota dari %1$s dan %2$s</string>
-  <string name="MessageRequestProfileView_member_of_many_groups">Anggota dari %1$s, %2$s, dan %3$s</string>
-  <string name="MessageRequestProfileView_members">%1$danggota</string>
-  <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="other">%d lainnya</item>
-  </plurals>
   <!--EOF-->
 </resources>

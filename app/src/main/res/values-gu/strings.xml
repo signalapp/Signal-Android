@@ -201,6 +201,9 @@
   <string name="ConversationActivity_no_results">કોઈ પરિણામ નથી</string>
   <string name="ConversationActivity_sticker_pack_installed">સ્ટીકર પૅક ઇન્સ્ટોલ કરેલું છે</string>
   <string name="ConversationActivity_new_say_it_with_stickers">નવું! સ્ટીકરોથી બોલો</string>
+  <string name="ConversationActivity_block">અવરોધિત કરો</string>
+  <string name="ConversationActivity_cancel">રદ કરો</string>
+  <string name="ConversationActivity_delete">કાઢી નાખો </string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%dન વાંચેલ મેસેજ</item>
@@ -376,7 +379,7 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">શું તમે આ ગ્રુપ ના બધા વર્તમાન અને ભાવિ સભ્યો માટે તમારા પ્રોફાઇલ નામ અને ફોટાને દેખાડવા માંગો છો?</string>
   <string name="GroupShareProfileView_make_visible">દેખાડો</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">મને</string>
+  <string name="GroupMembersDialog_you">તમે</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">ગ્રુપ અવતાર</string>
   <string name="CropImageActivity_profile_avatar">અવતાર</string>
@@ -515,6 +518,18 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">તમે બીજા ડિવાઇસ માંથી ચકાસાયેલ %s સાથે તમારો સલામતી નંબર માર્ક કર્યો છે</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">તમે તમારા સલામતી નંબરને %s ચકાસાયેલ વગર માર્ક કર્યા છે</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">તમે બીજા ડિવાઇસ માંથી વણચકાસેલ %s સાથે તમારો સલામતી નંબર માર્ક કર્યો છે</string>
+  <!--MessageRequestBottomView-->
+  <string name="MessageRequestBottomView_accept">સ્વીકાર</string>
+  <string name="MessageRequestBottomView_delete">કાઢી નાખો </string>
+  <string name="MessageRequestBottomView_block">અવરોધિત કરો</string>
+  <string name="MessageRequestBottomView_unblock">અનાવરોધિત કરો</string>
+  <string name="MessageRequestProfileView_member_of_one_group">%1$s ના સભ્ય</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">%1$s અને %2$s ના સભ્ય</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$sઅને %3$s ના સભ્ય</string>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="one">%d અન્ય</item>
+    <item quantity="other">%dઅન્ય</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">પાસફ્રેઝ મેળ ખાતા નથી!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">ખોટો જૂનો પાસફ્રેઝ!</string>
@@ -565,6 +580,8 @@
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">અરેરે, Play Store એપ્લિકેશન તમારા ડિવાઇસ પર ઇન્સ્ટોલ કરેલી દેખાતી નથી.</string>
   <!--ReactionsBottomSheetDialogFragment-->
   <!--ReactionsConversationView-->
+  <!--ReactionsRecipientAdapter-->
+  <string name="ReactionsRecipientAdapter_you">તમે</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">આ સંપર્કને અવરોધિત કરો?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">હવેથી આ સંપર્કોમાંથી તમને સંદેશા અને કૉલ્સ પ્રાપ્ત થશે નહીં.</string>
@@ -688,6 +705,11 @@
   <string name="StickerPackPreviewActivity_remove">દૂર કરો</string>
   <string name="StickerPackPreviewActivity_stickers">સ્ટીકરો</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">સ્ટીકર પેક લોડ કરવામાં નિષ્ફળ</string>
+  <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_submit">સબમિટ કરો</string>
+  <string name="SubmitDebugLogActivity_success">સફળતા!</string>
+  <string name="SubmitDebugLogActivity_copied_to_clipboard">ક્લિપબોર્ડ પર કૉપી કરેલું</string>
+  <string name="SubmitDebugLogActivity_share">શેર કરો</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">ગ્રુપ અપડેટ કર્યું</string>
   <string name="ThreadRecord_left_the_group">ગ્રુપ છોડી દીધું</string>
@@ -1024,9 +1046,6 @@
   <string name="log_submit_activity__this_log_will_be_posted_online">આ લૉગ યોગદાનકર્તાઓને જોવા માટે જાહેરમાં ઓનલાઇન પોસ્ટ કરવામાં આવશે, તમે સબમિટ કરતા પહેલા તેને ચકાસી અને સંપાદિત કરી શકો છો.</string>
   <string name="log_submit_activity__loading_logs">લૉગ લોડ થઈ રહ્યા છે…</string>
   <string name="log_submit_activity__uploading_logs">લૉગ અપલોડ થઈ રહ્યા છે…</string>
-  <string name="log_submit_activity__success">સફળતા!</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">આ URL ને ક કૉપી કરો અને તેને તમારી સમસ્યાનો અહેવાલ અથવા સપોર્ટ ઇમેઇલ પર ઉમેરો:\n\n<b>%1$s</b>\n</string>
-  <string name="log_submit_activity__copied_to_clipboard">ક્લિપબોર્ડ પર કૉપી કરેલું</string>
   <string name="log_submit_activity__choose_email_app">ઇમેઇલ એપ્લિકેશન પસંદ કરો</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">કૃપા કરીને મારી એપ્લિકેશનથી આ લૉગ ની સમીક્ષા કરો: %1$s</string>
   <string name="log_submit_activity__network_failure">નેટવર્ક બંધ થવું. મેહરબાની કરી ને ફરી થી પ્રયાસ કરો.</string>
@@ -1130,6 +1149,7 @@
   <string name="AndroidManifest__invite_friends">મિત્રોને આમંત્રિત કરો</string>
   <string name="AndroidManifest_archived_conversations">આર્કાઇવ કરેલી સંવાદ</string>
   <string name="AndroidManifest_remove_photo">ફોટો કાઢો</string>
+  <!--Message Requests Megaphone-->
   <!--arrays.xml-->
   <string name="arrays__import_export">ઇમ્પોર્ટ</string>
   <string name="arrays__use_default">ડિફોલ્ટનો ઉપયોગ કરો</string>
@@ -1561,17 +1581,5 @@
   <string name="RegistrationLockDialog_reminder">રીમાઇન્ડર:</string>
   <string name="recipient_preferences__about">વિષે</string>
   <string name="Recipient_unknown">અજાણ્યું</string>
-  <string name="MessageRequestBottomView_accept">સ્વીકાર</string>
-  <string name="MessageRequestBottomView_delete">કાઢી નાખો </string>
-  <string name="MessageRequestBottomView_block">અવરોધિત કરો</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let">શું તમે %1$s ના મેસેજ પ્રાપ્ત કરવા માંગો છો?</string>
-  <string name="MessageRequestProfileView_member_of_one_group">%1$s ના સભ્ય</string>
-  <string name="MessageRequestProfileView_member_of_two_groups">%1$s અને %2$s ના સભ્ય</string>
-  <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$sઅને %3$s ના સભ્ય</string>
-  <string name="MessageRequestProfileView_members">%1$d સભ્યો</string>
-  <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">%d અન્ય</item>
-    <item quantity="other">%dઅન્ય</item>
-  </plurals>
   <!--EOF-->
 </resources>

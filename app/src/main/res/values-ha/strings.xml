@@ -201,6 +201,9 @@
   <string name="ConversationActivity_no_results">Babu sakamako.</string>
   <string name="ConversationActivity_sticker_pack_installed">Ansa pakitin sitika</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Sabo! Fada da sitika</string>
+  <string name="ConversationActivity_block">Toshe</string>
+  <string name="ConversationActivity_cancel">Katse</string>
+  <string name="ConversationActivity_delete">Goge</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d sakonni da ba\'a karanta ba</item>
@@ -376,7 +379,7 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Ka/ki na so a bayyanawa membobin rukuninnan na yanzu da na gaba hoto da sunan furofayil dinka/ki?</string>
   <string name="GroupShareProfileView_make_visible">Barshi a bayyane</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">Ni</string>
+  <string name="GroupMembersDialog_you">Kai/Ke</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Hoton rukuni</string>
   <string name="CropImageActivity_profile_avatar">Alamar hoto.</string>
@@ -515,6 +518,18 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Ka/kin shaida lambar sadarwaka/ki da %s a matsayin tabbatattce daga wata na\'ura</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Ka/kin nuna lambar tsaronka/ki  %s ba tabbatattce ba</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Ka/kin shaida lambar tsaronka/ki da %s ba tabbatattce bane daga wani na\'ura</string>
+  <!--MessageRequestBottomView-->
+  <string name="MessageRequestBottomView_accept">Yarda</string>
+  <string name="MessageRequestBottomView_delete">Goge</string>
+  <string name="MessageRequestBottomView_block">Toshe</string>
+  <string name="MessageRequestBottomView_unblock">Bude</string>
+  <string name="MessageRequestProfileView_member_of_one_group">Membobin %1$s</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">Membobin %1$s da %2$s</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">Membobin %1$s, %2$s, da %3$s</string>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="one">%d other</item>
+    <item quantity="other">%d wasu</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Kalaman sirrinnan ba daya bane dana farkon!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Tsohon kalaman sirrinnan ba daidai bane!</string>
@@ -566,6 +581,8 @@
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Kash! Babu manhajar Google Play Store a wannan na\'urar.</string>
   <!--ReactionsBottomSheetDialogFragment-->
   <!--ReactionsConversationView-->
+  <!--ReactionsRecipientAdapter-->
+  <string name="ReactionsRecipientAdapter_you">Kai/Ke</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">A toshe wannan lambar?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Zaka/ki daina samun sakwanni da kira daga wannan lambar</string>
@@ -692,6 +709,11 @@
   <string name="StickerPackPreviewActivity_remove">Cire</string>
   <string name="StickerPackPreviewActivity_stickers">Sitika</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Lodin fakitin sitika ya gaza</string>
+  <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_submit">Aika</string>
+  <string name="SubmitDebugLogActivity_success">Nasara!</string>
+  <string name="SubmitDebugLogActivity_copied_to_clipboard">An kwafa zuwa allon rubutu</string>
+  <string name="SubmitDebugLogActivity_share">Tura</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">An sabuntar da rukuni</string>
   <string name="ThreadRecord_left_the_group">Ya/ta bar rukunin</string>
@@ -1028,9 +1050,6 @@
   <string name="log_submit_activity__this_log_will_be_posted_online">Za\'a sa wannan logun a duniyar gizo domun masu bada gudummuwa su gani, kara bincika shi kuma ka/kiyi gyara kafin aikawa. </string>
   <string name="log_submit_activity__loading_logs">Logu yana lodi…</string>
   <string name="log_submit_activity__uploading_logs">Ana dora logogi…</string>
-  <string name="log_submit_activity__success">Nasara!</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Kwafa wannan adireshin gizo sai ka/ki sa shi cikin rahotonka/ki ko kuma imel:\n\n<b>%1$s</b>\n</string>
-  <string name="log_submit_activity__copied_to_clipboard">An kwafa zuwa allon rubutu</string>
   <string name="log_submit_activity__choose_email_app">Zabi manhajar imel</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Dan kara bincika wannan logun daga manhaja dina: %1$s</string>
   <string name="log_submit_activity__network_failure">Gazawar sadarwar gizo. Kara gwadawa.</string>
@@ -1134,6 +1153,7 @@
   <string name="AndroidManifest__invite_friends">Gayyaci abokai</string>
   <string name="AndroidManifest_archived_conversations">Ajiyayyen hira</string>
   <string name="AndroidManifest_remove_photo">Cire hoto</string>
+  <!--Message Requests Megaphone-->
   <!--arrays.xml-->
   <string name="arrays__import_export">Shigar</string>
   <string name="arrays__use_default">Amfani da tanadadde</string>
@@ -1565,17 +1585,5 @@
   <string name="RegistrationLockDialog_reminder">Tunatarwa</string>
   <string name="recipient_preferences__about">Game da</string>
   <string name="Recipient_unknown">Ba suna</string>
-  <string name="MessageRequestBottomView_accept">Yarda</string>
-  <string name="MessageRequestBottomView_delete">Goge</string>
-  <string name="MessageRequestBottomView_block">Toshe</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let">Ka/kina son samun sakonni daga %1$s?</string>
-  <string name="MessageRequestProfileView_member_of_one_group">Membobin %1$s</string>
-  <string name="MessageRequestProfileView_member_of_two_groups">Membobin %1$s da %2$s</string>
-  <string name="MessageRequestProfileView_member_of_many_groups">Membobin %1$s, %2$s, da %3$s</string>
-  <string name="MessageRequestProfileView_members">%1$d membobi</string>
-  <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">%d other</item>
-    <item quantity="other">%d wasu</item>
-  </plurals>
   <!--EOF-->
 </resources>

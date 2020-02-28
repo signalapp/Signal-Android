@@ -190,6 +190,10 @@
   <string name="ConversationActivity_no_results">Nema rezultata</string>
   <string name="ConversationActivity_sticker_pack_installed">Instalacija stikera završena</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Novo! Kaži stikerom</string>
+  <string name="ConversationActivity_block">Blokiraj</string>
+  <string name="ConversationActivity_cancel">Odustani</string>
+  <string name="ConversationActivity_delete_conversation">Obriši razgovor?</string>
+  <string name="ConversationActivity_delete">Obriši</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nepročitana poruka</item>
@@ -365,7 +369,7 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Želite li učiniti dostupnim svoje ime i profilnu sliku svim trenutnim i budućim članovima ove grupe?</string>
   <string name="GroupShareProfileView_make_visible">Učini dostupnim</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">Ja</string>
+  <string name="GroupMembersDialog_you">Vi</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grupni avatar</string>
   <string name="CropImageActivity_profile_avatar">Slika profila</string>
@@ -472,6 +476,11 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Označili ste s drugog uređaja vaš sigurnosni broj s %s provjerenim</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Označili ste vaš sigurnosni broj s %s nepotvrđenim</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Označili ste s drugog uređaja vaš sigurnosni broj s %s nepotvrđenim</string>
+  <!--MessageRequestBottomView-->
+  <string name="MessageRequestBottomView_accept">Prihvati</string>
+  <string name="MessageRequestBottomView_delete">Obriši</string>
+  <string name="MessageRequestBottomView_block">Blokiraj</string>
+  <string name="MessageRequestBottomView_unblock">Deblokiraj</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Lozinka ne odgovara!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Netočna stara lozinka!</string>
@@ -523,6 +532,8 @@
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Izgleda da Play Store aplikacija nije instalirana na vašem uređaju.</string>
   <!--ReactionsBottomSheetDialogFragment-->
   <!--ReactionsConversationView-->
+  <!--ReactionsRecipientAdapter-->
+  <string name="ReactionsRecipientAdapter_you">Vi</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Blokiraj kontakt?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Nećete više primati poruke i pozive ovog korisnika.</string>
@@ -642,6 +653,13 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="StickerPackPreviewActivity_remove">Ukloni</string>
   <string name="StickerPackPreviewActivity_stickers">Naljepnice</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Učitavanje stikera nije uspjelo</string>
+  <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_edit">Uredi</string>
+  <string name="SubmitDebugLogActivity_done">Uredu</string>
+  <string name="SubmitDebugLogActivity_submit">Pošalji</string>
+  <string name="SubmitDebugLogActivity_success">Uspješno!</string>
+  <string name="SubmitDebugLogActivity_copied_to_clipboard">Kopirano u međuspremnik</string>
+  <string name="SubmitDebugLogActivity_share">Podijeli</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupa je ažurirana</string>
   <string name="ThreadRecord_left_the_group">Napustio/la grupu</string>
@@ -944,9 +962,6 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Ovaj zapis će biti javno objavljen na mreži da bi suradnici mogli pogledati, možete ga pregledati i urediti prije slanja.</string>
   <string name="log_submit_activity__loading_logs">Učitavanje zapisa…</string>
   <string name="log_submit_activity__uploading_logs">Prijenos zapisa…</string>
-  <string name="log_submit_activity__success">Uspješno!</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Kopirajte ovaj URL i dodajte ga u svoju izvještajnu prijavu ili email podršku:\n\n<b>%1$s</b>\n</string>
-  <string name="log_submit_activity__copied_to_clipboard">Kopirano u međuspremnik</string>
   <string name="log_submit_activity__choose_email_app">Izaberite email aplikaciju</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Molim pregledajte zapis moje aplikacije: %1$s</string>
   <string name="log_submit_activity__network_failure">Greška kod mreže. Molimo pokušajte ponovo.</string>
@@ -1048,6 +1063,7 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="AndroidManifest__invite_friends">Pozovi prijatelje</string>
   <string name="AndroidManifest_archived_conversations">Arhivirani razgovori</string>
   <string name="AndroidManifest_remove_photo">Ukloni sliku</string>
+  <!--Message Requests Megaphone-->
   <!--arrays.xml-->
   <string name="arrays__import_export">Uvoz</string>
   <string name="arrays__use_default">Koristi zadano</string>
@@ -1414,8 +1430,5 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="RegistrationLockDialog_reminder">Podsjetnik:</string>
   <string name="recipient_preferences__about">O aplikaciji</string>
   <string name="Recipient_unknown">Nepoznato</string>
-  <string name="MessageRequestBottomView_accept">Prihvati</string>
-  <string name="MessageRequestBottomView_delete">Obriši</string>
-  <string name="MessageRequestBottomView_block">Blokiraj</string>
   <!--EOF-->
 </resources>

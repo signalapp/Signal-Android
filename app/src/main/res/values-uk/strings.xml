@@ -359,7 +359,7 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Зробити ім\'я профілю та світлину видимою для усіх теперішніх та майбутніх учасників цієї групи?</string>
   <string name="GroupShareProfileView_make_visible">Зробити видимим</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">Я</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupMembersDialog_me">Я</string> -->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Зображення групи</string>
   <string name="CropImageActivity_profile_avatar">Фото</string>
@@ -898,8 +898,8 @@
   <string name="log_submit_activity__button_compose_email">Написати електронного листа</string>
   <string name="log_submit_activity__loading_logs">Завантаження журналу…</string>
   <string name="log_submit_activity__uploading_logs">Вивантаження журналу…</string>
-  <string name="log_submit_activity__success">Успішно!</string>
-  <string name="log_submit_activity__copied_to_clipboard">Скопійовано до буфера обміну</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__success">Успішно!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__copied_to_clipboard">Скопійовано до буфера обміну</string> -->
   <string name="log_submit_activity__choose_email_app">Обрати додаток електронної пошти</string>
   <string name="log_submit_activity__network_failure">Помилка мережі. Будь ласка спробуйте ще раз.</string>
   <!--database_migration_activity-->

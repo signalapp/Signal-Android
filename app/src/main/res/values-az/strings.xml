@@ -340,7 +340,7 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Hazırkı və gələcək qrup üzvlərinə profil adını və şəklini nümayiş etdirməyə razısan?</string>
   <string name="GroupShareProfileView_make_visible">Nümayiş etdir</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">Mən</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupMembersDialog_me">Mən</string> -->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Qrupun şəkli</string>
   <string name="CropImageActivity_profile_avatar">Şəkil</string>
@@ -895,9 +895,9 @@
   <string name="log_submit_activity__this_log_will_be_posted_online">Bu qeyd əməkdaşların baxışı üçün ictimai olaraq paylaşılacaqdır, təqdim etməzdən əvvəl sən ona müəyyən dəyişikliklər edə bilərsən.</string>
   <string name="log_submit_activity__loading_logs">Girişlər yüklənir…</string>
   <string name="log_submit_activity__uploading_logs">Girişlər əlavə edilir…</string>
-  <string name="log_submit_activity__success">Müvəffəqiyyətlə bitdi!</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">URL-i köçür və onu xəta hesabatına və ya dəstək emailinə əlavə et:\n\n<b>%1$s</b>\n</string>
-  <string name="log_submit_activity__copied_to_clipboard">Mübadilə buferinə köçürüldü</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__success">Müvəffəqiyyətlə bitdi!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">URL-i köçür və onu xəta hesabatına və ya dəstək emailinə əlavə et:\n\n<b>%1$s</b>\n</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__copied_to_clipboard">Mübadilə buferinə köçürüldü</string> -->
   <string name="log_submit_activity__choose_email_app">Email aplikasiyasını seç</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Aplikasiyam tərəfindən bu girişi yoxla: %1$s</string>
   <string name="log_submit_activity__network_failure">Şəbəkə xətası. Zəhmət olmasa yenidən cəhd et.</string>

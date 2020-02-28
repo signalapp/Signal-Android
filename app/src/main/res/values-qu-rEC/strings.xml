@@ -310,7 +310,7 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Shutita, ñawishuyutapash kay tantanakuypi mushuk tantakuypipash rikuchun munankichu</string>
   <string name="GroupShareProfileView_make_visible">Rikuchiyachik</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">Ñuka</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupMembersDialog_me">Ñuka</string> -->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Tantanakuypa shuyuta ruray</string>
   <!--InputPanel-->
@@ -813,9 +813,9 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="log_submit_activity__this_log_will_be_posted_online">Kay willaywanka tukuylla yanapakkunapa killkakatichunmi kanka, rikuyta munankiman mushukyachita shinapash manara kachashpallata.</string>
   <string name="log_submit_activity__loading_logs">Allichishkakunata uryakuchikun</string>
   <string name="log_submit_activity__uploading_logs">Allichishkakunata sikachikun</string>
-  <string name="log_submit_activity__success">¡Paktachishka!</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Kay URL chayshinata hapipay shinallata sirma chaskiman yanapachun churapay: \n\n<b>%1$s</b>\n</string>
-  <string name="log_submit_activity__copied_to_clipboard">Panka allichik ukupi chayshina allichishka kan</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__success">¡Paktachishka!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Kay URL chayshinata hapipay shinallata sirma chaskiman yanapachun churapay: \n\n<b>%1$s</b>\n</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__copied_to_clipboard">Panka allichik ukupi chayshina allichishka kan</string> -->
   <string name="log_submit_activity__choose_email_app">Sirma chaski aplicacionta akllapay</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Ñukapa aplicacionpi log allichishkata rikupay: %1$s</string>
   <string name="log_submit_activity__network_failure">Internet mana hapinchu. Kutinlla yaykushpa rikupay</string>

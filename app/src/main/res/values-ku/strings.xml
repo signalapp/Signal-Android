@@ -322,7 +322,7 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Dixwazî ku hemû endamên vê komê yên aniha û yên wê paşê tevlî bibin nav û wêneyê profîla te bibînin?</string>
   <string name="GroupShareProfileView_make_visible">Bide xwiyakirin</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">Ez</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupMembersDialog_me">Ez</string> -->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatara komê</string>
   <!--InputPanel-->
@@ -837,9 +837,9 @@
   <string name="log_submit_activity__this_log_will_be_posted_online">Ev tomar ji bo ku tevkar bibînin dê bi eşkereyî bihê weşandin, Berî ku bişînî dikarî biceribînî û serast bikî.</string>
   <string name="log_submit_activity__loading_logs">Tomar têne barkirin…</string>
   <string name="log_submit_activity__uploading_logs">Tomar têne hilbarkirin…</string>
-  <string name="log_submit_activity__success">Serkeftin!</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Vê URLê ji ber bigire û wê li raporta xwe ya pirsgirêkan zêde bike an jî piştgiriyê bide e-peyamê:\n\n<b>%1$s</b>\n</string>
-  <string name="log_submit_activity__copied_to_clipboard">Li rûnûsgehê hate kopîkirin</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__success">Serkeftin!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Vê URLê ji ber bigire û wê li raporta xwe ya pirsgirêkan zêde bike an jî piştgiriyê bide e-peyamê:\n\n<b>%1$s</b>\n</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__copied_to_clipboard">Li rûnûsgehê hate kopîkirin</string> -->
   <string name="log_submit_activity__choose_email_app">Sepana epeyamê bibijêre</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Xêra xwe vê tomarê kontrol bike ji sepana min: %1$s</string>
   <string name="log_submit_activity__network_failure">Tor xirab e. Xêra xwe dîsa biceribîne.</string>

@@ -196,6 +196,9 @@
   <string name="ConversationActivity_no_results">ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ</string>
   <string name="ConversationActivity_sticker_pack_installed">ਸਟਿੱਕਰ ਪੈਕ ਇੰਸਟਾਲ ਕੀਤਾ ਗਿਆ </string>
   <string name="ConversationActivity_new_say_it_with_stickers">ਨਵਾਂ ! ਹੁਣ ਸਟਿੱਕਰ ਨਾਲ ਗੱਲਾਂਬਾਤਾਂ ਕਰੋ </string>
+  <string name="ConversationActivity_block">ਬਲਾਕ</string>
+  <string name="ConversationActivity_cancel">ਰੱਦ ਕਰੋ</string>
+  <string name="ConversationActivity_delete">ਮਿਟਾਓ </string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ਨਾ ਪੜੇ ਸੁਨੇਹੇ </item>
@@ -363,7 +366,7 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">ਕੀ ਤੁਸੀਂ ਆਪਣੇ ਪ੍ਰੋਫਾਈਲ ਨਾਂ ਅਤੇ ਫੋਟੋ ਨੂੰ ਇਸ ਸਮੂਹ ਦੇ ਸਾਰੇ ਮੌਜੂਦਾ ਅਤੇ ਭਵਿੱਖ ਦੇ ਮੈਂਬਰਾਂ ਲਈ ਦ੍ਰਿਸ਼ਤ ਬਣਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
   <string name="GroupShareProfileView_make_visible">ਦ੍ਰਿਸ਼ਟੀ ਬਣਾਓ</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">ਮੈਨੂੰ</string>
+  <string name="GroupMembersDialog_you">ਤੁਸੀਂ</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">ਗਰੁੱਪ ਦਾ ਅਵਤਾਰ</string>
   <string name="CropImageActivity_profile_avatar">ਅਵਤਾਰ</string>
@@ -468,6 +471,11 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">ਤੁਸੀਂ ਕਿਸੇ ਹੋਰ ਡਿਵਾਈਸ ਤੋਂ %s ਨਾਲ ਆਪਣੀ ਸੁਰੱਖਿਆ ਨੰਬਰ ਪ੍ਰਮਾਣਿਤ ਕੀਤਾ ਹੈ</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">ਤੁਸੀਂ ਆਪਣਾ ਸੁਰੱਖਿਆ ਨੰਬਰ %s ਦੇ ਨਾਲ ਅਸਪਸ਼ਟ ਕੀਤਾ</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">ਤੁਸੀਂ ਕਿਸੇ ਹੋਰ ਡਿਵਾਈਸ ਤੋਂ  ਆਪਣਾ ਸੁਰੱਖਿਆ ਨੰਬਰ %s ਨਾਲ ਅਸਪਸ਼ਟ ਕੀਤਾ</string>
+  <!--MessageRequestBottomView-->
+  <string name="MessageRequestBottomView_accept">ਸਵੀਕਾਰ ਕਰੋ</string>
+  <string name="MessageRequestBottomView_delete">ਮਿਟਾਓ </string>
+  <string name="MessageRequestBottomView_block">ਬਲਾਕ</string>
+  <string name="MessageRequestBottomView_unblock">ਅਨਬਲੌਕ</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">ਪਾਸਫਰੇਜ ਮੇਲ ਨਹੀਂ ਖਾਂਦੇ!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">ਗਲਤ ਪੁਰਾਣਾ ਪਾਸਫਰੇਜ!</string>
@@ -518,6 +526,8 @@
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">ਓਹੋ, Play Store ਐਪ ਤੁਹਾਡੀ ਡਿਵਾਈਸ ਤੇ ਸਥਾਪਤ ਨਹੀਂ ਹੈ</string>
   <!--ReactionsBottomSheetDialogFragment-->
   <!--ReactionsConversationView-->
+  <!--ReactionsRecipientAdapter-->
+  <string name="ReactionsRecipientAdapter_you">ਤੁਸੀਂ</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">ਇਸ ਸੰਪਰਕ ਨੂੰ ਬਲੌਕ ਕਰੋ ?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">ਤੁਸੀਂ ਹੁਣ ਇਸ ਸੰਪਰਕ ਤੋਂ ਸੰਦੇਸ਼ ਅਤੇ ਕਾਲ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕਰੋਗੇ</string>
@@ -637,6 +647,13 @@
   <string name="StickerPackPreviewActivity_remove">ਹਟਾਓ </string>
   <string name="StickerPackPreviewActivity_stickers">ਸਟਿੱਕਰ</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">ਸਟੀਕਰ ਪੈਕ ਨੂੰ ਲੋਡ ਕਰਨ ਵਿੱਚ ਅਸਫਲ</string>
+  <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_edit">ਸੋਧ</string>
+  <string name="SubmitDebugLogActivity_done">ਕੀਤਾ</string>
+  <string name="SubmitDebugLogActivity_submit">ਜਮ੍ਹਾਂ ਕਰੋ</string>
+  <string name="SubmitDebugLogActivity_success">ਸਫਲਤਾ!</string>
+  <string name="SubmitDebugLogActivity_copied_to_clipboard">ਕਲਿਪਬੋਰਡ ਤੇ ਕਾਪੀ ਕੀਤਾ ਗਿਆ</string>
+  <string name="SubmitDebugLogActivity_share">ਸਾਂਝਾ ਕਰੋ</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">ਗਰੁੱਪ ਅਪਡੇਟ ਕੀਤਾ</string>
   <string name="ThreadRecord_left_the_group">ਸਮੂਹ ਨੂੰ ਛੱਡ ਦਿੱਤਾ</string>
@@ -941,9 +958,6 @@
   <string name="log_submit_activity__this_log_will_be_posted_online">ਇਸ ਲੌਗ ਨੂੰ ਦੇਖਣ ਲਈ ਯੋਗੀਆਂ ਲਈ ਆਨਲਾਇਨ ਪੋਸਟ ਕੀਤਾ ਜਾਵੇਗਾ, ਤੁਸੀਂ ਇਸ ਨੂੰ ਪ੍ਰਸਤੁਤ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਸੰਪਾਦਿਤ ਕਰ ਸਕਦੇ ਹੋ.</string>
   <string name="log_submit_activity__loading_logs">ਲਾਗ ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ …</string>
   <string name="log_submit_activity__uploading_logs">ਲਾਗ ਅੱਪਲੋਡ ਕਰ ਰਿਹਾ ਹੈ …</string>
-  <string name="log_submit_activity__success">ਸਫਲਤਾ!</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">ਇਸ URL ਨੂੰ ਕਾਪੀ ਕਰੋ ਅਤੇ ਇਸਨੂੰ ਆਪਣੇ ਮੁੱਦੇ ਦੀ ਰਿਪੋਰਟ ਜਾਂ ਸਹਾਇਤਾ ਈਮੇਲ ਵਿੱਚ ਜੋੜੋ:\n\n<b>%1$s</b>\n</string>
-  <string name="log_submit_activity__copied_to_clipboard">ਕਲਿਪਬੋਰਡ ਤੇ ਕਾਪੀ ਕੀਤਾ ਗਿਆ</string>
   <string name="log_submit_activity__choose_email_app">ਈਮੇਲ ਐਪ ਚੁਣੋ</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">ਕਿਰਪਾ ਕਰਕੇ ਮੇਰੇ ਐਪ ਤੋਂ ਇਸ ਲਾਗ ਦੀ ਸਮੀਖਿਆ ਕਰੋ: %1$s</string>
   <string name="log_submit_activity__network_failure">ਨੈਟਵਰਕ ਅਸਫਲਤਾ. ਮੁੜ ਕੋਸ਼ਿਸ ਕਰੋ ਜੀ.</string>
@@ -1043,6 +1057,7 @@
   <string name="AndroidManifest__invite_friends">ਦੋਸਤਾਂ ਨੂੰ ਸੱਦਾ ਦਿਓ</string>
   <string name="AndroidManifest_archived_conversations">ਆਰਕਾਈਵ ਕੀਤੀਆਂ ਗੱਲਾਂਬਾਤਾਂ</string>
   <string name="AndroidManifest_remove_photo">ਫੋਟੋ ਨੂੰ ਹਟਾਓ</string>
+  <!--Message Requests Megaphone-->
   <!--arrays.xml-->
   <string name="arrays__import_export">ਆਯਾਤ ਕਰੋ</string>
   <string name="arrays__use_default">ਡਿਫੌਲਟ ਵਰਤੋ</string>
@@ -1424,8 +1439,5 @@
   <string name="RegistrationLockDialog_reminder">ਰੀਮਾਈਂਡਰ:</string>
   <string name="recipient_preferences__about">ਇਸ ਬਾਰੇ</string>
   <string name="Recipient_unknown">ਅਣਜਾਣ</string>
-  <string name="MessageRequestBottomView_accept">ਸਵੀਕਾਰ ਕਰੋ</string>
-  <string name="MessageRequestBottomView_delete">ਮਿਟਾਓ </string>
-  <string name="MessageRequestBottomView_block">ਬਲਾਕ</string>
   <!--EOF-->
 </resources>

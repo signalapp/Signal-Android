@@ -22,6 +22,7 @@
 <!-- es --><item>Español</item>
 <!-- eo --><item>Esperanto</item>
 <!-- eu --><item>Euskara</item>
+<!-- tl --><item>Filipino</item>
 <!-- fr --><item>Français</item>
 <!-- ga --><item>Gaeilge</item>
 <!-- gl --><item>Galego</item>
@@ -54,6 +55,7 @@
 <!-- pt --><item>Português</item>
 <!-- pt_BR --><item>Português do Brasil</item>
 <!-- pa --><item>Punjabi ਪੰਜਾਬੀ / پنجابی</item>
+<!-- pa_PK --><item>Punjabi (Pakistan) ਪੰਜਾਬ (ਪਾਕਿਸਤਾਨ) / پنجابی</item>
 <!-- qu_EC --><item>Quechua</item>
 <!-- ro --><item>Română</item>
 <!-- ru --><item>Russian Pусский</item>
@@ -93,6 +95,7 @@
       <item>es</item>
       <item>eo</item>
       <item>eu</item>
+      <item>tl</item>
       <item>fr</item>
       <item>ga</item>
       <item>gl</item>
@@ -125,6 +128,7 @@
       <item>pt</item>
       <item>pt_BR</item>
       <item>pa</item>
+      <item>pa_PK</item>
       <item>qu_EC</item>
       <item>ro</item>
       <item>ru</item>

@@ -201,6 +201,22 @@
   <string name="ConversationActivity_no_results">Không có kết quả</string>
   <string name="ConversationActivity_sticker_pack_installed">Đã cài đặt gói nhãn dán</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Mới! Thể hiện cảm xúc bằng nhãn dán</string>
+  <string name="ConversationActivity_block_s">Chặn %1$s?</string>
+  <string name="ConversationActivity_block_and_leave_s">Chặn và rời khỏi %1$s?</string>
+  <string name="ConversationActivity_unblock_s">Bỏ chặn %1$s?</string>
+  <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">Các bạn sẽ có thể nhắn tin và gọi cho nhau.</string>
+  <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">Các thành viên trong nhóm có thể thêm lại bạn vào nhóm.</string>
+  <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">Người bị chặn sẽ không thể gọi hay nhắn tin cho bạn.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">Bạn sẽ rời nhóm và không còn nhận tin nhắn hay cập nhật từ nhóm này nữa.</string>
+  <string name="ConversationActivity_block">Chặn</string>
+  <string name="ConversationActivity_block_and_delete">Chặn và xóa</string>
+  <string name="ConversationActivity_cancel">Hủy</string>
+  <string name="ConversationActivity_delete_conversation">Xoá cuộc hội thoại?</string>
+  <string name="ConversationActivity_delete_and_leave_group">Xóa và rời nhóm?</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Cuộc trò chuyện này sẽ bị xóa trên tất cả các thiết bị của bạn.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Bạn sẽ rời nhóm, và lịch sử trò chuyện sẽ bị xóa trên tất cả các thiết bị của bạn.</string>
+  <string name="ConversationActivity_delete">Xóa</string>
+  <string name="ConversationActivity_delete_and_leave">Xóa và rời khỏi</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d tin nhắn chưa đọc</item>
@@ -239,6 +255,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Bạn có thể vuốt tin nhắn sang bên trái để trả lời nhanh</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Tin nhắn đa phương tiện xem một lần sẽ tự động xóa sau khi được gửi</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Bạn đã xem tin nhắn này rồi</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Bạn có thể thêm ghi chú trong cuộc trò chuyện này. Nếu tài khoản của bạn có thiết bị liên kết, ghi chú cũng sẽ được đồng bộ.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Bạn chưa cài trình duyệt nào trên điện thoại.</string>
   <!--ConversationListFragment-->
@@ -258,6 +275,8 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">Đã chuyển %d cuộc trò chuyện vào hộp thư đến</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_created">Tên hồ sơ của bạn đã được tạo.</string>
+  <string name="ConversationListFragment__your_profile_name_has_been_saved">Tên hồ sơ của bạn đã được lưu.</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Tin nhắn trao đổi mã khóa</string>
   <!--ConversationListItemAction-->
@@ -306,6 +325,7 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Thiết bị này không hỗ trợ dịch vụ Google Play. Nhấn để tắt tính năng tối ưu hóa pin khiến Signal không thể nhận tin nhắn duới nền.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Chia sẻ với</string>
+  <string name="ShareActivity_multiple_attachments_are_only_supported">Gửi nhiều tệp đính kèm chỉ áp dụng cho ảnh và video</string>
   <!--ExperienceUpgradeActivity-->
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Chào mừng bạn đến với Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure và RedPhone giờ đây đã sát nhập thành ứng dụng nhắn tin riêng tư: Signal.</string>
@@ -365,7 +385,7 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Bạn có muốn tất cả thành viên hiện có và trong tương lai của nhóm thấy ảnh đại diện và tên bạn?</string>
   <string name="GroupShareProfileView_make_visible">Cho phép thấy</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">Tôi</string>
+  <string name="GroupMembersDialog_you">Bạn</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Ảnh đại diện của nhóm</string>
   <string name="CropImageActivity_profile_avatar">Ảnh đại diện</string>
@@ -502,6 +522,24 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Bạn đã xác minh mã số an toàn với %s từ thiết bị khác</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Bạn đã hủy xác minh mã số an toàn với %s</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Bạn đã hủy xác minh mã số an toàn với %s từ thiết bị khác</string>
+  <!--MessageRequestBottomView-->
+  <string name="MessageRequestBottomView_accept">Chấp nhận</string>
+  <string name="MessageRequestBottomView_delete">Xóa</string>
+  <string name="MessageRequestBottomView_block">Chặn</string>
+  <string name="MessageRequestBottomView_unblock">Bỏ chặn</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Bạn có muốn cho phép %1$s nhắn tin cho bạn? Họ sẽ không biết bạn đã xem tin nhắn hay chưa cho đến khi bạn chấp nhận.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Bạn có muốn tham gia nhóm %1$s? Họ sẽ không biết bạn đã xem tin nhắn hay chưa cho đến khi bạn chấp nhận.</string>
+  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Bỏ chặn %1$s để nhắn tin và gọi cho nhau.</string>
+  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Bỏ chặn để thành viên nhóm có thể thêm lại bạn vào nhóm.</string>
+  <string name="MessageRequestProfileView_member_of_one_group">Thành viên của %1$s</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">Thành viên của %1$s và %2$s</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">Thành viên của %1$s, %2$s và %3$s</string>
+  <plurals name="MessageRequestProfileView_members">
+    <item quantity="other">%1$d thành viên</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="other">%d người khác</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Mật khẩu không khớp!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Mật khẩu cũ không đúng!</string>
@@ -554,6 +592,9 @@
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">Tất cả %1$d</string>
   <!--ReactionsConversationView-->
+  <string name="ReactionsConversationView_plus">+ %1$d</string>
+  <!--ReactionsRecipientAdapter-->
+  <string name="ReactionsRecipientAdapter_you">Bạn</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Chặn liên lạc này?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Bạn sẽ không còn nhận tin nhắn và cuộc gọi từ liên hệ này nữa.</string>
@@ -680,6 +721,17 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="StickerPackPreviewActivity_remove">Loại bỏ</string>
   <string name="StickerPackPreviewActivity_stickers">Nhãn dán</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Không thể tải gói nhãn dán</string>
+  <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_edit">Sửa</string>
+  <string name="SubmitDebugLogActivity_done">Xong</string>
+  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Nhấn vào một dòng để xóa nó</string>
+  <string name="SubmitDebugLogActivity_submit">Gửi</string>
+  <string name="SubmitDebugLogActivity_failed_to_submit_logs">Không thể gửi nhật kí lỗi</string>
+  <string name="SubmitDebugLogActivity_success">Thành công!</string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Sao chép URL này và thêm nó vào báo cáo lỗi hoặc email hỗ trợ:\n\n<b>%1$s</b></string>
+  <string name="SubmitDebugLogActivity_copied_to_clipboard">Đã sao chép vào clipboard</string>
+  <string name="SubmitDebugLogActivity_ok">Ok</string>
+  <string name="SubmitDebugLogActivity_share">Chia sẻ</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Đã cập nhật nhóm</string>
   <string name="ThreadRecord_left_the_group">Đã rời nhóm</string>
@@ -701,6 +753,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ThreadRecord_you_marked_verified">Bạn đã xác minh</string>
   <string name="ThreadRecord_you_marked_unverified">Bạn đã hủy xác minh</string>
   <string name="ThreadRecord_message_could_not_be_processed">Không thể xử lí tin nhắn</string>
+  <string name="ThreadRecord_message_request">Yêu cầu gửi Tin nhắn</string>
+  <string name="ThreadRecord_s_added_you_to_the_group">%1$s đã thêm bạn vào nhóm</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Cập nhật Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Đã có phiên bản mới của Signal, nhấn để cập nhật</string>
@@ -1009,9 +1063,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="log_submit_activity__this_log_will_be_posted_online">Nhật kí này sẽ được đăng trực tuyến công khai cho những người đóng góp theo dõi, bạn có thể kiểm tra và sửa đổi nó trước khi gửi đi.</string>
   <string name="log_submit_activity__loading_logs">Đang tải nhật kí…</string>
   <string name="log_submit_activity__uploading_logs">Đang tải lên nhật kí…</string>
-  <string name="log_submit_activity__success">Thành công!</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Sao chép URL này và thêm vào báo cáo lỗi hoặc email hỗ trợ của bạn:\n\n<b>%1$s</b>\n</string>
-  <string name="log_submit_activity__copied_to_clipboard">Đã sao chép vào clipboard</string>
   <string name="log_submit_activity__choose_email_app">Chọn ứng dụng email</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Vui lòng xem nhật kí dò lỗi từ ứng dụng của tôi: %1$s</string>
   <string name="log_submit_activity__network_failure">Không thể kết nối mạng. Hãy thử lại.</string>
@@ -1114,6 +1165,13 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="AndroidManifest__invite_friends">Mời bạn bè</string>
   <string name="AndroidManifest_archived_conversations">Các cuộc trò chuyện đã lưu trữ</string>
   <string name="AndroidManifest_remove_photo">Gỡ ảnh</string>
+  <!--Message Requests Megaphone-->
+  <string name="MessageRequestsMegaphone__message_requests">Yêu cầu nhắn tin</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Người dùng có thể lựa chọn chấp nhận cuộc trò chuyện hay không. Tên hồ sơ cho họ biết ai đang nhắn tin cho họ.</string>
+  <string name="MessageRequestsMegaphone__add_profile_name">Thêm tên hồ sơ</string>
+  <string name="MessageRequestsMegaphone__new_message_requests">Mới: Yêu cầu nhắn tin</string>
+  <string name="MessageRequestsMegaphone__add_name">Thêm tên</string>
+  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Giờ bạn có thể lựa chọn chấp nhận hay từ chối cuộc trò chuyện mới. Bạn sẽ thấy các lựa chọn \"Chấp nhận\", \"Xóa\", hoặc \"Chặn\".</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Nhập</string>
   <string name="arrays__use_default">Dùng mặc định</string>
@@ -1214,6 +1272,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences__dark_theme">Tối</string>
   <string name="preferences__appearance">Diện mạo</string>
   <string name="preferences__theme">Chủ đề</string>
+  <string name="preferences__system_default">Theo hệ điều hành</string>
   <string name="preferences__default">Mặc định</string>
   <string name="preferences__language">Ngôn ngữ</string>
   <string name="preferences__signal_messages_and_calls">Tin nhắn và cuộc gọi Signal</string>
@@ -1426,6 +1485,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="KbsSplashFragment__introducing_pins">Giới thiệu mã PIN</string>
   <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">Mã PIN thêm một lớp bảo mật cho tài khoản của bạn. Tạo mã PIN ngay.</string>
   <string name="KbsSplashFragment__learn_more">Tìm hiểu thêm</string>
+  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Khóa Đăng ký = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Khóa đăng kí giờ trở thành mã PIN hữu dụng hơn. Cập nhật mã PIN ngay.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Đọc thêm về mã PIN.</string>
@@ -1443,6 +1503,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Tài khoản của bạn đã bị khóa để đảm bảo sự riêng tư và bảo mật. Sau %1$d ngày không sử dụng bạn có thể đăng kí lại số điện thoại mà không cần mã PIN nhưng toàn bộ dữ liệu sẽ bị xóa.</string>
   <string name="AccountLockedFragment__next">Tiếp</string>
   <string name="AccountLockedFragment__learn_more">Tìm hiểu thêm</string>
+  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Nhập mã PIN của bạn</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Nhập mã PIN bạn đã tạo cho tài khoản. Mã này khác với mã xác minh SMS của bạn.</string>
@@ -1479,6 +1540,12 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Chúng tôi sẽ nhắc bạn sau. Việc tạo mã PIN sẽ trở nên bắt buộc sau %1$d ngày.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Chúng tôi sẽ nhắc bạn sau. Xác minh mã PIN của bạn sẽ trở nên bắt buộc sau %1$d ngày.</string>
   <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__add_a_profile_name">Điền tên vào hồ sơ</string>
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Tên này sẽ được hiển thị khi bạn bắt đầu cuộc trò chuyện hoặc chia sẻ hồ sơ.</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">Điền tên hồ sơ</string>
+  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Xác nhận tên hồ sơ của bạn</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Bây giờ bạn có thể thêm họ của bạn vào tên hồ sơ.</string>
+  <string name="ProfileNamesMegaphone__confirm_name">Xác nhận tên</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Biểu tượng chuyển tải</string>
   <string name="ConversationListFragment_loading">Đang tải…</string>
@@ -1546,6 +1613,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Thay đổi</string>
   <string name="preferences_app_protection__create">Tạo</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account">Mã PIN thêm một lớp bảo mật vào tài khoản của bạn. Bạn sẽ được hỏi nhập mã PIN khi bạn đăng ký số điện thoại của mình với Signal. Nếu bạn quên mã PIN của mình, bạn sẽ bị khoá khỏi tài khoản của mình trong 7 ngày.</string>
   <string name="AppProtectionPreferenceFragment_none">Không</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Mã PIN Khóa Đăng ký khác hoàn toàn mã xác minh SMS bạn vừa nhận được. Vui lòng điền mã PIN mà bạn sử dụng trước đó.</string>
   <string name="registration_activity__registration_lock_pin">Mã PIN Khóa Đăng ký</string>
@@ -1587,16 +1655,5 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="RegistrationLockDialog_reminder">Nhắc nhở:</string>
   <string name="recipient_preferences__about">Thông tin</string>
   <string name="Recipient_unknown">Vô danh</string>
-  <string name="MessageRequestBottomView_accept">Chấp nhận</string>
-  <string name="MessageRequestBottomView_delete">Xóa</string>
-  <string name="MessageRequestBottomView_block">Chặn</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let">Bạn có muốn nhận tin nhắn từ %1$s?</string>
-  <string name="MessageRequestProfileView_member_of_one_group">Thành viên của %1$s</string>
-  <string name="MessageRequestProfileView_member_of_two_groups">Thành viên của %1$s và %2$s</string>
-  <string name="MessageRequestProfileView_member_of_many_groups">Thành viên của %1$s, %2$s và %3$s</string>
-  <string name="MessageRequestProfileView_members">%1$d thành viên</string>
-  <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="other">%d người khác</item>
-  </plurals>
   <!--EOF-->
 </resources>

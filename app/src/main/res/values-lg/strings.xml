@@ -205,7 +205,7 @@ a</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Ekibinja kino wakyegattako dda.</string>
   <!--GroupShareProfileView-->
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">Nze</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupMembersDialog_me">Nze</string> -->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Nyiga olemezeko okukwata obubaka bwedobozi, gyako okuwereza </string>
   <!--InviteActivity-->

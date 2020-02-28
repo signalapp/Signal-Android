@@ -61,6 +61,7 @@
   <string name="AttachmentKeyboard_file">Fail</string>
   <string name="AttachmentKeyboard_contact">Kontakt</string>
   <string name="AttachmentKeyboard_location">Asukoht</string>
+  <string name="AttachmentKeyboard_give_access">Anna juurdepääs</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Ei leia rakendust meediafaili valimiseks.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal vajab fotode, videote või audiofailide manustamiseks ligipääsu salvestusmeediale, kuid see on püsivalt keelatud. Palun ava rakenduse sätete menüü, vali \"Õigused\" ja luba \"Salvestusmeedia\".</string>
@@ -202,6 +203,10 @@
   <string name="ConversationActivity_no_results">Tulemusi pole</string>
   <string name="ConversationActivity_sticker_pack_installed">Kleepsupakk paigaldatud</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Uus! Ütle seda koos kleepsudega</string>
+  <string name="ConversationActivity_block">Blokeeri</string>
+  <string name="ConversationActivity_cancel">Loobu</string>
+  <string name="ConversationActivity_delete_conversation">Kustutad vestluse?</string>
+  <string name="ConversationActivity_delete">Kustuta</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d lugemata sõnum</item>
@@ -270,6 +275,7 @@
     <item quantity="one">Vestlus postkasti liigutatud</item>
     <item quantity="other">%d vestlust postkasti liigutatud</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_saved">Sinu profiilinimi on salvestatud.</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Võtmevahetussõnum</string>
   <!--ConversationListItemAction-->
@@ -377,7 +383,7 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Kas sa tahad teha oma profiilinime ja -pildi nähtavaks kõigile grupi olemasolevatele ja tulevastele liikmetele?</string>
   <string name="GroupShareProfileView_make_visible">Tee nähtavaks</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">Mina</string>
+  <string name="GroupMembersDialog_you">Sina</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grupi avatar</string>
   <string name="CropImageActivity_profile_avatar">Pilt</string>
@@ -463,6 +469,7 @@
   <string name="Megaphones_introducing_reactions">Tutvustame reaktsioone</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Koputa ja hoia mistahes sõnumit, et kiirelt oma emotsiooni jagada.</string>
   <string name="Megaphones_remind_me_later">Tuleta hiljem meelde</string>
+  <string name="Megaphones_verify_your_signal_pin">Kinnita oma Signal-i PIN</string>
   <string name="Megaphones_verify_pin">Kinnita PIN</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signali kõne käib</string>
@@ -519,6 +526,18 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Sa märkisid teisest seadmest oma turvanumbri kontaktiga %s kinnitatuks</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Sa märkisid oma turvanumbri kontaktiga %s mittekinnitatuks</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Sa märkisid teisest seadmest oma turvanumbri kontaktiga %s mittekinnitatuks</string>
+  <!--MessageRequestBottomView-->
+  <string name="MessageRequestBottomView_accept">Nõustun</string>
+  <string name="MessageRequestBottomView_delete">Kustuta</string>
+  <string name="MessageRequestBottomView_block">Blokeeri</string>
+  <string name="MessageRequestBottomView_unblock">Eemalda blokeering</string>
+  <string name="MessageRequestProfileView_member_of_one_group">%1$s liige</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">%1$s ja %2$s liige </string>
+  <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s ja %3$s liige</string>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="one">%d teine</item>
+    <item quantity="other">%d teist </item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Salaväljendid ei ole samad!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Sobimatu vana salaväljend!</string>
@@ -572,6 +591,8 @@
   <string name="ReactionsBottomSheetDialogFragment_all">Kõik %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
+  <!--ReactionsRecipientAdapter-->
+  <string name="ReactionsRecipientAdapter_you">Sina</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Blokeerid selle kontakti?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Sa ei saa sellelt kontaktilt enam sõnumeid ja kõnesid vastu võtta.</string>
@@ -665,6 +686,11 @@
   <string name="SharedContactView_invite_to_signal">Kutsu Signalisse</string>
   <string name="SharedContactView_message">Signali sõnum</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">Me tuletame sulle hiljem uuesti meelde.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Me tuletame sulle homme uuesti meelde.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Me tuletame sulle paari päeva pärast uuesti meelde.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Me tuletame sulle nädala pärast uuesti meelde.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Me tuletame sulle paari nädala pärast uuesti meelde.</string>
   <!--Slide-->
   <string name="Slide_image">Pilt</string>
   <string name="Slide_sticker">Kleeps</string>
@@ -700,6 +726,13 @@
   <string name="StickerPackPreviewActivity_remove">Eemalda</string>
   <string name="StickerPackPreviewActivity_stickers">Kleepsud</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Kleepsupaki laadimine ebaõnnestus</string>
+  <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_edit">Muuda</string>
+  <string name="SubmitDebugLogActivity_done">Tehtud</string>
+  <string name="SubmitDebugLogActivity_submit">Postita</string>
+  <string name="SubmitDebugLogActivity_success">Õnnestus!</string>
+  <string name="SubmitDebugLogActivity_copied_to_clipboard">Lõikelauale kopeeritud</string>
+  <string name="SubmitDebugLogActivity_share">Jaga</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupp uuendatud</string>
   <string name="ThreadRecord_left_the_group">Lahkus grupist</string>
@@ -721,6 +754,7 @@
   <string name="ThreadRecord_you_marked_verified">Sa märkisid kinnitatuks</string>
   <string name="ThreadRecord_you_marked_unverified">Sa märkisid mittekinnitatuks</string>
   <string name="ThreadRecord_message_could_not_be_processed">Sõnumit ei saanud töödelda</string>
+  <string name="ThreadRecord_message_request">Sõnumipäring</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signali uuendus</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Uus Signali versioon on saadaval, koputa uuendamiseks</string>
@@ -1036,9 +1070,6 @@
   <string name="log_submit_activity__this_log_will_be_posted_online">See logi postitatakse Internetti avalikult, et kaastöötajad saaksid seda näha, sa võid seda enne postitamist vaadata ja muuta. </string>
   <string name="log_submit_activity__loading_logs">Logide laadimine…</string>
   <string name="log_submit_activity__uploading_logs">Logide üleslaadimine…</string>
-  <string name="log_submit_activity__success">Edu!</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Kopeeri see aadress ja lisa see oma probleemiteatesse või toe e-kirja:\n\n<b>%1$s</b>\n</string>
-  <string name="log_submit_activity__copied_to_clipboard">Lõikelauale kopeeritud</string>
   <string name="log_submit_activity__choose_email_app">Vali e-posti rakendus</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Palun vaata see logi üle minu rakendusest: %1$s</string>
   <string name="log_submit_activity__network_failure">Võrgu viga. Palun proovi uuesti.</string>
@@ -1142,6 +1173,7 @@
   <string name="AndroidManifest__invite_friends">Kutsu sõpru</string>
   <string name="AndroidManifest_archived_conversations">Arhiveeritud vestlused</string>
   <string name="AndroidManifest_remove_photo">Eemalda pilt</string>
+  <!--Message Requests Megaphone-->
   <!--arrays.xml-->
   <string name="arrays__import_export">Impordi</string>
   <string name="arrays__use_default">Kasuta vaikeväärtust</string>
@@ -1243,6 +1275,7 @@
   <string name="preferences__dark_theme">Tume</string>
   <string name="preferences__appearance">Välimus</string>
   <string name="preferences__theme">Teema</string>
+  <string name="preferences__system_default">Süsteemi vaikeväärtus</string>
   <string name="preferences__default">Vaikimisi</string>
   <string name="preferences__language">Keel</string>
   <string name="preferences__signal_messages_and_calls">Signali sõnumid ja kõned</string>
@@ -1432,11 +1465,22 @@
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">Loo tähtnumbriline PIN</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">Loo numbriline PIN</string>
   <!--CreateKbsPinFragment-->
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
+    <item quantity="one">PIN peab olema vähemalt %1$d tähemärki pikk</item>
+    <item quantity="other">PIN peab olema vähemalt %1$d tähemärki pikk</item>
+  </plurals>
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
+    <item quantity="one">PIN peab olema vähemalt %1$d numbrit pikk</item>
+    <item quantity="other">PIN peab olema vähemalt %1$d numbrit pikk</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Loo uus PIN-kood</string>
   <string name="CreateKbsPinFragment__create_your_pin">Loo enda PIN-kood</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Kinnita enda PIN-kood.</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">PINi loomine ebaõnnestus</string>
+  <string name="ConfirmKbsPinFragment__pin_created">PIN loodud.</string>
   <string name="ConfirmKbsPinFragment__re_enter_pin">Sisesta PIN-kood uuesti</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">PINi loomine…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Tutvustame PIN-koode</string>
   <string name="KbsSplashFragment__learn_more">Uuri täpsemalt</string>
@@ -1464,9 +1508,14 @@
   <string name="RegistrationLockFragment__incorrect_pin">Sobimatu PIN-kood</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Kas unustasid PIN-koodi?</string>
   <!--KBS Megaphone-->
+  <string name="KbsMegaphone__create_a_pin">Loo PIN</string>
+  <string name="KbsMegaphone__create_pin">Loo PIN</string>
   <string name="KbsMegaphone__introducing_pins">Tutvustame PIN-koode</string>
   <string name="KbsMegaphone__update_pin">Uuenda PINi</string>
   <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__add_a_profile_name">Lisa profiilinimi</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">Lisa profiilinimi</string>
+  <string name="ProfileNamesMegaphone__confirm_name">Kinnita nimi</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transpordi ikoon</string>
   <string name="ConversationListFragment_loading">Laadimine…</string>
@@ -1569,17 +1618,5 @@
   <string name="RegistrationLockDialog_reminder">Meeldetuletus:</string>
   <string name="recipient_preferences__about">Teave</string>
   <string name="Recipient_unknown">Tundmatu</string>
-  <string name="MessageRequestBottomView_accept">Nõustun</string>
-  <string name="MessageRequestBottomView_delete">Kustuta</string>
-  <string name="MessageRequestBottomView_block">Blokeeri</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let">Kas soovid kontaktilt %1$s sõnumeid vastu võtta?</string>
-  <string name="MessageRequestProfileView_member_of_one_group">%1$s liige</string>
-  <string name="MessageRequestProfileView_member_of_two_groups">%1$s ja %2$s liige </string>
-  <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s ja %3$s liige</string>
-  <string name="MessageRequestProfileView_members">%1$d liiget</string>
-  <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">%d teine</item>
-    <item quantity="other">%d teist </item>
-  </plurals>
   <!--EOF-->
 </resources>

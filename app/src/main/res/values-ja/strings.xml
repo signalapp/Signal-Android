@@ -201,6 +201,16 @@
   <string name="ConversationActivity_no_results">結果なし</string>
   <string name="ConversationActivity_sticker_pack_installed">ステッカーパックをインストールしました</string>
   <string name="ConversationActivity_new_say_it_with_stickers">新機能！ステッカーを使いましょう</string>
+  <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">お互いにメッセージや通話ができるようになります。</string>
+  <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">グループのメンバーはあなたをもう一度このグループに加えることができます。</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">このグループから退出して、今後メッセージや更新を受信しなくなります。</string>
+  <string name="ConversationActivity_block">ブロック</string>
+  <string name="ConversationActivity_cancel">キャンセル</string>
+  <string name="ConversationActivity_delete_conversation">会話を削除しますか？</string>
+  <string name="ConversationActivity_delete_and_leave_group">グループから退出して削除しますか？</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">この会話はすべての端末から削除されます。</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">このグループから退出し、すべての端末から削除します。</string>
+  <string name="ConversationActivity_delete">削除</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d 件の未読メッセージ</item>
@@ -239,6 +249,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">メッセージを左にスワイプすると素早く返信できます</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">消える (一度しか見れないファイル) メディアファイルは、送信されたら自動的に削除されます。</string>
   <string name="ConversationFragment_you_already_viewed_this_message">このメッセージは閲覧済みです</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">この会話に自分用のメモを追加できます。これはリンクした別の端末にも同期します。</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ブラウザがインストールされていません</string>
   <!--ConversationListFragment-->
@@ -258,6 +269,7 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">%d 件の会話を受信ボックスに移動しました</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_saved">プロフィール名を保存しました。</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">鍵交換のメッセージ</string>
   <!--ConversationListItemAction-->
@@ -365,7 +377,7 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">このグループの現在と将来のメンバー全員にプロフィール名と写真を表示しますか？</string>
   <string name="GroupShareProfileView_make_visible">表示</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">自分</string>
+  <string name="GroupMembersDialog_you">あなた</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">グループアバター</string>
   <string name="CropImageActivity_profile_avatar">アバター</string>
@@ -502,6 +514,17 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">%s に対する安全番号を他のデバイスで確認済みにしました</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s に対する安全番号を未確認にしました</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s に対する安全番号を他のデバイスで未確認にしました</string>
+  <!--MessageRequestBottomView-->
+  <string name="MessageRequestBottomView_accept">承認</string>
+  <string name="MessageRequestBottomView_delete">削除</string>
+  <string name="MessageRequestBottomView_block">ブロック</string>
+  <string name="MessageRequestBottomView_unblock">ブロックを解除</string>
+  <string name="MessageRequestProfileView_member_of_one_group">%1$s のメンバー</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">%1$s と %2$s のメンバー</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">%1$s、%2$s および %3$s のメンバー</string>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="other">他 %d 人</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">パスフレーズが一致しません！</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">古いパスフレーズが違います！</string>
@@ -554,6 +577,8 @@
   <string name="ReactionsBottomSheetDialogFragment_all">絵文字合計 %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
+  <!--ReactionsRecipientAdapter-->
+  <string name="ReactionsRecipientAdapter_you">あなた</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">この連絡先をブロックしますか？</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">今後この連絡先からはメッセージや通話を受信しなくなります。</string>
@@ -676,6 +701,13 @@
   <string name="StickerPackPreviewActivity_remove">削除</string>
   <string name="StickerPackPreviewActivity_stickers">ステッカー</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">ステッカーパックを読み込めませんでした</string>
+  <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_edit">編集</string>
+  <string name="SubmitDebugLogActivity_done">完了</string>
+  <string name="SubmitDebugLogActivity_submit">送信</string>
+  <string name="SubmitDebugLogActivity_success">成功しました！</string>
+  <string name="SubmitDebugLogActivity_copied_to_clipboard">クリップボードにコピーしました</string>
+  <string name="SubmitDebugLogActivity_share">共有する</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">グループが更新されました</string>
   <string name="ThreadRecord_left_the_group">グループを抜けました</string>
@@ -697,6 +729,7 @@
   <string name="ThreadRecord_you_marked_verified">確認済みにしました</string>
   <string name="ThreadRecord_you_marked_unverified">未確認にしました</string>
   <string name="ThreadRecord_message_could_not_be_processed">メッセージを処理できませんでした</string>
+  <string name="ThreadRecord_message_request">メッセージリクエスト</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal アップデート</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal の最新版をご利用いただけます。タップしてアップデートしてください。</string>
@@ -1005,9 +1038,6 @@
   <string name="log_submit_activity__this_log_will_be_posted_online">このログはコントリビュータに公開されます。送信する前に内容を確認および編集できます。</string>
   <string name="log_submit_activity__loading_logs">ログを読み込んでいます…</string>
   <string name="log_submit_activity__uploading_logs">ログをアップロードしています…</string>
-  <string name="log_submit_activity__success">成功しました！</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">この URL をコピーしてバグレポートやサポートメールに貼り付けてください:\n\n<b>%1$s</b>\n</string>
-  <string name="log_submit_activity__copied_to_clipboard">クリップボードにコピーしました</string>
   <string name="log_submit_activity__choose_email_app">メールアプリを選択</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">私のアプリ %1$s のログを確認して下さい</string>
   <string name="log_submit_activity__network_failure">ネットワークエラー。もう一度お試しください。</string>
@@ -1110,6 +1140,7 @@
   <string name="AndroidManifest__invite_friends">友達を招待する</string>
   <string name="AndroidManifest_archived_conversations">アーカイブ済みの会話</string>
   <string name="AndroidManifest_remove_photo">写真を消去</string>
+  <!--Message Requests Megaphone-->
   <!--arrays.xml-->
   <string name="arrays__import_export">インポート</string>
   <string name="arrays__use_default">既定を使う</string>
@@ -1589,16 +1620,5 @@
   <string name="RegistrationLockDialog_reminder">リマインダー:</string>
   <string name="recipient_preferences__about">コンタクト情報</string>
   <string name="Recipient_unknown">不明</string>
-  <string name="MessageRequestBottomView_accept">承認</string>
-  <string name="MessageRequestBottomView_delete">削除</string>
-  <string name="MessageRequestBottomView_block">ブロック</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let">%1$s からメッセージを受信しますか？</string>
-  <string name="MessageRequestProfileView_member_of_one_group">%1$s のメンバー</string>
-  <string name="MessageRequestProfileView_member_of_two_groups">%1$s と %2$s のメンバー</string>
-  <string name="MessageRequestProfileView_member_of_many_groups">%1$s、%2$s および %3$s のメンバー</string>
-  <string name="MessageRequestProfileView_members">%1$d のメンバー</string>
-  <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="other">他 %d 人</item>
-  </plurals>
   <!--EOF-->
 </resources>

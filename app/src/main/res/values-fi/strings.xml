@@ -204,6 +204,22 @@
   <string name="ConversationActivity_no_results">Ei hakutuloksia</string>
   <string name="ConversationActivity_sticker_pack_installed">Tarrapaketti asennettu</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Uutuus! Sano se tarroilla</string>
+  <string name="ConversationActivity_block_s">Estä %1$s?</string>
+  <string name="ConversationActivity_block_and_leave_s">Estä ja lähde ryhmästä %1$s?</string>
+  <string name="ConversationActivity_unblock_s">Poista %1$s:n esto?</string>
+  <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">Voitte jatkossa lähettää viestejä ja soittaa toisillenne.</string>
+  <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">Ryhmän jäsenet voivat lisätä sinut takaisin tähän ryhmään.</string>
+  <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">Estetyt henkilöt eivät pysty soittamaan sinulle tai lähettämään sinulle viestejä.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">Lähdet tästä ryhmästä etkä enää vastaanota viestejä tai päivityksiä.</string>
+  <string name="ConversationActivity_block">Estä</string>
+  <string name="ConversationActivity_block_and_delete">Estä ja poista</string>
+  <string name="ConversationActivity_cancel">Peruuta</string>
+  <string name="ConversationActivity_delete_conversation">Poistetaanko keskustelu?</string>
+  <string name="ConversationActivity_delete_and_leave_group">Poista ja lähde ryhmästä?</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Tämä keskustelu poistetaan kaikilta laitteiltasi.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Lähdet tästä ryhmästä ja se poistetaan kaikilta laitteiltasi.</string>
+  <string name="ConversationActivity_delete">Poista</string>
+  <string name="ConversationActivity_delete_and_leave">Poista ja lähde</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d lukematon viesti</item>
@@ -249,6 +265,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Voit pyyhkäistä vasemmalle missä tahansa viestissä vastataksesi nopeasti</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Lähtevät kerran katsottavat mediatiedostot poistetaan automaattisesti lähettämisen jälkeen</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Olet jo katsonut tämän viestin</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Voit lisätä itsellesi muistiinpanoja tähän keskusteluun. Jos tililläsi on linkitettyjä laitteita, uudet muistiinpanot synkronoidaan.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Laitteessasi ei ole verkkoselainta asennettuna.</string>
   <!--ConversationListFragment-->
@@ -272,6 +289,8 @@
     <item quantity="one">Keskustelu siirretty postilaatikkoon</item>
     <item quantity="other">%d keskustelua siirretty postilaatikkoon</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_created">Profiilinimesi on luotu.</string>
+  <string name="ConversationListFragment__your_profile_name_has_been_saved">Profiilinimesi on tallennettu.</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Avaintenvaihtoviesti</string>
   <!--ConversationListItemAction-->
@@ -380,7 +399,7 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Haluatko tehdä profiilikuvasi ja -nimesi näkyväksi kaikille tämän ryhmän nykyisille ja tuleville jäsenille?</string>
   <string name="GroupShareProfileView_make_visible">Haluan</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">Minä</string>
+  <string name="GroupMembersDialog_you">Sinä</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Ryhmän kuvake</string>
   <string name="CropImageActivity_profile_avatar">Kuvake</string>
@@ -524,6 +543,26 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Merkitsit turvanumerosi yhteystiedon %s kanssa varmennetuksi toisesta laitteestasi.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Merkitsit turvanumerosi yhteystiedon %s kanssa varmentamattomaksi.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Merkitsit turvanumerosi yhteystiedon %s kanssa varmentamattomaksi toisesta laitteesta.</string>
+  <!--MessageRequestBottomView-->
+  <string name="MessageRequestBottomView_accept">Hyväksy</string>
+  <string name="MessageRequestBottomView_delete">Poista</string>
+  <string name="MessageRequestBottomView_block">Estä</string>
+  <string name="MessageRequestBottomView_unblock">Poista esto</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Haluatko antaa henkilön %1$s viestiä sinulle? Hän ei tiedä, että olet nähnyt hänen viestinsä, ennen kuin hyväksyt.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Haluatko liittyä ryhmään %1$s? He eivät tiedä, että olet nähnyt heidän viestinsä, ennen kuin hyväksyt.</string>
+  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Poista %1$s:n esto voidaksesi lähettää viestejä ja soittaa toisillenne.</string>
+  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Poista esto, jotta ryhmän jäsenet voivat lisätä sinut takaisin ryhmään.</string>
+  <string name="MessageRequestProfileView_member_of_one_group">Jäsen ryhmässä %1$s</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">Jäsen ryhmissä %1$s ja %2$s</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">Jäsen ryhmissä %1$s, %2$s ja %3$s</string>
+  <plurals name="MessageRequestProfileView_members">
+    <item quantity="one">%1$d jäsen</item>
+    <item quantity="other">%1$d jäsentä</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="one">%d muuta</item>
+    <item quantity="other">%d muuta</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Salalauseet eivät täsmää!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Vanha salalause on väärin!</string>
@@ -576,6 +615,8 @@
   <string name="ReactionsBottomSheetDialogFragment_all">Kaikki %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
+  <!--ReactionsRecipientAdapter-->
+  <string name="ReactionsRecipientAdapter_you">Sinä</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Estä tämä yhteystieto?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Jatkossa et enää saa viestejä etkä puheluita tältä yhteystiedolta.</string>
@@ -704,6 +745,17 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="StickerPackPreviewActivity_remove">Poista</string>
   <string name="StickerPackPreviewActivity_stickers">Tarrat</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Tarrapaketin lataaminen epäonnistui</string>
+  <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_edit">Muokkaa</string>
+  <string name="SubmitDebugLogActivity_done">Valmis</string>
+  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Napauta riviä poistaaksesi sen</string>
+  <string name="SubmitDebugLogActivity_submit">Lähetä</string>
+  <string name="SubmitDebugLogActivity_failed_to_submit_logs">Lokin lähettäminen epäonnistui</string>
+  <string name="SubmitDebugLogActivity_success">Onnistui!</string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopioi tämä URL ja lisää se ongelmaraporttiin tai tukisähköpostiisi:\n\n<b>%1$s</b></string>
+  <string name="SubmitDebugLogActivity_copied_to_clipboard">Kopioitu leikepöydälle</string>
+  <string name="SubmitDebugLogActivity_ok">Selvä</string>
+  <string name="SubmitDebugLogActivity_share">Jaa</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Ryhmä päivitetty</string>
   <string name="ThreadRecord_left_the_group">Poistui ryhmästä</string>
@@ -725,6 +777,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ThreadRecord_you_marked_verified">Merkitsit varmennetuksi.</string>
   <string name="ThreadRecord_you_marked_unverified">Merkitsit varmentamattomaksi.</string>
   <string name="ThreadRecord_message_could_not_be_processed">Viestin käsittely epäonnistui</string>
+  <string name="ThreadRecord_message_request">Viestipyyntö</string>
+  <string name="ThreadRecord_s_added_you_to_the_group">%1$s lisäsi sinut ryhmään</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal-päivitys</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Uusi versio Signalista on saatavilla. Päivitä napauttamalla.</string>
@@ -1040,9 +1094,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="log_submit_activity__this_log_will_be_posted_online">Tämä loki lähetetään Internetiin, jossa se on julkisesti kehittäjien nähtävillä. Voit tutkia ja muokata sitä ennen kuin lähetät sen.</string>
   <string name="log_submit_activity__loading_logs">Ladataan lokeja…</string>
   <string name="log_submit_activity__uploading_logs">Lähetetään lokeja…</string>
-  <string name="log_submit_activity__success">Onnistui!</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Kopioi tämä URL ja liitä se bugiraporttiisi tai lähetä se tuen sähköpostiin:\n\n%1$s\n</string>
-  <string name="log_submit_activity__copied_to_clipboard">Kopioitu leikepöydälle</string>
   <string name="log_submit_activity__choose_email_app">Valitse sähköpostiohjelma</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Please review this log from my app: %1$s</string>
   <string name="log_submit_activity__network_failure">Verkkovirhe. Yritä uudelleen.</string>
@@ -1146,6 +1197,13 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="AndroidManifest__invite_friends">Kutsu ystäviä</string>
   <string name="AndroidManifest_archived_conversations">Arkistoidut keskustelut</string>
   <string name="AndroidManifest_remove_photo">Poista kuva</string>
+  <!--Message Requests Megaphone-->
+  <string name="MessageRequestsMegaphone__message_requests">Viestipyynnöt</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Käyttäjät voivat nyt valita, hyväksyvätkö uuden keskustelun. Profiilinimet kertovat ihmisille, kuka viestii heille.</string>
+  <string name="MessageRequestsMegaphone__add_profile_name">Lisää profiilinimi</string>
+  <string name="MessageRequestsMegaphone__new_message_requests">Uutta: Viestipyynnöt</string>
+  <string name="MessageRequestsMegaphone__add_name">Lisää nimi</string>
+  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Voit nyt valita, hyväksytkö uuden keskustelun. Tulet näkemään vaihtoehdot \"hyväksy\", \"poista\" tai \"estä\".</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Tuo</string>
   <string name="arrays__use_default">Käytä oletusta</string>
@@ -1245,9 +1303,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__linked_devices">Yhdistetyt laitteet</string>
   <string name="preferences__light_theme">Vaalea</string>
   <string name="preferences__dark_theme">Tumma</string>
-  <string name="preferences__system_theme">Järjestelmän oletus</string>
   <string name="preferences__appearance">Ulkonäkö</string>
   <string name="preferences__theme">Teema</string>
+  <string name="preferences__system_default">Järjestelmän oletus</string>
   <string name="preferences__default">Oletus</string>
   <string name="preferences__language">Kieli</string>
   <string name="preferences__signal_messages_and_calls">Signal-viestit ja -puhelut</string>
@@ -1639,17 +1697,5 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="RegistrationLockDialog_reminder">Muistutus:</string>
   <string name="recipient_preferences__about">Tiedot</string>
   <string name="Recipient_unknown">Tuntematon</string>
-  <string name="MessageRequestBottomView_accept">Hyväksy</string>
-  <string name="MessageRequestBottomView_delete">Poista</string>
-  <string name="MessageRequestBottomView_block">Estä</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let">Haluatko vastaanottaa viestejä yhteystiedolta %1$s?</string>
-  <string name="MessageRequestProfileView_member_of_one_group">Jäsen ryhmässä %1$s</string>
-  <string name="MessageRequestProfileView_member_of_two_groups">Jäsen ryhmissä %1$s ja %2$s</string>
-  <string name="MessageRequestProfileView_member_of_many_groups">Jäsen ryhmissä %1$s, %2$s ja %3$s</string>
-  <string name="MessageRequestProfileView_members">%1$d jäsentä</string>
-  <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">%d muuta</item>
-    <item quantity="other">%d muuta</item>
-  </plurals>
   <!--EOF-->
 </resources>

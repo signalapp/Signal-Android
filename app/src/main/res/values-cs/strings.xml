@@ -5,7 +5,7 @@
   <string name="delete">Smazat</string>
   <string name="please_wait">Prosím čekejte…</string>
   <string name="save">Uložit</string>
-  <string name="note_to_self">Poznámka sobě</string>
+  <string name="note_to_self">Poznámka pro mne</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nová zpráva</string>
   <!--AlbumThumbnailView-->
@@ -210,6 +210,22 @@
   <string name="ConversationActivity_no_results">Žádné výsledky.</string>
   <string name="ConversationActivity_sticker_pack_installed">Balíček nálepek nainstalován</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Novinka! Řekněte to nálepkou</string>
+  <string name="ConversationActivity_block_s">Zablokovat %1$s?</string>
+  <string name="ConversationActivity_block_and_leave_s">Zablokovat a opustit %1$s?</string>
+  <string name="ConversationActivity_unblock_s">Odblokovat %1$s?</string>
+  <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">Budete moci vzájemně si posílat zprávy a volat.</string>
+  <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">Členové skupiny budou moci přidat vás znovu do této skupiny.</string>
+  <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">Zablokovaní lidé nebudou moci vám volat ani posílat zprávy.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">Opustíte tuto skupinu a nebudete již dostávat zprávy ani aktualizace.</string>
+  <string name="ConversationActivity_block">Blokovat</string>
+  <string name="ConversationActivity_block_and_delete">Zablokovat a smazat</string>
+  <string name="ConversationActivity_cancel">Storno</string>
+  <string name="ConversationActivity_delete_conversation">Smazat konverzaci?</string>
+  <string name="ConversationActivity_delete_and_leave_group">Smazat a opustit skupinu?</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Tato konverzace bude smazána ze všech vašich zařízení.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Opustíte tuto skupinu a bude smazána ze všech vašich zařízení.</string>
+  <string name="ConversationActivity_delete">Smazat</string>
+  <string name="ConversationActivity_delete_and_leave">Smazat a opustit</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nepřečtená zpráva</item>
@@ -269,6 +285,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Chcete-li rychle odpovědět, přejeďte prstem na zprávě do leva</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Odchozí soubory médií pro jednorázové zobrazení jsou po odeslání automaticky odstraněny</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Tuto zprávu jste už zobrazili</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">V této konverzaci můžete přidávat poznámky pro sebe. Pokud má váš účet nějaká propojená zařízení, budou se nové poznámky synchronizovat.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nemáte na vašem zařízení nainstalován žádný prohlížeč.</string>
   <!--ConversationListFragment-->
@@ -300,6 +317,8 @@
     <item quantity="many">Přesunuto %d konverzací do složky příchozích zpráv</item>
     <item quantity="other">Přesunuto %d konverzací do složky příchozích zpráv</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_created">Vaše profilové jméno bylo vytvořeno.</string>
+  <string name="ConversationListFragment__your_profile_name_has_been_saved">Vaše profilové jméno bylo uloženo.</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Zpráva o výměně klíčů</string>
   <!--ConversationListItemAction-->
@@ -348,6 +367,7 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Toto zařízení nepodporuje službu Google Play. Klepnutím zakážete systémové optimalizace baterie, které způsobují nemožnost Signalu přijímat zprávy v době nečinnosti.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Sdílet s</string>
+  <string name="ShareActivity_multiple_attachments_are_only_supported">Vícero příloh je podporováno pouze pro obrázky a videa</string>
   <!--ExperienceUpgradeActivity-->
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Vítejte v Signalu.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure a RedPhone jsou nyní jednou platformou pro důvěrnou komunikaci: Signal.</string>
@@ -407,7 +427,7 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Chcete, aby vaše profilové jméno a fotografie byly viditelné všem současným i budoucím členům této skupiny?</string>
   <string name="GroupShareProfileView_make_visible">Zapnout viditelnost</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">Já</string>
+  <string name="GroupMembersDialog_you">Vy</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Obrázek skupiny</string>
   <string name="CropImageActivity_profile_avatar">Obrázek</string>
@@ -505,6 +525,9 @@
   <string name="Megaphones_introducing_reactions">Představujeme reakce</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Klepněte a podržte jakoukoli zprávu pro rychlé sdílení toho, jak se cítíte.</string>
   <string name="Megaphones_remind_me_later">Připomenout později</string>
+  <string name="Megaphones_verify_your_signal_pin">Ověřit váš Signal PIN</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Budeme vás příležitostně žádat o ověření vašeho PIN, abyste si jej zapamatovali.</string>
+  <string name="Megaphones_verify_pin">Ověřit PIN</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Probíhá Signal volání</string>
   <string name="NotificationBarManager__establishing_signal_call">Navazuji Signal hovor</string>
@@ -562,6 +585,30 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Označili jste na jiném zařízení vaše bezpečnostní kódy pro komunikaci s %s jako ověřené.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Označili jste vaše bezpečnostní kódy pro komunikaci s %s jako neověřené.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Označili jste na jiném zařízení vaše bezpečnostní kódy pro komunikaci s %s jako neověřené.</string>
+  <!--MessageRequestBottomView-->
+  <string name="MessageRequestBottomView_accept">Přijmout</string>
+  <string name="MessageRequestBottomView_delete">Smazat</string>
+  <string name="MessageRequestBottomView_block">Blokovat</string>
+  <string name="MessageRequestBottomView_unblock">Odblokovat</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Chcete %1$s umožnit posílat vám zprávy? Dokud je nepřijmete, nebudou vědět, že jste jejich zprávy viděl.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Chcete se připojit ke skupině %1$s? Dokud je nepřijmete, nebudou vědět, že jste jejich zprávy viděl.</string>
+  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Odblokovat %1$s pro vzájemné zasílání zpráv a volání.</string>
+  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Odblokováním umožníte členům skupiny přidat vás znovu do této skupiny.</string>
+  <string name="MessageRequestProfileView_member_of_one_group">Člen %1$s</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">Člen %1$s a %2$s</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">Člen %1$s, %2$s a %3$s</string>
+  <plurals name="MessageRequestProfileView_members">
+    <item quantity="one">%1$d člen</item>
+    <item quantity="few">%1$d členové</item>
+    <item quantity="many">%1$d členů</item>
+    <item quantity="other">%1$d členů</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="one">%dostatní</item>
+    <item quantity="few">%dostatních</item>
+    <item quantity="many">%dostatních</item>
+    <item quantity="other">%dostatních</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Hesla nejsou stejná!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Chybné staré heslo!</string>
@@ -614,6 +661,8 @@
   <string name="ReactionsBottomSheetDialogFragment_all">Vše %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
+  <!--ReactionsRecipientAdapter-->
+  <string name="ReactionsRecipientAdapter_you">Vy</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Zablokovat tento kontakt?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Již nebudete přijímat zprávy nebo hovory od tohoto kontaktu.</string>
@@ -709,6 +758,11 @@ telefonní číslo
   <string name="SharedContactView_invite_to_signal">Pozvat do Signalu</string>
   <string name="SharedContactView_message">Zpráva Signal</string>
   <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">Připomeneme se vám později.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Připomeneme se vám zase zítra.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Připomeneme se vám zase za několik dní.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Připomeneme se vám zase za týden.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Připomeneme se vám zase za pár týdnů.</string>
   <!--Slide-->
   <string name="Slide_image">Obrázek</string>
   <string name="Slide_sticker">Nálepka</string>
@@ -744,6 +798,17 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="StickerPackPreviewActivity_remove">Odebrat</string>
   <string name="StickerPackPreviewActivity_stickers">Nálepky</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Nepodařilo se stáhnout balíček nálepek</string>
+  <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_edit">Upravit</string>
+  <string name="SubmitDebugLogActivity_done">Hotovo</string>
+  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Klepnutím na řádek jej smažete</string>
+  <string name="SubmitDebugLogActivity_submit">Odeslat</string>
+  <string name="SubmitDebugLogActivity_failed_to_submit_logs">Odesílání logů selhalo</string>
+  <string name="SubmitDebugLogActivity_success">Úspěšně dokončeno!</string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Zkopírujte tento URL a přidejte jej do chybového hlášení nebo e-mailu podpoře:\n\n<b>%1$s</b></string>
+  <string name="SubmitDebugLogActivity_copied_to_clipboard">Zkopírováno do schránky</string>
+  <string name="SubmitDebugLogActivity_ok">Ok</string>
+  <string name="SubmitDebugLogActivity_share">Sdílet</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Skupina upravena</string>
   <string name="ThreadRecord_left_the_group">Opustil skupinu.</string>
@@ -765,6 +830,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ThreadRecord_you_marked_verified">Označen jako ověřený</string>
   <string name="ThreadRecord_you_marked_unverified">Označen jako neověřený</string>
   <string name="ThreadRecord_message_could_not_be_processed">Zprávu nelze zpracovat</string>
+  <string name="ThreadRecord_message_request">Požadavek na zprávu</string>
+  <string name="ThreadRecord_s_added_you_to_the_group">%1$s vás přidal do skupiny</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Aktualizace Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Je k dispozici nová verze Signal, klikněte pro aktualizaci</string>
@@ -875,7 +942,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="NotificationChannel_group_messages">Zprávy</string>
   <string name="NotificationChannel_missing_display_name">Neznámý</string>
   <!--ProfileEditNameFragment-->
-  <string name="ProfileEditNameFragment_successfully_set_profile_name">Název profilu byl úspěšně nastaven.</string>
+  <string name="ProfileEditNameFragment_successfully_set_profile_name">Profilové jméno bylo úspěšně nastaveno.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">Došlo k chybě v síti.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Rychlá odpověď není dostupná, pokud je Signal uzamčen!</string>
@@ -1094,9 +1161,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="log_submit_activity__this_log_will_be_posted_online">Tento log bude odeslán a zveřejněn online pro vývojáře. Před odesláním si můžete log prohlédnout či editovat.</string>
   <string name="log_submit_activity__loading_logs">Načítám logy…</string>
   <string name="log_submit_activity__uploading_logs">Odesílám logy…</string>
-  <string name="log_submit_activity__success">Úspěšně dokončeno!</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Zkopírujte tento URL a doplňte jej do hlášení problému nebo e-mailu pro podporu:\n\n<b>%1$s</b>\n</string>
-  <string name="log_submit_activity__copied_to_clipboard">Zkopírováno do schránky</string>
   <string name="log_submit_activity__choose_email_app">Zvolte e-mailovou aplikaci</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Prosím zkontrolujte tento log z mé aplikace: %1$s</string>
   <string name="log_submit_activity__network_failure">Chyba síťové komunikace. Prosím zkuste to znovu.</string>
@@ -1202,6 +1266,13 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="AndroidManifest__invite_friends">Pozvat přátele</string>
   <string name="AndroidManifest_archived_conversations">Archivované konverzace</string>
   <string name="AndroidManifest_remove_photo">Odebrat fotografii</string>
+  <!--Message Requests Megaphone-->
+  <string name="MessageRequestsMegaphone__message_requests">Žádosti o zprávu</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Uživatelé si mohou nyní vybrat, zda novou konverzaci přijmou. Profilová jména umožní lidem poznat, kdo jim zprávy posílá.</string>
+  <string name="MessageRequestsMegaphone__add_profile_name">Přidat profilové jméno</string>
+  <string name="MessageRequestsMegaphone__new_message_requests">Nové: Žádosti o zprávu</string>
+  <string name="MessageRequestsMegaphone__add_name">Přidat jméno</string>
+  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Nyní si můžete vybrat, zda novou konverzaci přijmete. Máte možnost \"Přijmout\", \"Smazat\" nebo \"Zablokovat\".</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Import</string>
   <string name="arrays__use_default">Použít výchozí</string>
@@ -1305,6 +1376,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__dark_theme">Tmavý</string>
   <string name="preferences__appearance">Vzhled</string>
   <string name="preferences__theme">Motiv</string>
+  <string name="preferences__system_default">Podle systému</string>
   <string name="preferences__default">Výchozí</string>
   <string name="preferences__language">Jazyk</string>
   <string name="preferences__signal_messages_and_calls">Signal zprávy a volání</string>
@@ -1599,6 +1671,12 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Připomeneme se vám později. Vytvoření PIN bude povinné během %1$d dnů.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Připomeneme se vám později. Potvrzení vašeho PIN bude povinné během %1$d  dnů.</string>
   <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__add_a_profile_name">Přidat profilové jméno</string>
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Toto bude zobrazeno, když zahájíte novou konverzaci nebo při sdílení.</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">Přidat profilové jméno</string>
+  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Potvrdit vaše profilové jméno</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Váš profil může nyní obsahovat volitelné příjmení.</string>
+  <string name="ProfileNamesMegaphone__confirm_name">Potvrdit jméno</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona přenosu</string>
   <string name="ConversationListFragment_loading">Načítání…</string>
@@ -1666,6 +1744,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Změnit</string>
   <string name="preferences_app_protection__create">Vytvořit</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account">PIN přidává další vrstvu zabezpečení vašeho účtu. Budete o něj požádán při registraci vašeho telefonního čísla do Signalu. Pokud váš PIN zapomenete, bude váš účet uzamčen po dobu 7 dní.</string>
   <string name="AppProtectionPreferenceFragment_none">Nic</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN zámku registrace není stejný jako přijatý SMS kontrolní kód, který jste před chvílí obdrželi. Prosím zadejte PIN, který jste dříve nastavili v aplikaci.</string>
   <string name="registration_activity__registration_lock_pin">PIN zámku registrace</string>
@@ -1707,19 +1786,5 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="RegistrationLockDialog_reminder">Připomínka:</string>
   <string name="recipient_preferences__about">Info</string>
   <string name="Recipient_unknown">Neznámý</string>
-  <string name="MessageRequestBottomView_accept">Přijmout</string>
-  <string name="MessageRequestBottomView_delete">Smazat</string>
-  <string name="MessageRequestBottomView_block">Blokovat</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let">Chcete přijímat zprávy od %1$s?</string>
-  <string name="MessageRequestProfileView_member_of_one_group">Člen %1$s</string>
-  <string name="MessageRequestProfileView_member_of_two_groups">Člen %1$s a %2$s</string>
-  <string name="MessageRequestProfileView_member_of_many_groups">Člen %1$s, %2$s a %3$s</string>
-  <string name="MessageRequestProfileView_members">%1$dčlenů</string>
-  <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">%dostatní</item>
-    <item quantity="few">%dostatních</item>
-    <item quantity="many">%dostatních</item>
-    <item quantity="other">%dostatních</item>
-  </plurals>
   <!--EOF-->
 </resources>

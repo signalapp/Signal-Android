@@ -202,6 +202,10 @@
   <string name="ConversationActivity_no_results">کوئی نتیجہ نہیں</string>
   <string name="ConversationActivity_sticker_pack_installed">اسٹیکر پیک نصب ہو گیا ہے</string>
   <string name="ConversationActivity_new_say_it_with_stickers">نیا!اسٹیکرز کے ساتھ کہو</string>
+  <string name="ConversationActivity_block">بلاک</string>
+  <string name="ConversationActivity_cancel">منسوخ کریں</string>
+  <string name="ConversationActivity_delete_conversation">گفتگو حذف کر دیں؟</string>
+  <string name="ConversationActivity_delete">حذف کریں</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%dنہ پڑھے ہوئے پیغامات</item>
@@ -377,7 +381,7 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">کیا آپ اپنی پروفائل کا نام اور تصویر اس گروپ کے تمام موجودہ اور مستقبل کے اراکین کو دیکھانا چاہتے ہیں؟</string>
   <string name="GroupShareProfileView_make_visible">دکھائیں</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">مجھے</string>
+  <string name="GroupMembersDialog_you">آپ</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">اوتار گروپ</string>
   <string name="CropImageActivity_profile_avatar">اوتار</string>
@@ -516,6 +520,18 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">آپ نے دوسری ڈیوائس سے تصدیق شدہ اپنے حفاظتی نمبر کو %sکے ساتھ نشان لگایا۔</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">آپ نے غیر تصدیق شدہ اپنے حفاظتی نمبر کو %s کے ساتھ نشان لگایا</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">آپ نے دوسری ڈیوائس سے غیر تصدیق شدہ اپنے حفاظتی نمبر کو %sکے ساتھ نشان لگایا</string>
+  <!--MessageRequestBottomView-->
+  <string name="MessageRequestBottomView_accept">قبول کریں</string>
+  <string name="MessageRequestBottomView_delete">حذف کریں</string>
+  <string name="MessageRequestBottomView_block">بلاک</string>
+  <string name="MessageRequestBottomView_unblock">ان بلاک</string>
+  <string name="MessageRequestProfileView_member_of_one_group">کا رکن%1$s</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">ممبر%1$s اور%2$s</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">کے ممبر%1$s ، %2$sاور%3$s</string>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="one">%dدوسروں</item>
+    <item quantity="other">%d دوسرے</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">پاسفریز میچ نہیں ہوا!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">پرانا پاسفریز غلط ہے!</string>
@@ -566,6 +582,8 @@
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">اوپس ، پلے سٹور ایپ آپ کی ڈیوائس پر انسٹال ہوتے دکھائی نہیں دیتی ہے۔</string>
   <!--ReactionsBottomSheetDialogFragment-->
   <!--ReactionsConversationView-->
+  <!--ReactionsRecipientAdapter-->
+  <string name="ReactionsRecipientAdapter_you">آپ</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">اس رابطے کو بلاک کریں؟</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">آپ کو مزید اس رابطہ سے پیغامات اور کالیں وصول نہیں ہونگے۔</string>
@@ -685,6 +703,13 @@
   <string name="StickerPackPreviewActivity_remove">مٹا دیں</string>
   <string name="StickerPackPreviewActivity_stickers">اسٹیکرز</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">اسٹیکر پیک لوڈ ہونے میں ناکامی</string>
+  <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_edit">ترتیب دیں</string>
+  <string name="SubmitDebugLogActivity_done">ہو گیا</string>
+  <string name="SubmitDebugLogActivity_submit">جمع کرائیں</string>
+  <string name="SubmitDebugLogActivity_success">کامیابی</string>
+  <string name="SubmitDebugLogActivity_copied_to_clipboard">کلپ بورڈ کو کاپی کریں</string>
+  <string name="SubmitDebugLogActivity_share">اشتراک کریں</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">گروپ کی تجدید ہوئی</string>
   <string name="ThreadRecord_left_the_group">گروپ چھوڑ دیا</string>
@@ -706,6 +731,7 @@
   <string name="ThreadRecord_you_marked_verified">آپ تصدیق کے طور پر نشان لگائیں</string>
   <string name="ThreadRecord_you_marked_unverified">آپ نے غیر تصدیق شدہ پر نشان لگایا ہے</string>
   <string name="ThreadRecord_message_could_not_be_processed">پیغام آگے نہیں بڑھ سکتا</string>
+  <string name="ThreadRecord_message_request">پیغام کی درخواست</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal اپ ڈیٹ</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal کا نیا ورژن دستیاب ہے، تجدید کے لیے ٹیپ کریں</string>
@@ -1021,10 +1047,6 @@
   <string name="log_submit_activity__this_log_will_be_posted_online">یہ لاگ ان کو دیکھنے کے لئے عوامی طور پر آن لائن شائع کیا جائے گا ، آپ جمع کرانے سے پہلے اس کی جانچ اور ترمیم کرسکتے ہیں۔</string>
   <string name="log_submit_activity__loading_logs">لاگز لوڈ ہو رہے ہیں۔۔۔</string>
   <string name="log_submit_activity__uploading_logs">لاگز اپ لوڈ ہو رہے ہیں۔۔۔</string>
-  <string name="log_submit_activity__success">کامیاب ہونا!</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">اس یو آر ایل کو کاپی کریں اور اسے اپنی ایشو مسئلے کی رپورٹ یا سپورٹ ای میل میں شامل کریں:/n/n/n <b>%1$s</b> 
-</string>
-  <string name="log_submit_activity__copied_to_clipboard">کلپ بورڈ کو کاپی کریں</string>
   <string name="log_submit_activity__choose_email_app">ای میل ایپ کا انتخاب کریں</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">براہ کرم میری ایپ سے اس لاگ کا جائزہ لیں: %1$s</string>
   <string name="log_submit_activity__network_failure">نیٹ ورک میں ناکامی۔ برائے مہربانی دوبارہ کوشش کریں۔</string>
@@ -1128,6 +1150,7 @@
   <string name="AndroidManifest__invite_friends">دوستوں کو مدعو کریں</string>
   <string name="AndroidManifest_archived_conversations">محفوظ شدہ گفتگو</string>
   <string name="AndroidManifest_remove_photo">تصویر ہٹائیں</string>
+  <!--Message Requests Megaphone-->
   <!--arrays.xml-->
   <string name="arrays__import_export">درآمد کرنا</string>
   <string name="arrays__use_default">پہلے سے طے شدہ استعمال کریں</string>
@@ -1560,17 +1583,5 @@
   <string name="RegistrationLockDialog_reminder">یاد دہانی کرانا:</string>
   <string name="recipient_preferences__about">متعلق</string>
   <string name="Recipient_unknown">نامعلوم</string>
-  <string name="MessageRequestBottomView_accept">قبول کریں</string>
-  <string name="MessageRequestBottomView_delete">حذف کریں</string>
-  <string name="MessageRequestBottomView_block">بلاک</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let">کیا آپ %1$sپیغامات وصول کرنا چاہتے ہیں؟</string>
-  <string name="MessageRequestProfileView_member_of_one_group">کا رکن%1$s</string>
-  <string name="MessageRequestProfileView_member_of_two_groups">ممبر%1$s اور%2$s</string>
-  <string name="MessageRequestProfileView_member_of_many_groups">کے ممبر%1$s ، %2$sاور%3$s</string>
-  <string name="MessageRequestProfileView_members">%1$dممبران</string>
-  <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">%dدوسروں</item>
-    <item quantity="other">%d دوسرے</item>
-  </plurals>
   <!--EOF-->
 </resources>

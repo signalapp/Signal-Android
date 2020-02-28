@@ -210,6 +210,22 @@
   <string name="ConversationActivity_no_results">Nėra rezultatų</string>
   <string name="ConversationActivity_sticker_pack_installed">Lipdukų paketas įdiegtas</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Nauja! Išsakykite tai, naudodami lipdukus</string>
+  <string name="ConversationActivity_block_s">Užblokuoti %1$s?</string>
+  <string name="ConversationActivity_block_and_leave_s">Užblokuoti ir išeiti iš %1$s?</string>
+  <string name="ConversationActivity_unblock_s">Atblokuoti %1$s?</string>
+  <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">Galėsite vieni kitiems rašyti žinutes bei skambinti.</string>
+  <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">Grupės dalyviai galės ir vėl jus pridėti į šią grupę.</string>
+  <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">Užblokuoti žmonės negalės jums skambinti ar siųsti žinučių.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">Jūs išeisite iš šios grupės ir daugiau nebegausite žinučių ar atnaujinimų.</string>
+  <string name="ConversationActivity_block">Užblokuoti</string>
+  <string name="ConversationActivity_block_and_delete">Užblokuoti ir ištrinti</string>
+  <string name="ConversationActivity_cancel">Atsisakyti</string>
+  <string name="ConversationActivity_delete_conversation">Ištrinti pokalbį?</string>
+  <string name="ConversationActivity_delete_and_leave_group">Ištrinti ir išeiti iš grupės?</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Šis pokalbis bus ištrintas iš visų jūsų įrenginių.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Jūs išeisite iš šios grupės ir ji bus ištrinta iš visų jūsų įrenginių.</string>
+  <string name="ConversationActivity_delete">Ištrinti</string>
+  <string name="ConversationActivity_delete_and_leave">Ištrinti ir išeiti</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neskaityta žinutė</item>
@@ -269,6 +285,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Norėdami greitai atsakyti į žinutę, galite perbraukti ją į kairę</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Išsiunčiami vienkartinės peržiūros medijos failai, juos išsiuntus, yra automatiškai pašalinami</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Jūs jau žiūrėjote šią žinutę</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Šiame pokalbyje galite rašyti sau pastabas. Jeigu yra su paskyra susietų įrenginių, naujos pastabos bus sinchronizuotos.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Jūsų įrenginyje nėra įdiegtos naršyklės.</string>
   <!--ConversationListFragment-->
@@ -300,6 +317,8 @@
     <item quantity="many">%d pokalbių perkelta į gautųjų aplanką</item>
     <item quantity="other">%d pokalbių perkelta į gautųjų aplanką</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_created">Jūsų profilio vardas sukurtas.</string>
+  <string name="ConversationListFragment__your_profile_name_has_been_saved">Jūsų profilio vardas įrašytas.</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Šifro apsikeitimo žinutė</string>
   <!--ConversationListItemAction-->
@@ -408,7 +427,7 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Ar norite padaryti savo profilio vardą ir nuotrauką matomą visiems esamiems ir būsimiems šios grupės dalyviams?</string>
   <string name="GroupShareProfileView_make_visible">Padaryti matomą</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">Aš</string>
+  <string name="GroupMembersDialog_you">Jūs</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grupės avataras</string>
   <string name="CropImageActivity_profile_avatar">Avataras</string>
@@ -566,6 +585,30 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Jūs iš kito įrenginio pažymėjote savo saugumo numerį su %s kaip patvirtintą</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Jūs pažymėjote savo saugumo numerį su %s kaip nepatvirtintą</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Jūs iš kito įrenginio pažymėjote savo saugumo numerį su %s kaip nepatvirtintą</string>
+  <!--MessageRequestBottomView-->
+  <string name="MessageRequestBottomView_accept">Priimti</string>
+  <string name="MessageRequestBottomView_delete">Ištrinti</string>
+  <string name="MessageRequestBottomView_block">Užblokuoti</string>
+  <string name="MessageRequestBottomView_unblock">Atblokuoti</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ar norite leisti naudotojui %1$s rašyti jums žinutes? Šis naudotojas nežinos, kad jūs matėte jo žinutes tol, kol nesutiksite.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Ar norite prisijungti prie grupės %1$s? Kiti asmenys nežinos, kad jūs matėte jų žinutes tol, kol nesutiksite.</string>
+  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Atblokuokite %1$s, norėdami vieni kitiems rašyti žinutes bei skambinti.</string>
+  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Atblokuokite, norėdami leisti grupės dalyviams vėl pridėti jus į šią grupę.</string>
+  <string name="MessageRequestProfileView_member_of_one_group">%1$s grupės dalyvis</string>
+  <string name="MessageRequestProfileView_member_of_two_groups"> %1$s ir %2$s grupių dalyvis</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s ir %3$s grupių dalyvis</string>
+  <plurals name="MessageRequestProfileView_members">
+    <item quantity="one">%1$d dalyvis</item>
+    <item quantity="few">%1$d dalyviai</item>
+    <item quantity="many">%1$d dalyvių</item>
+    <item quantity="other">%1$d dalyvis</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="one">dar %d</item>
+    <item quantity="few">dar %d</item>
+    <item quantity="many">dar %d</item>
+    <item quantity="other">dar %d</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Slaptafrazės nesutampa!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Neteisinga sena slaptafrazė!</string>
@@ -619,6 +662,8 @@
   <string name="ReactionsBottomSheetDialogFragment_all">Visi %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
+  <!--ReactionsRecipientAdapter-->
+  <string name="ReactionsRecipientAdapter_you">Jūs</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Užblokuoti šį adresatą?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Jūs daugiau nebegausite žinučių ir skambučių nuo šio adresato.</string>
@@ -754,6 +799,17 @@
   <string name="StickerPackPreviewActivity_remove">Šalinti</string>
   <string name="StickerPackPreviewActivity_stickers">Lipdukai</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Nepavyko įkelti lipdukų paketo</string>
+  <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_edit">Taisyti</string>
+  <string name="SubmitDebugLogActivity_done">Atlikta</string>
+  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Bakstelėkite ant eilutės, norėdami ją ištrinti</string>
+  <string name="SubmitDebugLogActivity_submit">Pateikti</string>
+  <string name="SubmitDebugLogActivity_failed_to_submit_logs">Nepavyko pateikti žurnalų</string>
+  <string name="SubmitDebugLogActivity_success">Įvykdyta!</string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Nukopijuokite šį URL ir pridėkite jį į savo pranešimą apie klaidą ar palaikymo el. laišką:\n\n<b>%1$s</b></string>
+  <string name="SubmitDebugLogActivity_copied_to_clipboard">Nukopijuota į iškarpinę</string>
+  <string name="SubmitDebugLogActivity_ok">Gerai</string>
+  <string name="SubmitDebugLogActivity_share">Bendrinti</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupė atnaujinta</string>
   <string name="ThreadRecord_left_the_group">išėjo iš grupės</string>
@@ -775,6 +831,8 @@
   <string name="ThreadRecord_you_marked_verified">Jūs pažymėjote patvirtintu</string>
   <string name="ThreadRecord_you_marked_unverified">Jūs pažymėjote nepatvirtintu</string>
   <string name="ThreadRecord_message_could_not_be_processed">Nepavyko apdoroti žinutės</string>
+  <string name="ThreadRecord_message_request">Žinutės užklausa</string>
+  <string name="ThreadRecord_s_added_you_to_the_group">%1$s pridėjo jus į grupę</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal atnaujinimas</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Yra prieinama nauja Signal versija, bakstelėkite, norėdami atnaujinti</string>
@@ -1104,9 +1162,6 @@
   <string name="log_submit_activity__this_log_will_be_posted_online">Šis žurnalas bus viešai paskelbtas internete talkininkams peržiūrėti, prieš jį pateikdami, galite jį išnagrinėti ir redaguoti .</string>
   <string name="log_submit_activity__loading_logs">Įkeliami žurnalai…</string>
   <string name="log_submit_activity__uploading_logs">Nusiunčiami žurnalai…</string>
-  <string name="log_submit_activity__success">Įvykdyta!</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Nukopijuokite šį URL ir pridėkite jį į savo pranešimą apie klaidą ar palaikymo el. laišką:\n\n<b>%1$s</b>\n</string>
-  <string name="log_submit_activity__copied_to_clipboard">Nukopijuota į iškarpinę</string>
   <string name="log_submit_activity__choose_email_app">Pasirinkite el. pašto programėlę</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Peržiūrėkite šį žurnalą iš mano programėlės: %1$s</string>
   <string name="log_submit_activity__network_failure">Tinklo nesėkmė. Bandykite dar kartą.</string>
@@ -1212,6 +1267,13 @@
   <string name="AndroidManifest__invite_friends">Pakviesti draugus</string>
   <string name="AndroidManifest_archived_conversations">Archyvuoti pokalbiai</string>
   <string name="AndroidManifest_remove_photo">Šalinti nuotrauką</string>
+  <!--Message Requests Megaphone-->
+  <string name="MessageRequestsMegaphone__message_requests">Žinučių užklausos</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Dabar, naudotojai gali rinktis ar priimti naujus pokalbius. Profilių vardai leidžia žmonėms matyti, kas jiems rašo.</string>
+  <string name="MessageRequestsMegaphone__add_profile_name">Pridėti profilio vardą</string>
+  <string name="MessageRequestsMegaphone__new_message_requests">Nauja: Žinučių užklausos</string>
+  <string name="MessageRequestsMegaphone__add_name">Pridėti vardą</string>
+  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Dabar, galite rinktis ar priimti naują pokalbį. Matysite variantus \"Priimti\", \"Ištrinti\" arba \"Užblokuoti\".</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importuoti</string>
   <string name="arrays__use_default">Naudoti numatytąjį</string>
@@ -1313,9 +1375,9 @@
   <string name="preferences__linked_devices">Susieti įrenginiai</string>
   <string name="preferences__light_theme">Šviesi</string>
   <string name="preferences__dark_theme">Tamsi</string>
-  <string name="preferences__system_theme">Sistemos numatytasis</string>
   <string name="preferences__appearance">Išvaizda</string>
   <string name="preferences__theme">Apipavidalinimas</string>
+  <string name="preferences__system_default">Sistemos numatytasis</string>
   <string name="preferences__default">Numatytoji</string>
   <string name="preferences__language">Kalba</string>
   <string name="preferences__signal_messages_and_calls">Signal žinutės ir skambučiai</string>
@@ -1611,6 +1673,7 @@
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Priminsime jums vėliau. PIN kodo patvirtinimas po %1$d dienų taps privalomu.</string>
   <!--Profile Names Megaphone-->
   <string name="ProfileNamesMegaphone__add_a_profile_name">Pridėkite profilio vardą</string>
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Jis bus rodomas, kai pradėsite naują pokalbį ar bendrinsite profilį.</string>
   <string name="ProfileNamesMegaphone__add_profile_name">Pridėti profilio vardą</string>
   <string name="ProfileNamesMegaphone__confirm_your_profile_name">Patvirtinkite savo profilio vardą</string>
   <string name="ProfileNamesMegaphone__your_profile_can_now_include">Dabar, į profilio vardą, pasirinktinai, galite įtraukti pavardę.</string>
@@ -1724,19 +1787,5 @@
   <string name="RegistrationLockDialog_reminder">Priminimas:</string>
   <string name="recipient_preferences__about">Apie</string>
   <string name="Recipient_unknown">Nežinoma</string>
-  <string name="MessageRequestBottomView_accept">Priimti</string>
-  <string name="MessageRequestBottomView_delete">Ištrinti</string>
-  <string name="MessageRequestBottomView_block">Užblokuoti</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let">Ar norite gauti žinutes nuo %1$s?</string>
-  <string name="MessageRequestProfileView_member_of_one_group">%1$s grupės dalyvis</string>
-  <string name="MessageRequestProfileView_member_of_two_groups"> %1$s ir %2$s grupių dalyvis</string>
-  <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s ir %3$s grupių narys</string>
-  <string name="MessageRequestProfileView_members">%1$d nariai</string>
-  <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">dar %d</item>
-    <item quantity="few">dar %d</item>
-    <item quantity="many">dar %d</item>
-    <item quantity="other">dar %d</item>
-  </plurals>
   <!--EOF-->
 </resources>

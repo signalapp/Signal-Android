@@ -204,6 +204,22 @@
   <string name="ConversationActivity_no_results">Neniu rezulto</string>
   <string name="ConversationActivity_sticker_pack_installed">Glumarkaro instaliĝis</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Nove! Parolu per glumarkoj</string>
+  <string name="ConversationActivity_block_s">Ĉu bloki %1$s?</string>
+  <string name="ConversationActivity_block_and_leave_s">Ĉu bloki kaj forlasi %1$s?</string>
+  <string name="ConversationActivity_unblock_s">Ĉu malbloki %1$s?</string>
+  <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">Vi povos mesaĝi kaj alvoki unu la alian.</string>
+  <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">Grupanoj povos denove aldoni vin al tiu ĉi grupo.</string>
+  <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">Blokitaj kontaktoj ne eblos sendi al vi mesaĝojn aŭ alvoki vin.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">Vi forlasos tiun grupon kaj ne plu ricevos mesaĝojn kaj ĝisdatigojn.</string>
+  <string name="ConversationActivity_block">Bloki</string>
+  <string name="ConversationActivity_block_and_delete">Bloki kaj forigi</string>
+  <string name="ConversationActivity_cancel">Nuligi</string>
+  <string name="ConversationActivity_delete_conversation">Ĉu forviŝi konversacion?</string>
+  <string name="ConversationActivity_delete_and_leave_group">Ĉu forigi kaj forlasi la grupon?</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Tiu interparolo foriĝos el ĉiuj viaj aparatoj.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Vi forlasos tiun grupon, kaj ĝi foriĝos el ĉiuj viaj aparatoj.</string>
+  <string name="ConversationActivity_delete">Forigi</string>
+  <string name="ConversationActivity_delete_and_leave">Forigi kaj forlasi</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nelegita mesaĝo</item>
@@ -249,6 +265,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Vi povas ŝovumi maldekstren iun mesaĝon por rapide respondi</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Nurunufoje videblaj elirantaj aŭdvidaĵoj estas aŭtomate forigitaj post ilia sendado</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Vi jam vidis tiun mesaĝon</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Vi povas aldoni notojn al vi mem en tiu interparolo. Se via konto estas ligita al aliaj aparatoj, novaj notoj sinkroniĝos.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Ne estas foliumilo instalata sur via aparato.</string>
   <!--ConversationListFragment-->
@@ -272,6 +289,8 @@
     <item quantity="one">Moviĝis interparolo al la ricevujo</item>
     <item quantity="other">Moviĝis %d interparoloj al la ricevujo</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_created">Via profilnomo kreiĝis.</string>
+  <string name="ConversationListFragment__your_profile_name_has_been_saved">Via profilnomo konserviĝis.</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mesaĝo pri interŝanĝo de ŝlosiloj</string>
   <!--ConversationListItemAction-->
@@ -380,7 +399,7 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Ĉu vi volas videbligi viajn profilajn nomon kaj foton al ĉiuj nunaj kaj venontaj grupanoj?</string>
   <string name="GroupShareProfileView_make_visible">Videbligi</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">Mi</string>
+  <string name="GroupMembersDialog_you">Vi</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Bildo de la grupo</string>
   <string name="CropImageActivity_profile_avatar">Avataro</string>
@@ -524,6 +543,26 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Vi markis, el alia aparato, vian sekurigan numeron kun %s kiel konfirmita.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Vi markis vian sekurigan numeron kun %s kiel nekonfirmita.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Vi markis, el alia aparato, vian sekurigan numeron kun %s kiel nekonfirmita.</string>
+  <!--MessageRequestBottomView-->
+  <string name="MessageRequestBottomView_accept">Akcepti</string>
+  <string name="MessageRequestBottomView_delete">Forigi</string>
+  <string name="MessageRequestBottomView_block">Bloki</string>
+  <string name="MessageRequestBottomView_unblock">Malbloki</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ĉu vi volas, ke %1$s mesaĝu al vi? Ili ne scios, ke vi vidas iliajn mesaĝojn, se vi ne akceptas.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Ĉu vi volas anigi al la grupo %1$s? Ili ne scios, ke vi vidas iliajn mesaĝojn, se vi ne akceptas.</string>
+  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Malbloki %1$s por povi mesaĝi kaj alvoki unu al la alia.</string>
+  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Malbloki por permesi al grupanoj aldoni vin al tiu grupo denove.</string>
+  <string name="MessageRequestProfileView_member_of_one_group">Ano de %1$s</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">Ano de %1$s kaj %2$s </string>
+  <string name="MessageRequestProfileView_member_of_many_groups">Ano de %1$s, %2$s kaj %3$s</string>
+  <plurals name="MessageRequestProfileView_members">
+    <item quantity="one">%1$d ano</item>
+    <item quantity="other">%1$d anoj</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="one">%d alia</item>
+    <item quantity="other">%d aliaj</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Pasfrazoj ne kongruas!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Malnova pasfrazo malĝustas!</string>
@@ -577,6 +616,8 @@
   <string name="ReactionsBottomSheetDialogFragment_all">Ĉiuj %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
+  <!--ReactionsRecipientAdapter-->
+  <string name="ReactionsRecipientAdapter_you">Vi</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Ĉu bloki ĉi tiun kontakton?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Vi ne plu ricevos mesaĝojn kaj alvokojn el tiu kontakto.</string>
@@ -709,6 +750,17 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="StickerPackPreviewActivity_remove">Forviŝi</string>
   <string name="StickerPackPreviewActivity_stickers">Glumarkoj</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Malsukcesis ŝargi glumarkaron</string>
+  <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_edit">Modifi</string>
+  <string name="SubmitDebugLogActivity_done">Farita</string>
+  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Tuŝetu linion por forigi ĝin</string>
+  <string name="SubmitDebugLogActivity_submit">Sendi</string>
+  <string name="SubmitDebugLogActivity_failed_to_submit_logs">Malsukcesa sendo de la protokoloj</string>
+  <string name="SubmitDebugLogActivity_success">Sukceso!</string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopiu tiun ĉi retadreson kaj aldonu ĝin al via problemraporto aŭ subtena retpoŝtmesaĝo:\n\n<b>%1$s</b></string>
+  <string name="SubmitDebugLogActivity_copied_to_clipboard">Kopiita al tondujo</string>
+  <string name="SubmitDebugLogActivity_ok">Bone</string>
+  <string name="SubmitDebugLogActivity_share">Kunhavigi</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupo ĝisdatigita</string>
   <string name="ThreadRecord_left_the_group">Forlasis la grupon</string>
@@ -730,6 +782,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ThreadRecord_you_marked_verified">Vi markis kiel konfirmita</string>
   <string name="ThreadRecord_you_marked_unverified">Vi markis kiel nekonfirmita</string>
   <string name="ThreadRecord_message_could_not_be_processed">Mesaĝo ne montreblas</string>
+  <string name="ThreadRecord_message_request">Mesaĝopeto</string>
+  <string name="ThreadRecord_s_added_you_to_the_group">%1$s aldonis vin al la grupo</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Ĝisdatigo de Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Nova versio de Signal disponeblas, tuŝetu por ĝisdatigi</string>
@@ -1045,9 +1099,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="log_submit_activity__this_log_will_be_posted_online">Tiu protokolo estos afiŝita publike en la reto, por ke kontribuantoj vidu ĝin; vi povas revizii ĝin antaŭ ol sendi ĝin.</string>
   <string name="log_submit_activity__loading_logs">Ŝargo de protokolo…</string>
   <string name="log_submit_activity__uploading_logs">Alŝutado de protokolo…</string>
-  <string name="log_submit_activity__success">Sukceso!</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Kopiu tiun ĉi retadreson kaj aldonu ĝin al via problemraporto aŭ subtena retpoŝtmesaĝo:\n\n<b>%1$s</b>\n</string>
-  <string name="log_submit_activity__copied_to_clipboard">Kopiita al tondujo</string>
   <string name="log_submit_activity__choose_email_app">Elekti retpoŝtilon</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Bv. kontroli tiun protokolon el mia aplikaĵo: %1$s</string>
   <string name="log_submit_activity__network_failure">Reta miso. Bv. re-provi.</string>
@@ -1151,6 +1202,13 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="AndroidManifest__invite_friends">Inviti amikojn</string>
   <string name="AndroidManifest_archived_conversations">Enarĥivigitaj interparoloj</string>
   <string name="AndroidManifest_remove_photo">Forviŝi profilfoton</string>
+  <!--Message Requests Megaphone-->
+  <string name="MessageRequestsMegaphone__message_requests">Mesaĝopetoj</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Uzantoj povas nun elekti, ĉu ili akceptas novan interparolon. Profilnomoj ebligas al ili scii, kiu provas mesaĝi.</string>
+  <string name="MessageRequestsMegaphone__add_profile_name">Aldoni profilnomon</string>
+  <string name="MessageRequestsMegaphone__new_message_requests">Nova: mesaĝopeto</string>
+  <string name="MessageRequestsMegaphone__add_name">Aldoni nomon</string>
+  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Vi povas nun elekti, ĉu vi akceptas novan interparolon. Vi povos elekti inter „Akcepti“, „Forigi“ aŭ „Bloki“ ĝin.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importi</string>
   <string name="arrays__use_default">Uzi defaŭltan</string>
@@ -1250,9 +1308,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences__linked_devices">Ligitaj aparatoj</string>
   <string name="preferences__light_theme">Hela</string>
   <string name="preferences__dark_theme">Malhela</string>
-  <string name="preferences__system_theme">Sistema defaŭlto</string>
   <string name="preferences__appearance">Aspekto</string>
   <string name="preferences__theme">Etoso</string>
+  <string name="preferences__system_default">Sistema defaŭlto</string>
   <string name="preferences__default">Defaŭlta</string>
   <string name="preferences__language">Lingvo</string>
   <string name="preferences__signal_messages_and_calls">Signal-aj mesaĝoj kaj alvokoj</string>
@@ -1644,17 +1702,5 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="RegistrationLockDialog_reminder">Memorigo:</string>
   <string name="recipient_preferences__about">Pri</string>
   <string name="Recipient_unknown">Nekonata</string>
-  <string name="MessageRequestBottomView_accept">Akcepti</string>
-  <string name="MessageRequestBottomView_delete">Forigi</string>
-  <string name="MessageRequestBottomView_block">Bloki</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let">Ĉu vi volas ricevi mesaĝojn el %1$s?</string>
-  <string name="MessageRequestProfileView_member_of_one_group">Ano de %1$s</string>
-  <string name="MessageRequestProfileView_member_of_two_groups">Ano de %1$s kaj %2$s </string>
-  <string name="MessageRequestProfileView_member_of_many_groups">Ano de %1$s, %2$s kaj %3$s</string>
-  <string name="MessageRequestProfileView_members">%1$d anoj</string>
-  <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">%d alia</item>
-    <item quantity="other">%d aliaj</item>
-  </plurals>
   <!--EOF-->
 </resources>

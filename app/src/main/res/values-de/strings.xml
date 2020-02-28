@@ -28,9 +28,9 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dies entsperrt dauerhaft Signal und Benachrichtigungen über Nachrichten.</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivieren</string>
   <string name="ApplicationPreferencesActivity_unregistering">Registrierung löschen</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Registrierung für Signal-Nachrichten und -Anrufe wird gelöscht …</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal-Nachrichten und -Anrufe deaktivieren?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Signal-Nachrichten und -Anrufe durch Löschen deiner Registrierung vom Server deaktivieren. Du wirst deine Rufnummer erneut registrieren müssen, um zukünftig wieder verschlüsselt zu kommunizieren.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Registrierung für Signal-Nachrichten und ‑Anrufe wird gelöscht …</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal-Nachrichten und ‑Anrufe deaktivieren?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Signal-Nachrichten und ‑Anrufe durch Löschen deiner Registrierung vom Server deaktivieren. Du wirst deine Rufnummer erneut registrieren müssen, um zukünftig wieder verschlüsselt zu kommunizieren.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fehler beim Verbinden mit Server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS aktiviert</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Antippen, um Standard-SMS-App zu ändern</string>
@@ -204,6 +204,22 @@
   <string name="ConversationActivity_no_results">Keine Ergebnisse</string>
   <string name="ConversationActivity_sticker_pack_installed">Sticker-Set installiert</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Neu! Sag’s mit Stickern</string>
+  <string name="ConversationActivity_block_s">%1$s blockieren?</string>
+  <string name="ConversationActivity_block_and_leave_s">%1$s blockieren und verlassen?</string>
+  <string name="ConversationActivity_unblock_s">%1$s freigeben?</string>
+  <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">Ihr werdet einander schreiben und euch anrufen können.</string>
+  <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">Gruppenmitglieder werden dich wieder zu dieser Gruppe hinzufügen können.</string>
+  <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">Blockierte Personen werden dich nicht anrufen oder dir Nachrichten senden können.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">Du wirst diese Gruppen verlassen und keine Nachrichten oder Aktualisierungen mehr erhalten.</string>
+  <string name="ConversationActivity_block">Blockieren</string>
+  <string name="ConversationActivity_block_and_delete">Blockieren und löschen</string>
+  <string name="ConversationActivity_cancel">Abbrechen</string>
+  <string name="ConversationActivity_delete_conversation">Unterhaltung löschen?</string>
+  <string name="ConversationActivity_delete_and_leave_group">Gruppe löschen und verlassen?</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Diese Unterhaltung wird von all deinen Geräten gelöscht werden.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Du wirst diese Gruppe verlassen und sie wird von all deinen Geräten gelöscht werden.</string>
+  <string name="ConversationActivity_delete">Löschen</string>
+  <string name="ConversationActivity_delete_and_leave">Löschen und verlassen</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ungelesene Nachricht</item>
@@ -249,6 +265,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Zum schnellen Antworten kannst du auf jeder Nachricht nach links wischen</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Versendete einmalig anzeigbare Mediendateien werden nach dem Senden automatisch entfernt</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Du hast diese Nachricht bereits angezeigt</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Du kannst in dieser Unterhaltung an dich selbst gerichtete Notizen hinzufügen. Falls dein Benutzerkonto gekoppelte Geräte besitzt, werden neue Notizen synchronisiert.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Auf deinem Gerät ist derzeit kein Browser installiert.</string>
   <!--ConversationListFragment-->
@@ -272,6 +289,8 @@
     <item quantity="one">Unterhaltung in Eingang verschoben</item>
     <item quantity="other">%d Unterhaltungen in Eingang verschoben</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_created">Dein Profilname wurde erstellt.</string>
+  <string name="ConversationListFragment__your_profile_name_has_been_saved">Dein Profilname wurde gespeichert.</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Schlüsselaustauschnachricht</string>
   <!--ConversationListItemAction-->
@@ -343,7 +362,7 @@
   <string name="ExperienceUpgradeActivity_no_thanks">Nein, danke</string>
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Einführung von Link-Vorschauen</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Optionale Link-Vorschauen werden nun für einige der beliebtesten Internetsites unterstützt.</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Du kannst diese Funktion jederzeit in den Signal-Einstellungen aus- oder einschalten (Datenschutz → Link-Vorschauen senden).</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Du kannst diese Funktion jederzeit in den Signal-Einstellungen aus‑ oder einschalten (Datenschutz → Link-Vorschauen senden).</string>
   <string name="ExperienceUpgradeActivity_got_it">Verstanden</string>
   <string name="ExperienceUpgradeActivity_introducing_stickers">Einführung von Stickern</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Warum Worte, wenn du auch Sticker verwenden kannst?</string>
@@ -353,7 +372,7 @@
   <string name="GcmBroadcastReceiver_retrieving_a_message">Nachricht wird abgerufen …</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Dauerhafter Signal-Kommunikationsfehler!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal konnte nicht für die Google-Play-Dienste registriert werden. Signal-Nachrichten und -Anrufe wurden daher deaktiviert. Bitte registriere Signal im Menü »Einstellungen« &gt; »Weitere Einstellungen« erneut.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal konnte nicht für die Google-Play-Dienste registriert werden. Signal-Nachrichten und ‑Anrufe wurden daher deaktiviert. Bitte registriere Signal im Menü »Einstellungen« &gt; »Weitere Einstellungen« erneut.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Fehler beim Abruf des GIFs in voller Auflösung</string>
   <!--GiphyFragmentPageAdapter-->
@@ -365,7 +384,7 @@
   <string name="GroupCreateActivity_group_name_hint">Gruppenname</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Neue MMS-Gruppe</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Du hast einen Kontakt ausgewählt, der Signal-Gruppen nicht unterstützt. Daher wird dies eine MMS-Gruppe sein.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Du bist nicht für Signal-Nachrichten und -Anrufe registriert, daher sind Signal-Gruppen deaktiviert. Bitte registriere Signal im Menü »Einstellungen« &gt; »Weitere Einstellungen«.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Du bist nicht für Signal-Nachrichten und ‑Anrufe registriert, daher sind Signal-Gruppen deaktiviert. Bitte registriere Signal im Menü »Einstellungen« &gt; »Weitere Einstellungen«.</string>
   <string name="GroupCreateActivity_contacts_no_members">Du benötigst mindestens eine Person in deiner Gruppe!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Ein Gruppenmitglied hat eine nicht korrekt lesbare Rufnummer. Bitte beheben oder Kontakt entfernen und erneut versuchen.</string>
   <string name="GroupCreateActivity_avatar_content_description">Gruppenavatar</string>
@@ -380,7 +399,7 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Möchtest du deinen Profilnamen und dein Profilfoto für alle derzeitigen und zukünftigen Mitglieder dieser Gruppe sichtbar machen?</string>
   <string name="GroupShareProfileView_make_visible">Sichtbar machen</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_me">Ich</string>
+  <string name="GroupMembersDialog_you">Du</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Gruppenavatar</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -524,6 +543,26 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Du hast deine Sicherheitsnummer mit %s von einem anderen Gerät aus als verifiziert markiert.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Du hast deine Sicherheitsnummer mit %s als nicht verifiziert markiert.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du hast deine Sicherheitsnummer mit %s von einem anderen Gerät aus als nicht verifiziert markiert.</string>
+  <!--MessageRequestBottomView-->
+  <string name="MessageRequestBottomView_accept">Akzeptieren</string>
+  <string name="MessageRequestBottomView_delete">Löschen</string>
+  <string name="MessageRequestBottomView_block">Blockieren</string>
+  <string name="MessageRequestBottomView_unblock">Freigeben</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Möchtest du %1$s erlauben, dir Nachrichten zu schreiben? Solange du dies nicht zulässt, wird diese Person nicht wissen, dass du ihre Nachrichten gesehen hast.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Möchtest du der Gruppe %1$s beitreten? Solange du nicht beitrittst, werden die Gruppenmitglieder nicht wissen, dass du ihre Nachrichten gesehen hast.</string>
+  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Gib %1$s frei für gegenseitige Nachrichten und Anrufe.</string>
+  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Gib diese Gruppe frei, um Gruppenmitgliedern zu erlauben, dich ihr erneut hinzuzufügen.</string>
+  <string name="MessageRequestProfileView_member_of_one_group">Mitglied von %1$s</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">Mitglied von %1$s und %2$s</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">Mitglied von %1$s, %2$s und %3$s</string>
+  <plurals name="MessageRequestProfileView_members">
+    <item quantity="one">%1$d Mitglied</item>
+    <item quantity="other">%1$d Mitglieder</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="one">%d anderer</item>
+    <item quantity="other">%d andere</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passphrasen stimmen nicht überein!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Alte Passphrase falsch eingegeben!</string>
@@ -575,6 +614,8 @@
   <string name="ReactionsBottomSheetDialogFragment_all">Alle %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
+  <!--ReactionsRecipientAdapter-->
+  <string name="ReactionsRecipientAdapter_you">Du</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Kontakt blockieren?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Du wirst keine Nachrichten und Anrufe mehr von diesem Kontakt erhalten können.</string>
@@ -699,6 +740,17 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="StickerPackPreviewActivity_remove">Entfernen</string>
   <string name="StickerPackPreviewActivity_stickers">Sticker</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Sticker-Set konnte nicht geladen werden</string>
+  <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_edit">Bearbeiten</string>
+  <string name="SubmitDebugLogActivity_done">Fertig</string>
+  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Tippe auf eine Zeile, um sie zu löschen</string>
+  <string name="SubmitDebugLogActivity_submit">Übermitteln</string>
+  <string name="SubmitDebugLogActivity_failed_to_submit_logs">Diagnoseprotokolle konnten nicht übermittelt werden</string>
+  <string name="SubmitDebugLogActivity_success">Erfolgreich!</string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Bitte kopiere diese Internetadresse und füge sie deinem Fehlerbericht oder deiner E-Mail an den Support hinzu:\n\n<b>%1$s</b></string>
+  <string name="SubmitDebugLogActivity_copied_to_clipboard">In Zwischenablage kopiert</string>
+  <string name="SubmitDebugLogActivity_ok">Ok</string>
+  <string name="SubmitDebugLogActivity_share">Teilen</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Gruppe aktualisiert</string>
   <string name="ThreadRecord_left_the_group">Gruppe verlassen</string>
@@ -720,6 +772,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ThreadRecord_you_marked_verified">Als verifiziert markiert</string>
   <string name="ThreadRecord_you_marked_unverified">Als nicht verifiziert markiert</string>
   <string name="ThreadRecord_message_could_not_be_processed">Nachricht konnte nicht verarbeitet werden</string>
+  <string name="ThreadRecord_message_request">Unterhaltungsanfrage</string>
+  <string name="ThreadRecord_s_added_you_to_the_group">%1$s hat dich zur Gruppe hinzugefügt</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal-Aktualisierung</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Eine neue Signal-Version ist verfügbar. Zum Aktualisieren antippen.</string>
@@ -1035,9 +1089,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="log_submit_activity__this_log_will_be_posted_online">Dieses Protokoll wird für Mitwirkende im Internet veröffentlicht. Vor Übermittlung kannst du es noch überprüfen und bearbeiten.</string>
   <string name="log_submit_activity__loading_logs">Protokolle werden geladen …</string>
   <string name="log_submit_activity__uploading_logs">Protokolle werden übermittelt …</string>
-  <string name="log_submit_activity__success">Erfolgreich!</string>
-  <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Bitte kopiere diese Internetadresse und füge sie deinem Fehlerbericht oder deiner E-Mail an den Support hinzu:\n\n<b>%1$s</b>\n</string>
-  <string name="log_submit_activity__copied_to_clipboard">In Zwischenablage kopiert</string>
   <string name="log_submit_activity__choose_email_app">E-Mail-App wählen</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Bitte überprüft dieses Diagnoseprotokoll meiner App: %1$s</string>
   <string name="log_submit_activity__network_failure">Netzfehler. Bitte erneut versuchen.</string>
@@ -1073,7 +1124,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="prompt_passphrase_activity__unlock">Entsperren</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal benötigt MMS-Einstellungen, um Nachrichten mit Medieninhalten und Gruppennachrichten über deinen Mobilfunkanbieter zu versenden. Dein Gerät stellt diese Informationen nicht zur Verfügung, was gelegentlich bei gesperrten oder anderweitig restriktiv konfigurierten Geräten der Fall ist.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Zum Versenden von Nachrichten mit Medieninhalten und Gruppennachrichten bitte »OK« antippen und die geforderten Einstellungen vervollständigen. Die MMS-Einstellungen deines Mobilfunkanbieters können normalerweise durch eine Internetsuche nach dem »APN« des Anbieters gefunden werden.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Tippe zum Versenden von Nachrichten mit Medieninhalten und Gruppennachrichten bitte »OK« an und vervollständige die geforderten Einstellungen. Die MMS-Einstellungen deines Mobilfunkanbieters können normalerweise durch eine Internetsuche nach dem »APN« deines Anbieters gefunden werden.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Vorname (erforderlich)</string>
   <string name="CreateProfileActivity_last_name_optional">Nachname (optional)</string>
@@ -1141,6 +1192,13 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="AndroidManifest__invite_friends">Freunde einladen</string>
   <string name="AndroidManifest_archived_conversations">Archivierte Unterhaltungen</string>
   <string name="AndroidManifest_remove_photo">Foto entfernen</string>
+  <!--Message Requests Megaphone-->
+  <string name="MessageRequestsMegaphone__message_requests">Unterhaltungsanfragen</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Nutzer können nun wählen, ob sie eine neue Unterhaltung zulassen möchten. Profilnamen informieren darüber, wer geschrieben hat.</string>
+  <string name="MessageRequestsMegaphone__add_profile_name">Profilname hinzufügen</string>
+  <string name="MessageRequestsMegaphone__new_message_requests">Neu: Unterhaltungsanfragen</string>
+  <string name="MessageRequestsMegaphone__add_name">Name hinzufügen</string>
+  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Du kannst nun wählen, ob du eine neue Unterhaltung zulassen möchtest. Die möglichen Alternativen sind »Akzeptieren«, »Löschen« oder »Blockieren«.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importieren</string>
   <string name="arrays__use_default">Standard verwenden</string>
@@ -1240,12 +1298,12 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__linked_devices">Gekoppelte Geräte</string>
   <string name="preferences__light_theme">Hell</string>
   <string name="preferences__dark_theme">Dunkel</string>
-  <string name="preferences__system_theme">Systemstandard</string>
   <string name="preferences__appearance">Darstellung</string>
   <string name="preferences__theme">Design</string>
+  <string name="preferences__system_default">Systemstandard</string>
   <string name="preferences__default">Standard</string>
   <string name="preferences__language">Sprache</string>
-  <string name="preferences__signal_messages_and_calls">Signal-Nachrichten und -Anrufe</string>
+  <string name="preferences__signal_messages_and_calls">Signal-Nachrichten und ‑Anrufe</string>
   <string name="preferences__free_private_messages_and_calls">Kostenlos und verschlüsselt mit Signal-Nutzern Nachrichten austauschen und telefonieren</string>
   <string name="preferences__submit_debug_log">Diagnoseprotokoll übermitteln</string>
   <string name="preferences__support_wifi_calling">Kompatibilität WLAN-Telefonie</string>
@@ -1381,7 +1439,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="reminder_header_sms_default_text">Antippen, um Signal als Standard-SMS-App zu verwenden.</string>
   <string name="reminder_header_sms_import_title">System-SMS importieren</string>
   <string name="reminder_header_sms_import_text">Antippen, um auf deinem Telefon gespeicherte SMS-Nachrichten in die verschlüsselte Datenbank von Signal zu importieren.</string>
-  <string name="reminder_header_push_title">Signal-Nachrichten und -Anrufe aktivieren</string>
+  <string name="reminder_header_push_title">Signal-Nachrichten und ‑Anrufe aktivieren</string>
   <string name="reminder_header_push_text">Verbessere dein Kommunikationserlebnis.</string>
   <string name="reminder_header_invite_title">Zu Signal einladen</string>
   <string name="reminder_header_invite_text">Verbessere deine Kommunikation mit %1$s.</string>
@@ -1634,17 +1692,5 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="RegistrationLockDialog_reminder">Erinnerung:</string>
   <string name="recipient_preferences__about">Info</string>
   <string name="Recipient_unknown">Unbekannt</string>
-  <string name="MessageRequestBottomView_accept">Akzeptieren</string>
-  <string name="MessageRequestBottomView_delete">Löschen</string>
-  <string name="MessageRequestBottomView_block">Blockieren</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let">Möchtest du Nachrichten von %1$s empfangen?</string>
-  <string name="MessageRequestProfileView_member_of_one_group">Mitglied von %1$s</string>
-  <string name="MessageRequestProfileView_member_of_two_groups">Mitglied von %1$s und %2$s</string>
-  <string name="MessageRequestProfileView_member_of_many_groups">Mitglied von %1$s, %2$s und %3$s</string>
-  <string name="MessageRequestProfileView_members">%1$d Mitglieder</string>
-  <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="one">%d anderer</item>
-    <item quantity="other">%d andere</item>
-  </plurals>
   <!--EOF-->
 </resources>
