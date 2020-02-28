@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.JobDatabase;
+import org.thoughtcrime.securesms.database.KeyValueDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
@@ -74,7 +75,8 @@ public class FullBackupExporter extends FullBackupBase {
     SearchDatabase.MMS_FTS_TABLE_NAME,
     JobDatabase.JOBS_TABLE_NAME,
     JobDatabase.CONSTRAINTS_TABLE_NAME,
-    JobDatabase.DEPENDENCIES_TABLE_NAME
+    JobDatabase.DEPENDENCIES_TABLE_NAME,
+    KeyValueDatabase.TABLE_NAME
   );
 
   public static void export(@NonNull Context context,

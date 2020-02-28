@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class KeyValueDatabase extends Database {
 
-  private static final String TABLE_NAME = "key_value";
+  public static final String TABLE_NAME = "key_value";
 
   private static final String ID    = "_id";
   private static final String KEY   = "key";
