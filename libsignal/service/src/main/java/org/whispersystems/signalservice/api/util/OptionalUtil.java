@@ -1,5 +1,7 @@
 package org.whispersystems.signalservice.api.util;
 
+import com.google.protobuf.ByteString;
+
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Arrays;
@@ -23,5 +25,21 @@ public final class OptionalUtil {
 
   public static int byteArrayHashCode(Optional<byte[]> bytes) {
     return bytes.isPresent() ? Arrays.hashCode(bytes.get()) : 0;
+  }
+
+  public static Optional<String> absentIfEmpty(String value) {
+    if (value == null || value.length() == 0) {
+      return Optional.absent();
+    } else {
+      return Optional.of(value);
+    }
+  }
+
+  public static Optional<byte[]> absentIfEmpty(ByteString value) {
+    if (value == null || value.isEmpty()) {
+      return Optional.absent();
+    } else {
+      return Optional.of(value.toByteArray());
+    }
   }
 }

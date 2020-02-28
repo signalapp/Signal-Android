@@ -12,11 +12,11 @@ import net.sqlcipher.database.SQLiteDatabase;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
+import org.whispersystems.signalservice.api.storage.StorageId;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -28,11 +28,11 @@ public class StorageKeyDatabase extends Database {
   private static final String TABLE_NAME = "storage_key";
   private static final String ID         = "_id";
   private static final String TYPE       = "type";
-  private static final String KEY        = "key";
+  private static final String STORAGE_ID = "key";
 
-  public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID   + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                                                                                  TYPE + " INTEGER, " +
-                                                                                  KEY  + " TEXT UNIQUE)";
+  public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID         + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                                                                  TYPE       + " INTEGER, " +
+                                                                                  STORAGE_ID + " TEXT UNIQUE)";
 
   public static final String[] CREATE_INDEXES = new String[] {
       "CREATE INDEX IF NOT EXISTS storage_key_type_index ON " + TABLE_NAME + " (" + TYPE + ");"
@@ -42,14 +42,15 @@ public class StorageKeyDatabase extends Database {
     super(context, databaseHelper);
   }
 
-  public List<byte[]> getAllKeys() {
-    List<byte[]> keys = new ArrayList<>();
+  public List<StorageId> getAllKeys() {
+    List<StorageId> keys = new ArrayList<>();
 
     try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, null, null, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
-        String keyEncoded = cursor.getString(cursor.getColumnIndexOrThrow(KEY));
+        String keyEncoded = cursor.getString(cursor.getColumnIndexOrThrow(STORAGE_ID));
+        int    type       = cursor.getInt(cursor.getColumnIndexOrThrow(TYPE));
         try {
-          keys.add(Base64.decode(keyEncoded));
+          keys.add(StorageId.forType(Base64.decode(keyEncoded), type));
         } catch (IOException e) {
           throw new AssertionError(e);
         }
@@ -59,14 +60,14 @@ public class StorageKeyDatabase extends Database {
     return keys;
   }
 
-  public @Nullable SignalStorageRecord getByKey(@NonNull byte[] key) {
-    String   query = KEY + " = ?";
-    String[] args  = new String[] { Base64.encodeBytes(key) };
+  public @Nullable SignalStorageRecord getById(@NonNull byte[] rawId) {
+    String   query = STORAGE_ID + " = ?";
+    String[] args  = new String[] { Base64.encodeBytes(rawId) };
 
     try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, query, args, null, null, null)) {
       if (cursor != null && cursor.moveToFirst()) {
         int type = cursor.getInt(cursor.getColumnIndexOrThrow(TYPE));
-        return SignalStorageRecord.forUnknown(key, type);
+        return SignalStorageRecord.forUnknown(StorageId.forType(rawId, type));
       } else {
         return null;
       }
@@ -83,15 +84,15 @@ public class StorageKeyDatabase extends Database {
       for (SignalStorageRecord insert : inserts) {
         ContentValues values = new ContentValues();
         values.put(TYPE, insert.getType());
-        values.put(KEY, Base64.encodeBytes(insert.getKey()));
+        values.put(STORAGE_ID, Base64.encodeBytes(insert.getId().getRaw()));
 
         db.insert(TABLE_NAME, null, values);
       }
 
-      String deleteQuery = KEY + " = ?";
+      String deleteQuery = STORAGE_ID + " = ?";
 
       for (SignalStorageRecord delete : deletes) {
-        String[] args = new String[] { Base64.encodeBytes(delete.getKey()) };
+        String[] args = new String[] { Base64.encodeBytes(delete.getId().getRaw()) };
         db.delete(TABLE_NAME, deleteQuery, args);
       }
 

@@ -3,26 +3,25 @@
  *
  * Licensed according to the LICENSE file in this repository.
  */
-syntax = "proto2";
+syntax = "proto3";
 
 package signalservice;
 
 option java_package         = "org.whispersystems.signalservice.internal.storage.protos";
 option java_multiple_files  = true;
 
+message StorageManifest {
+  uint64 version = 1;
+  bytes  value   = 2;
+}
 
 message StorageItem {
-  optional bytes key   = 1;
-  optional bytes value = 2;
+  bytes key   = 1;
+  bytes value = 2;
 }
 
 message StorageItems {
   repeated StorageItem items = 1;
-}
-
-message StorageManifest {
-  optional uint64 version = 1;
-  optional bytes  value   = 2;
 }
 
 message ReadOperation {
@@ -30,59 +29,81 @@ message ReadOperation {
 }
 
 message WriteOperation {
-  optional StorageManifest manifest   = 1;
+           StorageManifest manifest   = 1;
   repeated StorageItem     insertItem = 2;
   repeated bytes           deleteKey  = 3;
-  optional bool            clearAll   = 4;
-}
-
-message StorageRecord {
-  enum Type {
-    UNKNOWN = 0;
-    CONTACT = 1;
-    GROUPV1 = 2;
-  }
-
-  optional uint32        type    = 1;
-  optional ContactRecord contact = 2;
-  optional GroupV1Record groupV1 = 3;
-}
-
-message ContactRecord {
-  message Identity {
-    enum State {
-      DEFAULT    = 0;
-      VERIFIED   = 1;
-      UNVERIFIED = 2;
-    }
-
-    optional bytes key   = 1;
-    optional State state = 2;
-  }
-
-  message Profile {
-    optional string givenName  = 1;
-    optional string familyName = 4;
-    optional bytes  key        = 2;
-    optional string username   = 3;
-  }
-
-  optional string   serviceUuid  = 1;
-  optional string   serviceE164  = 2;
-  optional Profile  profile      = 3;
-  optional Identity identity     = 4;
-  optional bool     blocked      = 5;
-  optional bool     whitelisted  = 6;
-  optional string   nickname     = 7;
-}
-
-message GroupV1Record {
-  optional bytes id          = 1;
-  optional bool  blocked     = 2;
-  optional bool  whitelisted = 3;
+           bool            clearAll   = 4;
 }
 
 message ManifestRecord {
-  optional uint64 version  = 1;
-  repeated bytes  keys     = 2;
+  message Identifier {
+    enum Type {
+      UNKNOWN = 0;
+      CONTACT = 1;
+      GROUPV1 = 2;
+      GROUPV2 = 3;
+      ACCOUNT = 4;
+    }
+
+    bytes raw  = 1;
+    Type  type = 2;
+  }
+
+           uint64     version     = 1;
+  repeated Identifier identifiers = 2;
+}
+
+message StorageRecord {
+  oneof record {
+    ContactRecord contact = 1;
+    GroupV1Record groupV1 = 2;
+    GroupV2Record groupV2 = 3;
+    AccountRecord account = 4;
+  }
+}
+
+message ContactRecord {
+  enum IdentityState {
+    DEFAULT    = 0;
+    VERIFIED   = 1;
+    UNVERIFIED = 2;
+  }
+
+  string        serviceUuid   = 1;
+  string        serviceE164   = 2;
+  bytes         profileKey    = 3;
+  bytes         identityKey   = 4;
+  IdentityState identityState = 5;
+  string        givenName     = 6;
+  string        familyName    = 7;
+  string        username      = 8;
+  bool          blocked       = 9;
+  bool          whitelisted   = 10;
+  bool          archived      = 11;
+}
+
+message GroupV1Record {
+  bytes id          = 1;
+  bool  blocked     = 2;
+  bool  whitelisted = 3;
+  bool  archived    = 4;
+}
+
+message GroupV2Record {
+  bytes masterKey   = 1;
+  bool  blocked     = 2;
+  bool  whitelisted = 3;
+  bool  archived    = 4;
+}
+
+message AccountRecord {
+  message Config {
+    bool readReceipts           = 1;
+    bool sealedSenderIndicators = 2;
+    bool typingIndicators       = 3;
+    bool linkPreviews           = 4;
+  }
+
+  ContactRecord contact = 1;
+  Config        config  = 2;
 }

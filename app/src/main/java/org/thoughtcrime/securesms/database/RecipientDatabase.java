@@ -17,7 +17,9 @@ import net.sqlcipher.database.SQLiteDatabase;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.thoughtcrime.securesms.color.MaterialColor;
-import org.thoughtcrime.securesms.contacts.sync.StorageSyncHelper;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper.RecordUpdate;
+import org.thoughtcrime.securesms.storage.StorageSyncModels;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -39,6 +41,7 @@ import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
+import org.whispersystems.signalservice.api.storage.StorageId;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.io.Closeable;
@@ -92,7 +95,7 @@ public class RecipientDatabase extends Database {
   private static final String FORCE_SMS_SELECTION      = "force_sms_selection";
   private static final String UUID_CAPABILITY          = "uuid_supported";
   private static final String GROUPS_V2_CAPABILITY     = "gv2_capability";
-  private static final String STORAGE_SERVICE_KEY      = "storage_service_key";
+  private static final String STORAGE_SERVICE_ID       = "storage_service_key";
   private static final String DIRTY                    = "dirty";
   private static final String PROFILE_GIVEN_NAME       = "signal_profile_name";
   private static final String PROFILE_FAMILY_NAME      = "profile_family_name";
@@ -113,7 +116,7 @@ public class RecipientDatabase extends Database {
       UNIDENTIFIED_ACCESS_MODE,
       FORCE_SMS_SELECTION,
       UUID_CAPABILITY, GROUPS_V2_CAPABILITY,
-      STORAGE_SERVICE_KEY, DIRTY
+      STORAGE_SERVICE_ID, DIRTY
   };
 
   private static final String[] RECIPIENT_FULL_PROJECTION = ArrayUtils.concat(
@@ -282,7 +285,7 @@ public class RecipientDatabase extends Database {
                                             FORCE_SMS_SELECTION      + " INTEGER DEFAULT 0, " +
                                             UUID_CAPABILITY          + " INTEGER DEFAULT " + Recipient.Capability.UNKNOWN.serialize() + ", " +
                                             GROUPS_V2_CAPABILITY     + " INTEGER DEFAULT " + Recipient.Capability.UNKNOWN.serialize() + ", " +
-                                            STORAGE_SERVICE_KEY      + " TEXT UNIQUE DEFAULT NULL, " +
+                                            STORAGE_SERVICE_ID       + " TEXT UNIQUE DEFAULT NULL, " +
                                             DIRTY                    + " INTEGER DEFAULT " + DirtyState.CLEAN.getId() + ");";
 
   private static final String INSIGHTS_INVITEE_LIST = "SELECT " + TABLE_NAME + "." + ID +
@@ -355,7 +358,7 @@ public class RecipientDatabase extends Database {
       } else {
         values.put(GROUP_TYPE, GroupType.SIGNAL_V1.getId());
         values.put(DIRTY, DirtyState.INSERT.getId());
-        values.put(STORAGE_SERVICE_KEY, Base64.encodeBytes(StorageSyncHelper.generateKey()));
+        values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(StorageSyncHelper.generateKey()));
       }
 
       update(result.recipientId, values);
@@ -399,28 +402,28 @@ public class RecipientDatabase extends Database {
   }
 
   public @NonNull List<RecipientSettings> getPendingRecipientSyncUpdates() {
-    String   query = DIRTY + " = ? AND " + STORAGE_SERVICE_KEY + " NOT NULL";
+    String   query = DIRTY + " = ? AND " + STORAGE_SERVICE_ID + " NOT NULL";
     String[] args  = new String[] { String.valueOf(DirtyState.UPDATE.getId()) };
 
     return getRecipientSettings(query, args);
   }
 
   public @NonNull List<RecipientSettings> getPendingRecipientSyncInsertions() {
-    String   query = DIRTY + " = ? AND " + STORAGE_SERVICE_KEY + " NOT NULL";
+    String   query = DIRTY + " = ? AND " + STORAGE_SERVICE_ID + " NOT NULL";
     String[] args  = new String[] { String.valueOf(DirtyState.INSERT.getId()) };
 
     return getRecipientSettings(query, args);
   }
 
   public @NonNull List<RecipientSettings> getPendingRecipientSyncDeletions() {
-    String   query = DIRTY + " = ? AND " + STORAGE_SERVICE_KEY + " NOT NULL";
+    String   query = DIRTY + " = ? AND " + STORAGE_SERVICE_ID + " NOT NULL";
     String[] args  = new String[] { String.valueOf(DirtyState.DELETE.getId()) };
 
     return getRecipientSettings(query, args);
   }
 
-  public @Nullable RecipientSettings getByStorageSyncKey(@NonNull byte[] key) {
-    List<RecipientSettings> result = getRecipientSettings(STORAGE_SERVICE_KEY + " = ?", new String[] { Base64.encodeBytes(key) });
+  public @Nullable RecipientSettings getByStorageId(@NonNull byte[] storageId) {
+    List<RecipientSettings> result = getRecipientSettings(STORAGE_SERVICE_ID + " = ?", new String[] { Base64.encodeBytes(storageId) });
 
     if (result.size() > 0) {
       return result.get(0);
@@ -429,16 +432,16 @@ public class RecipientDatabase extends Database {
     return null;
   }
 
-  public void applyStorageSyncKeyUpdates(@NonNull Map<RecipientId, byte[]> keys) {
+  public void applyStorageIdUpdates(@NonNull Map<RecipientId, StorageId> storageIds) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
     db.beginTransaction();
     try {
       String query = ID + " = ?";
 
-      for (Map.Entry<RecipientId, byte[]> entry : keys.entrySet()) {
+      for (Map.Entry<RecipientId, StorageId> entry : storageIds.entrySet()) {
         ContentValues values = new ContentValues();
-        values.put(STORAGE_SERVICE_KEY, Base64.encodeBytes(entry.getValue()));
+        values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(entry.getValue().getRaw()));
         values.put(DIRTY, DirtyState.CLEAN.getId());
 
         db.update(TABLE_NAME, values, query, new String[] { entry.getKey().serialize() });
@@ -449,10 +452,10 @@ public class RecipientDatabase extends Database {
     }
   }
 
-  public void applyStorageSyncUpdates(@NonNull Collection<SignalContactRecord> contactInserts,
-                                      @NonNull Collection<StorageSyncHelper.ContactUpdate> contactUpdates,
-                                      @NonNull Collection<SignalGroupV1Record> groupV1Inserts,
-                                      @NonNull Collection<StorageSyncHelper.GroupV1Update> groupV1Updates)
+  public void applyStorageSyncUpdates(@NonNull Collection<SignalContactRecord>               contactInserts,
+                                      @NonNull Collection<RecordUpdate<SignalContactRecord>> contactUpdates,
+                                      @NonNull Collection<SignalGroupV1Record>               groupV1Inserts,
+                                      @NonNull Collection<RecordUpdate<SignalGroupV1Record>> groupV1Updates)
   {
     SQLiteDatabase   db               = databaseHelper.getWritableDatabase();
     IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(context);
@@ -482,7 +485,7 @@ public class RecipientDatabase extends Database {
             try {
               IdentityKey identityKey = new IdentityKey(insert.getIdentityKey().get(), 0);
 
-              DatabaseFactory.getIdentityDatabase(context).updateIdentityAfterSync(recipientId, identityKey, StorageSyncHelper.remoteToLocalIdentityStatus(insert.getIdentityState()));
+              DatabaseFactory.getIdentityDatabase(context).updateIdentityAfterSync(recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(insert.getIdentityState()));
               IdentityUtil.markIdentityVerified(context, Recipient.resolved(recipientId), true, true);
             } catch (InvalidKeyException e) {
               Log.w(TAG, "Failed to process identity key during insert! Skipping.", e);
@@ -495,17 +498,17 @@ public class RecipientDatabase extends Database {
         }
       }
 
-      for (StorageSyncHelper.ContactUpdate update : contactUpdates) {
+      for (RecordUpdate<SignalContactRecord> update : contactUpdates) {
         ContentValues values      = getValuesForStorageContact(update.getNew());
-        int           updateCount = db.update(TABLE_NAME, values, STORAGE_SERVICE_KEY + " = ?", new String[]{Base64.encodeBytes(update.getOld().getKey())});
+        int           updateCount = db.update(TABLE_NAME, values, STORAGE_SERVICE_ID + " = ?", new String[]{Base64.encodeBytes(update.getOld().getId().getRaw())});
 
         if (updateCount < 1) {
           throw new AssertionError("Had an update, but it didn't match any rows!");
         }
 
-        RecipientId recipientId = getByStorageKeyOrThrow(update.getNew().getKey());
+        RecipientId recipientId = getByStorageKeyOrThrow(update.getNew().getId().getRaw());
 
-        if (update.profileKeyChanged()) {
+        if (StorageSyncHelper.profileKeyChanged(update)) {
           clearProfileKeyCredential(recipientId);
         }
 
@@ -514,7 +517,7 @@ public class RecipientDatabase extends Database {
 
           if (update.getNew().getIdentityKey().isPresent()) {
             IdentityKey identityKey = new IdentityKey(update.getNew().getIdentityKey().get(), 0);
-            DatabaseFactory.getIdentityDatabase(context).updateIdentityAfterSync(recipientId, identityKey, StorageSyncHelper.remoteToLocalIdentityStatus(update.getNew().getIdentityState()));
+            DatabaseFactory.getIdentityDatabase(context).updateIdentityAfterSync(recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(update.getNew().getIdentityState()));
           }
 
           Optional<IdentityRecord> newIdentityRecord = identityDatabase.getIdentity(recipientId);
@@ -537,9 +540,9 @@ public class RecipientDatabase extends Database {
         db.insertOrThrow(TABLE_NAME, null, getValuesForStorageGroupV1(insert));
       }
 
-      for (StorageSyncHelper.GroupV1Update update : groupV1Updates) {
+      for (RecordUpdate<SignalGroupV1Record> update : groupV1Updates) {
         ContentValues values      = getValuesForStorageGroupV1(update.getNew());
-        int           updateCount = db.update(TABLE_NAME, values, STORAGE_SERVICE_KEY + " = ?", new String[]{Base64.encodeBytes(update.getOld().getKey())});
+        int           updateCount = db.update(TABLE_NAME, values, STORAGE_SERVICE_ID + " = ?", new String[]{Base64.encodeBytes(update.getOld().getId().getRaw())});
 
         if (updateCount < 1) {
           throw new AssertionError("Had an update, but it didn't match any rows!");
@@ -576,7 +579,7 @@ public class RecipientDatabase extends Database {
 
   private @NonNull RecipientId getByStorageKeyOrThrow(byte[] storageKey) {
     SQLiteDatabase db    = databaseHelper.getReadableDatabase();
-    String         query = STORAGE_SERVICE_KEY + " = ?";
+    String         query = STORAGE_SERVICE_ID + " = ?";
     String[]       args  = new String[]{Base64.encodeBytes(storageKey)};
 
     try (Cursor cursor = db.query(TABLE_NAME, ID_PROJECTION, query, args, null, null, null)) {
@@ -607,7 +610,7 @@ public class RecipientDatabase extends Database {
     values.put(USERNAME, TextUtils.isEmpty(username) ? null : username);
     values.put(PROFILE_SHARING, contact.isProfileSharingEnabled() ? "1" : "0");
     values.put(BLOCKED, contact.isBlocked() ? "1" : "0");
-    values.put(STORAGE_SERVICE_KEY, Base64.encodeBytes(contact.getKey()));
+    values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(contact.getId().getRaw()));
     values.put(DIRTY, DirtyState.CLEAN.getId());
     return values;
   }
@@ -618,7 +621,7 @@ public class RecipientDatabase extends Database {
     values.put(GROUP_TYPE, GroupType.SIGNAL_V1.getId());
     values.put(PROFILE_SHARING, groupV1.isProfileSharingEnabled() ? "1" : "0");
     values.put(BLOCKED, groupV1.isBlocked() ? "1" : "0");
-    values.put(STORAGE_SERVICE_KEY, Base64.encodeBytes(groupV1.getKey()));
+    values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(groupV1.getId().getRaw()));
     values.put(DIRTY, DirtyState.CLEAN.getId());
     return values;
   }
@@ -640,25 +643,31 @@ public class RecipientDatabase extends Database {
   /**
    * @return All storage keys, excluding the ones that need to be deleted.
    */
-  public List<byte[]> getAllStorageSyncKeys() {
+  public List<StorageId> getAllStorageSyncKeys() {
     return new ArrayList<>(getAllStorageSyncKeysMap().values());
   }
 
   /**
    * @return All storage keys, excluding the ones that need to be deleted.
    */
-  public Map<RecipientId, byte[]> getAllStorageSyncKeysMap() {
-    SQLiteDatabase           db    = databaseHelper.getReadableDatabase();
-    String                   query = STORAGE_SERVICE_KEY + " NOT NULL AND " + DIRTY + " != ?";
-    String[]                 args  = new String[]{String.valueOf(DirtyState.DELETE)};
-    Map<RecipientId, byte[]> out   = new HashMap<>();
+  public @NonNull Map<RecipientId, StorageId> getAllStorageSyncKeysMap() {
+    SQLiteDatabase                              db    = databaseHelper.getReadableDatabase();
+    String                                      query = STORAGE_SERVICE_ID + " NOT NULL AND " + DIRTY + " != ?";
+    String[]                                    args  = new String[]{String.valueOf(DirtyState.DELETE)};
+    Map<RecipientId, StorageId> out   = new HashMap<>();
 
-    try (Cursor cursor = db.query(TABLE_NAME, new String[] { ID, STORAGE_SERVICE_KEY }, query, args, null, null, null)) {
+    try (Cursor cursor = db.query(TABLE_NAME, new String[] { ID, STORAGE_SERVICE_ID, GROUP_TYPE }, query, args, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
         RecipientId id         = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ID)));
-        String      encodedKey = cursor.getString(cursor.getColumnIndexOrThrow(STORAGE_SERVICE_KEY));
+        String      encodedKey = cursor.getString(cursor.getColumnIndexOrThrow(STORAGE_SERVICE_ID));
+        GroupType   groupType  = GroupType.fromId(cursor.getInt(cursor.getColumnIndexOrThrow(GROUP_TYPE)));
+        byte[]      key        = Base64.decodeOrThrow(encodedKey);
 
-        out.put(id, Base64.decodeOrThrow(encodedKey));
+        if (groupType == GroupType.NONE) {
+          out.put(id, StorageId.forContact(key));
+        } else {
+          out.put(id, StorageId.forGroupV1(key));
+        }
       }
     }
 
@@ -699,7 +708,7 @@ public class RecipientDatabase extends Database {
     boolean forceSmsSelection          = cursor.getInt(cursor.getColumnIndexOrThrow(FORCE_SMS_SELECTION))  == 1;
     int     uuidCapabilityValue        = cursor.getInt(cursor.getColumnIndexOrThrow(UUID_CAPABILITY));
     int     groupsV2CapabilityValue    = cursor.getInt(cursor.getColumnIndexOrThrow(GROUPS_V2_CAPABILITY));
-    String  storageKeyRaw              = cursor.getString(cursor.getColumnIndexOrThrow(STORAGE_SERVICE_KEY));
+    String  storageKeyRaw              = cursor.getString(cursor.getColumnIndexOrThrow(STORAGE_SERVICE_ID));
     String  identityKeyRaw             = cursor.getString(cursor.getColumnIndexOrThrow(IDENTITY_KEY));
     int     identityStatusRaw          = cursor.getInt(cursor.getColumnIndexOrThrow(IDENTITY_STATUS));
 
@@ -1106,7 +1115,7 @@ public class RecipientDatabase extends Database {
     contentValues.put(REGISTERED, registeredState.getId());
 
     if (registeredState == RegisteredState.REGISTERED) {
-      contentValues.put(STORAGE_SERVICE_KEY, Base64.encodeBytes(StorageSyncHelper.generateKey()));
+      contentValues.put(STORAGE_SERVICE_ID, Base64.encodeBytes(StorageSyncHelper.generateKey()));
     }
 
     if (update(id, contentValues)) {
@@ -1357,7 +1366,7 @@ public class RecipientDatabase extends Database {
     try {
       for (Map.Entry<RecipientId, byte[]> entry : keys.entrySet()) {
         ContentValues values = new ContentValues();
-        values.put(STORAGE_SERVICE_KEY, Base64.encodeBytes(entry.getValue()));
+        values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(entry.getValue()));
         db.update(TABLE_NAME, values, ID_WHERE, new String[] { entry.getKey().serialize() });
       }
 
@@ -1397,7 +1406,7 @@ public class RecipientDatabase extends Database {
         query += "(" + DIRTY + " < ? OR " + DIRTY + " = ?)";
         args   = SqlUtil.appendArg(args, String.valueOf(DirtyState.DELETE.getId()));
 
-        contentValues.put(STORAGE_SERVICE_KEY, Base64.encodeBytes(StorageSyncHelper.generateKey()));
+        contentValues.put(STORAGE_SERVICE_ID, Base64.encodeBytes(StorageSyncHelper.generateKey()));
         break;
       case DELETE:
         query += "(" + DIRTY + " < ? OR " + DIRTY + " = ?)";
@@ -1526,7 +1535,7 @@ public class RecipientDatabase extends Database {
     }
 
     private void markAllRelevantEntriesDirty() {
-      String   query = SYSTEM_INFO_PENDING + " = ? AND " + STORAGE_SERVICE_KEY + " NOT NULL AND " + DIRTY + " < ?";
+      String   query = SYSTEM_INFO_PENDING + " = ? AND " + STORAGE_SERVICE_ID + " NOT NULL AND " + DIRTY + " < ?";
       String[] args  = new String[] { "1", String.valueOf(DirtyState.UPDATE.getId()) };
 
       ContentValues values = new ContentValues(1);

@@ -1,57 +1,43 @@
 package org.whispersystems.signalservice.api.storage;
 
+import com.google.protobuf.ByteString;
+
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
+import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.whispersystems.signalservice.internal.storage.protos.ContactRecord;
+import org.whispersystems.signalservice.internal.storage.protos.ContactRecord.IdentityState;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 public final class SignalContactRecord implements SignalRecord {
 
-  private final byte[]               key;
+  private final StorageId     id;
+  private final ContactRecord proto;
+
   private final SignalServiceAddress address;
   private final Optional<String>     givenName;
   private final Optional<String>     familyName;
   private final Optional<byte[]>     profileKey;
   private final Optional<String>     username;
   private final Optional<byte[]>     identityKey;
-  private final IdentityState        identityState;
-  private final boolean              blocked;
-  private final boolean              profileSharingEnabled;
-  private final Optional<String>     nickname;
-  private final int                  protoVersion;
 
-  private SignalContactRecord(byte[] key,
-                              SignalServiceAddress address,
-                              String givenName,
-                              String familyName,
-                              byte[] profileKey,
-                              String username,
-                              byte[] identityKey,
-                              IdentityState identityState,
-                              boolean blocked,
-                              boolean profileSharingEnabled,
-                              String nickname,
-                              int protoVersion)
-  {
-    this.key                   = key;
-    this.address               = address;
-    this.givenName             = Optional.fromNullable(givenName);
-    this.familyName            = Optional.fromNullable(familyName);
-    this.profileKey            = Optional.fromNullable(profileKey);
-    this.username              = Optional.fromNullable(username);
-    this.identityKey           = Optional.fromNullable(identityKey);
-    this.identityState         = identityState != null ? identityState : IdentityState.DEFAULT;
-    this.blocked               = blocked;
-    this.profileSharingEnabled = profileSharingEnabled;
-    this.nickname              = Optional.fromNullable(nickname);
-    this.protoVersion          = protoVersion;
+  private SignalContactRecord(StorageId id, ContactRecord proto) {
+    this.id    = id;
+    this.proto = proto;
+
+    this.address     = new SignalServiceAddress(UuidUtil.parseOrNull(proto.getServiceUuid()), proto.getServiceE164());
+    this.givenName   = OptionalUtil.absentIfEmpty(proto.getGivenName());
+    this.familyName  = OptionalUtil.absentIfEmpty(proto.getFamilyName());
+    this.profileKey  = OptionalUtil.absentIfEmpty(proto.getProfileKey());
+    this.username    = OptionalUtil.absentIfEmpty(proto.getUsername());
+    this.identityKey = OptionalUtil.absentIfEmpty(proto.getIdentityKey());
   }
 
   @Override
-  public byte[] getKey() {
-    return key;
+  public StorageId getId() {
+    return id;
   }
 
   public SignalServiceAddress getAddress() {
@@ -79,139 +65,98 @@ public final class SignalContactRecord implements SignalRecord {
   }
 
   public IdentityState getIdentityState() {
-    return identityState;
+    return proto.getIdentityState();
   }
 
   public boolean isBlocked() {
-    return blocked;
+    return proto.getBlocked();
   }
 
   public boolean isProfileSharingEnabled() {
-    return profileSharingEnabled;
+    return proto.getWhitelisted();
   }
 
-  public Optional<String> getNickname() {
-    return nickname;
+  public boolean isArchived() {
+    return proto.getArchived();
   }
 
-  public int getProtoVersion() {
-    return protoVersion;
+  ContactRecord toProto() {
+    return proto;
   }
 
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    SignalContactRecord contact = (SignalContactRecord) o;
-    return blocked == contact.blocked &&
-        profileSharingEnabled == contact.profileSharingEnabled &&
-        Arrays.equals(key, contact.key) &&
-        Objects.equals(address, contact.address) &&
-        givenName.equals(contact.givenName) &&
-        familyName.equals(contact.familyName) &&
-        OptionalUtil.byteArrayEquals(profileKey, contact.profileKey) &&
-        username.equals(contact.username) &&
-        OptionalUtil.byteArrayEquals(identityKey, contact.identityKey) &&
-        identityState == contact.identityState &&
-        Objects.equals(nickname, contact.nickname);
+    SignalContactRecord that = (SignalContactRecord) o;
+    return id.equals(that.id) &&
+        proto.equals(that.proto);
   }
 
   @Override
   public int hashCode() {
-    int result = Objects.hash(address, givenName, familyName, username, identityState, blocked, profileSharingEnabled, nickname);
-    result = 31 * result + Arrays.hashCode(key);
-    result = 31 * result + OptionalUtil.byteArrayHashCode(profileKey);
-    result = 31 * result + OptionalUtil.byteArrayHashCode(identityKey);
-    return result;
+    return Objects.hash(id, proto);
   }
 
   public static final class Builder {
-    private final byte[]               key;
-    private final SignalServiceAddress address;
+    private final StorageId             id;
+    private final ContactRecord.Builder builder;
 
-    private String        givenName;
-    private String        familyName;
-    private byte[]        profileKey;
-    private String        username;
-    private byte[]        identityKey;
-    private IdentityState identityState;
-    private boolean       blocked;
-    private boolean       profileSharingEnabled;
-    private String        nickname;
-    private int           version;
+    public Builder(byte[] rawId, SignalServiceAddress address) {
+      this.id      = StorageId.forContact(rawId);
+      this.builder = ContactRecord.newBuilder();
 
-    public Builder(byte[] key, SignalServiceAddress address) {
-      this.key     = key;
-      this.address = address;
+      builder.setServiceUuid(address.getUuid().isPresent() ? address.getUuid().get().toString() : "");
+      builder.setServiceE164(address.getNumber().or(""));
     }
 
     public Builder setGivenName(String givenName) {
-      this.givenName = givenName;
+      builder.setGivenName(givenName == null ? "" : givenName);
       return this;
     }
 
     public Builder setFamilyName(String familyName) {
-      this.familyName = familyName;
+      builder.setFamilyName(familyName == null ? "" : familyName);
       return this;
     }
 
     public Builder setProfileKey(byte[] profileKey) {
-      this.profileKey = profileKey;
+      builder.setProfileKey(profileKey == null ? ByteString.EMPTY : ByteString.copyFrom(profileKey));
       return this;
     }
 
     public Builder setUsername(String username) {
-      this.username = username;
+      builder.setUsername(username == null ? "" : username);
       return this;
     }
 
     public Builder setIdentityKey(byte[] identityKey) {
-      this.identityKey = identityKey;
+      builder.setIdentityKey(identityKey == null ? ByteString.EMPTY : ByteString.copyFrom(identityKey));
       return this;
     }
 
     public Builder setIdentityState(IdentityState identityState) {
-      this.identityState = identityState;
+      builder.setIdentityState(identityState == null ? IdentityState.DEFAULT : identityState);
       return this;
     }
 
     public Builder setBlocked(boolean blocked) {
-      this.blocked = blocked;
+      builder.setBlocked(blocked);
       return this;
     }
 
     public Builder setProfileSharingEnabled(boolean profileSharingEnabled) {
-      this.profileSharingEnabled = profileSharingEnabled;
+      builder.setWhitelisted(profileSharingEnabled);
       return this;
     }
 
-    public Builder setNickname(String nickname) {
-      this.nickname = nickname;
-      return this;
-    }
-
-    Builder setProtoVersion(int version) {
-      this.version = version;
+    public Builder setArchived(boolean archived) {
+      builder.setArchived(archived);
       return this;
     }
 
     public SignalContactRecord build() {
-      return new SignalContactRecord(key,
-                                      address,
-                                      givenName,
-                                      familyName,
-                                      profileKey,
-                                      username,
-                                      identityKey,
-                                      identityState,
-                                      blocked,
-                                      profileSharingEnabled,
-                                      nickname,
-                                      version);
+      return new SignalContactRecord(id, builder.build());
     }
-  }
-
-  public enum IdentityState {
-    DEFAULT, VERIFIED,  UNVERIFIED
   }
 }

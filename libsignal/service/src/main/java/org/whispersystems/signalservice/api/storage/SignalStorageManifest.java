@@ -3,19 +3,19 @@ package org.whispersystems.signalservice.api.storage;
 import java.util.List;
 
 public class SignalStorageManifest {
-  private final long         version;
-  private final List<byte[]> storageKeys;
+  private final long            version;
+  private final List<StorageId> storageIds;
 
-  public SignalStorageManifest(long version, List<byte[]> storageKeys) {
+  public SignalStorageManifest(long version, List<StorageId> storageIds) {
     this.version     = version;
-    this.storageKeys = storageKeys;
+    this.storageIds = storageIds;
   }
 
   public long getVersion() {
     return version;
   }
 
-  public List<byte[]> getStorageKeys() {
-    return storageKeys;
+  public List<StorageId> getStorageIds() {
+    return storageIds;
   }
 }

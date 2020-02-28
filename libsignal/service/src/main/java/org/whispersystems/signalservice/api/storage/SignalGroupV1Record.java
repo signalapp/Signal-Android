@@ -1,29 +1,26 @@
 package org.whispersystems.signalservice.api.storage;
 
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.api.util.OptionalUtil;
+import com.google.protobuf.ByteString;
 
-import java.util.Arrays;
+import org.whispersystems.signalservice.internal.storage.protos.GroupV1Record;
+
 import java.util.Objects;
 
 public final class SignalGroupV1Record implements SignalRecord {
 
-  private final byte[]  key;
-  private final byte[]  groupId;
-  private final boolean blocked;
-  private final boolean profileSharingEnabled;
+  private final StorageId     id;
+  private final GroupV1Record proto;
+  private final byte[]        groupId;
 
-  private SignalGroupV1Record(byte[] key, byte[] groupId, boolean blocked, boolean profileSharingEnabled) {
-    this.key                   = key;
-    this.groupId               = groupId;
-    this.blocked               = blocked;
-    this.profileSharingEnabled = profileSharingEnabled;
+  private SignalGroupV1Record(StorageId id, GroupV1Record proto) {
+    this.id      = id;
+    this.proto   = proto;
+    this.groupId = proto.getId().toByteArray();
   }
 
   @Override
-  public byte[] getKey() {
-    return key;
+  public StorageId getId() {
+    return id;
   }
 
   public byte[] getGroupId() {
@@ -31,11 +28,19 @@ public final class SignalGroupV1Record implements SignalRecord {
   }
 
   public boolean isBlocked() {
-    return blocked;
+    return proto.getBlocked();
   }
 
   public boolean isProfileSharingEnabled() {
-    return profileSharingEnabled;
+    return proto.getWhitelisted();
+  }
+
+  public boolean isArchived() {
+    return proto.getArchived();
+  }
+
+  GroupV1Record toProto() {
+    return proto;
   }
 
   @Override
@@ -43,43 +48,43 @@ public final class SignalGroupV1Record implements SignalRecord {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     SignalGroupV1Record that = (SignalGroupV1Record) o;
-    return blocked == that.blocked &&
-        profileSharingEnabled == that.profileSharingEnabled &&
-        Arrays.equals(key, that.key) &&
-        Arrays.equals(groupId, that.groupId);
+    return id.equals(that.id) &&
+        proto.equals(that.proto);
   }
 
   @Override
   public int hashCode() {
-    int result = Objects.hash(blocked, profileSharingEnabled);
-    result = 31 * result + Arrays.hashCode(key);
-    result = 31 * result + Arrays.hashCode(groupId);
-    return result;
+    return Objects.hash(id, proto);
   }
 
   public static final class Builder {
-    private final byte[]  key;
-    private final byte[]  groupId;
-    private       boolean blocked;
-    private       boolean profileSharingEnabled;
+    private final StorageId             id;
+    private final GroupV1Record.Builder builder;
 
-    public Builder(byte[] key, byte[] groupId) {
-      this.key     = key;
-      this.groupId = groupId;
+    public Builder(byte[] rawId, byte[] groupId) {
+      this.id      = StorageId.forGroupV1(rawId);
+      this.builder = GroupV1Record.newBuilder();
+
+      builder.setId(ByteString.copyFrom(groupId));
     }
 
     public Builder setBlocked(boolean blocked) {
-      this.blocked = blocked;
+      builder.setBlocked(blocked);
       return this;
     }
 
     public Builder setProfileSharingEnabled(boolean profileSharingEnabled) {
-      this.profileSharingEnabled = profileSharingEnabled;
+      builder.setWhitelisted(profileSharingEnabled);
+      return this;
+    }
+
+    public Builder setArchived(boolean archived) {
+      builder.setArchived(archived);
       return this;
     }
 
     public SignalGroupV1Record build() {
-      return new SignalGroupV1Record(key, groupId, blocked, profileSharingEnabled);
+      return new SignalGroupV1Record(id, builder.build());
     }
   }
 }
