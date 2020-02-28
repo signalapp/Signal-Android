@@ -456,24 +456,38 @@ public class RecipientDatabase extends Database {
     db.beginTransaction();
 
     try {
+
       for (SignalContactRecord insert : contactInserts) {
-        ContentValues values      = getValuesForStorageContact(insert);
-        long          id          = db.insertOrThrow(TABLE_NAME, null, values);
-        RecipientId   recipientId = RecipientId.from(id);
+        ContentValues values = getValuesForStorageContact(insert);
+        long          id     = db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
 
-        if (insert.getIdentityKey().isPresent()) {
-          try {
-            IdentityKey identityKey = new IdentityKey(insert.getIdentityKey().get(), 0);
+        if (id < 0) {
+          Log.w(TAG, "Failed to insert! It's likely that these were newly-registered users that were missed in the merge. Doing an update instead.");
 
-            DatabaseFactory.getIdentityDatabase(context).updateIdentityAfterSync(recipientId, identityKey, StorageSyncHelper.remoteToLocalIdentityStatus(insert.getIdentityState()));
-            IdentityUtil.markIdentityVerified(context, Recipient.resolved(recipientId), true, true);
-          } catch (InvalidKeyException e) {
-            Log.w(TAG, "Failed to process identity key during insert! Skipping.", e);
+          if (insert.getAddress().getNumber().isPresent()) {
+            int count = db.update(TABLE_NAME, values, PHONE + " = ?", new String[] { insert.getAddress().getNumber().get() });
+            Log.w(TAG, "Updated " + count + " users by E164.");
+          } else {
+            int count = db.update(TABLE_NAME, values, UUID + " = ?", new String[] { insert.getAddress().getUuid().get().toString() });
+            Log.w(TAG, "Updated " + count + " users by UUID.");
           }
-        }
+        } else {
+          RecipientId recipientId = RecipientId.from(id);
 
-        if (Recipient.self().getId().equals(recipientId)) {
-          TextSecurePreferences.setProfileName(context, ProfileName.fromParts(insert.getGivenName().orNull(), insert.getFamilyName().orNull()));
+          if (insert.getIdentityKey().isPresent()) {
+            try {
+              IdentityKey identityKey = new IdentityKey(insert.getIdentityKey().get(), 0);
+
+              DatabaseFactory.getIdentityDatabase(context).updateIdentityAfterSync(recipientId, identityKey, StorageSyncHelper.remoteToLocalIdentityStatus(insert.getIdentityState()));
+              IdentityUtil.markIdentityVerified(context, Recipient.resolved(recipientId), true, true);
+            } catch (InvalidKeyException e) {
+              Log.w(TAG, "Failed to process identity key during insert! Skipping.", e);
+            }
+          }
+
+          if (Recipient.self().getId().equals(recipientId)) {
+            TextSecurePreferences.setProfileName(context, ProfileName.fromParts(insert.getGivenName().orNull(), insert.getFamilyName().orNull()));
+          }
         }
       }
 
