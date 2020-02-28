@@ -18,7 +18,7 @@ import nl.komponents.kovenant.ui.failUi
 import nl.komponents.kovenant.ui.successUi
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
-import org.thoughtcrime.securesms.loki.OpenGroupUtilities
+import org.thoughtcrime.securesms.loki.redesign.utilities.OpenGroupUtilities
 import org.thoughtcrime.securesms.loki.redesign.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.redesign.fragments.ScanQRCodeWrapperFragmentDelegate
 import org.thoughtcrime.securesms.sms.MessageSender

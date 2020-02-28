@@ -73,7 +73,7 @@ import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.LokiSessionResetImplementation;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
-import org.thoughtcrime.securesms.loki.OpenGroupUtilities;
+import org.thoughtcrime.securesms.loki.redesign.utilities.OpenGroupUtilities;
 import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.redesign.messaging.LokiAPIUtilities;
 import org.thoughtcrime.securesms.loki.redesign.messaging.LokiPreKeyBundleDatabase;
@@ -764,7 +764,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         String url = openGroup.getServer();
         long channel = openGroup.getChannel();
         OpenGroupUtilities.addGroup(context, url, channel).fail(e -> {
-          Log.d("Loki", "Failed to sync open group " + url + " due to error: " + e + ".");
+          Log.d("Loki", "Failed to sync open group: " + url + " due to error: " + e + ".");
           return Unit.INSTANCE;
         });
       }

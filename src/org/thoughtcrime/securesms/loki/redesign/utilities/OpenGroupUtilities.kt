@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki
+package org.thoughtcrime.securesms.loki.redesign.utilities
 
 import android.content.Context
 import nl.komponents.kovenant.Promise
@@ -11,19 +11,17 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.loki.api.LokiPublicChat
 
 object OpenGroupUtilities {
-  @JvmStatic fun addGroup(context: Context, url: String, channel: Long): Promise<LokiPublicChat, Exception> {
-    // Check if we have an existing group
-    val groupId = LokiPublicChat.getId(channel, url)
-    val threadID = GroupManager.getPublicChatThreadId(groupId, context)
-    val openGroup = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID)
-    if (openGroup != null) {
-      return Promise.of(openGroup)
-    }
 
+  @JvmStatic fun addGroup(context: Context, url: String, channel: Long): Promise<LokiPublicChat, Exception> {
+    // Check for an existing group
+    val groupID = LokiPublicChat.getId(channel, url)
+    val threadID = GroupManager.getPublicChatThreadId(groupID, context)
+    val openGroup = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID)
+    if (openGroup != null) { return Promise.of(openGroup) }
     // Add the new group
     val application = ApplicationContext.getInstance(context)
     val displayName = TextSecurePreferences.getProfileName(context)
-    val lokiPublicChatAPI = application.lokiPublicChatAPI ?: throw Error("LokiPublicChatAPI is not initialized")
+    val lokiPublicChatAPI = application.lokiPublicChatAPI ?: throw Error("LokiPublicChatAPI is not initialized.")
     return application.lokiPublicChatManager.addChat(url, channel).then { group ->
       DatabaseFactory.getLokiAPIDatabase(context).removeLastMessageServerID(channel, url)
       DatabaseFactory.getLokiAPIDatabase(context).removeLastDeletionServerID(channel, url)

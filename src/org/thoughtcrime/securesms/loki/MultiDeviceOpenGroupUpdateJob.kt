@@ -17,9 +17,9 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class MultiDeviceOpenGroupUpdateJob private constructor(parameters: Parameters) : BaseJob(parameters), InjectableType {
+
   companion object {
     const val KEY = "MultiDeviceGroupUpdateJob"
-    private val TAG = MultiDeviceOpenGroupUpdateJob::class.java.simpleName
   }
 
   @Inject
@@ -32,18 +32,14 @@ class MultiDeviceOpenGroupUpdateJob private constructor(parameters: Parameters) 
           .setMaxAttempts(Parameters.UNLIMITED)
           .build())
 
-  override fun getFactoryKey(): String {
-    return KEY
-  }
+  override fun getFactoryKey(): String { return KEY }
 
-  override fun serialize(): Data {
-    return Data.EMPTY
-  }
+  override fun serialize(): Data { return Data.EMPTY }
 
   @Throws(Exception::class)
   public override fun onRun() {
     if (!TextSecurePreferences.isMultiDevice(context)) {
-      Log.i(TAG, "Not multi device, aborting...")
+      Log.d("Loki", "Not multi device; aborting...")
       return
     }
 
@@ -65,7 +61,7 @@ class MultiDeviceOpenGroupUpdateJob private constructor(parameters: Parameters) 
       messageSender.sendMessage(0, SignalServiceSyncMessage.forOpenGroups(openGroups),
               UnidentifiedAccessUtil.getAccessForSync(context))
     } else {
-      Log.d(TAG, "No open groups to sync.")
+      Log.d("Loki", "No open groups to sync.")
     }
   }
 
@@ -76,6 +72,7 @@ class MultiDeviceOpenGroupUpdateJob private constructor(parameters: Parameters) 
   override fun onCanceled() { }
 
   class Factory : Job.Factory<MultiDeviceOpenGroupUpdateJob> {
+
     override fun create(parameters: Parameters, data: Data): MultiDeviceOpenGroupUpdateJob {
       return MultiDeviceOpenGroupUpdateJob(parameters)
     }
