@@ -16,14 +16,12 @@ import kotlinx.android.synthetic.main.fragment_enter_chat_url.*
 import network.loki.messenger.R
 import nl.komponents.kovenant.ui.failUi
 import nl.komponents.kovenant.ui.successUi
-import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
-import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
-import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.loki.redesign.utilities.OpenGroupUtilities
 import org.thoughtcrime.securesms.loki.redesign.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.redesign.fragments.ScanQRCodeWrapperFragmentDelegate
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.thoughtcrime.securesms.sms.MessageSender
 
 class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperFragmentDelegate {
     private val adapter = JoinPublicChatActivityAdapter(this)
@@ -68,19 +66,11 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
             return Toast.makeText(this, "Invalid URL", Toast.LENGTH_SHORT).show()
         }
         showLoader()
-        val application = ApplicationContext.getInstance(this)
+
         val channel: Long = 1
-        val displayName = TextSecurePreferences.getProfileName(this)
-        val lokiPublicChatAPI = application.lokiPublicChatAPI!!
-        application.lokiPublicChatManager.addChat(url, channel).successUi {
-            DatabaseFactory.getLokiAPIDatabase(this).removeLastMessageServerID(channel, url)
-            DatabaseFactory.getLokiAPIDatabase(this).removeLastDeletionServerID(channel, url)
-            lokiPublicChatAPI.getMessages(channel, url)
-            lokiPublicChatAPI.setDisplayName(displayName, url)
-            lokiPublicChatAPI.join(channel, url)
-            val profileKey: ByteArray = ProfileKeyUtil.getProfileKey(this)
-            val profileUrl: String? = TextSecurePreferences.getProfileAvatarUrl(this)
-            lokiPublicChatAPI.setProfilePicture(url, profileKey, profileUrl)
+        OpenGroupUtilities.addGroup(this, url, channel).success {
+            MessageSender.syncAllOpenGroups(this)
+        }.successUi {
             finish()
         }.failUi {
             hideLoader()

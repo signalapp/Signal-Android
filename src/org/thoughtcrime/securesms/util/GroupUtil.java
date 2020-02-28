@@ -4,15 +4,13 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
-import android.widget.Toast;
 
 import com.google.protobuf.ByteString;
 
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.GroupDatabase.*;
+import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -25,6 +23,8 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+
+import network.loki.messenger.R;
 
 import static org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 
@@ -87,6 +87,10 @@ public class GroupUtil {
     return groupId.startsWith(ENCODED_RSS_FEED_GROUP_PREFIX);
   }
 
+  public static boolean isSignalGroup(@NonNull String groupId) {
+    return groupId.startsWith(ENCODED_SIGNAL_GROUP_PREFIX);
+  }
+
   @WorkerThread
   public static Optional<OutgoingGroupMediaMessage> createGroupLeaveMessage(@NonNull Context context, @NonNull Recipient groupRecipient) {
     String        encodedGroupId = groupRecipient.getAddress().toGroupString();
@@ -114,6 +118,8 @@ public class GroupUtil {
   }
 
   public static boolean leaveGroup(@NonNull Context context, Recipient groupRecipient) {
+    if (!groupRecipient.getAddress().isSignalGroup()) { return true; }
+
     long                                threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
     Optional<OutgoingGroupMediaMessage> leaveMessage   = GroupUtil.createGroupLeaveMessage(context, groupRecipient);
 

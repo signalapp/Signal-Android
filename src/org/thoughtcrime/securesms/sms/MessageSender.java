@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.BackgroundMessage;
 import org.thoughtcrime.securesms.loki.FriendRequestHandler;
 import org.thoughtcrime.securesms.loki.GeneralUtilitiesKt;
+import org.thoughtcrime.securesms.loki.MultiDeviceOpenGroupUpdateJob;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.loki.PushBackgroundMessageSendJob;
 import org.thoughtcrime.securesms.loki.PushMessageSyncSendJob;
@@ -84,6 +85,10 @@ public class MessageSender {
 
   public static void syncAllGroups(Context context) {
     ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceGroupUpdateJob());
+  }
+
+  public static void syncAllOpenGroups(Context context) {
+    ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceOpenGroupUpdateJob());
   }
 
   /**
