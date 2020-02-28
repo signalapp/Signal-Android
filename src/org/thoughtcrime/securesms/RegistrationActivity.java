@@ -3,10 +3,8 @@ package org.thoughtcrime.securesms;
 import android.Manifest;
 import android.animation.Animator;
 import android.annotation.SuppressLint;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -29,17 +27,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dd.CircularProgressButton;
-import com.google.android.gms.auth.api.phone.SmsRetriever;
-import com.google.android.gms.auth.api.phone.SmsRetrieverClient;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.common.api.CommonStatusCodes;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.tasks.Task;
-import com.google.i18n.phonenumbers.AsYouTypeFormatter;
-import com.google.i18n.phonenumbers.NumberParseException;
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
-import com.google.i18n.phonenumbers.Phonenumber;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
@@ -62,7 +49,6 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
-import org.thoughtcrime.securesms.gcm.FcmUtil;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
@@ -73,12 +59,9 @@ import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.registration.CaptchaActivity;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
-import org.thoughtcrime.securesms.service.VerificationCodeParser;
 import org.thoughtcrime.securesms.util.BackupUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Dialogs;
-import org.thoughtcrime.securesms.util.PlayServicesUtil;
-import org.thoughtcrime.securesms.util.PlayServicesUtil.PlayServicesStatus;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -121,7 +104,6 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
 
   private static final String TAG = RegistrationActivity.class.getSimpleName();
 
-  private AsYouTypeFormatter     countryFormatter;
   private ArrayAdapter<String>   countrySpinnerAdapter;
   private Spinner                countrySpinner;
   private LabeledEditText        countryCode;
@@ -149,7 +131,6 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
   private VerificationPinKeyboard     keyboard;
   private VerificationCodeView        verificationCodeView;
   private RegistrationState           registrationState;
-  private SmsRetrieverReceiver        smsRetrieverReceiver;
   private SignalServiceAccountManager accountManager;
   private int                         debugTapCounter;
 
@@ -163,13 +144,11 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     initializeSpinner();
     initializeNumber();
     initializeBackupDetection();
-    initializeChallengeListener();
   }
 
   @Override
   public void onDestroy() {
     super.onDestroy();
-    shutdownChallengeListener();
     markAsVerifying(false);
     EventBus.getDefault().unregister(this);
   }
@@ -179,7 +158,6 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     if (requestCode == PICK_COUNTRY && resultCode == RESULT_OK && data != null) {
       this.countryCode.setText(String.valueOf(data.getIntExtra("country_code", 1)));
       setCountryDisplay(data.getStringExtra("country_name"));
-      setCountryFormatter(data.getIntExtra("country_code", 1));
     } else if (requestCode == CAPTCHA && resultCode == RESULT_OK && data != null) {
       registrationState = new RegistrationState(Optional.fromNullable(data.getStringExtra(CaptchaActivity.KEY_TOKEN)), registrationState);
 
@@ -286,24 +264,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     });
   }
 
-  @SuppressLint("MissingPermission")
   private void initializeNumber() {
-    Optional<Phonenumber.PhoneNumber> localNumber = Optional.absent();
-
-    if (Permissions.hasAll(this, Manifest.permission.READ_PHONE_STATE)) {
-      localNumber = Util.getDeviceNumber(this);
-    }
-
-    if (localNumber.isPresent()) {
-      this.countryCode.setText(String.valueOf(localNumber.get().getCountryCode()));
-      this.number.setText(String.valueOf(localNumber.get().getNationalNumber()));
-    } else {
-      Optional<String> simCountryIso = Util.getSimCountryIso(this);
-
-      if (simCountryIso.isPresent() && !TextUtils.isEmpty(simCountryIso.get())) {
-        this.countryCode.setText(String.valueOf(PhoneNumberUtil.getInstance().getCountryCodeForRegion(simCountryIso.get())));
-      }
-    }
   }
 
   @SuppressLint("StaticFieldLeak")
@@ -336,14 +297,6 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
   private void setCountryDisplay(String value) {
     this.countrySpinnerAdapter.clear();
     this.countrySpinnerAdapter.add(value);
-  }
-
-  private void setCountryFormatter(int countryCode) {
-    PhoneNumberUtil util = PhoneNumberUtil.getInstance();
-    String regionCode    = util.getRegionCodeForCountryCode(countryCode);
-
-    if (regionCode == null) this.countryFormatter = null;
-    else                    this.countryFormatter = util.getAsYouTypeFormatter(regionCode);
   }
 
   private String getConfiguredE164Number() {
@@ -436,20 +389,6 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
       Dialogs.showAlertDialog(this,
                               getString(R.string.RegistrationActivity_invalid_number),
                               String.format(getString(R.string.RegistrationActivity_the_number_you_specified_s_is_invalid), e164number));
-      return;
-    }
-
-    PlayServicesStatus gcmStatus = PlayServicesUtil.getPlayServicesStatus(this);
-
-    if (gcmStatus == PlayServicesStatus.SUCCESS) {
-      handleRequestVerification(e164number, true);
-    } else if (gcmStatus == PlayServicesStatus.MISSING) {
-      handlePromptForNoPlayServices(e164number);
-    } else if (gcmStatus == PlayServicesStatus.NEEDS_UPDATE) {
-      GoogleApiAvailability.getInstance().getErrorDialog(this, ConnectionResult.SERVICE_VERSION_UPDATE_REQUIRED, 0).show();
-    } else {
-      Dialogs.showAlertDialog(this, getString(R.string.RegistrationActivity_play_services_error),
-                              getString(R.string.RegistrationActivity_google_play_services_is_updating_or_unavailable));
     }
   }
 
@@ -457,22 +396,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     createButton.setIndeterminateProgressMode(true);
     createButton.setProgress(50);
 
-    if (gcmSupported) {
-      SmsRetrieverClient client = SmsRetriever.getClient(this);
-      Task<Void>         task   = client.startSmsRetriever();
-
-      task.addOnSuccessListener(none -> {
-        Log.i(TAG, "Successfully registered SMS listener.");
-        requestVerificationCode(e164number, true, true);
-      });
-
-      task.addOnFailureListener(e -> {
-        Log.w(TAG, "Failed to register SMS listener.", e);
-        requestVerificationCode(e164number, true, false);
-      });
-    } else {
       requestVerificationCode(e164number, false, false);
-    }
   }
 
   @SuppressLint("StaticFieldLeak")
@@ -485,13 +409,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
 
           String password = Util.getSecret(18);
 
-          Optional<String> fcmToken;
-
-          if (gcmSupported) {
-            fcmToken = FcmUtil.getToken();
-          } else {
-            fcmToken = Optional.absent();
-          }
+          Optional<String> fcmToken = Optional.absent();
 
           accountManager = AccountManagerFactory.createManager(RegistrationActivity.this, e164number, password);
           accountManager.requestSmsVerificationCode(smsRetrieverSupported, registrationState.captchaToken);
@@ -939,19 +857,6 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     dialog.show();
   }
 
-  private void initializeChallengeListener() {
-    smsRetrieverReceiver = new SmsRetrieverReceiver();
-    IntentFilter filter = new IntentFilter(SmsRetriever.SMS_RETRIEVED_ACTION);
-    registerReceiver(smsRetrieverReceiver, filter);
-  }
-
-  private void shutdownChallengeListener() {
-    if (smsRetrieverReceiver != null) {
-      unregisterReceiver(smsRetrieverReceiver);
-      smsRetrieverReceiver = null;
-    }
-  }
-
   private void markAsVerifying(boolean verifying) {
     TextSecurePreferences.setVerifying(this, verifying);
 
@@ -961,12 +866,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
   }
 
   private String formatNumber(@NonNull String e164Number) {
-    try {
-      Phonenumber.PhoneNumber number = PhoneNumberUtil.getInstance().parse(e164Number, null);
-      return PhoneNumberUtil.getInstance().format(number, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL);
-    } catch (NumberParseException e) {
-      return e164Number;
-    }
+    return e164Number;
   }
 
   private void onWrongNumberClicked() {
@@ -980,53 +880,16 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     else                       restoreBackupProgress.setText(getString(R.string.RegistrationActivity_d_messages_so_far, event.getCount()));
   }
 
-  private class SmsRetrieverReceiver extends BroadcastReceiver {
-    @Override
-    public void onReceive(Context context, Intent intent) {
-      Log.i(TAG, "SmsRetrieverReceiver received a broadcast...");
-
-      if (SmsRetriever.SMS_RETRIEVED_ACTION.equals(intent.getAction())) {
-        Bundle extras = intent.getExtras();
-        Status status = (Status) extras.get(SmsRetriever.EXTRA_STATUS);
-
-        switch (status.getStatusCode()) {
-          case CommonStatusCodes.SUCCESS:
-            Optional<String> code = VerificationCodeParser.parse(context, (String) extras.get(SmsRetriever.EXTRA_SMS_MESSAGE));
-            if (code.isPresent()) {
-              Log.i(TAG, "Received verification code.");
-              handleVerificationCodeReceived(code.get());
-            } else {
-              Log.w(TAG, "Could not parse verification code.");
-            }
-            break;
-          case CommonStatusCodes.TIMEOUT:
-            Log.w(TAG, "Hit a timeout waiting for the SMS to arrive.");
-            break;
-        }
-      } else {
-        Log.w(TAG, "SmsRetrieverReceiver received the wrong action?");
-      }
-    }
-  }
-
   private class CountryCodeChangedListener implements TextWatcher {
     @Override
     public void afterTextChanged(Editable s) {
       if (TextUtils.isEmpty(s) || !TextUtils.isDigitsOnly(s)) {
         setCountryDisplay(getString(R.string.RegistrationActivity_select_your_country));
-        countryFormatter = null;
         return;
       }
 
       int countryCode   = Integer.parseInt(s.toString());
-      String regionCode = PhoneNumberUtil.getInstance().getRegionCodeForCountryCode(countryCode);
-
-      setCountryFormatter(countryCode);
-      setCountryDisplay(PhoneNumberFormatter.getRegionDisplayName(regionCode));
-
-      if (!TextUtils.isEmpty(regionCode) && !regionCode.equals("ZZ")) {
-        number.requestFocus();
-      }
+      setCountryDisplay("N/A");
     }
 
     @Override
@@ -1042,24 +905,6 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
 
     @Override
     public void afterTextChanged(Editable s) {
-      if (countryFormatter == null)
-        return;
-
-      if (TextUtils.isEmpty(s))
-        return;
-
-      countryFormatter.clear();
-
-      String number          = s.toString().replaceAll("[^\\d.]", "");
-      String formattedNumber = null;
-
-      for (int i=0;i<number.length();i++) {
-        formattedNumber = countryFormatter.inputDigit(number.charAt(i));
-      }
-
-      if (formattedNumber != null && !s.toString().equals(formattedNumber)) {
-        s.replace(0, s.length(), formattedNumber);
-      }
     }
 
     @Override

@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.components;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -14,22 +13,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.ApplicationContext;
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.dualsim.SubscriptionInfoCompat;
-import org.thoughtcrime.securesms.util.dualsim.SubscriptionManagerCompat;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Locale;
+
+import network.loki.messenger.R;
 
 public class ConversationItemFooter extends LinearLayout {
 
   private TextView            dateView;
-  private TextView            simView;
   private ExpirationTimerView timerView;
   private ImageView           insecureIndicatorView;
   private DeliveryStatusView  deliveryStatusView;
@@ -53,7 +48,6 @@ public class ConversationItemFooter extends LinearLayout {
     inflate(getContext(), R.layout.conversation_item_footer, this);
 
     dateView              = findViewById(R.id.footer_date);
-    simView               = findViewById(R.id.footer_sim_info);
     timerView             = findViewById(R.id.footer_expiration_timer);
     insecureIndicatorView = findViewById(R.id.footer_insecure_indicator);
     deliveryStatusView    = findViewById(R.id.footer_delivery_status);
@@ -74,7 +68,6 @@ public class ConversationItemFooter extends LinearLayout {
 
   public void setMessageRecord(@NonNull MessageRecord messageRecord, @NonNull Locale locale) {
     presentDate(messageRecord, locale);
-    presentSimInfo(messageRecord);
     presentTimer(messageRecord);
     presentInsecureIndicator(messageRecord);
     presentDeliveryStatus(messageRecord);
@@ -82,7 +75,6 @@ public class ConversationItemFooter extends LinearLayout {
 
   public void setTextColor(int color) {
     dateView.setTextColor(color);
-    simView.setTextColor(color);
   }
 
   public void setIconColor(int color) {
@@ -100,26 +92,6 @@ public class ConversationItemFooter extends LinearLayout {
       dateView.setText(R.string.ConversationItem_click_to_approve_unencrypted);
     } else {
       dateView.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), locale, messageRecord.getTimestamp()));
-    }
-  }
-
-  private void presentSimInfo(@NonNull MessageRecord messageRecord) {
-    SubscriptionManagerCompat subscriptionManager = new SubscriptionManagerCompat(getContext());
-
-    if (messageRecord.isPush() || messageRecord.getSubscriptionId() == -1 || !Permissions.hasAll(getContext(), Manifest.permission.READ_PHONE_STATE) || !subscriptionManager.isMultiSim()) {
-      simView.setVisibility(View.GONE);
-    } else {
-      Optional<SubscriptionInfoCompat> subscriptionInfo = subscriptionManager.getActiveSubscriptionInfo(messageRecord.getSubscriptionId());
-
-      if (subscriptionInfo.isPresent() && messageRecord.isOutgoing()) {
-        simView.setText(getContext().getString(R.string.ConversationItem_from_s, subscriptionInfo.get().getDisplayName()));
-        simView.setVisibility(View.VISIBLE);
-      } else if (subscriptionInfo.isPresent()) {
-        simView.setText(getContext().getString(R.string.ConversationItem_to_s,  subscriptionInfo.get().getDisplayName()));
-        simView.setVisibility(View.VISIBLE);
-      } else {
-        simView.setVisibility(View.GONE);
-      }
     }
   }
 

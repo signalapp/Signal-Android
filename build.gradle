@@ -11,13 +11,11 @@ buildscript {
         mavenLocal()
         google()
         mavenCentral()
-        maven { url 'https://maven.fabric.io/public' }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$gradle_version"
         classpath files('libs/gradle-witness.jar')
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "io.fabric.tools:gradle:1.+"
     }
 }
 
@@ -25,7 +23,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 apply plugin: 'witness'
-apply plugin: 'io.fabric'
 apply plugin: 'kotlin-kapt'
 
 repositories {
@@ -62,7 +59,6 @@ repositories {
     }
     google()
     jcenter()
-    maven { url 'https://maven.fabric.io/public' }
     maven { url "https://jitpack.io" }
 }
 
@@ -90,16 +86,6 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'android.arch.lifecycle:extensions:1.1.1'
     implementation 'android.arch.lifecycle:common-java8:1.1.1'
-
-    implementation('com.google.firebase:firebase-messaging:17.3.4') {
-        exclude group: 'com.google.firebase', module: 'firebase-core'
-        exclude group: 'com.google.firebase', module: 'firebase-analytics'
-        exclude group: 'com.google.firebase', module: 'firebase-measurement-connector'
-    }
-
-    implementation 'com.google.android.gms:play-services-maps:16.0.0'
-    implementation 'com.google.android.gms:play-services-places:16.0.0'
-    implementation 'com.google.android.gms:play-services-auth:16.0.1'
 
     implementation 'com.google.android.exoplayer:exoplayer-core:2.9.1'
     implementation 'com.google.android.exoplayer:exoplayer-ui:2.9.1'
@@ -186,7 +172,6 @@ dependencies {
     // Remote:
     // implementation "com.github.loki-project:loki-messenger-android-service:dev-SNAPSHOT"
     implementation "com.google.protobuf:protobuf-java:2.5.0"
-    implementation "com.googlecode.libphonenumber:libphonenumber:8.10.7"
     implementation "com.fasterxml.jackson.core:jackson-databind:2.9.8"
     implementation "com.squareup.okhttp3:okhttp:3.12.1"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -199,8 +184,8 @@ dependencies {
     implementation "com.github.ybq:Android-SpinKit:1.4.0"
 }
 
-def canonicalVersionCode = 36
-def canonicalVersionName = "1.0.2"
+def canonicalVersionCode = 38
+def canonicalVersionName = "1.0.4"
 
 def postFixSize = 10
 def abiPostFix = ['armeabi-v7a' : 1,
@@ -279,8 +264,6 @@ android {
         debug {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
-                          'proguard-firebase-messaging.pro',
-                          'proguard-google-play-services.pro',
                           'proguard-dagger.pro',
                           'proguard-jackson.pro',
                           'proguard-sqlite.pro',
@@ -371,12 +354,12 @@ android {
 
 def assembleWebsiteDescriptor = { variant, file ->
     if (file.exists()) {
-        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        MessageDigest md = MessageDigest.getInstance("SHA-256")
         file.eachByte 4096, {bytes, size ->
-            md.update(bytes, 0, size);
+            md.update(bytes, 0, size)
         }
 
-        String digest  = md.digest().collect {String.format "%02x", it}.join();
+        String digest  = md.digest().collect {String.format "%02x", it}.join()
         String url     = variant.productFlavors.get(0).ext.websiteUpdateUrl
         String apkName = file.getName()
 

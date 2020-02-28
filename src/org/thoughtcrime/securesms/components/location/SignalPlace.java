@@ -7,8 +7,6 @@ import android.text.TextUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.maps.model.LatLng;
 
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.JsonUtils;
@@ -16,6 +14,22 @@ import org.thoughtcrime.securesms.util.JsonUtils;
 import java.io.IOException;
 
 public class SignalPlace {
+
+  /* Loki - Temporary Placeholders */
+  class LatLng {
+    double latitude;
+    double longitude;
+    LatLng(double latitude, double longitude) {
+      this.latitude = latitude;
+      this.longitude = longitude;
+    }
+  }
+
+  class Place {
+    public CharSequence getName() { return ""; }
+    public CharSequence getAddress() { return ""; }
+    LatLng getLatLng() { return new LatLng(0, 0); }
+  }
 
   private static final String URL = "https://maps.google.com/maps";
   private static final String TAG = SignalPlace.class.getSimpleName();
