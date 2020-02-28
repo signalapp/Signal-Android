@@ -5,9 +5,9 @@ import android.support.annotation.NonNull;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.data.DataFetcher;
-import com.google.android.gms.common.util.Hex;
 
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.util.Hex;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 
@@ -32,8 +32,8 @@ public final class StickerRemoteUriFetcher implements DataFetcher<InputStream> {
   @Override
   public void loadData(@NonNull Priority priority, @NonNull DataCallback<? super InputStream> callback) {
     try {
-      byte[]      packIdBytes  = Hex.stringToBytes(stickerUri.getPackId());
-      byte[]      packKeyBytes = Hex.stringToBytes(stickerUri.getPackKey());
+      byte[]      packIdBytes  = Hex.fromStringCondensed(stickerUri.getPackId());
+      byte[]      packKeyBytes = Hex.fromStringCondensed(stickerUri.getPackKey());
       InputStream stream       = receiver.retrieveSticker(packIdBytes, packKeyBytes, stickerUri.getStickerId());
 
       callback.onDataReady(stream);

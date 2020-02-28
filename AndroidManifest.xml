@@ -79,22 +79,13 @@
         android:theme="@style/Session.DarkTheme"
         tools:replace="android:allowBackup">
 
-        <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="d0c4d13f424a96b9064aa0a9ecafabdb0db4287f" />
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCSx9xea86GwDKGznCAULE9Y5a8b-TfN9U" />
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-        <!--
- <meta-data android:name="com.google.android.gms.car.application"
-               android:resource="@xml/automotive_app_desc" />
-        -->
+        <!-- Disable analytics -->
         <meta-data
             android:name="firebase_analytics_collection_deactivated"
             android:value="true" />
+        <meta-data
+            android:name="firebase_crashlytics_collection_enabled"
+            android:value="false" />
         <meta-data
             android:name="google_analytics_adid_collection_enabled"
             android:value="false" />
@@ -440,10 +431,6 @@
             android:noHistory="true"
             android:stateNotNeeded="true"
             android:theme="@android:style/Theme.NoDisplay" />
-        <activity
-            android:name="org.thoughtcrime.securesms.PlayServicesProblemActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:theme="@style/TextSecure.DialogActivity" />
         <activity android:name="org.thoughtcrime.securesms.SmsSendtoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SENDTO" />

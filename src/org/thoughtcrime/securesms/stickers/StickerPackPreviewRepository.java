@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
-import com.google.android.gms.common.util.Hex;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -15,6 +14,7 @@ import org.thoughtcrime.securesms.database.model.StickerPackRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -81,8 +81,8 @@ public final class StickerPackPreviewRepository implements InjectableType {
   @WorkerThread
   private Optional<StickerManifestResult> getManifestRemote(@NonNull String packId, @NonNull String packKey) {
     try {
-      byte[]                       packIdBytes    = Hex.stringToBytes(packId);
-      byte[]                       packKeyBytes   = Hex.stringToBytes(packKey);
+      byte[]                       packIdBytes    = Hex.fromStringCondensed(packId);
+      byte[]                       packKeyBytes   = Hex.fromStringCondensed(packKey);
       SignalServiceStickerManifest remoteManifest = receiver.retrieveStickerManifest(packIdBytes, packKeyBytes);
       StickerManifest              localManifest  = new StickerManifest(packId,
                                                                         packKey,

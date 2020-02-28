@@ -13,11 +13,7 @@ import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 
 import com.annimon.stream.Stream;
-import com.google.i18n.phonenumbers.NumberParseException;
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
-import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiStrings;
 import org.thoughtcrime.securesms.contactshare.Contact.Email;
 import org.thoughtcrime.securesms.contactshare.Contact.Phone;
@@ -33,6 +29,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import network.loki.messenger.R;
 
 public final class ContactUtil {
 
@@ -102,13 +100,7 @@ public final class ContactUtil {
   }
 
   private static @NonNull String getPrettyPhoneNumber(@NonNull String phoneNumber, @NonNull Locale fallbackLocale) {
-    PhoneNumberUtil util = PhoneNumberUtil.getInstance();
-    try {
-      PhoneNumber parsed = util.parse(phoneNumber, fallbackLocale.getISO3Country());
-      return util.format(parsed, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL);
-    } catch (NumberParseException e) {
-      return phoneNumber;
-    }
+    return phoneNumber;
   }
 
   public static @NonNull String getNormalizedPhoneNumber(@NonNull Context context, @NonNull String number) {

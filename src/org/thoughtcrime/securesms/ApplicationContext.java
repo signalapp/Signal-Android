@@ -16,7 +16,6 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.annotation.SuppressLint;
 import android.arch.lifecycle.DefaultLifecycleObserver;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.ProcessLifecycleOwner;
@@ -30,8 +29,6 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.multidex.MultiDexApplication;
-
-import com.google.android.gms.security.ProviderInstaller;
 
 import org.conscrypt.Conscrypt;
 import org.jetbrains.annotations.NotNull;
@@ -176,7 +173,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     initializeTypingStatusSender();
     initializeSignedPreKeyCheck();
     initializePeriodicTasks();
-    initializeCircumvention();
     initializeWebRtc();
     initializePendingMessages();
     initializeUnidentifiedDeliveryAbilityRefresh();
@@ -401,25 +397,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     } catch (UnsatisfiedLinkError e) {
       Log.w(TAG, e);
     }
-  }
-
-  @SuppressLint("StaticFieldLeak")
-  private void initializeCircumvention() {
-    AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
-      @Override
-      protected Void doInBackground(Void... params) {
-        if (new SignalServiceNetworkAccess(ApplicationContext.this).isCensored(ApplicationContext.this)) {
-          try {
-            ProviderInstaller.installIfNeeded(ApplicationContext.this);
-          } catch (Throwable t) {
-            Log.w(TAG, t);
-          }
-        }
-        return null;
-      }
-    };
-
-    task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   private void executePendingContactSync() {
