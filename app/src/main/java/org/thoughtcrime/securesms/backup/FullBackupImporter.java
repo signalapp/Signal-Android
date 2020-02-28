@@ -165,6 +165,7 @@ public class FullBackupImporter extends FullBackupBase {
 
     ContentValues contentValues = new ContentValues();
     contentValues.put(StickerDatabase.FILE_PATH, dataFile.getAbsolutePath());
+    contentValues.put(StickerDatabase.FILE_LENGTH, sticker.getLength());
     contentValues.put(StickerDatabase.FILE_RANDOM, output.first);
 
     db.update(StickerDatabase.TABLE_NAME, contentValues,

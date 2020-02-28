@@ -176,8 +176,7 @@ public class StickerPackDownloadJob extends BaseJob {
 
   public static final class Factory implements Job.Factory<StickerPackDownloadJob> {
     @Override
-    public @NonNull
-    StickerPackDownloadJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull StickerPackDownloadJob create(@NonNull Parameters parameters, @NonNull Data data) {
       return new StickerPackDownloadJob(parameters,
                                         data.getString(KEY_PACK_ID),
                                         data.getString(KEY_PACK_KEY),

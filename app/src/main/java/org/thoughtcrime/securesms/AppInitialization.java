@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.insights.InsightsOptOut;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
 import org.thoughtcrime.securesms.stickers.BlessedPacks;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -21,9 +22,13 @@ import org.thoughtcrime.securesms.util.Util;
  */
 public final class AppInitialization {
 
+  private static final String TAG = Log.tag(AppInitialization.class);
+
   private AppInitialization() {}
 
   public static void onFirstEverAppLaunch(@NonNull Context context) {
+    Log.i(TAG, "onFirstEverAppLaunch()");
+
     InsightsOptOut.userRequestedOptOut(context);
     TextSecurePreferences.setAppMigrationVersion(context, ApplicationMigrations.CURRENT_VERSION);
     TextSecurePreferences.setJobManagerVersion(context, JobManager.CURRENT_VERSION);
@@ -38,6 +43,8 @@ public final class AppInitialization {
   }
 
   public static void onPostBackupRestore(@NonNull Context context) {
+    Log.i(TAG, "onPostBackupRestore()");
+
     ApplicationDependencies.getMegaphoneRepository().onFirstEverAppLaunch();
     SignalStore.onFirstEverAppLaunch();
     ApplicationDependencies.getJobManager().add(StickerPackDownloadJob.forInstall(BlessedPacks.ZOZO.getPackId(), BlessedPacks.ZOZO.getPackKey(), false));
