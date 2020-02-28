@@ -31,7 +31,7 @@ public class FeatureFlagsTest {
 
     assertEquals(mapOf(), result.getMemory());
     assertEquals(mapOf("A", true), result.getDisk());
-    assertTrue(result.getChanges().isEmpty());
+    assertTrue(result.getMemoryChanges().isEmpty());
   }
 
   @Test
@@ -45,7 +45,7 @@ public class FeatureFlagsTest {
 
     assertEquals(mapOf(), result.getMemory());
     assertEquals(mapOf(A, true), result.getDisk());
-    assertTrue(result.getChanges().isEmpty());
+    assertTrue(result.getMemoryChanges().isEmpty());
   }
 
   @Test
@@ -59,7 +59,7 @@ public class FeatureFlagsTest {
 
     assertEquals(mapOf(A, true), result.getMemory());
     assertEquals(mapOf(A, true), result.getDisk());
-    assertEquals(Change.ENABLED, result.getChanges().get(A));
+    assertEquals(Change.ENABLED, result.getMemoryChanges().get(A));
   }
 
   @Test
@@ -73,7 +73,7 @@ public class FeatureFlagsTest {
 
     assertEquals(mapOf(), result.getMemory());
     assertEquals(mapOf(A, true), result.getDisk());
-    assertTrue(result.getChanges().isEmpty());
+    assertTrue(result.getMemoryChanges().isEmpty());
   }
 
   @Test
@@ -87,7 +87,7 @@ public class FeatureFlagsTest {
 
     assertEquals(mapOf(A, true), result.getMemory());
     assertEquals(mapOf(A, true), result.getDisk());
-    assertEquals(Change.ENABLED, result.getChanges().get(A));
+    assertEquals(Change.ENABLED, result.getMemoryChanges().get(A));
   }
 
   @Test
@@ -101,7 +101,7 @@ public class FeatureFlagsTest {
 
     assertEquals(mapOf(A, false), result.getMemory());
     assertEquals(mapOf(A, true), result.getDisk());
-    assertTrue(result.getChanges().isEmpty());
+    assertTrue(result.getMemoryChanges().isEmpty());
   }
 
   @Test
@@ -115,7 +115,7 @@ public class FeatureFlagsTest {
 
     assertEquals(mapOf(A, true), result.getMemory());
     assertEquals(mapOf(A, true), result.getDisk());
-    assertEquals(Change.ENABLED, result.getChanges().get(A));
+    assertEquals(Change.ENABLED, result.getMemoryChanges().get(A));
   }
 
   @Test
@@ -129,7 +129,7 @@ public class FeatureFlagsTest {
 
     assertEquals(mapOf(A, true), result.getMemory());
     assertEquals(mapOf(A, true), result.getDisk());
-    assertEquals(Change.ENABLED, result.getChanges().get(A));
+    assertEquals(Change.ENABLED, result.getMemoryChanges().get(A));
   }
 
   @Test
@@ -143,7 +143,7 @@ public class FeatureFlagsTest {
 
     assertEquals(mapOf(A, true), result.getMemory());
     assertEquals(mapOf(A, true), result.getDisk());
-    assertTrue(result.getChanges().isEmpty());
+    assertTrue(result.getMemoryChanges().isEmpty());
   }
 
   @Test
@@ -157,7 +157,21 @@ public class FeatureFlagsTest {
 
     assertEquals(mapOf(A, true), result.getMemory());
     assertEquals(mapOf(), result.getDisk());
-    assertTrue(result.getChanges().isEmpty());
+    assertTrue(result.getMemoryChanges().isEmpty());
+  }
+
+  @Test
+  public void updateInternal_removeValue_notRemoteCapable() {
+    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true),
+                                                      mapOf(A, true),
+                                                      mapOf(A, true),
+                                                      setOf(),
+                                                      setOf(),
+                                                      setOf());
+
+    assertEquals(mapOf(A, true), result.getMemory());
+    assertEquals(mapOf(), result.getDisk());
+    assertTrue(result.getMemoryChanges().isEmpty());
   }
 
   @Test
@@ -171,7 +185,21 @@ public class FeatureFlagsTest {
 
     assertEquals(mapOf(), result.getMemory());
     assertEquals(mapOf(), result.getDisk());
-    assertEquals(Change.REMOVED, result.getChanges().get(A));
+    assertEquals(Change.REMOVED, result.getMemoryChanges().get(A));
+  }
+
+  @Test
+  public void updateInternal_removeValue_hotSwap_notRemoteCapable() {
+    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true),
+                                                      mapOf(A, true),
+                                                      mapOf(A, true),
+                                                      setOf(),
+                                                      setOf(A),
+                                                      setOf());
+
+    assertEquals(mapOf(), result.getMemory());
+    assertEquals(mapOf(), result.getDisk());
+    assertEquals(Change.REMOVED, result.getMemoryChanges().get(A));
   }
 
   @Test
@@ -185,7 +213,7 @@ public class FeatureFlagsTest {
 
     assertEquals(mapOf(A, true), result.getMemory());
     assertEquals(mapOf(A, true), result.getDisk());
-    assertTrue(result.getChanges().isEmpty());
+    assertTrue(result.getMemoryChanges().isEmpty());
   }
 
   @Test
@@ -199,7 +227,21 @@ public class FeatureFlagsTest {
 
     assertEquals(mapOf(A, false), result.getMemory());
     assertEquals(mapOf(), result.getDisk());
-    assertTrue(result.getChanges().isEmpty());
+    assertTrue(result.getMemoryChanges().isEmpty());
+  }
+
+  @Test
+  public void updateInternal_removeValue_stickyNotEnabled_notRemoteCapable() {
+    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true),
+                                                      mapOf(A, false),
+                                                      mapOf(A, false),
+                                                      setOf(),
+                                                      setOf(),
+                                                      setOf(A));
+
+    assertEquals(mapOf(A, false), result.getMemory());
+    assertEquals(mapOf(), result.getDisk());
+    assertTrue(result.getMemoryChanges().isEmpty());
   }
 
   @Test
@@ -213,7 +255,21 @@ public class FeatureFlagsTest {
 
     assertEquals(mapOf(A, true), result.getMemory());
     assertEquals(mapOf(A, true), result.getDisk());
-    assertTrue(result.getChanges().isEmpty());
+    assertTrue(result.getMemoryChanges().isEmpty());
+  }
+
+  @Test
+  public void updateInternal_removeValue_hotSwap_stickyAlreadyEnabled_notRemoteCapable() {
+    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true),
+                                                      mapOf(A, true),
+                                                      mapOf(A, true),
+                                                      setOf(),
+                                                      setOf(A),
+                                                      setOf(A));
+
+    assertEquals(mapOf(A, true), result.getMemory());
+    assertEquals(mapOf(A, true), result.getDisk());
+    assertTrue(result.getMemoryChanges().isEmpty());
   }
 
   @Test
@@ -227,7 +283,7 @@ public class FeatureFlagsTest {
 
     assertEquals(mapOf(), result.getMemory());
     assertEquals(mapOf(), result.getDisk());
-    assertEquals(Change.REMOVED, result.getChanges().get(A));
+    assertEquals(Change.REMOVED, result.getMemoryChanges().get(A));
   }
 
   @Test
@@ -242,7 +298,7 @@ public class FeatureFlagsTest {
 
     assertEquals(mapOf(), result.getMemory());
     assertEquals(mapOf(A, true, B, false), result.getDisk());
-    assertTrue(result.getChanges().isEmpty());
+    assertTrue(result.getMemoryChanges().isEmpty());
   }
 
   @Test
@@ -259,7 +315,7 @@ public class FeatureFlagsTest {
 
     assertEquals(mapOf(A, true, B, true), result.getMemory());
     assertEquals(mapOf(A, true, B, false), result.getDisk());
-    assertTrue(result.getChanges().isEmpty());
+    assertTrue(result.getMemoryChanges().isEmpty());
   }
 
   @Test
