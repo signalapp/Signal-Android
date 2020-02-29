@@ -98,7 +98,7 @@ public class ContactsDatabase {
           if (systemContactInfo.isPresent()) {
             Log.i(TAG, "Adding number: " + registeredAddress);
             addTextSecureRawContact(operations, account, systemContactInfo.get().number,
-                                    systemContactInfo.get().name, systemContactInfo.get().id);
+                                    systemContactInfo.get().name, systemContactInfo.get().id, systemContactInfo.get().type);
           }
         }
       }
@@ -282,7 +282,7 @@ public class ContactsDatabase {
 
   private void addTextSecureRawContact(List<ContentProviderOperation> operations,
                                        Account account, String e164number, String displayName,
-                                       long aggregateId)
+                                       long aggregateId, int type)
   {
     int index   = operations.size();
     Uri dataUri = ContactsContract.Data.CONTENT_URI.buildUpon()
@@ -306,7 +306,8 @@ public class ContactsDatabase {
                                            .withValueBackReference(ContactsContract.CommonDataKinds.Phone.RAW_CONTACT_ID, index)
                                            .withValue(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
                                            .withValue(ContactsContract.CommonDataKinds.Phone.NUMBER, e164number)
-                                           .withValue(ContactsContract.CommonDataKinds.Phone.TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_OTHER)
+                                           // .withValue(ContactsContract.CommonDataKinds.Phone.TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_OTHER)
+                                           .withValue(ContactsContract.CommonDataKinds.Phone.TYPE, type)
                                            .withValue(ContactsContract.Data.SYNC2, SYNC)
                                            .build());
 
@@ -384,7 +385,8 @@ public class ContactsDatabase {
     Uri      uri          = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(address));
     String[] projection   = {ContactsContract.PhoneLookup.NUMBER,
                              ContactsContract.PhoneLookup._ID,
-                             ContactsContract.PhoneLookup.DISPLAY_NAME};
+                             ContactsContract.PhoneLookup.DISPLAY_NAME,
+                             ContactsContract.PhoneLookup.TYPE};
     Cursor   numberCursor = null;
     Cursor   idCursor     = null;
 
@@ -405,7 +407,8 @@ public class ContactsDatabase {
           if (idCursor != null && idCursor.moveToNext()) {
             return Optional.of(new SystemContactInfo(numberCursor.getString(2),
                                                      numberCursor.getString(0),
-                                                     idCursor.getLong(0)));
+                                                     idCursor.getLong(0),
+                                                     numberCursor.getInt(3)));
           }
         }
       }
@@ -451,11 +454,13 @@ public class ContactsDatabase {
     private final String name;
     private final String number;
     private final long   id;
+    private final int type;
 
-    private SystemContactInfo(String name, String number, long id) {
+    private SystemContactInfo(String name, String number, long id, int type) {
       this.name   = name;
       this.number = number;
       this.id     = id;
+      this.type   = type;
     }
   }
 
