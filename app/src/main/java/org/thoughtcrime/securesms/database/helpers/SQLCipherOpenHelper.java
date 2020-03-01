@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.File;
+import java.io.FilenameFilter;
 import java.util.List;
 
 public class SQLCipherOpenHelper extends SQLiteOpenHelper {
@@ -114,8 +115,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int ATTACHMENT_FILE_INDEX            = 49;
   private static final int STORAGE_SERVICE_ACTIVE           = 50;
   private static final int GROUPS_V2_RECIPIENT_CAPABILITY   = 51;
+  private static final int TRANSFER_FILE_CLEANUP            = 52;
 
-  private static final int    DATABASE_VERSION = 51;
+  private static final int    DATABASE_VERSION = 52;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -764,6 +766,28 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < GROUPS_V2_RECIPIENT_CAPABILITY) {
         db.execSQL("ALTER TABLE recipient ADD COLUMN gv2_capability INTEGER DEFAULT 0");
+      }
+
+      if (oldVersion < TRANSFER_FILE_CLEANUP) {
+        File partsDirectory = context.getDir("parts", Context.MODE_PRIVATE);
+
+        if (partsDirectory.exists()) {
+          File[] transferFiles = partsDirectory.listFiles((dir, name) -> name.startsWith("transfer"));
+          int    deleteCount   = 0;
+
+          Log.i(TAG, "Found " + transferFiles.length + " dangling transfer files.");
+
+          for (File file : transferFiles) {
+            if (file.delete()) {
+              Log.i(TAG, "Deleted " + file.getName());
+              deleteCount++;
+            }
+          }
+
+          Log.i(TAG, "Deleted " + deleteCount + " dangling transfer files.");
+        } else {
+          Log.w(TAG, "Part directory did not exist. Skipping.");
+        }
       }
 
       db.setTransactionSuccessful();
