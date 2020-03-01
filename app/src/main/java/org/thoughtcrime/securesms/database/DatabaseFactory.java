@@ -175,6 +175,10 @@ public class DatabaseFactory {
     }
   }
 
+  static SQLCipherOpenHelper getRawDatabase(Context context) {
+    return getInstance(context).databaseHelper;
+  }
+
   private DatabaseFactory(@NonNull Context context) {
     SQLiteDatabase.loadLibs(context);
 

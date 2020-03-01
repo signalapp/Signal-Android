@@ -818,6 +818,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     return context.getDatabasePath(DATABASE_NAME).exists();
   }
 
+  public static File getDatabaseFile(@NonNull Context context) {
+    return context.getDatabasePath(DATABASE_NAME);
+  }
+
   private void executeStatements(SQLiteDatabase db, String[] statements) {
     for (String statement : statements)
       db.execSQL(statement);
