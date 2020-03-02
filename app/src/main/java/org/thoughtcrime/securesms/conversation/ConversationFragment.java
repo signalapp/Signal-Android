@@ -236,20 +236,14 @@ public class ConversationFragment extends Fragment
   }
 
   private void setListVerticalTranslation() {
-    int heightOfChildren = 0;
-    for (int i = 0; i < list.getChildCount(); i++) {
-      heightOfChildren += list.getChildAt(i).getMeasuredHeight();
-    }
-
-    Log.i(TAG, "Height of children: " + heightOfChildren + " my height: " + list.getMeasuredHeight());
-    if (heightOfChildren > list.getMeasuredHeight()) {
+    if (list.canScrollVertically(1) || list.canScrollVertically(-1) || list.getChildCount() == 0) {
       list.setTranslationY(0);
       list.setOverScrollMode(RecyclerView.OVER_SCROLL_IF_CONTENT_SCROLLS);
     } else {
-      list.setTranslationY(heightOfChildren - list.getMeasuredHeight());
+      int chTop = list.getChildAt(list.getChildCount() - 1).getTop();
+      list.setTranslationY(Math.min(0, -chTop));
       list.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
     }
-
     listener.onListVerticalTranslationChanged(list.getTranslationY());
   }
 
