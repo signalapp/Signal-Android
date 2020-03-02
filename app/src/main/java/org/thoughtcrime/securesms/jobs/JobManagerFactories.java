@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdFollowUpJobMi
 import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdFollowUpJobMigration2;
 import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdJobMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.SendReadReceiptsJobMigration;
-import org.thoughtcrime.securesms.migrations.Argon2TestMigrationJob;
+import org.thoughtcrime.securesms.migrations.PassingMigrationJob;
 import org.thoughtcrime.securesms.migrations.AvatarMigrationJob;
 import org.thoughtcrime.securesms.migrations.CachedAttachmentsMigrationJob;
 import org.thoughtcrime.securesms.migrations.DatabaseMigrationJob;
@@ -104,11 +104,9 @@ public final class JobManagerFactories {
       put(TypingSendJob.KEY,                         new TypingSendJob.Factory());
       put(UpdateApkJob.KEY,                          new UpdateApkJob.Factory());
       put(MarkerJob.KEY,                             new MarkerJob.Factory());
-      put(Argon2TestJob.KEY,                         new Argon2TestJob.Factory());
       put(ProfileUploadJob.KEY,                      new ProfileUploadJob.Factory());
 
       // Migrations
-      put(Argon2TestMigrationJob.KEY,                new Argon2TestMigrationJob.Factory());
       put(AvatarMigrationJob.KEY,                    new AvatarMigrationJob.Factory());
       put(CachedAttachmentsMigrationJob.KEY,         new CachedAttachmentsMigrationJob.Factory());
       put(DatabaseMigrationJob.KEY,                  new DatabaseMigrationJob.Factory());
@@ -123,10 +121,14 @@ public final class JobManagerFactories {
       put(UuidMigrationJob.KEY,                      new UuidMigrationJob.Factory());
 
       // Dead jobs
+      put(FailingJob.KEY,                            new FailingJob.Factory());
+      put(PassingMigrationJob.KEY,                   new PassingMigrationJob.Factory());
       put("PushContentReceiveJob",                   new FailingJob.Factory());
       put("AttachmentUploadJob",                     new FailingJob.Factory());
       put("MmsSendJob",                              new FailingJob.Factory());
       put("RefreshUnidentifiedDeliveryAbilityJob",   new FailingJob.Factory());
+      put("Argon2TestJob",                           new FailingJob.Factory());
+      put("Argon2TestMigrationJob",                  new PassingMigrationJob.Factory());
     }};
   }
 

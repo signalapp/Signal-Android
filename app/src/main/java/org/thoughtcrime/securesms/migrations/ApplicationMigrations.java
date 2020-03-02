@@ -10,7 +10,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
-import org.thoughtcrime.securesms.jobs.Argon2TestJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.stickers.BlessedPacks;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -51,7 +50,7 @@ public class ApplicationMigrations {
     static final int UUIDS              = 6;
     static final int CACHED_ATTACHMENTS = 7;
     static final int STICKERS_LAUNCH    = 8;
-    static final int TEST_ARGON2        = 9;
+    //static final int TEST_ARGON2        = 9;
     static final int SWOON_STICKERS     = 10;
     static final int STORAGE_SERVICE    = 11;
     static final int STORAGE_KEY_ROTATE = 12;
@@ -199,9 +198,10 @@ public class ApplicationMigrations {
       jobs.put(Version.STICKERS_LAUNCH, new StickerLaunchMigrationJob());
     }
 
-    if (lastSeenVersion < Version.TEST_ARGON2) {
-      jobs.put(Version.TEST_ARGON2, new Argon2TestMigrationJob());
-    }
+    // This migration only triggered a test we aren't interested in any more.
+    // if (lastSeenVersion < Version.TEST_ARGON2) {
+    // jobs.put(Version.TEST_ARGON2, new Argon2TestMigrationJob());
+    // }
 
     if (lastSeenVersion < Version.SWOON_STICKERS) {
       jobs.put(Version.SWOON_STICKERS, new StickerAdditionMigrationJob(BlessedPacks.SWOON_HANDS, BlessedPacks.SWOON_FACES));
