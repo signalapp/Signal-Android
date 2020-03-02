@@ -27,6 +27,7 @@ import org.whispersystems.signalservice.api.push.exceptions.NoContentException;
 import org.whispersystems.signalservice.api.storage.StorageKey;
 import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo;
+import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfileWrite;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
@@ -221,7 +222,8 @@ public class SignalServiceAccountManager {
    */
   public UUID verifyAccountWithCode(String verificationCode, String signalingKey, int signalProtocolRegistrationId, boolean fetchesMessages,
                                     String pin, String registrationLock,
-                                    byte[] unidentifiedAccessKey, boolean unrestrictedUnidentifiedAccess)
+                                    byte[] unidentifiedAccessKey, boolean unrestrictedUnidentifiedAccess,
+                                    SignalServiceProfile.Capabilities capabilities)
       throws IOException
   {
     return this.pushServiceSocket.verifyAccountCode(verificationCode, signalingKey,
@@ -229,7 +231,8 @@ public class SignalServiceAccountManager {
                                                     fetchesMessages,
                                                     pin, registrationLock,
                                                     unidentifiedAccessKey,
-                                                    unrestrictedUnidentifiedAccess);
+                                                    unrestrictedUnidentifiedAccess,
+                                                    capabilities);
   }
 
   /**
@@ -247,12 +250,14 @@ public class SignalServiceAccountManager {
    */
   public void setAccountAttributes(String signalingKey, int signalProtocolRegistrationId, boolean fetchesMessages,
                                    String pin, String registrationLock,
-                                   byte[] unidentifiedAccessKey, boolean unrestrictedUnidentifiedAccess)
+                                   byte[] unidentifiedAccessKey, boolean unrestrictedUnidentifiedAccess,
+                                   SignalServiceProfile.Capabilities capabilities)
       throws IOException
   {
     this.pushServiceSocket.setAccountAttributes(signalingKey, signalProtocolRegistrationId, fetchesMessages,
                                                 pin, registrationLock,
-                                                unidentifiedAccessKey, unrestrictedUnidentifiedAccess);
+                                                unidentifiedAccessKey, unrestrictedUnidentifiedAccess,
+                                                capabilities);
   }
 
   /**

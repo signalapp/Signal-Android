@@ -8,6 +8,8 @@ package org.whispersystems.signalservice.internal.push;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
+
 public class AccountAttributes {
 
   @JsonProperty
@@ -37,7 +39,18 @@ public class AccountAttributes {
   @JsonProperty
   private boolean unrestrictedUnidentifiedAccess;
 
-  public AccountAttributes(String signalingKey, int registrationId, boolean fetchesMessages, String pin, String registrationLock, byte[] unidentifiedAccessKey, boolean unrestrictedUnidentifiedAccess) {
+  @JsonProperty
+  private SignalServiceProfile.Capabilities capabilities;
+
+  public AccountAttributes(String signalingKey,
+                           int registrationId,
+                           boolean fetchesMessages,
+                           String pin,
+                           String registrationLock,
+                           byte[] unidentifiedAccessKey,
+                           boolean unrestrictedUnidentifiedAccess,
+                           SignalServiceProfile.Capabilities capabilities)
+  {
     this.signalingKey                   = signalingKey;
     this.registrationId                 = registrationId;
     this.voice                          = true;
@@ -47,6 +60,7 @@ public class AccountAttributes {
     this.registrationLock               = registrationLock;
     this.unidentifiedAccessKey          = unidentifiedAccessKey;
     this.unrestrictedUnidentifiedAccess = unrestrictedUnidentifiedAccess;
+    this.capabilities                   = capabilities;
   }
 
   public AccountAttributes() {}
@@ -85,5 +99,9 @@ public class AccountAttributes {
 
   public boolean isUnrestrictedUnidentifiedAccess() {
     return unrestrictedUnidentifiedAccess;
+  }
+
+  public SignalServiceProfile.Capabilities getCapabilities() {
+    return capabilities;
   }
 }

@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.zkgroup.profiles.ProfileKey;
+import org.thoughtcrime.securesms.AppCapabilities;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
@@ -216,7 +217,8 @@ public final class CodeVerificationRequest {
 
     UUID uuid = accountManager.verifyAccountWithCode(code, null, registrationId, !present,
                                                      pinForServer, registrationLock,
-                                                     unidentifiedAccessKey, universalUnidentifiedAccess);
+                                                     unidentifiedAccessKey, universalUnidentifiedAccess,
+                                                     AppCapabilities.getCapabilities());
 
     IdentityKeyPair    identityKey  = IdentityKeyUtil.getIdentityKeyPair(context);
     List<PreKeyRecord> records      = PreKeyUtil.generatePreKeys(context);

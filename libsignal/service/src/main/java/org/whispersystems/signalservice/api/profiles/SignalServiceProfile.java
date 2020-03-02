@@ -1,6 +1,7 @@
 package org.whispersystems.signalservice.api.profiles;
 
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -104,7 +105,13 @@ public class SignalServiceProfile {
     @JsonProperty
     private boolean gv2;
 
+    @JsonCreator
     public Capabilities() {}
+
+    public Capabilities(boolean uuid, boolean gv2) {
+      this.uuid = uuid;
+      this.gv2  = gv2;
+    }
 
     public boolean isUuid() {
       return uuid;

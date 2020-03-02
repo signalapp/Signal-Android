@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
 
+import org.thoughtcrime.securesms.AppCapabilities;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -64,7 +65,8 @@ public class RefreshAttributesJob extends BaseJob {
     SignalServiceAccountManager signalAccountManager = ApplicationDependencies.getSignalServiceAccountManager();
     signalAccountManager.setAccountAttributes(null, registrationId, fetchesMessages,
                                               pin, registrationLockToken,
-                                              unidentifiedAccessKey, universalUnidentifiedAccess);
+                                              unidentifiedAccessKey, universalUnidentifiedAccess,
+                                              AppCapabilities.getCapabilities());
   }
 
   @Override
