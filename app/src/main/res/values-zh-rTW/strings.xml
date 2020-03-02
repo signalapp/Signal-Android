@@ -201,16 +201,22 @@
   <string name="ConversationActivity_no_results">沒有結果</string>
   <string name="ConversationActivity_sticker_pack_installed">貼圖包已安裝</string>
   <string name="ConversationActivity_new_say_it_with_stickers">新！ 用貼圖說出來</string>
+  <string name="ConversationActivity_block_s">要封鎖%1$s嗎？</string>
+  <string name="ConversationActivity_block_and_leave_s">封鎖並離開%1$s嗎？</string>
+  <string name="ConversationActivity_unblock_s">解除封鎖%1$s嗎？</string>
   <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">你將能夠發訊息並互相打電話。</string>
   <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">群組組員將能夠再次將你新增到該群組。</string>
+  <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">已被封鎖的人將無法撥電話或傳訊息給你。</string>
   <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">你將離開此群組及無法再接收訊息或升級。</string>
   <string name="ConversationActivity_block">封鎖</string>
+  <string name="ConversationActivity_block_and_delete">封鎖並刪除</string>
   <string name="ConversationActivity_cancel">取消</string>
   <string name="ConversationActivity_delete_conversation">刪除對話？</string>
   <string name="ConversationActivity_delete_and_leave_group">刪除及離開群組？</string>
   <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">此對話將從你所有的裝置上被刪除。</string>
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">你將離開此群組，及它將從你所有的裝置上被刪除。</string>
   <string name="ConversationActivity_delete">刪除</string>
+  <string name="ConversationActivity_delete_and_leave">刪除並離開</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d 則未讀訊息</item>
@@ -269,6 +275,7 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">已經移動 %d 個對話到收件箱</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_created">你的個人資料名稱已經被建立。</string>
   <string name="ConversationListFragment__your_profile_name_has_been_saved">你的個人資料名稱已被儲存。</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">金鑰交換訊息</string>
@@ -520,9 +527,16 @@
   <string name="MessageRequestBottomView_delete">刪除</string>
   <string name="MessageRequestBottomView_block">封鎖</string>
   <string name="MessageRequestBottomView_unblock">解除封鎖</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">你要讓%1$s傳訊息給你嗎？直到你接受，否則他們不會知道你已經看過他們的訊息。</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">你要加入%1$s群組嗎？直到你接受，否則他們不會知道你已經看過他們的訊息。</string>
+  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">解除封鎖%1$s以互相傳送訊息及撥打電話。</string>
+  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">解除封鎖以允許群組成員再次將你加入此群組。</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s的成員</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s及%2$s的成員</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s、%2$s、及%3$s的成員</string>
+  <plurals name="MessageRequestProfileView_members">
+    <item quantity="other">%1$d個成員</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="other">%d其他</item>
   </plurals>
@@ -712,9 +726,13 @@
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">編輯</string>
   <string name="SubmitDebugLogActivity_done">完成</string>
+  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">點擊一行以將其刪除</string>
   <string name="SubmitDebugLogActivity_submit">上傳</string>
+  <string name="SubmitDebugLogActivity_failed_to_submit_logs">傳送紀錄失敗</string>
   <string name="SubmitDebugLogActivity_success">成功！</string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">複製網址及將之加入你的錯誤報告或支援email:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">已複製到剪貼簿</string>
+  <string name="SubmitDebugLogActivity_ok">Ok</string>
   <string name="SubmitDebugLogActivity_share">分享</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">群組已更新</string>
@@ -738,6 +756,7 @@
   <string name="ThreadRecord_you_marked_unverified">您標記為未驗證</string>
   <string name="ThreadRecord_message_could_not_be_processed">訊息無法被處理</string>
   <string name="ThreadRecord_message_request">訊息要求</string>
+  <string name="ThreadRecord_s_added_you_to_the_group">%1$s已被加入你的群組</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal 更新</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">有新版本的 Signal，輕觸更新</string>
@@ -1150,6 +1169,12 @@
   <string name="AndroidManifest_archived_conversations">存檔對話</string>
   <string name="AndroidManifest_remove_photo">移除頭像照片</string>
   <!--Message Requests Megaphone-->
+  <string name="MessageRequestsMegaphone__message_requests">訊息要求</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">使用者現在可以選擇接受一個新的對話。個人資料名稱讓大家知道誰傳送給他們訊息。</string>
+  <string name="MessageRequestsMegaphone__add_profile_name">新增個人資料名稱</string>
+  <string name="MessageRequestsMegaphone__new_message_requests">新增:訊息要求</string>
+  <string name="MessageRequestsMegaphone__add_name">新增名字</string>
+  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">你現在可以選擇是否接受新的對話。 你會看到“接受,” “刪除,” 或 “封鎖,” 選項。</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">匯入</string>
   <string name="arrays__use_default">使用預設</string>

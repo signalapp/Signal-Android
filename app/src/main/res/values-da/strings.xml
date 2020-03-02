@@ -36,8 +36,8 @@
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tap for at ændre standard SMS applikation</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS Deaktiveret</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Tap for at gøre Signal til din standard SMS app</string>
-  <string name="ApplicationPreferencesActivity_on">tændt</string>
-  <string name="ApplicationPreferencesActivity_On">Tændt</string>
+  <string name="ApplicationPreferencesActivity_on">aktivér</string>
+  <string name="ApplicationPreferencesActivity_On">Aktiveret</string>
   <string name="ApplicationPreferencesActivity_off">deaktiveret</string>
   <string name="ApplicationPreferencesActivity_Off">Deaktiveret</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
@@ -115,7 +115,7 @@
   <string name="CommunicationActions_cancel">Annuller</string>
   <string name="CommunicationActions_call">Ring op</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Sikkerhedsnøglen for %1$s er blevet ændret. Dette kan enten betyde at nogen forsøger at opsnappe kommunikationen, eller at %2$s blot har geninstalleret Signal og nu har en ny sikkerhedsnøgle
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Sikkerhedsnøglen for %1$s er blevet ændret. Dette kan enten betyde at nogen forsøger at opsnappe kommunikationen, eller at %2$s blot har geninstalleret Signal
     </string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Du bør verificere din sikkerhedsnøgle med denne kontakt</string>
   <string name="ConfirmIdentityDialog_accept">Godkend</string>
@@ -386,14 +386,14 @@
   <string name="GroupCreateActivity_actionbar_mms_title">Ny MMS-gruppe</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Du har valgt en person der ikke understøtter Signal grupper. Gruppen oprettes derfor som en MMS gruppe</string>
   <string name="GroupCreateActivity_youre_not_registered_for_signal">Du er ikke sat op til Signalbeskeder og -opkald, hvorfor Signal grupper er deaktiveret. Du bedes registrere dig under Indstillinger -&gt; Advanceret</string>
-  <string name="GroupCreateActivity_contacts_no_members">Der skal være valgt mindst én person til gruppen!</string>
+  <string name="GroupCreateActivity_contacts_no_members">Der skal vælges mindst én person til gruppen!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">En kontakt i gruppen har et nummer, der ikke kan læses. Ret nummeret eller fjern kontakten og prøv igen</string>
   <string name="GroupCreateActivity_avatar_content_description">Gruppe ikon</string>
   <string name="GroupCreateActivity_menu_apply_button">Anvend</string>
   <string name="GroupCreateActivity_creating_group">Opretter %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Opdaterer %1$s…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Kunne ikke tilføje, da %1$s ikke bruger Signal</string>
-  <string name="GroupCreateActivity_loading_group_details">Loader detaljer for gruppe…</string>
+  <string name="GroupCreateActivity_loading_group_details">Henter detaljer for gruppe…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Du er allerede med i gruppen</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Del dit profilnavn og billede med gruppen?</string>
@@ -662,7 +662,7 @@ nummer (%s) er ugyldigt</string>
   <string name="RegistrationActivity_play_services_error">Play Services fejl</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services bliver opdateret eller er midlertidigt utilgængelig. Prøv venligst igen</string>
   <string name="RegistrationActivity_terms_and_privacy">Vilkår og privatlivspolitik</string>
-  <string name="RegistrationActivity_no_browser">Linket kan ikke åbnes. Ingen webbrowser installeret</string>
+  <string name="RegistrationActivity_no_browser">Linket kan ikke åbnes. Ingen Webbrowser installeret</string>
   <string name="RegistrationActivity_more_information">Mere information</string>
   <string name="RegistrationActivity_less_information">Mindre information</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal kræver tilladelse til at tilgå dine kontakter og medieindhold, for at oprette forbindelser til venner, udveksle beskeder og foretage sikre opkald</string>
@@ -998,7 +998,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lås den vedhæftede lydoptagelse</string>
   <string name="conversation_activity__enable_signal_for_sms">Brug Signal til SMS</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">Slide for at annullere</string>
+  <string name="conversation_input_panel__slide_to_cancel">Swipe for at annullere</string>
   <string name="conversation_input_panel__cancel">Annuller</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Multimedie besked</string>
@@ -1317,7 +1317,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivér hvis din enhed understøtter SMS/MMS via WiFi (kun hvis WiFi opkald er aktiveret på din enhed)</string>
   <string name="preferences__incognito_keyboard">Inkognito tastatur</string>
   <string name="preferences__read_receipts">Læst af modtager</string>
-  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Hvis læst af modtager er deaktiverét, er det ikke muligt at se status for andre</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Hvis læst af modtager er deaktiverét, er det ikke muligt at se status for beskeder</string>
   <string name="preferences__typing_indicators">Skrive indikator</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Hvis skrive indikator er deaktiverét, er det ikke muligt at se når andre skriver</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Deaktivér personaliseret læring fra tastaturet</string>
@@ -1440,7 +1440,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
     <item quantity="other">Din version af Signal vil udløbe om %d dage. Tap for at opdatere til den nyeste version</item>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">Din version af Signal udløber i dag. Tap for at opdatere til den nyeste version</string>
-  <string name="reminder_header_expired_build">Din version af Signal er udgået!</string>
+  <string name="reminder_header_expired_build">Din version af Signal er udløbet!</string>
   <string name="reminder_header_expired_build_details">Beskeder kan ikke længere sendes korrekt. Tap for at opdatere til den seneste version</string>
   <string name="reminder_header_sms_default_title">Anvend som standard SMS app</string>
   <string name="reminder_header_sms_default_text">Tap for at gøre Signal til din standard SMS app</string>
@@ -1474,7 +1474,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="InsightsDashboardFragment__title">Indblik</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal protokol beskyttede automatisk %1$d%% af dine sendte beskeder, over de seneste %2$d dage. Samtaler mellem Signal brugere er altid end-to-end krypterede</string>
   <string name="InsightsDashboardFragment__boost_your_signal">Signal boost</string>
-  <string name="InsightsDashboardFragment__not_enough_data">Ikke tilstrækkelig data</string>
+  <string name="InsightsDashboardFragment__not_enough_data">Ikke tilstrækkeligt data</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Procentværdien for din indsigt er beregnet ud fra antallet af sendte beskeder, der de seneste %1$d dage ikke er udløbet eller blevet slettet</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Start en samtale</string>
   <string name="InsightsDashboardFragment__invite_your_contacts">Start sikker kommunikation og aktiver nye funktionaliteter, som går videre end usikre SMS beskeder, ved at invitere flere kontakter til at bruge Signal</string>

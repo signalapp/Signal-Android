@@ -204,9 +204,22 @@
   <string name="ConversationActivity_no_results">Sonuç yok</string>
   <string name="ConversationActivity_sticker_pack_installed">Çıkartma paketi yüklendi</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Yeni! Çıkartmalarınızı konuşturun</string>
+  <string name="ConversationActivity_block_s">%1$s engellensin mi?</string>
+  <string name="ConversationActivity_block_and_leave_s">%1$s grubunu engelle ve ayrıl?</string>
+  <string name="ConversationActivity_unblock_s">%1$s engeli kaldırılsın mı?</string>
+  <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">Birbirinizi arayıp ileti gönderebileceksiniz.</string>
+  <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">Grup üyeleri sizi bu gruba tekrar ekleyebilecekler.</string>
+  <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">Engellenen kişiler sizi arayamayacaklar veya ileti gönderemeyecekler.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">Bu gruptan ayrılıp, ileti ve güncellemelerini almayacaksınız.</string>
   <string name="ConversationActivity_block">Engelle</string>
+  <string name="ConversationActivity_block_and_delete">Engelle ve sil</string>
   <string name="ConversationActivity_cancel">İptal</string>
+  <string name="ConversationActivity_delete_conversation">Sohbet silinsin mi?</string>
+  <string name="ConversationActivity_delete_and_leave_group">Grubu sil ve ayrıl?</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Bu sohbet tüm cihazlarınızdan silinecektir.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Bu gruptan ayrılacaksınız ve tüm cihazlarınızdan silinecek.</string>
   <string name="ConversationActivity_delete">Sil</string>
+  <string name="ConversationActivity_delete_and_leave">Sil ve ayrıl</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d okunmamış ileti</item>
@@ -276,6 +289,7 @@
     <item quantity="one">Sohbet gelen kutusuna taşındı</item>
     <item quantity="other">%d sohbet gelen kutusuna taşındı</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_created">Profil adınız oluşturuldu.</string>
   <string name="ConversationListFragment__your_profile_name_has_been_saved">Profil adınız kaydedildi.</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Anahtar takas iletisi</string>
@@ -534,9 +548,17 @@
   <string name="MessageRequestBottomView_delete">Sil</string>
   <string name="MessageRequestBottomView_block">Engelle</string>
   <string name="MessageRequestBottomView_unblock">Engeli kaldır</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s kişisinin sizle yazışmasına izin vermek istiyor musunuz? Kabul edene kadar iletilerini gördüğünüzü bilmeyecekler.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s grubuna katılmak istiyor musunuz? Kabul edene kadar iletilerini gördüğünüzü bilmeyecekler.</string>
+  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Birbirinizle yazışmak ve aramalar yapmak için %1$s engelini kaldırın.</string>
+  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Grup üyelerinin sizi bu gruba tekrar ekleyebilmeleri için engelini kaldırın.</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s grubuna üye</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s ve %2$s gruplarına üye</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s ve %3$s gruplarına üye</string>
+  <plurals name="MessageRequestProfileView_members">
+    <item quantity="one">%1$d üye</item>
+    <item quantity="other">%1$d üye</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d diğer</item>
     <item quantity="other">%d diğer</item>
@@ -731,9 +753,13 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">Düzenle</string>
   <string name="SubmitDebugLogActivity_done">Tamam</string>
+  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Silmek istediğiniz dizeye tıklayın</string>
   <string name="SubmitDebugLogActivity_submit">Gönder</string>
+  <string name="SubmitDebugLogActivity_failed_to_submit_logs">Günlükler gönderilemedi</string>
   <string name="SubmitDebugLogActivity_success">Başarılı!</string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Bu adresi kopyalayın ve sorun bildirinize veya destek epostasına ekleyin:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Panoya kopyalandı</string>
+  <string name="SubmitDebugLogActivity_ok">Tamam</string>
   <string name="SubmitDebugLogActivity_share">Paylaş</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grup güncellendi</string>
@@ -757,6 +783,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ThreadRecord_you_marked_unverified">Doğrulanmamış olarak işaretlediniz.</string>
   <string name="ThreadRecord_message_could_not_be_processed">İleti işlenemedi</string>
   <string name="ThreadRecord_message_request">İleti İsteği</string>
+  <string name="ThreadRecord_s_added_you_to_the_group">%1$s sizi gruba ekledi</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal güncellemesi</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal\'in yeni sürümü mevcut, güncellemek için dokunun</string>
@@ -1176,6 +1203,12 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="AndroidManifest_archived_conversations">Arşivlenmiş sohbetler</string>
   <string name="AndroidManifest_remove_photo">Fotoğrafı kaldır</string>
   <!--Message Requests Megaphone-->
+  <string name="MessageRequestsMegaphone__message_requests">İleti istekleri</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Artık yeni konuşmaları kabul etme seçeneğine sahipsiniz. Profil adları kimin kime yazdığını anlamanıza yardımcı olur.</string>
+  <string name="MessageRequestsMegaphone__add_profile_name">Profil adı ekleyin</string>
+  <string name="MessageRequestsMegaphone__new_message_requests">Yeni: İleti istekleri</string>
+  <string name="MessageRequestsMegaphone__add_name">Ad ekleyin</string>
+  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Yeni bir konuşmayı kabul edip etmeme seçeneğine sahipsiniz. \"Kabul et\", \"Sil\" veya \"Engelle\" gibi seçenekler göreceksiniz.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">İçe Aktar</string>
   <string name="arrays__use_default">Varsayılanı kullan</string>

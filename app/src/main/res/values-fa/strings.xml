@@ -182,7 +182,7 @@
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">شما مجدداً قادر به دریافت تماس و پیام از این مخاطب خواهید بود.</string>
   <string name="ConversationActivity_unblock_this_group_description">اعضای موجود قادر خواهند بود مجدداً شما را به گروه اضافه کنند.</string>
   <string name="ConversationActivity_unblock">رفع مسدودیت</string>
-  <string name="ConversationActivity_attachment_exceeds_size_limits">اندازه پیوست از محدودیت اندازه برای پیامی که در حال ارسال آن هستید بیشتر می باشد.</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">حجم فایل ضمیمه شده بیش از اندازۀ مجاز برای این نوع پیام است.</string>
   <string name="ConversationActivity_quick_camera_unavailable">دوربین در دسترس نیست</string>
   <string name="ConversationActivity_unable_to_record_audio">امکان ضبط صدا وجود ندارد!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">هیچ برنامه‌ای برای کنترل کردن این پیوند بر روی دستگاه شما وجود ندارد.</string>
@@ -637,8 +637,8 @@
   <string name="RecipientProvider_unnamed_group">گروه بدون نام</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">در حال پاسخ دادن</string>
-  <string name="RedPhone_ending_call">پایان دهی به تماس</string>
-  <string name="RedPhone_dialing">شماره گیری</string>
+  <string name="RedPhone_ending_call">پایان‌‌دهی به تماس</string>
+  <string name="RedPhone_dialing">شماره‌گیری</string>
   <string name="RedPhone_ringing">در حال زنگ خوردن</string>
   <string name="RedPhone_busy">مشغول</string>
   <string name="RedPhone_connected">متصل</string>
@@ -1351,7 +1351,7 @@
   <string name="preferences_notifications__ringtone">زنگ گوشی</string>
   <string name="preferences_chats__show_invitation_prompts">نمایش دعوت‌نامه‌ها</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">نمایش گزینهٔ ارسال دعوت‌نامه برای مخاطبانی که عضو Signal نیستند</string>
-  <string name="preferences_chats__message_text_size">اندازهٔ قلم پیام</string>
+  <string name="preferences_chats__message_text_size">اندازهٔ فونت پیام</string>
   <string name="preferences_events__contact_joined_signal">مخاطب به Signal پیوست</string>
   <string name="preferences_notifications__priority">اولویت</string>
   <string name="preferences_communication__category_sealed_sender">فرستندهٔ ناشناس</string>

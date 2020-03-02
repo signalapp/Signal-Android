@@ -204,7 +204,7 @@
   <string name="ConversationActivity_no_results">Ez da emaitzarik aurkitu.</string>
   <string name="ConversationActivity_sticker_pack_installed">Eranskailuen multzoa instalatu da</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Berria! Esan eranskailuen bidez</string>
-  <string name="ConversationActivity_block_s">%1$s blokeatu?</string>
+  <string name="ConversationActivity_block_s">Blokeatu %1$s?</string>
   <string name="ConversationActivity_block_and_leave_s">%1$s blokeatu eta irten?</string>
   <string name="ConversationActivity_unblock_s">%1$s desblokeatu?</string>
   <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">Elkarri deitzeko eta mezuak bidaltzeko gai izango zarete.</string>
@@ -1529,6 +1529,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="KbsSplashFragment__introducing_pins">PIN-ak sartzen</string>
   <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">PINek beste segurtasun maila bat ematen diote zure kontuari. Sortu bat orain.</string>
   <string name="KbsSplashFragment__learn_more">Gehiago jakin</string>
+  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Errejistratze-blokeoa = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Zure Errejistrate-blokeoa orain PIN deitzen da eta gehiago egin dezake. Eguneratu orain.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Irakurri gehiago PIN-ei buruz.</string>
@@ -1546,11 +1547,12 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Zure kontua blokeatu egin da zure pribatutasuna eta segurtasuna babesteko. %1$d egun aktibitaterik gabe egon ondore, telefono zenbaki hau berriro errejistratu ahal izango duzu PIN bat erabili gabe. Eduki guztia ezabatuko da.</string>
   <string name="AccountLockedFragment__next">Hurrengoa</string>
   <string name="AccountLockedFragment__learn_more">Gehiago jakin</string>
+  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <!--KbsLockFragment-->
-  <string name="RegistrationLockFragment__enter_your_pin">Sartu zure PIN-a</string>
+  <string name="RegistrationLockFragment__enter_your_pin">Sartu zure PINa</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Idatzi konturako sortu duzun PIN-a. PIN hau ez da zure SMS berifikazio gakoa.</string>
   <string name="RegistrationLockFragment__enter_alphanumeric_pin">Idatzi PIN alfanumerikoa</string>
-  <string name="RegistrationLockFragment__enter_numeric_pin">Idatzi zenbakizko PIN-a</string>
+  <string name="RegistrationLockFragment__enter_numeric_pin">Idatzi zenbakizko PINa</string>
   <string name="RegistrationLockFragment__next">Hurrengoa</string>
   <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN okerra. Saia zaitez berriro.</string>
   <string name="RegistrationLockFragment__forgot_pin">PINa ahaztu al duzu?</string>
