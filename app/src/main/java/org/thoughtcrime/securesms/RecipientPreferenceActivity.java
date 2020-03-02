@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
+import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
@@ -95,8 +96,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 {
   private static final String TAG = RecipientPreferenceActivity.class.getSimpleName();
 
-  public static final String RECIPIENT_ID                 = "recipient_address";
-  public static final String CAN_HAVE_SAFETY_NUMBER_EXTRA = "can_have_safety_number";
+  public static final String RECIPIENT_ID = "recipient";
 
   private static final String PREFERENCE_MUTED                 = "pref_key_recipient_mute";
   private static final String PREFERENCE_MESSAGE_TONE          = "pref_key_recipient_ringtone";
@@ -118,6 +118,13 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   private TextView                threadPhotoRailLabel;
   private ThreadPhotoRailView     threadPhotoRailView;
   private CollapsingToolbarLayout toolbarLayout;
+
+  public static @NonNull Intent getLaunchIntent(@NonNull Context context, @NonNull RecipientId id) {
+    Intent intent = new Intent(context, RecipientPreferenceActivity.class);
+    intent.putExtra(RecipientPreferenceActivity.RECIPIENT_ID, id);
+
+    return intent;
+  }
 
   @Override
   public void onPreCreate() {
@@ -164,12 +171,6 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     }
 
     return false;
-  }
-
-  @Override
-  public void onBackPressed() {
-    finish();
-    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
   }
 
   private void initializeToolbar() {
@@ -284,8 +285,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
       initializeRecipients();
 
-      this.canHaveSafetyNumber = getActivity().getIntent()
-                                 .getBooleanExtra(RecipientPreferenceActivity.CAN_HAVE_SAFETY_NUMBER_EXTRA, false);
+      this.canHaveSafetyNumber = recipient.get().isRegistered() && !recipient.get().isLocalNumber();
 
       Preference customNotificationsPref  = this.findPreference(PREFERENCE_CUSTOM_NOTIFICATIONS);
 

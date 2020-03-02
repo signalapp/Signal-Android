@@ -16,6 +16,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.RecipientPreferenceActivity;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
@@ -149,12 +150,8 @@ public final class AvatarImageView extends AppCompatImageView {
 
   private void setAvatarClickHandler(final Recipient recipient, boolean quickContactEnabled) {
     super.setOnClickListener(v -> {
-      if (!recipient.isGroup() && quickContactEnabled) {
-        if (recipient.getContactUri() != null) {
-          ContactsContract.QuickContact.showQuickContact(getContext(), AvatarImageView.this, recipient.getContactUri(), ContactsContract.QuickContact.MODE_LARGE, null);
-        } else {
-          getContext().startActivity(RecipientExporter.export(recipient).asAddContactIntent());
-        }
+      if (quickContactEnabled) {
+        getContext().startActivity(RecipientPreferenceActivity.getLaunchIntent(getContext(), recipient.getId()));
       } else if (listener != null) {
         listener.onClick(v);
       }
