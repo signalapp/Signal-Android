@@ -165,9 +165,14 @@ public class DatabaseFactory {
   }
 
   public static void upgradeRestored(Context context, SQLiteDatabase database){
-    getInstance(context).databaseHelper.onUpgrade(database, database.getVersion(), -1);
-    getInstance(context).databaseHelper.markCurrent(database);
-    getInstance(context).mms.trimEntriesForExpiredMessages();
+    synchronized (lock) {
+      getInstance(context).databaseHelper.onUpgrade(database, database.getVersion(), -1);
+      getInstance(context).databaseHelper.markCurrent(database);
+      getInstance(context).mms.trimEntriesForExpiredMessages();
+
+      instance.databaseHelper.close();
+      instance = null;
+    }
   }
 
   private DatabaseFactory(@NonNull Context context) {
