@@ -1,24 +1,24 @@
 package org.thoughtcrime.securesms.mediasend;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Point;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -32,9 +32,10 @@ import java.util.List;
  */
 public class MediaPickerItemFragment extends Fragment implements MediaPickerItemAdapter.EventListener {
 
-  private static final String KEY_BUCKET_ID     = "bucket_id";
-  private static final String KEY_FOLDER_TITLE  = "folder_title";
-  private static final String KEY_MAX_SELECTION = "max_selection";
+  private static final String KEY_BUCKET_ID          = "bucket_id";
+  private static final String KEY_FOLDER_TITLE       = "folder_title";
+  private static final String KEY_MAX_SELECTION      = "max_selection";
+  private static final String KEY_FORCE_MULTI_SELECT = "force_multi_select";
 
   private String                 bucketId;
   private String                 folderTitle;
@@ -45,10 +46,15 @@ public class MediaPickerItemFragment extends Fragment implements MediaPickerItem
   private GridLayoutManager      layoutManager;
 
   public static MediaPickerItemFragment newInstance(@NonNull String bucketId, @NonNull String folderTitle, int maxSelection) {
+    return newInstance(bucketId, folderTitle, maxSelection, true);
+  }
+
+  public static MediaPickerItemFragment newInstance(@NonNull String bucketId, @NonNull String folderTitle, int maxSelection, boolean forceMultiSelect) {
     Bundle args = new Bundle();
     args.putString(KEY_BUCKET_ID, bucketId);
     args.putString(KEY_FOLDER_TITLE, folderTitle);
     args.putInt(KEY_MAX_SELECTION, maxSelection);
+    args.putBoolean(KEY_FORCE_MULTI_SELECT, forceMultiSelect);
 
     MediaPickerItemFragment fragment = new MediaPickerItemFragment();
     fragment.setArguments(args);
@@ -110,8 +116,10 @@ public class MediaPickerItemFragment extends Fragment implements MediaPickerItem
   public void onResume() {
     super.onResume();
     viewModel.onItemPickerStarted();
-    adapter.setForcedMultiSelect(true);
-    viewModel.onMultiSelectStarted();
+    if (requireArguments().getBoolean(KEY_FORCE_MULTI_SELECT)) {
+      adapter.setForcedMultiSelect(true);
+      viewModel.onMultiSelectStarted();
+    }
   }
 
   @Override

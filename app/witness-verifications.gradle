@@ -321,9 +321,6 @@ dependencyVerification {
         ['com.takisoft.fix:colorpicker:0.9.1',
          'f5d0dbabe406a1800498ca9c1faf34db36e021d8488bf10360f29961fe3ab0d1'],
 
-        ['com.theartofdev.edmodo:android-image-cropper:2.8.0',
-         '5516ea87672e478b3d0ed5c274a7df27d22c02e66f899388f9b8bee93669e176'],
-
         ['com.tomergoldst.android:tooltips:1.0.6',
          '4c56697dd1ad64b8066535c61f961a6d901e7ae5d97ae27084ba40ad620349b6'],
 

@@ -2,10 +2,8 @@ package org.thoughtcrime.securesms.profiles.edit;
 
 import android.Manifest;
 import android.animation.Animator;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -31,28 +29,31 @@ import androidx.navigation.Navigation;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.dd.CircularProgressButton;
+import com.google.android.gms.common.util.IOUtils;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.avatar.AvatarSelection;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.PinUtil;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.mediasend.AvatarSelectionActivity;
+import org.thoughtcrime.securesms.mediasend.AvatarSelectionBottomSheetDialogFragment;
+import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.megaphone.Megaphones;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.permissions.Permissions;
-import org.thoughtcrime.securesms.profiles.ProfileMediaConstraints;
 import org.thoughtcrime.securesms.profiles.ProfileName;
-import org.thoughtcrime.securesms.util.BitmapDecodingException;
-import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 import org.whispersystems.libsignal.util.guava.Optional;
 
-import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
+import static android.app.Activity.RESULT_OK;
 import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.DISPLAY_USERNAME;
 import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.EXCLUDE_SYSTEM;
 import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.NEXT_BUTTON_TEXT;
@@ -61,8 +62,9 @@ import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.SHOW_
 
 public class EditProfileFragment extends Fragment {
 
-  private static final String TAG          = Log.tag(EditProfileFragment.class);
-  private static final String AVATAR_STATE = "avatar";
+  private static final String TAG                        = Log.tag(EditProfileFragment.class);
+  private static final String AVATAR_STATE               = "avatar";
+  private static final short  REQUEST_CODE_SELECT_AVATAR = 31726;
 
   private Toolbar                toolbar;
   private View                   title;
@@ -77,7 +79,6 @@ public class EditProfileFragment extends Fragment {
   private TextView               username;
 
   private Intent nextIntent;
-  private File   captureFile;
 
   private EditProfileViewModel viewModel;
 
@@ -151,52 +152,38 @@ public class EditProfileFragment extends Fragment {
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
 
-    switch (requestCode) {
-      case AvatarSelection.REQUEST_CODE_AVATAR:
-        if (resultCode == Activity.RESULT_OK) {
-          Uri outputFile = Uri.fromFile(new File(requireActivity().getCacheDir(), "cropped"));
-          Uri inputFile  = (data != null ? data.getData() : null);
+    if (requestCode == REQUEST_CODE_SELECT_AVATAR && resultCode == RESULT_OK) {
 
-          if (inputFile == null && captureFile != null) {
-            inputFile = Uri.fromFile(captureFile);
-          }
+      if (data != null && data.getBooleanExtra("delete", false)) {
+        viewModel.setAvatar(null);
+        avatar.setImageDrawable(new ResourceContactPhoto(R.drawable.ic_camera_solid_white_24).asDrawable(requireActivity(), getResources().getColor(R.color.grey_400)));
+        return;
+      }
 
-          if (data != null && data.getBooleanExtra("delete", false)) {
-            viewModel.setAvatar(null);
-            avatar.setImageDrawable(new ResourceContactPhoto(R.drawable.ic_camera_solid_white_24).asDrawable(requireActivity(), getResources().getColor(R.color.grey_400)));
-          } else {
-            AvatarSelection.circularCropImage(this, inputFile, outputFile, R.string.CropImageActivity_profile_avatar);
-          }
+      SimpleTask.run(() -> {
+        try {
+          Media       result = data.getParcelableExtra(AvatarSelectionActivity.EXTRA_MEDIA);
+          InputStream stream = BlobProvider.getInstance().getStream(requireContext(), result.getUri());
+
+          return IOUtils.readInputStreamFully(stream);
+        } catch (IOException ioException) {
+          Log.w(TAG, ioException);
+          return null;
         }
-
-        break;
-      case AvatarSelection.REQUEST_CODE_CROP_IMAGE:
-        if (resultCode == Activity.RESULT_OK) {
-          SimpleTask.run(() -> {
-              try {
-                BitmapUtil.ScaleResult result = BitmapUtil.createScaledBytes(requireActivity(), AvatarSelection.getResultUri(data), new ProfileMediaConstraints());
-                return result.getBitmap();
-              } catch (BitmapDecodingException e) {
-                Log.w(TAG, e);
-                return null;
-              }
-            },
-            (avatarBytes) -> {
-              if (avatarBytes != null) {
-                viewModel.setAvatar(avatarBytes);
-                GlideApp.with(EditProfileFragment.this)
-                        .load(avatarBytes)
-                        .skipMemoryCache(true)
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                        .circleCrop()
-                        .into(avatar);
-              } else {
-                Toast.makeText(requireActivity(), R.string.CreateProfileActivity_error_setting_profile_photo, Toast.LENGTH_LONG).show();
-              }
-            }
-          );
+      },
+      (avatarBytes) -> {
+        if (avatarBytes != null) {
+          viewModel.setAvatar(avatarBytes);
+          GlideApp.with(EditProfileFragment.this)
+                  .load(avatarBytes)
+                  .skipMemoryCache(true)
+                  .diskCacheStrategy(DiskCacheStrategy.NONE)
+                  .circleCrop()
+                  .into(avatar);
+        } else {
+          Toast.makeText(requireActivity(), R.string.CreateProfileActivity_error_setting_profile_photo, Toast.LENGTH_LONG).show();
         }
-        break;
+      });
     }
   }
 
@@ -314,18 +301,12 @@ public class EditProfileFragment extends Fragment {
   }
 
   private void startAvatarSelection() {
-    captureFile = AvatarSelection.startAvatarSelection(this, viewModel.hasAvatar(), true);
+    AvatarSelectionBottomSheetDialogFragment.create(viewModel.hasAvatar(), true, REQUEST_CODE_SELECT_AVATAR).show(getChildFragmentManager(), null);
   }
 
   private void handleUpload() {
     viewModel.submitProfile(uploadResult -> {
       if (uploadResult == EditProfileRepository.UploadResult.SUCCESS) {
-        if (captureFile != null) {
-          if (!captureFile.delete()) {
-            Log.w(TAG, "Failed to delete capture file " + captureFile);
-          }
-        }
-
         if (!PinUtil.shouldShowPinCreationDuringRegistration(requireContext())) {
           SignalStore.registrationValues().setRegistrationComplete();
         }

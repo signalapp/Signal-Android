@@ -31,6 +31,10 @@
     <attr name="conversation_list_compose_icon_tint" format="color" />
     <attr name="conversation_list_camera_button_background" format="color"/>
 
+    <attr name="avatar_selection_take_photo" format="reference" />
+    <attr name="avatar_selection_pick_photo" format="reference" />
+    <attr name="avatar_selection_remove_photo" format="reference" />
+
     <attr name="kbs_splash_image" format="reference" />
 
     <attr name="conversation_sent_card_background" format="reference|color"/>

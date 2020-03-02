@@ -355,6 +355,12 @@
     <string name="CustomDefaultPreference_using_default">Using default: %s</string>
     <string name="CustomDefaultPreference_none">None</string>
 
+    <!-- AvatarSelectionBottomSheetDialogFragment -->
+    <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Choose photo</string>
+    <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Take photo</string>
+    <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Choose from gallery</string>
+    <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Remove photo</string>
+
     <!-- DateUtils -->
     <string name="DateUtils_just_now">Now</string>
     <string name="DateUtils_minutes_ago">%dm</string>

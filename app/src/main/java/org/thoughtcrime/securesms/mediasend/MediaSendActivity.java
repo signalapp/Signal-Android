@@ -471,6 +471,10 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   }
 
   @Override
+  public void onDoneEditing() {
+  }
+
+  @Override
   public void onGlobalLayout() {
     hud.getRootView().getWindowVisibleDisplayFrame(visibleBounds);
 

@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.os.Parcel;
+
 import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
@@ -25,7 +26,8 @@ import org.thoughtcrime.securesms.imageeditor.RendererContext;
 public final class CropAreaRenderer implements Renderer {
 
   @ColorRes
-  private final int color;
+  private final int     color;
+  private final boolean renderCenterThumbs;
 
   private final Path cropClipPath   = new Path();
   private final Path screenClipPath = new Path();
@@ -66,31 +68,33 @@ public final class CropAreaRenderer implements Renderer {
     canvas.drawRect(-thickness, -thickness, size, size, paint);
 
     canvas.translate(0, halfDy);
-    canvas.drawRect(-thickness, -thickness, size, size, paint);
+    if (renderCenterThumbs) canvas.drawRect(-thickness, -thickness, size, size, paint);
 
     canvas.translate(0, halfDy);
     canvas.drawRect(-thickness, -thickness, size, size, paint);
 
     canvas.translate(halfDx, 0);
-    canvas.drawRect(-thickness, -thickness, size, size, paint);
+    if (renderCenterThumbs) canvas.drawRect(-thickness, -thickness, size, size, paint);
 
     canvas.translate(halfDx, 0);
     canvas.drawRect(-thickness, -thickness, size, size, paint);
 
     canvas.translate(0, -halfDy);
-    canvas.drawRect(-thickness, -thickness, size, size, paint);
+    if (renderCenterThumbs) canvas.drawRect(-thickness, -thickness, size, size, paint);
 
     canvas.translate(0, -halfDy);
     canvas.drawRect(-thickness, -thickness, size, size, paint);
 
     canvas.translate(-halfDx, 0);
-    canvas.drawRect(-thickness, -thickness, size, size, paint);
+    if (renderCenterThumbs) canvas.drawRect(-thickness, -thickness, size, size, paint);
 
     rendererContext.restore();
   }
 
-  public CropAreaRenderer(@ColorRes int color) {
-    this.color = color;
+  public CropAreaRenderer(@ColorRes int color, boolean renderCenterThumbs) {
+    this.color              = color;
+    this.renderCenterThumbs = renderCenterThumbs;
+
     cropClipPath.toggleInverseFillType();
     cropClipPath.moveTo(Bounds.LEFT, Bounds.TOP);
     cropClipPath.lineTo(Bounds.RIGHT, Bounds.TOP);
@@ -100,10 +104,6 @@ public final class CropAreaRenderer implements Renderer {
     screenClipPath.toggleInverseFillType();
   }
 
-  private CropAreaRenderer(Parcel in) {
-    this(in.readInt());
-  }
-
   @Override
   public boolean hitTest(float x, float y) {
     return !Bounds.contains(x, y);
@@ -111,23 +111,25 @@ public final class CropAreaRenderer implements Renderer {
 
   public static final Creator<CropAreaRenderer> CREATOR = new Creator<CropAreaRenderer>() {
     @Override
-    public CropAreaRenderer createFromParcel(Parcel in) {
-      return new CropAreaRenderer(in);
+    public @NonNull CropAreaRenderer createFromParcel(@NonNull Parcel in) {
+      return new CropAreaRenderer(in.readInt(),
+                                  in.readByte() == 1);
     }
 
     @Override
-    public CropAreaRenderer[] newArray(int size) {
+    public @NonNull CropAreaRenderer[] newArray(int size) {
       return new CropAreaRenderer[size];
     }
   };
 
   @Override
-  public int describeContents() {
-    return 0;
+  public void writeToParcel(Parcel dest, int flags) {
+    dest.writeInt(color);
+    dest.writeByte((byte) (renderCenterThumbs ? 1 : 0));
   }
 
   @Override
-  public void writeToParcel(Parcel dest, int flags) {
-    dest.writeInt(color);
+  public int describeContents() {
+    return 0;
   }
 }

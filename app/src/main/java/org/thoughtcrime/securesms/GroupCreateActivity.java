@@ -21,17 +21,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import android.text.TextUtils;
-
-import org.thoughtcrime.securesms.avatar.AvatarSelection;
-import org.thoughtcrime.securesms.conversation.ConversationActivity;
-import org.thoughtcrime.securesms.logging.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -41,6 +33,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.SimpleTarget;
@@ -52,6 +48,7 @@ import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.contacts.RecipientsEditor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
+import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
@@ -59,6 +56,11 @@ import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.GroupManager.GroupActionResult;
+import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.mediasend.AvatarSelectionActivity;
+import org.thoughtcrime.securesms.mediasend.AvatarSelectionBottomSheetDialogFragment;
+import org.thoughtcrime.securesms.mediasend.Media;
+import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -73,7 +75,6 @@ import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
-import java.io.File;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -98,8 +99,9 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
-  private static final int PICK_CONTACT = 1;
-  public static final  int AVATAR_SIZE  = 210;
+  private static final short REQUEST_CODE_SELECT_AVATAR = 26165;
+  private static final int   PICK_CONTACT               = 1;
+  public static final  int   AVATAR_SIZE                = 210;
 
   private EditText     groupName;
   private ListView     lv;
@@ -197,8 +199,12 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     recipientsEditor.setHint(R.string.recipients_panel__add_members);
     recipientsPanel.setPanelChangeListener(this);
     findViewById(R.id.contacts_button).setOnClickListener(new AddRecipientButtonListener());
-    avatar.setImageDrawable(new ResourceContactPhoto(R.drawable.ic_group_outline_34, R.drawable.ic_group_outline_20).asDrawable(this, ContactColors.UNKNOWN_COLOR.toConversationColor(this)));
-    avatar.setOnClickListener(view -> AvatarSelection.startAvatarSelection(this, false, false));
+    avatar.setImageDrawable(getDefaultGroupAvatar());
+    avatar.setOnClickListener(view -> AvatarSelectionBottomSheetDialogFragment.create(avatarBmp != null, false, REQUEST_CODE_SELECT_AVATAR).show(getSupportFragmentManager(), null));
+  }
+
+  private Drawable getDefaultGroupAvatar() {
+    return new ResourceContactPhoto(R.drawable.ic_group_outline_34, R.drawable.ic_group_outline_20).asDrawable(this, ContactColors.UNKNOWN_COLOR.toConversationColor(this));
   }
 
   private void initializeExistingGroup() {
@@ -284,7 +290,6 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void onActivityResult(int reqCode, int resultCode, final Intent data) {
     super.onActivityResult(reqCode, resultCode, data);
-    Uri outputFile = Uri.fromFile(new File(getCacheDir(), "cropped"));
 
     if (data == null || resultCode != Activity.RESULT_OK)
       return;
@@ -299,15 +304,19 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
         }
 
         break;
+      case REQUEST_CODE_SELECT_AVATAR:
+        if (data.getBooleanExtra("delete", false)) {
+          avatarBmp = null;
+          avatar.setImageDrawable(getDefaultGroupAvatar());
+          return;
+        }
 
-      case AvatarSelection.REQUEST_CODE_AVATAR:
-        AvatarSelection.circularCropImage(this, data.getData(), outputFile, R.string.CropImageActivity_group_avatar);
-        break;
-      case AvatarSelection.REQUEST_CODE_CROP_IMAGE:
-        final Uri resultUri = AvatarSelection.getResultUri(data);
+        final Media          result         = data.getParcelableExtra(AvatarSelectionActivity.EXTRA_MEDIA);
+        final DecryptableUri decryptableUri = new DecryptableUri(result.getUri());
+
         GlideApp.with(this)
                 .asBitmap()
-                .load(resultUri)
+                .load(decryptableUri)
                 .skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .centerCrop()
@@ -315,7 +324,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
                 .into(new SimpleTarget<Bitmap>() {
                   @Override
                   public void onResourceReady(@NonNull Bitmap resource, Transition<? super Bitmap> transition) {
-                    setAvatar(resultUri, resource);
+                    setAvatar(decryptableUri, resource);
                   }
                 });
     }

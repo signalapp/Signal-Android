@@ -4,6 +4,7 @@ import android.graphics.Matrix;
 import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.RectF;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -11,6 +12,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.imageeditor.Bounds;
 import org.thoughtcrime.securesms.imageeditor.renderers.CropAreaRenderer;
 import org.thoughtcrime.securesms.imageeditor.renderers.InverseFillRenderer;
+import org.thoughtcrime.securesms.imageeditor.renderers.OvalGuideRenderer;
 
 /**
  * Creates and handles a strict EditorElement Hierarchy.
@@ -43,15 +45,15 @@ import org.thoughtcrime.securesms.imageeditor.renderers.InverseFillRenderer;
 final class EditorElementHierarchy {
 
   static @NonNull EditorElementHierarchy create() {
-    return new EditorElementHierarchy(createRoot());
+    return new EditorElementHierarchy(createRoot(false));
   }
 
-  static @NonNull EditorElementHierarchy create(@Nullable EditorElement root) {
-    if (root == null) {
-      return create();
-    } else {
-      return new EditorElementHierarchy(root);
-    }
+  static @NonNull EditorElementHierarchy createForCircleEditing() {
+    return new EditorElementHierarchy(createRoot(true));
+  }
+
+  static @NonNull EditorElementHierarchy create(@NonNull EditorElement root) {
+    return new EditorElementHierarchy(root);
   }
 
   private final EditorElement root;
@@ -76,7 +78,7 @@ final class EditorElementHierarchy {
     this.thumbs            = this.cropEditorElement.getChild(1);
   }
 
-  private static @NonNull EditorElement createRoot() {
+  private static @NonNull EditorElement createRoot(boolean circleEdit) {
     EditorElement root = new EditorElement(null);
 
     EditorElement imageRoot = new EditorElement(null);
@@ -94,7 +96,7 @@ final class EditorElementHierarchy {
     EditorElement imageCrop = new EditorElement(null);
     overlay.addElement(imageCrop);
 
-    EditorElement cropEditorElement = new EditorElement(new CropAreaRenderer(R.color.crop_area_renderer_outer_color));
+    EditorElement cropEditorElement = new EditorElement(new CropAreaRenderer(R.color.crop_area_renderer_outer_color, !circleEdit));
 
     cropEditorElement.getFlags()
                      .setRotateLocked(true)
@@ -114,11 +116,20 @@ final class EditorElementHierarchy {
 
     cropEditorElement.addElement(blackout);
 
-    cropEditorElement.addElement(createThumbs(cropEditorElement));
+    cropEditorElement.addElement(createThumbs(cropEditorElement, !circleEdit));
+
+    if (circleEdit) {
+      EditorElement circle = new EditorElement(new OvalGuideRenderer(R.color.crop_circle_guide_color));
+      circle.getFlags().setSelectable(false)
+                       .persist();
+
+      cropEditorElement.addElement(circle);
+    }
+
     return root;
   }
 
-  private static @NonNull EditorElement createThumbs(EditorElement cropEditorElement) {
+  private static @NonNull EditorElement createThumbs(EditorElement cropEditorElement, boolean centerThumbs) {
     EditorElement thumbs = new EditorElement(null);
 
     thumbs.getFlags()
@@ -127,11 +138,13 @@ final class EditorElementHierarchy {
           .setVisible(false)
           .persist();
 
-    thumbs.addElement(newThumb(cropEditorElement, ThumbRenderer.ControlPoint.CENTER_LEFT));
-    thumbs.addElement(newThumb(cropEditorElement, ThumbRenderer.ControlPoint.CENTER_RIGHT));
+    if (centerThumbs) {
+      thumbs.addElement(newThumb(cropEditorElement, ThumbRenderer.ControlPoint.CENTER_LEFT));
+      thumbs.addElement(newThumb(cropEditorElement, ThumbRenderer.ControlPoint.CENTER_RIGHT));
 
-    thumbs.addElement(newThumb(cropEditorElement, ThumbRenderer.ControlPoint.TOP_CENTER));
-    thumbs.addElement(newThumb(cropEditorElement, ThumbRenderer.ControlPoint.BOTTOM_CENTER));
+      thumbs.addElement(newThumb(cropEditorElement, ThumbRenderer.ControlPoint.TOP_CENTER));
+      thumbs.addElement(newThumb(cropEditorElement, ThumbRenderer.ControlPoint.BOTTOM_CENTER));
+    }
 
     thumbs.addElement(newThumb(cropEditorElement, ThumbRenderer.ControlPoint.TOP_LEFT));
     thumbs.addElement(newThumb(cropEditorElement, ThumbRenderer.ControlPoint.TOP_RIGHT));
