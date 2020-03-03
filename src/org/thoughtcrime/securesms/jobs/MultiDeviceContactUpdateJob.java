@@ -245,7 +245,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
   }
 
   private List<ContactData> getAllContacts() {
-    List<Address> contactAddresses = DatabaseFactory.getRecipientDatabase(context).getRegistered();
+    List<Address> contactAddresses = new ArrayList<>(DatabaseFactory.getRecipientDatabase(context).getAllAddresses());
     List<ContactData> contacts     = new ArrayList<>(contactAddresses.size());
     for (Address address : contactAddresses) {
       if (!address.isPhone()) { continue; }

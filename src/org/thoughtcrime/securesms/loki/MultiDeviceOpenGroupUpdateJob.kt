@@ -19,7 +19,7 @@ import javax.inject.Inject
 class MultiDeviceOpenGroupUpdateJob private constructor(parameters: Parameters) : BaseJob(parameters), InjectableType {
 
   companion object {
-    const val KEY = "MultiDeviceGroupUpdateJob"
+    const val KEY = "MultiDeviceOpenGroupUpdateJob"
   }
 
   @Inject
@@ -27,7 +27,7 @@ class MultiDeviceOpenGroupUpdateJob private constructor(parameters: Parameters) 
 
   constructor() : this(Parameters.Builder()
           .addConstraint(NetworkConstraint.KEY)
-          .setQueue("MultiDeviceGroupUpdateJob")
+          .setQueue("MultiDeviceOpenGroupUpdateJob")
           .setLifespan(TimeUnit.DAYS.toMillis(1))
           .setMaxAttempts(Parameters.UNLIMITED)
           .build())
