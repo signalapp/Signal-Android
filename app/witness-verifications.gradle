@@ -204,17 +204,17 @@ dependencyVerification {
         ['com.fasterxml.jackson.core:jackson-databind:2.9.9.2',
          'fb262d42ea2de98044b62d393950a5aa050435fec38bbcadf2325cf7dc41b848'],
 
-        ['com.github.bumptech.glide:annotations:4.9.0',
-         '702a7521cb3f6d7e55edd66e90bda1a1975baf971d25f75b75638579f86bc69b'],
+        ['com.github.bumptech.glide:annotations:4.11.0',
+         'd219d238006d824962176229d4708abcdddcfe342c6a18a5d0fa48d6f0479b3e'],
 
-        ['com.github.bumptech.glide:disklrucache:4.9.0',
-         '4696a81340eb6beee21ab93f703ed6e7ae49fb4ce3bc2fbc546e5bacd21b96b9'],
+        ['com.github.bumptech.glide:disklrucache:4.11.0',
+         'd06775a5171b777aa3db031eb0dd4a1dbe3f00dda35b5574dfd953f6b0d5ef18'],
 
-        ['com.github.bumptech.glide:gifdecoder:4.9.0',
-         '7ee9402ae1c48fac9232b67e81f881c217b907b3252e49ce57bdb97937ebb270'],
+        ['com.github.bumptech.glide:gifdecoder:4.11.0',
+         '197a1cd5b76855aa02b230c13974e293229b901dc2b96fab4315201e78baa804'],
 
-        ['com.github.bumptech.glide:glide:4.9.0',
-         '1bf482442fce81aa9065a5e97e721039d921cc45f727a987be5f1a69f844d955'],
+        ['com.github.bumptech.glide:glide:4.11.0',
+         '5c294e6a5f0f812cef876b8412954c1822da184af38e082a5b766e3c4f4fcd95'],
 
         ['com.github.chrisbanes:PhotoView:2.1.3',
          'ed06775308da260e1fd86d1d3288988fcd3d80db24ce0d7c9fcfedc39e622292'],
