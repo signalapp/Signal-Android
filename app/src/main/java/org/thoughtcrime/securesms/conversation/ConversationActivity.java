@@ -1196,7 +1196,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleDisplayGroupRecipients() {
-    new GroupMembersDialog(this, getRecipient()).display();
+    new GroupMembersDialog(this, getRecipient(), getLifecycle()).display();
   }
 
   private void handleAddToContacts() {

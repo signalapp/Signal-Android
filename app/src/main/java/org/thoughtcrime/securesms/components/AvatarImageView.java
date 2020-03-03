@@ -21,9 +21,11 @@ import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
+import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientExporter;
+import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
 import java.util.Objects;
@@ -107,6 +109,15 @@ public final class AvatarImageView extends AppCompatImageView {
 
   public void setFallbackPhotoProvider(Recipient.FallbackPhotoProvider fallbackPhotoProvider) {
     this.fallbackPhotoProvider = fallbackPhotoProvider;
+  }
+
+  public void setRecipient(@NonNull Recipient recipient) {
+    if (recipient.isLocalNumber()) {
+      setAvatar(GlideApp.with(this), null, false);
+      AvatarUtil.loadIconIntoImageView(recipient, this);
+    } else {
+      setAvatar(GlideApp.with(this), recipient, false);
+    }
   }
 
   public void setAvatar(@NonNull GlideRequests requestManager, @Nullable Recipient recipient, boolean quickContactEnabled) {

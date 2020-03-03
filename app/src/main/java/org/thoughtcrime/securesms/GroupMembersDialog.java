@@ -1,131 +1,78 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.AsyncTask;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.lifecycle.Lifecycle;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
+import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientExporter;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.ArrayList;
 
-public class GroupMembersDialog extends AsyncTask<Void, Void, List<Recipient>> {
+public final class GroupMembersDialog {
 
-  private static final String TAG = GroupMembersDialog.class.getSimpleName();
+  private final Context   context;
+  private final Recipient groupRecipient;
+  private final Lifecycle lifecycle;
 
-  private final Recipient  recipient;
-  private final Context    context;
-
-  public GroupMembersDialog(Context context, Recipient recipient) {
-    this.recipient = recipient;
-    this.context   = context;
-  }
-
-  @Override
-  public void onPreExecute() {}
-
-  @Override
-  protected List<Recipient> doInBackground(Void... params) {
-    return DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.requireGroupId(), true);
-  }
-
-  @Override
-  public void onPostExecute(List<Recipient> members) {
-    GroupMembers groupMembers = new GroupMembers(members);
-    AlertDialog.Builder builder = new AlertDialog.Builder(context);
-    builder.setTitle(R.string.ConversationActivity_group_members);
-    builder.setIconAttribute(R.attr.group_members_dialog_icon);
-    builder.setCancelable(true);
-    builder.setItems(groupMembers.getRecipientStrings(), new GroupMembersOnClickListener(context, groupMembers));
-    builder.setPositiveButton(android.R.string.ok, null);
-    builder.show();
+  public GroupMembersDialog(@NonNull Context context,
+                            @NonNull Recipient groupRecipient,
+                            @NonNull Lifecycle lifecycle)
+  {
+    this.context        = context;
+    this.groupRecipient = groupRecipient;
+    this.lifecycle      = lifecycle;
   }
 
   public void display() {
-    executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    SimpleTask.run(
+      lifecycle,
+      () -> DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupRecipient.requireGroupId(), true),
+      members -> {
+        AlertDialog dialog = new AlertDialog.Builder(context)
+                                            .setTitle(R.string.ConversationActivity_group_members)
+                                            .setIconAttribute(R.attr.group_members_dialog_icon)
+                                            .setCancelable(true)
+                                            .setView(R.layout.dialog_group_members)
+                                            .setPositiveButton(android.R.string.ok, null)
+                                            .show();
+
+        GroupMemberListView memberListView = dialog.findViewById(R.id.list_members);
+
+        ArrayList<GroupMemberEntry.FullMember> pendingMembers = new ArrayList<>(members.size());
+        for (Recipient member : members) {
+          GroupMemberEntry.FullMember entry = new GroupMemberEntry.FullMember(member);
+
+          entry.setOnClick(() -> contactClick(member));
+
+          if (member.isLocalNumber()) {
+            pendingMembers.add(0, entry);
+          } else {
+            pendingMembers.add(entry);
+          }
+        }
+
+        //noinspection ConstantConditions
+        memberListView.setMembers(pendingMembers);
+      }
+    );
   }
 
-  private static class GroupMembersOnClickListener implements DialogInterface.OnClickListener {
-    private final GroupMembers groupMembers;
-    private final Context      context;
+  private void contactClick(@NonNull Recipient recipient) {
+    if (recipient.getContactUri() != null) {
+      Intent intent = new Intent(context, RecipientPreferenceActivity.class);
+      intent.putExtra(RecipientPreferenceActivity.RECIPIENT_ID, recipient.getId());
 
-    public GroupMembersOnClickListener(Context context, GroupMembers members) {
-      this.context      = context;
-      this.groupMembers = members;
-    }
-
-    @Override
-    public void onClick(DialogInterface dialogInterface, int item) {
-      Recipient recipient = groupMembers.get(item);
-
-      if (recipient.getContactUri() != null) {
-        Intent intent = new Intent(context, RecipientPreferenceActivity.class);
-        intent.putExtra(RecipientPreferenceActivity.RECIPIENT_ID, recipient.getId());
-
-        context.startActivity(intent);
-      } else {
-        context.startActivity(RecipientExporter.export(recipient).asAddContactIntent());
-      }
-    }
-  }
-
-  /**
-   * Wraps a List of Recipient (just like @class Recipients),
-   * but with focus on the order of the Recipients.
-   * So that the order of the RecipientStrings[] matches
-   * the internal order.
-   *
-   * @author Christoph Haefner
-   */
-  private class GroupMembers {
-    private final String TAG = GroupMembers.class.getSimpleName();
-
-    private final LinkedList<Recipient> members = new LinkedList<>();
-
-    public GroupMembers(List<Recipient> recipients) {
-      for (Recipient recipient : recipients) {
-        if (recipient.isLocalNumber()) {
-          members.push(recipient);
-        } else {
-          members.add(recipient);
-        }
-      }
-    }
-
-    public String[] getRecipientStrings() {
-      List<String> recipientStrings = new LinkedList<>();
-
-      for (Recipient recipient : members) {
-        if (recipient.isLocalNumber()) {
-          recipientStrings.add(context.getString(R.string.GroupMembersDialog_you));
-        } else {
-          String name = getRecipientName(recipient);
-          recipientStrings.add(name);
-        }
-      }
-
-      return recipientStrings.toArray(new String[members.size()]);
-    }
-
-    private String getRecipientName(Recipient recipient) {
-      if (FeatureFlags.profileDisplay()) return recipient.getDisplayName(context);
-
-      String name = recipient.toShortString(context);
-
-      if (recipient.getName(context) == null && !recipient.getProfileName().isEmpty()) {
-        name += " ~" + recipient.getProfileName().toString();
-      }
-
-      return name;
-    }
-
-    public Recipient get(int index) {
-      return members.get(index);
+      context.startActivity(intent);
+    } else {
+      context.startActivity(RecipientExporter.export(recipient).asAddContactIntent());
     }
   }
 }

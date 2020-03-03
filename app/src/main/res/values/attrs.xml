@@ -286,11 +286,16 @@
         </attr>
     </declare-styleable>
 
+    <attr name="minWidth" format="dimension" />
+    <attr name="maxWidth" format="dimension" />
+    <attr name="minHeight" format="dimension" />
+    <attr name="maxHeight" format="dimension" />
+
     <declare-styleable name="ThumbnailView">
-        <attr name="minWidth" format="dimension" />
-        <attr name="maxWidth" format="dimension" />
-        <attr name="minHeight" format="dimension" />
-        <attr name="maxHeight" format="dimension" />
+        <attr name="minWidth" />
+        <attr name="maxWidth" />
+        <attr name="minHeight" />
+        <attr name="maxHeight" />
         <attr name="thumbnail_radius" format="dimension" />
         <attr name="thumbnail_fit" format="enum">
             <enum name="center_crop" value="0" />
@@ -477,6 +482,10 @@
         <attr name="cursorWidth" format="dimension" />
         <attr name="cursorColor" format="color" />
         <attr name="thumbTouchRadius" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="GroupMemberListView">
+        <attr name="maxHeight" />
     </declare-styleable>
 
 </resources>
