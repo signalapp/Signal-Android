@@ -137,7 +137,7 @@ public final class PushDecryptMessageJob extends BaseJob {
     // TODO [greyson] Navigation
     NotificationManagerCompat.from(context).notify(494949,
                                                    new NotificationCompat.Builder(context, NotificationChannels.getMessagesChannel(context))
-                                                                         .setSmallIcon(R.drawable.icon_notification)
+                                                                         .setSmallIcon(R.drawable.ic_notification)
                                                                          .setPriority(NotificationCompat.PRIORITY_HIGH)
                                                                          .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                                                                          .setContentTitle(context.getString(R.string.PushDecryptJob_new_locked_message))

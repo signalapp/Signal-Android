@@ -52,7 +52,7 @@
             android:focusable="true"
             android:contentDescription="@string/device_list_fragment__link_new_device"
             fab:fab_colorNormal="?fab_color"
-            fab:fab_colorPressed="@color/textsecure_primary_dark"
-            fab:fab_colorRipple="@color/textsecure_primary_dark" />
+            fab:fab_colorPressed="@color/core_ultramarine_dark"
+            fab:fab_colorRipple="@color/core_ultramarine_dark" />
 
 </LinearLayout>

@@ -727,7 +727,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
         case VIEW_ONCE_TOOLTIP:
           TooltipPopup.forTarget(revealButton)
                       .setText(R.string.MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed)
-                      .setBackgroundTint(getResources().getColor(R.color.core_blue))
+                      .setBackgroundTint(getResources().getColor(R.color.core_ultramarine))
                       .setTextColor(getResources().getColor(R.color.core_white))
                       .setOnDismissListener(() -> TextSecurePreferences.setHasSeenViewOnceTooltip(this, true))
                       .show(TooltipPopup.POSITION_ABOVE);

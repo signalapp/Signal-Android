@@ -128,8 +128,8 @@ public class ApplicationMigrationService extends Service
   private NotificationCompat.Builder initializeBackgroundNotification() {
     NotificationCompat.Builder builder = new NotificationCompat.Builder(this, NotificationChannels.OTHER);
 
-    builder.setSmallIcon(R.drawable.icon_notification);
-    builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.icon_notification));
+    builder.setSmallIcon(R.drawable.ic_notification);
+    builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_notification));
     builder.setContentTitle(getString(R.string.ApplicationMigrationService_importing_text_messages));
     builder.setContentText(getString(R.string.ApplicationMigrationService_import_in_progress));
     builder.setOngoing(true);
@@ -183,7 +183,7 @@ public class ApplicationMigrationService extends Service
     @Override
     public void onReceive(Context context, Intent intent) {
       NotificationCompat.Builder builder = new NotificationCompat.Builder(context, NotificationChannels.OTHER);
-      builder.setSmallIcon(R.drawable.icon_notification);
+      builder.setSmallIcon(R.drawable.ic_notification);
       builder.setContentTitle(context.getString(R.string.ApplicationMigrationService_import_complete));
       builder.setContentText(context.getString(R.string.ApplicationMigrationService_system_database_import_is_complete));
       // TODO [greyson] Navigation

@@ -28,7 +28,7 @@
         <ImageView android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:src="@drawable/ic_block_white_24dp"
-                   android:tint="@color/signal_primary"/>
+                   android:tint="@color/core_ultramarine"/>
 
         <TextView android:layout_marginStart="15dp"
                   android:layout_width="match_parent"
@@ -36,7 +36,7 @@
                   android:text="@string/unknown_sender_view__block"
                   android:textAllCaps="true"
                   android:textStyle="bold"
-                  android:textColor="@color/signal_primary"
+                  android:textColor="@color/core_ultramarine"
                   android:textSize="14sp"/>
 
     </LinearLayout>
@@ -52,7 +52,7 @@
         <ImageView android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:src="@drawable/ic_person_add_white_24dp"
-                   android:tint="@color/signal_primary"/>
+                   android:tint="@color/core_ultramarine"/>
 
         <TextView android:layout_marginStart="15dp"
                   android:layout_width="match_parent"
@@ -60,7 +60,7 @@
                   android:text="@string/unknown_sender_view__add_to_contacts"
                   android:textAllCaps="true"
                   android:textStyle="bold"
-                  android:textColor="@color/signal_primary"
+                  android:textColor="@color/core_ultramarine"
                   android:textSize="14sp"/>
 
     </LinearLayout>
@@ -76,7 +76,7 @@
         <ImageView android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:src="@drawable/ic_face_white_24dp"
-                   android:tint="@color/signal_primary"/>
+                   android:tint="@color/core_ultramarine"/>
 
         <TextView android:layout_marginStart="15dp"
                   android:layout_width="match_parent"
@@ -84,7 +84,7 @@
                   android:text="@string/unknown_sender_view__don_t_add_but_make_my_profile_visible"
                   android:textAllCaps="true"
                   android:textStyle="bold"
-                  android:textColor="@color/signal_primary"
+                  android:textColor="@color/core_ultramarine"
                   android:textSize="14sp"/>
 
     </LinearLayout>

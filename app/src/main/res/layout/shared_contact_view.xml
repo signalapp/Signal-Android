@@ -78,7 +78,7 @@
             android:maxLines="1"
             android:ellipsize="end"
             android:fontFamily="sans-serif-medium"
-            android:textColor="@color/core_blue"
+            android:textColor="@color/core_ultramarine"
             android:background="?attr/shared_contact_item_button_color"
             android:foreground="?attr/selectableItemBackground"
             tools:text="Add to Contacts"/>

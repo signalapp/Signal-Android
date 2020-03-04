@@ -130,7 +130,7 @@
                         android:layout_height="16dp"
                         android:layout_marginStart="11dp"
                         android:layout_marginTop="8dp"
-                        android:tint="@color/core_blue"
+                        android:tint="@color/core_ultramarine"
                         android:scaleType="fitXY"
                         app:srcCompat="@drawable/triangle_right" />
 

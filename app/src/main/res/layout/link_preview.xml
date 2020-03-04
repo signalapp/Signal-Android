@@ -94,7 +94,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:matProg_barColor="@color/core_blue"
+            app:matProg_barColor="@color/core_ultramarine"
             app:matProg_progressIndeterminate="true" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

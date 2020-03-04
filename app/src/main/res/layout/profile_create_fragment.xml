@@ -225,12 +225,12 @@
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="16dp"
-            android:background="@color/signal_primary"
+            android:background="@color/core_ultramarine"
             android:enabled="false"
             android:textAllCaps="true"
             android:textColor="@color/white"
             app:cpb_colorIndicator="@color/white"
-            app:cpb_colorProgress="@color/textsecure_primary"
+            app:cpb_colorProgress="@color/core_ultramarine"
             app:cpb_cornerRadius="4dp"
             app:cpb_selectorIdle="@drawable/progress_button_state"
             app:cpb_textIdle="@string/CreateProfileActivity_next" />
@@ -241,7 +241,7 @@
         android:id="@+id/reveal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/textsecure_primary"
+        android:background="@color/core_ultramarine"
         android:visibility="invisible"
         tools:visibility="gone" />
 

@@ -302,7 +302,7 @@ final class StickerManagementAdapter extends SectionedRecyclerViewAdapter<String
       Drawable        badge     = ContextCompat.getDrawable(context, R.drawable.ic_check_circle_white_18dp);
 
       badge.setBounds(0, 0, badge.getIntrinsicWidth(), badge.getIntrinsicHeight());
-      badge.setColorFilter(ContextCompat.getColor(context, R.color.core_blue), PorterDuff.Mode.MULTIPLY);
+      badge.setColorFilter(ContextCompat.getColor(context, R.color.core_ultramarine), PorterDuff.Mode.MULTIPLY);
       badgeSpan.setSpan(new ImageSpan(badge), 1, badgeSpan.length(), 0);
 
       return badgeSpan;

@@ -20,8 +20,8 @@ public class PendingMessageNotificationBuilder extends AbstractNotificationBuild
     // TODO [greyson] Navigation
     Intent intent = new Intent(context, MainActivity.class);
 
-    setSmallIcon(R.drawable.icon_notification);
-    setColor(context.getResources().getColor(R.color.textsecure_primary));
+    setSmallIcon(R.drawable.ic_notification);
+    setColor(context.getResources().getColor(R.color.core_ultramarine));
     setCategory(NotificationCompat.CATEGORY_MESSAGE);
 
     setContentTitle(context.getString(R.string.MessageNotifier_you_may_have_new_messages));

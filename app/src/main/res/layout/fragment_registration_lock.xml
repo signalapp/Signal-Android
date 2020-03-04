@@ -67,7 +67,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:text="@string/RegistrationLockFragment__forgot_pin"
-            android:textColor="@color/signal_primary"
+            android:textColor="@color/core_ultramarine"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/kbs_lock_pin_input_label" />
@@ -79,7 +79,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:textColor="@color/signal_primary"
             app:layout_constraintBottom_toTopOf="@id/kbs_lock_pin_confirm"
             app:layout_constraintTop_toBottomOf="@id/kbs_lock_forgot_pin"
             app:layout_constraintVertical_bias="1.0"

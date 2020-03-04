@@ -30,7 +30,7 @@
             android:padding="16dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/ic_create_white_24dp"
-            android:tint="@color/signal_primary"/>
+            android:tint="@color/core_ultramarine"/>
 
     </LinearLayout>
 

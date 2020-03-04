@@ -37,7 +37,7 @@
             android:layout_height="18dp"
             android:layout_gravity="center"
             android:layout_marginStart="2dp"
-            android:tint="@color/core_blue"
+            android:tint="@color/core_ultramarine"
             android:scaleType="fitXY"
             app:srcCompat="@drawable/triangle_right" />
 

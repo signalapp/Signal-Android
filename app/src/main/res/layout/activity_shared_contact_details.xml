@@ -97,14 +97,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="6dp"
-                                android:tint="@color/signal_primary"
+                                android:tint="@color/core_ultramarine"
                                 android:src="@drawable/message_24dp"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/SharedContactDetailsActivity_signal_message"
-                                android:textColor="@color/signal_primary"/>
+                                android:textColor="@color/core_ultramarine"/>
 
                         </LinearLayout>
 
@@ -121,14 +121,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="6dp"
-                                android:tint="@color/signal_primary"
+                                android:tint="@color/core_ultramarine"
                                 android:src="@drawable/phone_24dp"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/SharedContactDetailsActivity_signal_call"
-                                android:textColor="@color/signal_primary"/>
+                                android:textColor="@color/core_ultramarine"/>
 
                         </LinearLayout>
 

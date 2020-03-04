@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="#FF2090ea">
+    tools:background="@color/core_ultramarine">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -45,7 +45,7 @@
                 android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:src="@drawable/message_bubble_background"
-                android:tint="@color/signal_primary" />
+                android:tint="@color/core_ultramarine" />
 
             <org.thoughtcrime.securesms.components.TypingIndicatorView
                 android:id="@+id/typing_indicator"
@@ -90,7 +90,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:text="@string/ExperienceUpgradeActivity_turn_on_typing_indicators"
-            android:textColor="@color/core_blue"
+            android:textColor="@color/core_ultramarine"
             app:backgroundTint="@color/core_white" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -100,7 +100,7 @@
             android:layout_gravity="center_horizontal"
             android:text="@string/ExperienceUpgradeActivity_no_thanks"
             android:textColor="@color/core_white"
-            app:backgroundTint="@color/conversation_blue" />
+            app:backgroundTint="@color/core_ultramarine_dark" />
 
     </LinearLayout>
 

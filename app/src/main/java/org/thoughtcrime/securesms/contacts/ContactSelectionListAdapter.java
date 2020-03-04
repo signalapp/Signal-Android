@@ -235,7 +235,7 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
     final String headerString = getHeaderString(position);
     if (isPush(position)) {
       SpannableString spannable = new SpannableString(headerString);
-      spannable.setSpan(new ForegroundColorSpan(getContext().getResources().getColor(R.color.signal_primary)), 0, headerString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+      spannable.setSpan(new ForegroundColorSpan(getContext().getResources().getColor(R.color.core_ultramarine)), 0, headerString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
       return spannable;
     } else {
       return headerString;

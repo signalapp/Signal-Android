@@ -5,7 +5,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              tools:background="#FF2090ea">
+              tools:background="@color/core_ultramarine">
 
         <TextView android:layout_width="match_parent"
                   android:layout_height="wrap_content"

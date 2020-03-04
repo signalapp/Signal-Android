@@ -109,7 +109,7 @@ public class TransportOptions {
   public static @NonNull TransportOption getPushTransportOption(@NonNull Context context) {
     return new TransportOption(Type.TEXTSECURE,
                                R.drawable.ic_send_lock_24,
-                               context.getResources().getColor(R.color.textsecure_primary),
+                               context.getResources().getColor(R.color.core_ultramarine),
                                context.getString(R.string.ConversationActivity_transport_signal),
                                context.getString(R.string.conversation_activity__type_message_push),
                                new PushCharacterCalculator());

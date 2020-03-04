@@ -21,7 +21,7 @@
         android:paddingBottom="2dp"
         android:gravity="center"
         android:background="@drawable/media_count_number_background"
-        android:textColor="@color/signal_primary"
+        android:textColor="@color/core_ultramarine"
         android:textSize="18dp"
         tools:text="3" />
 

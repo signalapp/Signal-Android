@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="#FF2090ea">
+    tools:background="@color/core_ultramarine">
 
     <TextView
         android:id="@+id/blurb"
@@ -93,7 +93,7 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:text="@string/ExperienceUpgradeActivity_got_it"
-        android:textColor="@color/core_blue"
+        android:textColor="@color/core_ultramarine"
         app:backgroundTint="@color/core_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

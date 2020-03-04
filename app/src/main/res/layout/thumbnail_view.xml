@@ -51,7 +51,7 @@
             android:contentDescription="@string/ThumbnailView_Play_video_description"
             android:paddingLeft="5dp"
             android:scaleType="fitXY"
-            android:tint="@color/core_blue"
+            android:tint="@color/core_ultramarine"
             app:srcCompat="@drawable/triangle_right"
             tools:ignore="RtlHardcoded,RtlSymmetry" />
 

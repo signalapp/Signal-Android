@@ -175,17 +175,17 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
   }
 
   private void setPrimaryColorsToolbarForSms() {
-    primaryToolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.signal_primary));
+    primaryToolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.core_ultramarine));
     primaryToolbar.getNavigationIcon().setColorFilter(ThemeUtil.getThemedColor(this, R.attr.conversation_subtitle_color), PorterDuff.Mode.SRC_IN);
     primaryToolbar.setTitleTextColor(ThemeUtil.getThemedColor(this, R.attr.conversation_title_color));
 
     if (Build.VERSION.SDK_INT >= 23) {
-      getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.signal_primary));
+      getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.core_ultramarine));
       WindowUtil.clearLightStatusBar(getWindow());
     }
 
     if (Build.VERSION.SDK_INT >= 27) {
-      getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.signal_primary));
+      getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.core_ultramarine));
       WindowUtil.clearLightNavigationBar(getWindow());
     }
   }

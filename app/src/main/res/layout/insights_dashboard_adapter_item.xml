@@ -39,7 +39,6 @@
         android:paddingEnd="16dp"
         android:text="@string/conversation_insecure__invite"
         android:textAppearance="@style/TextAppearance.Signal.Caption.Insights"
-        android:textColor="@color/signal_primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

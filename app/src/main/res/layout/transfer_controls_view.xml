@@ -12,7 +12,7 @@
         android:layout_gravity="center"
         android:visibility="gone"
         android:padding="4dp"
-        app:matProg_barColor="@color/core_blue"
+        app:matProg_barColor="@color/core_ultramarine"
         app:matProg_rimColor="@color/core_grey_05"
         app:matProg_linearProgress="true"
         app:matProg_spinSpeed="0.2"

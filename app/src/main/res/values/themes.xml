@@ -12,15 +12,15 @@
         <item name="windowActionModeOverlay">true</item>
 
         <item name="theme_type">light</item>
-        <item name="colorPrimary">@color/textsecure_primary</item>
-        <item name="colorPrimaryDark">@color/textsecure_primary_dark</item>
-        <item name="colorAccent">@color/textsecure_primary_dark</item>
+        <item name="colorPrimary">@color/core_ultramarine</item>
+        <item name="colorPrimaryDark">@color/core_ultramarine</item>
+        <item name="colorAccent">@color/core_ultramarine</item>
 
         <item name="recipient_preference_blocked">#d00000</item>
         <item name="contact_selection_label_text">#66000000</item>
         <item name="contact_selection_push_user">#ff000000</item>
         <item name="contact_selection_lay_user">#a0000000</item>
-        <item name="contact_selection_header_text">@color/textsecure_primary_dark</item>
+        <item name="contact_selection_header_text">@color/core_ultramarine</item>
 
         <item name="media_overview_toolbar_background">@color/white</item>
         <item name="media_overview_toolbar_secondary_background">@color/core_grey_02</item>
@@ -53,7 +53,7 @@
         <item name="theme_type">dark</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
         <item name="colorPrimary">@color/core_grey_95</item>
-        <item name="colorAccent">@color/signal_primary_dark</item>
+        <item name="colorAccent">@color/core_ultramarine</item>
 
         <item name="recipient_preference_blocked">#d00000</item>
         <item name="contact_selection_label_text">#66eeeeee</item>
@@ -91,7 +91,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionModeOverlay">true</item>
-        <item name="colorAccent">@color/signal_primary</item>
+        <item name="colorAccent">@color/core_ultramarine</item>
 
         <item name="android:textColorHint">#cc000000</item>
         <item name="centered_app_title_color">#55000000</item>
@@ -101,7 +101,7 @@
         <item name="ic_visibility">@drawable/ic_visibility_grey600_24dp</item>
         <item name="ic_visibility_off">@drawable/ic_visibility_off_grey600_24dp</item>
 
-        <item name="login_top_background">@color/signal_primary</item>
+        <item name="login_top_background">@color/core_ultramarine</item>
         <item name="login_floating_background">@drawable/rounded_rectangle_white</item>
 
     </style>
@@ -110,7 +110,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionModeOverlay">true</item>
-        <item name="colorAccent">@color/signal_primary_dark</item>
+        <item name="colorAccent">@color/core_ultramarine</item>
 
         <item name="android:textColorHint">@color/white</item>
         <item name="centered_app_title_color">@color/core_grey_25</item>
@@ -175,11 +175,11 @@
         <item name="actionModeBackground">@color/core_grey_50</item>
         <item name="actionModeCloseDrawable">@drawable/ic_close_white_24dp</item>
         <item name="actionModeStyle">@style/TextSecure.ActionModeStyle</item>
-        <item name="colorPrimary">@color/textsecure_primary</item>
-        <item name="colorPrimaryDark">@color/textsecure_primary_dark</item>
-        <item name="colorAccent">@color/textsecure_primary_dark</item>
-        <item name="colorControlActivated">@color/signal_primary</item>
-        <item name="colorControlHighlight">@color/signal_primary</item>
+        <item name="colorPrimary">@color/core_ultramarine</item>
+        <item name="colorPrimaryDark">@color/core_ultramarine</item>
+        <item name="colorAccent">@color/core_ultramarine</item>
+        <item name="colorControlActivated">@color/core_ultramarine</item>
+        <item name="colorControlHighlight">@color/core_ultramarine</item>
         <item name="android:windowBackground">@color/white</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleLight</item>
@@ -216,7 +216,7 @@
         <item name="conversation_list_compose_icon_tint">@color/core_white</item>
         <item name="conversation_list_camera_button_background">@color/core_white</item>
 
-        <item name="fab_color">@color/textsecure_primary</item>
+        <item name="fab_color">@color/core_ultramarine</item>
         <item name="lower_right_divet">@drawable/divet_lower_right_dark</item>
 
         <item name="conversation_group_member_name">#99000000</item>
@@ -450,10 +450,10 @@
         <item name="actionModeStyle">@style/TextSecure.ActionModeStyle</item>
         <item name="android:textColor">@color/text_color_dark_theme</item>
         <item name="android:textColorSecondary">@color/text_color_secondary_dark_theme</item>
-        <item name="colorAccent">@color/textsecure_primary_dark</item>
-        <item name="colorControlActivated">@color/signal_primary_dark</item>
-        <item name="colorControlHighlight">@color/signal_primary_dark</item>
-        <item name="android:colorControlHighlight" tools:ignore="NewApi">@color/signal_primary_dark</item>
+        <item name="colorAccent">@color/core_ultramarine</item>
+        <item name="colorControlActivated">@color/core_ultramarine_light</item>
+        <item name="colorControlHighlight">@color/core_ultramarine_light</item>
+        <item name="android:colorControlHighlight" tools:ignore="NewApi">@color/core_ultramarine_light</item>
         <item name="android:windowBackground">@color/core_grey_95</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleDark</item>
@@ -533,7 +533,7 @@
         <item name="import_export_item_background_shadow_color">@color/import_export_item_background_shadow_dark</item>
         <item name="import_export_item_card_background">@drawable/clickable_card_dark</item>
 
-        <item name="fab_color">@color/textsecure_primary_dark</item>
+        <item name="fab_color">@color/core_ultramarine</item>
         <item name="lower_right_divet">@drawable/divet_lower_right_light</item>
 
         <item name="help_emoji_radio_background">@drawable/help_fragment_emoji_radio_background_dark</item>
@@ -654,7 +654,7 @@
 
         <item name="registration_lock_reminder_view_pin_text_color">@color/core_white</item>
 
-        <item name="reminder_header_background">@color/textsecure_primary_dark</item>
+        <item name="reminder_header_background">@color/core_ultramarine</item>
 
         <item name="sticker_management_icon">@drawable/sticker_button_dark</item>
         <item name="sticker_management_divider_color">@color/core_grey_75</item>
@@ -693,11 +693,11 @@
     </style>
 
     <style name="RationaleDialogLight.SignalAccent">
-        <item name="colorAccent">@color/signal_primary</item>
+        <item name="colorAccent">@color/core_ultramarine</item>
     </style>
 
     <style name="RationaleDialogDark.SignalAccent">
-        <item name="colorAccent">@color/signal_primary</item>
+        <item name="colorAccent">@color/core_ultramarine</item>
     </style>
 
 
@@ -755,7 +755,7 @@
     </style>
 
     <style name="TextSecure.LightTheme.WebRTCCall">
-        <item name="android:statusBarColor" tools:ignore="NewApi">@color/signal_primary</item>
+        <item name="android:statusBarColor" tools:ignore="NewApi">@color/core_ultramarine</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">false</item>
         <item name="android:navigationBarColor" tools:ignore="NewApi">@color/core_black</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>

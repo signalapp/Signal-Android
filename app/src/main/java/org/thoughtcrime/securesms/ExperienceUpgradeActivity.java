@@ -270,8 +270,8 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity
             !TextSecurePreferences.isPasswordDisabled(context))
         {
           Notification notification = new NotificationCompat.Builder(context, NotificationChannels.OTHER)
-              .setSmallIcon(R.drawable.icon_notification)
-              .setColor(context.getResources().getColor(R.color.signal_primary))
+              .setSmallIcon(R.drawable.ic_notification)
+              .setColor(context.getResources().getColor(R.color.core_ultramarine))
               .setContentTitle(context.getString(R.string.ExperienceUpgradeActivity_unlock_to_complete_update))
               .setContentText(context.getString(R.string.ExperienceUpgradeActivity_please_unlock_signal_to_complete_update))
               .setStyle(new NotificationCompat.BigTextStyle().bigText(context.getString(R.string.ExperienceUpgradeActivity_please_unlock_signal_to_complete_update)))
@@ -299,8 +299,8 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity
         dismissIntent.setAction(DISMISS_ACTION);
 
         Notification notification = new NotificationCompat.Builder(context, NotificationChannels.OTHER)
-                                        .setSmallIcon(R.drawable.icon_notification)
-                                        .setColor(context.getResources().getColor(R.color.signal_primary))
+                                        .setSmallIcon(R.drawable.ic_notification)
+                                        .setColor(context.getResources().getColor(R.color.core_ultramarine))
                                         .setContentTitle(context.getString(experienceUpgrade.get().getNotificationTitle()))
                                         .setContentText(context.getString(experienceUpgrade.get().getNotificationText()))
                                         .setStyle(new NotificationCompat.BigTextStyle().bigText(context.getString(experienceUpgrade.get().getNotificationBigText())))

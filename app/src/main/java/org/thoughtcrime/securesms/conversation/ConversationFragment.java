@@ -1015,7 +1015,7 @@ public class ConversationFragment extends Fragment
       TooltipPopup.forTarget(requireActivity().findViewById(R.id.menu_context_reply))
                   .setText(text)
                   .setTextColor(getResources().getColor(R.color.core_white))
-                  .setBackgroundTint(getResources().getColor(R.color.core_blue))
+                  .setBackgroundTint(getResources().getColor(R.color.core_ultramarine))
                   .show(TooltipPopup.POSITION_BELOW);
 
       TextSecurePreferences.setHasSeenSwipeToReplyTooltip(requireContext(), true);

@@ -87,7 +87,7 @@
         android:layout_marginBottom="16dp"
         android:text="@string/preferences_storage__review_storage"
         android:textAllCaps="true"
-        android:textColor="@color/signal_primary_dark"
+        android:textColor="@color/core_ultramarine"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -10,6 +10,6 @@
               android:layout_gravity="right|center_vertical"
               android:gravity="right|center_vertical"
               android:textSize="16sp"
-              android:textColor="@color/signal_primary_dark"/>
+              android:textColor="@color/core_ultramarine"/>
 
 </FrameLayout>

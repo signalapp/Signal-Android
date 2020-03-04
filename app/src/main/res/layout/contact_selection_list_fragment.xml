@@ -54,8 +54,8 @@
                     android:visibility="invisible"
                     app:matProg_circleRadius="145dp"
                     app:matProg_barWidth="6dp"
-                    app:matProg_rimColor="@color/signal_primary"
-                    app:matProg_barColor="@color/signal_primary_dark"
+                    app:matProg_rimColor="@color/core_ultramarine"
+                    app:matProg_barColor="@color/core_ultramarine_dark"
                     app:matProg_progressIndeterminate="true"
                     tools:visibility="visible"
                     />
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_gravity="center_horizontal"
-                android:background="@color/signal_primary"
+                style="@style/Button.Primary"
                 android:textColor="@color/white"
                 android:padding="10dp"
                 android:text="@string/contact_selection_list_fragment__show_contacts"/>

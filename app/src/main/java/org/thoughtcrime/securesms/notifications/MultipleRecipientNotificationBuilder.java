@@ -25,8 +25,8 @@ public class MultipleRecipientNotificationBuilder extends AbstractNotificationBu
   public MultipleRecipientNotificationBuilder(Context context, NotificationPrivacyPreference privacy) {
     super(context, privacy);
 
-    setColor(context.getResources().getColor(R.color.textsecure_primary));
-    setSmallIcon(R.drawable.icon_notification);
+    setColor(context.getResources().getColor(R.color.core_ultramarine));
+    setSmallIcon(R.drawable.ic_notification);
     setContentTitle(context.getString(R.string.app_name));
     // TODO [greyson] Navigation
     setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, MainActivity.class), 0));

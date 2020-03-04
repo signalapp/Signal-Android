@@ -108,7 +108,7 @@ public class GiphyActivity extends PassphraseRequiredActionBarActivity
   }
 
   private @ColorInt int getConversationColor() {
-    return getIntent().getIntExtra(EXTRA_COLOR, ActivityCompat.getColor(this, R.color.signal_primary));
+    return getIntent().getIntExtra(EXTRA_COLOR, ActivityCompat.getColor(this, R.color.core_ultramarine));
   }
 
   @Override

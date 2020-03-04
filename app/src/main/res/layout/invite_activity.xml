@@ -96,7 +96,7 @@
             android:layout_height="?attr/actionBarSize"
             android:layout_width="match_parent"
             android:minHeight="?attr/actionBarSize"
-            android:background="@color/signal_primary"
+            android:background="@color/core_ultramarine"
             android:elevation="4dp"
             app:searchTextStyle="@style/TextSecure.TitleTextStyle.Light" />
 
@@ -120,8 +120,7 @@
                     android:text="@string/InviteActivity_cancel" />
 
             <Button android:id="@+id/send_sms_button"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:textColor="@color/signal_primary"
+                    style="@style/Button.Borderless"
                     android:enabled="false"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -68,7 +68,7 @@ public class ContactPreference extends Preference {
     int color;
 
     if (secure) {
-      color = getContext().getResources().getColor(R.color.textsecure_primary);
+      color = getContext().getResources().getColor(R.color.core_ultramarine);
     } else {
       color = getContext().getResources().getColor(R.color.grey_600);
     }

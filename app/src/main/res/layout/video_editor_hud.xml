@@ -53,7 +53,7 @@
                 android:layout_marginTop="12dp"
                 android:contentDescription="@string/ThumbnailView_Play_video_description"
                 android:scaleType="fitXY"
-                android:tint="@color/core_blue"
+                android:tint="@color/core_ultramarine"
                 app:srcCompat="@drawable/triangle_right" />
 
         </FrameLayout>

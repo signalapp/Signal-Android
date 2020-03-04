@@ -77,7 +77,7 @@
                       android:visibility="gone"
                       android:focusableInTouchMode="true"
                       style="?android:attr/preferenceCategoryStyle"
-                      android:textColor="@color/textsecure_primary"/>
+                      android:textColor="@color/core_ultramarine"/>
 
             <org.thoughtcrime.securesms.components.ThreadPhotoRailView
                     android:id="@+id/recent_photos"
