@@ -284,10 +284,8 @@ public class MessageSender {
       sendLocalMediaSelf(context, messageId);
     } else if (isGroupPushSend(recipient)) {
       sendGroupPush(context, recipient, messageId, null);
-    } else if (!forceSms && isPushMediaSend(context, recipient)) {
-      sendMediaPush(context, recipient, messageId);
     } else {
-      sendMms(context, messageId);
+      sendMediaPush(context, recipient, messageId);
     }
   }
 
@@ -297,10 +295,8 @@ public class MessageSender {
   {
     if (isLocalSelfSend(context, recipient, forceSms)) {
       sendLocalTextSelf(context, messageId);
-    } else if (!forceSms && isPushTextSend(context, recipient, keyExchange)) {
-      sendTextPush(context, recipient, messageId);
     } else {
-      sendSms(context, recipient, messageId);
+      sendTextPush(context, recipient, messageId);
     }
   }
 
