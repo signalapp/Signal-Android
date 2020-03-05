@@ -23,7 +23,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -48,6 +47,7 @@ import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.loaders.MessageDetailsLoader;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -158,10 +158,6 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
   private void setActionBarColor(MaterialColor color) {
     assert getSupportActionBar() != null;
     getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color.toActionBarColor(this)));
-
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      // getWindow().setStatusBarColor(color.toStatusBarColor(this));
-    }
   }
 
   @Override
@@ -402,6 +398,12 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
 
       boolean isGroupNetworkFailure      = messageRecord.isFailed() && !messageRecord.getNetworkFailures().isEmpty();
       boolean isIndividualNetworkFailure = messageRecord.isFailed() && !isPushGroup && messageRecord.getIdentityKeyMismatches().isEmpty();
+
+      LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(getContext());
+      String errorMessage = lokiMessageDatabase.getErrorMessage(messageRecord.id);
+      if (errorMessage != null) {
+        errorText.setText(errorMessage);
+      }
 
       if (isGroupNetworkFailure || isIndividualNetworkFailure) {
         errorText.setVisibility(View.VISIBLE);

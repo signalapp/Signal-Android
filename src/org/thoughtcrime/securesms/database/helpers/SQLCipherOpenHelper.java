@@ -80,8 +80,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV4                           = 25;
   private static final int lokiV5                           = 26;
   private static final int lokiV6                           = 27;
+  private static final int lokiV7                           = 28;
 
-  private static final int    DATABASE_VERSION = lokiV6; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
+  private static final int    DATABASE_VERSION = lokiV7; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -141,6 +142,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiPreKeyRecordDatabase.getCreateTableCommand());
     db.execSQL(LokiMessageDatabase.getCreateMessageFriendRequestTableCommand());
     db.execSQL(LokiMessageDatabase.getCreateMessageToThreadMappingTableCommand());
+    db.execSQL(LokiMessageDatabase.getCreateErrorMessageTableCommand());
     db.execSQL(LokiThreadDatabase.getCreateFriendRequestTableCommand());
     db.execSQL(LokiThreadDatabase.getCreateSessionResetTableCommand());
     db.execSQL(LokiThreadDatabase.getCreatePublicChatTableCommand());
@@ -568,6 +570,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
         // Add admin field in groups
         db.execSQL("ALTER TABLE groups ADD COLUMN admins TEXT");
+      }
+
+      if (oldVersion < lokiV7) {
+        db.execSQL(LokiMessageDatabase.getCreateErrorMessageTableCommand());
       }
 
       db.setTransactionSuccessful();

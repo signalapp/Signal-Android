@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
@@ -14,6 +15,7 @@ import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
@@ -25,11 +27,15 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
+import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
+import org.whispersystems.signalservice.loki.api.LokiAPI;
 import org.whispersystems.signalservice.loki.api.LokiDeviceLinkUtilities;
+import org.whispersystems.signalservice.loki.api.LokiDotNetAPI;
+import org.whispersystems.signalservice.loki.api.LokiSnodeProxy;
 import org.whispersystems.signalservice.loki.messaging.LokiSyncMessage;
 import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
@@ -116,6 +122,8 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
       return;
     }
 
+    LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
+
     try {
       log(TAG, "Sending message: " + templateMessageId + (hasSameDestination ? "" : "to another device."));
 
@@ -170,6 +178,21 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
         database.markAsSentFailed(record.getId());
         database.markAsPush(record.getId());
       }
+    } catch (LokiAPI.Error e) {
+      Log.d("Loki", "Couldn't send message due to error: " + e.getDescription());
+      if (messageId < 0) { return; }
+      lokiMessageDatabase.setErrorMessage(record.getId(), e.getDescription());
+      database.markAsSentFailed(record.getId());
+    } catch (LokiDotNetAPI.Error e) {
+      Log.d("Loki", "Couldn't send message due to error: " + e.getDescription());
+      if (messageId < 0) { return; }
+      lokiMessageDatabase.setErrorMessage(record.getId(), e.getDescription());
+      database.markAsSentFailed(record.getId());
+    } catch (LokiSnodeProxy.Error e) {
+      Log.d("Loki", "Couldn't send message due to error: " + e.getDescription());
+      if (messageId < 0) { return; }
+      lokiMessageDatabase.setErrorMessage(record.getId(), e.getDescription());
+      database.markAsSentFailed(record.getId());
     }
   }
 
@@ -196,7 +219,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
   }
 
   private boolean deliver(SmsMessageRecord message)
-      throws UntrustedIdentityException, InsecureFallbackApprovalException, RetryLaterException
+      throws UntrustedIdentityException, InsecureFallbackApprovalException, RetryLaterException, LokiAPI.Error, LokiDotNetAPI.Error, LokiSnodeProxy.Error
   {
     try {
       // rotateSenderCertificateIfNecessary();
@@ -241,7 +264,21 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
           // We also need to use the original message ID and not -1
           syncMessage = new LokiSyncMessage(masterAddress, templateMessageId);
         }
-        return messageSender.sendMessage(messageId, address, unidentifiedAccess, textSecureMessage, Optional.fromNullable(syncMessage)).getSuccess().isUnidentified();
+        SendMessageResult result = messageSender.sendMessage(messageId, address, unidentifiedAccess, textSecureMessage, Optional.fromNullable(syncMessage));
+        if (result.getException() != null) {
+          Throwable exception = result.getException();
+          if (exception instanceof LokiAPI.Error) {
+            throw (LokiAPI.Error) exception;
+          } else if (exception instanceof LokiDotNetAPI.Error) {
+            throw (LokiDotNetAPI.Error) exception;
+          } else if (exception instanceof LokiSnodeProxy.Error) {
+            throw (LokiSnodeProxy.Error) exception;
+          } else {
+            return result.getSuccess().isUnidentified();
+          }
+        } else {
+          return result.getSuccess().isUnidentified();
+        }
       }
     } catch (UnregisteredUserException e) {
       warn(TAG, "Failure", e);
