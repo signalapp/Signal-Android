@@ -253,12 +253,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
         }
         SendMessageResult result = messageSender.sendMessage(messageId, address, unidentifiedAccess, textSecureMessage, Optional.fromNullable(syncMessage));
         if (result.getLokiAPIError() != null) {
-          Throwable lokiAPIError = result.getLokiAPIError();
-          if (lokiAPIError instanceof LokiAPI.Error) { // Should always be true
-            throw (LokiAPI.Error) lokiAPIError;
-          } else {
-            return result.getSuccess().isUnidentified();
-          }
+          throw result.getLokiAPIError();
         } else {
           return result.getSuccess().isUnidentified();
         }
