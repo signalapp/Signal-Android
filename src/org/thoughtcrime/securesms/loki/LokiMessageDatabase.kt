@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.redesign.utilities.get
 import org.thoughtcrime.securesms.loki.redesign.utilities.getInt
+import org.thoughtcrime.securesms.loki.redesign.utilities.getString
 import org.thoughtcrime.securesms.loki.redesign.utilities.insertOrUpdate
 import org.whispersystems.signalservice.loki.messaging.LokiMessageDatabaseProtocol
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus
@@ -17,12 +18,15 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
     companion object {
         private val messageFriendRequestTableName = "loki_message_friend_request_database"
         private val messageThreadMappingTableName = "loki_message_thread_mapping_database"
+        private val errorMessageTableName = "loki_error_message_database"
         private val messageID = "message_id"
         private val serverID = "server_id"
         private val friendRequestStatus = "friend_request_status"
         private val threadID = "thread_id"
+        private val errorMessage = "error_message"
         @JvmStatic val createMessageFriendRequestTableCommand = "CREATE TABLE $messageFriendRequestTableName ($messageID INTEGER PRIMARY KEY, $serverID INTEGER DEFAULT 0, $friendRequestStatus INTEGER DEFAULT 0);"
         @JvmStatic val createMessageToThreadMappingTableCommand = "CREATE TABLE IF NOT EXISTS $messageThreadMappingTableName ($messageID INTEGER PRIMARY KEY, $threadID INTEGER);"
+        @JvmStatic val createErrorMessageTableCommand = "CREATE TABLE IF NOT EXISTS $errorMessageTableName ($messageID INTEGER PRIMARY KEY, $errorMessage STRING);"
     }
 
     override fun getQuoteServerID(quoteID: Long, quoteeHexEncodedPublicKey: String): Long? {
@@ -91,5 +95,20 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
 
     fun isFriendRequest(messageID: Long): Boolean {
         return getFriendRequestStatus(messageID) != LokiMessageFriendRequestStatus.NONE
+    }
+
+    fun getErrorMessage(messageID: Long): String? {
+        val database = databaseHelper.readableDatabase
+        return database.get(errorMessageTableName, "${Companion.messageID} = ?", arrayOf( messageID.toString() )) { cursor ->
+            cursor.getString(errorMessage)
+        }
+    }
+
+    fun setErrorMessage(messageID: Long, errorMessage: String) {
+        val database = databaseHelper.writableDatabase
+        val contentValues = ContentValues(2)
+        contentValues.put(Companion.messageID, messageID)
+        contentValues.put(Companion.errorMessage, errorMessage)
+        database.insertOrUpdate(errorMessageTableName, contentValues, "${Companion.messageID} = ?", arrayOf( messageID.toString() ))
     }
 }
