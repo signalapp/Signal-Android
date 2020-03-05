@@ -1436,6 +1436,35 @@
     <string name="MessageRequestsMegaphone__add_name">Add name</string>
     <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">You can now choose whether to accept a new conversation. You’ll see options to \"Accept,\" \"Delete,\" or \"Block.\"</string>
 
+    <!-- HelpFragment -->
+    <string name="HelpFragment__help">Help</string>
+    <string name="HelpFragment__have_you_read_our_faq_yet">Have you read our FAQ yet?</string>
+    <string name="HelpFragment__next">Next</string>
+    <string name="HelpFragment__contact_us">Contact us</string>
+    <string name="HelpFragment__tell_us_whats_going_on">Tell us what\'s going on</string>
+    <string name="HelpFragment__include_debug_log">Include debug log.</string>
+    <string name="HelpFragment__whats_this">What\'s this?</string>
+    <string name="HelpFragment__how_do_you_feel">How do you feel? (Optional)</string>
+    <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string>
+    <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string>
+    <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string>
+    <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string>
+    <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string>
+    <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/en-us/articles/360007318591-Debug-Logs-and-Crash-Reports</string>
+    <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string>
+    <string name="HelpFragment__support_info">Support Info</string>
+    <string name="HelpFragment__subject">Subject:</string>
+    <string name="HelpFragment__signal_android_support_request">Signal Android Support Request</string>
+    <string name="HelpFragment__device_info">Device info:</string>
+    <string name="HelpFragment__android_version">Android version:</string>
+    <string name="HelpFragment__signal_version">Signal version:</string>
+    <string name="HelpFragment__locale">Locale:</string>
+    <string name="HelpFragment__debug_log">Debug Log:</string>
+    <string name="HelpFragment__na">n/a</string>
+    <string name="HelpFragment__could_not_upload_logs">Could not upload logs</string>
+    <string name="HelpFragment__signal_support">Signal Support</string>
+    <string name="HelpFragment__please_be_as_descriptive_as_possible">Please be as descriptive as possible to help us understand the issue.</string>
+
     <!-- arrays.xml -->
     <string name="arrays__import_export">Import</string>
     <string name="arrays__use_default">Use default</string>
@@ -1522,6 +1551,7 @@
     <string name="preferences__fast">Fast</string>
     <string name="preferences__normal">Normal</string>
     <string name="preferences__slow">Slow</string>
+    <string name="preferences__help">Help</string>
     <string name="preferences__advanced">Advanced</string>
     <string name="preferences__privacy">Privacy</string>
     <string name="preferences__mms_user_agent">MMS User Agent</string>

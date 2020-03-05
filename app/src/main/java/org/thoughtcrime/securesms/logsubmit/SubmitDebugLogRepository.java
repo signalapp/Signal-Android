@@ -41,7 +41,7 @@ import okhttp3.ResponseBody;
  * - Create a new {@link LogSection}.
  * - Add it to {@link #SECTIONS}. The order of the list is the order the sections are displayed.
  */
-class SubmitDebugLogRepository {
+public class SubmitDebugLogRepository {
 
   private static final String TAG = Log.tag(SubmitDebugLogRepository.class);
 
@@ -67,16 +67,16 @@ class SubmitDebugLogRepository {
   private final Context         context;
   private final ExecutorService executor;
 
-  SubmitDebugLogRepository() {
+  public SubmitDebugLogRepository() {
     this.context  = ApplicationDependencies.getApplication();
     this.executor = SignalExecutors.SERIAL;
   }
 
-  void getLogLines(@NonNull Callback<List<LogLine>> callback) {
+  public void getLogLines(@NonNull Callback<List<LogLine>> callback) {
     executor.execute(() -> callback.onResult(getLogLinesInternal()));
   }
 
-  void submitLog(@NonNull List<LogLine> lines, Callback<Optional<String>> callback) {
+  public void submitLog(@NonNull List<LogLine> lines, Callback<Optional<String>> callback) {
     SignalExecutors.UNBOUNDED.execute(() -> callback.onResult(submitLogInternal(lines)));
   }
 
@@ -209,7 +209,7 @@ class SubmitDebugLogRepository {
     return out.toString();
   }
 
-  interface Callback<E> {
+  public interface Callback<E> {
     void onResult(E result);
   }
 }

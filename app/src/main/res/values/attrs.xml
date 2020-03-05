@@ -202,6 +202,11 @@
     <attr name="linked_devices_icon" format="reference" />
     <attr name="advanced_icon" format="reference" />
     <attr name="safety_number_icon" format="reference" />
+    <attr name="help_icon" format="reference" />
+
+    <attr name="help_problem_background" format="reference" />
+    <attr name="help_next_background" format="reference" />
+    <attr name="help_emoji_radio_background" format="reference" />
 
     <attr name="message_request_dialog_button_background" format="reference" />
     <attr name="message_request_text_color_primary" format="color" />

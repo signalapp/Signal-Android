@@ -29,6 +29,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.Preference;
 
+import org.thoughtcrime.securesms.help.HelpFragment;
 import org.thoughtcrime.securesms.preferences.AdvancedPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.AppearancePreferenceFragment;
@@ -66,6 +67,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
   private static final String PREFERENCE_CATEGORY_CHATS          = "preference_category_chats";
   private static final String PREFERENCE_CATEGORY_STORAGE        = "preference_category_storage";
   private static final String PREFERENCE_CATEGORY_DEVICES        = "preference_category_devices";
+  private static final String PREFERENCE_CATEGORY_HELP           = "preference_category_help";
   private static final String PREFERENCE_CATEGORY_ADVANCED       = "preference_category_advanced";
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
@@ -154,6 +156,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
         .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_STORAGE));
       this.findPreference(PREFERENCE_CATEGORY_DEVICES)
         .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_DEVICES));
+      this.findPreference(PREFERENCE_CATEGORY_HELP)
+          .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_HELP));
       this.findPreference(PREFERENCE_CATEGORY_ADVANCED)
         .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_ADVANCED));
 
@@ -239,6 +243,9 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
           break;
         case PREFERENCE_CATEGORY_ADVANCED:
           fragment = new AdvancedPreferenceFragment();
+          break;
+        case PREFERENCE_CATEGORY_HELP:
+          fragment = new HelpFragment();
           break;
         default:
           throw new AssertionError();

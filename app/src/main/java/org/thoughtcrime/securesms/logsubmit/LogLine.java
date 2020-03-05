@@ -7,7 +7,7 @@ import com.annimon.stream.Stream;
 import java.util.List;
 import java.util.regex.Pattern;
 
-interface LogLine {
+public interface LogLine {
 
   long getId();
   @NonNull String getText();

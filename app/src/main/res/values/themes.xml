@@ -221,6 +221,10 @@
 
         <item name="conversation_group_member_name">#99000000</item>
 
+        <item name="help_emoji_radio_background">@drawable/help_fragment_emoji_radio_background_light</item>
+        <item name="help_next_background">@color/help_fragment_next_light</item>
+        <item name="help_problem_background">@drawable/help_fragment_problem_background_light</item>
+
         <item name="conversation_background">@color/core_white</item>
         <item name="conversation_editor_background">#22000000</item>
         <item name="conversation_editor_text_color">#ff111111</item>
@@ -364,6 +368,7 @@
         <item name="linked_devices_icon">@drawable/ic_linked_devices_24</item>
         <item name="advanced_icon">@drawable/ic_advanced_24</item>
         <item name="safety_number_icon">@drawable/ic_safety_number_outline_24</item>
+        <item name="help_icon">@drawable/ic_help_outline_24</item>
         <item name="message_request_dialog_button_background">@drawable/message_request_button_background_light</item>
         <item name="message_request_text_color_primary">@color/core_grey_90</item>
         <item name="message_request_text_color_secondary">@color/core_grey_60</item>
@@ -531,6 +536,10 @@
         <item name="fab_color">@color/textsecure_primary_dark</item>
         <item name="lower_right_divet">@drawable/divet_lower_right_light</item>
 
+        <item name="help_emoji_radio_background">@drawable/help_fragment_emoji_radio_background_dark</item>
+        <item name="help_next_background">@color/help_fragment_next_dark</item>
+        <item name="help_problem_background">@drawable/help_fragment_problem_background_dark</item>
+
         <item name="conversation_background">@color/core_grey_95</item>
         <item name="conversation_editor_background">#22ffffff</item>
         <item name="conversation_editor_text_color">#ffeeeeee</item>
@@ -631,6 +640,7 @@
         <item name="linked_devices_icon">@drawable/ic_linked_devices_24</item>
         <item name="advanced_icon">@drawable/ic_advanced_24</item>
         <item name="safety_number_icon">@drawable/ic_safety_number_solid_24</item>
+        <item name="help_icon">@drawable/ic_help_solid_24</item>
         <item name="message_request_dialog_button_background">@drawable/message_request_button_background_dark</item>
         <item name="message_request_text_color_primary">@color/core_grey_05</item>
         <item name="message_request_text_color_secondary">@color/core_grey_25</item>

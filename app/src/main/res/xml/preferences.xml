@@ -33,6 +33,10 @@
                 android:title="@string/preferences__linked_devices"
                 android:icon="?attr/linked_devices_icon"/>
 
+    <Preference android:key="preference_category_help"
+                android:title="@string/preferences__help"
+                android:icon="?attr/help_icon" />
+
     <Preference android:key="preference_category_advanced"
                 android:title="@string/preferences__advanced"
                 android:icon="?attr/advanced_icon"/>
