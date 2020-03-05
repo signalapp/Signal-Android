@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Session</string>
-    <string name="install_url" translatable="false">https://signal.org/install</string>
+    <string name="install_url" translatable="false">https://getsession.org/</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="delete">Delete</string>
     <string name="please_wait">Please wait...</string>
     <string name="save">Save</string>
     <string name="note_to_self">Note to Self</string>
+    <string name="version_s">Version: %s</string>
 
     <!-- AbstractNotificationBuilder -->
     <string name="AbstractNotificationBuilder_new_message">New message</string>

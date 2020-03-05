@@ -257,8 +257,23 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:layout_marginBottom="@dimen/large_spacing"
+                android:layout_marginBottom="@dimen/medium_spacing"
                 android:background="@color/separator" />
+
+            <TextView
+                android:id="@+id/versionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/version_s"
+                android:textColor="@color/text"
+                android:alpha="0.6"
+                android:textSize="@dimen/very_small_font_size" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginBottom="@dimen/medium_spacing" />
 
         </LinearLayout>
 

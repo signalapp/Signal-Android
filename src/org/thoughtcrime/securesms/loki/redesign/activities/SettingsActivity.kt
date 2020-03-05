@@ -17,6 +17,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.LinearLayout
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_settings.*
+import network.loki.messenger.BuildConfig
 import network.loki.messenger.R
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.all
@@ -94,6 +95,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         linkedDevicesButton.setOnClickListener { showLinkedDevices() }
         seedButton.setOnClickListener { showSeed() }
         clearAllDataButton.setOnClickListener { clearAllData() }
+        versionTextView.text = String.format(getString(R.string.version_s), BuildConfig.VERSION_NAME)
     }
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
