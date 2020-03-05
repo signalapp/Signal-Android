@@ -482,6 +482,9 @@
         <attr name="cursorWidth" format="dimension" />
         <attr name="cursorColor" format="color" />
         <attr name="thumbTouchRadius" format="dimension" />
+        <attr name="thumbHintTextSize" format="dimension" />
+        <attr name="thumbHintTextColor" format="color" />
+        <attr name="thumbHintBackgroundColor" format="color" />
     </declare-styleable>
 
     <declare-styleable name="GroupMemberListView">

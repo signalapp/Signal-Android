@@ -10,7 +10,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clipChildren="false">
 
         <org.thoughtcrime.securesms.video.videoconverter.VideoThumbnailsRangeSelectorView
             android:id="@+id/video_timeline"
@@ -23,8 +24,11 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:thumbColor="#fff"
+            app:thumbColor="@color/core_white"
             app:thumbColorEdited="#ff0"
+            app:thumbHintBackgroundColor="@color/core_grey_90"
+            app:thumbHintTextColor="@color/core_white"
+            app:thumbHintTextSize="14sp"
             app:thumbTouchRadius="24dp"
             app:thumbWidth="16dp" />
 

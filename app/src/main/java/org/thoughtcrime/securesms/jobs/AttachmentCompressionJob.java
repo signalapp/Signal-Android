@@ -108,8 +108,8 @@ public final class AttachmentCompressionJob extends BaseJob {
   public void onRun() throws Exception {
     Log.d(TAG, "Running for: " + attachmentId);
 
-    AttachmentDatabase         database           = DatabaseFactory.getAttachmentDatabase(context);
-    DatabaseAttachment         databaseAttachment = database.getAttachment(attachmentId);
+    AttachmentDatabase database           = DatabaseFactory.getAttachmentDatabase(context);
+    DatabaseAttachment databaseAttachment = database.getAttachment(attachmentId);
 
     if (databaseAttachment == null) {
       throw new UndeliverableMessageException("Cannot find the specified attachment.");
@@ -141,7 +141,7 @@ public final class AttachmentCompressionJob extends BaseJob {
   {
     try {
       if (MediaUtil.isVideo(attachment)) {
-        transcodeVideoIfNeededToDatabase(context, attachmentDatabase, attachment, constraints, EventBus.getDefault(), this::isCanceled);
+        attachment = transcodeVideoIfNeededToDatabase(context, attachmentDatabase, attachment, constraints, EventBus.getDefault(), this::isCanceled);
         if (!constraints.isSatisfied(context, attachment)) {
           throw new UndeliverableMessageException("Size constraints could not be met on video!");
         }
@@ -163,12 +163,12 @@ public final class AttachmentCompressionJob extends BaseJob {
     }
   }
 
-  private static void transcodeVideoIfNeededToDatabase(@NonNull Context context,
-                                                       @NonNull AttachmentDatabase attachmentDatabase,
-                                                       @NonNull DatabaseAttachment attachment,
-                                                       @NonNull MediaConstraints constraints,
-                                                       @NonNull EventBus eventBus,
-                                                       @NonNull InMemoryTranscoder.CancelationSignal cancelationSignal)
+  private static @NonNull DatabaseAttachment transcodeVideoIfNeededToDatabase(@NonNull Context context,
+                                                                              @NonNull AttachmentDatabase attachmentDatabase,
+                                                                              @NonNull DatabaseAttachment attachment,
+                                                                              @NonNull MediaConstraints constraints,
+                                                                              @NonNull EventBus eventBus,
+                                                                              @NonNull InMemoryTranscoder.CancelationSignal cancelationSignal)
       throws UndeliverableMessageException
   {
     AttachmentDatabase.TransformProperties transformProperties = attachment.getTransformProperties();
@@ -179,7 +179,7 @@ public final class AttachmentCompressionJob extends BaseJob {
       if (transformProperties.isVideoEdited()) {
         throw new UndeliverableMessageException("Video edited, but transcode is not available");
       }
-      return;
+      return attachment;
     }
 
     try (NotificationController notification = GenericForegroundService.startForegroundTask(context, context.getString(R.string.AttachmentUploadJob_compressing_video_start))) {
@@ -210,6 +210,11 @@ public final class AttachmentCompressionJob extends BaseJob {
 
             attachmentDatabase.updateAttachmentData(attachment, mediaStream, transformProperties.isVideoEdited());
             attachmentDatabase.markAttachmentAsTransformed(attachment.getAttachmentId());
+            DatabaseAttachment updatedAttachment = attachmentDatabase.getAttachment(attachment.getAttachmentId());
+            if (updatedAttachment == null) {
+              throw new AssertionError();
+            }
+            return updatedAttachment;
           }
         }
       }
@@ -226,6 +231,7 @@ public final class AttachmentCompressionJob extends BaseJob {
     } catch (IOException | MmsException | VideoSizeException e) {
       throw new UndeliverableMessageException("Failed to transcode", e);
     }
+    return attachment;
   }
 
   private static MediaStream getResizedMedia(@NonNull Context context,
