@@ -114,7 +114,6 @@ class LandingActivity : BaseActionBarActivity(), LinkDeviceSlaveModeDialogDelega
     }
 
     override fun onDeviceLinkRequestAuthorized(deviceLink: DeviceLink) {
-        LokiFileServerAPI.shared.addDeviceLink(deviceLink)
         TextSecurePreferences.setMasterHexEncodedPublicKey(this, deviceLink.masterHexEncodedPublicKey)
         val intent = Intent(this, HomeActivity::class.java)
         show(intent)

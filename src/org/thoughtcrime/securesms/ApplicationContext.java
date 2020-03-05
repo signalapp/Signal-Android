@@ -16,7 +16,6 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.annotation.SuppressLint;
 import android.arch.lifecycle.DefaultLifecycleObserver;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.ProcessLifecycleOwner;
@@ -30,8 +29,6 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.multidex.MultiDexApplication;
-
-import com.google.android.gms.security.ProviderInstaller;
 
 import org.conscrypt.Conscrypt;
 import org.jetbrains.annotations.NotNull;
@@ -53,7 +50,6 @@ import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.FastJobStorage;
-import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.JobManagerFactories;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob;
@@ -115,7 +111,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 import dagger.ObjectGraph;
 import kotlin.Unit;
@@ -176,10 +171,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     initializeExpiringMessageManager();
     initializeTypingStatusRepository();
     initializeTypingStatusSender();
-    initializeGcmCheck();
     initializeSignedPreKeyCheck();
     initializePeriodicTasks();
-    initializeCircumvention();
     initializeWebRtc();
     initializePendingMessages();
     initializeUnidentifiedDeliveryAbilityRefresh();
@@ -194,6 +187,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       if (userHexEncodedPublicKey != null) {
         if (TextSecurePreferences.getNeedsIsRevokedSlaveDeviceCheck(this)) {
           MultiDeviceUtilities.checkIsRevokedSlaveDevice(this);
+        } else {
+          // We always update our current device links onto the server in case we failed to do so upon linking
+          MultiDeviceUtilities.updateDeviceLinksOnServer(this);
         }
       }
     }
@@ -337,16 +333,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     this.objectGraph = ObjectGraph.create(communicationModule, new AxolotlStorageModule(this));
   }
 
-  private void initializeGcmCheck() {
-    if (TextSecurePreferences.isPushRegistered(this)) {
-      long nextSetTime = TextSecurePreferences.getFcmTokenLastSetTime(this) + TimeUnit.HOURS.toMillis(6);
-
-      if (TextSecurePreferences.getFcmToken(this) == null || nextSetTime <= System.currentTimeMillis()) {
-        this.jobManager.add(new FcmRefreshJob());
-      }
-    }
-  }
-
   private void initializeSignedPreKeyCheck() {
     if (!TextSecurePreferences.isSignedPreKeyRegistered(this)) {
       jobManager.add(new CreateSignedPreKeyJob(this));
@@ -411,25 +397,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     } catch (UnsatisfiedLinkError e) {
       Log.w(TAG, e);
     }
-  }
-
-  @SuppressLint("StaticFieldLeak")
-  private void initializeCircumvention() {
-    AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
-      @Override
-      protected Void doInBackground(Void... params) {
-        if (new SignalServiceNetworkAccess(ApplicationContext.this).isCensored(ApplicationContext.this)) {
-          try {
-            ProviderInstaller.installIfNeeded(ApplicationContext.this);
-          } catch (Throwable t) {
-            Log.w(TAG, t);
-          }
-        }
-        return null;
-      }
-    };
-
-    task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   private void executePendingContactSync() {

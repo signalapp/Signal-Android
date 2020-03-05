@@ -10,12 +10,6 @@ import android.support.annotation.VisibleForTesting;
 import android.text.TextUtils;
 import android.util.Pair;
 
-import com.google.i18n.phonenumbers.NumberParseException;
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
-import com.google.i18n.phonenumbers.Phonenumber;
-import com.google.i18n.phonenumbers.ShortNumberInfo;
-
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.DelimiterUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.NumberUtil;
@@ -111,7 +105,7 @@ public class Address implements Parcelable, Comparable<Address> {
 
   public boolean isGroup() { return GroupUtil.isEncodedGroup(address); }
 
-  public boolean isSignalGroup() { return !isPublicChat() && !isRSSFeed(); }
+  public boolean isSignalGroup() { return GroupUtil.isSignalGroup(address); }
 
   public boolean isPublicChat() { return GroupUtil.isPublicChat(address); }
 
@@ -200,19 +194,10 @@ public class Address implements Parcelable, Comparable<Address> {
     private final Optional<PhoneNumber> localNumber;
     private final String                localCountryCode;
 
-    private final PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.getInstance();
     private final Pattern         ALPHA_PATTERN   = Pattern.compile("[a-zA-Z]");
 
     ExternalAddressFormatter(@NonNull String localNumberString) {
-      try {
-        Phonenumber.PhoneNumber libNumber   = phoneNumberUtil.parse(localNumberString, null);
-        int                     countryCode = libNumber.getCountryCode();
-
-        this.localNumber       = Optional.of(new PhoneNumber(localNumberString, countryCode, parseAreaCode(localNumberString, countryCode)));
-        this.localCountryCode  = phoneNumberUtil.getRegionCodeForNumber(libNumber);
-      } catch (NumberParseException e) {
-        throw new AssertionError(e);
-      }
+      throw new AssertionError("Not Implemented");
     }
 
     ExternalAddressFormatter(@NonNull String localCountryCode, boolean countryCode) {
@@ -222,61 +207,7 @@ public class Address implements Parcelable, Comparable<Address> {
 
     public String format(@Nullable String number) {
       if (number == null)                       return "Unknown";
-      if (GroupUtil.isEncodedGroup(number))     return number;
-      if (ALPHA_PATTERN.matcher(number).find()) return number.trim();
-
-      String bareNumber = number.replaceAll("[^0-9+]", "");
-
-      if (bareNumber.length() == 0) {
-        if (number.trim().length() == 0) return "Unknown";
-        else                             return number.trim();
-      }
-
-      // libphonenumber doesn't seem to be correct for Germany and Finland
-      if (bareNumber.length() <= 6 && ("DE".equals(localCountryCode) || "FI".equals(localCountryCode) || "SK".equals(localCountryCode))) {
-        return bareNumber;
-      }
-
-      // libphonenumber seems incorrect for Russia and a few other countries with 4 digit short codes.
-      if (bareNumber.length() <= 4 && !SHORT_COUNTRIES.contains(localCountryCode)) {
-        return bareNumber;
-      }
-
-      if (isShortCode(bareNumber, localCountryCode)) {
-        return bareNumber;
-      }
-
-      String processedNumber = applyAreaCodeRules(localNumber, bareNumber);
-
-      try {
-        Phonenumber.PhoneNumber parsedNumber = phoneNumberUtil.parse(processedNumber, localCountryCode);
-        return phoneNumberUtil.format(parsedNumber, PhoneNumberUtil.PhoneNumberFormat.E164);
-      } catch (NumberParseException e) {
-        Log.w(TAG, e);
-        if (bareNumber.charAt(0) == '+')
-          return bareNumber;
-
-        String localNumberImprecise = localNumber.isPresent() ? localNumber.get().getE164Number() : "";
-
-        if (localNumberImprecise.charAt(0) == '+')
-          localNumberImprecise = localNumberImprecise.substring(1);
-
-        if (localNumberImprecise.length() == bareNumber.length() || bareNumber.length() > localNumberImprecise.length())
-          return "+" + number;
-
-        int difference = localNumberImprecise.length() - bareNumber.length();
-
-        return "+" + localNumberImprecise.substring(0, difference) + bareNumber;
-      }
-    }
-
-    private boolean isShortCode(@NonNull String bareNumber, String localCountryCode) {
-      try {
-        Phonenumber.PhoneNumber parsedNumber = phoneNumberUtil.parse(bareNumber, localCountryCode);
-        return ShortNumberInfo.getInstance().isPossibleShortNumberForRegion(parsedNumber, localCountryCode);
-      } catch (NumberParseException e) {
-        return false;
-      }
+      return number;
     }
 
     private @Nullable String parseAreaCode(@NonNull String e164Number, int countryCode) {

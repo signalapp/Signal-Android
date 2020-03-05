@@ -14,17 +14,14 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.CheckBoxPreference;
 import android.support.v7.preference.Preference;
-import org.thoughtcrime.securesms.logging.Log;
 import android.widget.Toast;
-
-import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.LogSubmitActivity;
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.RegistrationActivity;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
@@ -33,6 +30,8 @@ import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
 
 import java.io.IOException;
+
+import network.loki.messenger.R;
 
 public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
   private static final String TAG = AdvancedPreferenceFragment.class.getSimpleName();
@@ -187,13 +186,9 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
           SignalServiceAccountManager accountManager = AccountManagerFactory.createManager(context);
 
           try {
-            accountManager.setGcmId(Optional.<String>absent());
+            accountManager.setGcmId(Optional.absent());
           } catch (AuthorizationFailedException e) {
             Log.w(TAG, e);
-          }
-
-          if (!TextSecurePreferences.isFcmDisabled(context)) {
-            FirebaseInstanceId.getInstance().deleteInstanceId();
           }
 
           return SUCCESS;

@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkOrCellServiceConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
+import org.thoughtcrime.securesms.loki.MultiDeviceOpenGroupUpdateJob;
 import org.thoughtcrime.securesms.loki.PushBackgroundMessageSendJob;
 import org.thoughtcrime.securesms.loki.PushMessageSyncSendJob;
 
@@ -31,7 +32,6 @@ public final class JobManagerFactories {
       put(CleanPreKeysJob.KEY,                       new CleanPreKeysJob.Factory());
       put(CreateSignedPreKeyJob.KEY,                 new CreateSignedPreKeyJob.Factory());
       put(DirectoryRefreshJob.KEY,                   new DirectoryRefreshJob.Factory(application));
-      put(FcmRefreshJob.KEY,                         new FcmRefreshJob.Factory());
       put(LocalBackupJob.KEY,                        new LocalBackupJob.Factory());
       put(MmsDownloadJob.KEY,                        new MmsDownloadJob.Factory());
       put(MmsReceiveJob.KEY,                         new MmsReceiveJob.Factory());
@@ -74,6 +74,7 @@ public final class JobManagerFactories {
       put(UpdateApkJob.KEY,                          new UpdateApkJob.Factory());
       put(PushMessageSyncSendJob.KEY,                new PushMessageSyncSendJob.Factory());
       put(PushBackgroundMessageSendJob.KEY,          new PushBackgroundMessageSendJob.Factory());
+      put(MultiDeviceOpenGroupUpdateJob.KEY,         new MultiDeviceOpenGroupUpdateJob.Factory());
     }};
   }
 

@@ -32,20 +32,14 @@ import android.os.Looper;
 import android.provider.Telephony;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresPermission;
 import android.telephony.TelephonyManager;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
 
-import com.google.android.mms.pdu_alt.CharacterSets;
 import com.google.android.mms.pdu_alt.EncodedStringValue;
-import com.google.i18n.phonenumbers.NumberParseException;
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
-import com.google.i18n.phonenumbers.Phonenumber;
 
-import network.loki.messenger.BuildConfig;
 import org.thoughtcrime.securesms.components.ComposeText;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.logging.Log;
@@ -58,7 +52,7 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -72,6 +66,8 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+
+import network.loki.messenger.BuildConfig;
 
 public class Util {
   private static final String TAG = Util.class.getSimpleName();
@@ -170,27 +166,15 @@ public class Util {
   }
 
   public static @NonNull String toIsoString(byte[] bytes) {
-    try {
-      return new String(bytes, CharacterSets.MIMENAME_ISO_8859_1);
-    } catch (UnsupportedEncodingException e) {
-      throw new AssertionError("ISO_8859_1 must be supported!");
-    }
+    return new String(bytes, StandardCharsets.ISO_8859_1);
   }
 
   public static byte[] toIsoBytes(String isoString) {
-    try {
-      return isoString.getBytes(CharacterSets.MIMENAME_ISO_8859_1);
-    } catch (UnsupportedEncodingException e) {
-      throw new AssertionError("ISO_8859_1 must be supported!");
-    }
+    return isoString.getBytes(StandardCharsets.ISO_8859_1);
   }
 
   public static byte[] toUtf8Bytes(String utf8String) {
-    try {
-      return utf8String.getBytes(CharacterSets.MIMENAME_UTF_8);
-    } catch (UnsupportedEncodingException e) {
-      throw new AssertionError("UTF_8 must be supported!");
-    }
+    return utf8String.getBytes(StandardCharsets.UTF_8);
   }
 
   public static void wait(Object lock, long timeout) {
@@ -277,27 +261,6 @@ public class Util {
     out.close();
 
     return total;
-  }
-
-  @RequiresPermission(anyOf = {
-      android.Manifest.permission.READ_PHONE_STATE,
-      android.Manifest.permission.READ_SMS,
-      android.Manifest.permission.READ_PHONE_NUMBERS
-  })
-  @SuppressLint("MissingPermission")
-  public static Optional<Phonenumber.PhoneNumber> getDeviceNumber(Context context) {
-    try {
-      final String           localNumber = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getLine1Number();
-      final Optional<String> countryIso  = getSimCountryIso(context);
-
-      if (TextUtils.isEmpty(localNumber)) return Optional.absent();
-      if (!countryIso.isPresent())        return Optional.absent();
-
-      return Optional.fromNullable(PhoneNumberUtil.getInstance().parse(localNumber, countryIso.get()));
-    } catch (NumberParseException e) {
-      Log.w(TAG, e);
-      return Optional.absent();
-    }
   }
 
   public static Optional<String> getSimCountryIso(Context context) {

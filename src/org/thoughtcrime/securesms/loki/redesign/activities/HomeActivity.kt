@@ -194,7 +194,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
 
     private fun openConversation(thread: ThreadRecord) {
         val intent = Intent(this, ConversationActivity::class.java)
-        intent.putExtra(ConversationActivity.ADDRESS_EXTRA, thread.recipient.getAddress())
+        intent.putExtra(ConversationActivity.ADDRESS_EXTRA, thread.recipient.address)
         intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, thread.threadId)
         intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, thread.distributionType)
         intent.putExtra(ConversationActivity.TIMING_EXTRA, System.currentTimeMillis())
@@ -255,9 +255,9 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             val dialog = AlertDialog.Builder(activity)
             dialog.setMessage(dialogMessage)
             dialog.setPositiveButton(R.string.yes) { _, _ ->
-                val isGroup = recipient.isGroupRecipient
+                val isClosedGroup = recipient.address.isSignalGroup
                 // Send a leave group message if this is an active closed group
-                if (isGroup && DatabaseFactory.getGroupDatabase(activity).isActive(recipient.address.toGroupString())) {
+                if (isClosedGroup && DatabaseFactory.getGroupDatabase(activity).isActive(recipient.address.toGroupString())) {
                     if (!GroupUtil.leaveGroup(activity, recipient)) {
                         Toast.makeText(activity, "Couldn't leave group", Toast.LENGTH_LONG).show()
                         clearView(activity.recyclerView, viewHolder)
@@ -267,10 +267,11 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
                 // Archive the conversation and then delete it after 10 seconds (the case where the
                 // app was closed before the conversation could be deleted is handled in onCreate)
                 threadDatabase.archiveConversation(threadID)
+                val delay = if (isClosedGroup) 10000L else 1000L
                 val handler = Handler()
-                handler.postDelayed(deleteThread, 10000)
+                handler.postDelayed(deleteThread, delay)
                 // Notify the user
-                val toastMessage = if (isGroup) R.string.MessageRecord_left_group else R.string.activity_home_conversation_deleted_message
+                val toastMessage = if (recipient.isGroupRecipient) R.string.MessageRecord_left_group else R.string.activity_home_conversation_deleted_message
                 Toast.makeText(activity, toastMessage, Toast.LENGTH_LONG).show()
             }
             dialog.setNegativeButton(R.string.no) { _, _ ->

@@ -12,6 +12,7 @@ import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_linked_devices.*
 import network.loki.messenger.R
+import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.ui.failUi
 import nl.komponents.kovenant.ui.successUi
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
@@ -23,6 +24,7 @@ import org.thoughtcrime.securesms.loki.signAndSendDeviceLinkMessage
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.loki.api.DeviceLink
+import org.whispersystems.signalservice.loki.api.LokiAPI
 import org.whispersystems.signalservice.loki.api.LokiFileServerAPI
 import java.util.*
 import kotlin.concurrent.schedule
@@ -143,23 +145,21 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity, LoaderManager
     }
 
     override fun onDeviceLinkRequestAuthorized(deviceLink: DeviceLink) {
-        LokiFileServerAPI.shared.addDeviceLink(deviceLink).success {
-            signAndSendDeviceLinkMessage(this, deviceLink).successUi {
-                LoaderManager.getInstance(this).restartLoader(0, null, this)
-            }.success {
-                TextSecurePreferences.setMultiDevice(this, true)
-                Timer().schedule(4000) {
-                    MessageSender.syncAllGroups(this@LinkedDevicesActivity)
-                    MessageSender.syncAllContacts(this@LinkedDevicesActivity, Address.fromSerialized(deviceLink.slaveHexEncodedPublicKey))
-                }
-            }.failUi {
-                Toast.makeText(this, "Couldn't link device", Toast.LENGTH_LONG).show()
-            }.fail {
-                LokiFileServerAPI.shared.removeDeviceLink(deviceLink) // If this fails we have a problem
-                DatabaseFactory.getLokiPreKeyBundleDatabase(this).removePreKeyBundle(deviceLink.slaveHexEncodedPublicKey)
+        LokiFileServerAPI.shared.addDeviceLink(deviceLink).bind(LokiAPI.sharedWorkContext) {
+            signAndSendDeviceLinkMessage(this, deviceLink)
+        }.successUi {
+            LoaderManager.getInstance(this).restartLoader(0, null, this)
+        }.success {
+            TextSecurePreferences.setMultiDevice(this, true)
+            Timer().schedule(4000) {
+                MessageSender.syncAllGroups(this@LinkedDevicesActivity)
+                MessageSender.syncAllContacts(this@LinkedDevicesActivity, Address.fromSerialized(deviceLink.slaveHexEncodedPublicKey))
+                MessageSender.syncAllOpenGroups(this@LinkedDevicesActivity)
             }
-        }.failUi {
+        }.fail {
+            LokiFileServerAPI.shared.removeDeviceLink(deviceLink) // If this fails we have a problem
             DatabaseFactory.getLokiPreKeyBundleDatabase(this).removePreKeyBundle(deviceLink.slaveHexEncodedPublicKey)
+        }.failUi {
             Toast.makeText(this, "Couldn't link device", Toast.LENGTH_LONG).show()
         }
     }
