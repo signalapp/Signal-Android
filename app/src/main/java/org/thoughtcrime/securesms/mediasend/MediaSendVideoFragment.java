@@ -34,12 +34,12 @@ public class MediaSendVideoFragment extends Fragment implements VideoEditorHud.E
   private final Throttler videoScanThrottle = new Throttler(150);
   private final Handler   handler           = new Handler();
 
-  private Controller     controller;
-  private Data           data           = new Data();
-  private Uri            uri;
-  private VideoPlayer    player;
-  private VideoEditorHud hud;
-  private Runnable       updatePosition;
+            private Controller     controller;
+            private Data           data           = new Data();
+            private Uri            uri;
+            private VideoPlayer    player;
+  @Nullable private VideoEditorHud hud;
+            private Runnable       updatePosition;
 
   public static MediaSendVideoFragment newInstance(@NonNull Uri uri) {
     Bundle args = new Bundle();
@@ -92,16 +92,21 @@ public class MediaSendVideoFragment extends Fragment implements VideoEditorHud.E
         Log.w(TAG, e);
       }
 
+      player.setOnClickListener(v -> {
+        player.pause();
+        hud.showPlayButton();
+      });
+
       player.setPlayerCallback(new VideoPlayer.PlayerCallback() {
 
         @Override
         public void onPlaying() {
-          hud.playing();
+          hud.fadePlayButton();
         }
 
         @Override
         public void onStopped() {
-          hud.stopped();
+          hud.showPlayButton();
         }
       });
     }
@@ -200,12 +205,19 @@ public class MediaSendVideoFragment extends Fragment implements VideoEditorHud.E
   public void notifyHidden() {
     if (player != null) {
       player.pause();
+      if (hud != null) {
+        hud.showPlayButton();
+      }
     }
   }
 
   @Override
   public void onEditVideoDuration(long totalDurationUs, long startTimeUs, long endTimeUs, boolean fromEdited, boolean editingComplete) {
     controller.onTouchEventsNeeded(!editingComplete);
+
+    if (hud != null) {
+      hud.hidePlayButton();
+    }
 
     boolean wasEdited      = data.durationEdited;
     boolean durationEdited = startTimeUs > 0 || endTimeUs < totalDurationUs;
@@ -241,7 +253,7 @@ public class MediaSendVideoFragment extends Fragment implements VideoEditorHud.E
 
   @Override
   public void onPlay() {
-    player.playFromStart();
+    player.play();
   }
 
   @Override

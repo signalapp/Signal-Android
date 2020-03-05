@@ -52,7 +52,7 @@ public final class FeatureFlags {
   private static final String PINS_FOR_ALL               = "android.pinsForAll";
   private static final String PINS_MEGAPHONE_KILL_SWITCH = "android.pinsMegaphoneKillSwitch";
   private static final String PROFILE_NAMES_MEGAPHONE    = "android.profileNamesMegaphone";
-  private static final String VIDEO_TRIMMING             = "android.videoTrimming";
+  private static final String VIDEO_TRIMMING             = "android.videoTrimming.2";
   private static final String STORAGE_SERVICE            = "android.storageService.2";
 
   /**

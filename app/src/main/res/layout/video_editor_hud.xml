@@ -33,14 +33,14 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
+            android:alpha="0"
             android:background="@drawable/circle_white"
             android:longClickable="false"
-            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="visible">
+            tools:alpha="1">
 
             <ImageView
                 android:layout_width="19dp"

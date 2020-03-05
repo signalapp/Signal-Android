@@ -216,10 +216,15 @@ public class VideoPlayer extends FrameLayout {
     this.playerCallback = playerCallback;
   }
 
-  public void playFromStart() {
+  /**
+   * Resumes a paused video, or restarts if at end of video.
+   */
+  public void play() {
     if (exoPlayer != null) {
       exoPlayer.setPlayWhenReady(true);
-      exoPlayer.seekTo(0);
+      if (exoPlayer.getCurrentPosition() >= exoPlayer.getDuration()) {
+        exoPlayer.seekTo(0);
+      }
     }
   }
 
