@@ -4,9 +4,10 @@ package org.thoughtcrime.securesms.crypto;
 import android.os.Build;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
+import android.util.Base64;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import android.util.Base64;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -28,6 +29,7 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.UnrecoverableEntryException;
+import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 
 import javax.crypto.BadPaddingException;
@@ -38,7 +40,7 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.GCMParameterSpec;
 
-public class KeyStoreHelper {
+public final class KeyStoreHelper {
 
   private static final String ANDROID_KEY_STORE = "AndroidKeyStore";
   private static final String KEY_ALIAS         = "SignalSecret";
@@ -99,12 +101,38 @@ public class KeyStoreHelper {
 
   @RequiresApi(Build.VERSION_CODES.M)
   private static SecretKey getKeyStoreEntry() {
+    KeyStore keyStore = getKeyStore();
+
+    try {
+      // Attempt 1
+      return getSecretKey(keyStore);
+    } catch (UnrecoverableKeyException e) {
+      try {
+        // Attempt 2
+        return getSecretKey(keyStore);
+      } catch (UnrecoverableKeyException e2) {
+        throw new AssertionError(e2);
+      }
+    }
+  }
+
+  private static SecretKey getSecretKey(KeyStore keyStore) throws UnrecoverableKeyException {
+    try {
+      KeyStore.SecretKeyEntry entry = (KeyStore.SecretKeyEntry) keyStore.getEntry(KEY_ALIAS, null);
+      return entry.getSecretKey();
+    } catch (UnrecoverableKeyException e) {
+      throw e;
+    } catch (KeyStoreException | NoSuchAlgorithmException | UnrecoverableEntryException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  private static KeyStore getKeyStore() {
     try {
       KeyStore keyStore = KeyStore.getInstance(ANDROID_KEY_STORE);
       keyStore.load(null);
-
-      return ((KeyStore.SecretKeyEntry) keyStore.getEntry(KEY_ALIAS, null)).getSecretKey();
-    } catch (KeyStoreException | IOException | NoSuchAlgorithmException | CertificateException | UnrecoverableEntryException e) {
+      return keyStore;
+    } catch (KeyStoreException | CertificateException | IOException | NoSuchAlgorithmException e) {
       throw new AssertionError(e);
     }
   }
