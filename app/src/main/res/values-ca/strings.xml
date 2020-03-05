@@ -204,16 +204,22 @@
   <string name="ConversationActivity_no_results">No hi ha cap resultat.</string>
   <string name="ConversationActivity_sticker_pack_installed">Paquet d\'adhesius instal·lat</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Nou! Digueu-ho amb adhesius.</string>
+  <string name="ConversationActivity_block_s">Voleu blocar %1$s?</string>
+  <string name="ConversationActivity_block_and_leave_s">Voleu blocar i abandonar %1$s?</string>
+  <string name="ConversationActivity_unblock_s">Voleu desblocar %1$s?</string>
   <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">Us podreu trucar i enviar missatges.</string>
   <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">Els membres del grup us podran afegir a aquest grup un altre cop.</string>
+  <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">Les persones blocades no podran trucar-vos ni enviar-vos missatges.</string>
   <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">Abandonareu el grup i ja no en rebreu missatges ni actualitzacions.</string>
   <string name="ConversationActivity_block">Bloca</string>
+  <string name="ConversationActivity_block_and_delete">Bloca\'l i suprimeix-lo</string>
   <string name="ConversationActivity_cancel">Cancel·la</string>
   <string name="ConversationActivity_delete_conversation">Voleu eliminar la conversa?</string>
   <string name="ConversationActivity_delete_and_leave_group">Voleu suprimir i abandonar el grup?</string>
   <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Aquesta conversa se suprimirà de tots els dispositius.</string>
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Abandonareu aquest grup i se suprimirà de tots els dispositius.</string>
   <string name="ConversationActivity_delete">Suprimeix</string>
+  <string name="ConversationActivity_delete_and_leave">Suprimeix-lo i abandona\'l</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d missatge sense llegir</item>
@@ -283,6 +289,7 @@
     <item quantity="one">S\'ha mogut la conversa a la safata d\'entrada</item>
     <item quantity="other">S\'han mogut %d converses a la safata d\'entrada</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_created">S\'ha creat el nom de perfil.</string>
   <string name="ConversationListFragment__your_profile_name_has_been_saved">S\'ha desat el nom de perfil.</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Missatge d\'intercanvi de clau</string>
@@ -541,9 +548,17 @@
   <string name="MessageRequestBottomView_delete">Suprimeix</string>
   <string name="MessageRequestBottomView_block">Bloca</string>
   <string name="MessageRequestBottomView_unblock">Desbloca</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Voleu permetre que %1$s us enviï missatges? No sabrà que heu vist els seus missatges fins que no ho accepteu.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Voleu afegir-vos al grup %1$s? No sabran que heu vist els missatges fins que no ho accepteu.</string>
+  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Desbloqueu %1$s per poder trucar-vos i enviar-vos missatges.</string>
+  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Desbloqueu-lo per permetre que els membres del grup us hi puguin afegir un altre cop.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Membre de %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Membre de %1$s i %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Membre de %1$s, %2$s i %3$s</string>
+  <plurals name="MessageRequestProfileView_members">
+    <item quantity="one">%1$d membre</item>
+    <item quantity="other">%1$d membres</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d més</item>
     <item quantity="other">%d més</item>
@@ -733,8 +748,11 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">Edita</string>
   <string name="SubmitDebugLogActivity_done">Fet</string>
+  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Toqueu una línia per suprimir-la</string>
   <string name="SubmitDebugLogActivity_submit">Envia</string>
+  <string name="SubmitDebugLogActivity_failed_to_submit_logs">Ha fallat enviar els registres.</string>
   <string name="SubmitDebugLogActivity_success">Acabat!</string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copieu aquest URL i afegiu-lo a l\'informe d\'error o al correu electrònic de suport:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Copiat al porta-retalls</string>
   <string name="SubmitDebugLogActivity_ok">D\'acord</string>
   <string name="SubmitDebugLogActivity_share">Comparteix</string>
@@ -760,6 +778,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ThreadRecord_you_marked_unverified">Heu tret la verificació</string>
   <string name="ThreadRecord_message_could_not_be_processed">No s\'ha pogut processar el missatge.</string>
   <string name="ThreadRecord_message_request">Petició de missatge</string>
+  <string name="ThreadRecord_s_added_you_to_the_group">%1$s us ha afegit al grup.</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Actualització del Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Hi ha disponible una versió nova del Signal. Toqueu per actualitzar-lo</string>
@@ -1179,6 +1198,12 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="AndroidManifest_archived_conversations">Converses arxivades</string>
   <string name="AndroidManifest_remove_photo">Suprimeix la foto</string>
   <!--Message Requests Megaphone-->
+  <string name="MessageRequestsMegaphone__message_requests">Peticiions de missatges</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Ara els usuaris poden triar d\'acceptar una conversa nova. Els noms de perfil permeten saber qui envia els missatges.</string>
+  <string name="MessageRequestsMegaphone__add_profile_name">Afegiu un nom de perfil</string>
+  <string name="MessageRequestsMegaphone__new_message_requests">Nou: peticions de missatges</string>
+  <string name="MessageRequestsMegaphone__add_name">Afegiu un nom</string>
+  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Ara podeu triar si acceptar una conversa nova. Veureu les opcions d\'acceptar, suprimir o blocar.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importa</string>
   <string name="arrays__use_default">Per defecte</string>

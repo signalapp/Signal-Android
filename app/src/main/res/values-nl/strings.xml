@@ -1345,7 +1345,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_advanced__use_system_emoji">Gebruik systeem-emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Schakel de ingebouwde emoji-ondersteuning van Signal uit</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Om te voorkomen dat je gesprekspartner je IP-adres kan achterhalen worden oproepen met niet-contactpersonen altijd tot stand gebracht via de Signal-server. Door deze optie in te schakelen wordt dat ook gedaan voor contacten wie in je contactenlijst staan. Dit leidt wel tot een verminderde geluidskwaliteit.</string>
-  <string name="preferences_advanced__always_relay_calls">Alle oproepen doorsturen</string>
+  <string name="preferences_advanced__always_relay_calls">Alle oproepen omleiden</string>
   <string name="preferences_app_protection__app_access">Toegang tot app</string>
   <string name="preferences_app_protection__communication">Communicatie</string>
   <string name="preferences_chats__chats">Gesprekken</string>

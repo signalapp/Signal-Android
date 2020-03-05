@@ -548,6 +548,9 @@
   <string name="MessageRequestBottomView_delete">Supprimer</string>
   <string name="MessageRequestBottomView_block">Bloquer</string>
   <string name="MessageRequestBottomView_unblock">Débloquer</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Souhaitez-vous laisser %1$s vous envoyer un message ? Ils ne sauront pas que vous avez vu leurs messages tant que vous n\'aurez pas accepté.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Souhaitez-vous rejoindre le groupe %1$s? Ils ne sauront pas que vous avez vu leurs messages tant que vous n\'aurez pas accepté.</string>
+  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Débloquez %1$s pour vous échanger des messages et des appels.</string>
   <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Débloquez pour permettre aux membres du groupe de vous ajouter à nouveau à ce groupe.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Membre de %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Membre de %1$s et de %2$s</string>
@@ -1192,8 +1195,10 @@
   <string name="AndroidManifest_archived_conversations">Conversations archivées</string>
   <string name="AndroidManifest_remove_photo">Supprimer la photo</string>
   <!--Message Requests Megaphone-->
+  <string name="MessageRequestsMegaphone__message_requests">Demande de contact</string>
   <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Les utilisateurs peuvent désormais choisir d\'accepter une nouvelle conversation. Les noms de profil permettent aux personnes de savoir qui leur envoie des messages.</string>
   <string name="MessageRequestsMegaphone__add_profile_name">Ajouter un nom de profil</string>
+  <string name="MessageRequestsMegaphone__new_message_requests">Nouveau : Demande de contact</string>
   <string name="MessageRequestsMegaphone__add_name">Ajouter un nom</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Vous pouvez maintenant choisir d\'accepter ou non une nouvelle conversation. Vous verrez les options \"Accepter,\" \"Supprimer,\" or \"Bloquer.\"</string>
   <!--arrays.xml-->

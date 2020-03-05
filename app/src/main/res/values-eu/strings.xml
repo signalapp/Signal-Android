@@ -62,7 +62,7 @@
   <string name="AttachmentKeyboard_contact">Kontaktua</string>
   <string name="AttachmentKeyboard_location">Kokalekua</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signalek baimena behar du zue argazkiak eta bideoak erakutsi ahal izateko.</string>
-  <string name="AttachmentKeyboard_give_access">Baimena Eman</string>
+  <string name="AttachmentKeyboard_give_access">Baimena eman</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Ez da euskarria aukeratzeko aplikaziorik aurkitu.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal aplikazioak Gordailu baimena behar du argazkiak, bideoak edo audioak bidaltzeko baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Gordailua\".</string>
@@ -1583,18 +1583,18 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="KbsMegaphone__create_a_pin">PIN bat sortu</string>
   <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">PINek beste segurtasun geruza bat gehitzen diote zure Signal kontuari.</string>
   <string name="KbsMegaphone__create_pin">PINa sortu</string>
-  <string name="KbsMegaphone__introducing_pins">PIN-ak sartzen</string>
+  <string name="KbsMegaphone__introducing_pins">PINak sartzen</string>
   <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Zure Errejistratze-blokeoa orain PIN deitzen da. Eguneratzeko segunduak behar dira bakarrik.</string>
-  <string name="KbsMegaphone__update_pin">Eguneratu PIN-a</string>
+  <string name="KbsMegaphone__update_pin">Eguneratu PINa</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Beranduago gogoraraziko dizugu. PIN bat sortzea beharrezkoa izango da %1$d eguneta.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Beranduago gogoraraziko dizugu. Zure PINa baieztatzea derrigorrezkoa izango da %1$d egunetan.</string>
   <!--Profile Names Megaphone-->
   <string name="ProfileNamesMegaphone__add_a_profile_name">Gehitu profil izen bat</string>
   <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Hau erakutsiko da solasaldi berri bat hasterakoan edo partekatzerakoan.</string>
-  <string name="ProfileNamesMegaphone__add_profile_name">Gehitu Profil Izena</string>
-  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Baieztatu zure Profil Izena</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">Gehitu profil izena</string>
+  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Baieztatu zure profil izena</string>
   <string name="ProfileNamesMegaphone__your_profile_can_now_include">Zure profilak orain aukerazko abizen bat eduki dezake.</string>
-  <string name="ProfileNamesMegaphone__confirm_name">Baieztatu Izena</string>
+  <string name="ProfileNamesMegaphone__confirm_name">Baieztatu izena</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Garraio ikonoa</string>
   <string name="ConversationListFragment_loading">Kargatzen…</string>
@@ -1662,7 +1662,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Aldatu</string>
   <string name="preferences_app_protection__create">Sortu</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account">Zure PINak beste segurtasun geruza bat gehitzen dio zure kontuari. Eskatuko zaizu zure telefono zenbakia Signael errejistratzerakoan. Zure PINa ahaztuz gero, zure kontua 7 egunez blokeatuta egongo da.</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account">Zure PINak beste segurtasun geruza bat gehitzen dio zure kontuari. Hau zure telefono zenbakia Signal-en erregistratzen duzunean eskatuko zaizu. PINa ahaztuz gero, zure kontua 7 egunez blokeatuta egongo da.</string>
   <string name="AppProtectionPreferenceFragment_none">Bat ere ez</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Erregistratzea blokeatzeko PINa ez da jaso berri duzun SMS bidezko egiaztapen-kodearen berdina. Sartu aurrez aplikazioan konfiguratu duzun PINa.</string>
   <string name="registration_activity__registration_lock_pin">Erregistratzea blokeatzeko PINa</string>

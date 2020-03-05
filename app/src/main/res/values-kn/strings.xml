@@ -61,14 +61,14 @@
   <string name="AttachmentKeyboard_file">ಫೈಲ್</string>
   <string name="AttachmentKeyboard_contact">ಸಂಪರ್ಕ</string>
   <string name="AttachmentKeyboard_location">ಸ್ಥಳ</string>
-  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">ನಿಮ್ಮ ಫೋಟೋಗಳು ಮತ್ತು ವೀಡಿಯೊಗಳನ್ನು ತೋರಿಸಲು Signal ಗೆ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ.</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">ನಿಮ್ಮ ಫೋಟೋಗಳು ಮತ್ತು ವೀಡಿಯೊಗಳನ್ನು ತೋರಿಸಲು Signal ಗೆ ಅನುಮತಿಯ ಅಗತ್ಯವಿದೆ.</string>
   <string name="AttachmentKeyboard_give_access">ಪ್ರವೇಶ ಒದಗಿಸಿ</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">ಈ ಮೀಡಿಯಾ ತೆರೆಯಲು ಸಾಮರ್ಥ್ಯವಿರುವ ಅಪ್ಲಿಕೇಶನ್ ಹುಡುಕಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">ಫೋಟೊಗಳು, ವೀಡಿಯೋಗಳು ಅಥವಾ ಆಡಿಯೋಗಳನ್ನು ಲಗತ್ತಿಸಲು Signal ಗೆ ಸ್ಟೋರೇಜ್ ಅನುಮತಿ ಅಗತ್ಯವಿರುತ್ತದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್ಸ್ ಮೆನುಗೆ ಮುಂದುವರಿಯಿರಿ \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ ಮತ್ತು \"ಸ್ಟೋರೇಜ್\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">ಫೋಟೊಗಳು, ವೀಡಿಯೋಗಳು ಅಥವಾ ಆಡಿಯೋಗಳನ್ನು ಲಗತ್ತಿಸಲು Signal ಗೆ ಸ್ಟೋರೇಜ್ ಅನುಮತಿಯ ಅಗತ್ಯವಿರುತ್ತದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್ಸ್ ಮೆನುಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ ಮತ್ತು \"ಸ್ಟೋರೇಜ್\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">ಸಂಪರ್ಕ ಮಾಹಿತಿಯನ್ನು ಲಗತ್ತಿಸಲು Signal ಸಂಪರ್ಕಗಳ ಅನುಮತಿ ಅಗತ್ಯವಿರುತ್ತದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಅಪ್ಲಿಕೇಶನ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳ ಮೆನುಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆಮಾಡಿ ಮತ್ತು \"ಸಂಪರ್ಕಗಳು\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">ಸ್ಥಳ ಮಾಹಿತಿಯನ್ನು ಲಗತ್ತಿಸಲು Signal ಗೆ ಸ್ಥಳ ಅನುಮತಿ ಅಗತ್ಯವಿರುತ್ತದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳ ಮೆನುಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆಮಾಡಿ ಮತ್ತು \"ಸ್ಥಳ\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">ಫೋಟೋಗಳನ್ನು ತೆಗೆದುಕೊಳ್ಳಲು Signal ಗೆ ಕ್ಯಾಮೆರಾ ಅನುಮತಿ ಬೇಕು, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳ ಮೆನುಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆಮಾಡಿ ಮತ್ತು \"ಕ್ಯಾಮೆರಾ\" ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">ಸ್ಥಳ ಮಾಹಿತಿಯನ್ನು ಲಗತ್ತಿಸಲು Signal ಗೆ ಸ್ಥಳ ಅನುಮತಿಯ ಅಗತ್ಯವಿರುತ್ತದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳ ಮೆನುಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆಮಾಡಿ ಮತ್ತು \"ಸ್ಥಳ\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">ಫೋಟೋಗಳನ್ನು ತೆಗೆದುಕೊಳ್ಳಲು Signal ಗೆ ಕ್ಯಾಮೆರಾ ಅನುಮತಿಯ ಅಗತ್ಯವಿರುತ್ತದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳ ಮೆನುಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆಮಾಡಿ ಮತ್ತು \"ಕ್ಯಾಮೆರಾ\" ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">ಮೀಡಿಯಾವನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
   <string name="AttachmentUploadJob_compressing_video_start">ವಿಡಿಯೋವನ್ನು ಸಂಕುಚಿತಗೊಳಿಸಲಾಗುತ್ತಿದೆ…</string>
@@ -83,7 +83,7 @@
   <string name="BucketedThreadMedia_This_month">ಈ ತಿಂಗಳು</string>
   <string name="BucketedThreadMedia_Large">ದೊಡ್ಡದು</string>
   <string name="BucketedThreadMedia_Medium">ಮಧ್ಯಮ</string>
-  <string name="BucketedThreadMedia_Small">ಸಣ್ಣ</string>
+  <string name="BucketedThreadMedia_Small">ಸಣ್ಣದು</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">ಒಳಬರುವ ಕರೆ</string>
   <!--CameraActivity-->
@@ -102,7 +102,7 @@
   <string name="CameraContacts_no_signal_contacts">Signal ಸಂಪರ್ಕಗಳಿಲ್ಲ</string>
   <string name="CameraContacts_you_can_only_use_the_camera_button">Signal ಸಂಪರ್ಕಗಳಿಗೆ ಫೋಟೋಗಳನ್ನು ಕಳುಹಿಸಲು ನೀವು ಕ್ಯಾಮೆರಾ ಬಟನ್ ಅನ್ನು ಮಾತ್ರ ಬಳಸಬಹುದು.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">ನೀವು ಹುಡುಕುತ್ತಿರುವುದನ್ನು ಕಂಡುಹಿಡಿಯಲಾಗುತ್ತಿಲ್ಲವೇ?</string>
-  <string name="CameraContacts_invite_a_contact_to_join_signal">Signal ಗೆ ಸೇರಲು ಸಂಪರ್ಕವನ್ನು ಆಹ್ವಾನಿಸುವುದೇ?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Signal ಗೆ ಸೇರಲು ಸಂಪರ್ಕವನ್ನು ಆಹ್ವಾನಿಸಿ</string>
   <string name="CameraContacts__menu_search">ಹುಡುಕಿ</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">ತೆಗೆದುಹಾಕಿ</string>
@@ -186,18 +186,18 @@
   <string name="ConversationActivity_quick_camera_unavailable">ಕ್ಯಾಮೆರಾ ಲಭ್ಯವಿಲ್ಲ</string>
   <string name="ConversationActivity_unable_to_record_audio">ಆಡಿಯೋ ರೆಕಾರ್ಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">ಈ ಲಿಂಕ್ ನಿರ್ವಹಿಸಲು ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ಆ್ಯಪ್ ಲಭ್ಯವಿಲ್ಲ.</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">ಆಡಿಯೋ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು, Signal ಗೆ ನಿಮ್ಮ ಮೈಕ್ರೋಫೋನ್ ಉಪಯೋಗಿಸಲು ಅನುಮತಿ ನೀಡಿ</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">ಆಡಿಯೊ ಸಂದೇಶಗಳು ಕಳುಹಿಸುವ ಸಲುವಾಗಿ Signal ಗೆ ಮೈಕ್ರೊಫೋನ್ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು  ಅಪ್ಲಿಕೇಶನ್ ಸಂಯೋಜನೆಗೆ ಮುಂದುವರಿಸಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ, ಮತ್ತು \"ಮೈಕ್ರೊಫೋನ್\" ಸಕ್ರಿಯಗೊಳಿಸಿ. </string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">ಆಡಿಯೋ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು, Signal ಗೆ ನಿಮ್ಮ ಮೈಕ್ರೋಫೋನ್ ಉಪಯೋಗಿಸಲು ಅನುಮತಿ ನೀಡಿ.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">ಆಡಿಯೊ ಸಂದೇಶ ಕಳುಹಿಸುವ ಸಲುವಾಗಿ Signal ಗೆ ಮೈಕ್ರೊಫೋನ್ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು  ಅಪ್ಲಿಕೇಶನ್ ಸಂಯೋಜನೆಗೆ ಮುಂದುವರಿಸಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ, ಮತ್ತು \"ಮೈಕ್ರೊಫೋನ್\" ಸಕ್ರಿಯಗೊಳಿಸಿ. </string>
   <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera"> %s ಗೆ ಕರೆ ಮಾಡಲು, Signal ಗೆ   ನಿಮ್ಮ ಮೈಕ್ರೊಫೋನ್ ಮತ್ತು ಕ್ಯಾಮೆರಾ ಪ್ರವೇಶ ಅಗತ್ಯವಿದೆ.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s"> %s ಗೆ ಕರೆ ಮಾಡಲು Signal ಗೆ ಮೈಕ್ರೊಫೋನ್ ಹಾಗೂ ಕ್ಯಾಮರಾ ಅನುಮತಿಗಳು ಅಗತ್ಯವಿರುತ್ತವೆ, ಆದರೆ ಅವುಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ, ಮತ್ತು  \"ಮೈಕ್ರೊಫೋನ್\" ಮತ್ತು \"ಕ್ಯಾಮೆರಾ\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">ಫೋಟೋಗಳನ್ನು  ಮತ್ತು ವಿಡಿಯೋ ಸೆರೆಹಿಡಿಯಲು, Signal  ಗೆ ಕ್ಯಾಮೆರಾ ಪ್ರವೇಶ ಅನುಮತಿಸಿ.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">ಫೋಟೊಗಳು ಅಥವಾ ವೀಡಿಯೋಗಳನ್ನು ತೆಗೆದುಕೊಳ್ಳಲು Signal ಗೆ ಕ್ಯಾಮೆರಾ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ, ಆದರೆ ಇದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ ಮತ್ತು \"ಕ್ಯಾಮೆರಾ\" ಸಕ್ರಿಯಗೊಳಿಸಿ. </string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">ಫೋಟೊಗಳು ಅಥವಾ ವೀಡಿಯೋಗಳನ್ನು ತೆಗೆದುಕೊಳ್ಳಲು Signal ಗೆ ಕ್ಯಾಮೆರಾ ಅನುಮತಿಯ ಅಗತ್ಯವಿರುತ್ತದೆ, ಆದರೆ ಇದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ ಮತ್ತು \"ಕ್ಯಾಮೆರಾ\" ಸಕ್ರಿಯಗೊಳಿಸಿ. </string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">ಫೋಟೋಗಳು ಅಥವಾ ವೀಡಿಯೊ ತೆಗೆದುಕೊಳ್ಳಲು Signal ಗೆ ಕ್ಯಾಮೆರಾ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ</string>
   <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">ವೀಡಿಯೊಗಳನ್ನು  ಧ್ವನಿಯೊಂದಿಗೆ ಸೆರೆಹಿಡಿಯಲು ಮೈಕ್ರೊಫೋನ್ ಅನುಮತಿ ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
-  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">ವೀಡಿಯೋಗಳನ್ನು ರೆಕಾರ್ಡ್ ಮಾಡಲು Signal ಗೆ ಮೈಕ್ರೋಫೋನ್ ಅನುಮತಿಗಳು ಅಗತ್ಯವಿರುತ್ತವೆ ಆದರೆ ಅವುಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ, ಮತ್ತು \"ಮೈಕ್ರೊಫೋನ್\" ಮತ್ತು \"ಕ್ಯಾಮೆರಾ\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">ವೀಡಿಯೋಗಳನ್ನು ರೆಕಾರ್ಡ್ ಮಾಡಲು Signal ಗೆ ಮೈಕ್ರೋಫೋನ್ ಅನುಮತಿಗಳು ಅಗತ್ಯವಿರುತ್ತವೆ, ಆದರೆ ಅವುಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ, ಮತ್ತು \"ಮೈಕ್ರೊಫೋನ್\" ಮತ್ತು \"ಕ್ಯಾಮೆರಾ\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
   <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">ವೀಡಿಯೊಗಳನ್ನು ರೆಕಾರ್ಡ್ ಮಾಡಲು Signal ಗೆ ಮೈಕ್ರೋಫೋನ್ ಅನುಮತಿಗಳು ಅಗತ್ಯವಿರುತ್ತವೆ.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal ಎಸ್‌ಎಂಎಸ್/ಎಂಎಂಎಸ್ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ ಏಕೆಂದರೆ ಅದು ನಿಮ್ಮ ಡೀಫಾಲ್ಟ್ ಎಸ್‌ಎಂಎಸ್ ಆ್ಯಪ್ ಅಲ್ಲ. ನಿಮ್ಮ ಆಂಡ್ರಾಯ್ಡ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಇದನ್ನು ಬದಲಾಯಿಸಲು ನೀವು ಬಯಸುವಿರಾ?</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal ಎಸ್‌ಎಂಎಸ್/ಎಂಎಂಎಸ್ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ, ಏಕೆಂದರೆ ಅದು ನಿಮ್ಮ ಡೀಫಾಲ್ಟ್ ಎಸ್‌ಎಂಎಸ್ ಆ್ಯಪ್ ಅಲ್ಲ. ನಿಮ್ಮ ಆಂಡ್ರಾಯ್ಡ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಇದನ್ನು ಬದಲಾಯಿಸಲು ನೀವು ಬಯಸುವಿರಾ?</string>
   <string name="ConversationActivity_yes">ಹೌದು</string>
   <string name="ConversationActivity_no">ಇಲ್ಲ</string>
   <string name="ConversationActivity_search_position">%2$d ನಲ್ಲಿ %1$d</string>
@@ -208,14 +208,14 @@
   <string name="ConversationActivity_block_and_leave_s">%1$s ಅನ್ನು ನಿರ್ಬಂಧಿಸುವುದೇ ಮತ್ತು ತೊರೆಯುವುದೇ?</string>
   <string name="ConversationActivity_unblock_s">%1$sನಿರ್ಬಂಧ ತೆಗೆಯುವುದೇ?</string>
   <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">ನೀವು ಪರಸ್ಪರ ಸಂದೇಶ ನೀಡಲು ಮತ್ತು ಕರೆ ಮಾಡಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ.</string>
-  <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">ಗುಂಪಿನ ಸದಸ್ಯರು ನಿಮ್ಮನ್ನು ಮತ್ತೊಮ್ಮೆ ಈ ಗುಂಪಿಗೆ ಸೇರಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ.</string>
+  <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">ಗುಂಪಿನ ಸದಸ್ಯರು ನಿಮ್ಮನ್ನು ಪುನಃ ಈ ಗುಂಪಿಗೆ ಸೇರಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ.</string>
   <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">ನಿರ್ಬಂಧಿತ ಜನರು ನಿಮಗೆ ಕರೆ ಮಾಡಲು ಅಥವಾ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
-  <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">ನೀವು ಈ ಗುಂಪನ್ನು ತೊರೆಯುವುದಿಲ್ಲ ಮತ್ತು ಸಂದೇಶಗಳನ್ನು ಅಥವಾ ಅಪ್‌ಡೇಟ್‌‌ಗಳನ್ನು ಇನ್ನುಮುಂದೆ ಪಡೆಯುವುದಿಲ್ಲ.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">ನೀವು ಈ ಗುಂಪನ್ನು ತೊರೆಯುತ್ತೀರಿ ಮತ್ತು ಸಂದೇಶಗಳನ್ನು ಅಥವಾ ಅಪ್‌ಡೇಟ್‌‌ಗಳನ್ನು ಇನ್ನುಮುಂದೆ ಪಡೆಯುವುದಿಲ್ಲ.</string>
   <string name="ConversationActivity_block">ನಿರ್ಬಂಧಿಸಿ</string>
   <string name="ConversationActivity_block_and_delete">ನಿರ್ಬಂಧಿಸಿ ಮತ್ತು ಅಳಿಸಿ</string>
   <string name="ConversationActivity_cancel">ರದ್ದುಮಾಡಿ</string>
   <string name="ConversationActivity_delete_conversation">ಸಂಭಾಷಣೆಯನ್ನು ಅಳಿಸುವುದೇ?</string>
-  <string name="ConversationActivity_delete_and_leave_group">ಅಳಿಸುವುದೇ ಮತ್ತು ಈ ಗುಂಪನ್ನು ಬಿಡುವುದೇ?</string>
+  <string name="ConversationActivity_delete_and_leave_group">ಅಳಿಸುವುದೇ ಮತ್ತು ಗುಂಪನ್ನು ಬಿಡುವುದೇ?</string>
   <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">ನಿಮ್ಮ ಎಲ್ಲ ಸಾಧನಗಳಿಂದಲೂ ಈ ಸಂಭಾಷಣೆಯನ್ನು ಅಳಿಸಲಾಗುವುದು.</string>
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">ನೀವು ಈ ಗುಂಪನ್ನು ತೊರೆಯುತ್ತೀರಿ ಮತ್ತು ಇದನ್ನು ನಿಮ್ಮ ಎಲ್ಲ ಸಾಧನಗಳಿಂದಲೂ ಅಳಿಸಲಾಗುವುದು.</string>
   <string name="ConversationActivity_delete">ಅಳಿಸು</string>
@@ -266,12 +266,12 @@
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">ತ್ವರಿತವಾಗಿ ಪ್ರತ್ಯುತ್ತರಿಸುವುದಕ್ಕೆ ನೀವು ಯಾವುದೇ ಸಂದೇಶದ ಮೇಲೆ ಬಲಕ್ಕೆ ಸ್ವೈಪ್ ಮಾಡಬಹುದು</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">ತ್ವರಿತವಾಗಿ ಪ್ರತ್ಯುತ್ತರಿಸುವುದಕ್ಕೆ ನೀವು ಯಾವುದೇ ಸಂದೇಶದ ಮೇಲೆ ಎಡಕ್ಕೆ ಸ್ವೈಪ್ ಮಾಡಬಹುದು</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">ಹೊರಹೋಗುವ ವ್ಯೂ ಒನ್ಸ್ ಮೀಡಿಯಾ ಫೈಲ್‌ಗಳನ್ನು ಕಳುಹಿಸಿದ ನಂತರ ಅವುಗಳನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ</string>
-  <string name="ConversationFragment_you_already_viewed_this_message">ನೀವು ಈಗಾಗಲೇ ಈ ಸಂದೇಶವನ್ನು ವೀಕ್ಷಿಸಲಾಗಿದೆ</string>
+  <string name="ConversationFragment_you_already_viewed_this_message">ನೀವು ಈಗಾಗಲೇ ಈ ಸಂದೇಶವನ್ನು ವೀಕ್ಷಿಸಿದ್ದೀರಿ</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ಈ ಸಂಭಾಷಣೆಯಲ್ಲಿ ನೀವು ಸ್ವತಃ ನಿಮಗಾಗಿ ಟಿಪ್ಪಣಿಗಳನ್ನು ಸೇರಿಸಬಹುದು. ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಯಾವುದೇ ಸಾಧನಗಳಲ್ಲಿ ಲಿಂಕ್ ಮಾಡಿದ್ದಲ್ಲಿ, ಹೊಸ ಟಿಪ್ಪಣಿಗಳನ್ನು ಸಿಂಕ್ ಮಾಡಲಾಗುವುದು.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ನಿಮ್ಮ ಸಾಧನ ಯಾವುದೇ ಬ್ರೌಸರ್ ಅನ್ನು ಸ್ಥಾಪಿಸಲಾಗಿಲ್ಲ.</string>
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_no_results_found_for_s_">%sಗೆ ಫಲಿತಾಂಶಗಳು ಪತ್ತೆಯಾಗಿಲ್ಲ</string>
+  <string name="ConversationListFragment_no_results_found_for_s_">\'%s\'ಗೆ ಫಲಿತಾಂಶಗಳು ಪತ್ತೆಯಾಗಿಲ್ಲ</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಂಭಾಷಣೆಗಳನ್ನು ಅಳಿಸಬಹುದೇ?</item>
     <item quantity="other">ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಂಭಾಷಣೆಗಳನ್ನು ಅಳಿಸಬಹುದೇ?</item>
@@ -328,7 +328,7 @@
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">ಈ ಸಾಧನವನ್ನು ಅನ್‌ಲಿಂಕ್ ಮಾಡುವ ಮೂಲಕ, ಇದು ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಅಥವಾ ಪಡೆಯಲು ಇನ್ನು ಮುಂದೆ ಸಮರ್ಥವಾಗಿರುವುದಿಲ್ಲ.</string>
   <string name="DeviceListActivity_network_connection_failed">ನೆಟ್‌ವರ್ಕ್ ಸಂಪರ್ಕ ವಿಫಲವಾಗಿದೆ</string>
   <string name="DeviceListActivity_try_again">ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ</string>
-  <string name="DeviceListActivity_unlinking_device">ಸಾಧನ ಅನ್‌ಲಿಂಕ್‌ ಮಾಡಲಾಗುತ್ತಿದೆ …</string>
+  <string name="DeviceListActivity_unlinking_device">ಸಾಧನ ಅನ್‌ಲಿಂಕ್‌ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">ಸಾಧನ ಅನ್‌ಲಿಂಕ್‌ ಮಾಡಲಾಗುತ್ತಿದೆ  </string>
   <string name="DeviceListActivity_network_failed">ನೆಟ್‌‌ವರ್ಕ್‌ ದೋಷ!</string>
   <!--DeviceListItem-->
@@ -340,7 +340,7 @@
   <string name="DocumentView_unnamed_file">ಹೆಸರಿಸದ ಫೈಲ್</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">ಕಾಣೆಯಾದ ಪ್ಲೇ ಸೇವೆಗಳನ್ನು ಅತ್ಯುತ್ತಮವಾಗಿಸಿ</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ಈ ಸಾಧನವು ಪ್ಲೇ ಸರ್ವೀಸಸ್ ಅನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ. ನಿಷ್ಕ್ರಿಯವಾಗಿದ್ದಾಗ Signal ಸಂದೇಶಗಳನ್ನು ಹಿಂದಕ್ಕೆ ಪಡೆಯದಂತೆ ತಡೆಯಲು ಸಿಸ್ಟಂ ಬ್ಯಾಟರಿ ಆಪ್ಟಿಮೈಸೇಶನ್‌ಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ ಒತ್ತಿ.</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ಈ ಸಾಧನವು ಪ್ಲೇ ಸರ್ವೀಸಸ್ ಅನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ. ನಿಷ್ಕ್ರಿಯವಾಗಿದ್ದಾಗ Signal ಸಂದೇಶಗಳನ್ನು ಹಿಂದಕ್ಕೆ ಪಡೆಯದಂತೆ ತಡೆಯಲು ಸಿಸ್ಟಂ ಬ್ಯಾಟರಿ ಆಪ್ಟಿಮೈಸೇಶನ್‌ಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ ಅನ್ನು ಒತ್ತಿ.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">ಜೊತೆ ಹಂಚಿಕೊಳ್ಳಿ </string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">ಬಹು ಲಗತ್ತುಗಳನ್ನು ಕೇವಲ ಚಿತ್ರಗಳು ಮತ್ತು ವೀಡಿಯೋಗಳಿಗೆ ಬೆಂಬಲಿಸಲಾಗಿರುತ್ತದೆ</string>
@@ -364,11 +364,11 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">ಟೈಪಿಂಗ್  ಇಂಡಿಕೇಟರ್‌ ಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">ಟೈಪಿಂಗ್ ಇಂಡಿಕೇಟರ್‌ ಗಳನ್ನು ಆನ್ ಮಾಡಿ</string>
   <string name="ExperienceUpgradeActivity_no_thanks">ಇಲ್ಲ, ಧನ್ಯವಾದಗಳು</string>
-  <string name="ExperienceUpgradeActivity_introducing_link_previews">ಲಿಂಕ್ ಪೂರ್ವವೀಕ್ಷಣೆಗಳನ್ನು ಪರಿಚಯಿಸಲಾಗುತ್ತಿದೆ</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">ಲಿಂಕ್ ಪೂರ್ವವೀಕ್ಷಣೆಗಳನ್ನು ಪರಿಚಯಿಸಲಾಗುತ್ತಿದೆ.</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">ಐಚ್ಛಿಕವಾದ ಲಿಂಕ್ ಪೂರ್ವವೀಕ್ಷಣೆಗಳನ್ನು ಈಗ ಇಂಟರ್‌ನೆಟ್‌ನಲ್ಲಿ ಕೆಲವು ಅತ್ಯಂತ ಜನಪ್ರಿಯ ಸೈಟುಗಳಲ್ಲಿ ಬೆಂಬಲಿಸಲಾಗಿರುತ್ತದೆ. </string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">ನಿಮ್ಮ Signal ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ನೀವು ಯಾವುದೇ ಸಮಯದಲ್ಲಿ ಬೇಕಾದರೂ ಈ ವೈಶಿಷ್ಟ್ಯವನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಬಹುದು ಅಥವಾ ಸಕ್ರಿಯಗೊಳಿಸಬಹುದು (ಗೌಪ್ಯತೆ &gt; ಲಿಂಕ್ ಪೂರ್ವವೀಕ್ಷಣೆಗಳನ್ನು ಕಳುಹಿಸಿ).</string>
   <string name="ExperienceUpgradeActivity_got_it">ಅರ್ಥವಾಯಿತು</string>
-  <string name="ExperienceUpgradeActivity_introducing_stickers">ಸ್ಟಿಕ್ಕರ್‌ಗಳು ಪರಿಚಯಿಸಲಾಗುತ್ತಿದೆ</string>
+  <string name="ExperienceUpgradeActivity_introducing_stickers">ಸ್ಟಿಕ್ಕರ್‌ಗಳನ್ನು ಪರಿಚಯಿಸಲಾಗುತ್ತಿದೆ</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">ನೀವು ಸ್ಟಿಕ್ಕರ್‌ಗಳನ್ನು ಬಳಸುವಾಗ ಪದಗಳನ್ನು ಏಕೆ ಬಳಸಬೇಕು?</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon"> ನೀವು ಸ್ಟಿಕ್ಕರ್‌ಗಳನ್ನು ಬಳಸುವಾಗ ಪದಗಳನ್ನು ಏಕೆ ಬಳಸಬೇಕು? ನಿಮ್ಮ ಕೀಬೋರ್ಡ್‌ನಲ್ಲಿ ಈ ಐಕನ್ ಟ್ಯಾಪ್ ಮಾಡಿ:</string>
   <string name="ExperienceUpgradeActivity_lets_go">ಹೋಗೋಣ</string>
@@ -381,7 +381,7 @@
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">ಪೂರ್ಣ ರೆಸಲ್ಯೂಶನ್ GIF ಅನ್ನು ಹಿಂಪಡೆಯುವಾಗ ದೋಷ</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFಗಳು</string>
-  <string name="GiphyFragmentPagerAdapter_stickers">ಸ್ಟಿಕ್ಕರ್ಗಳು</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">ಸ್ಟಿಕ್ಕರುಗಳು</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">ಹೊಸ ಗುಂಪು</string>
   <string name="GroupCreateActivity_actionbar_edit_title">ಗುಂಪನ್ನು ಬದಲಾಯಿಸಿ</string>
@@ -399,7 +399,7 @@
   <string name="GroupCreateActivity_loading_group_details">ಗುಂಪಿನ ವಿವರಗಳು ಲೋಡ್ ಆಗುತ್ತಿವೆ…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">ನೀವು ಈಗಾಗಲೇ ಈ ಗುಂಪಿನಲ್ಲಿದ್ದೀರಿ.</string>
   <!--GroupShareProfileView-->
-  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಹೆಸರು ಮತ್ತು ಚಿತ್ರವನ್ನು ಈ ಗುಂಪಿನೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಿ?</string>
+  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಹೆಸರು ಮತ್ತು ಚಿತ್ರವನ್ನು ಈ ಗುಂಪಿನೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳುವಿರಾ?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">ನೀವು ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಹೆಸರನ್ನು ಮಾಡಲು ಹಾಗೂ ಎಲ್ಲ ಸದ್ಯದ ಮತ್ತು ಭವಿಷ್ಯದ ಸದಸ್ಯರುಗಳಿಗೆ ಈ ಗುಂಪಿನಲ್ಲಿ ಫೋಟೊವನ್ನು ಕಾಣುವಂತೆ ಮಾಡಲು ಬಯಸುತ್ತೀರಾ?</string>
   <string name="GroupShareProfileView_make_visible">ಕಾಣುವಂತೆ ಮಾಡಿ</string>
   <!--GroupMembersDialog-->
@@ -425,10 +425,10 @@
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">ಕಳುಹಿಸು %d ಎಸ್‌ಎಂಎಸ್ ಆಹ್ವಾನ?</item>
-    <item quantity="other">ಎಸ್‌ಎಂಎಸ್‌ ಆಹ್ವಾನಗಳನ್ನು %dಗೆ ಕಳುಹಿಸುವುದೇ ?</item>
+    <item quantity="other">ಎಸ್‌ಎಂಎಸ್‌ ಆಹ್ವಾನಗಳನ್ನು %dಗೆ ಕಳುಹಿಸುವುದೇ?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Signal ಗೆ ಬದಲಾಯಿಸೋಣ: %1$s</string>
-  <string name="InviteActivity_no_app_to_share_to">ಹಂಚಿಕೊಳ್ಳಲು ತಾವು ಯಾವುದೇ ಅಪ್ಲಿಕೇಶನ್ಗಳು ಹೊಂದಿಲ್ಲ ಎಂದು ಕಂಡುಬರುತ್ತಿದೆ.</string>
+  <string name="InviteActivity_no_app_to_share_to">ಹಂಚಿಕೊಳ್ಳಲು ತಾವು ಯಾವುದೇ ಅಪ್ಲಿಕೇಶನ್ ಗಳನ್ನು ಹೊಂದಿಲ್ಲ ಎಂದು ಕಂಡುಬರುತ್ತಿದೆ.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">ಸ್ನೇಹಿತರು ಸ್ನೇಹಿತರನ್ನು ಎನ್‌ಕ್ರಿಪ್ಟ್‌ ಮಾಡದೇ ಚಾಟ್ ಮಾಡಲು ಬಿಡುವುದಿಲ್ಲ.</string>
   <!--Job-->
   <string name="Job_working_in_the_background">ಹಿನ್ನೆಲೆಯಲ್ಲಿ ಕೆಲಸವನ್ನು ಮಾಡುತ್ತಿದ್ದೇವೆ…</string>
@@ -503,7 +503,7 @@
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">ಮಲ್ಟಿಮೀಡಿಯಾ ಸಂದೇಶ</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">ಎಂಎಂಎಸ್ ಸಂದೇಶವನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
-  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">ಎಂಎಂಎಸ್ ಸಂದೇಶ ಡೌನ್‌ಲೋಡ್ ಮಾಡುವಲ್ಲಿ ದೋಷ, ಪುನಃ ಪ್ರಯತ್ನಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ </string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">ಎಂಎಂಎಸ್ ಸಂದೇಶ ಡೌನ್‌ಲೋಡ್ ಮಾಡುವಲ್ಲಿ ದೋಷ ಸಂಭವಿಸಿದೆ, ಪುನಃ ಪ್ರಯತ್ನಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ </string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">%sಗೆ ಕಳುಹಿಸಿ</string>
   <string name="MediaPickerActivity__menu_open_camera">ಕ್ಯಾಮೆರಾ ತೆರೆಯಿರಿ</string>
@@ -512,12 +512,12 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">ಕ್ಯಾಪ್ಷನ್ ಸೇರಿಸಿ</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">ಗಾತ್ರದ ಮಿತಿಯನ್ನು ಮೀರಿದ ಕಾರಣ ಐಟಂ ಅನ್ನು ತೆಗೆಯಲಾಗಿದೆ</string>
-  <string name="MediaSendActivity_camera_unavailable">ಕ್ಯಾಮೆರಾ ಲಭ್ಯವಿಲ್ಲ</string>
+  <string name="MediaSendActivity_camera_unavailable">ಕ್ಯಾಮೆರಾ ಲಭ್ಯವಿಲ್ಲ.</string>
   <string name="MediaSendActivity_message_to_s">%sಗೆ ಸಂದೇಶ</string>
   <string name="MediaSendActivity_message">ಸಂದೇಶ</string>
   <string name="MediaSendActivity_select_recipients">ಸ್ವೀಕರಿಸುವವರನ್ನು ಆಯ್ಕೆ ಮಾಡಿ</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ಪ್ರದರ್ಶಿಸಲು ಪ್ರವೇಶ ಅಗತ್ಯವಿದೆ. </string>
-  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ತೋರಿಸಲು Signal ಗೆ ಸಂಪರ್ಕಗಳ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಅಪ್ಲಿಕೇಶನ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆಮಾಡಿ ಮತ್ತು \"ಸಂಪರ್ಕಗಳು\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ತೋರಿಸಲು Signal ಗೆ ಸಂಪರ್ಕಗಳ ಅನುಮತಿಯ ಅಗತ್ಯವಿದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಅಪ್ಲಿಕೇಶನ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆಮಾಡಿ ಮತ್ತು \"ಸಂಪರ್ಕಗಳು\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">ನೀವು ಮಾಡಬಹುದು\'ಗಿಂತ ಹೆಚ್ಚಿನದನ್ನು ಹಂಚಿಕೊಳ್ಳುವುದಿಲ್ಲ %d ಐಟಂ.</item>
     <item quantity="other">ನೀವು %dಗಿಂತ ಹೆಚ್ಚು ಐಟಂಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳುವುದು ಸಾಧ್ಯವಿಲ್ಲ. </item>
@@ -546,7 +546,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">ನೀವು ನಿಮ್ಮ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಯನ್ನು%s ಜೊತೆ ದೃಢೀಕರಿಸಲಾಗಿದೆ ಎಂದು ಗುರುತಿಸಿದ್ದೀರಿ</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">ನಿಮ್ಮ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಯನ್ನು ಮತ್ತೊಂದು ಸಾಧನದಿಂದ ದೃಢೀಕರಿಸಿದ %s ನೊಂದಿಗೆ ಗುರುತಿಸಿದ್ದೀರಿ</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">ನಿಮ್ಮ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಯನ್ನು ನೀವು ದೃಢೀಕರಿಸದೇ ಇರುವ %s ನೊಂದಿಗೆ ಗುರುತಿಸಿದ್ದೀರಿ</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">ನಿಮ್ಮ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಯನ್ನು ಮತ್ತೊಂದು ಸಾಧನದಿಂದ ದೃಢೀಕರಿಸಿದೇ ಇರುವ %s ನೊಂದಿಗೆ ಗುರುತಿಸಿದ್ದೀರಿ</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">ನಿಮ್ಮ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಯನ್ನು ಮತ್ತೊಂದು ಸಾಧನದಿಂದ ದೃಢೀಕರಿಸದೇ ಇರುವ %s ನೊಂದಿಗೆ ಗುರುತಿಸಿದ್ದೀರಿ</string>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">ಒಪ್ಪಿಕೊಳ್ಳಿ</string>
   <string name="MessageRequestBottomView_delete">ಅಳಿಸು</string>
@@ -561,7 +561,7 @@
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s, ಮತ್ತು %3$s ರ ಸದಸ್ಯ</string>
   <plurals name="MessageRequestProfileView_members">
     <item quantity="one">%1$d ಸದಸ್ಯರು</item>
-    <item quantity="other">%1$dಸದಸ್ಯರುಗಳು</item>
+    <item quantity="other">%1$d ಸದಸ್ಯರುಗಳು</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d ಇತರ</item>
@@ -578,7 +578,7 @@
   <string name="DeviceProvisioningActivity_content_intro">ಮಾಡಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ</string>
   <string name="DeviceProvisioningActivity_content_bullets">
         • ನಿಮ್ಮ ಎಲ್ಲಾ ಸಂದೇಶಗಳನ್ನೂ ಓದಿ 
-        \n• ನಿಮ್ಮ ಹೆಸರಲ್ಲಿ ಸಂದೇಶಗಳು ಕಳುಹಿಸು
+        \n• ನಿಮ್ಮ ಹೆಸರಲ್ಲಿ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸು
     </string>
   <string name="DeviceProvisioningActivity_content_progress_title">ಸಾಧನ ಲಿಂಕ್ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
   <string name="DeviceProvisioningActivity_content_progress_content">ಹೊಸ ಸಾಧನವನ್ನು ಲಿಂಕ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
@@ -589,13 +589,13 @@
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">ಕ್ಷಮಿಸಿ, ನೀವು ಈಗಾಗಲೇ ಬಹಳ ಹೆಚ್ಚು ಸಾಧನಗಳನ್ನು ಲಿಂಕ್ ಮಾಡಿದ್ದೀರಿ, ಕೆಲವನ್ನು ತೆಗೆದುಹಾಕಲು ಪ್ರಯತ್ನಿಸಿ</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">ಕ್ಷಮಿಸಿ, ಇದು ಮಾನ್ಯವಾಗಿರುವ ಸಾಧನ ಲಿಂಕ್ ಮಾಡುವ QR ಕೋಡ್ ಅಲ್ಲ.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">ಒಂದು Signal ಸಾಧನ ಲಿಂಕ್ ಮಾಡುವುದೇ?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">ನೀವು 3ನೇಯವರ ಸ್ಕ್ಯಾನರ್ ಬಳಸಿ Signal ಸಾಧನ ಲಿಂಕ್ ಮಾಡಲು ಯತ್ನಿಸುತ್ತಿರುವಂತೆ ಕಂಡುಬರುತ್ತಿದೆ. ನಿಮ್ಮ ರಕ್ಷಣೆಗಾಗಿ, Signal ಒಳಗೆ ದಯವಿಟ್ಟು ಕೋಡ್ ಅನ್ನು ಮತ್ತೊಮ್ಮೆ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">QR ಕೋಡ್‌‌ ಗಳನ್ನು ತೆಗೆದುಕೊಳ್ಳಲು Signal ಗೆ ಕ್ಯಾಮೆರಾ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ, ಆದರೆ ಇದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ ಮತ್ತು \"ಕ್ಯಾಮೆರಾ\" ಸಕ್ರಿಯಗೊಳಿಸಿ. </string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">ನೀವು 3ನೆ ಪಾರ್ಟಿ ಸ್ಕ್ಯಾನರ್ ಬಳಸಿ Signal ಸಾಧನ ಲಿಂಕ್ ಮಾಡಲು ಯತ್ನಿಸುತ್ತಿರುವಂತೆ ಕಂಡುಬರುತ್ತಿದೆ. ನಿಮ್ಮ ರಕ್ಷಣೆಗಾಗಿ, Signal ಒಳಗೆ ದಯವಿಟ್ಟು ಕೋಡ್ ಅನ್ನು ಮತ್ತೊಮ್ಮೆ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">QR ಕೋಡ್‌‌ ಗಳನ್ನು ತೆಗೆದುಕೊಳ್ಳಲು Signal ಗೆ ಕ್ಯಾಮೆರಾ ಅನುಮತಿಯ ಅಗತ್ಯವಿದೆ, ಆದರೆ ಇದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ ಮತ್ತು \"ಕ್ಯಾಮೆರಾ\" ಸಕ್ರಿಯಗೊಳಿಸಿ. </string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">ಕ್ಯಾಮೆರಾ ಅನುಮತಿ ಇಲ್ಲದೆ QR ಕೋಡ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ    </string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">ಕಣ್ಮರೆಯಾಗುವ ಸಂದೇಶಗಳು</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">ನಿಮ್ಮ ಸಂದೇಶಗಳ ಅವಧಿ ಮುಗಿಯುವುದಿಲ್ಲ.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">%s ಅವರು ನೋಡಿದ ನಂತರ ಕಳುಹಿಸದ ಮತ್ತು ಸ್ವೀಕರಿಸಲಾಗಿದ ಸಂದೇಶಗಳು ಕಣ್ಮರೆಯಾಗುತ್ತದೆ.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">%s ಅವರು ನೋಡಿದ ನಂತರ ಈ ಸಂಭಾಷಣೆಯಲ್ಲಲಿ ಕಳುಹಿಸಿದ ಮತ್ತು ಸ್ವೀಕರಿಸಿದ ಸಂದೇಶಗಳು ಕಣ್ಮರೆಯಾಗುತ್ತದೆ.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">ಪಾಸ್‌ಫ್ರೇಸ್‌ ನಮೂದಿಸಿ</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ಐಕನ್</string>
@@ -606,9 +606,9 @@
   <string name="PlacePickerActivity_title">ನಕ್ಷೆ</string>
   <string name="PlacePickerActivity_not_a_valid_address">ಮಾನ್ಯ ವಿಳಾಸ ಅಲ್ಲ</string>
   <string name="PlacePickerActivity_drop_pin">ಡ್ರಾಪ್ ಪಿನ್</string>
-  <string name="PlacePickerActivity_accept_address">ವಿಳಾಸವನ್ನು ಸ್ವೀಕರಿಸಿ</string>
+  <string name="PlacePickerActivity_accept_address">ವಿಳಾಸವನ್ನು ಒಪ್ಪಿ</string>
   <!--PlayServicesProblemFragment-->
-  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">ನೀವು ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿದ Google ಪ್ಲೇ ಸರ್ವೀಸಸ್‌ ನ ಆವೃತ್ತಿಯು ಸರಿಯಾಗಿ ಕೆಲಸ ಮಾಡುತ್ತಿಲ್ಲ. ದಯವಿಟ್ಟು. Google ಪ್ಲೇ ಸರ್ವೀಸಸ್ ಅನ್ನು ಪುನಃ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ ಹಾಗು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ .  </string>
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">ನೀವು ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿದ Google ಪ್ಲೇ ಸರ್ವೀಸಸ್‌ ನ ಆವೃತ್ತಿಯು ಸರಿಯಾಗಿ ಕೆಲಸ ಮಾಡುತ್ತಿಲ್ಲ. ದಯವಿಟ್ಟು Google ಪ್ಲೇ ಸರ್ವೀಸಸ್ ಅನ್ನು ಪುನಃ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ ಹಾಗು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.  </string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">ಈ ಆ್ಯಪ್ ಅನ್ನು ರೇಟ್ ಮಾಡಿ</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">ನೀವು ಒಂದು ವೇಳೆ ಈ ಆ್ಯಪ್ ಬಳಸುವುದನ್ನು ಆನಂದಿಸುತ್ತಿದ್ದಲ್ಲಿ, ನಮಗೆ ಸಹಾಯ ಮಾಡಲು ಕೊಂಚ ಸಮಯ ತೆಗೆದುಕೊಂಡು ರೇಟಿಂಗ್ ಮಾಡಿ.</string>
@@ -630,7 +630,7 @@
   <string name="RecipientPreferenceActivity_block_and_leave_group_description">ನೀವು ಈ ಗುಂಪಿನಿಂದ ಸಂದೇಶಗಳು ಅಥವಾ ನವೀಕರಣಗಳನ್ನು ಇನ್ನು ಮುಂದೆ ಸ್ವೀಕರಿಸುವುದಿಲ್ಲ.</string>
   <string name="RecipientPreferenceActivity_block">ನಿರ್ಬಂಧಿಸಿ</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">ಈ ಸಂಪರ್ಕದ ನಿರ್ಬಂಧ ತೆಗೆಯುವುದೇ?</string>
-  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">ಈ ಸಂಪರ್ಕದಿಂದ ನೀವು ಮತ್ತೊಮ್ಮೆ ಸಂದೇಶಗಳನ್ನು ಮತ್ತು ಕರೆಗಳು ಸ್ವೀಕರಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ.</string>
+  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">ಈ ಸಂಪರ್ಕದಿಂದ ನೀವು ಮತ್ತೊಮ್ಮೆ ಸಂದೇಶಗಳನ್ನು ಮತ್ತು ಕರೆಗಳನ್ನು ಸ್ವೀಕರಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ.</string>
   <string name="RecipientPreferenceActivity_unblock_this_group_question">ಈ ಗುಂಪಿನ ನಿರ್ಬಂಧ ತೆಗೆಯುವುದೇ?</string>
   <string name="RecipientPreferenceActivity_unblock_this_group_description">ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಸದಸ್ಯರಿಗೆ ನಿಮ್ಮನ್ನು ಮತ್ತೆ ಗುಂಪಿಗೆ ಸೇರಿಸಲು ಸಾಧ್ಯವಿರುತ್ತದೆ.</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">ಗುಂಪನ್ನು ಬಿಡುವಾಗ ದೋಷವಾಯಿತು</string>
@@ -731,7 +731,7 @@
   <string name="SmsMessageRecord_secure_session_reset">ನೀವು ಸುರಕ್ಷಿತ ಅವಧಿಯನ್ನು ಮರುಹೊಂದಿಸಿ.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s ಸುರಕ್ಷಿತ ಅವಧಿಯನ್ನು ಮರುಹೊಂದಿಸಿದ್ದಾರೆ.</string>
   <string name="SmsMessageRecord_duplicate_message">ಡುಪ್ಲಿಕೇಟ್ ಸಂದೇಶ.</string>
-  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">ಈ ಸಂದೇಶವನ್ನು ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ ಏಕೆಂದರೆ ಇದನ್ನು Signal ನ ಹೊಸ ಆವೃತ್ತಿಯಿಂದ ಕಳುಹಿಸಲಾಗಿದೆ. ನೀವು ನವೀಕರಿಸಿದ ನಂತರ ಈ ಸಂದೇಶವನ್ನು ಮತ್ತೆ ಕಳುಹಿಸಲು ನಿಮ್ಮ ಸಂಪರ್ಕವನ್ನು ನೀವು ಕೇಳಬಹುದು.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">ಈ ಸಂದೇಶವನ್ನು ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ, ಏಕೆಂದರೆ ಇದನ್ನು Signal ನ ಹೊಸ ಆವೃತ್ತಿಯಿಂದ ಕಳುಹಿಸಲಾಗಿದೆ. ನೀವು ನವೀಕರಿಸಿದ ನಂತರ ಈ ಸಂದೇಶವನ್ನು ಮತ್ತೆ ಕಳುಹಿಸಲು ನಿಮ್ಮ ಸಂಪರ್ಕವನ್ನು ನೀವು ಕೇಳಬಹುದು.</string>
   <string name="SmsMessageRecord_error_handling_incoming_message">ಒಳಬರುವ ಸಂದೇಶವನ್ನು ನಿರ್ವಹಿಸುವಲ್ಲಿ ದೋಷ</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">ಸ್ಟಿಕ್ಕರ್‌ಗಳು</string>
@@ -789,7 +789,7 @@
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">ಹೊಸ ಆವೃತ್ತಿ Signal ಲಭ್ಯವಿದೆ, ನವೀಕರಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
   <!--UnknownSenderView-->
   <string name="UnknownSenderView_block_s">%sನಿರ್ಬಂಧಿಸುವುದೇ?</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">ನಿರ್ಬಂಧಿಸಿದ ಸಂಪರ್ಕಗಳಿಂದ ಇನ್ನು ಮುಂದೆ ನಿಮಗೆ ಸಂದೇಶಗಳ ಕಳುಹಿಸಲು ಅಥವಾ ಕರೆ ಮಾಡಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ. </string>
+  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">ನಿರ್ಬಂಧಿಸಿದ ಸಂಪರ್ಕಗಳಿಂದ ಇನ್ನು ಮುಂದೆ ನಿಮಗೆ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಅಥವಾ ಕರೆ ಮಾಡಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ. </string>
   <string name="UnknownSenderView_block">ನಿರ್ಬಂಧಿಸಿ</string>
   <string name="UnknownSenderView_share_profile_with_s">%sರವರೊಂದಿಗೆ ಪ್ರೊಫೈಲನ್ನು ಹಂಚಿಕೊಳ್ಳುವುದೇ?</string>
   <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಮಾಹಿತಿಯನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಅತ್ಯಂತ ಸುಲಭವಾದ ಮಾರ್ಗವೆಂದರೆ ಕಳುಹಿಸುವವರನ್ನು ನಿಮ್ಮ ಸಂಪರ್ಕಗಳಿಗೆ ಸೇರಿಸುವುದು. ನೀವು ಹಾಗೆ ಮಾಡಲು ಬಯಸದಿದ್ದರೆ, ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಮಾಹಿತಿಯನ್ನು ನೀವು ಈ ರೀತಿ ಹಂಚಿಕೊಳ್ಳಬಹುದು.</string>
@@ -821,7 +821,7 @@
   <string name="VerifyIdentityActivity_share_safety_number_via">ಇದರ ಮೂಲಕ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ಹಂಚಿಕೊಳ್ಳಿ…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">ನಮ್ಮ Signal ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ: </string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">ಹಂಚಿಕೊಳ್ಳಲು ತಾವು ಯಾವುದೇ ಅಪ್ಲಿಕೇಶನ್‌‌‌ಗಳನ್ನು ಹೊಂದಿಲ್ಲದಿರುವಂತೆ ಕಂಡುಬರುತ್ತಿದೆ.</string>
-  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">ಹೋಲಿಸುವುದಕ್ಕಾಗಿ ಯಾವುದೇ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ನಲ್ಲಿ ಕಂಡುಬಂದಿಲ್ಲ</string>
+  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">ಹೋಲಿಸುವುದಕ್ಕಾಗಿ ಯಾವುದೇ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ಕ್ಲಿಪ್‌ಬೋರ್ಡಿನಲ್ಲಿ ಕಂಡುಬಂದಿಲ್ಲ</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">ಒಂದು QR ಕೋಡ್‌‌ ಸ್ಕ್ಯಾನ್ ಮಾಡಲು  Signal ಗೆ ಕ್ಯಾಮೆರಾ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ, ಆದರೆ ಇದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ ಮತ್ತು \"ಕ್ಯಾಮೆರಾ\" ಸಕ್ರಿಯಗೊಳಿಸಿ. </string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">ಕ್ಯಾಮೆರಾ ಅನುಮತಿ ಇಲ್ಲದೆ QR ಕೋಡ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ</string>
   <!--ViewOnceMessageActivity-->
@@ -849,7 +849,7 @@
   <string name="MediaPreviewActivity_you">ನೀವು</string>
   <string name="MediaPreviewActivity_unssuported_media_type">ಬೆಂಬಲವಿಲ್ಲದ ಮೀಡಿಯಾ ವಿಧ</string>
   <string name="MediaPreviewActivity_draft">ಡ್ರಾಫ್ಟ್</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">ಬಾಹ್ಯ ಸ್ಟೋರೇಜ್ ಗೆ ಉಳಿಸುವುದಕ್ಕೆ Signal ಗೆ ಸ್ಟೊರೇಜ್ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ , ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್‌ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ , ಮತ್ತು  \"ಸ್ಟೊರೇಜ್\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">ಬಾಹ್ಯ ಸ್ಟೋರೇಜ್ ಗೆ ಉಳಿಸುವುದಕ್ಕೆ Signal ಗೆ ಸ್ಟೊರೇಜ್ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ , ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್‌ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ, ಮತ್ತು  \"ಸ್ಟೊರೇಜ್\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">ಅನುಮತಿಗಳಿಲ್ಲದೆ ಬಾಹ್ಯ ಸ್ಟೊರೇಜ್‌ಗೆ ಉಳಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">ಸಂದೇಶವನ್ನು ಅಳಿಸುವುದೇ?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">ಇದು ಶಾಶ್ವತವಾಗಿ ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸುವುದು.</string>
@@ -1640,7 +1640,7 @@
   <string name="BackupDialog_verify">ದೃಢೀಕರಿಸಿ</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">ನೀವು ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಪಾಸ್‌ಫ್ರೇಸ್ ಅನ್ನು ಯಶಸ್ವಿಯಾಗಿ ನಮೂದಿಸಿದ್ದೀರಿ</string>
   <string name="BackupDialog_passphrase_was_not_correct">ಪಾಸ್‌ಫ್ರೇಸ್ ಸರಿಯಾಗಿರಲಿಲ್ಲ</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups"> ಬ್ಯಾಕಪ್ ಗಳನ್ನು ರಚಿಸಲು Signal ಗೆ ಬಾಹ್ಯ ಸ್ಟೋರೇಜ್ ಅನುಮತಿ ಅಗತ್ಯವಿರುತ್ತದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್ಸ್ ಗೆ ಮುಂದುವರಿಯಿರಿ \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ ಮತ್ತು \"ಸ್ಟೋರೇಜ್\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups"> ಬ್ಯಾಕಪ್ ಗಳನ್ನು ರಚಿಸಲು Signal ಗೆ ಬಾಹ್ಯ ಸ್ಟೋರೇಜ್ ಅನುಮತಿ ಅಗತ್ಯವಿರುತ್ತದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್ಸ್ ಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ ಮತ್ತು \"ಸ್ಟೋರೇಜ್\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
   <string name="ChatsPreferenceFragment_last_backup_s">ಕೊನೆಯ ಬ್ಯಾಕಪ್: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">ಪ್ರಗತಿಯಲ್ಲಿದೆ</string>
   <string name="LocalBackupJob_creating_backup">ಬ್ಯಾಕಪ್ ರಚಿಸಲಾಗುತ್ತಿದೆ…</string>
