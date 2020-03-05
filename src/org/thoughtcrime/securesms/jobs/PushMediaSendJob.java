@@ -233,7 +233,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
         database.markAsSentFailed(messageId);
       }
     } catch (LokiAPI.Error e) {
-      android.util.Log.d("Loki", "Couldn't send message due to error: " + e.getDescription());
+      Log.d("Loki", "Couldn't send message due to error: " + e.getDescription());
       if (messageId < 0) { return; }
       LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
       lokiMessageDatabase.setErrorMessage(messageId, e.getDescription());
