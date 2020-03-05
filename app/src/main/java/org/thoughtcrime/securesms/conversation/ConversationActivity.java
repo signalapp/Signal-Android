@@ -71,7 +71,6 @@ import androidx.core.content.pm.ShortcutInfoCompat;
 import androidx.core.content.pm.ShortcutManagerCompat;
 import androidx.core.graphics.drawable.IconCompat;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.annimon.stream.Stream;
 
@@ -131,7 +130,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts;
-import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
@@ -148,10 +146,10 @@ import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
+import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.insights.InsightsLauncher;
 import org.thoughtcrime.securesms.invites.InviteReminderModel;
 import org.thoughtcrime.securesms.invites.InviteReminderRepository;
-import org.thoughtcrime.securesms.jobs.LeaveGroupJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
@@ -175,7 +173,6 @@ import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.LocationSlide;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
-import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.mms.QuoteId;
@@ -215,7 +212,6 @@ import org.thoughtcrime.securesms.util.DynamicDarkToolbarTheme;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FeatureFlags;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MessageUtil;
@@ -1109,24 +1105,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     builder.setIconAttribute(R.attr.dialog_info_icon);
     builder.setCancelable(true);
     builder.setMessage(getString(R.string.ConversationActivity_are_you_sure_you_want_to_leave_this_group));
-    builder.setPositiveButton(R.string.yes, (dialog, which) -> {
-      Recipient                           groupRecipient = getRecipient();
-      long                                threadId       = DatabaseFactory.getThreadDatabase(this).getThreadIdFor(groupRecipient);
-      Optional<OutgoingGroupMediaMessage> leaveMessage   = GroupUtil.createGroupLeaveMessage(this, groupRecipient);
-
-      if (threadId != -1 && leaveMessage.isPresent()) {
-        ApplicationDependencies.getJobManager().add(LeaveGroupJob.create(groupRecipient));
-
-        GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(this);
-        String        groupId       = groupRecipient.requireGroupId();
-        groupDatabase.setActive(groupId, false);
-        groupDatabase.remove(groupId, Recipient.self().getId());
-
-        initializeEnabledCheck();
-      } else {
-        Toast.makeText(this, R.string.ConversationActivity_error_leaving_group, Toast.LENGTH_LONG).show();
-      }
-    });
+    builder.setPositiveButton(R.string.yes, (dialog, which) ->
+      SimpleTask.run(
+        getLifecycle(),
+        () -> GroupManager.leaveGroup(ConversationActivity.this, getRecipient()),
+        (success) -> {
+          if (success) {
+            initializeEnabledCheck();
+          } else {
+            Toast.makeText(ConversationActivity.this, R.string.ConversationActivity_error_leaving_group, Toast.LENGTH_LONG).show();
+          }
+        }));
 
     builder.setNegativeButton(R.string.no, null);
     builder.show();
