@@ -794,16 +794,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
       @Override
       public void onInSecureCallClicked() {
-        try {
-          Intent dialIntent = new Intent(Intent.ACTION_DIAL,
-                                         Uri.parse("tel:" + recipient.get().requireE164()));
-          startActivity(dialIntent);
-        } catch (ActivityNotFoundException anfe) {
-          Log.w(TAG, anfe);
-          Dialogs.showAlertDialog(getContext(),
-                                  getString(R.string.ConversationActivity_calls_not_supported),
-                                  getString(R.string.ConversationActivity_this_device_does_not_appear_to_support_dial_actions));
-        }
+        CommunicationActions.startInsecureCall(requireActivity(), recipient.get());
       }
     }
 

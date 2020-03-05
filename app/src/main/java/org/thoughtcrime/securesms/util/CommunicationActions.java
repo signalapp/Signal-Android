@@ -7,11 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.core.app.TaskStackBuilder;
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -19,17 +14,24 @@ import android.os.ResultReceiver;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.conversation.ConversationActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.TaskStackBuilder;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
+import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
-import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 
 public class CommunicationActions {
+
+  private static final String TAG = Log.tag(CommunicationActions.class);
 
   public static void startVoiceCall(@NonNull Activity activity, @NonNull Recipient recipient) {
     if (TelephonyUtil.isAnyPstnLineBusy(activity)) {
@@ -118,6 +120,18 @@ public class CommunicationActions {
     }.execute();
   }
 
+  public static void startInsecureCall(@NonNull Activity activity, @NonNull Recipient recipient) {
+    new AlertDialog.Builder(activity)
+                   .setTitle(R.string.CommunicationActions_insecure_call)
+                   .setMessage(R.string.CommunicationActions_carrier_charges_may_apply)
+                   .setPositiveButton(R.string.CommunicationActions_call, (d, w) -> {
+                     d.dismiss();
+                     startInsecureCallInternal(activity, recipient);
+                   })
+                   .setNegativeButton(R.string.CommunicationActions_cancel, (d, w) -> d.dismiss())
+                   .show();
+  }
+
   public static void composeSmsThroughDefaultApp(@NonNull Context context, @NonNull Recipient recipient, @Nullable String text) {
     Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + recipient.requireSmsAddress()));
     if (text != null) {
@@ -135,6 +149,17 @@ public class CommunicationActions {
     }
   }
 
+  private static void startInsecureCallInternal(@NonNull Activity activity, @NonNull Recipient recipient) {
+    try {
+      Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + recipient.requireSmsAddress()));
+      activity.startActivity(dialIntent);
+    } catch (ActivityNotFoundException anfe) {
+      Log.w(TAG, anfe);
+      Dialogs.showAlertDialog(activity,
+                              activity.getString(R.string.ConversationActivity_calls_not_supported),
+                              activity.getString(R.string.ConversationActivity_this_device_does_not_appear_to_support_dial_actions));
+    }
+  }
 
   private static void startCallInternal(@NonNull Activity activity, @NonNull Recipient recipient, boolean isVideo) {
     Permissions.with(activity)

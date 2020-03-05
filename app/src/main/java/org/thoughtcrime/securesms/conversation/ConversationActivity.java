@@ -1165,16 +1165,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (isSecure) {
       CommunicationActions.startVoiceCall(this, recipient);
     } else {
-      try {
-        Intent dialIntent = new Intent(Intent.ACTION_DIAL,
-                                       Uri.parse("tel:" + recipient.requireSmsAddress()));
-        startActivity(dialIntent);
-      } catch (ActivityNotFoundException anfe) {
-        Log.w(TAG, anfe);
-        Dialogs.showAlertDialog(this,
-                                getString(R.string.ConversationActivity_calls_not_supported),
-                                getString(R.string.ConversationActivity_this_device_does_not_appear_to_support_dial_actions));
-      }
+      CommunicationActions.startInsecureCall(this, recipient);
     }
   }
 
