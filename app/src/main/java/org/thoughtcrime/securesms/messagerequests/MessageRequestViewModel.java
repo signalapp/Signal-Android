@@ -25,13 +25,13 @@ import java.util.List;
 
 public class MessageRequestViewModel extends ViewModel {
 
-  private final SingleLiveEvent<Status>       status        = new SingleLiveEvent<>();
-  private final MutableLiveData<Recipient>    recipient     = new MutableLiveData<>();
-  private final MutableLiveData<List<String>> groups        = new MutableLiveData<>(Collections.emptyList());
-  private final MutableLiveData<Integer>      memberCount   = new MutableLiveData<>(0);
-  private final MutableLiveData<DisplayState> displayState  = new MutableLiveData<>();
-  private final LiveData<RecipientInfo>       recipientInfo = Transformations.map(new LiveDataTriple<>(recipient, memberCount, groups),
-                                                                                  triple -> new RecipientInfo(triple.first(), triple.second(), triple.third()));
+  private final SingleLiveEvent<Status>           status        = new SingleLiveEvent<>();
+  private final MutableLiveData<Recipient>        recipient     = new MutableLiveData<>();
+  private final MutableLiveData<List<String>>     groups        = new MutableLiveData<>(Collections.emptyList());
+  private final MutableLiveData<GroupMemberCount> memberCount   = new MutableLiveData<>(GroupMemberCount.ZERO);
+  private final MutableLiveData<DisplayState>     displayState  = new MutableLiveData<>();
+  private final LiveData<RecipientInfo>           recipientInfo = Transformations.map(new LiveDataTriple<>(recipient, memberCount, groups),
+                                                                                      triple -> new RecipientInfo(triple.first(), triple.second(), triple.third()));
 
   private final MessageRequestRepository repository;
 
@@ -133,9 +133,7 @@ public class MessageRequestViewModel extends ViewModel {
   }
 
   private void loadMemberCount() {
-    repository.getMemberCount(liveRecipient.getId(), memberCount -> {
-      this.memberCount.postValue(memberCount == null ? 0 : memberCount);
-    });
+    repository.getMemberCount(liveRecipient.getId(), memberCount::postValue);
   }
 
   @SuppressWarnings("ConstantConditions")
@@ -161,13 +159,13 @@ public class MessageRequestViewModel extends ViewModel {
   }
 
   public static class RecipientInfo {
-    private final @Nullable Recipient    recipient;
-    private final           int          groupMemberCount;
-    private final @NonNull  List<String> sharedGroups;
+    @Nullable private final Recipient        recipient;
+    @NonNull  private final GroupMemberCount groupMemberCount;
+    @NonNull  private final List<String>     sharedGroups;
 
-    private RecipientInfo(@Nullable Recipient recipient, @Nullable Integer groupMemberCount, @Nullable List<String> sharedGroups) {
+    private RecipientInfo(@Nullable Recipient recipient, @Nullable GroupMemberCount groupMemberCount, @Nullable List<String> sharedGroups) {
       this.recipient        = recipient;
-      this.groupMemberCount = groupMemberCount == null ? 0 : groupMemberCount;
+      this.groupMemberCount = groupMemberCount == null ? GroupMemberCount.ZERO : groupMemberCount;
       this.sharedGroups     = sharedGroups == null ? Collections.emptyList() : sharedGroups;
     }
 
@@ -177,7 +175,11 @@ public class MessageRequestViewModel extends ViewModel {
     }
 
     public int getGroupMemberCount() {
-      return groupMemberCount;
+      return groupMemberCount.getFullMemberCount();
+    }
+
+    public int getGroupPendingMemberCount() {
+      return groupMemberCount.getPendingMemberCount();
     }
 
     @NonNull
