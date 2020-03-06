@@ -1450,7 +1450,7 @@
     <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string>
     <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string>
     <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string>
-    <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/en-us/articles/360007318591-Debug-Logs-and-Crash-Reports</string>
+    <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string>
     <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string>
     <string name="HelpFragment__support_info">Support Info</string>
     <string name="HelpFragment__subject">Subject:</string>
@@ -1464,6 +1464,7 @@
     <string name="HelpFragment__could_not_upload_logs">Could not upload logs</string>
     <string name="HelpFragment__signal_support">Signal Support</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Please be as descriptive as possible to help us understand the issue.</string>
+    <string name="HelpFragment__no_email_app_found">No email app found.</string>
 
     <!-- arrays.xml -->
     <string name="arrays__import_export">Import</string>

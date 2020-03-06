@@ -20,7 +20,4 @@
           android:id="@+id/menu_insights"
           android:visible="false" />
 
-    <item android:title="@string/text_secure_normal__help"
-          android:id="@+id/menu_help"/>
-
 </menu>

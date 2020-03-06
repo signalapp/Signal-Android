@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.help;
 
 import android.content.Intent;
-import android.content.pm.LabeledIntent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -157,7 +156,11 @@ public class HelpFragment extends Fragment {
     intent.putExtra(Intent.EXTRA_SUBJECT, getEmailSubject());
     intent.putExtra(Intent.EXTRA_TEXT, body.toString());
 
-    startActivity(intent);
+    if (IntentUtils.isResolvable(requireContext(), intent)) {
+      startActivity(intent);
+    } else {
+      Toast.makeText(requireContext(), R.string.HelpFragment__no_email_app_found, Toast.LENGTH_LONG).show();
+    }
   }
 
   private String getEmailSubject() {

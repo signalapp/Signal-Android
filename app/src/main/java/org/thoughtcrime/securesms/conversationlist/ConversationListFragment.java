@@ -298,7 +298,6 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
       case R.id.menu_mark_all_read:     handleMarkAllRead();     return true;
       case R.id.menu_invite:            handleInvite();          return true;
       case R.id.menu_insights:          handleInsights();        return true;
-      case R.id.menu_help:              handleHelp();            return true;
     }
 
     return false;
@@ -595,14 +594,6 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
 
   private void handleInsights() {
     getNavigator().goToInsights();
-  }
-
-  private void handleHelp() {
-    try {
-      startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://support.signal.org")));
-    } catch (ActivityNotFoundException e) {
-      Toast.makeText(requireActivity(), R.string.ConversationListActivity_there_is_no_browser_installed_on_your_device, Toast.LENGTH_LONG).show();
-    }
   }
 
   @SuppressLint("StaticFieldLeak")
