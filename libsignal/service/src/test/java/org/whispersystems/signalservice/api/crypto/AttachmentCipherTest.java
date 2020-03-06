@@ -129,7 +129,7 @@ public class AttachmentCipherTest extends TestCase {
       EncryptResult encryptResult    = encryptData(plaintextInput, key);
       byte[]        badMacCiphertext = Arrays.copyOf(encryptResult.ciphertext, encryptResult.ciphertext.length);
 
-      badMacCiphertext[badMacCiphertext.length - 1] = 0;
+      badMacCiphertext[badMacCiphertext.length - 1] += 1;
 
       cipherFile = writeToFile(badMacCiphertext);
 
@@ -191,7 +191,7 @@ public class AttachmentCipherTest extends TestCase {
       EncryptResult encryptResult    = encryptData(plaintextInput, expandPackKey(packKey));
       byte[]        badMacCiphertext = Arrays.copyOf(encryptResult.ciphertext, encryptResult.ciphertext.length);
 
-      badMacCiphertext[badMacCiphertext.length - 1] = 0;
+      badMacCiphertext[badMacCiphertext.length - 1] += 1;
 
       AttachmentCipherInputStream.createForStickerData(badMacCiphertext, packKey);
     } catch (InvalidMessageException e) {
