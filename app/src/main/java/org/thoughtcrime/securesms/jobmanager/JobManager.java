@@ -101,12 +101,20 @@ public class JobManager implements ConstraintObserver.Notifier {
   }
 
   /**
+   * Convenience method for {@link #addListener(JobTracker.JobFilter, JobTracker.JobListener)} that
+   * takes in an ID to filter on.
+   */
+  public void addListener(@NonNull String id, @NonNull JobTracker.JobListener listener) {
+    jobTracker.addListener(new JobIdFilter(id), listener);
+  }
+
+  /**
    * Add a listener to subscribe to job state updates. Listeners will be invoked on an arbitrary
    * background thread. You must eventually call {@link #removeListener(JobTracker.JobListener)} to avoid
    * memory leaks.
    */
-  public void addListener(@NonNull String id, @NonNull JobTracker.JobListener listener) {
-    jobTracker.addListener(id, listener);
+  public void addListener(@NonNull JobTracker.JobFilter filter, @NonNull JobTracker.JobListener listener) {
+    jobTracker.addListener(filter, listener);
   }
 
   /**
@@ -127,7 +135,7 @@ public class JobManager implements ConstraintObserver.Notifier {
    * Enqueues a single job that depends on a collection of job ID's.
    */
   public void add(@NonNull Job job, @NonNull Collection<String> dependsOn) {
-    jobTracker.onStateChange(job.getId(), JobTracker.JobState.PENDING);
+    jobTracker.onStateChange(job, JobTracker.JobState.PENDING);
 
     executor.execute(() -> {
       jobController.submitJobWithExistingDependencies(job, dependsOn);
@@ -177,7 +185,7 @@ public class JobManager implements ConstraintObserver.Notifier {
 
     addListener(job.getId(), new JobTracker.JobListener() {
       @Override
-      public void onStateChanged(@NonNull JobTracker.JobState jobState) {
+      public void onStateChanged(@NonNull Job job, @NonNull JobTracker.JobState jobState) {
         if (jobState.isComplete()) {
           removeListener(this);
           resultState.set(jobState);
@@ -248,7 +256,7 @@ public class JobManager implements ConstraintObserver.Notifier {
   private void enqueueChain(@NonNull Chain chain) {
     for (List<Job> jobList : chain.getJobListChain()) {
       for (Job job : jobList) {
-        jobTracker.onStateChange(job.getId(), JobTracker.JobState.PENDING);
+        jobTracker.onStateChange(job, JobTracker.JobState.PENDING);
       }
     }
 
@@ -268,6 +276,19 @@ public class JobManager implements ConstraintObserver.Notifier {
 
   public interface EmptyQueueListener {
     void onQueueEmpty();
+  }
+
+  public static class JobIdFilter implements JobTracker.JobFilter {
+    private final String id;
+
+    public JobIdFilter(@NonNull String id) {
+      this.id = id;
+    }
+
+    @Override
+    public boolean matches(@NonNull Job job) {
+      return id.equals(job.getId());
+    }
   }
 
   /**

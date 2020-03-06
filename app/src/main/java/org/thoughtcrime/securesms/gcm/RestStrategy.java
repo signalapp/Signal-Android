@@ -5,6 +5,7 @@ import androidx.annotation.WorkerThread;
 
 import org.thoughtcrime.securesms.IncomingMessageProcessor;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.JobTracker;
 import org.thoughtcrime.securesms.jobs.MarkerJob;
@@ -75,7 +76,7 @@ public class RestStrategy implements MessageRetriever.Strategy {
 
     jobManager.addListener(markerJob.getId(), new JobTracker.JobListener() {
       @Override
-      public void onStateChanged(@NonNull JobTracker.JobState jobState) {
+      public void onStateChanged(@NonNull Job job, @NonNull JobTracker.JobState jobState) {
         if (jobState.isComplete()) {
           jobManager.removeListener(this);
           latch.countDown();

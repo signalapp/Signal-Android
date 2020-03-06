@@ -3,13 +3,15 @@ package org.thoughtcrime.securesms.jobmanager;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.annimon.stream.Stream;
+
 import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.Executor;
 
 /**
@@ -17,11 +19,13 @@ import java.util.concurrent.Executor;
  */
 public class JobTracker {
 
-  private final Map<String, TrackingState> trackingStates;
-  private final Executor                   listenerExecutor;
+  private final Map<String, JobInfo> jobInfos;
+  private final List<ListenerInfo>   jobListeners;
+  private final Executor             listenerExecutor;
 
   JobTracker() {
-    this.trackingStates   = new LRUCache<>(1000);
+    this.jobInfos         = new LRUCache<>(1000);
+    this.jobListeners     = new ArrayList<>();
     this.listenerExecutor = SignalExecutors.BOUNDED;
   }
 
@@ -30,54 +34,63 @@ public class JobTracker {
    * background thread. You must eventually call {@link #removeListener(JobListener)} to avoid
    * memory leaks.
    */
-  synchronized void addListener(@NonNull String id, @NonNull JobListener jobListener) {
-    TrackingState state           = getOrCreateTrackingState(id);
-    JobState      currentJobState = state.getJobState();
+  synchronized void addListener(@NonNull JobFilter filter, @NonNull JobListener listener) {
+    jobListeners.add(new ListenerInfo(filter, listener));
 
-    state.addListener(jobListener);
-
-    if (currentJobState != null) {
-      listenerExecutor.execute(() -> jobListener.onStateChanged(currentJobState));
-    }
+    Stream.of(jobInfos.values())
+          .filter(info -> info.getJobState() != null)
+          .filter(info -> filter.matches(info.getJob()))
+          .forEach(state-> {
+            //noinspection ConstantConditions We already filter for nulls above
+            listenerExecutor.execute(() -> listener.onStateChanged(state.getJob(), state.getJobState()));
+          });
   }
 
   /**
    * Unsubscribe the provided listener from all job updates.
    */
-  synchronized void removeListener(@NonNull JobListener jobListener) {
-    Collection<TrackingState> allTrackingState = trackingStates.values();
+  synchronized void removeListener(@NonNull JobListener listener) {
+    Iterator<ListenerInfo> iter = jobListeners.iterator();
 
-    for (TrackingState state : allTrackingState) {
-      state.removeListener(jobListener);
+    while (iter.hasNext()) {
+      if (listener.equals(iter.next().getListener())) {
+        iter.remove();
+      }
     }
   }
 
   /**
    * Update the state of a job with the associated ID.
    */
-  synchronized void onStateChange(@NonNull String id, @NonNull JobState jobState) {
-    TrackingState trackingState = getOrCreateTrackingState(id);
-    trackingState.setJobState(jobState);
+  synchronized void onStateChange(@NonNull Job job, @NonNull JobState state) {
+    getOrCreateJobInfo(job).setJobState(state);
 
-    for (JobListener listener : trackingState.getListeners()) {
-      listenerExecutor.execute(() -> listener.onStateChanged(jobState));
-    }
+    Stream.of(jobListeners)
+          .filter(info -> info.getFilter().matches(job))
+          .map(ListenerInfo::getListener)
+          .forEach(listener -> {
+            listenerExecutor.execute(() -> listener.onStateChanged(job, state));
+          });
   }
 
-  private @NonNull TrackingState getOrCreateTrackingState(@NonNull String id) {
-    TrackingState state = trackingStates.get(id);
+  private @NonNull JobInfo getOrCreateJobInfo(@NonNull Job job) {
+    JobInfo jobInfo = jobInfos.get(job.getId());
 
-    if (state == null) {
-      state = new TrackingState();
+    if (jobInfo == null) {
+      jobInfo = new JobInfo(job);
     }
 
-    trackingStates.put(id, state);
+    jobInfos.put(job.getId(), jobInfo);
 
-    return state;
+    return jobInfo;
+  }
+
+  public interface JobFilter {
+    boolean matches(@NonNull Job job);
   }
 
   public interface JobListener {
-    void onStateChanged(@NonNull JobState jobState);
+    void onStateChanged(@NonNull Job job, @NonNull JobState jobState);
   }
 
   public enum JobState {
@@ -94,21 +107,34 @@ public class JobTracker {
     }
   }
 
-  private static class TrackingState {
-    private JobState jobState;
+  private static class ListenerInfo {
+    private final JobFilter   filter;
+    private final JobListener listener;
 
-    private final CopyOnWriteArraySet<JobListener> listeners = new CopyOnWriteArraySet<>();
-
-    void addListener(@NonNull JobListener jobListener) {
-      listeners.add(jobListener);
+    private ListenerInfo(JobFilter filter, JobListener listener) {
+      this.filter = filter;
+      this.listener = listener;
     }
 
-    void removeListener(@NonNull JobListener jobListener) {
-      listeners.remove(jobListener);
+     @NonNull JobFilter getFilter() {
+      return filter;
     }
 
-    @NonNull Collection<JobListener> getListeners() {
-      return listeners;
+    @NonNull JobListener getListener() {
+      return listener;
+    }
+  }
+
+  private static class JobInfo {
+    private final Job      job;
+    private       JobState jobState;
+
+    private JobInfo(Job job) {
+      this.job = job;
+    }
+
+    @NonNull Job getJob() {
+      return job;
     }
 
     void setJobState(@NonNull JobState jobState) {
