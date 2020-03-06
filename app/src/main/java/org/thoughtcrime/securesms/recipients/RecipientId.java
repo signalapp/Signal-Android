@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.DelimiterUtil;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +45,11 @@ public class RecipientId implements Parcelable, Comparable<RecipientId> {
     } catch (NumberFormatException e) {
       throw new InvalidStringRecipientIdError();
     }
+  }
+
+  @AnyThread
+  public static @NonNull RecipientId from(@NonNull SignalServiceAddress address) {
+    return from(address.getUuid().orNull(), address.getNumber().orNull());
   }
 
   /**

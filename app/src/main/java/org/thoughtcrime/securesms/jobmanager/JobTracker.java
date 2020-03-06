@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.jobmanager;
 
+import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -90,6 +91,7 @@ public class JobTracker {
   }
 
   public interface JobListener {
+    @AnyThread
     void onStateChanged(@NonNull Job job, @NonNull JobState jobState);
   }
 

@@ -161,7 +161,7 @@ public final class PushDecryptMessageJob extends BaseJob {
       List<Job> jobs = new ArrayList<>(2);
 
       if (content != null) {
-        jobs.add(new PushProcessMessageJob(content.serialize(), messageId, smsMessageId, envelope.getTimestamp()));
+        jobs.add(new PushProcessMessageJob(content, messageId, smsMessageId, envelope.getTimestamp()));
       }
 
       if (envelope.isPreKeySignalMessage()) {

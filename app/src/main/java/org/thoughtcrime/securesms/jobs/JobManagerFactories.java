@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkOrCellServiceConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
+import org.thoughtcrime.securesms.jobmanager.migrations.PushProcessMessageQueueJobMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdFollowUpJobMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdFollowUpJobMigration2;
 import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdJobMigration;
@@ -160,6 +161,7 @@ public final class JobManagerFactories {
     return Arrays.asList(new RecipientIdJobMigration(application),
                          new RecipientIdFollowUpJobMigration(),
                          new RecipientIdFollowUpJobMigration2(),
-                         new SendReadReceiptsJobMigration(DatabaseFactory.getMmsSmsDatabase(application)));
+                         new SendReadReceiptsJobMigration(DatabaseFactory.getMmsSmsDatabase(application)),
+                         new PushProcessMessageQueueJobMigration(application));
   }
 }
