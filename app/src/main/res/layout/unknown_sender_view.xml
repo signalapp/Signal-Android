@@ -6,7 +6,7 @@
               android:paddingStart="16dp"
               android:paddingEnd="16dp"
               android:layout_marginTop="20dp"
-              android:background="@color/white">
+              android:background="?conversation_background">
 
     <TextView android:id="@+id/unknown_sender_label"
               android:layout_width="match_parent"
