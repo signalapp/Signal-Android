@@ -309,6 +309,8 @@
   <string name="CustomDefaultPreference_using_custom">Personnalisé utilisé: %s</string>
   <string name="CustomDefaultPreference_using_default">Valeur par défaut utilisée : %s</string>
   <string name="CustomDefaultPreference_none">Aucun</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Supprimer la photo</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">À l’instant</string>
   <string name="DateUtils_minutes_ago">%d min</string>
@@ -1201,6 +1203,10 @@
   <string name="MessageRequestsMegaphone__new_message_requests">Nouveau : Demande de contact</string>
   <string name="MessageRequestsMegaphone__add_name">Ajouter un nom</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Vous pouvez maintenant choisir d\'accepter ou non une nouvelle conversation. Vous verrez les options \"Accepter,\" \"Supprimer,\" or \"Bloquer.\"</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Aide </string>
+  <string name="HelpFragment__next">Suivant</string>
+  <string name="HelpFragment__signal_support">Assistance Signal</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importer</string>
   <string name="arrays__use_default">Valeur par défaut</string>
@@ -1279,6 +1285,7 @@
   <string name="preferences__fast">Rapide</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Lent</string>
+  <string name="preferences__help">Aide </string>
   <string name="preferences__advanced">Avancés</string>
   <string name="preferences__privacy">Confidentialité</string>
   <string name="preferences__mms_user_agent">Agent utilisateur MMS</string>

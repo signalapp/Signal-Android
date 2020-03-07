@@ -114,6 +114,8 @@
   <string name="CommunicationActions_start_voice_call">Szeretnél hanghívást indítani?</string>
   <string name="CommunicationActions_cancel">Mégse</string>
   <string name="CommunicationActions_call">Hívás</string>
+  <string name="CommunicationActions_insecure_call">Titkosítatlan hívás</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Szolgáltatói díjak felmerülhetnek. A hívott szám nincs regisztrálva a Signal-on, ezért az összeköttetés a mobilszolgáltatódón, nem pedig interneten keresztül lesz megvalósítva.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Biztonsági számod a következő kontaktoddal megváltozott: %1$s. Ez jelentheti azt, hogy valaki megpróbálja lehallgatni a kommunikációdat, de az is lehetséges, hogy %2$s egyszerűen csak újratelepítette a Signal-t.
     </string>
@@ -310,6 +312,11 @@
   <string name="CustomDefaultPreference_using_custom">Egyéni használata: %s</string>
   <string name="CustomDefaultPreference_using_default">Alapértelmezett használata: %s</string>
   <string name="CustomDefaultPreference_none">Egyik sem</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Fotó választása</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Fotó készítése</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Válassz galériából</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Fotó eltávolítása</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Most</string>
   <string name="DateUtils_minutes_ago">%dp</string>
@@ -1213,6 +1220,27 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MessageRequestsMegaphone__new_message_requests">Új: Felkérés csevegésre</string>
   <string name="MessageRequestsMegaphone__add_name">Név létrehozása</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Mostantól minden új beszélgetés előtt eldöntheted, hogy jóváhagyod-e azt. Ehhez a következő új opciók fognak megjelenni: \"Elfogadás\", \"Törlés\" és \"Tiltás\"</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Súgó</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">Olvastad már a GYIK-et?</string>
+  <string name="HelpFragment__next">Tovább</string>
+  <string name="HelpFragment__contact_us">Kapcsolat</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Mondd el, mi a helzyet</string>
+  <string name="HelpFragment__include_debug_log">Mellékelj hibakeresési naplót.</string>
+  <string name="HelpFragment__whats_this">Mi ez?</string>
+  <string name="HelpFragment__how_do_you_feel">Hogy érzed magad? (opcionális)</string>
+  <string name="HelpFragment__support_info">Támogatás információ</string>
+  <string name="HelpFragment__subject">Tárgy:</string>
+  <string name="HelpFragment__signal_android_support_request">Signal Android támogatási kérés</string>
+  <string name="HelpFragment__device_info">Eszköz információ:</string>
+  <string name="HelpFragment__android_version">Android verzió:</string>
+  <string name="HelpFragment__signal_version">Signal verzió:</string>
+  <string name="HelpFragment__locale">Régió:</string>
+  <string name="HelpFragment__debug_log">Hibakeresési napló:</string>
+  <string name="HelpFragment__na">ismeretlen</string>
+  <string name="HelpFragment__could_not_upload_logs">Nem sikerült feltölteni a naplót</string>
+  <string name="HelpFragment__signal_support">Signal támogatás</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">Hogy megérthessük a problémát, fogalmazz olyan pontosan, amennyire csak lehetséges!</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importálás</string>
   <string name="arrays__use_default">Alapértelmezett használata</string>
@@ -1291,6 +1319,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences__fast">Gyors</string>
   <string name="preferences__normal">Normál</string>
   <string name="preferences__slow">Lassú</string>
+  <string name="preferences__help">Súgó</string>
   <string name="preferences__advanced">Haladó</string>
   <string name="preferences__privacy">Adatvédelem</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>

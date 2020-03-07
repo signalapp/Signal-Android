@@ -293,6 +293,8 @@
   <string name="CustomDefaultPreference_using_custom">Χρησιμοποιείται το προσαρμοσμένο: %s</string>
   <string name="CustomDefaultPreference_using_default">Χρησιμοποιείται το προκαθορισμένο: %s</string>
   <string name="CustomDefaultPreference_none">Κανένα</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Αφαίρεση φωτογραφίας</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Τώρα</string>
   <string name="DateUtils_minutes_ago">%dλ</string>
@@ -1169,6 +1171,9 @@
   <string name="AndroidManifest_archived_conversations">Αρχειοθετημένες συνομιλίες</string>
   <string name="AndroidManifest_remove_photo">Αφαίρεση φωτογραφίας</string>
   <!--Message Requests Megaphone-->
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Βοήθεια</string>
+  <string name="HelpFragment__next">Επόμενο</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Εισαγωγή</string>
   <string name="arrays__use_default">Χρήση προκαθορισμένου</string>
@@ -1247,6 +1252,7 @@
   <string name="preferences__fast">Γρήγορο</string>
   <string name="preferences__normal">Κανονικό</string>
   <string name="preferences__slow">Αργό</string>
+  <string name="preferences__help">Βοήθεια</string>
   <string name="preferences__advanced">Για προχωρημένους</string>
   <string name="preferences__privacy">Ιδιωτικότητα</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>

@@ -290,6 +290,8 @@
   <string name="CustomDefaultPreference_using_custom">প্রথা ব্যবহৃত : %s</string>
   <string name="CustomDefaultPreference_using_default">ডিফল্ট ব্যবহৃত: %s</string>
   <string name="CustomDefaultPreference_none">কেউ না</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">ফটো সরান</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">এখন</string>
   <string name="DateUtils_minutes_ago">%d মি.</string>
@@ -1153,6 +1155,10 @@
   <string name="AndroidManifest_archived_conversations">আর্কাইভ করা কথোপকথন সমুহ </string>
   <string name="AndroidManifest_remove_photo">ফটো সরান</string>
   <!--Message Requests Megaphone-->
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">সাহায্য</string>
+  <string name="HelpFragment__next">পরবর্তী</string>
+  <string name="HelpFragment__signal_support">Signal সহায়তা</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">আমদানী</string>
   <string name="arrays__use_default">ডিফল্ট ব্যবহার করুন</string>
@@ -1231,6 +1237,7 @@
   <string name="preferences__fast">দ্রুত</string>
   <string name="preferences__normal">সাধারন</string>
   <string name="preferences__slow">ধীর</string>
+  <string name="preferences__help">সাহায্য</string>
   <string name="preferences__advanced">উন্নততর</string>
   <string name="preferences__privacy">গোপনীয়তা</string>
   <string name="preferences__mms_user_agent">এমএমএস ব্যবহারকারী এজেন্ট</string>

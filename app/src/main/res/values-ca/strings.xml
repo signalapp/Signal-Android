@@ -309,6 +309,8 @@
   <string name="CustomDefaultPreference_using_custom">Ús de la personalització: %s</string>
   <string name="CustomDefaultPreference_using_default">Per defecte: %s</string>
   <string name="CustomDefaultPreference_none">Cap</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Suprimeix la foto</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Ara</string>
   <string name="DateUtils_minutes_ago">%d min</string>
@@ -1204,6 +1206,9 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="MessageRequestsMegaphone__new_message_requests">Nou: peticions de missatges</string>
   <string name="MessageRequestsMegaphone__add_name">Afegiu un nom</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Ara podeu triar si acceptar una conversa nova. Veureu les opcions d\'acceptar, suprimir o blocar.</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Ajuda</string>
+  <string name="HelpFragment__next">Següent</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importa</string>
   <string name="arrays__use_default">Per defecte</string>
@@ -1282,6 +1287,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__fast">Ràpid</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Lent</string>
+  <string name="preferences__help">Ajuda</string>
   <string name="preferences__advanced">Avançat</string>
   <string name="preferences__privacy">Privadesa</string>
   <string name="preferences__mms_user_agent">Agent usuari dels MMS</string>

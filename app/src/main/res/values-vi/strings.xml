@@ -295,6 +295,8 @@
   <string name="CustomDefaultPreference_using_custom">Dùng tùy chỉnh: %s</string>
   <string name="CustomDefaultPreference_using_default">Dùng mặc định: %s</string>
   <string name="CustomDefaultPreference_none">Không</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Gỡ ảnh</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Vừa xong</string>
   <string name="DateUtils_minutes_ago">%dph</string>
@@ -1172,6 +1174,10 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="MessageRequestsMegaphone__new_message_requests">Mới: Yêu cầu nhắn tin</string>
   <string name="MessageRequestsMegaphone__add_name">Thêm tên</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Giờ bạn có thể lựa chọn chấp nhận hay từ chối cuộc trò chuyện mới. Bạn sẽ thấy các lựa chọn \"Chấp nhận\", \"Xóa\", hoặc \"Chặn\".</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Hỗ trợ</string>
+  <string name="HelpFragment__next">Tiếp</string>
+  <string name="HelpFragment__signal_support">Bộ phận hỗ trợ Signal</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Nhập</string>
   <string name="arrays__use_default">Dùng mặc định</string>
@@ -1249,6 +1255,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences__fast">Nhanh</string>
   <string name="preferences__normal">Bình thường</string>
   <string name="preferences__slow">Chậm</string>
+  <string name="preferences__help">Hỗ trợ</string>
   <string name="preferences__advanced">Nâng cao</string>
   <string name="preferences__privacy">Riêng tư</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>

@@ -310,6 +310,8 @@
   <string name="CustomDefaultPreference_using_custom">Anvender tilpasset: %s</string>
   <string name="CustomDefaultPreference_using_default">Anvender standard: %s</string>
   <string name="CustomDefaultPreference_none">Ingen</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Fjern billede</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Nu</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -1206,6 +1208,9 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="MessageRequestsMegaphone__new_message_requests">Nyt: Besked forespørgelser</string>
   <string name="MessageRequestsMegaphone__add_name">Tilføj navn</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Du kan nu vælge om du vil acceptere en ny samtale. Du vil blive vist mulighed for at \"Accepter\". \"Slet\" eller \"Blokér\"</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Hjælp</string>
+  <string name="HelpFragment__next">Næste</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importér</string>
   <string name="arrays__use_default">Brug standard</string>
@@ -1284,6 +1289,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="preferences__fast">Hurtig</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Langsom</string>
+  <string name="preferences__help">Hjælp</string>
   <string name="preferences__advanced">Avanceret</string>
   <string name="preferences__privacy">Privatliv</string>
   <string name="preferences__mms_user_agent">MMS brugeragent</string>

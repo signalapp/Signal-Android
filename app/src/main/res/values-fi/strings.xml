@@ -114,6 +114,8 @@
   <string name="CommunicationActions_start_voice_call">Aloita äänipuhelu?</string>
   <string name="CommunicationActions_cancel">Peruuta</string>
   <string name="CommunicationActions_call">Soita</string>
+  <string name="CommunicationActions_insecure_call">Salaamaton puhelu</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Operaattorisi hinnat voivat olla voimassa. Numeroa, johon soitat, ei ole rekisteröity Signaliin. Tämä puhelu tehdään matkapuhelinoperaattorisi kautta, ei Internetin kautta.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Turvanumerosi yhteystiedon %1$s kanssa on vaihtunut. Tämä voi tarkoittaa joko sitä, että joku yrittää kaapata viestiliikennettänne, tai sitä, että %2$s on vain yksinkertaisesti asentanut Signalin uudelleen.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Saatat haluta varmentaa turvanumerosi tämän yhteystiedon kanssa.</string>
@@ -309,6 +311,11 @@
   <string name="CustomDefaultPreference_using_custom">Käytä mukautettua: %s</string>
   <string name="CustomDefaultPreference_using_default">Käytä oletusta: %s</string>
   <string name="CustomDefaultPreference_none">Ei asetettu</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Valitse kuva</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Ota kuva</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Valitse galleriasta</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Poista kuva</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Nyt</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -1204,6 +1211,27 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MessageRequestsMegaphone__new_message_requests">Uutta: Viestipyynnöt</string>
   <string name="MessageRequestsMegaphone__add_name">Lisää nimi</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Voit nyt valita, hyväksytkö uuden keskustelun. Tulet näkemään vaihtoehdot \"hyväksy\", \"poista\" tai \"estä\".</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Tuki </string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">Oletko lukenut meidän usein kysyttyjä kysymyksiä?</string>
+  <string name="HelpFragment__next">Seuraava</string>
+  <string name="HelpFragment__contact_us">Ota meihin yhteyttä</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Kerro mitä tapahtuu</string>
+  <string name="HelpFragment__include_debug_log">Liitä virheenkorjausloki.</string>
+  <string name="HelpFragment__whats_this">Mikä tämä on?</string>
+  <string name="HelpFragment__how_do_you_feel">Miltä sinusta tuntuu? (valinnainen)</string>
+  <string name="HelpFragment__support_info">Tukitiedot</string>
+  <string name="HelpFragment__subject">Aihe:</string>
+  <string name="HelpFragment__signal_android_support_request">Signal Android-tukipyyntö</string>
+  <string name="HelpFragment__device_info">Laitetiedot:</string>
+  <string name="HelpFragment__android_version">Android-versio:</string>
+  <string name="HelpFragment__signal_version">Signal-versio:</string>
+  <string name="HelpFragment__locale">Sijainti:</string>
+  <string name="HelpFragment__debug_log">Virheenkorjausloki:</string>
+  <string name="HelpFragment__na">ei sovellettavissa</string>
+  <string name="HelpFragment__could_not_upload_logs">Lokien lähettäminen ei onnistunut</string>
+  <string name="HelpFragment__signal_support">Signal-tuki</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">Auta meitä ymmärtämään asiaa olemalla mahdollisimman kuvaileva.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Tuo</string>
   <string name="arrays__use_default">Käytä oletusta</string>
@@ -1282,6 +1310,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__fast">Nopea</string>
   <string name="preferences__normal">Normaali</string>
   <string name="preferences__slow">Hidas</string>
+  <string name="preferences__help">Tuki </string>
   <string name="preferences__advanced">Lisäasetukset</string>
   <string name="preferences__privacy">Yksityisyys</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>

@@ -294,6 +294,8 @@
   <string name="CustomDefaultPreference_using_custom">Inatumia kaida: %s</string>
   <string name="CustomDefaultPreference_using_default">Inatumia chaguo msingi: %s</string>
   <string name="CustomDefaultPreference_none">Hakuna</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Ondoa picha</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Sasa</string>
   <string name="DateUtils_minutes_ago">d %d</string>
@@ -1159,6 +1161,9 @@ nambari yako ya simu</string>
   <string name="AndroidManifest_archived_conversations">Mazungumzo yaliyojalidiwa</string>
   <string name="AndroidManifest_remove_photo">Ondoa picha</string>
   <!--Message Requests Megaphone-->
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Msaada</string>
+  <string name="HelpFragment__next">Ifuatayo</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Ingiza</string>
   <string name="arrays__use_default">Tumia chaguo msingi</string>
@@ -1237,6 +1242,7 @@ nambari yako ya simu</string>
   <string name="preferences__fast">Haraka</string>
   <string name="preferences__normal">Kawaida</string>
   <string name="preferences__slow">Polepole</string>
+  <string name="preferences__help">Msaada</string>
   <string name="preferences__advanced">ya juu</string>
   <string name="preferences__privacy">Faragha</string>
   <string name="preferences__mms_user_agent">Wakala wa mtumiaji wa MMS</string>

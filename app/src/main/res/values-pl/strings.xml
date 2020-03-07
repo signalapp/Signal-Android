@@ -120,6 +120,8 @@
   <string name="CommunicationActions_start_voice_call">Rozpocząć połączenie głosowe?</string>
   <string name="CommunicationActions_cancel">Anuluj</string>
   <string name="CommunicationActions_call">Zadzwoń</string>
+  <string name="CommunicationActions_insecure_call">Niezaszyfrowane połączenie</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Mogą obowiązywać opłaty operatora sieci. Numer, do którego dzwonisz, nie jest zarejestrowany w Signal. Połączenie zostanie nawiązane przez Twojego operatora sieci, a nie przez internet.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Numer bezpieczeństwa z %1$s zmienił się. To może oznaczać, że ktoś próbuje przechwycić Twoją komunikację, lub że po prostu %2$s przeinstalował Signal. </string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Możesz zweryfikować numer bezpieczeństwa z tym kontaktem.</string>
@@ -337,6 +339,11 @@
   <string name="CustomDefaultPreference_using_custom">Używa własnych: %s</string>
   <string name="CustomDefaultPreference_using_default">Używa domyślnych: %s</string>
   <string name="CustomDefaultPreference_none">Brak</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Wybierz zdjęcie</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Zrób zdjęcie</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Wybierz z galerii</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Usuń zdjęcie</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Teraz</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -1266,6 +1273,27 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="MessageRequestsMegaphone__new_message_requests">Nowość: Prośby o kontakt</string>
   <string name="MessageRequestsMegaphone__add_name">Dodaj nazwę</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Teraz możesz zdecydować czy zaakceptować nową konwersację. Zobaczysz opcje ”Zaakceptuj,“ ”Usuń,“ lub ”Zablokuj.“</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Pomoc</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">Czy przeczytałeś już nasze odpowiedzi na najczęściej zadawane pytania?</string>
+  <string name="HelpFragment__next">Dalej</string>
+  <string name="HelpFragment__contact_us">Skontaktuj się z nami</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Powiedz nam, w czym problem</string>
+  <string name="HelpFragment__include_debug_log">Dołącz logi debugowania.</string>
+  <string name="HelpFragment__whats_this">Co to jest?</string>
+  <string name="HelpFragment__how_do_you_feel">Jak się czujesz (opcjonalne)?</string>
+  <string name="HelpFragment__support_info">Informacje dodatkowe</string>
+  <string name="HelpFragment__subject">Temat:</string>
+  <string name="HelpFragment__signal_android_support_request">Zgłoszenie pomocy technicznej Signal Android</string>
+  <string name="HelpFragment__device_info">Dane urządzenia:</string>
+  <string name="HelpFragment__android_version">Wersja Androida:</string>
+  <string name="HelpFragment__signal_version">Wersja Signal:</string>
+  <string name="HelpFragment__locale">Lokalizacja:</string>
+  <string name="HelpFragment__debug_log">Logi debugowania:</string>
+  <string name="HelpFragment__na">nie dotyczy</string>
+  <string name="HelpFragment__could_not_upload_logs">Wysyłanie logów nieudane</string>
+  <string name="HelpFragment__signal_support">Pomoc techniczna Signal</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">Opisz problem najdokładniej jak potrafisz, aby pomóc nam go zrozumieć.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Import</string>
   <string name="arrays__use_default">Użyj domyślnych</string>
@@ -1346,6 +1374,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__fast">Szybko</string>
   <string name="preferences__normal">Normalnie</string>
   <string name="preferences__slow">Wolno</string>
+  <string name="preferences__help">Pomoc</string>
   <string name="preferences__advanced">Zaawansowane</string>
   <string name="preferences__privacy">Prywatność</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>

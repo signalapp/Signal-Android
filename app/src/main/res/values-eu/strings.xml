@@ -309,6 +309,8 @@
   <string name="CustomDefaultPreference_using_custom">Pertsonalizatua: %s</string>
   <string name="CustomDefaultPreference_using_default">Lehenetsia: %s</string>
   <string name="CustomDefaultPreference_none">Bat ere ez</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Argazkia ezabatu</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Orain</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -1211,6 +1213,9 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="MessageRequestsMegaphone__new_message_requests">Berria: Mezuen eskaerak</string>
   <string name="MessageRequestsMegaphone__add_name">Gehitu izena</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Orain aukeratu dezakezu solasaldi berri bat onartu nahi duzun ala ez. \"Onartu\", \"Ezabatu\" edo \"Blokeatu\" aukerak ikusiko dituzu.</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Laguntza</string>
+  <string name="HelpFragment__next">Hurrengoa</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Inportatu</string>
   <string name="arrays__use_default">Erabili lehenetsia</string>
@@ -1289,6 +1294,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="preferences__fast">Arina</string>
   <string name="preferences__normal">Normala</string>
   <string name="preferences__slow">Motela</string>
+  <string name="preferences__help">Laguntza</string>
   <string name="preferences__advanced">Aurreratua</string>
   <string name="preferences__privacy">Pribatutasuna</string>
   <string name="preferences__mms_user_agent">MMS erabiltzaile-agentea</string>

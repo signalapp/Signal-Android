@@ -120,6 +120,8 @@
   <string name="CommunicationActions_start_voice_call">Začetek glasovnega klica?</string>
   <string name="CommunicationActions_cancel">Prekliči</string>
   <string name="CommunicationActions_call">Kliči</string>
+  <string name="CommunicationActions_insecure_call">Nezavarovan klic</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Pozor, možni dodatni stroški za klic! Številka, ki jo kličete ni prijavljena v storitev Signal. Klic bo opravljen preko vašega ponudnika mobilne telefonije, ne prek interneta.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Varnostno število z uporabnikom %1$s je bilo spremenjeno. To lahko pomeni, da poskuša nekdo prestrezati vajino komunikacijo ali pa je %2$s zgolj ponovno namestil aplikacijo Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Morda bi želeli preveriti vajino skupno varnostno število.</string>
@@ -337,6 +339,11 @@
   <string name="CustomDefaultPreference_using_custom">Uporabljam izbirno: %s</string>
   <string name="CustomDefaultPreference_using_default">Prednastavljeno: %s</string>
   <string name="CustomDefaultPreference_none">Brez</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Izberi fotografijo</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Slikaj</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Izberi iz galerije</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Odstrani fotografijo</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Ravnokar</string>
   <string name="DateUtils_minutes_ago">%d min</string>
@@ -1265,6 +1272,27 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MessageRequestsMegaphone__new_message_requests">Novo: Prošnje za pogovor</string>
   <string name="MessageRequestsMegaphone__add_name">Dodaj ime</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Odslej lahko izbirate ali želite sodelovati v novem pogovoru. Imeli boste tri možnosti: \"Sprejmi\", \"Zavrni\", ali \"Blokiraj.\"</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Pomoč</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">Ste že prebrali pogosta vprašanja in odgovore?</string>
+  <string name="HelpFragment__next">Naprej</string>
+  <string name="HelpFragment__contact_us">Kontaktirajte nas</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Sporočite nam, kaj se dogaja</string>
+  <string name="HelpFragment__include_debug_log">Dodajte sistemsko zabeležbo</string>
+  <string name="HelpFragment__whats_this">Kaj je to?</string>
+  <string name="HelpFragment__how_do_you_feel">Kako se počutite? (neobvezno)</string>
+  <string name="HelpFragment__support_info">Podporne informacije</string>
+  <string name="HelpFragment__subject">Predmet:</string>
+  <string name="HelpFragment__signal_android_support_request">Zahteva za podporo Signal Android</string>
+  <string name="HelpFragment__device_info">Podatki o napravi:</string>
+  <string name="HelpFragment__android_version">Različica Android:</string>
+  <string name="HelpFragment__signal_version">Različica Signal:</string>
+  <string name="HelpFragment__locale">Jezik:</string>
+  <string name="HelpFragment__debug_log">Sistemska zabeležba:</string>
+  <string name="HelpFragment__na">ni na voljo</string>
+  <string name="HelpFragment__could_not_upload_logs">Sistemska zabeležba ni bila prenešena</string>
+  <string name="HelpFragment__signal_support">Podpora Signal</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">Pri opisu napake bodite čim bolj natančni, da bomo lažje razumeli za kaj gre.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Uvoz</string>
   <string name="arrays__use_default">Uporabi prednastavljeno</string>
@@ -1345,6 +1373,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__fast">Hitro</string>
   <string name="preferences__normal">Normalno</string>
   <string name="preferences__slow">Počasi</string>
+  <string name="preferences__help">Pomoč</string>
   <string name="preferences__advanced">Napredno</string>
   <string name="preferences__privacy">Zasebnost</string>
   <string name="preferences__mms_user_agent">Uporabniški posrednik MMS</string>

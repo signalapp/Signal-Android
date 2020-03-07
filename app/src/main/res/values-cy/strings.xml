@@ -120,6 +120,8 @@
   <string name="CommunicationActions_start_voice_call">Cychwyn galwad llais?</string>
   <string name="CommunicationActions_cancel">Diddymu</string>
   <string name="CommunicationActions_call">Galw</string>
+  <string name="CommunicationActions_insecure_call">Galwad anniogel</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Gall taliadau darparwr fod yn berthnasol. Nid yw\'r rhif rydych chi\'n ei alw wedi\'i gofrestru gyda Signal. Bydd yr alwad hon yn cael ei hanfon trwy eich darparwr symudol, nid dros y rhyngrwyd.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Mae\'ch rhif diogelwch gyda %1$s wedi newid. Gall hyn olygu bod rhywun yn ceisio ymyrryd a\'ch cyfathrebu, neu bod %2$s wedi cael ei ail-osod.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Efallai yr hoffech wirio\'ch rhif diogelwch gyda\'r cyswllt hwn.</string>
@@ -339,6 +341,11 @@ Send neges heb ei ddiogelu?</string>
   <string name="CustomDefaultPreference_using_custom">Defnyddio\'r cyfaddas: %s</string>
   <string name="CustomDefaultPreference_using_default">Defnyddio rhagosodedig: %s</string>
   <string name="CustomDefaultPreference_none">Dim</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Dewis llun</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Cymryd llun</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Dewis o\'r oriel</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Tynnu llun</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Nawr</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -550,7 +557,7 @@ Send neges heb ei ddiogelu?</string>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Ychwanegu pennawd…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Cafodd eitem ei thynnu gan ei bod yn fwy na\'r maint mwyaf</string>
-  <string name="MediaSendActivity_camera_unavailable">Camera ddim ar gael…</string>
+  <string name="MediaSendActivity_camera_unavailable">Camera ddim ar gael.</string>
   <string name="MediaSendActivity_message_to_s">Neges i %s</string>
   <string name="MediaSendActivity_message">Neges</string>
   <string name="MediaSendActivity_select_recipients">Dewis derbynwyr</string>
@@ -622,7 +629,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="DeviceProvisioningActivity_content_intro">Bydd yn gallu</string>
   <string name="DeviceProvisioningActivity_content_bullets">
         • Darllen eich holl negeseuon
-           \n• Anfon negeseuon yn eich enw</string>
+           \n• Anfon negeseuon yn eich enw
+    </string>
   <string name="DeviceProvisioningActivity_content_progress_title">Cysylltu dyfais</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Cysylltu dyfais newydd…</string>
   <string name="DeviceProvisioningActivity_content_progress_success">Dyfais wedi ei chymeradwyo!</string>
@@ -1275,6 +1283,27 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRequestsMegaphone__new_message_requests">Newydd: Ceisiadau negeseuon</string>
   <string name="MessageRequestsMegaphone__add_name">Ychwanegu enw</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Gallwch nawr ddewis a ddylech dderbyn sgwrs newydd. Fe welwch y dewis  i \"Derbyn,\" \"Dileu,\" neu \"Rhwystro.\"</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Cymorth</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">Ydych chi wedi darllen ein Cwestiynau Cyffredin eto?</string>
+  <string name="HelpFragment__next">Nesaf</string>
+  <string name="HelpFragment__contact_us">Cysylltu â ni</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Dywedwch wrthym beth sy\'n digwydd</string>
+  <string name="HelpFragment__include_debug_log">Cynhwyswch cofnod dadfygio.</string>
+  <string name="HelpFragment__whats_this">Beth yw hwn?</string>
+  <string name="HelpFragment__how_do_you_feel">Sut ydych ch\'n teimlo? (Dewisol)</string>
+  <string name="HelpFragment__support_info">Gwybodaeth Gymorth</string>
+  <string name="HelpFragment__subject">Pwnc:</string>
+  <string name="HelpFragment__signal_android_support_request">Cais Cymorth Cymorth Android Signal</string>
+  <string name="HelpFragment__device_info">Manylion y ddyfais</string>
+  <string name="HelpFragment__android_version">Fersiwn Android:</string>
+  <string name="HelpFragment__signal_version">Fersiwn Signal:</string>
+  <string name="HelpFragment__locale">Locale:</string>
+  <string name="HelpFragment__debug_log">Cofnod Dadfygio:</string>
+  <string name="HelpFragment__na">amherthnasol</string>
+  <string name="HelpFragment__could_not_upload_logs">Methu llwytho\'r cofnod</string>
+  <string name="HelpFragment__signal_support">Cymorth Signal</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">Byddwch mor ddisgrifiadol â phosibl i\'n helpu i ddeall y mater yma.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Mewnforio</string>
   <string name="arrays__use_default">Defnyddio\'r rhagosodedig</string>
@@ -1355,6 +1384,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences__fast">Cyflym</string>
   <string name="preferences__normal">Canolig</string>
   <string name="preferences__slow">Araf</string>
+  <string name="preferences__help">Cymorth</string>
   <string name="preferences__advanced">Uwch</string>
   <string name="preferences__privacy">Preifatrwydd</string>
   <string name="preferences__mms_user_agent">Asiant Defnyddiwr MMS</string>

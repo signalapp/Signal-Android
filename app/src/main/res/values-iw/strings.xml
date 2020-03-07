@@ -120,6 +120,8 @@
   <string name="CommunicationActions_start_voice_call">להתחיל שיחה קולית?</string>
   <string name="CommunicationActions_cancel">בטל</string>
   <string name="CommunicationActions_call">חייג</string>
+  <string name="CommunicationActions_insecure_call">שיחה בלתי מאובטחת</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">לשיחה יכולות להיות עלויות שמושתות על ידי המפעיל הסלולרי. המספר אליו אתם מתקשרים אינו רשום אצל Signal. השיחה תבוצע באמצעות המפעיל הסלולרי, ולא על גבי האינטרנט.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">מספר הביטחון שלך עם %1$s השתנה. ייתכן שזה אומר שמישהו מנסה ליירט את התקשורת שלכם או שפשוט %2$s התקין מחדש את Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ייתכן שתרצה לוודא את מספר הביטחון שלך עם איש קשר זה.</string>
@@ -337,6 +339,11 @@
   <string name="CustomDefaultPreference_using_custom">משתמש בהתאמה אישית: %s</string>
   <string name="CustomDefaultPreference_using_default">משתמש בברירת מחדל: %s</string>
   <string name="CustomDefaultPreference_none">אין</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">בחר תצלום</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">צלם</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">בחר מהגלריה</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">הסר תצלום</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">עכשיו</string>
   <string name="DateUtils_minutes_ago">%d ד\'</string>
@@ -1274,6 +1281,27 @@
   <string name="MessageRequestsMegaphone__new_message_requests">חדש: בקשות התכתבות</string>
   <string name="MessageRequestsMegaphone__add_name">הוסף שם</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">אתה יכול לבחור כעת אם לקבל שיחה חדשה. תראה אפשרויות \"קבל\", \"מחק\", או \"חסום\".</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">עזרה</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">האם קראת כבר את רשימת השאלות הנפוצות?</string>
+  <string name="HelpFragment__next">הבא</string>
+  <string name="HelpFragment__contact_us">צור קשר</string>
+  <string name="HelpFragment__tell_us_whats_going_on">ספר לנו מה קורה</string>
+  <string name="HelpFragment__include_debug_log">הוסף את יומן התקלים</string>
+  <string name="HelpFragment__whats_this">מה זה?</string>
+  <string name="HelpFragment__how_do_you_feel">איך אתם מרגישים? (רשות)</string>
+  <string name="HelpFragment__support_info">מידע אודות התמיכה</string>
+  <string name="HelpFragment__subject">נושא</string>
+  <string name="HelpFragment__signal_android_support_request">בקשת תמיכה ב-Signal Android</string>
+  <string name="HelpFragment__device_info">מידע אודות המכשיר:</string>
+  <string name="HelpFragment__android_version">גרסת Android:</string>
+  <string name="HelpFragment__signal_version">גרסת Signal</string>
+  <string name="HelpFragment__locale">מקם</string>
+  <string name="HelpFragment__debug_log">יומן תקלים:</string>
+  <string name="HelpFragment__na">לא רלוונטי</string>
+  <string name="HelpFragment__could_not_upload_logs">לא ניתן להעלות יומנים</string>
+  <string name="HelpFragment__signal_support">תמיכת Signal</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">תארו בפירוט ככל האפשר כדי לעזור לנו להבין את הבעיה</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">ייבא</string>
   <string name="arrays__use_default">השתמש בברירת מחדל</string>
@@ -1354,6 +1382,7 @@
   <string name="preferences__fast">מהיר</string>
   <string name="preferences__normal">רגיל</string>
   <string name="preferences__slow">איטי</string>
+  <string name="preferences__help">עזרה</string>
   <string name="preferences__advanced">מתקדם</string>
   <string name="preferences__privacy">פרטיות</string>
   <string name="preferences__mms_user_agent">סוכן משתמש MMS</string>
@@ -1602,7 +1631,7 @@
   <string name="KbsSplashFragment__introducing_pins">היכרות עם PIN</string>
   <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">קודי PIN מוסיפים שכבה נוספת של אבטחה אל החשבון שלך. צור אחד עכשיו.</string>
   <string name="KbsSplashFragment__learn_more">למד עוד</string>
-  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/he/articles/360007059792-נעילת-הרשמה</string>
+  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">נעילת הרשמה = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">נעילת ההרשמה שלך נקראת כעת PIN, והיא עושה יותר. עדכן אותה כעת.</string>
   <string name="KbsSplashFragment__read_more_about_pins">למד עוד על PIN.</string>
@@ -1620,7 +1649,7 @@
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">חשבונך ננעל כדי להגן על פרטיותך ואבטחתך. לאחר %1$d ימים של אי־פעילות בחשבונך, תוכל להירשם שוב עם מספר טלפון זה ללא צורך ב־PIN שלך. כל התוכן יימחק.</string>
   <string name="AccountLockedFragment__next">הבא</string>
   <string name="AccountLockedFragment__learn_more">למד עוד</string>
-  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/he/articles/360007059792-נעילת-הרשמה</string>
+  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">הכנס את ה־PIN שלך</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">הכנס את ה־PIN שיצרת עבור החשבון שלך. הוא שונה מקוד הוידוא שלך במסרון.</string>

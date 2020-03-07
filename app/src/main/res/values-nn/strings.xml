@@ -114,6 +114,8 @@
   <string name="CommunicationActions_start_voice_call">Start lydsamtale?</string>
   <string name="CommunicationActions_cancel">Avbryt</string>
   <string name="CommunicationActions_call">Ring</string>
+  <string name="CommunicationActions_insecure_call">Usikker samtale</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Kan involvera telekostnader. Nummeret du ringer er ikkje registrert med Signal. Denne samtalen går gjennom teleselskapet ditt, ikkje over internett.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Tryggleiksnummeret ditt med %1$s har endra seg. Dette kan tyda på at nokon prøver å overvaka kommunikasjonen, eller at %2$s berre har installert Signal på nytt.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Du ynskjer kanskje å stadfesta tryggleiksnummeret ditt med denne kontakten.</string>
@@ -309,6 +311,11 @@
   <string name="CustomDefaultPreference_using_custom">Brukar sjølvvald: %s</string>
   <string name="CustomDefaultPreference_using_default">Brukar forvald: %s</string>
   <string name="CustomDefaultPreference_none">Ingen</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Vel bilde</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Ta bilde</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Vel frå galleri</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Fjern bilde</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">No</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -1209,6 +1216,27 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="MessageRequestsMegaphone__new_message_requests">Nytt: Meldingsspørsmål</string>
   <string name="MessageRequestsMegaphone__add_name">Legg til namn</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Du kan no velja å godta nye samtaler. Du får val om å «Godta», «Sletta» eller «Blokkera».</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Hjelp</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">Har du lest Ofte Spurde Spørsmål enno?</string>
+  <string name="HelpFragment__next">Neste</string>
+  <string name="HelpFragment__contact_us">Ta kontakt</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Fortel oss kva som skjer</string>
+  <string name="HelpFragment__include_debug_log">Inkluder feilsøkingslogg</string>
+  <string name="HelpFragment__whats_this">Kva er dette?</string>
+  <string name="HelpFragment__how_do_you_feel">Korleis kjenner du deg? (Valfritt)</string>
+  <string name="HelpFragment__support_info">Supportinfo</string>
+  <string name="HelpFragment__subject">Emne:</string>
+  <string name="HelpFragment__signal_android_support_request">Signal for Android, supportspørsmål</string>
+  <string name="HelpFragment__device_info">Einingsinfo:</string>
+  <string name="HelpFragment__android_version">Android-utgåve:</string>
+  <string name="HelpFragment__signal_version">Signal-utgåve:</string>
+  <string name="HelpFragment__locale">Lokalitet:</string>
+  <string name="HelpFragment__debug_log">Feilsøkingslogg:</string>
+  <string name="HelpFragment__na">–</string>
+  <string name="HelpFragment__could_not_upload_logs">Klarte ikkje lasta opp loggar</string>
+  <string name="HelpFragment__signal_support">Signal-support</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">Beskriv problemet så utfyllande som mogleg slik at me kan forstå kva som skjer.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importer</string>
   <string name="arrays__use_default">Bruk forvald</string>
@@ -1287,6 +1315,7 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences__fast">Snøgg</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Langsam</string>
+  <string name="preferences__help">Hjelp</string>
   <string name="preferences__advanced">Avansert</string>
   <string name="preferences__privacy">Personvern</string>
   <string name="preferences__mms_user_agent">MMS-brukaragent</string>

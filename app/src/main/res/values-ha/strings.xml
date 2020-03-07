@@ -290,6 +290,8 @@
   <string name="CustomDefaultPreference_using_custom">Amfani da tanadadde: %s</string>
   <string name="CustomDefaultPreference_using_default">Amfani da tanadadde: %s</string>
   <string name="CustomDefaultPreference_none">Babu.</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Cire hoto</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Yanzu</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -1154,6 +1156,9 @@
   <string name="AndroidManifest_archived_conversations">Ajiyayyen hira</string>
   <string name="AndroidManifest_remove_photo">Cire hoto</string>
   <!--Message Requests Megaphone-->
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Taimako</string>
+  <string name="HelpFragment__next">Na gaba</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Shigar</string>
   <string name="arrays__use_default">Amfani da tanadadde</string>
@@ -1232,6 +1237,7 @@
   <string name="preferences__fast">Sauri</string>
   <string name="preferences__normal">Madaidaici</string>
   <string name="preferences__slow">Jinkiri</string>
+  <string name="preferences__help">Taimako</string>
   <string name="preferences__advanced">Kayatacce</string>
   <string name="preferences__privacy">Sirri</string>
   <string name="preferences__mms_user_agent">Agent din mai amfani da MMS</string>

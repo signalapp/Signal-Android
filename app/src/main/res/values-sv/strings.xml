@@ -114,6 +114,8 @@
   <string name="CommunicationActions_start_voice_call">Starta röstsamtal?</string>
   <string name="CommunicationActions_cancel">Avbryt</string>
   <string name="CommunicationActions_call">Ring</string>
+  <string name="CommunicationActions_insecure_call">Osäkert samtal</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Operatörskostnader kan tillkomma. Numret du ringer är inte registrerat med Signal. Detta samtal kommer att placeras via din mobiloperatör, inte över internet.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Ditt säkerhetsnummer med %1$s har ändrats. Detta kan antingen betyda att någon försöker avlyssna er kommunikation, eller att %2$s helt enkelt har installerat om Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Du kan vilja bekräfta säkerhetsnummer med denna kontakt.</string>
@@ -309,6 +311,11 @@
   <string name="CustomDefaultPreference_using_custom">Använder anpassade: %s</string>
   <string name="CustomDefaultPreference_using_default">Använder standard: %s</string>
   <string name="CustomDefaultPreference_none">Inga</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Välj foto</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Fotografera</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Välj från galleri</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Ta bort bild</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Nu</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -661,7 +668,7 @@ angav (%s) är ogiltigt.</string>
   <string name="RegistrationActivity_i_understand">Jag förstår</string>
   <string name="RegistrationActivity_play_services_error">Fel på Google Play-tjänster</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-tjänster uppdateras eller är tillfälligt otillgängliga. Försök igen senare.</string>
-  <string name="RegistrationActivity_terms_and_privacy">Villkor &amp; Dataskyddspolicy</string>
+  <string name="RegistrationActivity_terms_and_privacy">Villkor &amp; sekretesspolicy</string>
   <string name="RegistrationActivity_no_browser">Det går inte att öppna den här länken. Ingen webbläsare hittades.</string>
   <string name="RegistrationActivity_more_information">Mer information</string>
   <string name="RegistrationActivity_less_information">Mindre information</string>
@@ -678,7 +685,7 @@ angav (%s) är ogiltigt.</string>
   <string name="RegistrationActivity_continue">Fortsätt</string>
   <string name="RegistrationActivity_continue_d_attempts_left">Fortsätt (%d försök kvar)</string>
   <string name="RegistrationActivity_continue_last_attempt">Fortsätt (sista försöket!)</string>
-  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ta sekretess med dig.\nVar dig själv i varje meddelande.</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ta med dig sekretess.\nVar dig själv i varje meddelande.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Ange ditt telefonnummer för att komma igång</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Du kommer att få en bekräftelsekod. Din operatör kan ta betalt för det. </string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Ange koden vi skickade till %s</string>
@@ -1204,6 +1211,27 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MessageRequestsMegaphone__new_message_requests">Nytt: Meddelandeförfrågningar</string>
   <string name="MessageRequestsMegaphone__add_name">Lägg till namn</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Du kan nu välja om du vill acceptera en ny konversation. Du ser alternativ för att \"Acceptera\", \"Ta bort\" eller \"Blockera.\"</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Hjälp</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">Har du läst våra Vanliga frågor ännu?</string>
+  <string name="HelpFragment__next">Nästa</string>
+  <string name="HelpFragment__contact_us">Kontakta oss</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Berätta vad som händer</string>
+  <string name="HelpFragment__include_debug_log">Inkludera felsökningslogg.</string>
+  <string name="HelpFragment__whats_this">Vad är det här?</string>
+  <string name="HelpFragment__how_do_you_feel">Hur mår du? (Valfritt)</string>
+  <string name="HelpFragment__support_info">Supportinformation</string>
+  <string name="HelpFragment__subject">Ämne:</string>
+  <string name="HelpFragment__signal_android_support_request">Signal Android-supportförfrågan</string>
+  <string name="HelpFragment__device_info">Enhetsinformation:</string>
+  <string name="HelpFragment__android_version">Android version:</string>
+  <string name="HelpFragment__signal_version">Signal version:</string>
+  <string name="HelpFragment__locale">Språk:</string>
+  <string name="HelpFragment__debug_log">Felsökningslogg:</string>
+  <string name="HelpFragment__na">inga</string>
+  <string name="HelpFragment__could_not_upload_logs">Det gick inte att ladda upp loggar</string>
+  <string name="HelpFragment__signal_support">Signal-support</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">Vänligen var så beskrivande som möjligt för att hjälpa oss att förstå problemet.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importera</string>
   <string name="arrays__use_default">Använd standardinställning</string>
@@ -1282,6 +1310,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__fast">Snabb</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Långsam</string>
+  <string name="preferences__help">Hjälp</string>
   <string name="preferences__advanced">Avancerat</string>
   <string name="preferences__privacy">Integritetsskydd</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>

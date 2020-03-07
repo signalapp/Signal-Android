@@ -114,6 +114,8 @@
   <string name="CommunicationActions_start_voice_call">Simulan ang voice na tawag?</string>
   <string name="CommunicationActions_cancel">Kanselahin</string>
   <string name="CommunicationActions_call">Tawagan</string>
+  <string name="CommunicationActions_insecure_call">Hindi secure na tawag</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Maaaring malapatan ng mga singilin mula sa Carrier. Ang numerong iyong tinatawagan ay hindi rehistrado sa Signal. Ang tawag na ito ay dadaan sa iyong mobile carrier, hindi sa pamamagitan ng internet. </string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Nagbago ang iyong numerong pangkaligtasan kay %1$s. Posibleng ang ibig sabihin nito\'y may nagtatangkang manghimasok sa inyong komunikasyon, o kaya\'y nag-reinstall lamang si %2$s ng Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Maaari mong beripikahin ang iyong numerong pangkaligtasan sa kontak na ito.</string>
@@ -204,9 +206,22 @@
   <string name="ConversationActivity_no_results">Walang resulta</string>
   <string name="ConversationActivity_sticker_pack_installed">Naka-install na ang sticker pack</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Bago! Makipag-usap gamit ang mga sticker</string>
+  <string name="ConversationActivity_block_s">I-block ang %1$s?</string>
+  <string name="ConversationActivity_block_and_leave_s">I-block at umalis sa %1$s?</string>
+  <string name="ConversationActivity_unblock_s">I-unblock ang %1$s?</string>
+  <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">Magagawa nyong magpadala ng mensahe at tawagan ang isa\'t-isa.</string>
+  <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">Ang mga kasapi ng grupong ito ay maaaring isali kang muli sa grupong ito.</string>
+  <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">Ang mga taong naka-block ay hindi magagawang tawagan ka o padalhan ka ng mga mensahe.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">Aalis ka sa grupong ito at hindi na makakatanggap ng mga mensahe o mga update.</string>
   <string name="ConversationActivity_block">I-block</string>
+  <string name="ConversationActivity_block_and_delete">I-block at burahin</string>
   <string name="ConversationActivity_cancel">Kanselahin</string>
+  <string name="ConversationActivity_delete_conversation">Burahin ang pag-uusap?</string>
+  <string name="ConversationActivity_delete_and_leave_group">Burahin at umalis sa grupo?</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Ang pag-uusap na ito mabubura sa lahat ng iyong mga device.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Aalis ka sa grupong ito, at ito\'y mabubura sa lahat ng iyong mga device.</string>
   <string name="ConversationActivity_delete">Burahin</string>
+  <string name="ConversationActivity_delete_and_leave">Burahin at umalis</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d hindi pa nabasang mensahe</item>
@@ -252,6 +267,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Maaari kang mag-swipe pakaliwa sa alinmang mensahe upang mabilisang makatugon</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Ang mga papalabas na view-once na media file ay awtomatikong matatanggal matapos ipadala ang mga ito</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Natingnan mo na ang mensaheng ito</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Maaari kang magdagdag ng mga notes para sa iyong sarili sa pag-uusap na ito. Kung ang iyong account ay may naka-link na mga device, ang bagong mga note may masi-sync.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Walang naka-install na browser sa iyong device.</string>
   <!--ConversationListFragment-->
@@ -275,6 +291,8 @@
     <item quantity="one">Nailipat ang pag-uusap sa inbox</item>
     <item quantity="other">Nailipat ang %d pag-uusap sa inbox</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_created">Ang iyong profile ay nalikha na.</string>
+  <string name="ConversationListFragment__your_profile_name_has_been_saved">Ang iyong profile na pangalan ay nai-save na.</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Key exchange na mensahe</string>
   <!--ConversationListItemAction-->
@@ -293,6 +311,11 @@
   <string name="CustomDefaultPreference_using_custom">Custom ang ginagamit: %s</string>
   <string name="CustomDefaultPreference_using_default">Default ang ginagamit: %s</string>
   <string name="CustomDefaultPreference_none">Wala</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Pumili ng larawan</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Kumuha ng larawan</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Pumili mula sa gallery</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Tanggalin ang larawan</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Ngayon</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -532,9 +555,17 @@
   <string name="MessageRequestBottomView_delete">Burahin</string>
   <string name="MessageRequestBottomView_block">I-block</string>
   <string name="MessageRequestBottomView_unblock">I-unblock</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Gusto mo bang hayaan si %1$s na makapagpadala ng mensahe sa iyo? Hindi niya malalaman na nakita mo ang kanyang mga mensahe hanggang ito ay iyong tanggapin.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Gusto mo bang sumali sa grupong %1$s? Hindi nila malalaman na nakita mo ang kanilang mga mensahe hanggang ito ay iyong tanggapin.</string>
+  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">I-unblock si %1$s upang makapagpadala ng mensahe at matawagan ang isa\'t-isa.</string>
+  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">I-unblock upang hayaan ang mga kasapi ng grupo na isali kang muli sa grupong ito.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Kasapi ng %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Kasapi ng %1$s at %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Kasapi ng %1$s, %2$s, at %3$s</string>
+  <plurals name="MessageRequestProfileView_members">
+    <item quantity="one">%1$d na kasapi</item>
+    <item quantity="other">%1$d na mga kasapi</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d iba pa</item>
     <item quantity="other">%d pang iba</item>
@@ -728,9 +759,15 @@
   <string name="StickerPackPreviewActivity_stickers">Mga Sticker</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Nabigong i-load ang sticker pack</string>
   <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_edit">I-edit</string>
+  <string name="SubmitDebugLogActivity_done">Tapos na</string>
+  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Pindutin ang linya upang burahin ito</string>
   <string name="SubmitDebugLogActivity_submit">Isumite</string>
+  <string name="SubmitDebugLogActivity_failed_to_submit_logs">Bigo na ipadala ang mga log</string>
   <string name="SubmitDebugLogActivity_success">Tagumpay!</string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopyahin ang URL at idagdag ito sa iyong ulat na isyu o support email:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Nakopya na sa clipboard</string>
+  <string name="SubmitDebugLogActivity_ok">Ok</string>
   <string name="SubmitDebugLogActivity_share">Ibahagi</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Updated na ang grupo</string>
@@ -753,6 +790,8 @@
   <string name="ThreadRecord_you_marked_verified">Minarkahan mong beripikado</string>
   <string name="ThreadRecord_you_marked_unverified">Minarkahan mong hindi beripikado</string>
   <string name="ThreadRecord_message_could_not_be_processed">Hindi maiproseso ang mensahe</string>
+  <string name="ThreadRecord_message_request">Pangmensaheng hiling</string>
+  <string name="ThreadRecord_s_added_you_to_the_group">Idinagdag ka sa grupo ni %1$s</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Update sa Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">May bagong bersyon ang Signal, pindutin upang i-update</string>
@@ -1172,6 +1211,32 @@
   <string name="AndroidManifest_archived_conversations">Mga naka-archive na pag-uusap</string>
   <string name="AndroidManifest_remove_photo">Tanggalin ang larawan</string>
   <!--Message Requests Megaphone-->
+  <string name="MessageRequestsMegaphone__message_requests">Mga pangmensaheng hiling</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Magagawa na ngayon ng mga user na tanggapin ang isang bagong pag-uusap. Ang mga profile na pangalan ay nagpapaalam sa mga tao kung sino ang nagmemensahe sa kanila. </string>
+  <string name="MessageRequestsMegaphone__add_profile_name">Magdagdag ng profile na pangalan</string>
+  <string name="MessageRequestsMegaphone__new_message_requests">Bago: Mag pangmensaheng hiling</string>
+  <string name="MessageRequestsMegaphone__add_name">Magdagdag ng pangalan</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Tulong</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">Nabasa mo na ba ang ating FAQ?</string>
+  <string name="HelpFragment__next">Susunod</string>
+  <string name="HelpFragment__contact_us">Kontakin kami</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Sabihin sa amin kung ano ang nangyayari</string>
+  <string name="HelpFragment__include_debug_log">Isama ang debug log.</string>
+  <string name="HelpFragment__whats_this">Ano ito?</string>
+  <string name="HelpFragment__how_do_you_feel">Ano ang iyong nararamdaman? (Opsyonal)</string>
+  <string name="HelpFragment__support_info">Pangsuportang impormasyon</string>
+  <string name="HelpFragment__subject">Paksa:</string>
+  <string name="HelpFragment__signal_android_support_request">Signal Android na pangsuportang hiling</string>
+  <string name="HelpFragment__device_info">Impormasyon ng device:</string>
+  <string name="HelpFragment__android_version">Bersyon ng Android:</string>
+  <string name="HelpFragment__signal_version">Bersyon ng Signal:</string>
+  <string name="HelpFragment__locale">Locale:</string>
+  <string name="HelpFragment__debug_log">Debug Log:</string>
+  <string name="HelpFragment__na">n/a</string>
+  <string name="HelpFragment__could_not_upload_logs">Hindi mai-upload ang mga log</string>
+  <string name="HelpFragment__signal_support">Suporta sa Signal</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">Pakiusap na hangga\'t maaari ay ipaliwanag ng mabuti upang matulungan kaming maunawaan ang isyu.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">I-import</string>
   <string name="arrays__use_default">Gamitin ang default</string>
@@ -1250,6 +1315,7 @@
   <string name="preferences__fast">Mabilis</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Mabagal</string>
+  <string name="preferences__help">Tulong</string>
   <string name="preferences__advanced">Advanced</string>
   <string name="preferences__privacy">Pagkapribado</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>

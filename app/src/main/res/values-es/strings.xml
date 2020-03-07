@@ -114,6 +114,8 @@
   <string name="CommunicationActions_start_voice_call">¿Iniciar llamada?</string>
   <string name="CommunicationActions_cancel">Cancelar</string>
   <string name="CommunicationActions_call">Llamar</string>
+  <string name="CommunicationActions_insecure_call">Llamada no segura</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Se pueden generar gastos del operador móvil. El número al que llamas no está registrado en Signal. Esta llamada se realizará por la red de tu operador móvil, no por internet.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Tus cifras de seguridad con %1$s han cambiado. Esto podría significar que alguien está tratando de interceptar tu comunicación, o que %2$s simplemente ha reinstalado Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Tal vez desees verificar tus cifras de seguridad con este contacto.</string>
@@ -309,6 +311,11 @@
   <string name="CustomDefaultPreference_using_custom">Usar personalizado: %s</string>
   <string name="CustomDefaultPreference_using_default">Usar predeterminado: %s</string>
   <string name="CustomDefaultPreference_none">Ninguno</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Seleccionar foto</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Tomar foto</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Seleccionar desde galería</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Eliminar foto</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Ahora</string>
   <string name="DateUtils_minutes_ago">%d m</string>
@@ -1210,6 +1217,27 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MessageRequestsMegaphone__new_message_requests">Nuevo: Solicitudes de chat</string>
   <string name="MessageRequestsMegaphone__add_name">Añadir nombre</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Ahora puedes decidir si aceptas una solicitud de chat. Podrás elegir entre «Aceptar», «Eliminar» o «Bloquear».</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Ayuda</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">¿Ya has leído nuestras FAQ?</string>
+  <string name="HelpFragment__next">Siguiente</string>
+  <string name="HelpFragment__contact_us">Contáctanos</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Cuéntanos que pasa</string>
+  <string name="HelpFragment__include_debug_log">Incluir registro de depuración</string>
+  <string name="HelpFragment__whats_this">¿Qué es esto?</string>
+  <string name="HelpFragment__how_do_you_feel">¿Cómo te sientes? (Opcional)</string>
+  <string name="HelpFragment__support_info">Información de soporte</string>
+  <string name="HelpFragment__subject">Asunto:</string>
+  <string name="HelpFragment__signal_android_support_request">Petición de soporte Signal Android</string>
+  <string name="HelpFragment__device_info">Información del dispositivo:</string>
+  <string name="HelpFragment__android_version">Versión de Android:</string>
+  <string name="HelpFragment__signal_version">Versión de Signal:</string>
+  <string name="HelpFragment__locale">Idioma:</string>
+  <string name="HelpFragment__debug_log">Registro de depuración:</string>
+  <string name="HelpFragment__na">n/a</string>
+  <string name="HelpFragment__could_not_upload_logs">Imposible transmitir logs</string>
+  <string name="HelpFragment__signal_support">Asistencia Signal</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, sé lo más descriptivo posible para ayudarnos a entender la incidencia.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar</string>
   <string name="arrays__use_default">Usar predeterminado</string>
@@ -1288,6 +1316,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__fast">Rápido</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Lento</string>
+  <string name="preferences__help">Ayuda</string>
   <string name="preferences__advanced">Avanzado</string>
   <string name="preferences__privacy">Privacidad</string>
   <string name="preferences__mms_user_agent">Agente de usuario de MMS</string>

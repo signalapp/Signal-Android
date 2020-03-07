@@ -309,6 +309,8 @@
   <string name="CustomDefaultPreference_using_custom">Usar a opção personalizada: %s</string>
   <string name="CustomDefaultPreference_using_default">A usar a opção predefinida: %s</string>
   <string name="CustomDefaultPreference_none">Nenhum</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Remover fotografia</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Agora</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -1206,6 +1208,9 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="MessageRequestsMegaphone__new_message_requests">Novidade: Pedidos de mensagem</string>
   <string name="MessageRequestsMegaphone__add_name">Adicionar nome</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Agora pode escolher para aceitar ou não uma conversa. Irá ver as opções para \"Aceitar\", \"Eliminar\", ou \"Bloquear\".</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Ajuda</string>
+  <string name="HelpFragment__next">Seguinte</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar</string>
   <string name="arrays__use_default">Usar a opção predefinida</string>
@@ -1284,6 +1289,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences__fast">Rápido</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Lento</string>
+  <string name="preferences__help">Ajuda</string>
   <string name="preferences__advanced">Avançado</string>
   <string name="preferences__privacy">Privacidade</string>
   <string name="preferences__mms_user_agent">Agente do utilizador de MMS</string>

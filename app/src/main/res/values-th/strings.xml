@@ -295,6 +295,8 @@
   <string name="CustomDefaultPreference_using_custom">ใช้ค่าที่กำหนดเอง: %s</string>
   <string name="CustomDefaultPreference_using_default">ใช้ค่าเริ่มต้น: %s</string>
   <string name="CustomDefaultPreference_none">ไม่มี</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">ลบรูป</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">ตอนนี้</string>
   <string name="DateUtils_minutes_ago">%d m</string>
@@ -1178,6 +1180,9 @@
   <string name="MessageRequestsMegaphone__new_message_requests">ใหม่: คำร้องขอส่งข้อความ</string>
   <string name="MessageRequestsMegaphone__add_name">เพิ่มชื่อ</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">ตอนนี้คุณสามารถเลือกได้ว่าจะยอมรับบทสนทนาใหม่หรือไม่ คุณจะเห็นตัวเลือกว่าจะ \"ยอมรับ\" \"ลบ\" หรือ \"ปิดกั้น\"</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">ช่วยเหลือ</string>
+  <string name="HelpFragment__next">ถัดไป</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">นำเข้า</string>
   <string name="arrays__use_default">ใช้ค่าเริ่มต้น</string>
@@ -1255,6 +1260,7 @@
   <string name="preferences__fast">เร็ว</string>
   <string name="preferences__normal">ปกติ</string>
   <string name="preferences__slow">ช้า</string>
+  <string name="preferences__help">ช่วยเหลือ</string>
   <string name="preferences__advanced">ขั้นสูง</string>
   <string name="preferences__privacy">ความเป็นส่วนตัว</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>

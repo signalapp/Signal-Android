@@ -111,6 +111,8 @@
   <string name="CommunicationActions_start_voice_call">開始語音通話嗎？</string>
   <string name="CommunicationActions_cancel">取消</string>
   <string name="CommunicationActions_call">撥打</string>
+  <string name="CommunicationActions_insecure_call">不安全的電話</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">電信商可能會收取額外的費用。你撥出的號碼未在Signal中註冊。 該電話將通過你的電信商撥出，而不是通過網際網路撥出。</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s 的安全碼產生變動。這有可能是有不明人士試圖攔截您的通訊／對話內容，或是因為 %2$s 重新安裝 Signal。</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">您可能希望驗證這名聯絡人的安全碼。</string>
@@ -295,6 +297,11 @@
   <string name="CustomDefaultPreference_using_custom">使用自訂：%s</string>
   <string name="CustomDefaultPreference_using_default">使用預設：%s</string>
   <string name="CustomDefaultPreference_none">無</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">選擇照片</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">拍照</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">從圖片庫中選擇</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">移除頭像照片</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">現在</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -1175,6 +1182,27 @@
   <string name="MessageRequestsMegaphone__new_message_requests">新增:訊息要求</string>
   <string name="MessageRequestsMegaphone__add_name">新增名字</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">你現在可以選擇是否接受新的對話。 你會看到“接受,” “刪除,” 或 “封鎖,” 選項。</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">幫助</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">你閱讀過我們的問與答嗎?</string>
+  <string name="HelpFragment__next">下一步</string>
+  <string name="HelpFragment__contact_us">與我們聯繫</string>
+  <string name="HelpFragment__tell_us_whats_going_on">告訴我們發生什麼問題</string>
+  <string name="HelpFragment__include_debug_log">包括偵錯紀錄。</string>
+  <string name="HelpFragment__whats_this">這是什麼？</string>
+  <string name="HelpFragment__how_do_you_feel">你覺得如何?(可選項目)</string>
+  <string name="HelpFragment__support_info">支援訊息</string>
+  <string name="HelpFragment__subject">標題:</string>
+  <string name="HelpFragment__signal_android_support_request">Signal Android 支援要求</string>
+  <string name="HelpFragment__device_info">裝置資訊:</string>
+  <string name="HelpFragment__android_version">Android 版本:</string>
+  <string name="HelpFragment__signal_version">Signal 版本:</string>
+  <string name="HelpFragment__locale">語言:</string>
+  <string name="HelpFragment__debug_log">偵錯紀錄:</string>
+  <string name="HelpFragment__na">n/a</string>
+  <string name="HelpFragment__could_not_upload_logs">無法上傳記錄檔</string>
+  <string name="HelpFragment__signal_support">Signal 支援</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">請盡可能描述一下，以幫助我們理解該問題。</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">匯入</string>
   <string name="arrays__use_default">使用預設</string>
@@ -1252,6 +1280,7 @@
   <string name="preferences__fast">快速</string>
   <string name="preferences__normal">正常</string>
   <string name="preferences__slow">緩慢</string>
+  <string name="preferences__help">幫助</string>
   <string name="preferences__advanced">進階</string>
   <string name="preferences__privacy">隱私權</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>

@@ -202,6 +202,8 @@
   <string name="ConversationActivity_sticker_pack_installed">ステッカーパックをインストールしました</string>
   <string name="ConversationActivity_new_say_it_with_stickers">新機能！ステッカーを使いましょう</string>
   <string name="ConversationActivity_block_s">%1$s をブロックしますか？</string>
+  <string name="ConversationActivity_block_and_leave_s">%1$s から抜けてブロックしますか？</string>
+  <string name="ConversationActivity_unblock_s">%1$s をブロック解除しますか？</string>
   <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">お互いにメッセージや通話ができるようになります。</string>
   <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">グループのメンバーはあなたをもう一度このグループに加えることができます。</string>
   <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">このグループから退出して、今後メッセージや更新を受信しなくなります。</string>
@@ -289,6 +291,8 @@
   <string name="CustomDefaultPreference_using_custom">カスタマイズ: %s</string>
   <string name="CustomDefaultPreference_using_default">既定を使用: %s</string>
   <string name="CustomDefaultPreference_none">なし</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">写真を消去</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">たった今</string>
   <string name="DateUtils_minutes_ago">%d分</string>
@@ -1143,6 +1147,10 @@
   <string name="AndroidManifest_archived_conversations">アーカイブ済みの会話</string>
   <string name="AndroidManifest_remove_photo">写真を消去</string>
   <!--Message Requests Megaphone-->
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">ヘルプ</string>
+  <string name="HelpFragment__next">次へ</string>
+  <string name="HelpFragment__signal_support">Signalサポート</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">インポート</string>
   <string name="arrays__use_default">既定を使う</string>
@@ -1220,6 +1228,7 @@
   <string name="preferences__fast">速い</string>
   <string name="preferences__normal">普通</string>
   <string name="preferences__slow">遅い</string>
+  <string name="preferences__help">ヘルプ</string>
   <string name="preferences__advanced">詳細設定</string>
   <string name="preferences__privacy">プライバシー</string>
   <string name="preferences__mms_user_agent">MMS ユーザエージェント</string>

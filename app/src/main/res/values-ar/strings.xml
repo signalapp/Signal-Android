@@ -349,6 +349,8 @@
   <string name="CustomDefaultPreference_using_custom">استخدام التخصيص: %s</string>
   <string name="CustomDefaultPreference_using_default">الاستخدام الافتراضي: %s</string>
   <string name="CustomDefaultPreference_none">لا شيء </string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">حذف الصورة</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">الآن</string>
   <string name="DateUtils_minutes_ago">%d دقيقة</string>
@@ -1291,6 +1293,10 @@
   <string name="AndroidManifest_archived_conversations">أرشيف المحادثة</string>
   <string name="AndroidManifest_remove_photo">حذف الصورة</string>
   <!--Message Requests Megaphone-->
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">مساعدة</string>
+  <string name="HelpFragment__next">التالي</string>
+  <string name="HelpFragment__signal_support">دعم تطبيق Signal</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">استيراد</string>
   <string name="arrays__use_default">استخدم الافتراضي</string>
@@ -1373,6 +1379,7 @@
   <string name="preferences__fast">سريع</string>
   <string name="preferences__normal">طبيعي</string>
   <string name="preferences__slow">بطىء</string>
+  <string name="preferences__help">مساعدة</string>
   <string name="preferences__advanced">متقدم</string>
   <string name="preferences__privacy">الخصوصية</string>
   <string name="preferences__mms_user_agent">الوكيل المستخدم لرسائل الوسائط المتعددة</string>

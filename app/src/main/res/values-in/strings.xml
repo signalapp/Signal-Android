@@ -280,6 +280,8 @@
   <string name="CustomDefaultPreference_using_custom">Gunakan pilihan khusus: %s</string>
   <string name="CustomDefaultPreference_using_default">Gunakan pilihan standar: %s</string>
   <string name="CustomDefaultPreference_none">Kosong</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Buang foto</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Sekarang</string>
   <string name="DateUtils_minutes_ago">%dmenit</string>
@@ -1144,6 +1146,10 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="AndroidManifest_archived_conversations">Arsip percakapan</string>
   <string name="AndroidManifest_remove_photo">Buang foto</string>
   <!--Message Requests Megaphone-->
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Bantuan</string>
+  <string name="HelpFragment__next">Berikutnya</string>
+  <string name="HelpFragment__signal_support">Bantuan Signal</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Impor</string>
   <string name="arrays__use_default">Gunakan standar</string>
@@ -1221,6 +1227,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences__fast">Cepat</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Lambat</string>
+  <string name="preferences__help">Bantuan</string>
   <string name="preferences__advanced">Lanjutan</string>
   <string name="preferences__privacy">Privasi</string>
   <string name="preferences__mms_user_agent">User Agent MMS</string>

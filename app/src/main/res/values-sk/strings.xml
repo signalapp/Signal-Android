@@ -120,6 +120,8 @@
   <string name="CommunicationActions_start_voice_call">Začať hlasový hovor?</string>
   <string name="CommunicationActions_cancel">Zrušiť</string>
   <string name="CommunicationActions_call">Zavolať</string>
+  <string name="CommunicationActions_insecure_call">Nezabezpečený hovor</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Váš mobilný operátor vám môže účtovať poplatky. Číslo, na ktoré voláte, nie je registrované v Signale. Tento hovor sa uskutoční prostredníctvom vášho mobilného operátora, nie cez internet.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Vaše bezpečnostné číslo s %1$s sa zmenilo. Môže to znamenať, že sa niekto snaží preniknúť do vašej komunikácie alebo jednoducho, že %2$s si preinštaloval/a Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Mali by ste overiť vaše bezpečnostné číslo s týmto kontaktom.</string>
@@ -210,16 +212,22 @@
   <string name="ConversationActivity_no_results">Žiadne výsledky.</string>
   <string name="ConversationActivity_sticker_pack_installed">Balík s nálepkami bol nainštalovaný</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Novinka! Povedzte to nálepkou</string>
+  <string name="ConversationActivity_block_s">Zablokovať %1$s?</string>
+  <string name="ConversationActivity_block_and_leave_s">Zablokovať a opustiť %1$s?</string>
+  <string name="ConversationActivity_unblock_s">Odblokovať %1$s?</string>
   <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">Budete si môcť volať a písať.</string>
   <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">Členovia skupiny vás budú môcť do tejto skupiny znovu pridať.</string>
+  <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">Blokovaní používatelia vám nebudú môcť volať, ani posielať správy.</string>
   <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">Opustíte túto skupinu a už nebudete dostávať správy ani aktualizácie.</string>
   <string name="ConversationActivity_block">Blokovať</string>
+  <string name="ConversationActivity_block_and_delete">Zablokovať a odstrániť</string>
   <string name="ConversationActivity_cancel">Zrušiť</string>
   <string name="ConversationActivity_delete_conversation">Vymazať konverzáciu?</string>
   <string name="ConversationActivity_delete_and_leave_group">Vymazať a opustiť skupinu?</string>
   <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Táto konverzácia sa vymaže zo všetkých vašich zariadení.</string>
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Opustíte túto skupinu a vymažete ju zo všetkých vašich zariadení.</string>
   <string name="ConversationActivity_delete">Vymazať</string>
+  <string name="ConversationActivity_delete_and_leave">Odstrániť a opustiť</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neprečítaná správa</item>
@@ -311,6 +319,7 @@
     <item quantity="many">%d konverzácií presunutých do doručených</item>
     <item quantity="other">%d konverzácií presunutých do doručených</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_created">Vaše profilové meno sa vytvorilo.</string>
   <string name="ConversationListFragment__your_profile_name_has_been_saved">Názov vášho profilu bol uložený.</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Správa výmeny kľúčov</string>
@@ -330,6 +339,11 @@
   <string name="CustomDefaultPreference_using_custom">Používa sa vlastné: %s</string>
   <string name="CustomDefaultPreference_using_default">Používa sa predvolené: %s</string>
   <string name="CustomDefaultPreference_none">Žiadna</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Vybrať fotku</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Urobiť fotku</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Vybrať z galérie</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Odstrániť fotku</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Teraz</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -360,6 +374,7 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Toto zariadenie nepodporuje služby Google Play. Ťuknite pre vypnutie systémovej optimalizácie batérie, ktorá zabraňuje Signalu prijímať správy v neaktívnom stave.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Zdieľať s</string>
+  <string name="ShareActivity_multiple_attachments_are_only_supported">Viaceré prílohy sú podporované iba pre obrázky a videá</string>
   <!--ExperienceUpgradeActivity-->
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Vitajte v Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure a RedPhone sú teraz jedným súkromným messengerom pre každú situáciu: Signal.</string>
@@ -582,9 +597,19 @@
   <string name="MessageRequestBottomView_delete">Vymazať</string>
   <string name="MessageRequestBottomView_block">Blokovať</string>
   <string name="MessageRequestBottomView_unblock">Odblokovať</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Chcete umožniť používateľovi %1$s, aby vám poslal správu? Nedozvie sa, že ste videli jeho/jej správy, pokým nepotvrdíte prijatie.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Chcete sa pripojiť k skupine %1$s? Jej členovia sa nedozvú, že ste videli ich správy, pokým nepotvrdíte prijatie.</string>
+  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Odblokovať používateľa %1$s, aby ste si mohli vymieňať správy a navzájom si volať.</string>
+  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Odblokovať, aby ste umožnili členom skupiny znova vás pridať do tejto skupiny.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Člen skupiny %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Člen skupiny %1$s a %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Člen skupiny %1$s, %2$s a %3$s</string>
+  <plurals name="MessageRequestProfileView_members">
+    <item quantity="one">%1$d člen</item>
+    <item quantity="few">%1$d členovia</item>
+    <item quantity="many">%1$d členov</item>
+    <item quantity="other">%1$d členov</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d iný</item>
     <item quantity="few">%d iní</item>
@@ -783,9 +808,13 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">Upraviť</string>
   <string name="SubmitDebugLogActivity_done">Hotovo</string>
+  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Pre odstránenie riadka naň ťuknite</string>
   <string name="SubmitDebugLogActivity_submit">Potvrdiť</string>
+  <string name="SubmitDebugLogActivity_failed_to_submit_logs">Odoslanie denníkov zlyhalo</string>
   <string name="SubmitDebugLogActivity_success">Operácia úspešne dokončená!</string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Skopírujte túto URL adresu a pridajte ju k hláseniu o chybe alebo e-mailu určenému tímu podpory:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Skopírované do schránky</string>
+  <string name="SubmitDebugLogActivity_ok">Ok</string>
   <string name="SubmitDebugLogActivity_share">Zdieľať</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Skupina bola aktualizovaná</string>
@@ -809,6 +838,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ThreadRecord_you_marked_unverified">Označili ste ako neoverené</string>
   <string name="ThreadRecord_message_could_not_be_processed">Správu sa nepodarilo spracovať</string>
   <string name="ThreadRecord_message_request">Žiadosť o správu</string>
+  <string name="ThreadRecord_s_added_you_to_the_group">%1$s vás pridal/a do skupiny</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Aktualizácia Signalu</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">K dispozícii je nová verzia Signalu, ťuknutím aktualizujte</string>
@@ -1244,6 +1274,33 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="AndroidManifest_archived_conversations">Archivované konverzácie</string>
   <string name="AndroidManifest_remove_photo">Odstrániť fotku</string>
   <!--Message Requests Megaphone-->
+  <string name="MessageRequestsMegaphone__message_requests">Žiadosti o správu</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Používatelia si teraz môžu vybrať, či prijmú novú konverzáciu. Profilové mená umožňujú ľuďom vedieť, kto im píše.</string>
+  <string name="MessageRequestsMegaphone__add_profile_name">Pridať profilové meno</string>
+  <string name="MessageRequestsMegaphone__new_message_requests">Novinka: Žiadosti o správu</string>
+  <string name="MessageRequestsMegaphone__add_name">Pridať meno</string>
+  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Teraz si môžete vybrať, či prijmete novú konverzáciu. Budete mať na výber: \"Prijať\", \"Odstrániť\" a \"Zablokovať\".</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Pomocník</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">Prečítali ste si už našu sekciu FAQ?</string>
+  <string name="HelpFragment__next">Ďalší</string>
+  <string name="HelpFragment__contact_us">Kontaktujte nás</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Povedzte nám, čo sa deje</string>
+  <string name="HelpFragment__include_debug_log">Pripojte aj denník ladenia.</string>
+  <string name="HelpFragment__whats_this">Čo je toto?</string>
+  <string name="HelpFragment__how_do_you_feel">Ako sa cítite? (voliteľné)</string>
+  <string name="HelpFragment__support_info">Podporné informácie</string>
+  <string name="HelpFragment__subject">Predmet:</string>
+  <string name="HelpFragment__signal_android_support_request">Žiadosť o podporu pre Signal Android</string>
+  <string name="HelpFragment__device_info">Info o zariadení:</string>
+  <string name="HelpFragment__android_version">Verzia Androidu:</string>
+  <string name="HelpFragment__signal_version">Verzia Signalu:</string>
+  <string name="HelpFragment__locale">Miestne nastavenia:</string>
+  <string name="HelpFragment__debug_log">Denník ladenia:</string>
+  <string name="HelpFragment__na">nevzťahuje sa</string>
+  <string name="HelpFragment__could_not_upload_logs">Nepodarilo sa nahrať denníky</string>
+  <string name="HelpFragment__signal_support">Podpora Signal</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">Prosíme, čo najpodrobnejšie popíšte situáciu a pomôžte nám tak porozumieť vášmu problému.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Import</string>
   <string name="arrays__use_default">Použiť predvolené</string>
@@ -1324,6 +1381,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__fast">Rýchlo</string>
   <string name="preferences__normal">Normálne</string>
   <string name="preferences__slow">Pomaly</string>
+  <string name="preferences__help">Pomocník</string>
   <string name="preferences__advanced">Rozšírené</string>
   <string name="preferences__privacy">Súkromie</string>
   <string name="preferences__mms_user_agent">MMS používateľský agent</string>
@@ -1347,6 +1405,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__dark_theme">Tmavý</string>
   <string name="preferences__appearance">Vzhľad</string>
   <string name="preferences__theme">Motív</string>
+  <string name="preferences__system_default">Predvolené nastavenie</string>
   <string name="preferences__default">Štandardné nastavenie</string>
   <string name="preferences__language">Jazyk</string>
   <string name="preferences__signal_messages_and_calls">Signal správy a hovory</string>
@@ -1641,8 +1700,10 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Pripomenieme vám to neskôr. Povinnosť vytvoriť si PIN kód budete mať o %1$d dní.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Pripomenieme vám to neskôr. Povinnosť potvrdiť svoj PIN kód budete mať o %1$d dní.</string>
   <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__add_a_profile_name">Pridať profilové meno</string>
   <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Toto sa zobrazí, keď začnete novú konverzáciu alebo keď ju budete zdieľať.</string>
   <string name="ProfileNamesMegaphone__add_profile_name">Pridať názov profilu</string>
+  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Potvrďte svoje Profilové meno</string>
   <string name="ProfileNamesMegaphone__your_profile_can_now_include">Váš profil môže teraz voliteľne obsahovať priezvisko.</string>
   <string name="ProfileNamesMegaphone__confirm_name">Potvrdiť názov</string>
   <!--transport_selection_list_item-->
@@ -1712,6 +1773,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Zmeniť</string>
   <string name="preferences_app_protection__create">Vytvoriť</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account">Váš PIN pridáva vrstvu zabezpečenia navyše k vášmu účtu. Budete oň požiadaný/požiadaná, keď si v Signale zaregistrujete svoje telefónne číslo. Ak svoj PIN zabudnete, budete zo svojho účtu vymknutý/vymknutá po dobu 7 dní.</string>
   <string name="AppProtectionPreferenceFragment_none">Žiadny</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN registračného zámku sa nezhoduje s verifikačným kódom ktorý ste obdržali v SMS správe. Zadajte prosím PIN, ktorý ste si v aplikácii nastavili.</string>
   <string name="registration_activity__registration_lock_pin">PIN registračného zámku</string>

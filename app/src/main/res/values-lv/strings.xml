@@ -307,6 +307,8 @@
   <string name="CustomDefaultPreference_using_custom">Lieto pielāgotu: %s</string>
   <string name="CustomDefaultPreference_using_default">Lieto noklusējumu: %s</string>
   <string name="CustomDefaultPreference_none">Nekas</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Noņemt attēlu</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Tagad</string>
   <string name="DateUtils_minutes_ago">%d min</string>
@@ -1197,6 +1199,9 @@ Saņemts atslēgas apmaiņas ziņojums par nederīgu protokola versiju. </string
   <string name="AndroidManifest_archived_conversations">Arhivētās sarunas</string>
   <string name="AndroidManifest_remove_photo">Noņemt attēlu</string>
   <!--Message Requests Megaphone-->
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Palīdzība</string>
+  <string name="HelpFragment__next">Tālāk</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importēt</string>
   <string name="arrays__use_default">Izmantot noklusējumu</string>
@@ -1276,6 +1281,7 @@ Saņemts atslēgas apmaiņas ziņojums par nederīgu protokola versiju. </string
   <string name="preferences__fast">Ātrs</string>
   <string name="preferences__normal">Normāls</string>
   <string name="preferences__slow">Lēns</string>
+  <string name="preferences__help">Palīdzība</string>
   <string name="preferences__advanced">Papildu</string>
   <string name="preferences__privacy">Privātums</string>
   <string name="preferences__mms_user_agent">MMS lietotāja aģents</string>

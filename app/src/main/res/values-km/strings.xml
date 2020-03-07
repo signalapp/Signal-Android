@@ -281,6 +281,8 @@
   <string name="CustomDefaultPreference_using_custom">ប្រើផ្សេងៗ៖ %s</string>
   <string name="CustomDefaultPreference_using_default">ប្រើលំនាំដើម៖ %s</string>
   <string name="CustomDefaultPreference_none">គ្មាន</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">លុបរូបថតចេញ</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">ឥឡូវនេះ</string>
   <string name="DateUtils_minutes_ago">%dនាទី</string>
@@ -1139,6 +1141,9 @@
   <string name="AndroidManifest_archived_conversations">សន្ទនាក្នុងបណ្ណសារ</string>
   <string name="AndroidManifest_remove_photo">លុបរូបថតចេញ</string>
   <!--Message Requests Megaphone-->
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">ជំនួយ</string>
+  <string name="HelpFragment__next">បន្ទាប់</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">នាំចូល</string>
   <string name="arrays__use_default">ប្រើលំនាំដើម</string>
@@ -1216,6 +1221,7 @@
   <string name="preferences__fast">លឿន</string>
   <string name="preferences__normal">ធម្មតា</string>
   <string name="preferences__slow">យឺត</string>
+  <string name="preferences__help">ជំនួយ</string>
   <string name="preferences__advanced">កម្រិតខ្ពស់</string>
   <string name="preferences__privacy">ឯកជនភាព</string>
   <string name="preferences__mms_user_agent">ភ្នាក់ងារអ្នកប្រើប្រាស់ MMS </string>

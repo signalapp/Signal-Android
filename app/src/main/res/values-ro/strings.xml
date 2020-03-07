@@ -117,6 +117,8 @@
   <string name="CommunicationActions_start_voice_call">Începeți apelul vocal?</string>
   <string name="CommunicationActions_cancel">Anulați</string>
   <string name="CommunicationActions_call">Apelează</string>
+  <string name="CommunicationActions_insecure_call">Apel nesecurizat</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Se pot percepe taxe de operator. Numărul apelat nu este înregistrat la Signal. Acest apel va fi plasat prin intermediul operatorului dvs. de telefonie mobilă, nu prin internet.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Numărul de siguranță pentru %1$s s-a schimbat.  Asta poate însemna că cineva încearcă să intercepteze comunicația sau că %2$s a reinstalat Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Probabil că dorești să verifici numărul de siguranță pentru acest contact.</string>
@@ -323,6 +325,11 @@
   <string name="CustomDefaultPreference_using_custom">Personalizat: %s</string>
   <string name="CustomDefaultPreference_using_default">Implicit: %s</string>
   <string name="CustomDefaultPreference_none">Niciuna</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Alegeți o poză</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Faceți o poză</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Alegeți din galerie</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Eliminați poza</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Acum</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -1238,6 +1245,27 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MessageRequestsMegaphone__new_message_requests">Nou: Cereri de mesaje</string>
   <string name="MessageRequestsMegaphone__add_name">Adăugați nume</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Acum puteți alege dacă să acceptați o conversație nouă. Veți vedea opțiuni precum \"Acceptați\", \"Ștergeți\" sau \"Blocați\".</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Ajutor</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">Ai citit deja FAQ-ul nostru?</string>
+  <string name="HelpFragment__next">Următorul</string>
+  <string name="HelpFragment__contact_us">Contactați-ne</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Spune-ne ce se întâmplă</string>
+  <string name="HelpFragment__include_debug_log">Include jurnalul de depanare.</string>
+  <string name="HelpFragment__whats_this">Ce este asta?</string>
+  <string name="HelpFragment__how_do_you_feel">Cum vă simțiți? (Opțional)</string>
+  <string name="HelpFragment__support_info">Informații suport</string>
+  <string name="HelpFragment__subject">Subiect:</string>
+  <string name="HelpFragment__signal_android_support_request">Cerere suport Signal Android</string>
+  <string name="HelpFragment__device_info">Informații dispozitiv:</string>
+  <string name="HelpFragment__android_version">Versiune Android:</string>
+  <string name="HelpFragment__signal_version">Versiune Signal:</string>
+  <string name="HelpFragment__locale">Limba:</string>
+  <string name="HelpFragment__debug_log">Jurnalul de depanare:</string>
+  <string name="HelpFragment__na">n/a</string>
+  <string name="HelpFragment__could_not_upload_logs">Nu s-au putut încărca jurnalele</string>
+  <string name="HelpFragment__signal_support">Suport Signal</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">Vă rugăm să fiți cât mai descriptivi pentru a ne ajuta să înțelegem problema.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importă</string>
   <string name="arrays__use_default">Implicit</string>
@@ -1317,6 +1345,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__fast">Rapid</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Încet</string>
+  <string name="preferences__help">Ajutor</string>
   <string name="preferences__advanced">Avansat</string>
   <string name="preferences__privacy">Confidenţialitate</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>

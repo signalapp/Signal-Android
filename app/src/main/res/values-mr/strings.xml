@@ -290,6 +290,8 @@
   <string name="CustomDefaultPreference_using_custom">सानुकूल वापरून: %s</string>
   <string name="CustomDefaultPreference_using_default">पूर्वनिर्धारित वापरून: %s</string>
   <string name="CustomDefaultPreference_none">कुठलेही नाही</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">फोटो काढा</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">आता</string>
   <string name="DateUtils_minutes_ago">%d मि</string>
@@ -1156,6 +1158,10 @@
   <string name="AndroidManifest_archived_conversations">आर्काईव्ह केलेले संभाषण</string>
   <string name="AndroidManifest_remove_photo">फोटो काढा</string>
   <!--Message Requests Megaphone-->
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">मदत</string>
+  <string name="HelpFragment__next">पुढे</string>
+  <string name="HelpFragment__signal_support">Signal समर्थन</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">आयात</string>
   <string name="arrays__use_default">पूर्वनिर्धारित वापरा</string>
@@ -1234,6 +1240,7 @@
   <string name="preferences__fast">जलद</string>
   <string name="preferences__normal">सामान्य</string>
   <string name="preferences__slow">हळू</string>
+  <string name="preferences__help">मदत</string>
   <string name="preferences__advanced">प्रगत</string>
   <string name="preferences__privacy">गोपनीयता</string>
   <string name="preferences__mms_user_agent">MMS वापरकर्ता एजंट</string>

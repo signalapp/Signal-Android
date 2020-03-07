@@ -114,6 +114,8 @@
   <string name="CommunicationActions_start_voice_call">Iniziare una chiamata vocale?</string>
   <string name="CommunicationActions_cancel">Annulla</string>
   <string name="CommunicationActions_call">Chiama</string>
+  <string name="CommunicationActions_insecure_call">Chiamata non sicura</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Potrebbero essere applicati costi dall\'operatore. Il numero che stai per chiamare non è registrato con Signal. Questa chiamata verrà effettuata tramite il tuo gestore di telefonia mobile, non tramite Internet.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Il codice di sicurezza con %1$s è cambiato. Questo può voler dire che qualcuno sta cercando d\'intercettare la tua comunicazione, oppure che %2$s ha semplicemente reinstallato Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Dovresti verificare il tuo codice di sicurezza con questo contatto.</string>
@@ -309,6 +311,11 @@
   <string name="CustomDefaultPreference_using_custom">Utilizzo personalizzato: %s</string>
   <string name="CustomDefaultPreference_using_default">Utilizzo predefinito: %s</string>
   <string name="CustomDefaultPreference_none">Nessuna</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Scegli foto</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Scatta foto</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Scegli dalla galleria</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Rimuovi foto</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Ora</string>
   <string name="DateUtils_minutes_ago">%dmin</string>
@@ -1210,6 +1217,27 @@
   <string name="MessageRequestsMegaphone__new_message_requests">Nuovo: Richieste di messaggi</string>
   <string name="MessageRequestsMegaphone__add_name">Aggiungi nome</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Ora puoi scegliere se accettare una nuova conversazione. Vedrai le opzioni \"Accetta\", \"Elimina\" e \"Blocca\".</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Aiuto</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">Hai già letto le nostre FAQ?</string>
+  <string name="HelpFragment__next">Avanti</string>
+  <string name="HelpFragment__contact_us">Contattaci</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Dicci cosa sta succedendo</string>
+  <string name="HelpFragment__include_debug_log">Includi log di debug.</string>
+  <string name="HelpFragment__whats_this">Cos\'è?</string>
+  <string name="HelpFragment__how_do_you_feel">Come ti senti? (Facoltativo)</string>
+  <string name="HelpFragment__support_info">Informazioni supporto</string>
+  <string name="HelpFragment__subject">Oggetto:</string>
+  <string name="HelpFragment__signal_android_support_request">Richiesta di supporto Signal Android</string>
+  <string name="HelpFragment__device_info">Informazioni sul dispositivo:</string>
+  <string name="HelpFragment__android_version">Versione di Android:</string>
+  <string name="HelpFragment__signal_version">Versione di Signal:</string>
+  <string name="HelpFragment__locale">Lingua:</string>
+  <string name="HelpFragment__debug_log">Log di debug:</string>
+  <string name="HelpFragment__na">n.d.</string>
+  <string name="HelpFragment__could_not_upload_logs">Impossibile inviare i log</string>
+  <string name="HelpFragment__signal_support">Assistenza Signal</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">Sii il più descrittivo possibile per aiutarci a capire il problema.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importa</string>
   <string name="arrays__use_default">Usa predefinito</string>
@@ -1288,6 +1316,7 @@
   <string name="preferences__fast">Veloce</string>
   <string name="preferences__normal">Normale</string>
   <string name="preferences__slow">Lento</string>
+  <string name="preferences__help">Aiuto</string>
   <string name="preferences__advanced">Avanzate</string>
   <string name="preferences__privacy">Privacy</string>
   <string name="preferences__mms_user_agent">User agent MMS</string>

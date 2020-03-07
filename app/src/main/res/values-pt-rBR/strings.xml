@@ -206,9 +206,12 @@
   <string name="ConversationActivity_new_say_it_with_stickers">Novidade! Se expresse com figurinhas</string>
   <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">Vocês poderão enfiar mensagem e ligar um para o outro.</string>
   <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">Membros do grupo poderão adicionar você ao grupo novamente</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">Você deixará deste grupo e não receberá mais nenhuma mensagem ou atualização.</string>
   <string name="ConversationActivity_block">Bloquear</string>
   <string name="ConversationActivity_cancel">Cancelar</string>
   <string name="ConversationActivity_delete_conversation">Excluir conversa?</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Esta conversa será deletada de todos os seus dispositivos.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Você deixará este grupo, que será deletado de todos os seus dispositivos.</string>
   <string name="ConversationActivity_delete">Excluir</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -278,6 +281,7 @@
     <item quantity="one">Conversa movida para a caixa de entrada</item>
     <item quantity="other">%d conversas movidas para a caixa de entrada</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_saved">Seu nome de perfil foi salvo.</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensagem de troca de chaves</string>
   <!--ConversationListItemAction-->
@@ -296,6 +300,8 @@
   <string name="CustomDefaultPreference_using_custom">Usando personalização: %s</string>
   <string name="CustomDefaultPreference_using_default">Usando padrão: %s</string>
   <string name="CustomDefaultPreference_none">Nenhum</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Remover foto</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Agora</string>
   <string name="DateUtils_minutes_ago">%dmin</string>
@@ -1178,6 +1184,9 @@
   <string name="AndroidManifest_archived_conversations">Conversas arquivadas</string>
   <string name="AndroidManifest_remove_photo">Remover foto</string>
   <!--Message Requests Megaphone-->
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Ajuda</string>
+  <string name="HelpFragment__next">Avançar</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar</string>
   <string name="arrays__use_default">Usar padrão</string>
@@ -1256,6 +1265,7 @@
   <string name="preferences__fast">Rápido</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Lento</string>
+  <string name="preferences__help">Ajuda</string>
   <string name="preferences__advanced">Avançadas</string>
   <string name="preferences__privacy">Privacidade</string>
   <string name="preferences__mms_user_agent">Agente de usuário MMS</string>

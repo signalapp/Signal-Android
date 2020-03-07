@@ -60,6 +60,8 @@
   <string name="AttachmentKeyboard_file">Ficheiro</string>
   <string name="AttachmentKeyboard_contact">Contacto</string>
   <string name="AttachmentKeyboard_location">Localización</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal necesita permiso para mostrar as túas fotografías e vídeos.</string>
+  <string name="AttachmentKeyboard_give_access">Permitir</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Non se atopa unha app para seleccionar contido multimedia.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal require permiso de almacenamento para poder anexar fotografías, vídeos ou ficheiros de audio, pero este foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Almacenamento\".</string>
@@ -79,6 +81,7 @@
   <string name="BucketedThreadMedia_This_week">Esta semana</string>
   <string name="BucketedThreadMedia_This_month">Este mes</string>
   <string name="BucketedThreadMedia_Large">Grande</string>
+  <string name="BucketedThreadMedia_Medium">Mediano</string>
   <string name="BucketedThreadMedia_Small">Pequeno</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Chamada recibida</string>
@@ -110,6 +113,7 @@
   <string name="CommunicationActions_start_voice_call">Iniciar chamada de voz?</string>
   <string name="CommunicationActions_cancel">Cancelar</string>
   <string name="CommunicationActions_call">Chamar</string>
+  <string name="CommunicationActions_insecure_call">Chamada insegura</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">O teu número de seguranza con %1$s foi modificado. Isto pode significar que alguén está a tentar interceptar a vosa comunicación ou simplemente que %2$s reinstalou Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Convén verificar o teu número de seguranza con este contacto.</string>
@@ -198,9 +202,17 @@
   <string name="ConversationActivity_no_results">Sen resultados</string>
   <string name="ConversationActivity_sticker_pack_installed">Paquete de adhesivos instalado</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Novo! Dille ola aos adhesivos ou stickers</string>
+  <string name="ConversationActivity_block_s">Bloquear a %1$s?</string>
+  <string name="ConversationActivity_block_and_leave_s">Bloquear e abandonar %1$s?</string>
+  <string name="ConversationActivity_unblock_s">Desbloquear a %1$s?</string>
+  <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">As persoas bloqueadas non che poderán chamar nin enviar mensaxes.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">Abandonarás este grupo e non recibirás máis mensaxes nin actualizacións.</string>
   <string name="ConversationActivity_block">Bloquear</string>
+  <string name="ConversationActivity_block_and_delete">Bloquear e eliminar</string>
   <string name="ConversationActivity_cancel">Cancelar</string>
   <string name="ConversationActivity_delete_conversation">Borrar conversa?</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Esta conversa eliminarase de todos os teus dispositivos.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Abandonarás este grupo e será eliminado de todos os teus dispositivos.</string>
   <string name="ConversationActivity_delete">Eliminar</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -245,6 +257,7 @@
   <string name="ConversationFragment_failed_to_open_message">Erro ao abrir a mensaxe</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Podes pasar o dedo cara á dereita sobre calquera mensaxe para responder rapidamente</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Podes pasar o dedo cara á esquerda sobre calquera mensaxe para responder rapidamente</string>
+  <string name="ConversationFragment_you_already_viewed_this_message">Xa viches esta mensaxe</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Non hai ningún navegador instalado no teu dispositivo.</string>
   <!--ConversationListFragment-->
@@ -286,6 +299,8 @@
   <string name="CustomDefaultPreference_using_custom">Uso personalizado: %s</string>
   <string name="CustomDefaultPreference_using_default">Uso predefinido: %s</string>
   <string name="CustomDefaultPreference_none">Ningunha</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Eliminar fotografía</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Agora</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -1090,6 +1105,9 @@
   <string name="AndroidManifest_archived_conversations">Conversas arquivadas</string>
   <string name="AndroidManifest_remove_photo">Eliminar fotografía</string>
   <!--Message Requests Megaphone-->
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Axuda</string>
+  <string name="HelpFragment__next">Seguinte</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar</string>
   <string name="arrays__use_default">Utilizar o predeterminado</string>
@@ -1168,6 +1186,7 @@
   <string name="preferences__fast">Rápida</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Lenta</string>
+  <string name="preferences__help">Axuda</string>
   <string name="preferences__advanced">Avanzado</string>
   <string name="preferences__privacy">Privacidade</string>
   <string name="preferences__mms_user_agent">Axente de usuario MMS</string>

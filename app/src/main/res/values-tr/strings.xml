@@ -309,6 +309,8 @@
   <string name="CustomDefaultPreference_using_custom">Özelleştirilmiş \'%s\' kullanılıyor</string>
   <string name="CustomDefaultPreference_using_default">Varsayılan \'%s\' kullanılıyor</string>
   <string name="CustomDefaultPreference_none">Hiçbiri</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Fotoğrafı kaldır</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Şimdi</string>
   <string name="DateUtils_minutes_ago">%dd</string>
@@ -1209,6 +1211,10 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MessageRequestsMegaphone__new_message_requests">Yeni: İleti istekleri</string>
   <string name="MessageRequestsMegaphone__add_name">Ad ekleyin</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Yeni bir konuşmayı kabul edip etmeme seçeneğine sahipsiniz. \"Kabul et\", \"Sil\" veya \"Engelle\" gibi seçenekler göreceksiniz.</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Yardım</string>
+  <string name="HelpFragment__next">İleri</string>
+  <string name="HelpFragment__signal_support">Signal Desteği</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">İçe Aktar</string>
   <string name="arrays__use_default">Varsayılanı kullan</string>
@@ -1287,6 +1293,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__fast">Hızlı</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Yavaş</string>
+  <string name="preferences__help">Yardım</string>
   <string name="preferences__advanced">Gelişmiş</string>
   <string name="preferences__privacy">Gizlilik</string>
   <string name="preferences__mms_user_agent">MMS Kullanıcı Aracı</string>

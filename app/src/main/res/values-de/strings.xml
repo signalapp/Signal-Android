@@ -114,6 +114,8 @@
   <string name="CommunicationActions_start_voice_call">Sprachanruf starten?</string>
   <string name="CommunicationActions_cancel">Abbrechen</string>
   <string name="CommunicationActions_call">Anrufen</string>
+  <string name="CommunicationActions_insecure_call">Unverschlüsselter Anruf</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Möglicherweise fallen Mobilfunkgebühren an. Die gewählte Rufnummer ist nicht bei Signal registriert. Daher wird dieser Anruf über deinen Mobilfunkanbieter geleitet, nicht über das Internet.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Deine gemeinsame Sicherheitsnummer mit %1$s hat sich geändert. Dies könnte bedeuten, dass jemand versucht, eure Kommunikation abzuhören. Oder %2$s hat Signal einfach erneut installiert.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Vielleicht möchtest du deine Sicherheitsnummer mit diesem Kontakt verifizieren.</string>
@@ -309,6 +311,11 @@
   <string name="CustomDefaultPreference_using_custom">Benutzerdefiniert: %s</string>
   <string name="CustomDefaultPreference_using_default">Standard: %s</string>
   <string name="CustomDefaultPreference_none">Kein Eintrag</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Foto wählen</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Foto aufnehmen</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Aus Galerie wählen</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Foto entfernen</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Jetzt</string>
   <string name="DateUtils_minutes_ago">%dmin</string>
@@ -1199,6 +1206,27 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MessageRequestsMegaphone__new_message_requests">Neu: Unterhaltungsanfragen</string>
   <string name="MessageRequestsMegaphone__add_name">Name hinzufügen</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Du kannst nun wählen, ob du eine neue Unterhaltung zulassen möchtest. Die möglichen Alternativen sind »Akzeptieren«, »Löschen« oder »Blockieren«.</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Hilfe</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">Hast du bereits die FAQ gelesen?</string>
+  <string name="HelpFragment__next">Weiter</string>
+  <string name="HelpFragment__contact_us">Kontaktiere uns</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Teile uns mit, was los ist</string>
+  <string name="HelpFragment__include_debug_log">Diagnoseprotokoll beifügen.</string>
+  <string name="HelpFragment__whats_this">Was ist das?</string>
+  <string name="HelpFragment__how_do_you_feel">Wie fühlst du dich? (Optional)</string>
+  <string name="HelpFragment__support_info">Supportinformationen</string>
+  <string name="HelpFragment__subject">Betreff:</string>
+  <string name="HelpFragment__signal_android_support_request">Supportanfrage für Signal Android</string>
+  <string name="HelpFragment__device_info">Geräteinformationen:</string>
+  <string name="HelpFragment__android_version">Android-Version:</string>
+  <string name="HelpFragment__signal_version">Signal-Version:</string>
+  <string name="HelpFragment__locale">Region:</string>
+  <string name="HelpFragment__debug_log">Diagnoseprotokoll:</string>
+  <string name="HelpFragment__na">entfällt</string>
+  <string name="HelpFragment__could_not_upload_logs">Protokoll konnte nicht hochgeladen werden</string>
+  <string name="HelpFragment__signal_support">Signal-Support</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">Bitte beschreibe das Problem so genau wie möglich, damit wir es besser verstehen können.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importieren</string>
   <string name="arrays__use_default">Standard verwenden</string>
@@ -1277,6 +1305,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__fast">Schnell</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Langsam</string>
+  <string name="preferences__help">Hilfe</string>
   <string name="preferences__advanced">Weitere Einstellungen</string>
   <string name="preferences__privacy">Datenschutz</string>
   <string name="preferences__mms_user_agent">MMS-Benutzer-Agent</string>

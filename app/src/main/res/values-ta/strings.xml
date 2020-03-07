@@ -294,6 +294,8 @@
   <string name="CustomDefaultPreference_using_custom">பயன்படுத்தப்படும் வழக்கம் : %s</string>
   <string name="CustomDefaultPreference_using_default">பயன்படுத்தப்படும் இயல்புநிலை: %s</string>
   <string name="CustomDefaultPreference_none">எதுவும் இல்லை</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">புகைப்படத்தை அகற்று</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">இப்போது</string>
   <string name="DateUtils_minutes_ago">%d மீ</string>
@@ -1173,6 +1175,10 @@
   <string name="AndroidManifest_archived_conversations">காப்பகப்படுத்தப்பட்ட உரையாடல்கள்</string>
   <string name="AndroidManifest_remove_photo">புகைப்படத்தை அகற்று</string>
   <!--Message Requests Megaphone-->
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">உதவி</string>
+  <string name="HelpFragment__next">அடுத்தது</string>
+  <string name="HelpFragment__signal_support">Signal ஆதரவு</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">இறக்குமதி செய்</string>
   <string name="arrays__use_default">இயல்புநிலை பயன்படுத்தவும்</string>
@@ -1252,6 +1258,7 @@
   <string name="preferences__fast">வேகமாக</string>
   <string name="preferences__normal">சாதாரணமாக</string>
   <string name="preferences__slow">மெதுவாக</string>
+  <string name="preferences__help">உதவி</string>
   <string name="preferences__advanced">மேம்பட்ட</string>
   <string name="preferences__privacy">தனியுரிமை</string>
   <string name="preferences__mms_user_agent">எம்.எம்.எஸ் பயனர் முகவர்</string>

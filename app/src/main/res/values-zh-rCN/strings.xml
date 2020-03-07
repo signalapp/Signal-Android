@@ -280,6 +280,8 @@
   <string name="CustomDefaultPreference_using_custom">使用定制：%s</string>
   <string name="CustomDefaultPreference_using_default">使用默认：%s</string>
   <string name="CustomDefaultPreference_none">无</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">删除图片</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">刚刚</string>
   <string name="DateUtils_minutes_ago">%d 分钟</string>
@@ -1144,6 +1146,10 @@
   <string name="AndroidManifest_archived_conversations">已存档对话</string>
   <string name="AndroidManifest_remove_photo">删除图片</string>
   <!--Message Requests Megaphone-->
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">帮助</string>
+  <string name="HelpFragment__next">下一步</string>
+  <string name="HelpFragment__signal_support">Signal 支持</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">导入</string>
   <string name="arrays__use_default">使用默认</string>
@@ -1221,6 +1227,7 @@
   <string name="preferences__fast">快速</string>
   <string name="preferences__normal">正常</string>
   <string name="preferences__slow">缓慢</string>
+  <string name="preferences__help">帮助</string>
   <string name="preferences__advanced">高级</string>
   <string name="preferences__privacy">隐私</string>
   <string name="preferences__mms_user_agent">彩信用户代理</string>

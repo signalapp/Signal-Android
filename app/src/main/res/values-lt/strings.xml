@@ -120,6 +120,8 @@
   <string name="CommunicationActions_start_voice_call">Pradėti balso skambutį?</string>
   <string name="CommunicationActions_cancel">Atsisakyti</string>
   <string name="CommunicationActions_call">Skambinti</string>
+  <string name="CommunicationActions_insecure_call">Nesaugus skambutis</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Gali būti taikomi mobiliojo ryšio tinklo operatoriaus mokesčiai. Numeris, kuriuo skambinate, nėra registruotas Signal. Šis skambutis bus inicijuotas per jūsų mobiliojo ryšio tinklo operatorių, o ne per internetą.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Jūsų saugumo numeris su %1$s pasikeitė. Tai gali reikšti, kad kažkas bando perimti jūsų susirašinėjimą arba, kad %2$s, tiesiog, iš naujo įdiegė Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Jūs, tikriausiai, norėtumėte patvirtinti savo saugumo numerį su šiuo adresatu.</string>
@@ -337,6 +339,11 @@
   <string name="CustomDefaultPreference_using_custom">Naudojamas tinkintas: %s</string>
   <string name="CustomDefaultPreference_using_default">Naudojamas numatytasis: %s</string>
   <string name="CustomDefaultPreference_none">Nėra</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Pasirinkti nuotrauką</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Fotografuoti</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Pasirinkti iš galerijos</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Šalinti nuotrauką</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Dabar</string>
   <string name="DateUtils_minutes_ago">%d min.</string>
@@ -1274,6 +1281,27 @@
   <string name="MessageRequestsMegaphone__new_message_requests">Nauja: Žinučių užklausos</string>
   <string name="MessageRequestsMegaphone__add_name">Pridėti vardą</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Dabar, galite rinktis ar priimti naują pokalbį. Matysite variantus \"Priimti\", \"Ištrinti\" arba \"Užblokuoti\".</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Pagalba</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">Ar jau esate skaitę DUK?</string>
+  <string name="HelpFragment__next">Kitas</string>
+  <string name="HelpFragment__contact_us">Susisiekite su mumis</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Papasakokite kas nutiko</string>
+  <string name="HelpFragment__include_debug_log">Įtraukti derinimo žurnalą.</string>
+  <string name="HelpFragment__whats_this">Kas tai?</string>
+  <string name="HelpFragment__how_do_you_feel">Kaip jaučiatės? (Nebūtina)</string>
+  <string name="HelpFragment__support_info">Palaikymo informacija</string>
+  <string name="HelpFragment__subject">Tema:</string>
+  <string name="HelpFragment__signal_android_support_request">Signal Android palaikymo užklausa</string>
+  <string name="HelpFragment__device_info">Įrenginio informacija:</string>
+  <string name="HelpFragment__android_version">Android versija:</string>
+  <string name="HelpFragment__signal_version">Signal versija:</string>
+  <string name="HelpFragment__locale">Lokalė:</string>
+  <string name="HelpFragment__debug_log">Derinimo žurnalas:</string>
+  <string name="HelpFragment__na">nėra</string>
+  <string name="HelpFragment__could_not_upload_logs">Nepavyko atnaujinti žurnalų</string>
+  <string name="HelpFragment__signal_support">Signal palaikymas</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">Kaip įmanoma išsamiau aprašykite problemą, kad lengviau ją suprastume.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importuoti</string>
   <string name="arrays__use_default">Naudoti numatytąjį</string>
@@ -1354,6 +1382,7 @@
   <string name="preferences__fast">Greitas</string>
   <string name="preferences__normal">Normalus</string>
   <string name="preferences__slow">Lėtas</string>
+  <string name="preferences__help">Pagalba</string>
   <string name="preferences__advanced">Išplėstiniai</string>
   <string name="preferences__privacy">Privatumas</string>
   <string name="preferences__mms_user_agent">MMS naudotojo agentas</string>

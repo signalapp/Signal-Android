@@ -120,6 +120,8 @@
   <string name="CommunicationActions_start_voice_call">Zahájit hovor?</string>
   <string name="CommunicationActions_cancel">Storno</string>
   <string name="CommunicationActions_call">Volat</string>
+  <string name="CommunicationActions_insecure_call">Nezabezpečený hovor</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Mohou vám být účtovány telefonní poplatky. Číslo, které voláte, není registrováno u Signalu a hovor tak bude uskutečněn prostřednictvím mobilního operátora, nikoli přes internet.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Váš bezpečnostní kód pro %1$s se změnil. To může znamenat, že se někdo pokouší zachytit vaši konverzaci, nebo si %2$s jednoduše přeinstaloval Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Možná budete chtít zkontrolovat vaše bezpečnostní kódy pro tento kontakt.</string>
@@ -337,6 +339,11 @@
   <string name="CustomDefaultPreference_using_custom">Používá se vlastní: %s</string>
   <string name="CustomDefaultPreference_using_default">Používá se výchozí: %s</string>
   <string name="CustomDefaultPreference_none">Nic</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Vybrat fotografii</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Pořídit fotografii</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Vybrat z galerie</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Odebrat fotografii</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Teď</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -1273,6 +1280,27 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MessageRequestsMegaphone__new_message_requests">Nové: Žádosti o zprávu</string>
   <string name="MessageRequestsMegaphone__add_name">Přidat jméno</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Nyní si můžete vybrat, zda novou konverzaci přijmete. Máte možnost \"Přijmout\", \"Smazat\" nebo \"Zablokovat\".</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Nápověda</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">Četl jste už často kladené otázky (FAQ)?</string>
+  <string name="HelpFragment__next">Další</string>
+  <string name="HelpFragment__contact_us">Kontaktujte nás</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Řekněte nám, co se děje</string>
+  <string name="HelpFragment__include_debug_log">Připojit ladicí log.</string>
+  <string name="HelpFragment__whats_this">Co to je?</string>
+  <string name="HelpFragment__how_do_you_feel">Jak se vám líbí (volitelné)</string>
+  <string name="HelpFragment__support_info">Informace o podpoře</string>
+  <string name="HelpFragment__subject">Předmět:</string>
+  <string name="HelpFragment__signal_android_support_request">Požadavek na podporu Signal Android</string>
+  <string name="HelpFragment__device_info">Informace o zařízení:</string>
+  <string name="HelpFragment__android_version">Verze Androidu:</string>
+  <string name="HelpFragment__signal_version">Verze Signalu:</string>
+  <string name="HelpFragment__locale">Jazyk:</string>
+  <string name="HelpFragment__debug_log">Ladicí log</string>
+  <string name="HelpFragment__na">n/a</string>
+  <string name="HelpFragment__could_not_upload_logs">Nepodařilo se nahrát logy</string>
+  <string name="HelpFragment__signal_support">Podpora Signalu</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">Popište detailně váš problém, aby to bylo pro nás srozumitelné.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Import</string>
   <string name="arrays__use_default">Použít výchozí</string>
@@ -1315,7 +1343,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__pref_enter_sends_title">Klávesa Enter odesílá</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Stisk tlačítka Enter na klávesnici odešle zprávu</string>
   <string name="preferences__send_link_previews">Odesílat náhledy odkazu</string>
-  <string name="preferences__previews_are_supported_for">Náhledy jsou podporovaný pro odkazy na Imgur, Instagram, Pinterest, Reddit a YouTube</string>
+  <string name="preferences__previews_are_supported_for">Náhledy jsou podporovány pro odkazy na Imgur, Instagram, Pinterest, Reddit a YouTube</string>
   <string name="preferences__choose_identity">Zvolit identitu</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Zvolte osobu ze svého adresáře</string>
   <string name="preferences__change_passphrase">Změnit heslo</string>
@@ -1353,6 +1381,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__fast">Rychle</string>
   <string name="preferences__normal">Normálně</string>
   <string name="preferences__slow">Pomalu</string>
+  <string name="preferences__help">Nápověda</string>
   <string name="preferences__advanced">Rozšířené možnosti</string>
   <string name="preferences__privacy">Soukromí</string>
   <string name="preferences__mms_user_agent">MMS  User Agent</string>
@@ -1548,13 +1577,13 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="InsightsDashboardFragment__not_enough_data">Nedostatek dat</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Procento je vypočteno na základě odchozích zpráv za posledních %1$d dnů, které nezmizely ani nebyly smazány. </string>
   <string name="InsightsDashboardFragment__start_a_conversation">Zahájit konverzaci</string>
-  <string name="InsightsDashboardFragment__invite_your_contacts">Začněte komunikovat bezpečně a povolte nové funkce, které překonávají omezení nezašifrovaných SMS zpráv, pozvěte více kontaktů, aby se připojily k Signalu.</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Začněte komunikovat bezpečně a využijte nové funkce překonávající omezení nezašifrovaných SMS zpráv tím, že pozvete více kontaktů, aby se připojily k Signalu.</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Tyto statistiky jsou vytvořeny lokálně na vašem zařízení a pouze vy je můžete vidět. Nikdy nejsou nikam odesílány.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Zašifrované zprávy</string>
   <string name="InsightsDashboardFragment__cancel">Storno</string>
   <string name="InsightsDashboardFragment__send">Odeslat</string>
   <string name="InsightsModalFragment__title">Představujeme postřehy</string>
-  <string name="InsightsModalFragment__description">Zjistěte, kolik vašich odchozích zpráv bylo odesláno zabezpečeně, potom rychle pozvěte nové kontakty, abyste procento Signalu zvýšili.</string>
+  <string name="InsightsModalFragment__description">Zjistěte, kolik vašich odchozích zpráv bylo odesláno zabezpečeně, a pak rychle pozvěte další kontakty, abyste procento Signalu zvýšili.</string>
   <string name="InsightsModalFragment__view_insights">Prohlédnout postřehy</string>
   <string name="FirstInviteReminder__title">Pozvat do Signalu</string>
   <string name="FirstInviteReminder__description">Můžete zvýšit počet odesílaných zašifrovaných zpráv o %1$d %%</string>

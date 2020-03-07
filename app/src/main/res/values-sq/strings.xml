@@ -114,6 +114,8 @@
   <string name="CommunicationActions_start_voice_call">Të niset thirrje zanore?</string>
   <string name="CommunicationActions_cancel">Anuloje</string>
   <string name="CommunicationActions_call">Thirrje</string>
+  <string name="CommunicationActions_insecure_call">Thirrje jo e sigurt</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Mund të aplikohen tarifa operatori. Numri që po thirrni s’është i regjistruar për Signal-in. Kjo thirrje do të vendoset përmes operatorit tuaj celular, jo nëpër internet.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Numri juaj i sigurisë me %1$s është ndryshuar. Kjo mund të jetë shenjë se ose dikush po rreket të përgjojë komunikimin tuaj, ose se %2$s thjesht ka riinstaluar Signal-in.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Mund të doni të verifikoni numrin tuaj të sigurisë me këtë kontakt.</string>
@@ -309,6 +311,11 @@
   <string name="CustomDefaultPreference_using_custom">Me përdorim të një të përshtaturi: %s</string>
   <string name="CustomDefaultPreference_using_default">Me përdorim parazgjedhjeje: %s</string>
   <string name="CustomDefaultPreference_none">Asnjë</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Zgjidhni foto</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Bëni foto</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Zgjidhni prej galerie</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Hiqe foton</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Tani</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -1205,6 +1212,27 @@
   <string name="MessageRequestsMegaphone__new_message_requests">E re: Kërkesa mesazhesh</string>
   <string name="MessageRequestsMegaphone__add_name">Shtoni emër</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Tani mund të zgjidhni nëse të pranohet apo jo një bisedë e re. Do të shihni mundësitë “Pranoje”, “Fshije” oseBllokoje”.</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Ndihmë</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">A i keni lexuar PBR tonat?</string>
+  <string name="HelpFragment__next">Pasuesi</string>
+  <string name="HelpFragment__contact_us">Lidhuni me ne</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Tregonani ç’po ndodh</string>
+  <string name="HelpFragment__include_debug_log">Përfshi regjistër diagnostikimi.</string>
+  <string name="HelpFragment__whats_this">Po kjo, ç’është?</string>
+  <string name="HelpFragment__how_do_you_feel">Si ndiheni? (Opsionale)</string>
+  <string name="HelpFragment__support_info">Të dhëna Asistence</string>
+  <string name="HelpFragment__subject">Subjekt:</string>
+  <string name="HelpFragment__signal_android_support_request">Kërkesë Për Asistencë për Signal Android</string>
+  <string name="HelpFragment__device_info">Të dhëna pajisjeje:</string>
+  <string name="HelpFragment__android_version">Version Android:</string>
+  <string name="HelpFragment__signal_version">Version Signal-i:</string>
+  <string name="HelpFragment__locale">Vendore:</string>
+  <string name="HelpFragment__debug_log">Regjistër Diagnostikimesh:</string>
+  <string name="HelpFragment__na">n/a</string>
+  <string name="HelpFragment__could_not_upload_logs">S’u ngarkuan dot regjistra</string>
+  <string name="HelpFragment__signal_support">Asistencë Signal-i</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">Ju lutemi, që të na ndihmoni të kuptojmë problemin, jini sa më përshkrues që të jetë e mundur.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importo</string>
   <string name="arrays__use_default">Përdor parazgjedhje</string>
@@ -1283,6 +1311,7 @@
   <string name="preferences__fast">I shpejtë</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">I ngadaltë</string>
+  <string name="preferences__help">Ndihmë</string>
   <string name="preferences__advanced">Të mëtejshme</string>
   <string name="preferences__privacy">Privatësi</string>
   <string name="preferences__mms_user_agent">Agjent Përdoruesi MMS</string>

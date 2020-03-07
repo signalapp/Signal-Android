@@ -285,6 +285,8 @@
   <string name="CustomDefaultPreference_using_custom">Koristeći prilagođeno: %s</string>
   <string name="CustomDefaultPreference_using_default">Koristeći zadano: %s</string>
   <string name="CustomDefaultPreference_none">Niti jedna</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Ukloni sliku</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Sada</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -1064,6 +1066,9 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="AndroidManifest_archived_conversations">Arhivirani razgovori</string>
   <string name="AndroidManifest_remove_photo">Ukloni sliku</string>
   <!--Message Requests Megaphone-->
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Pomoć</string>
+  <string name="HelpFragment__next">Sljedeće</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Uvoz</string>
   <string name="arrays__use_default">Koristi zadano</string>
@@ -1138,6 +1143,7 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="preferences__fast">Brzo</string>
   <string name="preferences__normal">Normalno</string>
   <string name="preferences__slow">Sporo</string>
+  <string name="preferences__help">Pomoć</string>
   <string name="preferences__advanced">Napredno</string>
   <string name="preferences__privacy">Privatnost</string>
   <string name="preferences__mms_user_agent">MMS korisnički agent</string>

@@ -120,6 +120,8 @@
   <string name="CommunicationActions_start_voice_call">Начать аудиозвонок?</string>
   <string name="CommunicationActions_cancel">Отменить</string>
   <string name="CommunicationActions_call">Позвонить</string>
+  <string name="CommunicationActions_insecure_call">Незащищённый звонок</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Оператор может взимать плату. Номер, по которому вы звоните, не зарегистрирован в Signal. Этот звонок будет сделан через вашего оператора мобильной связи, а не через интернет.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Ваш код безопасности с %1$s изменился. Это означает, что либо вашу переписку и звонки пытаются перехватить, либо %2$s просто переустановил(-а) Signal. </string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Возможно, вам стоит подтвердить код безопасности с этим контактом.</string>
@@ -337,6 +339,11 @@
   <string name="CustomDefaultPreference_using_custom">Пользовательское: %s</string>
   <string name="CustomDefaultPreference_using_default">Используется по умолчанию: %s</string>
   <string name="CustomDefaultPreference_none">Нет</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Выбрать фото</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Сделать фото</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Выбрать из галереи</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Удалить фото</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Только что</string>
   <string name="DateUtils_minutes_ago">%dм</string>
@@ -1267,6 +1274,27 @@
   <string name="MessageRequestsMegaphone__new_message_requests">Новое: запросы на общение</string>
   <string name="MessageRequestsMegaphone__add_name">Добавить имя</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Теперь вы можете выбирать, принимать ли новый разговор. Вы увидите варианты «Принять», «Удалить» и «Заблокировать».</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Помощь</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">Вы уже прочитали наши ЧаВО?</string>
+  <string name="HelpFragment__next">Далее</string>
+  <string name="HelpFragment__contact_us">Связаться с нами</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Расскажите нам, что происходит</string>
+  <string name="HelpFragment__include_debug_log">Включить журнал отладки.</string>
+  <string name="HelpFragment__whats_this">Что это?</string>
+  <string name="HelpFragment__how_do_you_feel">Как вы себя чувствуете? (Необязательно)</string>
+  <string name="HelpFragment__support_info">Информация для поддержки</string>
+  <string name="HelpFragment__subject">Тема:</string>
+  <string name="HelpFragment__signal_android_support_request">Запрос поддержки Signal Android</string>
+  <string name="HelpFragment__device_info">Информация об устройстве:</string>
+  <string name="HelpFragment__android_version">Версия Android:</string>
+  <string name="HelpFragment__signal_version">Версия Signal:</string>
+  <string name="HelpFragment__locale">Язык:</string>
+  <string name="HelpFragment__debug_log">Журнал отладки:</string>
+  <string name="HelpFragment__na">н/д</string>
+  <string name="HelpFragment__could_not_upload_logs">Не удалось отправить журналы</string>
+  <string name="HelpFragment__signal_support">Поддержка Signal</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">Пожалуйста, дайте нам как можно более подробное описание, чтобы помочь нам понять проблему.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Импортировать</string>
   <string name="arrays__use_default">Использовать настройку по умолчанию</string>
@@ -1347,6 +1375,7 @@
   <string name="preferences__fast">Быстрое</string>
   <string name="preferences__normal">Среднее</string>
   <string name="preferences__slow">Медленное</string>
+  <string name="preferences__help">Помощь</string>
   <string name="preferences__advanced">Расширенные</string>
   <string name="preferences__privacy">Конфиденциальность</string>
   <string name="preferences__mms_user_agent">MMS-агент</string>

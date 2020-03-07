@@ -282,6 +282,8 @@
   <string name="CustomDefaultPreference_using_custom">ਕਸਟਮ ਦੀ ਵਰਤੋਂ: %s</string>
   <string name="CustomDefaultPreference_using_default">ਮੂਲ ਦੀ ਵਰਤੋਂ: %s</string>
   <string name="CustomDefaultPreference_none">ਕੋਈ ਨਹੀਂ</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">ਫੋਟੋ ਨੂੰ ਹਟਾਓ</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">ਹੁਣ</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -1058,6 +1060,9 @@
   <string name="AndroidManifest_archived_conversations">ਆਰਕਾਈਵ ਕੀਤੀਆਂ ਗੱਲਾਂਬਾਤਾਂ</string>
   <string name="AndroidManifest_remove_photo">ਫੋਟੋ ਨੂੰ ਹਟਾਓ</string>
   <!--Message Requests Megaphone-->
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">ਮਦਦ</string>
+  <string name="HelpFragment__next">ਅਗਲਾ</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">ਆਯਾਤ ਕਰੋ</string>
   <string name="arrays__use_default">ਡਿਫੌਲਟ ਵਰਤੋ</string>
@@ -1136,6 +1141,7 @@
   <string name="preferences__fast">ਤੇਜ਼</string>
   <string name="preferences__normal">ਆਮ</string>
   <string name="preferences__slow">ਹੌਲੀ</string>
+  <string name="preferences__help">ਮਦਦ</string>
   <string name="preferences__advanced">ਤਕਨੀਕੀ</string>
   <string name="preferences__privacy">ਗੋਪਨੀਯਤਾ</string>
   <string name="preferences__mms_user_agent">ਐਮਐਮਐਸ ਯੂਜ਼ਰ ਏਜੰਟ</string>
