@@ -60,7 +60,7 @@ class RegisterActivity : BaseActionBarActivity() {
         termsExplanation.setSpan(object : ClickableSpan() {
 
             override fun onClick(widget: View) {
-                openURL("https://getsession.org/privacy-policy/")
+                openURL("https://getsession.org/legal/#privacy-policy")
             }
         }, 61, 75, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         termsTextView.movementMethod = LinkMovementMethod.getInstance()
