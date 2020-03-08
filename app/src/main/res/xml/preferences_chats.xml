@@ -76,6 +76,14 @@
                 tools:summary="Last backup: 3 days ago"/>
 
         <androidx.preference.Preference
+                android:key="pref_backup_show_folder"
+                android:title="Show backup folder"
+                android:persistent="false"
+                android:dependency="pref_backup_enabled"
+                android:summary="Open your backup folder in an external file browser"
+            />
+
+        <androidx.preference.Preference
                 android:key="pref_backup_passphrase_verify"
                 android:title="@string/preferences_chats__verify_backup_passphrase"
                 android:persistent="false"

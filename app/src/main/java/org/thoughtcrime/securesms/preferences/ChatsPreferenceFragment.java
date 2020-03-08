@@ -2,8 +2,11 @@ package org.thoughtcrime.securesms.preferences;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,6 +31,7 @@ import org.thoughtcrime.securesms.util.BackupUtil;
 import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -53,6 +57,8 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
         .setOnPreferenceClickListener(new BackupClickListener());
     findPreference(TextSecurePreferences.BACKUP_NOW)
         .setOnPreferenceClickListener(new BackupCreateListener());
+    findPreference(TextSecurePreferences.BACKUP_VIEW_FOLDER)
+        .setOnPreferenceClickListener(new BackupViewFolderListener());
     findPreference(TextSecurePreferences.BACKUP_PASSPHRASE_VERIFY)
         .setOnPreferenceClickListener(new BackupVerifyListener());
 
@@ -175,6 +181,34 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
                  })
                  .withPermanentDenialDialog(getString(R.string.ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups))
                  .execute();
+
+      return true;
+    }
+  }
+
+  private class BackupViewFolderListener implements Preference.OnPreferenceClickListener {
+    @Override
+    public boolean onPreferenceClick(Preference preferences) {
+      Permissions.with(ChatsPreferenceFragment.this)
+              .request(Manifest.permission.READ_EXTERNAL_STORAGE)
+              .ifNecessary()
+              .onAllGranted(() -> {
+                try {
+                  File backupDirectory = StorageUtil.getBackupDirectory();
+                  Uri uri = Uri.parse(backupDirectory.toString());
+                  Intent intent = new Intent(Intent.ACTION_VIEW);
+                  intent.setDataAndType(uri, "resource/folder");
+                  intent.putExtra("org.openintents.extra.ABSOLUTE_PATH", backupDirectory.toString());
+
+                  if (intent.resolveActivityInfo(requireContext().getPackageManager(), 0) != null) {
+                    startActivity(intent);
+                  } else {
+                    Toast.makeText(getActivity(), R.string.ChatsPreferenceFragment_unable_to_show_folder, Toast.LENGTH_LONG).show();
+                  }
+                } catch (NoExternalStorageException ignored) {}
+              })
+              .withPermanentDenialDialog(getString(R.string.ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups))
+              .execute();
 
       return true;
     }
