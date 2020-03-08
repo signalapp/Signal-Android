@@ -17,9 +17,11 @@ import androidx.appcompat.app.AlertDialog;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
+import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.registration.fragments.RestoreBackupFragment;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.util.BackupUtil;
+import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
@@ -45,6 +47,15 @@ public class BackupDialog {
           LocalBackupListener.schedule(context);
 
           preference.setChecked(true);
+          String summaryText = context.getString(R.string.preferences_chats__backup_chats_to_external_storage);
+          try {
+            String location = String.format(
+                    context.getString(R.string.preferences_chats__backup_chats_storage_location),
+                    StorageUtil.getBackupDirectory().toString()
+            );
+            summaryText += "\n" + location;
+          } catch (NoExternalStorageException e) {}
+          preference.setSummary(summaryText);
           created.dismiss();
         } else {
           Toast.makeText(context, R.string.BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box, Toast.LENGTH_LONG).show();
@@ -85,6 +96,7 @@ public class BackupDialog {
                      TextSecurePreferences.setBackupEnabled(context, false);
                      BackupUtil.deleteAllBackups();
                      preference.setChecked(false);
+                     preference.setSummary(context.getString(R.string.preferences_chats__backup_chats_to_external_storage));
                    })
                    .create()
                    .show();

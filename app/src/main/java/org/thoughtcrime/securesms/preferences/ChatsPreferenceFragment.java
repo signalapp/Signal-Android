@@ -18,12 +18,14 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.BackupDialog;
 import org.thoughtcrime.securesms.backup.FullBackupBase.BackupEvent;
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
+import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.LocalBackupJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.preferences.widgets.ProgressPreference;
 import org.thoughtcrime.securesms.util.BackupUtil;
+import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.ArrayList;
@@ -69,7 +71,8 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
     super.onResume();
     ((ApplicationPreferencesActivity)getActivity()).getSupportActionBar().setTitle(R.string.preferences__chats);
     setMediaDownloadSummaries();
-    setBackupSummary();
+    setBackupEnableSummary();
+    setBackupCreateSummary();
   }
 
   @Override
@@ -94,11 +97,26 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
     } else if (event.getType() == BackupEvent.Type.FINISHED) {
       preference.setEnabled(true);
       preference.setProgressVisible(false);
-      setBackupSummary();
+      setBackupCreateSummary();
     }
   }
 
-  private void setBackupSummary() {
+  private void setBackupEnableSummary() {
+    Preference pref = findPreference(TextSecurePreferences.BACKUP_ENABLED);
+    String summaryText = getString(R.string.preferences_chats__backup_chats_to_external_storage);
+    if (((SwitchPreferenceCompat)pref).isChecked()) {
+      try {
+        String location = String.format(
+                getString(R.string.preferences_chats__backup_chats_storage_location),
+                StorageUtil.getBackupDirectory().toString()
+        );
+        summaryText += "\n" + location;
+      } catch (NoExternalStorageException ignored) {}
+    }
+    pref.setSummary(summaryText);
+  }
+
+  private void setBackupCreateSummary() {
     findPreference(TextSecurePreferences.BACKUP_NOW)
         .setSummary(String.format(getString(R.string.ChatsPreferenceFragment_last_backup_s), BackupUtil.getLastBackupTime(getContext(), Locale.US)));
   }

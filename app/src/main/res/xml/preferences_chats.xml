@@ -66,7 +66,7 @@
                 android:defaultValue="false"
                 android:key="pref_backup_enabled"
                 android:title="@string/preferences_chats__chat_backups"
-                android:summary="@string/preferences_chats__backup_chats_to_external_storage" />
+                android:summary="" />
 
         <org.thoughtcrime.securesms.preferences.widgets.ProgressPreference
                 android:key="pref_backup_create"
