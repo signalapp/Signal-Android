@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
@@ -58,6 +59,8 @@ import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
 import org.whispersystems.signalservice.internal.util.Util;
+import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
+import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
 import java.util.HashSet;
 import java.util.List;
@@ -70,6 +73,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import me.leolin.shortcutbadger.ShortcutBadger;
 import network.loki.messenger.R;
+import nl.komponents.kovenant.Promise;
 
 
 /**
@@ -316,15 +320,35 @@ public class MessageNotifier {
     long timestamp = notifications.get(0).getTimestamp();
     if (timestamp != 0) builder.setWhen(timestamp);
 
+    long threadId = notifications.get(0).getThreadId();
+
     ReplyMethod replyMethod = ReplyMethod.forRecipient(context, recipient);
 
+
+    // We can only reply if we are friends with the user or we're messaging a group
+    boolean isGroup = recipient.isGroupRecipient() && !recipient.getAddress().isRSSFeed();
+    boolean isFriends = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadId) == LokiThreadFriendRequestStatus.FRIENDS;
+
+    // If we're not friends then we need to check if we're friends with any of the linked devices
+    if (!isGroup && !isFriends) {
+      Promise<Boolean, Exception> promise = PromiseUtil.timeout(MultiDeviceUtilities.isFriendsWithAnyLinkedDevice(context, recipient), 5000);
+      isFriends = PromiseUtil.get(promise, false);
+    }
+
+    boolean canReply = isGroup || isFriends;
+
+    PendingIntent quickReplyIntent = canReply ? notificationState.getQuickReplyIntent(context, notifications.get(0).getRecipient()) :  null;
+    PendingIntent remoteReplyIntent = canReply ? notificationState.getRemoteReplyIntent(context, notifications.get(0).getRecipient(), replyMethod) : null;
+
     builder.addActions(notificationState.getMarkAsReadIntent(context, notificationId),
-                       /*notificationState.getQuickReplyIntent(context, notifications.get(0).getRecipient()),*/
-                       notificationState.getRemoteReplyIntent(context, notifications.get(0).getRecipient(), replyMethod),
+                       quickReplyIntent,
+                       remoteReplyIntent,
                        replyMethod);
 
-    builder.addAndroidAutoAction(notificationState.getAndroidAutoReplyIntent(context, notifications.get(0).getRecipient()),
-                                 notificationState.getAndroidAutoHeardIntent(context, notificationId), notifications.get(0).getTimestamp());
+    if (canReply) {
+      builder.addAndroidAutoAction(notificationState.getAndroidAutoReplyIntent(context, notifications.get(0).getRecipient()),
+              notificationState.getAndroidAutoHeardIntent(context, notificationId), notifications.get(0).getTimestamp());
+    }
 
     ListIterator<NotificationItem> iterator = notifications.listIterator(notifications.size());
 
