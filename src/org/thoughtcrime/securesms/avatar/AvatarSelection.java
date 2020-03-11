@@ -102,7 +102,7 @@ public final class AvatarSelection {
     }
 
     if (includeClear) {
-      extraIntents.add(new Intent("org.thoughtcrime.securesms.action.CLEAR_PROFILE_PHOTO"));
+      extraIntents.add(new Intent("network.loki.securesms.action.CLEAR_PROFILE_PHOTO"));
     }
 
     Intent chooserIntent = Intent.createChooser(galleryIntent, context.getString(R.string.CreateProfileActivity_profile_photo));

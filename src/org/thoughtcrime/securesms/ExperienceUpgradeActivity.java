@@ -33,7 +33,7 @@ import network.loki.messenger.R;
 
 public class ExperienceUpgradeActivity extends BaseActionBarActivity implements TypingIndicatorIntroFragment.Controller, LinkPreviewsIntroFragment.Controller {
   private static final String TAG             = ExperienceUpgradeActivity.class.getSimpleName();
-  private static final String DISMISS_ACTION  = "org.thoughtcrime.securesms.ExperienceUpgradeActivity.DISMISS_ACTION";
+  private static final String DISMISS_ACTION  = "network.loki.securesms.ExperienceUpgradeActivity.DISMISS_ACTION";
   private static final int    NOTIFICATION_ID = 1339;
 
   private enum ExperienceUpgrade {

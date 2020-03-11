@@ -35,7 +35,7 @@ import kotlin.contracts.Returns;
 public class MarkReadReceiver extends BroadcastReceiver {
 
   private static final String TAG                   = MarkReadReceiver.class.getSimpleName();
-  public static final  String CLEAR_ACTION          = "org.thoughtcrime.securesms.notifications.CLEAR";
+  public static final  String CLEAR_ACTION          = "network.loki.securesms.notifications.CLEAR";
   public static final  String THREAD_IDS_EXTRA      = "thread_ids";
   public static final  String NOTIFICATION_ID_EXTRA = "notification_id";
 

@@ -44,7 +44,7 @@ import java.util.List;
 public class RemoteReplyReceiver extends BroadcastReceiver {
 
   public static final String TAG           = RemoteReplyReceiver.class.getSimpleName();
-  public static final String REPLY_ACTION  = "org.thoughtcrime.securesms.notifications.WEAR_REPLY";
+  public static final String REPLY_ACTION  = "network.loki.securesms.notifications.WEAR_REPLY";
   public static final String ADDRESS_EXTRA = "address";
   public static final String REPLY_METHOD  = "reply_method";
 
@@ -83,11 +83,6 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
             case SecureMessage: {
               OutgoingEncryptedMessage reply = new OutgoingEncryptedMessage(recipient, responseText.toString(), expiresIn);
               threadId = MessageSender.send(context, reply, -1, false, null);
-              break;
-            }
-            case UnsecuredSmsMessage: {
-              OutgoingTextMessage reply = new OutgoingTextMessage(recipient, responseText.toString(), expiresIn, subscriptionId);
-              threadId = MessageSender.send(context, reply, -1, true, null);
               break;
             }
             default:

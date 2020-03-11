@@ -514,7 +514,7 @@ public class MessageNotifier {
 
   public static class ReminderReceiver extends BroadcastReceiver {
 
-    public static final String REMINDER_ACTION = "org.thoughtcrime.securesms.MessageNotifier.REMINDER_ACTION";
+    public static final String REMINDER_ACTION = "network.loki.securesms.MessageNotifier.REMINDER_ACTION";
 
     @SuppressLint("StaticFieldLeak")
     @Override
