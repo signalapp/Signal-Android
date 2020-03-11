@@ -18,7 +18,7 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="@dimen/large_spacing"
+        android:paddingStart="12dp"
         android:clipToPadding="false"
         android:clipChildren="false">
 
@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/massive_spacing"
-                android:layout_marginStart="@dimen/large_spacing"
+                android:layout_marginStart="12dp"
                 android:paddingTop="@dimen/medium_spacing"
                 android:paddingBottom="@dimen/medium_spacing"
                 android:orientation="vertical"

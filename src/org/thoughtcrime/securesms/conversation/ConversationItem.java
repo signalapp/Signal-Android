@@ -798,7 +798,7 @@ public class ConversationItem extends LinearLayout
 
   private void setContactPhoto(@NonNull Recipient recipient) {
     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)bodyBubble.getLayoutParams();
-    int groupThreadMargin = (int)(getResources().getDimension(R.dimen.large_spacing) + getResources().getDimension(R.dimen.small_profile_picture_size));
+    int groupThreadMargin = (int)((12 * getResources().getDisplayMetrics().density) + getResources().getDimension(R.dimen.small_profile_picture_size));
     int defaultMargin = 0;
     String threadName = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(messageRecord.getThreadId()).getName();
     boolean isRSSFeed = threadName != null && (threadName.equals("Loki News") || threadName.equals("Session Updates"));
