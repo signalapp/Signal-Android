@@ -337,8 +337,8 @@ public class MessageNotifier {
 
     boolean canReply = isGroup || isFriends;
 
-    PendingIntent quickReplyIntent = canReply ? notificationState.getQuickReplyIntent(context, notifications.get(0).getRecipient()) :  null;
-    PendingIntent remoteReplyIntent = canReply ? notificationState.getRemoteReplyIntent(context, notifications.get(0).getRecipient(), replyMethod) : null;
+    PendingIntent quickReplyIntent = canReply ? notificationState.getQuickReplyIntent(context, recipient) :  null;
+    PendingIntent remoteReplyIntent = canReply ? notificationState.getRemoteReplyIntent(context, recipient, replyMethod) : null;
 
     builder.addActions(notificationState.getMarkAsReadIntent(context, notificationId),
                        quickReplyIntent,
@@ -346,8 +346,9 @@ public class MessageNotifier {
                        replyMethod);
 
     if (canReply) {
-      builder.addAndroidAutoAction(notificationState.getAndroidAutoReplyIntent(context, notifications.get(0).getRecipient()),
-              notificationState.getAndroidAutoHeardIntent(context, notificationId), notifications.get(0).getTimestamp());
+      builder.addAndroidAutoAction(notificationState.getAndroidAutoReplyIntent(context, recipient),
+              notificationState.getAndroidAutoHeardIntent(context, notificationId),
+              notifications.get(0).getTimestamp());
     }
 
     ListIterator<NotificationItem> iterator = notifications.listIterator(notifications.size());
