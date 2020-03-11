@@ -487,7 +487,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     boolean muted     = intent.getBooleanExtra(EXTRA_MUTE, false);
     microphoneEnabled = !muted;
 
-    if (activePeer == null || activePeer.getState().equals(CallState.DIALING)) {
+    if (activePeer == null || activePeer.getState().equals(CallState.DIALING) || activePeer.getState().equals(CallState.REMOTE_RINGING)) {
       Log.w(TAG, "handleSetMuteAudio(): Ignoring for inactive call.");
       return;
     }
