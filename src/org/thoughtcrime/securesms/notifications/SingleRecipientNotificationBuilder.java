@@ -28,7 +28,6 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -39,7 +38,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.signalservice.loki.api.LokiPublicChat;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -156,59 +154,53 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
   }
 
   public void addActions(@NonNull PendingIntent markReadIntent,
-                         @NonNull PendingIntent wearableReplyIntent,
+                         @Nullable PendingIntent quickReplyIntent,
+                         @Nullable PendingIntent wearableReplyIntent,
                          @NonNull ReplyMethod replyMethod)
   {
     Action markAsReadAction = new Action(R.drawable.check,
                                          context.getString(R.string.MessageNotifier_mark_read),
                                          markReadIntent);
 
-    String actionName = context.getString(R.string.MessageNotifier_reply);
-    String label      = context.getString(replyMethodLongDescription(replyMethod));
+    addAction(markAsReadAction);
 
-    /*
-    Action replyAction = new Action(R.drawable.ic_reply_white_36dp,
-                                    actionName,
-                                    quickReplyIntent);
-     */
+    NotificationCompat.WearableExtender wearableExtender = new NotificationCompat.WearableExtender().addAction(markAsReadAction);
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-      /*
-      replyAction = new Action.Builder(R.drawable.ic_reply_white_36dp,
-                                       actionName,
-                                       wearableReplyIntent)
-          .addRemoteInput(new RemoteInput.Builder(MessageNotifier.EXTRA_REMOTE_REPLY)
-                              .setLabel(label).build())
-          .build();
-       */
+    if (quickReplyIntent != null) {
+      String actionName = context.getString(R.string.MessageNotifier_reply);
+      String label = context.getString(replyMethodLongDescription(replyMethod));
+
+      Action replyAction = new Action(R.drawable.ic_reply_white_36dp,
+              actionName,
+              quickReplyIntent);
+
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        replyAction = new Action.Builder(R.drawable.ic_reply_white_36dp,
+                actionName,
+                wearableReplyIntent)
+                .addRemoteInput(new RemoteInput.Builder(MessageNotifier.EXTRA_REMOTE_REPLY)
+                        .setLabel(label).build())
+                .build();
+      }
+
+      Action wearableReplyAction = new Action.Builder(R.drawable.ic_reply,
+              actionName,
+              wearableReplyIntent)
+              .addRemoteInput(new RemoteInput.Builder(MessageNotifier.EXTRA_REMOTE_REPLY)
+                      .setLabel(label).build())
+              .build();
+
+
+      addAction(replyAction);
+      wearableExtender.addAction(wearableReplyAction);
     }
 
-    Action wearableReplyAction = new Action.Builder(R.drawable.ic_reply,
-                                                    actionName,
-                                                    wearableReplyIntent)
-        .addRemoteInput(new RemoteInput.Builder(MessageNotifier.EXTRA_REMOTE_REPLY)
-                            .setLabel(label).build())
-        .build();
-
-    addAction(markAsReadAction);
-    // addAction(replyAction);
-
-    extend(new NotificationCompat.WearableExtender().addAction(markAsReadAction)
-                                                    .addAction(wearableReplyAction));
+    extend(wearableExtender);
   }
 
   @StringRes
   private static int replyMethodLongDescription(@NonNull ReplyMethod replyMethod) {
-    switch (replyMethod) {
-      case GroupMessage:
-        return R.string.MessageNotifier_reply;
-      case SecureMessage:
-        return R.string.MessageNotifier_signal_message;
-      case UnsecuredSmsMessage:
-        return R.string.MessageNotifier_unsecured_sms;
-      default:
-        return R.string.MessageNotifier_reply;
-    }
+    return R.string.MessageNotifier_reply;
   }
 
   public void addMessageBody(@NonNull Recipient threadRecipient,

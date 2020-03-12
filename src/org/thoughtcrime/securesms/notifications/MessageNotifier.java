@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
@@ -58,6 +59,8 @@ import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
 import org.whispersystems.signalservice.internal.util.Util;
+import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
+import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
 import java.util.HashSet;
 import java.util.List;
@@ -70,6 +73,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import me.leolin.shortcutbadger.ShortcutBadger;
 import network.loki.messenger.R;
+import nl.komponents.kovenant.Promise;
 
 
 /**
@@ -316,15 +320,39 @@ public class MessageNotifier {
     long timestamp = notifications.get(0).getTimestamp();
     if (timestamp != 0) builder.setWhen(timestamp);
 
+    long threadId = notifications.get(0).getThreadId();
+
     ReplyMethod replyMethod = ReplyMethod.forRecipient(context, recipient);
 
+
+    // We can only reply if we are friends with the user or we're messaging a group
+    boolean isGroup = recipient.isGroupRecipient();
+    boolean isRSSFeed = isGroup && recipient.getAddress().isRSSFeed();
+    boolean isFriend = false;
+    if (!isGroup) {
+        isFriend = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadId) == LokiThreadFriendRequestStatus.FRIENDS;
+        // If we're not friends then we need to check if we're friends with any of the linked devices
+        if (!isFriend) {
+            Promise<Boolean, Exception> promise = PromiseUtil.timeout(MultiDeviceUtilities.isFriendsWithAnyLinkedDevice(context, recipient), 5000);
+            isFriend = PromiseUtil.get(promise, false);
+        }
+    }
+
+    boolean canReply = (isGroup && !isRSSFeed) || isFriend;
+
+    PendingIntent quickReplyIntent = canReply ? notificationState.getQuickReplyIntent(context, recipient) :  null;
+    PendingIntent remoteReplyIntent = canReply ? notificationState.getRemoteReplyIntent(context, recipient, replyMethod) : null;
+
     builder.addActions(notificationState.getMarkAsReadIntent(context, notificationId),
-                       /*notificationState.getQuickReplyIntent(context, notifications.get(0).getRecipient()),*/
-                       notificationState.getRemoteReplyIntent(context, notifications.get(0).getRecipient(), replyMethod),
+                       quickReplyIntent,
+                       remoteReplyIntent,
                        replyMethod);
 
-    builder.addAndroidAutoAction(notificationState.getAndroidAutoReplyIntent(context, notifications.get(0).getRecipient()),
-                                 notificationState.getAndroidAutoHeardIntent(context, notificationId), notifications.get(0).getTimestamp());
+    if (canReply) {
+      builder.addAndroidAutoAction(notificationState.getAndroidAutoReplyIntent(context, recipient),
+              notificationState.getAndroidAutoHeardIntent(context, notificationId),
+              notifications.get(0).getTimestamp());
+    }
 
     ListIterator<NotificationItem> iterator = notifications.listIterator(notifications.size());
 
@@ -514,7 +542,7 @@ public class MessageNotifier {
 
   public static class ReminderReceiver extends BroadcastReceiver {
 
-    public static final String REMINDER_ACTION = "org.thoughtcrime.securesms.MessageNotifier.REMINDER_ACTION";
+    public static final String REMINDER_ACTION = "network.loki.securesms.MessageNotifier.REMINDER_ACTION";
 
     @SuppressLint("StaticFieldLeak")
     @Override

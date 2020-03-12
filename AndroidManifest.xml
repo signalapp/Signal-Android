@@ -494,7 +494,7 @@
             android:label="@string/AndroidManifest_remove_photo"
             android:theme="@style/Theme.AppCompat.Dialog.Alert">
             <intent-filter>
-                <action android:name="org.thoughtcrime.securesms.action.CLEAR_PROFILE_PHOTO" />
+                <action android:name="network.loki.securesms.action.CLEAR_PROFILE_PHOTO" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -530,32 +530,6 @@
             android:name="org.thoughtcrime.securesms.service.IncomingMessageObserver$ForegroundService"
             android:enabled="true" />
         <service
-            android:name="org.thoughtcrime.securesms.service.QuickResponseService"
-            android:exported="true"
-            android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE">
-            <intent-filter>
-                <action android:name="android.intent.action.RESPOND_VIA_MESSAGE" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data android:scheme="sms" />
-                <data android:scheme="smsto" />
-                <data android:scheme="mms" />
-                <data android:scheme="mmsto" />
-            </intent-filter>
-        </service>
-        <service
-            android:name="org.thoughtcrime.securesms.service.AccountAuthenticatorService"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.accounts.AccountAuthenticator" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.accounts.AccountAuthenticator"
-                android:resource="@xml/authenticator" />
-        </service>
-        <service
             android:name="org.thoughtcrime.securesms.service.DirectShareService"
             android:permission="android.permission.BIND_CHOOSER_TARGET_SERVICE">
             <intent-filter>
@@ -563,48 +537,12 @@
             </intent-filter>
         </service>
         <service android:name="org.thoughtcrime.securesms.service.GenericForegroundService" />
-
-        <receiver
-            android:name="org.thoughtcrime.securesms.service.SmsListener"
-            android:enabled="true"
-            android:exported="true"
-            android:permission="android.permission.BROADCAST_SMS">
-            <intent-filter android:priority="1001">
-                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.provider.Telephony.SMS_DELIVER" />
-            </intent-filter>
-        </receiver>
-        <receiver
-            android:name="org.thoughtcrime.securesms.service.SmsDeliveryListener"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="org.thoughtcrime.securesms.services.MESSAGE_SENT" />
-            </intent-filter>
-        </receiver>
-        <receiver
-            android:name="org.thoughtcrime.securesms.service.MmsListener"
-            android:enabled="true"
-            android:exported="true"
-            android:permission="android.permission.BROADCAST_WAP_PUSH">
-            <intent-filter android:priority="1001">
-                <action android:name="android.provider.Telephony.WAP_PUSH_RECEIVED" />
-
-                <data android:mimeType="application/vnd.wap.mms-message" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.provider.Telephony.WAP_PUSH_DELIVER" />
-
-                <data android:mimeType="application/vnd.wap.mms-message" />
-            </intent-filter>
-        </receiver>
         <receiver
             android:name="org.thoughtcrime.securesms.notifications.MarkReadReceiver"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
-                <action android:name="org.thoughtcrime.securesms.notifications.CLEAR" />
+                <action android:name="network.loki.securesms.notifications.CLEAR" />
             </intent-filter>
         </receiver>
         <receiver
@@ -612,21 +550,21 @@
             android:enabled="true"
             android:exported="false">
             <intent-filter>
-                <action android:name="org.thoughtcrime.securesms.notifications.WEAR_REPLY" />
+                <action android:name="network.loki.securesms.notifications.WEAR_REPLY" />
             </intent-filter>
         </receiver>
         <receiver
             android:name="org.thoughtcrime.securesms.notifications.AndroidAutoHeardReceiver"
             android:exported="false">
             <intent-filter>
-                <action android:name="org.thoughtcrime.securesms.notifications.ANDROID_AUTO_HEARD" />
+                <action android:name="network.loki.securesms.notifications.ANDROID_AUTO_HEARD" />
             </intent-filter>
         </receiver>
         <receiver
             android:name="org.thoughtcrime.securesms.notifications.AndroidAutoReplyReceiver"
             android:exported="false">
             <intent-filter>
-                <action android:name="org.thoughtcrime.securesms.notifications.ANDROID_AUTO_REPLY" />
+                <action android:name="network.loki.securesms.notifications.ANDROID_AUTO_REPLY" />
             </intent-filter>
         </receiver>
         <receiver android:name="org.thoughtcrime.securesms.service.ExpirationListener" />
@@ -674,7 +612,7 @@
         <receiver android:name="org.thoughtcrime.securesms.service.BootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="org.thoughtcrime.securesms.RESTART" />
+                <action android:name="network.loki.securesms.RESTART" />
             </intent-filter>
         </receiver>
         <receiver android:name="org.thoughtcrime.securesms.service.DirectoryRefreshListener">
@@ -709,12 +647,12 @@
         </receiver>
         <receiver android:name="org.thoughtcrime.securesms.notifications.MessageNotifier$ReminderReceiver">
             <intent-filter>
-                <action android:name="org.thoughtcrime.securesms.MessageNotifier.REMINDER_ACTION" />
+                <action android:name="network.loki.securesms.MessageNotifier.REMINDER_ACTION" />
             </intent-filter>
         </receiver>
         <receiver android:name="org.thoughtcrime.securesms.notifications.DeleteNotificationReceiver">
             <intent-filter>
-                <action android:name="org.thoughtcrime.securesms.DELETE_NOTIFICATION" />
+                <action android:name="network.loki.securesms.DELETE_NOTIFICATION" />
             </intent-filter>
         </receiver>
         <receiver android:name="org.thoughtcrime.securesms.ExperienceUpgradeActivity$AppUpgradeReceiver">
@@ -724,7 +662,7 @@
                 <data android:scheme="package" />
             </intent-filter>
             <intent-filter>
-                <action android:name="org.thoughtcrime.securesms.ExperienceUpgradeActivity.DISMISS_ACTION" />
+                <action android:name="network.loki.securesms.ExperienceUpgradeActivity.DISMISS_ACTION" />
             </intent-filter>
         </receiver>
         <receiver
