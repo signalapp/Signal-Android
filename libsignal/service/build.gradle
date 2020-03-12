@@ -32,7 +32,7 @@ dependencies {
     api 'com.fasterxml.jackson.core:jackson-databind:2.9.9.2'
 
     api "org.signal:signal-metadata-java:${lib_signal_metadata_version}"
-    api 'com.squareup.okhttp3:okhttp:3.12.1'
+    api 'com.squareup.okhttp3:okhttp:3.12.10'
     implementation 'org.threeten:threetenbp:1.3.6'
 
     api project(':zkgroups')

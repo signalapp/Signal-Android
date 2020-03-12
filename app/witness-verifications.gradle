@@ -312,8 +312,8 @@ dependencyVerification {
         ['com.pnikosis:materialish-progress:1.5',
          'd71d80e00717a096784482aee21001a9d299fec3833e4ebd87739ed36cf77c54'],
 
-        ['com.squareup.okhttp3:okhttp:3.12.1',
-         '07c3d82ca7eaf4722f00b2da807dc7860f6169ae60cfedcf5d40218f90880a46'],
+        ['com.squareup.okhttp3:okhttp:3.12.10',
+         '3cb8e21cd3ab10d390448f5a475c960732efab583a09c39f06f866a7ed819ebc'],
 
         ['com.squareup.okio:okio:1.17.4',
          'd78fac588458fc099e6c82e91fe5f0375c67434626451a3a77772c65d9eee85b'],

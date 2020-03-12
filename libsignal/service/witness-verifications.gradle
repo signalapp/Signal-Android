@@ -18,8 +18,8 @@ dependencyVerification {
         ['com.googlecode.libphonenumber:libphonenumber:8.11.0',
          '833ec343e55a6910daca392af76f8e09caaab9c4e3f41ded83f4746e7ef389c7'],
 
-        ['com.squareup.okhttp3:okhttp:3.12.1',
-         '07c3d82ca7eaf4722f00b2da807dc7860f6169ae60cfedcf5d40218f90880a46'],
+        ['com.squareup.okhttp3:okhttp:3.12.10',
+         '3cb8e21cd3ab10d390448f5a475c960732efab583a09c39f06f866a7ed819ebc'],
 
         ['com.squareup.okio:okio:1.15.0',
          '693fa319a7e8843300602b204023b7674f106ebcb577f2dd5807212b66118bd2'],
