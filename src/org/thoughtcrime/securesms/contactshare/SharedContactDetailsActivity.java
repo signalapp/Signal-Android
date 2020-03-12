@@ -20,11 +20,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -41,7 +38,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.*;
+import network.loki.messenger.R;
+
+import static org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 
 public class SharedContactDetailsActivity extends PassphraseRequiredActionBarActivity implements RecipientModifiedListener {
 
@@ -246,14 +245,4 @@ public class SharedContactDetailsActivity extends PassphraseRequiredActionBarAct
     engageContainerView.setVisibility(View.GONE);
   }
 
-  @Override
-  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-
-    if (requestCode == CODE_ADD_EDIT_CONTACT && contact != null) {
-      ApplicationContext.getInstance(getApplicationContext())
-                        .getJobManager()
-                        .add(new DirectoryRefreshJob(false));
-    }
-  }
 }

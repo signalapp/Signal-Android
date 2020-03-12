@@ -40,7 +40,6 @@ import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
-import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.logging.Log;
@@ -250,12 +249,6 @@ public class DatabaseUpgradeActivity extends BaseActivity {
         scheduleMessagesInPushDatabase(context);;
       }
 
-      if (params[0] < CONTACTS_ACCOUNT_VERSION) {
-        ApplicationContext.getInstance(getApplicationContext())
-                          .getJobManager()
-                          .add(new DirectoryRefreshJob(false));
-      }
-
       if (params[0] < MEDIA_DOWNLOAD_CONTROLS_VERSION) {
         schedulePendingIncomingParts(context);
       }
@@ -264,15 +257,6 @@ public class DatabaseUpgradeActivity extends BaseActivity {
         ApplicationContext.getInstance(getApplicationContext())
                           .getJobManager()
                           .add(new RefreshAttributesJob());
-        ApplicationContext.getInstance(getApplicationContext())
-                          .getJobManager()
-                          .add(new DirectoryRefreshJob(false));
-      }
-
-      if (params[0] < PROFILES) {
-        ApplicationContext.getInstance(getApplicationContext())
-                          .getJobManager()
-                          .add(new DirectoryRefreshJob(false));
       }
 
       if (params[0] < SCREENSHOTS) {

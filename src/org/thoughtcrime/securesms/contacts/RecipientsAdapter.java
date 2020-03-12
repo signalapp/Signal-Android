@@ -17,9 +17,6 @@
 
 package org.thoughtcrime.securesms.contacts;
 
-import network.loki.messenger.R;
-import org.thoughtcrime.securesms.recipients.RecipientsFormatter;
-
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
@@ -30,6 +27,10 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ResourceCursorAdapter;
 import android.widget.TextView;
+
+import org.thoughtcrime.securesms.recipients.RecipientsFormatter;
+
+import network.loki.messenger.R;
 
 /**
  * This adapter is used to filter contacts on both name and number.
@@ -118,7 +119,7 @@ public class RecipientsAdapter extends ResourceCursorAdapter {
 
     @Override
     public Cursor runQueryOnBackgroundThread(CharSequence constraint) {
-       return mContactAccessor.getCursorForRecipientFilter( constraint, mContentResolver );
+       return null;
     }
 
     /**

@@ -165,7 +165,6 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
       if (messageId >= 0) {
         database.markAsPendingInsecureSmsFallback(record.getId());
         MessageNotifier.notifyMessageDeliveryFailed(context, record.getRecipient(), record.getThreadId());
-        ApplicationContext.getInstance(context).getJobManager().add(new DirectoryRefreshJob(false));
       }
     } catch (UntrustedIdentityException e) {
       warn(TAG, "Failure", e);

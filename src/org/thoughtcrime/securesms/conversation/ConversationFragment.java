@@ -77,7 +77,6 @@ import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
-import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.redesign.views.FriendRequestViewDelegate;
@@ -1073,17 +1072,6 @@ public class ConversationFragment extends Fragment
       ContactUtil.selectRecipientThroughDialog(getContext(), choices, locale, recipient -> {
         CommunicationActions.composeSmsThroughDefaultApp(getContext(), recipient.getAddress(), getString(R.string.InviteActivity_lets_switch_to_signal, getString(R.string.install_url)));
       });
-    }
-  }
-
-  @Override
-  public void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-
-    if (requestCode == CODE_ADD_EDIT_CONTACT && getContext() != null) {
-      ApplicationContext.getInstance(getContext().getApplicationContext())
-                        .getJobManager()
-                        .add(new DirectoryRefreshJob(false));
     }
   }
 

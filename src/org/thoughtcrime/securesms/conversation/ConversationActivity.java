@@ -211,7 +211,6 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Dialogs;
-import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
@@ -348,8 +347,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private int        distributionType;
   private boolean    archived;
   private boolean    isSecureText;
-  private boolean    isDefaultSms            = true;
-  private boolean    isMmsEnabled            = true;
+  private boolean    isDefaultSms            = false;
+  private boolean    isMmsEnabled            = false;
   private boolean    isSecurityInitialized   = false;
   private int        expandedKeyboardHeight  = 0;
   private int        collapsedKeyboardHeight = Integer.MAX_VALUE;
@@ -1478,41 +1477,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     new AsyncTask<Recipient, Void, boolean[]>() {
       @Override
       protected boolean[] doInBackground(Recipient... params) {
-        Context           context         = ConversationActivity.this;
-        Recipient         recipient       = params[0];
-        Log.i(TAG, "Resolving registered state...");
-        RegisteredState registeredState;
-
-        if (recipient.isPushGroupRecipient()) {
-          Log.i(TAG, "Push group recipient...");
-          registeredState = RegisteredState.REGISTERED;
-        } else if (recipient.isResolving()) {
-          Log.i(TAG, "Talking to DB directly.");
-          registeredState = DatabaseFactory.getRecipientDatabase(ConversationActivity.this).isRegistered(recipient.getAddress());
-        } else {
-          Log.i(TAG, "Checking through resolved recipient");
-          registeredState = recipient.resolve().getRegistered();
-        }
-
-        // Loki - Override the flag below
-        registeredState = RegisteredState.REGISTERED;
-
-        Log.i(TAG, "Resolved registered state: " + registeredState);
         // Loki - Override the flag below
         boolean signalEnabled = true; // TextSecurePreferences.isPushRegistered(context);
 
-        if (registeredState == RegisteredState.UNKNOWN) {
-          try {
-            Log.i(TAG, "Refreshing directory for user: " + recipient.getAddress().serialize());
-            registeredState = DirectoryHelper.refreshDirectoryFor(context, recipient);
-          } catch (IOException e) {
-            Log.w(TAG, e);
-          }
-        }
 
-        Log.i(TAG, "Returning registered state...");
-        return new boolean[] {registeredState == RegisteredState.REGISTERED && signalEnabled,
-                              Util.isDefaultSmsProvider(context)};
+        return new boolean[] { signalEnabled, false};
       }
 
       @Override

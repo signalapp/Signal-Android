@@ -17,7 +17,6 @@
 package org.thoughtcrime.securesms;
 
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.os.AsyncTask;
@@ -44,14 +43,11 @@ import org.thoughtcrime.securesms.contacts.ContactSelectionListItem;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.permissions.Permissions;
-import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -259,12 +255,6 @@ public class ContactSelectionListFragment extends    Fragment
 
       @Override
       protected Boolean doInBackground(Void... voids) {
-        try {
-          DirectoryHelper.refreshDirectory(getContext(), false);
-          return true;
-        } catch (IOException e) {
-          Log.w(TAG, e);
-        }
         return false;
       }
 

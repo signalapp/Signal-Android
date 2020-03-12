@@ -224,7 +224,6 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       if (messageId >= 0) {
         database.markAsPendingInsecureSmsFallback(messageId);
         notifyMediaMessageDeliveryFailed(context, messageId);
-        ApplicationContext.getInstance(context).getJobManager().add(new DirectoryRefreshJob(false));
       }
     } catch (UntrustedIdentityException uie) {
       warn(TAG, "Failure", uie);

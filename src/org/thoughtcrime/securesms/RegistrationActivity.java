@@ -49,7 +49,6 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
-import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
 import org.thoughtcrime.securesms.logging.Log;
@@ -57,7 +56,6 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.registration.CaptchaActivity;
-import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.util.BackupUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
@@ -648,10 +646,8 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
   }
 
   private void handleSuccessfulRegistration() {
-    ApplicationContext.getInstance(RegistrationActivity.this).getJobManager().add(new DirectoryRefreshJob(false));
     ApplicationContext.getInstance(RegistrationActivity.this).getJobManager().add(new RotateCertificateJob(RegistrationActivity.this));
 
-    DirectoryRefreshListener.schedule(RegistrationActivity.this);
     RotateSignedPreKeyListener.schedule(RegistrationActivity.this);
 
     Intent nextIntent = getIntent().getParcelableExtra("next_intent");
