@@ -327,18 +327,18 @@ public class MessageNotifier {
 
     // We can only reply if we are friends with the user or we're messaging a group
     boolean isGroup = recipient.isGroupRecipient();
-    boolean isRSS = isGroup && recipient.getAddress().isRSSFeed();
-    boolean isFriends = false;
+    boolean isRSSFeed = isGroup && recipient.getAddress().isRSSFeed();
+    boolean isFriend = false;
     if (!isGroup) {
-        isFriends = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadId) == LokiThreadFriendRequestStatus.FRIENDS;
+        isFriend = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadId) == LokiThreadFriendRequestStatus.FRIENDS;
         // If we're not friends then we need to check if we're friends with any of the linked devices
-        if (!isFriends) {
+        if (!isFriend) {
             Promise<Boolean, Exception> promise = PromiseUtil.timeout(MultiDeviceUtilities.isFriendsWithAnyLinkedDevice(context, recipient), 5000);
-            isFriends = PromiseUtil.get(promise, false);
+            isFriend = PromiseUtil.get(promise, false);
         }
     }
 
-    boolean canReply = (isGroup && !isRSS) || isFriends;
+    boolean canReply = (isGroup && !isRSSFeed) || isFriend;
 
     PendingIntent quickReplyIntent = canReply ? notificationState.getQuickReplyIntent(context, recipient) :  null;
     PendingIntent remoteReplyIntent = canReply ? notificationState.getRemoteReplyIntent(context, recipient, replyMethod) : null;
