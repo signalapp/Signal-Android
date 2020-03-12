@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.qr;
 import android.content.res.Configuration;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import org.thoughtcrime.securesms.logging.Log;
 
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.ChecksumException;
@@ -17,6 +16,7 @@ import com.google.zxing.qrcode.QRCodeReader;
 
 import org.thoughtcrime.securesms.components.camera.CameraView;
 import org.thoughtcrime.securesms.components.camera.CameraView.PreviewFrame;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.HashMap;
@@ -114,7 +114,7 @@ public class ScanningThread extends Thread implements CameraView.PreviewCallback
 
       if (result != null) return result.getText();
 
-    } catch (NullPointerException | ChecksumException | FormatException e) {
+    } catch (NullPointerException | ChecksumException | FormatException | IndexOutOfBoundsException e) {
       Log.w(TAG, e);
     } catch (NotFoundException e) {
       // Thanks ZXing...
