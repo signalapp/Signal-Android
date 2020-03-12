@@ -52,7 +52,9 @@ class ScanQRCodeWrapperFragment : Fragment(), ScanQRCodePlaceholderFragmentDeleg
     }
 
     override fun onQrDataFound(string: String) {
-        delegate?.handleQRCodeScanned(string)
+        activity?.runOnUiThread {
+            delegate?.handleQRCodeScanned(string)
+        }
     }
 }
 

@@ -797,6 +797,7 @@ public class ConversationItem extends LinearLayout
   }
 
   private void setContactPhoto(@NonNull Recipient recipient) {
+    if (messageRecord == null) return;
     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)bodyBubble.getLayoutParams();
     int groupThreadMargin = (int)(getResources().getDimension(R.dimen.large_spacing) + getResources().getDimension(R.dimen.small_profile_picture_size));
     int defaultMargin = 0;

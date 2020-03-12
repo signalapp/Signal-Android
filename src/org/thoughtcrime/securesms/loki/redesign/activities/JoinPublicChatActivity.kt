@@ -62,22 +62,20 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
     }
 
     fun joinPublicChatIfPossible(url: String) {
-        runOnUiThread {
-            if (!Patterns.WEB_URL.matcher(url).matches() || !url.startsWith("https://")) {
-                Toast.makeText(this, "Invalid URL", Toast.LENGTH_SHORT).show()
-                return@runOnUiThread
-            }
-            showLoader()
+        if (!Patterns.WEB_URL.matcher(url).matches() || !url.startsWith("https://")) {
+            Toast.makeText(this, "Invalid URL", Toast.LENGTH_SHORT).show()
+            return
+        }
+        showLoader()
 
-            val channel: Long = 1
-            OpenGroupUtilities.addGroup(this, url, channel).success {
-                MessageSender.syncAllOpenGroups(this)
-            }.successUi {
-                finish()
-            }.failUi {
-                hideLoader()
-                Toast.makeText(this, "Couldn't join channel", Toast.LENGTH_SHORT).show()
-            }
+        val channel: Long = 1
+        OpenGroupUtilities.addGroup(this, url, channel).success {
+            MessageSender.syncAllOpenGroups(this)
+        }.successUi {
+            finish()
+        }.failUi {
+            hideLoader()
+            Toast.makeText(this, "Couldn't join channel", Toast.LENGTH_SHORT).show()
         }
     }
     // endregion
