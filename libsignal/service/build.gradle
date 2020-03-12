@@ -14,6 +14,7 @@ apply plugin: 'com.google.protobuf'
 apply plugin: 'maven'
 apply plugin: 'signing'
 apply plugin: 'witness'
+apply plugin: 'idea'
 apply from: 'witness-verifications.gradle'
 
 sourceCompatibility = 1.7
@@ -64,6 +65,12 @@ protobuf {
                 }
             }
         }
+    }
+}
+
+idea {
+    module {
+        generatedSourceDirs += file("${protobuf.generatedFilesBaseDir}/main/java")
     }
 }
 
