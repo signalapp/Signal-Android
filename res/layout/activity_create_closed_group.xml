@@ -1,42 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/default_session_background"
-    android:orientation="vertical">
+    android:background="@drawable/default_session_background" >
 
-    <EditText
-        style="@style/SmallSessionEditText"
-        android:id="@+id/nameEditText"
+    <LinearLayout
+        android:id="@+id/mainContentContainer"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            style="@style/SmallSessionEditText"
+            android:id="@+id/nameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/large_spacing"
+            android:layout_marginTop="@dimen/medium_spacing"
+            android:layout_marginRight="@dimen/large_spacing"
+            android:hint="Enter a group name" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/large_spacing"
+            android:layout_marginTop="@dimen/medium_spacing"
+            android:layout_marginRight="@dimen/large_spacing"
+            android:layout_marginBottom="@dimen/medium_spacing"
+            android:textSize="@dimen/small_font_size"
+            android:textColor="@color/text"
+            android:alpha="0.6"
+            android:textAlignment="center"
+            android:text="Closed groups are end-to-end encrypted group chats for up to 10 members. They provide the same privacy protections as one-on-one sessions." />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/separator" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/emptyStateContainer"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/large_spacing"
-        android:layout_marginTop="@dimen/medium_spacing"
-        android:layout_marginRight="@dimen/large_spacing"
-        android:hint="Enter a group name" />
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/large_spacing"
-        android:layout_marginTop="@dimen/medium_spacing"
-        android:layout_marginRight="@dimen/large_spacing"
-        android:layout_marginBottom="@dimen/medium_spacing"
-        android:textSize="@dimen/small_font_size"
-        android:textColor="@color/text"
-        android:alpha="0.6"
-        android:textAlignment="center"
-        android:text="Closed groups are end-to-end encrypted group chats for up to 10 members. They provide the same privacy protections as one-on-one sessions." />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/medium_font_size"
+            android:textColor="@color/text"
+            android:text="You don't have any contacts yet" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/separator" />
+        <Button
+            style="@style/MediumProminentOutlineButton"
+            android:id="@+id/createNewPrivateChatButton"
+            android:layout_width="196dp"
+            android:layout_height="@dimen/medium_button_height"
+            android:layout_marginTop="@dimen/medium_spacing"
+            android:text="Start a Session" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

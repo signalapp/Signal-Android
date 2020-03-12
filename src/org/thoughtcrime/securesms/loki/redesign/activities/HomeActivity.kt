@@ -176,6 +176,13 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
 //            bottomSheet.show(supportFragmentManager, bottomSheet.tag)
 //        }
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == CreateClosedGroupActivity.createNewPrivateChatResultCode) {
+            createPrivateChat()
+        }
+    }
     // endregion
 
     override fun handleSeedReminderViewContinueButtonTapped() {
@@ -215,7 +222,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
 
     private fun createClosedGroup() {
         val intent = Intent(this, CreateClosedGroupActivity::class.java)
-        show(intent)
+        show(intent, true)
     }
 
     private fun joinPublicChat() {
