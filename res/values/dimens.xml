@@ -22,7 +22,8 @@
     <dimen name="conversation_view_status_indicator_size">14dp</dimen>
     <dimen name="border_thickness">1dp</dimen>
     <dimen name="profile_picture_border_thickness">1dp</dimen>
-    <dimen name="new_conversation_button_size">56dp</dimen>
+    <dimen name="new_conversation_button_collapsed_size">60dp</dimen>
+    <dimen name="new_conversation_button_expanded_size">72dp</dimen>
     <dimen name="tab_bar_height">36dp</dimen>
     <dimen name="text_view_corner_radius">8dp</dimen>
     <dimen name="fake_chat_view_bubble_width">224dp</dimen>

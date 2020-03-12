@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.loki.getColorWithID
 import org.thoughtcrime.securesms.loki.redesign.utilities.push
 import org.thoughtcrime.securesms.loki.redesign.utilities.show
 import org.thoughtcrime.securesms.loki.redesign.views.ConversationView
+import org.thoughtcrime.securesms.loki.redesign.views.NewConversationButtonSetViewDelegate
 import org.thoughtcrime.securesms.loki.redesign.views.SeedReminderViewDelegate
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
@@ -41,7 +42,7 @@ import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import kotlin.math.abs
 
-class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListener, SeedReminderViewDelegate {
+class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListener, SeedReminderViewDelegate, NewConversationButtonSetViewDelegate {
     private lateinit var glide: GlideRequests
 
     private val hexEncodedPublicKey: String
@@ -87,8 +88,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         profileButton.hexEncodedPublicKey = hexEncodedPublicKey
         profileButton.update()
         profileButton.setOnClickListener { openSettings() }
-        createClosedGroupButton.setOnClickListener { createClosedGroup() }
-        joinPublicChatButton.setOnClickListener { joinPublicChat() }
         // Set up seed reminder view
         val isMasterDevice = (TextSecurePreferences.getMasterHexEncodedPublicKey(this) == null)
         val hasViewedSeed = TextSecurePreferences.getHasViewedSeed(this)
@@ -125,8 +124,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
                 homeAdapter.changeCursor(null)
             }
         })
-        // Set up new conversation button
-        newConversationButton.setOnClickListener { createPrivateChat() }
+        newConversationButtonSet.delegate = this
         // Set up typing observer
         ApplicationContext.getInstance(this).typingStatusRepository.typingThreads.observe(this, Observer<Set<Long>> { threadIDs ->
             val adapter = recyclerView.adapter as HomeAdapter
@@ -180,7 +178,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == CreateClosedGroupActivity.createNewPrivateChatResultCode) {
-            createPrivateChat()
+            createNewPrivateChat()
         }
     }
     // endregion
@@ -215,17 +213,17 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         show(intent)
     }
 
-    private fun createPrivateChat() {
+    override fun createNewPrivateChat() {
         val intent = Intent(this, CreatePrivateChatActivity::class.java)
         show(intent)
     }
 
-    private fun createClosedGroup() {
+    override fun createNewClosedGroup() {
         val intent = Intent(this, CreateClosedGroupActivity::class.java)
         show(intent, true)
     }
 
-    private fun joinPublicChat() {
+    override fun joinOpenGroup() {
         val intent = Intent(this, JoinPublicChatActivity::class.java)
         show(intent)
     }
