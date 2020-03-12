@@ -18,9 +18,9 @@ import nl.komponents.kovenant.ui.failUi
 import nl.komponents.kovenant.ui.successUi
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
-import org.thoughtcrime.securesms.loki.redesign.utilities.OpenGroupUtilities
 import org.thoughtcrime.securesms.loki.redesign.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.redesign.fragments.ScanQRCodeWrapperFragmentDelegate
+import org.thoughtcrime.securesms.loki.redesign.utilities.OpenGroupUtilities
 import org.thoughtcrime.securesms.sms.MessageSender
 
 class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperFragmentDelegate {
@@ -62,19 +62,22 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
     }
 
     fun joinPublicChatIfPossible(url: String) {
-        if (!Patterns.WEB_URL.matcher(url).matches() || !url.startsWith("https://")) {
-            return Toast.makeText(this, "Invalid URL", Toast.LENGTH_SHORT).show()
-        }
-        showLoader()
+        runOnUiThread {
+            if (!Patterns.WEB_URL.matcher(url).matches() || !url.startsWith("https://")) {
+                Toast.makeText(this, "Invalid URL", Toast.LENGTH_SHORT).show()
+                return@runOnUiThread
+            }
+            showLoader()
 
-        val channel: Long = 1
-        OpenGroupUtilities.addGroup(this, url, channel).success {
-            MessageSender.syncAllOpenGroups(this)
-        }.successUi {
-            finish()
-        }.failUi {
-            hideLoader()
-            Toast.makeText(this, "Couldn't join channel", Toast.LENGTH_SHORT).show()
+            val channel: Long = 1
+            OpenGroupUtilities.addGroup(this, url, channel).success {
+                MessageSender.syncAllOpenGroups(this)
+            }.successUi {
+                finish()
+            }.failUi {
+                hideLoader()
+                Toast.makeText(this, "Couldn't join channel", Toast.LENGTH_SHORT).show()
+            }
         }
     }
     // endregion
