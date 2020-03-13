@@ -63,8 +63,7 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
 
     fun joinPublicChatIfPossible(url: String) {
         if (!Patterns.WEB_URL.matcher(url).matches() || !url.startsWith("https://")) {
-            Toast.makeText(this, "Invalid URL", Toast.LENGTH_SHORT).show()
-            return
+            return Toast.makeText(this, "Invalid URL", Toast.LENGTH_SHORT).show()
         }
         showLoader()
 

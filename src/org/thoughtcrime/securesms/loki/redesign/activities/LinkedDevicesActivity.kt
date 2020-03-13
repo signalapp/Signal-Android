@@ -12,9 +12,7 @@ import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_linked_devices.*
 import network.loki.messenger.R
-import nl.komponents.kovenant.Kovenant
 import nl.komponents.kovenant.functional.bind
-import nl.komponents.kovenant.task
 import nl.komponents.kovenant.ui.failUi
 import nl.komponents.kovenant.ui.successUi
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
@@ -26,8 +24,8 @@ import org.thoughtcrime.securesms.loki.signAndSendDeviceLinkMessage
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.loki.api.DeviceLink
+import org.whispersystems.signalservice.loki.api.LokiAPI
 import org.whispersystems.signalservice.loki.api.LokiFileServerAPI
-import org.whispersystems.signalservice.loki.utilities.createContext
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -147,11 +145,7 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity, LoaderManager
     }
 
     override fun onDeviceLinkRequestAuthorized(deviceLink: DeviceLink) {
-        val context = Kovenant.createContext("Multi-device")
-        LokiFileServerAPI.shared.addDeviceLink(deviceLink)
-        task(context) {
-            1
-        }.bind {
+        LokiFileServerAPI.shared.addDeviceLink(deviceLink).bind(LokiAPI.sharedWorkContext) {
             signAndSendDeviceLinkMessage(this, deviceLink)
         }.successUi {
             LoaderManager.getInstance(this).restartLoader(0, null, this)
