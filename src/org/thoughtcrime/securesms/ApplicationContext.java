@@ -75,7 +75,6 @@ import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -353,7 +352,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   private void initializePeriodicTasks() {
     RotateSignedPreKeyListener.schedule(this);
-    DirectoryRefreshListener.schedule(this);
     LocalBackupListener.schedule(this);
     RotateSenderCertificateListener.schedule(this);
     BackgroundPollWorker.schedule(this); // Session

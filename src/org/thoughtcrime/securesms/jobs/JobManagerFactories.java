@@ -31,7 +31,6 @@ public final class JobManagerFactories {
       put(AvatarDownloadJob.KEY,                     new AvatarDownloadJob.Factory());
       put(CleanPreKeysJob.KEY,                       new CleanPreKeysJob.Factory());
       put(CreateSignedPreKeyJob.KEY,                 new CreateSignedPreKeyJob.Factory());
-      put(DirectoryRefreshJob.KEY,                   new DirectoryRefreshJob.Factory(application));
       put(LocalBackupJob.KEY,                        new LocalBackupJob.Factory());
       put(MmsDownloadJob.KEY,                        new MmsDownloadJob.Factory());
       put(MmsReceiveJob.KEY,                         new MmsReceiveJob.Factory());
