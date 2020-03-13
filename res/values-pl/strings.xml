@@ -675,7 +675,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nowych wiadomości w %2$d rozmowach</string>
   <string name="MessageNotifier_most_recent_from_s">Najnowsza z: %1$s</string>
-  <string name="MessageNotifier_locked_message">Wiadomość zamknięta</string>
+  <string name="MessageNotifier_locked_message">Wiadomość zablokowana</string>
   <string name="MessageNotifier_media_message_with_text">Wiadomość multimedialna: %s</string>
   <string name="MessageNotifier_message_delivery_failed">Nie udało się dostarczyć wiadomości.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Dostarczenie wiadomości nie powiodło się.</string>
