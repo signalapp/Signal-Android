@@ -57,7 +57,7 @@ class QRCodeActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperF
         val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this)
         val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)
         val targetHexEncodedPublicKey = if (hexEncodedPublicKey == masterHexEncodedPublicKey) userHexEncodedPublicKey else hexEncodedPublicKey
-        val recipient = Recipient.from(this, Address.fromSerialized(targetHexEncodedPublicKey), true)
+        val recipient = Recipient.from(this, Address.fromSerialized(targetHexEncodedPublicKey), false)
         val intent = Intent(this, ConversationActivity::class.java)
         intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.address)
         intent.putExtra(ConversationActivity.TEXT_EXTRA, getIntent().getStringExtra(ConversationActivity.TEXT_EXTRA))
