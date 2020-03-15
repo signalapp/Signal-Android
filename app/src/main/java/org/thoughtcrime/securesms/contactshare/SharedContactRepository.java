@@ -125,7 +125,11 @@ public class SharedContactRepository {
       List<Phone> phoneNumbers = new ArrayList<>(vPhones.size());
       for (ezvcard.property.Telephone vEmail : vPhones) {
         String label = !vEmail.getTypes().isEmpty() ? getCleanedVcardType(vEmail.getTypes().get(0).getValue()) : null;
-        phoneNumbers.add(new Phone(vEmail.getText(), phoneTypeFromVcardType(label), label));
+
+        //Phone number is stored in the uri field in v4.0 only. In other versions, it is in the text field.
+        String phoneNrFromText = vEmail.getText();
+        String extractedPhoneNumber = phoneNrFromText == null ? vEmail.getUri().getNumber() : phoneNrFromText;
+        phoneNumbers.add(new Phone(extractedPhoneNumber, phoneTypeFromVcardType(label), label));
       }
 
       List<Email> emails = new ArrayList<>(vEmails.size());
