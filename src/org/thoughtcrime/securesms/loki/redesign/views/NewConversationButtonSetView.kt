@@ -31,14 +31,15 @@ class NewConversationButtonSetView : RelativeLayout {
 
     // region Convenience
     private val sessionButtonExpandedPosition: PointF get() { return PointF(width.toFloat() / 2 - sessionButton.expandedSize / 2, 0.0f) }
-    private val closedGroupButtonExpandedPosition: PointF get() { return PointF(width.toFloat() - closedGroupButton.expandedSize, height.toFloat() - closedGroupButton.expandedSize) }
-    private val openGroupButtonExpandedPosition: PointF get() { return PointF(0.0f, height.toFloat() - openGroupButton.expandedSize) }
-    private val buttonRestPosition: PointF get() { return PointF(width.toFloat() / 2 - mainButton.expandedSize / 2, height.toFloat() - mainButton.expandedSize) }
+    private val closedGroupButtonExpandedPosition: PointF get() { return PointF(width.toFloat() - closedGroupButton.expandedSize, height.toFloat() - bottomMargin - closedGroupButton.expandedSize) }
+    private val openGroupButtonExpandedPosition: PointF get() { return PointF(0.0f, height.toFloat() - bottomMargin - openGroupButton.expandedSize) }
+    private val buttonRestPosition: PointF get() { return PointF(width.toFloat() / 2 - mainButton.expandedSize / 2, height.toFloat() - bottomMargin - mainButton.expandedSize) }
     // endregion
 
     // region Settings
     private val maxDragDistance by lazy { toPx(56, resources).toFloat() }
     private val dragMargin by lazy { toPx(16, resources).toFloat() }
+    private val bottomMargin by lazy { resources.getDimension(R.dimen.new_conversation_button_bottom_offset) }
     // endregion
 
     // region Components
@@ -172,30 +173,33 @@ class NewConversationButtonSetView : RelativeLayout {
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes) { setUpViewHierarchy() }
 
     private fun setUpViewHierarchy() {
-        disableClipping()
         // Set up session button
         addView(sessionButton)
         sessionButton.alpha = 0.0f
         val sessionButtonLayoutParams = sessionButton.layoutParams as LayoutParams
         sessionButtonLayoutParams.addRule(CENTER_IN_PARENT, TRUE)
         sessionButtonLayoutParams.addRule(ALIGN_PARENT_BOTTOM, TRUE)
+        sessionButtonLayoutParams.bottomMargin = bottomMargin.toInt()
         // Set up closed group button
         addView(closedGroupButton)
         closedGroupButton.alpha = 0.0f
         val closedGroupButtonLayoutParams = closedGroupButton.layoutParams as LayoutParams
         closedGroupButtonLayoutParams.addRule(CENTER_IN_PARENT, TRUE)
         closedGroupButtonLayoutParams.addRule(ALIGN_PARENT_BOTTOM, TRUE)
+        closedGroupButtonLayoutParams.bottomMargin = bottomMargin.toInt()
         // Set up open group button
         addView(openGroupButton)
         openGroupButton.alpha = 0.0f
         val openGroupButtonLayoutParams = openGroupButton.layoutParams as LayoutParams
         openGroupButtonLayoutParams.addRule(CENTER_IN_PARENT, TRUE)
         openGroupButtonLayoutParams.addRule(ALIGN_PARENT_BOTTOM, TRUE)
+        openGroupButtonLayoutParams.bottomMargin = bottomMargin.toInt()
         // Set up main button
         addView(mainButton)
         val mainButtonLayoutParams = mainButton.layoutParams as LayoutParams
         mainButtonLayoutParams.addRule(CENTER_IN_PARENT, TRUE)
         mainButtonLayoutParams.addRule(ALIGN_PARENT_BOTTOM, TRUE)
+        mainButtonLayoutParams.bottomMargin = bottomMargin.toInt()
     }
     // endregion
 

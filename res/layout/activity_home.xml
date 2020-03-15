@@ -61,10 +61,9 @@
         <org.thoughtcrime.securesms.loki.redesign.views.NewConversationButtonSetView
             android:id="@+id/newConversationButtonSet"
             android:layout_width="252dp"
-            android:layout_height="156dp"
+            android:layout_height="212dp"
             android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="@dimen/new_conversation_button_bottom_offset" />
+            android:layout_alignParentBottom="true" />
 
     </RelativeLayout>
 
