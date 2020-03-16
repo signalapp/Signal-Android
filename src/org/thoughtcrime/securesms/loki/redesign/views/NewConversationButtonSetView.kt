@@ -209,7 +209,9 @@ class NewConversationButtonSetView : RelativeLayout {
     override fun onTouchEvent(event: MotionEvent): Boolean {
         val touch = PointF(event.x, event.y)
         val expandedButton = expandedButton
+        val allButtons = listOf( mainButton, sessionButton, closedGroupButton, openGroupButton )
         val buttonsExcludingMainButton = listOf( sessionButton, closedGroupButton, openGroupButton )
+        if (allButtons.none { it.contains(touch) }) { return false }
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 val vibrator = context.getSystemService(VIBRATOR_SERVICE) as Vibrator

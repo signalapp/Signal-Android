@@ -58,6 +58,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+        <View
+            android:id="@+id/gradientView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/home_activity_gradient" />
+
         <org.thoughtcrime.securesms.loki.redesign.views.NewConversationButtonSetView
             android:id="@+id/newConversationButtonSet"
             android:layout_width="252dp"

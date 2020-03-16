@@ -19,7 +19,9 @@ import android.support.v7.widget.helper.ItemTouchHelper
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
+import android.util.DisplayMetrics
 import android.view.View
+import android.widget.RelativeLayout
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_home.*
 import network.loki.messenger.R
@@ -124,6 +126,13 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
                 homeAdapter.changeCursor(null)
             }
         })
+        // Set up gradient view
+        val gradientViewLayoutParams = gradientView.layoutParams as RelativeLayout.LayoutParams
+        val displayMetrics = DisplayMetrics()
+        windowManager.defaultDisplay.getMetrics(displayMetrics)
+        val height = displayMetrics.heightPixels
+        gradientViewLayoutParams.topMargin = (0.15 * height.toFloat()).toInt()
+        // Set up new conversation button set
         newConversationButtonSet.delegate = this
         // Set up typing observer
         ApplicationContext.getInstance(this).typingStatusRepository.typingThreads.observe(this, Observer<Set<Long>> { threadIDs ->
