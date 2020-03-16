@@ -39,7 +39,6 @@ import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
-import org.whispersystems.signalservice.api.storage.StorageKey;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.io.Closeable;
@@ -132,7 +131,7 @@ public class RecipientDatabase extends Database {
   };
 
   private static final String[]     ID_PROJECTION              = new String[]{ID};
-  private static final String[]     SEARCH_PROJECTION          = new String[]{ID, SYSTEM_DISPLAY_NAME, PHONE, EMAIL, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, REGISTERED, "COALESCE(" + PROFILE_JOINED_NAME + ", " + PROFILE_GIVEN_NAME + ") AS " + SEARCH_PROFILE_NAME, "COALESCE(" + SYSTEM_DISPLAY_NAME + ", " + PROFILE_JOINED_NAME + ", " + PROFILE_GIVEN_NAME + ", " + USERNAME + ") AS " + SORT_NAME};
+  private static final String[]     SEARCH_PROJECTION          = new String[]{ID, SYSTEM_DISPLAY_NAME, PHONE, EMAIL, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, REGISTERED, "COALESCE(" + nullIfEmpty(PROFILE_JOINED_NAME) + ", " + nullIfEmpty(PROFILE_GIVEN_NAME) + ") AS " + SEARCH_PROFILE_NAME, "COALESCE(" + nullIfEmpty(SYSTEM_DISPLAY_NAME) + ", " + nullIfEmpty(PROFILE_JOINED_NAME) + ", " + nullIfEmpty(PROFILE_GIVEN_NAME) + ", " + nullIfEmpty(USERNAME) + ") AS " + SORT_NAME};
   public  static final String[]     SEARCH_PROJECTION_NAMES    = new String[]{ID, SYSTEM_DISPLAY_NAME, PHONE, EMAIL, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, REGISTERED, SEARCH_PROFILE_NAME, SORT_NAME};
           static final List<String> TYPED_RECIPIENT_PROJECTION = Stream.of(RECIPIENT_PROJECTION)
                                                                        .map(columnName -> TABLE_NAME + "." + columnName)
@@ -1550,6 +1549,10 @@ public class RecipientDatabase extends Database {
 
       database.update(TABLE_NAME, values, query, args);
     }
+  }
+
+  private static @NonNull String nullIfEmpty(String column) {
+    return "NULLIF(" + column + ", '')";
   }
 
   public interface ColorUpdater {
