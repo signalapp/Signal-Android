@@ -27,6 +27,8 @@ import org.thoughtcrime.securesms.loki.toPx
 
 class NewConversationButtonSetView : RelativeLayout {
     private var expandedButton: Button? = null
+    private var previousAction: Int? = null
+    private var isExpanded = false
     var delegate: NewConversationButtonSetViewDelegate? = null
 
     // region Convenience
@@ -205,9 +207,7 @@ class NewConversationButtonSetView : RelativeLayout {
 
     // region Interaction
     override fun onTouchEvent(event: MotionEvent): Boolean {
-        val touchX = event.x
-        val touchY = event.y
-        val touch = PointF(touchX, touchY)
+        val touch = PointF(event.x, event.y)
         val expandedButton = expandedButton
         val buttonsExcludingMainButton = listOf( sessionButton, closedGroupButton, openGroupButton )
         when (event.action) {
@@ -218,14 +218,15 @@ class NewConversationButtonSetView : RelativeLayout {
                 } else {
                     vibrator.vibrate(50)
                 }
-                sessionButton.animatePositionChange(buttonRestPosition, sessionButtonExpandedPosition)
-                closedGroupButton.animatePositionChange(buttonRestPosition, closedGroupButtonExpandedPosition)
-                openGroupButton.animatePositionChange(buttonRestPosition, openGroupButtonExpandedPosition)
-                buttonsExcludingMainButton.forEach { it.animateAlphaChange(0.0f, 1.0f) }
+                if (!isExpanded && mainButton.contains(touch)) {
+                    expand()
+                } else if (buttonsExcludingMainButton.none { it.contains(touch) }) {
+                    collapse()
+                }
             }
             MotionEvent.ACTION_MOVE -> {
-                mainButton.x = touchX - mainButton.expandedSize / 2
-                mainButton.y = touchY - mainButton.expandedSize / 2
+                mainButton.x = touch.x - mainButton.expandedSize / 2
+                mainButton.y = touch.y - mainButton.expandedSize / 2
                 mainButton.alpha = 1 - (PointF(mainButton.x, mainButton.y).distanceTo(buttonRestPosition) / maxDragDistance)
                 val buttonToExpand = buttonsExcludingMainButton.firstOrNull { button ->
                     var hasUserDraggedBeyondButton = false
@@ -245,23 +246,40 @@ class NewConversationButtonSetView : RelativeLayout {
                 }
             }
             MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                expandedButton?.collapse()
-                this.expandedButton = null
-                val allButtons = listOf( mainButton ) + buttonsExcludingMainButton
-                allButtons.forEach {
-                    val currentPosition = PointF(it.x, it.y)
-                    it.animatePositionChange(currentPosition, buttonRestPosition)
-                    val endAlpha = if (it == mainButton) 1.0f else 0.0f
-                    it.animateAlphaChange(it.alpha, endAlpha)
-                }
-                if (event.action == MotionEvent.ACTION_UP) {
-                    if (openGroupButton.contains(touch) || touch.isLeftOf(openGroupButton, dragMargin)) { delegate?.joinOpenGroup() }
-                    else if (sessionButton.contains(touch) || touch.isAbove(sessionButton, dragMargin)) { delegate?.createNewPrivateChat() }
-                    else if (closedGroupButton.contains(touch) || touch.isRightOf(closedGroupButton, dragMargin)) { delegate?.createNewClosedGroup() }
+                if (previousAction == MotionEvent.ACTION_MOVE || isExpanded) {
+                    expandedButton?.collapse()
+                    this.expandedButton = null
+                    collapse()
+                    if (event.action == MotionEvent.ACTION_UP) {
+                        if (sessionButton.contains(touch) || touch.isAbove(sessionButton, dragMargin)) { delegate?.createNewPrivateChat() }
+                        else if (closedGroupButton.contains(touch) || touch.isRightOf(closedGroupButton, dragMargin)) { delegate?.createNewClosedGroup() }
+                        else if (openGroupButton.contains(touch) || touch.isLeftOf(openGroupButton, dragMargin)) { delegate?.joinOpenGroup() }
+                    }
                 }
             }
         }
+        previousAction = event.action
         return true
+    }
+
+    private fun expand() {
+        val buttonsExcludingMainButton = listOf( sessionButton, closedGroupButton, openGroupButton )
+        sessionButton.animatePositionChange(buttonRestPosition, sessionButtonExpandedPosition)
+        closedGroupButton.animatePositionChange(buttonRestPosition, closedGroupButtonExpandedPosition)
+        openGroupButton.animatePositionChange(buttonRestPosition, openGroupButtonExpandedPosition)
+        buttonsExcludingMainButton.forEach { it.animateAlphaChange(0.0f, 1.0f) }
+        postDelayed({ isExpanded = true }, Button.animationDuration)
+    }
+
+    private fun collapse() {
+        val allButtons = listOf( mainButton, sessionButton, closedGroupButton, openGroupButton )
+        allButtons.forEach {
+            val currentPosition = PointF(it.x, it.y)
+            it.animatePositionChange(currentPosition, buttonRestPosition)
+            val endAlpha = if (it == mainButton) 1.0f else 0.0f
+            it.animateAlphaChange(it.alpha, endAlpha)
+        }
+        postDelayed({ isExpanded = false }, Button.animationDuration)
     }
     // endregion
 }
