@@ -25,6 +25,7 @@
     <color name="received_message_background">#222325</color>
     <color name="sent_message_background">#3F4146</color>
     <color name="quote_not_found_background">#99FFFFFF</color>
+    <color name="new_conversation_button_collapsed_background">#1F1F1F</color>
     <!-- Session -->
 
     <!-- Loki -->

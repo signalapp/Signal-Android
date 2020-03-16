@@ -19,7 +19,9 @@ import android.support.v7.widget.helper.ItemTouchHelper
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
+import android.util.DisplayMetrics
 import android.view.View
+import android.widget.RelativeLayout
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_home.*
 import network.loki.messenger.R
@@ -33,6 +35,7 @@ import org.thoughtcrime.securesms.loki.getColorWithID
 import org.thoughtcrime.securesms.loki.redesign.utilities.push
 import org.thoughtcrime.securesms.loki.redesign.utilities.show
 import org.thoughtcrime.securesms.loki.redesign.views.ConversationView
+import org.thoughtcrime.securesms.loki.redesign.views.NewConversationButtonSetViewDelegate
 import org.thoughtcrime.securesms.loki.redesign.views.SeedReminderViewDelegate
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
@@ -41,7 +44,7 @@ import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import kotlin.math.abs
 
-class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListener, SeedReminderViewDelegate {
+class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListener, SeedReminderViewDelegate, NewConversationButtonSetViewDelegate {
     private lateinit var glide: GlideRequests
 
     private val hexEncodedPublicKey: String
@@ -87,8 +90,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         profileButton.hexEncodedPublicKey = hexEncodedPublicKey
         profileButton.update()
         profileButton.setOnClickListener { openSettings() }
-        createClosedGroupButton.setOnClickListener { createClosedGroup() }
-        joinPublicChatButton.setOnClickListener { joinPublicChat() }
         // Set up seed reminder view
         val isMasterDevice = (TextSecurePreferences.getMasterHexEncodedPublicKey(this) == null)
         val hasViewedSeed = TextSecurePreferences.getHasViewedSeed(this)
@@ -125,8 +126,14 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
                 homeAdapter.changeCursor(null)
             }
         })
-        // Set up new conversation button
-        newConversationButton.setOnClickListener { createPrivateChat() }
+        // Set up gradient view
+        val gradientViewLayoutParams = gradientView.layoutParams as RelativeLayout.LayoutParams
+        val displayMetrics = DisplayMetrics()
+        windowManager.defaultDisplay.getMetrics(displayMetrics)
+        val height = displayMetrics.heightPixels
+        gradientViewLayoutParams.topMargin = (0.15 * height.toFloat()).toInt()
+        // Set up new conversation button set
+        newConversationButtonSet.delegate = this
         // Set up typing observer
         ApplicationContext.getInstance(this).typingStatusRepository.typingThreads.observe(this, Observer<Set<Long>> { threadIDs ->
             val adapter = recyclerView.adapter as HomeAdapter
@@ -176,6 +183,13 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
 //            bottomSheet.show(supportFragmentManager, bottomSheet.tag)
 //        }
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == CreateClosedGroupActivity.createNewPrivateChatResultCode) {
+            createNewPrivateChat()
+        }
+    }
     // endregion
 
     override fun handleSeedReminderViewContinueButtonTapped() {
@@ -208,17 +222,17 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         show(intent)
     }
 
-    private fun createPrivateChat() {
+    override fun createNewPrivateChat() {
         val intent = Intent(this, CreatePrivateChatActivity::class.java)
         show(intent)
     }
 
-    private fun createClosedGroup() {
+    override fun createNewClosedGroup() {
         val intent = Intent(this, CreateClosedGroupActivity::class.java)
-        show(intent)
+        show(intent, true)
     }
 
-    private fun joinPublicChat() {
+    override fun joinOpenGroup() {
         val intent = Intent(this, JoinPublicChatActivity::class.java)
         show(intent)
     }

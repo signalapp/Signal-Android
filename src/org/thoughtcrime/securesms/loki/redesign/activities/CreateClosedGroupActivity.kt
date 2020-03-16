@@ -9,6 +9,7 @@ import android.support.v4.content.Loader
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_create_closed_group.*
 import kotlinx.android.synthetic.main.activity_linked_devices.recyclerView
@@ -38,6 +39,10 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
     private val selectedMembers: Set<String>
         get() { return createClosedGroupAdapter.selectedMembers }
 
+    companion object {
+        public val createNewPrivateChatResultCode = 100
+    }
+
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
@@ -45,12 +50,13 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
         supportActionBar!!.title = "New Closed Group"
         recyclerView.adapter = createClosedGroupAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
+        createNewPrivateChatButton.setOnClickListener { createNewPrivateChat() }
         LoaderManager.getInstance(this).initLoader(0, null, this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_create_closed_group, menu)
-        return true
+        return members.isNotEmpty()
     }
     // endregion
 
@@ -69,6 +75,9 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
 
     private fun update(members: List<String>) {
         this.members = members
+        mainContentContainer.visibility = if (members.isEmpty()) View.GONE else View.VISIBLE
+        emptyStateContainer.visibility = if (members.isEmpty()) View.VISIBLE else View.GONE
+        invalidateOptionsMenu()
     }
     // endregion
 
@@ -80,6 +89,11 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
             else -> { /* Do nothing */ }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun createNewPrivateChat() {
+        setResult(createNewPrivateChatResultCode)
+        finish()
     }
 
     override fun onMemberClick(member: String) {

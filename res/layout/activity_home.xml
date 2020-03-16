@@ -40,28 +40,6 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="64dp" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true">
-
-                <ImageView
-                    android:id="@+id/createClosedGroupButton"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_group_white_24dp" />
-
-                <ImageView
-                    android:id="@+id/joinPublicChatButton"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginLeft="@dimen/medium_spacing"
-                    android:src="@drawable/ic_globe" />
-
-            </LinearLayout>
-
         </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
@@ -80,36 +58,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <!-- The button below intentionally uses dp for the text size and not sp -->
+        <View
+            android:id="@+id/gradientView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/home_activity_gradient" />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <org.thoughtcrime.securesms.loki.redesign.views.NewConversationButtonSetView
+            android:id="@+id/newConversationButtonSet"
+            android:layout_width="252dp"
+            android:layout_height="212dp"
             android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="@dimen/new_conversation_button_bottom_offset">
-
-            <View
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:background="@drawable/new_conversation_button_background" />
-
-            <Button
-                android:id="@+id/newConversationButton"
-                android:layout_width="@dimen/new_conversation_button_size"
-                android:layout_height="@dimen/new_conversation_button_size"
-                android:layout_centerInParent="true"
-                android:paddingLeft="1dp"
-                android:paddingBottom="2dp"
-                android:background="@drawable/new_conversation_button_foreground"
-                android:fontFamily="@font/roboto_light"
-                android:textSize="40dp"
-                android:textColor="#121212"
-                android:text="+"
-                android:elevation="0dp"
-                android:stateListAnimator="@null" />
-
-        </RelativeLayout>
+            android:layout_alignParentBottom="true" />
 
     </RelativeLayout>
 
