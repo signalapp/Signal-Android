@@ -66,33 +66,35 @@ public class IdentityUtil {
 
   public static void markIdentityVerified(Context context, Recipient recipient, boolean verified, boolean remote)
   {
-    long                 time          = System.currentTimeMillis();
-    SmsDatabase          smsDatabase   = DatabaseFactory.getSmsDatabase(context);
-    GroupDatabase        groupDatabase = DatabaseFactory.getGroupDatabase(context);
-    GroupDatabase.Reader reader        = groupDatabase.getGroups();
+    long          time          = System.currentTimeMillis();
+    SmsDatabase   smsDatabase   = DatabaseFactory.getSmsDatabase(context);
+    GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
 
-    GroupDatabase.GroupRecord groupRecord;
+    try (GroupDatabase.Reader reader = groupDatabase.getGroups()) {
 
-    while ((groupRecord = reader.getNext()) != null) {
-      if (groupRecord.getMembers().contains(recipient.getId()) && groupRecord.isActive() && !groupRecord.isMms()) {
+      GroupDatabase.GroupRecord groupRecord;
 
-        if (remote) {
-          IncomingTextMessage incoming = new IncomingTextMessage(recipient.getId(), 1, time, null, Optional.of(groupRecord.getEncodedId()), 0, false);
+      while ((groupRecord = reader.getNext()) != null) {
+        if (groupRecord.getMembers().contains(recipient.getId()) && groupRecord.isActive() && !groupRecord.isMms()) {
 
-          if (verified) incoming = new IncomingIdentityVerifiedMessage(incoming);
-          else          incoming = new IncomingIdentityDefaultMessage(incoming);
+          if (remote) {
+            IncomingTextMessage incoming = new IncomingTextMessage(recipient.getId(), 1, time, null, Optional.of(groupRecord.getEncodedId()), 0, false);
 
-          smsDatabase.insertMessageInbox(incoming);
-        } else {
-          RecipientId         recipientId    = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupRecord.getEncodedId());
-          Recipient           groupRecipient = Recipient.resolved(recipientId);
-          long                threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
-          OutgoingTextMessage outgoing ;
+            if (verified) incoming = new IncomingIdentityVerifiedMessage(incoming);
+            else          incoming = new IncomingIdentityDefaultMessage(incoming);
 
-          if (verified) outgoing = new OutgoingIdentityVerifiedMessage(recipient);
-          else          outgoing = new OutgoingIdentityDefaultMessage(recipient);
+            smsDatabase.insertMessageInbox(incoming);
+          } else {
+            RecipientId         recipientId    = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupRecord.getEncodedId());
+            Recipient           groupRecipient = Recipient.resolved(recipientId);
+            long                threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
+            OutgoingTextMessage outgoing ;
 
-          DatabaseFactory.getSmsDatabase(context).insertMessageOutbox(threadId, outgoing, false, time, null);
+            if (verified) outgoing = new OutgoingIdentityVerifiedMessage(recipient);
+            else          outgoing = new OutgoingIdentityDefaultMessage(recipient);
+
+            DatabaseFactory.getSmsDatabase(context).insertMessageOutbox(threadId, outgoing, false, time, null);
+          }
         }
       }
     }
