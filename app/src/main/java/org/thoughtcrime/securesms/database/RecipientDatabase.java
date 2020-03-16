@@ -598,13 +598,14 @@ public class RecipientDatabase extends Database {
     }
 
     ProfileName profileName = ProfileName.fromParts(contact.getGivenName().orNull(), contact.getFamilyName().orNull());
+    String      username    = contact.getUsername().orNull();
 
     values.put(PHONE, contact.getAddress().getNumber().orNull());
     values.put(PROFILE_GIVEN_NAME, profileName.getGivenName());
     values.put(PROFILE_FAMILY_NAME, profileName.getFamilyName());
     values.put(PROFILE_JOINED_NAME, profileName.toString());
     values.put(PROFILE_KEY, contact.getProfileKey().transform(Base64::encodeBytes).orNull());
-    values.put(USERNAME, contact.getUsername().orNull());
+    values.put(USERNAME, TextUtils.isEmpty(username) ? null : username);
     values.put(PROFILE_SHARING, contact.isProfileSharingEnabled() ? "1" : "0");
     values.put(BLOCKED, contact.isBlocked() ? "1" : "0");
     values.put(STORAGE_SERVICE_KEY, Base64.encodeBytes(contact.getKey()));
