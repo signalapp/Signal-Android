@@ -288,8 +288,9 @@ public final class AudioView extends FrameLayout implements AudioSlidePlayer.Lis
     if(audioSlidePlayer != null && audioSlidePlayer.getAudioDuration() > -1 && audioSlidePlayer.getAudioCurrentPosition() > -1) {
       long duration = audioSlidePlayer.getAudioDuration();
       long currentPosition = audioSlidePlayer.getAudioCurrentPosition();
+      long secondsLeft = TimeUnit.MILLISECONDS.toSeconds(duration - currentPosition);
 
-      String timestampText = String.format(Locale.getDefault(), "%02d:%02d", TimeUnit.MILLISECONDS.toMinutes(duration - currentPosition), TimeUnit.MILLISECONDS.toSeconds(duration - currentPosition));
+      String timestampText = String.format(Locale.getDefault(), "%02d:%02d", (int)(secondsLeft / 60), secondsLeft % 60);
 
       this.timestamp.setText(timestampText);
       this.timestamp.setVisibility(VISIBLE);
