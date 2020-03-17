@@ -2370,7 +2370,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       Log.w(TAG, ex);
     }
 
-    if (messageStatus == null) {
+    if (messageStatus == null && !isGroupConversation()) {
       messageStatus = "calculatingPoW";
       updateSubtitleTextView();
       updateMessageStatusProgressBar();
