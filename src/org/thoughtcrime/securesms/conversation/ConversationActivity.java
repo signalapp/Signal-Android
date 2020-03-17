@@ -2369,6 +2369,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     } catch (InvalidMessageException ex) {
       Log.w(TAG, ex);
     }
+
+    if (messageStatus == null) {
+      messageStatus = "calculatingPoW";
+      updateSubtitleTextView();
+      updateMessageStatusProgressBar();
+    }
   }
 
   private void sendMediaMessage(final boolean forceSms, final long expiresIn, final int subscriptionId, boolean initiating)

@@ -21,9 +21,12 @@ fun AppCompatActivity.setUpActionBarSessionLogo() {
     supportActionBar!!.setDisplayShowCustomEnabled(true)
 }
 
+val AppCompatActivity.defaultSessionRequestCode: Int
+    get() = 42
+
 fun AppCompatActivity.push(intent: Intent, isForResult: Boolean = false) {
     if (isForResult) {
-        startActivityForResult(intent, 42)
+        startActivityForResult(intent, defaultSessionRequestCode)
     } else {
         startActivity(intent)
     }
@@ -32,7 +35,7 @@ fun AppCompatActivity.push(intent: Intent, isForResult: Boolean = false) {
 
 fun AppCompatActivity.show(intent: Intent, isForResult: Boolean = false) {
     if (isForResult) {
-        startActivityForResult(intent, 42)
+        startActivityForResult(intent, defaultSessionRequestCode)
     } else {
         startActivity(intent)
     }

@@ -102,7 +102,7 @@
                 android:progressBackgroundTint="@color/transparent"
                 android:alpha="0"
                 android:indeterminate="false"
-                android:progress="80" />
+                android:progress="0" />
 
             <org.thoughtcrime.securesms.loki.redesign.views.SessionRestoreBannerView
                 android:id="@+id/sessionRestoreBannerView"
