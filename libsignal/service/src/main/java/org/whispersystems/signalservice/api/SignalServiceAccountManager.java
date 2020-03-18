@@ -403,6 +403,18 @@ public class SignalServiceAccountManager {
     }
   }
 
+  public Optional<SignalStorageManifest> getStorageManifest(StorageKey storageKey) throws IOException {
+    try {
+      String          authToken       = this.pushServiceSocket.getStorageAuth();
+      StorageManifest storageManifest = this.pushServiceSocket.getStorageManifest(authToken);
+
+      return Optional.of(SignalStorageModels.remoteToLocalStorageManifest(storageManifest, storageKey));
+    } catch (InvalidKeyException | NotFoundException e) {
+      Log.w(TAG, "Error while fetching manifest.", e);
+      return Optional.absent();
+    }
+  }
+
   public long getStorageManifestVersion() throws IOException {
     try {
       String          authToken       = this.pushServiceSocket.getStorageAuth();
@@ -431,6 +443,10 @@ public class SignalServiceAccountManager {
   }
 
   public List<SignalStorageRecord> readStorageRecords(StorageKey storageKey, List<StorageId> storageKeys) throws IOException, InvalidKeyException {
+    if (storageKeys.isEmpty()) {
+      return Collections.emptyList();
+    }
+
     List<SignalStorageRecord> result    = new ArrayList<>();
     ReadOperation.Builder     operation = ReadOperation.newBuilder();
     Map<ByteString, Integer>  typeMap   = new HashMap<>();

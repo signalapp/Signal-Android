@@ -23,7 +23,7 @@ public final class SignalContactRecord implements SignalRecord {
   private final Optional<String>     username;
   private final Optional<byte[]>     identityKey;
 
-  private SignalContactRecord(StorageId id, ContactRecord proto) {
+  public SignalContactRecord(StorageId id, ContactRecord proto) {
     this.id    = id;
     this.proto = proto;
 

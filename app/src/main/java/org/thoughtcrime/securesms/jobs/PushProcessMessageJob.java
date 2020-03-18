@@ -72,6 +72,7 @@ import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Hex;
@@ -665,7 +666,7 @@ public final class PushProcessMessageJob extends BaseJob {
         ApplicationDependencies.getJobManager().add(new RefreshOwnProfileJob());
         break;
       case STORAGE_MANIFEST:
-        ApplicationDependencies.getJobManager().add(new StorageSyncJob());
+        StorageSyncHelper.scheduleSyncForDataChange();
         break;
       default:
         Log.w(TAG, "Received a fetch message for an unknown type.");

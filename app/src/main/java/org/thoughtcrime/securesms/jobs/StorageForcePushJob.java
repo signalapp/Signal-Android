@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 
+import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.storage.StorageSyncModels;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -34,6 +36,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -76,15 +79,17 @@ public class StorageForcePushJob extends BaseJob {
     StorageKeyDatabase          storageKeyDatabase = DatabaseFactory.getStorageKeyDatabase(context);
 
     long                        currentVersion = accountManager.getStorageManifestVersion();
-    Map<RecipientId, StorageId> oldStorageKeys = recipientDatabase.getAllStorageSyncKeysMap();
+    Map<RecipientId, StorageId> oldStorageKeys = recipientDatabase.getContactStorageSyncIdsMap();
 
-    long                        newVersion     = currentVersion + 1;
-    Map<RecipientId, StorageId> newStorageKeys = generateNewKeys(oldStorageKeys);
-    List<SignalStorageRecord>   inserts        = Stream.of(oldStorageKeys.keySet())
-                                                     .map(recipientDatabase::getRecipientSettings)
-                                                     .withoutNulls()
-                                                     .map(s -> StorageSyncModels.localToRemoteRecord(s, Objects.requireNonNull(newStorageKeys.get(s.getId())).getRaw()))
-                                                     .toList();
+    long                        newVersion         = currentVersion + 1;
+    Map<RecipientId, StorageId> newStorageKeys     = generateNewKeys(oldStorageKeys);
+    Set<RecipientId>            archivedRecipients = DatabaseFactory.getThreadDatabase(context).getArchivedRecipients();
+    List<SignalStorageRecord>   inserts            = Stream.of(oldStorageKeys.keySet())
+                                                           .map(recipientDatabase::getRecipientSettings)
+                                                           .withoutNulls()
+                                                           .map(s -> StorageSyncModels.localToRemoteRecord(s, Objects.requireNonNull(newStorageKeys.get(s.getId())).getRaw(), archivedRecipients))
+                                                           .toList();
+    inserts.add(StorageSyncHelper.buildAccountRecord(context, StorageId.forAccount(Recipient.self().fresh().getStorageServiceId())));
 
     SignalStorageManifest manifest = new SignalStorageManifest(newVersion, new ArrayList<>(newStorageKeys.values()));
 

@@ -97,13 +97,13 @@ message GroupV2Record {
 }
 
 message AccountRecord {
-  message Config {
-    bool readReceipts           = 1;
-    bool sealedSenderIndicators = 2;
-    bool typingIndicators       = 3;
-    bool linkPreviews           = 4;
-  }
-
-  ContactRecord contact = 1;
-  Config        config  = 2;
+  bytes  profileKey             = 1;
+  string givenName              = 2;
+  string familyName             = 3;
+  string avatarUrlPath          = 4;
+  bool   noteToSelfArchived     = 5;
+  bool   readReceipts           = 6;
+  bool   sealedSenderIndicators = 7;
+  bool   typingIndicators       = 8;
+  bool   linkPreviews           = 9;
 }

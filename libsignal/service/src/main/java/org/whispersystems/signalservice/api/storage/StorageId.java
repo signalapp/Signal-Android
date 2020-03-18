@@ -21,6 +21,10 @@ public class StorageId {
     return new StorageId(ManifestRecord.Identifier.Type.GROUPV2_VALUE, raw);
   }
 
+  public static StorageId forAccount(byte[] raw) {
+    return new StorageId(ManifestRecord.Identifier.Type.ACCOUNT_VALUE, raw);
+  }
+
   public static StorageId forType(byte[] raw, int type) {
     return new StorageId(type, raw);
   }

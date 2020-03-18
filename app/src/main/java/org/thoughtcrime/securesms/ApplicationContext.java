@@ -71,6 +71,7 @@ import org.thoughtcrime.securesms.revealable.ViewOnceMessageManager;
 import org.thoughtcrime.securesms.service.RotateSenderCertificateListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
@@ -136,7 +137,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     FeatureFlags.init();
     NotificationChannels.create(this);
     RefreshPreKeysJob.scheduleIfNecessary();
-    StorageSyncJob.scheduleIfNecessary();
+    StorageSyncHelper.scheduleRoutineSync();
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
 
     if (Build.VERSION.SDK_INT < 21) {

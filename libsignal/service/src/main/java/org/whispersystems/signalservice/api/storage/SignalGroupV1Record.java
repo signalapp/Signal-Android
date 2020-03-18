@@ -12,7 +12,7 @@ public final class SignalGroupV1Record implements SignalRecord {
   private final GroupV1Record proto;
   private final byte[]        groupId;
 
-  private SignalGroupV1Record(StorageId id, GroupV1Record proto) {
+  public SignalGroupV1Record(StorageId id, GroupV1Record proto) {
     this.id      = id;
     this.proto   = proto;
     this.groupId = proto.getId().toByteArray();

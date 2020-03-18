@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -53,6 +54,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.Closeable;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -422,10 +424,48 @@ public class ThreadDatabase extends Database {
     return getConversationList("1");
   }
 
+  public boolean isArchived(@NonNull RecipientId recipientId) {
+    SQLiteDatabase db    = databaseHelper.getReadableDatabase();
+    String         query = RECIPIENT_ID + " = ?";
+    String[]       args  = new String[]{ recipientId.serialize() };
+
+    try (Cursor cursor = db.query(TABLE_NAME, new String[] { ARCHIVED }, query, args, null, null, null)) {
+      if (cursor != null && cursor.moveToFirst()) {
+        return cursor.getInt(cursor.getColumnIndexOrThrow(ARCHIVED)) == 1;
+      }
+    }
+
+    return false;
+  }
+
+  public void setArchived(@NonNull RecipientId recipientId, boolean status) {
+    setArchived(Collections.singletonMap(recipientId, status));
+  }
+
+  public void setArchived(@NonNull Map<RecipientId, Boolean> status) {
+    SQLiteDatabase db    = databaseHelper.getReadableDatabase();
+
+    db.beginTransaction();
+    try {
+      String query = RECIPIENT_ID + " = ?";
+
+      for (Map.Entry<RecipientId, Boolean> entry : status.entrySet()) {
+        ContentValues values = new ContentValues(1);
+        values.put(ARCHIVED, entry.getValue() ? "1" : "0");
+        db.update(TABLE_NAME, values, query, new String[] { entry.getKey().serialize() });
+      }
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+      notifyConversationListListeners();
+    }
+  }
+
   public @NonNull Set<RecipientId> getArchivedRecipients() {
     Set<RecipientId> archived = new HashSet<>();
 
-    try (Cursor cursor = DatabaseFactory.getThreadDatabase(context).getArchivedConversationList()) {
+    try (Cursor cursor = getArchivedConversationList()) {
       while (cursor != null && cursor.moveToNext()) {
         archived.add(RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.RECIPIENT_ID))));
       }
@@ -488,6 +528,12 @@ public class ThreadDatabase extends Database {
 
     db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {threadId + ""});
     notifyConversationListListeners();
+
+    Recipient recipient = getRecipientForThreadId(threadId);
+    if (recipient != null) {
+      DatabaseFactory.getRecipientDatabase(context).markNeedsSync(recipient.getId());
+      StorageSyncHelper.scheduleSyncForDataChange();
+    }
   }
 
   public void unarchiveConversation(long threadId) {
@@ -497,6 +543,12 @@ public class ThreadDatabase extends Database {
 
     db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {threadId + ""});
     notifyConversationListListeners();
+
+    Recipient recipient = getRecipientForThreadId(threadId);
+    if (recipient != null) {
+      DatabaseFactory.getRecipientDatabase(context).markNeedsSync(recipient.getId());
+      StorageSyncHelper.scheduleSyncForDataChange();
+    }
   }
 
   public void setLastSeen(long threadId) {

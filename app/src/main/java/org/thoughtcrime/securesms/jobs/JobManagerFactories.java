@@ -85,6 +85,7 @@ public final class JobManagerFactories {
       put(RefreshPreKeysJob.KEY,                     new RefreshPreKeysJob.Factory());
       put(RemoteConfigRefreshJob.KEY,                new RemoteConfigRefreshJob.Factory());
       put(RequestGroupInfoJob.KEY,                   new RequestGroupInfoJob.Factory());
+      put(StorageAccountRestoreJob.KEY,              new StorageAccountRestoreJob.Factory());
       put(RetrieveProfileAvatarJob.KEY,              new RetrieveProfileAvatarJob.Factory());
       put(RetrieveProfileJob.KEY,                    new RetrieveProfileJob.Factory());
       put(RotateCertificateJob.KEY,                  new RotateCertificateJob.Factory());

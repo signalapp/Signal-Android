@@ -3,6 +3,10 @@ package org.thoughtcrime.securesms.storage;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.annimon.stream.Stream;
+
+import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
@@ -11,16 +15,21 @@ import org.whispersystems.signalservice.internal.storage.protos.ContactRecord.Id
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
 class ContactConflictMerger implements StorageSyncHelper.ConflictMerger<SignalContactRecord> {
 
+  private static final String TAG = Log.tag(ContactConflictMerger.class);
+
   private final Map<UUID, SignalContactRecord>   localByUuid = new HashMap<>();
   private final Map<String, SignalContactRecord> localByE164 = new HashMap<>();
 
-  ContactConflictMerger(@NonNull Collection<SignalContactRecord> localOnly) {
+  private final Recipient self;
+
+  ContactConflictMerger(@NonNull Collection<SignalContactRecord> localOnly, @NonNull Recipient self) {
     for (SignalContactRecord contact : localOnly) {
       if (contact.getAddress().getUuid().isPresent()) {
         localByUuid.put(contact.getAddress().getUuid().get(), contact);
@@ -29,6 +38,8 @@ class ContactConflictMerger implements StorageSyncHelper.ConflictMerger<SignalCo
         localByE164.put(contact.getAddress().getNumber().get(), contact);
       }
     }
+
+    this.self = self.resolve();
   }
 
   @Override
@@ -37,6 +48,18 @@ class ContactConflictMerger implements StorageSyncHelper.ConflictMerger<SignalCo
     SignalContactRecord localE164 = record.getAddress().getNumber().isPresent() ? localByE164.get(record.getAddress().getNumber().get()) : null;
 
     return Optional.fromNullable(localUuid).or(Optional.fromNullable(localE164));
+  }
+
+  @Override
+  public @NonNull Collection<SignalContactRecord> getInvalidEntries(@NonNull Collection<SignalContactRecord> remoteRecords) {
+    List<SignalContactRecord> invalid = Stream.of(remoteRecords)
+                                              .filter(r -> r.getAddress().getUuid().equals(self.getUuid()) || r.getAddress().getNumber().equals(self.getE164()))
+                                              .toList();
+    if (invalid.size() > 0) {
+      Log.w(TAG, "Found invalid contact entries! Count: " + invalid.size());
+    }
+
+    return invalid;
   }
 
   @Override

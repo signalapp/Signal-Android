@@ -77,6 +77,7 @@ import org.thoughtcrime.securesms.qr.ScanningThread;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.DynamicDarkActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -605,7 +606,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
                                                                          remoteIdentity,
                                                                          isChecked ? VerifiedStatus.VERIFIED :
                                                                                      VerifiedStatus.DEFAULT));
-            ApplicationDependencies.getJobManager().add(new StorageSyncJob());
+            StorageSyncHelper.scheduleSyncForDataChange();
 
             IdentityUtil.markIdentityVerified(getActivity(), recipient.get(), isChecked, false);
           }

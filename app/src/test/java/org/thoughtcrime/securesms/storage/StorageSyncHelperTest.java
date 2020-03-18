@@ -2,15 +2,23 @@ package org.thoughtcrime.securesms.storage;
 
 import androidx.annotation.NonNull;
 
+import com.airbnb.lottie.L;
 import com.annimon.stream.Stream;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.groups.GroupMasterKey;
+import org.junit.runner.RunWith;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.KeyDifferenceResult;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.MergeResult;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record;
@@ -29,31 +37,46 @@ import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
+import static org.mockito.Mockito.when;
+import static org.powermock.api.mockito.PowerMockito.mock;
+import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.thoughtcrime.securesms.testutil.TestHelpers.assertByteListEquals;
 import static org.thoughtcrime.securesms.testutil.TestHelpers.assertContentsEqual;
 import static org.thoughtcrime.securesms.testutil.TestHelpers.byteArray;
 import static org.thoughtcrime.securesms.testutil.TestHelpers.byteListOf;
 import static org.thoughtcrime.securesms.testutil.TestHelpers.setOf;
 
+@RunWith(PowerMockRunner.class)
+@PrepareForTest({ Recipient.class })
 public final class StorageSyncHelperTest {
 
-  private static final UUID UUID_A = UuidUtil.parseOrThrow("ebef429e-695e-4f51-bcc4-526a60ac68c7");
-  private static final UUID UUID_B = UuidUtil.parseOrThrow("32119989-77fb-4e18-af70-81d55185c6b1");
-  private static final UUID UUID_C = UuidUtil.parseOrThrow("b5552203-2bca-44aa-b6f5-9f5d87a335b6");
-  private static final UUID UUID_D = UuidUtil.parseOrThrow("94829a32-7199-4a7b-8fb4-7e978509ab84");
+  private static final UUID UUID_A    = UuidUtil.parseOrThrow("ebef429e-695e-4f51-bcc4-526a60ac68c7");
+  private static final UUID UUID_B    = UuidUtil.parseOrThrow("32119989-77fb-4e18-af70-81d55185c6b1");
+  private static final UUID UUID_C    = UuidUtil.parseOrThrow("b5552203-2bca-44aa-b6f5-9f5d87a335b6");
+  private static final UUID UUID_D    = UuidUtil.parseOrThrow("94829a32-7199-4a7b-8fb4-7e978509ab84");
+  private static final UUID UUID_SELF = UuidUtil.parseOrThrow("1b2a2ca5-fc9e-4656-8c9f-22cc349ed3af");
 
-  private static final String E164_A = "+16108675309";
-  private static final String E164_B = "+16101234567";
-  private static final String E164_C = "+16101112222";
-  private static final String E164_D = "+16103334444";
+  private static final String E164_A    = "+16108675309";
+  private static final String E164_B    = "+16101234567";
+  private static final String E164_C    = "+16101112222";
+  private static final String E164_D    = "+16103334444";
+  private static final String E164_SELF = "+16105555555";
 
   private static final int UNKNOWN_TYPE = Integer.MAX_VALUE;
 
-  @Before
-  public void setup() {
-    StorageSyncHelper.setTestKeyGenerator(null);
+  private static final Recipient SELF = mock(Recipient.class);
+  static {
+    when(SELF.getUuid()).thenReturn(Optional.of(UUID_SELF));
+    when(SELF.getE164()).thenReturn(Optional.of(E164_SELF));
+    when(SELF.resolve()).thenReturn(SELF);
   }
 
+  @Before
+  public void setup() {
+    mockStatic(Recipient.class);
+    when(Recipient.self()).thenReturn(SELF);
+    Log.initialize(new Log.Logger[0]);
+  }
 
   @Test
   public void findKeyDifference_allOverlap() {
@@ -87,6 +110,21 @@ public final class StorageSyncHelperTest {
     assertTrue(result.getLocalContactUpdates().isEmpty());
     assertEquals(setOf(SignalStorageRecord.forContact(local1)), result.getRemoteInserts());
     assertTrue(result.getRemoteUpdates().isEmpty());
+    assertTrue(result.getRemoteDeletes().isEmpty());
+  }
+
+  @Test
+  public void resolveConflict_contact_deleteSelfContact() {
+    SignalContactRecord remote1 = contact(1, UUID_SELF, E164_SELF, "self");
+    SignalContactRecord local1  = contact(2, UUID_A, E164_A, "a");
+
+    MergeResult result = StorageSyncHelper.resolveConflict(recordSetOf(remote1), recordSetOf(local1));
+
+    assertTrue(result.getLocalContactInserts().isEmpty());
+    assertTrue(result.getLocalContactUpdates().isEmpty());
+    assertEquals(setOf(record(local1)), result.getRemoteInserts());
+    assertTrue(result.getRemoteUpdates().isEmpty());
+    assertEquals(setOf(remote1), result.getRemoteDeletes());
   }
 
   @Test
@@ -99,9 +137,10 @@ public final class StorageSyncHelperTest {
     SignalContactRecord expectedMerge = contact(1, UUID_A, E164_A, "a");
 
     assertTrue(result.getLocalContactInserts().isEmpty());
-    assertEquals(setOf(contactUpdate(local1, expectedMerge)), result.getLocalContactUpdates());
+    assertEquals(setOf(update(local1, expectedMerge)), result.getLocalContactUpdates());
     assertTrue(result.getRemoteInserts().isEmpty());
     assertTrue(result.getRemoteUpdates().isEmpty());
+    assertTrue(result.getRemoteDeletes().isEmpty());
   }
 
   @Test
@@ -114,9 +153,10 @@ public final class StorageSyncHelperTest {
     SignalGroupV1Record expectedMerge = groupV1(1, 1, true, false);
 
     assertTrue(result.getLocalContactInserts().isEmpty());
-    assertEquals(setOf(groupV1Update(local1, expectedMerge)), result.getLocalGroupV1Updates());
+    assertEquals(setOf(update(local1, expectedMerge)), result.getLocalGroupV1Updates());
     assertTrue(result.getRemoteInserts().isEmpty());
     assertTrue(result.getRemoteUpdates().isEmpty());
+    assertTrue(result.getRemoteDeletes().isEmpty());
   }
 
   @Test
@@ -132,6 +172,7 @@ public final class StorageSyncHelperTest {
     assertTrue(result.getLocalContactUpdates().isEmpty());
     assertTrue(result.getRemoteInserts().isEmpty());
     assertEquals(setOf(recordUpdate(remote1, expectedMerge)), result.getRemoteUpdates());
+    assertTrue(result.getRemoteDeletes().isEmpty());
   }
 
   @Test
@@ -147,10 +188,12 @@ public final class StorageSyncHelperTest {
     assertTrue(result.getLocalGroupV1Updates().isEmpty());
     assertTrue(result.getRemoteInserts().isEmpty());
     assertEquals(setOf(recordUpdate(remote1, expectedMerge)), result.getRemoteUpdates());
+    assertTrue(result.getRemoteDeletes().isEmpty());
   }
 
   @Test
   public void resolveConflict_unknowns() {
+    SignalStorageRecord account = SignalStorageRecord.forAccount(account(99));
     SignalStorageRecord remote1 = unknown(3);
     SignalStorageRecord remote2 = unknown(4);
     SignalStorageRecord remote3 = SignalStorageRecord.forGroupV2(groupV2(100, 200, true, true));
@@ -158,12 +201,13 @@ public final class StorageSyncHelperTest {
     SignalStorageRecord local2  = unknown(2);
     SignalStorageRecord local3  = SignalStorageRecord.forGroupV2(groupV2(101, 201, true, true));
 
-    MergeResult result = StorageSyncHelper.resolveConflict(setOf(remote1, remote2, remote3), setOf(local1, local2, local3));
+    MergeResult result = StorageSyncHelper.resolveConflict(setOf(remote1, remote2, remote3, account), setOf(local1, local2, local3, account));
 
     assertTrue(result.getLocalContactInserts().isEmpty());
     assertTrue(result.getLocalContactUpdates().isEmpty());
     assertEquals(setOf(remote1, remote2, remote3), result.getLocalUnknownInserts());
     assertEquals(setOf(local1, local2, local3), result.getLocalUnknownDeletes());
+    assertTrue(result.getRemoteDeletes().isEmpty());
   }
 
   @Test
@@ -180,13 +224,16 @@ public final class StorageSyncHelperTest {
     SignalGroupV1Record remote4 = groupV1(7, 1, true, false);
     SignalGroupV1Record local4  = groupV1(8, 1, false, true);
 
-    SignalStorageRecord unknownRemote = unknown(9);
-    SignalStorageRecord unknownLocal  = unknown(10);
+    SignalAccountRecord remote5 = account(9);
+    SignalAccountRecord local5  = account(10);
+
+    SignalStorageRecord unknownRemote = unknown(11);
+    SignalStorageRecord unknownLocal  = unknown(12);
 
     StorageSyncHelper.setTestKeyGenerator(new TestGenerator(111, 222));
 
-    Set<SignalStorageRecord> remoteOnly = recordSetOf(remote1, remote2, remote3, remote4, unknownRemote);
-    Set<SignalStorageRecord> localOnly  = recordSetOf(local1, local2, local3, local4, unknownLocal);
+    Set<SignalStorageRecord> remoteOnly = recordSetOf(remote1, remote2, remote3, remote4, remote5, unknownRemote);
+    Set<SignalStorageRecord> localOnly  = recordSetOf(local1, local2, local3, local4, local5, unknownLocal);
 
     MergeResult result = StorageSyncHelper.resolveConflict(remoteOnly, localOnly);
 
@@ -195,39 +242,43 @@ public final class StorageSyncHelperTest {
     SignalGroupV1Record merge4 = groupV1(222, 1, true, true);
 
     assertEquals(setOf(remote3), result.getLocalContactInserts());
-    assertEquals(setOf(contactUpdate(local2, merge2)), result.getLocalContactUpdates());
-    assertEquals(setOf(groupV1Update(local4, merge4)), result.getLocalGroupV1Updates());
+    assertEquals(setOf(update(local2, merge2)), result.getLocalContactUpdates());
+    assertEquals(setOf(update(local4, merge4)), result.getLocalGroupV1Updates());
     assertEquals(setOf(SignalStorageRecord.forContact(local3)), result.getRemoteInserts());
     assertEquals(setOf(recordUpdate(remote1, merge1), recordUpdate(remote2, merge2), recordUpdate(remote4, merge4)), result.getRemoteUpdates());
+    assertEquals(Optional.of(update(local5, remote5)), result.getLocalAccountUpdate());
     assertEquals(setOf(unknownRemote), result.getLocalUnknownInserts());
     assertEquals(setOf(unknownLocal), result.getLocalUnknownDeletes());
+    assertTrue(result.getRemoteDeletes().isEmpty());
   }
 
   @Test
   public void createWriteOperation_generic() {
-    List<StorageId> localKeys     = Arrays.asList(contactKey(1), contactKey(2), contactKey(3), contactKey(4), groupV1Key(100));
-    SignalContactRecord             insert1       = contact(6, UUID_A, E164_A, "a" );
-    SignalContactRecord             old1          = contact(1, UUID_B, E164_B, "b" );
-    SignalContactRecord             new1          = contact(5, UUID_B, E164_B, "z" );
-    SignalContactRecord             insert2       = contact(7, UUID_C, E164_C, "c" );
-    SignalContactRecord             old2          = contact(2, UUID_D, E164_D, "d" );
-    SignalContactRecord             new2          = contact(8, UUID_D, E164_D, "z2");
-    SignalGroupV1Record             insert3       = groupV1(9, 1, true, true );
-    SignalGroupV1Record             old3          = groupV1(100, 1, true, true );
-    SignalGroupV1Record             new3          = groupV1(10, 1, false, true);
-    SignalStorageRecord             unknownInsert = unknown(11);
-    SignalStorageRecord             unknownDelete = unknown(12);
+    List<StorageId>     localKeys     = Arrays.asList(contactKey(1), contactKey(2), contactKey(3), contactKey(4), groupV1Key(100));
+    SignalContactRecord insert1       = contact(6, UUID_A, E164_A, "a");
+    SignalContactRecord old1          = contact(1, UUID_B, E164_B, "b");
+    SignalContactRecord new1          = contact(5, UUID_B, E164_B, "z");
+    SignalContactRecord insert2       = contact(7, UUID_C, E164_C, "c");
+    SignalContactRecord old2          = contact(2, UUID_D, E164_D, "d");
+    SignalContactRecord new2          = contact(8, UUID_D, E164_D, "z2");
+    SignalGroupV1Record insert3       = groupV1(9, 1, true, true);
+    SignalGroupV1Record old3          = groupV1(100, 1, true, true);
+    SignalGroupV1Record new3          = groupV1(10, 1, false, true);
+    SignalStorageRecord unknownInsert = unknown(11);
+    SignalStorageRecord unknownDelete = unknown(12);
 
     StorageSyncHelper.WriteOperationResult result = StorageSyncHelper.createWriteOperation(1,
                                                                                            localKeys,
                                                                                            new MergeResult(setOf(insert2),
-                                                                                                           setOf(contactUpdate(old2, new2)),
+                                                                                                           setOf(update(old2, new2)),
                                                                                                            setOf(insert3),
-                                                                                                           setOf(groupV1Update(old3, new3)),
+                                                                                                           setOf(update(old3, new3)),
                                                                                                            setOf(unknownInsert),
                                                                                                            setOf(unknownDelete),
+                                                                                                           Optional.absent(),
                                                                                                            recordSetOf(insert1, insert3),
-                                                                                                           setOf(recordUpdate(old1, new1), recordUpdate(old3, new3))));
+                                                                                                           setOf(recordUpdate(old1, new1), recordUpdate(old3, new3)),
+                                                                                                           setOf()));
 
     assertEquals(2, result.getManifest().getVersion());
     assertContentsEqual(Arrays.asList(contactKey(3), contactKey(4), contactKey(5), contactKey(6), contactKey(7), contactKey(8), groupV1Key(9), groupV1Key(10), unknownKey(11)), result.getManifest().getStorageIds());
@@ -247,7 +298,7 @@ public final class StorageSyncHelperTest {
     assertEquals(a, b);
     assertEquals(a.hashCode(), b.hashCode());
 
-    assertFalse(StorageSyncHelper.profileKeyChanged(contactUpdate(a, b)));
+    assertFalse(StorageSyncHelper.profileKeyChanged(update(a, b)));
   }
 
   @Test
@@ -262,25 +313,31 @@ public final class StorageSyncHelperTest {
     assertNotEquals(a, b);
     assertNotEquals(a.hashCode(), b.hashCode());
 
-    assertTrue(StorageSyncHelper.profileKeyChanged(contactUpdate(a, b)));
+    assertTrue(StorageSyncHelper.profileKeyChanged(update(a, b)));
   }
 
   private static Set<SignalStorageRecord> recordSetOf(SignalRecord... records) {
     LinkedHashSet<SignalStorageRecord> storageRecords = new LinkedHashSet<>();
 
     for (SignalRecord record : records) {
-      if (record instanceof SignalContactRecord) {
-        storageRecords.add(SignalStorageRecord.forContact(record.getId(), (SignalContactRecord) record));
-      } else if (record instanceof SignalGroupV1Record) {
-        storageRecords.add(SignalStorageRecord.forGroupV1(record.getId(), (SignalGroupV1Record) record));
-      } else if (record instanceof SignalGroupV2Record) {
-        storageRecords.add(SignalStorageRecord.forGroupV2(record.getId(), (SignalGroupV2Record) record));
-      } else {
-        storageRecords.add(SignalStorageRecord.forUnknown(record.getId()));
-      }
+      storageRecords.add(record(record));
     }
 
     return  storageRecords;
+  }
+
+  private static SignalStorageRecord record(SignalRecord record) {
+    if (record instanceof SignalContactRecord) {
+      return SignalStorageRecord.forContact(record.getId(), (SignalContactRecord) record);
+    } else if (record instanceof SignalGroupV1Record) {
+      return SignalStorageRecord.forGroupV1(record.getId(), (SignalGroupV1Record) record);
+    } else if (record instanceof SignalGroupV2Record) {
+      return SignalStorageRecord.forGroupV2(record.getId(), (SignalGroupV2Record) record);
+    } else if (record instanceof SignalAccountRecord) {
+      return SignalStorageRecord.forAccount(record.getId(), (SignalAccountRecord) record);
+    } else {
+      return SignalStorageRecord.forUnknown(record.getId());
+    }
   }
 
   private static Set<SignalStorageRecord> recordSetOf(SignalGroupV1Record... groupRecords) {
@@ -300,6 +357,10 @@ public final class StorageSyncHelperTest {
   {
     return new SignalContactRecord.Builder(byteArray(key), new SignalServiceAddress(uuid, e164))
                                   .setGivenName(profileName);
+  }
+
+  private static SignalAccountRecord account(int key) {
+    return new SignalAccountRecord.Builder(byteArray(key)).build();
   }
 
   private static SignalContactRecord contact(int key,
@@ -330,20 +391,12 @@ public final class StorageSyncHelperTest {
     }
   }
 
-  private static StorageSyncHelper.RecordUpdate<SignalContactRecord> contactUpdate(SignalContactRecord oldContact, SignalContactRecord newContact) {
-    return new StorageSyncHelper.RecordUpdate<>(oldContact, newContact);
+  private static <E extends SignalRecord> StorageSyncHelper.RecordUpdate<E> update(E oldRecord, E newRecord) {
+    return new StorageSyncHelper.RecordUpdate<>(oldRecord, newRecord);
   }
 
-  private static StorageSyncHelper.RecordUpdate<SignalGroupV1Record> groupV1Update(SignalGroupV1Record oldGroup, SignalGroupV1Record newGroup) {
-    return new StorageSyncHelper.RecordUpdate<>(oldGroup, newGroup);
-  }
-
-  private static StorageSyncHelper.RecordUpdate recordUpdate(SignalContactRecord oldContact, SignalContactRecord newContact) {
-    return new StorageSyncHelper.RecordUpdate<>(SignalStorageRecord.forContact(oldContact), SignalStorageRecord.forContact(newContact));
-  }
-
-  private static StorageSyncHelper.RecordUpdate recordUpdate(SignalGroupV1Record oldGroup, SignalGroupV1Record newGroup) {
-    return new StorageSyncHelper.RecordUpdate<>(SignalStorageRecord.forGroupV1(oldGroup), SignalStorageRecord.forGroupV1(newGroup));
+  private static <E extends SignalRecord> StorageSyncHelper.RecordUpdate<SignalStorageRecord> recordUpdate(E oldContact, E newContact) {
+    return new StorageSyncHelper.RecordUpdate<>(record(oldContact), record(newContact));
   }
 
   private static SignalStorageRecord unknown(int key) {

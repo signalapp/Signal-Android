@@ -39,6 +39,7 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
 
+import com.annimon.stream.Stream;
 import com.google.android.mms.pdu_alt.CharacterSets;
 import com.google.android.mms.pdu_alt.EncodedStringValue;
 import com.google.i18n.phonenumbers.NumberParseException;
@@ -595,11 +596,13 @@ public class Util {
     return handler;
   }
 
-  public static <T> List<T> concatenatedList(List<T> first, List<T> second) {
-    final List<T> concat = new ArrayList<>(first.size() + second.size());
+  @SafeVarargs
+  public static <T> List<T> concatenatedList(Collection <T>... items) {
+    final List<T> concat = new ArrayList<>(Stream.of(items).reduce(0, (sum, list) -> sum + list.size()));
 
-    concat.addAll(first);
-    concat.addAll(second);
+    for (Collection<T> list : items) {
+      concat.addAll(list);
+    }
 
     return concat;
   }

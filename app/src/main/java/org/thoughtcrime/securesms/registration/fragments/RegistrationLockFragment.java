@@ -21,7 +21,7 @@ import com.dd.CircularProgressButton;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobs.StorageSyncJob;
+import org.thoughtcrime.securesms.jobs.StorageAccountRestoreJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType;
 import org.thoughtcrime.securesms.logging.Log;
@@ -308,14 +308,14 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
     if (FeatureFlags.storageServiceRestore()) {
       long startTime = System.currentTimeMillis();
       SimpleTask.run(() -> {
-        return ApplicationDependencies.getJobManager().runSynchronously(new StorageSyncJob(), TimeUnit.SECONDS.toMillis(10));
+        return ApplicationDependencies.getJobManager().runSynchronously(new StorageAccountRestoreJob(), StorageAccountRestoreJob.LIFESPAN);
       }, result -> {
         long elapsedTime = System.currentTimeMillis() - startTime;
 
         if (result.isPresent()) {
-          Log.i(TAG, "Storage Service restore completed: " + result.get().name() + ". (Took " + elapsedTime + " ms)");
+          Log.i(TAG, "Storage Service account restore completed: " + result.get().name() + ". (Took " + elapsedTime + " ms)");
         } else {
-          Log.i(TAG, "Storage Service restore failed to complete in the allotted time. (" + elapsedTime + " ms elapsed)");
+          Log.i(TAG, "Storage Service account restore failed to complete in the allotted time. (" + elapsedTime + " ms elapsed)");
         }
         cancelSpinning(pinButton);
         Navigation.findNavController(requireView()).navigate(RegistrationLockFragmentDirections.actionSuccessfulRegistration());

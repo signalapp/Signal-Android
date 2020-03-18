@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -14,8 +15,11 @@ import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
+import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.util.StreamDetails;
 
 public final class ProfileUploadJob extends BaseJob {
@@ -55,6 +59,9 @@ public final class ProfileUploadJob extends BaseJob {
         accountManager.setProfileAvatar(profileKey, avatar);
       }
     }
+
+    ProfileAndCredential profile = ProfileUtil.retrieveProfile(context, Recipient.self(), SignalServiceProfile.RequestType.PROFILE);
+    DatabaseFactory.getRecipientDatabase(context).setProfileAvatar(Recipient.self().getId(), profile.getProfile().getAvatar());
   }
 
   @Override

@@ -15,7 +15,7 @@ public final class SignalGroupV2Record implements SignalRecord {
   private final GroupV2Record  proto;
   private final GroupMasterKey masterKey;
 
-  private SignalGroupV2Record(StorageId id, GroupV2Record proto) {
+  public SignalGroupV2Record(StorageId id, GroupV2Record proto) {
     this.id        = id;
     this.proto     = proto;
     try {

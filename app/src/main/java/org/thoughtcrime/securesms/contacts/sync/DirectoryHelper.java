@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.jobs.StorageSyncJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 
 import java.io.IOException;
@@ -21,11 +22,6 @@ public class DirectoryHelper {
 
   @WorkerThread
   public static void refreshDirectory(@NonNull Context context, boolean notifyOfNewUsers) throws IOException {
-    if (!SignalStore.storageServiceValues().hasFirstStorageSyncCompleted()) {
-      Log.i(TAG, "First storage sync has not completed. Skipping.");
-      return;
-    }
-
     if (FeatureFlags.uuids()) {
       // TODO [greyson] Create a DirectoryHelperV2 when appropriate.
       DirectoryHelperV1.refreshDirectory(context, notifyOfNewUsers);
@@ -33,7 +29,7 @@ public class DirectoryHelper {
       DirectoryHelperV1.refreshDirectory(context, notifyOfNewUsers);
     }
 
-    ApplicationDependencies.getJobManager().add(new StorageSyncJob());
+    StorageSyncHelper.scheduleSyncForDataChange();
   }
 
   @WorkerThread
@@ -49,7 +45,7 @@ public class DirectoryHelper {
     }
 
     if (newRegisteredState != originalRegisteredState) {
-      ApplicationDependencies.getJobManager().add(new StorageSyncJob());
+      StorageSyncHelper.scheduleSyncForDataChange();
     }
 
     return newRegisteredState;

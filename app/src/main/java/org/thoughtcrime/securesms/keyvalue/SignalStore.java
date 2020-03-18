@@ -18,7 +18,6 @@ public final class SignalStore {
 
   public static void onFirstEverAppLaunch() {
     registrationValues().onFirstEverAppLaunch();
-    storageServiceValues().setFirstStorageSyncCompleted(false);
   }
 
   public static @NonNull KbsValues kbsValues() {

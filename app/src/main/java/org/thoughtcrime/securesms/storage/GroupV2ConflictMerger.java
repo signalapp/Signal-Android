@@ -10,6 +10,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 
 class GroupV2ConflictMerger implements StorageSyncHelper.ConflictMerger<SignalGroupV2Record> {
@@ -23,6 +24,11 @@ class GroupV2ConflictMerger implements StorageSyncHelper.ConflictMerger<SignalGr
   @Override
   public @NonNull Optional<SignalGroupV2Record> getMatching(@NonNull SignalGroupV2Record record) {
     return Optional.fromNullable(localByGroupId.get(record.getMasterKey()));
+  }
+
+  @Override
+  public @NonNull Collection<SignalGroupV2Record> getInvalidEntries(@NonNull Collection<SignalGroupV2Record> remoteRecords) {
+    return Collections.emptySet();
   }
 
   @Override

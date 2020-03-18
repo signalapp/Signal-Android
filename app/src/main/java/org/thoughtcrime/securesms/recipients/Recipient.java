@@ -93,7 +93,7 @@ public class Recipient {
   private final Capability             uuidCapability;
   private final Capability             groupsV2Capability;
   private final InsightsBannerTier     insightsBannerTier;
-  private final byte[]                 storageKey;
+  private final byte[]                 storageId;
   private final byte[]                 identityKey;
   private final VerifiedStatus         identityStatus;
 
@@ -326,7 +326,7 @@ public class Recipient {
     this.forceSmsSelection      = false;
     this.uuidCapability         = Capability.UNKNOWN;
     this.groupsV2Capability     = Capability.UNKNOWN;
-    this.storageKey             = null;
+    this.storageId              = null;
     this.identityKey            = null;
     this.identityStatus         = VerifiedStatus.DEFAULT;
   }
@@ -367,7 +367,7 @@ public class Recipient {
     this.forceSmsSelection      = details.forceSmsSelection;
     this.uuidCapability         = details.uuidCapability;
     this.groupsV2Capability     = details.groupsV2Capability;
-    this.storageKey             = details.storageKey;
+    this.storageId              = details.storageId;
     this.identityKey            = details.identityKey;
     this.identityStatus         = details.identityStatus;
   }
@@ -706,8 +706,8 @@ public class Recipient {
     return profileKeyCredential != null;
   }
 
-  public @Nullable byte[] getStorageServiceKey() {
-    return storageKey;
+  public @Nullable byte[] getStorageServiceId() {
+    return storageId;
   }
 
   public @NonNull VerifiedStatus getIdentityVerifiedStatus() {
