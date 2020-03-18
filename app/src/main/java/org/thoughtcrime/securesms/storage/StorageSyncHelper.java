@@ -139,8 +139,9 @@ public final class StorageSyncHelper {
     List<SignalGroupV1Record> remoteOnlyGroupV1 = Stream.of(remoteOnlyRecords).filter(r -> r.getGroupV1().isPresent()).map(r -> r.getGroupV1().get()).toList();
     List<SignalGroupV1Record> localOnlyGroupV1  = Stream.of(localOnlyRecords).filter(r -> r.getGroupV1().isPresent()).map(r -> r.getGroupV1().get()).toList();
 
-    List<SignalStorageRecord> remoteOnlyUnknowns = Stream.of(remoteOnlyRecords).filter(SignalStorageRecord::isUnknown).toList();
-    List<SignalStorageRecord> localOnlyUnknowns  = Stream.of(localOnlyRecords).filter(SignalStorageRecord::isUnknown).toList();
+    // TODO [storage] Handle groupV2 when appropriate
+    List<SignalStorageRecord> remoteOnlyUnknowns = Stream.of(remoteOnlyRecords).filter(r -> r.isUnknown() || r.getGroupV2().isPresent()).toList();
+    List<SignalStorageRecord> localOnlyUnknowns  = Stream.of(localOnlyRecords).filter(r -> r.isUnknown()  || r.getGroupV2().isPresent()).toList();
 
     RecordMergeResult<SignalContactRecord, RecordUpdate<SignalContactRecord>> contactMergeResult = resolveRecordConflict(remoteOnlyContacts, localOnlyContacts, new ContactConflictMerger(localOnlyContacts));
     RecordMergeResult<SignalGroupV1Record, RecordUpdate<SignalGroupV1Record>> groupV1MergeResult = resolveRecordConflict(remoteOnlyGroupV1, localOnlyGroupV1, new GroupV1ConflictMerger(localOnlyGroupV1));

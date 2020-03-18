@@ -4,6 +4,7 @@ import com.annimon.stream.Stream;
 import com.google.common.collect.Sets;
 
 import org.thoughtcrime.securesms.util.Conversions;
+import org.whispersystems.libsignal.util.ByteUtil;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -21,6 +22,12 @@ public final class TestHelpers {
 
   public static byte[] byteArray(int a) {
     return Conversions.intToByteArray(a);
+  }
+
+  public static byte[] byteArray(int a, int totalLength) {
+    byte[] out = new byte[totalLength - 4];
+    byte[] val = Conversions.intToByteArray(a);
+    return ByteUtil.combine(out, val);
   }
 
   public static List<byte[]> byteListOf(int... vals) {

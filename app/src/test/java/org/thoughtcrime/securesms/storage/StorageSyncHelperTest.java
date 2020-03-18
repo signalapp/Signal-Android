@@ -6,12 +6,14 @@ import com.annimon.stream.Stream;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.thoughtcrime.securesms.storage.StorageSyncHelper;
+import org.signal.zkgroup.InvalidInputException;
+import org.signal.zkgroup.groups.GroupMasterKey;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.KeyDifferenceResult;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.MergeResult;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
+import org.whispersystems.signalservice.api.storage.SignalGroupV2Record;
 import org.whispersystems.signalservice.api.storage.SignalRecord;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 import org.whispersystems.signalservice.api.storage.StorageId;
@@ -151,15 +153,17 @@ public final class StorageSyncHelperTest {
   public void resolveConflict_unknowns() {
     SignalStorageRecord remote1 = unknown(3);
     SignalStorageRecord remote2 = unknown(4);
+    SignalStorageRecord remote3 = SignalStorageRecord.forGroupV2(groupV2(100, 200, true, true));
     SignalStorageRecord local1  = unknown(1);
     SignalStorageRecord local2  = unknown(2);
+    SignalStorageRecord local3  = SignalStorageRecord.forGroupV2(groupV2(101, 201, true, true));
 
-    MergeResult result = StorageSyncHelper.resolveConflict(setOf(remote1, remote2), setOf(local1, local2));
+    MergeResult result = StorageSyncHelper.resolveConflict(setOf(remote1, remote2, remote3), setOf(local1, local2, local3));
 
     assertTrue(result.getLocalContactInserts().isEmpty());
     assertTrue(result.getLocalContactUpdates().isEmpty());
-    assertEquals(setOf(remote1, remote2), result.getLocalUnknownInserts());
-    assertEquals(setOf(local1, local2), result.getLocalUnknownDeletes());
+    assertEquals(setOf(remote1, remote2, remote3), result.getLocalUnknownInserts());
+    assertEquals(setOf(local1, local2, local3), result.getLocalUnknownDeletes());
   }
 
   @Test
@@ -269,6 +273,8 @@ public final class StorageSyncHelperTest {
         storageRecords.add(SignalStorageRecord.forContact(record.getId(), (SignalContactRecord) record));
       } else if (record instanceof SignalGroupV1Record) {
         storageRecords.add(SignalStorageRecord.forGroupV1(record.getId(), (SignalGroupV1Record) record));
+      } else if (record instanceof SignalGroupV2Record) {
+        storageRecords.add(SignalStorageRecord.forGroupV2(record.getId(), (SignalGroupV2Record) record));
       } else {
         storageRecords.add(SignalStorageRecord.forUnknown(record.getId()));
       }
@@ -310,6 +316,18 @@ public final class StorageSyncHelperTest {
                                              boolean profileSharing)
   {
     return new SignalGroupV1Record.Builder(byteArray(key), byteArray(groupId)).setBlocked(blocked).setProfileSharingEnabled(profileSharing).build();
+  }
+
+  private static SignalGroupV2Record groupV2(int key,
+                                             int groupId,
+                                             boolean blocked,
+                                             boolean profileSharing)
+  {
+    try {
+      return new SignalGroupV2Record.Builder(byteArray(key), new GroupMasterKey(byteArray(groupId, 32))).setBlocked(blocked).setProfileSharingEnabled(profileSharing).build();
+    } catch (InvalidInputException e) {
+      throw new AssertionError(e);
+    }
   }
 
   private static StorageSyncHelper.RecordUpdate<SignalContactRecord> contactUpdate(SignalContactRecord oldContact, SignalContactRecord newContact) {

@@ -2,11 +2,14 @@ package org.whispersystems.signalservice.api.storage;
 
 import com.google.protobuf.ByteString;
 
+import org.signal.zkgroup.InvalidInputException;
+import org.signal.zkgroup.groups.GroupMasterKey;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord;
 import org.whispersystems.signalservice.internal.storage.protos.GroupV1Record;
+import org.whispersystems.signalservice.internal.storage.protos.GroupV2Record;
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
 import org.whispersystems.signalservice.internal.storage.protos.StorageItem;
 import org.whispersystems.signalservice.internal.storage.protos.StorageManifest;
@@ -39,6 +42,8 @@ public final class SignalStorageModels {
       return SignalStorageRecord.forContact(StorageId.forContact(key), remoteToLocalContactRecord(key, record.getContact()));
     } else if (record.hasGroupV1() && type == ManifestRecord.Identifier.Type.GROUPV1_VALUE) {
       return SignalStorageRecord.forGroupV1(StorageId.forGroupV1(key), remoteToLocalGroupV1Record(key, record.getGroupV1()));
+    } else if (record.hasGroupV2() && type == ManifestRecord.Identifier.Type.GROUPV2_VALUE && record.getGroupV2().getMasterKey().size() == GroupMasterKey.SIZE) {
+      return SignalStorageRecord.forGroupV2(StorageId.forGroupV2(key), remoteToLocalGroupV2Record(key, record.getGroupV2()));
     } else {
       return SignalStorageRecord.forUnknown(StorageId.forType(key, type));
     }
@@ -51,6 +56,8 @@ public final class SignalStorageModels {
       builder.setContact(record.getContact().get().toProto());
     } else if (record.getGroupV1().isPresent()) {
       builder.setGroupV1(record.getGroupV1().get().toProto());
+    } else if (record.getGroupV2().isPresent()) {
+      builder.setGroupV2(record.getGroupV2().get().toProto());
     } else {
       throw new InvalidStorageWriteError();
     }
@@ -77,6 +84,7 @@ public final class SignalStorageModels {
                                   .setUsername(contact.getUsername())
                                   .setIdentityKey(contact.getIdentityKey().toByteArray())
                                   .setIdentityState(contact.getIdentityState())
+                                  .setArchived(contact.getArchived())
                                   .build();
   }
 
@@ -84,7 +92,20 @@ public final class SignalStorageModels {
     return new SignalGroupV1Record.Builder(key, groupV1.getId().toByteArray())
                                   .setBlocked(groupV1.getBlocked())
                                   .setProfileSharingEnabled(groupV1.getWhitelisted())
+                                  .setArchived(groupV1.getArchived())
                                   .build();
+  }
+
+  private static SignalGroupV2Record remoteToLocalGroupV2Record(byte[] key, GroupV2Record groupV2) {
+    try {
+      return new SignalGroupV2Record.Builder(key, new GroupMasterKey(groupV2.getMasterKey().toByteArray()))
+                                    .setBlocked(groupV2.getBlocked())
+                                    .setProfileSharingEnabled(groupV2.getWhitelisted())
+                                    .setArchived(groupV2.getArchived())
+                                    .build();
+    } catch (InvalidInputException e) {
+      throw new AssertionError();
+    }
   }
 
   private static class InvalidStorageWriteError extends Error {

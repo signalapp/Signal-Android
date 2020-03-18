@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.storage;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.IdentityDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
