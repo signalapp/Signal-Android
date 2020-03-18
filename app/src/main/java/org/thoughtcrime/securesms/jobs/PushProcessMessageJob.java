@@ -544,7 +544,11 @@ public final class PushProcessMessageJob extends BaseJob {
   private void handleUnknownGroupMessage(@NonNull SignalServiceContent content,
                                          @NonNull SignalServiceGroup group)
   {
-    ApplicationDependencies.getJobManager().add(new RequestGroupInfoJob(Recipient.externalPush(context, content.getSender()).getId(), group.getGroupId()));
+    if (group.getType() != SignalServiceGroup.Type.REQUEST_INFO) {
+      ApplicationDependencies.getJobManager().add(new RequestGroupInfoJob(Recipient.externalPush(context, content.getSender()).getId(), group.getGroupId()));
+    } else {
+      Log.w(TAG, "Received a REQUEST_INFO message for a group we don't know about. Ignoring.");
+    }
   }
 
   private void handleExpirationUpdate(@NonNull SignalServiceContent content,
