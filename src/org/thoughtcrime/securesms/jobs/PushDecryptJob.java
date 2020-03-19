@@ -73,10 +73,11 @@ import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.LokiSessionResetImplementation;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
-import org.thoughtcrime.securesms.loki.redesign.utilities.OpenGroupUtilities;
 import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.redesign.messaging.LokiAPIUtilities;
 import org.thoughtcrime.securesms.loki.redesign.messaging.LokiPreKeyBundleDatabase;
+import org.thoughtcrime.securesms.loki.redesign.utilities.Broadcaster;
+import org.thoughtcrime.securesms.loki.redesign.utilities.OpenGroupUtilities;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
@@ -140,8 +141,8 @@ import org.whispersystems.signalservice.loki.api.DeviceLink;
 import org.whispersystems.signalservice.loki.api.DeviceLinkingSession;
 import org.whispersystems.signalservice.loki.api.LokiAPI;
 import org.whispersystems.signalservice.loki.api.LokiDeviceLinkUtilities;
-import org.whispersystems.signalservice.loki.api.LokiPublicChat;
 import org.whispersystems.signalservice.loki.api.LokiFileServerAPI;
+import org.whispersystems.signalservice.loki.api.LokiPublicChat;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiServiceMessage;
@@ -1193,9 +1194,13 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private void handleDeviceLinkRequestMessage(@NonNull DeviceLink deviceLink, @NonNull SignalServiceContent content) {
-    boolean isValid = isValidDeviceLinkMessage(deviceLink);
     DeviceLinkingSession linkingSession = DeviceLinkingSession.Companion.getShared();
-    if (!isValid || !linkingSession.isListeningForLinkingRequests()) { return; }
+    if (!linkingSession.isListeningForLinkingRequests()) {
+      new Broadcaster(context).broadcast("unexpectedDeviceLinkRequestReceived");
+      return;
+    }
+    boolean isValid = isValidDeviceLinkMessage(deviceLink);
+    if (!isValid) { return; }
     storePreKeyBundleIfNeeded(content);
     linkingSession.processLinkingRequest(deviceLink);
   }
