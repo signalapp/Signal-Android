@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageActivityHe
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
 
 import java.lang.reflect.Field;
+import java.util.Date;
 
 import network.loki.messenger.R;
 
@@ -35,6 +36,7 @@ import network.loki.messenger.R;
 public abstract class BaseActionBarActivity extends AppCompatActivity {
   private static final String TAG = BaseActionBarActivity.class.getSimpleName();
   private BroadcastReceiver broadcastReceiver;
+  private Date lastUnexpectedDeviceLinkRequestDate;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,11 @@ public abstract class BaseActionBarActivity extends AppCompatActivity {
 
       @Override
       public void onReceive(Context context, Intent intent) {
+        Date now = new Date();
+        if (lastUnexpectedDeviceLinkRequestDate != null) {
+          if (now.getTime() - lastUnexpectedDeviceLinkRequestDate.getTime() < 30 * 1000) { return; }
+        }
+        lastUnexpectedDeviceLinkRequestDate = now;
         Toast.makeText(BaseActionBarActivity.this, "Open the device link screen by going to \"Settings\"> \"Devices\" > \"Link a Device\" to link your devices.", Toast.LENGTH_LONG).show();
       }
     };
