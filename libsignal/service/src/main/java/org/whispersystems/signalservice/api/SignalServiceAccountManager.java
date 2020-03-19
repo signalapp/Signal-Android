@@ -644,7 +644,7 @@ public class SignalServiceAccountManager {
     this.pushServiceSocket.setProfileAvatar(profileAvatarData);
   }
 
-  public void setVersionedProfile(ProfileKey profileKey, String name, StreamDetails avatar)
+  public void setVersionedProfile(UUID uuid, ProfileKey profileKey, String name, StreamDetails avatar)
     throws IOException
   {
     if (!FeatureFlags.VERSIONED_PROFILES) {
@@ -664,10 +664,10 @@ public class SignalServiceAccountManager {
                                                 new ProfileCipherOutputStreamFactory(profileKey));
     }
 
-    this.pushServiceSocket.writeProfile(new SignalServiceProfileWrite(profileKey.getProfileKeyVersion().serialize(),
+    this.pushServiceSocket.writeProfile(new SignalServiceProfileWrite(profileKey.getProfileKeyVersion(uuid).serialize(),
                                                                       ciphertextName,
                                                                       hasAvatar,
-                                                                      profileKey.getCommitment().serialize()),
+                                                                      profileKey.getCommitment(uuid).serialize()),
                                                                       profileAvatarData);
   }
 

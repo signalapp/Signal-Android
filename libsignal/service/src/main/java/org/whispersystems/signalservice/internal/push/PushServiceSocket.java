@@ -567,7 +567,7 @@ public class PushServiceSocket {
     }
 
     try {
-      ProfileKeyVersion                  profileKeyIdentifier = profileKey.getProfileKeyVersion();
+      ProfileKeyVersion                  profileKeyIdentifier = profileKey.getProfileKeyVersion(target);
       ProfileKeyCredentialRequestContext requestContext       = clientZkOperations.getProfileOperations().createProfileKeyCredentialRequestContext(random, target, profileKey);
       ProfileKeyCredentialRequest        request              = requestContext.getRequest();
 

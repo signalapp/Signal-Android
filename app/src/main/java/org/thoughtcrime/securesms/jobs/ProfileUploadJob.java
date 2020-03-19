@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileName;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
@@ -48,7 +49,7 @@ public final class ProfileUploadJob extends BaseJob {
 
     try (StreamDetails avatar = AvatarHelper.getSelfProfileAvatarStream(context)) {
       if (FeatureFlags.VERSIONED_PROFILES) {
-        accountManager.setVersionedProfile(profileKey, profileName.serialize(), avatar);
+        accountManager.setVersionedProfile(Recipient.self().getUuid().get(), profileKey, profileName.serialize(), avatar);
       } else {
         accountManager.setProfileName(profileKey, profileName.serialize());
         accountManager.setProfileAvatar(profileKey, avatar);

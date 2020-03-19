@@ -7,6 +7,3 @@ project(':libsignal-service').projectDir = file('libsignal/service')
 project(':').buildFileName = 'main.gradle'
 
 rootProject.name='Signal'
-
-include ':zkgroups'
-project(':zkgroups').projectDir = file('libsignal/zkgroups-api')

@@ -160,6 +160,7 @@ android {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/NOTICE'
         exclude 'META-INF/proguard/androidx-annotations.pro'
+        exclude 'lib/*/libzkgroup.so' // TODO: GV2 Remove line to include .so when used
     }
 
     buildTypes {
@@ -287,6 +288,7 @@ dependencies {
     implementation 'org.signal:aesgcmprovider:0.0.3'
 
     implementation project(':libsignal-service')
+    implementation 'org.signal:zkgroup-android:0.4.1'
 
     implementation 'org.signal:argon2:13.1@aar'
 

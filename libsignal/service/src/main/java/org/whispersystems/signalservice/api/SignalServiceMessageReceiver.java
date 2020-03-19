@@ -99,7 +99,7 @@ public class SignalServiceMessageReceiver {
     this.signalAgent          = signalAgent;
     this.connectivityListener = listener;
     this.sleepTimer           = timer;
-    this.clientZkProfile      = new ClientZkProfileOperations(new ServerPublicParams(urls.getZkGroupServerPublicParams()));
+    this.clientZkProfile      = FeatureFlags.ZK_GROUPS ? new ClientZkProfileOperations(new ServerPublicParams(urls.getZkGroupServerPublicParams())) : null;
   }
 
   /**
