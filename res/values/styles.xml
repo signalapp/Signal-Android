@@ -171,7 +171,7 @@
         <item name="android:paddingTop">12dp</item>
         <item name="android:paddingRight">@dimen/medium_spacing</item>
         <item name="android:paddingBottom">12dp</item>
-        <item name="android:textSize">@dimen/medium_font_size</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textColor">@color/fake_chat_bubble_text</item>
         <item name="android:elevation">20dp</item>
@@ -183,7 +183,7 @@
         <item name="android:paddingTop">12dp</item>
         <item name="android:paddingRight">@dimen/medium_spacing</item>
         <item name="android:paddingBottom">12dp</item>
-        <item name="android:textSize">@dimen/medium_font_size</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textColor">@color/text</item>
         <item name="android:elevation">20dp</item>
