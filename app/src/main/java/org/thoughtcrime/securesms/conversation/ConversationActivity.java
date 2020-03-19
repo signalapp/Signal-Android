@@ -431,9 +431,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       return;
     }
 
-    if (!Util.isEmpty(composeText) || attachmentManager.isAttachmentPresent()) {
+    if (!Util.isEmpty(composeText) || attachmentManager.isAttachmentPresent() || inputPanel.getQuote().isPresent()) {
       saveDraft();
       attachmentManager.clear(glideRequests, false);
+      inputPanel.clearQuote();
       silentlySetComposeText("");
     }
 
