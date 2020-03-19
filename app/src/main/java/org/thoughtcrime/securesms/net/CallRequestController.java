@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -27,24 +28,15 @@ public class CallRequestController implements RequestController {
     AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
       synchronized (CallRequestController.this) {
         if (canceled) return;
-        
+
         call.cancel();
-
-        if (stream != null) {
-          Util.close(stream);
-        }
-
         canceled = true;
       }
     });
   }
 
   public synchronized void setStream(@NonNull InputStream stream) {
-    if (canceled) {
-      Util.close(stream);
-    } else {
-      this.stream = stream;
-    }
+    this.stream = stream;
     notifyAll();
   }
 
