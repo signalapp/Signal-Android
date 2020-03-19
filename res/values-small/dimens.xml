@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Session -->
+
+    <!-- Font Sizes -->
+    <dimen name="very_small_font_size">10sp</dimen>
+    <dimen name="small_font_size">13sp</dimen>
+    <dimen name="medium_font_size">15sp</dimen>
+    <dimen name="large_font_size">20sp</dimen>
+    <dimen name="very_large_font_size">25sp</dimen>
+    <dimen name="massive_font_size">50sp</dimen>
+
+    <!-- Session -->
+
     <dimen name="onboarding_title_size">32sp</dimen>
     <dimen name="onboarding_subtitle_size">18sp</dimen>
 </resources>
