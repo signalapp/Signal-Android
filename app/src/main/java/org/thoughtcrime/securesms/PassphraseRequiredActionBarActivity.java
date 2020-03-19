@@ -39,10 +39,9 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   private static final int STATE_CREATE_PASSPHRASE   = 1;
   private static final int STATE_PROMPT_PASSPHRASE   = 2;
   private static final int STATE_UI_BLOCKING_UPGRADE = 3;
-  private static final int STATE_EXPERIENCE_UPGRADE  = 4;
-  private static final int STATE_WELCOME_PUSH_SCREEN = 5;
-  private static final int STATE_CREATE_PROFILE_NAME = 6;
-  private static final int STATE_CREATE_KBS_PIN      = 7;
+  private static final int STATE_WELCOME_PUSH_SCREEN = 4;
+  private static final int STATE_CREATE_PROFILE_NAME = 5;
+  private static final int STATE_CREATE_KBS_PIN      = 6;
 
   private SignalServiceNetworkAccess networkAccess;
   private BroadcastReceiver          clearKeyReceiver;
@@ -157,7 +156,6 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
       case STATE_PROMPT_PASSPHRASE:   return getPromptPassphraseIntent();
       case STATE_UI_BLOCKING_UPGRADE: return getUiBlockingUpgradeIntent();
       case STATE_WELCOME_PUSH_SCREEN: return getPushRegistrationIntent();
-      case STATE_EXPERIENCE_UPGRADE:  return getExperienceUpgradeIntent();
       case STATE_CREATE_KBS_PIN:      return getCreateKbsPinIntent();
       case STATE_CREATE_PROFILE_NAME: return getCreateProfileNameIntent();
       default:                        return null;
@@ -173,8 +171,6 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
       return STATE_UI_BLOCKING_UPGRADE;
     } else if (!TextSecurePreferences.hasPromptedPushRegistration(this)) {
       return STATE_WELCOME_PUSH_SCREEN;
-    } else if (ExperienceUpgradeActivity.isUpdate(this)) {
-      return STATE_EXPERIENCE_UPGRADE;
     } else if (userMustSetProfileName()) {
       return STATE_CREATE_PROFILE_NAME;
     } else if (userMustSetKbsPin()) {
@@ -207,10 +203,6 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
                            TextSecurePreferences.hasPromptedPushRegistration(this)
                                ? getConversationListIntent()
                                : getPushRegistrationIntent());
-  }
-
-  private Intent getExperienceUpgradeIntent() {
-    return getRoutedIntent(ExperienceUpgradeActivity.class, getIntent());
   }
 
   private Intent getPushRegistrationIntent() {

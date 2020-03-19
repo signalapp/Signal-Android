@@ -401,40 +401,6 @@
     <string name="ShareActivity_share_with">Share with</string>
     <string name="ShareActivity_multiple_attachments_are_only_supported">Multiple attachments are only supported for images and videos</string>
 
-    <!-- ExperienceUpgradeActivity -->
-    <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Welcome to Signal.</string>
-    <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure and RedPhone are now one private messenger, for every situation: Signal.</string>
-    <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Welcome to Signal!</string>
-    <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure is now Signal.</string>
-    <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure and RedPhone are now one app: Signal. Tap to explore.</string>
-
-    <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Say hello to secure video calls.</string>
-    <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal now supports secure video calling. Just start a Signal call like normal, tap the video button, and wave hello.</string>
-    <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal now supports secure video calling.</string>
-    <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal now supports secure video calling. Tap to explore.</string>
-
-    <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Ready for your closeup?</string>
-    <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Now you can share a profile photo and name with friends on Signal</string>
-    <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profiles are here</string>
-
-    <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Introducing typing indicators.</string>
-    <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Now you can optionally see and share when messages are being typed.</string>
-    <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Would you like to enable them now?</string>
-    <string name="ExperienceUpgradeActivity_typing_ui_title">Typing indicators are here</string>
-    <string name="ExperienceUpgradeActivity_enable_typing_indicators">Enable typing indicators</string>
-    <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Turn on typing indicators</string>
-    <string name="ExperienceUpgradeActivity_no_thanks">No thanks</string>
-
-    <string name="ExperienceUpgradeActivity_introducing_link_previews">Introducing link previews.</string>
-    <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Optional link previews are now supported for some of the most popular sites on the Internet.</string>
-    <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">You can disable or enable this feature anytime in your Signal settings (Privacy &gt; Send link previews).</string>
-    <string name="ExperienceUpgradeActivity_got_it">Got it</string>
-
-    <string name="ExperienceUpgradeActivity_introducing_stickers">Introducing stickers</string>
-    <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Why use words when you can use stickers?</string>
-    <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Why use words when you can use stickers? Tap this icon on your keyboard:</string>
-    <string name="ExperienceUpgradeActivity_lets_go">Let\'s go</string>
-
     <!-- GcmBroadcastReceiver -->
     <string name="GcmBroadcastReceiver_retrieving_a_message">Retrieving a message…</string>
 
@@ -1925,8 +1891,6 @@
     <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrating Signal database</string>
     <string name="PushDecryptJob_new_locked_message">New locked message</string>
     <string name="PushDecryptJob_unlock_to_view_pending_messages">Unlock to view pending messages</string>
-    <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Unlock to complete update</string>
-    <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Please unlock Signal to complete update</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">Backup passphrase</string>
     <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Backups will be saved to external storage and encrypted with the passphrase below. You must have this passphrase in order to restore a backup.</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">I have written down this passphrase. Without it, I will be unable to restore a backup.</string>
