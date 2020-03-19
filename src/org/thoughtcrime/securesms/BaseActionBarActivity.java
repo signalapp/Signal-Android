@@ -2,8 +2,10 @@ package org.thoughtcrime.securesms;
 
 import android.annotation.TargetApi;
 import android.app.ActivityManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
@@ -12,11 +14,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -30,6 +34,7 @@ import network.loki.messenger.R;
 
 public abstract class BaseActionBarActivity extends AppCompatActivity {
   private static final String TAG = BaseActionBarActivity.class.getSimpleName();
+  private BroadcastReceiver broadcastReceiver;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,20 @@ public abstract class BaseActionBarActivity extends AppCompatActivity {
     Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher_foreground);
     int color = getResources().getColor(R.color.app_icon_background);
     setTaskDescription(new ActivityManager.TaskDescription(name, icon, color));
+    broadcastReceiver = new BroadcastReceiver() {
+
+      @Override
+      public void onReceive(Context context, Intent intent) {
+        Toast.makeText(BaseActionBarActivity.this, "Open the device link screen by going to \"Settings\"> \"Devices\" > \"Link a Device\" to link your devices.", Toast.LENGTH_LONG).show();
+      }
+    };
+    LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter("unexpectedDeviceLinkRequestReceived"));
+  }
+
+  @Override
+  protected void onDestroy() {
+    LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
+    super.onDestroy();
   }
 
   @Override
