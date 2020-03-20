@@ -56,9 +56,9 @@ public class BasicMegaphoneView extends FrameLayout {
     this.megaphone         = megaphone;
     this.megaphoneListener = megaphoneListener;
 
-    if (megaphone.getImage() != 0) {
+    if (megaphone.getImageRequest() != null) {
       image.setVisibility(VISIBLE);
-      image.setImageResource(megaphone.getImage());
+      megaphone.getImageRequest().into(image);
     } else {
       image.setVisibility(GONE);
     }

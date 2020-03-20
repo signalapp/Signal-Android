@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.widget.ImageView;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 import androidx.core.graphics.drawable.IconCompat;
@@ -41,6 +42,15 @@ public final class AvatarUtil {
     } catch (ExecutionException | InterruptedException e) {
       return null;
     }
+  }
+
+  public static GlideRequest<Drawable> getSelfAvatarOrFallbackIcon(@NonNull Context context, @DrawableRes int fallbackIcon) {
+    return GlideApp.with(context)
+                   .asDrawable()
+                   .load(new ProfileContactPhoto(Recipient.self().getId(), String.valueOf(TextSecurePreferences.getProfileAvatarId(context))))
+                   .error(fallbackIcon)
+                   .circleCrop()
+                   .diskCacheStrategy(DiskCacheStrategy.ALL);
   }
 
   private static <T> GlideRequest<T> request(@NonNull GlideRequest<T> glideRequest, @NonNull Context context, @NonNull Recipient recipient) {

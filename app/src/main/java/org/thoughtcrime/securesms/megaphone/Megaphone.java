@@ -1,28 +1,34 @@
 package org.thoughtcrime.securesms.megaphone;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.megaphone.Megaphones.Event;
+import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.mms.GlideRequest;
 
 /**
  * For guidance on creating megaphones, see {@link Megaphones}.
  */
 public class Megaphone {
 
-  private final Event         event;
-  private final Style         style;
-  private final boolean       mandatory;
-  private final boolean       canSnooze;
-  private final int           titleRes;
-  private final int           bodyRes;
-  private final int           imageRes;
-  private final int           buttonTextRes;
-  private final EventListener buttonListener;
-  private final EventListener snoozeListener;
-  private final EventListener onVisibleListener;
+  private final Event                  event;
+  private final Style                  style;
+  private final boolean                mandatory;
+  private final boolean                canSnooze;
+  private final int                    titleRes;
+  private final int                    bodyRes;
+  private final GlideRequest<Drawable> imageRequest;
+  private final int                    buttonTextRes;
+  private final EventListener          buttonListener;
+  private final EventListener          snoozeListener;
+  private final EventListener          onVisibleListener;
 
   private Megaphone(@NonNull Builder builder) {
     this.event             = builder.event;
@@ -31,7 +37,7 @@ public class Megaphone {
     this.canSnooze         = builder.canSnooze;
     this.titleRes          = builder.titleRes;
     this.bodyRes           = builder.bodyRes;
-    this.imageRes          = builder.imageRes;
+    this.imageRequest      = builder.imageRequest;
     this.buttonTextRes     = builder.buttonTextRes;
     this.buttonListener    = builder.buttonListener;
     this.snoozeListener    = builder.snoozeListener;
@@ -62,8 +68,8 @@ public class Megaphone {
     return bodyRes;
   }
 
-  public @DrawableRes int getImage() {
-    return imageRes;
+  public @Nullable GlideRequest<Drawable> getImageRequest() {
+    return imageRequest;
   }
 
   public @StringRes int getButtonText() {
@@ -91,15 +97,15 @@ public class Megaphone {
     private final Event  event;
     private final Style  style;
 
-    private boolean       mandatory;
-    private boolean       canSnooze;
-    private int           titleRes;
-    private int           bodyRes;
-    private int           imageRes;
-    private int           buttonTextRes;
-    private EventListener buttonListener;
-    private EventListener snoozeListener;
-    private EventListener onVisibleListener;
+    private boolean                mandatory;
+    private boolean                canSnooze;
+    private int                    titleRes;
+    private int                    bodyRes;
+    private GlideRequest<Drawable> imageRequest;
+    private int                    buttonTextRes;
+    private EventListener          buttonListener;
+    private EventListener          snoozeListener;
+    private EventListener          onVisibleListener;
 
 
     public Builder(@NonNull Event event, @NonNull Style style) {
@@ -135,7 +141,12 @@ public class Megaphone {
     }
 
     public @NonNull Builder setImage(@DrawableRes int imageRes) {
-      this.imageRes = imageRes;
+      setImageRequest(GlideApp.with(ApplicationDependencies.getApplication()).load(imageRes));
+      return this;
+    }
+
+    public @NonNull Builder setImageRequest(@Nullable GlideRequest<Drawable> imageRequest) {
+      this.imageRequest = imageRequest;
       return this;
     }
 

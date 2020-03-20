@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.messagerequests.MessageRequestMegaphoneActivity;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
+import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -207,7 +208,7 @@ public final class Megaphones {
 
     Megaphone.Builder builder = new Megaphone.Builder(Event.PROFILE_NAMES_FOR_ALL, Megaphone.Style.BASIC)
                                              .enableSnooze(null)
-                                             .setImage(R.drawable.profile_megaphone);
+                                             .setImageRequest(AvatarUtil.getSelfAvatarOrFallbackIcon(context, R.drawable.ic_profilename_64));
 
     if (TextSecurePreferences.getProfileName(ApplicationDependencies.getApplication()) == ProfileName.EMPTY) {
       return builder.setTitle(R.string.ProfileNamesMegaphone__add_a_profile_name)
