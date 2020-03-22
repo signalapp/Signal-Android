@@ -16,15 +16,16 @@ import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.support.v4.app.NotificationCompat;
 
-import org.thoughtcrime.securesms.ConversationListActivity;
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.database.SmsMigrator;
 import org.thoughtcrime.securesms.database.SmsMigrator.ProgressDescription;
+import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 
 import java.lang.ref.WeakReference;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+
+import network.loki.messenger.R;
 
 // FIXME: This class is nuts.
 public class ApplicationMigrationService extends Service
@@ -133,7 +134,7 @@ public class ApplicationMigrationService extends Service
     builder.setContentText(getString(R.string.ApplicationMigrationService_import_in_progress));
     builder.setOngoing(true);
     builder.setProgress(100, 0, false);
-    builder.setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, ConversationListActivity.class), 0));
+    builder.setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, HomeActivity.class), 0));
 
     stopForeground(true);
     startForeground(4242, builder.build());
@@ -184,7 +185,7 @@ public class ApplicationMigrationService extends Service
       builder.setSmallIcon(R.drawable.ic_notification);
       builder.setContentTitle(context.getString(R.string.ApplicationMigrationService_import_complete));
       builder.setContentText(context.getString(R.string.ApplicationMigrationService_system_database_import_is_complete));
-      builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, ConversationListActivity.class), 0));
+      builder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, HomeActivity.class), 0));
       builder.setWhen(System.currentTimeMillis());
       builder.setDefaults(Notification.DEFAULT_VIBRATE);
       builder.setAutoCancel(true);

@@ -19,6 +19,7 @@ import com.nineoldandroids.animation.ArgbEvaluator;
 
 import org.thoughtcrime.securesms.IntroPagerAdapter.IntroPage;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -191,7 +192,7 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity implements 
     TextSecurePreferences.setLastExperienceVersionCode(this, latestVersion);
     if (seenUpgrade.isPresent() && seenUpgrade.get().nextIntent != null) {
       Intent intent     = new Intent(this, seenUpgrade.get().nextIntent);
-      Intent nextIntent = new Intent(this, ConversationListActivity.class);
+      Intent nextIntent = new Intent(this, HomeActivity.class);
       intent.putExtra("next_intent", nextIntent);
       startActivity(intent);
     } else {
