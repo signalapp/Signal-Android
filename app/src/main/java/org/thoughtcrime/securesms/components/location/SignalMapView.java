@@ -18,6 +18,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
@@ -52,6 +54,15 @@ public class SignalMapView extends LinearLayout {
     this.textView  = ViewUtil.findById(this, R.id.address_view);
   }
 
+  public void setGoogleMapType(GoogleMap googleMap) {
+    String mapType = TextSecurePreferences.getGoogleMapType(ApplicationDependencies.getApplication());
+    if (mapType.equals("normal")) { googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL); }
+    else if (mapType.equals("hybrid")) { googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID); }
+    else if (mapType.equals("satellite")) { googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE); }
+    else if (mapType.equals("terrain")) { googleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN); }
+    else if (mapType.equals("none")) { googleMap.setMapType(GoogleMap.MAP_TYPE_NONE); }
+  }
+
   public ListenableFuture<Bitmap> display(final SignalPlace place) {
     final SettableFuture<Bitmap> future = new SettableFuture<>();
 
@@ -67,7 +78,7 @@ public class SignalMapView extends LinearLayout {
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLong(), 13));
         googleMap.addMarker(new MarkerOptions().position(place.getLatLong()));
         googleMap.setBuildingsEnabled(true);
-        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        setGoogleMapType(googleMap);
         googleMap.getUiSettings().setAllGesturesEnabled(false);
         googleMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
           @Override

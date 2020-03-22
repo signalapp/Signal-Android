@@ -25,6 +25,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.io.IOException;
 import java.util.List;
@@ -127,8 +128,18 @@ public final class PlacePickerActivity extends AppCompatActivity {
 
   private void setMap(GoogleMap googleMap) {
     this.googleMap = googleMap;
+    setGoogleMapType(googleMap);
 
     moveMapToInitialIfPossible();
+  }
+
+  private void setGoogleMapType(GoogleMap googleMap) {
+    String mapType = TextSecurePreferences.getGoogleMapType(getApplicationContext());
+    if (mapType.equals("normal")) { googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL); }
+    else if (mapType.equals("hybrid")) { googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID); }
+    else if (mapType.equals("satellite")) { googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE); }
+    else if (mapType.equals("terrain")) { googleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN); }
+    else if (mapType.equals("none")) { googleMap.setMapType(GoogleMap.MAP_TYPE_NONE); }
   }
 
   private void moveMapToInitialIfPossible() {

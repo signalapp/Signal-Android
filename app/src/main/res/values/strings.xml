@@ -1626,6 +1626,13 @@
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Allow from anyone</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Enable sealed sender for incoming messages from non-contacts and people with whom you have not shared your profile.</string>
     <string name="preferences_communication__sealed_sender_learn_more">Learn more</string>
+    <string name="preferences_chats__google_map_type">Location</string>
+    <string name="preferences__map_type">Map type</string>
+    <string name="preferences__map_normal">Normal</string>
+    <string name="preferences__map_hybrid">Hybrid</string>
+    <string name="preferences__map_satellite">Satellite</string>
+    <string name="preferences__map_terrain">Terrain</string>
+    <string name="preferences__map_none">None</string>
 
     <!-- **************************************** -->
     <!-- menus -->

@@ -213,6 +213,12 @@ public class TextSecurePreferences {
 
   private static final String ARGON2_TESTED = "argon2_tested";
 
+  public static final String GOOGLE_MAP_TYPE = "pref_google_map_type";
+
+  public static String getGoogleMapType(Context context) {
+    return getStringPreference(context, GOOGLE_MAP_TYPE, "normal");
+  }
+
   public static boolean isScreenLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, SCREEN_LOCK, false);
   }
