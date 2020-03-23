@@ -58,7 +58,7 @@ public class AddMembersActivity extends PushContactSelectionActivity {
   }
 
   @Override
-  public void onContactSelected(Optional<RecipientId> recipientId, String number) {
+  public void onContactSelected(Optional<RecipientId> recipientId, String number, boolean isLongClick) {
     if (contactsFragment.hasQueryFilter()) {
       getToolbar().clear();
     }
@@ -69,7 +69,7 @@ public class AddMembersActivity extends PushContactSelectionActivity {
   }
 
   @Override
-  public void onContactDeselected(Optional<RecipientId> recipientId, String number) {
+  public void onContactDeselected(Optional<RecipientId> recipientId, String number, boolean isLongClick) {
     if (contactsFragment.hasQueryFilter()) {
       getToolbar().clear();
     }

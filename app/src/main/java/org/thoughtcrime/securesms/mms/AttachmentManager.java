@@ -247,11 +247,11 @@ public class AttachmentManager {
       protected @Nullable Slide doInBackground(Void... params) {
         try {
           if (PartAuthority.isLocalUri(uri)) {
-            return getManuallyCalculatedSlideInfo(uri, width, height);
+            return getSlideFromUri(context, mediaType, uri, width, height);
           } else {
             Slide result = getContentResolverSlideInfo(uri, width, height);
 
-            if (result == null) return getManuallyCalculatedSlideInfo(uri, width, height);
+            if (result == null) return getSlideFromUri(context, mediaType, uri, width, height);
             else                return result;
           }
         } catch (IOException e) {
@@ -324,38 +324,40 @@ public class AttachmentManager {
         return null;
       }
 
-      private @NonNull Slide getManuallyCalculatedSlideInfo(Uri uri, int width, int height) throws IOException {
-        long     start     = System.currentTimeMillis();
-        Long     mediaSize = null;
-        String   fileName  = null;
-        String   mimeType  = null;
 
-        if (PartAuthority.isLocalUri(uri)) {
-          mediaSize = PartAuthority.getAttachmentSize(context, uri);
-          fileName  = PartAuthority.getAttachmentFileName(context, uri);
-          mimeType  = PartAuthority.getAttachmentContentType(context, uri);
-        }
-
-        if (mediaSize == null) {
-          mediaSize = MediaUtil.getMediaSize(context, uri);
-        }
-
-        if (mimeType == null) {
-          mimeType = MediaUtil.getMimeType(context, uri);
-        }
-
-        if (width == 0 || height == 0) {
-          Pair<Integer, Integer> dimens = MediaUtil.getDimensions(context, mimeType, uri);
-          width  = dimens.first;
-          height = dimens.second;
-        }
-
-        Log.d(TAG, "local slide with size " + mediaSize + " took " + (System.currentTimeMillis() - start) + "ms");
-        return mediaType.createSlide(context, uri, fileName, mimeType, null, mediaSize, width, height);
-      }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
     return result;
+  }
+
+  public static @NonNull Slide getSlideFromUri(Context context, MediaType mediaType, Uri uri, int width, int height) throws IOException {
+    long     start     = System.currentTimeMillis();
+    Long     mediaSize = null;
+    String   fileName  = null;
+    String   mimeType  = null;
+
+    if (PartAuthority.isLocalUri(uri)) {
+      mediaSize = PartAuthority.getAttachmentSize(context, uri);
+      fileName  = PartAuthority.getAttachmentFileName(context, uri);
+      mimeType  = PartAuthority.getAttachmentContentType(context, uri);
+    }
+
+    if (mediaSize == null) {
+      mediaSize = MediaUtil.getMediaSize(context, uri);
+    }
+
+    if (mimeType == null) {
+      mimeType = MediaUtil.getMimeType(context, uri);
+    }
+
+    if (width == 0 || height == 0) {
+      Pair<Integer, Integer> dimens = MediaUtil.getDimensions(context, mimeType, uri);
+      width  = dimens.first;
+      height = dimens.second;
+    }
+
+    Log.d(TAG, "local slide with size " + mediaSize + " took " + (System.currentTimeMillis() - start) + "ms");
+    return mediaType.createSlide(context, uri, fileName, mimeType, null, mediaSize, width, height);
   }
 
   public boolean isAttachmentPresent() {

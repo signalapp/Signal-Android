@@ -24,6 +24,12 @@ public final class SelectedContactSet {
     return true;
   }
 
+  public void addAll(@NonNull SelectedContactSet selectedContactSet){
+    for(SelectedContact contact : selectedContactSet.contacts){
+      add(contact);
+    }
+  }
+
   public boolean contains(@NonNull SelectedContact otherContact) {
     for (SelectedContact contact : contacts) {
       if (otherContact.matches(contact)) {

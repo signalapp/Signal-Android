@@ -17,8 +17,10 @@
 
 package org.thoughtcrime.securesms.sharing;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -35,28 +37,45 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.ContactSelectionListFragment;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
+import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.SearchToolbar;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
+import org.thoughtcrime.securesms.contacts.SelectedContact;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.MessagingDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediasend.Media;
+import org.thoughtcrime.securesms.mms.AttachmentManager;
+import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.thoughtcrime.securesms.mms.Slide;
+import org.thoughtcrime.securesms.mms.SlideDeck;
+import org.thoughtcrime.securesms.mms.StickerSlide;
+import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.sms.MessageSender;
+import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -83,6 +102,8 @@ public class ShareActivity extends PassphraseRequiredActivity
 
   private ShareViewModel viewModel;
 
+  private Toolbar toolbar;
+
   @Override
   protected void onPreCreate() {
     dynamicTheme.onCreate(this);
@@ -103,6 +124,7 @@ public class ShareActivity extends PassphraseRequiredActivity
 
     getIntent().putExtra(ContactSelectionListFragment.REFRESHABLE, false);
     getIntent().putExtra(ContactSelectionListFragment.RECENTS, true);
+    getIntent().putExtra(ContactSelectionListFragment.MULTI_SELECT, isMulti());
 
     setContentView(R.layout.share_activity);
 
@@ -148,32 +170,73 @@ public class ShareActivity extends PassphraseRequiredActivity
     else                           super.onBackPressed();
   }
 
-  @Override
-  public void onContactSelected(Optional<RecipientId> recipientId, String number) {
-    SimpleTask.run(this.getLifecycle(), () -> {
-      Recipient recipient;
-      if (recipientId.isPresent()) {
-        recipient = Recipient.resolved(recipientId.get());
-      } else {
-        Log.i(TAG, "[onContactSelected] Maybe creating a new recipient.");
-        recipient = Recipient.external(this, number);
-      }
+  private boolean isMulti() {
+    return getIntent().getBooleanExtra(ContactSelectionListFragment.MULTI_SELECT, false);
+  }
 
-      long existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient);
-      return new Pair<>(existingThread, recipient);
-    }, result -> onDestinationChosen(result.first(), result.second().getId()));
+  private void restartActivity(Intent intent){
+    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+    finish();
+    overridePendingTransition(0, 0);
+
+    startActivity(intent);
+    overridePendingTransition(0, 0);
+  }
+
+  private Intent getIntentForMultiSelect(Optional<RecipientId> recipientId, String number){
+    Intent intent = getIntent();
+    intent.putExtra(ContactSelectionListFragment.MULTI_SELECT, true);
+
+    RecipientId resolvedRecipientId = recipientId.or(Recipient.external(this, number).getId());
+    intent.putExtra(ContactSelectionListFragment.EXTRA_PRESELECTED_RECIPIENT_ID, resolvedRecipientId);
+
+    intent.putExtra(ContactSelectionListFragment.EXTRA_PRESELECTED_NUMBER, number);
+
+    return intent;
+  }
+
+  private Intent getIntentForSingleSelect(){
+    Intent intent = getIntent();
+    intent.putExtra(ContactSelectionListFragment.MULTI_SELECT, false);
+
+    intent.removeExtra(ContactSelectionListFragment.EXTRA_PRESELECTED_RECIPIENT_ID);
+    intent.removeExtra(ContactSelectionListFragment.EXTRA_PRESELECTED_NUMBER);
+
+    return intent;
   }
 
   @Override
-  public void onContactDeselected(@NonNull Optional<RecipientId> recipientId, String number) {
+  public void onContactSelected(Optional<RecipientId> recipientId, String number, boolean isLongClick) {
+    if (isMulti()){
+      return;
+    }
+
+    if(isLongClick){
+      Log.w(TAG, "[onContactSelected] Switching to multiple share.");
+      restartActivity(getIntentForMultiSelect(recipientId, number));
+    } else {
+      openConversationWithRecipient(recipientId, number);
+    }
+  }
+
+  @Override
+  public void onContactDeselected(@NonNull Optional<RecipientId> recipientId, String number, boolean isLongClick) {
+    if (isMulti() && contactsFragment.getSelectedContacts().isEmpty()){
+      Log.w(TAG, "[onContactDeselected] Switching from multiple share to single share.");
+      restartActivity(getIntentForSingleSelect());
+    }
   }
 
   @Override
   public void onRefresh() {
   }
 
+  private Toolbar getToolbar() {
+    return toolbar;
+  }
+
   private void initializeToolbar() {
-    Toolbar toolbar = findViewById(R.id.toolbar);
+    toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 
     ActionBar actionBar = getSupportActionBar();
@@ -194,6 +257,43 @@ public class ShareActivity extends PassphraseRequiredActivity
 
     contactsFragment.setOnContactSelectedListener(this);
     contactsFragment.setOnRefreshListener(this);
+
+    if(isMulti()) {
+      getToolbar().setNavigationIcon(R.drawable.ic_check_24);
+      getToolbar().setNavigationOnClickListener(v -> {
+        Log.w(TAG, "[OnClickListener] Multi share sendMessageToContact.");
+        for (SelectedContact contact : contactsFragment.getSelectedContacts()) {
+          sendMessageToContact(contact);
+        }
+
+        startActivity(new Intent(this, MainActivity.class));
+      });
+    }
+
+  }
+
+  private void sendMessageToContact(SelectedContact contact) {
+    SimpleTask.run(this.getLifecycle(), () -> {
+      RecipientId recipientId = contact.getOrCreateRecipientId(this.getBaseContext());
+      Recipient recipient = Recipient.resolved(recipientId);
+      long existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient);
+      return new Pair<>(existingThread, recipient);
+    }, result -> onDestinationChosen(result.first(), result.second().getId(), true));
+  }
+
+  private void openConversationWithRecipient(Optional<RecipientId> recipientId, String number){
+    SimpleTask.run(this.getLifecycle(), () -> {
+      Recipient recipient;
+      if (recipientId.isPresent()) {
+        recipient = Recipient.resolved(recipientId.get());
+      } else {
+        Log.i(TAG, "[onContactSelected] Maybe creating a new recipient.");
+        recipient = Recipient.external(this, number);
+      }
+
+      long existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient);
+      return new Pair<>(existingThread, recipient);
+    }, result -> onDestinationChosen(result.first(), result.second().getId(), false));
   }
 
   private void initializeViewModel() {
@@ -256,13 +356,13 @@ public class ShareActivity extends PassphraseRequiredActivity
       if (contactsFragment.getView() != null) {
         contactsFragment.getView().setVisibility(View.GONE);
       }
-      onDestinationChosen(threadId, recipientId);
+      onDestinationChosen(threadId, recipientId, false);
     }
   }
 
-  private void onDestinationChosen(long threadId, @NonNull RecipientId recipientId) {
+  private void onDestinationChosen(long threadId, @NonNull RecipientId recipientId, boolean sendMessage) {
     if (!viewModel.isExternalShare()) {
-      openConversation(threadId, recipientId, null);
+      openConversationOrSendMessage(threadId, recipientId, null, sendMessage);
       return;
     }
 
@@ -287,16 +387,22 @@ public class ShareActivity extends PassphraseRequiredActivity
         return;
       }
 
-      openConversation(threadId, recipientId, data.get());
+      openConversationOrSendMessage(threadId, recipientId, data.get(), sendMessage);
     });
   }
 
-  private void openConversation(long threadId, @NonNull RecipientId recipientId, @Nullable ShareData shareData) {
+  private void openConversationOrSendMessage(long threadId, @NonNull RecipientId recipientId, @Nullable ShareData shareData, boolean sendMessage) {
     Intent           intent          = new Intent(this, ConversationActivity.class);
     String           textExtra       = getIntent().getStringExtra(Intent.EXTRA_TEXT);
     ArrayList<Media> mediaExtra      = getIntent().getParcelableArrayListExtra(ConversationActivity.MEDIA_EXTRA);
     StickerLocator   stickerExtra    = getIntent().getParcelableExtra(ConversationActivity.STICKER_EXTRA);
     boolean          borderlessExtra = getIntent().getBooleanExtra(ConversationActivity.BORDERLESS_EXTRA, false);
+
+    if(sendMessage) {
+      viewModel.onSuccessulShare();
+      sendMessage(threadId, recipientId, textExtra, mediaExtra, stickerExtra, shareData);
+      return;
+    }
 
     intent.putExtra(ConversationActivity.TEXT_EXTRA, textExtra);
     intent.putExtra(ConversationActivity.MEDIA_EXTRA, mediaExtra);
@@ -323,4 +429,148 @@ public class ShareActivity extends PassphraseRequiredActivity
 
     startActivity(intent);
   }
+
+  @SuppressLint("StaticFieldLeak")
+  private void sendMessage(long threadId, @NonNull RecipientId recipientId, String text,
+                           @Nullable ArrayList<Media> mediaExtra,
+                           @Nullable StickerLocator stickerLocator,
+                           @Nullable ShareData shareData){
+
+    new AsyncTask<Void, Void, Void>() {
+      @Override
+      protected Void doInBackground(Void... params) {
+        Log.w(TAG, "[sendMessage] Sharing message in single conversation or group.");
+        Recipient recipient = Recipient.resolved(recipientId);
+
+        long replyThreadId;
+
+        int  subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
+        long expiresIn      = recipient.getExpireMessages() * 1000L;
+
+        if(shareData == null && mediaExtra == null && stickerLocator == null){
+          replyThreadId = sendTextMessage(recipient, text, expiresIn, subscriptionId, threadId);
+        } else {
+          SlideDeck slideDeck = getSlideDeckForMediaMessageAsync(shareData, mediaExtra, stickerLocator);
+          if (slideDeck == null){
+            return null;
+          } else {
+            replyThreadId = sendMediaMessage(recipient, slideDeck, text, subscriptionId, expiresIn, threadId);
+          }
+        }
+
+        List<MessagingDatabase.MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(ShareActivity.this).setRead(replyThreadId, true);
+
+        //MessageNotifier.updateNotification(getApplicationContext(), threadId);
+        MarkReadReceiver.process(ShareActivity.this, messageIds);
+
+        return null;
+      }
+    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+  }
+
+  private long sendTextMessage(Recipient recipient, String text, long expiresIn, int subscriptionId, long threadId) {
+    long replyThreadId;
+    if (recipient.resolve().isGroup()){
+      Log.w(TAG, "[sendTextMessage] Sharing text message in group.");
+
+      OutgoingMediaMessage message = new OutgoingMediaMessage(recipient, text, new LinkedList<>(),
+              System.currentTimeMillis(), subscriptionId, expiresIn,false, 0,
+              null, Collections.emptyList(), Collections.emptyList(),
+              Collections.emptyList(), Collections.emptyList());
+
+      replyThreadId = MessageSender.send(ShareActivity.this, message, threadId, false, null);
+    } else {
+      Log.w(TAG, "[sendTextMessage] Sharing regular text message.");
+      OutgoingTextMessage message = new OutgoingTextMessage(recipient, text, expiresIn, subscriptionId);
+
+      replyThreadId = MessageSender.send(ShareActivity.this, message, threadId, false, null);
+    }
+    return replyThreadId;
+  }
+
+  private long sendMediaMessage(Recipient recipient, SlideDeck slideDeck, String text, int subscriptionId, long expiresIn, long threadId) {
+    Log.w(TAG, "[sendMediaMessage] Sharing text message in group.");
+    int distributionType = ThreadDatabase.DistributionTypes.DEFAULT;
+    OutgoingMediaMessage message = new OutgoingMediaMessage(recipient, slideDeck, text,
+            System.currentTimeMillis(), subscriptionId, expiresIn,false, distributionType,
+            null, Collections.emptyList(), Collections.emptyList());
+
+    return MessageSender.send(ShareActivity.this, message, threadId, false, null);
+  }
+
+  @SuppressLint("StaticFieldLeak")
+  private SlideDeck getSlideDeckForMediaMessageAsync(ShareData shareData, ArrayList<Media> mediaExtra, StickerLocator stickerLocator) {
+    final SettableFuture<SlideDeck> slideDeckFuture = new SettableFuture<>();
+
+    new AsyncTask<Void, Void, SlideDeck>() {
+      @Override protected SlideDeck doInBackground(Void... params) {
+        Log.w(TAG, "[getSlideDeckForMediaMessageAsync] Retrieving media data to share.");
+        return getSlideDeckForMediaMessage(shareData, mediaExtra, stickerLocator);
+      }
+        protected void onPostExecute(SlideDeck result) {
+          slideDeckFuture.set(result);
+        }
+
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+    try{
+        return slideDeckFuture.get();
+    } catch (ExecutionException | InterruptedException e){
+      return null;
+    }
+  }
+
+  private SlideDeck getSlideDeckForMediaMessage(ShareData shareData, ArrayList<Media> mediaExtra, StickerLocator stickerLocator) {
+    SlideDeck slideDeck = null;
+    if(shareData != null){
+      if (shareData.isForIntent()){
+        if (stickerLocator != null) {
+          slideDeck = getSlideDeckFromStickerLocator(shareData, stickerLocator);
+        } else {
+          slideDeck = getSlideDeckFromMediaArray(convertShareDataToMediaArray(shareData));
+        }
+      } else if (shareData.isForMedia()) {
+        slideDeck = getSlideDeckFromMediaArray(shareData.getMedia());
+      }
+    } else {
+      if(mediaExtra != null){
+        slideDeck = getSlideDeckFromMediaArray(mediaExtra);
+      }
+    }
+    return slideDeck;
+  }
+
+  private SlideDeck getSlideDeckFromStickerLocator(ShareData shareData, StickerLocator stickerLocator) {
+    Slide slide;
+    SlideDeck slideDeck;
+    slide = new StickerSlide(ShareActivity.this, shareData.getUri(), 0, stickerLocator);
+    slideDeck  = new SlideDeck();
+    slideDeck.addSlide(slide);
+    return slideDeck;
+  }
+
+  private ArrayList<Media> convertShareDataToMediaArray(ShareData shareData) {
+    Media mediaItem = new Media(shareData.getUri(), shareData.getMimeType(), 0, 0, 0, 0, 0,
+            false, null, null, null);
+    ArrayList<Media> mediaArray  = new ArrayList<>();
+    mediaArray.add(mediaItem);
+    return mediaArray;
+  }
+
+  private @Nullable SlideDeck getSlideDeckFromMediaArray(ArrayList<Media> mediaArray) {
+    SlideDeck slideDeck  = new SlideDeck();
+    Slide slide;
+    try {
+      for (Media mediaItem : mediaArray) {
+        AttachmentManager.MediaType mediaType = AttachmentManager.MediaType.from(mediaItem.getMimeType());
+        slide = AttachmentManager.getSlideFromUri(ShareActivity.this, mediaType, mediaItem.getUri(), 0, 0);
+        slideDeck.addSlide(slide);
+      }
+    } catch (IOException e) {
+      Log.w(TAG, e);
+      return null;
+    }
+    return slideDeck;
+  }
+
 }

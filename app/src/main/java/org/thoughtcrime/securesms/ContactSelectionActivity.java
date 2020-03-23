@@ -113,10 +113,10 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActivit
   }
 
   @Override
-  public void onContactSelected(Optional<RecipientId> recipientId, String number) {}
+  public void onContactSelected(Optional<RecipientId> recipientId, String number, boolean isLongClick) {}
 
   @Override
-  public void onContactDeselected(Optional<RecipientId> recipientId, String number) {}
+  public void onContactDeselected(Optional<RecipientId> recipientId, String number, boolean isLongClick) {}
 
   @Override
   public void onBeginScroll() {
