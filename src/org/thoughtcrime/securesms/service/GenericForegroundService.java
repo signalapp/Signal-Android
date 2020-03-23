@@ -12,11 +12,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 
-import org.thoughtcrime.securesms.ConversationListActivity;
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.whispersystems.libsignal.util.guava.Preconditions;
+
+import network.loki.messenger.R;
 
 public class GenericForegroundService extends Service {
 
@@ -89,7 +90,7 @@ public class GenericForegroundService extends Service {
     startForeground(NOTIFICATION_ID, new NotificationCompat.Builder(this, channelId)
                                                            .setSmallIcon(iconRes)
                                                            .setContentTitle(title)
-                                                           .setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, ConversationListActivity.class), 0))
+                                                           .setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, HomeActivity.class), 0))
                                                            .build());
   }
 

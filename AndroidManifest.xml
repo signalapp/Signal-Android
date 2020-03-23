@@ -162,12 +162,12 @@
         <activity
             android:name="org.thoughtcrime.securesms.InviteActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:parentActivityName="org.thoughtcrime.securesms.ConversationListActivity"
+            android:parentActivityName="org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity"
             android:theme="@style/TextSecure.HighlightTheme"
             android:windowSoftInputMode="stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="PsiClass:ConversationListActivity" />
+                android:value="PsiClass:HomeActivity" />
         </activity>
         <activity
             android:name="org.thoughtcrime.securesms.PromptMmsActivity"
@@ -217,13 +217,6 @@
                 android:name="android.service.chooser.chooser_target_service"
                 android:value=".service.DirectShareService" />
         </activity>
-        <activity
-            android:name="org.thoughtcrime.securesms.ConversationListActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:launchMode="singleTask"
-            android:theme="@style/TextSecure.LightNoActionBar" />
 
         <activity-alias
             android:name=".RoutingActivity"
@@ -267,10 +260,10 @@
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:label="@string/AndroidManifest_archived_conversations"
             android:launchMode="singleTask"
-            android:parentActivityName="org.thoughtcrime.securesms.ConversationListActivity">
+            android:parentActivityName="org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="PsiClass:ConversationListActivity" />
+                android:value="PsiClass:HomeActivity" />
         </activity>
         <activity
             android:name="org.thoughtcrime.securesms.conversation.ConversationActivity"
