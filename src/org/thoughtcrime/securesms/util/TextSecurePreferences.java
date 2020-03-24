@@ -1185,11 +1185,11 @@ public class TextSecurePreferences {
     setLongPreference(context, "background_poll_time", backgroundPollTime);
   }
 
-  public static long getPublicChatBackgroundPollTime(Context context) {
+  public static long getOpenGroupBackgroundPollTime(Context context) {
     return getLongPreference(context, "public_chat_background_poll_time", 0L);
   }
 
-  public static void setPublicChatBackgroundPollTime(Context context, long backgroundPollTime) {
+  public static void setOpenGroupBackgroundPollTime(Context context, long backgroundPollTime) {
     setLongPreference(context, "public_chat_background_poll_time", backgroundPollTime);
   }
 
