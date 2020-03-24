@@ -32,7 +32,9 @@ class BackgroundPollWorker : PersistentAlarmManagerListener() {
             val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
             val lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(context)
             try {
-                LokiAPI(userHexEncodedPublicKey, lokiAPIDatabase, (context.applicationContext as ApplicationContext).broadcaster).getMessages().map { messages ->
+                val applicationContext = context.applicationContext as ApplicationContext
+                val broadcaster = applicationContext.broadcaster
+                LokiAPI(userHexEncodedPublicKey, lokiAPIDatabase, broadcaster).getMessages().map { messages ->
                     messages.forEach {
                         PushContentReceiveJob(context).processEnvelope(SignalServiceEnvelope(it))
                     }

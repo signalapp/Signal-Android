@@ -25,6 +25,7 @@ class LokiRSSFeedPoller(private val context: Context, private val feed: LokiRSSF
     private var hasStarted = false
 
     private val task = object : Runnable {
+
         override fun run() {
             poll()
             handler.postDelayed(this, interval)
@@ -69,7 +70,7 @@ class LokiRSSFeedPoller(private val context: Context, private val feed: LokiRSSF
                 PushDecryptJob(context).handleTextMessage(x3, x2, Optional.absent(), Optional.absent())
             }
         }.fail { exception ->
-            Log.d("Loki", "Couldn't update RSS feed with ID: $feed.id. $exception")
+            Log.d("Loki", "Couldn't update RSS feed with ID: $feed.id due to exception: $exception.")
         }
     }
 }

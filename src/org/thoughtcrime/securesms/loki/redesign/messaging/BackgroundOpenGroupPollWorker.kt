@@ -7,32 +7,32 @@ import org.thoughtcrime.securesms.service.PersistentAlarmManagerListener
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import java.util.concurrent.TimeUnit
 
-class BackgroundPublicChatPollWorker : PersistentAlarmManagerListener() {
+class BackgroundOpenGroupPollWorker : PersistentAlarmManagerListener() {
 
     companion object {
         private val pollInterval = TimeUnit.MINUTES.toMillis(4)
 
         @JvmStatic
         fun schedule(context: Context) {
-            BackgroundPublicChatPollWorker().onReceive(context, Intent())
+            BackgroundOpenGroupPollWorker().onReceive(context, Intent())
         }
     }
 
     override fun getNextScheduledExecutionTime(context: Context): Long {
-        return TextSecurePreferences.getPublicChatBackgroundPollTime(context)
+        return TextSecurePreferences.getOpenGroupBackgroundPollTime(context)
     }
 
     override fun onAlarm(context: Context, scheduledTime: Long): Long {
         if (scheduledTime != 0L) {
-            val publicChats = DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChats().map { it.value }
-            for (publicChat in publicChats) {
-                val poller = LokiPublicChatPoller(context, publicChat)
+            val openGroups = DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChats().map { it.value }
+            for (openGroup in openGroups) {
+                val poller = LokiPublicChatPoller(context, openGroup)
                 poller.stop()
                 poller.pollForNewMessages()
             }
         }
         val nextTime = System.currentTimeMillis() + pollInterval
-        TextSecurePreferences.setPublicChatBackgroundPollTime(context, nextTime)
+        TextSecurePreferences.setOpenGroupBackgroundPollTime(context, nextTime)
         return nextTime
     }
 }

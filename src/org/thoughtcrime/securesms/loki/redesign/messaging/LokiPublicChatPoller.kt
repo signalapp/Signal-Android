@@ -23,7 +23,6 @@ import org.whispersystems.signalservice.api.messages.multidevice.SentTranscriptM
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.loki.api.*
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
-import org.whispersystems.signalservice.loki.utilities.successBackground
 import java.security.MessageDigest
 import java.util.*
 
@@ -70,6 +69,7 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
     }
 
     private val pollForDisplayNamesTask = object : Runnable {
+
         override fun run() {
             pollForDisplayNames()
             handler.postDelayed(this, pollForDisplayNamesInterval)
@@ -217,6 +217,7 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
         val userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(context).privateKey.serialize()
         val database = DatabaseFactory.getLokiAPIDatabase(context)
         LokiFileServerAPI.configure(false, userHexEncodedPublicKey, userPrivateKey, database)
+        // Kovenant propagates a context to chained promises, so LokiPublicChatAPI.sharedContext should be used for all of the below
         LokiDeviceLinkUtilities.getAllLinkedDeviceHexEncodedPublicKeys(userHexEncodedPublicKey).bind(LokiPublicChatAPI.sharedContext) { devices ->
             userDevices = devices
             api.getMessages(group.channel, group.server)
@@ -235,22 +236,24 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
                 }
             }
             Promise.of(messages)
-        }.successBackground {
+        }.success {
             val newDisplayNameUpdatees = uniqueDevices.mapNotNull {
                 // This will return null if the current device is a master device
                 LokiDeviceLinkUtilities.getMasterHexEncodedPublicKey(it).get()
             }.toSet()
             // Fetch the display names of the master devices
             displayNameUpdatees = displayNameUpdatees.union(newDisplayNameUpdatees)
-        }.successBackground { messages ->
+        }.success { messages ->
             // Process messages in the background
-            messages.forEach { message ->
-                if (userDevices.contains(message.hexEncodedPublicKey)) {
-                    processOutgoingMessage(message)
-                } else {
-                    processIncomingMessage(message)
+            Thread {
+                messages.forEach { message ->
+                    if (userDevices.contains(message.hexEncodedPublicKey)) {
+                        processOutgoingMessage(message)
+                    } else {
+                        processIncomingMessage(message)
+                    }
                 }
-            }
+            }.start()
         }.fail {
             Log.d("Loki", "Failed to get messages for group chat with ID: ${group.channel} on server: ${group.server}.")
         }
@@ -260,11 +263,13 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
         if (displayNameUpdatees.isEmpty()) { return }
         val hexEncodedPublicKeys = displayNameUpdatees
         displayNameUpdatees = setOf()
-        api.getDisplayNames(hexEncodedPublicKeys, group.server).successBackground { mapping ->
-            for (pair in mapping.entries) {
-                val senderDisplayName = "${pair.value} (...${pair.key.takeLast(8)})"
-                DatabaseFactory.getLokiUserDatabase(context).setServerDisplayName(group.id, pair.key, senderDisplayName)
-            }
+        api.getDisplayNames(hexEncodedPublicKeys, group.server).success { mapping ->
+            Thread {
+                for (pair in mapping.entries) {
+                    val senderDisplayName = "${pair.value} (...${pair.key.takeLast(8)})"
+                    DatabaseFactory.getLokiUserDatabase(context).setServerDisplayName(group.id, pair.key, senderDisplayName)
+                }
+            }.start()
         }.fail {
             displayNameUpdatees = displayNameUpdatees.union(hexEncodedPublicKeys)
         }
@@ -272,14 +277,16 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
 
     private fun pollForDeletedMessages() {
         api.getDeletedMessageServerIDs(group.channel, group.server).success { deletedMessageServerIDs ->
-            val lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context)
-            val deletedMessageIDs = deletedMessageServerIDs.mapNotNull { lokiMessageDatabase.getMessageID(it) }
-            val smsMessageDatabase = DatabaseFactory.getSmsDatabase(context)
-            val mmsMessageDatabase = DatabaseFactory.getMmsDatabase(context)
-            deletedMessageIDs.forEach {
-                smsMessageDatabase.deleteMessage(it)
-                mmsMessageDatabase.delete(it)
-            }
+            Thread {
+                val lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context)
+                val deletedMessageIDs = deletedMessageServerIDs.mapNotNull { lokiMessageDatabase.getMessageID(it) }
+                val smsMessageDatabase = DatabaseFactory.getSmsDatabase(context)
+                val mmsMessageDatabase = DatabaseFactory.getMmsDatabase(context)
+                deletedMessageIDs.forEach {
+                    smsMessageDatabase.deleteMessage(it)
+                    mmsMessageDatabase.delete(it)
+                }
+            }.start()
         }.fail {
             Log.d("Loki", "Failed to get deleted messages for group chat with ID: ${group.channel} on server: ${group.server}.")
         }
