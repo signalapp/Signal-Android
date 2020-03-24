@@ -27,7 +27,6 @@ import org.whispersystems.libsignal.ecc.Curve
 import org.whispersystems.libsignal.ecc.ECKeyPair
 import org.whispersystems.libsignal.util.KeyHelper
 import org.whispersystems.signalservice.loki.api.DeviceLink
-import org.whispersystems.signalservice.loki.api.LokiFileServerAPI
 import org.whispersystems.signalservice.loki.utilities.hexEncodedPublicKey
 import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
 
@@ -100,7 +99,7 @@ class LandingActivity : BaseActionBarActivity(), LinkDeviceSlaveModeDialogDelega
             return Toast.makeText(application, "Couldn't link device.", Toast.LENGTH_LONG).show()
         }
         val application = ApplicationContext.getInstance(this)
-        application.startLongPollingIfNeeded()
+        application.startPollingIfNeeded()
         application.setUpP2PAPI()
         application.setUpStorageAPIIfNeeded()
         val linkDeviceDialog = LinkDeviceSlaveModeDialog()

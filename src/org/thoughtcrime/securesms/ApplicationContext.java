@@ -63,8 +63,8 @@ import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
 import org.thoughtcrime.securesms.loki.LokiPublicChatManager;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
-import org.thoughtcrime.securesms.loki.redesign.messaging.BackgroundPollWorker;
 import org.thoughtcrime.securesms.loki.redesign.messaging.BackgroundOpenGroupPollWorker;
+import org.thoughtcrime.securesms.loki.redesign.messaging.BackgroundPollWorker;
 import org.thoughtcrime.securesms.loki.redesign.messaging.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.redesign.messaging.LokiRSSFeedPoller;
 import org.thoughtcrime.securesms.loki.redesign.messaging.LokiUserDatabase;
@@ -94,9 +94,9 @@ import org.whispersystems.signalservice.api.util.StreamDetails;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.loki.api.LokiAPIDatabaseProtocol;
 import org.whispersystems.signalservice.loki.api.LokiFileServerAPI;
-import org.whispersystems.signalservice.loki.api.LokiLongPoller;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPI;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPIDelegate;
+import org.whispersystems.signalservice.loki.api.LokiPoller;
 import org.whispersystems.signalservice.loki.api.LokiPublicChat;
 import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
 import org.whispersystems.signalservice.loki.api.LokiRSSFeed;
@@ -140,7 +140,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private PersistentLogger        persistentLogger;
 
   // Loki
-  private LokiLongPoller lokiLongPoller = null;
+  private LokiPoller lokiPoller = null;
   private LokiRSSFeedPoller lokiNewsFeedPoller = null;
   private LokiRSSFeedPoller lokiMessengerUpdatesFeedPoller = null;
   private LokiPublicChatManager lokiPublicChatManager = null;
@@ -205,8 +205,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     Log.i(TAG, "App is now visible.");
     executePendingContactSync();
     KeyCachingService.onAppForegrounded(this);
-    // Loki - Start long polling if needed
-    startLongPollingIfNeeded();
+    // Loki - Start polling if needed
+    startPollingIfNeeded();
     // Loki - Start open group polling if needed
     lokiPublicChatManager.startPollersIfNeeded();
   }
@@ -217,8 +217,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     Log.i(TAG, "App is no longer visible.");
     KeyCachingService.onAppBackgrounded(this);
     MessageNotifier.setVisibleThread(-1);
-    // Loki - Stop long polling if needed
-    if (lokiLongPoller != null) { lokiLongPoller.stopIfNeeded(); }
+    // Loki - Stop polling if needed
+    if (lokiPoller != null) { lokiPoller.stopIfNeeded(); }
     if (lokiPublicChatManager != null) { lokiPublicChatManager.stopPollers(); }
   }
 
@@ -458,13 +458,13 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     // TODO: Implement
   }
 
-  private void setUpLongPollingIfNeeded() {
-    if (lokiLongPoller != null) return;
+  private void setUpPollingIfNeeded() {
+    if (lokiPoller != null) return;
     String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
     if (userHexEncodedPublicKey == null) return;
     LokiAPIDatabase lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(this);
     Context context = this;
-    lokiLongPoller = new LokiLongPoller(userHexEncodedPublicKey, lokiAPIDatabase, broadcaster, protos -> {
+    lokiPoller = new LokiPoller(userHexEncodedPublicKey, lokiAPIDatabase, broadcaster, protos -> {
       for (SignalServiceProtos.Envelope proto : protos) {
         new PushContentReceiveJob(context).processEnvelope(new SignalServiceEnvelope(proto));
       }
@@ -472,9 +472,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     });
   }
 
-  public void startLongPollingIfNeeded() {
-    setUpLongPollingIfNeeded();
-    if (lokiLongPoller != null) { lokiLongPoller.startIfNeeded(); }
+  public void startPollingIfNeeded() {
+    setUpPollingIfNeeded();
+    if (lokiPoller != null) { lokiPoller.startIfNeeded(); }
   }
 
   private LokiRSSFeed lokiNewsFeed() {

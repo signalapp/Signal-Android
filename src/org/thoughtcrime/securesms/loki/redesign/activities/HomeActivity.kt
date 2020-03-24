@@ -78,7 +78,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             }
         }
         // Double check that the long poller is up
-        (applicationContext as ApplicationContext).startLongPollingIfNeeded()
+        (applicationContext as ApplicationContext).startPollingIfNeeded()
         // Set content view
         setContentView(R.layout.activity_home)
         // Set custom toolbar
