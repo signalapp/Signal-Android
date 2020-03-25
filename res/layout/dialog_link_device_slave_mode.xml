@@ -38,7 +38,6 @@
         android:layout_marginTop="@dimen/large_spacing"
         android:text="Please check that the words below match those shown on your other device."
         android:textColor="@color/text"
-        android:alpha="0.6"
         android:textSize="@dimen/small_font_size"
         android:textAlignment="center" />
 

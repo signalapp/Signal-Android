@@ -64,7 +64,7 @@ private class LinkDeviceActivityAdapter(val activity: LinkDeviceActivity) : Frag
             1 -> {
                 val result = ScanQRCodeWrapperFragment()
                 result.delegate = activity
-                result.message = "Link to your existing account by going into your in-app settings and clicking \"Linked Devices\""
+                result.message = "Navigate to \"Settings\" > \"Devices\" > \"Link a Device\" on your other device and then scan the QR code that comes up to start the linking process."
                 result
             }
             else -> throw IllegalStateException()
