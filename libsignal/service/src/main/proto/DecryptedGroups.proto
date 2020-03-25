@@ -1,0 +1,73 @@
+/**
+ * Copyright (C) 2019 Open Whisper Systems
+ *
+ * Licensed according to the LICENSE file in this repository.
+ */
+syntax = "proto3";
+
+option java_package        = "org.signal.storageservice.protos.groups.local";
+option java_multiple_files = true;
+
+import "Groups.proto";
+
+// Decrypted version of Member
+// Keep field numbers in step
+message DecryptedMember {
+  bytes       uuid            = 1;
+  Member.Role role            = 2;
+  bytes       profileKey      = 3;
+  uint32      joinedAtVersion = 5;
+}
+
+message DecryptedPendingMember {
+  bytes       uuid           = 1;
+  Member.Role role           = 2;
+  bytes       addedByUuid    = 3;
+  uint64      timestamp      = 4;
+  bytes       uuidCipherText = 5;
+}
+
+message DecryptedPendingMemberRemoval {
+  bytes       uuid           = 1;
+  bytes       uuidCipherText = 2;
+}
+
+message DecryptedModifyMemberRole {
+  bytes       uuid           = 1;
+  Member.Role role           = 2;
+}
+
+// Decrypted version of message Group
+// Keep field numbers in step
+message DecryptedGroup {
+           string                    title                     = 2;
+           string                    avatar                    = 3;
+           DisappearingMessagesTimer disappearingMessagesTimer = 4;
+           AccessControl             accessControl             = 5;
+           uint32                    version                   = 6;
+  repeated DecryptedMember           members                   = 7;
+  repeated DecryptedPendingMember    pendingMembers            = 8;
+}
+
+// Decrypted version of message GroupChange.Actions
+// Keep field numbers in step
+message DecryptedGroupChange {
+           bytes                         editor                = 1;
+           uint32                        version               = 2;
+  repeated DecryptedMember               newMembers            = 3;
+  repeated bytes                         deleteMembers         = 4;
+  repeated DecryptedModifyMemberRole     modifyMemberRoles     = 5;
+  repeated DecryptedMember               modifiedProfileKeys   = 6;
+  repeated DecryptedPendingMember        newPendingMembers     = 7;
+  repeated DecryptedPendingMemberRemoval deletePendingMembers  = 8;
+  repeated bytes                         promotePendingMembers = 9;
+           DecryptedString               newTitle              = 10;
+           DecryptedString               newAvatar             = 11;
+           DisappearingMessagesTimer     newTimer              = 12;
+           AccessControl.AccessRequired  newAttributeAccess    = 13;
+           AccessControl.AccessRequired  newMemberAccess       = 14;
+}
+
+message DecryptedString {
+  string value = 1;
+}
