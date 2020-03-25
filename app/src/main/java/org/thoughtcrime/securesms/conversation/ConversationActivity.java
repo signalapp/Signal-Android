@@ -28,10 +28,10 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.hardware.Camera;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -73,6 +73,8 @@ import androidx.core.graphics.drawable.IconCompat;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.annimon.stream.Stream;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -207,7 +209,7 @@ import org.thoughtcrime.securesms.stickers.StickerSearchRepository;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
 import org.thoughtcrime.securesms.util.CommunicationActions;
-import org.thoughtcrime.securesms.util.Dialogs;
+import org.thoughtcrime.securesms.util.DrawableUtil;
 import org.thoughtcrime.securesms.util.DynamicDarkToolbarTheme;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -261,6 +263,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                StickerKeyboardProvider.StickerEventListener,
                AttachmentKeyboard.Callback
 {
+
+  private static final int SHORTCUT_ICON_SIZE = Build.VERSION.SDK_INT >= 26 ? ViewUtil.dpToPx(72) : ViewUtil.dpToPx(48 + 16 * 2);
+
   private static final String TAG = ConversationActivity.class.getSimpleName();
 
   public static final String RECIPIENT_EXTRA         = "recipient_id";
@@ -1047,47 +1052,58 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void handleAddShortcut() {
     Log.i(TAG, "Creating home screen shortcut for recipient " + recipient.get().getId());
 
-    new AsyncTask<Void, Void, IconCompat>() {
+    final Context context = getApplicationContext();
+    final Recipient recipient = this.recipient.get();
 
-      @Override
-      protected IconCompat doInBackground(Void... voids) {
-        Context    context = getApplicationContext();
-        IconCompat icon    = null;
+    GlideApp.with(this)
+            .asBitmap()
+            .load(recipient.getContactPhoto())
+            .error(recipient.getFallbackContactPhoto().asDrawable(this, recipient.getColor().toAvatarColor(this), false))
+            .into(new CustomTarget<Bitmap>() {
+              @Override
+              public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                if (errorDrawable == null) {
+                  throw new AssertionError();
+                }
 
-        if (recipient.get().getContactPhoto() != null) {
-          try {
-            Bitmap bitmap = BitmapFactory.decodeStream(recipient.get().getContactPhoto().openInputStream(context));
-            bitmap = BitmapUtil.createScaledBitmap(bitmap, 300, 300);
-            icon   = IconCompat.createWithAdaptiveBitmap(bitmap);
-          } catch (IOException e) {
-            Log.w(TAG, "Failed to decode contact photo during shortcut creation. Falling back to generic icon.", e);
-          }
-        }
+                Log.w(TAG, "Utilizing fallback photo for shortcut for recipient " + recipient.getId());
 
-        if (icon == null) {
-          icon = IconCompat.createWithResource(context, recipient.get().isGroup() ? R.mipmap.ic_group_shortcut
-                                                                                           : R.mipmap.ic_person_shortcut);
-        }
+                SimpleTask.run(() -> DrawableUtil.toBitmap(errorDrawable, SHORTCUT_ICON_SIZE, SHORTCUT_ICON_SIZE),
+                               bitmap -> addIconToHomeScreen(context, bitmap, recipient));
+              }
 
-        return icon;
-      }
+              @Override
+              public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                SimpleTask.run(() -> BitmapUtil.createScaledBitmap(resource, SHORTCUT_ICON_SIZE, SHORTCUT_ICON_SIZE),
+                               bitmap -> addIconToHomeScreen(context, bitmap, recipient));
+              }
 
-      @Override
-      protected void onPostExecute(IconCompat icon) {
-        Context context  = getApplicationContext();
-        String  name     = recipient.get().getDisplayName(ConversationActivity.this);
+              @Override
+              public void onLoadCleared(@Nullable Drawable placeholder) {
+              }
+            });
 
-        ShortcutInfoCompat shortcutInfo = new ShortcutInfoCompat.Builder(context, recipient.get().getId().serialize() + '-' + System.currentTimeMillis())
-                                                                .setShortLabel(name)
-                                                                .setIcon(icon)
-                                                                .setIntent(ShortcutLauncherActivity.createIntent(context, recipient.getId()))
-                                                                .build();
+  }
 
-        if (ShortcutManagerCompat.requestPinShortcut(context, shortcutInfo, null)) {
-          Toast.makeText(context, getString(R.string.ConversationActivity_added_to_home_screen), Toast.LENGTH_LONG).show();
-        }
-      }
-    }.execute();
+  private static void addIconToHomeScreen(@NonNull Context context,
+                                          @NonNull Bitmap bitmap,
+                                          @NonNull Recipient recipient)
+  {
+    IconCompat icon = IconCompat.createWithAdaptiveBitmap(bitmap);
+    String     name = recipient.isLocalNumber() ? context.getString(R.string.note_to_self)
+                                                  : recipient.getDisplayName(context);
+
+    ShortcutInfoCompat shortcutInfoCompat = new ShortcutInfoCompat.Builder(context, recipient.getId().serialize() + '-' + System.currentTimeMillis())
+                                                                  .setShortLabel(name)
+                                                                  .setIcon(icon)
+                                                                  .setIntent(ShortcutLauncherActivity.createIntent(context, recipient.getId()))
+                                                                  .build();
+
+    if (ShortcutManagerCompat.requestPinShortcut(context, shortcutInfoCompat, null)) {
+      Toast.makeText(context, context.getString(R.string.ConversationActivity_added_to_home_screen), Toast.LENGTH_LONG).show();
+    }
+
+    bitmap.recycle();
   }
 
   private void handleSearch() {
