@@ -320,7 +320,7 @@ public final class ImageEditorView extends FrameLayout {
 
   private EditSession startADrawingSession(@NonNull PointF point) {
     BezierDrawingRenderer renderer = new BezierDrawingRenderer(color, thickness * Bounds.FULL_BOUNDS.width(), cap, model.findCropRelativeToRoot());
-    EditorElement element          = new EditorElement(renderer);
+    EditorElement element          = new EditorElement(renderer, EditorModel.Z_DRAWING);
     model.addElementCentered(element, 1);
 
     Matrix elementInverseMatrix = model.findElementInverseMatrix(element, viewMatrix);

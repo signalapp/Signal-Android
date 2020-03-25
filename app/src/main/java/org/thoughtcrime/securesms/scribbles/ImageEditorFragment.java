@@ -50,8 +50,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   private static final String KEY_IMAGE_URI      = "image_uri";
   private static final String KEY_IS_AVATAR_MODE = "avatar_mode";
 
-  private static final int SELECT_OLD_STICKER_REQUEST_CODE = 123;
-  private static final int SELECT_NEW_STICKER_REQUEST_CODE = 124;
+  private static final int SELECT_STICKER_REQUEST_CODE = 124;
 
   private EditorModel restoredModel;
 
@@ -241,7 +240,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     String                initialText = "";
     int                   color       = imageEditorHud.getActiveColor();
     MultiLineTextRenderer renderer    = new MultiLineTextRenderer(initialText, color);
-    EditorElement         element     = new EditorElement(renderer);
+    EditorElement         element     = new EditorElement(renderer, EditorModel.Z_TEXT);
 
     imageEditorView.getModel().addElementCentered(element, 1);
     imageEditorView.invalidate();
@@ -254,20 +253,11 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   @Override
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
-    if (resultCode == RESULT_OK && requestCode == SELECT_NEW_STICKER_REQUEST_CODE && data != null) {
+    if (resultCode == RESULT_OK && requestCode == SELECT_STICKER_REQUEST_CODE && data != null) {
       final Uri uri = data.getData();
       if (uri != null) {
         UriGlideRenderer renderer = new UriGlideRenderer(uri, true, imageMaxWidth, imageMaxHeight);
-        EditorElement element = new EditorElement(renderer);
-        imageEditorView.getModel().addElementCentered(element, 0.2f);
-        currentSelection = element;
-        imageEditorHud.setMode(ImageEditorHud.Mode.MOVE_DELETE);
-      }
-    } else if (resultCode == RESULT_OK && requestCode == SELECT_OLD_STICKER_REQUEST_CODE && data != null) {
-      final Uri uri = data.getData();
-      if (uri != null) {
-        UriGlideRenderer renderer = new UriGlideRenderer(uri, false, imageMaxWidth, imageMaxHeight);
-        EditorElement element = new EditorElement(renderer);
+        EditorElement    element  = new EditorElement(renderer, EditorModel.Z_STICKERS);
         imageEditorView.getModel().addElementCentered(element, 0.2f);
         currentSelection = element;
         imageEditorHud.setMode(ImageEditorHud.Mode.MOVE_DELETE);
@@ -307,7 +297,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
 
       case INSERT_STICKER: {
         Intent intent = new Intent(getContext(), ImageEditorStickerSelectActivity.class);
-        startActivityForResult(intent, SELECT_NEW_STICKER_REQUEST_CODE);
+        startActivityForResult(intent, SELECT_STICKER_REQUEST_CODE);
         break;
       }
 

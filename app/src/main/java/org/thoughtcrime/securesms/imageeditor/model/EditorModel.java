@@ -35,6 +35,10 @@ import java.util.UUID;
  */
 public final class EditorModel implements Parcelable, RendererContext.Ready {
 
+  public static final int Z_DRAWING  = 0;
+  public static final int Z_STICKERS = 0;
+  public static final int Z_TEXT     = 1;
+
   private static final Runnable NULL_RUNNABLE = () -> {
   };
 
