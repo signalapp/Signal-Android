@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/large_spacing"
         android:layout_marginRight="@dimen/large_spacing"
-        android:textSize="@dimen/large_font_size"
+        android:textSize="19sp"
         android:textStyle="bold"
         android:textColor="@color/text"
         android:text="Link your device" />
@@ -28,9 +28,9 @@
         android:layout_marginLeft="@dimen/large_spacing"
         android:layout_marginTop="6dp"
         android:layout_marginRight="@dimen/large_spacing"
-        android:textSize="@dimen/small_font_size"
+        android:textSize="14sp"
         android:textColor="@color/text"
-        android:text="Enter your Session ID to start the linking process." />
+        android:text="Navigate to &quot;Settings&quot; > &quot;Devices&quot; > &quot;Link a Device&quot; on your other device and then enter your Session ID here to start the linking process." />
 
     <EditText
         style="@style/SmallSessionEditText"
