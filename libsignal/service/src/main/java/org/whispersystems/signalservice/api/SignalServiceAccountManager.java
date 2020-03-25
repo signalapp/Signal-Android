@@ -641,7 +641,7 @@ public class SignalServiceAccountManager {
     this.pushServiceSocket.setProfileName(ciphertextName);
   }
 
-  public String setProfileAvatar(ProfileKey key, StreamDetails avatar)
+  public Optional<String> setProfileAvatar(ProfileKey key, StreamDetails avatar)
       throws IOException
   {
     if (FeatureFlags.VERSIONED_PROFILES) {
@@ -663,7 +663,7 @@ public class SignalServiceAccountManager {
   /**
    * @return The avatar URL path, if one was written.
    */
-  public String setVersionedProfile(UUID uuid, ProfileKey profileKey, String name, StreamDetails avatar)
+  public Optional<String> setVersionedProfile(UUID uuid, ProfileKey profileKey, String name, StreamDetails avatar)
     throws IOException
   {
     if (!FeatureFlags.VERSIONED_PROFILES) {

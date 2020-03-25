@@ -74,7 +74,7 @@ public class InsightsRepository implements InsightsDashboardViewModel.Repository
         fallbackColor = ContactColors.generateFor(name);
       }
 
-      return new InsightsUserAvatar(new ProfileContactPhoto(self.getId(), String.valueOf(TextSecurePreferences.getProfileAvatarId(context))),
+      return new InsightsUserAvatar(new ProfileContactPhoto(self, self.getProfileAvatar()),
                                     fallbackColor,
                                     new GeneratedContactPhoto(name, R.drawable.ic_profile_outline_40));
     }, avatarConsumer::accept);

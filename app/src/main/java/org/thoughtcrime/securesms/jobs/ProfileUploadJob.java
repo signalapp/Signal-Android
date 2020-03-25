@@ -54,10 +54,10 @@ public final class ProfileUploadJob extends BaseJob {
 
     try (StreamDetails avatar = AvatarHelper.getSelfProfileAvatarStream(context)) {
       if (FeatureFlags.VERSIONED_PROFILES) {
-        avatarPath = accountManager.setVersionedProfile(Recipient.self().getUuid().get(), profileKey, profileName.serialize(), avatar);
+        avatarPath = accountManager.setVersionedProfile(Recipient.self().getUuid().get(), profileKey, profileName.serialize(), avatar).orNull();
       } else {
         accountManager.setProfileName(profileKey, profileName.serialize());
-        avatarPath = accountManager.setProfileAvatar(profileKey, avatar);
+        avatarPath = accountManager.setProfileAvatar(profileKey, avatar).orNull();
       }
     }
 

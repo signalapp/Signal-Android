@@ -120,10 +120,6 @@ public class RetrieveProfileAvatarJob extends BaseJob {
     }
 
     database.setProfileAvatar(recipient.getId(), profileAvatar);
-
-    if (recipient.isLocalNumber()) {
-      TextSecurePreferences.setProfileAvatarId(context, Util.getSecureRandom().nextInt());
-    }
   }
 
   @Override

@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.profiles.SystemProfileUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -106,7 +107,6 @@ class EditProfileRepository {
 
       try {
         AvatarHelper.setAvatar(context, Recipient.self().getId(), avatar);
-        TextSecurePreferences.setProfileAvatarId(context, new SecureRandom().nextInt());
       } catch (IOException e) {
         return UploadResult.ERROR_FILE_IO;
       }

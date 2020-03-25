@@ -434,14 +434,6 @@ public class TextSecurePreferences {
     setBooleanPreference(context, GIF_GRID_LAYOUT, isGrid);
   }
 
-  public static void setProfileAvatarId(Context context, int id) {
-    setIntegerPrefrence(context, PROFILE_AVATAR_ID_PREF, id);
-  }
-
-  public static int getProfileAvatarId(Context context) {
-    return getIntegerPreference(context, PROFILE_AVATAR_ID_PREF, 0);
-  }
-
   public static int getNotificationPriority(Context context) {
     return Integer.valueOf(getStringPreference(context, NOTIFICATION_PRIORITY_PREF, String.valueOf(NotificationCompat.PRIORITY_HIGH)));
   }

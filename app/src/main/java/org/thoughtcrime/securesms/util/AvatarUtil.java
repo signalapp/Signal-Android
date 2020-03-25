@@ -47,14 +47,14 @@ public final class AvatarUtil {
   public static GlideRequest<Drawable> getSelfAvatarOrFallbackIcon(@NonNull Context context, @DrawableRes int fallbackIcon) {
     return GlideApp.with(context)
                    .asDrawable()
-                   .load(new ProfileContactPhoto(Recipient.self().getId(), String.valueOf(TextSecurePreferences.getProfileAvatarId(context))))
+                   .load(new ProfileContactPhoto(Recipient.self(), Recipient.self().getProfileAvatar()))
                    .error(fallbackIcon)
                    .circleCrop()
                    .diskCacheStrategy(DiskCacheStrategy.ALL);
   }
 
   private static <T> GlideRequest<T> request(@NonNull GlideRequest<T> glideRequest, @NonNull Context context, @NonNull Recipient recipient) {
-    return glideRequest.load(new ProfileContactPhoto(recipient.getId(), String.valueOf(TextSecurePreferences.getProfileAvatarId(context))))
+    return glideRequest.load(new ProfileContactPhoto(recipient, recipient.getProfileAvatar()))
                        .error(getFallback(context, recipient))
                        .circleCrop()
                        .diskCacheStrategy(DiskCacheStrategy.ALL);

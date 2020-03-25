@@ -604,7 +604,7 @@ public class PushServiceSocket {
     makeServiceRequest(String.format(PROFILE_PATH, "name/" + (name == null ? "" : URLEncoder.encode(name))), "PUT", "");
   }
 
-  public String setProfileAvatar(ProfileAvatarData profileAvatar)
+  public Optional<String> setProfileAvatar(ProfileAvatarData profileAvatar)
       throws NonSuccessfulResponseCodeException, PushNetworkException
   {
     if (FeatureFlags.VERSIONED_PROFILES) {
@@ -629,16 +629,16 @@ public class PushServiceSocket {
                   profileAvatar.getContentType(), profileAvatar.getDataLength(),
                   profileAvatar.getOutputStreamFactory(), null, null);
 
-      return formAttributes.getKey();
+      return Optional.of(formAttributes.getKey());
     }
 
-    return null;
+    return Optional.absent();
   }
 
   /**
    * @return The avatar URL path, if one was written.
    */
-  public String writeProfile(SignalServiceProfileWrite signalServiceProfileWrite, ProfileAvatarData profileAvatar)
+  public Optional<String> writeProfile(SignalServiceProfileWrite signalServiceProfileWrite, ProfileAvatarData profileAvatar)
     throws NonSuccessfulResponseCodeException, PushNetworkException
   {
     if (!FeatureFlags.VERSIONED_PROFILES) {
@@ -665,10 +665,10 @@ public class PushServiceSocket {
                   profileAvatar.getContentType(), profileAvatar.getDataLength(),
                   profileAvatar.getOutputStreamFactory(), null, null);
 
-       return formAttributes.getKey();
+       return Optional.of(formAttributes.getKey());
     }
 
-    return null;
+    return Optional.absent();
   }
 
   public void setUsername(String username) throws IOException {

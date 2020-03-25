@@ -39,7 +39,7 @@ public class ApplicationMigrations {
 
   private static final int LEGACY_CANONICAL_VERSION = 455;
 
-  public static final int CURRENT_VERSION = 12;
+  public static final int CURRENT_VERSION = 13;
 
   private static final class Version {
     static final int LEGACY             = 1;
@@ -54,6 +54,7 @@ public class ApplicationMigrations {
     static final int SWOON_STICKERS     = 10;
     static final int STORAGE_SERVICE    = 11;
     static final int STORAGE_KEY_ROTATE = 12;
+    static final int REMOVE_AVATAR_ID   = 13;
   }
 
   /**
@@ -213,6 +214,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.STORAGE_KEY_ROTATE) {
       jobs.put(Version.STORAGE_KEY_ROTATE, new StorageKeyRotationMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.REMOVE_AVATAR_ID) {
+      jobs.put(Version.REMOVE_AVATAR_ID, new AvatarIdRemovalMigrationJob());
     }
 
     return jobs;
