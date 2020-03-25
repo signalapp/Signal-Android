@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import com.annimon.stream.Stream;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -81,7 +83,7 @@ public class RecipientUtil {
       leaveGroup(context, recipient);
     }
 
-    if (resolved.isSystemContact() || resolved.isProfileSharing()) {
+    if (resolved.isSystemContact() || resolved.isProfileSharing() || isProfileSharedViaGroup(context,resolved)) {
       ApplicationDependencies.getJobManager().add(new RotateProfileKeyJob());
       DatabaseFactory.getRecipientDatabase(context).setProfileSharing(resolved.getId(), false);
     }
@@ -228,5 +230,11 @@ public class RecipientUtil {
   @WorkerThread
   private static boolean noSecureMessagesInThread(@NonNull Context context, long threadId) {
     return DatabaseFactory.getMmsSmsDatabase(context).getSecureConversationCount(threadId) == 0;
+  }
+
+  @WorkerThread
+  private static boolean isProfileSharedViaGroup(@NonNull Context context, @NonNull Recipient recipient) {
+    return Stream.of(DatabaseFactory.getGroupDatabase(context).getGroupsContainingMember(recipient.getId()))
+                 .anyMatch(group -> Recipient.resolved(group.getRecipientId()).isProfileSharing());
   }
 }

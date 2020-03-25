@@ -26,6 +26,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPoin
 import java.io.Closeable;
 import java.io.IOException;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -163,25 +164,31 @@ public class GroupDatabase extends Database {
   }
 
   public List<String> getGroupNamesContainingMember(RecipientId recipientId) {
+    return Stream.of(getGroupsContainingMember(recipientId))
+                 .map(GroupRecord::getTitle)
+                 .toList();
+  }
+
+  public List<GroupRecord> getGroupsContainingMember(RecipientId recipientId) {
     SQLiteDatabase database   = databaseHelper.getReadableDatabase();
     String         table      = TABLE_NAME + " INNER JOIN " + ThreadDatabase.TABLE_NAME + " ON " + TABLE_NAME + "." + RECIPIENT_ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.RECIPIENT_ID;
-    List<String>   groupNames = new LinkedList<>();
-    String[]       projection = new String[]{TITLE, MEMBERS};
     String         query      = MEMBERS + " LIKE ?";
     String[]       args       = new String[]{"%" + recipientId.serialize() + "%"};
     String         orderBy    = ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.DATE + " DESC";
 
-    try (Cursor cursor = database.query(table, projection, query, args, null, null, orderBy)) {
+    List<GroupRecord> groups = new LinkedList<>();
+
+    try (Cursor cursor = database.query(table, null, query, args, null, null, orderBy)) {
       while (cursor != null && cursor.moveToNext()) {
         List<String> members = Util.split(cursor.getString(cursor.getColumnIndexOrThrow(MEMBERS)), ",");
 
         if (members.contains(recipientId.serialize())) {
-          groupNames.add(cursor.getString(cursor.getColumnIndexOrThrow(TITLE)));
+          groups.add(new Reader(cursor).getCurrent());
         }
       }
     }
 
-    return groupNames;
+    return groups;
   }
 
   public Reader getGroups() {
