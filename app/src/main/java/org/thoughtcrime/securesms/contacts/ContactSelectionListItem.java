@@ -23,10 +23,16 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class ContactSelectionListItem extends LinearLayout implements RecipientForeverObserver {
 
   @SuppressWarnings("unused")
   private static final String TAG = ContactSelectionListItem.class.getSimpleName();
+
+  private static final Map<RecipientId, ArrayList<ContactSelectionListItem>> duplicateContactsMap = new HashMap<>();
 
   private AvatarImageView contactPhotoImage;
   private TextView        numberView;
@@ -39,6 +45,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
   private int           contactType;
   private LiveRecipient recipient;
   private GlideRequests glideRequests;
+  private boolean       multiSelect;
 
   public ContactSelectionListItem(Context context) {
     super(context);
@@ -72,6 +79,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
     this.glideRequests = glideRequests;
     this.number        = number;
     this.contactType   = type;
+    this.multiSelect   = multiSelect;
 
     if (type == ContactRepository.NEW_PHONE_TYPE || type == ContactRepository.NEW_USERNAME_TYPE) {
       this.recipient = null;
@@ -90,11 +98,36 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
 
     setText(recipientSnapshot, type, name, number, label);
 
-    this.checkBox.setVisibility(checkboxVisible ? View.VISIBLE : View.GONE);
+    if (this.multiSelect || checkboxVisible){
+      this.checkBox.setVisibility(View.VISIBLE);
+      addToDuplicatesContactsMap();
+    } else {
+      this.checkBox.setVisibility(View.GONE);
+    }
   }
 
   public void setChecked(boolean selected) {
-    this.checkBox.setChecked(selected);
+    if(isMultiSelect()) {
+      setCheckedIncludingDuplicates(selected);
+    } else {
+      this.checkBox.setChecked(selected);
+    }
+  }
+
+  private void setCheckedIncludingDuplicates(boolean selected){
+    if(getRecipientId().isPresent()){
+      RecipientId recipientId = getRecipientId().get();
+      if(duplicateContactsMap.containsKey(recipientId)) {
+        ArrayList<ContactSelectionListItem> contactSelectionList = duplicateContactsMap.get(recipientId);
+        if (contactSelectionList != null) {
+          for (ContactSelectionListItem listItem : contactSelectionList) {
+            listItem.checkBox.setChecked(selected);
+          }
+        }
+      }
+    } else {
+      this.checkBox.setChecked(selected);
+    }
   }
 
   @Override
@@ -104,9 +137,35 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
   }
 
   public void unbind(GlideRequests glideRequests) {
+    if(isMultiSelect()){
+      removeFromDuplicateContactsMaps();
+    }
+
     if (recipient != null) {
       recipient.removeForeverObserver(this);
       recipient = null;
+    }
+  }
+
+  private void addToDuplicatesContactsMap(){
+    if(getRecipientId().isPresent()){
+      RecipientId recipientId = getRecipientId().get();
+      if (!duplicateContactsMap.containsKey(recipientId)) {
+        duplicateContactsMap.put(recipientId, new ArrayList<>());
+      }
+      duplicateContactsMap.get(recipientId).add(this);
+    }
+  }
+
+  private void removeFromDuplicateContactsMaps(){
+    if(getRecipientId().isPresent()) {
+      RecipientId recipientId = getRecipientId().get();
+      if (duplicateContactsMap.containsKey(recipientId)) {
+        ArrayList<ContactSelectionListItem> contactSelectionList = duplicateContactsMap.get(recipientId);
+        if (contactSelectionList != null) {
+          contactSelectionList.remove(this);
+        }
+      }
     }
   }
 
@@ -163,6 +222,10 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
 
   public @Nullable LiveRecipient getRecipient() {
     return recipient;
+  }
+
+  public boolean isMultiSelect() {
+    return multiSelect;
   }
 
   public boolean isUsernameType() {
