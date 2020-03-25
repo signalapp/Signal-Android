@@ -17,7 +17,7 @@ apply plugin: 'witness'
 apply plugin: 'idea'
 apply from: 'witness-verifications.gradle'
 
-sourceCompatibility = 1.7
+sourceCompatibility = 1.8
 archivesBaseName    = "signal-service-java"
 version             = lib_signal_service_version_number
 group               = lib_signal_service_group_info
