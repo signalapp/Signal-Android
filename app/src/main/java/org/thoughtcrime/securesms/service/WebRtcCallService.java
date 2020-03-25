@@ -924,6 +924,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       callManager.setVideoEnable(enable);
     } catch  (CallException e) {
       callFailure("setVideoEnable() failed: ", e);
+      return;
     }
 
     localCameraState = camera.getCameraState();
