@@ -20,14 +20,6 @@ import android.Manifest.permission;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Matrix;
-import android.graphics.Rect;
-import android.graphics.SurfaceTexture;
-import android.hardware.camera2.CameraAccessException;
-import android.hardware.camera2.CameraCharacteristics;
-import android.hardware.camera2.CameraManager;
-import android.os.Build;
-import android.os.Looper;
 import android.util.Log;
 import android.util.Rational;
 import android.util.Size;
@@ -36,41 +28,53 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RequiresPermission;
-import androidx.annotation.UiThread;
 import androidx.camera.core.AspectRatio;
-import androidx.camera.core.CameraInfo;
-import androidx.camera.core.CameraInfoUnavailableException;
-import androidx.camera.core.CameraOrientationUtil;
+import androidx.camera.core.Camera;
+import androidx.camera.core.CameraSelector;
 import androidx.camera.core.CameraX;
-import androidx.camera.core.FlashMode;
 import androidx.camera.core.ImageCapture;
-import androidx.camera.core.ImageCaptureConfig;
+import androidx.camera.core.ImageCapture.OnImageCapturedCallback;
 import androidx.camera.core.Preview;
-import androidx.camera.core.PreviewConfig;
-import androidx.camera.core.VideoCaptureConfig;
+import androidx.camera.core.TorchState;
+import androidx.camera.core.UseCase;
+import androidx.camera.core.impl.CameraInternal;
+import androidx.camera.core.impl.LensFacingConverter;
+import androidx.camera.core.impl.VideoCaptureConfig;
+import androidx.camera.core.impl.utils.CameraOrientationUtil;
+import androidx.camera.core.impl.utils.executor.CameraXExecutors;
+import androidx.camera.core.impl.utils.futures.FutureCallback;
+import androidx.camera.core.impl.utils.futures.Futures;
+import androidx.camera.lifecycle.ProcessCameraProvider;
+import androidx.core.util.Preconditions;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.OnLifecycleEvent;
+
+import com.google.common.util.concurrent.ListenableFuture;
 
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.video.VideoUtil;
 
-import java.io.File;
 import java.io.FileDescriptor;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static androidx.camera.core.ImageCapture.FLASH_MODE_OFF;
+
 /** CameraX use case operation built on @{link androidx.camera.core}. */
+// Begin Signal Custom Code Block
 @RequiresApi(21)
+// End Signal Custom Code Block
 final class CameraXModule {
   public static final String TAG = "CameraXModule";
 
-  private static final int MAX_VIEW_DIMENSION = 2000;
   private static final float UNITY_ZOOM_SCALE = 1f;
   private static final float ZOOM_NOT_SUPPORTED = UNITY_ZOOM_SCALE;
   private static final Rational ASPECT_RATIO_16_9 = new Rational(16, 9);
@@ -78,22 +82,27 @@ final class CameraXModule {
   private static final Rational ASPECT_RATIO_9_16 = new Rational(9, 16);
   private static final Rational ASPECT_RATIO_3_4 = new Rational(3, 4);
 
-  private final CameraManager mCameraManager;
-  private final PreviewConfig.Builder mPreviewConfigBuilder;
+  private final Preview.Builder mPreviewBuilder;
   private final VideoCaptureConfig.Builder mVideoCaptureConfigBuilder;
-  private final ImageCaptureConfig.Builder mImageCaptureConfigBuilder;
-  private final CameraXView mCameraView;
+  private final ImageCapture.Builder mImageCaptureBuilder;
+  private final CameraXView mCameraXView;
   final AtomicBoolean mVideoIsRecording = new AtomicBoolean(false);
   private CameraXView.CaptureMode mCaptureMode = CameraXView.CaptureMode.IMAGE;
   private long mMaxVideoDuration = CameraXView.INDEFINITE_VIDEO_DURATION;
   private long mMaxVideoSize = CameraXView.INDEFINITE_VIDEO_SIZE;
-  private FlashMode mFlash = FlashMode.OFF;
+  @ImageCapture.FlashMode
+  private int mFlash = FLASH_MODE_OFF;
+  @Nullable
+  @SuppressWarnings("WeakerAccess") /* synthetic accessor */
+      Camera mCamera;
   @Nullable
   private ImageCapture mImageCapture;
   @Nullable
   private VideoCapture mVideoCapture;
+  @SuppressWarnings("WeakerAccess") /* synthetic accessor */
   @Nullable
   Preview mPreview;
+  @SuppressWarnings("WeakerAccess") /* synthetic accessor */
   @Nullable
   LifecycleOwner mCurrentLifecycle;
   private final LifecycleObserver mCurrentLifecycleObserver =
@@ -102,27 +111,44 @@ final class CameraXModule {
         public void onDestroy(LifecycleOwner owner) {
           if (owner == mCurrentLifecycle) {
             clearCurrentLifecycle();
-            mPreview.removePreviewOutputListener();
+            mPreview.setSurfaceProvider(null);
           }
         }
       };
   @Nullable
   private LifecycleOwner mNewLifecycle;
-  private float mZoomLevel = UNITY_ZOOM_SCALE;
+  @SuppressWarnings("WeakerAccess") /* synthetic accessor */
   @Nullable
-  private Rect mCropRegion;
+  Integer mCameraLensFacing = CameraSelector.LENS_FACING_BACK;
+  @SuppressWarnings("WeakerAccess") /* synthetic accessor */
   @Nullable
-  private CameraX.LensFacing mCameraLensFacing = CameraX.LensFacing.BACK;
+  ProcessCameraProvider mCameraProvider;
 
   CameraXModule(CameraXView view) {
-    this.mCameraView = view;
+    mCameraXView = view;
 
-    mCameraManager = (CameraManager) view.getContext().getSystemService(Context.CAMERA_SERVICE);
+    Futures.addCallback(ProcessCameraProvider.getInstance(view.getContext()),
+        new FutureCallback<ProcessCameraProvider>() {
+          // TODO(b/124269166): Rethink how we can handle permissions here.
+          @SuppressLint("MissingPermission")
+          @Override
+          public void onSuccess(@Nullable ProcessCameraProvider provider) {
+            Preconditions.checkNotNull(provider);
+            mCameraProvider = provider;
+            if (mCurrentLifecycle != null) {
+              bindToLifecycle(mCurrentLifecycle);
+            }
+          }
 
-    mPreviewConfigBuilder = new PreviewConfig.Builder().setTargetName("Preview");
+          @Override
+          public void onFailure(Throwable t) {
+            throw new RuntimeException("CameraX failed to initialize.", t);
+          }
+        }, CameraXExecutors.mainThreadExecutor());
 
-    mImageCaptureConfigBuilder =
-        new ImageCaptureConfig.Builder().setTargetName("ImageCapture");
+    mPreviewBuilder = new Preview.Builder().setTargetName("Preview");
+
+    mImageCaptureBuilder = new ImageCapture.Builder().setTargetName("ImageCapture");
 
     // Begin Signal Custom Code Block
     mVideoCaptureConfigBuilder =
@@ -132,42 +158,8 @@ final class CameraXModule {
                                         .setBitRate(VideoUtil.VIDEO_BIT_RATE);
     // End Signal Custom Code Block
   }
-
-  /**
-   * Rescales view rectangle with dimensions in [-1000, 1000] to a corresponding rectangle in the
-   * sensor coordinate frame.
-   */
-  private static Rect rescaleViewRectToSensorRect(Rect view, Rect sensor) {
-    // Scale width and height.
-    int newWidth = Math.round(view.width() * sensor.width() / (float) MAX_VIEW_DIMENSION);
-    int newHeight = Math.round(view.height() * sensor.height() / (float) MAX_VIEW_DIMENSION);
-
-    // Scale top/left corner.
-    int halfViewDimension = MAX_VIEW_DIMENSION / 2;
-    int leftOffset =
-        Math.round(
-            (view.left + halfViewDimension)
-                * sensor.width()
-                / (float) MAX_VIEW_DIMENSION)
-            + sensor.left;
-    int topOffset =
-        Math.round(
-            (view.top + halfViewDimension)
-                * sensor.height()
-                / (float) MAX_VIEW_DIMENSION)
-            + sensor.top;
-
-    // Now, produce the scaled rect.
-    Rect scaled = new Rect();
-    scaled.left = leftOffset;
-    scaled.top = topOffset;
-    scaled.right = scaled.left + newWidth;
-    scaled.bottom = scaled.top + newHeight;
-    return scaled;
-  }
-
   @RequiresPermission(permission.CAMERA)
-  public void bindToLifecycle(LifecycleOwner lifecycleOwner) {
+  void bindToLifecycle(LifecycleOwner lifecycleOwner) {
     mNewLifecycle = lifecycleOwner;
 
     if (getMeasuredWidth() > 0 && getMeasuredHeight() > 0) {
@@ -189,38 +181,33 @@ final class CameraXModule {
       throw new IllegalArgumentException("Cannot bind to lifecycle in a destroyed state.");
     }
 
-    final int cameraOrientation;
-    try {
-      Set<CameraX.LensFacing> available = getAvailableCameraLensFacing();
+    if (mCameraProvider == null) {
+      // try again once the camera provider is no longer null
+      return;
+    }
 
-      if (available.isEmpty()) {
-        Log.w(TAG, "Unable to bindToLifeCycle since no cameras available");
-        mCameraLensFacing = null;
-      }
+    Set<Integer> available = getAvailableCameraLensFacing();
 
-      // Ensure the current camera exists, or default to another camera
-      if (mCameraLensFacing != null && !available.contains(mCameraLensFacing)) {
-        Log.w(TAG, "Camera does not exist with direction " + mCameraLensFacing);
+    if (available.isEmpty()) {
+      Log.w(TAG, "Unable to bindToLifeCycle since no cameras available");
+      mCameraLensFacing = null;
+    }
 
-        // Default to the first available camera direction
-        mCameraLensFacing = available.iterator().next();
+    // Ensure the current camera exists, or default to another camera
+    if (mCameraLensFacing != null && !available.contains(mCameraLensFacing)) {
+      Log.w(TAG, "Camera does not exist with direction " + mCameraLensFacing);
 
-        Log.w(TAG, "Defaulting to primary camera with direction " + mCameraLensFacing);
-      }
+      // Default to the first available camera direction
+      mCameraLensFacing = available.iterator().next();
 
-      // Do not attempt to create use cases for a null cameraLensFacing. This could occur if
-      // the
-      // user explicitly sets the LensFacing to null, or if we determined there
-      // were no available cameras, which should be logged in the logic above.
-      if (mCameraLensFacing == null) {
-        return;
-      }
-      CameraInfo cameraInfo = CameraX.getCameraInfo(getLensFacing());
-      cameraOrientation = cameraInfo.getSensorRotationDegrees();
-    } catch (CameraInfoUnavailableException e) {
-      throw new IllegalStateException("Unable to get Camera Info.", e);
-    } catch (Exception e) {
-      throw new IllegalStateException("Unable to bind to lifecycle.", e);
+      Log.w(TAG, "Defaulting to primary camera with direction " + mCameraLensFacing);
+    }
+
+    // Do not attempt to create use cases for a null cameraLensFacing. This could occur if
+    // the user explicitly sets the LensFacing to null, or if we determined there
+    // were no available cameras, which should be logged in the logic above.
+    if (mCameraLensFacing == null) {
+      return;
     }
 
     // Set the preferred aspect ratio as 4:3 if it is IMAGE only mode. Set the preferred aspect
@@ -230,23 +217,32 @@ final class CameraXModule {
     boolean isDisplayPortrait = getDisplayRotationDegrees() == 0
         || getDisplayRotationDegrees() == 180;
 
-    // Begin Signal Custom Code Block
     Rational targetAspectRatio;
+
+    // Begin Signal Custom Code Block
     int resolution = CameraXUtil.getIdealResolution(Resources.getSystem().getDisplayMetrics().widthPixels, Resources.getSystem().getDisplayMetrics().heightPixels);
-    Log.i(TAG, "Ideal resolution: " + resolution);
-    if (getCaptureMode() == CameraXView.CaptureMode.IMAGE) {
-      mImageCaptureConfigBuilder.setTargetResolution(CameraXUtil.buildResolutionForRatio(resolution, ASPECT_RATIO_4_3, isDisplayPortrait));
-      targetAspectRatio = isDisplayPortrait ? ASPECT_RATIO_3_4 : ASPECT_RATIO_4_3;
-    } else {
-      mImageCaptureConfigBuilder.setTargetResolution(CameraXUtil.buildResolutionForRatio(resolution, ASPECT_RATIO_16_9, isDisplayPortrait));
-      targetAspectRatio = isDisplayPortrait ? ASPECT_RATIO_9_16 : ASPECT_RATIO_16_9;
-    }
-    mImageCaptureConfigBuilder.setCaptureMode(CameraXUtil.getOptimalCaptureMode());
-    mImageCaptureConfigBuilder.setLensFacing(mCameraLensFacing);
     // End Signal Custom Code Block
 
-    mImageCaptureConfigBuilder.setTargetRotation(getDisplaySurfaceRotation());
-    mImageCapture = new ImageCapture(mImageCaptureConfigBuilder.build());
+    if (getCaptureMode() == CameraXView.CaptureMode.IMAGE) {
+//      mImageCaptureBuilder.setTargetAspectRatio(AspectRatio.RATIO_4_3);
+      // Begin Signal Custom Code Block
+      mImageCaptureBuilder.setTargetResolution(CameraXUtil.buildResolutionForRatio(resolution, ASPECT_RATIO_4_3, isDisplayPortrait));
+      // End Signal Custom Code Block
+      targetAspectRatio = isDisplayPortrait ? ASPECT_RATIO_3_4 : ASPECT_RATIO_4_3;
+    } else {
+      // Begin Signal Custom Code Block
+      mImageCaptureBuilder.setTargetResolution(CameraXUtil.buildResolutionForRatio(resolution, ASPECT_RATIO_16_9, isDisplayPortrait));
+      // End Signal Custom Code Block
+//      mImageCaptureBuilder.setTargetAspectRatio(AspectRatio.RATIO_16_9);
+      targetAspectRatio = isDisplayPortrait ? ASPECT_RATIO_9_16 : ASPECT_RATIO_16_9;
+    }
+
+    // Begin Signal Custom Code Block
+    mImageCaptureBuilder.setCaptureMode(CameraXUtil.getOptimalCaptureMode());
+    // End Signal Custom Code Block
+
+    mImageCaptureBuilder.setTargetRotation(getDisplaySurfaceRotation());
+    mImageCapture = mImageCaptureBuilder.build();
 
     // Begin Signal Custom Code Block
     Size size = VideoUtil.getVideoRecordingSize();
@@ -255,46 +251,37 @@ final class CameraXModule {
     // End Signal Custom Code Block
 
     mVideoCaptureConfigBuilder.setTargetRotation(getDisplaySurfaceRotation());
-    mVideoCaptureConfigBuilder.setLensFacing(mCameraLensFacing);
 
     // Begin Signal Custom Code Block
     if (MediaConstraints.isVideoTranscodeAvailable()) {
-      mVideoCapture = new VideoCapture(mVideoCaptureConfigBuilder.build());
+      mVideoCapture = new VideoCapture(mVideoCaptureConfigBuilder.getUseCaseConfig());
     }
-    mPreviewConfigBuilder.setLensFacing(mCameraLensFacing);
+    // End Signal Custom Code Block
 
     // Adjusts the preview resolution according to the view size and the target aspect ratio.
     int height = (int) (getMeasuredWidth() / targetAspectRatio.floatValue());
-    mPreviewConfigBuilder.setTargetResolution(new Size(getMeasuredWidth(), height));
+    mPreviewBuilder.setTargetResolution(new Size(getMeasuredWidth(), height));
 
-    mPreview = new Preview(mPreviewConfigBuilder.build());
-    mPreview.setOnPreviewOutputUpdateListener(
-        new Preview.OnPreviewOutputUpdateListener() {
-          @Override
-          public void onUpdated(@NonNull Preview.PreviewOutput output) {
-            boolean needReverse = cameraOrientation != 0 && cameraOrientation != 180;
-            int textureWidth =
-                needReverse
-                    ? output.getTextureSize().getHeight()
-                    : output.getTextureSize().getWidth();
-            int textureHeight =
-                needReverse
-                    ? output.getTextureSize().getWidth()
-                    : output.getTextureSize().getHeight();
-            CameraXModule.this.onPreviewSourceDimensUpdated(textureWidth,
-                textureHeight);
-            CameraXModule.this.setSurfaceTexture(output.getSurfaceTexture());
-          }
-        });
+    mPreview = mPreviewBuilder.build();
+    mPreview.setSurfaceProvider(mCameraXView.getPreviewView().getPreviewSurfaceProvider());
 
+    CameraSelector cameraSelector =
+        new CameraSelector.Builder().requireLensFacing(mCameraLensFacing).build();
     if (getCaptureMode() == CameraXView.CaptureMode.IMAGE) {
-      CameraX.bindToLifecycle(mCurrentLifecycle, mImageCapture, mPreview);
+      mCamera = mCameraProvider.bindToLifecycle(mCurrentLifecycle, cameraSelector,
+          mImageCapture,
+          mPreview);
     } else if (getCaptureMode() == CameraXView.CaptureMode.VIDEO) {
-      CameraX.bindToLifecycle(mCurrentLifecycle, mVideoCapture, mPreview);
+      mCamera = mCameraProvider.bindToLifecycle(mCurrentLifecycle, cameraSelector,
+          mVideoCapture,
+          mPreview);
     } else {
-      CameraX.bindToLifecycle(mCurrentLifecycle, mImageCapture, mVideoCapture, mPreview);
+      mCamera = mCameraProvider.bindToLifecycle(mCurrentLifecycle, cameraSelector,
+          mImageCapture,
+          mVideoCapture, mPreview);
     }
-    setZoomLevel(mZoomLevel);
+
+    setZoomRatio(UNITY_ZOOM_SCALE);
     mCurrentLifecycle.getLifecycle().addObserver(mCurrentLifecycleObserver);
     // Enable flash setting in ImageCapture after use cases are created and binded.
     setFlash(getFlash());
@@ -310,7 +297,7 @@ final class CameraXModule {
         "Explicit open/close of camera not yet supported. Use bindtoLifecycle() instead.");
   }
 
-  public void takePicture(Executor executor, ImageCapture.OnImageCapturedListener listener) {
+  public void takePicture(Executor executor, OnImageCapturedCallback callback) {
     if (mImageCapture == null) {
       return;
     }
@@ -319,35 +306,19 @@ final class CameraXModule {
       throw new IllegalStateException("Can not take picture under VIDEO capture mode.");
     }
 
-    if (listener == null) {
-      throw new IllegalArgumentException("OnImageCapturedListener should not be empty");
+    if (callback == null) {
+      throw new IllegalArgumentException("OnImageCapturedCallback should not be empty");
     }
 
-    mImageCapture.takePicture(executor, listener);
-  }
-
-  public void takePicture(File saveLocation, Executor executor, ImageCapture.OnImageSavedListener listener) {
-    if (mImageCapture == null) {
-      return;
-    }
-
-    if (getCaptureMode() == CameraXView.CaptureMode.VIDEO) {
-      throw new IllegalStateException("Can not take picture under VIDEO capture mode.");
-    }
-
-    if (listener == null) {
-      throw new IllegalArgumentException("OnImageSavedListener should not be empty");
-    }
-
-    ImageCapture.Metadata metadata = new ImageCapture.Metadata();
-    metadata.isReversedHorizontal = mCameraLensFacing == CameraX.LensFacing.FRONT;
-    mImageCapture.takePicture(saveLocation, metadata, executor, listener);
+    mImageCapture.takePicture(executor, callback);
   }
 
   // Begin Signal Custom Code Block
   @RequiresApi(26)
-  public void startRecording(FileDescriptor file, Executor executor, final VideoCapture.OnVideoSavedListener listener) {
-  // End Signal Custom Code Block
+  public void startRecording(FileDescriptor file,
+                             // End Signal Custom Code Block
+                             Executor executor,
+                             final VideoCapture.OnVideoSavedCallback callback) {
     if (mVideoCapture == null) {
       return;
     }
@@ -356,31 +327,31 @@ final class CameraXModule {
       throw new IllegalStateException("Can not record video under IMAGE capture mode.");
     }
 
-    if (listener == null) {
-      throw new IllegalArgumentException("OnVideoSavedListener should not be empty");
+    if (callback == null) {
+      throw new IllegalArgumentException("OnVideoSavedCallback should not be empty");
     }
 
     mVideoIsRecording.set(true);
     mVideoCapture.startRecording(
         file,
         executor,
-        new VideoCapture.OnVideoSavedListener() {
+        new VideoCapture.OnVideoSavedCallback() {
           @Override
-          // Begin Signal Custom Code block
+          // Begin Signal Custom Code Block
           public void onVideoSaved(@NonNull FileDescriptor savedFile) {
           // End Signal Custom Code Block
             mVideoIsRecording.set(false);
-            listener.onVideoSaved(savedFile);
+            callback.onVideoSaved(savedFile);
           }
 
           @Override
           public void onError(
-              @NonNull VideoCapture.VideoCaptureError videoCaptureError,
+              @VideoCapture.VideoCaptureError int videoCaptureError,
               @NonNull String message,
               @Nullable Throwable cause) {
             mVideoIsRecording.set(false);
             Log.e(TAG, message, cause);
-            listener.onError(videoCaptureError, message, cause);
+            callback.onError(videoCaptureError, message, cause);
           }
         });
   }
@@ -402,9 +373,9 @@ final class CameraXModule {
 
   // TODO(b/124269166): Rethink how we can handle permissions here.
   @SuppressLint("MissingPermission")
-  public void setCameraLensFacing(@Nullable CameraX.LensFacing lensFacing) {
+  public void setCameraLensFacing(@Nullable Integer lensFacing) {
     // Setting same lens facing is a no-op, so check for that first
-    if (mCameraLensFacing != lensFacing) {
+    if (!Objects.equals(mCameraLensFacing, lensFacing)) {
       // If we're not bound to a lifecycle, just update the camera that will be opened when we
       // attach to a lifecycle.
       mCameraLensFacing = lensFacing;
@@ -417,7 +388,7 @@ final class CameraXModule {
   }
 
   @RequiresPermission(permission.CAMERA)
-  public boolean hasCameraWithLensFacing(CameraX.LensFacing lensFacing) {
+  public boolean hasCameraWithLensFacing(@CameraSelector.LensFacing int lensFacing) {
     String cameraId;
     try {
       cameraId = CameraX.getCameraWithLensFacing(lensFacing);
@@ -429,14 +400,14 @@ final class CameraXModule {
   }
 
   @Nullable
-  public CameraX.LensFacing getLensFacing() {
+  public Integer getLensFacing() {
     return mCameraLensFacing;
   }
 
   public void toggleCamera() {
     // TODO(b/124269166): Rethink how we can handle permissions here.
     @SuppressLint("MissingPermission")
-    Set<CameraX.LensFacing> availableCameraLensFacing = getAvailableCameraLensFacing();
+    Set<Integer> availableCameraLensFacing = getAvailableCameraLensFacing();
 
     if (availableCameraLensFacing.isEmpty()) {
       return;
@@ -447,106 +418,65 @@ final class CameraXModule {
       return;
     }
 
-    if (mCameraLensFacing == CameraX.LensFacing.BACK
-        && availableCameraLensFacing.contains(CameraX.LensFacing.FRONT)) {
-      setCameraLensFacing(CameraX.LensFacing.FRONT);
+    if (mCameraLensFacing == CameraSelector.LENS_FACING_BACK
+        && availableCameraLensFacing.contains(CameraSelector.LENS_FACING_FRONT)) {
+      setCameraLensFacing(CameraSelector.LENS_FACING_FRONT);
       return;
     }
 
-    if (mCameraLensFacing == CameraX.LensFacing.FRONT
-        && availableCameraLensFacing.contains(CameraX.LensFacing.BACK)) {
-      setCameraLensFacing(CameraX.LensFacing.BACK);
+    if (mCameraLensFacing == CameraSelector.LENS_FACING_FRONT
+        && availableCameraLensFacing.contains(CameraSelector.LENS_FACING_BACK)) {
+      setCameraLensFacing(CameraSelector.LENS_FACING_BACK);
       return;
     }
   }
 
-  public float getZoomLevel() {
-    return mZoomLevel;
+  public float getZoomRatio() {
+    if (mCamera != null) {
+      return mCamera.getCameraInfo().getZoomState().getValue().getZoomRatio();
+    } else {
+      return UNITY_ZOOM_SCALE;
+    }
   }
 
-  public void setZoomLevel(float zoomLevel) {
-    // Set the zoom level in case it is set before binding to a lifecycle
-    this.mZoomLevel = zoomLevel;
+  public void setZoomRatio(float zoomRatio) {
+    if (mCamera != null) {
+      ListenableFuture<Void> future = mCamera.getCameraControl().setZoomRatio(
+          zoomRatio);
+      Futures.addCallback(future, new FutureCallback<Void>() {
+        @Override
+        public void onSuccess(@Nullable Void result) {
+        }
 
-    if (mPreview == null) {
-      // Nothing to zoom on yet since we don't have a preview. Defer calculating crop
-      // region.
-      return;
+        @Override
+        public void onFailure(Throwable t) {
+          // Throw the unexpected error.
+          throw new RuntimeException(t);
+        }
+      }, CameraXExecutors.directExecutor());
+    } else {
+      Log.e(TAG, "Failed to set zoom ratio");
     }
-
-    Rect sensorSize;
-    try {
-      sensorSize = getSensorSize(getActiveCamera());
-      if (sensorSize == null) {
-        Log.e(TAG, "Failed to get the sensor size.");
-        return;
-      }
-    } catch (Exception e) {
-      Log.e(TAG, "Failed to get the sensor size.", e);
-      return;
-    }
-
-    float minZoom = getMinZoomLevel();
-    float maxZoom = getMaxZoomLevel();
-
-    if (this.mZoomLevel < minZoom) {
-      Log.e(TAG, "Requested zoom level is less than minimum zoom level.");
-    }
-    if (this.mZoomLevel > maxZoom) {
-      Log.e(TAG, "Requested zoom level is greater than maximum zoom level.");
-    }
-    this.mZoomLevel = Math.max(minZoom, Math.min(maxZoom, this.mZoomLevel));
-
-    float zoomScaleFactor =
-        (maxZoom == minZoom) ? minZoom : (this.mZoomLevel - minZoom) / (maxZoom - minZoom);
-    int minWidth = Math.round(sensorSize.width() / maxZoom);
-    int minHeight = Math.round(sensorSize.height() / maxZoom);
-    int diffWidth = sensorSize.width() - minWidth;
-    int diffHeight = sensorSize.height() - minHeight;
-    float cropWidth = diffWidth * zoomScaleFactor;
-    float cropHeight = diffHeight * zoomScaleFactor;
-
-    Rect cropRegion =
-        new Rect(
-            /*left=*/ (int) Math.ceil(cropWidth / 2 - 0.5f),
-            /*top=*/ (int) Math.ceil(cropHeight / 2 - 0.5f),
-            /*right=*/ (int) Math.floor(sensorSize.width() - cropWidth / 2 + 0.5f),
-            /*bottom=*/ (int) Math.floor(sensorSize.height() - cropHeight / 2 + 0.5f));
-
-    if (cropRegion.width() < 50 || cropRegion.height() < 50) {
-      Log.e(TAG, "Crop region is too small to compute 3A stats, so ignoring further zoom.");
-      return;
-    }
-    this.mCropRegion = cropRegion;
-
-    mPreview.zoom(cropRegion);
   }
 
-  public float getMinZoomLevel() {
-    return UNITY_ZOOM_SCALE;
+  public float getMinZoomRatio() {
+    if (mCamera != null) {
+      return mCamera.getCameraInfo().getZoomState().getValue().getMinZoomRatio();
+    } else {
+      return UNITY_ZOOM_SCALE;
+    }
   }
 
-  public float getMaxZoomLevel() {
-    try {
-      CameraCharacteristics characteristics =
-          mCameraManager.getCameraCharacteristics(getActiveCamera());
-      Float maxZoom =
-          characteristics.get(CameraCharacteristics.SCALER_AVAILABLE_MAX_DIGITAL_ZOOM);
-      if (maxZoom == null) {
-        return ZOOM_NOT_SUPPORTED;
-      }
-      if (maxZoom == ZOOM_NOT_SUPPORTED) {
-        return ZOOM_NOT_SUPPORTED;
-      }
-      return maxZoom;
-    } catch (Exception e) {
-      Log.e(TAG, "Failed to get SCALER_AVAILABLE_MAX_DIGITAL_ZOOM.", e);
+  public float getMaxZoomRatio() {
+    if (mCamera != null) {
+      return mCamera.getCameraInfo().getZoomState().getValue().getMaxZoomRatio();
+    } else {
+      return ZOOM_NOT_SUPPORTED;
     }
-    return ZOOM_NOT_SUPPORTED;
   }
 
   public boolean isZoomSupported() {
-    return getMaxZoomLevel() != ZOOM_NOT_SUPPORTED;
+    return getMaxZoomRatio() != ZOOM_NOT_SUPPORTED;
   }
 
   // TODO(b/124269166): Rethink how we can handle permissions here.
@@ -559,80 +489,47 @@ final class CameraXModule {
 
   int getRelativeCameraOrientation(boolean compensateForMirroring) {
     int rotationDegrees = 0;
-    try {
-      CameraInfo cameraInfo = CameraX.getCameraInfo(getLensFacing());
-      rotationDegrees = cameraInfo.getSensorRotationDegrees(getDisplaySurfaceRotation());
+    if (mCamera != null) {
+      rotationDegrees =
+          mCamera.getCameraInfo().getSensorRotationDegrees(getDisplaySurfaceRotation());
       if (compensateForMirroring) {
         rotationDegrees = (360 - rotationDegrees) % 360;
       }
-    } catch (CameraInfoUnavailableException e) {
-      Log.e(TAG, "Failed to get CameraInfo", e);
-    } catch (Exception e) {
-      Log.e(TAG, "Failed to query camera", e);
     }
 
     return rotationDegrees;
   }
 
   public void invalidateView() {
-    transformPreview();
     updateViewInfo();
   }
 
   void clearCurrentLifecycle() {
-    if (mCurrentLifecycle != null) {
+    if (mCurrentLifecycle != null && mCameraProvider != null) {
       // Remove previous use cases
-      // Begin Signal Custom Code Block
-      CameraX.unbind(mImageCapture, mPreview);
-      if (mVideoCapture != null) {
-        CameraX.unbind(mVideoCapture);
+      List<UseCase> toUnbind = new ArrayList<>();
+      if (mImageCapture != null && mCameraProvider.isBound(mImageCapture)) {
+        toUnbind.add(mImageCapture);
       }
-      // End Signal Custom Code Block
-    }
+      if (mVideoCapture != null && mCameraProvider.isBound(mVideoCapture)) {
+        toUnbind.add(mVideoCapture);
+      }
+      if (mPreview != null && mCameraProvider.isBound(mPreview)) {
+        toUnbind.add(mPreview);
+      }
 
+      if (!toUnbind.isEmpty()) {
+        mCameraProvider.unbind(toUnbind.toArray((new UseCase[0])));
+      }
+    }
+    mCamera = null;
     mCurrentLifecycle = null;
-  }
-
-  private Rect getSensorSize(String cameraId) throws CameraAccessException {
-    CameraCharacteristics characteristics = mCameraManager.getCameraCharacteristics(cameraId);
-    return characteristics.get(CameraCharacteristics.SENSOR_INFO_ACTIVE_ARRAY_SIZE);
-  }
-
-  String getActiveCamera() throws CameraInfoUnavailableException {
-    return CameraX.getCameraWithLensFacing(mCameraLensFacing);
-  }
-
-  @UiThread
-  private void transformPreview() {
-    int previewWidth = getPreviewWidth();
-    int previewHeight = getPreviewHeight();
-    int displayOrientation = getDisplayRotationDegrees();
-
-    Matrix matrix = new Matrix();
-
-    // Apply rotation of the display
-    int rotation = -displayOrientation;
-
-    int px = (int) Math.round(previewWidth / 2d);
-    int py = (int) Math.round(previewHeight / 2d);
-
-    matrix.postRotate(rotation, px, py);
-
-    if (displayOrientation == 90 || displayOrientation == 270) {
-      // Swap width and height
-      float xScale = previewWidth / (float) previewHeight;
-      float yScale = previewHeight / (float) previewWidth;
-
-      matrix.postScale(xScale, yScale, px, py);
-    }
-
-    setTransform(matrix);
   }
 
   // Update view related information used in use cases
   private void updateViewInfo() {
     if (mImageCapture != null) {
-      mImageCapture.setTargetAspectRatioCustom(new Rational(getWidth(), getHeight()));
+      mImageCapture.setCropAspectRatio(new Rational(getWidth(), getHeight()));
       mImageCapture.setTargetRotation(getDisplaySurfaceRotation());
     }
 
@@ -642,29 +539,46 @@ final class CameraXModule {
   }
 
   @RequiresPermission(permission.CAMERA)
-  private Set<CameraX.LensFacing> getAvailableCameraLensFacing() {
+  private Set<Integer> getAvailableCameraLensFacing() {
     // Start with all camera directions
-    Set<CameraX.LensFacing> available = new LinkedHashSet<>(Arrays.asList(CameraX.LensFacing.values()));
+    Set<Integer> available = new LinkedHashSet<>(Arrays.asList(LensFacingConverter.values()));
 
     // If we're bound to a lifecycle, remove unavailable cameras
     if (mCurrentLifecycle != null) {
-      if (!hasCameraWithLensFacing(CameraX.LensFacing.BACK)) {
-        available.remove(CameraX.LensFacing.BACK);
+      if (!hasCameraWithLensFacing(CameraSelector.LENS_FACING_BACK)) {
+        available.remove(CameraSelector.LENS_FACING_BACK);
       }
 
-      if (!hasCameraWithLensFacing(CameraX.LensFacing.FRONT)) {
-        available.remove(CameraX.LensFacing.FRONT);
+      if (!hasCameraWithLensFacing(CameraSelector.LENS_FACING_FRONT)) {
+        available.remove(CameraSelector.LENS_FACING_FRONT);
       }
     }
 
     return available;
   }
 
-  public FlashMode getFlash() {
+  @ImageCapture.FlashMode
+  public int getFlash() {
     return mFlash;
   }
 
-  public void setFlash(FlashMode flash) {
+  // Begin Signal Custom Code Block
+  public boolean hasFlash() {
+    if (mImageCapture == null) {
+      return false;
+    }
+
+    CameraInternal camera = mImageCapture.getBoundCamera();
+
+    if (camera == null) {
+      return false;
+    }
+
+    return camera.getCameraInfoInternal().hasFlashUnit();
+  }
+  // End Signal Custom Code Block
+
+  public void setFlash(@ImageCapture.FlashMode int flash) {
     this.mFlash = flash;
 
     if (mImageCapture == null) {
@@ -676,101 +590,69 @@ final class CameraXModule {
   }
 
   public void enableTorch(boolean torch) {
-    if (mPreview == null) {
+    if (mCamera == null) {
       return;
     }
-    mPreview.enableTorch(torch);
+    ListenableFuture<Void> future = mCamera.getCameraControl().enableTorch(torch);
+    Futures.addCallback(future, new FutureCallback<Void>() {
+      @Override
+      public void onSuccess(@Nullable Void result) {
+      }
+
+      @Override
+      public void onFailure(Throwable t) {
+        // Throw the unexpected error.
+        throw new RuntimeException(t);
+      }
+    }, CameraXExecutors.directExecutor());
   }
 
   public boolean isTorchOn() {
-    if (mPreview == null) {
+    if (mCamera == null) {
       return false;
     }
-    return mPreview.isTorchOn();
+    return mCamera.getCameraInfo().getTorchState().getValue() == TorchState.ON;
   }
 
   public Context getContext() {
-    return mCameraView.getContext();
+    return mCameraXView.getContext();
   }
 
   public int getWidth() {
-    return mCameraView.getWidth();
+    return mCameraXView.getWidth();
   }
 
   public int getHeight() {
-    return mCameraView.getHeight();
+    return mCameraXView.getHeight();
   }
 
   public int getDisplayRotationDegrees() {
     return CameraOrientationUtil.surfaceRotationToDegrees(getDisplaySurfaceRotation());
   }
 
-  // Begin Signal Custom Code Block
-  public boolean hasFlash() {
-    try {
-      LiveData<Boolean> isFlashAvailable = CameraX.getCameraInfo(getLensFacing()).isFlashAvailable();
-      return isFlashAvailable.getValue() == Boolean.TRUE;
-    } catch (CameraInfoUnavailableException e) {
-      return false;
-    }
-  }
-  // End Signal Custom Code Block
-
   protected int getDisplaySurfaceRotation() {
-    return mCameraView.getDisplaySurfaceRotation();
-  }
-
-  public void setSurfaceTexture(SurfaceTexture st) {
-    mCameraView.setSurfaceTexture(st);
-  }
-
-  private int getPreviewWidth() {
-    return mCameraView.getPreviewWidth();
-  }
-
-  private int getPreviewHeight() {
-    return mCameraView.getPreviewHeight();
+    return mCameraXView.getDisplaySurfaceRotation();
   }
 
   private int getMeasuredWidth() {
-    return mCameraView.getMeasuredWidth();
+    return mCameraXView.getMeasuredWidth();
   }
 
   private int getMeasuredHeight() {
-    return mCameraView.getMeasuredHeight();
+    return mCameraXView.getMeasuredHeight();
   }
 
-  void setTransform(final Matrix matrix) {
-    if (Looper.myLooper() != Looper.getMainLooper()) {
-      mCameraView.post(
-          new Runnable() {
-            @Override
-            public void run() {
-              setTransform(matrix);
-            }
-          });
-    } else {
-      mCameraView.setTransform(matrix);
-    }
+  @Nullable
+  public Camera getCamera() {
+    return mCamera;
   }
 
-  /**
-   * Notify the view that the source dimensions have changed.
-   *
-   * <p>This will allow the view to layout the preview to display the correct aspect ratio.
-   *
-   * @param width  width of camera source buffers.
-   * @param height height of camera source buffers.
-   */
-  void onPreviewSourceDimensUpdated(int width, int height) {
-    mCameraView.onPreviewSourceDimensUpdated(width, height);
-  }
-
+  @NonNull
   public CameraXView.CaptureMode getCaptureMode() {
     return mCaptureMode;
   }
 
-  public void setCaptureMode(CameraXView.CaptureMode captureMode) {
+  public void setCaptureMode(@NonNull CameraXView.CaptureMode captureMode) {
     this.mCaptureMode = captureMode;
     rebindToLifecycle();
   }

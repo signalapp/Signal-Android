@@ -6,8 +6,9 @@ import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.camera.core.CameraSelector;
 import androidx.camera.core.CameraX;
-import androidx.camera.core.FlashMode;
+import androidx.camera.core.ImageCapture;
 
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXView;
 
@@ -65,8 +66,10 @@ final class CameraXSelfieFlashHelper {
   }
 
   private boolean shouldUseViewBasedFlash() {
-    return camera.getFlash() == FlashMode.ON &&
+    Integer cameraLensFacing = camera.getCameraLensFacing();
+
+    return camera.getFlash() == ImageCapture.FLASH_MODE_ON &&
            !camera.hasFlash()                &&
-           camera.getCameraLensFacing() == CameraX.LensFacing.FRONT;
+           cameraLensFacing != null && cameraLensFacing == CameraSelector.LENS_FACING_BACK;
   }
 }

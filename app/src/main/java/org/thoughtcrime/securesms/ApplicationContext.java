@@ -19,7 +19,7 @@ package org.thoughtcrime.securesms;
 import android.annotation.SuppressLint;
 
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.camera.camera2.Camera2AppConfig;
+import androidx.camera.camera2.Camera2Config;
 import androidx.camera.core.CameraX;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
@@ -386,7 +386,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     if (CameraXUtil.isSupported()) {
       new Thread(() -> {
         try {
-          CameraX.init(this, Camera2AppConfig.create(this));
+          CameraX.initialize(this, Camera2Config.defaultConfig());
         } catch (Throwable t) {
           Log.w(TAG, "Failed to initialize CameraX.");
         }

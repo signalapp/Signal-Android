@@ -5,10 +5,9 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.camera.core.FlashMode;
+import androidx.camera.core.ImageCapture;
 
 import org.thoughtcrime.securesms.R;
 
@@ -43,7 +42,7 @@ public final class CameraXFlashToggleView extends AppCompatImageView {
   public CameraXFlashToggleView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
 
-    super.setOnClickListener((v) -> setFlash(FLASH_MODES.get((flashIndex + 1) % FLASH_ENUM.length)));
+    super.setOnClickListener((v) -> setFlash(FLASH_MODES.get((flashIndex + 1) % FLASH_ENUM.length).getFlashMode()));
   }
 
   @Override
@@ -61,10 +60,12 @@ public final class CameraXFlashToggleView extends AppCompatImageView {
 
   public void setAutoFlashEnabled(boolean isAutoEnabled) {
     supportsFlashModeAuto = isAutoEnabled;
-    setFlash(FLASH_MODES.get(flashIndex));
+    setFlash(FLASH_MODES.get(flashIndex).getFlashMode());
   }
 
-  public void setFlash(@NonNull FlashMode flashMode) {
+  public void setFlash(@ImageCapture.FlashMode int mode) {
+    FlashMode flashMode = FlashMode.fromImageCaptureFlashMode(mode);
+
     flashIndex = resolveFlashIndex(FLASH_MODES.indexOf(flashMode), supportsFlashModeAuto);
     refreshDrawableState();
     notifyListener();
@@ -92,7 +93,7 @@ public final class CameraXFlashToggleView extends AppCompatImageView {
 
       supportsFlashModeAuto = savedState.getBoolean(STATE_SUPPORT_AUTO);
       setFlash(FLASH_MODES.get(
-          resolveFlashIndex(savedState.getInt(STATE_FLASH_INDEX), supportsFlashModeAuto))
+          resolveFlashIndex(savedState.getInt(STATE_FLASH_INDEX), supportsFlashModeAuto)).getFlashMode()
       );
 
       super.onRestoreInstanceState(savedState.getParcelable(STATE_PARENT));
@@ -104,7 +105,7 @@ public final class CameraXFlashToggleView extends AppCompatImageView {
   private void notifyListener() {
     if (flashModeChangedListener == null) return;
 
-    flashModeChangedListener.flashModeChanged(FLASH_MODES.get(flashIndex));
+    flashModeChangedListener.flashModeChanged(FLASH_MODES.get(flashIndex).getFlashMode());
   }
 
   private static int resolveFlashIndex(int desiredFlashIndex, boolean supportsFlashModeAuto) {
@@ -126,6 +127,33 @@ public final class CameraXFlashToggleView extends AppCompatImageView {
   }
 
   public interface OnFlashModeChangedListener {
-    void flashModeChanged(FlashMode flashMode);
+    void flashModeChanged(@ImageCapture.CaptureMode int flashMode);
+  }
+
+  private enum FlashMode {
+
+    AUTO(ImageCapture.FLASH_MODE_AUTO),
+    OFF(ImageCapture.FLASH_MODE_OFF),
+    ON(ImageCapture.FLASH_MODE_ON);
+
+    private final @ImageCapture.FlashMode int flashMode;
+
+    FlashMode(@ImageCapture.FlashMode int flashMode) {
+      this.flashMode = flashMode;
+    }
+
+    @ImageCapture.FlashMode int getFlashMode() {
+      return flashMode;
+    }
+
+    private static FlashMode fromImageCaptureFlashMode(@ImageCapture.FlashMode int flashMode) {
+      for (FlashMode mode : values()) {
+        if (mode.getFlashMode() == flashMode) {
+          return mode;
+        }
+      }
+
+      throw new AssertionError();
+    }
   }
 }

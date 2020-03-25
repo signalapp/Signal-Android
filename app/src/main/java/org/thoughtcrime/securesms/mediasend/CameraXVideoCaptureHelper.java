@@ -23,7 +23,6 @@ import org.thoughtcrime.securesms.mediasend.camerax.CameraXView;
 import org.thoughtcrime.securesms.mediasend.camerax.VideoCapture;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.video.VideoUtil;
 
 import java.io.FileDescriptor;
@@ -45,12 +44,12 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
   private       boolean       isRecording;
   private       ValueAnimator cameraMetricsAnimator;
 
-  private final VideoCapture.OnVideoSavedListener videoSavedListener = new VideoCapture.OnVideoSavedListener() {
+  private final VideoCapture.OnVideoSavedCallback videoSavedListener = new VideoCapture.OnVideoSavedCallback() {
     @Override
     public void onVideoSaved(@NonNull FileDescriptor fileDescriptor) {
       try {
         isRecording = false;
-        camera.setZoomLevel(0f);
+        camera.setZoomRatio(camera.getMinZoomRatio());
         memoryFileDescriptor.seek(0);
         callback.onVideoSaved(fileDescriptor);
       } catch (IOException e) {
@@ -59,13 +58,9 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
     }
 
     @Override
-    public void onError(@NonNull VideoCapture.VideoCaptureError videoCaptureError,
-                        @NonNull String message,
-                        @Nullable Throwable cause)
-    {
+    public void onError(int videoCaptureError, @NonNull String message, @Nullable Throwable cause) {
       isRecording = false;
       callback.onVideoError(cause);
-      Util.runOnMain(() -> resetCameraSizing());
     }
   };
 
@@ -119,7 +114,7 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
   }
 
   private void beginCameraRecording() {
-    this.camera.setZoomLevel(0f);
+    this.camera.setZoomRatio(this.camera.getMinZoomRatio());
     callback.onVideoRecordStarted();
     shrinkCaptureArea();
     camera.startRecording(memoryFileDescriptor.getFileDescriptor(), Executors.mainThreadExecutor(), videoSavedListener);
@@ -135,22 +130,24 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
 
     if (scaleX == 1f) {
       float targetHeightForAnimation = videoRecordingSize.getHeight() * scale;
+
+      if (screenSize.getHeight() == targetHeightForAnimation) {
+        return;
+      }
+
       cameraMetricsAnimator = ValueAnimator.ofFloat(screenSize.getHeight(), targetHeightForAnimation);
     } else {
+
+      if (screenSize.getWidth() == targetWidthForAnimation) {
+        return;
+      }
+
       cameraMetricsAnimator = ValueAnimator.ofFloat(screenSize.getWidth(), targetWidthForAnimation);
     }
 
     ViewGroup.LayoutParams params = camera.getLayoutParams();
     cameraMetricsAnimator.setInterpolator(new LinearInterpolator());
     cameraMetricsAnimator.setDuration(200);
-    cameraMetricsAnimator.addListener(new AnimationEndCallback() {
-      @Override
-      public void onAnimationEnd(Animator animation) {
-        if (!isRecording) return;
-
-        scaleCameraViewToMatchRecordingSizeAndAspectRatio();
-      }
-    });
     cameraMetricsAnimator.addUpdateListener(animation -> {
       if (scaleX == 1f) {
         params.height = Math.round((float) animation.getAnimatedValue());
@@ -162,20 +159,6 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
     cameraMetricsAnimator.start();
   }
 
-  private void scaleCameraViewToMatchRecordingSizeAndAspectRatio() {
-    ViewGroup.LayoutParams layoutParams = camera.getLayoutParams();
-
-    Size  videoRecordingSize = VideoUtil.getVideoRecordingSize();
-    float scale              = getSurfaceScaleForRecording();
-
-    layoutParams.height = videoRecordingSize.getHeight();
-    layoutParams.width  = videoRecordingSize.getWidth();
-
-    camera.setLayoutParams(layoutParams);
-    camera.setScaleX(scale);
-    camera.setScaleY(scale);
-  }
-
   private Size getScreenSize() {
     DisplayMetrics metrics = camera.getResources().getDisplayMetrics();
     return new Size(metrics.widthPixels, metrics.heightPixels);
@@ -185,16 +168,6 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
     Size videoRecordingSize = VideoUtil.getVideoRecordingSize();
     Size screenSize         = getScreenSize();
     return Math.min(screenSize.getHeight(), screenSize.getWidth()) / (float) Math.min(videoRecordingSize.getHeight(), videoRecordingSize.getWidth());
-  }
-
-  private void resetCameraSizing() {
-    ViewGroup.LayoutParams layoutParams = camera.getLayoutParams();
-    layoutParams.width  = ViewGroup.LayoutParams.MATCH_PARENT;
-    layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
-
-    camera.setLayoutParams(layoutParams);
-    camera.setScaleX(1);
-    camera.setScaleY(1);
   }
 
   @Override
@@ -214,8 +187,8 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
 
   @Override
   public void onZoomIncremented(float increment) {
-    float range = camera.getMaxZoomLevel() - camera.getMinZoomLevel();
-    camera.setZoomLevel(range * increment);
+    float range = camera.getMaxZoomRatio() - camera.getMinZoomRatio();
+    camera.setZoomRatio((range * increment) + camera.getMinZoomRatio());
   }
 
   static MemoryFileDescriptor createFileDescriptor(@NonNull Context context) throws MemoryFileDescriptor.MemoryFileException {
@@ -226,7 +199,7 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
     );
   }
 
-  private abstract class AnimationEndCallback implements Animator.AnimatorListener {
+  private static abstract class AnimationEndCallback implements Animator.AnimatorListener {
 
     @Override
     public final void onAnimationStart(Animator animation) {

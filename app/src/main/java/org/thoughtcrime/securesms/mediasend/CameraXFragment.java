@@ -22,8 +22,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.camera.core.CameraX;
+import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageCapture;
+import androidx.camera.core.ImageCaptureException;
 import androidx.camera.core.ImageProxy;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -204,7 +205,9 @@ public class CameraXFragment extends Fragment implements CameraFragment {
       onCaptureClicked();
     });
 
-    if (camera.hasCameraWithLensFacing(CameraX.LensFacing.FRONT) && camera.hasCameraWithLensFacing(CameraX.LensFacing.BACK)) {
+    camera.setScaleType(CameraXView.ScaleType.CENTER_INSIDE);
+
+    if (camera.hasCameraWithLensFacing(CameraSelector.LENS_FACING_FRONT) && camera.hasCameraWithLensFacing(CameraSelector.LENS_FACING_BACK)) {
       flipButton.setVisibility(View.VISIBLE);
       flipButton.setOnClickListener(v ->  {
         camera.toggleCamera();
@@ -361,15 +364,15 @@ public class CameraXFragment extends Fragment implements CameraFragment {
         selfieFlash
     );
 
-    camera.takePicture(Executors.mainThreadExecutor(), new ImageCapture.OnImageCapturedListener() {
+    camera.takePicture(Executors.mainThreadExecutor(), new ImageCapture.OnImageCapturedCallback() {
       @Override
-      public void onCaptureSuccess(ImageProxy image, int rotationDegrees) {
+      public void onCaptureSuccess(ImageProxy image) {
         flashHelper.endFlash();
 
         SimpleTask.run(CameraXFragment.this.getViewLifecycleOwner().getLifecycle(), () -> {
           stopwatch.split("captured");
           try {
-            return CameraXUtil.toJpeg(image, rotationDegrees, camera.getCameraLensFacing() == CameraX.LensFacing.FRONT);
+            return CameraXUtil.toJpeg(image, camera.getCameraLensFacing() == CameraSelector.LENS_FACING_FRONT);
           } catch (IOException e) {
             return null;
           } finally {
@@ -388,7 +391,7 @@ public class CameraXFragment extends Fragment implements CameraFragment {
       }
 
       @Override
-      public void onError(ImageCapture.ImageCaptureError useCaseError, String message, @Nullable Throwable cause) {
+      public void onError(ImageCaptureException exception) {
         flashHelper.endFlash();
         controller.onCameraError();
       }

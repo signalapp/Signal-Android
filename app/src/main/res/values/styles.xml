@@ -401,4 +401,11 @@
     <declare-styleable name="MaxHeightFrameLayout">
         <attr name="mhfl_maxHeight" format="dimension" />
     </declare-styleable>
+
+    <declare-styleable name="PreviewView">
+        <attr format="enum" name="implementationMode">
+            <enum name="surfaceView" value="0"/>
+            <enum name="textureView" value="1"/>
+        </attr>
+    </declare-styleable>
 </resources>

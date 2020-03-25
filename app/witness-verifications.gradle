@@ -6,6 +6,9 @@ dependencyVerification {
         ['androidx.activity:activity:1.0.0',
          'd1bc9842455c2e534415d88c44df4d52413b478db9093a1ba36324f705f44c3d'],
 
+        ['androidx.annotation:annotation-experimental:1.0.0-rc01',
+         '2f113195f61ecd08ea46cef545f0ea338898391d95425cf4c8836ba2b701f5d6'],
+
         ['androidx.annotation:annotation:1.1.0',
          'd38d63edb30f1467818d50aaf05f8a692dea8b31392a049bfa991b159ad5b692'],
 
@@ -24,11 +27,14 @@ dependencyVerification {
         ['androidx.asynclayoutinflater:asynclayoutinflater:1.0.0',
          'f7eab60c57addd94bb06275832fe7600611beaaae1a1ec597c231956faf96c8b'],
 
-        ['androidx.camera:camera-camera2:1.0.0-alpha06',
-         'e50f20deb950ffebcd4d1de5408ef7a5404bec80ec77119e05663c890739b903'],
+        ['androidx.camera:camera-camera2:1.0.0-beta01',
+         '02e15ad76153d09adcd6631627960707a8786333a8276d05dcbefc2bfe4ef5a1'],
 
-        ['androidx.camera:camera-core:1.0.0-alpha06',
-         '0096cabe539d9b4288f406acfb44264b137ebd600e38e33504ff425c979016c9'],
+        ['androidx.camera:camera-core:1.0.0-beta01',
+         'acba5f196b3bd3ecf756067c9f4fae4f15b81228c2bd6b52212d9454e27599f0'],
+
+        ['androidx.camera:camera-lifecycle:1.0.0-beta01',
+         '25c761a863555d5e008e428cf271caca774c867bf269495dc32a0fdc65770fd5'],
 
         ['androidx.cardview:cardview:1.0.0',
          '1193c04c22a3d6b5946dae9f4e8c59d6adde6a71b6bd5d87fb99d82dda1afec7'],
@@ -36,8 +42,8 @@ dependencyVerification {
         ['androidx.collection:collection:1.1.0',
          '632a0e5407461de774409352940e292a291037724207a787820c77daf7d33b72'],
 
-        ['androidx.concurrent:concurrent-futures:1.0.0-alpha03',
-         '50812a53912255e3e0f2147d13bbbb81937c3726fda2e984e77a27c7207d96a1'],
+        ['androidx.concurrent:concurrent-futures:1.0.0',
+         '5595a40e278a7b39fa78a09490e3d7f3faa95c7b01447148bd38b5ade0605c35'],
 
         ['androidx.constraintlayout:constraintlayout-solver:1.1.3',
          '965c177e64fbd81bd1d27b402b66ef9d7bc7b5cb5f718044bf7a453abc542045'],

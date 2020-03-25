@@ -20,10 +20,6 @@ import android.Manifest.permission;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.SurfaceTexture;
 import android.hardware.display.DisplayManager;
 import android.hardware.display.DisplayManager.DisplayListener;
 import android.os.Bundle;
@@ -33,17 +29,14 @@ import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.util.Size;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.Surface;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import android.view.animation.BaseInterpolator;
-import android.view.animation.DecelerateInterpolator;
+import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -51,33 +44,42 @@ import androidx.annotation.RequiresApi;
 import androidx.annotation.RequiresPermission;
 import androidx.annotation.RestrictTo;
 import androidx.annotation.RestrictTo.Scope;
-import androidx.annotation.UiThread;
-import androidx.camera.core.CameraInfoUnavailableException;
-import androidx.camera.core.CameraX;
-import androidx.camera.core.FlashMode;
+import androidx.camera.core.Camera;
+import androidx.camera.core.CameraSelector;
+import androidx.camera.core.DisplayOrientedMeteringPointFactory;
 import androidx.camera.core.FocusMeteringAction;
+import androidx.camera.core.FocusMeteringResult;
 import androidx.camera.core.ImageCapture;
+import androidx.camera.core.ImageCapture.OnImageCapturedCallback;
+import androidx.camera.core.ImageProxy;
 import androidx.camera.core.MeteringPoint;
+import androidx.camera.core.impl.LensFacingConverter;
+import androidx.camera.core.impl.utils.executor.CameraXExecutors;
+import androidx.camera.core.impl.utils.futures.FutureCallback;
+import androidx.camera.core.impl.utils.futures.Futures;
 import androidx.lifecycle.LifecycleOwner;
+
+import com.google.common.util.concurrent.ListenableFuture;
 
 import org.thoughtcrime.securesms.R;
 
-import java.io.File;
 import java.io.FileDescriptor;
 import java.util.concurrent.Executor;
 
 /**
  * A {@link View} that displays a preview of the camera with methods {@link
- * #takePicture(Executor, OnImageCapturedListener)},
- * {@link #takePicture(File, Executor, OnImageSavedListener)},
- * {@link #startRecording(File, Executor, OnVideoSavedListener)} and {@link #stopRecording()}.
+ * #takePicture(Executor, OnImageCapturedCallback)},
+ * {@link #startRecording(FileDescriptor, Executor, VideoCapture.OnVideoSavedCallback)} and {@link #stopRecording()}.
  *
  * <p>Because the Camera is a limited resource and consumes a high amount of power, CameraView must
  * be opened/closed. CameraView will handle opening/closing automatically through use of a {@link
  * LifecycleOwner}. Use {@link #bindToLifecycle(LifecycleOwner)} to start the camera.
  */
+// Begin Signal Custom Code Block
 @RequiresApi(21)
-public final class CameraXView extends ViewGroup {
+@SuppressLint("RestrictedApi")
+// End Signal Custom Code Block
+public final class CameraXView extends FrameLayout {
   static final String TAG = CameraXView.class.getSimpleName();
   static final boolean DEBUG = false;
 
@@ -85,7 +87,7 @@ public final class CameraXView extends ViewGroup {
   static final int INDEFINITE_VIDEO_SIZE = -1;
 
   private static final String EXTRA_SUPER = "super";
-  private static final String EXTRA_ZOOM_LEVEL = "zoom_level";
+  private static final String EXTRA_ZOOM_RATIO = "zoom_ratio";
   private static final String EXTRA_PINCH_TO_ZOOM_ENABLED = "pinch_to_zoom_enabled";
   private static final String EXTRA_FLASH = "flash";
   private static final String EXTRA_MAX_VIDEO_DURATION = "max_video_duration";
@@ -121,49 +123,29 @@ public final class CameraXView extends ViewGroup {
           mCameraModule.invalidateView();
         }
       };
-  private TextureView mCameraTextureView;
-  private Size mPreviewSrcSize = new Size(0, 0);
+  private PreviewView mPreviewView;
   private ScaleType mScaleType = ScaleType.CENTER_CROP;
   // For accessibility event
   private MotionEvent mUpEvent;
-  private @Nullable Paint mLayerPaint;
 
-  public CameraXView(Context context) {
+  public CameraXView(@NonNull Context context) {
     this(context, null);
   }
 
-  public CameraXView(Context context, AttributeSet attrs) {
+  public CameraXView(@NonNull Context context, @Nullable AttributeSet attrs) {
     this(context, attrs, 0);
   }
 
-  public CameraXView(Context context, AttributeSet attrs, int defStyle) {
+  public CameraXView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
     init(context, attrs);
   }
 
   @RequiresApi(21)
-  public CameraXView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+  public CameraXView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr,
+                    int defStyleRes) {
     super(context, attrs, defStyleAttr, defStyleRes);
     init(context, attrs);
-  }
-
-  /** Debug logging that can be enabled. */
-  private static void log(String msg) {
-    if (DEBUG) {
-      Log.i(TAG, msg);
-    }
-  }
-
-  /** Utility method for converting an displayRotation int into a human readable string. */
-  private static String displayRotationToString(int displayRotation) {
-    if (displayRotation == Surface.ROTATION_0 || displayRotation == Surface.ROTATION_180) {
-      return "Portrait-" + (displayRotation * 90);
-    } else if (displayRotation == Surface.ROTATION_90
-        || displayRotation == Surface.ROTATION_270) {
-      return "Landscape-" + (displayRotation * 90);
-    } else {
-      return "Unknown";
-    }
   }
 
   /**
@@ -184,21 +166,16 @@ public final class CameraXView extends ViewGroup {
    * @throws IllegalStateException    if camera permissions are not granted.
    */
   @RequiresPermission(permission.CAMERA)
-  public void bindToLifecycle(LifecycleOwner lifecycleOwner) {
+  public void bindToLifecycle(@NonNull LifecycleOwner lifecycleOwner) {
     mCameraModule.bindToLifecycle(lifecycleOwner);
   }
 
   private void init(Context context, @Nullable AttributeSet attrs) {
-    addView(mCameraTextureView = new TextureView(getContext()), 0 /* view position */);
-    mCameraTextureView.setLayerPaint(mLayerPaint);
+    addView(mPreviewView = new PreviewView(getContext()), 0 /* view position */);
     mCameraModule = new CameraXModule(this);
 
-    if (isInEditMode()) {
-      onPreviewSourceDimensUpdated(640, 480);
-    }
-
     if (attrs != null) {
-      TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CameraView);
+      TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CameraXView);
       setScaleType(
           ScaleType.fromId(
               a.getInteger(R.styleable.CameraXView_scaleType,
@@ -217,10 +194,10 @@ public final class CameraXView extends ViewGroup {
           setCameraLensFacing(null);
           break;
         case LENS_FACING_FRONT:
-          setCameraLensFacing(CameraX.LensFacing.FRONT);
+          setCameraLensFacing(CameraSelector.LENS_FACING_FRONT);
           break;
         case LENS_FACING_BACK:
-          setCameraLensFacing(CameraX.LensFacing.BACK);
+          setCameraLensFacing(CameraSelector.LENS_FACING_BACK);
           break;
         default:
           // Unhandled event.
@@ -229,13 +206,13 @@ public final class CameraXView extends ViewGroup {
       int flashMode = a.getInt(R.styleable.CameraXView_flash, 0);
       switch (flashMode) {
         case FLASH_MODE_AUTO:
-          setFlash(FlashMode.AUTO);
+          setFlash(ImageCapture.FLASH_MODE_AUTO);
           break;
         case FLASH_MODE_ON:
-          setFlash(FlashMode.ON);
+          setFlash(ImageCapture.FLASH_MODE_ON);
           break;
         case FLASH_MODE_OFF:
-          setFlash(FlashMode.OFF);
+          setFlash(ImageCapture.FLASH_MODE_OFF);
           break;
         default:
           // Unhandled event.
@@ -252,12 +229,14 @@ public final class CameraXView extends ViewGroup {
   }
 
   @Override
+  @NonNull
   protected LayoutParams generateDefaultLayoutParams() {
     return new LayoutParams(
         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
   }
 
   @Override
+  @NonNull
   protected Parcelable onSaveInstanceState() {
     // TODO(b/113884082): Decide what belongs here or what should be invalidated on
     // configuration
@@ -265,20 +244,21 @@ public final class CameraXView extends ViewGroup {
     Bundle state = new Bundle();
     state.putParcelable(EXTRA_SUPER, super.onSaveInstanceState());
     state.putInt(EXTRA_SCALE_TYPE, getScaleType().getId());
-    state.putFloat(EXTRA_ZOOM_LEVEL, getZoomLevel());
+    state.putFloat(EXTRA_ZOOM_RATIO, getZoomRatio());
     state.putBoolean(EXTRA_PINCH_TO_ZOOM_ENABLED, isPinchToZoomEnabled());
-    state.putString(EXTRA_FLASH, getFlash().name());
+    state.putString(EXTRA_FLASH, FlashModeConverter.nameOf(getFlash()));
     state.putLong(EXTRA_MAX_VIDEO_DURATION, getMaxVideoDuration());
     state.putLong(EXTRA_MAX_VIDEO_SIZE, getMaxVideoSize());
     if (getCameraLensFacing() != null) {
-      state.putString(EXTRA_CAMERA_DIRECTION, getCameraLensFacing().name());
+      state.putString(EXTRA_CAMERA_DIRECTION,
+          LensFacingConverter.nameOf(getCameraLensFacing()));
     }
     state.putInt(EXTRA_CAPTURE_MODE, getCaptureMode().getId());
     return state;
   }
 
   @Override
-  protected void onRestoreInstanceState(Parcelable savedState) {
+  protected void onRestoreInstanceState(@Nullable Parcelable savedState) {
     // TODO(b/113884082): Decide what belongs here or what should be invalidated on
     // configuration
     // change
@@ -286,37 +266,20 @@ public final class CameraXView extends ViewGroup {
       Bundle state = (Bundle) savedState;
       super.onRestoreInstanceState(state.getParcelable(EXTRA_SUPER));
       setScaleType(ScaleType.fromId(state.getInt(EXTRA_SCALE_TYPE)));
-      setZoomLevel(state.getFloat(EXTRA_ZOOM_LEVEL));
+      setZoomRatio(state.getFloat(EXTRA_ZOOM_RATIO));
       setPinchToZoomEnabled(state.getBoolean(EXTRA_PINCH_TO_ZOOM_ENABLED));
-      setFlash(FlashMode.valueOf(state.getString(EXTRA_FLASH)));
+      setFlash(FlashModeConverter.valueOf(state.getString(EXTRA_FLASH)));
       setMaxVideoDuration(state.getLong(EXTRA_MAX_VIDEO_DURATION));
       setMaxVideoSize(state.getLong(EXTRA_MAX_VIDEO_SIZE));
       String lensFacingString = state.getString(EXTRA_CAMERA_DIRECTION);
       setCameraLensFacing(
           TextUtils.isEmpty(lensFacingString)
               ? null
-              : CameraX.LensFacing.valueOf(lensFacingString));
+              : LensFacingConverter.valueOf(lensFacingString));
       setCaptureMode(CaptureMode.fromId(state.getInt(EXTRA_CAPTURE_MODE)));
     } else {
       super.onRestoreInstanceState(savedState);
     }
-  }
-
-  /**
-   * Sets the paint on the preview.
-   *
-   * <p>This only affects the preview, and does not affect captured images/video.
-   *
-   * @param paint The paint object to apply to the preview.
-   * @hide This may not work once {@link android.view.SurfaceView} is supported along with {@link
-   * TextureView}.
-   */
-  @Override
-  @RestrictTo(Scope.LIBRARY_GROUP)
-  public void setLayerPaint(@Nullable Paint paint) {
-    super.setLayerPaint(paint);
-    mLayerPaint = paint;
-    mCameraTextureView.setLayerPaint(paint);
   }
 
   @Override
@@ -335,33 +298,21 @@ public final class CameraXView extends ViewGroup {
     dpyMgr.unregisterDisplayListener(mDisplayListener);
   }
 
+  PreviewView getPreviewView() {
+    return mPreviewView;
+  }
+
   // TODO(b/124269166): Rethink how we can handle permissions here.
   @SuppressLint("MissingPermission")
   @Override
   protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-    int viewWidth = MeasureSpec.getSize(widthMeasureSpec);
-    int viewHeight = MeasureSpec.getSize(heightMeasureSpec);
-
-    int displayRotation = getDisplay().getRotation();
-
-    if (mPreviewSrcSize.getHeight() == 0 || mPreviewSrcSize.getWidth() == 0) {
-      super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-      mCameraTextureView.measure(viewWidth, viewHeight);
-    } else {
-      Size scaled =
-          calculatePreviewViewDimens(
-              mPreviewSrcSize, viewWidth, viewHeight, displayRotation, mScaleType);
-      super.setMeasuredDimension(
-          Math.min(scaled.getWidth(), viewWidth),
-          Math.min(scaled.getHeight(), viewHeight));
-      mCameraTextureView.measure(scaled.getWidth(), scaled.getHeight());
-    }
-
     // Since bindToLifecycle will depend on the measured dimension, only call it when measured
     // dimension is not 0x0
     if (getMeasuredWidth() > 0 && getMeasuredHeight() > 0) {
       mCameraModule.bindToLifecycleAfterViewMeasured();
     }
+
+    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
   }
 
   // TODO(b/124269166): Rethink how we can handle permissions here.
@@ -372,114 +323,8 @@ public final class CameraXView extends ViewGroup {
     // binding to lifecycle
     mCameraModule.bindToLifecycleAfterViewMeasured();
 
-    // If we don't know the src buffer size yet, set the preview to be the parent size
-    if (mPreviewSrcSize.getWidth() == 0 || mPreviewSrcSize.getHeight() == 0) {
-      mCameraTextureView.layout(left, top, right, bottom);
-      return;
-    }
-
-    // Compute the preview ui size based on the available width, height, and ui orientation.
-    int viewWidth = (right - left);
-    int viewHeight = (bottom - top);
-    int displayRotation = getDisplay().getRotation();
-    Size scaled =
-        calculatePreviewViewDimens(
-            mPreviewSrcSize, viewWidth, viewHeight, displayRotation, mScaleType);
-
-    // Compute the center of the view.
-    int centerX = viewWidth / 2;
-    int centerY = viewHeight / 2;
-
-    // Compute the left / top / right / bottom values such that preview is centered.
-    int layoutL = centerX - (scaled.getWidth() / 2);
-    int layoutT = centerY - (scaled.getHeight() / 2);
-    int layoutR = layoutL + scaled.getWidth();
-    int layoutB = layoutT + scaled.getHeight();
-
-    // Layout debugging
-    log("layout: viewWidth:  " + viewWidth);
-    log("layout: viewHeight: " + viewHeight);
-    log("layout: viewRatio:  " + (viewWidth / (float) viewHeight));
-    log("layout: sizeWidth:  " + mPreviewSrcSize.getWidth());
-    log("layout: sizeHeight: " + mPreviewSrcSize.getHeight());
-    log(
-        "layout: sizeRatio:  "
-            + (mPreviewSrcSize.getWidth() / (float) mPreviewSrcSize.getHeight()));
-    log("layout: scaledWidth:  " + scaled.getWidth());
-    log("layout: scaledHeight: " + scaled.getHeight());
-    log("layout: scaledRatio:  " + (scaled.getWidth() / (float) scaled.getHeight()));
-    log(
-        "layout: size:       "
-            + scaled
-            + " ("
-            + (scaled.getWidth() / (float) scaled.getHeight())
-            + " - "
-            + mScaleType
-            + "-"
-            + displayRotationToString(displayRotation)
-            + ")");
-    log("layout: final       " + layoutL + ", " + layoutT + ", " + layoutR + ", " + layoutB);
-
-    mCameraTextureView.layout(layoutL, layoutT, layoutR, layoutB);
-
     mCameraModule.invalidateView();
-  }
-
-  /** Records the size of the preview's buffers. */
-  @UiThread
-  void onPreviewSourceDimensUpdated(int srcWidth, int srcHeight) {
-    if (srcWidth != mPreviewSrcSize.getWidth()
-        || srcHeight != mPreviewSrcSize.getHeight()) {
-      mPreviewSrcSize = new Size(srcWidth, srcHeight);
-      requestLayout();
-    }
-  }
-
-  private Size calculatePreviewViewDimens(
-      Size srcSize,
-      int parentWidth,
-      int parentHeight,
-      int displayRotation,
-      ScaleType scaleType) {
-    int inWidth = srcSize.getWidth();
-    int inHeight = srcSize.getHeight();
-    if (displayRotation == Surface.ROTATION_90 || displayRotation == Surface.ROTATION_270) {
-      // Need to reverse the width and height since we're in landscape orientation.
-      inWidth = srcSize.getHeight();
-      inHeight = srcSize.getWidth();
-    }
-
-    int outWidth = parentWidth;
-    int outHeight = parentHeight;
-    if (inWidth != 0 && inHeight != 0) {
-      float vfRatio = inWidth / (float) inHeight;
-      float parentRatio = parentWidth / (float) parentHeight;
-
-      switch (scaleType) {
-        case CENTER_INSIDE:
-          // Match longest sides together.
-          if (vfRatio > parentRatio) {
-            outWidth = parentWidth;
-            outHeight = Math.round(parentWidth / vfRatio);
-          } else {
-            outWidth = Math.round(parentHeight * vfRatio);
-            outHeight = parentHeight;
-          }
-          break;
-        case CENTER_CROP:
-          // Match shortest sides together.
-          if (vfRatio < parentRatio) {
-            outWidth = parentWidth;
-            outHeight = Math.round(parentWidth / vfRatio);
-          } else {
-            outWidth = Math.round(parentHeight * vfRatio);
-            outHeight = parentHeight;
-          }
-          break;
-      }
-    }
-
-    return new Size(outWidth, outHeight);
+    super.onLayout(changed, left, top, right, bottom);
   }
 
   /**
@@ -499,58 +344,12 @@ public final class CameraXView extends ViewGroup {
     return display.getRotation();
   }
 
-  @UiThread
-  SurfaceTexture getSurfaceTexture() {
-    if (mCameraTextureView != null) {
-      return mCameraTextureView.getSurfaceTexture();
-    }
-
-    return null;
-  }
-
-  @UiThread
-  void setSurfaceTexture(SurfaceTexture surfaceTexture) {
-    if (mCameraTextureView.getSurfaceTexture() != surfaceTexture) {
-      if (mCameraTextureView.isAvailable()) {
-        // Remove the old TextureView to properly detach the old SurfaceTexture from the GL
-        // Context.
-        removeView(mCameraTextureView);
-        addView(mCameraTextureView = new TextureView(getContext()), 0);
-        mCameraTextureView.setLayerPaint(mLayerPaint);
-        requestLayout();
-      }
-
-      mCameraTextureView.setSurfaceTexture(surfaceTexture);
-    }
-  }
-
-  @UiThread
-  Matrix getTransform(Matrix matrix) {
-    return mCameraTextureView.getTransform(matrix);
-  }
-
-  @UiThread
-  int getPreviewWidth() {
-    return mCameraTextureView.getWidth();
-  }
-
-  @UiThread
-  int getPreviewHeight() {
-    return mCameraTextureView.getHeight();
-  }
-
-  @UiThread
-  void setTransform(final Matrix matrix) {
-    if (mCameraTextureView != null) {
-      mCameraTextureView.setTransform(matrix);
-    }
-  }
-
   /**
    * Returns the scale type used to scale the preview.
    *
    * @return The current {@link ScaleType}.
    */
+  @NonNull
   public ScaleType getScaleType() {
     return mScaleType;
   }
@@ -562,7 +361,7 @@ public final class CameraXView extends ViewGroup {
    *
    * @param scaleType The desired {@link ScaleType}.
    */
-  public void setScaleType(ScaleType scaleType) {
+  public void setScaleType(@NonNull ScaleType scaleType) {
     if (scaleType != mScaleType) {
       mScaleType = scaleType;
       requestLayout();
@@ -574,6 +373,7 @@ public final class CameraXView extends ViewGroup {
    *
    * @return The current {@link CaptureMode}.
    */
+  @NonNull
   public CaptureMode getCaptureMode() {
     return mCameraModule.getCaptureMode();
   }
@@ -585,7 +385,7 @@ public final class CameraXView extends ViewGroup {
    *
    * @param captureMode The desired {@link CaptureMode}.
    */
-  public void setCaptureMode(CaptureMode captureMode) {
+  public void setCaptureMode(@NonNull CaptureMode captureMode) {
     mCameraModule.setCaptureMode(captureMode);
   }
 
@@ -601,7 +401,7 @@ public final class CameraXView extends ViewGroup {
   }
 
   /**
-   * Sets the maximum video duration before {@link OnVideoSavedListener#onVideoSaved(File)} is
+   * Sets the maximum video duration before {@link VideoCapture.OnVideoSavedCallback#onVideoSaved(FileDescriptor)} is
    * called automatically. Use {@link #INDEFINITE_VIDEO_DURATION} to disable the timeout.
    */
   private void setMaxVideoDuration(long duration) {
@@ -617,7 +417,7 @@ public final class CameraXView extends ViewGroup {
   }
 
   /**
-   * Sets the maximum video size in bytes before {@link OnVideoSavedListener#onVideoSaved(File)}
+   * Sets the maximum video size in bytes before {@link VideoCapture.OnVideoSavedCallback#onVideoSaved(FileDescriptor)}
    * is called automatically. Use {@link #INDEFINITE_VIDEO_SIZE} to disable the size restriction.
    */
   private void setMaxVideoSize(long size) {
@@ -625,44 +425,32 @@ public final class CameraXView extends ViewGroup {
   }
 
   /**
-   * Takes a picture, and calls {@link OnImageCapturedListener#onCaptureSuccess(ImageProxy, int)}
+   * Takes a picture, and calls {@link OnImageCapturedCallback#onCaptureSuccess(ImageProxy)}
    * once when done.
    *
-   * @param executor The executor in which the listener callback methods will be run.
-   * @param listener Listener which will receive success or failure callbacks.
+   * @param executor The executor in which the callback methods will be run.
+   * @param callback Callback which will receive success or failure callbacks.
    */
-  @SuppressLint("LambdaLast") // Maybe remove after https://issuetracker.google.com/135275901
-  public void takePicture(@NonNull Executor executor, @NonNull ImageCapture.OnImageCapturedListener listener) {
-    mCameraModule.takePicture(executor, listener);
+  public void takePicture(@NonNull Executor executor, @NonNull OnImageCapturedCallback callback) {
+    mCameraModule.takePicture(executor, callback);
   }
 
   /**
-   * Takes a picture and calls {@link OnImageSavedListener#onImageSaved(File)} when done.
+   * Takes a video and calls the OnVideoSavedCallback when done.
    *
    * @param file     The destination.
-   * @param executor The executor in which the listener callback methods will be run.
-   * @param listener Listener which will receive success or failure callbacks.
-   */
-  @SuppressLint("LambdaLast") // Maybe remove after https://issuetracker.google.com/135275901
-  public void takePicture(@NonNull File file, @NonNull Executor executor,
-                          @NonNull ImageCapture.OnImageSavedListener listener) {
-    mCameraModule.takePicture(file, executor, listener);
-  }
-
-  /**
-   * Takes a video and calls the OnVideoSavedListener when done.
-   *
-   * @param file The destination.
-   * @param executor The executor in which the listener callback methods will be run.
-   * @param listener Listener which will receive success or failure callbacks.
+   * @param executor The executor in which the callback methods will be run.
+   * @param callback Callback which will receive success or failure.
    */
   // Begin Signal Custom Code Block
   @RequiresApi(26)
-  @SuppressLint("LambdaLast") // Maybe remove after https://issuetracker.google.com/135275901
-  public void startRecording(@NonNull FileDescriptor file, @NonNull Executor executor,
   // End Signal Custom Code Block
-                             @NonNull VideoCapture.OnVideoSavedListener listener) {
-    mCameraModule.startRecording(file, executor, listener);
+  public void startRecording(// Begin Signal Custom Code Block
+                             @NonNull FileDescriptor file,
+                             // End Signal Custom Code Block
+                             @NonNull Executor executor,
+                             @NonNull VideoCapture.OnVideoSavedCallback callback) {
+    mCameraModule.startRecording(file, executor, callback);
   }
 
   /** Stops an in progress video. */
@@ -685,7 +473,7 @@ public final class CameraXView extends ViewGroup {
    * @throws IllegalStateException if the CAMERA permission is not currently granted.
    */
   @RequiresPermission(permission.CAMERA)
-  public boolean hasCameraWithLensFacing(CameraX.LensFacing lensFacing) {
+  public boolean hasCameraWithLensFacing(@CameraSelector.LensFacing int lensFacing) {
     return mCameraModule.hasCameraWithLensFacing(lensFacing);
   }
 
@@ -706,7 +494,7 @@ public final class CameraXView extends ViewGroup {
    *
    * <p>If called before {@link #bindToLifecycle(LifecycleOwner)}, this will set the camera to be
    * used when first bound to the lifecycle. If the specified lensFacing is not supported by the
-   * device, as determined by {@link #hasCameraWithLensFacing(LensFacing)}, the first supported
+   * device, as determined by {@link #hasCameraWithLensFacing(int)}, the first supported
    * lensFacing will be chosen when {@link #bindToLifecycle(LifecycleOwner)} is called.
    *
    * <p>If called with {@code null} AFTER binding to the lifecycle, the behavior would be
@@ -714,14 +502,20 @@ public final class CameraXView extends ViewGroup {
    *
    * @param lensFacing The desired camera lensFacing.
    */
-  public void setCameraLensFacing(@Nullable CameraX.LensFacing lensFacing) {
+  public void setCameraLensFacing(@Nullable Integer lensFacing) {
     mCameraModule.setCameraLensFacing(lensFacing);
   }
 
-  /** Returns the currently selected {@link LensFacing}. */
+  /** Returns the currently selected lensFacing. */
   @Nullable
-  public CameraX.LensFacing getCameraLensFacing() {
+  public Integer getCameraLensFacing() {
     return mCameraModule.getLensFacing();
+  }
+
+  /** Gets the active flash strategy. */
+  @ImageCapture.FlashMode
+  public int getFlash() {
+    return mCameraModule.getFlash();
   }
 
   // Begin Signal Custom Code Block
@@ -730,18 +524,9 @@ public final class CameraXView extends ViewGroup {
   }
   // End Signal Custom Code Block
 
-  /** Gets the active flash strategy. */
-  public FlashMode getFlash() {
-    return mCameraModule.getFlash();
-  }
-
   /** Sets the active flash strategy. */
-  public void setFlash(@NonNull FlashMode flashMode) {
+  public void setFlash(@ImageCapture.FlashMode int flashMode) {
     mCameraModule.setFlash(flashMode);
-  }
-
-  private int getRelativeCameraOrientation(boolean compensateForMirroring) {
-    return mCameraModule.getRelativeCameraOrientation(compensateForMirroring);
   }
 
   private long delta() {
@@ -793,40 +578,45 @@ public final class CameraXView extends ViewGroup {
     final float y = (mUpEvent != null) ? mUpEvent.getY() : getY() + getHeight() / 2f;
     mUpEvent = null;
 
-    TextureViewMeteringPointFactory pointFactory = new TextureViewMeteringPointFactory(
-        mCameraTextureView);
+    CameraSelector cameraSelector =
+        new CameraSelector.Builder().requireLensFacing(
+            mCameraModule.getLensFacing()).build();
+
+    DisplayOrientedMeteringPointFactory pointFactory = new DisplayOrientedMeteringPointFactory(
+        getDisplay(), cameraSelector, mPreviewView.getWidth(), mPreviewView.getHeight());
     float afPointWidth = 1.0f / 6.0f;  // 1/6 total area
     float aePointWidth = afPointWidth * 1.5f;
-    MeteringPoint afPoint = pointFactory.createPoint(x, y, afPointWidth, 1.0f);
-    MeteringPoint aePoint = pointFactory.createPoint(x, y, aePointWidth, 1.0f);
+    MeteringPoint afPoint = pointFactory.createPoint(x, y, afPointWidth);
+    MeteringPoint aePoint = pointFactory.createPoint(x, y, aePointWidth);
 
-    try {
-      CameraX.getCameraControl(getCameraLensFacing()).startFocusAndMetering(
-          FocusMeteringAction.Builder.from(afPoint, FocusMeteringAction.MeteringMode.AF_ONLY)
-              .addPoint(aePoint, FocusMeteringAction.MeteringMode.AE_ONLY)
-              .build());
-    } catch (CameraInfoUnavailableException e) {
-      Log.d(TAG, "cannot access camera", e);
+    Camera camera = mCameraModule.getCamera();
+    if (camera != null) {
+      ListenableFuture<FocusMeteringResult> future =
+          camera.getCameraControl().startFocusAndMetering(
+              new FocusMeteringAction.Builder(afPoint,
+                  FocusMeteringAction.FLAG_AF).addPoint(aePoint,
+                  FocusMeteringAction.FLAG_AE).build());
+      Futures.addCallback(future, new FutureCallback<FocusMeteringResult>() {
+        @Override
+        public void onSuccess(@Nullable FocusMeteringResult result) {
+        }
+
+        @Override
+        public void onFailure(Throwable t) {
+          // Throw the unexpected error.
+          throw new RuntimeException(t);
+        }
+      }, CameraXExecutors.directExecutor());
+
+    } else {
+      Log.d(TAG, "cannot access camera");
     }
 
     return true;
   }
 
-  /** Returns the width * height of the given rect */
-  private int area(Rect rect) {
-    return rect.width() * rect.height();
-  }
-
-  private int rangeLimit(int val, int max, int min) {
-    return Math.min(Math.max(val, min), max);
-  }
-
   float rangeLimit(float val, float max, float min) {
     return Math.min(Math.max(val, min), max);
-  }
-
-  private int distance(int a, int b) {
-    return Math.abs(a - b);
   }
 
   /**
@@ -851,47 +641,47 @@ public final class CameraXView extends ViewGroup {
   }
 
   /**
-   * Returns the current zoom level.
+   * Returns the current zoom ratio.
    *
-   * @return The current zoom level.
+   * @return The current zoom ratio.
    */
-  public float getZoomLevel() {
-    return mCameraModule.getZoomLevel();
+  public float getZoomRatio() {
+    return mCameraModule.getZoomRatio();
   }
 
   /**
-   * Sets the current zoom level.
+   * Sets the current zoom ratio.
    *
-   * <p>Valid zoom values range from 1 to {@link #getMaxZoomLevel()}.
+   * <p>Valid zoom values range from {@link #getMinZoomRatio()} to {@link #getMaxZoomRatio()}.
    *
-   * @param zoomLevel The requested zoom level.
+   * @param zoomRatio The requested zoom ratio.
    */
-  public void setZoomLevel(float zoomLevel) {
-    mCameraModule.setZoomLevel(zoomLevel);
+  public void setZoomRatio(float zoomRatio) {
+    mCameraModule.setZoomRatio(zoomRatio);
   }
 
   /**
-   * Returns the minimum zoom level.
+   * Returns the minimum zoom ratio.
    *
-   * <p>For most cameras this should return a zoom level of 1. A zoom level of 1 corresponds to a
+   * <p>For most cameras this should return a zoom ratio of 1. A zoom ratio of 1 corresponds to a
    * non-zoomed image.
    *
-   * @return The minimum zoom level.
+   * @return The minimum zoom ratio.
    */
-  public float getMinZoomLevel() {
-    return mCameraModule.getMinZoomLevel();
+  public float getMinZoomRatio() {
+    return mCameraModule.getMinZoomRatio();
   }
 
   /**
-   * Returns the maximum zoom level.
+   * Returns the maximum zoom ratio.
    *
-   * <p>The zoom level corresponds to the ratio between both the widths and heights of a
+   * <p>The zoom ratio corresponds to the ratio between both the widths and heights of a
    * non-zoomed image and a maximally zoomed image for the selected camera.
    *
-   * @return The maximum zoom level.
+   * @return The maximum zoom ratio.
    */
-  public float getMaxZoomLevel() {
-    return mCameraModule.getMaxZoomLevel();
+  public float getMaxZoomRatio() {
+    return mCameraModule.getMaxZoomRatio();
   }
 
   /**
@@ -935,7 +725,7 @@ public final class CameraXView extends ViewGroup {
      */
     CENTER_INSIDE(1);
 
-    private int mId;
+    private final int mId;
 
     int getId() {
       return mId;
@@ -959,7 +749,7 @@ public final class CameraXView extends ViewGroup {
    * The capture mode used by CameraView.
    *
    * <p>This enum can be used to determine which capture mode will be enabled for {@link
-   * CameraView}.
+   * CameraXView}.
    */
   public enum CaptureMode {
     /** A mode where image capture is enabled. */
@@ -972,7 +762,7 @@ public final class CameraXView extends ViewGroup {
      */
     MIXED(2);
 
-    private int mId;
+    private final int mId;
 
     int getId() {
       return mId;
@@ -1007,10 +797,6 @@ public final class CameraXView extends ViewGroup {
 
   private class PinchToZoomGestureDetector extends ScaleGestureDetector
       implements ScaleGestureDetector.OnScaleGestureListener {
-    private static final float SCALE_MULTIPIER = 0.75f;
-    private final BaseInterpolator mInterpolator = new DecelerateInterpolator(2f);
-    private float mNormalizedScaleFactor = 0;
-
     PinchToZoomGestureDetector(Context context) {
       this(context, new S());
     }
@@ -1022,34 +808,23 @@ public final class CameraXView extends ViewGroup {
 
     @Override
     public boolean onScale(ScaleGestureDetector detector) {
-      mNormalizedScaleFactor += (detector.getScaleFactor() - 1f) * SCALE_MULTIPIER;
-      // Since the scale factor is normalized, it should always be in the range [0, 1]
-      mNormalizedScaleFactor = rangeLimit(mNormalizedScaleFactor, 1f, 0);
+      float scale = detector.getScaleFactor();
 
-      // Apply decelerate interpolation. This will cause the differences to seem less
-      // pronounced
-      // at higher zoom levels.
-      float transformedScale = mInterpolator.getInterpolation(mNormalizedScaleFactor);
+      // Speeding up the zoom by 2X.
+      if (scale > 1f) {
+        scale = 1.0f + (scale - 1.0f) * 2;
+      } else {
+        scale = 1.0f - (1.0f - scale) * 2;
+      }
 
-      // Transform back from normalized coordinates to the zoom scale
-      float zoomLevel =
-          (getMaxZoomLevel() == getMinZoomLevel())
-              ? getMinZoomLevel()
-              : getMinZoomLevel()
-              + transformedScale * (getMaxZoomLevel() - getMinZoomLevel());
-
-      setZoomLevel(rangeLimit(zoomLevel, getMaxZoomLevel(), getMinZoomLevel()));
+      float newRatio = getZoomRatio() * scale;
+      newRatio = rangeLimit(newRatio, getMaxZoomRatio(), getMinZoomRatio());
+      setZoomRatio(newRatio);
       return true;
     }
 
     @Override
     public boolean onScaleBegin(ScaleGestureDetector detector) {
-      float initialZoomLevel = getZoomLevel();
-      mNormalizedScaleFactor =
-          (getMaxZoomLevel() == getMinZoomLevel())
-              ? 0
-              : (initialZoomLevel - getMinZoomLevel())
-              / (getMaxZoomLevel() - getMinZoomLevel());
       return true;
     }
 

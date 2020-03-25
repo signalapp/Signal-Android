@@ -44,7 +44,6 @@ public class CameraButtonView extends View {
 
   private boolean isRecordingVideo;
   private float   progressPercent = 0f;
-  private float   latestIncrement = 0f;
 
   private @NonNull  CameraButtonMode     cameraButtonMode = CameraButtonMode.IMAGE;
   private @Nullable VideoCaptureListener videoCaptureListener;
@@ -247,7 +246,6 @@ public class CameraButtonView extends View {
     int action = event.getAction();
     switch (action) {
       case MotionEvent.ACTION_DOWN:
-        latestIncrement = 0f;
         if (isEnabled()) {
           startAnimation(shrinkAnimation);
         }
@@ -258,11 +256,6 @@ public class CameraButtonView extends View {
           float deltaY    = Math.abs(event.getY() - deadzoneRect.top);
           float increment = Math.min(1f, deltaY / maxRange);
 
-          if (Math.abs(increment - latestIncrement) < MINIMUM_ALLOWED_ZOOM_STEP) {
-            break;
-          }
-
-          latestIncrement = increment;
           notifyZoomPercent(ZOOM_INTERPOLATOR.getInterpolation(increment));
           invalidate();
         }
