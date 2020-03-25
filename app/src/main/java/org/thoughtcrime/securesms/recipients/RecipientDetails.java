@@ -89,7 +89,7 @@ public class RecipientDetails {
     this.blocked                         = settings.isBlocked();
     this.expireMessages                  = settings.getExpireMessages();
     this.participants                    = participants == null ? new LinkedList<>() : participants;
-    this.profileName                     = isLocalNumber ? TextSecurePreferences.getProfileName(context) : settings.getProfileName();
+    this.profileName                     = settings.getProfileName();
     this.defaultSubscriptionId           = settings.getDefaultSubscriptionId();
     this.registered                      = settings.getRegistered();
     this.profileKey                      = settings.getProfileKey();

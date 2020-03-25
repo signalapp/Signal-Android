@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.CensorshipUtil;
@@ -187,7 +188,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   }
 
   private boolean userMustSetProfileName() {
-    return !SignalStore.registrationValues().isRegistrationComplete() && TextSecurePreferences.getProfileName(this) == ProfileName.EMPTY;
+    return !SignalStore.registrationValues().isRegistrationComplete() && Recipient.self().getProfileName() == ProfileName.EMPTY;
   }
 
   private Intent getCreatePassphraseIntent() {

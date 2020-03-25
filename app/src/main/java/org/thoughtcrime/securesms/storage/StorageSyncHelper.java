@@ -340,7 +340,6 @@ public final class StorageSyncHelper {
     DatabaseFactory.getRecipientDatabase(context).applyStorageSyncUpdates(storageId, update);
     DatabaseFactory.getThreadDatabase(context).setArchived(Recipient.self().getId(), update.isNoteToSelfArchived());
 
-    TextSecurePreferences.setProfileName(context, ProfileName.fromParts(update.getGivenName().orNull(), update.getFamilyName().orNull()));
     TextSecurePreferences.setReadReceiptsEnabled(context, update.isReadReceiptsEnabled());
     TextSecurePreferences.setTypingIndicatorsEnabled(context, update.isTypingIndicatorsEnabled());
     TextSecurePreferences.setShowUnidentifiedDeliveryIndicatorsEnabled(context, update.isSealedSenderIndicatorsEnabled());

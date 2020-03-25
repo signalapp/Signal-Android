@@ -106,7 +106,6 @@ public class RefreshOwnProfileJob extends BaseJob {
       ProfileName profileName   = ProfileName.fromSerialized(plaintextName);
 
       DatabaseFactory.getRecipientDatabase(context).setProfileName(Recipient.self().getId(), profileName);
-      TextSecurePreferences.setProfileName(context, profileName);
     } catch (InvalidCiphertextException | IOException e) {
       Log.w(TAG, e);
     }

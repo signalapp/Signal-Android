@@ -59,10 +59,10 @@ public class RotateProfileKeyJob extends BaseJob {
       if (FeatureFlags.VERSIONED_PROFILES) {
         accountManager.setVersionedProfile(self.getUuid().get(),
                                            profileKey,
-                                           TextSecurePreferences.getProfileName(context).serialize(),
+                                           Recipient.self().getProfileName().serialize(),
                                            avatarStream);
       } else {
-        accountManager.setProfileName(profileKey, TextSecurePreferences.getProfileName(context).serialize());
+        accountManager.setProfileName(profileKey, Recipient.self().getProfileName().serialize());
         accountManager.setProfileAvatar(profileKey, avatarStream);
       }
     }

@@ -61,7 +61,7 @@ public final class AvatarUtil {
   }
 
   private static Drawable getFallback(@NonNull Context context, @NonNull Recipient recipient) {
-    String        name          = Optional.fromNullable(recipient.getDisplayName(context)).or(Optional.fromNullable(TextSecurePreferences.getProfileName(context).toString())).or("");
+    String        name          = Optional.fromNullable(recipient.getDisplayName(context)).or("");
     MaterialColor fallbackColor = recipient.getColor();
 
     if (fallbackColor == ContactColors.UNKNOWN_COLOR && !TextUtils.isEmpty(name)) {

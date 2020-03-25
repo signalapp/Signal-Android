@@ -47,7 +47,7 @@ class EditProfileRepository {
   }
 
   void getCurrentProfileName(@NonNull Consumer<ProfileName> profileNameConsumer) {
-    ProfileName storedProfileName = TextSecurePreferences.getProfileName(context);
+    ProfileName storedProfileName = Recipient.self().getProfileName();
     if (!storedProfileName.isEmpty()) {
       profileNameConsumer.accept(storedProfileName);
     } else if (!excludeSystem) {
@@ -102,7 +102,6 @@ class EditProfileRepository {
 
   void uploadProfile(@NonNull ProfileName profileName, @Nullable byte[] avatar, @NonNull Consumer<UploadResult> uploadResultConsumer) {
     SimpleTask.run(() -> {
-      TextSecurePreferences.setProfileName(context, profileName);
       DatabaseFactory.getRecipientDatabase(context).setProfileName(Recipient.self().getId(), profileName);
 
       try {

@@ -641,7 +641,7 @@ public class SignalServiceAccountManager {
     this.pushServiceSocket.setProfileName(ciphertextName);
   }
 
-  public void setProfileAvatar(ProfileKey key, StreamDetails avatar)
+  public String setProfileAvatar(ProfileKey key, StreamDetails avatar)
       throws IOException
   {
     if (FeatureFlags.VERSIONED_PROFILES) {
@@ -657,10 +657,13 @@ public class SignalServiceAccountManager {
                                                 new ProfileCipherOutputStreamFactory(key));
     }
 
-    this.pushServiceSocket.setProfileAvatar(profileAvatarData);
+    return this.pushServiceSocket.setProfileAvatar(profileAvatarData);
   }
 
-  public void setVersionedProfile(UUID uuid, ProfileKey profileKey, String name, StreamDetails avatar)
+  /**
+   * @return The avatar URL path, if one was written.
+   */
+  public String setVersionedProfile(UUID uuid, ProfileKey profileKey, String name, StreamDetails avatar)
     throws IOException
   {
     if (!FeatureFlags.VERSIONED_PROFILES) {
@@ -680,11 +683,11 @@ public class SignalServiceAccountManager {
                                                 new ProfileCipherOutputStreamFactory(profileKey));
     }
 
-    this.pushServiceSocket.writeProfile(new SignalServiceProfileWrite(profileKey.getProfileKeyVersion(uuid).serialize(),
-                                                                      ciphertextName,
-                                                                      hasAvatar,
-                                                                      profileKey.getCommitment(uuid).serialize()),
-                                                                      profileAvatarData);
+    return this.pushServiceSocket.writeProfile(new SignalServiceProfileWrite(profileKey.getProfileKeyVersion(uuid).serialize(),
+                                                                             ciphertextName,
+                                                                             hasAvatar,
+                                                                             profileKey.getCommitment(uuid).serialize()),
+                                                                             profileAvatarData);
   }
 
   public void setUsername(String username) throws IOException {

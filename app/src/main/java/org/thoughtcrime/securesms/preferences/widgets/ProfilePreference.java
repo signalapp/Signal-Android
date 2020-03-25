@@ -65,7 +65,7 @@ public class ProfilePreference extends Preference {
     if (profileSubtextView == null) return;
 
     final Recipient self        = Recipient.self();
-    final String    profileName = TextSecurePreferences.getProfileName(getContext()).toString();
+    final String    profileName = Recipient.self().getProfileName().toString();
 
     GlideApp.with(getContext().getApplicationContext())
             .load(new ProfileContactPhoto(self.getId(), String.valueOf(TextSecurePreferences.getProfileAvatarId(getContext()))))

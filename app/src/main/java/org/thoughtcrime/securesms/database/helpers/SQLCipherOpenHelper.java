@@ -21,6 +21,8 @@ import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteDatabaseHook;
 import net.sqlcipher.database.SQLiteOpenHelper;
 
+import org.thoughtcrime.securesms.profiles.ProfileName;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.crypto.DatabaseSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
@@ -115,8 +117,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int STORAGE_SERVICE_ACTIVE           = 50;
   private static final int GROUPS_V2_RECIPIENT_CAPABILITY   = 51;
   private static final int TRANSFER_FILE_CLEANUP            = 52;
+  private static final int PROFILE_DATA_MIGRATION           = 53;
 
-  private static final int    DATABASE_VERSION = 52;
+  private static final int    DATABASE_VERSION = 53;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -545,11 +548,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
               values.put("phone", localNumber);
               values.put("registered", 1);
               values.put("profile_sharing", 1);
-              values.put("signal_profile_name", TextSecurePreferences.getProfileName(context).getGivenName());
               db.insert("recipient", null, values);
             } else {
-              db.execSQL("UPDATE recipient SET registered = ?, profile_sharing = ?, signal_profile_name = ? WHERE phone = ?",
-                         new String[] { "1", "1", TextSecurePreferences.getProfileName(context).getGivenName(), localNumber });
+              db.execSQL("UPDATE recipient SET registered = ?, profile_sharing = ? WHERE phone = ?",
+                         new String[] { "1", "1", localNumber });
             }
           }
         }
@@ -786,6 +788,17 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
           Log.i(TAG, "Deleted " + deleteCount + " dangling transfer files.");
         } else {
           Log.w(TAG, "Part directory did not exist. Skipping.");
+        }
+      }
+
+      if (oldVersion < PROFILE_DATA_MIGRATION) {
+        String localNumber = TextSecurePreferences.getLocalNumber(context);
+        if (localNumber != null) {
+          String      encodedProfileName = PreferenceManager.getDefaultSharedPreferences(context).getString("pref_profile_name", null);
+          ProfileName profileName        = ProfileName.fromSerialized(encodedProfileName);
+
+          db.execSQL("UPDATE recipient SET signal_profile_name = ?, profile_family_name = ?, profile_joined_name = ? WHERE phone = ?",
+                     new String[] { profileName.getGivenName(), profileName.getFamilyName(), profileName.toString(), localNumber });
         }
       }
 

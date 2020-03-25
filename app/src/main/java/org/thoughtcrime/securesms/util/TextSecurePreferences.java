@@ -434,14 +434,6 @@ public class TextSecurePreferences {
     setBooleanPreference(context, GIF_GRID_LAYOUT, isGrid);
   }
 
-  public static void setProfileName(Context context, ProfileName name) {
-    setStringPreference(context, PROFILE_NAME_PREF, name.serialize());
-  }
-
-  public static ProfileName getProfileName(Context context) {
-    return ProfileName.fromSerialized(getStringPreference(context, PROFILE_NAME_PREF, null));
-  }
-
   public static void setProfileAvatarId(Context context, int id) {
     setIntegerPrefrence(context, PROFILE_AVATAR_ID_PREF, id);
   }

@@ -49,19 +49,19 @@ public final class ProfileUploadJob extends BaseJob {
   @Override
   protected void onRun() throws Exception {
     ProfileKey  profileKey  = ProfileKeyUtil.getSelfProfileKey();
-    ProfileName profileName = TextSecurePreferences.getProfileName(context);
+    ProfileName profileName = Recipient.self().getProfileName();
+    String      avatarPath  = null;
 
     try (StreamDetails avatar = AvatarHelper.getSelfProfileAvatarStream(context)) {
       if (FeatureFlags.VERSIONED_PROFILES) {
-        accountManager.setVersionedProfile(Recipient.self().getUuid().get(), profileKey, profileName.serialize(), avatar);
+        avatarPath = accountManager.setVersionedProfile(Recipient.self().getUuid().get(), profileKey, profileName.serialize(), avatar);
       } else {
         accountManager.setProfileName(profileKey, profileName.serialize());
-        accountManager.setProfileAvatar(profileKey, avatar);
+        avatarPath = accountManager.setProfileAvatar(profileKey, avatar);
       }
     }
 
-    ProfileAndCredential profile = ProfileUtil.retrieveProfile(context, Recipient.self(), SignalServiceProfile.RequestType.PROFILE);
-    DatabaseFactory.getRecipientDatabase(context).setProfileAvatar(Recipient.self().getId(), profile.getProfile().getAvatar());
+    DatabaseFactory.getRecipientDatabase(context).setProfileAvatar(Recipient.self().getId(), avatarPath);
   }
 
   @Override
