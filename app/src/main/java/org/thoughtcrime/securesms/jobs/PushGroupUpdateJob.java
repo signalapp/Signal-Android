@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -80,16 +81,16 @@ public class PushGroupUpdateJob extends BaseJob {
     Optional<GroupRecord>   record        = groupDatabase.getGroup(groupId);
     SignalServiceAttachment avatar        = null;
 
-    if (record == null) {
+    if (record == null || !record.isPresent()) {
       Log.w(TAG, "No information for group record info request: " + groupId.toString());
       return;
     }
 
-    if (record.get().getAvatar() != null) {
+    if (AvatarHelper.hasAvatar(context, record.get().getRecipientId())) {
       avatar = SignalServiceAttachmentStream.newStreamBuilder()
                                             .withContentType("image/jpeg")
-                                            .withStream(new ByteArrayInputStream(record.get().getAvatar()))
-                                            .withLength(record.get().getAvatar().length)
+                                            .withStream(AvatarHelper.getAvatar(context, record.get().getRecipientId()))
+                                            .withLength(AvatarHelper.getAvatarLength(context, record.get().getRecipientId()))
                                             .build();
     }
 

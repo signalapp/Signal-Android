@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.Arrays;
@@ -76,10 +77,10 @@ class EditProfileRepository {
   void getCurrentAvatar(@NonNull Consumer<byte[]> avatarConsumer) {
     RecipientId selfId = Recipient.self().getId();
 
-    if (AvatarHelper.getAvatarFile(context, selfId).exists() && AvatarHelper.getAvatarFile(context, selfId).length() > 0) {
+    if (AvatarHelper.hasAvatar(context, selfId)) {
       SimpleTask.run(() -> {
         try {
-          return Util.readFully(AvatarHelper.getInputStreamFor(context, selfId));
+          return Util.readFully(AvatarHelper.getAvatar(context, selfId));
         } catch (IOException e) {
           Log.w(TAG, e);
           return null;
@@ -106,7 +107,7 @@ class EditProfileRepository {
       DatabaseFactory.getRecipientDatabase(context).setProfileName(Recipient.self().getId(), profileName);
 
       try {
-        AvatarHelper.setAvatar(context, Recipient.self().getId(), avatar);
+        AvatarHelper.setAvatar(context, Recipient.self().getId(), avatar != null ? new ByteArrayInputStream(avatar) : null);
       } catch (IOException e) {
         return UploadResult.ERROR_FILE_IO;
       }

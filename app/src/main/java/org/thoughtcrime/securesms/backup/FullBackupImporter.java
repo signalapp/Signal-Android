@@ -176,7 +176,7 @@ public class FullBackupImporter extends FullBackupBase {
   private static void processAvatar(@NonNull Context context, @NonNull SQLiteDatabase db, @NonNull BackupProtos.Avatar avatar, @NonNull BackupRecordInputStream inputStream) throws IOException {
     if (avatar.hasRecipientId()) {
       RecipientId recipientId = RecipientId.from(avatar.getRecipientId());
-      inputStream.readAttachmentTo(new FileOutputStream(AvatarHelper.getAvatarFile(context, recipientId)), avatar.getLength());
+      inputStream.readAttachmentTo(AvatarHelper.getOutputStream(context, recipientId), avatar.getLength());
     } else {
       if (avatar.hasName() && SqlUtil.tableExists(db, "recipient_preferences")) {
         Log.w(TAG, "Avatar is missing a recipientId. Clearing signal_profile_avatar (legacy) so it can be fetched later.");

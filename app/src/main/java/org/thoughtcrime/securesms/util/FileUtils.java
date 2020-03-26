@@ -49,13 +49,13 @@ public final class FileUtils {
     }
   }
 
-  public static void deleteDirectory(@Nullable File directory) {
+  public static boolean deleteDirectory(@Nullable File directory) {
     if (directory == null || !directory.exists() || !directory.isDirectory()) {
-      return;
+      return false;
     }
 
     deleteDirectoryContents(directory);
 
-    directory.delete();
+    return directory.delete();
   }
 }

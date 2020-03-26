@@ -19,7 +19,9 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupManager.GroupActionResult;
 import org.thoughtcrime.securesms.jobs.LeaveGroupJob;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
+import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -32,12 +34,16 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
 final class V1GroupManager {
+
+  private static final String TAG = Log.tag(V1GroupManager.class);
 
   static @NonNull GroupActionResult createGroup(@NonNull Context          context,
                                                 @NonNull Set<RecipientId> memberIds,
@@ -55,7 +61,12 @@ final class V1GroupManager {
     groupDatabase.create(groupId, name, new LinkedList<>(memberIds), null, null);
 
     if (!mms) {
-      groupDatabase.updateAvatar(groupId, avatarBytes);
+      try {
+        AvatarHelper.setAvatar(context, groupRecipientId, avatarBytes != null ? new ByteArrayInputStream(avatarBytes) : null);
+      } catch (IOException e) {
+        Log.w(TAG, "Failed to save avatar!", e);
+      }
+      groupDatabase.onAvatarUpdated(groupId, avatarBytes != null);
       DatabaseFactory.getRecipientDatabase(context).setProfileSharing(groupRecipient.getId(), true);
       return sendGroupUpdate(context, groupId, memberIds, name, avatarBytes);
     } else {
@@ -71,18 +82,23 @@ final class V1GroupManager {
                                        @Nullable String           name)
       throws InvalidNumberException
   {
-    final GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
-    final byte[]        avatarBytes   = BitmapUtil.toByteArray(avatar);
+    final GroupDatabase groupDatabase    = DatabaseFactory.getGroupDatabase(context);
+    final RecipientId   groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
+    final byte[]        avatarBytes      = BitmapUtil.toByteArray(avatar);
 
     memberAddresses.add(Recipient.self().getId());
     groupDatabase.updateMembers(groupId, new LinkedList<>(memberAddresses));
     groupDatabase.updateTitle(groupId, name);
-    groupDatabase.updateAvatar(groupId, avatarBytes);
+    groupDatabase.onAvatarUpdated(groupId, avatarBytes != null);
 
     if (!groupId.isMmsGroup()) {
+      try {
+        AvatarHelper.setAvatar(context, groupRecipientId, avatarBytes != null ? new ByteArrayInputStream(avatarBytes) : null);
+      } catch (IOException e) {
+        Log.w(TAG, "Failed to save avatar!", e);
+      }
       return sendGroupUpdate(context, groupId, memberAddresses, name, avatarBytes);
     } else {
-      RecipientId groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
       Recipient   groupRecipient   = Recipient.resolved(groupRecipientId);
       long        threadId         = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
       return new GroupActionResult(groupRecipient, threadId);

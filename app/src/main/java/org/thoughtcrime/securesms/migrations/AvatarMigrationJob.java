@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Util;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -64,7 +65,7 @@ public class AvatarMigrationJob extends MigrationJob {
           Recipient recipient = Recipient.external(context, file.getName());
           byte[]    data      = Util.readFully(new FileInputStream(file));
 
-          AvatarHelper.setAvatar(context, recipient.getId(), data);
+          AvatarHelper.setAvatar(context, recipient.getId(), new ByteArrayInputStream(data));
         } else {
           Log.w(TAG, "Invalid file name! Can't migrate this file. It'll just get deleted.");
         }

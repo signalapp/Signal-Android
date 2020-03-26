@@ -113,7 +113,7 @@ public class SignalServiceMessageReceiver {
    * @throws IOException
    * @throws InvalidMessageException
    */
-  public InputStream retrieveAttachment(SignalServiceAttachmentPointer pointer, File destination, int maxSizeBytes)
+  public InputStream retrieveAttachment(SignalServiceAttachmentPointer pointer, File destination, long maxSizeBytes)
       throws IOException, InvalidMessageException
   {
     return retrieveAttachment(pointer, destination, maxSizeBytes, null);
@@ -142,7 +142,7 @@ public class SignalServiceMessageReceiver {
     return socket.retrieveProfileByUsername(username, unidentifiedAccess);
   }
 
-  public InputStream retrieveProfileAvatar(String path, File destination, ProfileKey profileKey, int maxSizeBytes)
+  public InputStream retrieveProfileAvatar(String path, File destination, ProfileKey profileKey, long maxSizeBytes)
     throws IOException
   {
     socket.retrieveProfileAvatar(path, destination, maxSizeBytes);
@@ -162,7 +162,7 @@ public class SignalServiceMessageReceiver {
    * @throws IOException
    * @throws InvalidMessageException
    */
-  public InputStream retrieveAttachment(SignalServiceAttachmentPointer pointer, File destination, int maxSizeBytes, ProgressListener listener)
+  public InputStream retrieveAttachment(SignalServiceAttachmentPointer pointer, File destination, long maxSizeBytes, ProgressListener listener)
       throws IOException, InvalidMessageException
   {
     if (!pointer.getDigest().isPresent()) throw new InvalidMessageException("No attachment digest!");

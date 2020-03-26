@@ -498,7 +498,7 @@ public class PushServiceSocket {
     makeServiceRequest(SIGNED_PREKEY_PATH, "PUT", JsonUtil.toJson(signedPreKeyEntity));
   }
 
-  public void retrieveAttachment(long attachmentId, File destination, int maxSizeBytes, ProgressListener listener)
+  public void retrieveAttachment(long attachmentId, File destination, long maxSizeBytes, ProgressListener listener)
       throws NonSuccessfulResponseCodeException, PushNetworkException
   {
     downloadFromCdn(destination, String.format(Locale.US, ATTACHMENT_DOWNLOAD_PATH, attachmentId), maxSizeBytes, listener);
@@ -590,7 +590,7 @@ public class PushServiceSocket {
     }
   }
 
-  public void retrieveProfileAvatar(String path, File destination, int maxSizeBytes)
+  public void retrieveProfileAvatar(String path, File destination, long maxSizeBytes)
       throws NonSuccessfulResponseCodeException, PushNetworkException
   {
     downloadFromCdn(destination, path, maxSizeBytes, null);
@@ -874,7 +874,7 @@ public class PushServiceSocket {
     return new Pair<>(id, digest);
   }
 
-  private void downloadFromCdn(File destination, String path, int maxSizeBytes, ProgressListener listener)
+  private void downloadFromCdn(File destination, String path, long maxSizeBytes, ProgressListener listener)
       throws PushNetworkException, NonSuccessfulResponseCodeException
   {
     try (FileOutputStream outputStream = new FileOutputStream(destination, true)) {
@@ -884,7 +884,7 @@ public class PushServiceSocket {
     }
   }
 
-  private void downloadFromCdn(OutputStream outputStream, long offset, String path, int maxSizeBytes, ProgressListener listener)
+  private void downloadFromCdn(OutputStream outputStream, long offset, String path, long maxSizeBytes, ProgressListener listener)
       throws PushNetworkException, NonSuccessfulResponseCodeException
   {
     ConnectionHolder connectionHolder = getRandom(cdnClients, random);

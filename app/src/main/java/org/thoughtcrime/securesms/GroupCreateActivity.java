@@ -20,6 +20,7 @@ package org.thoughtcrime.securesms;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -63,6 +64,7 @@ import org.thoughtcrime.securesms.mediasend.AvatarSelectionBottomSheetDialogFrag
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.BitmapUtil;
@@ -76,6 +78,7 @@ import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -102,7 +105,6 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
 
   private static final short REQUEST_CODE_SELECT_AVATAR = 26165;
   private static final int   PICK_CONTACT               = 1;
-  public static final  int   AVATAR_SIZE                = 210;
 
   private EditText     groupName;
   private ListView     lv;
@@ -321,7 +323,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
                 .skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .centerCrop()
-                .override(AVATAR_SIZE, AVATAR_SIZE)
+                .override(AvatarHelper.AVATAR_DIMENSIONS, AvatarHelper.AVATAR_DIMENSIONS)
                 .into(new SimpleTarget<Bitmap>() {
                   @Override
                   public void onResourceReady(@NonNull Bitmap resource, Transition<? super Bitmap> transition) {
@@ -554,10 +556,16 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
       existingContacts.addAll(recipients);
 
       if (group.isPresent()) {
+        Bitmap avatar = null;
+        try {
+          avatar = BitmapFactory.decodeStream(AvatarHelper.getAvatar(getContext(), group.get().getRecipientId()));
+        } catch (IOException e) {
+          Log.w(TAG, "Failed to read avatar.");
+        }
         return Optional.of(new GroupData(groupIds[0],
                                          existingContacts,
-                                         BitmapUtil.fromByteArray(group.get().getAvatar()),
-                                         group.get().getAvatar(),
+                                         avatar,
+                                         BitmapUtil.toByteArray(avatar),
                                          group.get().getTitle()));
       } else {
         return Optional.absent();

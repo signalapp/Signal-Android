@@ -42,7 +42,6 @@ public class GroupDatabase extends Database {
           static final String RECIPIENT_ID        = "recipient_id";
   private static final String TITLE               = "title";
   private static final String MEMBERS             = "members";
-  private static final String AVATAR              = "avatar";
   private static final String AVATAR_ID           = "avatar_id";
   private static final String AVATAR_KEY          = "avatar_key";
   private static final String AVATAR_CONTENT_TYPE = "avatar_content_type";
@@ -59,7 +58,6 @@ public class GroupDatabase extends Database {
           RECIPIENT_ID + " INTEGER, " +
           TITLE + " TEXT, " +
           MEMBERS + " TEXT, " +
-          AVATAR + " BLOB, " +
           AVATAR_ID + " INTEGER, " +
           AVATAR_KEY + " BLOB, " +
           AVATAR_CONTENT_TYPE + " TEXT, " +
@@ -75,7 +73,7 @@ public class GroupDatabase extends Database {
   };
 
   private static final String[] GROUP_PROJECTION = {
-      GROUP_ID, RECIPIENT_ID, TITLE, MEMBERS, AVATAR, AVATAR_ID, AVATAR_KEY, AVATAR_CONTENT_TYPE, AVATAR_RELAY, AVATAR_DIGEST,
+      GROUP_ID, RECIPIENT_ID, TITLE, MEMBERS, AVATAR_ID, AVATAR_KEY, AVATAR_CONTENT_TYPE, AVATAR_RELAY, AVATAR_DIGEST,
       TIMESTAMP, ACTIVE, MMS
   };
 
@@ -120,7 +118,7 @@ public class GroupDatabase extends Database {
       return true;
     }
 
-    boolean noMetadata = group.get().getAvatar() == null && TextUtils.isEmpty(group.get().getTitle());
+    boolean noMetadata = !group.get().hasAvatar() && TextUtils.isEmpty(group.get().getTitle());
     boolean noMembers  = group.get().getMembers().isEmpty() || (group.get().getMembers().size() == 1 && group.get().getMembers().contains(Recipient.self().getId()));
 
     return noMetadata && noMembers;
@@ -228,6 +226,8 @@ public class GroupDatabase extends Database {
       contentValues.put(AVATAR_KEY, avatar.getKey());
       contentValues.put(AVATAR_CONTENT_TYPE, avatar.getContentType());
       contentValues.put(AVATAR_DIGEST, avatar.getDigest().orNull());
+    } else {
+      contentValues.put(AVATAR_ID, 0);
     }
 
     contentValues.put(AVATAR_RELAY, relay);
@@ -252,6 +252,8 @@ public class GroupDatabase extends Database {
       contentValues.put(AVATAR_CONTENT_TYPE, avatar.getContentType());
       contentValues.put(AVATAR_KEY, avatar.getKey());
       contentValues.put(AVATAR_DIGEST, avatar.getDigest().orNull());
+    } else {
+      contentValues.put(AVATAR_ID, 0);
     }
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues,
@@ -274,20 +276,12 @@ public class GroupDatabase extends Database {
     Recipient.live(groupRecipient).refresh();
   }
 
-  public void updateAvatar(@NonNull GroupId groupId, @Nullable Bitmap avatar) {
-    updateAvatar(groupId, BitmapUtil.toByteArray(avatar));
-  }
-
-  public void updateAvatar(@NonNull GroupId groupId, @Nullable byte[] avatar) {
-    long avatarId;
-
-    if (avatar != null) avatarId = Math.abs(new SecureRandom().nextLong());
-    else                avatarId = 0;
-
-
-    ContentValues contentValues = new ContentValues(2);
-    contentValues.put(AVATAR, avatar);
-    contentValues.put(AVATAR_ID, avatarId);
+  /**
+   * Used to bust the Glide cache when an avatar changes.
+   */
+  public void onAvatarUpdated(@NonNull GroupId groupId, boolean hasAvatar) {
+    ContentValues contentValues = new ContentValues(1);
+    contentValues.put(AVATAR_ID, hasAvatar ? Math.abs(new SecureRandom().nextLong()) : 0);
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
                                                 new String[] {groupId.toString()});
@@ -388,7 +382,6 @@ public class GroupDatabase extends Database {
                              RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT_ID))),
                              cursor.getString(cursor.getColumnIndexOrThrow(TITLE)),
                              cursor.getString(cursor.getColumnIndexOrThrow(MEMBERS)),
-                             cursor.getBlob(cursor.getColumnIndexOrThrow(AVATAR)),
                              cursor.getLong(cursor.getColumnIndexOrThrow(AVATAR_ID)),
                              cursor.getBlob(cursor.getColumnIndexOrThrow(AVATAR_KEY)),
                              cursor.getString(cursor.getColumnIndexOrThrow(AVATAR_CONTENT_TYPE)),
@@ -411,7 +404,6 @@ public class GroupDatabase extends Database {
     private final RecipientId       recipientId;
     private final String            title;
     private final List<RecipientId> members;
-    private final byte[]            avatar;
     private final long              avatarId;
     private final byte[]            avatarKey;
     private final byte[]            avatarDigest;
@@ -420,14 +412,13 @@ public class GroupDatabase extends Database {
     private final boolean           active;
     private final boolean           mms;
 
-    public GroupRecord(@NonNull GroupId id, @NonNull RecipientId recipientId, String title, String members, byte[] avatar,
+    public GroupRecord(@NonNull GroupId id, @NonNull RecipientId recipientId, String title, String members,
                        long avatarId, byte[] avatarKey, String avatarContentType,
                        String relay, boolean active, byte[] avatarDigest, boolean mms)
     {
       this.id                = id;
       this.recipientId       = recipientId;
       this.title             = title;
-      this.avatar            = avatar;
       this.avatarId          = avatarId;
       this.avatarKey         = avatarKey;
       this.avatarDigest      = avatarDigest;
@@ -456,8 +447,8 @@ public class GroupDatabase extends Database {
       return members;
     }
 
-    public byte[] getAvatar() {
-      return avatar;
+    public boolean hasAvatar() {
+      return avatarId != 0;
     }
 
     public long getAvatarId() {

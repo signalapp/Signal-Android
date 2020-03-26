@@ -224,7 +224,9 @@ public class Util {
     }
   }
 
-  public static void close(Closeable closeable) {
+  public static void close(@Nullable Closeable closeable) {
+    if (closeable == null) return;
+
     try {
       closeable.close();
     } catch (IOException e) {
@@ -607,4 +609,12 @@ public class Util {
     return concat;
   }
 
+  public static boolean isLong(String value) {
+    try {
+      Long.parseLong(value);
+      return true;
+    } catch (NumberFormatException e) {
+      return false;
+    }
+  }
 }

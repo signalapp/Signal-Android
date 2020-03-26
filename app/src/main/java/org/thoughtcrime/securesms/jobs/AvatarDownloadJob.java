@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.AttachmentStreamUriLoader.AttachmentModel;
+import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.Hex;
@@ -90,13 +91,14 @@ public class AvatarDownloadJob extends BaseJob {
 
         SignalServiceMessageReceiver   receiver    = ApplicationDependencies.getSignalServiceMessageReceiver();
         SignalServiceAttachmentPointer pointer     = new SignalServiceAttachmentPointer(avatarId, contentType, key, Optional.of(0), Optional.absent(), 0, 0, digest, fileName, false, Optional.absent(), Optional.absent());
-        InputStream                    inputStream = receiver.retrieveAttachment(pointer, attachment, MAX_AVATAR_SIZE);
-        Bitmap                         avatar      = BitmapUtil.createScaledBitmap(context, new AttachmentModel(attachment, key, 0, digest), 500, 500);
+        InputStream                    inputStream = receiver.retrieveAttachment(pointer, attachment, AvatarHelper.AVATAR_DOWNLOAD_FAILSAFE_MAX_SIZE);
 
-        database.updateAvatar(groupId, avatar);
+        AvatarHelper.setAvatar(context, record.get().getRecipientId(), inputStream);
+        DatabaseFactory.getGroupDatabase(context).onAvatarUpdated(groupId, true);
+
         inputStream.close();
       }
-    } catch (BitmapDecodingException | NonSuccessfulResponseCodeException | InvalidMessageException e) {
+    } catch (NonSuccessfulResponseCodeException | InvalidMessageException e) {
       Log.w(TAG, e);
     } finally {
       if (attachment != null)

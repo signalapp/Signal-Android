@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.JobDatabase;
 import org.thoughtcrime.securesms.database.KeyValueDatabase;
@@ -49,7 +48,6 @@ import java.io.OutputStream;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -118,9 +116,11 @@ public class FullBackupExporter extends FullBackupBase {
 
       stopwatch.split("prefs");
 
-      for (File avatar : AvatarHelper.getAvatarFiles(context)) {
-        EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count));
-        outputStream.write(avatar.getName(), new FileInputStream(avatar), avatar.length());
+      for (AvatarHelper.Avatar avatar : AvatarHelper.getAvatars(context)) {
+        if (avatar != null) {
+          EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count));
+          outputStream.write(avatar.getFilename(), avatar.getInputStream(), avatar.getLength());
+        }
       }
 
       stopwatch.split("avatars");
