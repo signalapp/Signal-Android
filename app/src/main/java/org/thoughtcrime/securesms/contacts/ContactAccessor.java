@@ -202,7 +202,7 @@ public class ContactAccessor {
       reader = DatabaseFactory.getGroupDatabase(context).getGroupsFilteredByTitle(constraint, true);
 
       while ((record = reader.getNext()) != null) {
-        numberList.add(record.getEncodedId());
+        numberList.add(record.getId().toString());
       }
     } finally {
       if (reader != null)

@@ -17,22 +17,20 @@ import net.sqlcipher.database.SQLiteDatabase;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.thoughtcrime.securesms.color.MaterialColor;
-import org.thoughtcrime.securesms.storage.StorageSyncHelper;
-import org.thoughtcrime.securesms.storage.StorageSyncHelper.RecordUpdate;
-import org.thoughtcrime.securesms.storage.StorageSyncModels;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobs.StorageSyncJob;
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper.RecordUpdate;
+import org.thoughtcrime.securesms.storage.StorageSyncModels;
 import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidKeyException;
@@ -352,13 +350,13 @@ public class RecipientDatabase extends Database {
     return getOrInsertByColumn(EMAIL, email).recipientId;
   }
 
-  public @NonNull RecipientId getOrInsertFromGroupId(@NonNull String groupId) {
-    GetOrInsertResult result = getOrInsertByColumn(GROUP_ID, groupId);
+  public @NonNull RecipientId getOrInsertFromGroupId(@NonNull GroupId groupId) {
+    GetOrInsertResult result = getOrInsertByColumn(GROUP_ID, groupId.toString());
 
     if (result.neededInsert) {
       ContentValues values = new ContentValues();
 
-      if (GroupUtil.isMmsGroup(groupId)) {
+      if (groupId.isMmsGroup()) {
         values.put(GROUP_TYPE, GroupType.MMS.getId());
       } else {
         values.put(GROUP_TYPE, GroupType.SIGNAL_V1.getId());
@@ -563,7 +561,7 @@ public class RecipientDatabase extends Database {
       for (SignalGroupV1Record insert : groupV1Inserts) {
         db.insertOrThrow(TABLE_NAME, null, getValuesForStorageGroupV1(insert));
 
-        Recipient recipient = Recipient.externalGroup(context, GroupUtil.getEncodedId(insert.getGroupId(), false));
+        Recipient recipient = Recipient.externalGroup(context, GroupId.v1(insert.getGroupId()));
 
         threadDatabase.setArchived(recipient.getId(), insert.isArchived());
         recipient.live().refresh();
@@ -577,7 +575,7 @@ public class RecipientDatabase extends Database {
           throw new AssertionError("Had an update, but it didn't match any rows!");
         }
 
-        Recipient recipient = Recipient.externalGroup(context, GroupUtil.getEncodedId(update.getOld().getGroupId(), false));
+        Recipient recipient = Recipient.externalGroup(context, GroupId.v1(update.getOld().getGroupId()));
 
         threadDatabase.setArchived(recipient.getId(), update.getNew().isArchived());
         recipient.live().refresh();
@@ -672,7 +670,7 @@ public class RecipientDatabase extends Database {
 
   private static @NonNull ContentValues getValuesForStorageGroupV1(@NonNull SignalGroupV1Record groupV1) {
     ContentValues values = new ContentValues();
-    values.put(GROUP_ID, GroupUtil.getEncodedId(groupV1.getGroupId(), false));
+    values.put(GROUP_ID, GroupId.v1(groupV1.getGroupId()).toString());
     values.put(GROUP_TYPE, GroupType.SIGNAL_V1.getId());
     values.put(PROFILE_SHARING, groupV1.isProfileSharingEnabled() ? "1" : "0");
     values.put(BLOCKED, groupV1.isBlocked() ? "1" : "0");
@@ -729,13 +727,13 @@ public class RecipientDatabase extends Database {
     return out;
   }
 
-  private @NonNull RecipientSettings getRecipientSettings(@NonNull Cursor cursor) {
+  private static @NonNull RecipientSettings getRecipientSettings(@NonNull Cursor cursor) {
     long    id                         = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
     UUID    uuid                       = UuidUtil.parseOrNull(cursor.getString(cursor.getColumnIndexOrThrow(UUID)));
     String  username                   = cursor.getString(cursor.getColumnIndexOrThrow(USERNAME));
     String  e164                       = cursor.getString(cursor.getColumnIndexOrThrow(PHONE));
     String  email                      = cursor.getString(cursor.getColumnIndexOrThrow(EMAIL));
-    String  groupId                    = cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID));
+    GroupId groupId                    = GroupId.parseNullable(cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID)));
     int     groupType                  = cursor.getInt(cursor.getColumnIndexOrThrow(GROUP_TYPE));
     boolean blocked                    = cursor.getInt(cursor.getColumnIndexOrThrow(BLOCKED))                == 1;
     String  messageRingtone            = cursor.getString(cursor.getColumnIndexOrThrow(MESSAGE_RINGTONE));
@@ -1408,10 +1406,10 @@ public class RecipientDatabase extends Database {
         db.update(TABLE_NAME, setBlocked, UUID + " = ?", new String[] { uuid });
       }
 
-      List<String> groupIdStrings = Stream.of(groupIds).map(g -> GroupUtil.getEncodedId(g, false)).toList();
+      List<GroupId> groupIdStrings = Stream.of(groupIds).map(GroupId::v1).toList();
 
-      for (String groupId : groupIdStrings) {
-        db.update(TABLE_NAME, setBlocked, GROUP_ID + " = ?", new String[] { groupId });
+      for (GroupId groupId : groupIdStrings) {
+        db.update(TABLE_NAME, setBlocked, GROUP_ID + " = ?", new String[] { groupId.toString() });
       }
 
       db.setTransactionSuccessful();
@@ -1637,7 +1635,7 @@ public class RecipientDatabase extends Database {
     private final String                          username;
     private final String                          e164;
     private final String                          email;
-    private final String                          groupId;
+    private final GroupId                         groupId;
     private final GroupType                       groupType;
     private final boolean                         blocked;
     private final long                            muteUntil;
@@ -1673,7 +1671,7 @@ public class RecipientDatabase extends Database {
                       @Nullable String username,
                       @Nullable String e164,
                       @Nullable String email,
-                      @Nullable String groupId,
+                      @Nullable GroupId groupId,
                       @NonNull GroupType groupType,
                       boolean blocked,
                       long muteUntil,
@@ -1761,7 +1759,7 @@ public class RecipientDatabase extends Database {
       return email;
     }
 
-    public @Nullable String getGroupId() {
+    public @Nullable GroupId getGroupId() {
       return groupId;
     }
 

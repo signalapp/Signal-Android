@@ -5,7 +5,6 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
@@ -56,7 +55,7 @@ public final class StorageSyncModels {
       throw new AssertionError("Must have a groupId!");
     }
 
-    return new SignalGroupV1Record.Builder(rawStorageId, GroupUtil.getDecodedIdOrThrow(recipient.getGroupId()))
+    return new SignalGroupV1Record.Builder(rawStorageId, recipient.getGroupId().getDecodedId())
                                   .setBlocked(recipient.isBlocked())
                                   .setProfileSharingEnabled(recipient.isProfileSharing())
                                   .setArchived(archived.contains(recipient.getId()))

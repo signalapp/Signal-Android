@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -15,7 +16,6 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
@@ -26,8 +26,6 @@ import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup.Type;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -44,10 +42,10 @@ public class PushGroupUpdateJob extends BaseJob {
   private static final String KEY_SOURCE   = "source";
   private static final String KEY_GROUP_ID = "group_id";
 
-  private RecipientId source;
-  private byte[]      groupId;
+  private final RecipientId source;
+  private final GroupId     groupId;
 
-  public PushGroupUpdateJob(@NonNull RecipientId source, byte[] groupId) {
+  public PushGroupUpdateJob(@NonNull RecipientId source, @NonNull GroupId groupId) {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
                            .setLifespan(TimeUnit.DAYS.toMillis(1))
@@ -57,7 +55,7 @@ public class PushGroupUpdateJob extends BaseJob {
         groupId);
   }
 
-  private PushGroupUpdateJob(@NonNull Job.Parameters parameters, RecipientId source, byte[] groupId) {
+  private PushGroupUpdateJob(@NonNull Job.Parameters parameters, RecipientId source, @NonNull GroupId groupId) {
     super(parameters);
 
     this.source  = source;
@@ -67,7 +65,7 @@ public class PushGroupUpdateJob extends BaseJob {
   @Override
   public @NonNull Data serialize() {
     return new Data.Builder().putString(KEY_SOURCE, source.serialize())
-                             .putString(KEY_GROUP_ID, GroupUtil.getEncodedId(groupId, false))
+                             .putString(KEY_GROUP_ID, groupId.toString())
                              .build();
   }
 
@@ -79,11 +77,11 @@ public class PushGroupUpdateJob extends BaseJob {
   @Override
   public void onRun() throws IOException, UntrustedIdentityException {
     GroupDatabase           groupDatabase = DatabaseFactory.getGroupDatabase(context);
-    Optional<GroupRecord>   record        = groupDatabase.getGroup(GroupUtil.getEncodedId(groupId, false));
+    Optional<GroupRecord>   record        = groupDatabase.getGroup(groupId);
     SignalServiceAttachment avatar        = null;
 
     if (record == null) {
-      Log.w(TAG, "No information for group record info request: " + new String(groupId));
+      Log.w(TAG, "No information for group record info request: " + groupId.toString());
       return;
     }
 
@@ -104,12 +102,12 @@ public class PushGroupUpdateJob extends BaseJob {
 
     SignalServiceGroup groupContext = SignalServiceGroup.newBuilder(Type.UPDATE)
                                                         .withAvatar(avatar)
-                                                        .withId(groupId)
+                                                        .withId(groupId.getDecodedId())
                                                         .withMembers(members)
                                                         .withName(record.get().getTitle())
                                                         .build();
 
-    RecipientId groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(GroupUtil.getEncodedId(groupId, false));
+    RecipientId groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
     Recipient   groupRecipient   = Recipient.resolved(groupRecipientId);
 
     SignalServiceDataMessage message = SignalServiceDataMessage.newBuilder()
@@ -139,13 +137,9 @@ public class PushGroupUpdateJob extends BaseJob {
   public static final class Factory implements Job.Factory<PushGroupUpdateJob> {
     @Override
     public @NonNull PushGroupUpdateJob create(@NonNull Parameters parameters, @NonNull org.thoughtcrime.securesms.jobmanager.Data data) {
-      try {
-        return new PushGroupUpdateJob(parameters,
-                                      RecipientId.from(data.getString(KEY_SOURCE)),
-                                      GroupUtil.getDecodedId(data.getString(KEY_GROUP_ID)));
-      } catch (IOException e) {
-        throw new AssertionError(e);
-      }
+      return new PushGroupUpdateJob(parameters,
+                                    RecipientId.from(data.getString(KEY_SOURCE)),
+                                    GroupId.parse(data.getString(KEY_GROUP_ID)));
     }
   }
 }

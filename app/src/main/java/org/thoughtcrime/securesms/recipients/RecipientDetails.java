@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -28,7 +29,7 @@ public class RecipientDetails {
   final String                 username;
   final String                 e164;
   final String                 email;
-  final String                 groupId;
+  final GroupId                groupId;
   final String                 name;
   final String                 customLabel;
   final Uri                    systemContactPhoto;

@@ -11,8 +11,8 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 import com.google.i18n.phonenumbers.ShortNumberInfo;
 
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.Pair;
@@ -83,7 +83,7 @@ public class PhoneNumberFormatter {
 
   public String format(@Nullable String number) {
     if (number == null)                       return "Unknown";
-    if (GroupUtil.isEncodedGroup(number))     return number;
+    if (GroupId.isEncodedGroup(number))     return number;
     if (ALPHA_PATTERN.matcher(number).find()) return number.trim();
 
     String bareNumber = number.replaceAll("[^0-9+]", "");

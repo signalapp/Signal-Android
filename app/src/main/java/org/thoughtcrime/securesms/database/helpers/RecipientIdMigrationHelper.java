@@ -9,10 +9,10 @@ import androidx.annotation.Nullable;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
 import org.thoughtcrime.securesms.util.DelimiterUtil;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.HashSet;
@@ -153,7 +153,7 @@ public class RecipientIdMigrationHelper {
     try (Cursor cursor = db.query("recipient_preferences", null, null, null, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
         String  address = cursor.getString(cursor.getColumnIndexOrThrow("recipient_ids"));
-        boolean isGroup = GroupUtil.isEncodedGroup(address);
+        boolean isGroup = GroupId.isEncodedGroup(address);
         boolean isEmail = !isGroup && NumberUtil.isValidEmail(address);
         boolean isPhone = !isGroup && !isEmail;
 

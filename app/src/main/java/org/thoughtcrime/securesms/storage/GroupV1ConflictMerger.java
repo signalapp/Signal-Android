@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
 
@@ -15,15 +15,15 @@ import java.util.Map;
 
 class GroupV1ConflictMerger implements StorageSyncHelper.ConflictMerger<SignalGroupV1Record> {
 
-  private final Map<String, SignalGroupV1Record> localByGroupId;
+  private final Map<GroupId, SignalGroupV1Record> localByGroupId;
 
   GroupV1ConflictMerger(@NonNull Collection<SignalGroupV1Record> localOnly) {
-    localByGroupId = Stream.of(localOnly).collect(Collectors.toMap(g -> GroupUtil.getEncodedId(g.getGroupId(), false), g -> g));
+    localByGroupId = Stream.of(localOnly).collect(Collectors.toMap(g -> GroupId.v1(g.getGroupId()), g -> g));
   }
 
   @Override
   public @NonNull Optional<SignalGroupV1Record> getMatching(@NonNull SignalGroupV1Record record) {
-    return Optional.fromNullable(localByGroupId.get(GroupUtil.getEncodedId(record.getGroupId(), false)));
+    return Optional.fromNullable(localByGroupId.get(GroupId.v1(record.getGroupId())));
   }
 
   @Override

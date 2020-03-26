@@ -29,7 +29,7 @@ public final class GroupManager {
   }
 
   public static GroupActionResult updateGroup(@NonNull  Context        context,
-                                              @NonNull  String         groupId,
+                                              @NonNull  GroupId        groupId,
                                               @NonNull  Set<Recipient> members,
                                               @Nullable Bitmap         avatar,
                                               @Nullable String         name)
@@ -51,7 +51,7 @@ public final class GroupManager {
 
   @WorkerThread
   public static boolean leaveGroup(@NonNull Context context, @NonNull Recipient groupRecipient) {
-    String groupId = groupRecipient.requireGroupId();
+    GroupId groupId = groupRecipient.requireGroupId();
     
     return V1GroupManager.leaveGroup(context, groupId, groupRecipient);
   }

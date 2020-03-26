@@ -2,14 +2,13 @@ package org.thoughtcrime.securesms.migrations;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.File;
@@ -83,7 +82,7 @@ public class AvatarMigrationJob extends MigrationJob {
   }
 
   private static boolean isValidFileName(@NonNull String name) {
-    return NUMBER_PATTERN.matcher(name).matches() || GroupUtil.isEncodedGroup(name) || NumberUtil.isValidEmail(name);
+    return NUMBER_PATTERN.matcher(name).matches() || GroupId.isEncodedGroup(name) || NumberUtil.isValidEmail(name);
   }
 
   public static class Factory implements Job.Factory<AvatarMigrationJob> {

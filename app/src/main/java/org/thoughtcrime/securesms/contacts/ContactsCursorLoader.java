@@ -22,10 +22,11 @@ import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.database.MergeCursor;
 import android.provider.ContactsContract;
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.loader.content.CursorLoader;
-import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -35,8 +36,8 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.permissions.Permissions;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.UsernameUtil;
@@ -226,7 +227,7 @@ public class ContactsCursorLoader extends CursorLoader {
       ThreadRecord threadRecord;
       while ((threadRecord = reader.getNext()) != null) {
         Recipient recipient = threadRecord.getRecipient();
-        String    stringId  = recipient.isGroup() ? recipient.requireGroupId() : recipient.getE164().or(recipient.getEmail()).or("");
+        String    stringId  = recipient.isGroup() ? recipient.requireGroupId().toString() : recipient.getE164().or(recipient.getEmail()).or("");
 
         recentConversations.addRow(new Object[] { recipient.getId().serialize(),
                                                   recipient.toShortString(getContext()),
@@ -265,7 +266,7 @@ public class ContactsCursorLoader extends CursorLoader {
       while ((groupRecord = reader.getNext()) != null) {
         groupContacts.addRow(new Object[] { groupRecord.getRecipientId().serialize(),
                                             groupRecord.getTitle(),
-                                            groupRecord.getEncodedId(),
+                                            groupRecord.getId(),
                                             ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM,
                                             "",
                                             ContactRepository.NORMAL_TYPE });

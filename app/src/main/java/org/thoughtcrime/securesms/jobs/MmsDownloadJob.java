@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -16,6 +17,7 @@ import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.logging.Log;
@@ -177,11 +179,11 @@ public class MmsDownloadJob extends BaseJob {
                                  int subscriptionId, @Nullable RecipientId notificationFrom)
       throws MmsException
   {
-    MmsDatabase      database    = DatabaseFactory.getMmsDatabase(context);
-    Optional<String> group       = Optional.absent();
-    Set<RecipientId> members     = new HashSet<>();
-    String           body        = null;
-    List<Attachment> attachments = new LinkedList<>();
+    MmsDatabase       database    = DatabaseFactory.getMmsDatabase(context);
+    Optional<GroupId> group       = Optional.absent();
+    Set<RecipientId>  members     = new HashSet<>();
+    String            body        = null;
+    List<Attachment>  attachments = new LinkedList<>();
 
     RecipientId from = null;
 

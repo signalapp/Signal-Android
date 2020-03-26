@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -87,7 +86,7 @@ public class TypingSendJob extends BaseJob {
 
     if (recipient.isGroup()) {
       recipients = DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.requireGroupId(), false);
-      groupId    = Optional.of(GroupUtil.getDecodedId(recipient.requireGroupId()));
+      groupId    = Optional.of(recipient.requireGroupId().getDecodedId());
     }
 
     recipients = Stream.of(recipients).map(Recipient::resolve).toList();

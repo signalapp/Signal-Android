@@ -3,12 +3,12 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
@@ -27,8 +26,6 @@ import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -54,7 +51,7 @@ public class LeaveGroupJob extends BaseJob {
   private static final String KEY_MEMBERS    = "members";
   private static final String KEY_RECIPIENTS = "recipients";
 
-  private final byte[]            groupId;
+  private final GroupId           groupId;
   private final String            name;
   private final List<RecipientId> members;
   private final List<RecipientId> recipients;
@@ -63,7 +60,7 @@ public class LeaveGroupJob extends BaseJob {
     List<RecipientId> members = Stream.of(group.resolve().getParticipants()).map(Recipient::getId).toList();
     members.remove(Recipient.self().getId());
 
-    return new LeaveGroupJob(GroupUtil.getDecodedIdOrThrow(group.getGroupId().get()),
+    return new LeaveGroupJob(group.getGroupId().get(),
                              group.resolve().getDisplayName(ApplicationDependencies.getApplication()),
                              members,
                              members,
@@ -75,7 +72,7 @@ public class LeaveGroupJob extends BaseJob {
                                            .build());
   }
 
-  private LeaveGroupJob(@NonNull byte[] groupId,
+  private LeaveGroupJob(@NonNull GroupId groupId,
                         @NonNull String name,
                         @NonNull List<RecipientId> members,
                         @NonNull List<RecipientId> recipients,
@@ -90,7 +87,7 @@ public class LeaveGroupJob extends BaseJob {
 
   @Override
   public @NonNull Data serialize() {
-    return new Data.Builder().putString(KEY_GROUP_ID, Base64.encodeBytes(groupId))
+    return new Data.Builder().putString(KEY_GROUP_ID, Base64.encodeBytes(groupId.getDecodedId()))
                              .putString(KEY_GROUP_NAME, name)
                              .putString(KEY_MEMBERS, RecipientId.toSerializedList(members))
                              .putString(KEY_RECIPIENTS, RecipientId.toSerializedList(recipients))
@@ -128,7 +125,7 @@ public class LeaveGroupJob extends BaseJob {
   }
 
   private static @NonNull List<Recipient> deliver(@NonNull Context context,
-                                                  @NonNull byte[] groupId,
+                                                  @NonNull GroupId groupId,
                                                   @NonNull String name,
                                                   @NonNull List<RecipientId> members,
                                                   @NonNull List<RecipientId> destinations)
@@ -138,7 +135,7 @@ public class LeaveGroupJob extends BaseJob {
     List<SignalServiceAddress>             addresses          = Stream.of(destinations).map(Recipient::resolved).map(t -> RecipientUtil.toSignalServiceAddress(context, t)).toList();
     List<SignalServiceAddress>             memberAddresses    = Stream.of(members).map(Recipient::resolved).map(t -> RecipientUtil.toSignalServiceAddress(context, t)).toList();
     List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = Stream.of(destinations).map(Recipient::resolved).map(recipient -> UnidentifiedAccessUtil.getAccessFor(context, recipient)).toList();
-    SignalServiceGroup                     serviceGroup       = new SignalServiceGroup(SignalServiceGroup.Type.QUIT, groupId, name, memberAddresses, null);
+    SignalServiceGroup                     serviceGroup       = new SignalServiceGroup(SignalServiceGroup.Type.QUIT, groupId.getDecodedId(), name, memberAddresses, null);
     SignalServiceDataMessage.Builder       dataMessage        = SignalServiceDataMessage.newBuilder()
                                                                                         .withTimestamp(System.currentTimeMillis())
                                                                                         .asGroupMessage(serviceGroup);
@@ -169,7 +166,7 @@ public class LeaveGroupJob extends BaseJob {
   public static class Factory implements Job.Factory<LeaveGroupJob> {
     @Override
     public @NonNull LeaveGroupJob create(@NonNull Parameters parameters, @NonNull Data data) {
-      return new LeaveGroupJob(Base64.decodeOrThrow(data.getString(KEY_GROUP_ID)),
+      return new LeaveGroupJob(GroupId.v1(Base64.decodeOrThrow(data.getString(KEY_GROUP_ID))),
                                data.getString(KEY_GROUP_NAME),
                                RecipientId.fromSerializedList(data.getString(KEY_MEMBERS)),
                                RecipientId.fromSerializedList(data.getString(KEY_RECIPIENTS)),

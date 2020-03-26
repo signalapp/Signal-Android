@@ -54,6 +54,7 @@ import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.GroupManager.GroupActionResult;
 import org.thoughtcrime.securesms.logging.Log;
@@ -208,7 +209,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeExistingGroup() {
-    final String groupId = getIntent().getStringExtra(GROUP_ID_EXTRA);
+    final GroupId groupId = GroupId.parseNullable(getIntent().getStringExtra(GROUP_ID_EXTRA));
 
     if (groupId != null) {
       new FillExistingGroupInfoAsyncTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, groupId);
@@ -361,7 +362,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
       }
       memberAddresses.add(Recipient.self().getId());
 
-      String      groupId          = DatabaseFactory.getGroupDatabase(activity).getOrCreateGroupForMembers(memberAddresses, true);
+      GroupId     groupId          = DatabaseFactory.getGroupDatabase(activity).getOrCreateGroupForMembers(memberAddresses, true);
       RecipientId groupRecipientId = DatabaseFactory.getRecipientDatabase(activity).getOrInsertFromGroupId(groupId);
       Recipient   groupRecipient   = Recipient.resolved(groupRecipientId);
       long        threadId         = DatabaseFactory.getThreadDatabase(activity).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.DEFAULT);
@@ -443,9 +444,9 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   }
 
   private static class UpdateSignalGroupTask extends SignalGroupTask {
-    private String groupId;
+    private final GroupId groupId;
 
-    public UpdateSignalGroupTask(GroupCreateActivity activity, String groupId,
+    public UpdateSignalGroupTask(GroupCreateActivity activity, GroupId groupId,
                                  Bitmap avatar, String name, Set<Recipient> members)
     {
       super(activity, avatar, name, members);
@@ -467,7 +468,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
         if (!activity.isFinishing()) {
           Intent intent = activity.getIntent();
           intent.putExtra(GROUP_THREAD_EXTRA, result.get().getThreadId());
-          intent.putExtra(GROUP_ID_EXTRA, result.get().getGroupRecipient().requireGroupId());
+          intent.putExtra(GROUP_ID_EXTRA, result.get().getGroupRecipient().requireGroupId().toString());
           activity.setResult(RESULT_OK, intent);
           activity.finish();
         }
@@ -534,7 +535,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-  private static class FillExistingGroupInfoAsyncTask extends ProgressDialogAsyncTask<String,Void,Optional<GroupData>> {
+  private static class FillExistingGroupInfoAsyncTask extends ProgressDialogAsyncTask<GroupId, Void, Optional<GroupData>> {
     private GroupCreateActivity activity;
 
     public FillExistingGroupInfoAsyncTask(GroupCreateActivity activity) {
@@ -545,7 +546,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     }
 
     @Override
-    protected Optional<GroupData> doInBackground(String... groupIds) {
+    protected Optional<GroupData> doInBackground(GroupId... groupIds) {
       final GroupDatabase         db               = DatabaseFactory.getGroupDatabase(activity);
       final List<Recipient>       recipients       = db.getGroupMembers(groupIds[0], false);
       final Optional<GroupRecord> group            = db.getGroup(groupIds[0]);
@@ -593,13 +594,13 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   }
 
   private static class GroupData {
-    String         id;
+    GroupId        id;
     Set<Recipient> recipients;
     Bitmap         avatarBmp;
     byte[]         avatarBytes;
     String         name;
 
-    public GroupData(String id, Set<Recipient> recipients, Bitmap avatarBmp, byte[] avatarBytes, String name) {
+    GroupData(GroupId id, Set<Recipient> recipients, Bitmap avatarBmp, byte[] avatarBytes, String name) {
       this.id          = id;
       this.recipients  = recipients;
       this.avatarBmp   = avatarBmp;

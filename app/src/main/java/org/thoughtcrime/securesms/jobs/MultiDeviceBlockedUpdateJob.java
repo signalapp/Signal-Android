@@ -13,7 +13,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
@@ -76,7 +75,7 @@ public class MultiDeviceBlockedUpdateJob extends BaseJob {
 
       while ((recipient = reader.getNext()) != null) {
         if (recipient.isPushGroup()) {
-          blockedGroups.add(GroupUtil.getDecodedId(recipient.requireGroupId()));
+          blockedGroups.add(recipient.requireGroupId().getDecodedId());
         } else if (recipient.hasServiceIdentifier()) {
           blockedIndividuals.add(RecipientUtil.toSignalServiceAddress(context, recipient));
         }
