@@ -2,15 +2,18 @@ package org.thoughtcrime.securesms.mediasend;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.ByteArrayOutputStream;
@@ -20,10 +23,16 @@ public final class ImageEditorModelRenderMediaTransform implements MediaTransfor
 
   private static final String TAG = Log.tag(ImageEditorModelRenderMediaTransform.class);
 
-  private final EditorModel modelToRender;
+  @NonNull  private final EditorModel modelToRender;
+  @Nullable private final Point       size;
 
   ImageEditorModelRenderMediaTransform(@NonNull EditorModel modelToRender) {
+    this(modelToRender, null);
+  }
+
+  ImageEditorModelRenderMediaTransform(@NonNull EditorModel modelToRender, @Nullable Point size) {
     this.modelToRender = modelToRender;
+    this.size          = size;
   }
 
   @WorkerThread
@@ -31,7 +40,7 @@ public final class ImageEditorModelRenderMediaTransform implements MediaTransfor
   public @NonNull Media transform(@NonNull Context context, @NonNull Media media) {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
-    Bitmap bitmap = modelToRender.render(context);
+    Bitmap bitmap = modelToRender.render(context, size);
     try {
       bitmap.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
 
@@ -46,11 +55,7 @@ public final class ImageEditorModelRenderMediaTransform implements MediaTransfor
       return media;
     } finally {
       bitmap.recycle();
-      try {
-        outputStream.close();
-      } catch (IOException e) {
-        Log.w(TAG, e);
-      }
+      Util.close(outputStream);
     }
   }
 }

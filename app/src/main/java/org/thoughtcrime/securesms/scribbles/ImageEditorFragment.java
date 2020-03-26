@@ -125,8 +125,6 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
 
     imageMaxWidth  = mediaConstraints.getImageMaxWidth(requireContext());
     imageMaxHeight = mediaConstraints.getImageMaxHeight(requireContext());
-
-    StickerSearchRepository repository = new StickerSearchRepository(requireContext());
   }
 
   @Nullable

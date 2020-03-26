@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.mediasend;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -25,6 +26,8 @@ import java.io.FileDescriptor;
 import java.util.Collections;
 
 public class AvatarSelectionActivity extends AppCompatActivity implements CameraFragment.Controller, ImageEditorFragment.Controller, MediaPickerFolderFragment.Controller, MediaPickerItemFragment.Controller {
+
+  private static final Point AVATAR_DIMENSIONS = new Point(1024, 1024);
 
   private static final String IMAGE_CAPTURE = "IMAGE_CAPTURE";
   private static final String IMAGE_EDITOR  = "IMAGE_EDITOR";
@@ -199,9 +202,6 @@ public class AvatarSelectionActivity extends AppCompatActivity implements Camera
     }
 
     ImageEditorFragment.Data data  = (ImageEditorFragment.Data) fragment.saveState();
-    if (data == null) {
-      throw new AssertionError();
-    }
 
     EditorModel model = data.readModel();
     if (model == null) {
@@ -210,7 +210,7 @@ public class AvatarSelectionActivity extends AppCompatActivity implements Camera
 
     MediaRepository.transformMedia(this,
                                    Collections.singletonList(currentMedia),
-                                   Collections.singletonMap(currentMedia, new ImageEditorModelRenderMediaTransform(model)),
+                                   Collections.singletonMap(currentMedia, new ImageEditorModelRenderMediaTransform(model, AVATAR_DIMENSIONS)),
                                    output -> {
                                                 Media transformed = output.get(currentMedia);
 
