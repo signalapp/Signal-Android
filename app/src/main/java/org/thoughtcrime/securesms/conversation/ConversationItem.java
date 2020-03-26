@@ -408,10 +408,10 @@ public class ConversationItem extends LinearLayout implements BindableConversati
 
   private void setAudioViewTint(MessageRecord messageRecord, Recipient recipient) {
     if (messageRecord.isOutgoing()) {
-      if (DynamicTheme.LIGHT.equals(TextSecurePreferences.getTheme(context))) {
-        audioViewStub.get().setTint(getContext().getResources().getColor(R.color.core_grey_60), defaultBubbleColor);
-      } else {
+      if (DynamicTheme.isDarkTheme(context)) {
         audioViewStub.get().setTint(Color.WHITE, defaultBubbleColor);
+      } else {
+        audioViewStub.get().setTint(getContext().getResources().getColor(R.color.core_grey_60), defaultBubbleColor);
       }
     } else {
       audioViewStub.get().setTint(Color.WHITE, recipient.getColor().toConversationColor(context));
