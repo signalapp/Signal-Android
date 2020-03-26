@@ -270,20 +270,20 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">နှင့် မျှဝေရန်</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Signal မှကြိုဆိုပါသည်။</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure  နှင့် RedPhone တို့ပေါင်း၍ အချိန်တိုင်းအတွက် သတင်းစကားပို့နိုင်သော Signal </string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Signal မှကြိုဆိုပါသည်!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure သည် ယခုတွင် Signal ဖြစ်လာသည်</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure နှင့် RedPhone တို့ပေါင်း၍ Signal ဟုခေါ်သော app ဖြစ်လာသည်။ သုံးကြည့်ရန်နှိပ်ပါ</string>
-  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">လုံခြုံစိတ်ချရသော ဗွီဒီယိုခေါ်ဆိုမှု ကိုသုံးကြည့်ပါ။ </string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal သည်လုံခြုံစိတ်ချရသော ဗွီဒီယိုခေါ်ဆိုမှုကို ထောက်ပံ့ပေးသည်။ ပုံမှန် Signal ​ဖုန်းခေါ်ဆိုမှုပြုလုပ်ပါ၊ ဗွီဒီယိုခလုတ်ကိုနှိပ်ပါ၊ အသုံးပြုလို့ရပါပြီ။ </string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">လုံခြုံစိတ်ချရသော ဗွီဒီယိုခေါ်ဆိုမှုကို Signal တွင်ပြုလုပ်နိုင်ပါ​ပြီ။</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">လုံခြုံစိတ်ချရသော ဗွီဒီယိုခေါ်ဆိုမှုကို Signal တွင်ပြုလုပ်နိုင်ပါ​ပြီ။သုံးကြည့်ရန် နှိပ်ပါ။ </string>
-  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">closeup အတွက်အသင့် ဖြစ်ပြီလား?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">သင့် ဓါတ်ပုံနှင့် အမည်ကို Signal သုံး၍ သူငယ်ချင်းများနှင့် ဝေမျှနိုင်ပါပြီ။ </string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal လိပ်စာများ ဒီနေရာတွင်ရှိသည် </string>
-  <string name="ExperienceUpgradeActivity_no_thanks">မလုပ်လိုပါ</string>
-  <string name="ExperienceUpgradeActivity_got_it">ရပြီ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Signal မှကြိုဆိုပါသည်။</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure  နှင့် RedPhone တို့ပေါင်း၍ အချိန်တိုင်းအတွက် သတင်းစကားပို့နိုင်သော Signal </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Signal မှကြိုဆိုပါသည်!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure သည် ယခုတွင် Signal ဖြစ်လာသည်</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure နှင့် RedPhone တို့ပေါင်း၍ Signal ဟုခေါ်သော app ဖြစ်လာသည်။ သုံးကြည့်ရန်နှိပ်ပါ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">လုံခြုံစိတ်ချရသော ဗွီဒီယိုခေါ်ဆိုမှု ကိုသုံးကြည့်ပါ။ </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal သည်လုံခြုံစိတ်ချရသော ဗွီဒီယိုခေါ်ဆိုမှုကို ထောက်ပံ့ပေးသည်။ ပုံမှန် Signal ​ဖုန်းခေါ်ဆိုမှုပြုလုပ်ပါ၊ ဗွီဒီယိုခလုတ်ကိုနှိပ်ပါ၊ အသုံးပြုလို့ရပါပြီ။ </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">လုံခြုံစိတ်ချရသော ဗွီဒီယိုခေါ်ဆိုမှုကို Signal တွင်ပြုလုပ်နိုင်ပါ​ပြီ။</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">လုံခြုံစိတ်ချရသော ဗွီဒီယိုခေါ်ဆိုမှုကို Signal တွင်ပြုလုပ်နိုင်ပါ​ပြီ။သုံးကြည့်ရန် နှိပ်ပါ။ </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">closeup အတွက်အသင့် ဖြစ်ပြီလား?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">သင့် ဓါတ်ပုံနှင့် အမည်ကို Signal သုံး၍ သူငယ်ချင်းများနှင့် ဝေမျှနိုင်ပါပြီ။ </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal လိပ်စာများ ဒီနေရာတွင်ရှိသည် </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">မလုပ်လိုပါ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">ရပြီ</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">message ကိုရယူနေပြီ</string>
   <!--GcmRefreshJob-->
@@ -1138,8 +1138,8 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal ၏ အချက်အလက်ထိန်းသိမ်းရာနေရာကို ပြောင်းရွှေ့ခြင်း</string>
   <string name="PushDecryptJob_new_locked_message">lock လုပ်ထားသောစာတိုအသစ်</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">မဖတ်ရသေးသော စာတိုများကို ဖတ်ရန် ပြန်ဖွင့်ပါ</string>
-  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">ပြင်ဆင်မှု ပြီးသွားရန် ဖွင့်ပါ။</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">ပြင်ဆင်မှု ပြီးသွားရန် ဖွင့်ပါ။</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">ပြင်ဆင်မှု ပြီးသွားရန် ဖွင့်ပါ။</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">ပြင်ဆင်မှု ပြီးသွားရန် ဖွင့်ပါ။</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">စကားဝှက်ကို အရံသိမ်းဆည်းထားပါ</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">အရံသိမ်းထားသည်များကို အပလီကေးရှင်းပြင်ပ ဖုန်းထဲတွင် သိမ်းပြီး အောက်ပါ စကားဝှက်ဖြင့် လုံခြုံစွာ သိမ်းထားပါမည်။ အရံသိမ်းထားသောဖိုင်များကို ပြန်ရယူနိုင်ရန် ဤစကားဝှက်ရှိကို ရှိရမည်။</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">စကားဝှက်ကို ရေးမှတ်ပြီးပါပြီ။ စကားဝှက်မပါလျှင် အရံသိမ်းထားသောဖိုင်များကို ပြန်မရနိုင်ပါ။</string>

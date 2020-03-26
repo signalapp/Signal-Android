@@ -114,6 +114,7 @@
   <string name="CommunicationActions_start_voice_call">Démarrer un appel vocal ?</string>
   <string name="CommunicationActions_cancel">Annuler</string>
   <string name="CommunicationActions_call">Appeler</string>
+  <string name="CommunicationActions_insecure_call">Appel non sécurisé</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Votre numéro de sécurité avec %1$s a changé. Cela pourrait signifier soit que quelqu’un tente d’intercepter votre communication, soit que %2$s a simplement réinstallé Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Vous devriez peut-être confirmer votre numéro de sécurité avec ce contact.</string>
@@ -310,6 +311,9 @@
   <string name="CustomDefaultPreference_using_default">Valeur par défaut utilisée : %s</string>
   <string name="CustomDefaultPreference_none">Aucun</string>
   <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Choisissez une photo</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Prendre une photo</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Choisir depuis la galerie</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Supprimer la photo</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">À l’instant</string>
@@ -343,33 +347,33 @@
   <string name="ShareActivity_share_with">Partager avec</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Les fichiers joints multiples ne sont pris en charge que pour les images et les vidéos</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Bienvenue sur Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure et RedPhone sont désormais regroupées en une seule appli de messagerie qui protège vos renseignements personnels, adaptée à toutes les situations : Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Bienvenue sur Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure est désormais Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure et RedPhone sont désormais regroupées en une seule appli : Signal. Touchez pour explorer.</string>
-  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Bienvenue aux appels vidéo sécurisés !</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal prend désormais en charge les appels vidéo sécurisés. Lancez normalement un appel Signal, touchez le bouton Vidéo et dites bonjour.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal prend désormais en charge les appels vidéo sécurisés.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal prend désormais en charge les appels vidéo sécurisés. Touchez pour explorer.</string>
-  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Prêt pour votre gros plan ?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Vous pouvez désormais partager une photo de profil et un nom avec des amis sur Signal</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Les profils Signal sont arrivés</string>
-  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Nous présentons les indicateurs de saisie.</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Vous pouvez désormais facultativement voir et faire savoir que des messages sont en cours de saisie.</string>
-  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Souhaitez-vous les activer maintenant ?</string>
-  <string name="ExperienceUpgradeActivity_typing_ui_title">Les indicateurs de saisie sont arrivés</string>
-  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Activer les indicateurs de saisie</string>
-  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Activer les indicateurs de saisie</string>
-  <string name="ExperienceUpgradeActivity_no_thanks">Non merci</string>
-  <string name="ExperienceUpgradeActivity_introducing_link_previews">Nous présentons les aperçus de lien.</string>
-  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Les aperçus facultatifs de liens sont désormais pris en charge pour certains des sites les plus populaires d’Internet.</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Vous pouvez désactiver ou activer cette fonction en tout temps dans vos paramètres de Signal (Confidentialité &gt; Envoyer des aperçus de liens).</string>
-  <string name="ExperienceUpgradeActivity_got_it">Compris</string>
-  <string name="ExperienceUpgradeActivity_introducing_stickers">Nous présentons les autocollants</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Pourquoi utiliser des mots quand vous pouvez utiliser des autocollants ?</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Pourquoi utiliser des mots quand vous pouvez utiliser des autocollants ? Touchez cette icône sur votre clavier :</string>
-  <string name="ExperienceUpgradeActivity_lets_go">Allons-y</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Bienvenue sur Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure et RedPhone sont désormais regroupées en une seule appli de messagerie qui protège vos renseignements personnels, adaptée à toutes les situations : Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Bienvenue sur Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure est désormais Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure et RedPhone sont désormais regroupées en une seule appli : Signal. Touchez pour explorer.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Bienvenue aux appels vidéo sécurisés !</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal prend désormais en charge les appels vidéo sécurisés. Lancez normalement un appel Signal, touchez le bouton Vidéo et dites bonjour.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal prend désormais en charge les appels vidéo sécurisés.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal prend désormais en charge les appels vidéo sécurisés. Touchez pour explorer.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Prêt pour votre gros plan ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Vous pouvez désormais partager une photo de profil et un nom avec des amis sur Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Les profils Signal sont arrivés</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Nous présentons les indicateurs de saisie.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Vous pouvez désormais facultativement voir et faire savoir que des messages sont en cours de saisie.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Souhaitez-vous les activer maintenant ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Les indicateurs de saisie sont arrivés</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Activer les indicateurs de saisie</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Activer les indicateurs de saisie</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Non merci</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Nous présentons les aperçus de lien.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Les aperçus facultatifs de liens sont désormais pris en charge pour certains des sites les plus populaires d’Internet.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Vous pouvez désactiver ou activer cette fonction en tout temps dans vos paramètres de Signal (Confidentialité &gt; Envoyer des aperçus de liens).</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Compris</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">Nous présentons les autocollants</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Pourquoi utiliser des mots quand vous pouvez utiliser des autocollants ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Pourquoi utiliser des mots quand vous pouvez utiliser des autocollants ? Touchez cette icône sur votre clavier :</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">Allons-y</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Récupération d’un message…</string>
   <!--GcmRefreshJob-->
@@ -1205,8 +1209,17 @@
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Vous pouvez maintenant choisir d\'accepter ou non une nouvelle conversation. Vous verrez les options \"Accepter,\" \"Supprimer,\" or \"Bloquer.\"</string>
   <!--HelpFragment-->
   <string name="HelpFragment__help">Aide </string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">Avez-vous déjà lu notre FAQ ?</string>
   <string name="HelpFragment__next">Suivant</string>
+  <string name="HelpFragment__contact_us">Contactez-nous</string>
+  <string name="HelpFragment__include_debug_log">Inclure le journal de débogage.</string>
+  <string name="HelpFragment__subject">Sujet:</string>
+  <string name="HelpFragment__android_version">Version Android:</string>
+  <string name="HelpFragment__signal_version">Version Signal:</string>
+  <string name="HelpFragment__debug_log">Journal de débogage:</string>
+  <string name="HelpFragment__could_not_upload_logs">Impossible de téléverser les journaux</string>
   <string name="HelpFragment__signal_support">Assistance Signal</string>
+  <string name="HelpFragment__no_email_app_found">Aucune application de mail trouvée.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importer</string>
   <string name="arrays__use_default">Valeur par défaut</string>
@@ -1605,8 +1618,8 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Migration de la base de données de Signal</string>
   <string name="PushDecryptJob_new_locked_message">Nouveau message verrouillé</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Déverrouiller pour visualiser les messages en attente</string>
-  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Déverrouiller pour terminer la mise à jour</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Veuillez déverrouillez Signal pour terminer la mise à jour</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Déverrouiller pour terminer la mise à jour</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Veuillez déverrouillez Signal pour terminer la mise à jour</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Phrase de passe de la sauvegarde</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Les sauvegardes sont enregistrées dans la mémoire externe et chiffrées avec la phrase de passe ci-dessous. Vous devez avoir cette phrase de passe afin de restaurer la sauvegarde.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">J’ai noté cette phrase de passe. Sans elle, je ne pourrai pas restaurer une sauvegarde.</string>

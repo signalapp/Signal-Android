@@ -123,7 +123,7 @@
   <string name="CommunicationActions_insecure_call">Galwad anniogel</string>
   <string name="CommunicationActions_carrier_charges_may_apply">Gall taliadau darparwr fod yn berthnasol. Nid yw\'r rhif rydych chi\'n ei alw wedi\'i gofrestru gyda Signal. Bydd yr alwad hon yn cael ei hanfon trwy eich darparwr symudol, nid dros y rhyngrwyd.</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Mae\'ch rhif diogelwch gyda %1$s wedi newid. Gall hyn olygu bod rhywun yn ceisio ymyrryd a\'ch cyfathrebu, neu bod %2$s wedi cael ei ail-osod.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Mae\'ch rhif diogelwch gyda %1$s wedi newid. Gall hyn olygu bod rhywun yn ceisio ymyrryd a\'ch cyfathrebu, neu bod %2$s wedi ail-osod Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Efallai yr hoffech wirio\'ch rhif diogelwch gyda\'r cyswllt hwn.</string>
   <string name="ConfirmIdentityDialog_accept">Derbyn</string>
   <!--ContactsCursorLoader-->
@@ -378,38 +378,38 @@ Send neges heb ei ddiogelu?</string>
   <string name="ShareActivity_share_with">Rhannu â</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Dim ond ar gyfer delweddau a fideos y mae atodiadau lluosog yn cael eu cynnal</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Croeso i Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">Mae TextSecure a RedPhone bellach yn un negesydd preifat ar gyfer pob sefyllfa: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Croeso i Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure yw Signal nawr.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">Mae TextSecure a RedPhone nawr yn un app: Signal. Tapiwch i\'w weld.</string>
-  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Dywedwch helo i alwadau fideo diogel.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Mae Signal nawr yn cynnal galwadau fideo diogel. Dechreuwch alwad Signal fel arfer, tapiwch y botwm fideo, a chwifio helo.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Mae Signal nawr yn cynnal galwad fideo diogel.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Mae Signal nawr yn cynnal galwad fideo diogel. Tapiwch i weld.</string>
-  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Barod ar gyfer eich llun agos?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Nawr gallwch chi rannu llun proffil ac enw gyda ffrindiau ar Signal</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Mae proffiliau Signal yma</string>
-  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Yn cyflwyno dangosyddion teipio.</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Nawr gallwch chi ddewis gweld a rannu pryd mae negeseuon yn cael eu teipio.</string>
-  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Hoffech chi eu galluogi nawr?</string>
-  <string name="ExperienceUpgradeActivity_typing_ui_title">Mae dangosyddion teipio yma</string>
-  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Galluogi dangosyddion teipio</string>
-  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Cychwyn y dangosydd teipio</string>
-  <string name="ExperienceUpgradeActivity_no_thanks">Dim diolch</string>
-  <string name="ExperienceUpgradeActivity_introducing_link_previews">Yn cyflwyno rhagolygon dolenni.</string>
-  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Mae rhagolygon dolenni dewisol nawr yn cael eu cynnal ar gyfer rhai o\'r gwefannau mwyaf poblogaidd ar y rhyngrwyd.</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Gallwch alluogi neu analluogi\'r nodwedd yng ngosodiadau Signal. (Preifatrwydd &gt; Anfon dolen rhagolwg).</string>
-  <string name="ExperienceUpgradeActivity_got_it">Iawn, rwy\'n deall</string>
-  <string name="ExperienceUpgradeActivity_introducing_stickers">Yn cyflwyno sticeri</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Pam defnyddio geiriau pan allwch chi ddefnyddio sticeri?</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Pam defnyddio geiriau pan allwch chi ddefnyddio sticeri? Tapiwch yr eicon hwn ar eich bysellfwrdd:</string>
-  <string name="ExperienceUpgradeActivity_lets_go">Amdani</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Croeso i Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">Mae TextSecure a RedPhone bellach yn un negesydd preifat ar gyfer pob sefyllfa: Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Croeso i Signal!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure yw Signal nawr.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">Mae TextSecure a RedPhone nawr yn un app: Signal. Tapiwch i\'w weld.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Dywedwch helo i alwadau fideo diogel.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Mae Signal nawr yn cynnal galwadau fideo diogel. Dechreuwch alwad Signal fel arfer, tapiwch y botwm fideo, a chwifio helo.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Mae Signal nawr yn cynnal galwad fideo diogel.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Mae Signal nawr yn cynnal galwad fideo diogel. Tapiwch i weld.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Barod ar gyfer eich llun agos?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Nawr gallwch chi rannu llun proffil ac enw gyda ffrindiau ar Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Mae proffiliau Signal yma</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Yn cyflwyno dangosyddion teipio.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Nawr gallwch chi ddewis gweld a rannu pryd mae negeseuon yn cael eu teipio.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Hoffech chi eu galluogi nawr?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Mae dangosyddion teipio yma</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Galluogi dangosyddion teipio</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Cychwyn y dangosydd teipio</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Dim diolch</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Yn cyflwyno rhagolygon dolenni.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Mae rhagolygon dolenni dewisol nawr yn cael eu cynnal ar gyfer rhai o\'r gwefannau mwyaf poblogaidd ar y rhyngrwyd.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Gallwch alluogi neu analluogi\'r nodwedd yng ngosodiadau Signal. (Preifatrwydd &gt; Anfon dolen rhagolwg).</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Iawn, rwy\'n deall</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">Yn cyflwyno sticeri</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Pam defnyddio geiriau pan allwch chi ddefnyddio sticeri?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Pam defnyddio geiriau pan allwch chi ddefnyddio sticeri? Tapiwch yr eicon hwn ar eich bysellfwrdd:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">Amdani</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Estyn neges…</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Methiant cyfathrebu Signal parhaol!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Nid yw Signal yn gallu cofrestru gyda Google Play Services. Mae negeseuon a galwadau Signal wedi\'u hanalluogi, ceisiwch ailgofrestru yn Gosodiadau &gt; Uwch.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Nid oedd Signal yn gallu cofrestru gyda Google Play Services. Mae negeseuon a galwadau Signal wedi\'u hanalluogi, ceisiwch ailgofrestru yn Gosodiadau &gt; Uwch.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Gwall wrth estyn GIF cydraniad llawn</string>
   <!--GiphyFragmentPageAdapter-->
@@ -1304,6 +1304,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="HelpFragment__could_not_upload_logs">Methu llwytho\'r cofnod</string>
   <string name="HelpFragment__signal_support">Cymorth Signal</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Byddwch mor ddisgrifiadol â phosibl i\'n helpu i ddeall y mater yma.</string>
+  <string name="HelpFragment__no_email_app_found">Heb ganfod ap e-bost</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Mewnforio</string>
   <string name="arrays__use_default">Defnyddio\'r rhagosodedig</string>
@@ -1722,8 +1723,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Mudo cronfa ddata Signal</string>
   <string name="PushDecryptJob_new_locked_message">Neges wedi\'i gloi newydd</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Datgloi i weld negeseuon sy\'n aros</string>
-  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Datgloi i gwblhau\'r diweddariad</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Datgloi Signal i gwblhau\'r diweddariad</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Datgloi i gwblhau\'r diweddariad</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Datgloi Signal i gwblhau\'r diweddariad</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Cyfrinymadrodd cadw wrth gefn</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Bydd copïau wrth gefn yn cael eu cadw i storfa allanol ac wedi\'u hamgryptio gyda\'r cyfrinymadrodd isod. Rhaid i chi fod â\'r cyfrinymadrodd hwn er mwyn adfer y copi wrth gefn.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Rwy wedi ysgrifennu\'r cyfrinymadrodd hwn i lawr. Hebddo, fydda i ddim yn gallu adfer copi wrth gefn.</string>
@@ -1764,7 +1765,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Rhowch y cod dilysu a anfonwyd i %s.</string>
   <string name="RegistrationActivity_wrong_number">Rhif anghywir</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Galw fi yn lle hynny\n (Ar gael ymhen %1$02d:%2$02d)</string>
-  <string name="RegistrationActivity_contact_signal_support">Cysylltu â Chefnogaeth Signal</string>
+  <string name="RegistrationActivity_contact_signal_support">Cysylltu â Chymorth Signal</string>
   <string name="RegistrationActivity_code_support_subject">Cofrestru Signal - Cod Dilysu Android</string>
   <string name="RegistrationActivity_code_support_body">Pwnc: Cofrestru Signal - Cod Dilysu Android\nManylion y ddyfais: %1$s \nFersiwn Android: %2$s\nFersiwn Signal: %3$s \nLocale: %4$s</string>
   <string name="BackupUtil_never">Byth</string>

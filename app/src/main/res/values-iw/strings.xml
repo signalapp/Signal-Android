@@ -121,7 +121,7 @@
   <string name="CommunicationActions_cancel">בטל</string>
   <string name="CommunicationActions_call">חייג</string>
   <string name="CommunicationActions_insecure_call">שיחה בלתי מאובטחת</string>
-  <string name="CommunicationActions_carrier_charges_may_apply">לשיחה יכולות להיות עלויות שמושתות על ידי המפעיל הסלולרי. המספר אליו אתם מתקשרים אינו רשום אצל Signal. השיחה תבוצע באמצעות המפעיל הסלולרי, ולא על גבי האינטרנט.</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">חיובי מפעיל עשויים לחול. המספר שאתה מתקשר אליו אינו רשום ב־Signal. שיחה זו תתבצע באמצעות המפעיל הסלולרי שלך, לא על גבי האינטרנט.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">מספר הביטחון שלך עם %1$s השתנה. ייתכן שזה אומר שמישהו מנסה ליירט את התקשורת שלכם או שפשוט %2$s התקין מחדש את Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ייתכן שתרצה לוודא את מספר הביטחון שלך עם איש קשר זה.</string>
@@ -376,33 +376,33 @@
   <string name="ShareActivity_share_with">שתף עם</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">צרופות מרובות נתמכות רק עבור תמונות וסרטונים</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">ברוך הבא אל Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure ו־RedPhone הן עכשיו תוכנת מסרים אחת, לכל מצב: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">ברוך הבא אל Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure היא כעת Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure ו־RedPhone הן כעת יישום אחד: Signal. הקש כדי לחקור.</string>
-  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">אמור שלום לשיחות וידיאו מאובטחות.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal תומך כעת בשיחות וידיאו מאובטחות. התחל פשוט שיחת Signal כרגיל, הקש על הכפתור סרטון, ונופף לשלום.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal תומך כעת בשיחות וידיאו מאובטחות.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal תומך כעת בשיחות וידיאו מאובטחות. הקש כדי לחקור.</string>
-  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">מוכן לתקריב שלך?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">עכשיו אתה יכול לשתף תצלום פרופיל ושם עם חברים ב־Signal</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">פרופילי Signal כאן</string>
-  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">היכרות עם מחווני הקלדה.</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">כעת אתה יכול לראות ולשתף באופן רשותי מתי הודעות מוקלדות.</string>
-  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">האם אתה רוצה לאפשר אותם כעת?</string>
-  <string name="ExperienceUpgradeActivity_typing_ui_title">מחווני הקלדה כאן</string>
-  <string name="ExperienceUpgradeActivity_enable_typing_indicators">אפשר מחווני הקלדה</string>
-  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">הפעל מחווני הקלדה</string>
-  <string name="ExperienceUpgradeActivity_no_thanks">לא תודה</string>
-  <string name="ExperienceUpgradeActivity_introducing_link_previews">היכרות עם קדם־תצוגות של קישורים.</string>
-  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">קדם־תצוגות רשותיות של קישורים נתמכות כעת עבור כמה מהאתרים הפופולריים ביותר באינטרנט.</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">אתה יכול להשבית או לאפשר מאפיין זה בכל זמן בהגדרות Signal שלך (פרטיות &lt; שלח קדם־תצוגות של קישורים).</string>
-  <string name="ExperienceUpgradeActivity_got_it">הבנתי</string>
-  <string name="ExperienceUpgradeActivity_introducing_stickers">היכרות עם מדבקות</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">למה להשתמש במילים כשאתה יכול להשתמש במדבקות?</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">למה להשתמש במילים כשאתה יכול להשתמש במדבקות? הקש על צלמית זו במקלדת שלך:</string>
-  <string name="ExperienceUpgradeActivity_lets_go">בוא נתחיל</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">ברוך הבא אל Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure ו־RedPhone הן עכשיו תוכנת מסרים אחת, לכל מצב: Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">ברוך הבא אל Signal!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure היא כעת Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure ו־RedPhone הן כעת יישום אחד: Signal. הקש כדי לחקור.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">אמור שלום לשיחות וידיאו מאובטחות.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal תומך כעת בשיחות וידיאו מאובטחות. התחל פשוט שיחת Signal כרגיל, הקש על הכפתור סרטון, ונופף לשלום.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal תומך כעת בשיחות וידיאו מאובטחות.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal תומך כעת בשיחות וידיאו מאובטחות. הקש כדי לחקור.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">מוכן לתקריב שלך?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">עכשיו אתה יכול לשתף תצלום פרופיל ושם עם חברים ב־Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">פרופילי Signal כאן</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">היכרות עם מחווני הקלדה.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">כעת אתה יכול לראות ולשתף באופן רשותי מתי הודעות מוקלדות.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">האם אתה רוצה לאפשר אותם כעת?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">מחווני הקלדה כאן</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">אפשר מחווני הקלדה</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">הפעל מחווני הקלדה</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">לא תודה</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">היכרות עם קדם־תצוגות של קישורים.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">קדם־תצוגות רשותיות של קישורים נתמכות כעת עבור כמה מהאתרים הפופולריים ביותר באינטרנט.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">אתה יכול להשבית או לאפשר מאפיין זה בכל זמן בהגדרות Signal שלך (פרטיות &lt; שלח קדם־תצוגות של קישורים).</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">הבנתי</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">היכרות עם מדבקות</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">למה להשתמש במילים כשאתה יכול להשתמש במדבקות?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">למה להשתמש במילים כשאתה יכול להשתמש במדבקות? הקש על צלמית זו במקלדת שלך:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">בוא נתחיל</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">מאחזר הודעה…</string>
   <!--GcmRefreshJob-->
@@ -739,7 +739,7 @@
   <string name="RegistrationActivity_continue_last_attempt">המשך (ניסיון אחרון!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">קח פרטיות איתך.\nהייה עצמך בכל הודעה.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">הכנס את מספר הטלפון שלך כדי להתחיל</string>
-  <string name="RegistrationActivity_you_will_receive_a_verification_code">תקבל קוד וידוא. חיובי מפעיל עשויים לחול.</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">תקבל קוד וידוא. תשלומי מפעיל עשויים לחול.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">הכנס את הקוד ששלחנו אל %s</string>
   <string name="RegistrationActivity_phone_number_description">מספר טלפון</string>
   <string name="RegistrationActivity_country_code_description">קוד מדינה</string>
@@ -1234,7 +1234,7 @@
   <string name="registration_activity__phone_number">מספר טלפון</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal מקל לתקשר ע״י שימוש במספר הטלפון ובפנקס הכתובות הקיימים שלך. חברים ואנשי קשר שיודעים כבר איך ליצור איתך קשר בטלפון, יוכלו לשמור על קשר בקלות ב־Signal.\n\nהרשמה משדרת מידע מסוים של אנשי קשר אל השרת. המידע אינו מאוחסן.</string>
   <string name="registration_activity__verify_your_number">וודא את המספר שלך</string>
-  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">אנא הכנס את המספר הנייד שלך כדי לקבל קוד וידוא. חיובי מפעיל עשויים לחול.</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">אנא הכנס את המספר הנייד שלך כדי לקבל קוד וידוא. תשלומי מפעיל עשויים לחול.</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>הכנס שם או מספר</small></string>
   <string name="recipients_panel__add_members">הוסף חברי קבוצה</string>
@@ -1283,25 +1283,26 @@
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">אתה יכול לבחור כעת אם לקבל שיחה חדשה. תראה אפשרויות \"קבל\", \"מחק\", או \"חסום\".</string>
   <!--HelpFragment-->
   <string name="HelpFragment__help">עזרה</string>
-  <string name="HelpFragment__have_you_read_our_faq_yet">האם קראת כבר את רשימת השאלות הנפוצות?</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">האם קראת כבר את השאלות הנפוצות?</string>
   <string name="HelpFragment__next">הבא</string>
   <string name="HelpFragment__contact_us">צור קשר</string>
-  <string name="HelpFragment__tell_us_whats_going_on">ספר לנו מה קורה</string>
-  <string name="HelpFragment__include_debug_log">הוסף את יומן התקלים</string>
+  <string name="HelpFragment__tell_us_whats_going_on">ספר לנו מה הולך</string>
+  <string name="HelpFragment__include_debug_log">כלול יומן ניפוי תקלים.</string>
   <string name="HelpFragment__whats_this">מה זה?</string>
-  <string name="HelpFragment__how_do_you_feel">איך אתם מרגישים? (רשות)</string>
-  <string name="HelpFragment__support_info">מידע אודות התמיכה</string>
-  <string name="HelpFragment__subject">נושא</string>
-  <string name="HelpFragment__signal_android_support_request">בקשת תמיכה ב-Signal Android</string>
-  <string name="HelpFragment__device_info">מידע אודות המכשיר:</string>
+  <string name="HelpFragment__how_do_you_feel">איך אתה מרגיש? (רשותי)</string>
+  <string name="HelpFragment__support_info">מידע תמיכה</string>
+  <string name="HelpFragment__subject">נושא:</string>
+  <string name="HelpFragment__signal_android_support_request">בקשת תמיכה של Signal Android</string>
+  <string name="HelpFragment__device_info">מידע מכשיר:</string>
   <string name="HelpFragment__android_version">גרסת Android:</string>
-  <string name="HelpFragment__signal_version">גרסת Signal</string>
-  <string name="HelpFragment__locale">מקם</string>
-  <string name="HelpFragment__debug_log">יומן תקלים:</string>
-  <string name="HelpFragment__na">לא רלוונטי</string>
-  <string name="HelpFragment__could_not_upload_logs">לא ניתן להעלות יומנים</string>
+  <string name="HelpFragment__signal_version">גרסת Signal:</string>
+  <string name="HelpFragment__locale">מַקָּם:</string>
+  <string name="HelpFragment__debug_log">יומן ניפוי תקלים:</string>
+  <string name="HelpFragment__na">בלתי זמין</string>
+  <string name="HelpFragment__could_not_upload_logs">לא היה ניתן להעלות יומן</string>
   <string name="HelpFragment__signal_support">תמיכת Signal</string>
-  <string name="HelpFragment__please_be_as_descriptive_as_possible">תארו בפירוט ככל האפשר כדי לעזור לנו להבין את הבעיה</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">אנא הייה מפורט ככל האפשר כדי לעזור לנו להבין את הסוגייה.</string>
+  <string name="HelpFragment__no_email_app_found">יישום דוא״ל לא נמצא.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">ייבא</string>
   <string name="arrays__use_default">השתמש בברירת מחדל</string>
@@ -1406,7 +1407,7 @@
   <string name="preferences__dark_theme">כהה</string>
   <string name="preferences__appearance">מַרְאֶה</string>
   <string name="preferences__theme">ערכת נושא</string>
-  <string name="preferences__system_default">ברירת מחדל של המערכת</string>
+  <string name="preferences__system_default">ברירת מחדל</string>
   <string name="preferences__default">ברירת מחדל</string>
   <string name="preferences__language">שפה</string>
   <string name="preferences__signal_messages_and_calls">הודעות ושיחות של Signal</string>
@@ -1631,7 +1632,7 @@
   <string name="KbsSplashFragment__introducing_pins">היכרות עם PIN</string>
   <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">קודי PIN מוסיפים שכבה נוספת של אבטחה אל החשבון שלך. צור אחד עכשיו.</string>
   <string name="KbsSplashFragment__learn_more">למד עוד</string>
-  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
+  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/he/articles/360007059792-נעילת-הרשמה</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">נעילת הרשמה = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">נעילת ההרשמה שלך נקראת כעת PIN, והיא עושה יותר. עדכן אותה כעת.</string>
   <string name="KbsSplashFragment__read_more_about_pins">למד עוד על PIN.</string>
@@ -1649,7 +1650,7 @@
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">חשבונך ננעל כדי להגן על פרטיותך ואבטחתך. לאחר %1$d ימים של אי־פעילות בחשבונך, תוכל להירשם שוב עם מספר טלפון זה ללא צורך ב־PIN שלך. כל התוכן יימחק.</string>
   <string name="AccountLockedFragment__next">הבא</string>
   <string name="AccountLockedFragment__learn_more">למד עוד</string>
-  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
+  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/he/articles/360007059792-נעילת-הרשמה</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">הכנס את ה־PIN שלך</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">הכנס את ה־PIN שיצרת עבור החשבון שלך. הוא שונה מקוד הוידוא שלך במסרון.</string>
@@ -1720,8 +1721,8 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">מהגר מסד נתונים של Signal</string>
   <string name="PushDecryptJob_new_locked_message">הודעה נעולה חדשה</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">בטל נעילה כדי להציג הודעות ממתינות</string>
-  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">בטל נעילה כדי להשלים עדכון</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">אנא בטל את נעילת Signal כדי להשלים עדכון</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">בטל נעילה כדי להשלים עדכון</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">אנא בטל את נעילת Signal כדי להשלים עדכון</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">גבה משפט־סיסמה</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">גיבויים יישמרו בהתקן חיצוני ויוצפנו עם משפט־הסיסמה למטה. חייב להיות לך משפט־סיסמה זה על מנת לשחזר גיבוי.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">כתבתי משפט־סיסמה זה. בלעדיו, לא אוכל לשחזר גיבוי.</string>

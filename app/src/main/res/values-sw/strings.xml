@@ -327,34 +327,34 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Shiriki na</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Karibu Signal</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure na RedPhone sasa ni mjumbe mmoja binafsi, kwa kila hali: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Karibu Signal</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure sasa ni Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure na RedPhone sasa ni programu moja: Signal. Gonga ili kugundua.</string>
-  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Sema habari kwenye simu salama ya video</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal sasa inawezesha kupiga ya video kwa njia salama. Anza tu simu ya Signal kama ya kawaida, gonga kitufe cha video, na punga habari.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal sasa inawezesha usalama wa simu za video</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal sasa inawezesha usalama wa simu za video. Gusa kugundua </string>
-  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Tayari kwa picha ya karibu?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Sasa unaweza kushiriki wasifu wa picha na jina kwa rafiki zako walioko Signal</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Wasifu wa Signal ni hapa</string>
-  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Kutambulisha viashiria vya kucharaza.</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Sasa unaweza kuchagua hiari na kushiriki wakati ujumbe unapocharazwa</string>
-  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Ungependa kuwezesha sasa?</string>
-  <string name="ExperienceUpgradeActivity_typing_ui_title">Viashiria vya kucharazia viko hapa</string>
-  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Wezesha viashiria vya kucharaza</string>
-  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Washa viashiria vya kucharazia</string>
-  <string name="ExperienceUpgradeActivity_no_thanks">Hapana nashukuru</string>
-  <string name="ExperienceUpgradeActivity_introducing_link_previews">Kuanzisha hakiki za kiungo</string>
-  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Kiungo cha hakiki za hiari sasa kinategemezwa na baadhi ya tovuti maarufu mtandaoni.</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Unaweza kulemaza ama kuwezesha kipengele hiki wakati wowote kwenye mipangilio yako ya Signal (Faragha &gt; Tuma hakiki za kiungo).</string>
-  <string name="ExperienceUpgradeActivity_got_it">Nimeelewa</string>
-  <string name="ExperienceUpgradeActivity_introducing_stickers">Kuwasilisha vibandiko</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Mbona utumie maneno wakati unaweza kutumia vibandiko?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Karibu Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure na RedPhone sasa ni mjumbe mmoja binafsi, kwa kila hali: Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Karibu Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure sasa ni Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure na RedPhone sasa ni programu moja: Signal. Gonga ili kugundua.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Sema habari kwenye simu salama ya video</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal sasa inawezesha kupiga ya video kwa njia salama. Anza tu simu ya Signal kama ya kawaida, gonga kitufe cha video, na punga habari.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal sasa inawezesha usalama wa simu za video</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal sasa inawezesha usalama wa simu za video. Gusa kugundua </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Tayari kwa picha ya karibu?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Sasa unaweza kushiriki wasifu wa picha na jina kwa rafiki zako walioko Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Wasifu wa Signal ni hapa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Kutambulisha viashiria vya kucharaza.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Sasa unaweza kuchagua hiari na kushiriki wakati ujumbe unapocharazwa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Ungependa kuwezesha sasa?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Viashiria vya kucharazia viko hapa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Wezesha viashiria vya kucharaza</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Washa viashiria vya kucharazia</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Hapana nashukuru</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Kuanzisha hakiki za kiungo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Kiungo cha hakiki za hiari sasa kinategemezwa na baadhi ya tovuti maarufu mtandaoni.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Unaweza kulemaza ama kuwezesha kipengele hiki wakati wowote kwenye mipangilio yako ya Signal (Faragha &gt; Tuma hakiki za kiungo).</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Nimeelewa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">Kuwasilisha vibandiko</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Mbona utumie maneno wakati unaweza kutumia vibandiko?</string> -->
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Mbona utumie maneno wakati unaweza kutumia vibandiko?
 Gusa ikoni hii kwenye kicharazio chako:</string>
-  <string name="ExperienceUpgradeActivity_lets_go">Twende kazi</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">Twende kazi</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Inaleta ujumbe</string>
   <!--GcmRefreshJob-->
@@ -1554,8 +1554,8 @@ nambari yako ya simu</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Inahamisha hifadhidata ya Signal</string>
   <string name="PushDecryptJob_new_locked_message">Ujumbe mpya uliofungwa</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Fungua ili uone jumbe zinazosubiri</string>
-  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Fungua kukamilisha sasisho</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Tafadhali fungua ili kukamilisha sasisho ya Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Fungua kukamilisha sasisho</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Tafadhali fungua ili kukamilisha sasisho ya Signal</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Hifadhi Nenosiri</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Nakili zitahifadhiwa kwenye hifadhi ya nje na kusimbwa na nenosiri lililopo hapo chini. Lazima uwe na Nenosiri hili ili kurejesha nakalahifadhi.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Nimeandika Nenosiri hili. Bila yalo, nishindwa kurejesha nakalahifadhi.</string>

@@ -332,29 +332,29 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Споделяне с</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Добре дошли в Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure и Redphone се обедениха в чат програма за конфеденциално разговори, за всяка ситуация: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Добре дошли в Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure вече е Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure и Redphone вече са една програма: Signal. Натисни за да разгледаш.</string>
-  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Кажете здравей на криптирани видео разговори.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal вече поддържа криптирани видео разговори. Просто започнете обаждане, както обикновено и натиснете бутонът за видео.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal вече поддържа криптирано видео обаждане.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal вече поддържа криптирано видео обаждане. Натиснете, за да научите повече.</string>
-  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Готови за снимка?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Вече може да споделяте профилна снимка и името си с приятелите си в Signal</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Профилите в Signal пристигнаха</string>
-  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Представяме индикатори за писане.</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">По желание можете да споделяте и виждате дали някой пише съобщения.</string>
-  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Желаете ли да активирате тази опция?</string>
-  <string name="ExperienceUpgradeActivity_typing_ui_title">Ето ги индикаторите за писане</string>
-  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Активиране на индикатори за писане</string>
-  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Активиране на индикатори за писане</string>
-  <string name="ExperienceUpgradeActivity_no_thanks">Не, благодаря</string>
-  <string name="ExperienceUpgradeActivity_introducing_link_previews">Представяме ви визуализации на линковете.</string>
-  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Опционални визуализации на линковете вече са поддържани за някои от най-популярните сайтове в интернет.</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Можете да деактивирате или активирате тази функция по всяко време в настройките на Signal (Поверителност &gt; Изпращане на визуализации на връзката).</string>
-  <string name="ExperienceUpgradeActivity_got_it">Ясно</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Добре дошли в Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure и Redphone се обедениха в чат програма за конфеденциално разговори, за всяка ситуация: Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Добре дошли в Signal!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure вече е Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure и Redphone вече са една програма: Signal. Натисни за да разгледаш.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Кажете здравей на криптирани видео разговори.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal вече поддържа криптирани видео разговори. Просто започнете обаждане, както обикновено и натиснете бутонът за видео.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal вече поддържа криптирано видео обаждане.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal вече поддържа криптирано видео обаждане. Натиснете, за да научите повече.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Готови за снимка?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Вече може да споделяте профилна снимка и името си с приятелите си в Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Профилите в Signal пристигнаха</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Представяме индикатори за писане.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">По желание можете да споделяте и виждате дали някой пише съобщения.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Желаете ли да активирате тази опция?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Ето ги индикаторите за писане</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Активиране на индикатори за писане</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Активиране на индикатори за писане</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Не, благодаря</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Представяме ви визуализации на линковете.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Опционални визуализации на линковете вече са поддържани за някои от най-популярните сайтове в интернет.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Можете да деактивирате или активирате тази функция по всяко време в настройките на Signal (Поверителност &gt; Изпращане на визуализации на връзката).</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Ясно</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Изтегляне на съобщение…</string>
   <!--GcmRefreshJob-->
@@ -1345,8 +1345,8 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Мигриране на базата данни на Signal</string>
   <string name="PushDecryptJob_new_locked_message">Ново заключено съобщение</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Отключете, за да прегледате новите съобщения</string>
-  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Отключете, за да довършите актуализацията</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Моля отключете Signal за да довършите актуализацията</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Отключете, за да довършите актуализацията</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Моля отключете Signal за да довършите актуализацията</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Парола на архива</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Архивите ще бъдат запазени на външно хранилище и криптирани с паролата задена по-долу. Трябва да използвате същата парола за въстановяване от архива.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Записах тази парола. Без нея, няма да мога да възстановя архива.</string>

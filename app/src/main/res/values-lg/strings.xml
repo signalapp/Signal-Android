@@ -178,11 +178,11 @@ a</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Gabana ne</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Tukwaniriza ku Signal</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Tukwaniriza ku Signal</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">Obubaka obukumidwa buli kati ku signal</string>
-  <string name="ExperienceUpgradeActivity_no_thanks">Nedda naye webale</string>
-  <string name="ExperienceUpgradeActivity_got_it">Nkyifunye</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Tukwaniriza ku Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Tukwaniriza ku Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">Obubaka obukumidwa buli kati ku signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Nedda naye webale</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Nkyifunye</string> -->
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal tasobodde kwewandisa ku mpereza ya Google Play store, Obubaka ku Signal n\'amasimu bigyiddwako, bambi gezaako oddemu wewandiise mu kweroboza &gt; Okwawaggulu</string>

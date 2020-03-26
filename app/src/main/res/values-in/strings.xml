@@ -111,6 +111,8 @@
   <string name="CommunicationActions_start_voice_call">Buat panggilan suara?</string>
   <string name="CommunicationActions_cancel">Batal</string>
   <string name="CommunicationActions_call">Panggil</string>
+  <string name="CommunicationActions_insecure_call">Panggilan biasa</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Panggilan akan menggunakan pulsa seluler. Karena nomor yang Anda hubungi belum menggunakan Signal, panggilan ini akan melalui jaringan seluler, bukan melalui Internet.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Nomor keamanan Anda dengan %1$s telah berubah. Ini bisa disebabkan seseorang mencoba mencegat komunikasi Anda, atau disebabkan %2$s telah memasang ulang Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Sebaiknya Anda verifikasi nomor keamanan kontak ini.</string>
@@ -201,10 +203,22 @@
   <string name="ConversationActivity_no_results">Tidak ada hasil</string>
   <string name="ConversationActivity_sticker_pack_installed">Paket stiker terpasang</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Baru! Katakan dengan stiker</string>
+  <string name="ConversationActivity_block_s">Blok %1$s?</string>
+  <string name="ConversationActivity_block_and_leave_s">Blok dan tinggalkan %1$s?</string>
+  <string name="ConversationActivity_unblock_s">Berhenti blok %1$s?</string>
+  <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">Anda akan dapat mengirim pesan dan membuat panggilan satu sama lain.</string>
+  <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">Anggota grup dapat mengundang Anda kembali ke dalam grup.</string>
+  <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">Orang yang telah diblok tidak dapat menelepon atau mengirim pesan kepada Anda.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">Anda akan meninggalkan grup ini juga berhenti menerima pesan dan notifikasi.</string>
   <string name="ConversationActivity_block">Blokir</string>
+  <string name="ConversationActivity_block_and_delete">Blok dan hapus</string>
   <string name="ConversationActivity_cancel">Batal</string>
   <string name="ConversationActivity_delete_conversation">Hapus percakapan?</string>
+  <string name="ConversationActivity_delete_and_leave_group">Hapus dan tinggalkan grup?</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Percakapan ini akan dihapus dari semua perangkat Anda.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Anda akan meninggalkan grup ini. Catatan mengenai grup akan dihapus dari semua perangkat Anda.</string>
   <string name="ConversationActivity_delete">Hapus</string>
+  <string name="ConversationActivity_delete_and_leave">Hapus dan tinggalkan</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d pesan belum dibaca</item>
@@ -243,6 +257,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Anda dapat geser ke kiri pada pesan manapun untuk membalasnya dengan cepat</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Berkas media satu-tayangan yang keluar secara otomatis dihapus setelah terkirim</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Anda telah melihat pesan ini</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Anda dapat menambahkan catatan pribadi dalam percakapan. Jika akun Anda memiliki perangkat terhubung, catatan akan tersinkronisasi.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Tidak ada peramban yang terpasang pada perangkat Anda.</string>
   <!--ConversationListFragment-->
@@ -262,6 +277,8 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">Memindahkan %d percakapan ke kotak masuk</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_created">Nama profil Anda telah dibuat.</string>
+  <string name="ConversationListFragment__your_profile_name_has_been_saved">Nama profil Anda telah tersimpan.</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Pesan pertukaran kunci</string>
   <!--ConversationListItemAction-->
@@ -281,6 +298,9 @@
   <string name="CustomDefaultPreference_using_default">Gunakan pilihan standar: %s</string>
   <string name="CustomDefaultPreference_none">Kosong</string>
   <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Pilih foto</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Ambil foto</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Pilh dari Galeri</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Buang foto</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Sekarang</string>
@@ -312,34 +332,35 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Perangkat ini tidak mendukung Play Services. Ketuk untuk menonaktifkan pengoptimalan baterai sistem yang mencegah Signal untuk mengambil pesan saat tidak aktif.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Berbagi dengan</string>
+  <string name="ShareActivity_multiple_attachments_are_only_supported">Lampiran jamak hanya berupa gambar dan video</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Selamat datang di Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure dan RedPhone sekarang bergabung menjadi pengirim pesan privat tunggal, untuk semua situasi: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Selamat datang di Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure sekarang adalah Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure dan RedPhone sekarang bergabung menjadi aplikasi tunggal: Signal. Ketuk untuk menjelajah.</string>
-  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Ucapkan halo untuk mengamankan panggilan video.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal sekarang mendukung panggilan video yang aman. Cukup mulai panggilan Signal seperti biasa, ketuk tombol video, dan ucapkan halo.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal sekarang mendukung panggilan video yang aman.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal sekarang mendukung panggilan video yang aman. Ketuk untuk menjelajahi.</string>
-  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Siap foto wajah?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Sekarang anda dapat membagikan nama dan foto profil dengan kawan anda di Signal</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profil Signal ada di sini</string>
-  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Memperkenalkan indikator pengketikan.</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Sekarang Anda mempunyai pilihan melihat dan berbagi saat pesan sedang diketik.</string>
-  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Apakah Anda ingin mengaktifkannya sekarang?</string>
-  <string name="ExperienceUpgradeActivity_typing_ui_title">Indikator pengetikan di sini</string>
-  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Aktifkan indikator pengetikan</string>
-  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Nyalakan indikator pengetikan</string>
-  <string name="ExperienceUpgradeActivity_no_thanks">Tidak, terima kasih</string>
-  <string name="ExperienceUpgradeActivity_introducing_link_previews">Memperkenalkan pratinjau tautan.</string>
-  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Untuk beberapa situs populer di internet sekarang ada pilihan pratinjau tautan</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Anda dapat menonaktifkan atau mengaktifkan fitur ini kapanpun pada pengaturan Signal Anda (Privasi &gt; Kirim pratinjau tautan).</string>
-  <string name="ExperienceUpgradeActivity_got_it">Paham</string>
-  <string name="ExperienceUpgradeActivity_introducing_stickers">Memperkenalkan stiker</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Mengapa menggunakan kata-kata saat Anda bisa menggunakan stiker?</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Mengapa menggunakan kata-kata saat Anda bisa menggunakan stiker? Ketuk ikon ini pada papan ketik Anda:</string>
-  <string name="ExperienceUpgradeActivity_lets_go">Ayo!</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Selamat datang di Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure dan RedPhone sekarang bergabung menjadi pengirim pesan privat tunggal, untuk semua situasi: Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Selamat datang di Signal!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure sekarang adalah Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure dan RedPhone sekarang bergabung menjadi aplikasi tunggal: Signal. Ketuk untuk menjelajah.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Ucapkan halo untuk mengamankan panggilan video.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal sekarang mendukung panggilan video yang aman. Cukup mulai panggilan Signal seperti biasa, ketuk tombol video, dan ucapkan halo.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal sekarang mendukung panggilan video yang aman.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal sekarang mendukung panggilan video yang aman. Ketuk untuk menjelajahi.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Siap foto wajah?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Sekarang anda dapat membagikan nama dan foto profil dengan kawan anda di Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profil Signal ada di sini</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Memperkenalkan indikator pengketikan.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Sekarang Anda mempunyai pilihan melihat dan berbagi saat pesan sedang diketik.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Apakah Anda ingin mengaktifkannya sekarang?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Indikator pengetikan di sini</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Aktifkan indikator pengetikan</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Nyalakan indikator pengetikan</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Tidak, terima kasih</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Memperkenalkan pratinjau tautan.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Untuk beberapa situs populer di internet sekarang ada pilihan pratinjau tautan</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Anda dapat menonaktifkan atau mengaktifkan fitur ini kapanpun pada pengaturan Signal Anda (Privasi &gt; Kirim pratinjau tautan).</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Paham</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">Memperkenalkan stiker</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Mengapa menggunakan kata-kata saat Anda bisa menggunakan stiker?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Mengapa menggunakan kata-kata saat Anda bisa menggunakan stiker? Ketuk ikon ini pada papan ketik Anda:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">Ayo!</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Mengambil pesan…</string>
   <!--GcmRefreshJob-->
@@ -513,9 +534,16 @@
   <string name="MessageRequestBottomView_delete">Hapus</string>
   <string name="MessageRequestBottomView_block">Blokir</string>
   <string name="MessageRequestBottomView_unblock">Buka blokir</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Persilahkan %1$s mengirim pesan? Pengirim belum akan menerima notifikasi bahwa Anda telah menerima pesan hingga disetujui.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Bergabung dengan grup %1$s? Anggota grup belum akan melihat pesan Anda hingga disetujui.</string>
+  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Berhenti blok %1$s untuk mengirim pesan dan menelepon satu sama lain.</string>
+  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Berhenti blok sehingga anggota grup dapat mengundang Anda kembali.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Anggota dari %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Anggota dari %1$s dan %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Anggota dari %1$s, %2$s, dan %3$s</string>
+  <plurals name="MessageRequestProfileView_members">
+    <item quantity="other">%1$d anggota</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="other">%d lainnya</item>
   </plurals>
@@ -709,9 +737,13 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">Sunting</string>
   <string name="SubmitDebugLogActivity_done">Selesai</string>
+  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Ketuk pecakapan untuk menghapus</string>
   <string name="SubmitDebugLogActivity_submit">Kirimkan</string>
+  <string name="SubmitDebugLogActivity_failed_to_submit_logs">Gagal mengirimkan catatan</string>
   <string name="SubmitDebugLogActivity_success">Sukses!</string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Salin URL ini dan kirimkan ke email support <b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Disalin ke papan klip</string>
+  <string name="SubmitDebugLogActivity_ok">Ok</string>
   <string name="SubmitDebugLogActivity_share">Bagikan</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grup diperbarui</string>
@@ -735,6 +767,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ThreadRecord_you_marked_unverified">Anda telah menandai tidak terverifikasi</string>
   <string name="ThreadRecord_message_could_not_be_processed">Pesan tidak dapat diproses</string>
   <string name="ThreadRecord_message_request">Permintaan Pesan</string>
+  <string name="ThreadRecord_s_added_you_to_the_group">%1$stelah menambahkan Anda ke grup.</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Pembaharuan Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Versi baru Signal tersedia, ketuk untuk memperbarui</string>
@@ -1146,10 +1179,34 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="AndroidManifest_archived_conversations">Arsip percakapan</string>
   <string name="AndroidManifest_remove_photo">Buang foto</string>
   <!--Message Requests Megaphone-->
+  <string name="MessageRequestsMegaphone__message_requests">Undangan percakapan</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Pengguna dapat menerima percakapan baru. Nama profil digunakan untuk mengidentifikasi pengirim pesan dalam percakapan.</string>
+  <string name="MessageRequestsMegaphone__add_profile_name">Tambahkan nama profil</string>
+  <string name="MessageRequestsMegaphone__new_message_requests">Baru: undangan percakapan</string>
+  <string name="MessageRequestsMegaphone__add_name">Tambahkan nama</string>
+  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Anda dapat memilih untuk menerima percakapan baru. Opsi yang ada adalah \"Terima\", \"Hapus, atau \"Blok\".</string>
   <!--HelpFragment-->
   <string name="HelpFragment__help">Bantuan</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">Sudahkah Anda membaca FAQ?</string>
   <string name="HelpFragment__next">Berikutnya</string>
+  <string name="HelpFragment__contact_us">Hubungi kami</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Sebutkan galat yang terjadi</string>
+  <string name="HelpFragment__include_debug_log">Cantumkan catatan debug</string>
+  <string name="HelpFragment__whats_this">Penjelasan bantuan</string>
+  <string name="HelpFragment__how_do_you_feel">Saran dan kesan (opsional)</string>
+  <string name="HelpFragment__support_info">Informasi support</string>
+  <string name="HelpFragment__subject">Judul</string>
+  <string name="HelpFragment__signal_android_support_request">Support Signal pada Android</string>
+  <string name="HelpFragment__device_info">Informasi perangkat:</string>
+  <string name="HelpFragment__android_version">Versi Android:</string>
+  <string name="HelpFragment__signal_version">Versi Signal:</string>
+  <string name="HelpFragment__locale">Bahasa:</string>
+  <string name="HelpFragment__debug_log">Catatan debug:</string>
+  <string name="HelpFragment__na">tidak ada</string>
+  <string name="HelpFragment__could_not_upload_logs">Gagal mengunggah catatan</string>
   <string name="HelpFragment__signal_support">Bantuan Signal</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">Mohon jelaskan secara deskriptif untuk membantu kami memahami permasalahannya.</string>
+  <string name="HelpFragment__no_email_app_found">Aplikasi pengirim email tidak ditermukan.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Impor</string>
   <string name="arrays__use_default">Gunakan standar</string>
@@ -1251,6 +1308,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences__dark_theme">Gelap</string>
   <string name="preferences__appearance">Penampilan</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__system_default">Pengaturan dasar sistem</string>
   <string name="preferences__default">Standar</string>
   <string name="preferences__language">Bahasa</string>
   <string name="preferences__signal_messages_and_calls">Pesan dan panggilan Signal</string>
@@ -1518,6 +1576,12 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Kami akan mengingatkan Anda nanti. Membuat PIN akan menjadi kewajiban dalam %1$d hari.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Kami akan mengingatkan Anda nanti. Mengonfirmasi PIN akan menjadi kewajiban dalam %1$d hari.</string>
   <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__add_a_profile_name">Tambahkan nama profil</string>
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Nama profil Anda akan tampak dalam pecakapan dan saat Anda berbagi kontak.</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">Tambahkan Nama Profil</string>
+  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Setujui Nama Profil Anda</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Profil Anda dapat mencantumkan nama keluarga (opsional).</string>
+  <string name="ProfileNamesMegaphone__confirm_name">Setujui Nama</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pindahkan ikon</string>
   <string name="ConversationListFragment_loading">Memuat…</string>
@@ -1531,8 +1595,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Memindahkan basis data Signal</string>
   <string name="PushDecryptJob_new_locked_message">Pesan terkunci baru</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Buka kunci untuk melihat pesan tertunda</string>
-  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Buka kunci untuk menyelesaikan pembaruan</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Mohon buka kunci Signal untuk menyelesaikan pembaruan</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Buka kunci untuk menyelesaikan pembaruan</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Mohon buka kunci Signal untuk menyelesaikan pembaruan</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Frasa sandi cadangan</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Cadangan akan disimpan ke penyimpanan eksternal dan terenkripsi dengan frasa di bawah. Anda mesti memiliki frasa sandi ini untuk memulihkan cadangan.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Saya telah mencatat frasa ini. Tanpa ini, saya tidak dapat memulihkan cadangan.</string>
@@ -1585,6 +1649,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">Ubah</string>
   <string name="preferences_app_protection__create">Buat</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account">PIN Anda berguna untuk meningkatkan keamanan. Anda akan ditanya mengenai PIN saat meregister nomor telepon dengan Signal. Jika Anda melupakan nomor PIN, akun Anda akan terkunci selama 7 hari.</string>
   <string name="AppProtectionPreferenceFragment_none">Kosong</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN Kunci Pendaftaran berbeda dengan SMS kode verifikasi yang baru Anda terima. Harap masukkan konfigurasi PIN yang sebelumnya telah Anda buat. </string>
   <string name="registration_activity__registration_lock_pin">PIN Kunci Pendaftaran</string>

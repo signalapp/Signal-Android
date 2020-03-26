@@ -71,8 +71,9 @@
   <string name="AttachmentKeyboard_gallery">المعرض</string>
   <string name="AttachmentKeyboard_gif">صورة GIF</string>
   <string name="AttachmentKeyboard_file">ملف</string>
-  <string name="AttachmentKeyboard_contact">جهة الاتصال</string>
+  <string name="AttachmentKeyboard_contact">جهة اتصال</string>
   <string name="AttachmentKeyboard_location">موقع جغرافي</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">يحتاج Signal إلى الإذن لعرض صورك ومرئياتك.</string>
   <string name="AttachmentKeyboard_give_access">امنح الصلاحيات</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">لم يتم العثور على تطبيق لاختيار ملف.</string>
@@ -125,6 +126,7 @@
   <string name="CommunicationActions_start_voice_call">بدأ مكالمة صوتية؟</string>
   <string name="CommunicationActions_cancel">إلغاء</string>
   <string name="CommunicationActions_call">اتصال</string>
+  <string name="CommunicationActions_insecure_call">مكالمة غير آمنة</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">تم تغيير رقم السلامة مع %1$s. وهذا يعني إما محاولة أحداً اعتراض المحادثة أو ببساطة قيام %2$s بإعادة تثبيت Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ربما ترغب بالتحقق من رقم السلامة مع جهة الاتصال هذه.</string>
@@ -215,10 +217,17 @@
   <string name="ConversationActivity_no_results">لا نتائج</string>
   <string name="ConversationActivity_sticker_pack_installed">تم تثبيت حزمة الملصقات</string>
   <string name="ConversationActivity_new_say_it_with_stickers">جديد! قلها بالملصقات</string>
+  <string name="ConversationActivity_block_s">حظر %1$s؟</string>
+  <string name="ConversationActivity_block_and_leave_s">حظر ومغادرة %1$s؟</string>
+  <string name="ConversationActivity_unblock_s">إلغاء حظر %1$s؟</string>
   <string name="ConversationActivity_block">حظر</string>
+  <string name="ConversationActivity_block_and_delete">حظر وحذف</string>
   <string name="ConversationActivity_cancel">إلغاء</string>
-  <string name="ConversationActivity_delete_conversation">حذف المحادثه؟</string>
+  <string name="ConversationActivity_delete_conversation">حذف المحادثة؟</string>
+  <string name="ConversationActivity_delete_and_leave_group">حذف ومغادرة المجموعة؟</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">ستحذف هذه المحادثة من جميع أجهزتك.</string>
   <string name="ConversationActivity_delete">حذف  </string>
+  <string name="ConversationActivity_delete_and_leave">حذف ومغادرة</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="zero">%d رسالة غير مقروءة</item>
@@ -331,6 +340,8 @@
     <item quantity="many">تم نقل %d رسالة إلى الوارد</item>
     <item quantity="other">تم نقل %d رسالة إلى الوارد</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_created">تم إنشاء اسم ملفك الشخصي.</string>
+  <string name="ConversationListFragment__your_profile_name_has_been_saved">تم حفظ اسم ملفك الشخصي.</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">رسالة تبادل المفاتيح</string>
   <!--ConversationListItemAction-->
@@ -350,6 +361,9 @@
   <string name="CustomDefaultPreference_using_default">الاستخدام الافتراضي: %s</string>
   <string name="CustomDefaultPreference_none">لا شيء </string>
   <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">اختيار صورة</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">إلتقاط صورة</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">اختيار من المعرض</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">حذف الصورة</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">الآن</string>
@@ -382,33 +396,33 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">شارك مع</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">أهلا بكم في Signal</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">تم دمج TextSecure وRedPhone  في تطبيق واحد للتواصل الخاص لأي موقف: Signal</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">أهلا بكم في Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure أصبح Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">تم دمج TextSecure وRedPhone في تطبيق واحد وهو: Signal. يرجى النّقر لاستكشاف التطبيق. </string>
-  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">رحّبوا باتصالات الفيديو الآمنة.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls"> يدعم Signal الآن مكالمات الفيديو الآمنة. فقط ابدأ مكالمة Signal بالطريقة الاعتيادية، قم بنقر زر الفيديو، وابدأ حديثك بالسلام.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">أصبح Signal يدعم اتصالات الفيديو الآمنة.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">أصبح Signal يدعم اتصالات الفيديو الآمنة. انقر لمعرفة المزيد.</string>
-  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">جاهزين لأخذ سيلفي؟</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">بإمكانكم الآن مشاركة الاسم وصورة الملف الشخصي مع أصدقائكم على Signal</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">هنا ملفّات Signal الشخصية</string>
-  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">نقدم لكم المؤشرات على الطباعة.</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">يمكنكم الآن إختياريا مشاركة ورؤية مؤشّرعند طباعة الرسائل.</string>
-  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">هل تريدون تفعيلها الآن؟</string>
-  <string name="ExperienceUpgradeActivity_typing_ui_title">وصلت المؤشرات عند الطباعة</string>
-  <string name="ExperienceUpgradeActivity_enable_typing_indicators">تفعيل المؤشرات عند الطباعة</string>
-  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">تشغيل المؤشرات عند الطباعة</string>
-  <string name="ExperienceUpgradeActivity_no_thanks">لا شكرا</string>
-  <string name="ExperienceUpgradeActivity_introducing_link_previews">نقدم لكم لمحة من الروابط.</string>
-  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">خيار رؤية لمحة  للروابط أصبحت الآن مدعومة لبعض أشهر مواقع الإنترنت. </string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">يمكنك أن تعطل أوتفعل هذه الخاصية فى أي وقت في إعدادات Signal (الخصوصية &gt; إرسال لمحة عن الرابط).</string>
-  <string name="ExperienceUpgradeActivity_got_it">عُلم</string>
-  <string name="ExperienceUpgradeActivity_introducing_stickers">نقدم لكم الملصقات</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">ما جدوى استخدام الكلمات عند توفّر الملصقات؟</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">ما جدوى استخدام الكلمات عند توفّر الملصقات؟ انقر هذه الأيقونة على لوحة المفاتيح:</string>
-  <string name="ExperienceUpgradeActivity_lets_go">هيا بنا</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">أهلا بكم في Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">تم دمج TextSecure وRedPhone  في تطبيق واحد للتواصل الخاص لأي موقف: Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">أهلا بكم في Signal!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure أصبح Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">تم دمج TextSecure وRedPhone في تطبيق واحد وهو: Signal. يرجى النّقر لاستكشاف التطبيق. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">رحّبوا باتصالات الفيديو الآمنة.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls"> يدعم Signal الآن مكالمات الفيديو الآمنة. فقط ابدأ مكالمة Signal بالطريقة الاعتيادية، قم بنقر زر الفيديو، وابدأ حديثك بالسلام.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">أصبح Signal يدعم اتصالات الفيديو الآمنة.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">أصبح Signal يدعم اتصالات الفيديو الآمنة. انقر لمعرفة المزيد.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">جاهزين لأخذ سيلفي؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">بإمكانكم الآن مشاركة الاسم وصورة الملف الشخصي مع أصدقائكم على Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">هنا ملفّات Signal الشخصية</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">نقدم لكم المؤشرات على الطباعة.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">يمكنكم الآن إختياريا مشاركة ورؤية مؤشّرعند طباعة الرسائل.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">هل تريدون تفعيلها الآن؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">وصلت المؤشرات عند الطباعة</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">تفعيل المؤشرات عند الطباعة</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">تشغيل المؤشرات عند الطباعة</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">لا شكرا</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">نقدم لكم لمحة من الروابط.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">خيار رؤية لمحة  للروابط أصبحت الآن مدعومة لبعض أشهر مواقع الإنترنت. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">يمكنك أن تعطل أوتفعل هذه الخاصية فى أي وقت في إعدادات Signal (الخصوصية &gt; إرسال لمحة عن الرابط).</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">عُلم</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">نقدم لكم الملصقات</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">ما جدوى استخدام الكلمات عند توفّر الملصقات؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">ما جدوى استخدام الكلمات عند توفّر الملصقات؟ انقر هذه الأيقونة على لوحة المفاتيح:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">هيا بنا</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">جار استعادة رسالة…</string>
   <!--GcmRefreshJob-->
@@ -548,6 +562,7 @@
   <string name="MediaOverviewActivity_sent_by_you_to_s">مرسل منك إلى %1$s</string>
   <!--Megaphones-->
   <string name="Megaphones_introducing_reactions">نقدم لكم التفاعلات</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">انقر مع الاستمرار على أي رسالة لمشاركة شعورك بسرعة.</string>
   <string name="Megaphones_remind_me_later">ذكرني لاحقا</string>
   <string name="Megaphones_verify_your_signal_pin">إثبات الرقم التعريفي الشخصي ل Signal</string>
   <string name="Megaphones_verify_pin">إثبات الرقم التعريفي الشخصي</string>
@@ -615,9 +630,19 @@
   <string name="MessageRequestBottomView_delete">حذف  </string>
   <string name="MessageRequestBottomView_block">حظر</string>
   <string name="MessageRequestBottomView_unblock">رفع الحظر</string>
+  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">إلغاء حظر %1$s لمراسلة ومكالمة بعضكما.</string>
+  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">إلغاء الحظر للسماح لأعضاء المجموعة بإضافتك مرة أخرى للمجموعة.</string>
   <string name="MessageRequestProfileView_member_of_one_group">عضو في %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">عضو في %1$s و%2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">عضو في %1$s و%2$s و%3$s</string>
+  <plurals name="MessageRequestProfileView_members">
+    <item quantity="zero">%1$d أعضاء</item>
+    <item quantity="one">%1$d عضو</item>
+    <item quantity="two">%1$d عضو</item>
+    <item quantity="few">%1$d أعضاء</item>
+    <item quantity="many">%1$d عضوًا</item>
+    <item quantity="other">%1$dأعضاء</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="zero">%d أخرى</item>
     <item quantity="one">%d أخرى</item>
@@ -677,6 +702,7 @@
   <!--ReactionsBottomSheetDialogFragment-->
   <string name="ReactionsBottomSheetDialogFragment_all">الكل %1$d</string>
   <!--ReactionsConversationView-->
+  <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">أنت</string>
   <!--RecipientPreferencesActivity-->
@@ -815,9 +841,12 @@
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">تحرير الاسم</string>
   <string name="SubmitDebugLogActivity_done">تم</string>
+  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">انقر على خط لحذفه</string>
   <string name="SubmitDebugLogActivity_submit">تقديم</string>
+  <string name="SubmitDebugLogActivity_failed_to_submit_logs">فشل إرسال السجل</string>
   <string name="SubmitDebugLogActivity_success">تمّ بنجاح!</string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">تمّ النسخ إلى الحافظة</string>
+  <string name="SubmitDebugLogActivity_ok">موافق</string>
   <string name="SubmitDebugLogActivity_share">شارك</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">تم تحديث المجموعة</string>
@@ -840,6 +869,8 @@
   <string name="ThreadRecord_you_marked_verified">لقد قمت بالإشارة بالتحقّق </string>
   <string name="ThreadRecord_you_marked_unverified">لقد قمت بإلغاء التحقق</string>
   <string name="ThreadRecord_message_could_not_be_processed">لم يمكن معالجة الرسالة</string>
+  <string name="ThreadRecord_message_request">طلب مراسلة</string>
+  <string name="ThreadRecord_s_added_you_to_the_group">أضافك %1$s للمجموعة</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">تحديث Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">إصدار جديد لـ Signal متوفر، أنقر للتحديث</string>
@@ -1293,9 +1324,19 @@
   <string name="AndroidManifest_archived_conversations">أرشيف المحادثة</string>
   <string name="AndroidManifest_remove_photo">حذف الصورة</string>
   <!--Message Requests Megaphone-->
+  <string name="MessageRequestsMegaphone__message_requests">طلبات مراسلة</string>
+  <string name="MessageRequestsMegaphone__add_profile_name">إضافة اسم الملف الشخصي</string>
+  <string name="MessageRequestsMegaphone__new_message_requests">حديث: طلبات مراسلة</string>
+  <string name="MessageRequestsMegaphone__add_name">إضافة اسم</string>
+  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">بإمكانك اختيار قبول محادثة جديدة. سترى خيارًا للقبول أو الحذف أو الحظر.</string>
   <!--HelpFragment-->
   <string name="HelpFragment__help">مساعدة</string>
   <string name="HelpFragment__next">التالي</string>
+  <string name="HelpFragment__contact_us">تواصل معنا</string>
+  <string name="HelpFragment__whats_this">ما هذا؟</string>
+  <string name="HelpFragment__subject">الموضوع:</string>
+  <string name="HelpFragment__device_info">معلومات الجهاز:</string>
+  <string name="HelpFragment__android_version">إصدار اﻷندرويد</string>
   <string name="HelpFragment__signal_support">دعم تطبيق Signal</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">استيراد</string>
@@ -1610,6 +1651,7 @@
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">نقدم لكم الأرقام التعريفية الشخصية أو PINs</string>
   <string name="KbsSplashFragment__learn_more">أعرف أكثر</string>
+  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">قفل التسجيل = الرقم التعريفي الشخصي</string>
   <string name="KbsSplashFragment__read_more_about_pins">اقرأ المزيد عن الأرقام التعريفية الشخصية.</string>
   <string name="KbsSplashFragment__update_pin">تحديث الرقم التعريفي الشخصي</string>
@@ -1625,6 +1667,7 @@
   <string name="AccountLockedFragment__account_locked">تم إقفال الحساب</string>
   <string name="AccountLockedFragment__next">التالي</string>
   <string name="AccountLockedFragment__learn_more">أعرف أكثر</string>
+  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">أدخل الرقم التعريفي الشخصي</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">أدخل الرقم التعريفي الشخصي الذي أنشأته لحسابك، وهو مختلف عن رمز تحقق SMS.</string>
@@ -1636,6 +1679,14 @@
   <string name="RegistrationLockFragment__incorrect_pin">الرقم التعريفي الشخصي غير صحيح</string>
   <string name="RegistrationLockFragment__forgot_your_pin">هل نسيت الرقم التعريفي الشخصي؟</string>
   <string name="RegistrationLockFragment__not_many_tries_left">لم يتبق الكثير من المحاولات!</string>
+  <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
+    <item quantity="zero">رمز خاطئ. %1$d محاولات متبقية.</item>
+    <item quantity="one">رمز خاطئ.%1$d محاولة متبقية.</item>
+    <item quantity="two">رمز خاطئ. %1$d محاولة متبقية.</item>
+    <item quantity="few">رمز خاطئ.%1$d  محاولات متبقية.</item>
+    <item quantity="many">رمز خاطئ.%1$d  محاولات متبقية.</item>
+    <item quantity="other">رمز خاطئ. %1$d محاولات متبقية.</item>
+  </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">إنشاء رقم تعريفي شخصي</string>
   <string name="KbsMegaphone__create_pin">إنشاء رقم تعريفي شخصي</string>
@@ -1659,8 +1710,8 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">جارٍ نقل قاعدة بيانات Signal</string>
   <string name="PushDecryptJob_new_locked_message">رسالة مُقفلة جديدة</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">فك القفل لعرض الرسائل المعلّقة</string>
-  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">فك القفل لمواصلة التحديث</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">يُرجى فك القفل عن Signal لإتمام التحديث</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">فك القفل لمواصلة التحديث</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">يُرجى فك القفل عن Signal لإتمام التحديث</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">العبارة السرّية للنسخة الإحتياطية</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">سيتم حفظ النسخ الاحتياطية في سعة التخزين الخارجيّة وستكون مشفرة بالعبارة السرية أدناه.  من الضروري حفظ هذه العبارة من أجل استعادة أي نسخة احتياطيّة. </string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">قمت بتدوين هذه العبارة السرية. بدونها، لن يمكنني استعادة أي نسخة احتياطية.</string>
@@ -1670,6 +1721,7 @@
   <string name="preferences_chats__chat_backups">النُسخ الإحتياطية للدردشات</string>
   <string name="preferences_chats__backup_chats_to_external_storage">حفظ نسخة احتياطية من المحادثات إلى سعة التخزين خارجيّة</string>
   <string name="preferences_chats__create_backup">إنشاء نسخة إحتياطية</string>
+  <string name="preferences_chats__verify_backup_passphrase">التحقق من رمز امان النسخة اﻻحتياطية</string>
   <string name="RegistrationActivity_enter_backup_passphrase">ادخل العبارة السرية الخاصة بالنسخ الاحتياطية</string>
   <string name="RegistrationActivity_restore">استعادة</string>
   <string name="RegistrationActivity_backup_failure_downgrade">لا يمكن استيراد نسخ احتياطية من اصدارات أحدث من Signal</string>
@@ -1687,6 +1739,8 @@
   <string name="BackupDialog_disable_and_delete_all_local_backups">تعطيل وحذف كافّة النُّسخ الإحتياطية المحلية؟</string>
   <string name="BackupDialog_delete_backups_statement">حذف النسخ الإحتياطية</string>
   <string name="BackupDialog_copied_to_clipboard">تمّ النسخ إلى الحافظة</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">
+ادخل رمز أمان النسخة الاحتياطية للتحقق</string>
   <string name="BackupDialog_verify">تحقق</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">لقد أدخلت العبارة السرية للنسخة الاحتياطية بنجاح</string>
   <string name="BackupDialog_passphrase_was_not_correct">العبارة السرية غير صحيحة</string>

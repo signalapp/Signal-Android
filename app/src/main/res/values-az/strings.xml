@@ -285,30 +285,30 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Bölüş</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Signal-a Xoş Gəldin.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure və RedPhone indi artiq birləşərək daha yararlı bir messencer halına gəlib: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Signal-a Xoş Gəldin!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure indi Signal-dır.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">Text secure və RedPhone indi bir aplikasiyadır: Signal. Kəşf etmək üçün kliklə.</string>
-  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Təhlükəsiz video zəngləri salamlayın.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal indi təhlükəsiz video zəngləri dəstəkləyir. Signal zəng xidmətini həmişəki qaydada aç, video düyməsini kliklə və dostlarına gülümsə.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal indi təhlükəsiz video zəngləri dəstəkləyir.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal indi təhlükəsiz video zəngləri dəstəkləyir. Kəşf etmək üçün kliklə.</string>
-  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Ətraflı baxışa hazırsan?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">İndi Signal dostlarınla profil şəklini və adını paylaşa bilərsən.</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profilləri buradadır</string>
-  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Yazışma indikatorları ilə tanışlıq.</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">İndi istəsən mesajlar yazılan zaman onu izləyə, yaxud bu məlumatı bölüşə bilərsən.</string>
-  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Bu funksionallığın elə indi aktivləşdirmək istəyirsən?</string>
-  <string name="ExperienceUpgradeActivity_typing_ui_title">Yazışma indikatorları buradadır</string>
-  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Yazışma indikatorlarını aktivləşdir</string>
-  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Yazışma indikatorlarını aç</string>
-  <string name="ExperienceUpgradeActivity_no_thanks">Yox, təşəkkür edirəm</string>
-  <string name="ExperienceUpgradeActivity_introducing_link_previews">Linkin ilkin baxışı ilə tanışlıq.</string>
-  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Bir çox ən populyar veb saytların ilkin baxışı funksiyası indi dəstəklənir.</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Signal parametrlərində bu seçimi istədiyin zaman aktiv və ya deaktiv edə bilərsən (Məxfilik &gt; Linkin ilkin baxışını göndər)</string>
-  <string name="ExperienceUpgradeActivity_got_it">Anladım</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Sticker olan yerdə sözə nə ehtiyac var? Klavyaturada bu işarəni sıxın:</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Signal-a Xoş Gəldin.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure və RedPhone indi artiq birləşərək daha yararlı bir messencer halına gəlib: Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Signal-a Xoş Gəldin!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure indi Signal-dır.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">Text secure və RedPhone indi bir aplikasiyadır: Signal. Kəşf etmək üçün kliklə.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Təhlükəsiz video zəngləri salamlayın.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal indi təhlükəsiz video zəngləri dəstəkləyir. Signal zəng xidmətini həmişəki qaydada aç, video düyməsini kliklə və dostlarına gülümsə.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal indi təhlükəsiz video zəngləri dəstəkləyir.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal indi təhlükəsiz video zəngləri dəstəkləyir. Kəşf etmək üçün kliklə.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Ətraflı baxışa hazırsan?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">İndi Signal dostlarınla profil şəklini və adını paylaşa bilərsən.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profilləri buradadır</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Yazışma indikatorları ilə tanışlıq.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">İndi istəsən mesajlar yazılan zaman onu izləyə, yaxud bu məlumatı bölüşə bilərsən.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Bu funksionallığın elə indi aktivləşdirmək istəyirsən?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Yazışma indikatorları buradadır</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Yazışma indikatorlarını aktivləşdir</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Yazışma indikatorlarını aç</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Yox, təşəkkür edirəm</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Linkin ilkin baxışı ilə tanışlıq.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Bir çox ən populyar veb saytların ilkin baxışı funksiyası indi dəstəklənir.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Signal parametrlərində bu seçimi istədiyin zaman aktiv və ya deaktiv edə bilərsən (Məxfilik &gt; Linkin ilkin baxışını göndər)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Anladım</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Sticker olan yerdə sözə nə ehtiyac var? Klavyaturada bu işarəni sıxın:</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Mesajın bərpası…</string>
   <!--GcmRefreshJob-->
@@ -1280,8 +1280,8 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal-ın məlumat bazasının miqrasiyası</string>
   <string name="PushDecryptJob_new_locked_message">Yeni kilidli mesaj</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Gözləmədə olan mesajları görmək üçün kilidi aç</string>
-  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Yeniləməni tamamlamaq üçün kilidi aç</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Zəhmət olmasa yeniləməni tamamlamaq üçün Signal-ın kilidini aç</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Yeniləməni tamamlamaq üçün kilidi aç</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Zəhmət olmasa yeniləməni tamamlamaq üçün Signal-ın kilidini aç</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Arxivləşdirmə üçün şifrə ifadəsi</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Arxivləşmələr xarici yaddaşda saxlanacaq və aşağıdakı şifrə ifadəsi ilə şifrələnəcək. Arxivi bərpa etmək üçün bu şifrə ifadəsi unudulmamalıdır.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Mən bu şifrə ifadəsini yazmışam. Onsuz arxivi bərpa edə bilməyəcəm.</string>

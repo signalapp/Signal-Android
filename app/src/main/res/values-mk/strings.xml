@@ -134,8 +134,8 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Сподели со</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_no_thanks">Не, благодарам</string>
-  <string name="ExperienceUpgradeActivity_got_it">Во ред</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Не, благодарам</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Во ред</string> -->
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <!--GiphyActivity-->

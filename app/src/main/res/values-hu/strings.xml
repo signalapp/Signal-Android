@@ -349,33 +349,33 @@
   <string name="ShareActivity_share_with">Megosztás…</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Több csatolmányt használata csak fényképek és videók esetén támogatott.</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Üdvözöl a Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">A TextSecure és a RedPhone közös privát üzenetküldőben egyesült, minden helyzetre: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Üdvözöl a Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">A TextSecure mostantól Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">A TextSecure és a RedPhone már egy alkalmazás: Signal. Koppints a felfedezéséhez!</string>
-  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Üdvözöld a biztonságos videóhívásokat.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">A Signal mostantól támogatja a biztonságos videóhívásokat. Csak indíts egy Signal hívást mint általában, koppints a videó gombra, és integess!</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">A Signal mostantól támogatja a biztonságos videóhívásokat.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">A Signal monstantól támogatja a biztonságos videóhívásokat. Koppints a felfedezéséhez!</string>
-  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Készen állsz egy közeli portréra?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Mostantól megoszthatod barátaiddal profilképedet és egyéni nevedet Signal-on</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">A Signal profilok megérkeztek</string>
-  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Bemutatjuk a gépelés-indikátorokat.</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Mostantól lehetőséged van megtekinteni és megosztani azt, hogy éppen gépel-e valaki.</string>
-  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Szeretnéd most bekapcsolni?</string>
-  <string name="ExperienceUpgradeActivity_typing_ui_title">A gépelésindikátorok megérkeztek</string>
-  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Gépelésindikátor engedélyezése</string>
-  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Gépelésindikátor bekapcsolása</string>
-  <string name="ExperienceUpgradeActivity_no_thanks">Nem, köszönöm</string>
-  <string name="ExperienceUpgradeActivity_introducing_link_previews">Bemutatjuk a hivatkozások előnézeti képe szolgáltatást.</string>
-  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">A hivatkozásokhoz opcionálisan engedélyezhető előnézeti képeket az internet legnépszerűbb oldalaira mutató linkekhez veheted igénybe.</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">A funkció engedélyezését vagy letiltását a Signal beállításaiban teheted meg (Adatvédelem &gt; Hivatkozások előnézeti képének küldése)</string>
-  <string name="ExperienceUpgradeActivity_got_it">Rendben</string>
-  <string name="ExperienceUpgradeActivity_introducing_stickers">Bemutatkoznak a matricák</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Miért használnál szavakat, ha használhatsz matricákat is?</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Miért használnál szavakat, ha használhatsz matricákat is? Koppints erre az ikonra a billentyűzeteden:</string>
-  <string name="ExperienceUpgradeActivity_lets_go">Kezdjük el</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Üdvözöl a Signal!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">A TextSecure és a RedPhone közös privát üzenetküldőben egyesült, minden helyzetre: Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Üdvözöl a Signal!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">A TextSecure mostantól Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">A TextSecure és a RedPhone már egy alkalmazás: Signal. Koppints a felfedezéséhez!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Üdvözöld a biztonságos videóhívásokat.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">A Signal mostantól támogatja a biztonságos videóhívásokat. Csak indíts egy Signal hívást mint általában, koppints a videó gombra, és integess!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">A Signal mostantól támogatja a biztonságos videóhívásokat.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">A Signal monstantól támogatja a biztonságos videóhívásokat. Koppints a felfedezéséhez!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Készen állsz egy közeli portréra?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Mostantól megoszthatod barátaiddal profilképedet és egyéni nevedet Signal-on</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">A Signal profilok megérkeztek</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Bemutatjuk a gépelés-indikátorokat.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Mostantól lehetőséged van megtekinteni és megosztani azt, hogy éppen gépel-e valaki.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Szeretnéd most bekapcsolni?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">A gépelésindikátorok megérkeztek</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Gépelésindikátor engedélyezése</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Gépelésindikátor bekapcsolása</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Nem, köszönöm</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Bemutatjuk a hivatkozások előnézeti képe szolgáltatást.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">A hivatkozásokhoz opcionálisan engedélyezhető előnézeti képeket az internet legnépszerűbb oldalaira mutató linkekhez veheted igénybe.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">A funkció engedélyezését vagy letiltását a Signal beállításaiban teheted meg (Adatvédelem &gt; Hivatkozások előnézeti képének küldése)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Rendben</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">Bemutatkoznak a matricák</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Miért használnál szavakat, ha használhatsz matricákat is?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Miért használnál szavakat, ha használhatsz matricákat is? Koppints erre az ikonra a billentyűzeteden:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">Kezdjük el</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Üzenet letöltése…</string>
   <!--GcmRefreshJob-->
@@ -1241,6 +1241,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="HelpFragment__could_not_upload_logs">Nem sikerült feltölteni a naplót</string>
   <string name="HelpFragment__signal_support">Signal támogatás</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Hogy megérthessük a problémát, fogalmazz olyan pontosan, amennyire csak lehetséges!</string>
+  <string name="HelpFragment__no_email_app_found">Nem található e-mail alkalmazás.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importálás</string>
   <string name="arrays__use_default">Alapértelmezett használata</string>
@@ -1509,6 +1510,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="Insights__title">Statisztikák</string>
   <string name="InsightsDashboardFragment__title">Statisztikák</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">A Signal protokoll automatikusan védelem alá helyezte kimenő üzeneteid %1$d%%-t az elmúlt %2$d nap során. A Signal felhasználók közti üzenetek minden esetben végpontok közti titkosítással vannak ellátva. </string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Signal erősítés</string>
   <string name="InsightsDashboardFragment__not_enough_data">Nincs elegendő adat</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">A százalékot az elmúlt %1$d nap során küldött nem törölt és nem eltűnő üzeneteid alapján kalkuláltuk.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Új beszélgetés indítása…</string>
@@ -1638,8 +1640,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal adatbázis migrálása</string>
   <string name="PushDecryptJob_new_locked_message">Új zárolt üzenet</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Oldd fel a függő üzenetek megtekintéséhez</string>
-  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Oldd fel a frissítés befejezéséhez</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Kérlek oldd fel a Signal-t a frissítés befejezéséhez</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Oldd fel a frissítés befejezéséhez</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Kérlek oldd fel a Signal-t a frissítés befejezéséhez</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Biztonsági mentés jelmondat</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">A biztonsági mentések külső tárolóra lesznek mentve, és az alábbi jelmondattal lesznek titkosítva. Ezt a jelmondatot kell megadnod a biztonsági mentés visszaállításához.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Feljegyeztem ezt a jelmondatot. Enélkül nem leszek képes visszaállítani biztonsági mentést.</string>

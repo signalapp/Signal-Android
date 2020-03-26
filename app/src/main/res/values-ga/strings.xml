@@ -280,23 +280,23 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Comhroinn le</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Fáilte go Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">Is an teachtaire príobháideach céanna anois iad TextSecure agus RedPhone le gach cúrsa: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Fáilte go Signal</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">Is Signal anois é TextSecure.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">Is an feidhmchláirín céanna anois iad TextSecure agus RedPhone: Signal. Brúigh chun taiscéal.</string>
-  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Abair hóra le físghlaonna slána.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Tugann Signal tacaíocht ar físghlaonna slána anois. Ní mór ach glao Signal a thosnú mar is gnáth, cnag an cnaipe físe, agus croith do lámh.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Tugann Signal tacaíocht ar físghlaonna slána anois.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Tugann Signal tacaíocht ar físghlaonna slána anois. Cnag chun taiscéal.</string>
-  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">An bhfuil tú réidh do do ghrianghraf gar-amhairc?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Is féidir do ghrianghraf próifíle agus do aimn a chomhroinn le cairde anois le Signal.</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Tá próifíl Signal anseo</string>
-  <string name="ExperienceUpgradeActivity_typing_ui_title">Tá leideoirí clóscríobh tagtha</string>
-  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Cumasaigh leideoirí clóscríobh</string>
-  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Cur leideoirí clóscríobh ar súil</string>
-  <string name="ExperienceUpgradeActivity_no_thanks">Ní raibh maith agaibh</string>
-  <string name="ExperienceUpgradeActivity_got_it">Tuigim sin</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Fáilte go Signal!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">Is an teachtaire príobháideach céanna anois iad TextSecure agus RedPhone le gach cúrsa: Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Fáilte go Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">Is Signal anois é TextSecure.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">Is an feidhmchláirín céanna anois iad TextSecure agus RedPhone: Signal. Brúigh chun taiscéal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Abair hóra le físghlaonna slána.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Tugann Signal tacaíocht ar físghlaonna slána anois. Ní mór ach glao Signal a thosnú mar is gnáth, cnag an cnaipe físe, agus croith do lámh.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Tugann Signal tacaíocht ar físghlaonna slána anois.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Tugann Signal tacaíocht ar físghlaonna slána anois. Cnag chun taiscéal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">An bhfuil tú réidh do do ghrianghraf gar-amhairc?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Is féidir do ghrianghraf próifíle agus do aimn a chomhroinn le cairde anois le Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Tá próifíl Signal anseo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Tá leideoirí clóscríobh tagtha</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Cumasaigh leideoirí clóscríobh</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Cur leideoirí clóscríobh ar súil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Ní raibh maith agaibh</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Tuigim sin</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Ag fáil teachtaireacht…</string>
   <!--GcmRefreshJob-->
@@ -1110,8 +1110,8 @@ a shonrú</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Tá gá ag Signal le cead teagmhálaí chun teagmhálaithe a chuardaigh, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Teagmhálaí\". </string>
   <string name="conversation_activity__enable_signal_messages">CUMASAIGH TEACHTAIREACHTAÍ SIGNAL</string>
   <string name="PushDecryptJob_new_locked_message">Teachtaireacht ghlasaithe nua</string>
-  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Bain an glas de chun an nuashonrú a chríochnú</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Bain an glas de Signal chun an nuashonrú a chríochnú</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Bain an glas de chun an nuashonrú a chríochnú</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Bain an glas de Signal chun an nuashonrú a chríochnú</string> -->
   <string name="registration_activity__skip">Léim thar seo</string>
   <string name="registration_activity__register">Cláraigh</string>
   <string name="preferences_chats__create_backup">Cruthaigh cúltaca</string>

@@ -317,29 +317,29 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Podijeli s</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Dobro došli u Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure i RedPhone su sada jedan privatni način komunikacije za svaku situaciju: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Dobro došli u Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure je sada Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure i RedPhone su sada jedna aplikacija: Signal. Pritisnite za pregled.</string>
-  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Pozdravite sigurne video pozive.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal sada podržava sigurne video pozive. Samo započnite Signal poziv kao i inače, pritisnite video tipku, i mahnite sugovorniku.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal sada podržava sigurne video pozive.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal sada podržava sigurne video pozive. Pritisnite kako biste istražili.</string>
-  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Spremni za snimku izbliza?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Sada možete podijeliti profilnu sliku i ime s prijateljima na Signalu</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profili su stigli</string>
-  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Predstavljamo pokazatelja tipkanja.</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Sada imate mogućnost vidjeti i podijeliti poruke već kad ih drugi pišu.</string>
-  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Želite li ih omogućiti sada?</string>
-  <string name="ExperienceUpgradeActivity_typing_ui_title">Pokazatelji tipkanja nalaze se ovdje</string>
-  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Omogući pokazitelje tipkanja</string>
-  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Uključi pokazatelje tipkanja</string>
-  <string name="ExperienceUpgradeActivity_no_thanks">Ne hvala</string>
-  <string name="ExperienceUpgradeActivity_introducing_link_previews">Uvodjenje prethodnih pregleda linkova</string>
-  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Od sada se može prikazati pregled linkova najpopularnijih saijtova interneta.</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Ovu funkciju možete onemogućiti ili omogućiti u bilo kojem trenutku u postavkama Signal-a (postavke Privatnost &gt; Slanje Pregleda Linkova).</string>
-  <string name="ExperienceUpgradeActivity_got_it">Dohvaćeno</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Dobro došli u Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure i RedPhone su sada jedan privatni način komunikacije za svaku situaciju: Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Dobro došli u Signal!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure je sada Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure i RedPhone su sada jedna aplikacija: Signal. Pritisnite za pregled.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Pozdravite sigurne video pozive.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal sada podržava sigurne video pozive. Samo započnite Signal poziv kao i inače, pritisnite video tipku, i mahnite sugovorniku.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal sada podržava sigurne video pozive.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal sada podržava sigurne video pozive. Pritisnite kako biste istražili.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Spremni za snimku izbliza?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Sada možete podijeliti profilnu sliku i ime s prijateljima na Signalu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profili su stigli</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Predstavljamo pokazatelja tipkanja.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Sada imate mogućnost vidjeti i podijeliti poruke već kad ih drugi pišu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Želite li ih omogućiti sada?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Pokazatelji tipkanja nalaze se ovdje</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Omogući pokazitelje tipkanja</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Uključi pokazatelje tipkanja</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Ne hvala</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Uvodjenje prethodnih pregleda linkova</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Od sada se može prikazati pregled linkova najpopularnijih saijtova interneta.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Ovu funkciju možete onemogućiti ili omogućiti u bilo kojem trenutku u postavkama Signal-a (postavke Privatnost &gt; Slanje Pregleda Linkova).</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Dohvaćeno</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Dobavljam poruku….</string>
   <!--GcmRefreshJob-->
@@ -1356,8 +1356,8 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Migracija Signal datoteke</string>
   <string name="PushDecryptJob_new_locked_message">Nova zaključana poruka</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Otključaj za prikaz čekajućih poruka</string>
-  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Otključaj da se završi ažuriranje</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Otključaj Signal da se završi ažuriranje</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Otključaj da se završi ažuriranje</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Otključaj Signal da se završi ažuriranje</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Spremi sigurnosnu kopiju lozinke</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Sigurnosne kopije bit će spremljene u vanjsku pohranu i šifrirane pomoću lozinke u nastavku. Da biste vratili sigurnosnu kopiju, morate imati tu lozinku.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Zapisao sam ovu lozinku. Bez nje neću moći vratiti sigurnosnu kopiju.</string>

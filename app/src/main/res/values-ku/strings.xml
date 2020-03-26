@@ -275,22 +275,22 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Li gel parve bike</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Bi xêr hatî Signalê.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure û RedPhone peyambereke taybet e, ji bo her rewşê: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Bi xêr hatî Signalê!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure niha Signal e.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure û RedPhone niha yek sepan e: Signal. Ji bo gerînê bitepîne.</string>
-  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Ji bo bangên vîdyoyî biparêze silav bide.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal niha piştgiriya banga vîdyoyî ya ewle dike. Tenê bangeke Signalê ya asayî bike, bişkoka vîdyo bitepîne û silav bide.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal niha piştgiriya banga vîdyoyî ya ewle dike.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal niha piştgiriya banga vîdyoyî ya ewle dike. Ji bo gerînê bitepîne.</string>
-  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Ji bo wêneyê xwe amade yî?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Êdî tu dikarî li ser Signalê bi hevalên xwe re nav û wêneyê profîlê parve bikî.</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profîlên Signalê li vir in</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Niha tu dikarî bibînî û parvebikî, dema peyam tên nivîsandin.</string>
-  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Tu dixwazî aniha rê bidî wan?</string>
-  <string name="ExperienceUpgradeActivity_no_thanks">Na, sipas</string>
-  <string name="ExperienceUpgradeActivity_got_it">Temam</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Bi xêr hatî Signalê.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure û RedPhone peyambereke taybet e, ji bo her rewşê: Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Bi xêr hatî Signalê!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure niha Signal e.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure û RedPhone niha yek sepan e: Signal. Ji bo gerînê bitepîne.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Ji bo bangên vîdyoyî biparêze silav bide.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal niha piştgiriya banga vîdyoyî ya ewle dike. Tenê bangeke Signalê ya asayî bike, bişkoka vîdyo bitepîne û silav bide.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal niha piştgiriya banga vîdyoyî ya ewle dike.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal niha piştgiriya banga vîdyoyî ya ewle dike. Ji bo gerînê bitepîne.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Ji bo wêneyê xwe amade yî?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Êdî tu dikarî li ser Signalê bi hevalên xwe re nav û wêneyê profîlê parve bikî.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profîlên Signalê li vir in</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Niha tu dikarî bibînî û parvebikî, dema peyam tên nivîsandin.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Tu dixwazî aniha rê bidî wan?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Na, sipas</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Temam</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">…Peyamek tê wergirtin</string>
   <!--GcmRefreshJob-->
@@ -1201,8 +1201,8 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Agahîdanka Signalê tê barkirin</string>
   <string name="PushDecryptJob_new_locked_message">Peyama nû ya qufilandî</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Ji bo peyamên hilawîstî quflê veke</string>
-  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Ji bo hildemandin bi dawî bibe quflê veke</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Ji bo hildemandin bi dawî bibe ji kerema xwe qufla Signalê veke</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Ji bo hildemandin bi dawî bibe quflê veke</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Ji bo hildemandin bi dawî bibe ji kerema xwe qufla Signalê veke</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Pêborîna paşekeftê</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Dê paşekeft li ser bîrbara derveyî werin tomarkirin û bi pêborîna li jêr werin şîfrekirin. Ji bo paşkeftekê paşê vegerînî divê ev pêborîn bi te re hebe.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Min vê pêborînê li cihekî nivîsî. Bê wê ezê nikaribim paşekeftê vegerînim.</string>

@@ -266,20 +266,20 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Payman kachay</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Signalman allishamushka kapay.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSegure shinallata RedPhone kunanka shukllashina chaski aplicacionmi kan, imakupapash: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">¡Signalman allishamushka kapay!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSegure kunanka Signalmi kan.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSegure shinallata RedPhone kunanka shukllashina aplicacionmi kan, riksinkapakka kaypi llapipay.</string>
-  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Alli shuyukuyuri kayachikunata napapay.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Kunanka Signal ukupika shuyukuyurik kayachita alli rurayta ushankimi. Kallarilla shuk kayaywan, kay shuyukuyurikpi llapishhpa makiwan napapay.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Kunanka Signal ukupika shuyukuyurik kayachikta alli rurayta ushankimi.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Kunanka Signal ukupika shuyukayachika alli rurayta ushanki. Kaypi llapi kallarinkapak.</string>
-  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Shuyurinkapak ñachu kanki</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Kunanka kikinpa shuyuta, kallarik shuti willaywan riksichita ushankimi Signal ukupi mashikunaman</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signalpa kallariwillaykunaka kaypimi kan</string>
-  <string name="ExperienceUpgradeActivity_no_thanks">Manara, yupaychani</string>
-  <string name="ExperienceUpgradeActivity_got_it">Chaskishka</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Signalman allishamushka kapay.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSegure shinallata RedPhone kunanka shukllashina chaski aplicacionmi kan, imakupapash: Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">¡Signalman allishamushka kapay!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSegure kunanka Signalmi kan.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSegure shinallata RedPhone kunanka shukllashina aplicacionmi kan, riksinkapakka kaypi llapipay.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Alli shuyukuyuri kayachikunata napapay.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Kunanka Signal ukupika shuyukuyurik kayachita alli rurayta ushankimi. Kallarilla shuk kayaywan, kay shuyukuyurikpi llapishhpa makiwan napapay.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Kunanka Signal ukupika shuyukuyurik kayachikta alli rurayta ushankimi.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Kunanka Signal ukupika shuyukayachika alli rurayta ushanki. Kaypi llapi kallarinkapak.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Shuyurinkapak ñachu kanki</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Kunanka kikinpa shuyuta, kallarik shuti willaywan riksichita ushankimi Signal ukupi mashikunaman</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signalpa kallariwillaykunaka kaypimi kan</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Manara, yupaychani</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Chaskishka</string> -->
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">¡Manapacha Signal ukuman yaykuyta usharinchu!</string>
@@ -1172,8 +1172,8 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signalpi tukuy willaykuna wakaychishkata yallichi</string>
   <string name="PushDecryptJob_new_locked_message">Mushuk chaski pakallayashka</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Chaski shuyanakukta rikunkapak paskapay</string>
-  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Tukuyta mushukyachinkapak paskachipayra</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Ama shina kashpa, Signalta pashkapay mushukyashpa paktarichun</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Tukuyta mushukyachinkapak paskachipayra</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Ama shina kashpa, Signalta pashkapay mushukyashpa paktarichun</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Wakaychishka chayshinapa paskachik-shimi</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Wakaychishka chayshinakunaka kanlla allichik ukupi  allichirinkami, urapi paskachik shimiwan. Kutinlla kay wakaychishkakunata tikrachimunkapakka paskachik shimita charinami kanki.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Kay paskachik shimita killkashkanimi . Pay illakka mana chayshinalla wakaychishkakunata kallarichita usharinkachu.</string>

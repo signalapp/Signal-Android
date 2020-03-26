@@ -320,25 +320,25 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Подели са</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Добро дошли у Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">Сигурне поруке и Црвени телефон су сада обједињени у један месенџер за сваку ситуацију: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Добро дошли у Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">Сигурне поруке су сада Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">Сигурне поруке и Црвени телефон су сада једна апликација: Signal. Тапните да истражите.</string>
-  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Поздравите oбезбеђене видео позиве.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal сада подржава безбедно видео позивање. Једноставно почните нормални позив, тапните видео дугме и махните за поздрав.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal сада подржава безбедно видео позивање.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal сада подржава безбедно видео позивање. Тапните да истражите.</string>
-  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Спремни за једну изблиза?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Сада можете да поделите профилну слику и име пријатељима на Signalу</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal сада има профиле</string>
-  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Уведени су показатељи куцања.</string>
-  <string name="ExperienceUpgradeActivity_typing_ui_title">Уведени су показатељи куцања.</string>
-  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Омогући показатеље куцања</string>
-  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Укључи показатеље куцања</string>
-  <string name="ExperienceUpgradeActivity_no_thanks">Не, хвала</string>
-  <string name="ExperienceUpgradeActivity_introducing_link_previews">Уведени су прикази везаних прилога.</string>
-  <string name="ExperienceUpgradeActivity_got_it">Важи</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Добро дошли у Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">Сигурне поруке и Црвени телефон су сада обједињени у један месенџер за сваку ситуацију: Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Добро дошли у Signal!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">Сигурне поруке су сада Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">Сигурне поруке и Црвени телефон су сада једна апликација: Signal. Тапните да истражите.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Поздравите oбезбеђене видео позиве.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal сада подржава безбедно видео позивање. Једноставно почните нормални позив, тапните видео дугме и махните за поздрав.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal сада подржава безбедно видео позивање.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal сада подржава безбедно видео позивање. Тапните да истражите.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Спремни за једну изблиза?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Сада можете да поделите профилну слику и име пријатељима на Signalу</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal сада има профиле</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Уведени су показатељи куцања.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Уведени су показатељи куцања.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Омогући показатеље куцања</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Укључи показатеље куцања</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Не, хвала</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Уведени су прикази везаних прилога.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Важи</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Прикупљање поруке…</string>
   <!--GcmRefreshJob-->
@@ -1320,8 +1320,8 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Мигрирам базу података Signal-a</string>
   <string name="PushDecryptJob_new_locked_message">Нова закључана порука</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Откључајте за преглед порука на чекању</string>
-  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Откључајте да бисте завршили надоградњу</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Откључајте Signal да бисте завршили надоградњу</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Откључајте да бисте завршили надоградњу</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Откључајте Signal да бисте завршили надоградњу</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Лозинка резерве</string>
   <string name="registration_activity__restore_backup">Поврати резерву</string>
   <string name="registration_activity__skip">Прескочи</string>

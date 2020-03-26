@@ -111,6 +111,8 @@
   <string name="CommunicationActions_start_voice_call">Bắt đầu cuộc gọi thoại?</string>
   <string name="CommunicationActions_cancel">Hủy</string>
   <string name="CommunicationActions_call">Gọi</string>
+  <string name="CommunicationActions_insecure_call">Cuộc gọi không bảo mật</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Có thể tốn cước phí. Số điện thoại bạn đang gọi chưa được đăng kí với Signal. Cuộc gọi này sẽ được thực hiện qua nhà cung cấp dịch vụ viễn thông, không qua internet.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Mã số an toàn với %1$s đã thay đổi. Điều này có thể là do ai đó đang tìm cách nghe lén cuộc trò chuyện, hoặc %2$s chỉ vừa cài lại Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Bạn có thể sẽ muốn xác minh mã số an toàn với liên hệ này.</string>
@@ -296,6 +298,9 @@
   <string name="CustomDefaultPreference_using_default">Dùng mặc định: %s</string>
   <string name="CustomDefaultPreference_none">Không</string>
   <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Chọn ảnh</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Chụp ảnh</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Chọn từ bộ sưu tập</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Gỡ ảnh</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Vừa xong</string>
@@ -329,33 +334,33 @@
   <string name="ShareActivity_share_with">Chia sẻ với</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Gửi nhiều tệp đính kèm chỉ áp dụng cho ảnh và video</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Chào mừng bạn đến với Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure và RedPhone giờ đây đã sát nhập thành ứng dụng nhắn tin riêng tư: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Chào mừng bạn đến với Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure giờ là Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure và RedPhone hiện giờ đã nhập làm một: Signal. Nhấn để khám phá.</string>
-  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Hãy đến với cuộc gọi video bảo mật</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal đã hỗ trợ gọi video bảo mật. Hãy cứ bắt đầu một cuộc gọi Signal như thường, nhấn vào biểu tượng video rồi vẫy tay chào người bên kia đầu dây.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal đã hỗ trợ cuộc gọi video bảo mật.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal đã hỗ trợ cuộc gọi video bảo mật. Nhấn để khám phá.</string>
-  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Bạn đã sẵn sàng nâng cấp chưa?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Giờ bạn có thể chia sẻ ảnh đại diện và tên với bạn bè trên Signal</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Hồ sơ Signal đã sẵn sàng</string>
-  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Xin giới thiệu tính năng thông báo đang nhập tin nhắn.</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Giờ bạn có thể bật tắt tính năng cho biết bạn hay người kia có đang nhập tin nhắn hay không</string>
-  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Bạn có muốn bật luôn?</string>
-  <string name="ExperienceUpgradeActivity_typing_ui_title">Thông báo đang nhập tin nhắn đã sẵn sàng</string>
-  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Bật thông báo đang nhập tin nhắn</string>
-  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Bật thông báo đang nhập tin nhắn</string>
-  <string name="ExperienceUpgradeActivity_no_thanks">Không, cảm ơn</string>
-  <string name="ExperienceUpgradeActivity_introducing_link_previews">Xin giới thiệu tính năng xem trước liên kết.</string>
-  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Tính năng xem trước liên kết đã hỗ trợ một số trang web lớn trên Internet.</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Bạn có thể bật tắt tính năng này bất cứ lúc nào trong cài đặt Signal (Riêng tư &gt; Gửi bản xem trước liên kết)</string>
-  <string name="ExperienceUpgradeActivity_got_it">Đã rõ</string>
-  <string name="ExperienceUpgradeActivity_introducing_stickers">Xin giới thiệu Nhãn dán</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Tại sao phải sử dụng từ ngữ khi mà bạn có thể sử dụng nhãn dán?</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Tại sao phải sử dụng từ ngữ khi mà bạn có thể sử dụng nhãn dán? Nhấn biểu tượng này trên bàn phím của bạn:</string>
-  <string name="ExperienceUpgradeActivity_lets_go">Bắt đầu</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Chào mừng bạn đến với Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure và RedPhone giờ đây đã sát nhập thành ứng dụng nhắn tin riêng tư: Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Chào mừng bạn đến với Signal!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure giờ là Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure và RedPhone hiện giờ đã nhập làm một: Signal. Nhấn để khám phá.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Hãy đến với cuộc gọi video bảo mật</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal đã hỗ trợ gọi video bảo mật. Hãy cứ bắt đầu một cuộc gọi Signal như thường, nhấn vào biểu tượng video rồi vẫy tay chào người bên kia đầu dây.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal đã hỗ trợ cuộc gọi video bảo mật.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal đã hỗ trợ cuộc gọi video bảo mật. Nhấn để khám phá.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Bạn đã sẵn sàng nâng cấp chưa?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Giờ bạn có thể chia sẻ ảnh đại diện và tên với bạn bè trên Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Hồ sơ Signal đã sẵn sàng</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Xin giới thiệu tính năng thông báo đang nhập tin nhắn.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Giờ bạn có thể bật tắt tính năng cho biết bạn hay người kia có đang nhập tin nhắn hay không</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Bạn có muốn bật luôn?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Thông báo đang nhập tin nhắn đã sẵn sàng</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Bật thông báo đang nhập tin nhắn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Bật thông báo đang nhập tin nhắn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Không, cảm ơn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Xin giới thiệu tính năng xem trước liên kết.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Tính năng xem trước liên kết đã hỗ trợ một số trang web lớn trên Internet.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Bạn có thể bật tắt tính năng này bất cứ lúc nào trong cài đặt Signal (Riêng tư &gt; Gửi bản xem trước liên kết)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Đã rõ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">Xin giới thiệu Nhãn dán</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Tại sao phải sử dụng từ ngữ khi mà bạn có thể sử dụng nhãn dán?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Tại sao phải sử dụng từ ngữ khi mà bạn có thể sử dụng nhãn dán? Nhấn biểu tượng này trên bàn phím của bạn:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">Bắt đầu</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Đang nhận tin nhắn…</string>
   <!--GcmRefreshJob-->
@@ -1176,8 +1181,26 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Giờ bạn có thể lựa chọn chấp nhận hay từ chối cuộc trò chuyện mới. Bạn sẽ thấy các lựa chọn \"Chấp nhận\", \"Xóa\", hoặc \"Chặn\".</string>
   <!--HelpFragment-->
   <string name="HelpFragment__help">Hỗ trợ</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">Bạn đã đọc Các câu hỏi thường gặp chưa?</string>
   <string name="HelpFragment__next">Tiếp</string>
+  <string name="HelpFragment__contact_us">Liên hệ với chúng tôi</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Kể với chúng tôi chuyện gì đang xảy ra</string>
+  <string name="HelpFragment__include_debug_log">Thêm nhật kí lỗi.</string>
+  <string name="HelpFragment__whats_this">Đây là gì?</string>
+  <string name="HelpFragment__how_do_you_feel">Bạn cảm thấy thế nào? (không bắt buộc)</string>
+  <string name="HelpFragment__support_info">Thông tin hỗ trợ</string>
+  <string name="HelpFragment__subject">Chủ đề:</string>
+  <string name="HelpFragment__signal_android_support_request">Yêu cầu hỗ trợ về Signal Android</string>
+  <string name="HelpFragment__device_info">Thông tin thiết bị:</string>
+  <string name="HelpFragment__android_version">Phiên bản Android:</string>
+  <string name="HelpFragment__signal_version">Phiên bản Signal:</string>
+  <string name="HelpFragment__locale">Vùng:</string>
+  <string name="HelpFragment__debug_log">Nhật kí lỗi:</string>
+  <string name="HelpFragment__na">n/a</string>
+  <string name="HelpFragment__could_not_upload_logs">Không thể tải lên nhật kí lỗi</string>
   <string name="HelpFragment__signal_support">Bộ phận hỗ trợ Signal</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">Vui lòng miêu tả càng chi tiết càng tốt để giúp chúng tôi hiểu về vấn đề.</string>
+  <string name="HelpFragment__no_email_app_found">Không tìm thấy ứng dụng email.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Nhập</string>
   <string name="arrays__use_default">Dùng mặc định</string>
@@ -1566,8 +1589,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Đang di dời cơ sở dữ liệu Signal</string>
   <string name="PushDecryptJob_new_locked_message">Tin nhắn đã khoá mới</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Mở khoá để xem tin nhắn đang chờ</string>
-  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Mở khoá để hoàn tất cập nhật</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Vui lòng mở khoá Signal để hoàn tất cập nhật</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Mở khoá để hoàn tất cập nhật</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Vui lòng mở khoá Signal để hoàn tất cập nhật</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Mật khẩu sao lưu</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Sao lưu sẽ được lưu trong bộ nhớ và được mã hóa với mật khẩu bên dưới. Bạn phải có mật khẩu này để khôi phục bản sao lưu.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Tôi đã ghi lại mật khẩu này. Không có nó, tôi sẽ không thể khôi phục bản sao lưu.</string>

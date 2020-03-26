@@ -114,6 +114,8 @@
   <string name="CommunicationActions_start_voice_call">Inicio la trucada de veu?</string>
   <string name="CommunicationActions_cancel">Cancel·la</string>
   <string name="CommunicationActions_call">Truca</string>
+  <string name="CommunicationActions_insecure_call">Trucada no segura</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Es poden aplicar despeses del servei de telefonia. El número que marqueu no està registrat al Signal. Aquesta trucada es farà mitjançant el vostre operador de telefonia mòbil, no a través d’Internet.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">El número de seguretat amb %1$s ha canviat. Això pot significar o bé que algú està provant d\'interceptar la comunicació, o bé que %2$s ha reinstal·lat el Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Potser voleu verificar el número de seguretat amb aquest contacte.</string>
@@ -310,6 +312,9 @@
   <string name="CustomDefaultPreference_using_default">Per defecte: %s</string>
   <string name="CustomDefaultPreference_none">Cap</string>
   <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Trieu una fotografia</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Feu una fotografia</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Trieu-ne una de la galeria</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Suprimeix la foto</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Ara</string>
@@ -343,33 +348,33 @@
   <string name="ShareActivity_share_with">Comparteix amb</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Els adjunts múltiples només s\'admeten per a imatges i vídeos.</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Benvingut al Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure i RedPhone ara són un únic servei de missatgeria privada, per a qualsevol situació: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Benvingut al Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure ara és Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure i RedPhone són ara una única aplicació: Signal. Premeu per a més informació.</string>
-  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Digueu hola a les videotrucades segures.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">El Signal és compatible amb les trucades de vídeo segures. Inicieu una trucada Signal, toqueu el botó de vídeo i saludeu.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">El Signal ara permet trucades de vídeo segures.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">El Signal ara permet trucades de vídeo segures. Toqueu per explorar-ho.</string>
-  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">A punt per a un primer pla?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Ara podeu compartir un nom i una foto de perfil amb les amistats del Signal</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Els perfils del Signal són aquí</string>
-  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">S\'introdueixen els indicadors de tecleig.</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Ara, opcionalment, podeu veure i compartir quan s\'escriuen els missatges.</string>
-  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Voleu habilitar-los ara?</string>
-  <string name="ExperienceUpgradeActivity_typing_ui_title">Ja tenim aquí els indicadors de tecleig.</string>
-  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Habilita els indicadors de tecleig</string>
-  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Activa els indicadors de tecleig</string>
-  <string name="ExperienceUpgradeActivity_no_thanks">No, gràcies</string>
-  <string name="ExperienceUpgradeActivity_introducing_link_previews">S\'introdueixen les previsualitzacions d\'enllaços.</string>
-  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Ara s\'admeten previsualitzacions d\'enllaços opcionals per a la majoria de les pàgines més populars d\'Internet.</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Podeu habilitar o inhabilitar aquesta opció en qualsevol moment a la configuració del Signal (Privadesa &gt; Envia previsualitzacions d\'enllaços).</string>
-  <string name="ExperienceUpgradeActivity_got_it">Entès!</string>
-  <string name="ExperienceUpgradeActivity_introducing_stickers">S\'introdueixen els adhesius.</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Per què usar paraules quan podeu fer servir adhesius?</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Per què usar paraules quan podeu fer servir adhesius? Toqueu aquesta icona del teclat:</string>
-  <string name="ExperienceUpgradeActivity_lets_go">Som-hi</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Benvingut al Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure i RedPhone ara són un únic servei de missatgeria privada, per a qualsevol situació: Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Benvingut al Signal!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure ara és Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure i RedPhone són ara una única aplicació: Signal. Premeu per a més informació.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Digueu hola a les videotrucades segures.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">El Signal és compatible amb les trucades de vídeo segures. Inicieu una trucada Signal, toqueu el botó de vídeo i saludeu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">El Signal ara permet trucades de vídeo segures.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">El Signal ara permet trucades de vídeo segures. Toqueu per explorar-ho.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">A punt per a un primer pla?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Ara podeu compartir un nom i una foto de perfil amb les amistats del Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Els perfils del Signal són aquí</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">S\'introdueixen els indicadors de tecleig.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Ara, opcionalment, podeu veure i compartir quan s\'escriuen els missatges.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Voleu habilitar-los ara?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Ja tenim aquí els indicadors de tecleig.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Habilita els indicadors de tecleig</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Activa els indicadors de tecleig</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">No, gràcies</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">S\'introdueixen les previsualitzacions d\'enllaços.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Ara s\'admeten previsualitzacions d\'enllaços opcionals per a la majoria de les pàgines més populars d\'Internet.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Podeu habilitar o inhabilitar aquesta opció en qualsevol moment a la configuració del Signal (Privadesa &gt; Envia previsualitzacions d\'enllaços).</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Entès!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">S\'introdueixen els adhesius.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Per què usar paraules quan podeu fer servir adhesius?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Per què usar paraules quan podeu fer servir adhesius? Toqueu aquesta icona del teclat:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">Som-hi</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Es recupera un missatge…</string>
   <!--GcmRefreshJob-->
@@ -1208,7 +1213,26 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Ara podeu triar si acceptar una conversa nova. Veureu les opcions d\'acceptar, suprimir o blocar.</string>
   <!--HelpFragment-->
   <string name="HelpFragment__help">Ajuda</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">Encara no heu llegit les PMF?</string>
   <string name="HelpFragment__next">Següent</string>
+  <string name="HelpFragment__contact_us">Contacteu-nos</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Expliqueu-nos què hi ha.</string>
+  <string name="HelpFragment__include_debug_log">Inclou el registre de depuració.</string>
+  <string name="HelpFragment__whats_this">Què és això?</string>
+  <string name="HelpFragment__how_do_you_feel">Com us sentiu? (opcional)</string>
+  <string name="HelpFragment__support_info">Informació de suport</string>
+  <string name="HelpFragment__subject">Assumpte:</string>
+  <string name="HelpFragment__signal_android_support_request">Petició de suport de Signal d\'Android</string>
+  <string name="HelpFragment__device_info">Informació del dispositiu:</string>
+  <string name="HelpFragment__android_version">Versió d\'Android:</string>
+  <string name="HelpFragment__signal_version">Versió del Signal:</string>
+  <string name="HelpFragment__locale">Llengua:</string>
+  <string name="HelpFragment__debug_log">Informe de depuració:</string>
+  <string name="HelpFragment__na">n/a</string>
+  <string name="HelpFragment__could_not_upload_logs">No s\'han pogut carregar els registres.</string>
+  <string name="HelpFragment__signal_support">Suport del Signal</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">Si us plau, expliqueu-ho de la manera més descriptiva possible per ajudar-nos a entendre el problema.</string>
+  <string name="HelpFragment__no_email_app_found">No s\'ha trobat cap aplicació de correu.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importa</string>
   <string name="arrays__use_default">Per defecte</string>
@@ -1607,8 +1631,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Migració de la base de dades del Signal</string>
   <string name="PushDecryptJob_new_locked_message">Missatge blocat nou</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Desbloqueu-ho per veure els missatges pendents</string>
-  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Desbloca per completar l\'actualització</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Si us plau, desbloqueu el Signal per completar l\'actualització.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Desbloca per completar l\'actualització</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Si us plau, desbloqueu el Signal per completar l\'actualització.</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Contrasenya de la còpia de seguretat</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Les còpies de seguretat es desaran a l\'emmagatzematge extern i s\'encriptaran amb la contrasenya següent. Heu de tenir aquesta contrasenya per tal de restaurar una còpia de seguretat.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">He anotat aquesta contrasenya. Sense, no podré restaurar cap còpia de seguretat.</string>

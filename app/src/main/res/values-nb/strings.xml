@@ -114,6 +114,8 @@
   <string name="CommunicationActions_start_voice_call">Vil du starte taleanrop?</string>
   <string name="CommunicationActions_cancel">Avbryt</string>
   <string name="CommunicationActions_call">Ring</string>
+  <string name="CommunicationActions_insecure_call">Usikker samtale</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Avgifter fra teleoportører kan muligens komme i tillegg. Nummeret du ringer er ikke registrert hos Signal. Denne samtalen blir plassert via din mobiloperatør, ikke over internett.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Sikkerhetsnummeret ditt med %1$s er endret. Dette kan enten bety at noen prøver å fange opp kommunikasjonen din, eller at %2$s har installert Signal på nytt.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Du bør kontrollere sikkerhetsnumrene dine mot denne kontakten.</string>
@@ -204,8 +206,10 @@
   <string name="ConversationActivity_no_results">Ingen treff</string>
   <string name="ConversationActivity_sticker_pack_installed">Klistremerkepakke installert</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Ny! Si det med klistremerker</string>
+  <string name="ConversationActivity_block_s">Blokker %1$s?</string>
   <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">Du kan sende meldinger og ringe hverandre.</string>
   <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">Gruppemedlemmer kan legge deg til denne gruppen igjen.</string>
+  <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">Blokkerte personer vil ikke kunne ringe deg eller sende deg meldinger.</string>
   <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">Du vil forlate denne gruppen og vil ikke lenger motta meldinger eller oppdateringer.</string>
   <string name="ConversationActivity_block">Blokker</string>
   <string name="ConversationActivity_cancel">Avbryt</string>
@@ -283,6 +287,7 @@
     <item quantity="one">Flyttet samtalen til innboks</item>
     <item quantity="other">Flyttet %d samtaler til innboks</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_created">Profilnavnet ditt er opprettet.</string>
   <string name="ConversationListFragment__your_profile_name_has_been_saved">Profilnavnet ditt har blitt lagret.</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Nøkkelutveksling</string>
@@ -303,6 +308,9 @@
   <string name="CustomDefaultPreference_using_default">Bruker forvalgt: %s</string>
   <string name="CustomDefaultPreference_none">Ingen</string>
   <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Velg bilde</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Ta bilde</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Velg fra galleriet</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Fjern bilde</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Nå</string>
@@ -336,32 +344,32 @@
   <string name="ShareActivity_share_with">Del med</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Flere vedlegg støttes bare for bilder og videoer</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Velkommen til Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure og RedPhone er nå ett program for privat kommunikasjon, til alle formål: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Velkommen til Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure er nå Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure og RedPhone er nå ett program: Signal. Trykk for å utforske.</string>
-  <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Si hei til sikre videosamtaler.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal støtter nå sikker videosamtaler. Bare start et signalanrop som normalt, trykk på videoknappen og vink hei.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal støtter nå sikker videosamtaler.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal støtter nå sikker videosamtaler. Trykk for å utforske.</string>
-  <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Klar for nærbilde?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Nå kan du dele et profilbilde og et navn med venner på Signal</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal introduserer profiler</string>
-  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Vi presenterer skriveindikatorer.</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Nå kan du velge å se og dele når meldinger blir skrevet.</string>
-  <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Vil du aktivere dem nå?</string>
-  <string name="ExperienceUpgradeActivity_typing_ui_title">Skriveindikatorer er her</string>
-  <string name="ExperienceUpgradeActivity_enable_typing_indicators">Aktiver skriveindikatorer</string>
-  <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Slå på skriverindikatorer</string>
-  <string name="ExperienceUpgradeActivity_no_thanks">Nei takk</string>
-  <string name="ExperienceUpgradeActivity_introducing_link_previews">Vi presenterer linkforhåndsvisninger.</string>
-  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Valgfrie linkforhåndsvisninger støttes nå for noen av de mest populære nettstedene på Internett.</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Du kan deaktivere eller aktivere denne funksjonen når som helst i innstillingene for Signal (Personvern &gt; Send linkforhåndsvisninger).</string>
-  <string name="ExperienceUpgradeActivity_got_it">Ålreit</string>
-  <string name="ExperienceUpgradeActivity_introducing_stickers">Presenterer klistremerker</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Hvorfor bruke ord når du kan bruke klistremerker?</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Hvorfor bruke ord når du kan bruke klistremerker? Trykk på dette ikonet på tastaturet ditt:</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Velkommen til Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure og RedPhone er nå ett program for privat kommunikasjon, til alle formål: Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Velkommen til Signal!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure er nå Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure og RedPhone er nå ett program: Signal. Trykk for å utforske.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Si hei til sikre videosamtaler.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal støtter nå sikker videosamtaler. Bare start et signalanrop som normalt, trykk på videoknappen og vink hei.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal støtter nå sikker videosamtaler.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal støtter nå sikker videosamtaler. Trykk for å utforske.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Klar for nærbilde?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Nå kan du dele et profilbilde og et navn med venner på Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal introduserer profiler</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Vi presenterer skriveindikatorer.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Nå kan du velge å se og dele når meldinger blir skrevet.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Vil du aktivere dem nå?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Skriveindikatorer er her</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Aktiver skriveindikatorer</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Slå på skriverindikatorer</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Nei takk</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Vi presenterer linkforhåndsvisninger.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Valgfrie linkforhåndsvisninger støttes nå for noen av de mest populære nettstedene på Internett.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Du kan deaktivere eller aktivere denne funksjonen når som helst i innstillingene for Signal (Personvern &gt; Send linkforhåndsvisninger).</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Ålreit</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">Presenterer klistremerker</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Hvorfor bruke ord når du kan bruke klistremerker?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Hvorfor bruke ord når du kan bruke klistremerker? Trykk på dette ikonet på tastaturet ditt:</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Mottar en melding…</string>
   <!--GcmRefreshJob-->
@@ -736,6 +744,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="SubmitDebugLogActivity_edit">Rediger</string>
   <string name="SubmitDebugLogActivity_done">Ferdig</string>
   <string name="SubmitDebugLogActivity_submit">Send inn</string>
+  <string name="SubmitDebugLogActivity_failed_to_submit_logs">Kunne ikke sende inn logger</string>
   <string name="SubmitDebugLogActivity_success">Fullført!</string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Kopiert til utklippstavle</string>
   <string name="SubmitDebugLogActivity_ok">Ok</string>
@@ -1176,9 +1185,18 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="AndroidManifest_archived_conversations">Lagrede samtaler</string>
   <string name="AndroidManifest_remove_photo">Fjern bilde</string>
   <!--Message Requests Megaphone-->
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Brukere kan nå velge å godta en ny samtale. Profilnavn lar folk få vite hvem som sender dem beskjed.</string>
   <!--HelpFragment-->
   <string name="HelpFragment__help">Hjelp</string>
   <string name="HelpFragment__next">Neste</string>
+  <string name="HelpFragment__contact_us">Kontakt oss</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Fortell oss hva som skjer</string>
+  <string name="HelpFragment__whats_this">Hva er dette?</string>
+  <string name="HelpFragment__how_do_you_feel">Hvordan føler du deg? (Valgfri)</string>
+  <string name="HelpFragment__android_version">Android versjon</string>
+  <string name="HelpFragment__signal_version">Signal versjon:</string>
+  <string name="HelpFragment__could_not_upload_logs">Kunne ikke laste opp logger</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">Vær så beskrivende som mulig for å hjelpe oss med å forstå problemet.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importer</string>
   <string name="arrays__use_default">Bruk forvalgt</string>
@@ -1525,6 +1543,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Dette vil bli vist når du starter en ny samtale eller deler det.</string>
   <string name="ProfileNamesMegaphone__add_profile_name">Legg til profilnavn</string>
   <string name="ProfileNamesMegaphone__your_profile_can_now_include">Din profil kan nå inkludere et etternavn som en opsjon.</string>
+  <string name="ProfileNamesMegaphone__confirm_name">Bekreft navnet</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
   <string name="ConversationListFragment_loading">Laster…</string>
@@ -1538,8 +1557,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Flytter Signal-database</string>
   <string name="PushDecryptJob_new_locked_message">Ny låst melding</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Lås opp for å vise ventende meldinger</string>
-  <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Lås opp for å fullføre oppdatering</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Lås opp Signal for å fullføre oppdatering</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Lås opp for å fullføre oppdatering</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Lås opp Signal for å fullføre oppdatering</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Passordfrase for sikkerhetskopi</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Sikkerhetskopier blir lagret på eksterne enheter og kryptert med passordfrasen nedenfor. Du må skrive inn denne passordfrasen for å kunne gjennopprette fra en sikkerhetskopi.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Jeg har notert passordfrasen. Uten denne blir det umulig å bruke sikkerhetskopien til gjenoppretting.</string>
