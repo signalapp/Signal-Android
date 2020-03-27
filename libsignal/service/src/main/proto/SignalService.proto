@@ -198,6 +198,7 @@ message DataMessage {
   optional string             body                    = 1;
   repeated AttachmentPointer  attachments             = 2;
   optional GroupContext       group                   = 3;
+  optional GroupContextV2     groupV2                 = 15;
   optional uint32             flags                   = 4;
   optional uint32             expireTimer             = 5;
   optional bytes              profileKey              = 6;
@@ -410,6 +411,12 @@ message GroupContext {
   repeated string            membersE164 = 4;
   repeated Member            members     = 6;
   optional AttachmentPointer avatar      = 5;
+}
+
+message GroupContextV2 {
+  optional bytes  masterKey   = 1;
+  optional uint32 revision    = 2;
+  optional bytes  groupChange = 3;
 }
 
 message ContactDetails {

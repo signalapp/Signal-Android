@@ -34,6 +34,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup.Type;
+import org.whispersystems.signalservice.api.messages.SignalServiceGroupContext;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.Collections;
@@ -46,22 +47,29 @@ import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import static org.whispersystems.signalservice.internal.push.SignalServiceProtos.AttachmentPointer;
 import static org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 
-public class GroupMessageProcessor {
+public final class GroupV1MessageProcessor {
 
-  private static final String TAG = GroupMessageProcessor.class.getSimpleName();
+  private static final String TAG = Log.tag(GroupV1MessageProcessor.class);
 
   public static @Nullable Long process(@NonNull Context context,
                                        @NonNull SignalServiceContent content,
                                        @NonNull SignalServiceDataMessage message,
                                        boolean outgoing)
   {
-    if (!message.getGroupInfo().isPresent() || message.getGroupInfo().get().getGroupId() == null) {
+    SignalServiceGroupContext    signalServiceGroupContext = message.getGroupContext().get();
+    Optional<SignalServiceGroup> groupV1                   = signalServiceGroupContext.getGroupV1();
+
+    if (signalServiceGroupContext.getGroupV2().isPresent()) {
+      throw new AssertionError("Cannot process GV2");
+    }
+
+    if (!groupV1.isPresent() || groupV1.get().getGroupId() == null) {
       Log.w(TAG, "Received group message with no id! Ignoring...");
       return null;
     }
 
     GroupDatabase         database = DatabaseFactory.getGroupDatabase(context);
-    SignalServiceGroup    group    = message.getGroupInfo().get();
+    SignalServiceGroup    group    = groupV1.get();
     GroupId               id       = GroupId.v1(group.getGroupId());
     Optional<GroupRecord> record   = database.getGroup(id);
 
@@ -278,7 +286,7 @@ public class GroupMessageProcessor {
                                       .map(a -> a.getNumber().get())
                                       .toList());
       builder.addAllMembers(Stream.of(group.getMembers().get())
-                                  .map(GroupMessageProcessor::createMember)
+                                  .map(GroupV1MessageProcessor::createMember)
                                   .toList());
     }
 

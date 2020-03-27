@@ -11,6 +11,8 @@ import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.signal.libsignal.metadata.ProtocolInvalidKeyException;
 import org.signal.libsignal.metadata.ProtocolInvalidMessageException;
+import org.signal.zkgroup.InvalidInputException;
+import org.signal.zkgroup.groups.GroupMasterKey;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.InvalidMessageException;
@@ -253,7 +255,17 @@ public final class SignalServiceContent {
   private static SignalServiceDataMessage createSignalServiceMessage(SignalServiceMetadata metadata, SignalServiceProtos.DataMessage content)
       throws ProtocolInvalidMessageException, UnsupportedDataMessageException
   {
-    SignalServiceGroup                     groupInfo        = createGroupInfo(content);
+    SignalServiceGroup                  groupInfoV1  = createGroupV1Info(content);
+    SignalServiceGroupV2                groupInfoV2  = createGroupV2Info(content);
+    Optional<SignalServiceGroupContext> groupContext;
+
+    try {
+      groupContext = SignalServiceGroupContext.createOptional(groupInfoV1, groupInfoV2);
+    } catch (InvalidMessageException e) {
+      throw new ProtocolInvalidMessageException(e, null, 0);
+    }
+
+
     List<SignalServiceAttachment>          attachments      = new LinkedList<>();
     boolean                                endSession       = ((content.getFlags() & SignalServiceProtos.DataMessage.Flags.END_SESSION_VALUE            ) != 0);
     boolean                                expirationUpdate = ((content.getFlags() & SignalServiceProtos.DataMessage.Flags.EXPIRATION_TIMER_UPDATE_VALUE) != 0);
@@ -269,7 +281,7 @@ public final class SignalServiceContent {
                                                 content.getRequiredProtocolVersion(),
                                                 metadata.getSender().getIdentifier(),
                                                 metadata.getSenderDevice(),
-                                                Optional.fromNullable(groupInfo));
+                                                groupContext);
     }
 
     for (SignalServiceProtos.AttachmentPointer pointer : content.getAttachmentsList()) {
@@ -283,7 +295,7 @@ public final class SignalServiceContent {
     }
 
     return new SignalServiceDataMessage(metadata.getTimestamp(),
-                                        groupInfo,
+                                        groupInfoV1, groupInfoV2,
                                         attachments,
                                         content.getBody(),
                                         endSession,
@@ -310,7 +322,7 @@ public final class SignalServiceContent {
                                                                   ? Optional.of(new SignalServiceAddress(UuidUtil.parseOrNull(sentContent.getDestinationUuid()), sentContent.getDestinationE164()))
                                                                   : Optional.<SignalServiceAddress>absent();
 
-      if (!address.isPresent() && !dataMessage.getGroupInfo().isPresent()) {
+      if (!address.isPresent() && !dataMessage.getGroupContext().isPresent()) {
         throw new ProtocolInvalidMessageException(new InvalidMessageException("SyncMessage missing both destination and group ID!"), null, 0);
       }
 
@@ -739,7 +751,7 @@ public final class SignalServiceContent {
 
   }
 
-  private static SignalServiceGroup createGroupInfo(SignalServiceProtos.DataMessage content) throws ProtocolInvalidMessageException {
+  private static SignalServiceGroup createGroupV1Info(SignalServiceProtos.DataMessage content) throws ProtocolInvalidMessageException {
     if (!content.hasGroup()) return null;
 
     SignalServiceGroup.Type type;
@@ -798,5 +810,31 @@ public final class SignalServiceContent {
     }
 
     return new SignalServiceGroup(content.getGroup().getId().toByteArray());
+  }
+
+  private static SignalServiceGroupV2 createGroupV2Info(SignalServiceProtos.DataMessage content) throws ProtocolInvalidMessageException {
+    if (!content.hasGroupV2()) return null;
+
+    SignalServiceProtos.GroupContextV2 groupV2 = content.getGroupV2();
+    if (!groupV2.hasMasterKey()) {
+      throw new ProtocolInvalidMessageException(new InvalidMessageException("No GV2 master key on message"), null, 0);
+    }
+    if (!groupV2.hasRevision()) {
+      throw new ProtocolInvalidMessageException(new InvalidMessageException("No GV2 revision on message"), null, 0);
+    }
+
+    SignalServiceGroupV2.Builder builder;
+    try {
+      builder = SignalServiceGroupV2.newBuilder(new GroupMasterKey(groupV2.getMasterKey().toByteArray()))
+                                    .withRevision(groupV2.getRevision());
+    } catch (InvalidInputException e) {
+      throw new ProtocolInvalidMessageException(new InvalidMessageException(e), null, 0);
+    }
+
+    if (groupV2.hasGroupChange()) {
+      builder.withSignedGroupChange(groupV2.getGroupChange().toByteArray());
+    }
+
+    return builder.build();
   }
 }

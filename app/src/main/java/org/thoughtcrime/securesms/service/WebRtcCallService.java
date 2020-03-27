@@ -1690,7 +1690,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       RemotePeer remotePeer = (RemotePeer)remote;
       Intent     intent     = new Intent(this, WebRtcCallService.class);
 
-      ArrayList<IceCandidateParcel> iceCandidateParcels = new ArrayList(iceCandidates.size());
+      ArrayList<IceCandidateParcel> iceCandidateParcels = new ArrayList<>(iceCandidates.size());
       for (IceCandidate iceCandidate : iceCandidates) {
         iceCandidateParcels.add(new IceCandidateParcel(iceCandidate));
       }

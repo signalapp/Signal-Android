@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.messages.SignalServiceGroupContext;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
@@ -33,6 +34,26 @@ public final class GroupUtil {
   }
 
   private static final String TAG = Log.tag(GroupUtil.class);
+
+  /**
+   * Result may be a v1 or v2 GroupId.
+   */
+  public static GroupId idFromGroupContext(@NonNull SignalServiceGroupContext groupContext) {
+    if (groupContext.getGroupV1().isPresent()) {
+      return GroupId.v1(groupContext.getGroupV1().get().getGroupId());
+    } else if (groupContext.getGroupV2().isPresent()) {
+      return GroupId.v2(groupContext.getGroupV2().get().getMasterKey());
+    } else {
+      throw new AssertionError();
+    }
+  }
+
+  /**
+   * Result may be a v1 or v2 GroupId.
+   */
+  public static @NonNull Optional<GroupId> idFromGroupContext(@NonNull Optional<SignalServiceGroupContext> groupContext) {
+    return groupContext.transform(GroupUtil::idFromGroupContext);
+  }
 
   @WorkerThread
   public static Optional<OutgoingGroupMediaMessage> createGroupLeaveMessage(@NonNull Context context, @NonNull Recipient groupRecipient) {

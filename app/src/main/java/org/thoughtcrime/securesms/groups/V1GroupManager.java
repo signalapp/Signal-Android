@@ -120,7 +120,7 @@ final class V1GroupManager {
 
     for (RecipientId member : members) {
       Recipient recipient = Recipient.resolved(member);
-      uuidMembers.add(GroupMessageProcessor.createMember(RecipientUtil.toSignalServiceAddress(context, recipient)));
+      uuidMembers.add(GroupV1MessageProcessor.createMember(RecipientUtil.toSignalServiceAddress(context, recipient)));
     }
 
     GroupContext.Builder groupContextBuilder = GroupContext.newBuilder()
