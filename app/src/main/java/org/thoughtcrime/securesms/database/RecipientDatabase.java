@@ -356,7 +356,7 @@ public class RecipientDatabase extends Database {
     if (result.neededInsert) {
       ContentValues values = new ContentValues();
 
-      if (groupId.isMmsGroup()) {
+      if (groupId.isMms()) {
         values.put(GROUP_TYPE, GroupType.MMS.getId());
       } else {
         values.put(GROUP_TYPE, GroupType.SIGNAL_V1.getId());
@@ -1406,9 +1406,9 @@ public class RecipientDatabase extends Database {
         db.update(TABLE_NAME, setBlocked, UUID + " = ?", new String[] { uuid });
       }
 
-      List<GroupId> groupIdStrings = Stream.of(groupIds).map(GroupId::v1).toList();
+      List<GroupId.V1> groupIdStrings = Stream.of(groupIds).map(GroupId::v1).toList();
 
-      for (GroupId groupId : groupIdStrings) {
+      for (GroupId.V1 groupId : groupIdStrings) {
         db.update(TABLE_NAME, setBlocked, GROUP_ID + " = ?", new String[] { groupId.toString() });
       }
 

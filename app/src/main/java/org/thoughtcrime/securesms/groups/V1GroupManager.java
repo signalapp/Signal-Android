@@ -68,7 +68,7 @@ final class V1GroupManager {
       }
       groupDatabase.onAvatarUpdated(groupId, avatarBytes != null);
       DatabaseFactory.getRecipientDatabase(context).setProfileSharing(groupRecipient.getId(), true);
-      return sendGroupUpdate(context, groupId, memberIds, name, avatarBytes);
+      return sendGroupUpdate(context, groupId.requireV1(), memberIds, name, avatarBytes);
     } else {
       long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
       return new GroupActionResult(groupRecipient, threadId);
@@ -91,13 +91,13 @@ final class V1GroupManager {
     groupDatabase.updateTitle(groupId, name);
     groupDatabase.onAvatarUpdated(groupId, avatarBytes != null);
 
-    if (!groupId.isMmsGroup()) {
+    if (groupId.isPush()) {
       try {
         AvatarHelper.setAvatar(context, groupRecipientId, avatarBytes != null ? new ByteArrayInputStream(avatarBytes) : null);
       } catch (IOException e) {
         Log.w(TAG, "Failed to save avatar!", e);
       }
-      return sendGroupUpdate(context, groupId, memberAddresses, name, avatarBytes);
+      return sendGroupUpdate(context, groupId.requireV1(), memberAddresses, name, avatarBytes);
     } else {
       Recipient   groupRecipient   = Recipient.resolved(groupRecipientId);
       long        threadId         = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
@@ -106,7 +106,7 @@ final class V1GroupManager {
   }
 
   private static GroupActionResult sendGroupUpdate(@NonNull  Context          context,
-                                                   @NonNull  GroupId          groupId,
+                                                   @NonNull  GroupId.V1       groupId,
                                                    @NonNull  Set<RecipientId> members,
                                                    @Nullable String           groupName,
                                                    @Nullable byte[]           avatar)
@@ -143,7 +143,7 @@ final class V1GroupManager {
   }
 
   @WorkerThread
-  static boolean leaveGroup(@NonNull Context context, @NonNull GroupId groupId, @NonNull Recipient groupRecipient) {
+  static boolean leaveGroup(@NonNull Context context, @NonNull GroupId.V1 groupId, @NonNull Recipient groupRecipient) {
     long                                threadId     = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
     Optional<OutgoingGroupMediaMessage> leaveMessage = GroupUtil.createGroupLeaveMessage(context, groupRecipient);
 

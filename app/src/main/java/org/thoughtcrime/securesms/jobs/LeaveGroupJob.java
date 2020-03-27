@@ -51,7 +51,7 @@ public class LeaveGroupJob extends BaseJob {
   private static final String KEY_MEMBERS    = "members";
   private static final String KEY_RECIPIENTS = "recipients";
 
-  private final GroupId           groupId;
+  private final GroupId.Push      groupId;
   private final String            name;
   private final List<RecipientId> members;
   private final List<RecipientId> recipients;
@@ -60,7 +60,7 @@ public class LeaveGroupJob extends BaseJob {
     List<RecipientId> members = Stream.of(group.resolve().getParticipants()).map(Recipient::getId).toList();
     members.remove(Recipient.self().getId());
 
-    return new LeaveGroupJob(group.getGroupId().get(),
+    return new LeaveGroupJob(group.getGroupId().get().requirePush(),
                              group.resolve().getDisplayName(ApplicationDependencies.getApplication()),
                              members,
                              members,
@@ -72,7 +72,7 @@ public class LeaveGroupJob extends BaseJob {
                                            .build());
   }
 
-  private LeaveGroupJob(@NonNull GroupId groupId,
+  private LeaveGroupJob(@NonNull GroupId.Push groupId,
                         @NonNull String name,
                         @NonNull List<RecipientId> members,
                         @NonNull List<RecipientId> recipients,

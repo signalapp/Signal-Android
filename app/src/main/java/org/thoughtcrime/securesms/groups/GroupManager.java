@@ -53,7 +53,7 @@ public final class GroupManager {
   public static boolean leaveGroup(@NonNull Context context, @NonNull Recipient groupRecipient) {
     GroupId groupId = groupRecipient.requireGroupId();
     
-    return V1GroupManager.leaveGroup(context, groupId, groupRecipient);
+    return V1GroupManager.leaveGroup(context, groupId.requireV1(), groupRecipient);
   }
 
   public static class GroupActionResult {

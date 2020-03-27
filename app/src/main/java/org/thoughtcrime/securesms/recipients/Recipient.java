@@ -381,7 +381,7 @@ public class Recipient {
   }
 
   public @Nullable String getName(@NonNull Context context) {
-    if (this.name == null && groupId != null && groupId.isMmsGroup()) {
+    if (this.name == null && groupId != null && groupId.isMms()) {
       List<String> names = new LinkedList<>();
 
       for (Recipient recipient : participants) {
@@ -567,12 +567,12 @@ public class Recipient {
 
   public boolean isMmsGroup() {
     GroupId groupId = resolve().groupId;
-    return groupId != null && groupId.isMmsGroup();
+    return groupId != null && groupId.isMms();
   }
 
   public boolean isPushGroup() {
     GroupId groupId = resolve().groupId;
-    return groupId != null && !groupId.isMmsGroup();
+    return groupId != null && groupId.isPush();
   }
 
   public @NonNull List<Recipient> getParticipants() {

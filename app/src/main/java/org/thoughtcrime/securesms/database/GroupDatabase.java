@@ -26,7 +26,6 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPoin
 
 import java.io.Closeable;
 import java.security.SecureRandom;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -233,7 +232,7 @@ public class GroupDatabase extends Database {
     contentValues.put(AVATAR_RELAY, relay);
     contentValues.put(TIMESTAMP, System.currentTimeMillis());
     contentValues.put(ACTIVE, 1);
-    contentValues.put(MMS, groupId.isMmsGroup());
+    contentValues.put(MMS, groupId.isMms());
 
     databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, contentValues);
 
