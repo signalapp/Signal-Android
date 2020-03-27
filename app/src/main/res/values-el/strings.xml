@@ -326,34 +326,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Διαμοιρασμός με</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Τα πολλαπλά συνημμένα υποστηρίζονται μόνο για εικόνες και βίντεο</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Καλωσήλθες στο Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">Το Textsecure και το Redphone έγιναν πλέον μία εφαρμογή ιδιωτικής επικοινωνίας για κάθε περίπτωση: το Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Καλωσήλθες στο Signal!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">Το TextSecure είναι πλέον Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">Το Textsecure και το Redphone είναι πλέον μία εφαρμογή: Signal. Πατήστε για να την εξερευνήσετε.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Πες γεια στις ασφαλείς βιντεοκλήσεις.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Το Signal πλέον υποστηρίζει ασφαλείς βιντεοκλήσεις. Απλά κάντε μια κλήση Signal όπως συνήθως, πατήστε το κουμπί για το βίντεο, και χαμογελάστε.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Το Signal πλέον υποστηρίζει ασφαλείς βιντεοκλήσεις.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Το Signal πλέον υποστηρίζει ασφαλείς βιντεοκλήσεις. Πατήστε για να εξερευνήσετε.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Είστε έτοιμος/η για φωτογράφιση;</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Τώρα μπορείτε να μοιραστείτε μια φωτογραφία προφίλ και ένα όνομα με τους φίλους σας στο Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Ήρθαν τα προφίλ Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Καλωσορίζουμε τους δείκτες πληκτρολόγησης.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Τώρα, μπορείτε προαιρετικά να βλέπετε και να μοιράζεστε το πότε πληκτρολογούνται μηνύματα.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Θέλετε να το ενεργοποιήσετε τώρα;</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Οι δείκτες πληκτρολόγησης είναι εδώ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Ενεργοποίηση δεικτών πληκτρολόγησης</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Ενεργοποίηση δεικτών πληκτρολόγησης</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Όχι, ευχαριστώ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Παρουσιάζουμε τις προεπισκοπήσεις συνδέσμων.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Οι προεπισκοπήσεις συνδέσμων υποστηρίζονται πλέον προαιρετικά για μερικές από τις γνωστότερες ιστοσελίδες του διαδικτύου.  </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Μπορείτε να απενεργοποιήσετε ή να ενεργοποιήσετε αυτό το χαρακτηριστικό από τις ρυθμίσεις του Signal (Ιδιωτικότητα &gt; Αποστολή προεπισκόπησης συνδέσμων).</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Εντάξει</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">Υποδεχτείτε τα αυτοκόλλητα</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Γιατί να το πείτε με λέξεις, αν μπορείτε να το πείτε με ένα αυτοκόλλητο;</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Γιατί να το πείτε με λέξεις, αν μπορείτε να το πείτε με ένα αυτοκόλλητο; Πατήστε αυτό το εικονίδιο στο πληκτρολόγιό σας:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">Πάμε</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Λαμβάνουμε ένα μήνυμα…</string>
   <!--GcmRefreshJob-->
@@ -1573,8 +1545,6 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Μετεγκατάσταση της βάσης δεδομένων του Signal</string>
   <string name="PushDecryptJob_new_locked_message">Νέο κλειδωμένο μήνυμα</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Ξεκλειδωστε για να δείτε τα εκκρεμή μηνύματα</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Ξεκλειδώστε για την ολοκλήρωση της αναβάθμιση</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Παρακαλώ ξεκλειδώστε το Signal για να ολοκληρωθεί η αναβάθμιση</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Συνθηματικό αντίγραφου ασφαλείας</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Τα αντίγραφα ασφαλείας αποθηκεύονται στην εξωτερική μνήμη και κρυπτογραφούνται με το παρακάτω συνθηματικό. Πρέπει να γνωρίζετε αυτό το συνθηματικό για να επανακτήσετε το αντίγραφο ασφαλείας.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Σημείωσα σε χαρτί αυτό το συνθηματικό. Χωρίς αυτό, δε θα μπορέσω να επανακτήσω το αντίγραφο ασφαλείας.</string>

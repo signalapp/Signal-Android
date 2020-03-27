@@ -375,34 +375,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Поделиться с</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Несколько вложений поддерживаются только для изображений и видео</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Добро пожаловать в Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure и RedPhone объединились в одно приложение для приватного общения в любых ситуациях: Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Добро пожаловать в Signal!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">Теперь TextSecure — это Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure и RedPhone объединились в одно приложение: Signal. Узнать больше…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Знакомьтесь — защищённые видео-звонки.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Теперь Signal поддерживает защищённые видеозвонки. Начните звонок Signal как обычно, нажмите кнопку видео и помашите собеседнику.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Теперь Signal поддерживает защищённые видеозвонки.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Теперь Signal поддерживает защищённые видеозвонки. Узнать больше…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Готовы к крупному плану?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Теперь вы можете создать свой профиль с именем и фотографией, которые увидят ваши друзья в Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Профили Signal находятся здесь</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Представляем индикаторы набора текста.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Теперь при желании вы можете видеть и показывать собеседникам, когда набираются сообщения.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Хотели бы вы включить их сейчас?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Индикаторы набора текста</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Включить индикаторы набора текста</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Включить индикаторы набора текста</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Нет, спасибо</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Представляем предпросмотр ссылок.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Для некоторых популярных сайтов появилась опциональная возможность предварительного просмотра ссылок.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Вы можете отключить или включить эту функцию в любое время в настройках Signal (Конфиденциальность &gt; Отправлять предпросмотры ссылок).</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Понятно</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">Представляем стикеры</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Зачем использовать слова, когда можно использовать стикеры?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Зачем использовать слова, когда можно использовать стикеры? Нажмите на этот значок на своей клавиатуре:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">Поехали</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Получаем сообщение…</string>
   <!--GcmRefreshJob-->
@@ -609,6 +581,12 @@
     <item quantity="few">%1$d участника</item>
     <item quantity="many">%1$d участников</item>
     <item quantity="other">%1$d участников</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d участник (+%2$d приглашен(-о))</item>
+    <item quantity="few">%1$d участника (+%2$d приглашен(-о))</item>
+    <item quantity="many">%1$d участников (+%2$d приглашен(-о))</item>
+    <item quantity="other">%1$d участников (+%2$d приглашен(-о))</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d другой</item>
@@ -1714,8 +1692,6 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Миграция базы данных Signal</string>
   <string name="PushDecryptJob_new_locked_message">Новое заблокированное сообщение</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Разблокируйте для просмотра ожидающих сообщений</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Разблокируйте для завершения обновления</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Пожалуйста, разблокируйте Signal, чтобы завершить обновление</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Парольная фраза резервной копии</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Резервные копии будут сохранены во внешнем хранилище и зашифрованы с помощью приведённой ниже парольной фразы. У вас должна быть эта фраза, чтобы восстановить резервную копию.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Я записал(-а) эту парольную фразу. Без неё я не смогу восстановить резервную копию.</string>

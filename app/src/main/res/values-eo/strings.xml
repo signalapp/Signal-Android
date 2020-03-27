@@ -347,34 +347,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Kunhavigi kun</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Pluraj kunsendaĵoj nur eblas kun bildoj kaj videaĵoj</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Bonvenon al Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">„TextSecure“ kaj „RedPhone“ nun estas unu privata mesaĝilo por ĉiu okazo: Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Bonvenon al Signal!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">„TextSecure“ nun estas Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">„TextSecure“ kaj „RedPhone“ nun estas unu aplikaĵo: Signal. Tuŝetu por esplori.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Diru saluton al sekuraj vidalvokoj.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal nun subtenas sekurajn videajn alvokojn. Simple komencigu Signal-an alvokon kiel kutime, tuŝetu la videan butonon, kaj mansalutas.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal nun subtenas sekuran vidalvokadon.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal nun subtenas sekuran vidalvokadon. Tuŝetu por esplori.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Ĉu preta je via deproksima foto?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Nun, vi povas kunhavigi viajn profilfoton kaj nomon kun amikoj ĉe Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal-aj profiloj estas ĉi tie</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Enkonduko de la tajp-indikiloj.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">De nun, vi povas malnepre vidi kaj vidigi, kiam mesaĝoj estas skribiĝantaj.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Ĉu vi volas, ŝalti tiujn tajp-indikilojn tuj?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Tajp-indikiloj alvenas</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Ŝalti tajp-indikilojn</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Ŝalti tajp-indikilojn</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Ne, dankon</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Jen la antaŭrigardo de ligiloj</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Opciaj antaŭrigardoj de ligiloj disponeblas nun por kelkaj el la plej popularaj retejoj.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Vi povas ŝalti aŭ malŝalti tiun funkcion en viaj Signal-agordoj (Privateco → Sendi antaŭrigardojn de ligilo).</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Bone</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">Jen la glumarkoj</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Kial uzi vortojn, kiam vi povas uzi glumarkojn?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Kial uzi vortojn, kiam vi povas uzi glumarkojn? Tuŝetu tiun piktogramon en via klavaro:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">Daŭrigi</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Ricevo de mesaĝo…</string>
   <!--GcmRefreshJob-->
@@ -1636,8 +1608,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Transigo de la Signal-datumbazo</string>
   <string name="PushDecryptJob_new_locked_message">Nova ŝlosita mesaĝo</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Malŝlosi por vidi pritraktotajn mesaĝojn</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Malŝlosi por fini ĝisdatigon</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Bv. malŝlosi Signal-on por fini ĝisdatigon</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Savkopii pasfrazon</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Savkopioj konserviĝos al ekstera konservejo kaj ĉifriĝos per la suba pasfrazo. Vi devos havi tiun ĉi pasfrazon por restaŭri savkopion.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Mi skribis tiun ĉi pasfrazon. Sen ĝi, mi ne povos restaŭri savkopion.</string>

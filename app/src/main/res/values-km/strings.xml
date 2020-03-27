@@ -313,34 +313,6 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ឧបករណ៍នេះ មិនគាំទ្រ Play Services។ ចុច ដើម្បីបិទការបង្កើនប្រសិទ្ធិភាពប្រព័ន្ធថ្ម ដែលរារាំង Signal ពីទាញយកសារនានា នៅពេលឧបករណ៍ទុកចោល។</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">ចែកទៅកាន់</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">ស្វាគមន៍មកកាន់ Signal ។</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure និង RedPhone ឥឡូវជាកម្មវិធីផ្ញើសាឯកជនភាពមួយ សម្រាប់គ្រប់ស្ថានភាព៖  Signal ។</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">ស្វាគមន៍មកកាន់ Signal !</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure ឥឡូវជា Signal ។</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure និង RedPhone ឥឡូវជាកម្មវិធីតែមួយ៖ Signal។ ចុច ដើម្បីរុករកមើលបន្ថែម។</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">និយាយសួស្តី ទៅកាន់ការហៅវីដេអូសុវត្ថិភាព។</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal ឥឡូវគាំទ្រការហៅជាវីដេអូដោយសុវត្ថិភាព។ គ្រាន់តែបើកការហៅ Signal ដូចធម្មតា រួចចុចលើ ប៊ូតុងវីដេអូ ហើយលើកដៃ សួស្តី។</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal ឥឡូវគាំទ្រការហៅជាវីដេអូដោយសុវត្ថិភាព។ </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal ឥឡូវគាំទ្រការហៅជាវីដេអូដោយសុវត្ថិភាព។ ចុច ដើម្បីរុករកមើលបន្ថែម។</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">ត្រៀមខ្លួនសម្រាប់ភាពជិតស្និទ្ធរបស់អ្នក?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">ឥឡូវនេះ អ្នកអាចចែករំលែករូបថតប្រវត្តិរូប និងឈ្មោះជាមួយមិត្តភក្តិនៅលើ Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">ទម្រង់ Signal មាននៅទីនេះ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">ការណែនាំរបៀបវាយអក្សរ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">ឥឡូវអ្នកអាចមើល និងចែករំលែក នៅពេលសារត្រូវបានវាយបញ្ចូល។</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">តើអ្នកចង់បើកវាដំណើរឥឡូវនេះទេ?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">របៀបរវាយអក្សរនៅទីនេះ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">បើកការវាស់នៃការវាយអក្សរ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">បើកការវាស់នៃការវាយអក្សរ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">ទេ អរគុណ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">ការណែនាំការមើលតំណភ្ជាប់។</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">ការមើលតំណភ្ជាប់ ជាជម្រើសរើស ឥឡូវត្រូវបានគាំទ្រសម្រាប់គេហទំព័រពេញនិយមបំផុតមួយចំនួន​នៅលើអ៊ីនធឺណិត។</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">អ្នកអាច បិទ ឬ បើក មុខងារនេះបានគ្រប់ពេល ក្នុងការកំណត់របស់កម្មវិធី Signal របស់អ្នក (ឯកជនភាព &gt; ការមើលការផ្ញើតំណភ្ជាប់)។</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">ទទួលបាន</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">ណែនាំ រូបតំណាង</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">ហេតុអ្វីបានជាប្រើប្រាស់ពាក្យ នៅពេលអ្នកអាចប្រើប្រាស់ស្ទីកគ័រ?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">ហេតុអ្វីបានជាប្រើប្រាស់ពាក្យ នៅពេលអ្នកអាចប្រើប្រាស់ស្ទីកគ័រ? ចុច រូបតំណាងនេះនៅលើក្តារចុចរបស់អ្នក៖</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">តោះទៅ</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">សារកំពុងទៅដល់…</string>
   <!--GcmRefreshJob-->
@@ -1527,8 +1499,6 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">ផ្លាស់ទីទិន្នន័យ Signal</string>
   <string name="PushDecryptJob_new_locked_message">សារចាក់សោរថ្មី</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">ដោះសោរដើម្បីមើលសាររង់ចាំ</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">ដោះសោរដើម្បីបញ្ចប់ការធ្វើបច្ចុប្បន្នភាព</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">សូមដោះសោរ Signal ដើម្បីបញ្ចប់ការធ្វើបច្ចុប្បន្នភាព</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">បម្រុងទុកឃ្លាសម្ងាត់</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">ការបម្រុងទុក នឹងត្រូវរក្សាទុកនៅលើអង្គរក្សាទុកខាងក្រៅ និងកូដនីយកម្មជាមួយឃ្លាសម្ងាត់ខាងក្រោម។ អ្នកត្រូវមានឃ្លាសម្ងាត់នេះដើម្បីស្តារការបម្រុងទុកឡើងវិញ។</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">ខ្ញុំបានកត់ឃ្លាសម្ងាត់ទុកហើយ។ បើគ្មានវា ខ្ញុំនឹងមិនអាចស្តារការបម្រុងទុកបានទេ។</string>

@@ -333,34 +333,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">แบ่งปันกับ</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">การแนบแฟ้มหลายชิ้นแนบได้เฉพาะรูปภาพและวิดีโอ</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">ยินดีต้อนรับสู่ Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure และ RedPhone รวมกันเป็นหนึ่งเดียวแล้วนั่นคือ Signal แอปส่งข้อความแบบส่วนตัวสำหรับทุกสถานการณ์</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">ยินดีต้อนรับสู่ Signal!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">Signal คือชื่อใหม่ของ TextSecure</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure และ RedPhone รวมกันเป็นแอปเดียวแล้วนั่นคือ Signal แตะเพื่อเรียนรู้เพิ่ม</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">ทักทายการโทรวิดีโอที่ปลอดภัย</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal รองรับการโทรแบบเห็นหน้า (โทรวิดีโอ) อย่างปลอดภัยแล้ว เพียงโทร Signal ตามปกติ แตะปุ่มวิดีโอ แล้วโบกมือทักทาย</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal รองรับการโทรวิดีโออย่างปลอดภัยแล้ว</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal รองรับการโทรวิดีโออย่างปลอดภัยแล้ว แตะเพื่อเรียนรู้เพิ่ม</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">พร้อมเข้ามาใกล้ๆ หรือยัง?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">ตอนนี้คุณสามารถแบ่งปันรูปโปรไฟล์และชื่อให้กับเพื่อนบน Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">โปรไฟล์ของ Signal อยู่ที่นี่</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">แนะนำตัวระบุว่ากำลังพิมพ์</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">ตอนนี้คุณเลือกได้ว่าจะมองเห็นและแบ่งปันในขณะที่ข้อความกำลังถูกพิมพ์</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">คุณต้องการเปิดใช้งานเลยหรือไม่?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">ตัวระบุว่ากำลังพิมพ์อยู่อยู่ที่นี่</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">เปิดใช้ตัวระบุว่ากำลังพิมพ์</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">เปิดใช้ตัวระบุว่ากำลังพิมพ์อยู่</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">ไม่ ขอบคุณ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">แนะนำการแสดงผลลิงก์</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">มีการสนับสนุนตัวเลือกการแสดงผลลิงก์สำหรับบางเว็บไซต์ที่ได้รับความนิยมในอินเทอร์เน็ต</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">คุณสามารถปิดหรือเปิดการใช้งานนี้ได้ตลอดเวลาในการตั้งค่า Signal ของคุณ (ความเป็นส่วนตัว &gt; ส่งการแสดงผลลิงก์)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">เข้าใจแล้ว</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">แนะนำสติกเกอร์</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">ทำไมต้องใช้คำพูดเมื่อคุณสามารถใช้สติกเกอร์?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">ทำไมต้องใช้คำพูดเมื่อคุณสามารถใช้สติกเกอร์? แตะไอคอนนี้บนคีย์บอร์ดของคุณ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">ไปกันเถอะ</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">กำลังเรียกข้อความกลับมา…</string>
   <!--GcmRefreshJob-->
@@ -1595,8 +1567,6 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">ย้ายฐานข้อมูล Signal</string>
   <string name="PushDecryptJob_new_locked_message">ข้อความที่ถูกล็อกใหม่</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">ปลดล็อกเพื่อดูข้อความที่รออยู่</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">ปลดล็อกเพื่อเสร็จสิ้นการอัปเดต</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">โปรดทำการปลดล็อก Signal เพื่อเสร็จสิ้นการอัปเดต</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">วลีรหัสผ่านสำหรับข้อมูลสำรอง</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">ข้อมูลสำรองจะถูกบันทึกไว้ในที่เก็บข้อมูลภายนอก และถูกเข้ารหัสลับด้วยวลีรหัสผ่านด้านล่างนี้ คุณจะต้องใช้วลีรหัสผ่านนี้เพื่อกู้คืนข้อมูลสำรอง</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">ฉันได้จดบันทึกวลีรหัสผ่านนี้แล้ว หากจำไม่ได้ ฉันจะไม่สามารถกู้คืนจากข้อมูลสำรองได้</string>

@@ -347,35 +347,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Doorsturen naar</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Het verzenden van meerdere bijlagen is alleen mogelijk voor afbeeldingen en video\'s</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Welkom bij Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure en RedPhone zijn vanaf nu samen één privéberichtenapp, geschikt voor iedere situatie: Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Welkom bij Signal!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure heet vanaf nu Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure en RedPhone zijn vanaf nu één app: Signal. Tik om kennis te maken.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Verwelkom beveiligde videogesprekken.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal ondersteunt vanaf nu beveiligde videogesprekken. Maak een Signal-oproep zoals je dat normaal zou doen en tik op de videoknop om een videogesprek te beginnen.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal ondersteunt vanaf nu beveiligde videogesprekken.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal ondersteunt vanaf nu beveiligde videogesprekken. Tik om te verkennen.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Klaar voor je close-up?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Je kunt vanaf nu een profielfoto en naam zichtbaar maken voor je gesprekspartners op Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal-profielen zijn vanaf nu beschikbaar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">We introduceren typindicatoren.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Vanaf nu kun je zien of je gesprekspartner een bericht aan het typen is. Deze functie is optioneel; je kunt hem op ieder moment uitschakelen.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Wil je ze nu inschakelen?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Typindicatoren zijn gearriveerd</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Typindicatoren inschakelen</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Schakel typindicatoren in</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Nee bedankt</string> -->
-  <string name="ExperienceUpgradeActivity_introducing_link_previews">Nieuw: voorbeeld-
-weergaven.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">De optie om voorbeelden weer te geven wordt vanaf nu ondersteund voor enkele van de populairste weblocaties op het internet.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Je kunt deze functionaliteit op elk gewenst moment in- of uitschakelen in je Signal-instellingen (Privacy &gt; Voorbeeldweergaven verzenden).</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Begrepen</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">Signal introduceert stickers</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Waarom zou je woorden gebruiken als je ook stickers kunt gebruiken?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Waarom zou je woorden gebruiken als je ook stickers kunt gebruiken? Tik op dit pictogram op je toetsenbord:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">Doorgaan</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Bericht aan het ophalen…</string>
   <!--GcmRefreshJob-->
@@ -403,7 +374,7 @@ weergaven.</string>
   <string name="GroupCreateActivity_loading_group_details">Groepsdetails aan het laden…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Je bent al lid van deze groep.</string>
   <!--GroupShareProfileView-->
-  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Tik hier om je profielnaam en -foto voor deze groep zichtbaar te maken</string>
+  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Je profielnaam en -foto voor deze groep zichtbaar maken?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Wil je je profielnaam en -foto zichtbaar maken voor alle huidige en toekomstige leden van deze groep?</string>
   <string name="GroupShareProfileView_make_visible">Zichtbaar maken</string>
   <!--GroupMembersDialog-->
@@ -541,7 +512,7 @@ weergaven.</string>
   <string name="MessageRecord_s_called_you">%s heeft je gebeld</string>
   <string name="MessageRecord_called_s">Je hebt %s gebeld</string>
   <string name="MessageRecord_missed_call_from">Gemiste oproep van %s</string>
-  <string name="MessageRecord_s_joined_signal">%s is vanaf nu ook beschikbaar via Signal.</string>
+  <string name="MessageRecord_s_joined_signal">%s is vanaf nu bereikbaar via Signal.</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Je hebt zelf-wissende berichten uitgeschakeld.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s heeft zelf-wissende berichten uitgeschakeld.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Je hebt de timer voor zelf-wissende berichten op %1$s ingesteld.</string>
@@ -566,6 +537,10 @@ weergaven.</string>
   <plurals name="MessageRequestProfileView_members">
     <item quantity="one">%1$d lid</item>
     <item quantity="other">%1$d leden</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d lid (+%2$d uitgenodigden)</item>
+    <item quantity="other">%1$d leden (+%2$d uitgenodigden)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d ander</item>
@@ -785,7 +760,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ThreadRecord_view_once_photo">Eenmaligeweergave-afbeelding</string>
   <string name="ThreadRecord_view_once_video">Eenmaligeweergave-video</string>
   <string name="ThreadRecord_view_once_media">Eenmaligeweergave-media</string>
-  <string name="ThreadRecord_s_is_on_signal">%s is beschikbaar voor Signal-berichten.</string>
+  <string name="ThreadRecord_s_is_on_signal">%s is bereikbaar via Signal.</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Zelf-wissende berichten uitgeschakeld</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Berichten zullen zichzelf wissen %s nadat ze gelezen zijn</string>
   <string name="ThreadRecord_safety_number_changed">Veiligheidsnummer veranderd</string>
@@ -1140,7 +1115,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   </plurals>
   <string name="GroupUtil_group_name_is_now">De groepsnaam is vanaf nu ‘%1$s’.</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Je profielfoto en naam zichtbaar maken voor deze groep?</string>
+  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Tik hier om je profielnaam en -foto voor deze groep zichtbaar te maken</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Ontgrendelen</string>
   <!--prompt_mms_activity-->
@@ -1388,7 +1363,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_chats__show_invitation_prompts">Uitnodigingsvoorstel weergeven</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Toon boven sms-gesprekken met gesprekspartners die niet op Signal zitten een suggestie om je gesprekspartner uit te nodigen op Signal</string>
   <string name="preferences_chats__message_text_size">Tekstgrootte voor berichten</string>
-  <string name="preferences_events__contact_joined_signal">Contactpersoon beschikbaar via Signal</string>
+  <string name="preferences_events__contact_joined_signal">Nieuw persoon bereikbaar via Signal</string>
   <string name="preferences_notifications__priority">Belangrijkheid</string>
   <string name="preferences_communication__category_sealed_sender">Verzegelde afzender</string>
   <string name="preferences_communication__sealed_sender_display_indicators">‘Verzegelde afzender’-pictorgram</string>
@@ -1643,15 +1618,13 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal-databank wordt gemigreerd</string>
   <string name="PushDecryptJob_new_locked_message">Nieuw vergrendeld bericht</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Ontgrendel om je berichten te lezen</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Ontgrendel om bijwerken te voltooien</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Ontgrendel Signal om bijwerken te voltooien</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Back-up-wachtwoord</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Back-up-bestanden worden opgeslagen op het externe opslaggeheugen en versleuteld met het wachtwoord hieronder. Je hebt dit wachtwoord nodig om de back-up-gegevens terug te zetten.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ik heb dit wachtwoord opgeschreven. Zonder dit wachtwoord kan ik deze back-up-bestanden niet gebruiken om gegevens terug te zetten.</string>
   <string name="registration_activity__restore_backup">Back-up-gegevens terugzetten</string>
   <string name="registration_activity__skip">Overslaan</string>
   <string name="registration_activity__register">Registreren</string>
-  <string name="preferences_chats__chat_backups">Laat Signal back-up-bestanden maken</string>
+  <string name="preferences_chats__chat_backups">Back-up-bestanden maken</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Sta Signal toe om versleutelde back-up-bestanden van gesprekken en media te maken naar /Signal/Backups op je interne opslag. Als dit is ingeschakeld maakt Signal automatisch elke dag een back-up-bestand. Alleen de twee meest recente geslaagde back-up-bestanden worden bewaard.</string>
   <string name="preferences_chats__create_backup">Nu een back-up-bestand maken</string>
   <string name="preferences_chats__verify_backup_passphrase">Back-up-wachtwoord verifiëren</string>

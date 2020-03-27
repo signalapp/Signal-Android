@@ -347,34 +347,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Teilen mit</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Mehrere Anhänge werden nur für Bilder und Videos unterstützt</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Willkommen bei Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure und RedPhone sind jetzt gemeinsam ein sicherer Messenger für jede Situation: Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Willkommen bei Signal!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure heißt jetzt Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure und RedPhone sind jetzt eine gemeinsame App: Signal. Antippen, um mehr zu erfahren.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Freue dich auf sichere Videoanrufe!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal unterstützt jetzt sichere Videoanrufe. Beginne einfach einen Signal-Anruf wie sonst auch, tippe die Kameraschaltfläche an und winke deinem Kontakt zu.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal unterstützt jetzt sichere Videoanrufe.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal unterstützt jetzt sichere Videoanrufe. Zum Erkunden antippen.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Bereit für eine Nahaufnahme?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Jetzt kannst du bei Signal ein Profilfoto und einen Profilnamen mit Freunden teilen.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profile für Signal sind da</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Einführung von Tipp-Indikatoren</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Du kannst jetzt optional sehen und teilen, wann Nachrichten eingetippt werden.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Möchtest du diese Funktion aktivieren?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Tipp-Indikatoren sind da</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Tipp-Indikatoren aktivieren</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Tipp-Indikatoren einschalten</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Nein, danke</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Einführung von Link-Vorschauen</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Optionale Link-Vorschauen werden nun für einige der beliebtesten Internetsites unterstützt.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Du kannst diese Funktion jederzeit in den Signal-Einstellungen aus‑ oder einschalten (Datenschutz → Link-Vorschauen senden).</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Verstanden</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">Einführung von Stickern</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Warum Worte, wenn du auch Sticker verwenden kannst?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Warum Worte, wenn du auch Sticker verwenden kannst? Tippe auf dieses Symbol deiner Tastatur:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">Los geht’s</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Nachricht wird abgerufen …</string>
   <!--GcmRefreshJob-->
@@ -402,7 +374,7 @@
   <string name="GroupCreateActivity_loading_group_details">Gruppendetails werden geladen …</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Du bist bereits in der Gruppe.</string>
   <!--GroupShareProfileView-->
-  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Deinen Profilnamen und dein Profilfoto mit dieser Gruppe teilen?</string>
+  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Profilname und -foto mit dieser Gruppe teilen?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Möchtest du deinen Profilnamen und dein Profilfoto für alle derzeitigen und zukünftigen Mitglieder dieser Gruppe sichtbar machen?</string>
   <string name="GroupShareProfileView_make_visible">Sichtbar machen</string>
   <!--GroupMembersDialog-->
@@ -565,6 +537,10 @@
   <plurals name="MessageRequestProfileView_members">
     <item quantity="one">%1$d Mitglied</item>
     <item quantity="other">%1$d Mitglieder</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d Mitglied (+%2$d eingeladen)</item>
+    <item quantity="other">%1$d Mitglieder (+%2$d eingeladen)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d anderer</item>
@@ -1126,7 +1102,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   </plurals>
   <string name="GroupUtil_group_name_is_now">Gruppenname lautet jetzt »%1$s«.</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Deinen Profilnamen und dein Profilfoto für diese Gruppe sichtbar machen?</string>
+  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Antippen, um deinen Profilnamen und dein Profilfoto für diese Gruppe sichtbar zu machen</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Entsperren</string>
   <!--prompt_mms_activity-->
@@ -1201,7 +1177,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="AndroidManifest_remove_photo">Foto entfernen</string>
   <!--Message Requests Megaphone-->
   <string name="MessageRequestsMegaphone__message_requests">Unterhaltungsanfragen</string>
-  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Nutzer können nun wählen, ob sie eine neue Unterhaltung zulassen möchten. Profilnamen informieren darüber, wer geschrieben hat.</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Du kannst nun wählen, ob du eine neue Unterhaltung zulassen möchtest. Profilnamen lassen dich wissen, wer dir schreibt.</string>
   <string name="MessageRequestsMegaphone__add_profile_name">Profilname hinzufügen</string>
   <string name="MessageRequestsMegaphone__new_message_requests">Neu: Unterhaltungsanfragen</string>
   <string name="MessageRequestsMegaphone__add_name">Name hinzufügen</string>
@@ -1626,8 +1602,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal-Datenbank wird migriert …</string>
   <string name="PushDecryptJob_new_locked_message">Neue gesperrte Nachricht</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Entsperren, um ausstehende Nachrichten anzuzeigen</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Entsperren, um Aktualisierung abzuschließen</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Entsperre bitte Signal, um die Aktualisierung abzuschließen</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Sicherungspassphrase</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Datensicherungen werden im Gerätespeicher gespeichert und mit der unten genannten Passphrase verschlüsselt. Die Passphrase ist notwendig, um die Sicherung später wiederherzustellen.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ich habe mir diese Passphrase notiert. Ohne sie können keine Sicherungen wiederhergestellt werden.</string>

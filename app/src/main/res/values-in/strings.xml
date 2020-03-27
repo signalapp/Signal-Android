@@ -333,34 +333,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Berbagi dengan</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Lampiran jamak hanya berupa gambar dan video</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Selamat datang di Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure dan RedPhone sekarang bergabung menjadi pengirim pesan privat tunggal, untuk semua situasi: Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Selamat datang di Signal!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure sekarang adalah Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure dan RedPhone sekarang bergabung menjadi aplikasi tunggal: Signal. Ketuk untuk menjelajah.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Ucapkan halo untuk mengamankan panggilan video.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal sekarang mendukung panggilan video yang aman. Cukup mulai panggilan Signal seperti biasa, ketuk tombol video, dan ucapkan halo.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal sekarang mendukung panggilan video yang aman.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal sekarang mendukung panggilan video yang aman. Ketuk untuk menjelajahi.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Siap foto wajah?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Sekarang anda dapat membagikan nama dan foto profil dengan kawan anda di Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profil Signal ada di sini</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Memperkenalkan indikator pengketikan.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Sekarang Anda mempunyai pilihan melihat dan berbagi saat pesan sedang diketik.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Apakah Anda ingin mengaktifkannya sekarang?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Indikator pengetikan di sini</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Aktifkan indikator pengetikan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Nyalakan indikator pengetikan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Tidak, terima kasih</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Memperkenalkan pratinjau tautan.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Untuk beberapa situs populer di internet sekarang ada pilihan pratinjau tautan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Anda dapat menonaktifkan atau mengaktifkan fitur ini kapanpun pada pengaturan Signal Anda (Privasi &gt; Kirim pratinjau tautan).</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Paham</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">Memperkenalkan stiker</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Mengapa menggunakan kata-kata saat Anda bisa menggunakan stiker?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Mengapa menggunakan kata-kata saat Anda bisa menggunakan stiker? Ketuk ikon ini pada papan ketik Anda:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">Ayo!</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Mengambil pesan…</string>
   <!--GcmRefreshJob-->
@@ -1595,8 +1567,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Memindahkan basis data Signal</string>
   <string name="PushDecryptJob_new_locked_message">Pesan terkunci baru</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Buka kunci untuk melihat pesan tertunda</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Buka kunci untuk menyelesaikan pembaruan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Mohon buka kunci Signal untuk menyelesaikan pembaruan</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Frasa sandi cadangan</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Cadangan akan disimpan ke penyimpanan eksternal dan terenkripsi dengan frasa di bawah. Anda mesti memiliki frasa sandi ini untuk memulihkan cadangan.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Saya telah mencatat frasa ini. Tanpa ini, saya tidak dapat memulihkan cadangan.</string>

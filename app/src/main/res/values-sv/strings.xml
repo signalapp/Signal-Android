@@ -347,34 +347,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Dela med</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Flera bilagor stöds endast för bilder och videoklipp</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Välkommen till Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure och RedPhone är nu en privat meddelandeklient för varje situation: Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Välkommen till Signal!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure är nu Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure och RedPhone är nu en app: Signal. Tryck för att utforska.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Säg hej till säkra videosamtal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal stöder nu säkra videosamtal. Starta bara ett Signal-samtal som vanligt, tryck på video-knappen och vinka hej.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal stöder nu säkra videosamtal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal stöder nu säkra videosamtal. Tryck för att utforska.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Redo för din närbild?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Du kan nu dela en profilbild och ett namn med dina vänner på Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal-profiler är här</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Introducerar skrivindikatorer.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Nu kan du valfritt visa och dela när meddelanden skrivs.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Vill du aktivera dem nu?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Skrivindikatorer är nu här</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Aktivera skrivindikatorer</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Sätt på skrivindikatorer</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Nej tack</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Introducerar länkförhandsvisning.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Valfria länkförhandsvisningar stöds nu för några av de mest populära platserna på Internet.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Du kan inaktivera eller aktivera den här funktionen när som helst i dina Signal-inställningar (Sekretess &gt; Skicka länkförhandsvisningar).</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Uppfattat</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">Introducerar klistermärken</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Varför använda ord när du kan använda klistermärken?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Varför använda ord när du kan använda klistermärken? Tryck på den här ikonen på tangentbordet:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">Nu kör vi</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Hämtar ett meddelande…</string>
   <!--GcmRefreshJob-->
@@ -565,6 +537,10 @@
   <plurals name="MessageRequestProfileView_members">
     <item quantity="one">%1$d medlem</item>
     <item quantity="other">%1$d medlemmar</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d medlem (+%2$d inbjudna)</item>
+    <item quantity="other">%1$d medlemmar (+%2$d inbjudna)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d annan</item>
@@ -1631,8 +1607,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrerar Signal-databas</string>
   <string name="PushDecryptJob_new_locked_message">Nytt låst meddelande</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Lås upp för att se väntande meddelanden</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Lås upp för att avsluta uppdateringen</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Lås upp Signal för att fullborda uppdateringen</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Lösenord för säkerhetskopering</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Säkerhetskopior sparas till extern lagring och krypteras med lösenordet nedanför. Du måste ange lösenordet för att återställa en säkerhetskopia.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Jag har skrivit ner lösenordet. Utan det kommer jag inte kunna återställa en säkerhetskopia.</string>

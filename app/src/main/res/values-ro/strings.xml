@@ -361,34 +361,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Distribuie cu</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Atașamentele multiple sunt suportate doar pentru imagini și videouri</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Bine ați venit pe Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure și RedPhone sunt acum un singur mesager privat pentru orice situație: Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Bine ați venit pe Signal!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure se numește acum Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure și RedPhone sunt acum o singură aplicație: Signal. Apăsați pentru a explora.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Bun venit la apeluri video securizate.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal suportă acum apeluri video securizate. Pornește un apel Signal ca în mod normal, apăsați pe butonul video și faceți cu mâna.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal suportă acum apeluri video securizate.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal suportă acum apeluri video securizate. Apăsați pentru a explora.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Sunteți pregătit pentru poza de aproape?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Acum poți distribui numele și o poză de profil la prietenii de pe Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profilurile Signal sunt aici</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Vă prezentăm indicatorii de tastare.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Acum poți vedea și partaja opțional atunci când mesajele sunt tastate.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Doriți să-i activați acum?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Indicatorii de tastare sunt aici</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Activează indicatorii de tastare</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Activează indicatorii de tastare</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Nu, mulţumesc</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Vă prezentăm previzualizarea link-urilor</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Previzualizarea opțională de link-uri este acum suportată pentru unele dintre cele mai populare site-uri de pe Internet.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Puteți activa sau dezactiva această funcționalitate oricând din setările Signal ( Confidențialitate &gt; Trimite previzualizarea link-urilor).</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Am înțeles</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">Vă prezentăm autocolantele</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">De ce să folosiți cuvinte când puteți folosi autocolante?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">De ce să folosiți cuvinte când puteți folosi autocolante? Apăsați pe această icoană pe tastatura dvs:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">Continuați</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Se obține un mesaj…</string>
   <!--GcmRefreshJob-->
@@ -587,6 +559,11 @@
     <item quantity="one">%1$d membru</item>
     <item quantity="few">%1$d membrii</item>
     <item quantity="other">%1$d membrii</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d membru (+%2$d invitați)</item>
+    <item quantity="few">%1$d membrii (+%2$d invitați)</item>
+    <item quantity="other">%1$d membrii (+%2$d invitați)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d altul</item>
@@ -1676,8 +1653,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Se migrează baza de date Signal </string>
   <string name="PushDecryptJob_new_locked_message">Mesaj nou blocat</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Deblocați pentru a vedea mesajele în curs</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Deblocați pentru a finaliza actualizarea</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Vă rog deblocați Signal pentru a finaliza actualizarea</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Parolă backup</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Backup-urile se vor salva pe stocarea externă și vor fi criptate cu parola de mai jos. Trebuie să aveți această parolă pentru a putea restaura un backup.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Am scris parola. Fără ea nu voi putea restaura un backup.</string>

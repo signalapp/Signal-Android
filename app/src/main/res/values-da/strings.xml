@@ -348,34 +348,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Del med</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Det er kun muligt at vedhæfte flere billeder og videoer</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Velkommen til Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure og RedPhone er nu én privat messenger, til enhver lejlighed: Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Velkommen til Signal!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure er nu Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure og RedPhone er nu én app: Signal. Tap for at udforske</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Sig hej til sikre videoopkald</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal understøtter nu sikre videoopkald. Du skal bare starte et Signal opkald som normalt, tap på video knappen og vink goddag</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal understøtter nu sikre videoopkald</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal understøtter nu sikre videoopkald. Tap for at udforske</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Er du klar til et nærbilled?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Du kan nu dele dit profilbillede og navn med dine venner på Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profiler er nu tilgængelige</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Introducerer skrive indikatorer</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Nu har du mulighed for at se og vise, når beskeder skrives</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Vil du aktivere det nu?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Skrive indikatorer er her</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Aktivér skrive indikatorer</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Aktivér skrive indikatorer</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Nej tak</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Introducere eksempelvisning for links</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Mulighed for eksempelvisning af links, er nu understøttet for de fleste populære sider på nettet</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Du kan når som helst aktivere eller deaktivere funktionaliteten, under Signal, Indstillinger (Privatliv -&gt; Send link eksempelvisning)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Modtaget</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">Inklusiv klistermærker</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Hvorfor bruge ord når du kan bruge klistermærker?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Hvorfor bruge ord når du kan bruge klistermærker? Tap på ikonet her på dit tastatur:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">Kom igang</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Modtager besked…</string>
   <!--GcmRefreshJob-->
@@ -1601,8 +1573,6 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrerer Signals database</string>
   <string name="PushDecryptJob_new_locked_message">Ny låst besked</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Lås op for at læse indkommende beskeder</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Lås op for at fuldføre opdatering</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Lås venligst Signal op, for at fuldføre opdateringen</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Backup kodeord</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Backups vil blive gemt til ekstern placering og krypteret med koden herunder. Du skal kende denne kode for at kunne genskabe fra backup\'en</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Jeg har nedskrevet koden. Uden den vil jeg ikke have mulighed for at genskabe fra backup</string>

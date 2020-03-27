@@ -347,34 +347,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Jaa</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Useiden tiedostojen liittämistä tuetaan vain kuvilla ja videoilla</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Tervetuloa Signaliin.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure ja RedPhone ovat yhdistyneet nyt Signaliksi: yksityiset viestit ja puhelut samassa paketissa.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Tervetuloa Signaliin!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure on nyt Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure ja RedPhone ovat nyt yksi ja sama sovellus: Signal. Napauta tutustuaksesi.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Sano hei turvallisille videopuheluille.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal tukee nyt turvallisia videopuheluita. Aloita puhelu kuten ennenkin, sitten vain napauta kamerakuvaketta ja vilkuta hei.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal tukee nyt turvallisia videopuheluita.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal tukee nyt turvallisia videopuheluita. Jatka napauttamalla.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Oletko valmis kuvaamista varten?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Nyt voit jakaa profiilikuvasi ja -nimesi ystäviesi kanssa Signalissa</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal-profiilit ovat täällä</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Esittelemme kirjoitustilaindikaattorin.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Voit nyt vaihtoehtoisesti nähdä ja jakaa milloin viestejä kirjoitetaan.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Haluatko ottaa sen käyttöön nyt?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Kirjoitustilaindikaattori on täällä</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Ota käyttöön kirjoitustilaindikaattori</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Ota käyttöön kirjoitustilaindikaattori</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Ei kiitos</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Esittelemme linkkien esikatselukuvat.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Linkkien esikatselukuvat ovat valinnaisia ja niitä tuetaan nyt joillakin Internetin suosituimmista sivustoista.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Voit poistaa tämän ominaisuuden käytöstä tai ottaa sen käyttöön milloin tahansa Signalin asetuksissa (Yksityisyys &gt; Lähetä esikatselukuva linkeistä).</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Selvä</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">Esittelemme tarrat</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Miksi käyttää sanoja, kun voit käyttää tarroja?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Miksi käyttää sanoja, kun voit käyttää tarroja? Napauta tätä kuvaketta näppäimistössä:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">Jatka</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Haetaan viestiä…</string>
   <!--GcmRefreshJob-->
@@ -1631,8 +1603,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signalin tietokantaa siirretään</string>
   <string name="PushDecryptJob_new_locked_message">Uusi lukittu viesti</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Avaa nähdäksesi odottavat viestit</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Avaa lukitus päivityksen loppuunsaattamiseksi</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Avaa Signalin lukitus päivityksen loppuunsaattamiseksi</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Varmuuskopion salalause</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Varmuuskopiot tallennetaan laitteesi tallennustilaan ja ne salataan allaolevalla salalauseella. Ilman tätä salalausetta et voi palauttaa varmuuskopiota.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Olen kirjoittanut ylös tämän salalauseen. Ilman sitä, en pysty palauttamaan varmuuskopiota.</string>

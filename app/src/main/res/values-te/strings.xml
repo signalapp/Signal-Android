@@ -329,34 +329,6 @@
 క్రియారహితంగా ఉన్నప్పుడు సందేశాలను పొందటం నుండి Signal నిరోధించే వ్యవస్థ బ్యాటరీ అనుకూలతలు డిసేబుల్ నొక్కండి.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">తో పంచు</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Signal కి స్వాగతం.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">Textsecure మరియు RedPhone అన్నీ పరిస్థితిలొను ఒక వ్యక్తిగత  మెసెంజర్ ఇప్పుడు క్రిందివిధంగా ఉన్నాయి: Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Signal కి స్వాగతం!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure ఇప్పుడు Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">Signal: Textsecure మరియు RedPhone ఇప్పుడు ఒకే అప్లికేషన్. విశ్లేషించడానికి నొక్కండి.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">సురక్షితమైన దర్శన పిలుపు కొరకు హలో అనండి.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal ఇప్పుడు సురక్షితమైన దర్శన పిలుపుకు సహకారం ఇస్తుంది.మాములుగా ఒక Signal పిలుపును మొదలుపెట్టండి, దర్శన బొత్తాన్ని తట్టండి, మరియు పలకరించండి.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal ఇప్పుడు సురక్షితమైన దర్శన పిలుపుకు సహకారం ఇస్తుంది.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal ఇప్పుడు సురక్షితమైన దర్శన పిలుపుకు సహకారం ఇస్తుంది.అన్వేషించడానికి తట్టండి.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">క్లోజప్ కోసం సిద్ధంగా ఉన్నారా?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">ఇప్పుడు మీరు Signal లో స్నేహితులతో రూపచిత్రం మరియు పేరును పంచుకోవచ్చు</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal రూపం ఇక్కడ ఉన్నాయి</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">టైపింగ్ సూచికలను పరిచయం చేస్తోంది.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">సందేశాలను టైప్ చేస్తున్నప్పుడు ఇప్పుడు మీరు ఐచ్ఛికంగా చూడవచ్చు మరియు పంచుకోవచ్చు.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">మీరు ఇప్పుడు వాటిని ప్రారంభించాలనుకుంటున్నారా?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">టైపింగ్ సూచికలు ఇక్కడ ఉన్నాయి</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">టైపింగ్ సూచికలను చేతనం అయింది</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">టైపింగ్ సూచికలను ప్రారంభించండి</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">వద్దు ధన్యవాదాలు</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">లింక్ పూర్వప్రదర్శనను పరిచయం చేస్తోంది.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">ఐచ్ఛిక లింక్  పూర్వప్రదర్శనలు ఇప్పుడు ఇంటర్నెట్‌లోని అత్యంత ప్రాచుర్యం పొందిన కొన్ని సైట్‌లకు మద్దతు ఇస్తున్నాయి.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">మీరు మీ Signal అమరికలలో ఎప్పుడైనా ఈ లక్షణాన్ని నిలిపివేయవచ్చు లేదా ప్రారంభించవచ్చు (గోప్యత &amp; gt; లింక్ పూర్వప్రదర్శనను పంపండి).</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">దొరికింది</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">స్టిక్కర్లను పరిచయం చేస్తున్నాము</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">స్టిక్కెర్లు వుందగా పదాలు ఎందుకు?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">స్టిక్కెర్లు వుందగా పదాలు ఎందుకు? కీబోర్డ్‌లో ఈ చిహ్నాన్ని నొక్కండి:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">పదా  వెళ్దాము</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">సందేశాన్ని తిరిగి పొందుతోంది…</string>
   <!--GcmRefreshJob-->
@@ -1511,8 +1483,6 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal దత్తాంశమూల తలరింపడుతోంది.</string>
   <string name="PushDecryptJob_new_locked_message">కొత్త లాక్ చేయబడిన సందేశం</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">పెండింగ్లో ఉన్న సందేశాలను వీక్షించడానికి అన్లాక్ చేయండి</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">నవీకరణను పూర్తి చేయడానికి అన్లాక్ చేయండి</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">దయచేసి నవీకరణను పూర్తి చేయడానికి Signal అన్లాక్ చేయండి</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">ప్రత్యామ్నాయ పాస్ఫ్రేజ్</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">ప్రత్యామ్నాయ బాహ్య నిల్వకి భద్రపరచ బడుతుంది మరియు పాస్ఫ్రేజ్తో గుప్తీకరించబడుతుంది. ప్రత్యామ్నాయను పునరుద్ధరించడానికి మీరు తప్పనిసరిగా ఈ పాస్ఫ్రేజ్ను కలిగి ఉండాలి.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">నేను ఈ పాస్ఫ్రేజ్ని వ్రాశాను. ఇది లేకుండా, నేను ఒక ప్రత్యామ్నాయ పునరుద్ధరించడానికి సాధ్యం కాదు.</string>

@@ -179,7 +179,7 @@
   <string name="ConversationActivity_unblock_this_contact_question">解除封鎖此聯絡人？</string>
   <string name="ConversationActivity_unblock_this_group_question">解除封鎖這個群組？</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">您將可以再次收到來自此聯絡人的訊息與通話。</string>
-  <string name="ConversationActivity_unblock_this_group_description">現存的組員將可以再次將你加入群組。</string>
+  <string name="ConversationActivity_unblock_this_group_description">現存的成員將可以再次將你加入群組。</string>
   <string name="ConversationActivity_unblock">解除封鎖</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">當前訊息的附件類型已經超越大小限制。</string>
   <string name="ConversationActivity_quick_camera_unavailable">無法使用相機</string>
@@ -207,7 +207,7 @@
   <string name="ConversationActivity_block_and_leave_s">封鎖並離開%1$s嗎？</string>
   <string name="ConversationActivity_unblock_s">解除封鎖%1$s嗎？</string>
   <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">你將能夠發訊息並互相打電話。</string>
-  <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">群組組員將能夠再次將你新增到該群組。</string>
+  <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">群組成員將能夠再次將你新增到該群組。</string>
   <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">已被封鎖的人將無法撥電話或傳訊息給你。</string>
   <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">你將離開此群組及無法再接收訊息或升級。</string>
   <string name="ConversationActivity_block">封鎖</string>
@@ -333,34 +333,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">分享給</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">僅圖片和影片支援多個附檔</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">歡迎來到 Signal。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">從現在起 TextSecure 與 RedPhone 將會是同一個私密的訊息平台，最佳的解決方案：Signal。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">歡迎來到 Signal！</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure 已命名為 Signal。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">從現在起 TextSecure 與 RedPhone 將會是同一個應用程式：Signal。輕觸以開始探索。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">向安全的視訊通話打聲招呼，說聲嗨。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">現在 Signal 支援了安全的視訊電話。就如同開始 Signal 通話一樣，輕觸視訊按鈕，接著揮手打聲招呼。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">現在 Signal 支援安全的視訊電話。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">現在 Signal 支援安全的視訊電話。輕觸探索。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">準備好你的特寫了嗎？</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">現在，你可以分享你的頭像照片及名字給在 Signal 中的朋友</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal 個人資訊就在這裡</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">介紹打字狀態。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">現在你可以選擇性的查看並分享正在輸入的訊息。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">你是否要現在啟動它們？</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">打字狀態在這裡</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">啟動打字狀態</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">開啟打字狀態</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">不，謝謝。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">連結預覽功能介紹。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">連結預覽選項現在支援網路上一些最受歡迎的網站。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">任何時候你可以在 Signal 設定中關閉或開啟這個功能 (隱私權 &gt; 傳送連結預覽)。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">收到</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">介紹貼圖功能</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">如果你可以使用貼圖，為什麼要使用文字？</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">當你可以使用貼圖的時候，為什麼要用文字呢？點擊你鍵盤上的這個圖示：</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">讓我們開始吧</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">讀取一個訊息中…</string>
   <!--GcmRefreshJob-->
@@ -379,7 +351,7 @@
   <string name="GroupCreateActivity_contacts_dont_support_push">您所選擇的聯絡人並不支援 Signal 群組，所以此組將以多媒體訊息形式存在。</string>
   <string name="GroupCreateActivity_youre_not_registered_for_signal">您沒有註冊 Signal 訊息與通話，所以 Signal 群組已經被停用。請嘗試在設定 &gt; 進階中重新註冊。</string>
   <string name="GroupCreateActivity_contacts_no_members">建立群組至少需要加入一個聯絡人！</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">群組中某個聯絡人的號碼有誤，請更正或移除此聯絡人，並再試一次。</string>
+  <string name="GroupCreateActivity_contacts_invalid_number">群組中某個成員的電話號碼無法讀取，請更正或移除此聯絡人，並再試一次。</string>
   <string name="GroupCreateActivity_avatar_content_description">群組的大頭照</string>
   <string name="GroupCreateActivity_menu_apply_button">應用</string>
   <string name="GroupCreateActivity_creating_group">%1$s 建立中…</string>
@@ -544,6 +516,9 @@
   <plurals name="MessageRequestProfileView_members">
     <item quantity="other">%1$d個成員</item>
   </plurals>
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="other">%1$d成員(+%2$d已被邀請)</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="other">%d其他</item>
   </plurals>
@@ -611,7 +586,7 @@
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">解除封鎖此聯絡人？</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">您將可以再次收到來自此聯絡人的訊息與通話。</string>
   <string name="RecipientPreferenceActivity_unblock_this_group_question">解除封鎖這個群組？</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_description">現存的組員將可以再次將你加入群組。</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_description">現有的成員將可以再次將你加入群組。</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">離開群組時發生錯誤</string>
   <string name="RecipientPreferenceActivity_unblock">解除封鎖</string>
   <string name="RecipientPreferenceActivity_enabled">啟用</string>
@@ -1592,8 +1567,6 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">遷移 Signal 資料庫</string>
   <string name="PushDecryptJob_new_locked_message">新鎖定的訊息</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">解鎖以查看待處理的訊息</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">解鎖以完成更新</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">請解鎖 Signal 以完成更新</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">備份密碼</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">備份將會儲存到外部儲存空間，並以下方的密碼加密。你必須擁有這個密碼來還原此備份。</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">我已經寫下密碼。沒有密碼，我將無法還原此備份。</string>

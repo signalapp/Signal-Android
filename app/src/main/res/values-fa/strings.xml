@@ -347,34 +347,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">اشتراک گذاری با</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">انتخاب چندگانهٔ پیوست‌ها فقط برای عکس‌ها و ویدئوها پشتیبانی می‌شود.</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">به Signal خوش آمدید.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure و RedPhone اکنون یک پیام‌رسان خصوصی، برای همهٔ مواقع هستند: Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">به Signal خوش آمدید!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure اکنون به Signal تغییر نام یافته است.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure و RedPhone اکنون یک برنامه هستند: Signal. برای اطلاعات بیشتر ضربه بزنید.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">به تماس‌های تصویری امن سلام کنید.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal اکنون از تماس تصویری امن پشتیبانی می‌کند. یک تماس عادی Signal شروع کنید، روی دکمهٔ ویدئو ضربه بزنید و برای یکدیگر دست تکان دهید.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal اکنون تماس‌های تصویری امن را پشتیبانی می‌کند.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal اکنون از تماس تصویری امن پشتیبانی می‌کند. برای اطلاعات بیشتر ضربه بزنید.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">برای نمای نزدیک خود آماده‌اید؟</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">حال می‌‌توانید عکس پروفایل و نام خود را با دوستان روی Signal به اشتراک بگذارید</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">نمایه‌های Signal اینجا هستند</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">معرفی نشانگرهای نوشتن</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">اکنون می‌توانید زمان نوشته شدن پیام‌ها را ببینید و با دیگران به اشتراک بگذارید.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">می‌‌خواهید آن‌ها را همین حالا فعال کنید؟</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">نشانگر‌های نوشتن اینجا هستند</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">فعال‌سازی نشانگرهای نوشتن</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">فعال‌کردن نشانگرهای نوشتن</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">نه ممنون</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">معرفی پیش‌نمایش‌های پیوند</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">پیش‌نمایش‌های پیوند اکنون به صورت اختیاری برای برخی از شناخته‌شده‌ترین سایت‌ها روی اینترنت پشتیبانی می‌شوند.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">شما هر موقع که بخواهید می‌توانید این ویژگی را در تنظیمات Signal فعال یا غیرفعال کنید (حریم خصوصی ← ارسال پیش‌نمایش‌های پیوند).</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">فهمیدم</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">معرفی استیکرها</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">چرا از کلمات استفاده کنیم زمانی که می‌توانیم از استیکر استفاده کنیم؟</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">چرا از کلمات استفاده کنیم زمانی که می‌توانیم از استیکر استفاده کنیم؟ بر روی این نگارک روی صفحه‌کلید خود ضربه بزنید:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">بزن بریم</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">در حال بازیابی یک پیام…</string>
   <!--GcmRefreshJob-->
@@ -628,14 +600,14 @@
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">مسدود کردن این مخاطب؟</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">شما ديگر هیچ تماس و پيامی از این مخاطب دريافت نخواهید کرد.</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group">مسدود سازی و ترک این گروه؟</string>
-  <string name="RecipientPreferenceActivity_block_group">مسدود سازی این گروه؟</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group">مسدودسازی و ترک این گروه؟</string>
+  <string name="RecipientPreferenceActivity_block_group">مسدودسازی این گروه؟</string>
   <string name="RecipientPreferenceActivity_block_and_leave_group_description">شما دیگر از این گروه پیام یا به‌روزرسانی دریافت نخواهید کرد.</string>
   <string name="RecipientPreferenceActivity_block">مسدود سازی</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">رفع مسدودیت این مخاطب؟</string>
-  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">شما مجددا قادر به دریافت پیام و تماس از این مخاطب خواهید بود.</string>
+  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">شما دوباره قادر به دریافت پیام و تماس از این مخاطب خواهید بود.</string>
   <string name="RecipientPreferenceActivity_unblock_this_group_question">رفع مسدودیت این گروه؟</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_description">اعضا موجود قادر خواهند بود مجددا شما را به گروه اضافه کنند.</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_description">اعضا فعلی قادر خواهند بود دوباره شما را به گروه اضافه کنند.</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">خطا در ترک گروه</string>
   <string name="RecipientPreferenceActivity_unblock">رفع مسدودیت</string>
   <string name="RecipientPreferenceActivity_enabled">فعال</string>
@@ -653,7 +625,7 @@
   <string name="RedPhone_recipient_unavailable">گیرنده در دسترس نیست</string>
   <string name="RedPhone_network_failed">خرابی شبکه!</string>
   <string name="RedPhone_number_not_registered">شماره ثبت نشده است!</string>
-  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">شماره ای که گرفتید از تماس امن پشتیبانی نمی کند!</string>
+  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">شماره‌ای که گرفتید از تماس امن پشتیبانی نمی کند!</string>
   <string name="RedPhone_got_it">فهمیدم</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">کشور خود را انتخاب کنید</string>
@@ -683,7 +655,7 @@
     <item quantity="other">شما  %d قدم از ارسال گزارش اشکال‌زدایی فاصله دارید.</item>
   </plurals>
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">ما باید تایید کنیم که شما یک انسان هستید.</string>
-  <string name="RegistrationActivity_failed_to_verify_the_captcha">عدم موفقیت در تایید کپچا</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">عدم موفقیت در تأیید کپچا</string>
   <string name="RegistrationActivity_next">بعدی</string>
   <string name="RegistrationActivity_continue">ادامه</string>
   <string name="RegistrationActivity_continue_d_attempts_left">ادامه (%d کوشش باقی مانده است)</string>
@@ -782,8 +754,8 @@
   <string name="ThreadRecord_s_is_on_signal">%s به Signal پیوست!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">پیام های ناپدید شونده غیر فعال شدند</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">زمان پیام ناپدید شونده  روی %s تنظیم شد</string>
-  <string name="ThreadRecord_safety_number_changed">شماره امنیتی تغییر یافت</string>
-  <string name="ThreadRecord_your_safety_number_with_s_has_changed">شماره امنیتی شما با %s تغییر یافت.</string>
+  <string name="ThreadRecord_safety_number_changed">شمارهٔ امنیتی تغییر یافت</string>
+  <string name="ThreadRecord_your_safety_number_with_s_has_changed">شمارهٔ امنیتی شما با %s تغییر یافت.</string>
   <string name="ThreadRecord_you_marked_verified">شما تایید شده علامت زدید</string>
   <string name="ThreadRecord_you_marked_unverified">شما تایید نشده علامت زدید</string>
   <string name="ThreadRecord_message_could_not_be_processed">پیام قابل پردازش نمی باشد</string>
@@ -813,9 +785,9 @@
   <string name="UsernameEditFragment_successfully_removed_username">نام کاربری با موفقیت حذف شد.</string>
   <string name="UsernameEditFragment_encountered_a_network_error">خطای شبکه رخ داد.</string>
   <string name="UsernameEditFragment_this_username_is_taken">این نام کاربری گرفته شده است.</string>
-  <string name="UsernameEditFragment_this_username_is_available">این نام کاربری در دسترس می باشد.</string>
+  <string name="UsernameEditFragment_this_username_is_available">این نام کاربری در دسترس است.</string>
   <string name="UsernameEditFragment_usernames_can_only_include">نام‌های کاربری فقط می توانند شامل a-Z ،0-9 و _ باشند.</string>
-  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">نام‌ های کاربری نمی توانند با یک عدد آغاز شوند.</string>
+  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">نام‌های کاربری نمی‌توانند با عدد آغاز شوند.</string>
   <string name="UsernameEditFragment_username_is_invalid">نام کاربری نامعتبر است.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">نام‌های کاربری باید بین %1$d و %2$d کاراکتر باشند.</string>
   <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">دیگر کاربران Signal می‌توانند از طریق نام کاربری و بدون نیاز به دانستن شمارهٔ همراه شما درخواستِ پیام ارسال کنند. انتخاب نام کاربری اختیاری است.</string>
@@ -1063,7 +1035,7 @@
     <item quantity="one">%d ساعت</item>
     <item quantity="other">%d ساعت</item>
   </plurals>
-  <string name="expiration_hours_abbreviated">%dس</string>
+  <string name="expiration_hours_abbreviated">%d ساعت</string>
   <plurals name="expiration_days">
     <item quantity="one">%d روز</item>
     <item quantity="other">%d روز</item>
@@ -1265,7 +1237,7 @@
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%dس</item>
-    <item quantity="other">%dس</item>
+    <item quantity="other">%d ساعت</item>
   </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">پیامک و فراپیام</string>
@@ -1408,7 +1380,7 @@
   <!--conversation_context_reacction-->
   <string name="conversation_context__reaction_multi_select">انتخاب چندگانه</string>
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">ذخیره پیوست</string>
+  <string name="conversation_context_image__save_attachment">ذخیره‌سازی پیوست</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">پیام‌های ناپدید شونده</string>
   <!--conversation_expiring_on-->
@@ -1418,8 +1390,8 @@
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">حذف انتخاب شده(ها)</string>
   <string name="conversation_list_batch__menu_select_all">انتخاب همه</string>
-  <string name="conversation_list_batch_archive__menu_archive_selected">بایگانی انتخاب شده</string>
-  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">خارج کردن از بایگانی انتخاب شده (ها)</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">بایگانی موارد انتخاب شده</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">خارج کردن موارد انتخاب شده از بایگانی</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">میانبر تنظیمات</string>
   <string name="conversation_list_search_description">جستجو</string>
@@ -1431,7 +1403,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">مکالمه جدید</string>
   <string name="conversation_list_fragment__open_camera_description">باز کردن دوربین</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">صندوق ورودی خود را پر کنید. اینکار را با پیام دادن به یک دوست می توانید شروع کنید.</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">صندوق ورودی خود را پر کنید. اینکار را با پیام دادن به یک دوست می‌توانید شروع کنید.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">تنظیم مجدد نشست امن</string>
   <!--conversation_muted-->
@@ -1480,9 +1452,9 @@
   <string name="reminder_header_push_title">فعال‌سازی پیام‌ها و تماس‌های Signal</string>
   <string name="reminder_header_push_text">تجربهٔ ارتباطی خود را ارتقا دهید.</string>
   <string name="reminder_header_invite_title">دعوت به Signal</string>
-  <string name="reminder_header_invite_text">مکالمه خود با %1$s را به مرحله بعد ببرید.</string>
+  <string name="reminder_header_invite_text">مکالمهٔ خود با %1$s را به مرحله بعد ببرید.</string>
   <string name="reminder_header_share_title">دوستان خود را دعوت کنید!</string>
-  <string name="reminder_header_share_text">هر چه دوستان بیشتری از Signal استفاده کنند، بهتر خواهد شد.</string>
+  <string name="reminder_header_share_text">هر چه دوستان بیشتری از Signal استفاده کنند، بهتر می‌شود.</string>
   <string name="reminder_header_service_outage_text">Signal با مشکلات فنی روبرو است. ما سخت در تلاش برای بازگردانی هرچه سریع‌تر سرویس هستیم.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">آخرین قابلیت‌های Signal روی این نسخه از اندروید کار نخواهند کرد. لطفاً این دستگاه را ارتقا دهید تا به‌روزرسانی‌های بعدی Signal را دریافت کنید.</string>
   <string name="reminder_header_progress">%%%1$d</string>
@@ -1563,7 +1535,7 @@
   <string name="KbsSplashFragment__create_your_pin">پین خود را ایجاد کنید</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">پین Signal خود را وارد کنید</string>
-  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">برای کمک به شما در به خاطر سپردن پین خود، ما به صورت دوره ای از شما خواهیم خواست تا آن را وارد کنید. با گذر زمان آن را کمتر از شما خواهیم خواست.</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">برای کمک به شما در به‌خاطرسپاری پین، آن را به صورت دوره‌ای از شما می‌پرسیم. با گذر زمان این‌ کار را کمتر انجام خواهیم داد.</string>
   <string name="KbsReminderDialog__skip">پرش</string>
   <string name="KbsReminderDialog__submit">ارسال</string>
   <string name="KbsReminderDialog__forgot_pin">پین را فراموش کرده اید؟</string>
@@ -1634,8 +1606,6 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">در حال انتقال پایگاه داده Signal</string>
   <string name="PushDecryptJob_new_locked_message">پیام قفل شده جدید</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">جهت دیدن پیام های در حال انتظار قفل را باز کنید</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">قفل را جهت تکمیل به‌روزرسانی باز کنید</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">لطفاً قفل Signal را جهت تکمیل به‌روزرسانی باز کنید</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">گذرواژهٔ پشتیبان‌گیری</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">پشتیبان‌ها روی یک حافظهٔ خارجی ذخیره و با گذرواژهٔ زیر رمزنگاری خواهند شد. شما برای بازگردانی پشتیبان خود باید گذرواژهٔ زیر را داشته باشید.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">من این گذرواژه را یادداشت کرده‌ام. بدون آن، قادر به بازگردانی پشتیبان خود نخواهم بود.</string>
@@ -1659,7 +1629,7 @@
   <string name="RegistrationActivity_backup_timestamp_s">برچسب زمان پشتیبان: %s</string>
   <string name="BackupDialog_enable_local_backups">فعال‌سازی پشتیبان‌های محلی؟</string>
   <string name="BackupDialog_enable_backups">فعال‌سازی پشتیبان‌ها</string>
-  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">لطفاً فهم خود را با علامت زدن جعبه نشان دهید.</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">لطفاً تأیید خود را با علامت زدن جعبه نشان دهید.</string>
   <string name="BackupDialog_delete_backups">حذف پشتیبان‌ها؟</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">غیرفعال کردن و پاک کردن تمامی پشتیبان‌های محلی؟</string>
   <string name="BackupDialog_delete_backups_statement">حذف پشتیبان‌ها</string>

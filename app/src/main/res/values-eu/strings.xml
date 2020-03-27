@@ -344,34 +344,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Norekin konpartitu</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Eranskin anitzak bakarrik irudi eta bideoetan onartzen dira</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Ongi etorri Signalera!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure eta RedPhone mezulari pribatua bakar bat dira orain, edozein egoeratako.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Ongi etorri Signalera!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure orain Signal da.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure eta RedPhone aplikazio bera da orain: Signal.  Ukitu arakatzeko.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Kaixo esan bideodei seguruei</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal orain bideodei seguruak egiteko gai da. Besterik gabe, hasi  Signal dei normal bat, ukitu bideo botoia eta kaixo esan. </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal orain bideodei seguruak egiteko gai da.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal orain bideodei seguruak egiteko gai da. Ukitu argibide gehiago lortzeko.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Prest zaude zure gertuko argazkia hartzeko?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Signaleko zure lagunekin profileko argazkia eta izena partekatu ditzakezu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profilak heldu dira</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Idazketa jakinarazleak aurkezten.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Orain aukeran mezuak idazten ari direla erakutsi eta ikusi dezakezu.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Aktibatu nahi al duzu orain?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Idazketa jakinarazleak heldu dira</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Gaitu idazketa jakinarazleak</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Aktibatu idazketa jakinarazleak</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Ez, eskerrik asko</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Loturen aurrebistak aurkezten.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Loturen aurrebistak hautazkoak dira eta Interneteko hainbat zerbitzurekin funtzionatzen dute.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Nahi duzunean, aukera hau aktibatu eta desaktibatu dezakezu Signal aplikazioaren ezarpenetan (Pribatutasuna &gt; Loturen aurrebistak bidali).</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Ulertuta</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">Eranskailuen aurkezpena</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Zergatik erabili hitzak eranskailuak erabili ditzakezuenan?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Zertarako erabili hitzak eranskailuak erabili ditzakezunean? Ukitu ondoko ikonoa zure teklatuan:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">Goazen</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Mezu bat berreskuratzen…</string>
   <!--GcmRefreshJob-->
@@ -1621,8 +1593,6 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal-en datu-basea migratzen</string>
   <string name="PushDecryptJob_new_locked_message">Blokeatutako mezu berria</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Desblokeatu begiratu gabeko mezuak ikusteko</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Desblokeatu eguneratzea burutzeko</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Desblokeatu Signal eguneratzea burutzeko</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Babeskopiaren pasaesaldia</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Babeskopiak kanpoko memoria batean gordeko dira beheko pasaesaldiarekin enkriptatuta. Pasaesaldi hau eduki behar duzu babeskopia bat berreskuratzeko.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Pasaesaldia gorde dut. Hori gabe, ezin izango dut babeskopia bat berreskuratu.</string>

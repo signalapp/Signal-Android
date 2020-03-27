@@ -343,33 +343,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Del med</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Flere vedlegg støttes bare for bilder og videoer</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Velkommen til Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure og RedPhone er nå ett program for privat kommunikasjon, til alle formål: Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Velkommen til Signal!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure er nå Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure og RedPhone er nå ett program: Signal. Trykk for å utforske.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Si hei til sikre videosamtaler.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal støtter nå sikker videosamtaler. Bare start et signalanrop som normalt, trykk på videoknappen og vink hei.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal støtter nå sikker videosamtaler.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal støtter nå sikker videosamtaler. Trykk for å utforske.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Klar for nærbilde?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Nå kan du dele et profilbilde og et navn med venner på Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal introduserer profiler</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Vi presenterer skriveindikatorer.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Nå kan du velge å se og dele når meldinger blir skrevet.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Vil du aktivere dem nå?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Skriveindikatorer er her</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Aktiver skriveindikatorer</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Slå på skriverindikatorer</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Nei takk</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Vi presenterer linkforhåndsvisninger.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Valgfrie linkforhåndsvisninger støttes nå for noen av de mest populære nettstedene på Internett.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Du kan deaktivere eller aktivere denne funksjonen når som helst i innstillingene for Signal (Personvern &gt; Send linkforhåndsvisninger).</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Ålreit</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">Presenterer klistremerker</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Hvorfor bruke ord når du kan bruke klistremerker?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Hvorfor bruke ord når du kan bruke klistremerker? Trykk på dette ikonet på tastaturet ditt:</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Mottar en melding…</string>
   <!--GcmRefreshJob-->
@@ -1557,8 +1530,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Flytter Signal-database</string>
   <string name="PushDecryptJob_new_locked_message">Ny låst melding</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Lås opp for å vise ventende meldinger</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Lås opp for å fullføre oppdatering</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Lås opp Signal for å fullføre oppdatering</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Passordfrase for sikkerhetskopi</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Sikkerhetskopier blir lagret på eksterne enheter og kryptert med passordfrasen nedenfor. Du må skrive inn denne passordfrasen for å kunne gjennopprette fra en sikkerhetskopi.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Jeg har notert passordfrasen. Uten denne blir det umulig å bruke sikkerhetskopien til gjenoppretting.</string>

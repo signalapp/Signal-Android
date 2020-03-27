@@ -346,34 +346,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Paylaşılacak kişi</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Çoklu ekler sadece resim ve dosyalarda destekleniyor</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Signal\'e hoşgeldiniz.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure ve RedPhone artık tek bir özel haberleşme uygulaması: Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Signal\'e hoşgeldiniz!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure\'un adı artık Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure ve RedPhone artık tek bir uygulama: Signal. Keşfetmek için dokunun.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Güvenli görüntülü aramalara merhaba deyin.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal artık güvenli görüntülü aramayı destekliyor. Her zamanki gibi bir Signal araması başlatın, video düğmesine dokunun ve selam verin.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal şimdi güvenli görüntülü aramayı destekliyor.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal artık güvenli görüntülü aramayı destekliyor. Keşfetmek için dokunun.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Yakın çekime hazır mısınız?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Artık Signal\'deki arkadaşlarınızla isminizi ve profil fotoğrafınızı paylaşabilirsiniz</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profilleri geldi</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Yazma göstergeleriyle tanışın.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Artık iletilerin yazıldığını görme ve paylaşma seçeneğine sahipsiniz.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Şimdi etkinleştirmek ister misiniz?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Yazma göstergeleri geldi</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Yazma göstergelerini etkinleştrin.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Yazma göstergelerini aç</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Hayır teşekkürler</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Bağlantı ön izlemeleri ile tanışın.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">İsteğe bağlı bağlantı ön izlemeleri artık İnternet\'teki bazı gözde siteler için desteklenmektedir.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Bu özelliği istediğiniz zaman Signal ayarlarınızdan (Gizlilik &gt; Bağlantı ön izlemelerini gönder). etkinleştirebilir veya devre dışı bırakabilirsiniz.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Anladım</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">Karşınızda çıkartmalar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Çıkartma kullanabilecek iken neden kelimeler kullanasınız?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Çıkartma kullanabilecek iken neden kelimeler kullanasınız? Klavyenizdeki bu simgeye dokunun:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">Hadi başlayalım</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Bir ileti alınıyor…</string>
   <!--GcmRefreshJob-->
@@ -1624,8 +1596,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal veritabanı taşınıyor</string>
   <string name="PushDecryptJob_new_locked_message">Yeni kilitli ileti</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Bekleyen iletileri görüntülemek için kilidi açın</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Güncellemeyi tamamlamak için kilidi açın</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Güncellemeyi tamamlamak için lütfen Signal kilidini açın</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Yedek parolası</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Yedekler harici depolama alanına kaydedilecek ve aşağıdaki parola ile şifrelenecektir. Yedeği geri yüklemek için bu parolaya sahip olmanız gereklidir.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Bu parolayı kaydettim. Parola olmadan yedeği geri yükleyemem.</string>

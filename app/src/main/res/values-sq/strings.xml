@@ -7,7 +7,7 @@
   <string name="save">Ruaje</string>
   <string name="note_to_self">Shënim për Veten</string>
   <!--AbstractNotificationBuilder-->
-  <string name="AbstractNotificationBuilder_new_message">Lajm i ri</string>
+  <string name="AbstractNotificationBuilder_new_message">Mesazh i ri</string>
   <!--AlbumThumbnailView-->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal-i po përditësohet…</string>
@@ -216,7 +216,7 @@
   <string name="ConversationActivity_block">Bllokoje</string>
   <string name="ConversationActivity_block_and_delete">Bllokoje dhe fshije</string>
   <string name="ConversationActivity_cancel">Anuloje</string>
-  <string name="ConversationActivity_delete_conversation">Fshij bisedën?</string>
+  <string name="ConversationActivity_delete_conversation">Të fshihet biseda?</string>
   <string name="ConversationActivity_delete_and_leave_group">Të fshihet dhe braktiset grupi?</string>
   <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Kjo bisedë do të fshihet prej krejt pajisjeve tuaja.</string>
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Do ta braktisni këtë grup dhe do të fshihet prej krejt pajisjeve tuaja.</string>
@@ -347,34 +347,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Ndaje me</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Disa bashkëngjitje njëherësh mbulohen vetëm për figura dhe video</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Mirë se vini në Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">Tanimë TextSecure dhe RedPhone janë një shkëmbyes mesazhesh private i vetëm, për çdo situatë: Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Mirë se vini në Signal!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure është tash Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">Tanimë TextSecure dhe RedPhone janë një aplikacion. Prekeni që ta eksploroni.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Urojini mirëseardhjen thirrjeve video të siguruara.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal-i tanimë mbulon thirrje video të siguruara. Thjesht filloni një thirrje Singal si zakonisht, prekni butonin e videos, dhe përshëndetni palën tjetër.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal-i tanimë mbulon thirrje video të siguruara.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal-i tanimë mbulon thirrje video të siguruara. Prekeni që ta eksploroni.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Gati për një pamje nga afër?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Tani në Signal mund të ndani me shokët foto dhe emër profili</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profilet Signal gjenden këtu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Ju paraqesim indikatorë shtypjeje</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Tani mund të shihni, në daçi, kur shtypen mesazhe.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Doni të aktivizohen që tani</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Mbërritën indikatorët e shtypjes</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Aktivizoni indikatorë shtypjeje</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Vërini në punë indikatorët e shtypjes</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Jo, faleminderit</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Paraqitje e paraparjeve të lidhjeve.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Tanimë mbulohet paraparja opsionale e lidhjeve për disa nga sajtet më popullorë në Internet.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Këtë veçori mund ta aktivizoni ose çaktivizoni në çfarëdo kohe, te rregullimet tuaja të Signal-it (Privatësi &gt; Dërgo paraparje lidhjesh).</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">U mor</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">Ju prezantojmë ngjitësat</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Pse të përdorni fjalë, kur mund të përdorni ngjitës?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Pse të përdorni fjalë, kur mund të përdorni ngjitës? Prekeni këtë ikonë në tastierën tuaj:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">Shkojmë</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Po merret një mesazh…</string>
   <!--GcmRefreshJob-->
@@ -437,7 +409,7 @@
   <string name="Job_working_in_the_background">Po punohet në prapaskenë…</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Dështoi dërgimi</string>
-  <string name="MessageDetailsRecipient_new_safety_number">Numër sigurie i ri</string>
+  <string name="MessageDetailsRecipient_new_safety_number">Numër i ri sigurie</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">S\’arrihet të gjendet mesazh</string>
   <string name="LongMessageActivity_message_from_s">Mesazh prej %1$s</string>
@@ -565,6 +537,10 @@
   <plurals name="MessageRequestProfileView_members">
     <item quantity="one">%1$d anëtar</item>
     <item quantity="other">%1$d anëtarë</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d anëtar (+%2$d të ftuar)</item>
+    <item quantity="other">%1$d anëtarë (+%2$d të ftuar)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d tjetër</item>
@@ -932,7 +908,7 @@
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Numri i sigurisë për bisedën tuaj me %1$s ka ndryshuar. Kjo mund të jetë shenjë se ose sepse dikush po rreket të përgjojë komunikimin tuaj, ose se %2$s thjesht ka riinstaluar Signal-in.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Mund të donit të verifikonit numrin tuaj të sigurisë me këtë kontakt.</string>
-  <string name="WebRtcCallScreen_new_safety_number_title">Numër sigurie i ri</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Numër i ri sigurie</string>
   <string name="WebRtcCallScreen_accept">Pranoje</string>
   <string name="WebRtcCallScreen_end_call">Përfundoje thirrjen</string>
   <!--WebRtcCallControls-->
@@ -1633,8 +1609,6 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Po migrohet baza e të dhënave Signal</string>
   <string name="PushDecryptJob_new_locked_message">Mesazhe të rinj të kyçur</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Shkyçeni që të shihni mesazhet pezull</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Shkyçeni që të plotësohet përditësimi</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Ju lutemi, shkyçeni Signal-in që të plotësohet përditësimi</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Frazëkalim kopjeruajtjesh</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Kopjeruajtjet do të ruhen te depozitë e jashtme dhe fshehtëzohen me frazëkalimin më poshtë. Duhet të keni këtë frazëkalim, pa të mundeni të riktheni një kopjeruajtje</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">E kam shkruar diku këtë frazëkalim. Pa të, s\’do të jem në gjendje të rikthej një kopjeruajtje</string>
@@ -1664,7 +1638,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="BackupDialog_delete_backups_statement">Fshiji kopjeruajtjet</string>
   <string name="BackupDialog_copied_to_clipboard">U kopjua në të papastër</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Jepni frazëkalimin tuaj të kopjeruajtjes që duhet verifikuar</string>
-  <string name="BackupDialog_verify">Verifiko</string>
+  <string name="BackupDialog_verify">Verifikoje</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">E dhatë me sukses frazëkalimin tuaj të kopjeruajtjes</string>
   <string name="BackupDialog_passphrase_was_not_correct">Frazëkalimi s’qe i saktë</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Që të mund të krijohen kopjeruajtje, Signal-i lyp leje mbi depozitë të jashtme, por kjo i është mohuar. Ju lutemi, kaloni te rregullime aplikacioni, përzgjidhni \"Leje\" dhe aktivizoni \"Depozitim\".</string>

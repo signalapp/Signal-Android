@@ -313,30 +313,6 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ਇਹ ਡਿਵਾਈਸ ਪਲੇ ਸੇਵਾਵਾਂ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦੀ. ਸਿਸਟਮ ਬੈਟਰੀ ਅਨੁਕੂਲਤਾ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਉਣ ਲਈ ਟੈਪ ਕਰੋ ਜੋ ਕਿ Signal ਨੂੰ ਨਾ-ਸਰਗਰਮ ਹੋਣ ਵੇਲੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਮੁੜ ਪ੍ਰਾਪਤ ਕਰਨ ਤੋਂ ਰੋਕਦੇ ਹਨ.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">ਨਾਲ ਸ਼ੇਅਰ ਕਰੋ</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Signal ਵਿੱਚ ਤੁਹਾਡਾ ਸੁਆਗਤ ਹੈ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure ਅਤੇ RedPhone ਹੁਣ ਇਕ ਪ੍ਰਾਈਵੇਟ ਸੰਦੇਸ਼ਵਾਹਕ ਹਨ, ਹਰੇਕ ਸਥਿਤੀ ਲਈ: Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Signal ਵਿੱਚ ਤੁਹਾਡਾ ਸੁਆਗਤ ਹੈ !</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure ਹੁਣ Signal ਹੈ </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure ਅਤੇ RedPhone  ਹੁਣ ਇਕੋ ਐੱਪ ਹਨ : Signal | ਐਕਸਪਲੋਰ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">ਸੁਰੱਖਿਅਤ ਵੀਡੀਓ ਕਾਲਾਂ ਨੂੰ ਹੈਲੋ ਕਹੋ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal ਹੁਣ ਸੁਰੱਖਿਅਤ ਵੀਡੀਓ ਕਾਲਿੰਗ ਦਾ ਸਮਰਥਨ ਕਰਦਾ ਹੈ. ਬਸ ਸਧਾਰਨ ਤੌਰ \'ਤੇ ਇੱਕ Signal ਕਾਲ ਸ਼ੁਰੂ ਕਰੋ, ਵੀਡੀਓ ਬਟਨ ਨੂੰ ਟੈਪ ਕਰੋ, ਅਤੇ ਹੈਲੋ ਕਹੋ .</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal ਤੇ ਹੁਣ ਤੁਸੀਂ ਸੁਰੱਖਿਅਤ ਵੀਡੀਓ ਕਾਲਿੰਗ ਕਰ ਸਕਦੇ ਹੋ </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal ਤੇ ਹੁਣ ਤੁਸੀਂ ਸੁਰੱਖਿਅਤ ਵੀਡੀਓ ਕਾਲਿੰਗ ਕਰ ਸਕਦੇ ਹੋ | ਐਕਸਪਲੋਰ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">ਆਪਣੇ ਨਜ਼ਦੀਕੀ ਲਈ ਤਿਆਰ?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">ਹੁਣ ਤੁਸੀਂ Signal \'ਤੇ ਦੋਸਤਾਂ ਦੇ ਨਾਲ ਪ੍ਰੋਫਾਇਲ ਫੋਟੋ ਅਤੇ ਨਾਮ ਸਾਂਝਾ ਕਰ ਸਕਦੇ ਹੋ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal ਪ੍ਰੋਫਾਈਲਾਂ ਇੱਥੇ ਹਨ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">ਟਾਈਪਿੰਗ ਸੂਚਕਾਂ ਨੂੰ ਪੇਸ਼ ਕਰ ਰਹੇ ਹਨ </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">ਹੁਣ ਤੁਸੀਂ ਚੋਣਵੇਂ ਰੂਪ ਵਿੱਚ ਦੇਖ ਸਕਦੇ ਹੋ ਅਤੇ ਸ਼ੇਅਰ ਕਰ ਸਕਦੇ ਹੋ ਜਦੋਂ ਸੁਨੇਹੇ ਟਾਈਪ ਕੀਤੇ ਜਾ ਰਹੇ ਹਨ.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">ਕੀ ਤੁਸੀਂ ਉਹਨਾਂ ਨੂੰ ਹੁਣੇ ਸਮਰੱਥ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">ਟਾਈਪਿੰਗ ਸੂਚਕ ਇੱਥੇ ਹਨ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">ਟਾਈਪਿੰਗ ਸੂਚਕ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">ਟਾਈਪਿੰਗ ਸੂਚਕ ਚਾਲੂ ਕਰੋ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">ਨਹੀਂ ਧੰਨਵਾਦ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">ਲਿੰਕ ਪੂਰਵਦਰਸ਼ਨ ਪੇਸ਼ ਕੀਤੇ ਜਾ ਰਹੇ ਹਨ </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">ਅਖ਼ਤਿਆਰੀ ਲਿੰਕ ਪ੍ਰੀਵਿਊ ਹੁਣ ਇੰਟਰਨੈਟ ਤੇ ਬਹੁਤ ਸਾਰੀਆਂ ਪ੍ਰਸਿੱਧ ਸਾਈਟਾਂ ਲਈ ਸਮਰਥਿਤ ਹੈ.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">ਤੁਸੀਂ ਆਪਣੀ Signal ਸੈਟਿੰਗਜ਼ ਵਿੱਚ ਕਿਸੇ ਵੀ ਸਮੇਂ ਇਸ ਵਿਸ਼ੇਸ਼ਤਾ ਨੂੰ ਅਸਮਰੱਥ ਜਾਂ ਸਮਰੱਥ ਬਣਾ ਸਕਦੇ ਹੋ | (Privacy &gt; Send link previews).</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">ਮਿਲ ਗਿਆ</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">ਸੁਨੇਹਾ ਪ੍ਰਾਪਤ ਕਰ ਰਿਹਾ ਹੈ …</string>
   <!--GcmRefreshJob-->
@@ -1364,8 +1340,6 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal ਡਾਟਾਬੇਸ ਮਾਈਗ੍ਰੇਟ ਹੋ ਰਿਹਾ ਹੈ</string>
   <string name="PushDecryptJob_new_locked_message">ਨਵਾਂ ਲੌਕ ਕੀਤਾ ਸੁਨੇਹਾ</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">ਬਕਾਇਆ ਸੁਨੇਹੇ ਵੇਖਣ ਲਈ ਅਨਲੌਕ ਕਰੋ</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">ਅਪਡੇਟ ਨੂੰ ਪੂਰਾ ਕਰਨ ਲਈ ਅਨਲੌਕ ਕਰੋ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">ਕਿਰਪਾ ਕਰਕੇ ਅਪਡੇਟ ਨੂੰ ਪੂਰਾ ਕਰਨ ਲਈ Signal ਅਨਲੌਕ ਕਰੋ</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">ਬੈਕਅਪ ਪਾਸਫਰੇਜ</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">ਬੈਕਅਪ ਬਾਹਰੀ ਸਟੋਰੇਜ ਵਿੱਚ ਸੁਰੱਖਿਅਤ ਕੀਤੇ ਜਾਣਗੇ ਅਤੇ ਹੇਠਾਂ ਪਾਸਫਰੇਜ ਨਾਲ ਏਨਕ੍ਰਿਪਟ ਕੀਤੇ ਜਾਣਗੇ. ਬੈਕਅੱਪ ਨੂੰ ਰੀਸਟੋਰ ਕਰਨ ਲਈ ਤੁਹਾਡੇ ਕੋਲ ਇਹ ਪਾਸਫਰੇਜ ਹੋਣਾ ਲਾਜ਼ਮੀ ਹੈ.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">ਮੈਂ ਇਹ ਪਾਸਫਰੇਜ ਲਿੱਖ ਲਿਆ ਹੈ. ਇਸ ਤੋਂ ਬਿਨਾਂ, ਮੈਂ ਬੈਕਅੱਪ ਨੂੰ ਰੀਸਟੋਰ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ ਹੋਵਾਂਗਾ.</string>

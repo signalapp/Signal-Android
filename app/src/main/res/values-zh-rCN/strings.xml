@@ -312,34 +312,6 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">该设备不支持 Google Play 服务。点击禁用系统电池优化，防止 Signal 非活动时无法获取新消息。</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">分享至</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">欢迎使用 Signal。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure 和 RedPhone 现在合二为一，适用于各种平台的隐私通信应用：Signal。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">欢迎使用 Signal。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure 现在更名为 Signal。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure 和 RedPhone 以合并为一个应用：Signal。点击开始体验。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">新功能：加密视频通话。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal 现在支持加密视频通话了！正常方式打开 Signal 通话，点击视频按钮，即可视频聊天。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal 现在支持加密视频通话。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal 现在支持加密视频通话，点击体验。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">来张自拍的大头贴？</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">现在，可在 Signal 上分享个人头像和名称给好友</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal 推出个人资料功能</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">新推出“正在输入”提示功能。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">现在，可选择分享和查看输入状态了。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">马上启用该功能？</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">新推出“正在输入”提示功能</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">启用“正在输入”提示</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">打开“正在输入”提示功能</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">不，谢谢。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">新推出“链接预览”功能。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">可选的链接预览功能，支持互联网最热门站点。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">可随时在 Signal 设置中启用或禁用该功能（隐私 &gt; 发送链接预览）。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">知道了</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">新推出“表情包”功能</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">既然可以用表情，为何还要打字呢？</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">既然可以用表情，为何还要打字呢？点击键盘上的这个图标：</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">开始吧</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">检索消息中…</string>
   <!--GcmRefreshJob-->
@@ -1535,8 +1507,6 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">迁移 Signal 数据库</string>
   <string name="PushDecryptJob_new_locked_message">新的锁定消息</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">解锁查看待处理消息</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">解锁完成更新</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">请解锁 Signal 完成更新</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">备份密码</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">备份将保存至外部存储，并使用以下密码加密。备份恢复时需使用该密码。</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">我也记下该密码。没有密码，将无法恢复备份。</string>

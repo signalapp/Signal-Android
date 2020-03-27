@@ -346,34 +346,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">ಜೊತೆ ಹಂಚಿಕೊಳ್ಳಿ </string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">ಬಹು ಲಗತ್ತುಗಳನ್ನು ಕೇವಲ ಚಿತ್ರಗಳು ಮತ್ತು ವೀಡಿಯೋಗಳಿಗೆ ಬೆಂಬಲಿಸಲಾಗಿರುತ್ತದೆ</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Signalಗೆ ಸ್ವಾಗತ.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure ಮತ್ತು Redphone ಈಗ ಒಂದೆ ಖಾಸಗಿ ಮೆಸೆಂಜರ್, ಪ್ರತಿ ಸನ್ನಿವೇಶಕ್ಕೂ: Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Signalಗೆ ಸ್ವಾಗತ!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure ಈಗ Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure ಮತ್ತು Redphone ಈಗ ಒಂದೆ ಆ್ಯಪ್‌: Signal. ಅನ್ವೇಷಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">ವೀಡಿಯೊ ಕರೆಗಳನ್ನು ಸುರಕ್ಷಿತಗೊಳಿಸಲು ಹಲೋ ಹೇಳಿ.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls"> ಈಗ Signal ಸೆಕ್ಯೂರ್ ವೀಡಿಯೋ ಕಾಲಿಂಗ್ ಅನ್ನು ಬೆಂಬಲಿಸುತ್ತದೆ. ಕೇವಲ Signal ಕರೆಯನ್ನು ಸಹಜವಾಗಿ ಆರಂಭಿಸಿ, ವೀಡಿಯೋ ಬಟನ್ ಟ್ಯಾಪ್ ಮಾಡಿ ಮತ್ತು ಹಲೋ ಎಂದು ವೇವ್ ಮಾಡಿ.  </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal ಸುರಕ್ಷಿತ ವೀಡಿಯೊ ಕರೆ ಬೆಂಬಲಿಸುತ್ತದೆ.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal ಈಗ ಸೆಕ್ಯೂರ್ ವೀಡಿಯೊ ಕಾಲಿಂಗ್ ಅನ್ನು ಬೆಂಬಲಿಸುತ್ತದೆ. ಹುಡುಕಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">ನಿಮ್ಮ ಕ್ಲೋಸಪ್ ಗೆ ಸಿದ್ಧವಾಗಿದ್ದೀರಾ?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">ಈಗ Signal ನಲ್ಲಿ ನೀವು ಪ್ರೊಫೈಲ್ ಫೋಟೋವನ್ನು ಮತ್ತು ಹೆಸರನ್ನು ಸ್ನೇಹಿತರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಬಹುದು </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal ಫೈಲ್‌ಗಳು ಇಲ್ಲಿವೆ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">ಟೈಪಿಂಗ್  ಇಂಡಿಕೇಟರ್‌ ಗಳನ್ನು ಪರಿಚಯಿಸಲಾಗುತ್ತಿದೆ.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">ಈಗ ನೀವು ಸಂದೇಶಗಳನ್ನು ಟೈಪ್ ಮಾಡುತ್ತಿರುವಾಗ ನೀವು ಐಚ್ಛಿಕವಾಗಿ ನೋಡಬಹುದು ಮತ್ತು ಹಂಚಿಕೊಳ್ಳಬಹುದು.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">ನೀವು ಈಗ ಅವುಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು ಇಷ್ಟಪಡುತ್ತೀರಾ?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">ಟೈಪಿಂಗ್  ಇಂಡಿಕೇಟರ್‌ ಗಳು ಇಲ್ಲಿವೆ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">ಟೈಪಿಂಗ್  ಇಂಡಿಕೇಟರ್‌ ಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">ಟೈಪಿಂಗ್ ಇಂಡಿಕೇಟರ್‌ ಗಳನ್ನು ಆನ್ ಮಾಡಿ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">ಇಲ್ಲ, ಧನ್ಯವಾದಗಳು</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">ಲಿಂಕ್ ಪೂರ್ವವೀಕ್ಷಣೆಗಳನ್ನು ಪರಿಚಯಿಸಲಾಗುತ್ತಿದೆ.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">ಐಚ್ಛಿಕವಾದ ಲಿಂಕ್ ಪೂರ್ವವೀಕ್ಷಣೆಗಳನ್ನು ಈಗ ಇಂಟರ್‌ನೆಟ್‌ನಲ್ಲಿ ಕೆಲವು ಅತ್ಯಂತ ಜನಪ್ರಿಯ ಸೈಟುಗಳಲ್ಲಿ ಬೆಂಬಲಿಸಲಾಗಿರುತ್ತದೆ. </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">ನಿಮ್ಮ Signal ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ನೀವು ಯಾವುದೇ ಸಮಯದಲ್ಲಿ ಬೇಕಾದರೂ ಈ ವೈಶಿಷ್ಟ್ಯವನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಬಹುದು ಅಥವಾ ಸಕ್ರಿಯಗೊಳಿಸಬಹುದು (ಗೌಪ್ಯತೆ &gt; ಲಿಂಕ್ ಪೂರ್ವವೀಕ್ಷಣೆಗಳನ್ನು ಕಳುಹಿಸಿ).</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">ಅರ್ಥವಾಯಿತು</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">ಸ್ಟಿಕ್ಕರ್‌ಗಳನ್ನು ಪರಿಚಯಿಸಲಾಗುತ್ತಿದೆ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">ನೀವು ಸ್ಟಿಕ್ಕರ್‌ಗಳನ್ನು ಬಳಸುವಾಗ ಪದಗಳನ್ನು ಏಕೆ ಬಳಸಬೇಕು?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon"> ನೀವು ಸ್ಟಿಕ್ಕರ್‌ಗಳನ್ನು ಬಳಸುವಾಗ ಪದಗಳನ್ನು ಏಕೆ ಬಳಸಬೇಕು? ನಿಮ್ಮ ಕೀಬೋರ್ಡ್‌ನಲ್ಲಿ ಈ ಐಕನ್ ಟ್ಯಾಪ್ ಮಾಡಿ:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">ಹೋಗೋಣ</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">ಸಂದೇಶವನ್ನು ಮರುಪಡೆಯಲಾಗುತ್ತಿದೆ…</string>
   <!--GcmRefreshJob-->
@@ -1612,8 +1584,6 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal ಡೇಟಾಬೇಸ್ ಮೈಗ್ರೇಟ್ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
   <string name="PushDecryptJob_new_locked_message">ಲಾಕ್ ಮಾಡಿರುವ ಹೊಸ ಸಂದೇಶ</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">ಬಾಕಿ ಉಳಿದಿರುವ ಸಂದೇಶಗಳನ್ನು ನೋಡಲು ಅನ್ಲಾಕ್ ಮಾಡಿ  </string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">ನವೀಕರಣ ಪೂರ್ಣಗೊಳಿಸಲು ಅನ್ಲಾಕ್ ಮಾಡಿ </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">ನವೀಕರಣ ಪೂರ್ಣಗೊಳಿಸಲು Signal ಅನ್ಲಾಕ್ ಮಾಡಿ </string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">ಬ್ಯಾಕಪ್ ಪಾಸ್‌ಫ್ರೇಸ್</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಬಾಹ್ಯ ಸ್ಟೊರೇಜ್‌ಗೆ ಉಳಿಸಲಾಗುತ್ತದೆ ಮತ್ತು ಕೆಳಗಿನ ಪಾಸ್‌ಫ್ರೇಸ್‌ನೊಂದಿಗೆ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಲಾಗುತ್ತದೆ. ಬ್ಯಾಕಪ್ ಅನ್ನು ಪುನಃ ಸ್ಥಾಪಿಸಲು ನೀವು ಈ ಪಾಸ್‌ಫ್ರೇಸ್ ಹೊಂದಿರಬೇಕು.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">ನಾನು ಈ ಪಾಸ್‌ಫ್ರೇಸ್ ಬರೆದಿದ್ದೇನೆ. ಅದು ಇಲ್ಲದೆ, ನನಗೆ ಬ್ಯಾಕಪ್ ಮರುಸ್ಥಾಪಿಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>

@@ -395,34 +395,6 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">هذا الهاتف لا يدعم خدمات Play. أنقر لإلغاء تفعيل ميزة الأداء الأمثل للبطارية والتي تمنع Signal من استقبال الرسائل عند عدم النشاط.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">شارك مع</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">أهلا بكم في Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">تم دمج TextSecure وRedPhone  في تطبيق واحد للتواصل الخاص لأي موقف: Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">أهلا بكم في Signal!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure أصبح Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">تم دمج TextSecure وRedPhone في تطبيق واحد وهو: Signal. يرجى النّقر لاستكشاف التطبيق. </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">رحّبوا باتصالات الفيديو الآمنة.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls"> يدعم Signal الآن مكالمات الفيديو الآمنة. فقط ابدأ مكالمة Signal بالطريقة الاعتيادية، قم بنقر زر الفيديو، وابدأ حديثك بالسلام.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">أصبح Signal يدعم اتصالات الفيديو الآمنة.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">أصبح Signal يدعم اتصالات الفيديو الآمنة. انقر لمعرفة المزيد.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">جاهزين لأخذ سيلفي؟</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">بإمكانكم الآن مشاركة الاسم وصورة الملف الشخصي مع أصدقائكم على Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">هنا ملفّات Signal الشخصية</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">نقدم لكم المؤشرات على الطباعة.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">يمكنكم الآن إختياريا مشاركة ورؤية مؤشّرعند طباعة الرسائل.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">هل تريدون تفعيلها الآن؟</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">وصلت المؤشرات عند الطباعة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">تفعيل المؤشرات عند الطباعة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">تشغيل المؤشرات عند الطباعة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">لا شكرا</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">نقدم لكم لمحة من الروابط.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">خيار رؤية لمحة  للروابط أصبحت الآن مدعومة لبعض أشهر مواقع الإنترنت. </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">يمكنك أن تعطل أوتفعل هذه الخاصية فى أي وقت في إعدادات Signal (الخصوصية &gt; إرسال لمحة عن الرابط).</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">عُلم</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">نقدم لكم الملصقات</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">ما جدوى استخدام الكلمات عند توفّر الملصقات؟</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">ما جدوى استخدام الكلمات عند توفّر الملصقات؟ انقر هذه الأيقونة على لوحة المفاتيح:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">هيا بنا</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">جار استعادة رسالة…</string>
   <!--GcmRefreshJob-->
@@ -1710,8 +1682,6 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">جارٍ نقل قاعدة بيانات Signal</string>
   <string name="PushDecryptJob_new_locked_message">رسالة مُقفلة جديدة</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">فك القفل لعرض الرسائل المعلّقة</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">فك القفل لمواصلة التحديث</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">يُرجى فك القفل عن Signal لإتمام التحديث</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">العبارة السرّية للنسخة الإحتياطية</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">سيتم حفظ النسخ الاحتياطية في سعة التخزين الخارجيّة وستكون مشفرة بالعبارة السرية أدناه.  من الضروري حفظ هذه العبارة من أجل استعادة أي نسخة احتياطيّة. </string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">قمت بتدوين هذه العبارة السرية. بدونها، لن يمكنني استعادة أي نسخة احتياطية.</string>

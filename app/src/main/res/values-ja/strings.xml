@@ -326,34 +326,6 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">このデバイスは Play Service をサポートしていません。Signal が非アクティブ状態でもメッセージを受信できるよう、タップしてバッテリー最適化機能を無効にしてください。</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">共有先</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Signal にようこそ。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure と RedPhone は、あらゆる状況で使えるプライベートメッセンジャー「Signal」に統合されました。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Signal にようこそ！</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure は Signal に生まれ変わりました。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure と RedPhoneは１つのアプリ「Signal」になりました。タップして詳細をご覧ください。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">セキュリティ保護されたビデオ通話へようこそ！</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal でセキュリティ保護されたビデオ通話が可能になりました。いつも通りに Signal 通話を開始し、ビデオボタンをタップして会話を始めます。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">セキュリティ保護されたビデオ通話が可能になりました。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal でセキュリティ保護されたビデオ通話が可能になりました。タップして詳細をご覧ください。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">プロフィール写真を撮る準備はいいですか？</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Signal でプロフィール名と写真を友達と共有できるようになりました</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal のプロフィールはこちらです</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">入力インジケーターのご紹介。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">メッセージが入力されていることを任意に確認し、共有できるようになりました。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">すぐに有効化しますか？</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">入力インジケーターはこちら</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">入力インジケーターを有効にする</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">入力インジケーターを表示する</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">今はやめておく</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">リンクプレビューのご紹介。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">オプションのリンクプレビューは、主要なインターネットサイトに対応しています。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">この機能は Signal の設定 (プライバシー &gt; リンクプレビューを送信) でいつでも有効・無効にできます。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">分かりました</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">ステッカーのご紹介</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">言葉だけでなくステッカーも使いましょう</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">言葉だけでなくステッカーも使いましょう。キーボード上のこのアイコンをタップしてください:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">続行</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">メッセージを取得しています…</string>
   <!--GcmRefreshJob-->
@@ -1554,8 +1526,6 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal のデータベースを移行する</string>
   <string name="PushDecryptJob_new_locked_message">ロックされた新着メッセージ</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">ロックを解除してメッセージを見る</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">ロックを解除してアップデートを完了する</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Signal のロックを解除してアップデートを完了してください</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">バックアップ用パスフレーズ </string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">バックアップは外部ストレージに保存され、下のパスフレーズで暗号化されます。バックアップを復元する場合は、このパスフレーズが必要になります。</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">パスフレーズを書き留めました。パスフレーズがなければ、バックアップは復元できません。</string>

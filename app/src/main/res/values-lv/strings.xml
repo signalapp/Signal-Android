@@ -361,34 +361,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Dalīties ar</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Vairāku pielikumu sūtīšana ir atbalstīta tikai attēliem un video</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Laipni lūdzam Signālā.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure un RedPhone tagad ir apvienoti vienā universālā aplikācijā: Signāls.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Laipni lūdzam Signal!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure tagad ir Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure un RedPhone tagad ir apvienoti vienā aplikācija: Signal. Pieskaries, lai apskatītu.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Apsveicinies ar drošajiem video zvaniem</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal tagad atbalsta drošos video zvanus. Sāc Signal zvanu, kā parasti, tad pieskaries kameras ikonai.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal tagad atbalsta drošos video zvanus.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal tagad atbalsta drošos video zvanus. Pieskaries, lai papētītu.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Esi gatavs savam tuvplānam?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Tagad ar savu profila bildi un vārdu varat dalīties ar draugiem iekš Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profili ir šeit</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Iepazīstieties ar rakstīšanas indikātoriem</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Tagad varat pēc izvēles redzēt un dalīties ar to, vai tiek rakstīta ziņa.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Vai vēlieties tos iespējot tagad?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Rakstīšanas indikātori ir šeit</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Iespējot rakstīšanas indikatorus</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Ieslēgt rakstīšanas indikatorus</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Nē, paldies</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Iepazīstinām ar saišu priekšskatu.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Papildu saišu priekšskati tagad tiek atbalstīti populārākajās interneta vietnēs.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Jūs variet ieslēgt vai izslēgt šo opciju jebkurā laikā savos Signal iestatījumos (Privātums -&gt; Sūtīt saišu prekšskatus)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Skaidrīte</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">Iepazīstieties ar uzlīmēm</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Kāpēc lietot vārdus, ja var izmantot uzlīmes?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Kāpēc lietot vārdus, ja var izmantot uzlīmes? Pieskarieties šai ikonai uz tastatūras:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">Aiziet</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Notiek ziņas ielāde…</string>
   <!--GcmRefreshJob-->
@@ -1662,8 +1634,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Tiek migrēta/pārcelta Signāla datubāze</string>
   <string name="PushDecryptJob_new_locked_message">Jauna bloķēta ziņa</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Atbloķējiet, lai redzētu gaidošās ziņas </string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Atbloķējiet, lai pabeigtu aktualizēt</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Lai pabeigtu aktualizēt, lūdzu, atbloķējiet Signālu,  </string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Dublikāta (rezerves kopijas) paroles frāze</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Dublikāti tiks saglabāti ārējā noliktavā un šifrēti, izmantojot tālāk esošo paroles frāzi. Lai atgrieztu/restaurētu no dublikāta (rezerves kopijas), būs nepieciešama šī paroles frāze.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Esmu sev pierakstījis šo paroles frāzi. Bez tās nebūs iespējams atgriezt/restaurēt dublikātu (rezerves kopiju).</string>

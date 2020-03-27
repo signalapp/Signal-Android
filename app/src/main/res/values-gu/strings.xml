@@ -322,34 +322,6 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">આ ડિવાઇસ Play Servicesનું સમર્થન કરતું નથી. સિસ્ટમ બેટરી ઓપ્ટિમાઇઝેશંસને અક્ષમ કરવા માટે ટેપ કરો જે Signal ને નિષ્ક્રિય હોવા પર મેસેજ પ્રાપ્ત કરવામાં અટકાવે છે.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">સાથે શેર કરો</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Signal પર આપનું સ્વાગત છે.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure અને RedPhone હવે દરેક પરિસ્થિતિ માટે એક ખાનગી મેસેંજર છે: Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Signal પર આપનું સ્વાગત છે!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure હવે Signal છે.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure અને RedPhone હવે એક એપ્લિકેશન છે: Signal. શોધવા માટે ટેપ કરો.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">વિડિયો કૉલ્સને સુરક્ષિત કરવા માટે હેલો કહો.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal હવે સલામત વિડિયો કૉલિંગને સપોર્ટ કરે છે. ફક્ત સામાન્ય જેવા Signal કૉલ શરુ કરો, વિડિયો બટનને ટેપ કરો અને હેલોને બોલ.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal હવે સલામત વિડિયો કૉલિંગ ને સપોર્ટ કરે છે.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal હવે સલામત વિડિયો કૉલિંગ ને સપોર્ટ કરે છે. શોધવા માટે ટેપ કરો.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">તમારા ક્લોઝઅપ માટે તૈયાર છો?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">હવે તમે Signal પર મિત્રો સાથે પ્રોફાઇલ ફોટો અને નામ શેર કરી શકો છો</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal પ્રોફાઇલ્સ અહીં છે</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">ટાઇપિંગ સૂચકનો પરિચય.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">જ્યારે તમે મેસેજ ટાઇપ કરવામાં આવે ત્યારે વૈકલ્પિક રૂપે જોઈ અને શેર કરી શકો છો.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">શું તમે હવે તેમને સક્ષમ કરવા માંગો છો?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">ટાઇપિંગ સૂચકો અહીં છે</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">ટાઇપિંગ સૂચકોને સક્ષમ કરો</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">ટાઇપિંગ સૂચકો ચાલુ કરો</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">ના આભાર</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">લિંક પ્રિવ્યુનો પરિચય .</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">વૈકલ્પિક લિંક પ્રિવ્યુનો હવે ઇન્ટરનેટ પરની કેટલીક લોકપ્રિય સાઇટ્સ માટે સપોર્ટેડ છે.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">તમે તમારી Signal સેટિંગ્સ માં કોઈપણ સમયે આ સુવિધાને અક્ષમ અથવા સક્ષમ કરી શકો છો (ગોપનીયતા &gt; લિંક પ્રિવ્યુ મોકલો).</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">જાણ્યું</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">સ્ટીકરોનો પરિચય</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">જ્યારે તમે સ્ટીકરોનો ઉપયોગ કરી શકો ત્યારે શબ્દોનો ઉપયોગ કેમ કરવો?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">જ્યારે તમે સ્ટીકરોનો ઉપયોગ કરી શકો ત્યારે શબ્દોનો ઉપયોગ કેમ કરવો? તમારા કીબોર્ડ પર આ ચિહ્નને ટેપ કરો:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">ચાલો જઇએ</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">મેસેજ પ્રાપ્ત કરી રહ્યા છીએ…</string>
   <!--GcmRefreshJob-->
@@ -1499,8 +1471,6 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">માઈગે્ટ Signal ડેટાબેસ</string>
   <string name="PushDecryptJob_new_locked_message">નવો લૉક મેસેજ</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">બાકી મેસેજ જોવા માટે અનલૉક કરો</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">સંપૂર્ણ અપડેટ કરવા માટે અનલૉક કરો</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">કૃપા કરીને સંપૂર્ણ અપડેટ કરવા માટે Signal ને અનલૉક કરો</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">બેકઅપ પાસફ્રેઝ</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">બૅકઅપ બાહ્ય સ્ટોરેજ માં સાચવવામાં આવશે અને નીચે પાસફ્રેઝ થી એન્ક્રિપ્ટ થશે. બેકઅપને રિસ્ટોર કરવા માટે તમારી પાસે આ પાસફ્રેઝ હોવો આવશ્યક છે.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">મેં આ પાસફ્રેઝ લખ્યો છે. તેના વિના, હું બૅકઅપ ને રિસ્ટોર કરવામાં અસમર્થ હોઈશ.</string>

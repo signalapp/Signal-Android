@@ -375,34 +375,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">שתף עם</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">צרופות מרובות נתמכות רק עבור תמונות וסרטונים</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">ברוך הבא אל Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure ו־RedPhone הן עכשיו תוכנת מסרים אחת, לכל מצב: Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">ברוך הבא אל Signal!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure היא כעת Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure ו־RedPhone הן כעת יישום אחד: Signal. הקש כדי לחקור.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">אמור שלום לשיחות וידיאו מאובטחות.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal תומך כעת בשיחות וידיאו מאובטחות. התחל פשוט שיחת Signal כרגיל, הקש על הכפתור סרטון, ונופף לשלום.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal תומך כעת בשיחות וידיאו מאובטחות.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal תומך כעת בשיחות וידיאו מאובטחות. הקש כדי לחקור.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">מוכן לתקריב שלך?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">עכשיו אתה יכול לשתף תצלום פרופיל ושם עם חברים ב־Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">פרופילי Signal כאן</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">היכרות עם מחווני הקלדה.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">כעת אתה יכול לראות ולשתף באופן רשותי מתי הודעות מוקלדות.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">האם אתה רוצה לאפשר אותם כעת?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">מחווני הקלדה כאן</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">אפשר מחווני הקלדה</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">הפעל מחווני הקלדה</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">לא תודה</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">היכרות עם קדם־תצוגות של קישורים.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">קדם־תצוגות רשותיות של קישורים נתמכות כעת עבור כמה מהאתרים הפופולריים ביותר באינטרנט.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">אתה יכול להשבית או לאפשר מאפיין זה בכל זמן בהגדרות Signal שלך (פרטיות &lt; שלח קדם־תצוגות של קישורים).</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">הבנתי</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">היכרות עם מדבקות</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">למה להשתמש במילים כשאתה יכול להשתמש במדבקות?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">למה להשתמש במילים כשאתה יכול להשתמש במדבקות? הקש על צלמית זו במקלדת שלך:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">בוא נתחיל</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">מאחזר הודעה…</string>
   <!--GcmRefreshJob-->
@@ -1721,8 +1693,6 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">מהגר מסד נתונים של Signal</string>
   <string name="PushDecryptJob_new_locked_message">הודעה נעולה חדשה</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">בטל נעילה כדי להציג הודעות ממתינות</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">בטל נעילה כדי להשלים עדכון</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">אנא בטל את נעילת Signal כדי להשלים עדכון</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">גבה משפט־סיסמה</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">גיבויים יישמרו בהתקן חיצוני ויוצפנו עם משפט־הסיסמה למטה. חייב להיות לך משפט־סיסמה זה על מנת לשחזר גיבוי.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">כתבתי משפט־סיסמה זה. בלעדיו, לא אוכל לשחזר גיבוי.</string>

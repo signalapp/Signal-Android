@@ -347,34 +347,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Condividi con</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Gli allegati multipli sono supportati solo per immagini e video</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Benvenuto su Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure e RedPhone ora fanno parte di un unico messenger, per ogni situazione: Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Benvenuto su Signal!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure è diventato Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure e RedPhone ora sono un\'unica app: Signal. Tocca per esplorare.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Dai il benvenuto alle videochiamate sicure.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal ora supporta le videochiamate sicure. Ti basta avviare una normale chiamata Signal, toccare il pulsante video e salutare.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal ora supporta le videochiamate sicure.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal ora supporta le videochiamate sicure. Tocca per esplorare.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Pronto per il tuo primo piano?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Ora puoi condividere una foto profilo e un nome con i tuoi amici su Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">I profili Signal sono arrivati</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Ti presentiamo gli indicatori di scrittura.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Ora puoi scegliere di vedere e condividere quando i messaggi vengono digitati.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Vuoi attivarli adesso?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Sono arrivati gli indicatori di scrittura</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Abilita gli indicatori di scrittura</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Attiva gli indicatori di scrittura</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">No grazie</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Ti presentiamo le anteprime dei link.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Le anteprime facoltative dei link sono ora supportate per alcuni dei siti internet più famosi.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Puoi disattivare o attivare questa funzione in qualsiasi momento nelle impostazioni di Signal (Privacy &gt; Invia anteprime dei link).</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Capito</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">Ti presentiamo gli adesivi</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Perché usare le parole quando puoi utilizzare gli adesivi?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Perché usare le parole quando puoi utilizzare gli adesivi? Tocca questa icona sulla tua tastiera:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">Cominciamo</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Recuperando un messaggio…</string>
   <!--GcmRefreshJob-->
@@ -565,6 +537,10 @@
   <plurals name="MessageRequestProfileView_members">
     <item quantity="one">%1$d membro</item>
     <item quantity="other">%1$d membri</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d membro (+%2$d invitato/i)</item>
+    <item quantity="other">%1$d membri (+%2$d invitato/i)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d altro</item>
@@ -1637,8 +1613,6 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrazione del database di Signal</string>
   <string name="PushDecryptJob_new_locked_message">Nuovo messaggio bloccato</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Sblocca per leggere i messaggi in sospeso</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Sblocca per completare l\'aggiornamento</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Per favore sblocca Signal per completare l\'aggiornamento</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Passphrase di backup</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">I backup verranno salvati nella memoria esterna e crittografati con la passphrase qui sotto. Sarà necessario avere questa passphrase per ripristinare il backup.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ho scritto questa passphrase. Senza di questa, non sarò in grado di ripristinare un backup.</string>

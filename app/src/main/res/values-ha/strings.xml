@@ -322,34 +322,6 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Wannan na\'urar baya daukan Google Play Services. Taba nan domin kashe fasalin batiri da yake hana Signal karban sakwanni idan ba\'a aiki dashi.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Tura wa</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Barka da zuwan Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure da RedPhone sun zama daya a matsayin masinja mai zaman kansa domin ko wane hali da ake ciki: Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Barka da zuwan Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">Signal na da tsaron rubutu.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure da RedPhone suna koma afilikashon guda. Signal. Taba domin bincikawa.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Ce hello domin kare tsaron kiran bidiyo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Yanzu Signal na barin kiran bidiyo mai tsaro. Domin gwadawa, fara kiran Signal kamar yadda kika/ka saba da wasu kiran, taba maballin bidiyo sai kuma  ka/ki daga hannun gaisuwa.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Yanzu Signal ya yarda da tsaron kiran bidiyo.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal na karban kiran bidiyo mai tsaro. Taba domin ka/ki gani.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Ka/kin shirya daukar hoto mai kusa?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Yanzu zaka/ki iya sa hoton furofayil da suna da abokan hirarka da suke Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Akwai furofayil din masu amfani da Signal anan.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Gabatar da alamomin rubutu.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Yanzu zaka/ki iya gani ko tura sanda ake rubutun sako idan ka/kina so.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Ka/ki na son kunnasu yanzu?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Alamomin Nuna Rubutu Suna Nan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Kunna alamomin rubutu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Kunna alamomin Nuna rubutu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">A\'a, nagode</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Gabatarwa da dubawar hadi.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Yanzu akwai mahadi na zabi da aka yarda da su na wasu sanannen shafin yanar gizo.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Zaka/ki iya kashe ko kunna wannan fasali duk san da kake/kike so a saitin Signal dinka/ki wato (Preview &gt; Send link previews).</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Yayi!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">Gabatar da sitika</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Me yasa zaka/ki yi amfani da kalamai bayan zaku iya amfani da abu mafi sauki kamar sitika</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Me yasa zaka/ki yi amfani da kalmomi bayan zaka/ki iya amfani da abubuwa mafi sauki wato sitika? Taba wannan alamar da yake abun rubutun na\'urarka/ki.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">Mu je</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Diban sakwanni.</string>
   <!--GcmRefreshJob-->
@@ -1503,8 +1475,6 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Kauracewar shiryayyen bayanain Signal</string>
   <string name="PushDecryptJob_new_locked_message">Sabon kulellen sako</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Bude domin karanta tsayyayen sakonni</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Bude domin sabuntarwa</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Dan bude Signal domin kammala sabuntuwa</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Kalmomin sirrin tsimi</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Za\'a ajiye tsimi a ajiyar waje kuma za\'a tsaresu da kalmomin sirri da suke kasa. Dole sai ka/kinada kalmomin sirri zaka/ki samu damar yin tsimi ko kuma maida na\'ura tsarin asali.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Na rike wannan kalmomin sirri. In ba tare dashi ba, bazan iya yin tsimi ko kuma maida tsarin asali.</string>

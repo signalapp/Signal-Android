@@ -333,34 +333,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">공유자</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">이미지와 동영상만 여러 개 첨부할 수 있습니다.</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Signal에 오신 것을 환영합니다.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">이제부터 TextSecure와 RedPhone이 새 보안 메신저 앱 Signal로 통합되었습니다.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Signal에 오신 것을 환영합니다!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure가 Signal로 탄생했습니다.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">이제부터 TextSecure와 RedPhone이 새 앱 Signal로 통합되었습니다. 탭하여 더 알아보세요.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">보안 영상 통화, 이제 마음 놓고 즐길 수 있습니다.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal이 이제 보안 영상 통화를 지원합니다. 평소처럼 Signal 전화를 건 뒤, 동영상 버튼을 탭하고 손을 흔들어 인사하세요.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal이 이제 보안 영상 통화를 지원합니다.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal이 이제 보안 영상 통화를 지원합니다. 탭하여 더 알아보세요.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">셀카 찍을 준비는 되셨나요?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">이제 이름과 프로필 사진을 Signal 친구들과 공유할 수 있습니다.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal 프로필입니다.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">입력 안내 기능을 소개합니다.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">이제 필요한 경우 메시지를 입력하고 있다는 것을 알아채고 이를 공유할 수 있습니다.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">지금 해당 기능을 활성화하시겠습니까?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">입력 안내 기능입니다.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">입력 안내 기능 활성화</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">입력 안내 기능 켜기</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">아니요</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">링크 미리 보기를 소개합니다.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">필요한 경우 인터넷에서 유명한 사이트들의 링크를 미리 볼 수 있습니다.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Signal 설정(개인 정보, 링크 미리 보기 보내기)에서 기능을 켜고 끌 수 있습니다.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">확인</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">스티커를 소개합니다.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">스티커를 쓸 수 있는데 왜 일일이 글을 입력해야 하죠?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">스티커를 쓸 수 있는데 왜 일일이 글을 입력해야 하죠? 키보드에서 이 아이콘을 탭하세요.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">시작해 봅시다!</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">메시지를 받는 중…</string>
   <!--GcmRefreshJob-->
@@ -1566,8 +1538,6 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal 데이터베이스 이전 중</string>
   <string name="PushDecryptJob_new_locked_message">새 잠금 메세지</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">잠금 해제하여 보류 중인 메시지 보기</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">잠금 해제하여 업데이트</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Signal 잠금을 해제하여 업데이트 완료</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">암호 백업</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">백업은 외부 저장 공간에 보관되며 암호로 암호화됩니다. 백업에서 복원하려면 다음에 표시되는 암호가 필요합니다.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">암호를 적었습니다. 비밀번호를 잊었을 때 백업을 복구할 수 없다는 점에 동의합니다.</string>

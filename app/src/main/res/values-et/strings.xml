@@ -326,34 +326,6 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">See seade ei toeta Play teenuseid. Koputa, et keelata süsteemi aku optimeerimine, kuna see ei lase Signalil sõnumeid hankida, kui seade on ebaaktiivne.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Jaga inimesega</string>
-  <!--ExperienceUpgradeActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Tere tulemast Signalisse.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure ja RedPhone on nüüd ühise sõnumirakenduse all, igaks olukorraks: Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Tere tulemast Signalisse!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure on nüüd Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure ja RedPhone on nüüd ühe rakenduse all: Signal. Koputa avastamiseks.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Tervita turvalisi videokõnesid.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal toetab nüüd turvalisi videokõnesid. Lihtsalt alusta Signali kõnet nagu tavaliselt, koputa videonuppu ja lehvita kontaktile.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal toetab nüüd turvalisi videokõnesid.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal toetab nüüd turvalisi videokõnesid. Koputa avastamiseks.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Oled valmis oma lähivõtteks?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Nüüd sa saad Signalis sõpradega jagada profiilipilti ja -nime</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signali profiilid on kohal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Tutvustame kirjutamisindikaatoreid.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Nüüd on võimalik näha ja näidata, et sõnumeid sisestatakse.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Kas soovid need kohe lubada?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Kirjutamisindikaatorid on kohal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Luba kirjutamisindikaatorid</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Lülita kirjutamisindikaatorid sisse</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Tänan, ei</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Tutvustame linkide eelvaateid.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Valikulised linkide eelvaated on nüüd toetatud populaarseimate saitide puhul.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Sa saad seda funktsiooni igal ajal keelata ja lubada oma Signali seadetes (Privaatsus &gt; Saada linkide eelvaateid).</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Sain aru</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_stickers">Tutvustame kleepse</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Miks kasutada sõnu, kui saab kasutada kleepse?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Miks kasutada sõnu, kui saab kasutada kleepse?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_lets_go">Läksime</string> -->
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Sõnumi hankimine…</string>
   <!--GcmRefreshJob-->
@@ -1535,8 +1507,6 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Migreerin Signali andmebaasi</string>
   <string name="PushDecryptJob_new_locked_message">Uus lukustatud sõnum</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Ava lukk ootel sõnumite vaatamiseks</string>
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Ava lukk uuenduse lõpuleviimiseks</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Palun lukusta Signal lahti uuenduse lõpuleviimiseks</string> -->
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Varunduse salaväljend</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Varundused salvestatakse välismällu ja krüptitakse valitud salaväljendiga. Sul peab see salaväljend olemas olema, et taastada antud varundust.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ma olen salaväljendi üles kirjutanud. Ilma selleta ei saa ma varundust taastada.</string>
