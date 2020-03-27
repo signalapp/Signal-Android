@@ -33,11 +33,11 @@ import org.thoughtcrime.securesms.components.MaskView;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
+import java.util.Collections;
 import java.util.List;
 
 public final class ConversationReactionOverlay extends RelativeLayout {
@@ -427,25 +427,11 @@ public final class ConversationReactionOverlay extends RelativeLayout {
   }
 
   private void setupToolbarMenuItems() {
-    toolbar.getMenu().findItem(R.id.action_copy).setVisible(shouldShowCopy());
-    toolbar.getMenu().findItem(R.id.action_download).setVisible(shouldShowDownload());
-    toolbar.getMenu().findItem(R.id.action_forward).setVisible(shouldShowForward());
-  }
+    MenuState menuState = MenuState.getMenuState(Collections.singleton(messageRecord), false);
 
-  private boolean shouldShowCopy() {
-    return !MessageRecordUtil.hasSticker(messageRecord)     &&
-           !MessageRecordUtil.isMediaMessage(messageRecord) &&
-           !MessageRecordUtil.hasSharedContact(messageRecord);
-  }
-
-  private boolean shouldShowDownload() {
-    return MessageRecordUtil.isMediaMessage(messageRecord) ||
-           MessageRecordUtil.hasLocation(messageRecord);
-  }
-
-
-  private boolean shouldShowForward() {
-    return !MessageRecordUtil.hasSharedContact(messageRecord);
+    toolbar.getMenu().findItem(R.id.action_copy).setVisible(menuState.shouldShowCopyAction());
+    toolbar.getMenu().findItem(R.id.action_download).setVisible(menuState.shouldShowSaveAttachmentAction());
+    toolbar.getMenu().findItem(R.id.action_forward).setVisible(menuState.shouldShowForwardAction());
   }
 
   private boolean handleToolbarItemClicked(@NonNull MenuItem menuItem) {

@@ -5,6 +5,8 @@
     android:layout_height="?attr/actionBarSize"
     android:background="@color/action_mode_status_bar"
     android:theme="@style/TextSecure.DarkActionBar.Conversation"
+    app:contentInsetStart="0dp"
+    app:contentInsetStartWithNavigation="48sp"
     app:menu="@menu/conversation_reactions_long_press_menu"
     app:navigationIcon="@drawable/ic_x_conversation">
 

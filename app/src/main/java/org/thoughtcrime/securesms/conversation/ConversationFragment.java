@@ -103,7 +103,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.revealable.ViewOnceMessageActivity;
 import org.thoughtcrime.securesms.revealable.ViewOnceUtil;
-import org.thoughtcrime.securesms.sharing.ShareActivity;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
@@ -206,7 +205,7 @@ public class ConversationFragment extends Fragment
 
     new ConversationItemSwipeCallback(
             messageRecord -> actionMode == null &&
-                             canReplyToMessage(isActionMessage(messageRecord), messageRecord, messageRequestViewModel.shouldShowMessageRequest()),
+                             MenuState.canReplyToMessage(MenuState.isActionMessage(messageRecord), messageRecord, messageRequestViewModel.shouldShowMessageRequest()),
             this::handleReplyMessage
     ).attachToRecyclerView(list);
 
@@ -504,78 +503,22 @@ public class ConversationFragment extends Fragment
     });
   }
 
-  private void setCorrectMenuVisibility(Menu menu) {
+  private void setCorrectMenuVisibility(@NonNull Menu menu) {
     Set<MessageRecord> messageRecords = getListAdapter().getSelectedItems();
-    boolean            actionMessage  = false;
-    boolean            hasText        = false;
-    boolean            sharedContact  = false;
-    boolean            viewOnce       = false;
 
     if (actionMode != null && messageRecords.size() == 0) {
       actionMode.finish();
       return;
     }
 
-    for (MessageRecord messageRecord : messageRecords) {
-      if (isActionMessage(messageRecord))
-      {
-        actionMessage = true;
-      }
+    MenuState menuState = MenuState.getMenuState(messageRecords, messageRequestViewModel.shouldShowMessageRequest());
 
-      if (messageRecord.getBody().length() > 0) {
-        hasText = true;
-      }
-
-      if (messageRecord.isMms() && !((MmsMessageRecord) messageRecord).getSharedContacts().isEmpty()) {
-        sharedContact = true;
-      }
-
-      if (messageRecord.isViewOnce()) {
-        viewOnce = true;
-      }
-    }
-
-    if (messageRecords.size() > 1) {
-      menu.findItem(R.id.menu_context_forward).setVisible(false);
-      menu.findItem(R.id.menu_context_reply).setVisible(false);
-      menu.findItem(R.id.menu_context_details).setVisible(false);
-      menu.findItem(R.id.menu_context_save_attachment).setVisible(false);
-      menu.findItem(R.id.menu_context_resend).setVisible(false);
-    } else {
-      MessageRecord messageRecord = messageRecords.iterator().next();
-
-      menu.findItem(R.id.menu_context_resend).setVisible(messageRecord.isFailed());
-      menu.findItem(R.id.menu_context_save_attachment).setVisible(!actionMessage                                              &&
-                                                                  !viewOnce                                                   &&
-                                                                  messageRecord.isMms()                                       &&
-                                                                  !messageRecord.isMmsNotification()                          &&
-                                                                  ((MediaMmsMessageRecord)messageRecord).containsMediaSlide() &&
-                                                                  ((MediaMmsMessageRecord)messageRecord).getSlideDeck().getStickerSlide() == null);
-
-      menu.findItem(R.id.menu_context_forward).setVisible(!actionMessage && !sharedContact && !viewOnce);
-      menu.findItem(R.id.menu_context_details).setVisible(!actionMessage);
-      menu.findItem(R.id.menu_context_reply).setVisible(canReplyToMessage(actionMessage, messageRecord, messageRequestViewModel.shouldShowMessageRequest()));
-    }
-    menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage && hasText);
-  }
-
-  private static boolean canReplyToMessage(boolean actionMessage, MessageRecord messageRecord, boolean isDisplayingMessageRequest) {
-    return !actionMessage              &&
-           !messageRecord.isPending()  &&
-           !messageRecord.isFailed()   &&
-           !isDisplayingMessageRequest &&
-           messageRecord.isSecure();
-  }
-
-  private static boolean isActionMessage(MessageRecord messageRecord) {
-    return messageRecord.isGroupAction()           ||
-           messageRecord.isCallLog()               ||
-           messageRecord.isJoined()                ||
-           messageRecord.isExpirationTimerUpdate() ||
-           messageRecord.isEndSession()            ||
-           messageRecord.isIdentityUpdate()        ||
-           messageRecord.isIdentityVerified()      ||
-           messageRecord.isIdentityDefault();
+    menu.findItem(R.id.menu_context_forward).setVisible(menuState.shouldShowForwardAction());
+    menu.findItem(R.id.menu_context_reply).setVisible(menuState.shouldShowReplyAction());
+    menu.findItem(R.id.menu_context_details).setVisible(menuState.shouldShowDetailsAction());
+    menu.findItem(R.id.menu_context_save_attachment).setVisible(menuState.shouldShowSaveAttachmentAction());
+    menu.findItem(R.id.menu_context_resend).setVisible(menuState.shouldShowResendAction());
+    menu.findItem(R.id.menu_context_copy).setVisible(menuState.shouldShowCopyAction());
   }
 
   private ConversationAdapter getListAdapter() {
