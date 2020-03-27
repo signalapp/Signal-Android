@@ -1375,6 +1375,10 @@ public class ConversationFragment extends Fragment
     }
 
     public void show() {
+      if (textView.getText() == null || textView.getText().length() == 0) {
+        return;
+      }
+
       if (pendingHide) {
         pendingHide = false;
       } else {
