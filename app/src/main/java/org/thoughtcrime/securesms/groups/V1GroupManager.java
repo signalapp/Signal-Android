@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupManager.GroupActionResult;
 import org.thoughtcrime.securesms.jobs.LeaveGroupJob;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -157,6 +158,11 @@ final class V1GroupManager {
     Optional<OutgoingGroupMediaMessage> leaveMessage = GroupUtil.createGroupLeaveMessage(context, groupRecipient);
 
     if (threadId != -1 && leaveMessage.isPresent()) {
+      try {
+        DatabaseFactory.getMmsDatabase(context).insertMessageOutbox(leaveMessage.get(), threadId, false, null);
+      } catch (MmsException e) {
+        Log.w(TAG, "Failed to insert leave message.", e);
+      }
       ApplicationDependencies.getJobManager().add(LeaveGroupJob.create(groupRecipient));
 
       GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
