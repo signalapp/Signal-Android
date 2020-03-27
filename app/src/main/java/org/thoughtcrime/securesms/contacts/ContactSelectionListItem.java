@@ -100,21 +100,14 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
 
     if (this.multiSelect || checkboxVisible){
       this.checkBox.setVisibility(View.VISIBLE);
-      addToDuplicatesContactsMap();
     } else {
-      this.checkBox.setVisibility(View.GONE);
+      this.checkBox.setVisibility(View.INVISIBLE);
     }
+
+    addToDuplicatesContactsMap();
   }
 
   public void setChecked(boolean selected) {
-    if(isMultiSelect()) {
-      setCheckedIncludingDuplicates(selected);
-    } else {
-      this.checkBox.setChecked(selected);
-    }
-  }
-
-  private void setCheckedIncludingDuplicates(boolean selected){
     if(getRecipientId().isPresent()){
       RecipientId recipientId = getRecipientId().get();
       if(duplicateContactsMap.containsKey(recipientId)) {
@@ -136,10 +129,17 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
     this.checkBox.setEnabled(enabled);
   }
 
-  public void unbind(GlideRequests glideRequests) {
-    if(isMultiSelect()){
-      removeFromDuplicateContactsMaps();
+  public void setMultiSelect(boolean multiSelect){
+    this.multiSelect = multiSelect;
+    if (this.multiSelect){
+      this.checkBox.setVisibility(View.VISIBLE);
+    } else {
+      this.checkBox.setVisibility(View.INVISIBLE);
     }
+  }
+
+  public void unbind(GlideRequests glideRequests) {
+    removeFromDuplicateContactsMaps();
 
     if (recipient != null) {
       recipient.removeForeverObserver(this);

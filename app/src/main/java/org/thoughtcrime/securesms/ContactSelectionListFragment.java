@@ -391,6 +391,10 @@ public final class ContactSelectionListFragment extends LoggingFragment
     }
   }
 
+  public void onMultiSelectChanged(){
+    cursorRecyclerViewAdapter.setMultiSelect(isMulti(), recyclerView);
+  }
+
   @Override
   public @NonNull Loader<Cursor> onCreateLoader(int id, Bundle args) {
     FragmentActivity activity = requireActivity();
