@@ -168,6 +168,7 @@ class Camera1Controller {
     while (i < sizes.size() && (sizes.get(i).width * sizes.get(i).height) < (width * height)) {
       i++;
     }
+    i++;
 
     return sizes.get(Math.min(i, sizes.size() - 1));
   }
