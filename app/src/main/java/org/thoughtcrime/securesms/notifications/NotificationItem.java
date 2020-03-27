@@ -3,43 +3,53 @@ package org.thoughtcrime.securesms.notifications;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.TaskStackBuilder;
 
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 public class NotificationItem {
 
-  private final long                        id;
-  private final boolean                     mms;
-  private final @NonNull  Recipient         conversationRecipient;
-  private final @NonNull  Recipient         individualRecipient;
-  private final @Nullable Recipient         threadRecipient;
-  private final long                        threadId;
-  private final @Nullable CharSequence      text;
-  private final long                        timestamp;
-  private final @Nullable SlideDeck         slideDeck;
+            private final long         id;
+            private final boolean      mms;
+  @NonNull  private final Recipient    conversationRecipient;
+  @NonNull  private final Recipient    individualRecipient;
+  @Nullable private final Recipient    threadRecipient;
+            private final long         threadId;
+  @Nullable private final CharSequence text;
+            private final long         notificationTimestamp;
+            private final long         messageReceivedTimestamp;
+  @Nullable private final SlideDeck    slideDeck;
+            private final boolean      jumpToMessage;
 
-  public NotificationItem(long id, boolean mms,
-                          @NonNull   Recipient individualRecipient,
-                          @NonNull   Recipient conversationRecipient,
-                          @Nullable  Recipient threadRecipient,
-                          long threadId, @Nullable CharSequence text, long timestamp,
-                          @Nullable SlideDeck slideDeck)
+  public NotificationItem(long id,
+                          boolean mms,
+                          @NonNull Recipient individualRecipient,
+                          @NonNull Recipient conversationRecipient,
+                          @Nullable Recipient threadRecipient,
+                          long threadId,
+                          @Nullable CharSequence text,
+                          long notificationTimestamp,
+                          long messageReceivedTimestamp,
+                          @Nullable SlideDeck slideDeck,
+                          boolean jumpToMessage)
   {
-    this.id                    = id;
-    this.mms                   = mms;
-    this.individualRecipient   = individualRecipient;
-    this.conversationRecipient = conversationRecipient;
-    this.threadRecipient       = threadRecipient;
-    this.text                  = text;
-    this.threadId              = threadId;
-    this.timestamp             = timestamp;
-    this.slideDeck             = slideDeck;
+    this.id                       = id;
+    this.mms                      = mms;
+    this.individualRecipient      = individualRecipient;
+    this.conversationRecipient    = conversationRecipient;
+    this.threadRecipient          = threadRecipient;
+    this.text                     = text;
+    this.threadId                 = threadId;
+    this.notificationTimestamp    = notificationTimestamp;
+    this.messageReceivedTimestamp = messageReceivedTimestamp;
+    this.slideDeck                = slideDeck;
+    this.jumpToMessage            = jumpToMessage;
   }
 
   public @NonNull  Recipient getRecipient() {
@@ -55,7 +65,7 @@ public class NotificationItem {
   }
 
   public long getTimestamp() {
-    return timestamp;
+    return notificationTimestamp;
   }
 
   public long getThreadId() {
@@ -67,12 +77,9 @@ public class NotificationItem {
   }
 
   public PendingIntent getPendingIntent(Context context) {
-    Intent     intent           = new Intent(context, ConversationActivity.class);
-    Recipient  notifyRecipients = threadRecipient != null ? threadRecipient : conversationRecipient;
-
-    intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, notifyRecipients.getId());
-    intent.putExtra("thread_id", threadId);
-    intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
+    Recipient recipient        = threadRecipient != null ? threadRecipient : conversationRecipient;
+    int       startingPosition = jumpToMessage ? getStartingPosition(context, threadId, messageReceivedTimestamp) : -1;
+    Intent    intent           = ConversationActivity.buildIntent(context, recipient.getId(), threadId, 0, -1, startingPosition);
 
     return TaskStackBuilder.create(context)
                            .addNextIntentWithParentStack(intent)
@@ -85,5 +92,9 @@ public class NotificationItem {
 
   public boolean isMms() {
     return mms;
+  }
+
+  private static int getStartingPosition(@NonNull Context context, long threadId, long receivedTimestampMs) {
+    return DatabaseFactory.getMmsSmsDatabase(context).getMessagePositionInConversation(threadId, receivedTimestampMs);
   }
 }

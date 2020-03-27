@@ -537,7 +537,7 @@ public class MessageNotifier {
         }
 
         if (threadRecipients == null || !threadRecipients.isMuted()) {
-          notificationState.addNotification(new NotificationItem(id, mms, recipient, conversationRecipient, threadRecipients, threadId, body, timestamp, slideDeck));
+          notificationState.addNotification(new NotificationItem(id, mms, recipient, conversationRecipient, threadRecipients, threadId, body, timestamp, timestamp, slideDeck, false));
         }
       }
 
@@ -571,7 +571,7 @@ public class MessageNotifier {
           }
 
           if (threadRecipients == null || !threadRecipients.isMuted()) {
-            notificationState.addNotification(new NotificationItem(id, mms, reactionSender, conversationRecipient, threadRecipients, threadId, body, reaction.getDateReceived(), null));
+            notificationState.addNotification(new NotificationItem(id, mms, reactionSender, conversationRecipient, threadRecipients, threadId, body, reaction.getDateReceived(), timestamp, null, true));
           }
         }
       }
