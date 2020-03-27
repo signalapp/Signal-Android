@@ -208,7 +208,8 @@
           android:tint="?conversation_list_compose_icon_tint"
           app:layout_constraintBottom_toTopOf="@id/megaphone_container"
           app:layout_constraintEnd_toEndOf="parent"
-          app:srcCompat="@drawable/ic_compose_solid_24" />
+          app:srcCompat="@drawable/ic_compose_solid_24"
+          app:backgroundTint="@color/core_ultramarine"/>
 
       <androidx.cardview.widget.CardView
           android:id="@+id/megaphone_container"

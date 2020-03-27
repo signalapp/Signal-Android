@@ -217,6 +217,7 @@
     <attr name="pref_divider" format="reference" />
 
     <attr name="quote_missing_icon_color" format="color" />
+    <attr name="quote_dismiss_button_tint" format="color" />
 
     <declare-styleable name="CustomDefaultPreference">
         <attr name="custom_pref_toggle" format="string"/>

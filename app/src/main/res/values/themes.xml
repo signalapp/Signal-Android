@@ -53,7 +53,7 @@
         <item name="theme_type">dark</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
         <item name="colorPrimary">@color/core_grey_95</item>
-        <item name="colorAccent">@color/core_ultramarine</item>
+        <item name="colorAccent">@color/core_ultramarine_light</item>
 
         <item name="recipient_preference_blocked">#d00000</item>
         <item name="contact_selection_label_text">#66eeeeee</item>
@@ -110,7 +110,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionModeOverlay">true</item>
-        <item name="colorAccent">@color/core_ultramarine</item>
+        <item name="colorAccent">@color/core_ultramarine_light</item>
 
         <item name="android:textColorHint">@color/white</item>
         <item name="centered_app_title_color">@color/core_grey_25</item>
@@ -401,6 +401,7 @@
         <item name="pref_divider">@drawable/preference_divider_light</item>
 
         <item name="quote_missing_icon_color">@color/core_grey_60</item>
+        <item name="quote_dismiss_button_tint">@color/core_grey_70</item>
 
         <item name="group_members_dialog_icon">@drawable/ic_group_outline_24</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
@@ -450,7 +451,7 @@
         <item name="actionModeStyle">@style/TextSecure.ActionModeStyle</item>
         <item name="android:textColor">@color/text_color_dark_theme</item>
         <item name="android:textColorSecondary">@color/text_color_secondary_dark_theme</item>
-        <item name="colorAccent">@color/core_ultramarine</item>
+        <item name="colorAccent">@color/core_ultramarine_light</item>
         <item name="colorControlActivated">@color/core_ultramarine_light</item>
         <item name="colorControlHighlight">@color/core_ultramarine_light</item>
         <item name="android:colorControlHighlight" tools:ignore="NewApi">@color/core_ultramarine_light</item>
@@ -673,6 +674,7 @@
         <item name="pref_divider">@drawable/preference_divider_dark</item>
 
         <item name="quote_missing_icon_color">@color/core_grey_05</item>
+        <item name="quote_dismiss_button_tint">@color/core_white</item>
 
         <item name="group_members_dialog_icon">@drawable/ic_group_solid_24</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
@@ -697,7 +699,7 @@
     </style>
 
     <style name="RationaleDialogDark.SignalAccent">
-        <item name="colorAccent">@color/core_ultramarine</item>
+        <item name="colorAccent">@color/core_ultramarine_light</item>
     </style>
 
 
