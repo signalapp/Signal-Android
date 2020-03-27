@@ -93,7 +93,7 @@ public final class GroupV1MessageProcessor {
                                                   boolean outgoing)
   {
     GroupDatabase        database = DatabaseFactory.getGroupDatabase(context);
-    GroupId              id       = GroupId.v1(group.getGroupId());
+    GroupId.V1           id       = GroupId.v1(group.getGroupId());
     GroupContext.Builder builder  = createGroupContext(group);
     builder.setType(GroupContext.Type.UPDATE);
 
@@ -127,7 +127,7 @@ public final class GroupV1MessageProcessor {
   {
 
     GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
-    GroupId       id       = GroupId.v1(group.getGroupId());
+    GroupId.V1    id       = GroupId.v1(group.getGroupId());
 
     Set<RecipientId> recordMembers  = new HashSet<>(groupRecord.getMembers());
     Set<RecipientId> messageMembers = new HashSet<>();

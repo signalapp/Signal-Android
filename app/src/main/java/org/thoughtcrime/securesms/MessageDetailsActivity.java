@@ -31,6 +31,7 @@ import androidx.loader.app.LoaderManager.LoaderCallbacks;
 import androidx.loader.content.Loader;
 
 import org.thoughtcrime.securesms.conversation.ConversationItem;
+import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.logging.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -368,7 +369,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
         List<GroupReceiptInfo> receiptInfoList = DatabaseFactory.getGroupReceiptDatabase(context).getGroupReceiptInfo(messageRecord.getId());
 
         if (receiptInfoList.isEmpty()) {
-          List<Recipient> group = DatabaseFactory.getGroupDatabase(context).getGroupMembers(messageRecord.getRecipient().requireGroupId(), false);
+          List<Recipient> group = DatabaseFactory.getGroupDatabase(context).getGroupMembers(messageRecord.getRecipient().requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
 
           for (Recipient recipient : group) {
             recipients.add(new RecipientDeliveryStatus(recipient, RecipientDeliveryStatus.Status.UNKNOWN, false, -1));

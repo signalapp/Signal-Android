@@ -364,7 +364,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
       }
       memberAddresses.add(Recipient.self().getId());
 
-      GroupId     groupId          = DatabaseFactory.getGroupDatabase(activity).getOrCreateGroupForMembers(memberAddresses, true);
+      GroupId.Mms groupId          = DatabaseFactory.getGroupDatabase(activity).getOrCreateMmsGroupForMembers(memberAddresses);
       RecipientId groupRecipientId = DatabaseFactory.getRecipientDatabase(activity).getOrInsertFromGroupId(groupId);
       Recipient   groupRecipient   = Recipient.resolved(groupRecipientId);
       long        threadId         = DatabaseFactory.getThreadDatabase(activity).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.DEFAULT);
@@ -550,7 +550,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     @Override
     protected Optional<GroupData> doInBackground(GroupId... groupIds) {
       final GroupDatabase         db               = DatabaseFactory.getGroupDatabase(activity);
-      final List<Recipient>       recipients       = db.getGroupMembers(groupIds[0], false);
+      final List<Recipient>       recipients       = db.getGroupMembers(groupIds[0], GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
       final Optional<GroupRecord> group            = db.getGroup(groupIds[0]);
       final Set<Recipient>        existingContacts = new HashSet<>(recipients.size());
       existingContacts.addAll(recipients);

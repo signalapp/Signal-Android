@@ -233,7 +233,7 @@ public class SmsMigrator {
 
             List<RecipientId> recipientIds = Stream.of(ourRecipients).map(Recipient::getId).toList();
 
-            GroupId     ourGroupId          = DatabaseFactory.getGroupDatabase(context).getOrCreateGroupForMembers(recipientIds, true);
+            GroupId.Mms ourGroupId          = DatabaseFactory.getGroupDatabase(context).getOrCreateMmsGroupForMembers(recipientIds);
             RecipientId ourGroupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(ourGroupId);
             Recipient   ourGroupRecipient   = Recipient.resolved(ourGroupRecipientId);
             long        ourThreadId         = threadDatabase.getThreadIdFor(ourGroupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);

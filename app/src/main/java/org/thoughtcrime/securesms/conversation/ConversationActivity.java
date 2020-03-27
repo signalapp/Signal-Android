@@ -132,6 +132,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts;
+import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
@@ -1574,7 +1575,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
         if (params[0].isGroup()) {
           recipients.addAll(DatabaseFactory.getGroupDatabase(ConversationActivity.this)
-                                           .getGroupMembers(params[0].requireGroupId(), false));
+                                           .getGroupMembers(params[0].requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF));
         } else {
           recipients.add(params[0]);
         }

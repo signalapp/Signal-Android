@@ -232,7 +232,7 @@ public class MmsDownloadJob extends BaseJob {
 
     if (members.size() > 2) {
       List<RecipientId> recipients = new ArrayList<>(members);
-      group = Optional.of(DatabaseFactory.getGroupDatabase(context).getOrCreateGroupForMembers(recipients, true));
+      group = Optional.of(DatabaseFactory.getGroupDatabase(context).getOrCreateMmsGroupForMembers(recipients));
     }
 
     IncomingMediaMessage   message      = new IncomingMediaMessage(from, group, body, retrieved.getDate() * 1000L, attachments, subscriptionId, 0, false, false, false);

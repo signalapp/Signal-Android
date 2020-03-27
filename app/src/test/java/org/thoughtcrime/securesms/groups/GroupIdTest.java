@@ -17,6 +17,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.thoughtcrime.securesms.groups.ZkGroupLibraryUtil.assumeZkGroupSupportedOnOS;
+import static org.thoughtcrime.securesms.testutil.SecureRandomTestUtil.mockRandom;
 
 public final class GroupIdTest {
 
@@ -263,5 +264,21 @@ public final class GroupIdTest {
   @Test(expected = AssertionError.class)
   public void cannot_create_v2_with_a_v1_length() throws IOException {
     GroupId.v2(Hex.fromStringCondensed("000102030405060708090a0b0c0d0e0f"));
+  }
+
+  @Test
+  public void create_mms() {
+    GroupId.Mms mms = GroupId.createMms(mockRandom(new byte[]{ 9, 10, 11, 12, 13, 14, 15, 0, 1, 2, 3, 4, 5, 6, 7, 8 }));
+
+    assertEquals("__signal_mms_group__!090a0b0c0d0e0f000102030405060708", mms.toString());
+    assertTrue(mms.isMms());
+  }
+
+  @Test
+  public void create_v1() {
+    GroupId.V1 v1 = GroupId.createV1(mockRandom(new byte[]{ 9, 10, 11, 12, 13, 14, 15, 0, 1, 2, 3, 4, 5, 6, 7, 8 }));
+
+    assertEquals("__textsecure_group__!090a0b0c0d0e0f000102030405060708", v1.toString());
+    assertTrue(v1.isV1());
   }
 }

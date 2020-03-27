@@ -36,6 +36,7 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupC
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -53,23 +54,28 @@ final class V1GroupManager {
   {
     final byte[]        avatarBytes      = BitmapUtil.toByteArray(avatar);
     final GroupDatabase groupDatabase    = DatabaseFactory.getGroupDatabase(context);
-    final GroupId       groupId          = GroupDatabase.allocateGroupId(mms);
+    final SecureRandom  secureRandom     = new SecureRandom();
+    final GroupId       groupId          = mms ? GroupId.createMms(secureRandom) : GroupId.createV1(secureRandom);
     final RecipientId   groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
     final Recipient     groupRecipient   = Recipient.resolved(groupRecipientId);
 
     memberIds.add(Recipient.self().getId());
-    groupDatabase.create(groupId, name, new LinkedList<>(memberIds), null, null);
 
-    if (!mms) {
+    if (groupId.isV1()) {
+      GroupId.V1 groupIdV1 = groupId.requireV1();
+
+      groupDatabase.create(groupIdV1, name, memberIds, null, null);
+
       try {
         AvatarHelper.setAvatar(context, groupRecipientId, avatarBytes != null ? new ByteArrayInputStream(avatarBytes) : null);
       } catch (IOException e) {
         Log.w(TAG, "Failed to save avatar!", e);
       }
-      groupDatabase.onAvatarUpdated(groupId, avatarBytes != null);
+      groupDatabase.onAvatarUpdated(groupIdV1, avatarBytes != null);
       DatabaseFactory.getRecipientDatabase(context).setProfileSharing(groupRecipient.getId(), true);
-      return sendGroupUpdate(context, groupId.requireV1(), memberIds, name, avatarBytes);
+      return sendGroupUpdate(context, groupIdV1, memberIds, name, avatarBytes);
     } else {
+      groupDatabase.create(groupId.requireMms(), memberIds);
       long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
       return new GroupActionResult(groupRecipient, threadId);
     }
@@ -88,16 +94,19 @@ final class V1GroupManager {
 
     memberAddresses.add(Recipient.self().getId());
     groupDatabase.updateMembers(groupId, new LinkedList<>(memberAddresses));
-    groupDatabase.updateTitle(groupId, name);
-    groupDatabase.onAvatarUpdated(groupId, avatarBytes != null);
 
     if (groupId.isPush()) {
+      GroupId.V1 groupIdV1 = groupId.requireV1();
+
+      groupDatabase.updateTitle(groupIdV1, name);
+      groupDatabase.onAvatarUpdated(groupIdV1, avatarBytes != null);
+
       try {
         AvatarHelper.setAvatar(context, groupRecipientId, avatarBytes != null ? new ByteArrayInputStream(avatarBytes) : null);
       } catch (IOException e) {
         Log.w(TAG, "Failed to save avatar!", e);
       }
-      return sendGroupUpdate(context, groupId.requireV1(), memberAddresses, name, avatarBytes);
+      return sendGroupUpdate(context, groupIdV1, memberAddresses, name, avatarBytes);
     } else {
       Recipient   groupRecipient   = Recipient.resolved(groupRecipientId);
       long        threadId         = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);

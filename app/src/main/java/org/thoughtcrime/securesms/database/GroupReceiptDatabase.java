@@ -4,6 +4,7 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+
 import androidx.annotation.NonNull;
 
 import net.sqlcipher.database.SQLiteDatabase;
@@ -11,6 +12,7 @@ import net.sqlcipher.database.SQLiteDatabase;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -41,7 +43,7 @@ public class GroupReceiptDatabase extends Database {
     super(context, databaseHelper);
   }
 
-  public void insert(List<RecipientId> recipientIds, long mmsId, int status, long timestamp) {
+  public void insert(Collection<RecipientId> recipientIds, long mmsId, int status, long timestamp) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
     for (RecipientId recipientId : recipientIds) {

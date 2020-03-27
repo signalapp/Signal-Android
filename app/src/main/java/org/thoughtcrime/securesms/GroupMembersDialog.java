@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.Lifecycle;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -34,7 +35,7 @@ public final class GroupMembersDialog {
   public void display() {
     SimpleTask.run(
       lifecycle,
-      () -> DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupRecipient.requireGroupId(), true),
+      () -> DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupRecipient.requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_INCLUDING_SELF),
       members -> {
         AlertDialog dialog = new AlertDialog.Builder(context)
                                             .setTitle(R.string.ConversationActivity_group_members)

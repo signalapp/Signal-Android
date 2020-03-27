@@ -6,6 +6,7 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -85,7 +86,7 @@ public class TypingSendJob extends BaseJob {
     Optional<byte[]> groupId    = Optional.absent();
 
     if (recipient.isGroup()) {
-      recipients = DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.requireGroupId(), false);
+      recipients = DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
       groupId    = Optional.of(recipient.requireGroupId().getDecodedId());
     }
 

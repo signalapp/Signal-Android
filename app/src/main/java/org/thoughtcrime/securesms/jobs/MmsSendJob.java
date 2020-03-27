@@ -25,6 +25,7 @@ import com.klinker.android.send_message.Utils;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -51,6 +52,7 @@ import org.thoughtcrime.securesms.util.Util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.List;
 
@@ -231,7 +233,7 @@ public final class MmsSendJob extends SendJob {
     }
 
     if (message.getRecipient().isMmsGroup()) {
-      List<Recipient> members = DatabaseFactory.getGroupDatabase(context).getGroupMembers(message.getRecipient().requireGroupId(), false);
+      List<Recipient> members = DatabaseFactory.getGroupDatabase(context).getGroupMembers(message.getRecipient().requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
 
       for (Recipient member : members) {
         if (message.getDistributionType() == ThreadDatabase.DistributionTypes.BROADCAST) {
@@ -271,7 +273,7 @@ public final class MmsSendJob extends SendJob {
         PduPart part     = new PduPart();
 
         if (fileName == null) {
-          fileName      = String.valueOf(Math.abs(Util.getSecureRandom().nextLong()));
+          fileName      = String.valueOf(Math.abs(new SecureRandom().nextLong()));
           String fileExtension = MimeTypeMap.getSingleton().getExtensionFromMimeType(attachment.getContentType());
 
           if (fileExtension != null) fileName = fileName + "." + fileExtension;

@@ -7,13 +7,17 @@ import org.signal.zkgroup.groups.GroupIdentifier;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.signal.zkgroup.groups.GroupSecretParams;
 import org.thoughtcrime.securesms.util.Hex;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 
 public abstract class GroupId {
 
   private static final String ENCODED_SIGNAL_GROUP_PREFIX = "__textsecure_group__!";
   private static final String ENCODED_MMS_GROUP_PREFIX    = "__signal_mms_group__!";
+  private static final int    MMS_BYTE_LENGTH             = 16;
+  private static final int    V1_MMS_BYTE_LENGTH          = 16;
   private static final int    V2_BYTE_LENGTH              = GroupIdentifier.SIZE;
   private static final int    V2_ENCODED_LENGTH           = ENCODED_SIGNAL_GROUP_PREFIX.length() + V2_BYTE_LENGTH * 2;
 
@@ -32,6 +36,14 @@ public abstract class GroupId {
       throw new AssertionError();
     }
     return new GroupId.V1(gv1GroupIdBytes);
+  }
+
+  public static GroupId.V1 createV1(@NonNull SecureRandom secureRandom) {
+    return v1(Util.getSecretBytes(secureRandom, V1_MMS_BYTE_LENGTH));
+  }
+
+  public static GroupId.Mms createMms(@NonNull SecureRandom secureRandom) {
+    return mms(Util.getSecretBytes(secureRandom, MMS_BYTE_LENGTH));
   }
 
   public static GroupId.V2 v2(@NonNull byte[] bytes) {

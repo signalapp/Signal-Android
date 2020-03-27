@@ -124,8 +124,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int TRANSFER_FILE_CLEANUP            = 52;
   private static final int PROFILE_DATA_MIGRATION           = 53;
   private static final int AVATAR_LOCATION_MIGRATION        = 54;
+  private static final int GROUPS_V2                        = 55;
 
-  private static final int    DATABASE_VERSION = 54;
+  private static final int    DATABASE_VERSION = 55;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -849,6 +850,12 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
         db.execSQL("UPDATE groups SET avatar_id = 0 WHERE avatar IS NULL");
         db.execSQL("UPDATE groups SET avatar = NULL");
+      }
+
+      if (oldVersion < GROUPS_V2) {
+        db.execSQL("ALTER TABLE groups ADD COLUMN master_key");
+        db.execSQL("ALTER TABLE groups ADD COLUMN revision");
+        db.execSQL("ALTER TABLE groups ADD COLUMN decrypted_group");
       }
 
       db.setTransactionSuccessful();

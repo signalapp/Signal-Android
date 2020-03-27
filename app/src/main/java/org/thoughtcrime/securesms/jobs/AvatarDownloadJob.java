@@ -38,9 +38,9 @@ public class AvatarDownloadJob extends BaseJob {
 
   private static final String KEY_GROUP_ID = "group_id";
 
-  private @NonNull GroupId groupId;
+  private @NonNull GroupId.V1 groupId;
 
-  public AvatarDownloadJob(@NonNull GroupId groupId) {
+  public AvatarDownloadJob(@NonNull GroupId.V1 groupId) {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
                            .setMaxAttempts(10)
@@ -48,7 +48,7 @@ public class AvatarDownloadJob extends BaseJob {
          groupId);
   }
 
-  private AvatarDownloadJob(@NonNull Job.Parameters parameters, @NonNull GroupId groupId) {
+  private AvatarDownloadJob(@NonNull Job.Parameters parameters, @NonNull GroupId.V1 groupId) {
     super(parameters);
     this.groupId = groupId;
   }
@@ -118,7 +118,7 @@ public class AvatarDownloadJob extends BaseJob {
   public static final class Factory implements Job.Factory<AvatarDownloadJob> {
     @Override
     public @NonNull AvatarDownloadJob create(@NonNull Parameters parameters, @NonNull Data data) {
-      return new AvatarDownloadJob(parameters, GroupId.parse(data.getString(KEY_GROUP_ID)));
+      return new AvatarDownloadJob(parameters, GroupId.parse(data.getString(KEY_GROUP_ID)).requireV1());
     }
   }
 }

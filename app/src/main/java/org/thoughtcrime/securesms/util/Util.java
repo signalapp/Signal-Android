@@ -428,13 +428,13 @@ public class Util {
   }
 
   public static byte[] getSecretBytes(int size) {
-    byte[] secret = new byte[size];
-    getSecureRandom().nextBytes(secret);
-    return secret;
+    return getSecretBytes(new SecureRandom(), size);
   }
 
-  public static SecureRandom getSecureRandom() {
-    return new SecureRandom();
+  public static byte[] getSecretBytes(@NonNull SecureRandom secureRandom, int size) {
+    byte[] secret = new byte[size];
+    secureRandom.nextBytes(secret);
+    return secret;
   }
 
   public static int getDaysTillBuildExpiry() {

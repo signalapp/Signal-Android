@@ -1141,8 +1141,8 @@ public class MmsDatabase extends MessagingDatabase {
     long messageId = insertMediaMessage(message.getBody(), message.getAttachments(), quoteAttachments, message.getSharedContacts(), message.getLinkPreviews(), contentValues, insertListener);
 
     if (message.getRecipient().isGroup()) {
-      List<Recipient>      members         = DatabaseFactory.getGroupDatabase(context).getGroupMembers(message.getRecipient().requireGroupId(), false);
       GroupReceiptDatabase receiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
+      List<Recipient>      members         = DatabaseFactory.getGroupDatabase(context).getGroupMembers(message.getRecipient().requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
 
       receiptDatabase.insert(Stream.of(members).map(Recipient::getId).toList(),
                              messageId, defaultReceiptStatus, message.getSentTimeMillis());
