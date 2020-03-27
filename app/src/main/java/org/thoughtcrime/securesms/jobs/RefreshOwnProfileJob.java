@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.jobs;
 
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -64,6 +66,11 @@ public class RefreshOwnProfileJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
+    if (!TextSecurePreferences.isPushRegistered(context) || TextUtils.isEmpty(TextSecurePreferences.getLocalNumber(context))) {
+      Log.w(TAG, "Not yet registered!");
+      return;
+    }
+
     Recipient            self                 = Recipient.self();
     ProfileAndCredential profileAndCredential = ProfileUtil.retrieveProfile(context, self, getRequestType(self));
     SignalServiceProfile profile              = profileAndCredential.getProfile();
