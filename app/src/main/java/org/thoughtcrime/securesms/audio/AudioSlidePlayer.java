@@ -15,7 +15,6 @@ import android.os.PowerManager.WakeLock;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.util.Pair;
-import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.google.android.exoplayer2.C;
@@ -57,7 +56,7 @@ public class AudioSlidePlayer implements SensorEventListener {
   private final @NonNull  AudioManager      audioManager;
   private final @NonNull  SensorManager     sensorManager;
   private final @NonNull  Sensor            proximitySensor;
-  private @Nullable WakeLock          wakeLock;
+  private       @Nullable WakeLock          wakeLock;
 
   private @NonNull  WeakReference<Listener> listener;
   private @Nullable SimpleExoPlayer         mediaPlayer;
