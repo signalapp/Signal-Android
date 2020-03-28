@@ -1,7 +1,10 @@
 package org.whispersystems.signalservice.internal.configuration;
 
+import org.whispersystems.libsignal.util.guava.Optional;
+
 import java.util.List;
 
+import okhttp3.Dns;
 import okhttp3.Interceptor;
 
 public final class SignalServiceConfiguration {
@@ -12,6 +15,7 @@ public final class SignalServiceConfiguration {
   private final SignalKeyBackupServiceUrl[] signalKeyBackupServiceUrls;
   private final SignalStorageUrl[]          signalStorageUrls;
   private final List<Interceptor>           networkInterceptors;
+  private final Optional<Dns>               dns;
   private final byte[]                      zkGroupServerPublicParams;
 
   public SignalServiceConfiguration(SignalServiceUrl[] signalServiceUrls,
@@ -20,6 +24,7 @@ public final class SignalServiceConfiguration {
                                     SignalKeyBackupServiceUrl[] signalKeyBackupServiceUrls,
                                     SignalStorageUrl[] signalStorageUrls,
                                     List<Interceptor> networkInterceptors,
+                                    Optional<Dns> dns,
                                     byte[] zkGroupServerPublicParams)
   {
     this.signalServiceUrls          = signalServiceUrls;
@@ -28,6 +33,7 @@ public final class SignalServiceConfiguration {
     this.signalKeyBackupServiceUrls = signalKeyBackupServiceUrls;
     this.signalStorageUrls          = signalStorageUrls;
     this.networkInterceptors        = networkInterceptors;
+    this.dns                        = dns;
     this.zkGroupServerPublicParams  = zkGroupServerPublicParams;
   }
 
@@ -53,6 +59,10 @@ public final class SignalServiceConfiguration {
 
   public List<Interceptor> getNetworkInterceptors() {
     return networkInterceptors;
+  }
+
+  public Optional<Dns> getDns() {
+    return dns;
   }
 
   public byte[] getZkGroupServerPublicParams() {

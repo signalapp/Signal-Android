@@ -341,6 +341,7 @@ dependencies {
         exclude group: 'com.fasterxml.jackson.core'
         exclude group: 'org.freemarker'
     }
+    implementation 'dnsjava:dnsjava:2.1.9'
 
     flipperImplementation 'com.facebook.flipper:flipper:0.32.2'
     flipperImplementation 'com.facebook.soloader:soloader:0.8.2'

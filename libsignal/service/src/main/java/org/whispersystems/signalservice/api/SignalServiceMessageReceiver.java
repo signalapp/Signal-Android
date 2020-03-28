@@ -221,7 +221,8 @@ public class SignalServiceMessageReceiver {
                                                             urls.getSignalServiceUrls()[0].getTrustStore(),
                                                             Optional.of(credentialsProvider), signalAgent, connectivityListener,
                                                             sleepTimer,
-                                                            urls.getNetworkInterceptors());
+                                                            urls.getNetworkInterceptors(),
+                                                            urls.getDns());
 
     return new SignalServiceMessagePipe(webSocket, Optional.of(credentialsProvider), clientZkProfile);
   }
@@ -231,7 +232,8 @@ public class SignalServiceMessageReceiver {
                                                             urls.getSignalServiceUrls()[0].getTrustStore(),
                                                             Optional.<CredentialsProvider>absent(), signalAgent, connectivityListener,
                                                             sleepTimer,
-                                                            urls.getNetworkInterceptors());
+                                                            urls.getNetworkInterceptors(),
+                                                            urls.getDns());
 
     return new SignalServiceMessagePipe(webSocket, Optional.of(credentialsProvider), clientZkProfile);
   }

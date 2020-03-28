@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.logsubmit.util.Scrubber;
 import org.thoughtcrime.securesms.net.UserAgentInterceptor;
+import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -88,7 +89,7 @@ public class SubmitDebugLogRepository {
     }
 
     try {
-      OkHttpClient client   = new OkHttpClient.Builder().addInterceptor(new UserAgentInterceptor()).build();
+      OkHttpClient client   = new OkHttpClient.Builder().addInterceptor(new UserAgentInterceptor()).dns(SignalServiceNetworkAccess.DNS).build();
       Response     response = client.newCall(new Request.Builder().url(API_ENDPOINT).get().build()).execute();
       ResponseBody body     = response.body();
 

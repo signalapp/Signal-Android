@@ -330,6 +330,9 @@ dependencyVerification {
         ['com.tomergoldst.android:tooltips:1.0.6',
          '4c56697dd1ad64b8066535c61f961a6d901e7ae5d97ae27084ba40ad620349b6'],
 
+        ['dnsjava:dnsjava:2.1.9',
+         '072bba34267ffad8907c30a99a6b68f900782f3191454d278e395e289d478446'],
+
         ['me.leolin:ShortcutBadger:1.1.16',
          'e3cb3e7625892129b0c92dd5e4bc649faffdd526d5af26d9c45ee31ff8851774'],
 

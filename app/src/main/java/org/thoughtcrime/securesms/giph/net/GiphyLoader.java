@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.giph.model.GiphyImage;
 import org.thoughtcrime.securesms.giph.model.GiphyResponse;
 import org.thoughtcrime.securesms.net.ContentProxySelector;
 import org.thoughtcrime.securesms.net.UserAgentInterceptor;
+import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.util.AsyncLoader;
 import org.thoughtcrime.securesms.util.JsonUtils;
 
@@ -43,6 +44,7 @@ public abstract class GiphyLoader extends AsyncLoader<List<GiphyImage>> {
     this.client       = new OkHttpClient.Builder()
                                         .proxySelector(new ContentProxySelector())
                                         .addInterceptor(new UserAgentInterceptor())
+                                        .dns(SignalServiceNetworkAccess.DNS)
                                         .build();
   }
 

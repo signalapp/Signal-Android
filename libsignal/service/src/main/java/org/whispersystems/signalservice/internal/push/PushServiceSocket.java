@@ -106,6 +106,7 @@ import javax.net.ssl.X509TrustManager;
 import okhttp3.Call;
 import okhttp3.ConnectionSpec;
 import okhttp3.Credentials;
+import okhttp3.Dns;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -184,16 +185,16 @@ public class PushServiceSocket {
   private final SecureRandom        random;
   private final ClientZkOperations  clientZkOperations;
 
-  public PushServiceSocket(SignalServiceConfiguration signalServiceConfiguration, CredentialsProvider credentialsProvider, String signalAgent) {
+  public PushServiceSocket(SignalServiceConfiguration serviceConfig, CredentialsProvider credentialsProvider, String signalAgent) {
     this.credentialsProvider               = credentialsProvider;
     this.signalAgent                       = signalAgent;
-    this.serviceClients                    = createServiceConnectionHolders(signalServiceConfiguration.getSignalServiceUrls(), signalServiceConfiguration.getNetworkInterceptors());
-    this.cdnClients                        = createConnectionHolders(signalServiceConfiguration.getSignalCdnUrls(), signalServiceConfiguration.getNetworkInterceptors());
-    this.contactDiscoveryClients           = createConnectionHolders(signalServiceConfiguration.getSignalContactDiscoveryUrls(), signalServiceConfiguration.getNetworkInterceptors());
-    this.keyBackupServiceClients           = createConnectionHolders(signalServiceConfiguration.getSignalKeyBackupServiceUrls(), signalServiceConfiguration.getNetworkInterceptors());
-    this.storageClients                    = createConnectionHolders(signalServiceConfiguration.getSignalStorageUrls(), signalServiceConfiguration.getNetworkInterceptors());
+    this.serviceClients                    = createServiceConnectionHolders(serviceConfig.getSignalServiceUrls(), serviceConfig.getNetworkInterceptors(), serviceConfig.getDns());
+    this.cdnClients                        = createConnectionHolders(serviceConfig.getSignalCdnUrls(), serviceConfig.getNetworkInterceptors(), serviceConfig.getDns());
+    this.contactDiscoveryClients           = createConnectionHolders(serviceConfig.getSignalContactDiscoveryUrls(), serviceConfig.getNetworkInterceptors(), serviceConfig.getDns());
+    this.keyBackupServiceClients           = createConnectionHolders(serviceConfig.getSignalKeyBackupServiceUrls(), serviceConfig.getNetworkInterceptors(), serviceConfig.getDns());
+    this.storageClients                    = createConnectionHolders(serviceConfig.getSignalStorageUrls(), serviceConfig.getNetworkInterceptors(), serviceConfig.getDns());
     this.random                            = new SecureRandom();
-    this.clientZkOperations                = FeatureFlags.ZK_GROUPS ? new ClientZkOperations(new ServerPublicParams(signalServiceConfiguration.getZkGroupServerPublicParams())) : null;
+    this.clientZkOperations                = FeatureFlags.ZK_GROUPS ? new ClientZkOperations(new ServerPublicParams(serviceConfig.getZkGroupServerPublicParams())) : null;
   }
 
   public void requestSmsVerificationCode(boolean androidSmsRetriever, Optional<String> captchaToken, Optional<String> challenge) throws IOException {
@@ -1349,29 +1350,32 @@ public class PushServiceSocket {
     throw new NonSuccessfulResponseCodeException("Response: " + response);
   }
 
-  private ServiceConnectionHolder[] createServiceConnectionHolders(SignalUrl[] urls, List<Interceptor> interceptors) {
+  private ServiceConnectionHolder[] createServiceConnectionHolders(SignalUrl[] urls,
+                                                                   List<Interceptor> interceptors,
+                                                                   Optional<Dns> dns)
+  {
     List<ServiceConnectionHolder> serviceConnectionHolders = new LinkedList<>();
 
     for (SignalUrl url : urls) {
-      serviceConnectionHolders.add(new ServiceConnectionHolder(createConnectionClient(url, interceptors),
-                                                               createConnectionClient(url, interceptors),
+      serviceConnectionHolders.add(new ServiceConnectionHolder(createConnectionClient(url, interceptors, dns),
+                                                               createConnectionClient(url, interceptors, dns),
                                                                url.getUrl(), url.getHostHeader()));
     }
 
     return serviceConnectionHolders.toArray(new ServiceConnectionHolder[0]);
   }
 
-  private ConnectionHolder[] createConnectionHolders(SignalUrl[] urls, List<Interceptor> interceptors) {
+  private ConnectionHolder[] createConnectionHolders(SignalUrl[] urls, List<Interceptor> interceptors, Optional<Dns> dns) {
     List<ConnectionHolder> connectionHolders = new LinkedList<>();
 
     for (SignalUrl url : urls) {
-      connectionHolders.add(new ConnectionHolder(createConnectionClient(url, interceptors), url.getUrl(), url.getHostHeader()));
+      connectionHolders.add(new ConnectionHolder(createConnectionClient(url, interceptors, dns), url.getUrl(), url.getHostHeader()));
     }
 
     return connectionHolders.toArray(new ConnectionHolder[0]);
   }
 
-  private OkHttpClient createConnectionClient(SignalUrl url, List<Interceptor> interceptors) {
+  private OkHttpClient createConnectionClient(SignalUrl url, List<Interceptor> interceptors, Optional<Dns> dns) {
     try {
       TrustManager[] trustManagers = BlacklistingTrustManager.createFor(url.getTrustStore());
 
@@ -1380,7 +1384,8 @@ public class PushServiceSocket {
 
       OkHttpClient.Builder builder = new OkHttpClient.Builder()
                                                      .sslSocketFactory(new Tls12SocketFactory(context.getSocketFactory()), (X509TrustManager)trustManagers[0])
-                                                     .connectionSpecs(url.getConnectionSpecs().or(Util.immutableList(ConnectionSpec.RESTRICTED_TLS)));
+                                                     .connectionSpecs(url.getConnectionSpecs().or(Util.immutableList(ConnectionSpec.RESTRICTED_TLS)))
+                                                     .dns(dns.or(Dns.SYSTEM));
 
       for (Interceptor interceptor : interceptors) {
         builder.addInterceptor(interceptor);

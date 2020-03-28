@@ -33,6 +33,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import okhttp3.ConnectionSpec;
+import okhttp3.Dns;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -60,6 +61,7 @@ public class WebSocketConnection extends WebSocketListener {
   private final ConnectivityListener          listener;
   private final SleepTimer                    sleepTimer;
   private final List<Interceptor>             interceptors;
+  private final Optional<Dns>                 dns;
 
   private WebSocket           client;
   private KeepAliveSender     keepAliveSender;
@@ -72,7 +74,8 @@ public class WebSocketConnection extends WebSocketListener {
                              String signalAgent,
                              ConnectivityListener listener,
                              SleepTimer timer,
-                             List<Interceptor> interceptors)
+                             List<Interceptor> interceptors,
+                             Optional<Dns> dns)
   {
     this.trustStore          = trustStore;
     this.credentialsProvider = credentialsProvider;
@@ -80,6 +83,7 @@ public class WebSocketConnection extends WebSocketListener {
     this.listener            = listener;
     this.sleepTimer          = timer;
     this.interceptors        = interceptors;
+    this.dns                 = dns;
     this.attempts            = 0;
     this.connected           = false;
 
@@ -108,6 +112,7 @@ public class WebSocketConnection extends WebSocketListener {
                                                            .sslSocketFactory(new Tls12SocketFactory(socketFactory.first()), socketFactory.second())
                                                            .connectionSpecs(Util.immutableList(ConnectionSpec.RESTRICTED_TLS))
                                                            .readTimeout(KEEPALIVE_TIMEOUT_SECONDS + 10, TimeUnit.SECONDS)
+                                                           .dns(dns.or(Dns.SYSTEM))
                                                            .connectTimeout(KEEPALIVE_TIMEOUT_SECONDS + 10, TimeUnit.SECONDS);
 
       for (Interceptor interceptor : interceptors) {
