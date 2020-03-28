@@ -747,7 +747,8 @@ public final class SignalServiceContent {
                                               pointer.hasFileName() ? Optional.of(pointer.getFileName()) : Optional.<String>absent(),
                                               (pointer.getFlags() & SignalServiceProtos.AttachmentPointer.Flags.VOICE_MESSAGE_VALUE) != 0,
                                               pointer.hasCaption() ? Optional.of(pointer.getCaption()) : Optional.<String>absent(),
-                                              pointer.hasBlurHash() ? Optional.of(pointer.getBlurHash()) : Optional.<String>absent());
+                                              pointer.hasBlurHash() ? Optional.of(pointer.getBlurHash()) : Optional.<String>absent(),
+                                              pointer.hasUploadTimestamp() ? pointer.getUploadTimestamp() : 0);
 
   }
 
@@ -803,7 +804,8 @@ public final class SignalServiceContent {
                                                     Optional.<String>absent(),
                                                     false,
                                                     Optional.<String>absent(),
-                                                    Optional.<String>absent());
+                                                    Optional.<String>absent(),
+                                                    pointer.hasUploadTimestamp() ? pointer.getUploadTimestamp() : 0);
       }
 
       return new SignalServiceGroup(type, content.getGroup().getId().toByteArray(), name, members, avatar);

@@ -27,7 +27,7 @@ public class UriAttachment extends Attachment {
                        boolean voiceNote, boolean quote, @Nullable String caption, @Nullable StickerLocator stickerLocator,
                        @Nullable BlurHash blurHash, @Nullable TransformProperties transformProperties)
   {
-    super(contentType, transferState, size, fileName, null, null, null, null, fastPreflightId, voiceNote, width, height, quote, caption, stickerLocator, blurHash, transformProperties);
+    super(contentType, transferState, size, fileName, null, null, null, null, fastPreflightId, voiceNote, width, height, quote, 0, caption, stickerLocator, blurHash, transformProperties);
     this.dataUri      = dataUri;
     this.thumbnailUri = thumbnailUri;
   }

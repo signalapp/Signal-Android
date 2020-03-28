@@ -21,10 +21,10 @@ public class PointerAttachment extends Attachment {
                             @Nullable String fileName,  @NonNull String location,
                             @Nullable String key, @Nullable String relay,
                             @Nullable byte[] digest, @Nullable String fastPreflightId, boolean voiceNote,
-                            int width, int height, @Nullable String caption, @Nullable StickerLocator stickerLocator,
+                            int width, int height, long uploadTimestamp, @Nullable String caption, @Nullable StickerLocator stickerLocator,
                             @Nullable BlurHash blurHash)
   {
-    super(contentType, transferState, size, fileName, location, key, relay, digest, fastPreflightId, voiceNote, width, height, false, caption, stickerLocator, blurHash, null);
+    super(contentType, transferState, size, fileName, location, key, relay, digest, fastPreflightId, voiceNote, width, height, false, uploadTimestamp, caption, stickerLocator, blurHash, null);
   }
 
   @Nullable
@@ -100,6 +100,7 @@ public class PointerAttachment extends Attachment {
                                       pointer.get().asPointer().getVoiceNote(),
                                       pointer.get().asPointer().getWidth(),
                                       pointer.get().asPointer().getHeight(),
+                                      pointer.get().asPointer().getUploadTimestamp(),
                                       pointer.get().asPointer().getCaption().orNull(),
                                       stickerLocator,
                                       BlurHash.parseOrNull(pointer.get().asPointer().getBlurHash().orNull())));
@@ -121,6 +122,7 @@ public class PointerAttachment extends Attachment {
                                              false,
                                              thumbnail != null ? thumbnail.asPointer().getWidth() : 0,
                                              thumbnail != null ? thumbnail.asPointer().getHeight() : 0,
+                                             thumbnail != null ? thumbnail.asPointer().getUploadTimestamp() : 0,
                                              thumbnail != null ? thumbnail.asPointer().getCaption().orNull() : null,
                                              null,
                                              null));

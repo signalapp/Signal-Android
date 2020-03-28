@@ -213,7 +213,8 @@ public class MmsDatabase extends MessagingDatabase {
           "'" + AttachmentDatabase.STICKER_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_ID + ", " +
           "'" + AttachmentDatabase.BLUR_HASH + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.BLUR_HASH + ", " +
           "'" + AttachmentDatabase.TRANSFORM_PROPERTIES + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.TRANSFORM_PROPERTIES + ", " +
-          "'" + AttachmentDatabase.DISPLAY_ORDER + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DISPLAY_ORDER +
+          "'" + AttachmentDatabase.DISPLAY_ORDER + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DISPLAY_ORDER + ", " +
+          "'" + AttachmentDatabase.UPLOAD_TIMESTAMP + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.UPLOAD_TIMESTAMP +
           ")) AS " + AttachmentDatabase.ATTACHMENT_JSON_ALIAS,
   };
 
@@ -885,59 +886,6 @@ public class MmsDatabase extends MessagingDatabase {
     }
 
     return Collections.emptyList();
-  }
-
-  public long copyMessageInbox(long messageId) throws MmsException {
-    try {
-      OutgoingMediaMessage request = getOutgoingMessage(messageId);
-      ContentValues contentValues = new ContentValues();
-      contentValues.put(RECIPIENT_ID, request.getRecipient().getId().serialize());
-      contentValues.put(DATE_SENT, request.getSentTimeMillis());
-      contentValues.put(MESSAGE_BOX, Types.BASE_INBOX_TYPE | Types.SECURE_MESSAGE_BIT);
-      contentValues.put(THREAD_ID, getThreadIdForMessage(messageId));
-      contentValues.put(READ, 1);
-      contentValues.put(DATE_RECEIVED, contentValues.getAsLong(DATE_SENT));
-      contentValues.put(EXPIRES_IN, request.getExpiresIn());
-      contentValues.put(VIEW_ONCE, request.isViewOnce());
-
-      List<Attachment> attachments = new LinkedList<>();
-
-      for (Attachment attachment : request.getAttachments()) {
-        DatabaseAttachment databaseAttachment = (DatabaseAttachment)attachment;
-        attachments.add(new DatabaseAttachment(databaseAttachment.getAttachmentId(),
-                                               databaseAttachment.getMmsId(),
-                                               databaseAttachment.hasData(),
-                                               databaseAttachment.hasThumbnail(),
-                                               databaseAttachment.getContentType(),
-                                               AttachmentDatabase.TRANSFER_PROGRESS_DONE,
-                                               databaseAttachment.getSize(),
-                                               databaseAttachment.getFileName(),
-                                               databaseAttachment.getLocation(),
-                                               databaseAttachment.getKey(),
-                                               databaseAttachment.getRelay(),
-                                               databaseAttachment.getDigest(),
-                                               databaseAttachment.getFastPreflightId(),
-                                               databaseAttachment.isVoiceNote(),
-                                               databaseAttachment.getWidth(),
-                                               databaseAttachment.getHeight(),
-                                               databaseAttachment.isQuote(),
-                                               databaseAttachment.getCaption(),
-                                               databaseAttachment.getSticker(),
-                                               databaseAttachment.getBlurHash(),
-                                               databaseAttachment.getTransformProperties(),
-                                               databaseAttachment.getDisplayOrder()));
-      }
-
-      return insertMediaMessage(request.getBody(),
-                                attachments,
-                                new LinkedList<>(),
-                                request.getSharedContacts(),
-                                request.getLinkPreviews(),
-                                contentValues,
-                                null);
-    } catch (NoSuchMessageException e) {
-      throw new MmsException(e);
-    }
   }
 
   private Optional<InsertResult> insertMessageInbox(IncomingMediaMessage retrieved,

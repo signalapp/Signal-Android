@@ -28,9 +28,10 @@ public class DatabaseAttachment extends Attachment {
                             byte[] digest, String fastPreflightId, boolean voiceNote,
                             int width, int height, boolean quote, @Nullable String caption,
                             @Nullable StickerLocator stickerLocator, @Nullable BlurHash blurHash,
-                            @Nullable TransformProperties transformProperties, int displayOrder)
+                            @Nullable TransformProperties transformProperties, int displayOrder,
+                            long uploadTimestamp)
   {
-    super(contentType, transferProgress, size, fileName, location, key, relay, digest, fastPreflightId, voiceNote, width, height, quote, caption, stickerLocator, blurHash, transformProperties);
+    super(contentType, transferProgress, size, fileName, location, key, relay, digest, fastPreflightId, voiceNote, width, height, quote, uploadTimestamp, caption, stickerLocator, blurHash, transformProperties);
     this.attachmentId = attachmentId;
     this.hasData      = hasData;
     this.hasThumbnail = hasThumbnail;

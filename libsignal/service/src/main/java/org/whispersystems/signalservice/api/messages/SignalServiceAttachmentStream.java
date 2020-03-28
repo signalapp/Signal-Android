@@ -25,11 +25,12 @@ public class SignalServiceAttachmentStream extends SignalServiceAttachment {
   private final boolean           voiceNote;
   private final int               width;
   private final int               height;
+  private final long              uploadTimestamp;
   private final Optional<String>  caption;
   private final Optional<String>  blurHash;
 
   public SignalServiceAttachmentStream(InputStream inputStream, String contentType, long length, Optional<String> fileName, boolean voiceNote, ProgressListener listener, CancelationSignal cancelationSignal) {
-    this(inputStream, contentType, length, fileName, voiceNote, Optional.<byte[]>absent(), 0, 0, Optional.<String>absent(), Optional.<String>absent(), listener, cancelationSignal);
+    this(inputStream, contentType, length, fileName, voiceNote, Optional.<byte[]>absent(), 0, 0, System.currentTimeMillis(), Optional.<String>absent(), Optional.<String>absent(), listener, cancelationSignal);
   }
 
   public SignalServiceAttachmentStream(InputStream inputStream,
@@ -40,6 +41,7 @@ public class SignalServiceAttachmentStream extends SignalServiceAttachment {
                                        Optional<byte[]> preview,
                                        int width,
                                        int height,
+                                       long uploadTimestamp,
                                        Optional<String> caption,
                                        Optional<String> blurHash,
                                        ProgressListener listener,
@@ -54,6 +56,7 @@ public class SignalServiceAttachmentStream extends SignalServiceAttachment {
     this.preview           = preview;
     this.width             = width;
     this.height            = height;
+    this.uploadTimestamp   = uploadTimestamp;
     this.caption           = caption;
     this.blurHash          = blurHash;
     this.cancelationSignal = cancelationSignal;
@@ -111,5 +114,9 @@ public class SignalServiceAttachmentStream extends SignalServiceAttachment {
 
   public Optional<String> getBlurHash() {
     return blurHash;
+  }
+
+  public long getUploadTimestamp() {
+    return uploadTimestamp;
   }
 }

@@ -204,20 +204,10 @@ public class AttachmentDownloadJob extends BaseJob {
                                                 Optional.fromNullable(attachment.getFileName()),
                                                 attachment.isVoiceNote(),
                                                 Optional.absent(),
-                                                Optional.fromNullable(attachment.getBlurHash()).transform(BlurHash::getHash));
+                                                Optional.fromNullable(attachment.getBlurHash()).transform(BlurHash::getHash),
+                                                attachment.getUploadTimestamp());
     } catch (IOException | ArithmeticException e) {
       Log.w(TAG, e);
-      throw new InvalidPartException(e);
-    }
-  }
-
-  private File createTempFile() throws InvalidPartException {
-    try {
-      File file = File.createTempFile("push-attachment", "tmp", context.getCacheDir());
-      file.deleteOnExit();
-
-      return file;
-    } catch (IOException e) {
       throw new InvalidPartException(e);
     }
   }

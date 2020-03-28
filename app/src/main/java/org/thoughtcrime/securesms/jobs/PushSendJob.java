@@ -198,7 +198,8 @@ public abstract class PushSendJob extends SendJob {
                                                 Optional.fromNullable(attachment.getFileName()),
                                                 attachment.isVoiceNote(),
                                                 Optional.fromNullable(attachment.getCaption()),
-                                                Optional.fromNullable(attachment.getBlurHash()).transform(BlurHash::getHash));
+                                                Optional.fromNullable(attachment.getBlurHash()).transform(BlurHash::getHash),
+                                                attachment.getUploadTimestamp());
     } catch (IOException | ArithmeticException e) {
       Log.w(TAG, e);
       return null;

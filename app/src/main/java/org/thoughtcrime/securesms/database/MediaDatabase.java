@@ -47,6 +47,7 @@ public class MediaDatabase extends Database {
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DISPLAY_ORDER + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CAPTION + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.NAME + ", "
+        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.UPLOAD_TIMESTAMP + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.MESSAGE_BOX + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_SENT + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_RECEIVED + ", "

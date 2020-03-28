@@ -49,6 +49,8 @@ public final class AttachmentUploadJob extends BaseJob {
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(AttachmentUploadJob.class);
 
+  private static final long UPLOAD_REUSE_THRESHOLD = TimeUnit.DAYS.toMillis(3);
+
   private static final String KEY_ROW_ID    = "row_id";
   private static final String KEY_UNIQUE_ID = "unique_id";
 
@@ -95,6 +97,14 @@ public final class AttachmentUploadJob extends BaseJob {
       throw new InvalidAttachmentException("Cannot find the specified attachment.");
     }
 
+    long timeSinceUpload = System.currentTimeMillis() - databaseAttachment.getUploadTimestamp();
+    if (timeSinceUpload < UPLOAD_REUSE_THRESHOLD) {
+      Log.i(TAG, "We can re-use an already-uploaded file. It was uploaded " + timeSinceUpload + " ms ago. Skipping.");
+      return;
+    } else if (databaseAttachment.getUploadTimestamp() > 0) {
+      Log.i(TAG, "This file was previously-uploaded, but too long ago to be re-used. Age: " + timeSinceUpload + " ms");
+    }
+
     Log.i(TAG, "Uploading attachment for message " + databaseAttachment.getMmsId() + " with ID " + databaseAttachment.getAttachmentId());
 
     try (NotificationController notification = getNotificationForAttachment(databaseAttachment)) {
@@ -102,7 +112,7 @@ public final class AttachmentUploadJob extends BaseJob {
       SignalServiceAttachmentPointer remoteAttachment = messageSender.uploadAttachment(localAttachment.asStream());
       Attachment                     attachment       = PointerAttachment.forPointer(Optional.of(remoteAttachment), null, databaseAttachment.getFastPreflightId()).get();
 
-      database.updateAttachmentAfterUpload(databaseAttachment.getAttachmentId(), attachment);
+      database.updateAttachmentAfterUpload(databaseAttachment.getAttachmentId(), attachment, remoteAttachment.getUploadTimestamp());
     }
   }
 
@@ -138,6 +148,7 @@ public final class AttachmentUploadJob extends BaseJob {
                                                                        .withVoiceNote(attachment.isVoiceNote())
                                                                        .withWidth(attachment.getWidth())
                                                                        .withHeight(attachment.getHeight())
+                                                                       .withUploadTimestamp(System.currentTimeMillis())
                                                                        .withCaption(attachment.getCaption())
                                                                        .withCancelationSignal(this::isCanceled)
                                                                        .withListener((total, progress) -> {

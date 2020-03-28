@@ -51,6 +51,7 @@ public abstract class SignalServiceAttachment {
     private int               height;
     private String            caption;
     private String            blurHash;
+    private long              uploadTimestamp;
 
     private Builder() {}
 
@@ -109,6 +110,11 @@ public abstract class SignalServiceAttachment {
       return this;
     }
 
+    public Builder withUploadTimestamp(long uploadTimestamp) {
+      this.uploadTimestamp = uploadTimestamp;
+      return this;
+    }
+
     public SignalServiceAttachmentStream build() {
       if (inputStream == null) throw new IllegalArgumentException("Must specify stream!");
       if (contentType == null) throw new IllegalArgumentException("No content type specified!");
@@ -122,6 +128,7 @@ public abstract class SignalServiceAttachment {
                                                Optional.<byte[]>absent(),
                                                width,
                                                height,
+                                               uploadTimestamp,
                                                Optional.fromNullable(caption),
                                                Optional.fromNullable(blurHash),
                                                listener,

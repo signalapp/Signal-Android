@@ -12,7 +12,7 @@ import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 /**
  * Represents a received SignalServiceAttachment "handle."  This
  * is a pointer to the actual attachment content, which needs to be
- * retrieved using {@link SignalServiceMessageReceiver#retrieveAttachment(SignalServiceAttachmentPointer, java.io.File, int)}
+ * retrieved using {@link SignalServiceMessageReceiver#retrieveAttachment(SignalServiceAttachmentPointer, java.io.File, long)}
  *
  * @author Moxie Marlinspike
  */
@@ -29,26 +29,28 @@ public class SignalServiceAttachmentPointer extends SignalServiceAttachment {
   private final int               height;
   private final Optional<String>  caption;
   private final Optional<String>  blurHash;
+  private final long              uploadTimestamp;
 
   public SignalServiceAttachmentPointer(long id, String contentType, byte[] key,
                                         Optional<Integer> size, Optional<byte[]> preview,
                                         int width, int height,
                                         Optional<byte[]> digest, Optional<String> fileName,
                                         boolean voiceNote, Optional<String> caption,
-                                        Optional<String> blurHash)
+                                        Optional<String> blurHash, long uploadTimestamp)
   {
     super(contentType);
-    this.id        = id;
-    this.key       = key;
-    this.size      = size;
-    this.preview   = preview;
-    this.width     = width;
-    this.height    = height;
-    this.digest    = digest;
-    this.fileName  = fileName;
-    this.voiceNote = voiceNote;
-    this.caption   = caption;
-    this.blurHash  = blurHash;
+    this.id              = id;
+    this.key             = key;
+    this.size            = size;
+    this.preview         = preview;
+    this.width           = width;
+    this.height          = height;
+    this.digest          = digest;
+    this.fileName        = fileName;
+    this.voiceNote       = voiceNote;
+    this.caption         = caption;
+    this.blurHash        = blurHash;
+    this.uploadTimestamp = uploadTimestamp;
   }
 
   public long getId() {
@@ -103,5 +105,9 @@ public class SignalServiceAttachmentPointer extends SignalServiceAttachment {
 
   public Optional<String> getBlurHash() {
     return blurHash;
+  }
+
+  public long getUploadTimestamp() {
+    return uploadTimestamp;
   }
 }

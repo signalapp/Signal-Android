@@ -381,7 +381,8 @@ public class SignalServiceMessageSender {
                                               attachment.getFileName(),
                                               attachment.getVoiceNote(),
                                               attachment.getCaption(),
-                                              attachment.getBlurHash());
+                                              attachment.getBlurHash(),
+                                              attachment.getUploadTimestamp());
   }
 
 
