@@ -100,7 +100,11 @@ public class RetrieveProfileAvatarJob extends BaseJob {
       SignalServiceMessageReceiver receiver     = ApplicationDependencies.getSignalServiceMessageReceiver();
       InputStream                  avatarStream = receiver.retrieveProfileAvatar(profileAvatar, downloadDestination, profileKey, AvatarHelper.AVATAR_DOWNLOAD_FAILSAFE_MAX_SIZE);
 
-      AvatarHelper.setAvatar(context, recipient.getId(), avatarStream);
+      try {
+        AvatarHelper.setAvatar(context, recipient.getId(), avatarStream);
+      } catch (AssertionError e) {
+        throw new IOException("Failed to copy stream. Likely a Conscrypt issue.", e);
+      }
     } catch (PushNetworkException e) {
       if (e.getCause() instanceof NonSuccessfulResponseCodeException) {
         Log.w(TAG, "Removing profile avatar (no image available) for: " + recipient.getId().serialize());
