@@ -14,6 +14,7 @@ import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CameraMetadata;
 import android.os.Build;
+import android.util.Pair;
 import android.util.Rational;
 import android.util.Size;
 
@@ -26,12 +27,15 @@ import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageProxy;
 
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.mediasend.LegacyCameraModels;
+import org.thoughtcrime.securesms.util.BitmapDecodingException;
+import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.util.Locale;
 
 public class CameraXUtil {
 
@@ -66,6 +70,20 @@ public class CameraXUtil {
 
     buffer.get(data);
 
+    try {
+      Pair<Integer, Integer> dimens = BitmapUtil.getDimensions(new ByteArrayInputStream(data));
+
+      if (dimens.first != image.getWidth() && dimens.second != image.getHeight()) {
+        Log.w(TAG, String.format(Locale.ENGLISH, "Decoded image dimensions differed from stated dimensions! Stated: %d x %d, Decoded: %d x %d",
+                                                  image.getWidth(), image.getHeight(), dimens.first, dimens.second));
+        Log.w(TAG, "Ignoring the stated rotation and rotating the crop rect 90 degrees (stated rotation is " + rotation + " degrees).");
+        rotation = 0;
+        cropRect = new Rect(cropRect.top, cropRect.left, cropRect.bottom, cropRect.right);
+      }
+    } catch (BitmapDecodingException e) {
+      Log.w(TAG, "Failed to decode!", e);
+    }
+
     if (cropRect != null || rotation != 0 || flip) {
       data = transformByteArray(data, cropRect, rotation, flip);
     }
@@ -84,7 +102,7 @@ public class CameraXUtil {
   }
 
   public static boolean isSupported() {
-    return Build.VERSION.SDK_INT >= 21 && !LegacyCameraModels.isLegacyCameraModel();
+    return Build.VERSION.SDK_INT >= 21 && !CameraXModelBlacklist.isBlacklisted();
   }
 
   public static int toCameraDirectionInt(int facing) {

@@ -366,7 +366,7 @@ public class CameraXFragment extends Fragment implements CameraFragment {
 
     camera.takePicture(Executors.mainThreadExecutor(), new ImageCapture.OnImageCapturedCallback() {
       @Override
-      public void onCaptureSuccess(ImageProxy image) {
+      public void onCaptureSuccess(@NonNull ImageProxy image) {
         flashHelper.endFlash();
 
         SimpleTask.run(CameraXFragment.this.getViewLifecycleOwner().getLifecycle(), () -> {
