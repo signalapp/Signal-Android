@@ -305,7 +305,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Probleem bij instellen van profiel</string>
   <string name="CreateProfileActivity_profile_photo">Profielfoto</string>
   <string name="CreateProfileActivity_set_up_your_profile">Stel je profiel op</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-profielen worden eind-tot-eind-versleuteld uitgewisseld, dus zelfs de Signal-dienst heeft nooit toegang tot je profielfoto en naam. Deze gegevens zijn alleen zichtbaar voor mensen wie zijn opgeslagen in jouw contactenlijst, mensen naar wie jij zelf een nieuwe gesprek begint, en voor mensen voor wie je expliciet toestemming hebt gegeven door op “Profielfoto en naam zichtbaar maken” te tikken.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-profielen worden eind-tot-eind-versleuteld uitgewisseld, dus zelfs de Signal-dienst heeft nooit toegang tot je profielfoto en naam. Deze gegevens zijn alleen zichtbaar voor personen wie zijn opgeslagen in jouw contactenlijst, personen naar wie je zelf een nieuwe gesprek initieert, en voor personen voor wie je expliciet toestemming hebt gegeven door op “Profielfoto en naam zichtbaar maken” te tikken.</string>
   <string name="CreateProfileActivity_set_avatar_description">Avatar instellen</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Aanpassing in gebruik: %s</string>
@@ -412,8 +412,8 @@
   <string name="MessageDetailsRecipient_new_safety_number">Nieuw veiligheidsnummer</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Kan bericht niet vinden</string>
-  <string name="LongMessageActivity_message_from_s">Bericht van %1$s</string>
-  <string name="LongMessageActivity_your_message">Je bericht</string>
+  <string name="LongMessageActivity_message_from_s">Volledige bericht van %1$s</string>
+  <string name="LongMessageActivity_your_message">Jouw volledige bericht</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">Berichten ontvangen in de achtergrond is actief</string>
@@ -1349,7 +1349,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_storage__review_storage">Alle bestanden bekijken</string>
   <string name="preferences_advanced__use_system_emoji">Gebruik systeem-emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Schakel de ingebouwde emoji-ondersteuning van Signal uit</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Om te voorkomen dat je gesprekspartner je IP-adres kan achterhalen worden oproepen met niet-contactpersonen altijd omgeleid via de Signal-server. Door deze optie in te schakelen wordt dat ook gedaan voor contacten wie wel in je contactenlijst staan. Dit leidt echter tot een verminderde gesprekskwaliteit.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Om te voorkomen dat je gesprekspartner je IP-adres kan achterhalen worden oproepen met niet-contactpersonen altijd omgeleid via de Signal-server. Door deze optie in te schakelen wordt dat ook gedaan voor contacten wie wel in je contactenlijst staan. Dit leidt echter tot een verminderde geluids- en videokwaliteit.</string>
   <string name="preferences_advanced__always_relay_calls">Alle oproepen omleiden</string>
   <string name="preferences_app_protection__app_access">Toegang tot app</string>
   <string name="preferences_app_protection__communication">Communicatie</string>

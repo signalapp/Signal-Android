@@ -207,17 +207,21 @@
   <string name="ConversationActivity_sticker_pack_installed">Klistremerkepakke installert</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Ny! Si det med klistremerker</string>
   <string name="ConversationActivity_block_s">Blokker %1$s?</string>
+  <string name="ConversationActivity_block_and_leave_s">Blokker og forlat %1$s?</string>
+  <string name="ConversationActivity_unblock_s">avblokker %1$s?</string>
   <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">Du kan sende meldinger og ringe hverandre.</string>
   <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">Gruppemedlemmer kan legge deg til denne gruppen igjen.</string>
   <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">Blokkerte personer vil ikke kunne ringe deg eller sende deg meldinger.</string>
   <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">Du vil forlate denne gruppen og vil ikke lenger motta meldinger eller oppdateringer.</string>
   <string name="ConversationActivity_block">Blokker</string>
+  <string name="ConversationActivity_block_and_delete">Blokker og slett</string>
   <string name="ConversationActivity_cancel">Avbryt</string>
   <string name="ConversationActivity_delete_conversation">Vil du slette samtalen?</string>
   <string name="ConversationActivity_delete_and_leave_group">Slette og forlate gruppen?</string>
   <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Denne samtalen vil slettes fra alle enhetene dine.</string>
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Du vil forlate denne gruppen, og den blir slettet fra alle enhetene dine.</string>
   <string name="ConversationActivity_delete">Slett</string>
+  <string name="ConversationActivity_delete_and_leave">Slett og forlat</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ulest melding</item>
@@ -526,6 +530,10 @@
   <string name="MessageRequestProfileView_member_of_one_group">Medlem av %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Medlem av %1$s og %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Medlem av %1$s, %2$s, og %3$s</string>
+  <plurals name="MessageRequestProfileView_members">
+    <item quantity="one">%1$d medlem</item>
+    <item quantity="other">%1$d medlemmer</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d annen</item>
     <item quantity="other">%d andre</item>
@@ -716,9 +724,11 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">Rediger</string>
   <string name="SubmitDebugLogActivity_done">Ferdig</string>
+  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Trykk på en linje for å slette den</string>
   <string name="SubmitDebugLogActivity_submit">Send inn</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Kunne ikke sende inn logger</string>
   <string name="SubmitDebugLogActivity_success">Fullført!</string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopier denne URL-en og legg den til i din feilrapport eller support-e-postadressen:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Kopiert til utklippstavle</string>
   <string name="SubmitDebugLogActivity_ok">Ok</string>
   <string name="SubmitDebugLogActivity_share">Del</string>
@@ -744,6 +754,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ThreadRecord_you_marked_unverified">Markert som ikke bekreftet</string>
   <string name="ThreadRecord_message_could_not_be_processed">Meldingen kunne ikke behandles</string>
   <string name="ThreadRecord_message_request">Meldingsforespørsel</string>
+  <string name="ThreadRecord_s_added_you_to_the_group">%1$s la deg til gruppen </string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal oppdatering</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">En ny versjon av Signal er tilgjengelig, trykk for å oppdatere</string>
@@ -1158,18 +1169,27 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="AndroidManifest_archived_conversations">Lagrede samtaler</string>
   <string name="AndroidManifest_remove_photo">Fjern bilde</string>
   <!--Message Requests Megaphone-->
+  <string name="MessageRequestsMegaphone__message_requests">Meldingsforespørsler</string>
   <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Brukere kan nå velge å godta en ny samtale. Profilnavn lar folk få vite hvem som sender dem beskjed.</string>
+  <string name="MessageRequestsMegaphone__add_profile_name">Legg til profilnavn</string>
+  <string name="MessageRequestsMegaphone__new_message_requests">Ny: Meldingsforespørsler</string>
+  <string name="MessageRequestsMegaphone__add_name">Legg til navn</string>
   <!--HelpFragment-->
   <string name="HelpFragment__help">Hjelp</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">Har du lest våre vanlige spørsmål ennå?</string>
   <string name="HelpFragment__next">Neste</string>
   <string name="HelpFragment__contact_us">Kontakt oss</string>
   <string name="HelpFragment__tell_us_whats_going_on">Fortell oss hva som skjer</string>
   <string name="HelpFragment__whats_this">Hva er dette?</string>
   <string name="HelpFragment__how_do_you_feel">Hvordan føler du deg? (Valgfri)</string>
+  <string name="HelpFragment__subject">Emne:</string>
+  <string name="HelpFragment__device_info">Enhetsinformasjon:</string>
   <string name="HelpFragment__android_version">Android versjon</string>
   <string name="HelpFragment__signal_version">Signal versjon:</string>
+  <string name="HelpFragment__locale">Språk:</string>
   <string name="HelpFragment__could_not_upload_logs">Kunne ikke laste opp logger</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vær så beskrivende som mulig for å hjelpe oss med å forstå problemet.</string>
+  <string name="HelpFragment__no_email_app_found">Ingen e-postapp funnet.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importer</string>
   <string name="arrays__use_default">Bruk forvalgt</string>
@@ -1463,11 +1483,16 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">Opprett numerisk PIN-kode</string>
   <!--CreateKbsPinFragment-->
   <string name="CreateKbsPinFragment__create_a_new_pin">Opprett en ny PIN-kode</string>
+  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
+    <item quantity="one">Du kan velge en ny PIN-kode fordi denne enheten er registrert. Hvis du glemmer PIN-koden, kan det hende du må vente %1$d dag for å registrere deg igjen. </item>
+    <item quantity="other">Du kan velge en ny PIN-kode fordi denne enheten er registrert. Hvis du glemmer PIN-koden, kan det hende du må vente %1$d dager å registrere seg på nytt.</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Opprett PIN-koden</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN-koder gir ekstra sikkerhet for kontoen din og kan ikke gjenopprettes. Du trenger PIN-koden din for å registrere deg hos Signal igjen.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-koder stemmer ikke overens. Prøv igjen.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Bekreft din PIN.</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN-koden din ble ikke lagret. Vi ber deg om å opprette en PIN-kode senere.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN laget.</string>
   <string name="ConfirmKbsPinFragment__re_enter_pin">Skriv inn PIN-koden på nytt</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Oppretter PIN…</string>

@@ -1133,7 +1133,6 @@
   <string name="HelpFragment__how_do_you_feel">今の状況は？ (任意)</string>
   <string name="HelpFragment__support_info">Support Info</string>
   <string name="HelpFragment__subject">Subject:</string>
-  <string name="HelpFragment__signal_android_support_request">Signal Android Support Request</string>
   <string name="HelpFragment__device_info">Device info:</string>
   <string name="HelpFragment__android_version">Android version:</string>
   <string name="HelpFragment__signal_version">Signal version:</string>

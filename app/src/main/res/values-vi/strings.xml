@@ -516,6 +516,9 @@
   <plurals name="MessageRequestProfileView_members">
     <item quantity="other">%1$d thành viên</item>
   </plurals>
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="other">%1$d thành viên (+%2$d đã được mời)</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="other">%d người khác</item>
   </plurals>

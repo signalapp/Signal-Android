@@ -538,6 +538,10 @@
     <item quantity="one">%1$d jäsen</item>
     <item quantity="other">%1$d jäsentä</item>
   </plurals>
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d jäsen (+%2$d kutsuttu)</item>
+    <item quantity="other">%1$d jäsentä (+%2$d kutsuttu)</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d muuta</item>
     <item quantity="other">%d muuta</item>

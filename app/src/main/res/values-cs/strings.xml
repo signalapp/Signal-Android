@@ -582,6 +582,12 @@
     <item quantity="many">%1$d členů</item>
     <item quantity="other">%1$d členů</item>
   </plurals>
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d člen (+%2$d pozvaný)</item>
+    <item quantity="few">%1$d členové (+%2$d pozvaní)</item>
+    <item quantity="many">%1$d členů (+%2$d pozvaných)</item>
+    <item quantity="other">%1$d členů (+%2$d pozvaných)</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%dostatní</item>
     <item quantity="few">%dostatních</item>

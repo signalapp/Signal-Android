@@ -1102,7 +1102,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   </plurals>
   <string name="GroupUtil_group_name_is_now">Gruppenname lautet jetzt »%1$s«.</string>
   <!--profile_group_share_view-->
-  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Antippen, um deinen Profilnamen und dein Profilfoto für diese Gruppe sichtbar zu machen</string>
+  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Hier antippen, um deinen Profilnamen und dein Profilfoto für diese Gruppe sichtbar zu machen</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Entsperren</string>
   <!--prompt_mms_activity-->
