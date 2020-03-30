@@ -31,9 +31,9 @@ public class LogSectionSystemInfo implements LogSection {
     final StringBuilder  builder = new StringBuilder();
 
     builder.append("Time         : ").append(System.currentTimeMillis()).append('\n');
-    builder.append("Device       : ").append(Build.MANUFACTURER).append(" ")
-                                     .append(Build.MODEL).append(" (")
-                                     .append(Build.PRODUCT).append(")\n");
+    builder.append("Manufacturer : ").append(Build.MANUFACTURER).append("\n");
+    builder.append("Model        : ").append(Build.MODEL).append("\n");
+    builder.append("Product      : ").append(Build.PRODUCT).append("\n");
     builder.append("Android      : ").append(Build.VERSION.RELEASE).append(" (")
                                      .append(Build.VERSION.INCREMENTAL).append(", ")
                                      .append(Build.DISPLAY).append(")\n");
