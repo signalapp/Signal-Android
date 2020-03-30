@@ -398,6 +398,8 @@ public class ConversationFragment extends Fragment
   }
 
   private void initializeResources() {
+    long oldThreadId = threadId;
+
     this.recipient         = Recipient.live(getActivity().getIntent().getParcelableExtra(ConversationActivity.RECIPIENT_EXTRA));
     this.threadId          = this.getActivity().getIntent().getLongExtra(ConversationActivity.THREAD_ID_EXTRA, -1);
     this.lastSeen          = this.getActivity().getIntent().getLongExtra(ConversationActivity.LAST_SEEN_EXTRA, -1);
@@ -407,6 +409,10 @@ public class ConversationFragment extends Fragment
 
     OnScrollListener scrollListener = new ConversationScrollListener(getActivity());
     list.addOnScrollListener(scrollListener);
+
+    if (oldThreadId != threadId) {
+      ApplicationContext.getInstance(requireContext()).getTypingStatusRepository().getTypists(oldThreadId).removeObservers(this);
+    }
   }
 
   private void initializeListAdapter() {
@@ -440,6 +446,7 @@ public class ConversationFragment extends Fragment
       return;
     }
 
+    ApplicationContext.getInstance(requireContext()).getTypingStatusRepository().getTypists(threadId).removeObservers(this);
     ApplicationContext.getInstance(requireContext()).getTypingStatusRepository().getTypists(threadId).observe(this, typingState ->  {
       List<Recipient> recipients;
       boolean         replacedByIncomingMessage;
