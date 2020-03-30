@@ -507,6 +507,7 @@ public class MessageNotifier {
       Recipient    threadRecipients      = null;
       SlideDeck    slideDeck             = null;
       long         timestamp             = record.getTimestamp();
+      long         receivedTimestamp     = record.getDateReceived();
       boolean      isUnreadMessage       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.READ)) == 0;
       boolean      hasUnreadReactions    = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.REACTIONS_UNREAD)) == 1;
       long         lastReactionRead      = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.REACTIONS_LAST_SEEN));
@@ -537,7 +538,7 @@ public class MessageNotifier {
         }
 
         if (threadRecipients == null || !threadRecipients.isMuted()) {
-          notificationState.addNotification(new NotificationItem(id, mms, recipient, conversationRecipient, threadRecipients, threadId, body, timestamp, timestamp, slideDeck, false));
+          notificationState.addNotification(new NotificationItem(id, mms, recipient, conversationRecipient, threadRecipients, threadId, body, timestamp, receivedTimestamp, slideDeck, false));
         }
       }
 
@@ -571,7 +572,7 @@ public class MessageNotifier {
           }
 
           if (threadRecipients == null || !threadRecipients.isMuted()) {
-            notificationState.addNotification(new NotificationItem(id, mms, reactionSender, conversationRecipient, threadRecipients, threadId, body, reaction.getDateReceived(), timestamp, null, true));
+            notificationState.addNotification(new NotificationItem(id, mms, reactionSender, conversationRecipient, threadRecipients, threadId, body, reaction.getDateReceived(), receivedTimestamp, null, true));
           }
         }
       }
