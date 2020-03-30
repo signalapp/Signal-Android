@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.notifications;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -81,6 +82,8 @@ public class NotificationItem {
     int       startingPosition = jumpToMessage ? getStartingPosition(context, threadId, messageReceivedTimestamp) : -1;
     Intent    intent           = ConversationActivity.buildIntent(context, recipient.getId(), threadId, 0, -1, startingPosition);
 
+    makeIntentUniqueToPreventMerging(intent);
+
     return TaskStackBuilder.create(context)
                            .addNextIntentWithParentStack(intent)
                            .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -96,5 +99,9 @@ public class NotificationItem {
 
   private static int getStartingPosition(@NonNull Context context, long threadId, long receivedTimestampMs) {
     return DatabaseFactory.getMmsSmsDatabase(context).getMessagePositionInConversation(threadId, receivedTimestampMs);
+  }
+
+  private static void makeIntentUniqueToPreventMerging(@NonNull Intent intent) {
+    intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
   }
 }
