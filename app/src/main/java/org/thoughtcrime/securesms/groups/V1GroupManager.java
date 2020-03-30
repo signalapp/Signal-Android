@@ -159,7 +159,8 @@ final class V1GroupManager {
 
     if (threadId != -1 && leaveMessage.isPresent()) {
       try {
-        DatabaseFactory.getMmsDatabase(context).insertMessageOutbox(leaveMessage.get(), threadId, false, null);
+        long id = DatabaseFactory.getMmsDatabase(context).insertMessageOutbox(leaveMessage.get(), threadId, false, null);
+        DatabaseFactory.getMmsDatabase(context).markAsSent(id, true);
       } catch (MmsException e) {
         Log.w(TAG, "Failed to insert leave message.", e);
       }
