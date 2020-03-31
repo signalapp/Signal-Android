@@ -353,12 +353,13 @@ public class SignalServiceMessageSender {
                                                                  attachment.getListener(),
                                                                  attachment.getCancelationSignal());
 
-    AttachmentUploadAttributes uploadAttributes = null;
+    AttachmentUploadAttributes         uploadAttributes = null;
+    Optional<SignalServiceMessagePipe> localPipe        = pipe.get();
 
-    if (pipe.get().isPresent()) {
+    if (localPipe.isPresent()) {
       Log.d(TAG, "Using pipe to retrieve attachment upload attributes...");
       try {
-        uploadAttributes = pipe.get().get().getAttachmentUploadAttributes();
+        uploadAttributes = localPipe.get().getAttachmentUploadAttributes();
       } catch (IOException e) {
         Log.w(TAG, "Failed to retrieve attachment upload attributes using pipe. Falling back...");
       }
