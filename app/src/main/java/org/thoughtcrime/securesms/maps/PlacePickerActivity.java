@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -72,8 +73,32 @@ public final class PlacePickerActivity extends AppCompatActivity {
     View markerImage = findViewById(R.id.marker_image_view);
     View fab         = findViewById(R.id.place_chosen_button);
 
+    Button btnMapTypeNormal = findViewById(R.id.btnMapTypeNormal);
+    Button btnMapTypeSattelite = findViewById(R.id.btnMapTypeSattelite);
+    Button btnMapTypeTerrain = findViewById(R.id.btnMapTypeTerrain);
+
     fab.setOnClickListener(v -> finishWithAddress());
 
+    btnMapTypeNormal.setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(@NonNull View v) {
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        TextSecurePreferences.setGoogleMapType(getApplicationContext(), "normal");
+      }
+    });
+
+    btnMapTypeSattelite.setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(@NonNull View v) {
+        googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+        TextSecurePreferences.setGoogleMapType(getApplicationContext(), "satellite");
+      }
+    });
+
+    btnMapTypeTerrain.setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(@NonNull View v) {
+        googleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+        TextSecurePreferences.setGoogleMapType(getApplicationContext(), "terrain");
+      }
+    });
 
     if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)   == PackageManager.PERMISSION_GRANTED ||
         ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)

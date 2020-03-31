@@ -219,6 +219,10 @@ public class TextSecurePreferences {
     return getStringPreference(context, GOOGLE_MAP_TYPE, "normal");
   }
 
+  public static void setGoogleMapType(Context context, String value) {
+    setStringPreference(context, GOOGLE_MAP_TYPE, value);
+  }
+
   public static boolean isScreenLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, SCREEN_LOCK, false);
   }
