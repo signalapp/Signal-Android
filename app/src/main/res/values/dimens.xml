@@ -80,6 +80,7 @@
     <dimen name="quote_corner_radius_large">10dp</dimen>
     <dimen name="quote_corner_radius_bottom">4dp</dimen>
     <dimen name="quote_corner_radius_preview">18dp</dimen>
+    <dimen name="quote_thumb_size">60dp</dimen>
 
     <integer name="media_overview_cols">3</integer>
     <dimen name="message_details_table_row_pad">10dp</dimen>

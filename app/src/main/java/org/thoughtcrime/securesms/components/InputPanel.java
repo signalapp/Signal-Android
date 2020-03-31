@@ -1,20 +1,16 @@
 package org.thoughtcrime.securesms.components;
 
+import android.animation.Animator;
+import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
-import androidx.annotation.DimenRes;
-import androidx.annotation.MainThread;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.view.ViewCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.text.format.DateUtils;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -24,7 +20,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.DimenRes;
+import androidx.annotation.MainThread;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
@@ -73,6 +78,7 @@ public class InputPanel extends LinearLayout
   private MicrophoneRecorderView microphoneRecorderView;
   private SlideToCancel          slideToCancel;
   private RecordTime             recordTime;
+  private ValueAnimator          quoteAnimator;
 
   private @Nullable Listener listener;
   private           boolean  emojiVisible;
@@ -157,7 +163,20 @@ public class InputPanel extends LinearLayout
                        @NonNull SlideDeck attachments)
   {
     this.quoteView.setQuote(glideRequests, id, author, body, false, attachments);
-    this.quoteView.setVisibility(View.VISIBLE);
+
+    int originalHeight = this.quoteView.getVisibility() == VISIBLE ? this.quoteView.getMeasuredHeight()
+                                                                   : 0;
+
+    this.quoteView.setVisibility(VISIBLE);
+    this.quoteView.measure(0, 0);
+
+    if (quoteAnimator != null) {
+      quoteAnimator.cancel();
+    }
+
+    quoteAnimator = createHeightAnimator(quoteView, originalHeight, this.quoteView.getMeasuredHeight(), null);
+
+    quoteAnimator.start();
 
     if (this.linkPreview.getVisibility() == View.VISIBLE) {
       int cornerRadius = readDimen(R.dimen.message_corner_collapse_radius);
@@ -166,12 +185,43 @@ public class InputPanel extends LinearLayout
   }
 
   public void clearQuote() {
-    this.quoteView.dismiss();
-
-    if (this.linkPreview.getVisibility() == View.VISIBLE) {
-      int cornerRadius = readDimen(R.dimen.message_corner_radius);
-      this.linkPreview.setCorners(cornerRadius, cornerRadius);
+    if (quoteAnimator != null) {
+      quoteAnimator.cancel();
     }
+
+    quoteAnimator = createHeightAnimator(quoteView, quoteView.getMeasuredHeight(), 0, new AnimationCompleteListener() {
+      @Override
+      public void onAnimationEnd(Animator animation) {
+        quoteView.dismiss();
+
+        if (linkPreview.getVisibility() == View.VISIBLE) {
+          int cornerRadius = readDimen(R.dimen.message_corner_radius);
+          linkPreview.setCorners(cornerRadius, cornerRadius);
+        }
+      }
+    });
+
+    quoteAnimator.start();
+  }
+
+  private static ValueAnimator createHeightAnimator(@NonNull View view,
+                                                    int originalHeight,
+                                                    int finalHeight,
+                                                    @Nullable AnimationCompleteListener onAnimationComplete)
+  {
+    ValueAnimator animator = ValueAnimator.ofInt(originalHeight, finalHeight);
+
+    animator.addUpdateListener(animation -> {
+      ViewGroup.LayoutParams params = view.getLayoutParams();
+      params.height = (int) animation.getAnimatedValue();
+      view.setLayoutParams(params);
+    });
+
+    if (onAnimationComplete != null) {
+      animator.addListener(onAnimationComplete);
+    }
+
+    return animator;
   }
 
   public Optional<QuoteModel> getQuote() {

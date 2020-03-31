@@ -109,7 +109,7 @@
 
                 <ImageView
                     android:id="@+id/quote_thumbnail"
-                    android:layout_width="60dp"
+                    android:layout_width="@dimen/quote_thumb_size"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:visibility="gone"

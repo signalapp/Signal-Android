@@ -6,9 +6,6 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Build;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
@@ -16,6 +13,10 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import com.annimon.stream.Stream;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -248,6 +249,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
       }
       glideRequests.load(new DecryptableUri(imageVideoSlides.get(0).getThumbnailUri()))
                    .centerCrop()
+                   .override(getContext().getResources().getDimensionPixelSize(R.dimen.quote_thumb_size))
                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                    .into(thumbnailView);
     } else if (!documentSlides.isEmpty()){
