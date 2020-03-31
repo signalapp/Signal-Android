@@ -10,6 +10,7 @@ import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.util.OptionalUtil;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -61,7 +62,7 @@ public class SignalServiceDataMessage {
     }
 
     this.timestamp             = timestamp;
-    this.body                  = Optional.fromNullable(body);
+    this.body                  = OptionalUtil.absentIfEmpty(body);
     this.endSession            = endSession;
     this.expiresInSeconds      = expiresInSeconds;
     this.expirationUpdate      = expirationUpdate;
