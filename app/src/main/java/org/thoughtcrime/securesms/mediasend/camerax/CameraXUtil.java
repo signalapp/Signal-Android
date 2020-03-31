@@ -77,8 +77,12 @@ public class CameraXUtil {
         Log.w(TAG, String.format(Locale.ENGLISH, "Decoded image dimensions differed from stated dimensions! Stated: %d x %d, Decoded: %d x %d",
                                                   image.getWidth(), image.getHeight(), dimens.first, dimens.second));
         Log.w(TAG, "Ignoring the stated rotation and rotating the crop rect 90 degrees (stated rotation is " + rotation + " degrees).");
+
         rotation = 0;
-        cropRect = new Rect(cropRect.top, cropRect.left, cropRect.bottom, cropRect.right);
+
+        if (cropRect != null) {
+          cropRect = new Rect(cropRect.top, cropRect.left, cropRect.bottom, cropRect.right);
+        }
       }
     } catch (BitmapDecodingException e) {
       Log.w(TAG, "Failed to decode!", e);
