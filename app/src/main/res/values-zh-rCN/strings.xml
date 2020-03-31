@@ -203,7 +203,7 @@
   <string name="ConversationActivity_new_say_it_with_stickers">新功能！可以发表情啦！</string>
   <string name="ConversationActivity_block">屏蔽</string>
   <string name="ConversationActivity_cancel">取消</string>
-  <string name="ConversationActivity_delete_conversation">删除会话？</string>
+  <string name="ConversationActivity_delete_conversation">删除对话？</string>
   <string name="ConversationActivity_delete">删除</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -218,7 +218,7 @@
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">保存到存储？</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-    <item quantity="other">保存所有 %1$d 媒体至内部存储之后，设备上其他应用将可访问这些媒体。\n\n是否继续？</item>
+    <item quantity="other">保存 %1$d 个媒体至内部存储之后，可供设备上的其他应用访问。\n\n是否继续？</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="other">保存附件到存储时出错！</item>
@@ -424,7 +424,7 @@
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">长按任何消息，即刻分享感受。</string>
   <string name="Megaphones_remind_me_later">稍后提醒</string>
   <string name="Megaphones_verify_your_signal_pin">验证 Signal PIN 密码</string>
-  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">我们会偶尔要求您验证PIN码以确保您记住它。</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">为了方便记住 PIN 密码，将偶尔提示验证。</string>
   <string name="Megaphones_verify_pin">验证 PIN</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">正在处理 Signal 呼叫</string>

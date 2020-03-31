@@ -507,9 +507,17 @@
   <string name="MessageRequestBottomView_block">차단</string>
   <string name="MessageRequestBottomView_unblock">차단 해제</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s가 메시지를 할 수 있도록 할까요? 그들은 당신이 동의할 때까지 당신이 그들의 메시지를 봤는지 확인할 수 없습니다.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s 그룹에 참가할까요? 당신이 동의하기 전에는 당신이 그들의 메시지를 봤는지 타인이 알 수 없습니다. </string>
+  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">%1$s를 차단 해제하여 서로 전화 및 메시지 교류</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s 멤버</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s 및 %2$s 멤버</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s 및 %3$s 멤버</string>
+  <plurals name="MessageRequestProfileView_members">
+    <item quantity="other">%1$d 멤버</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="other">%1$d 멤버 (+ %2$d 초대됨)</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="other">기타 %d명</item>
   </plurals>
@@ -703,7 +711,9 @@
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">수정</string>
   <string name="SubmitDebugLogActivity_done">확인</string>
+  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">줄을 탭하여 삭제하세요</string>
   <string name="SubmitDebugLogActivity_submit">제출</string>
+  <string name="SubmitDebugLogActivity_failed_to_submit_logs">로그를 제출하는데 실패했습니다.</string>
   <string name="SubmitDebugLogActivity_success">성공!</string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">클립보드로 복사됨</string>
   <string name="SubmitDebugLogActivity_ok">확인</string>

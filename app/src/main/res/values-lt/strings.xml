@@ -582,6 +582,12 @@
     <item quantity="many">%1$d dalyvių</item>
     <item quantity="other">%1$d dalyvis</item>
   </plurals>
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d dalyvis (+ pakviesta dar %2$d)</item>
+    <item quantity="few">%1$d dalyviai (+ pakviesta dar %2$d)</item>
+    <item quantity="many">%1$d dalyvių (+ pakviesta dar %2$d)</item>
+    <item quantity="other">%1$d dalyvis (+ pakviesta dar %2$d)</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">dar %d</item>
     <item quantity="few">dar %d</item>
