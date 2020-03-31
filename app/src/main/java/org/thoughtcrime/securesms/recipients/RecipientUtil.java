@@ -235,7 +235,7 @@ public class RecipientUtil {
 
   @WorkerThread
   private static boolean isProfileSharedViaGroup(@NonNull Context context, @NonNull Recipient recipient) {
-    return Stream.of(DatabaseFactory.getGroupDatabase(context).getGroupsContainingMember(recipient.getId()))
+    return Stream.of(DatabaseFactory.getGroupDatabase(context).getPushGroupsContainingMember(recipient.getId()))
                  .anyMatch(group -> Recipient.resolved(group.getRecipientId()).isProfileSharing());
   }
 }

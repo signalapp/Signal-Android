@@ -38,7 +38,7 @@ final class MessageRequestRepository {
   void getGroups(@NonNull RecipientId recipientId, @NonNull Consumer<List<String>> onGroupsLoaded) {
     executor.execute(() -> {
       GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
-      onGroupsLoaded.accept(groupDatabase.getGroupNamesContainingMember(recipientId));
+      onGroupsLoaded.accept(groupDatabase.getPushGroupNamesContainingMember(recipientId));
     });
   }
 

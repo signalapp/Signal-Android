@@ -183,17 +183,17 @@ public final class GroupDatabase extends Database {
     }
   }
 
-  public List<String> getGroupNamesContainingMember(RecipientId recipientId) {
-    return Stream.of(getGroupsContainingMember(recipientId))
+  public List<String> getPushGroupNamesContainingMember(RecipientId recipientId) {
+    return Stream.of(getPushGroupsContainingMember(recipientId))
                  .map(GroupRecord::getTitle)
                  .toList();
   }
 
-  public List<GroupRecord> getGroupsContainingMember(RecipientId recipientId) {
+  public List<GroupRecord> getPushGroupsContainingMember(RecipientId recipientId) {
     SQLiteDatabase database   = databaseHelper.getReadableDatabase();
     String         table      = TABLE_NAME + " INNER JOIN " + ThreadDatabase.TABLE_NAME + " ON " + TABLE_NAME + "." + RECIPIENT_ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.RECIPIENT_ID;
-    String         query      = MEMBERS + " LIKE ?";
-    String[]       args       = new String[]{"%" + recipientId.serialize() + "%"};
+    String         query      = MEMBERS + " LIKE ? AND " + MMS + " = ?";
+    String[]       args       = new String[]{"%" + recipientId.serialize() + "%", "0"};
     String         orderBy    = ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.DATE + " DESC";
 
     List<GroupRecord> groups = new LinkedList<>();
