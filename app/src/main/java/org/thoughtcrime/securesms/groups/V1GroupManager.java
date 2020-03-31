@@ -153,9 +153,10 @@ final class V1GroupManager {
   }
 
   @WorkerThread
-  static boolean leaveGroup(@NonNull Context context, @NonNull GroupId.V1 groupId, @NonNull Recipient groupRecipient) {
-    long                                threadId     = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
-    Optional<OutgoingGroupMediaMessage> leaveMessage = GroupUtil.createGroupLeaveMessage(context, groupRecipient);
+  static boolean leaveGroup(@NonNull Context context, @NonNull GroupId.V1 groupId) {
+    Recipient                           groupRecipient = Recipient.externalGroup(context, groupId);
+    long                                threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
+    Optional<OutgoingGroupMediaMessage> leaveMessage   = GroupUtil.createGroupLeaveMessage(context, groupRecipient);
 
     if (threadId != -1 && leaveMessage.isPresent()) {
       try {

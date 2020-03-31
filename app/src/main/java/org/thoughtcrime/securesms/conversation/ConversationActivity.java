@@ -149,7 +149,7 @@ import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
-import org.thoughtcrime.securesms.groups.GroupManager;
+import org.thoughtcrime.securesms.groups.ui.LeaveGroupDialog;
 import org.thoughtcrime.securesms.insights.InsightsLauncher;
 import org.thoughtcrime.securesms.invites.InviteReminderModel;
 import org.thoughtcrime.securesms.invites.InviteReminderRepository;
@@ -1118,25 +1118,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       return;
     }
 
-    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle(getString(R.string.ConversationActivity_leave_group));
-    builder.setIconAttribute(R.attr.dialog_info_icon);
-    builder.setCancelable(true);
-    builder.setMessage(getString(R.string.ConversationActivity_are_you_sure_you_want_to_leave_this_group));
-    builder.setPositiveButton(R.string.yes, (dialog, which) ->
-      SimpleTask.run(
-        getLifecycle(),
-        () -> GroupManager.leaveGroup(ConversationActivity.this, getRecipient()),
-        (success) -> {
-          if (success) {
-            initializeEnabledCheck();
-          } else {
-            Toast.makeText(ConversationActivity.this, R.string.ConversationActivity_error_leaving_group, Toast.LENGTH_LONG).show();
-          }
-        }));
-
-    builder.setNegativeButton(R.string.no, null);
-    builder.show();
+    LeaveGroupDialog.handleLeavePushGroup(ConversationActivity.this,
+                                          getLifecycle(),
+                                          getRecipient().requireGroupId().requirePush(),
+                                          this::initializeEnabledCheck);
   }
 
   private void handleEditPushGroup() {
