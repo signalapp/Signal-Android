@@ -24,7 +24,7 @@
     </style>
 
     <style name="AppCompatAlertDialogStyleDark" parent="Theme.AppCompat.Dialog.Alert">
-        <item name="colorAccent">@color/core_ultramarine</item>
+        <item name="colorAccent">@color/core_ultramarine_light</item>
         <item name="android:textColor">@null</item>
     </style>
 
@@ -34,7 +34,7 @@
     </style>
 
     <style name="AppCompatDialogStyleDark" parent="Theme.AppCompat.Dialog">
-        <item name="colorAccent">@color/core_ultramarine</item>
+        <item name="colorAccent">@color/core_ultramarine_light</item>
         <item name="android:windowBackground">@drawable/dialog_background</item>
         <item name="android:textColor">@null</item>
     </style>
