@@ -194,7 +194,7 @@ public final class SignalServiceContent {
    * Takes internal protobuf serialization format and processes it into a {@link SignalServiceContent}.
    */
   public static SignalServiceContent createFromProto(SignalServiceContentProto serviceContentProto)
-    throws ProtocolInvalidMessageException, ProtocolInvalidKeyException, UnsupportedDataMessageException
+      throws ProtocolInvalidMessageException, ProtocolInvalidKeyException, UnsupportedDataMessageException
   {
     SignalServiceMetadata metadata     = SignalServiceMetadataProtobufSerializer.fromProtobuf(serviceContentProto.getMetadata());
     SignalServiceAddress  localAddress = SignalServiceAddressProtobufSerializer.fromProtobuf(serviceContentProto.getLocalAddress());

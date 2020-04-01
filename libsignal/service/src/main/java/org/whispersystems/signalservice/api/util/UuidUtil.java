@@ -56,4 +56,14 @@ public final class UuidUtil {
   public static UUID fromByteString(ByteString bytes) {
     return parseOrThrow(bytes.toByteArray());
   }
+
+  public static List<UUID> fromByteStrings(Collection<ByteString> byteStringCollection) {
+    ArrayList<UUID> result = new ArrayList<>(byteStringCollection.size());
+
+    for (ByteString byteString : byteStringCollection) {
+      result.add(fromByteString(byteString));
+    }
+
+    return result;
+  }
 }

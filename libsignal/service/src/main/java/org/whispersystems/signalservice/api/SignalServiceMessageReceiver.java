@@ -6,7 +6,6 @@
 
 package org.whispersystems.signalservice.api;
 
-import org.signal.zkgroup.ServerPublicParams;
 import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.zkgroup.profiles.ProfileKey;
@@ -17,6 +16,7 @@ import org.whispersystems.signalservice.FeatureFlags;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream;
 import org.whispersystems.signalservice.api.crypto.ProfileCipherInputStream;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
+import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
@@ -25,6 +25,8 @@ import org.whispersystems.signalservice.api.messages.SignalServiceStickerManifes
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.SleepTimer;
 import org.whispersystems.signalservice.api.util.UuidUtil;
@@ -61,7 +63,7 @@ public class SignalServiceMessageReceiver {
   private final String                     signalAgent;
   private final ConnectivityListener       connectivityListener;
   private final SleepTimer                 sleepTimer;
-  private final ClientZkProfileOperations  clientZkProfile;
+  private final ClientZkProfileOperations  clientZkProfileOperations;
 
   /**
    * Construct a SignalServiceMessageReceiver.
@@ -76,9 +78,10 @@ public class SignalServiceMessageReceiver {
                                       UUID uuid, String e164, String password,
                                       String signalingKey, String signalAgent,
                                       ConnectivityListener listener,
-                                      SleepTimer timer)
+                                      SleepTimer timer,
+                                      ClientZkProfileOperations clientZkProfileOperations)
   {
-    this(urls, new StaticCredentialsProvider(uuid, e164, password, signalingKey), signalAgent, listener, timer);
+    this(urls, new StaticCredentialsProvider(uuid, e164, password, signalingKey), signalAgent, listener, timer, clientZkProfileOperations);
   }
 
   /**
@@ -91,15 +94,16 @@ public class SignalServiceMessageReceiver {
                                       CredentialsProvider credentials,
                                       String signalAgent,
                                       ConnectivityListener listener,
-                                      SleepTimer timer)
+                                      SleepTimer timer,
+                                      ClientZkProfileOperations clientZkProfileOperations)
   {
-    this.urls                 = urls;
-    this.credentialsProvider  = credentials;
-    this.socket               = new PushServiceSocket(urls, credentials, signalAgent);
-    this.signalAgent          = signalAgent;
-    this.connectivityListener = listener;
-    this.sleepTimer           = timer;
-    this.clientZkProfile      = FeatureFlags.ZK_GROUPS ? new ClientZkProfileOperations(new ServerPublicParams(urls.getZkGroupServerPublicParams())) : null;
+    this.urls                      = urls;
+    this.credentialsProvider       = credentials;
+    this.socket                    = new PushServiceSocket(urls, credentials, signalAgent, clientZkProfileOperations);
+    this.signalAgent               = signalAgent;
+    this.connectivityListener      = listener;
+    this.sleepTimer                = timer;
+    this.clientZkProfileOperations = clientZkProfileOperations;
   }
 
   /**
@@ -123,7 +127,7 @@ public class SignalServiceMessageReceiver {
                                               Optional<ProfileKey> profileKey,
                                               Optional<UnidentifiedAccess> unidentifiedAccess,
                                               SignalServiceProfile.RequestType requestType)
-    throws IOException, VerificationFailedException
+      throws NonSuccessfulResponseCodeException, PushNetworkException, VerificationFailedException
   {
     Optional<UUID> uuid = address.getUuid();
 
@@ -143,10 +147,17 @@ public class SignalServiceMessageReceiver {
   }
 
   public InputStream retrieveProfileAvatar(String path, File destination, ProfileKey profileKey, long maxSizeBytes)
-    throws IOException
+      throws IOException
   {
     socket.retrieveProfileAvatar(path, destination, maxSizeBytes);
     return new ProfileCipherInputStream(new FileInputStream(destination), profileKey);
+  }
+
+  public FileInputStream retrieveGroupsV2ProfileAvatar(String path, File destination, long maxSizeBytes)
+      throws IOException
+  {
+    socket.retrieveProfileAvatar(path, destination, maxSizeBytes);
+    return new FileInputStream(destination);
   }
 
   /**
@@ -224,7 +235,7 @@ public class SignalServiceMessageReceiver {
                                                             urls.getNetworkInterceptors(),
                                                             urls.getDns());
 
-    return new SignalServiceMessagePipe(webSocket, Optional.of(credentialsProvider), clientZkProfile);
+    return new SignalServiceMessagePipe(webSocket, Optional.of(credentialsProvider), clientZkProfileOperations);
   }
 
   public SignalServiceMessagePipe createUnidentifiedMessagePipe() {
@@ -235,7 +246,7 @@ public class SignalServiceMessageReceiver {
                                                             urls.getNetworkInterceptors(),
                                                             urls.getDns());
 
-    return new SignalServiceMessagePipe(webSocket, Optional.of(credentialsProvider), clientZkProfile);
+    return new SignalServiceMessagePipe(webSocket, Optional.of(credentialsProvider), clientZkProfileOperations);
   }
 
   public List<SignalServiceEnvelope> retrieveMessages() throws IOException {

@@ -27,13 +27,13 @@ public final class SignalServiceGroupContext {
   }
 
   static Optional<SignalServiceGroupContext> createOptional(SignalServiceGroup groupV1, SignalServiceGroupV2 groupV2)
-    throws InvalidMessageException
+      throws InvalidMessageException
   {
     return Optional.fromNullable(create(groupV1, groupV2));
   }
 
   public static SignalServiceGroupContext create(SignalServiceGroup groupV1, SignalServiceGroupV2 groupV2)
-    throws InvalidMessageException
+      throws InvalidMessageException
   {
     if (groupV1 == null && groupV2 == null) {
       return null;

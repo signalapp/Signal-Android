@@ -20,6 +20,7 @@ import org.whispersystems.signalservice.api.KeyBackupService;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 
 /**
  * Location for storing and retrieving application-scoped singletons. Users must call
@@ -186,6 +187,7 @@ public class ApplicationDependencies {
   }
 
   public interface Provider {
+    @NonNull GroupsV2Operations provideGroupsV2Operations();
     @NonNull SignalServiceAccountManager provideSignalServiceAccountManager();
     @NonNull SignalServiceMessageSender provideSignalServiceMessageSender();
     @NonNull SignalServiceMessageReceiver provideSignalServiceMessageReceiver();

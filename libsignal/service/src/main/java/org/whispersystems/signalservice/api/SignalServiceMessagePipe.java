@@ -168,7 +168,7 @@ public class SignalServiceMessagePipe {
                                          Optional<ProfileKey> profileKey,
                                          Optional<UnidentifiedAccess> unidentifiedAccess,
                                          SignalServiceProfile.RequestType requestType)
-    throws IOException
+      throws IOException
   {
     try {
       List<String> headers = new LinkedList<>();

@@ -30,7 +30,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.UuidUtil;
-import org.whispersystems.signalservice.internal.groupsv2.DecryptedGroupUtil;
+import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 
 import java.io.Closeable;
 import java.security.SecureRandom;

@@ -1,6 +1,6 @@
 package org.whispersystems.signalservice.api.push.exceptions;
 
-public class ContactManifestMismatchException extends NonSuccessfulResponseCodeException {
+public class ContactManifestMismatchException extends ConflictException {
 
   private final byte[] responseBody;
 

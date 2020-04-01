@@ -1,4 +1,4 @@
-package org.whispersystems.signalservice.internal.groupsv2;
+package org.whispersystems.signalservice.api.groupsv2;
 
 import org.junit.Test;
 import org.signal.storageservice.protos.groups.GroupChange;

@@ -49,12 +49,12 @@ public final class SignalServiceGroupV2 {
       this.masterKey = masterKey;
     }
 
-    Builder withRevision(int revision) {
+    public Builder withRevision(int revision) {
       this.revision = revision;
       return this;
     }
 
-    Builder withSignedGroupChange(byte[] signedGroupChange) {
+    public Builder withSignedGroupChange(byte[] signedGroupChange) {
       this.signedGroupChange = signedGroupChange;
       return this;
     }

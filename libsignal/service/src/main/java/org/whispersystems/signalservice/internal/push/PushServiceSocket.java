@@ -8,13 +8,20 @@ package org.whispersystems.signalservice.internal.push;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.MessageLite;
 
-import org.signal.zkgroup.ServerPublicParams;
+import org.signal.storageservice.protos.groups.AvatarUploadAttributes;
+import org.signal.storageservice.protos.groups.Group;
+import org.signal.storageservice.protos.groups.GroupChange;
+import org.signal.storageservice.protos.groups.GroupChanges;
 import org.signal.zkgroup.VerificationFailedException;
+import org.signal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.signal.zkgroup.profiles.ProfileKeyCredentialRequest;
 import org.signal.zkgroup.profiles.ProfileKeyCredentialRequestContext;
+import org.signal.zkgroup.profiles.ProfileKeyCredentialResponse;
 import org.signal.zkgroup.profiles.ProfileKeyVersion;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.ecc.ECPublicKey;
@@ -26,6 +33,7 @@ import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.FeatureFlags;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
+import org.whispersystems.signalservice.api.groupsv2.CredentialResponse;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
 import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo;
@@ -37,6 +45,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
 import org.whispersystems.signalservice.api.push.exceptions.CaptchaRequiredException;
+import org.whispersystems.signalservice.api.push.exceptions.ConflictException;
 import org.whispersystems.signalservice.api.push.exceptions.ContactManifestMismatchException;
 import org.whispersystems.signalservice.api.push.exceptions.ExpectationFailedException;
 import org.whispersystems.signalservice.api.push.exceptions.NoContentException;
@@ -59,11 +68,11 @@ import org.whispersystems.signalservice.internal.contacts.entities.DiscoveryResp
 import org.whispersystems.signalservice.internal.contacts.entities.KeyBackupRequest;
 import org.whispersystems.signalservice.internal.contacts.entities.KeyBackupResponse;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
-import org.whispersystems.signalservice.internal.groupsv2.ClientZkOperations;
 import org.whispersystems.signalservice.internal.push.exceptions.MismatchedDevicesException;
 import org.whispersystems.signalservice.internal.push.exceptions.StaleDevicesException;
 import org.whispersystems.signalservice.internal.push.http.CancelationSignal;
 import org.whispersystems.signalservice.internal.push.http.DigestingRequestBody;
+import org.whispersystems.signalservice.internal.push.http.NoCipherOutputStreamFactory;
 import org.whispersystems.signalservice.internal.push.http.OutputStreamFactory;
 import org.whispersystems.signalservice.internal.storage.protos.ReadOperation;
 import org.whispersystems.signalservice.internal.storage.protos.StorageItems;
@@ -75,6 +84,7 @@ import org.whispersystems.signalservice.internal.util.JsonUtil;
 import org.whispersystems.signalservice.internal.util.Util;
 import org.whispersystems.util.Base64;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -84,8 +94,6 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.security.KeyManagementException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Collections;
@@ -100,7 +108,6 @@ import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
-import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
 import okhttp3.Call;
@@ -164,9 +171,15 @@ public class PushServiceSocket {
 
   private static final String ATTACHMENT_DOWNLOAD_PATH  = "attachments/%d";
   private static final String ATTACHMENT_UPLOAD_PATH    = "attachments/";
+  private static final String AVATAR_UPLOAD_PATH        = "";
 
   private static final String STICKER_MANIFEST_PATH     = "stickers/%s/manifest.proto";
   private static final String STICKER_PATH              = "stickers/%s/full/%d";
+
+  private static final String GROUPSV2_CREDENTIAL       = "/v1/certificate/group/%d/%d";
+  private static final String GROUPSV2_GROUP            = "/v1/groups/";
+  private static final String GROUPSV2_GROUP_CHANGES    = "/v1/groups/logs/%s";
+  private static final String GROUPSV2_AVATAR_REQUEST   = "/v1/groups/avatar/form";
 
   private static final Map<String, String> NO_HEADERS = Collections.emptyMap();
   private static final ResponseCodeHandler NO_HANDLER = new EmptyResponseCodeHandler();
@@ -180,21 +193,25 @@ public class PushServiceSocket {
   private final ConnectionHolder[]         keyBackupServiceClients;
   private final ConnectionHolder[]         storageClients;
 
-  private final CredentialsProvider credentialsProvider;
-  private final String              signalAgent;
-  private final SecureRandom        random;
-  private final ClientZkOperations  clientZkOperations;
+  private final CredentialsProvider       credentialsProvider;
+  private final String                    signalAgent;
+  private final SecureRandom              random;
+  private final ClientZkProfileOperations clientZkProfileOperations;
 
-  public PushServiceSocket(SignalServiceConfiguration serviceConfig, CredentialsProvider credentialsProvider, String signalAgent) {
-    this.credentialsProvider               = credentialsProvider;
-    this.signalAgent                       = signalAgent;
-    this.serviceClients                    = createServiceConnectionHolders(serviceConfig.getSignalServiceUrls(), serviceConfig.getNetworkInterceptors(), serviceConfig.getDns());
-    this.cdnClients                        = createConnectionHolders(serviceConfig.getSignalCdnUrls(), serviceConfig.getNetworkInterceptors(), serviceConfig.getDns());
-    this.contactDiscoveryClients           = createConnectionHolders(serviceConfig.getSignalContactDiscoveryUrls(), serviceConfig.getNetworkInterceptors(), serviceConfig.getDns());
-    this.keyBackupServiceClients           = createConnectionHolders(serviceConfig.getSignalKeyBackupServiceUrls(), serviceConfig.getNetworkInterceptors(), serviceConfig.getDns());
-    this.storageClients                    = createConnectionHolders(serviceConfig.getSignalStorageUrls(), serviceConfig.getNetworkInterceptors(), serviceConfig.getDns());
-    this.random                            = new SecureRandom();
-    this.clientZkOperations                = FeatureFlags.ZK_GROUPS ? new ClientZkOperations(new ServerPublicParams(serviceConfig.getZkGroupServerPublicParams())) : null;
+  public PushServiceSocket(SignalServiceConfiguration configuration,
+                           CredentialsProvider credentialsProvider,
+                           String signalAgent,
+                           ClientZkProfileOperations clientZkProfileOperations)
+  {
+    this.credentialsProvider       = credentialsProvider;
+    this.signalAgent               = signalAgent;
+    this.serviceClients            = createServiceConnectionHolders(configuration.getSignalServiceUrls(), configuration.getNetworkInterceptors(), configuration.getDns());
+    this.cdnClients                = createConnectionHolders(configuration.getSignalCdnUrls(), configuration.getNetworkInterceptors(), configuration.getDns());
+    this.contactDiscoveryClients   = createConnectionHolders(configuration.getSignalContactDiscoveryUrls(), configuration.getNetworkInterceptors(), configuration.getDns());
+    this.keyBackupServiceClients   = createConnectionHolders(configuration.getSignalKeyBackupServiceUrls(), configuration.getNetworkInterceptors(), configuration.getDns());
+    this.storageClients            = createConnectionHolders(configuration.getSignalStorageUrls(), configuration.getNetworkInterceptors(), configuration.getDns());
+    this.random                    = new SecureRandom();
+    this.clientZkProfileOperations = clientZkProfileOperations;
   }
 
   public void requestSmsVerificationCode(boolean androidSmsRetriever, Optional<String> captchaToken, Optional<String> challenge) throws IOException {
@@ -561,27 +578,27 @@ public class PushServiceSocket {
   }
 
   public ProfileAndCredential retrieveProfile(UUID target, ProfileKey profileKey, Optional<UnidentifiedAccess> unidentifiedAccess)
-    throws NonSuccessfulResponseCodeException, VerificationFailedException
+      throws NonSuccessfulResponseCodeException, PushNetworkException, VerificationFailedException
   {
     if (!FeatureFlags.VERSIONED_PROFILES) {
       throw new AssertionError();
     }
 
+    ProfileKeyVersion                  profileKeyIdentifier = profileKey.getProfileKeyVersion(target);
+    ProfileKeyCredentialRequestContext requestContext       = clientZkProfileOperations.createProfileKeyCredentialRequestContext(random, target, profileKey);
+    ProfileKeyCredentialRequest        request              = requestContext.getRequest();
+
+    String version           = profileKeyIdentifier.serialize();
+    String credentialRequest = Hex.toStringCondensed(request.serialize());
+    String subPath           = String.format("%s/%s/%s", target, version, credentialRequest);
+
+    String response = makeServiceRequest(String.format(PROFILE_PATH, subPath), "GET", null, NO_HEADERS, unidentifiedAccess);
+
     try {
-      ProfileKeyVersion                  profileKeyIdentifier = profileKey.getProfileKeyVersion(target);
-      ProfileKeyCredentialRequestContext requestContext       = clientZkOperations.getProfileOperations().createProfileKeyCredentialRequestContext(random, target, profileKey);
-      ProfileKeyCredentialRequest        request              = requestContext.getRequest();
-
-      String version           = profileKeyIdentifier.serialize();
-      String credentialRequest = Hex.toStringCondensed(request.serialize());
-      String subPath           = String.format("%s/%s/%s", target, version, credentialRequest);
-
-      String response = makeServiceRequest(String.format(PROFILE_PATH, subPath), "GET", null, NO_HEADERS, unidentifiedAccess);
-
       SignalServiceProfile signalServiceProfile = JsonUtil.fromJson(response, SignalServiceProfile.class);
 
       ProfileKeyCredential profileKeyCredential = signalServiceProfile.getProfileKeyCredentialResponse() != null
-                                                ? clientZkOperations.getProfileOperations().receiveProfileKeyCredential(requestContext, signalServiceProfile.getProfileKeyCredentialResponse())
+                                                ? clientZkProfileOperations.receiveProfileKeyCredential(requestContext, signalServiceProfile.getProfileKeyCredentialResponse())
                                                 : null;
 
       return new ProfileAndCredential(signalServiceProfile, SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL, Optional.fromNullable(profileKeyCredential));
@@ -623,7 +640,7 @@ public class PushServiceSocket {
     }
 
     if (profileAvatar != null) {
-      uploadToCdn("", formAttributes.getAcl(), formAttributes.getKey(),
+      uploadToCdn(AVATAR_UPLOAD_PATH, formAttributes.getAcl(), formAttributes.getKey(),
                   formAttributes.getPolicy(), formAttributes.getAlgorithm(),
                   formAttributes.getCredential(), formAttributes.getDate(),
                   formAttributes.getSignature(), profileAvatar.getData(),
@@ -640,7 +657,7 @@ public class PushServiceSocket {
    * @return The avatar URL path, if one was written.
    */
   public Optional<String> writeProfile(SignalServiceProfileWrite signalServiceProfileWrite, ProfileAvatarData profileAvatar)
-    throws NonSuccessfulResponseCodeException, PushNetworkException
+      throws NonSuccessfulResponseCodeException, PushNetworkException
   {
     if (!FeatureFlags.VERSIONED_PROFILES) {
       throw new AssertionError();
@@ -659,7 +676,7 @@ public class PushServiceSocket {
         throw new NonSuccessfulResponseCodeException("Unable to parse entity");
       }
 
-      uploadToCdn("", formAttributes.getAcl(), formAttributes.getKey(),
+      uploadToCdn(AVATAR_UPLOAD_PATH, formAttributes.getAcl(), formAttributes.getKey(),
                   formAttributes.getPolicy(), formAttributes.getAlgorithm(),
                   formAttributes.getCredential(), formAttributes.getDate(),
                   formAttributes.getSignature(), profileAvatar.getData(),
@@ -727,7 +744,7 @@ public class PushServiceSocket {
   }
 
   public TokenResponse getKeyBackupServiceToken(String authorizationToken, String enclaveName)
-    throws IOException
+      throws IOException
   {
     ResponseBody body = makeRequest(ClientSet.KeyBackup, authorizationToken, null, "/v1/token/" + enclaveName, "GET", null).body();
 
@@ -793,38 +810,38 @@ public class PushServiceSocket {
   }
 
   public StorageManifest getStorageManifest(String authToken) throws IOException {
-    Response response = makeStorageRequest(authToken, "/v1/storage/manifest", "GET", null);
+    ResponseBody response = makeStorageRequest(authToken, "/v1/storage/manifest", "GET", null);
 
-    if (response.body() == null) {
+    if (response == null) {
       throw new IOException("Missing body!");
     }
 
-    return StorageManifest.parseFrom(response.body().bytes());
+    return StorageManifest.parseFrom(response.bytes());
   }
 
   public StorageManifest getStorageManifestIfDifferentVersion(String authToken, long version) throws IOException {
-    Response response = makeStorageRequest(authToken, "/v1/storage/manifest/version/" + version, "GET", null);
+    ResponseBody response = makeStorageRequest(authToken, "/v1/storage/manifest/version/" + version, "GET", null);
 
-    if (response.body() == null) {
+    if (response == null) {
       throw new IOException("Missing body!");
     }
 
-    return StorageManifest.parseFrom(response.body().bytes());
+    return StorageManifest.parseFrom(response.bytes());
   }
 
   public StorageItems readStorageItems(String authToken, ReadOperation operation) throws IOException {
-    Response response = makeStorageRequest(authToken, "/v1/storage/read", "PUT", operation.toByteArray());
+    ResponseBody response = makeStorageRequest(authToken, "/v1/storage/read", "PUT", protobufRequestBody(operation));
 
-    if (response.body() == null) {
+    if (response == null) {
       throw new IOException("Missing body!");
     }
 
-    return StorageItems.parseFrom(response.body().bytes());
+    return StorageItems.parseFrom(response.bytes());
   }
 
   public Optional<StorageManifest> writeStorageContacts(String authToken, WriteOperation writeOperation) throws IOException {
     try {
-      makeStorageRequest(authToken, "/v1/storage", "PUT", writeOperation.toByteArray());
+      makeStorageRequest(authToken, "/v1/storage", "PUT", protobufRequestBody(writeOperation));
       return Optional.absent();
     } catch (ContactManifestMismatchException e) {
       return Optional.of(StorageManifest.parseFrom(e.getResponseBody()));
@@ -858,6 +875,19 @@ public class PushServiceSocket {
       Log.w(TAG, e);
       throw new NonSuccessfulResponseCodeException("Unable to parse entity");
     }
+  }
+
+  public byte[] uploadGroupV2Avatar(byte[] avatarCipherText, AvatarUploadAttributes uploadAttributes)
+      throws IOException
+  {
+    return uploadToCdn(AVATAR_UPLOAD_PATH, uploadAttributes.getAcl(), uploadAttributes.getKey(),
+                       uploadAttributes.getPolicy(), uploadAttributes.getAlgorithm(),
+                       uploadAttributes.getCredential(), uploadAttributes.getDate(),
+                       uploadAttributes.getSignature(),
+                       new ByteArrayInputStream(avatarCipherText),
+                       "application/octet-stream", avatarCipherText.length,
+                       new NoCipherOutputStreamFactory(),
+                       null, null);
   }
 
   public Pair<Long, byte[]> uploadAttachment(PushAttachmentData attachment, AttachmentUploadAttributes uploadAttributes)
@@ -1016,46 +1046,66 @@ public class PushServiceSocket {
     }
   }
 
-  private String makeServiceRequest(String urlFragment, String method, String body)
+  private String makeServiceRequest(String urlFragment, String method, String jsonBody)
       throws NonSuccessfulResponseCodeException, PushNetworkException
   {
-    return makeServiceRequest(urlFragment, method, body, NO_HEADERS, NO_HANDLER, Optional.<UnidentifiedAccess>absent());
+    return makeServiceRequest(urlFragment, method, jsonBody, NO_HEADERS, NO_HANDLER, Optional.<UnidentifiedAccess>absent());
   }
 
-  private String makeServiceRequest(String urlFragment, String method, String body, Map<String, String> headers)
+  private String makeServiceRequest(String urlFragment, String method, String jsonBody, Map<String, String> headers)
       throws NonSuccessfulResponseCodeException, PushNetworkException
   {
-    return makeServiceRequest(urlFragment, method, body, headers, NO_HANDLER, Optional.<UnidentifiedAccess>absent());
+    return makeServiceRequest(urlFragment, method, jsonBody, headers, NO_HANDLER, Optional.<UnidentifiedAccess>absent());
   }
 
-  private String makeServiceRequest(String urlFragment, String method, String body, Map<String, String> headers, ResponseCodeHandler responseCodeHandler)
+  private String makeServiceRequest(String urlFragment, String method, String jsonBody, Map<String, String> headers, ResponseCodeHandler responseCodeHandler)
       throws NonSuccessfulResponseCodeException, PushNetworkException
   {
-    return makeServiceRequest(urlFragment, method, body, headers, responseCodeHandler, Optional.<UnidentifiedAccess>absent());
+    return makeServiceRequest(urlFragment, method, jsonBody, headers, responseCodeHandler, Optional.<UnidentifiedAccess>absent());
   }
 
-  private String makeServiceRequest(String urlFragment, String method, String body, Map<String, String> headers, Optional<UnidentifiedAccess> unidentifiedAccessKey)
+  private String makeServiceRequest(String urlFragment, String method, String jsonBody, Map<String, String> headers, Optional<UnidentifiedAccess> unidentifiedAccessKey)
       throws NonSuccessfulResponseCodeException, PushNetworkException
   {
-    return makeServiceRequest(urlFragment, method, body, headers, NO_HANDLER, unidentifiedAccessKey);
+    return makeServiceRequest(urlFragment, method, jsonBody, headers, NO_HANDLER, unidentifiedAccessKey);
   }
 
-  private String makeServiceRequest(String urlFragment, String method, String body, Map<String, String> headers, ResponseCodeHandler responseCodeHandler, Optional<UnidentifiedAccess> unidentifiedAccessKey)
+  private String makeServiceRequest(String urlFragment, String method, String jsonBody, Map<String, String> headers, ResponseCodeHandler responseCodeHandler, Optional<UnidentifiedAccess> unidentifiedAccessKey)
+      throws NonSuccessfulResponseCodeException, PushNetworkException
+  {
+    ResponseBody responseBody = makeServiceBodyRequest(urlFragment, method, jsonRequestBody(jsonBody), headers, responseCodeHandler, unidentifiedAccessKey);
+    try {
+      return responseBody.string();
+    } catch (IOException e) {
+      throw new PushNetworkException(e);
+    }
+  }
+
+  private static RequestBody jsonRequestBody(String jsonBody) {
+    return jsonBody != null
+           ? RequestBody.create(MediaType.parse("application/json"), jsonBody)
+           : null;
+  }
+
+  private static RequestBody protobufRequestBody(MessageLite protobufBody) {
+    return protobufBody != null
+           ? RequestBody.create(MediaType.parse("application/x-protobuf"), protobufBody.toByteArray())
+           : null;
+  }
+
+  private ResponseBody makeServiceBodyRequest(String urlFragment,
+                                              String method,
+                                              RequestBody body,
+                                              Map<String, String> headers,
+                                              ResponseCodeHandler responseCodeHandler,
+                                              Optional<UnidentifiedAccess> unidentifiedAccessKey)
       throws NonSuccessfulResponseCodeException, PushNetworkException
   {
     Response response = getServiceConnection(urlFragment, method, body, headers, unidentifiedAccessKey);
 
-    int    responseCode;
-    String responseMessage;
-    String responseBody;
-
-    try {
-      responseCode    = response.code();
-      responseMessage = response.message();
-      responseBody    = response.body().string();
-    } catch (IOException ioe) {
-      throw new PushNetworkException(ioe);
-    }
+    int          responseCode    = response.code();
+    String       responseMessage = response.message();
+    ResponseBody responseBody    = response.body();
 
     responseCodeHandler.handle(responseCode);
 
@@ -1071,7 +1121,7 @@ public class PushServiceSocket {
         MismatchedDevices mismatchedDevices;
 
         try {
-          mismatchedDevices = JsonUtil.fromJson(responseBody, MismatchedDevices.class);
+          mismatchedDevices = JsonUtil.fromJson(responseBody.string(), MismatchedDevices.class);
         } catch (JsonProcessingException e) {
           Log.w(TAG, e);
           throw new NonSuccessfulResponseCodeException("Bad response: " + responseCode + " " + responseMessage);
@@ -1084,7 +1134,7 @@ public class PushServiceSocket {
         StaleDevices staleDevices;
 
         try {
-          staleDevices = JsonUtil.fromJson(responseBody, StaleDevices.class);
+          staleDevices = JsonUtil.fromJson(responseBody.string(), StaleDevices.class);
         } catch (JsonProcessingException e) {
           throw new NonSuccessfulResponseCodeException("Bad response: " + responseCode + " " + responseMessage);
         } catch (IOException e) {
@@ -1096,7 +1146,7 @@ public class PushServiceSocket {
         DeviceLimit deviceLimit;
 
         try {
-          deviceLimit = JsonUtil.fromJson(responseBody, DeviceLimit.class);
+          deviceLimit = JsonUtil.fromJson(responseBody.string(), DeviceLimit.class);
         } catch (JsonProcessingException e) {
           throw new NonSuccessfulResponseCodeException("Bad response: " + responseCode + " " + responseMessage);
         } catch (IOException e) {
@@ -1110,7 +1160,7 @@ public class PushServiceSocket {
         RegistrationLockFailure accountLockFailure;
 
         try {
-          accountLockFailure = JsonUtil.fromJson(responseBody, RegistrationLockFailure.class);
+          accountLockFailure = JsonUtil.fromJson(responseBody.string(), RegistrationLockFailure.class);
         } catch (JsonProcessingException e) {
           Log.w(TAG, e);
           throw new NonSuccessfulResponseCodeException("Bad response: " + responseCode + " " + responseMessage);
@@ -1133,7 +1183,7 @@ public class PushServiceSocket {
     return responseBody;
   }
 
-  private Response getServiceConnection(String urlFragment, String method, String body, Map<String, String> headers, Optional<UnidentifiedAccess> unidentifiedAccess)
+  private Response getServiceConnection(String urlFragment, String method, RequestBody body, Map<String, String> headers, Optional<UnidentifiedAccess> unidentifiedAccess)
       throws PushNetworkException
   {
     try {
@@ -1149,12 +1199,7 @@ public class PushServiceSocket {
 
       Request.Builder request = new Request.Builder();
       request.url(String.format("%s%s", connectionHolder.getUrl(), urlFragment));
-
-      if (body != null) {
-        request.method(method, RequestBody.create(MediaType.parse("application/json"), body));
-      } else {
-        request.method(method, null);
-      }
+      request.method(method, body);
 
       for (Map.Entry<String, String> header : headers.entrySet()) {
         request.addHeader(header.getKey(), header.getValue());
@@ -1277,7 +1322,7 @@ public class PushServiceSocket {
     throw new NonSuccessfulResponseCodeException("Response: " + response);
   }
 
-  private Response makeStorageRequest(String authorization, String path, String method, byte[] body)
+  private ResponseBody makeStorageRequest(String authorization, String path, String method, RequestBody body)
       throws PushNetworkException, NonSuccessfulResponseCodeException
   {
     ConnectionHolder connectionHolder = getRandom(storageClients, random);
@@ -1290,12 +1335,7 @@ public class PushServiceSocket {
     Log.d(TAG, "Opening URL: " + String.format("%s%s", connectionHolder.getUrl(), path));
 
     Request.Builder request = new Request.Builder().url(connectionHolder.getUrl() + path);
-
-    if (body != null) {
-      request.method(method, RequestBody.create(MediaType.parse("application/x-protobuf"), body));
-    } else {
-      request.method(method, null);
-    }
+    request.method(method, body);
 
     if (connectionHolder.getHostHeader().isPresent()) {
       request.addHeader("Host", connectionHolder.getHostHeader().get());
@@ -1317,7 +1357,7 @@ public class PushServiceSocket {
       response = call.execute();
 
       if (response.isSuccessful() && response.code() != 204) {
-        return response;
+        return response.body();
       }
     } catch (IOException e) {
       throw new PushNetworkException(e);
@@ -1337,11 +1377,9 @@ public class PushServiceSocket {
         throw new NotFoundException("Not found");
       case 409:
         if (response.body() != null) {
-          try {
-            throw new ContactManifestMismatchException(response.body().bytes());
-          } catch (IOException e) {
-            throw new PushNetworkException(e);
-          }
+          throw new ContactManifestMismatchException(readBodyBytes(response.body()));
+        } else {
+          throw new ConflictException();
         }
       case 429:
         throw new RateLimitException("Rate limit exceeded: " + response.code());
@@ -1387,6 +1425,10 @@ public class PushServiceSocket {
                                                      .connectionSpecs(url.getConnectionSpecs().or(Util.immutableList(ConnectionSpec.RESTRICTED_TLS)))
                                                      .dns(dns.or(Dns.SYSTEM));
 
+      builder.sslSocketFactory(new Tls12SocketFactory(context.getSocketFactory()), (X509TrustManager)trustManagers[0])
+             .connectionSpecs(url.getConnectionSpecs().or(Util.immutableList(ConnectionSpec.RESTRICTED_TLS)))
+             .build();
+
       for (Interceptor interceptor : interceptors) {
         builder.addInterceptor(interceptor);
       }
@@ -1408,6 +1450,23 @@ public class PushServiceSocket {
 
   private ConnectionHolder getRandom(ConnectionHolder[] connections, SecureRandom random) {
     return connections[random.nextInt(connections.length)];
+  }
+
+  public ProfileKeyCredential parseResponse(UUID uuid, ProfileKey profileKey, ProfileKeyCredentialResponse profileKeyCredentialResponse) throws VerificationFailedException {
+    ProfileKeyCredentialRequestContext profileKeyCredentialRequestContext = clientZkProfileOperations.createProfileKeyCredentialRequestContext(random, uuid, profileKey);
+
+    return clientZkProfileOperations.receiveProfileKeyCredential(profileKeyCredentialRequestContext, profileKeyCredentialResponse);
+  }
+
+  /**
+   * Converts {@link IOException} on body byte reading to {@link PushNetworkException}.
+   */
+  private static byte[] readBodyBytes(ResponseBody response) throws PushNetworkException {
+    try {
+      return response.bytes();
+    } catch (IOException e) {
+      throw new PushNetworkException(e);
+    }
   }
 
   private static class GcmRegistrationId {
@@ -1508,4 +1567,87 @@ public class PushServiceSocket {
   }
 
   public enum ClientSet { ContactDiscovery, KeyBackup }
+
+  public CredentialResponse retrieveGroupsV2Credentials(int today)
+      throws IOException
+  {
+    int    todayPlus7 = today + 7;
+    String response   = makeServiceRequest(String.format(Locale.US, GROUPSV2_CREDENTIAL, today, todayPlus7),
+                                           "GET",
+                                           null,
+                                           NO_HEADERS,
+                                           Optional.absent());
+
+    return JsonUtil.fromJson(response, CredentialResponse.class);
+  }
+
+  public void putNewGroupsV2Group(Group group, String authorization)
+      throws NonSuccessfulResponseCodeException, PushNetworkException
+  {
+      makeStorageRequest(authorization,
+                         GROUPSV2_GROUP,
+                         "PUT",
+                         protobufRequestBody(group));
+  }
+
+  public Group getGroupsV2Group(String authorization)
+      throws IOException
+  {
+      ResponseBody response = makeStorageRequest(authorization,
+                                                 GROUPSV2_GROUP,
+                                                 "GET",
+                                                 null);
+
+    try {
+      return Group.parseFrom(response.bytes());
+    } catch (InvalidProtocolBufferException e) {
+      throw new IOException("Cannot read protobuf", e);
+    }
+  }
+
+  public AvatarUploadAttributes getGroupsV2AvatarUploadForm(String authorization)
+      throws IOException
+  {
+      ResponseBody response = makeStorageRequest(authorization,
+                                                 GROUPSV2_AVATAR_REQUEST,
+                                                 "GET",
+                                                 null);
+
+    try {
+      return AvatarUploadAttributes.parseFrom(response.bytes());
+    } catch (InvalidProtocolBufferException e) {
+      throw new IOException("Cannot read protobuf", e);
+    }
+  }
+
+  public GroupChange patchGroupsV2Group(GroupChange.Actions groupChange, String authorization)
+      throws IOException
+  {
+    ResponseBody response = makeStorageRequest(authorization,
+                                               GROUPSV2_GROUP,
+                                               "PATCH",
+                                               protobufRequestBody(groupChange));
+
+    try {
+      return GroupChange.parseFrom(response.bytes());
+    } catch (InvalidProtocolBufferException e) {
+      throw new IOException("Cannot read protobuf", e);
+    }
+  }
+
+  public GroupChanges getGroupsV2GroupHistory(int fromVersion, String authorization)
+      throws IOException
+  {
+    ResponseBody response = makeStorageRequest(authorization,
+                                               String.format(Locale.US, GROUPSV2_GROUP_CHANGES, fromVersion),
+                                               "GET",
+                                               null);
+
+    try {
+      return GroupChanges.parseFrom(response.bytes());
+    } catch (InvalidProtocolBufferException e) {
+      throw new IOException("Cannot read protobuf", e);
+    }
+  }
+
 }

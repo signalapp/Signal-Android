@@ -8,6 +8,7 @@ package org.whispersystems.signalservice.api;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
+import org.signal.zkgroup.profiles.ClientZkProfileOperations;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.SessionBuilder;
 import org.whispersystems.libsignal.SignalProtocolAddress;
@@ -21,6 +22,7 @@ import org.whispersystems.signalservice.api.crypto.SignalServiceCipher;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
+import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
@@ -37,8 +39,8 @@ import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.BlockedListMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.ConfigurationMessage;
-import org.whispersystems.signalservice.api.messages.multidevice.MessageRequestResponseMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.KeysMessage;
+import org.whispersystems.signalservice.api.messages.multidevice.MessageRequestResponseMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SentTranscriptMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
@@ -127,9 +129,10 @@ public class SignalServiceMessageSender {
                                     boolean isMultiDevice,
                                     Optional<SignalServiceMessagePipe> pipe,
                                     Optional<SignalServiceMessagePipe> unidentifiedPipe,
-                                    Optional<EventListener> eventListener)
+                                    Optional<EventListener> eventListener,
+                                    ClientZkProfileOperations clientZkProfileOperations)
   {
-    this(urls, new StaticCredentialsProvider(uuid, e164, password, null), store, signalAgent, isMultiDevice, pipe, unidentifiedPipe, eventListener);
+    this(urls, new StaticCredentialsProvider(uuid, e164, password, null), store, signalAgent, isMultiDevice, pipe, unidentifiedPipe, eventListener, clientZkProfileOperations);
   }
 
   public SignalServiceMessageSender(SignalServiceConfiguration urls,
@@ -139,9 +142,10 @@ public class SignalServiceMessageSender {
                                     boolean isMultiDevice,
                                     Optional<SignalServiceMessagePipe> pipe,
                                     Optional<SignalServiceMessagePipe> unidentifiedPipe,
-                                    Optional<EventListener> eventListener)
+                                    Optional<EventListener> eventListener,
+                                    ClientZkProfileOperations clientZkProfileOperations)
   {
-    this.socket           = new PushServiceSocket(urls, credentialsProvider, signalAgent);
+    this.socket           = new PushServiceSocket(urls, credentialsProvider, signalAgent, clientZkProfileOperations);
     this.store            = store;
     this.localAddress     = new SignalServiceAddress(credentialsProvider.getUuid(), credentialsProvider.getE164());
     this.pipe             = new AtomicReference<>(pipe);
