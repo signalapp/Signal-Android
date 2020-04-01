@@ -1,21 +1,21 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.ListFragment;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.Loader;
-import androidx.cursoradapter.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.cursoradapter.widget.CursorAdapter;
+import androidx.fragment.app.ListFragment;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
 
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.loaders.BlockedContactsLoader;
@@ -25,20 +25,16 @@ import org.thoughtcrime.securesms.preferences.BlockedContactListItem;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
 public class BlockedContactsActivity extends PassphraseRequiredActionBarActivity {
 
-  private final DynamicTheme    dynamicTheme    = new DynamicTheme();
-  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
+  private final DynamicTheme dynamicTheme = new DynamicTheme();
 
   @Override
   public void onPreCreate() {
     dynamicTheme.onCreate(this);
-    dynamicLanguage.onCreate(this);
   }
-
 
   @Override
   public void onCreate(Bundle bundle, boolean ready) {
@@ -51,16 +47,12 @@ public class BlockedContactsActivity extends PassphraseRequiredActionBarActivity
   public void onResume() {
     super.onResume();
     dynamicTheme.onResume(this);
-    dynamicLanguage.onResume(this);
   }
 
   @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case android.R.id.home: finish(); return true;
-    }
-
-    return false;
+  public boolean onSupportNavigateUp() {
+    onBackPressed();
+    return true;
   }
 
   public static class BlockedContactsFragment
@@ -76,14 +68,14 @@ public class BlockedContactsActivity extends PassphraseRequiredActionBarActivity
     @Override
     public void onCreate(Bundle bundle) {
       super.onCreate(bundle);
-      setListAdapter(new BlockedContactAdapter(getActivity(), GlideApp.with(this), null));
-      getLoaderManager().initLoader(0, null, this);
+      setListAdapter(new BlockedContactAdapter(requireActivity(), GlideApp.with(this), null));
+      LoaderManager.getInstance(this).initLoader(0, null, this);
     }
 
     @Override
     public void onStart() {
       super.onStart();
-      getLoaderManager().restartLoader(0, null, this);
+      LoaderManager.getInstance(this).restartLoader(0, null, this);
     }
 
     @Override
@@ -114,10 +106,10 @@ public class BlockedContactsActivity extends PassphraseRequiredActionBarActivity
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
       Recipient recipient = ((BlockedContactListItem)view).getRecipient();
-      Intent    intent    = new Intent(getActivity(), RecipientPreferenceActivity.class);
-      intent.putExtra(RecipientPreferenceActivity.RECIPIENT_ID, recipient.getId());
-
-      startActivity(intent);
+      BlockUnblockDialog.handleUnblock(requireContext(),
+                                       getLifecycle(),
+                                       recipient.getId(),
+                                       () -> LoaderManager.getInstance(this).restartLoader(0, null, this));
     }
 
     private static class BlockedContactAdapter extends CursorAdapter {
@@ -143,7 +135,5 @@ public class BlockedContactsActivity extends PassphraseRequiredActionBarActivity
         ((BlockedContactListItem) view).set(glideRequests, recipient);
       }
     }
-
   }
-
 }
