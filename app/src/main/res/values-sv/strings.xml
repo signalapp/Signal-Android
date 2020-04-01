@@ -199,7 +199,7 @@
   <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signalen behöver mikrofonbehörigheter för att spela in videor, men de har nekats. Fortsätt till appinställningar, välj \"Behörigheter\" och aktivera \"mikrofon\" och \"kamera\".</string>
   <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal behöver behörigheten Mikrofon för att filma.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal kan inte skicka SMS/MMS eftersom det inte är din standardapp för SMS. Vill du ändra det här i dina Android-inställningar?</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal kan inte skicka SMS/MMS-meddelanden eftersom det inte är din standardapp för SMS. Vill du ändra detta i dina Android-inställningar?</string>
   <string name="ConversationActivity_yes">Ja</string>
   <string name="ConversationActivity_no">Nej</string>
   <string name="ConversationActivity_search_position">%1$d av %2$d</string>
@@ -236,14 +236,14 @@
     <item quantity="one">Detta kommer radera valt meddelande permanent.</item>
     <item quantity="other">Detta kommer permanent ta bort %1$d valda meddelanden.</item>
   </plurals>
-  <string name="ConversationFragment_save_to_sd_card">Spara till lagring?</string>
+  <string name="ConversationFragment_save_to_sd_card">Spara i lagring?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="one">Att spara denna media till lagring kommer tillåta andra appar på din telefon att få tillgång.\n\nFortsätt?</item>
-    <item quantity="other">Att spara alla %1$d media till lagringen kommer tillåta alla andra appar på din enhet att komma åt dem.\n\nFortsätt?</item>
+    <item quantity="other">Att spara alla %1$d media i lagringen kommer tillåta alla andra appar på din enhet att komma åt dem.\n\nFortsätt?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
-    <item quantity="one">Det uppstod ett fel när bifogad fil skulle sparas till lagring!</item>
-    <item quantity="other">Det uppstod ett fel när bifogade filer skulle sparas till lagring!</item>
+    <item quantity="one">Det uppstod ett fel när bifogad fil skulle sparas i lagring!</item>
+    <item quantity="other">Det uppstod ett fel när bifogade filer skulle sparas i lagring!</item>
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kan inte skriva till lagring!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
@@ -252,7 +252,7 @@
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
     <item quantity="one">Spara bilaga till lagring…</item>
-    <item quantity="other">Sparar %1$d bilagor till lagring…</item>
+    <item quantity="other">Sparar %1$d bilagor i lagring…</item>
   </plurals>
   <string name="ConversationFragment_pending">Väntar…</string>
   <string name="ConversationFragment_push">Data (Signal)</string>
@@ -827,8 +827,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MediaPreviewActivity_you">Du</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Mediatypen stöds inte</string>
   <string name="MediaPreviewActivity_draft">Utkast</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal behöver behörigheten Lagring för att spara till extern lagring men har nekats den permanent. Fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Lagring\".</string>
-  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kan inte spara till externt utrymme utan behörighet</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal behöver lagringsbehörigheter för att spara i extern lagring men det har permanent nekats. Fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Lagring\".</string>
+  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kan inte spara i extern lagring utan behörighet</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Ta bort meddelande?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Detta kommer permanent ta bort detta meddelande.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s till %2$s</string>
@@ -878,7 +878,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Snabbsvar är otillgängligt när Signal är låst!</string>
   <string name="QuickResponseService_problem_sending_message">Problem med att skicka meddelandet!</string>
   <!--SaveAttachmentTask-->
-  <string name="SaveAttachmentTask_saved_to">Sparad till %s</string>
+  <string name="SaveAttachmentTask_saved_to">Sparad i %s</string>
   <string name="SaveAttachmentTask_saved">Sparad</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Sök</string>
@@ -1090,7 +1090,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="import_fragment__import_system_sms_database">Importera systemets SMS-databas</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importera databasen från standardappen för meddelanden</string>
   <string name="import_fragment__import_plaintext_backup">Importera okrypterad backup</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">Importera en okrypterad säkerhetskopia. Kompatibel med \'SMSBackup &amp; Restore.\'</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">Importera en okrypterad säkerhetskopia. Kompatibel med \"SMSBackup &amp; Restore.\"</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Se hela konversationen</string>
   <string name="load_more_header__loading">Läser in</string>
@@ -1242,7 +1242,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS och MMS</string>
-  <string name="preferences__pref_all_sms_title">Använd för alla SMS</string>
+  <string name="preferences__pref_all_sms_title">Ta emot alla SMS</string>
   <string name="preferences__pref_all_mms_title">Använd för alla MMS</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Använd Signal för alla inkommande SMS-meddelanden</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Använd Signal för alla inkommande multimediameddelanden</string>
@@ -1608,7 +1608,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="PushDecryptJob_new_locked_message">Nytt låst meddelande</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Lås upp för att se väntande meddelanden</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Lösenord för säkerhetskopering</string>
-  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Säkerhetskopior sparas till extern lagring och krypteras med lösenordet nedanför. Du måste ange lösenordet för att återställa en säkerhetskopia.</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Säkerhetskopior sparas i extern lagring och krypteras med lösenordet nedanför. Du måste ange lösenordet för att återställa en säkerhetskopia.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Jag har skrivit ner lösenordet. Utan det kommer jag inte kunna återställa en säkerhetskopia.</string>
   <string name="registration_activity__restore_backup">Återställ säkerhetskopia</string>
   <string name="registration_activity__skip">Hoppa över</string>

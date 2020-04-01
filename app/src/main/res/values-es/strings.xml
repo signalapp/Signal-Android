@@ -1676,7 +1676,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="registration_lock_dialog_view__confirm_pin">Confirma el PIN</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Introduce tu PIN de bloqueo de registro</string>
   <string name="registration_lock_reminder_view__enter_pin">Introduce el PIN</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Habilita un «PIN de bloqueo de registro» que la aplicación pedirá para registrar de nuevo este número de teléfono con Signal.</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Activa el «PIN de bloqueo de registro» que la aplicación pedirá para registrar de nuevo este número de teléfono con Signal.</string>
   <string name="preferences_app_protection__registration_lock_pin">PIN de bloqueo de registro</string>
   <string name="preferences_app_protection__registration_lock">Bloqueo de registro</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Debes introducir tu PIN de bloqueo de registro</string>
