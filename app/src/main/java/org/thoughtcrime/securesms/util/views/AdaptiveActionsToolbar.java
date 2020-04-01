@@ -29,9 +29,9 @@ import org.thoughtcrime.securesms.util.ViewUtil;
  */
 public class AdaptiveActionsToolbar extends Toolbar {
 
-  private static final int   NAVIGATION_SP          = 48;
-  private static final int   ACTION_VIEW_WIDTH_SP   = 42;
-  private static final int   OVERFLOW_VIEW_WIDTH_SP = 35;
+  private static final int   NAVIGATION_DP          = 56;
+  private static final int   ACTION_VIEW_WIDTH_DP   = 48;
+  private static final int   OVERFLOW_VIEW_WIDTH_DP = 36;
 
   private int   maxShown;
 
@@ -63,24 +63,23 @@ public class AdaptiveActionsToolbar extends Toolbar {
   public static void adjustMenuActions(@NonNull Menu menu, int maxToShow, int toolbarWidthPx) {
     int menuSize = menu.size();
 
-    int widthAllowed = toolbarWidthPx - ViewUtil.spToPx(NAVIGATION_SP);
-    int nItemsToShow = Math.min(maxToShow, Math.round(widthAllowed / ViewUtil.spToPx(ACTION_VIEW_WIDTH_SP)));
+    int widthAllowed = toolbarWidthPx - ViewUtil.dpToPx(NAVIGATION_DP);
+    int nItemsToShow = Math.min(maxToShow, widthAllowed / ViewUtil.dpToPx(ACTION_VIEW_WIDTH_DP));
 
     if (nItemsToShow < menuSize) {
-      widthAllowed -= ViewUtil.spToPx(OVERFLOW_VIEW_WIDTH_SP);
+      widthAllowed -= ViewUtil.dpToPx(OVERFLOW_VIEW_WIDTH_DP);
     }
 
-    nItemsToShow = Math.min(maxToShow, Math.round(widthAllowed / ViewUtil.spToPx(ACTION_VIEW_WIDTH_SP)));
+    nItemsToShow = Math.min(maxToShow, widthAllowed / ViewUtil.dpToPx(ACTION_VIEW_WIDTH_DP));
 
     for (int i = 0; i < menu.size(); i++) {
       MenuItem item = menu.getItem(i);
-      if (nItemsToShow > 0) {
+      if (item.isVisible() && nItemsToShow > 0) {
         item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        nItemsToShow--;
       } else {
         item.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
       }
-      nItemsToShow--;
     }
   }
-
 }
