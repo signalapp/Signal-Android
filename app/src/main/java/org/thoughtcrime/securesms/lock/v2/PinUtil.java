@@ -16,8 +16,4 @@ public final class PinUtil {
   public static boolean userHasPin(@NonNull Context context) {
     return TextSecurePreferences.isV1RegistrationLockEnabled(context) || SignalStore.kbsValues().isV2RegistrationLockEnabled();
   }
-
-  public static boolean shouldShowPinCreationDuringRegistration(@NonNull Context context) {
-    return FeatureFlags.pinsForAll() && !PinUtil.userHasPin(context);
-  }
 }

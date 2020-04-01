@@ -307,10 +307,6 @@ public class EditProfileFragment extends Fragment {
   private void handleUpload() {
     viewModel.submitProfile(uploadResult -> {
       if (uploadResult == EditProfileRepository.UploadResult.SUCCESS) {
-        if (!PinUtil.shouldShowPinCreationDuringRegistration(requireContext())) {
-          SignalStore.registrationValues().setRegistrationComplete();
-        }
-
         ApplicationDependencies.getMegaphoneRepository().markFinished(Megaphones.Event.PROFILE_NAMES_FOR_ALL);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) handleFinishedLollipop();

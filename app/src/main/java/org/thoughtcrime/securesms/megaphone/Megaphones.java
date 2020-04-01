@@ -136,38 +136,18 @@ public final class Megaphones {
                           })
                           .build();
     } else {
-      Megaphone.Builder builder = new Megaphone.Builder(Event.PINS_FOR_ALL, Megaphone.Style.BASIC)
-                                               .setMandatory(true)
-                                               .setImage(R.drawable.kbs_pin_megaphone);
+      return new Megaphone.Builder(Event.PINS_FOR_ALL, Megaphone.Style.BASIC)
+                          .setMandatory(true)
+                          .setImage(R.drawable.kbs_pin_megaphone)
+                          .setTitle(R.string.KbsMegaphone__create_a_pin)
+                          .setBody(R.string.KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account)
+                          .setActionButton(R.string.KbsMegaphone__create_pin, (megaphone, listener) -> {
+                            Intent intent = CreateKbsPinActivity.getIntentForPinCreate(ApplicationDependencies.getApplication());
 
-      if (PinUtil.userHasPin(ApplicationDependencies.getApplication())) {
-        return buildPinsForAllMegaphoneForUserWithPin(builder.enableSnooze(null));
-      } else {
-        return buildPinsForAllMegaphoneForUserWithoutPin(builder.enableSnooze(null));
-      }
+                            listener.onMegaphoneNavigationRequested(intent, CreateKbsPinActivity.REQUEST_NEW_PIN);
+                          })
+                          .build();
     }
-  }
-
-  private static @NonNull Megaphone buildPinsForAllMegaphoneForUserWithPin(@NonNull Megaphone.Builder builder) {
-    return builder.setTitle(R.string.KbsMegaphone__introducing_pins)
-                  .setBody(R.string.KbsMegaphone__your_registration_lock_is_now_called_a_pin)
-                  .setActionButton(R.string.KbsMegaphone__update_pin, (megaphone, listener) -> {
-                    Intent intent = CreateKbsPinActivity.getIntentForPinChangeFromSettings(ApplicationDependencies.getApplication());
-
-                    listener.onMegaphoneNavigationRequested(intent, CreateKbsPinActivity.REQUEST_NEW_PIN);
-                  })
-                  .build();
-  }
-
-  private static @NonNull Megaphone buildPinsForAllMegaphoneForUserWithoutPin(@NonNull Megaphone.Builder builder) {
-    return builder.setTitle(R.string.KbsMegaphone__create_a_pin)
-                  .setBody(R.string.KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account)
-                  .setActionButton(R.string.KbsMegaphone__create_pin, (megaphone, listener) -> {
-                    Intent intent = CreateKbsPinActivity.getIntentForPinCreate(ApplicationDependencies.getApplication());
-
-                    listener.onMegaphoneNavigationRequested(intent, CreateKbsPinActivity.REQUEST_NEW_PIN);
-                  })
-                  .build();
   }
 
   private static @NonNull Megaphone buildPinReminderMegaphone(@NonNull Context context) {

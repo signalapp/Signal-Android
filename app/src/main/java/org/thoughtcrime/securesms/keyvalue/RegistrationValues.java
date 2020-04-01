@@ -17,8 +17,7 @@ public final class RegistrationValues {
   public synchronized void onFirstEverAppLaunch() {
     store.beginWrite()
          .putBoolean(REGISTRATION_COMPLETE, false)
-         // TODO [greyson] [pins] Maybe re-enable in the future
-//         .putBoolean(PIN_REQUIRED, true)
+         .putBoolean(PIN_REQUIRED, true)
          .commit();
   }
 

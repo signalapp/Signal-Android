@@ -50,6 +50,7 @@ public final class FeatureFlags {
   private static final String MESSAGE_REQUESTS           = "android.messageRequests";
   private static final String USERNAMES                  = "android.usernames";
   private static final String PINS_FOR_ALL               = "android.pinsForAll";
+  private static final String PINS_FOR_ALL_MANDATORY     = "android.pinsForAllMandatory";
   private static final String PINS_MEGAPHONE_KILL_SWITCH = "android.pinsMegaphoneKillSwitch";
   private static final String PROFILE_NAMES_MEGAPHONE    = "android.profileNamesMegaphone";
   private static final String STORAGE_SERVICE            = "android.storageService.2";
@@ -61,6 +62,7 @@ public final class FeatureFlags {
 
   private static final Set<String> REMOTE_CAPABLE = Sets.newHashSet(
       PINS_FOR_ALL,
+      PINS_FOR_ALL_MANDATORY,
       PINS_MEGAPHONE_KILL_SWITCH,
       PROFILE_NAMES_MEGAPHONE,
       MESSAGE_REQUESTS,
@@ -178,11 +180,16 @@ public final class FeatureFlags {
     return value;
   }
 
-  /** Enables new KBS UI and notices but does not require user to set a pin */
+  /** Starts showing prompts for users to create PINs. */
   public static boolean pinsForAll() {
     return SignalStore.registrationValues().pinWasRequiredAtRegistration() ||
-           SignalStore.kbsValues().hasMigratedToPinsForAll()               ||
+           pinsForAllMandatory()                                           ||
            getValue(PINS_FOR_ALL, false);
+  }
+
+  /** Makes it so the user will eventually see a fullscreen splash requiring them to create a PIN. */
+  public static boolean pinsForAllMandatory() {
+    return getValue(PINS_FOR_ALL_MANDATORY, false);
   }
 
   /** Safety flag to disable Pins for All Megaphone */

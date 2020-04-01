@@ -1865,7 +1865,6 @@
     <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">PINs add another layer of security to your Signal account.</string>
     <string name="KbsMegaphone__create_pin">Create PIN</string>
     <string name="KbsMegaphone__introducing_pins">Introducing PINs</string>
-    <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Your Registration Lock is now called a PIN. Updating it takes seconds.</string>
     <string name="KbsMegaphone__update_pin">Update PIN</string>
     <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">We\'ll remind you later. Creating a PIN will become mandatory in %1$d days.</string>
     <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">We\'ll remind you later. Confirming your PIN will become mandatory in %1$d days.</string>

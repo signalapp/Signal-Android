@@ -41,12 +41,8 @@ public final class RegistrationCompleteFragment extends BaseRegistrationFragment
 
       profile.putExtra(EditProfileActivity.SHOW_TOOLBAR, false);
 
-      if (PinUtil.shouldShowPinCreationDuringRegistration(requireContext())) {
-        Intent kbs = CreateKbsPinActivity.getIntentForPinCreate(requireContext());
-        activity.startActivity(chainIntents(chainIntents(profile, kbs), main));
-      } else {
-        activity.startActivity(chainIntents(profile, main));
-      }
+      Intent kbs = CreateKbsPinActivity.getIntentForPinCreate(requireContext());
+      activity.startActivity(chainIntents(chainIntents(profile, kbs), main));
     }
 
     activity.finish();

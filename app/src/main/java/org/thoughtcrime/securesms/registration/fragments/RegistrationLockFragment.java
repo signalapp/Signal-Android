@@ -303,7 +303,7 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
   }
 
   private void handleSuccessfulPinEntry() {
-    SignalStore.kbsValues().setKeyboardType(getPinEntryKeyboardType());
+    SignalStore.pinValues().setKeyboardType(getPinEntryKeyboardType());
 
     if (FeatureFlags.storageServiceRestore()) {
       long startTime = System.currentTimeMillis();

@@ -1,10 +1,8 @@
 package org.thoughtcrime.securesms.keyvalue;
 
-import androidx.annotation.CheckResult;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.lock.v2.PinKeyboardType;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.whispersystems.signalservice.api.RegistrationLockData;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
@@ -19,7 +17,6 @@ public final class KbsValues {
   private static final String MASTER_KEY          = "kbs.registration_lock_master_key";
   private static final String TOKEN_RESPONSE      = "kbs.token_response";
   private static final String LOCK_LOCAL_PIN_HASH = "kbs.registration_lock_local_pin_hash";
-  private static final String KEYBOARD_TYPE       = "kbs.keyboard_type";
 
   private final KeyValueStore store;
 
@@ -35,7 +32,6 @@ public final class KbsValues {
          .remove(V2_LOCK_ENABLED)
          .remove(TOKEN_RESPONSE)
          .remove(LOCK_LOCAL_PIN_HASH)
-         .remove(KEYBOARD_TYPE)
          .commit();
   }
 
@@ -97,15 +93,15 @@ public final class KbsValues {
     }
   }
 
-  public @Nullable String getLocalPinHash() {
+  public synchronized @Nullable String getLocalPinHash() {
     return store.getString(LOCK_LOCAL_PIN_HASH, null);
   }
 
-  public boolean isV2RegistrationLockEnabled() {
+  public synchronized boolean isV2RegistrationLockEnabled() {
     return store.getBoolean(V2_LOCK_ENABLED, false);
   }
 
-  public @Nullable TokenResponse getRegistrationLockTokenResponse() {
+  public synchronized @Nullable TokenResponse getRegistrationLockTokenResponse() {
     String token = store.getString(TOKEN_RESPONSE, null);
 
     if (token == null) return null;
@@ -115,20 +111,5 @@ public final class KbsValues {
     } catch (IOException e) {
       throw new AssertionError(e);
     }
-  }
-
-  public void setKeyboardType(@NonNull PinKeyboardType keyboardType) {
-    store.beginWrite()
-         .putString(KEYBOARD_TYPE, keyboardType.getCode())
-         .commit();
-  }
-
-  @CheckResult
-  public @NonNull PinKeyboardType getKeyboardType() {
-    return PinKeyboardType.fromCode(store.getString(KEYBOARD_TYPE, null));
-  }
-
-  public boolean hasMigratedToPinsForAll() {
-    return store.getString(KEYBOARD_TYPE, null) != null && store.getBoolean(V2_LOCK_ENABLED, false);
   }
 }

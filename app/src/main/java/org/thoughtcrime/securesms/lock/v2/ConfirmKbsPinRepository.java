@@ -48,7 +48,7 @@ final class ConfirmKbsPinRepository {
         TextSecurePreferences.clearOldRegistrationLockPin(context);
         TextSecurePreferences.setRegistrationLockLastReminderTime(context, System.currentTimeMillis());
         TextSecurePreferences.setRegistrationLockNextReminderInterval(context, RegistrationLockReminders.INITIAL_INTERVAL);
-        SignalStore.kbsValues().setKeyboardType(keyboard);
+        SignalStore.pinValues().setKeyboardType(keyboard);
         ApplicationDependencies.getMegaphoneRepository().markFinished(Megaphones.Event.PINS_FOR_ALL);
 
         Log.i(TAG, "Pin set on KBS");
