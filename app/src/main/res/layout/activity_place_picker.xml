@@ -36,7 +36,7 @@
             android:text="@string/preferences__map_normal" />
 
         <Button
-            android:id="@+id/btnMapTypeSattelite"
+            android:id="@+id/btnMapTypeSatellite"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

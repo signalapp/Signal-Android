@@ -74,7 +74,7 @@ public final class PlacePickerActivity extends AppCompatActivity {
     View fab         = findViewById(R.id.place_chosen_button);
 
     Button btnMapTypeNormal = findViewById(R.id.btnMapTypeNormal);
-    Button btnMapTypeSattelite = findViewById(R.id.btnMapTypeSattelite);
+    Button btnMapTypeSatellite = findViewById(R.id.btnMapTypeSatellite);
     Button btnMapTypeTerrain = findViewById(R.id.btnMapTypeTerrain);
 
     fab.setOnClickListener(v -> finishWithAddress());
@@ -86,7 +86,7 @@ public final class PlacePickerActivity extends AppCompatActivity {
       }
     });
 
-    btnMapTypeSattelite.setOnClickListener(new View.OnClickListener() {
+    btnMapTypeSatellite.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(@NonNull View v) {
         googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
         TextSecurePreferences.setGoogleMapType(getApplicationContext(), "satellite");
