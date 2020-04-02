@@ -17,11 +17,6 @@
         android:scaleType="centerCrop"
         tools:src="@drawable/empty_inbox_1"/>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="?mediapicker_image_outline" />
-
     <FrameLayout
         android:id="@+id/mediapicker_play_overlay"
         android:layout_width="36dp"
