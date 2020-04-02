@@ -307,6 +307,8 @@
         <item name="conversation_item_sticky_date_text_color">@color/core_grey_60</item>
         <item name="conversation_item_image_outline_color">@color/transparent_black_20</item>
         <item name="conversation_item_reveal_viewed_background_color">?conversation_background</item>
+        <item name="conversation_scroll_to_bottom_background">@drawable/scroll_to_bottom_background_light</item>
+        <item name="conversation_scroll_to_bottom_foreground_color">@color/grey_600</item>
 
         <item name="quick_camera_icon">@drawable/ic_camera_outline_24</item>
         <item name="quick_mic_icon">@drawable/ic_mic_outline_24</item>
@@ -566,6 +568,8 @@
         <item name="conversation_popup_theme">@style/ThemeOverlay.AppCompat.Dark</item>
         <item name="conversation_title_color">@color/transparent_white_90</item>
         <item name="conversation_subtitle_color">@color/transparent_white_80</item>
+        <item name="conversation_scroll_to_bottom_background">@drawable/scroll_to_bottom_background_dark</item>
+        <item name="conversation_scroll_to_bottom_foreground_color">@color/core_white</item>
 
         <item name="reactions_overlay_old_background">@drawable/reactions_old_background_dark</item>
         <item name="reactions_overlay_scrubber_background">@drawable/conversation_reaction_overlay_background_dark</item>

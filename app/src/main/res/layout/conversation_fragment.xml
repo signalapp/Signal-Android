@@ -53,10 +53,9 @@
             android:layout_marginBottom="20dp"
             android:padding="5dp"
             android:layout_gravity="bottom|end"
-            android:background="@drawable/circle_tintable"
-            android:tint="@color/grey_600"
+            android:background="?attr/conversation_scroll_to_bottom_background"
+            android:tint="?attr/conversation_scroll_to_bottom_foreground_color"
             android:elevation="1dp"
-            android:alpha="0.9"
             android:contentDescription="@string/conversation_fragment__scroll_to_the_bottom_content_description"
             android:src="@drawable/ic_scroll_down"/>
 </FrameLayout>

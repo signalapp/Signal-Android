@@ -136,6 +136,8 @@
     <attr name="conversation_item_sticky_date_text_color" format="color" />
     <attr name="conversation_item_image_outline_color" format="color" />
     <attr name="conversation_item_reveal_viewed_background_color" format="color" />
+    <attr name="conversation_scroll_to_bottom_background" format="reference" />
+    <attr name="conversation_scroll_to_bottom_foreground_color" format="color" />
 
     <attr name="dialog_info_icon" format="reference" />
     <attr name="dialog_alert_icon" format="reference" />
