@@ -77,7 +77,7 @@ public class MediaSendVideoFragment extends Fragment implements VideoEditorHud.E
     player.setWindow(requireActivity().getWindow());
     player.setVideoSource(slide, true);
 
-    if (FeatureFlags.videoTrimming() && MediaConstraints.isVideoTranscodeAvailable()) {
+    if (MediaConstraints.isVideoTranscodeAvailable()) {
       hud = view.findViewById(R.id.video_editor_hud);
       hud.setEventListener(this);
       updateHud(data);

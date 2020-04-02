@@ -52,7 +52,6 @@ public final class FeatureFlags {
   private static final String PINS_FOR_ALL               = "android.pinsForAll";
   private static final String PINS_MEGAPHONE_KILL_SWITCH = "android.pinsMegaphoneKillSwitch";
   private static final String PROFILE_NAMES_MEGAPHONE    = "android.profileNamesMegaphone";
-  private static final String VIDEO_TRIMMING             = "android.videoTrimming.2";
   private static final String STORAGE_SERVICE            = "android.storageService.2";
 
   /**
@@ -61,7 +60,6 @@ public final class FeatureFlags {
    */
 
   private static final Set<String> REMOTE_CAPABLE = Sets.newHashSet(
-      VIDEO_TRIMMING,
       PINS_FOR_ALL,
       PINS_MEGAPHONE_KILL_SWITCH,
       PROFILE_NAMES_MEGAPHONE,
@@ -87,7 +85,6 @@ public final class FeatureFlags {
    * more burden on the reader to ensure that the app experience remains consistent.
    */
   private static final Set<String> HOT_SWAPPABLE = Sets.newHashSet(
-      VIDEO_TRIMMING,
       PINS_MEGAPHONE_KILL_SWITCH,
       STORAGE_SERVICE
   );
@@ -197,11 +194,6 @@ public final class FeatureFlags {
   public static boolean profileNamesMegaphone() {
     return getValue(PROFILE_NAMES_MEGAPHONE, false) &&
            TextSecurePreferences.getFirstInstallVersion(ApplicationDependencies.getApplication()) < 600;
-  }
-
-  /** Allow trimming videos. */
-  public static boolean videoTrimming() {
-    return getValue(VIDEO_TRIMMING, false);
   }
 
   /** Whether or not we can actually restore data on a new installation. NOT remote-configurable. */
