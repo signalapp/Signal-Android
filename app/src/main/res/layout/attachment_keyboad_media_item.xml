@@ -8,11 +8,10 @@
     android:layout_marginEnd="8dp"
     app:square_height="true">
 
-    <org.thoughtcrime.securesms.components.OutlinedThumbnailView
+    <org.thoughtcrime.securesms.components.ThumbnailView
         android:id="@+id/attachment_keyboard_item_image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:otv_cornerRadius="4dp"/>
+        android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/attachment_keyboard_item_video_time"
