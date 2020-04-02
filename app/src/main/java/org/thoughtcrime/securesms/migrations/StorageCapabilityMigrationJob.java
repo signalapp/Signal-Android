@@ -8,23 +8,32 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceStorageSyncRequestJob;
+import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.StorageForcePushJob;
-import org.thoughtcrime.securesms.jobs.StorageSyncJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
-public class StorageKeyRotationMigrationJob extends MigrationJob {
+/**
+ * This does a couple things:
+ *   (1) Sets the storage capability for reglockv2 users by refreshing account attributes.
+ *   (2) Force-pushes storage, which is now backed by the KBS master key.
+ *
+ * Note: *All* users need to do this force push, because some people were in the storage service FF
+ *       bucket in the past, and if we don't schedule a force push, they could enter a situation
+ *       where different storage items are encrypted with different keys.
+ */
+public class StorageCapabilityMigrationJob extends MigrationJob {
 
-  private static final String TAG = Log.tag(StorageKeyRotationMigrationJob.class);
+  private static final String TAG = Log.tag(StorageCapabilityMigrationJob.class);
 
-  public static final String KEY = "StorageKeyRotationMigrationJob";
+  public static final String KEY = "StorageCapabilityMigrationJob";
 
-  StorageKeyRotationMigrationJob() {
+  StorageCapabilityMigrationJob() {
     this(new Parameters.Builder().build());
   }
 
-  private StorageKeyRotationMigrationJob(@NonNull Parameters parameters) {
+  private StorageCapabilityMigrationJob(@NonNull Parameters parameters) {
     super(parameters);
   }
 
@@ -41,7 +50,8 @@ public class StorageKeyRotationMigrationJob extends MigrationJob {
   @Override
   public void performMigration() {
     JobManager jobManager = ApplicationDependencies.getJobManager();
-    SignalStore.storageServiceValues().rotateStorageMasterKey();
+
+    jobManager.add(new RefreshAttributesJob());
 
     if (TextSecurePreferences.isMultiDevice(context)) {
       Log.i(TAG, "Multi-device.");
@@ -60,10 +70,10 @@ public class StorageKeyRotationMigrationJob extends MigrationJob {
     return false;
   }
 
-  public static class Factory implements Job.Factory<StorageKeyRotationMigrationJob> {
+  public static class Factory implements Job.Factory<StorageCapabilityMigrationJob> {
     @Override
-    public @NonNull StorageKeyRotationMigrationJob create(@NonNull Parameters parameters, @NonNull Data data) {
-      return new StorageKeyRotationMigrationJob(parameters);
+    public @NonNull StorageCapabilityMigrationJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new StorageCapabilityMigrationJob(parameters);
     }
   }
 }

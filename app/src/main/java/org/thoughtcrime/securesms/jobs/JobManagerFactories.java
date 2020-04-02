@@ -31,7 +31,7 @@ import org.thoughtcrime.securesms.migrations.RecipientSearchMigrationJob;
 import org.thoughtcrime.securesms.migrations.RegistrationPinV2MigrationJob;
 import org.thoughtcrime.securesms.migrations.StickerAdditionMigrationJob;
 import org.thoughtcrime.securesms.migrations.StickerLaunchMigrationJob;
-import org.thoughtcrime.securesms.migrations.StorageKeyRotationMigrationJob;
+import org.thoughtcrime.securesms.migrations.StorageCapabilityMigrationJob;
 import org.thoughtcrime.securesms.migrations.StorageServiceMigrationJob;
 import org.thoughtcrime.securesms.migrations.UuidMigrationJob;
 
@@ -119,7 +119,7 @@ public final class JobManagerFactories {
       put(RegistrationPinV2MigrationJob.KEY,         new RegistrationPinV2MigrationJob.Factory());
       put(StickerLaunchMigrationJob.KEY,             new StickerLaunchMigrationJob.Factory());
       put(StickerAdditionMigrationJob.KEY,           new StickerAdditionMigrationJob.Factory());
-      put(StorageKeyRotationMigrationJob.KEY,        new StorageKeyRotationMigrationJob.Factory());
+      put(StorageCapabilityMigrationJob.KEY,         new StorageCapabilityMigrationJob.Factory());
       put(StorageServiceMigrationJob.KEY,            new StorageServiceMigrationJob.Factory());
       put(UuidMigrationJob.KEY,                      new UuidMigrationJob.Factory());
 
@@ -132,6 +132,7 @@ public final class JobManagerFactories {
       put("RefreshUnidentifiedDeliveryAbilityJob",   new FailingJob.Factory());
       put("Argon2TestJob",                           new FailingJob.Factory());
       put("Argon2TestMigrationJob",                  new PassingMigrationJob.Factory());
+      put("StorageKeyRotationMigrationJob",          new PassingMigrationJob.Factory());
     }};
   }
 

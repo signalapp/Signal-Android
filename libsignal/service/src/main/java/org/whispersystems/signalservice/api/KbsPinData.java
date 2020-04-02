@@ -3,12 +3,12 @@ package org.whispersystems.signalservice.api;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 
-public final class RegistrationLockData {
+public final class KbsPinData {
 
   private final MasterKey     masterKey;
   private final TokenResponse tokenResponse;
 
-  RegistrationLockData(MasterKey masterKey, TokenResponse tokenResponse) {
+  KbsPinData(MasterKey masterKey, TokenResponse tokenResponse) {
     this.masterKey     = masterKey;
     this.tokenResponse = tokenResponse;
   }

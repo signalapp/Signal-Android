@@ -73,8 +73,8 @@ public class ApplicationDependencies {
 
   public static synchronized @NonNull KeyBackupService getKeyBackupService() {
     return getSignalServiceAccountManager().getKeyBackupService(IasKeyStore.getIasKeyStore(application),
-                                                                BuildConfig.KEY_BACKUP_ENCLAVE_NAME,
-                                                                BuildConfig.KEY_BACKUP_MRENCLAVE,
+                                                                BuildConfig.KBS_ENCLAVE_NAME,
+                                                                BuildConfig.KBS_MRENCLAVE,
                                                                 10);
   }
 

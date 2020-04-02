@@ -41,7 +41,7 @@ public class SignalStorageManifest {
   public Optional<StorageId> getAccountStorageId() {
     List<StorageId> list = storageIdsByType.get(ManifestRecord.Identifier.Type.ACCOUNT_VALUE);
 
-    if (list.size() > 0) {
+    if (list != null && list.size() > 0) {
       return Optional.of(list.get(0));
     } else {
       return Optional.absent();

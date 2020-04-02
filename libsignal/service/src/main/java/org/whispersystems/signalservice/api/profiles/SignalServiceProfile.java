@@ -105,12 +105,16 @@ public class SignalServiceProfile {
     @JsonProperty
     private boolean gv2;
 
+    @JsonProperty
+    private boolean storage;
+
     @JsonCreator
     public Capabilities() {}
 
-    public Capabilities(boolean uuid, boolean gv2) {
-      this.uuid = uuid;
-      this.gv2  = gv2;
+    public Capabilities(boolean uuid, boolean gv2, boolean storage) {
+      this.uuid    = uuid;
+      this.gv2     = gv2;
+      this.storage = storage;
     }
 
     public boolean isUuid() {
@@ -119,6 +123,10 @@ public class SignalServiceProfile {
 
     public boolean isGv2() {
       return gv2;
+    }
+
+    public boolean isStorage() {
+      return storage;
     }
   }
 

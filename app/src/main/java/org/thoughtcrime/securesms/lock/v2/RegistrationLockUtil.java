@@ -9,11 +9,11 @@ import org.thoughtcrime.securesms.util.CensorshipUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
-public final class PinUtil {
+public final class RegistrationLockUtil {
 
-  private PinUtil() {}
+  private RegistrationLockUtil() {}
 
-  public static boolean userHasPin(@NonNull Context context) {
+  public static boolean userHasRegistrationLock(@NonNull Context context) {
     return TextSecurePreferences.isV1RegistrationLockEnabled(context) || SignalStore.kbsValues().isV2RegistrationLockEnabled();
   }
 }

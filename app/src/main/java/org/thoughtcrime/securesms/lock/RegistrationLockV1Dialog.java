@@ -9,7 +9,6 @@ import android.text.Editable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
@@ -33,35 +32,27 @@ import androidx.fragment.app.Fragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.keyvalue.KbsValues;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.KbsConstants;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.migrations.RegistrationPinV2MigrationJob;
+import org.thoughtcrime.securesms.pin.PinState;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
-import org.whispersystems.signalservice.api.KeyBackupService;
-import org.whispersystems.signalservice.api.KeyBackupServicePinException;
-import org.whispersystems.signalservice.api.KeyBackupSystemNoDataException;
-import org.whispersystems.signalservice.api.RegistrationLockData;
-import org.whispersystems.signalservice.api.kbs.HashedPin;
-import org.whispersystems.signalservice.api.kbs.MasterKey;
 import org.whispersystems.signalservice.internal.contacts.crypto.UnauthenticatedResponseException;
-import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 
 import java.io.IOException;
 
-public final class RegistrationLockDialog {
+public final class RegistrationLockV1Dialog {
 
-  private static final String TAG = Log.tag(RegistrationLockDialog.class);
+  private static final String TAG = Log.tag(RegistrationLockV1Dialog.class);
 
   public static void showReminderIfNecessary(@NonNull Fragment fragment) {
     final Context context = fragment.requireContext();
 
-    if (!TextSecurePreferences.isV1RegistrationLockEnabled(context) && !SignalStore.kbsValues().isV2RegistrationLockEnabled()) {
+    if (!PinState.shouldShowRegistrationLockV1Reminder()) {
       return;
     }
 
@@ -124,9 +115,7 @@ public final class RegistrationLockDialog {
     reminder.setText(new SpannableStringBuilder(reminderIntro).append(" ").append(reminderText).append(" ").append(forgotText));
     reminder.setMovementMethod(LinkMovementMethod.getInstance());
 
-    pinEditText.addTextChangedListener(SignalStore.kbsValues().isV2RegistrationLockEnabled()
-                                       ? getV2PinWatcher(context, dialog)
-                                       : getV1PinWatcher(context, dialog));
+    pinEditText.addTextChangedListener(getV1PinWatcher(context, dialog));
   }
 
   private static TextWatcher getV1PinWatcher(@NonNull Context context, AlertDialog dialog) {
@@ -140,25 +129,6 @@ public final class RegistrationLockDialog {
 
         Log.i(TAG, "Pin V1 successfully remembered, scheduling a migration to V2");
         ApplicationDependencies.getJobManager().add(new RegistrationPinV2MigrationJob());
-      }
-    });
-  }
-
-  private static TextWatcher getV2PinWatcher(@NonNull Context context, AlertDialog dialog) {
-    KbsValues kbsValues    = SignalStore.kbsValues();
-    String    localPinHash = kbsValues.getLocalPinHash();
-
-    if (localPinHash == null) throw new AssertionError("No local pin hash set at time of reminder");
-
-    return new AfterTextChanged((Editable s) -> {
-      if (s == null) return;
-      String pin = s.toString();
-      if (TextUtils.isEmpty(pin)) return;
-      if (pin.length() < KbsConstants.MINIMUM_PIN_LENGTH) return;
-
-      if (PinHashing.verifyLocalPinHash(localPinHash, pin)) {
-        dialog.dismiss();
-        RegistrationLockReminders.scheduleReminder(context, true);
       }
     });
   }
@@ -210,19 +180,7 @@ public final class RegistrationLockDialog {
           protected Boolean doInBackground(Void... voids) {
             try {
               Log.i(TAG, "Setting pin on KBS - dialog");
-
-              KbsValues                         kbsValues        = SignalStore.kbsValues();
-              MasterKey                         masterKey        = kbsValues.getOrCreateMasterKey();
-              KeyBackupService                  keyBackupService = ApplicationDependencies.getKeyBackupService();
-              KeyBackupService.PinChangeSession pinChangeSession = keyBackupService.newPinChangeSession();
-              HashedPin                         hashedPin        = PinHashing.hashPin(pinValue, pinChangeSession);
-              RegistrationLockData              kbsData          = pinChangeSession.setPin(hashedPin, masterKey);
-
-              kbsValues.setRegistrationLockMasterKey(kbsData, PinHashing.localPinHash(pinValue));
-              TextSecurePreferences.clearOldRegistrationLockPin(context);
-              TextSecurePreferences.setRegistrationLockLastReminderTime(context, System.currentTimeMillis());
-              TextSecurePreferences.setRegistrationLockNextReminderInterval(context, RegistrationLockReminders.INITIAL_INTERVAL);
-
+              PinState.onCompleteRegistrationLockV1Reminder(context, pinValue);
               Log.i(TAG, "Pin set on KBS");
               return true;
             } catch (IOException | UnauthenticatedResponseException e) {
@@ -277,23 +235,7 @@ public final class RegistrationLockDialog {
           @Override
           protected Boolean doInBackground(Void... voids) {
             try {
-              KbsValues kbsValues = SignalStore.kbsValues();
-
-              if (kbsValues.isV2RegistrationLockEnabled()) {
-                Log.i(TAG, "Removing v2 registration lock pin from server");
-                TokenResponse currentToken = kbsValues.getRegistrationLockTokenResponse();
-
-                KeyBackupService keyBackupService = ApplicationDependencies.getKeyBackupService();
-                keyBackupService.newPinChangeSession(currentToken).removePin();
-                kbsValues.clearRegistrationLock();
-              }
-
-              // It is possible a migration has not occurred, in this case, we need to remove the old V1 Pin
-              if (TextSecurePreferences.isV1RegistrationLockEnabled(context)) {
-                Log.i(TAG, "Removing v1 registration lock pin from server");
-                ApplicationDependencies.getSignalServiceAccountManager().removeV1Pin();
-              }
-              TextSecurePreferences.clearOldRegistrationLockPin(context);
+              PinState.onDisableRegistrationLockV1(context);
               return true;
             } catch (IOException | UnauthenticatedResponseException e) {
               Log.w(TAG, e);

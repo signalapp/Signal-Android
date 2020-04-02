@@ -112,7 +112,7 @@ public final class KeyBackupService {
     }
 
     @Override
-    public RegistrationLockData restorePin(HashedPin hashedPin)
+    public KbsPinData restorePin(HashedPin hashedPin)
       throws UnauthenticatedResponseException, IOException, KeyBackupServicePinException, KeyBackupSystemNoDataException
     {
       int           attempt = 0;
@@ -145,7 +145,7 @@ public final class KeyBackupService {
       }
     }
 
-    private RegistrationLockData restorePin(HashedPin hashedPin, TokenResponse token)
+    private KbsPinData restorePin(HashedPin hashedPin, TokenResponse token)
       throws UnauthenticatedResponseException, IOException, TokenException, KeyBackupSystemNoDataException
     {
       try {
@@ -165,7 +165,7 @@ public final class KeyBackupService {
             Log.i(TAG, String.format(Locale.US,"Restore OK! data: %s tries: %d", Hex.toStringCondensed(status.getData().toByteArray()), status.getTries()));
             KbsData kbsData = hashedPin.decryptKbsDataIVCipherText(status.getData().toByteArray());
             MasterKey masterKey = kbsData.getMasterKey();
-            return new RegistrationLockData(masterKey, nextToken);
+            return new KbsPinData(masterKey, nextToken);
           case PIN_MISMATCH:
             Log.i(TAG, "Restore PIN_MISMATCH");
             throw new KeyBackupServicePinException(nextToken);
@@ -199,24 +199,24 @@ public final class KeyBackupService {
     }
 
     @Override
-    public RegistrationLockData setPin(HashedPin hashedPin, MasterKey masterKey) throws IOException, UnauthenticatedResponseException {
-      KbsData   newKbsData = hashedPin.createNewKbsData(masterKey);
-
+    public KbsPinData setPin(HashedPin hashedPin, MasterKey masterKey) throws IOException, UnauthenticatedResponseException {
+      KbsData       newKbsData    = hashedPin.createNewKbsData(masterKey);
       TokenResponse tokenResponse = putKbsData(newKbsData.getKbsAccessKey(),
                                                newKbsData.getCipherText(),
                                                enclaveName,
                                                currentToken);
 
-      pushServiceSocket.setRegistrationLock(masterKey.deriveRegistrationLock());
-
-      return new RegistrationLockData(masterKey, tokenResponse);
+      return new KbsPinData(masterKey, tokenResponse);
     }
 
     @Override
-    public void removePin() throws IOException, UnauthenticatedResponseException {
-      deleteKbsData();
+    public void enableRegistrationLock(MasterKey masterKey) throws IOException {
+      pushServiceSocket.setRegistrationLockV2(masterKey.deriveRegistrationLock());
+    }
 
-      pushServiceSocket.removePinV2();
+    @Override
+    public void disableRegistrationLock() throws IOException {
+      pushServiceSocket.disableRegistrationLockV2();
     }
 
     private TokenResponse putKbsData(byte[] kbsAccessKey, byte[] kbsData, String enclaveName, TokenResponse token)
@@ -243,20 +243,6 @@ public final class KeyBackupService {
         throw new UnauthenticatedResponseException(e);
       }
     }
-
-    private void deleteKbsData()
-      throws IOException, UnauthenticatedResponseException
-    {
-      try {
-        RemoteAttestation remoteAttestation = getAndVerifyRemoteAttestation();
-        KeyBackupRequest  request           = KeyBackupCipher.createKeyDeleteRequest(currentToken, remoteAttestation, Hex.fromStringCondensed(enclaveName));
-        KeyBackupResponse response          = pushServiceSocket.putKbsData(authorization, request, remoteAttestation.getCookies(), enclaveName);
-
-        KeyBackupCipher.getKeyDeleteResponseStatus(response, remoteAttestation);
-      } catch (InvalidCiphertextException e) {
-        throw new UnauthenticatedResponseException(e);
-      }
-    }
   }
 
   public interface HashSession {
@@ -266,16 +252,18 @@ public final class KeyBackupService {
 
   public interface RestoreSession extends HashSession {
 
-    RegistrationLockData restorePin(HashedPin hashedPin)
+    KbsPinData restorePin(HashedPin hashedPin)
       throws UnauthenticatedResponseException, IOException, KeyBackupServicePinException, KeyBackupSystemNoDataException;
   }
 
   public interface PinChangeSession extends HashSession {
+    /** Creates a PIN. Does nothing to registration lock. */
+    KbsPinData setPin(HashedPin hashedPin, MasterKey masterKey) throws IOException, UnauthenticatedResponseException;
 
-    RegistrationLockData setPin(HashedPin hashedPin, MasterKey masterKey)
-      throws IOException, UnauthenticatedResponseException;
+    /** Enables registration lock. This assumes a PIN is set. */
+    void enableRegistrationLock(MasterKey masterKey) throws IOException;
 
-    void removePin()
-      throws IOException, UnauthenticatedResponseException;
+    /** Disables registration lock. The user keeps their PIN. */
+    void disableRegistrationLock() throws IOException;
   }
 }

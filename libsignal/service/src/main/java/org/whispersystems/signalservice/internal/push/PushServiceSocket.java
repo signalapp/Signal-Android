@@ -338,16 +338,16 @@ public class PushServiceSocket {
   }
 
   /** Note: Setting a KBS Pin will clear this */
-  public void removePin() throws IOException {
+  public void removeRegistrationLockV1() throws IOException {
     makeServiceRequest(PIN_PATH, "DELETE", null);
   }
 
-  public void setRegistrationLock(String registrationLock) throws IOException {
+  public void setRegistrationLockV2(String registrationLock) throws IOException {
     RegistrationLockV2 accountLock = new RegistrationLockV2(registrationLock);
     makeServiceRequest(REGISTRATION_LOCK_PATH, "PUT", JsonUtil.toJson(accountLock));
   }
 
-  public void removePinV2() throws IOException {
+  public void disableRegistrationLockV2() throws IOException {
     makeServiceRequest(REGISTRATION_LOCK_PATH, "DELETE", null);
   }
 

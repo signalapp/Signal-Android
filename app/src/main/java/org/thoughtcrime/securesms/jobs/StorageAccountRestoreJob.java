@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
+import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
@@ -63,7 +64,7 @@ public class StorageAccountRestoreJob extends BaseJob {
   @Override
   protected void onRun() throws Exception {
     SignalServiceAccountManager accountManager    = ApplicationDependencies.getSignalServiceAccountManager();
-    StorageKey                  storageServiceKey = SignalStore.storageServiceValues().getOrCreateStorageMasterKey().deriveStorageServiceKey();
+    StorageKey                  storageServiceKey = SignalStore.storageServiceValues().getOrCreateStorageKey();
 
     Optional<SignalStorageManifest> manifest = accountManager.getStorageManifest(storageServiceKey);
 

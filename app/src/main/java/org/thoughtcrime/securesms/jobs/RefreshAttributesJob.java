@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.jobs;
 
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.AppCapabilities;
@@ -51,22 +53,24 @@ public class RefreshAttributesJob extends BaseJob {
     boolean   fetchesMessages             = TextSecurePreferences.isFcmDisabled(context);
     byte[]    unidentifiedAccessKey       = UnidentifiedAccess.deriveAccessKeyFrom(ProfileKeyUtil.getSelfProfileKey());
     boolean   universalUnidentifiedAccess = TextSecurePreferences.isUniversalUnidentifiedAccess(context);
-    String    pin                         = null;
-    String    registrationLockToken       = null;
+    String    registrationLockV1          = null;
+    String    registrationLockV2          = null;
     KbsValues kbsValues                   = SignalStore.kbsValues();
 
     if (kbsValues.isV2RegistrationLockEnabled()) {
-      registrationLockToken = kbsValues.getRegistrationLockToken();
+      registrationLockV2 = kbsValues.getRegistrationLockToken();
     } else if (TextSecurePreferences.isV1RegistrationLockEnabled(context)) {
       //noinspection deprecation Ok to read here as they have not migrated
-      pin = TextSecurePreferences.getDeprecatedV1RegistrationLockPin(context);
+      registrationLockV1 = TextSecurePreferences.getDeprecatedV1RegistrationLockPin(context);
     }
+
+    Log.i(TAG, "Calling setAccountAttributes() reglockV1? " + !TextUtils.isEmpty(registrationLockV1) + ", reglockV2? " + !TextUtils.isEmpty(registrationLockV2) + ", pin? " + kbsValues.hasPin());
 
     SignalServiceAccountManager signalAccountManager = ApplicationDependencies.getSignalServiceAccountManager();
     signalAccountManager.setAccountAttributes(null, registrationId, fetchesMessages,
-                                              pin, registrationLockToken,
+                                              registrationLockV1, registrationLockV2,
                                               unidentifiedAccessKey, universalUnidentifiedAccess,
-                                              AppCapabilities.getCapabilities());
+                                              AppCapabilities.getCapabilities(kbsValues.hasPin()));
   }
 
   @Override

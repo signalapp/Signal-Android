@@ -20,16 +20,17 @@ import org.thoughtcrime.securesms.PassphraseChangeActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
-import org.thoughtcrime.securesms.jobs.StorageSyncJob;
-import org.thoughtcrime.securesms.lock.RegistrationLockDialog;
+import org.thoughtcrime.securesms.keyvalue.KbsValues;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.lock.RegistrationLockV1Dialog;
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
-import org.thoughtcrime.securesms.lock.v2.PinUtil;
+import org.thoughtcrime.securesms.lock.v2.RegistrationLockUtil;
+import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.pin.PinState;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
@@ -37,13 +38,18 @@ import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
+import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
+import java.io.IOException;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import mobi.upod.timedurationpicker.TimeDurationPickerDialog;
 
 public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment {
+
+  private static final String TAG = Log.tag(AppProtectionPreferenceFragment.class);
 
   private static final String PREFERENCE_CATEGORY_BLOCKED        = "preference_category_blocked";
   private static final String PREFERENCE_UNIDENTIFIED_LEARN_MORE = "pref_unidentified_learn_more";
@@ -55,28 +61,9 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     super.onCreate(paramBundle);
 
     disablePassphrase = (CheckBoxPreference) this.findPreference("pref_enable_passphrase_temporary");
-
-    SwitchPreferenceCompat regLock      = (SwitchPreferenceCompat) this.findPreference(TextSecurePreferences.REGISTRATION_LOCK_PREF_V1);
-    Preference             kbsPinChange = this.findPreference(TextSecurePreferences.KBS_PIN_CHANGE);
-    Preference             regGroup     = this.findPreference("prefs_lock_v1");
-    Preference             kbsGroup     = this.findPreference("prefs_lock_v2");
-
-    if (FeatureFlags.pinsForAll()) {
-      Preference preference = this.findPreference("pref_kbs_change");
-      regGroup.setVisible(false);
-
-      if (PinUtil.userHasPin(ApplicationDependencies.getApplication())) {
-        kbsPinChange.setOnPreferenceClickListener(new KbsPinUpdateListener());
-        preference.setWidgetLayoutResource(R.layout.kbs_pin_change_preference);
-      } else {
-        kbsPinChange.setOnPreferenceClickListener(new KbsPinCreateListener());
-        preference.setWidgetLayoutResource(R.layout.kbs_pin_create_preference);
-      }
-    } else {
-      kbsGroup.setVisible(false);
-      regLock.setChecked(PinUtil.userHasPin(requireContext()));
-      regLock.setOnPreferenceClickListener(new AccountLockClickListener());
-    }
+    this.findPreference(KbsValues.V2_LOCK_ENABLED).setPreferenceDataStore(SignalStore.getPreferenceDataStore());
+    ((SwitchPreferenceCompat) this.findPreference(KbsValues.V2_LOCK_ENABLED)).setChecked(SignalStore.kbsValues().isV2RegistrationLockEnabled());
+    this.findPreference(KbsValues.V2_LOCK_ENABLED).setOnPreferenceChangeListener(new RegistrationLockV2ChangedListener());
 
     this.findPreference(TextSecurePreferences.SCREEN_LOCK).setOnPreferenceChangeListener(new ScreenLockListener());
     this.findPreference(TextSecurePreferences.SCREEN_LOCK_TIMEOUT).setOnPreferenceClickListener(new ScreenLockTimeoutListener());
@@ -109,6 +96,31 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     else                                                         initializeScreenLockTimeoutSummary();
 
     disablePassphrase.setChecked(!TextSecurePreferences.isPasswordDisabled(getActivity()));
+
+    Preference             registrationLockV1Group = this.findPreference("prefs_lock_v1");
+    SwitchPreferenceCompat registrationLockV1      = (SwitchPreferenceCompat) this.findPreference(TextSecurePreferences.REGISTRATION_LOCK_PREF_V1);
+    Preference             signalPinGroup          = this.findPreference("prefs_signal_pin");
+    Preference             signalPinCreateChange   = this.findPreference(TextSecurePreferences.SIGNAL_PIN_CHANGE);
+    SwitchPreferenceCompat registrationLockV2      = (SwitchPreferenceCompat) this.findPreference(KbsValues.V2_LOCK_ENABLED);
+
+
+    if (FeatureFlags.pinsForAll()) {
+      registrationLockV1Group.setVisible(false);
+
+      if (SignalStore.kbsValues().hasPin()) {
+        signalPinCreateChange.setOnPreferenceClickListener(new KbsPinUpdateListener());
+        signalPinCreateChange.setTitle(R.string.preferences_app_protection__change_your_pin);
+        registrationLockV2.setEnabled(true);
+      } else {
+        signalPinCreateChange.setOnPreferenceClickListener(new KbsPinCreateListener());
+        signalPinCreateChange.setTitle(R.string.preferences_app_protection__create_a_pin);
+        registrationLockV2.setEnabled(false);
+      }
+    } else {
+      signalPinGroup.setVisible(false);
+      registrationLockV1.setChecked(RegistrationLockUtil.userHasRegistrationLock(requireContext()));
+      registrationLockV1.setOnPreferenceClickListener(new AccountLockClickListener());
+    }
   }
 
   @Override
@@ -206,10 +218,10 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     public boolean onPreferenceClick(Preference preference) {
       Context context = requireContext();
 
-      if (PinUtil.userHasPin(context)) {
-        RegistrationLockDialog.showRegistrationUnlockPrompt(context, (SwitchPreferenceCompat)preference);
+      if (RegistrationLockUtil.userHasRegistrationLock(context)) {
+        RegistrationLockV1Dialog.showRegistrationUnlockPrompt(context, (SwitchPreferenceCompat)preference);
       } else {
-        RegistrationLockDialog.showRegistrationLockPrompt(context, (SwitchPreferenceCompat)preference);
+        RegistrationLockV1Dialog.showRegistrationLockPrompt(context, (SwitchPreferenceCompat)preference);
       }
 
       return true;
@@ -283,7 +295,7 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
                                                                    : R.string.ApplicationPreferencesActivity_privacy_summary;
     final   String onRes               = context.getString(R.string.ApplicationPreferencesActivity_on);
     final   String offRes              = context.getString(R.string.ApplicationPreferencesActivity_off);
-    boolean registrationLockEnabled    = PinUtil.userHasPin(context);
+    boolean registrationLockEnabled    = RegistrationLockUtil.userHasRegistrationLock(context);
 
     if (TextSecurePreferences.isPasswordDisabled(context) && !TextSecurePreferences.isScreenLockEnabled(context)) {
       if (registrationLockEnabled) {
@@ -397,6 +409,42 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     @Override
     public boolean onPreferenceClick(Preference preference) {
       CommunicationActions.openBrowserLink(preference.getContext(), "https://signal.org/blog/sealed-sender/");
+      return true;
+    }
+  }
+
+  private class RegistrationLockV2ChangedListener implements Preference.OnPreferenceChangeListener {
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+      boolean     value   = (boolean) newValue;
+      AlertDialog loading = SimpleProgressDialog.show(requireContext());
+
+      Log.i(TAG, "Getting ready to change registration lock setting to: " + value);
+
+      SimpleTask.run(SignalExecutors.UNBOUNDED, () -> {
+        try {
+          if (value) {
+            PinState.onEnableRegistrationLockForUserWithPin();
+            Log.i(TAG, "Successfully enabled registration lock.");
+          } else {
+            PinState.onDisableRegistrationLockForUserWithPin();
+            Log.i(TAG, "Successfully disabled registration lock.");
+          }
+          return true;
+        } catch (IOException e) {
+          Log.w(TAG, "Failed to change registration lock setting.", e);
+          return false;
+        }
+      }, (success) -> {
+        loading.dismiss();
+
+        if (!success) {
+          int stringRes =  value ? R.string.preferences_app_protection__failed_to_enable_registration_lock
+                                 : R.string.preferences_app_protection__failed_to_disable_registration_lock;
+
+          Toast.makeText(requireContext(), stringRes, Toast.LENGTH_LONG).show();
+        }
+      });
       return true;
     }
   }

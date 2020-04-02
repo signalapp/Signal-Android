@@ -53,7 +53,6 @@ public final class FeatureFlags {
   private static final String PINS_FOR_ALL_MANDATORY     = "android.pinsForAllMandatory";
   private static final String PINS_MEGAPHONE_KILL_SWITCH = "android.pinsMegaphoneKillSwitch";
   private static final String PROFILE_NAMES_MEGAPHONE    = "android.profileNamesMegaphone";
-  private static final String STORAGE_SERVICE            = "android.storageService.2";
   private static final String ATTACHMENTS_V3             = "android.attachmentsV3";
 
   /**
@@ -67,7 +66,6 @@ public final class FeatureFlags {
       PINS_MEGAPHONE_KILL_SWITCH,
       PROFILE_NAMES_MEGAPHONE,
       MESSAGE_REQUESTS,
-      STORAGE_SERVICE,
       ATTACHMENTS_V3
   );
 
@@ -90,7 +88,6 @@ public final class FeatureFlags {
    */
   private static final Set<String> HOT_SWAPPABLE = Sets.newHashSet(
       PINS_MEGAPHONE_KILL_SWITCH,
-      STORAGE_SERVICE,
       ATTACHMENTS_V3
   );
 
@@ -183,9 +180,15 @@ public final class FeatureFlags {
     return value;
   }
 
-  /** Starts showing prompts for users to create PINs. */
+  /**
+   * - Starts showing prompts for users to create PINs.
+   * - Shows new reminder UI.
+   * - Shows new settings UI.
+   * - Syncs to storage service.
+   */
   public static boolean pinsForAll() {
     return SignalStore.registrationValues().pinWasRequiredAtRegistration() ||
+           SignalStore.kbsValues().isV2RegistrationLockEnabled()           ||
            pinsForAllMandatory()                                           ||
            getValue(PINS_FOR_ALL, false);
   }
@@ -204,16 +207,6 @@ public final class FeatureFlags {
   public static boolean profileNamesMegaphone() {
     return getValue(PROFILE_NAMES_MEGAPHONE, false) &&
            TextSecurePreferences.getFirstInstallVersion(ApplicationDependencies.getApplication()) < 600;
-  }
-
-  /** Whether or not we can actually restore data on a new installation. NOT remote-configurable. */
-  public static boolean storageServiceRestore() {
-    return false;
-  }
-
-  /** Whether or not we sync to the storage service. */
-  public static boolean storageService() {
-    return getValue(STORAGE_SERVICE, false);
   }
 
   /** Whether or not we use the attachments v3 form. */

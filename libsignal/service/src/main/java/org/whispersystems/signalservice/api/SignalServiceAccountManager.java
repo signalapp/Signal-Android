@@ -10,7 +10,6 @@ package org.whispersystems.signalservice.api;
 import com.google.protobuf.ByteString;
 
 import org.signal.zkgroup.VerificationFailedException;
-import org.signal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.whispersystems.libsignal.IdentityKey;
@@ -29,6 +28,8 @@ import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Authorization;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
+import org.whispersystems.signalservice.api.kbs.HashedPin;
+import org.whispersystems.signalservice.api.kbs.MasterKey;
 import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
@@ -147,11 +148,14 @@ public class SignalServiceAccountManager {
   }
 
   /**
-   * V1 Pin setting has been replaced by KeyBackupService.
-   * Now you can only remove the old pin but there is no need to remove the old pin if setting a KBS Pin.
+   * V1 PINs are no longer used in favor of V2 PINs stored on KBS.
+   *
+   * You can remove a V1 PIN, but typically this is unnecessary, as setting a V2 PIN via
+   * {@link KeyBackupService.Session#enableRegistrationLock(MasterKey)}} will automatically clear the
+   * V1 PIN on the service.
    */
-  public void removeV1Pin() throws IOException {
-    this.pushServiceSocket.removePin();
+  public void removeRegistrationLockV1() throws IOException {
+    this.pushServiceSocket.removeRegistrationLockV1();
   }
 
   public UUID getOwnUuid() throws IOException {

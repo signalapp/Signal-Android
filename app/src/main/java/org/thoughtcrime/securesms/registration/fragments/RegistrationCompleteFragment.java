@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.registration.fragments;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,10 +14,7 @@ import androidx.navigation.ActivityNavigator;
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
-import org.thoughtcrime.securesms.lock.v2.PinUtil;
 import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
-import org.thoughtcrime.securesms.util.CensorshipUtil;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 
 public final class RegistrationCompleteFragment extends BaseRegistrationFragment {
 

@@ -2,16 +2,13 @@ package org.thoughtcrime.securesms.lock.v2;
 
 import android.animation.Animator;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RawRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
-import androidx.core.util.Preconditions;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -24,6 +21,8 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.megaphone.Megaphones;
 import org.thoughtcrime.securesms.util.SpanUtil;
+
+import java.util.Objects;
 
 public class ConfirmKbsPinFragment extends BaseKbsPinFragment<ConfirmKbsPinViewModel> {
 
@@ -43,7 +42,7 @@ public class ConfirmKbsPinFragment extends BaseKbsPinFragment<ConfirmKbsPinViewM
   @Override
   protected ConfirmKbsPinViewModel initializeViewModel() {
     ConfirmKbsPinFragmentArgs      args       = ConfirmKbsPinFragmentArgs.fromBundle(requireArguments());
-    KbsPin                         userEntry  = Preconditions.checkNotNull(args.getUserEntry());
+    KbsPin                         userEntry  = Objects.requireNonNull(args.getUserEntry());
     PinKeyboardType                keyboard   = args.getKeyboard();
     ConfirmKbsPinRepository        repository = new ConfirmKbsPinRepository();
     ConfirmKbsPinViewModel.Factory factory    = new ConfirmKbsPinViewModel.Factory(userEntry, keyboard, repository);
@@ -111,7 +110,6 @@ public class ConfirmKbsPinFragment extends BaseKbsPinFragment<ConfirmKbsPinViewM
             requireActivity().setResult(Activity.RESULT_OK);
             closeNavGraphBranch();
             SignalStore.registrationValues().setRegistrationComplete();
-            SignalStore.pinValues().onPinChange();
           }
         });
         break;

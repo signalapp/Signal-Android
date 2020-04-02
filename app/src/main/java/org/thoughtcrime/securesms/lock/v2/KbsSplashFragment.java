@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
 public final class KbsSplashFragment extends Fragment {
 
@@ -42,7 +43,7 @@ public final class KbsSplashFragment extends Fragment {
     primaryAction.setOnClickListener(v -> onCreatePin());
     secondaryAction.setOnClickListener(v -> onLearnMore());
 
-    if (PinUtil.userHasPin(requireContext())) {
+    if (RegistrationLockUtil.userHasRegistrationLock(requireContext())) {
       setUpRegLockEnabled();
     } else {
       setUpRegLockDisabled();
@@ -73,7 +74,7 @@ public final class KbsSplashFragment extends Fragment {
   private void onCreatePin() {
     KbsSplashFragmentDirections.ActionCreateKbsPin action = KbsSplashFragmentDirections.actionCreateKbsPin();
 
-    action.setIsPinChange(PinUtil.userHasPin(requireContext()));
+    action.setIsPinChange(SignalStore.kbsValues().hasPin());
 
     Navigation.findNavController(requireView()).navigate(action);
   }
