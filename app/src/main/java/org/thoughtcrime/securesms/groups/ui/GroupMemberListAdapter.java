@@ -18,7 +18,9 @@ import java.util.Collection;
 
 final class GroupMemberListAdapter extends RecyclerView.Adapter<GroupMemberListAdapter.ViewHolder> {
 
-  private static final int FULL_MEMBER = 0;
+  private static final int FULL_MEMBER                = 0;
+  private static final int OWN_INVITE_PENDING         = 1;
+  private static final int OTHER_INVITE_PENDING_COUNT = 2;
 
   private final ArrayList<GroupMemberEntry> data = new ArrayList<>();
 
@@ -35,6 +37,14 @@ final class GroupMemberListAdapter extends RecyclerView.Adapter<GroupMemberListA
         return new FullMemberViewHolder(LayoutInflater.from(parent.getContext())
                                                       .inflate(R.layout.group_recipient_list_item,
                                                                parent, false));
+      case OWN_INVITE_PENDING:
+        return new OwnInvitePendingMemberViewHolder(LayoutInflater.from(parent.getContext())
+                                                                  .inflate(R.layout.group_recipient_list_item,
+                                                                           parent, false));
+      case OTHER_INVITE_PENDING_COUNT:
+        return new UnknownPendingMemberCountViewHolder(LayoutInflater.from(parent.getContext())
+                                                                     .inflate(R.layout.group_recipient_list_item,
+                                                                              parent, false));
       default:
         throw new AssertionError();
     }
@@ -51,6 +61,10 @@ final class GroupMemberListAdapter extends RecyclerView.Adapter<GroupMemberListA
 
     if (groupMemberEntry instanceof GroupMemberEntry.FullMember) {
       return FULL_MEMBER;
+    } else if (groupMemberEntry instanceof GroupMemberEntry.PendingMember) {
+      return OWN_INVITE_PENDING;
+    } else if (groupMemberEntry instanceof GroupMemberEntry.UnknownPendingMemberCount) {
+      return OTHER_INVITE_PENDING_COUNT;
     }
 
     throw new AssertionError();
@@ -110,6 +124,43 @@ final class GroupMemberListAdapter extends RecyclerView.Adapter<GroupMemberListA
       GroupMemberEntry.FullMember fullMember = (GroupMemberEntry.FullMember) memberEntry;
 
       bindRecipient(fullMember.getMember());
+    }
+  }
+
+  final static class OwnInvitePendingMemberViewHolder extends ViewHolder {
+
+    OwnInvitePendingMemberViewHolder(@NonNull View itemView) {
+      super(itemView);
+    }
+
+    @Override
+    void bind(@NonNull GroupMemberEntry memberEntry) {
+      super.bind(memberEntry);
+
+      GroupMemberEntry.PendingMember pendingMember = (GroupMemberEntry.PendingMember) memberEntry;
+
+      bindRecipient(pendingMember.getInvitee());
+    }
+  }
+
+  final static class UnknownPendingMemberCountViewHolder extends ViewHolder {
+
+    UnknownPendingMemberCountViewHolder(@NonNull View itemView) {
+      super(itemView);
+    }
+
+    @Override
+    void bind(@NonNull GroupMemberEntry memberEntry) {
+      super.bind(memberEntry);
+      GroupMemberEntry.UnknownPendingMemberCount pendingMemberCount = (GroupMemberEntry.UnknownPendingMemberCount) memberEntry;
+
+      Recipient inviter     = pendingMemberCount.getInviter();
+      String    displayName = inviter.getDisplayName(itemView.getContext());
+      String    displayText = context.getResources().getQuantityString(R.plurals.GroupMemberList_invited,
+                                                                       pendingMemberCount.getInviteCount(),
+                                                                       displayName, pendingMemberCount.getInviteCount());
+
+      bindImageAndText(inviter, displayText);
     }
   }
 }

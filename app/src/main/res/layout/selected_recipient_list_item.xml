@@ -29,6 +29,7 @@
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:background="#00ffffff"
+        android:contentDescription="@string/GroupCreateActivity_remove_member_description"
         android:src="@drawable/ic_menu_remove_holo_light" />
 
 </RelativeLayout>

@@ -432,6 +432,7 @@
     <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Couldn\'t add %1$s because they\'re not a Signal user.</string>
     <string name="GroupCreateActivity_loading_group_details">Loading group details…</string>
     <string name="GroupCreateActivity_youre_already_in_the_group">You\'re already in the group.</string>
+    <string name="GroupCreateActivity_remove_member_description">Remove member</string>
 
     <!-- GroupShareProfileView -->
     <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Share your profile name and photo with this group?</string>
@@ -440,6 +441,19 @@
 
     <!-- GroupMembersDialog -->
     <string name="GroupMembersDialog_you">You</string>
+
+    <!-- PendingMembersActivity -->
+    <string name="PendingMemberInvitesActivity_pending_group_invites">Pending group invites</string>
+    <string name="PendingMembersActivity_people_you_invited">People you invited</string>
+    <string name="PendingMembersActivity_you_have_no_pending_invites">You have no pending invites.</string>
+    <string name="PendingMembersActivity_invites_by_other_group_members">Invites by other group members</string>
+    <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">No pending invites by other group members.</string>
+    <string name="PendingMembersActivity_missing_detail_explanation">Details of people invited by other group members are not shown. If invitees choose to join, their information will be shared with the group at that time. They will not see any messages in the group until they join.</string>
+
+    <plurals name="GroupMemberList_invited">
+        <item quantity="one">%1$s invited 1 person</item>
+        <item quantity="other">%1$s invited %2$d people</item>
+    </plurals>
 
     <!-- CropImageActivity -->
     <string name="CropImageActivity_group_avatar">Group avatar</string>
@@ -1674,6 +1688,7 @@
     <string name="conversation__menu_view_all_media">All media</string>
     <string name="conversation__menu_conversation_settings">Conversation settings</string>
     <string name="conversation__menu_add_shortcut">Add to home screen</string>
+    <string name="conversation__menu_pending_members">Pending members</string>
 
     <!-- conversation_popup -->
     <string name="conversation_popup__menu_expand_popup">Expand popup</string>

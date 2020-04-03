@@ -414,6 +414,11 @@
         <item name="shared_contact_details_header_background">@color/grey_100</item>
         <item name="shared_contact_details_titlebar">@color/grey_400</item>
         <item name="shared_contact_item_button_color">@color/core_grey_02</item>
+
+        <item name="pending_member_background">@color/core_grey_02</item>
+        <item name="pending_member_empty_text_color">@color/core_grey_60</item>
+
+        <item name="colorControlNormal">@color/core_grey_90</item>
     </style>
 
     <style name="TextSecure.DarkTheme" parent="@style/TextSecure.BaseDarkTheme">
@@ -684,6 +689,11 @@
         <item name="shared_contact_details_header_background">@color/grey_800</item>
         <item name="shared_contact_details_titlebar">@color/grey_900</item>
         <item name="shared_contact_item_button_color">@color/core_grey_85</item>
+
+        <item name="pending_member_background">@color/core_grey_80</item>
+        <item name="pending_member_empty_text_color">@color/core_grey_25</item>
+
+        <item name="colorControlNormal">@color/core_white</item>
     </style>
 
     <style name="RationaleDialogLight" parent="Theme.AppCompat.Light.Dialog.Alert">

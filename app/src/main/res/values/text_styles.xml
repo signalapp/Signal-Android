@@ -97,6 +97,15 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="TextAppearance.Signal.Body2" parent="@style/TextAppearance.MaterialComponents.Body2">
+    </style>
+
+    <style name="TextAppearance.Signal.Caption" parent="@style/TextAppearance.MaterialComponents.Caption">
+    </style>
+
+    <style name="TextAppearance.Signal.Subtitle2" parent="@style/TextAppearance.MaterialComponents.Subtitle2">
+    </style>
+
     <style name="Signal.Text.MessageRequest.Title" parent="Base.TextAppearance.AppCompat.Title">
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">?message_request_text_color_primary</item>

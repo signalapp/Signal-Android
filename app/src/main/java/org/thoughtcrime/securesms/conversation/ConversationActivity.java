@@ -150,6 +150,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.thoughtcrime.securesms.groups.ui.LeaveGroupDialog;
+import org.thoughtcrime.securesms.groups.ui.pendingmemberinvites.PendingMemberInvitesActivity;
 import org.thoughtcrime.securesms.insights.InsightsLauncher;
 import org.thoughtcrime.securesms.invites.InviteReminderModel;
 import org.thoughtcrime.securesms.invites.InviteReminderRepository;
@@ -730,6 +731,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         } else {
           menu.findItem(R.id.menu_distribution_conversation).setChecked(true);
         }
+      } else if (isActiveV2Group()) {
+        inflater.inflate(R.menu.conversation_push_group_v2_options, menu);
       } else if (isActiveGroup()) {
         inflater.inflate(R.menu.conversation_push_group_options, menu);
       }
@@ -835,6 +838,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case R.id.menu_distribution_broadcast:    handleDistributionBroadcastEnabled(item);          return true;
     case R.id.menu_distribution_conversation: handleDistributionConversationEnabled(item);       return true;
     case R.id.menu_edit_group:                handleEditPushGroup();                             return true;
+    case R.id.menu_pending_members:           handlePendingMembers();                            return true;
     case R.id.menu_leave:                     handleLeavePushGroup();                            return true;
     case R.id.menu_invite:                    handleInviteLink();                                return true;
     case R.id.menu_mute_notifications:        handleMuteNotifications();                         return true;
@@ -1128,6 +1132,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Intent intent = new Intent(ConversationActivity.this, GroupCreateActivity.class);
     intent.putExtra(GroupCreateActivity.GROUP_ID_EXTRA, recipient.get().requireGroupId().toString());
     startActivityForResult(intent, GROUP_EDIT);
+  }
+
+  private void handlePendingMembers() {
+    startActivity(PendingMemberInvitesActivity.newIntent(ConversationActivity.this, recipient.get().requireGroupId().requireV2()));
   }
 
   private void handleDistributionBroadcastEnabled(MenuItem item) {
@@ -2106,6 +2114,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     Optional<GroupRecord> record = DatabaseFactory.getGroupDatabase(this).getGroup(getRecipient().getId());
     return record.isPresent() && record.get().isActive();
+  }
+
+  private boolean isActiveV2Group() {
+    if (!isGroupConversation()) return false;
+
+    Optional<GroupRecord> record = DatabaseFactory.getGroupDatabase(this).getGroup(getRecipient().getId());
+    return record.isPresent() && record.get().isActive() && record.get().isV2Group();
   }
 
   @SuppressWarnings("SimplifiableIfStatement")

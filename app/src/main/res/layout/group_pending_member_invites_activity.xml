@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="org.thoughtcrime.securesms.groups.ui.pendingmemberinvites.PendingMemberInvitesActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/windowBackground"
+        app:elevation="0dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="@android:color/transparent"
+            app:title="@string/PendingMemberInvitesActivity_pending_group_invites"
+            app:titleTextColor="?title_text_color_primary" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

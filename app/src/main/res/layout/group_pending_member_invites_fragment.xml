@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/pending_member_background"
+    android:fillViewport="true"
+    tools:context="org.thoughtcrime.securesms.groups.ui.pendingmemberinvites.PendingMemberInvitesFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/pendingmemberinvites"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="?android:attr/windowBackground"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TextAppearance.Signal.Subtitle2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/PendingMembersActivity_people_you_invited" />
+
+                <TextView
+                    android:id="@+id/no_pending_from_you"
+                    style="@style/TextAppearance.Signal.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="24dp"
+                    android:text="@string/PendingMembersActivity_you_have_no_pending_invites"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    android:textColor="?pending_member_empty_text_color" />
+
+                <org.thoughtcrime.securesms.groups.ui.GroupMemberListView
+                    android:id="@+id/members_you_invited"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/group_recipient_list_item"
+                    tools:maxHeight="192dp" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="?android:attr/windowBackground"
+            app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TextAppearance.Signal.Subtitle2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/PendingMembersActivity_invites_by_other_group_members" />
+
+                <TextView
+                    android:id="@+id/no_pending_from_others"
+                    style="@style/TextAppearance.Signal.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/PendingMembersActivity_no_pending_invites_by_other_group_members"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    android:textColor="?pending_member_empty_text_color" />
+
+                <org.thoughtcrime.securesms.groups.ui.GroupMemberListView
+                    android:id="@+id/members_others_invited"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/group_recipient_list_item"
+                    tools:maxHeight="192dp" />
+
+                <TextView
+                    style="@style/TextAppearance.Signal.Caption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/PendingMembersActivity_missing_detail_explanation" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

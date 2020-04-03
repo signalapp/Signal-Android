@@ -20,7 +20,7 @@ public abstract class GroupMemberEntry {
     return onClick;
   }
 
-  public static class FullMember extends GroupMemberEntry {
+  public final static class FullMember extends GroupMemberEntry {
 
     private final Recipient member;
 
@@ -30,6 +30,42 @@ public abstract class GroupMemberEntry {
 
     public Recipient getMember() {
       return member;
+    }
+  }
+
+  public final static class PendingMember extends GroupMemberEntry {
+    private final Recipient invitee;
+    private final byte[]    inviteeCipherText;
+
+    public PendingMember(@NonNull Recipient invitee, @NonNull byte[] inviteeCipherText) {
+      this.invitee           = invitee;
+      this.inviteeCipherText = inviteeCipherText;
+    }
+
+    public Recipient getInvitee() {
+      return invitee;
+    }
+
+    public byte[] getInviteeCipherText() {
+      return inviteeCipherText;
+    }
+  }
+
+  public final static class UnknownPendingMemberCount extends GroupMemberEntry {
+    private Recipient inviter;
+    private int       inviteCount;
+
+    public UnknownPendingMemberCount(@NonNull Recipient inviter, int inviteCount) {
+      this.inviter     = inviter;
+      this.inviteCount = inviteCount;
+    }
+
+    public Recipient getInviter() {
+      return inviter;
+    }
+
+    public int getInviteCount() {
+      return inviteCount;
     }
   }
 }

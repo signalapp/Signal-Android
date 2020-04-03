@@ -271,6 +271,9 @@
     <attr name="megaphone_reactions_shade" format="color"/>
     <attr name="megaphone_reactions_close_tint" format="color"/>
 
+    <attr name="pending_member_background" format="color" />
+    <attr name="pending_member_empty_text_color" format="color" />
+
     <attr name="debuglog_color_none" format="color" />
     <attr name="debuglog_color_verbose" format="color" />
     <attr name="debuglog_color_debug" format="color" />
