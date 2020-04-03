@@ -11,18 +11,19 @@ import java.util.List;
 public class MaterialColors {
 
   public static final MaterialColorList CONVERSATION_PALETTE = new MaterialColorList(new ArrayList<>(Arrays.asList(
-    MaterialColor.PLUM,
-    MaterialColor.CRIMSON,
-    MaterialColor.VERMILLION,
-    MaterialColor.VIOLET,
-    MaterialColor.BLUE,
-    MaterialColor.INDIGO,
-    MaterialColor.FOREST,
-    MaterialColor.WINTERGREEN,
-    MaterialColor.TEAL,
-    MaterialColor.BURLAP,
-    MaterialColor.TAUPE,
-    MaterialColor.STEEL
+      MaterialColor.PLUM,
+      MaterialColor.CRIMSON,
+      MaterialColor.VERMILLION,
+      MaterialColor.VIOLET,
+      MaterialColor.INDIGO,
+      MaterialColor.TAUPE,
+      MaterialColor.ULTRAMARINE,
+      MaterialColor.BLUE,
+      MaterialColor.TEAL,
+      MaterialColor.FOREST,
+      MaterialColor.WINTERGREEN,
+      MaterialColor.BURLAP,
+      MaterialColor.STEEL
   )));
 
   public static class MaterialColorList {
@@ -61,9 +62,6 @@ public class MaterialColors {
 
       return results;
     }
-
   }
-
-
 }
 

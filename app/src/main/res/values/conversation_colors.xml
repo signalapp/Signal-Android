@@ -48,7 +48,11 @@
     <color name="conversation_steel_tint">#bebec6</color>
     <color name="conversation_steel_shade">#5a5a63</color>
 
+    <color name="conversation_ultramarine">@color/core_ultramarine</color>
+    <color name="conversation_ultramarine_tint">#b0c8f9</color>
+    <color name="conversation_ultramarine_shade">#1851b4</color>
+
     <color name="conversation_group">@color/core_ultramarine</color>
-    <color name="conversation_group_tint">@color/core_ultramarine_light</color>
-    <color name="conversation_group_shade">@color/core_ultramarine_dark</color>
+    <color name="conversation_group_tint">#b0c8f9</color>
+    <color name="conversation_group_shade">#1851b4</color>
 </resources>

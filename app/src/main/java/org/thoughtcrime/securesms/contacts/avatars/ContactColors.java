@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Colors that can be randomly assigned to a contact.
+ */
 public class ContactColors {
 
   public static final MaterialColor UNKNOWN_COLOR = MaterialColor.STEEL;
@@ -23,7 +26,8 @@ public class ContactColors {
       MaterialColor.WINTERGREEN,
       MaterialColor.TEAL,
       MaterialColor.BURLAP,
-      MaterialColor.TAUPE
+      MaterialColor.TAUPE,
+      MaterialColor.ULTRAMARINE
   ));
 
   public static MaterialColor generateFor(@NonNull String name) {

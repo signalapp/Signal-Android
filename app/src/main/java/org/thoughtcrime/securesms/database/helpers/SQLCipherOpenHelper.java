@@ -21,6 +21,9 @@ import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteDatabaseHook;
 import net.sqlcipher.database.SQLiteOpenHelper;
 
+import org.thoughtcrime.securesms.color.MaterialColor;
+import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
+import org.thoughtcrime.securesms.contacts.avatars.ContactColorsLegacy;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -130,8 +133,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int JOB_INPUT_DATA                   = 58;
   private static final int SERVER_TIMESTAMP                 = 59;
   private static final int REMOTE_DELETE                    = 60;
+  private static final int COLOR_MIGRATION                  = 61;
 
-  private static final int    DATABASE_VERSION = 60;
+  private static final int    DATABASE_VERSION = 61;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -886,6 +890,20 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       if (oldVersion < REMOTE_DELETE) {
         db.execSQL("ALTER TABLE sms ADD COLUMN remote_deleted INTEGER DEFAULT 0");
         db.execSQL("ALTER TABLE mms ADD COLUMN remote_deleted INTEGER DEFAULT 0");
+      }
+
+      if (oldVersion < COLOR_MIGRATION) {
+        try (Cursor cursor = db.rawQuery("SELECT _id, system_display_name FROM recipient WHERE system_display_name NOT NULL AND color IS NULL", null)) {
+          while (cursor != null && cursor.moveToNext()) {
+            long   id   = cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
+            String name = cursor.getString(cursor.getColumnIndexOrThrow("system_display_name"));
+
+            ContentValues values = new ContentValues();
+            values.put("color", ContactColorsLegacy.generateForV2(name).serialize());
+
+            db.update("recipient", values, "_id = ?", new String[] { String.valueOf(id) });
+          }
+        }
       }
 
       db.setTransactionSuccessful();

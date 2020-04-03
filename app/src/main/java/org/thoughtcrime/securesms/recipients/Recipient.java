@@ -413,10 +413,18 @@ public class Recipient {
   }
 
   public @NonNull MaterialColor getColor() {
-    if      (isGroupInternal()) return MaterialColor.GROUP;
-    else if (color != null)     return color;
-    else if (name != null)      return ContactColors.generateFor(name);
-    else                        return ContactColors.UNKNOWN_COLOR;
+    if (isGroupInternal()) {
+      return MaterialColor.GROUP;
+    } else if (color != null) {
+      return color;
+     } else if (name != null) {
+      Log.i(TAG, "Saving color for " + id);
+      MaterialColor color = ContactColors.generateFor(name);
+      DatabaseFactory.getRecipientDatabase(ApplicationDependencies.getApplication()).setColor(id, color);
+      return color;
+    } else {
+      return ContactColors.UNKNOWN_COLOR;
+    }
   }
 
   public @NonNull Optional<UUID> getUuid() {
