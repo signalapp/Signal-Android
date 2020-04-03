@@ -392,7 +392,7 @@ public final class ContactSelectionListFragment extends LoggingFragment
   }
 
   public void onMultiSelectChanged(){
-    cursorRecyclerViewAdapter.setMultiSelect(isMulti(), recyclerView);
+    cursorRecyclerViewAdapter.setMultiSelect(isMulti());
   }
 
   @Override

@@ -331,14 +331,9 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
     }
   }
 
-  public void setMultiSelect(boolean multiSelect, RecyclerView recyclerView){
+  public void setMultiSelect(boolean multiSelect){
     this.multiSelect = multiSelect;
-    for (int i = 0; i < recyclerView.getChildCount(); i++) {
-      RecyclerView.ViewHolder viewHolder = recyclerView.findViewHolderForAdapterPosition(i);
-      if(viewHolder != null && getItemViewType(i) == VIEW_TYPE_CONTACT){
-      ((ContactSelectionListAdapter.ContactViewHolder) viewHolder).setMultiSelect(this.multiSelect);
-      }
-    }
+    notifyDataSetChanged();
   }
 
   private @NonNull String getHeaderString(int position) {
