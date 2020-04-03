@@ -213,7 +213,7 @@ public class ShareActivity extends PassphraseRequiredActivity
     }
 
     if(isLongClick){
-      Log.w(TAG, "[onContactSelected] Switching to multiple share.");
+      Log.i(TAG, "[onContactSelected] Switching to multiple share.");
       getIntent().putExtra(ContactSelectionListFragment.MULTI_SELECT, true);
       contactsFragment.onMultiSelectChanged();
       getToolbar().setNavigationIcon(R.drawable.ic_check_24);
@@ -225,7 +225,7 @@ public class ShareActivity extends PassphraseRequiredActivity
   @Override
   public void onContactDeselected(@NonNull Optional<RecipientId> recipientId, String number, boolean isLongClick) {
     if (isMulti() && contactsFragment.getSelectedContacts().isEmpty()){
-      Log.w(TAG, "[onContactDeselected] Switching from multiple share to single share.");
+      Log.i(TAG, "[onContactDeselected] Switching from multiple share to single share.");
       getIntent().putExtra(ContactSelectionListFragment.MULTI_SELECT, false);
       contactsFragment.onMultiSelectChanged();
       getToolbar().setNavigationIcon(backIconToolbar);
@@ -593,7 +593,7 @@ public class ShareActivity extends PassphraseRequiredActivity
 
   private void sendMessage(long threadId, @NonNull Recipient recipient, boolean isSecureText){
 
-      Log.w(TAG, "[sendMessage] Sharing message in single conversation or group.");
+      Log.i(TAG, "[sendMessage] Sharing message in single conversation or group.");
 
       int  subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
       long expiresIn      = recipient.getExpireMessages() * 1000L;
@@ -620,7 +620,7 @@ public class ShareActivity extends PassphraseRequiredActivity
   private void sendTextMessage(Recipient recipient, long expiresIn, int subscriptionId,
                                long threadId, boolean isSecureText) {
     if (recipient.resolve().isGroup()){
-      Log.w(TAG, "[sendTextMessage] Sharing text message in group.");
+      Log.i(TAG, "[sendTextMessage] Sharing text message in group.");
 
       OutgoingMediaMessage message = new OutgoingMediaMessage(recipient, textExtra, new LinkedList<>(),
               System.currentTimeMillis(), subscriptionId, expiresIn,false, 0,
@@ -633,7 +633,7 @@ public class ShareActivity extends PassphraseRequiredActivity
 
       MessageSender.send(ShareActivity.this, message, threadId, false, null);
     } else {
-      Log.w(TAG, "[sendTextMessage] Sharing regular text message.");
+      Log.i(TAG, "[sendTextMessage] Sharing regular text message.");
       OutgoingTextMessage message;
 
       if (isSecureText) {
@@ -648,7 +648,7 @@ public class ShareActivity extends PassphraseRequiredActivity
 
   private void sendMediaMessage(Recipient recipient, SlideDeck slideDeck, int subscriptionId, long expiresIn, long threadId,
                                 boolean isSecureText) {
-    Log.w(TAG, "[sendMediaMessage] Sharing text message in group.");
+    Log.i(TAG, "[sendMediaMessage] Sharing text message in group.");
     int distributionType = ThreadDatabase.DistributionTypes.DEFAULT;
     OutgoingMediaMessage message = new OutgoingMediaMessage(recipient, slideDeck, textExtra,
             System.currentTimeMillis(), subscriptionId, expiresIn,false, distributionType,
@@ -667,7 +667,7 @@ public class ShareActivity extends PassphraseRequiredActivity
 
     new AsyncTask<Void, Void, SlideDeck>() {
       @Override protected SlideDeck doInBackground(Void... params) {
-        Log.w(TAG, "[getSlideDeckForMediaMessageAsync] Retrieving media data to share.");
+        Log.i(TAG, "[getSlideDeckForMediaMessageAsync] Retrieving media data to share.");
         return getSlideDeckForMediaMessage(shareData, mediaExtra, stickerLocator);
       }
         protected void onPostExecute(SlideDeck result) {
