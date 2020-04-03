@@ -78,9 +78,9 @@
   <string name="BucketedThreadMedia_Yesterday">昨天</string>
   <string name="BucketedThreadMedia_This_week">本週</string>
   <string name="BucketedThreadMedia_This_month">本月</string>
-  <string name="BucketedThreadMedia_Large">大的</string>
+  <string name="BucketedThreadMedia_Large">大</string>
   <string name="BucketedThreadMedia_Medium">中</string>
-  <string name="BucketedThreadMedia_Small">小的</string>
+  <string name="BucketedThreadMedia_Small">小</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">來電</string>
   <!--CameraActivity-->
@@ -1198,10 +1198,10 @@
   <string name="arrays__audio">音訊</string>
   <string name="arrays__video">影片</string>
   <string name="arrays__documents">文件</string>
-  <string name="arrays__small">小的</string>
+  <string name="arrays__small">小</string>
   <string name="arrays__normal">正常</string>
-  <string name="arrays__large">大的</string>
-  <string name="arrays__extra_large">特大的</string>
+  <string name="arrays__large">大</string>
+  <string name="arrays__extra_large">特大</string>
   <string name="arrays__default">預設</string>
   <string name="arrays__high">高的</string>
   <string name="arrays__max">最大的</string>

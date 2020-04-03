@@ -538,6 +538,10 @@
     <item quantity="one">%1$d na kasapi</item>
     <item quantity="other">%1$d na mga kasapi</item>
   </plurals>
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d na kasapi (+%2$d na inimbitahan)</item>
+    <item quantity="other">%1$d na mga kasapi (+%2$d na inimbitahan)</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d iba pa</item>
     <item quantity="other">%d pang iba</item>
@@ -1188,6 +1192,7 @@
   <string name="MessageRequestsMegaphone__add_profile_name">Magdagdag ng profile na pangalan</string>
   <string name="MessageRequestsMegaphone__new_message_requests">Bago: Mag pangmensaheng hiling</string>
   <string name="MessageRequestsMegaphone__add_name">Magdagdag ng pangalan</string>
+  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Maaari mo nang piliin kung nais mong tanggapin ang isang bagong pag-uusp. Makikita mo ang mga mapagpipiliang \"Tanggapin,\" \"Burahin,\" o \"Harangin.\"</string>
   <!--HelpFragment-->
   <string name="HelpFragment__help">Tulong</string>
   <string name="HelpFragment__have_you_read_our_faq_yet">Nabasa mo na ba ang ating FAQ?</string>
@@ -1209,6 +1214,7 @@
   <string name="HelpFragment__could_not_upload_logs">Hindi mai-upload ang mga log</string>
   <string name="HelpFragment__signal_support">Suporta sa Signal</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Pakiusap na hangga\'t maaari ay ipaliwanag ng mabuti upang matulungan kaming maunawaan ang isyu.</string>
+  <string name="HelpFragment__no_email_app_found">Walang nahanap na app na pang-email.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">I-import</string>
   <string name="arrays__use_default">Gamitin ang default</string>
