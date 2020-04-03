@@ -685,13 +685,13 @@
         <item name="shared_contact_details_titlebar">@color/grey_900</item>
         <item name="shared_contact_item_button_color">@color/core_grey_85</item>
     </style>
-    
+
     <style name="RationaleDialogLight" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:windowBackground">@drawable/permission_rationale_dialog_corners</item>
+        <item name="android:windowBackground">@drawable/dialog_corners_light</item>
     </style>
 
     <style name="RationaleDialogDark" parent="Theme.AppCompat.Dialog.Alert">
-        <item name="android:windowBackground">@drawable/permission_rationale_dialog_corners</item>
+        <item name="android:windowBackground">@drawable/dialog_corners_dark</item>
     </style>
 
     <style name="RationaleDialogLight.SignalAccent">
