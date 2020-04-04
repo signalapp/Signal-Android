@@ -17,11 +17,14 @@
 
 package org.thoughtcrime.securesms.components.webrtc;
 
+import android.content.ClipData;
+import android.content.ClipDescription;
 import android.content.Context;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
+import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -216,6 +219,38 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientForeverObs
     localRenderer.setVisibility(cameraState.isEnabled() ? VISIBLE : INVISIBLE);
   }
 
+  private void setViewDraggable(@NonNull View draggableView, @NonNull View draggableViewLayout) {
+    draggableView.setOnLongClickListener(new OnLongClickListener() {
+
+               public boolean onLongClick(View v) {
+                 ClipData.Item item = new ClipData.Item((String) v.getTag());
+                 ClipData dragData = new ClipData(
+                         (String) v.getTag(),
+                         new String[] { ClipDescription.MIMETYPE_TEXT_PLAIN },
+                         item);
+                 return v.startDrag(dragData,
+                         new DragShadowBuilder(draggableView),
+                         null,
+                         0
+                 );
+               }
+
+             }
+    );
+    draggableViewLayout.setOnDragListener(new OnDragListener() {
+      @Override
+      public boolean onDrag(View view, DragEvent dragEvent) {
+        if (
+                dragEvent.getAction() != DragEvent.ACTION_DRAG_ENDED
+        ){
+          draggableView.setX(dragEvent.getX()-draggableView.getWidth()/2);
+          draggableView.setY(dragEvent.getY()-draggableView.getHeight()/2);
+        }
+        return true;
+      }
+    });
+  }
+
   public void setRemoteVideoEnabled(boolean enabled) {
     if (enabled && this.remoteRenderLayout.isHidden()) {
       this.photo.setVisibility(View.INVISIBLE);
@@ -357,6 +392,8 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientForeverObs
 
       localRenderLayout.addView(localRenderer);
       remoteRenderLayout.addView(remoteRenderer);
+
+      setViewDraggable(localRenderer, localRenderLayout);
 
       this.localRenderer = localRenderer;
     }
