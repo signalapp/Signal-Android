@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
+import org.thoughtcrime.securesms.sms.MessageSender;
 
 public class CommunicationActions {
 
@@ -182,6 +183,7 @@ public class CommunicationActions {
                    activityIntent.putExtra(WebRtcCallActivity.EXTRA_ENABLE_VIDEO_IF_AVAILABLE, true);
                  }
 
+                 MessageSender.onMessageSent();
                  activity.startActivity(activityIntent);
                })
                .execute();

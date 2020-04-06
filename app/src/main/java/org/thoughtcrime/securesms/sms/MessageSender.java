@@ -25,6 +25,7 @@ import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
+import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
@@ -99,6 +100,7 @@ public class MessageSender {
     long messageId = database.insertMessageOutbox(allocatedThreadId, message, forceSms, System.currentTimeMillis(), insertListener);
 
     sendTextMessage(context, recipient, forceSms, keyExchange, messageId);
+    onMessageSent();
 
     return allocatedThreadId;
   }
@@ -125,6 +127,7 @@ public class MessageSender {
       long      messageId = database.insertMessageOutbox(message, allocatedThreadId, forceSms, insertListener);
 
       sendMediaMessage(context, recipient, forceSms, messageId, Collections.emptyList());
+      onMessageSent();
 
       return allocatedThreadId;
     } catch (MmsException e) {
@@ -164,6 +167,7 @@ public class MessageSender {
       attachmentDatabase.updateMessageId(attachmentIds, messageId);
 
       sendMediaMessage(context, recipient, false, messageId, jobIds);
+      onMessageSent();
 
       return allocatedThreadId;
     } catch (MmsException e) {
@@ -241,6 +245,7 @@ public class MessageSender {
         }
       }
 
+      onMessageSent();
       mmsDatabase.setTransactionSuccessful();
     } catch (MmsException e) {
       Log.w(TAG, "Failed to send messages.", e);
@@ -285,6 +290,7 @@ public class MessageSender {
 
     try {
       ApplicationDependencies.getJobManager().add(ReactionSendJob.create(context, messageId, isMms, reaction, false));
+      onMessageSent();
     } catch (NoSuchMessageException e) {
       Log.w(TAG, "[sendNewReaction] Could not find message! Ignoring.");
     }
@@ -297,6 +303,7 @@ public class MessageSender {
 
     try {
       ApplicationDependencies.getJobManager().add(ReactionSendJob.create(context, messageId, isMms, reaction, true));
+      onMessageSent();
     } catch (NoSuchMessageException e) {
       Log.w(TAG, "[sendReactionRemoval] Could not find message! Ignoring.");
     }
@@ -305,6 +312,7 @@ public class MessageSender {
   public static void resendGroupMessage(Context context, MessageRecord messageRecord, RecipientId filterRecipientId) {
     if (!messageRecord.isMms()) throw new AssertionError("Not Group");
     sendGroupPush(context, messageRecord.getRecipient(), messageRecord.getId(), filterRecipientId, Collections.emptyList());
+    onMessageSent();
   }
 
   public static void resend(Context context, MessageRecord messageRecord) {
@@ -318,6 +326,12 @@ public class MessageSender {
     } else {
       sendTextMessage(context, recipient, forceSms, keyExchange, messageId);
     }
+
+    onMessageSent();
+  }
+
+  public static void onMessageSent() {
+    EventBus.getDefault().postSticky(MessageSentEvent.INSTANCE);
   }
 
   private static void sendMediaMessage(Context context, Recipient recipient, boolean forceSms, long messageId, @NonNull Collection<String> uploadJobIds)
@@ -537,5 +551,9 @@ public class MessageSender {
       dest.writeParcelable(attachmentId, flags);
       ParcelUtil.writeStringCollection(dest, jobIds);
     }
+  }
+
+  public enum MessageSentEvent {
+    INSTANCE
   }
 }

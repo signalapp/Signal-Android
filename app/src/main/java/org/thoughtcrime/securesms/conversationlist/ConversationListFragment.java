@@ -20,7 +20,6 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
@@ -30,7 +29,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -116,9 +114,9 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.permissions.Permissions;
-import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
@@ -305,6 +303,10 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
 
   @Override
   public boolean onBackPressed() {
+    return closeSearchIfOpen();
+  }
+
+  private boolean closeSearchIfOpen() {
     if (searchToolbar.isVisible() || activeAdapter == searchAdapter) {
       activeAdapter = defaultAdapter;
       list.removeItemDecoration(searchAdapterDecoration);
@@ -818,6 +820,12 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
   @Subscribe(threadMode = ThreadMode.MAIN)
   public void onEvent(ReminderUpdateEvent event) {
     updateReminders();
+  }
+
+  @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+  public void onEvent(MessageSender.MessageSentEvent event) {
+    EventBus.getDefault().removeStickyEvent(event);
+    closeSearchIfOpen();
   }
 
   protected @IdRes int getToolbarRes() {
