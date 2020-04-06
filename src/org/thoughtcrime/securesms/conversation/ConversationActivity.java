@@ -3152,7 +3152,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         subtitleTextView.setVisibility(View.GONE);
       }
     } else if (PublicKeyValidation.isValid(recipient.getAddress().toString())) {
-      subtitleTextView.setText(recipient.getAddress().toString());
+      String ourMasterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this);
+      String hexEncodedPublicKey = (recipient.isLocalNumber() && ourMasterHexEncodedPublicKey != null) ? ourMasterHexEncodedPublicKey : recipient.getAddress().toPhoneString();
+      subtitleTextView.setText(hexEncodedPublicKey);
     } else {
       subtitleTextView.setVisibility(View.GONE);
     }
