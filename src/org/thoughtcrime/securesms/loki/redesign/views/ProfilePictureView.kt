@@ -67,9 +67,9 @@ class ProfilePictureView : RelativeLayout {
                     glide.load(signalProfilePicture).diskCacheStrategy(DiskCacheStrategy.ALL).circleCrop().into(imageView)
                 } else {
                     val size = resources.getDimensionPixelSize(sizeID)
-                    val primaryAddress = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
-                    val profileAddress = if (recipient.isLocalNumber && primaryAddress != null) primaryAddress else hexEncodedPublicKey
-                    val jazzIcon = JazzIdenticonDrawable(size, size, profileAddress)
+                    val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
+                    val hepk = if (recipient.isLocalNumber && masterHexEncodedPublicKey != null) masterHexEncodedPublicKey else hexEncodedPublicKey
+                    val jazzIcon = JazzIdenticonDrawable(size, size, hepk)
                     glide.load(jazzIcon).diskCacheStrategy(DiskCacheStrategy.ALL).circleCrop().into(imageView)
                 }
             } else {
