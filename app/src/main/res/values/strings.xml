@@ -442,6 +442,12 @@
     <!-- GroupMembersDialog -->
     <string name="GroupMembersDialog_you">You</string>
 
+    <!-- GV2 access levels -->
+    <string name="GroupManagement_access_level_anyone">Anyone</string>
+    <string name="GroupManagement_access_level_all_members">All members</string>
+    <string name="GroupManagement_access_level_only_admins">Only admins</string>
+    <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string>
+
     <!-- PendingMembersActivity -->
     <string name="PendingMemberInvitesActivity_pending_group_invites">Pending group invites</string>
     <string name="PendingMembersActivity_people_you_invited">People you invited</string>
@@ -614,6 +620,74 @@
     <string name="MessageRecord_s_disabled_disappearing_messages">%1$s disabled disappearing messages.</string>
     <string name="MessageRecord_you_set_disappearing_message_time_to_s">You set the disappearing message timer to %1$s.</string>
     <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s set the disappearing message timer to %2$s.</string>
+
+    <!-- GV2 specific -->
+    <!-- GV2 member additions -->
+    <string name="MessageRecord_you_added_s">You added %1$s.</string>
+    <string name="MessageRecord_s_added_s">%1$s added %2$s.</string>
+    <string name="MessageRecord_s_added_you">%1$s added you to the group.</string>
+    <string name="MessageRecord_you_joined_the_group">You joined the group.</string>
+    <string name="MessageRecord_s_joined_the_group">%1$s joined the group.</string>
+
+    <!-- GV2 member removals -->
+    <string name="MessageRecord_you_removed_s">You removed %1$s.</string>
+    <string name="MessageRecord_s_removed_s">%1$s removed %2$s.</string>
+    <string name="MessageRecord_s_removed_you_from_the_group">%1$s removed you from the group.</string>
+    <string name="MessageRecord_you_left_the_group">You left the group.</string>
+    <string name="MessageRecord_s_left_the_group">%1$s left the group.</string>
+
+    <!-- GV2 role change -->
+    <string name="MessageRecord_you_made_s_an_admin">You made %1$s an admin.</string>
+    <string name="MessageRecord_s_made_s_an_admin">%1$s made %2$s an admin.</string>
+    <string name="MessageRecord_s_made_you_an_admin">%1$s made you an admin.</string>
+    <string name="MessageRecord_you_revoked_admin_privileges_from_s">You revoked admin privileges from %1$s.</string>
+    <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s revoked your admin privileges."</string>
+    <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s revoked admin privileges from %2$s.</string>
+
+    <!-- GV2 invitations -->
+    <string name="MessageRecord_you_invited_s_to_the_group">You invited %1$s to the group.</string>
+    <string name="MessageRecord_s_invited_you_to_the_group">%1$s invited you to the group.</string>
+    <plurals name="MessageRecord_s_invited_members">
+        <item quantity="one">%1$s invited 1 person to the group.</item>
+        <item quantity="other">%1$s invited %2$d people to the group.</item>
+    </plurals>
+
+    <!-- GV2 invitation revokes -->
+    <plurals name="MessageRecord_you_revoked_invites">
+      <item quantity="one">You revoked an invitation to the group.</item>
+      <item quantity="other">You revoked %1$d invitations to the group.</item>
+    </plurals>
+    <plurals name="MessageRecord_s_revoked_invites">
+      <item quantity="one">%1$s revoked an invitation to the group.</item>
+      <item quantity="other">%1$s revoked %2$d invitations to the group.</item>
+    </plurals>
+    <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Someone declined an invitation to the group.</string>
+    <string name="MessageRecord_you_declined_the_invitation_to_the_group">You declined the invitation to the group.</string>
+
+    <!-- GV2 invitation acceptance -->
+    <string name="MessageRecord_you_accepted_invite">You accepted the invitation to the group.</string>
+    <string name="MessageRecord_s_accepted_invite">%1$s accepted an invitation to the group.</string>
+    <string name="MessageRecord_you_added_invited_member_s">You added invited member %1$s.</string>
+    <string name="MessageRecord_s_added_invited_member_s">%1$s added invited member %2$s.</string>
+
+    <!-- GV2 title change -->
+    <string name="MessageRecord_you_changed_the_group_name_to_s">You changed the group name to \"%1$s\".</string>
+    <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s changed the group name to \"%2$s\".</string>
+
+    <!-- GV2 avatar change -->
+    <string name="MessageRecord_you_changed_the_group_avatar">You changed the group avatar.</string>
+    <string name="MessageRecord_s_changed_the_group_avatar">%1$s changed the group avatar.</string>
+
+    <!-- GV2 attribute access level change -->
+    <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">You changed who can edit group info to \"%1$s\".</string>
+    <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s changed who can edit group info to \"%2$s\".</string>
+
+    <!-- GV2 membership access level change -->
+    <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">You changed who can edit group membership to \"%1$s\".</string>
+    <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s changed who can edit group membership to \"%2$s\".</string>
+
+    <!-- End of GV2 specific update messages -->
+
     <string name="MessageRecord_your_safety_number_with_s_has_changed">Your safety number with %s has changed.</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">You marked your safety number with %s verified</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">You marked your safety number with %s verified from another device</string>
