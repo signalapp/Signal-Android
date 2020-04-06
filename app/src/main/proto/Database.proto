@@ -8,8 +8,8 @@ syntax = "proto3";
 
 package signal;
 
-option java_package         = "org.thoughtcrime.securesms.database.model";
-option java_outer_classname = "DatabaseProtos";
+option java_package        = "org.thoughtcrime.securesms.database.model.databaseprotos";
+option java_multiple_files = true;
 
 
 message ReactionList {
