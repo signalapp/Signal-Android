@@ -54,6 +54,7 @@ public final class FeatureFlags {
   private static final String PINS_MEGAPHONE_KILL_SWITCH = "android.pinsMegaphoneKillSwitch";
   private static final String PROFILE_NAMES_MEGAPHONE    = "android.profileNamesMegaphone";
   private static final String STORAGE_SERVICE            = "android.storageService.2";
+  private static final String ATTACHMENTS_V3             = "android.attachmentsV3";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -66,7 +67,8 @@ public final class FeatureFlags {
       PINS_MEGAPHONE_KILL_SWITCH,
       PROFILE_NAMES_MEGAPHONE,
       MESSAGE_REQUESTS,
-      STORAGE_SERVICE
+      STORAGE_SERVICE,
+      ATTACHMENTS_V3
   );
 
   /**
@@ -88,7 +90,8 @@ public final class FeatureFlags {
    */
   private static final Set<String> HOT_SWAPPABLE = Sets.newHashSet(
       PINS_MEGAPHONE_KILL_SWITCH,
-      STORAGE_SERVICE
+      STORAGE_SERVICE,
+      ATTACHMENTS_V3
   );
 
   /**
@@ -211,6 +214,11 @@ public final class FeatureFlags {
   /** Whether or not we sync to the storage service. */
   public static boolean storageService() {
     return getValue(STORAGE_SERVICE, false);
+  }
+
+  /** Whether or not we use the attachments v3 form. */
+  public static boolean attachmentsV3() {
+    return getValue(ATTACHMENTS_V3, false);
   }
 
   /** Only for rendering debug info. */

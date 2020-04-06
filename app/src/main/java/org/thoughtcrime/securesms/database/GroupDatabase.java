@@ -282,7 +282,7 @@ public final class GroupDatabase extends Database {
     contentValues.put(MEMBERS, RecipientId.toSerializedList(members));
 
     if (avatar != null) {
-      contentValues.put(AVATAR_ID, avatar.getId());
+      contentValues.put(AVATAR_ID, avatar.getRemoteId().getV2().get());
       contentValues.put(AVATAR_KEY, avatar.getKey());
       contentValues.put(AVATAR_CONTENT_TYPE, avatar.getContentType());
       contentValues.put(AVATAR_DIGEST, avatar.getDigest().orNull());
@@ -326,7 +326,7 @@ public final class GroupDatabase extends Database {
     if (title != null) contentValues.put(TITLE, title);
 
     if (avatar != null) {
-      contentValues.put(AVATAR_ID, avatar.getId());
+      contentValues.put(AVATAR_ID, avatar.getRemoteId().getV2().get());
       contentValues.put(AVATAR_CONTENT_TYPE, avatar.getContentType());
       contentValues.put(AVATAR_KEY, avatar.getKey());
       contentValues.put(AVATAR_DIGEST, avatar.getDigest().orNull());

@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.util.AlarmSleepTimer;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -79,6 +80,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
                                             new SignalProtocolStoreImpl(context),
                                             BuildConfig.SIGNAL_AGENT,
                                             TextSecurePreferences.isMultiDevice(context),
+                                            FeatureFlags.attachmentsV3(),
                                             Optional.fromNullable(IncomingMessageObserver.getPipe()),
                                             Optional.fromNullable(IncomingMessageObserver.getUnidentifiedPipe()),
                                             Optional.of(new SecurityEventListener(context)),

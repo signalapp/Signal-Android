@@ -562,7 +562,7 @@ public final class SignalServiceContent {
                                                                  Optional.<byte[]>absent());
   }
 
-  private static SignalServiceDataMessage.Quote createQuote(SignalServiceProtos.DataMessage content) {
+  private static SignalServiceDataMessage.Quote createQuote(SignalServiceProtos.DataMessage content) throws ProtocolInvalidMessageException {
     if (!content.hasQuote()) return null;
 
     List<SignalServiceDataMessage.Quote.QuotedAttachment> attachments = new LinkedList<>();
@@ -586,7 +586,7 @@ public final class SignalServiceContent {
     }
   }
 
-  private static List<SignalServiceDataMessage.Preview> createPreviews(SignalServiceProtos.DataMessage content) {
+  private static List<SignalServiceDataMessage.Preview> createPreviews(SignalServiceProtos.DataMessage content) throws ProtocolInvalidMessageException {
     if (content.getPreviewCount() <= 0) return null;
 
     List<SignalServiceDataMessage.Preview> results = new LinkedList<>();
@@ -606,7 +606,7 @@ public final class SignalServiceContent {
     return results;
   }
 
-  private static SignalServiceDataMessage.Sticker createSticker(SignalServiceProtos.DataMessage content) {
+  private static SignalServiceDataMessage.Sticker createSticker(SignalServiceProtos.DataMessage content) throws ProtocolInvalidMessageException {
     if (!content.hasSticker()                ||
         !content.getSticker().hasPackId()    ||
         !content.getSticker().hasPackKey()   ||
@@ -641,7 +641,7 @@ public final class SignalServiceContent {
                         reaction.getTargetSentTimestamp());
   }
 
-  private static List<SharedContact> createSharedContacts(SignalServiceProtos.DataMessage content) {
+  private static List<SharedContact> createSharedContacts(SignalServiceProtos.DataMessage content) throws ProtocolInvalidMessageException {
     if (content.getContactCount() <= 0) return null;
 
     List<SharedContact> results = new LinkedList<>();
@@ -736,8 +736,9 @@ public final class SignalServiceContent {
     return results;
   }
 
-  private static SignalServiceAttachmentPointer createAttachmentPointer(SignalServiceProtos.AttachmentPointer pointer) {
-    return new SignalServiceAttachmentPointer(pointer.getId(),
+  private static SignalServiceAttachmentPointer createAttachmentPointer(SignalServiceProtos.AttachmentPointer pointer) throws ProtocolInvalidMessageException {
+    return new SignalServiceAttachmentPointer(pointer.getCdnNumber(),
+                                              SignalServiceAttachmentRemoteId.from(pointer),
                                               pointer.getContentType(),
                                               pointer.getKey().toByteArray(),
                                               pointer.hasSize() ? Optional.of(pointer.getSize()) : Optional.<Integer>absent(),
@@ -795,7 +796,8 @@ public final class SignalServiceContent {
       if (content.getGroup().hasAvatar()) {
         SignalServiceProtos.AttachmentPointer pointer = content.getGroup().getAvatar();
 
-        avatar = new SignalServiceAttachmentPointer(pointer.getId(),
+        avatar = new SignalServiceAttachmentPointer(pointer.getCdnNumber(),
+                                                    SignalServiceAttachmentRemoteId.from(pointer),
                                                     pointer.getContentType(),
                                                     pointer.getKey().toByteArray(),
                                                     Optional.of(pointer.getSize()),

@@ -35,6 +35,7 @@ import org.whispersystems.signalservice.FeatureFlags;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.groupsv2.CredentialResponse;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId;
 import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
@@ -114,6 +115,7 @@ import okhttp3.Call;
 import okhttp3.ConnectionSpec;
 import okhttp3.Credentials;
 import okhttp3.Dns;
+import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -159,7 +161,8 @@ public class PushServiceSocket {
   private static final String MESSAGE_PATH              = "/v1/messages/%s";
   private static final String SENDER_ACK_MESSAGE_PATH   = "/v1/messages/%s/%d";
   private static final String UUID_ACK_MESSAGE_PATH     = "/v1/messages/uuid/%s";
-  private static final String ATTACHMENT_PATH           = "/v2/attachments/form/upload";
+  private static final String ATTACHMENT_V2_PATH        = "/v2/attachments/form/upload";
+  private static final String ATTACHMENT_V3_PATH        = "/v3/attachments/form/upload";
 
   private static final String PROFILE_PATH              = "/v1/profile/%s";
   private static final String PROFILE_USERNAME_PATH     = "/v1/profile/username/%s";
@@ -167,14 +170,15 @@ public class PushServiceSocket {
   private static final String SENDER_CERTIFICATE_LEGACY_PATH = "/v1/certificate/delivery";
   private static final String SENDER_CERTIFICATE_PATH        = "/v1/certificate/delivery?includeUuid=true";
 
-  private static final String KBS_AUTH_PATH             = "/v1/backup/auth";
+  private static final String KBS_AUTH_PATH                  = "/v1/backup/auth";
 
-  private static final String ATTACHMENT_DOWNLOAD_PATH  = "attachments/%d";
-  private static final String ATTACHMENT_UPLOAD_PATH    = "attachments/";
-  private static final String AVATAR_UPLOAD_PATH        = "";
+  private static final String ATTACHMENT_KEY_DOWNLOAD_PATH   = "attachments/%s";
+  private static final String ATTACHMENT_ID_DOWNLOAD_PATH    = "attachments/%d";
+  private static final String ATTACHMENT_UPLOAD_PATH         = "attachments/";
+  private static final String AVATAR_UPLOAD_PATH             = "";
 
-  private static final String STICKER_MANIFEST_PATH     = "stickers/%s/manifest.proto";
-  private static final String STICKER_PATH              = "stickers/%s/full/%d";
+  private static final String STICKER_MANIFEST_PATH          = "stickers/%s/manifest.proto";
+  private static final String STICKER_PATH                   = "stickers/%s/full/%d";
 
   private static final String GROUPSV2_CREDENTIAL       = "/v1/certificate/group/%d/%d";
   private static final String GROUPSV2_GROUP            = "/v1/groups/";
@@ -189,6 +193,7 @@ public class PushServiceSocket {
 
   private final ServiceConnectionHolder[]  serviceClients;
   private final ConnectionHolder[]         cdnClients;
+  private final ConnectionHolder[]         cdn2Clients;
   private final ConnectionHolder[]         contactDiscoveryClients;
   private final ConnectionHolder[]         keyBackupServiceClients;
   private final ConnectionHolder[]         storageClients;
@@ -207,6 +212,7 @@ public class PushServiceSocket {
     this.signalAgent               = signalAgent;
     this.serviceClients            = createServiceConnectionHolders(configuration.getSignalServiceUrls(), configuration.getNetworkInterceptors(), configuration.getDns());
     this.cdnClients                = createConnectionHolders(configuration.getSignalCdnUrls(), configuration.getNetworkInterceptors(), configuration.getDns());
+    this.cdn2Clients               = createConnectionHolders(configuration.getSignalCdn2Urls(), configuration.getNetworkInterceptors(), configuration.getDns());
     this.contactDiscoveryClients   = createConnectionHolders(configuration.getSignalContactDiscoveryUrls(), configuration.getNetworkInterceptors(), configuration.getDns());
     this.keyBackupServiceClients   = createConnectionHolders(configuration.getSignalKeyBackupServiceUrls(), configuration.getNetworkInterceptors(), configuration.getDns());
     this.storageClients            = createConnectionHolders(configuration.getSignalStorageUrls(), configuration.getNetworkInterceptors(), configuration.getDns());
@@ -516,17 +522,23 @@ public class PushServiceSocket {
     makeServiceRequest(SIGNED_PREKEY_PATH, "PUT", JsonUtil.toJson(signedPreKeyEntity));
   }
 
-  public void retrieveAttachment(long attachmentId, File destination, long maxSizeBytes, ProgressListener listener)
+  public void retrieveAttachment(int cdnNumber, SignalServiceAttachmentRemoteId cdnPath, File destination, long maxSizeBytes, ProgressListener listener)
       throws NonSuccessfulResponseCodeException, PushNetworkException
   {
-    downloadFromCdn(destination, String.format(Locale.US, ATTACHMENT_DOWNLOAD_PATH, attachmentId), maxSizeBytes, listener);
+    final String path;
+    if (cdnPath.getV2().isPresent()) {
+      path = String.format(Locale.US, ATTACHMENT_ID_DOWNLOAD_PATH, cdnPath.getV2().get());
+    } else {
+      path = String.format(Locale.US, ATTACHMENT_KEY_DOWNLOAD_PATH, cdnPath.getV3().get());
+    }
+    downloadFromCdn(destination, cdnNumber, path, maxSizeBytes, listener);
   }
 
   public void retrieveSticker(File destination, byte[] packId, int stickerId)
       throws NonSuccessfulResponseCodeException, PushNetworkException
   {
     String hexPackId = Hex.toStringCondensed(packId);
-    downloadFromCdn(destination, String.format(Locale.US, STICKER_PATH, hexPackId, stickerId), 1024 * 1024, null);
+    downloadFromCdn(destination, 0, String.format(Locale.US, STICKER_PATH, hexPackId, stickerId), 1024 * 1024, null);
   }
 
   public byte[] retrieveSticker(byte[] packId, int stickerId)
@@ -535,7 +547,7 @@ public class PushServiceSocket {
     String                hexPackId = Hex.toStringCondensed(packId);
     ByteArrayOutputStream output    = new ByteArrayOutputStream();
 
-    downloadFromCdn(output, 0, String.format(Locale.US, STICKER_PATH, hexPackId, stickerId), 1024 * 1024, null);
+    downloadFromCdn(output, 0, 0, String.format(Locale.US, STICKER_PATH, hexPackId, stickerId), 1024 * 1024, null);
 
     return output.toByteArray();
   }
@@ -546,7 +558,7 @@ public class PushServiceSocket {
     String                hexPackId = Hex.toStringCondensed(packId);
     ByteArrayOutputStream output    = new ByteArrayOutputStream();
 
-    downloadFromCdn(output, 0, String.format(STICKER_MANIFEST_PATH, hexPackId), 1024 * 1024, null);
+    downloadFromCdn(output, 0, 0, String.format(STICKER_MANIFEST_PATH, hexPackId), 1024 * 1024, null);
 
     return output.toByteArray();
   }
@@ -611,7 +623,7 @@ public class PushServiceSocket {
   public void retrieveProfileAvatar(String path, File destination, long maxSizeBytes)
       throws NonSuccessfulResponseCodeException, PushNetworkException
   {
-    downloadFromCdn(destination, path, maxSizeBytes, null);
+    downloadFromCdn(destination, 0, path, maxSizeBytes, null);
   }
 
   public void setProfileName(String name) throws NonSuccessfulResponseCodeException, PushNetworkException {
@@ -867,10 +879,20 @@ public class PushServiceSocket {
     }
   }
 
-  public AttachmentUploadAttributes getAttachmentUploadAttributes() throws NonSuccessfulResponseCodeException, PushNetworkException {
-    String response = makeServiceRequest(ATTACHMENT_PATH, "GET", null);
+  public AttachmentV2UploadAttributes getAttachmentV2UploadAttributes() throws NonSuccessfulResponseCodeException, PushNetworkException {
+    String response = makeServiceRequest(ATTACHMENT_V2_PATH, "GET", null);
     try {
-      return JsonUtil.fromJson(response, AttachmentUploadAttributes.class);
+      return JsonUtil.fromJson(response, AttachmentV2UploadAttributes.class);
+    } catch (IOException e) {
+      Log.w(TAG, e);
+      throw new NonSuccessfulResponseCodeException("Unable to parse entity");
+    }
+  }
+
+  public AttachmentV3UploadAttributes getAttachmentV3UploadAttributes() throws NonSuccessfulResponseCodeException, PushNetworkException {
+    String response = makeServiceRequest(ATTACHMENT_V3_PATH, "GET", null);
+    try {
+      return JsonUtil.fromJson(response, AttachmentV3UploadAttributes.class);
     } catch (IOException e) {
       Log.w(TAG, e);
       throw new NonSuccessfulResponseCodeException("Unable to parse entity");
@@ -890,7 +912,7 @@ public class PushServiceSocket {
                        null, null);
   }
 
-  public Pair<Long, byte[]> uploadAttachment(PushAttachmentData attachment, AttachmentUploadAttributes uploadAttributes)
+  public Pair<Long, byte[]> uploadAttachment(PushAttachmentData attachment, AttachmentV2UploadAttributes uploadAttributes)
       throws PushNetworkException, NonSuccessfulResponseCodeException
   {
     long   id     = Long.parseLong(uploadAttributes.getAttachmentId());
@@ -905,20 +927,31 @@ public class PushServiceSocket {
     return new Pair<>(id, digest);
   }
 
-  private void downloadFromCdn(File destination, String path, long maxSizeBytes, ProgressListener listener)
+  public byte[] uploadAttachment(PushAttachmentData attachment, AttachmentV3UploadAttributes uploadAttributes) throws IOException {
+    String resumableUploadUrl = getResumableUploadUrl(uploadAttributes.getSignedUploadLocation(), uploadAttributes.getHeaders());
+    return uploadToCdn2(resumableUploadUrl,
+                        attachment.getData(),
+                        "application/octet-stream",
+                        attachment.getDataSize(),
+                        attachment.getOutputStreamFactory(),
+                        attachment.getListener(),
+                        attachment.getCancelationSignal());
+  }
+
+  private void downloadFromCdn(File destination, int cdnNumber, String path, long maxSizeBytes, ProgressListener listener)
       throws PushNetworkException, NonSuccessfulResponseCodeException
   {
     try (FileOutputStream outputStream = new FileOutputStream(destination, true)) {
-      downloadFromCdn(outputStream, destination.length(), path, maxSizeBytes, listener);
+      downloadFromCdn(outputStream, destination.length(), cdnNumber, path, maxSizeBytes, listener);
     } catch (IOException e) {
       throw new PushNetworkException(e);
     }
   }
 
-  private void downloadFromCdn(OutputStream outputStream, long offset, String path, long maxSizeBytes, ProgressListener listener)
+  private void downloadFromCdn(OutputStream outputStream, long offset, int cdnNumber, String path, long maxSizeBytes, ProgressListener listener)
       throws PushNetworkException, NonSuccessfulResponseCodeException
   {
-    ConnectionHolder connectionHolder = getRandom(cdnClients, random);
+    ConnectionHolder connectionHolder = getRandom(cdnNumber == 2 ? cdn2Clients : cdnClients, random);
     OkHttpClient     okHttpClient     = connectionHolder.getClient()
                                                         .newBuilder()
                                                         .connectTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
@@ -1020,6 +1053,107 @@ public class PushServiceSocket {
 
     if (connectionHolder.getHostHeader().isPresent()) {
       request.addHeader("Host", connectionHolder.getHostHeader().get());
+    }
+
+    Call call = okHttpClient.newCall(request.build());
+
+    synchronized (connections) {
+      connections.add(call);
+    }
+
+    try {
+      Response response;
+
+      try {
+        response = call.execute();
+      } catch (IOException e) {
+        throw new PushNetworkException(e);
+      }
+
+      if (response.isSuccessful()) return file.getTransmittedDigest();
+      else                         throw new NonSuccessfulResponseCodeException("Response: " + response);
+    } finally {
+      synchronized (connections) {
+        connections.remove(call);
+      }
+    }
+  }
+
+  private String getResumableUploadUrl(String signedUrl, Map<String, String> headers) throws IOException {
+    ConnectionHolder connectionHolder = getRandom(cdn2Clients, random);
+    OkHttpClient     okHttpClient     = connectionHolder.getClient()
+                                                        .newBuilder()
+                                                        .connectTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
+                                                        .readTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
+                                                        .build();
+    final HttpUrl endpointUrl = HttpUrl.get(connectionHolder.url);
+    final HttpUrl signedHttpUrl;
+    try {
+      signedHttpUrl = HttpUrl.get(signedUrl);
+    } catch (IllegalArgumentException e) {
+      Log.w(TAG, "Server returned a malformed signed url: " + signedUrl);
+      throw new IOException("Server returned a malformed signed url", e);
+    }
+
+    final HttpUrl.Builder urlBuilder = new HttpUrl.Builder().scheme(endpointUrl.scheme())
+                                                            .host(endpointUrl.host())
+                                                            .port(endpointUrl.port())
+                                                            .encodedPath(endpointUrl.encodedPath())
+                                                            .addEncodedPathSegments(signedHttpUrl.encodedPath().substring(1))
+                                                            .encodedQuery(signedHttpUrl.encodedQuery())
+                                                            .encodedFragment(signedHttpUrl.encodedFragment());
+
+    Request.Builder request = new Request.Builder().url(urlBuilder.build())
+                                                   .post(RequestBody.create(null, ""));
+    for (Map.Entry<String, String> header : headers.entrySet()) {
+      request.header(header.getKey(), header.getValue());
+    }
+
+    if (connectionHolder.getHostHeader().isPresent()) {
+      request.header("host", connectionHolder.getHostHeader().get());
+    }
+
+    Call call = okHttpClient.newCall(request.build());
+
+    synchronized (connections) {
+      connections.add(call);
+    }
+
+    try {
+      Response response;
+
+      try {
+        response = call.execute();
+      } catch (IOException e) {
+        throw new PushNetworkException(e);
+      }
+
+      if (response.isSuccessful()) {
+        return response.header("location");
+      } else {
+        throw new NonSuccessfulResponseCodeException("Response: " + response);
+      }
+    } finally {
+      synchronized (connections) {
+        connections.remove(call);
+      }
+    }
+  }
+
+  private byte[] uploadToCdn2(String resumableUrl, InputStream data, String contentType, long length, OutputStreamFactory outputStreamFactory, ProgressListener progressListener, CancelationSignal cancelationSignal) throws IOException {
+    ConnectionHolder connectionHolder = getRandom(cdn2Clients, random);
+    OkHttpClient     okHttpClient     = connectionHolder.getClient()
+                                                        .newBuilder()
+                                                        .connectTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
+                                                        .readTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
+                                                        .build();
+
+    DigestingRequestBody file = new DigestingRequestBody(data, outputStreamFactory, contentType, length, progressListener, cancelationSignal);
+    Request.Builder request = new Request.Builder().url(resumableUrl)
+                                                   .put(file);
+
+    if (connectionHolder.getHostHeader().isPresent()) {
+      request.header("host", connectionHolder.getHostHeader().get());
     }
 
     Call call = okHttpClient.newCall(request.build());

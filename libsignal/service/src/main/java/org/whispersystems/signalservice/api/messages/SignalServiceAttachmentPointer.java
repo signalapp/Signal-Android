@@ -18,28 +18,31 @@ import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
  */
 public class SignalServiceAttachmentPointer extends SignalServiceAttachment {
 
-  private final long              id;
-  private final byte[]            key;
-  private final Optional<Integer> size;
-  private final Optional<byte[]>  preview;
-  private final Optional<byte[]>  digest;
-  private final Optional<String>  fileName;
-  private final boolean           voiceNote;
-  private final int               width;
-  private final int               height;
-  private final Optional<String>  caption;
-  private final Optional<String>  blurHash;
-  private final long              uploadTimestamp;
+  private final int                             cdnNumber;
+  private final SignalServiceAttachmentRemoteId remoteId;
+  private final byte[]                          key;
+  private final Optional<Integer>               size;
+  private final Optional<byte[]>                preview;
+  private final Optional<byte[]>                digest;
+  private final Optional<String>                fileName;
+  private final boolean                         voiceNote;
+  private final int                             width;
+  private final int                             height;
+  private final Optional<String>                caption;
+  private final Optional<String>                blurHash;
+  private final long                            uploadTimestamp;
 
-  public SignalServiceAttachmentPointer(long id, String contentType, byte[] key,
-                                        Optional<Integer> size, Optional<byte[]> preview,
-                                        int width, int height,
-                                        Optional<byte[]> digest, Optional<String> fileName,
-                                        boolean voiceNote, Optional<String> caption,
-                                        Optional<String> blurHash, long uploadTimestamp)
+  public SignalServiceAttachmentPointer(int cdnNumber, SignalServiceAttachmentRemoteId remoteId,
+                                        String contentType, byte[] key,
+                                        Optional<Integer> size, Optional<byte[]> preview, int width,
+                                        int height, Optional<byte[]> digest,
+                                        Optional<String> fileName, boolean voiceNote,
+                                        Optional<String> caption, Optional<String> blurHash,
+                                        long uploadTimestamp)
   {
     super(contentType);
-    this.id              = id;
+    this.cdnNumber       = cdnNumber;
+    this.remoteId        = remoteId;
     this.key             = key;
     this.size            = size;
     this.preview         = preview;
@@ -53,8 +56,12 @@ public class SignalServiceAttachmentPointer extends SignalServiceAttachment {
     this.uploadTimestamp = uploadTimestamp;
   }
 
-  public long getId() {
-    return id;
+  public int getCdnNumber() {
+    return cdnNumber;
+  }
+
+  public SignalServiceAttachmentRemoteId getRemoteId() {
+    return remoteId;
   }
 
   public byte[] getKey() {

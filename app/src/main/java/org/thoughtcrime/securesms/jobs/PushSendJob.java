@@ -2,9 +2,10 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import android.text.TextUtils;
 
 import com.annimon.stream.Stream;
 
@@ -43,6 +44,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Preview;
@@ -184,10 +186,11 @@ public abstract class PushSendJob extends SendJob {
     }
 
     try {
-      long   id  = Long.parseLong(attachment.getLocation());
-      byte[] key = Base64.decode(attachment.getKey());
+      final SignalServiceAttachmentRemoteId remoteId = SignalServiceAttachmentRemoteId.from(attachment.getLocation());
+      final byte[]                          key      = Base64.decode(attachment.getKey());
 
-      return new SignalServiceAttachmentPointer(id,
+      return new SignalServiceAttachmentPointer(attachment.getCdnNumber(),
+                                                remoteId,
                                                 attachment.getContentType(),
                                                 key,
                                                 Optional.of(Util.toIntExact(attachment.getSize())),

@@ -26,7 +26,8 @@ import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
-import org.whispersystems.signalservice.internal.push.AttachmentUploadAttributes;
+import org.whispersystems.signalservice.internal.push.AttachmentV2UploadAttributes;
+import org.whispersystems.signalservice.internal.push.AttachmentV3UploadAttributes;
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessageList;
 import org.whispersystems.signalservice.internal.push.SendMessageResponse;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
@@ -219,7 +220,7 @@ public class SignalServiceMessagePipe {
     }
   }
 
-  public AttachmentUploadAttributes getAttachmentUploadAttributes() throws IOException {
+  public AttachmentV2UploadAttributes getAttachmentV2UploadAttributes() throws IOException {
     try {
       WebSocketRequestMessage requestMessage = WebSocketRequestMessage.newBuilder()
                                                                       .setId(new SecureRandom().nextLong())
@@ -233,7 +234,27 @@ public class SignalServiceMessagePipe {
         throw new IOException("Non-successful response: " + response.first());
       }
 
-      return JsonUtil.fromJson(response.second(), AttachmentUploadAttributes.class);
+      return JsonUtil.fromJson(response.second(), AttachmentV2UploadAttributes.class);
+    } catch (InterruptedException | ExecutionException | TimeoutException e) {
+      throw new IOException(e);
+    }
+  }
+
+  public AttachmentV3UploadAttributes getAttachmentV3UploadAttributes() throws IOException {
+    try {
+      WebSocketRequestMessage requestMessage = WebSocketRequestMessage.newBuilder()
+                                                                      .setId(new SecureRandom().nextLong())
+                                                                      .setVerb("GET")
+                                                                      .setPath("/v3/attachments/form/upload")
+                                                                      .build();
+
+      Pair<Integer, String> response = websocket.sendRequest(requestMessage).get(10, TimeUnit.SECONDS);
+
+      if (response.first() < 200 || response.first() >= 300) {
+        throw new IOException("Non-successful response: " + response.first());
+      }
+
+      return JsonUtil.fromJson(response.second(), AttachmentV3UploadAttributes.class);
     } catch (InterruptedException | ExecutionException | TimeoutException e) {
       throw new IOException(e);
     }

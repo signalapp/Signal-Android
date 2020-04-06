@@ -3,7 +3,7 @@ package org.whispersystems.signalservice.internal.push;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class AttachmentUploadAttributes {
+public class AttachmentV2UploadAttributes {
   @JsonProperty
   private String url;
 
@@ -34,7 +34,7 @@ public class AttachmentUploadAttributes {
   @JsonProperty
   private String attachmentIdString;
 
-  public AttachmentUploadAttributes() {}
+  public AttachmentV2UploadAttributes() {}
 
   public String getUrl() {
     return url;

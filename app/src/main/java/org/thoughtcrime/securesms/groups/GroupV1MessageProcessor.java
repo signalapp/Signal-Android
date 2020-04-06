@@ -271,7 +271,7 @@ public final class GroupV1MessageProcessor {
 
     if (group.getAvatar().isPresent() && group.getAvatar().get().isPointer()) {
       builder.setAvatar(AttachmentPointer.newBuilder()
-                                         .setId(group.getAvatar().get().asPointer().getId())
+                                         .setCdnId(group.getAvatar().get().asPointer().getRemoteId().getV2().get())
                                          .setKey(ByteString.copyFrom(group.getAvatar().get().asPointer().getKey()))
                                          .setContentType(group.getAvatar().get().getContentType()));
     }

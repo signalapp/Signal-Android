@@ -124,6 +124,7 @@ public class AttachmentDatabase extends Database {
           static final String TRANSFORM_PROPERTIES   = "transform_properties";
           static final String DISPLAY_ORDER          = "display_order";
           static final String UPLOAD_TIMESTAMP       = "upload_timestamp";
+          static final String CDN_NUMBER             = "cdn_number";
 
   public  static final String DIRECTORY              = "parts";
 
@@ -139,13 +140,14 @@ public class AttachmentDatabase extends Database {
 
   private static final String[] PROJECTION = new String[] {ROW_ID,
                                                            MMS_ID, CONTENT_TYPE, NAME, CONTENT_DISPOSITION,
-                                                           CONTENT_LOCATION, DATA, THUMBNAIL, TRANSFER_STATE,
-                                                           SIZE, FILE_NAME, THUMBNAIL, THUMBNAIL_ASPECT_RATIO,
-                                                           UNIQUE_ID, DIGEST, FAST_PREFLIGHT_ID, VOICE_NOTE,
-                                                           QUOTE, DATA_RANDOM, THUMBNAIL_RANDOM, WIDTH, HEIGHT,
-                                                           CAPTION, STICKER_PACK_ID, STICKER_PACK_KEY, STICKER_ID,
-                                                           DATA_HASH, BLUR_HASH, TRANSFORM_PROPERTIES, TRANSFER_FILE,
-                                                           DISPLAY_ORDER, UPLOAD_TIMESTAMP };
+                                                           CDN_NUMBER, CONTENT_LOCATION, DATA, THUMBNAIL,
+                                                           TRANSFER_STATE, SIZE, FILE_NAME, THUMBNAIL,
+                                                           THUMBNAIL_ASPECT_RATIO, UNIQUE_ID, DIGEST,
+                                                           FAST_PREFLIGHT_ID, VOICE_NOTE, QUOTE, DATA_RANDOM,
+                                                           THUMBNAIL_RANDOM, WIDTH, HEIGHT, CAPTION, STICKER_PACK_ID,
+                                                           STICKER_PACK_KEY, STICKER_ID, DATA_HASH, BLUR_HASH,
+                                                           TRANSFORM_PROPERTIES, TRANSFER_FILE, DISPLAY_ORDER,
+                                                           UPLOAD_TIMESTAMP };
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ROW_ID                 + " INTEGER PRIMARY KEY, " +
                                                                                   MMS_ID                 + " INTEGER, " +
@@ -184,7 +186,8 @@ public class AttachmentDatabase extends Database {
                                                                                   TRANSFORM_PROPERTIES   + " TEXT DEFAULT NULL, " +
                                                                                   TRANSFER_FILE          + " TEXT DEFAULT NULL, " +
                                                                                   DISPLAY_ORDER          + " INTEGER DEFAULT 0, " +
-                                                                                  UPLOAD_TIMESTAMP       + " INTEGER DEFAULT 0);";
+                                                                                  UPLOAD_TIMESTAMP       + " INTEGER DEFAULT 0, " +
+                                                                                  CDN_NUMBER             + " INTEGER DEFAULT 0);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS part_mms_id_index ON " + TABLE_NAME + " (" + MMS_ID + ");",
@@ -532,6 +535,7 @@ public class AttachmentDatabase extends Database {
     }
 
     values.put(TRANSFER_STATE, TRANSFER_PROGRESS_DONE);
+    values.put(CDN_NUMBER, 0);
     values.put(CONTENT_LOCATION, (String)null);
     values.put(CONTENT_DISPOSITION, (String)null);
     values.put(DIGEST, (byte[])null);
@@ -584,6 +588,7 @@ public class AttachmentDatabase extends Database {
     contentValues.put(DATA_RANDOM, sourceDataInfo.random);
 
     contentValues.put(TRANSFER_STATE, sourceAttachment.getTransferState());
+    contentValues.put(CDN_NUMBER, sourceAttachment.getCdnNumber());
     contentValues.put(CONTENT_LOCATION, sourceAttachment.getLocation());
     contentValues.put(DIGEST, sourceAttachment.getDigest());
     contentValues.put(CONTENT_DISPOSITION, sourceAttachment.getKey());
@@ -630,6 +635,7 @@ public class AttachmentDatabase extends Database {
     ContentValues  values   = new ContentValues();
 
     values.put(TRANSFER_STATE, TRANSFER_PROGRESS_DONE);
+    values.put(CDN_NUMBER, attachment.getCdnNumber());
     values.put(CONTENT_LOCATION, attachment.getLocation());
     values.put(DIGEST, attachment.getDigest());
     values.put(CONTENT_DISPOSITION, attachment.getKey());
@@ -1105,6 +1111,7 @@ public class AttachmentDatabase extends Database {
                                               object.getInt(TRANSFER_STATE),
                                               object.getLong(SIZE),
                                               object.getString(FILE_NAME),
+                                              object.getInt(CDN_NUMBER),
                                               object.getString(CONTENT_LOCATION),
                                               object.getString(CONTENT_DISPOSITION),
                                               object.getString(NAME),
@@ -1138,6 +1145,7 @@ public class AttachmentDatabase extends Database {
                                                                 cursor.getInt(cursor.getColumnIndexOrThrow(TRANSFER_STATE)),
                                                                 cursor.getLong(cursor.getColumnIndexOrThrow(SIZE)),
                                                                 cursor.getString(cursor.getColumnIndexOrThrow(FILE_NAME)),
+                                                                cursor.getInt(cursor.getColumnIndexOrThrow(CDN_NUMBER)),
                                                                 cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_LOCATION)),
                                                                 cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_DISPOSITION)),
                                                                 cursor.getString(cursor.getColumnIndexOrThrow(NAME)),
@@ -1197,6 +1205,7 @@ public class AttachmentDatabase extends Database {
     contentValues.put(CONTENT_TYPE, template.getContentType());
     contentValues.put(TRANSFER_STATE, attachment.getTransferState());
     contentValues.put(UNIQUE_ID, uniqueId);
+    contentValues.put(CDN_NUMBER, useTemplateUpload ? template.getCdnNumber() : attachment.getCdnNumber());
     contentValues.put(CONTENT_LOCATION, useTemplateUpload ? template.getLocation() : attachment.getLocation());
     contentValues.put(DIGEST, useTemplateUpload ? template.getDigest() : attachment.getDigest());
     contentValues.put(CONTENT_DISPOSITION, useTemplateUpload ? template.getKey() : attachment.getKey());

@@ -377,7 +377,10 @@ message AttachmentPointer {
     VOICE_MESSAGE = 1;
   }
 
-  optional fixed64 id              = 1;
+  oneof attachment_identifier {
+    fixed64        cdnId           = 1;
+    string         cdnKey          = 15;
+  }
   optional string  contentType     = 2;
   optional bytes   key             = 3;
   optional uint32  size            = 4;
@@ -390,6 +393,8 @@ message AttachmentPointer {
   optional string  caption         = 11;
   optional string  blurHash        = 12;
   optional uint64  uploadTimestamp = 13;
+  optional uint32  cdnNumber       = 14;
+  // Next ID: 16
 }
 
 message GroupContext {

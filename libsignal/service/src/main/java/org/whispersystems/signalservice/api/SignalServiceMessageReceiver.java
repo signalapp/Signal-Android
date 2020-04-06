@@ -178,7 +178,7 @@ public class SignalServiceMessageReceiver {
   {
     if (!pointer.getDigest().isPresent()) throw new InvalidMessageException("No attachment digest!");
 
-    socket.retrieveAttachment(pointer.getId(), destination, maxSizeBytes, listener);
+    socket.retrieveAttachment(pointer.getCdnNumber(), pointer.getRemoteId(), destination, maxSizeBytes, listener);
     return AttachmentCipherInputStream.createForAttachment(destination, pointer.getSize().or(0), pointer.getKey(), pointer.getDigest().get());
   }
 

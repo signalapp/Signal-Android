@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
 import org.thoughtcrime.securesms.util.IasKeyStore;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -83,8 +84,11 @@ public class ApplicationDependencies {
     if (messageSender == null) {
       messageSender = provider.provideSignalServiceMessageSender();
     } else {
-      messageSender.setMessagePipe(IncomingMessageObserver.getPipe(), IncomingMessageObserver.getUnidentifiedPipe());
-      messageSender.setIsMultiDevice(TextSecurePreferences.isMultiDevice(application));
+      messageSender.update(
+              IncomingMessageObserver.getPipe(),
+              IncomingMessageObserver.getUnidentifiedPipe(),
+              TextSecurePreferences.isMultiDevice(application),
+              FeatureFlags.attachmentsV3());
     }
 
     return messageSender;

@@ -18,13 +18,13 @@ import java.util.List;
 public class PointerAttachment extends Attachment {
 
   private PointerAttachment(@NonNull String contentType, int transferState, long size,
-                            @Nullable String fileName,  @NonNull String location,
+                            @Nullable String fileName, int cdnNumber, @NonNull String location,
                             @Nullable String key, @Nullable String relay,
                             @Nullable byte[] digest, @Nullable String fastPreflightId, boolean voiceNote,
                             int width, int height, long uploadTimestamp, @Nullable String caption, @Nullable StickerLocator stickerLocator,
                             @Nullable BlurHash blurHash)
   {
-    super(contentType, transferState, size, fileName, location, key, relay, digest, fastPreflightId, voiceNote, width, height, false, uploadTimestamp, caption, stickerLocator, blurHash, null);
+    super(contentType, transferState, size, fileName, cdnNumber, location, key, relay, digest, fastPreflightId, voiceNote, width, height, false, uploadTimestamp, caption, stickerLocator, blurHash, null);
   }
 
   @Nullable
@@ -93,7 +93,8 @@ public class PointerAttachment extends Attachment {
                                       AttachmentDatabase.TRANSFER_PROGRESS_PENDING,
                                       pointer.get().asPointer().getSize().or(0),
                                       pointer.get().asPointer().getFileName().orNull(),
-                                      String.valueOf(pointer.get().asPointer().getId()),
+                                      pointer.get().asPointer().getCdnNumber(),
+                                      pointer.get().asPointer().getRemoteId().toString(),
                                       encodedKey, null,
                                       pointer.get().asPointer().getDigest().orNull(),
                                       fastPreflightId,
@@ -114,7 +115,8 @@ public class PointerAttachment extends Attachment {
                                              AttachmentDatabase.TRANSFER_PROGRESS_PENDING,
                                              thumbnail != null ? thumbnail.asPointer().getSize().or(0) : 0,
                                              pointer.getFileName(),
-                                             String.valueOf(thumbnail != null ? thumbnail.asPointer().getId() : 0),
+                                             thumbnail != null ? thumbnail.asPointer().getCdnNumber() : 0,
+                                             thumbnail != null ? thumbnail.asPointer().getRemoteId().toString() : "0",
                                              thumbnail != null && thumbnail.asPointer().getKey() != null ? Base64.encodeBytes(thumbnail.asPointer().getKey()) : null,
                                              null,
                                              thumbnail != null ? thumbnail.asPointer().getDigest().orNull() : null,

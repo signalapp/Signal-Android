@@ -346,6 +346,7 @@ public class MmsSmsDatabase extends Database {
                                   "'" + AttachmentDatabase.DATA + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DATA + ", " +
                                   "'" + AttachmentDatabase.THUMBNAIL + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.THUMBNAIL + ", " +
                                   "'" + AttachmentDatabase.CONTENT_TYPE + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_TYPE + ", " +
+                                  "'" + AttachmentDatabase.CDN_NUMBER + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CDN_NUMBER + ", " +
                                   "'" + AttachmentDatabase.CONTENT_LOCATION + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_LOCATION + ", " +
                                   "'" + AttachmentDatabase.FAST_PREFLIGHT_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.FAST_PREFLIGHT_ID + ", " +
                                   "'" + AttachmentDatabase.VOICE_NOTE + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.VOICE_NOTE + ", " +
@@ -455,30 +456,6 @@ public class MmsSmsDatabase extends Database {
     mmsColumnsPresent.add(MmsDatabase.STATUS);
     mmsColumnsPresent.add(MmsDatabase.UNIDENTIFIED);
     mmsColumnsPresent.add(MmsDatabase.NETWORK_FAILURE);
-
-    mmsColumnsPresent.add(AttachmentDatabase.ROW_ID);
-    mmsColumnsPresent.add(AttachmentDatabase.UNIQUE_ID);
-    mmsColumnsPresent.add(AttachmentDatabase.MMS_ID);
-    mmsColumnsPresent.add(AttachmentDatabase.SIZE);
-    mmsColumnsPresent.add(AttachmentDatabase.FILE_NAME);
-    mmsColumnsPresent.add(AttachmentDatabase.DATA);
-    mmsColumnsPresent.add(AttachmentDatabase.THUMBNAIL);
-    mmsColumnsPresent.add(AttachmentDatabase.CONTENT_TYPE);
-    mmsColumnsPresent.add(AttachmentDatabase.CONTENT_LOCATION);
-    mmsColumnsPresent.add(AttachmentDatabase.DIGEST);
-    mmsColumnsPresent.add(AttachmentDatabase.FAST_PREFLIGHT_ID);
-    mmsColumnsPresent.add(AttachmentDatabase.VOICE_NOTE);
-    mmsColumnsPresent.add(AttachmentDatabase.WIDTH);
-    mmsColumnsPresent.add(AttachmentDatabase.HEIGHT);
-    mmsColumnsPresent.add(AttachmentDatabase.QUOTE);
-    mmsColumnsPresent.add(AttachmentDatabase.STICKER_PACK_ID);
-    mmsColumnsPresent.add(AttachmentDatabase.STICKER_PACK_KEY);
-    mmsColumnsPresent.add(AttachmentDatabase.STICKER_ID);
-    mmsColumnsPresent.add(AttachmentDatabase.CAPTION);
-    mmsColumnsPresent.add(AttachmentDatabase.CONTENT_DISPOSITION);
-    mmsColumnsPresent.add(AttachmentDatabase.NAME);
-    mmsColumnsPresent.add(AttachmentDatabase.TRANSFER_STATE);
-    mmsColumnsPresent.add(AttachmentDatabase.ATTACHMENT_JSON_ALIAS);
     mmsColumnsPresent.add(MmsDatabase.QUOTE_ID);
     mmsColumnsPresent.add(MmsDatabase.QUOTE_AUTHOR);
     mmsColumnsPresent.add(MmsDatabase.QUOTE_BODY);

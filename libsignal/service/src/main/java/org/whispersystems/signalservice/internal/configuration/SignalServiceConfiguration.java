@@ -11,6 +11,7 @@ public final class SignalServiceConfiguration {
 
   private final SignalServiceUrl[]          signalServiceUrls;
   private final SignalCdnUrl[]              signalCdnUrls;
+  private final SignalCdnUrl[]              signalCdn2Urls;
   private final SignalContactDiscoveryUrl[] signalContactDiscoveryUrls;
   private final SignalKeyBackupServiceUrl[] signalKeyBackupServiceUrls;
   private final SignalStorageUrl[]          signalStorageUrls;
@@ -20,6 +21,7 @@ public final class SignalServiceConfiguration {
 
   public SignalServiceConfiguration(SignalServiceUrl[] signalServiceUrls,
                                     SignalCdnUrl[] signalCdnUrls,
+                                    SignalCdnUrl[] signalCdn2Urls,
                                     SignalContactDiscoveryUrl[] signalContactDiscoveryUrls,
                                     SignalKeyBackupServiceUrl[] signalKeyBackupServiceUrls,
                                     SignalStorageUrl[] signalStorageUrls,
@@ -29,6 +31,7 @@ public final class SignalServiceConfiguration {
   {
     this.signalServiceUrls          = signalServiceUrls;
     this.signalCdnUrls              = signalCdnUrls;
+    this.signalCdn2Urls             = signalCdn2Urls;
     this.signalContactDiscoveryUrls = signalContactDiscoveryUrls;
     this.signalKeyBackupServiceUrls = signalKeyBackupServiceUrls;
     this.signalStorageUrls          = signalStorageUrls;
@@ -43,6 +46,10 @@ public final class SignalServiceConfiguration {
 
   public SignalCdnUrl[] getSignalCdnUrls() {
     return signalCdnUrls;
+  }
+
+  public SignalCdnUrl[] getSignalCdn2Urls() {
+    return signalCdn2Urls;
   }
 
   public SignalContactDiscoveryUrl[] getSignalContactDiscoveryUrls() {
