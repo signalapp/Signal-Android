@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
+import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 
@@ -14,9 +16,10 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class LogSectionSystemInfo implements LogSection {
 
@@ -34,6 +37,10 @@ public class LogSectionSystemInfo implements LogSection {
     builder.append("Manufacturer : ").append(Build.MANUFACTURER).append("\n");
     builder.append("Model        : ").append(Build.MODEL).append("\n");
     builder.append("Product      : ").append(Build.PRODUCT).append("\n");
+    builder.append("Screen       : ").append(getScreenResolution(context)).append(", ")
+                                     .append(getScreenDensityClass(context)).append(", ")
+                                     .append(getScreenRefreshRate(context)).append("\n");
+    builder.append("Font Scale   : ").append(context.getResources().getConfiguration().fontScale).append("\n");
     builder.append("Android      : ").append(Build.VERSION.RELEASE).append(" (")
                                      .append(Build.VERSION.INCREMENTAL).append(", ")
                                      .append(Build.DISPLAY).append(")\n");
@@ -90,5 +97,41 @@ public class LogSectionSystemInfo implements LogSection {
       }
       return abis;
     }
+  }
+
+  private static @NonNull String getScreenResolution(@NonNull Context context) {
+    DisplayMetrics displayMetrics = new DisplayMetrics();
+    WindowManager  windowManager  = ServiceUtil.getWindowManager(context);
+
+    windowManager.getDefaultDisplay().getMetrics(displayMetrics);
+    return displayMetrics.widthPixels + "x" + displayMetrics.heightPixels;
+  }
+
+  private static @NonNull String getScreenDensityClass(@NonNull Context context) {
+    int density = context.getResources().getDisplayMetrics().densityDpi;
+
+    LinkedHashMap<Integer, String> levels = new LinkedHashMap<Integer, String>() {{
+      put(DisplayMetrics.DENSITY_LOW,     "ldpi");
+      put(DisplayMetrics.DENSITY_MEDIUM,  "mdpi");
+      put(DisplayMetrics.DENSITY_HIGH,    "hdpi");
+      put(DisplayMetrics.DENSITY_XHIGH,   "xhdpi");
+      put(DisplayMetrics.DENSITY_XXHIGH,  "xxhdpi");
+      put(DisplayMetrics.DENSITY_XXXHIGH, "xxxhdpi");
+    }};
+
+    String densityString = "unknown";
+
+    for (Map.Entry<Integer, String> entry : levels.entrySet()) {
+      densityString = entry.getValue();
+      if (entry.getKey() > density) {
+        break;
+      }
+    }
+
+    return densityString + " (" + density + ")";
+  }
+
+  private static @NonNull String getScreenRefreshRate(@NonNull Context context) {
+    return String.format(Locale.ENGLISH, "%.2f hz", ServiceUtil.getWindowManager(context).getDefaultDisplay().getRefreshRate());
   }
 }
