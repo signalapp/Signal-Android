@@ -187,12 +187,13 @@ message DataMessage {
   enum ProtocolVersion {
     option allow_alias = true;
 
-    INITIAL         = 0;
-    MESSAGE_TIMERS  = 1;
-    VIEW_ONCE       = 2;
-    VIEW_ONCE_VIDEO = 3;
-    REACTIONS       = 4;
-    CURRENT         = 4;
+    INITIAL                  = 0;
+    MESSAGE_TIMERS           = 1;
+    VIEW_ONCE                = 2;
+    VIEW_ONCE_VIDEO          = 3;
+    REACTIONS                = 4;
+    CDN_SELECTOR_ATTACHMENTS = 5;
+    CURRENT                  = 5;
   }
 
   optional string             body                    = 1;
