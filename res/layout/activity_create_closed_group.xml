@@ -32,7 +32,7 @@
             android:textColor="@color/text"
             android:alpha="0.6"
             android:textAlignment="center"
-            android:text="Closed groups are end-to-end encrypted group chats for up to 10 members. They provide the same privacy protections as one-on-one sessions." />
+            android:text="Closed groups support up to 10 members and provide the same privacy protections as one-on-one sessions." />
 
         <View
             android:layout_width="match_parent"

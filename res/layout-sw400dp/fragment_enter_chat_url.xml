@@ -41,6 +41,6 @@
         android:textColor="@color/text"
         android:alpha="0.6"
         android:textAlignment="center"
-        android:text="Open groups can be joined by anyone and do not provide full metadata protection" />
+        android:text="Open groups can be joined by anyone and do not provide full privacy protection" />
 
 </LinearLayout>
