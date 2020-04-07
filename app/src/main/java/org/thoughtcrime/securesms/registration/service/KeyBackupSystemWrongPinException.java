@@ -12,7 +12,7 @@ public final class KeyBackupSystemWrongPinException extends Exception {
     this.tokenResponse = tokenResponse;
   }
 
-  @NonNull TokenResponse getTokenResponse() {
+  public @NonNull TokenResponse getTokenResponse() {
     return tokenResponse;
   }
 }

@@ -6,13 +6,17 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class RemoteConfigRefreshJob extends BaseJob {
+
+  private static final String TAG = Log.tag(RemoteConfigRefreshJob.class);
 
   public static final String KEY = "RemoteConfigRefreshJob";
 
@@ -41,6 +45,11 @@ public class RemoteConfigRefreshJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
+    if (!TextSecurePreferences.isPushRegistered(context)) {
+      Log.w(TAG, "Not registered. Skipping.");
+      return;
+    }
+
     Map<String, Boolean> config = ApplicationDependencies.getSignalServiceAccountManager().getRemoteConfig();
     FeatureFlags.update(config);
   }

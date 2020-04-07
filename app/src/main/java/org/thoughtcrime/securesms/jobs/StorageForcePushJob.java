@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.storage.StorageSyncModels;
@@ -18,6 +17,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.storage.StorageSyncValidations;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.InvalidKeyException;
@@ -78,20 +78,26 @@ public class StorageForcePushJob extends BaseJob {
     RecipientDatabase           recipientDatabase  = DatabaseFactory.getRecipientDatabase(context);
     StorageKeyDatabase          storageKeyDatabase = DatabaseFactory.getStorageKeyDatabase(context);
 
-    long                        currentVersion = accountManager.getStorageManifestVersion();
-    Map<RecipientId, StorageId> oldStorageKeys = recipientDatabase.getContactStorageSyncIdsMap();
+    long                        currentVersion       = accountManager.getStorageManifestVersion();
+    Map<RecipientId, StorageId> oldContactStorageIds = recipientDatabase.getContactStorageSyncIdsMap();
 
-    long                        newVersion         = currentVersion + 1;
-    Map<RecipientId, StorageId> newStorageKeys     = generateNewKeys(oldStorageKeys);
-    Set<RecipientId>            archivedRecipients = DatabaseFactory.getThreadDatabase(context).getArchivedRecipients();
-    List<SignalStorageRecord>   inserts            = Stream.of(oldStorageKeys.keySet())
-                                                           .map(recipientDatabase::getRecipientSettings)
-                                                           .withoutNulls()
-                                                           .map(s -> StorageSyncModels.localToRemoteRecord(s, Objects.requireNonNull(newStorageKeys.get(s.getId())).getRaw(), archivedRecipients))
-                                                           .toList();
-    inserts.add(StorageSyncHelper.buildAccountRecord(context, StorageId.forAccount(Recipient.self().fresh().getStorageServiceId())));
+    long                        newVersion           = currentVersion + 1;
+    Map<RecipientId, StorageId> newContactStorageIds = generateContactStorageIds(oldContactStorageIds);
+    Set<RecipientId>            archivedRecipients   = DatabaseFactory.getThreadDatabase(context).getArchivedRecipients();
+    List<SignalStorageRecord>   inserts              = Stream.of(oldContactStorageIds.keySet())
+                                                             .map(recipientDatabase::getRecipientSettings)
+                                                             .withoutNulls()
+                                                             .map(s -> StorageSyncModels.localToRemoteRecord(s, Objects.requireNonNull(newContactStorageIds.get(s.getId())).getRaw(), archivedRecipients))
+                                                             .toList();
 
-    SignalStorageManifest manifest = new SignalStorageManifest(newVersion, new ArrayList<>(newStorageKeys.values()));
+    SignalStorageRecord accountRecord    = StorageSyncHelper.buildAccountRecord(context, StorageId.forAccount(Recipient.self().fresh().getStorageServiceId()));
+    List<StorageId>     allNewStorageIds = new ArrayList<>(newContactStorageIds.values());
+
+    inserts.add(accountRecord);
+    allNewStorageIds.add(accountRecord.getId());
+
+    SignalStorageManifest manifest = new SignalStorageManifest(newVersion, allNewStorageIds);
+    StorageSyncValidations.validateForcePush(manifest, inserts);
 
     try {
       if (newVersion > 1) {
@@ -114,7 +120,8 @@ public class StorageForcePushJob extends BaseJob {
 
     Log.i(TAG, "Force push succeeded. Updating local manifest version to: " + newVersion);
     TextSecurePreferences.setStorageManifestVersion(context, newVersion);
-    recipientDatabase.applyStorageIdUpdates(newStorageKeys);
+    recipientDatabase.applyStorageIdUpdates(newContactStorageIds);
+    recipientDatabase.applyStorageIdUpdates(Collections.singletonMap(Recipient.self().getId(), accountRecord.getId()));
     storageKeyDatabase.deleteAll();
   }
 
@@ -127,7 +134,7 @@ public class StorageForcePushJob extends BaseJob {
   public void onFailure() {
   }
 
-  private static @NonNull Map<RecipientId, StorageId> generateNewKeys(@NonNull Map<RecipientId, StorageId> oldKeys) {
+  private static @NonNull Map<RecipientId, StorageId> generateContactStorageIds(@NonNull Map<RecipientId, StorageId> oldKeys) {
     Map<RecipientId, StorageId> out = new HashMap<>();
 
     for (Map.Entry<RecipientId, StorageId> entry : oldKeys.entrySet()) {

@@ -71,10 +71,17 @@ public final class KeyBackupService {
   /**
    * Only call before registration, to see how many tries are left.
    * <p>
-   * Pass the token to the newRegistrationSession.
+   * Pass the token to {@link #newRegistrationSession(String, TokenResponse)}.
    */
   public TokenResponse getToken(String authAuthorization) throws IOException {
     return pushServiceSocket.getKeyBackupServiceToken(authAuthorization, enclaveName);
+  }
+
+  /**
+   * Retrieve the authorization token to be used with other requests.
+   */
+  public String getAuthorization() throws IOException {
+    return pushServiceSocket.getKeyBackupServiceAuthorization();
   }
 
   /**

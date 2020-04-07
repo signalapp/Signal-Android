@@ -13,7 +13,9 @@ import androidx.navigation.ActivityNavigator;
 
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
+import org.thoughtcrime.securesms.pin.PinRestoreActivity;
 import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
 
 public final class RegistrationCompleteFragment extends BaseRegistrationFragment {
@@ -30,12 +32,11 @@ public final class RegistrationCompleteFragment extends BaseRegistrationFragment
 
     FragmentActivity activity = requireActivity();
 
-
-    if (!isReregister()) {
+    if (SignalStore.storageServiceValues().needsAccountRestore()) {
+      activity.startActivity(new Intent(activity, PinRestoreActivity.class));
+    } else if (!isReregister()) {
       final Intent main    = new Intent(activity, MainActivity.class);
-      final Intent profile = new Intent(activity, EditProfileActivity.class);
-
-      profile.putExtra(EditProfileActivity.SHOW_TOOLBAR, false);
+      final Intent profile = EditProfileActivity.getIntent(activity, false);
 
       Intent kbs = CreateKbsPinActivity.getIntentForPinCreate(requireContext());
       activity.startActivity(chainIntents(chainIntents(profile, kbs), main));

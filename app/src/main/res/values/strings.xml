@@ -132,6 +132,7 @@
 
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">No web browser found.</string>
+    <string name="CommunicationActions_no_email_app_found">No email app found.</string>
     <string name="CommunicationActions_a_cellular_call_is_already_in_progress">A cellular call is already in progress.</string>
     <string name="CommunicationActions_start_video_call">Start video call?</string>
     <string name="CommunicationActions_start_voice_call">Start voice call?</string>
@@ -787,6 +788,32 @@
 
     <!-- PlayServicesProblemFragment -->
     <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">The version of Google Play Services you have installed is not functioning correctly.  Please reinstall Google Play Services and try again.</string>
+
+    <!-- PinRestoreEntryFragment -->
+    <string name="PinRestoreEntryFragment_incorrect_pin">Incorrect PIN</string>
+    <string name="PinRestoreEntryFragment_skip_pin_entry">Skip PIN entry?</string>
+    <string name="PinRestoreEntryFragment_need_help">Need help?</string>
+    <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Your PIN is a %1$d+ digit code you created that can be numeric or alphanumeric.\n\nIf you can’t remember your PIN, you can create a new one. You can register and use your account but you’ll lose some saved settings like your profile information.</string>
+    <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">If you can’t remember your PIN, you can create a new one. You can register and use your account but you’ll lose some saved settings like your profile information.</string>
+    <string name="PinRestoreEntryFragment_create_new_pin">Create New PIN</string>
+    <string name="PinRestoreEntryFragment_contact_support">Contact Support</string>
+    <string name="PinRestoreEntryFragment_cancel">Cancel</string>
+    <string name="PinRestoreEntryFragment_skip">Skip</string>
+    <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
+        <item quantity="one">You have %1$d attempt remaining. If you run out of attempts, you can create a new PIN. You can register and use your account but you’ll lose some saved settings like your profile information.</item>
+        <item quantity="many">You have %1$d attempts remaining. If you run out of attempts, you can create a new PIN. You can register and use your account but you’ll lose some saved settings like your profile information.</item>
+    </plurals>
+    <string name="PinRestoreEntryFragment_support_email" translatable="false">support@signal.org</string>
+    <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal Registration - Need Help with PIN for Android</string>
+    <string name="PinRestoreEntryFragment_subject_signal_registration">Subject: Signal Registration - Need Help with PIN for Android\nDevice info: %1$s\nAndroid version: %2$s\nSignal version: %3$s\nLocale: %4$s</string>
+    <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Enter alphanumeric PIN</string>
+    <string name="PinRestoreEntryFragment_enter_numeric_pin">Enter numeric PIN</string>
+
+    <!-- PinRestoreLockedFragment -->
+    <string name="PinRestoreLockedFragment_create_your_pin">Create your PIN</string>
+    <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">You\'ve run out of PIN guesses, but you can still access your Signal account by creating a new PIN. For your privacy and security your account will be restored without any saved profile information or settings.</string>
+    <string name="PinRestoreLockedFragment_create_new_pin">Create new PIN</string>
+    <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
 
     <!-- RatingManager -->
     <string name="RatingManager_rate_this_app">Rate this app</string>

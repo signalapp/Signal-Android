@@ -51,6 +51,11 @@ public class RotateCertificateJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException {
+    if (!TextSecurePreferences.isPushRegistered(context)) {
+      Log.w(TAG, "Not yet registered. Ignoring.");
+      return;
+    }
+
     synchronized (RotateCertificateJob.class) {
       SignalServiceAccountManager accountManager    = ApplicationDependencies.getSignalServiceAccountManager();
       byte[]                      certificate       = accountManager.getSenderCertificate();

@@ -45,6 +45,8 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.providers.BlobProvider;
+import org.thoughtcrime.securesms.registration.RegistrationUtil;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
@@ -307,9 +309,7 @@ public class EditProfileFragment extends Fragment {
   private void handleUpload() {
     viewModel.submitProfile(uploadResult -> {
       if (uploadResult == EditProfileRepository.UploadResult.SUCCESS) {
-        if (SignalStore.kbsValues().hasPin()) {
-          SignalStore.registrationValues().setRegistrationComplete();
-        }
+        RegistrationUtil.markRegistrationPossiblyComplete();
 
         ApplicationDependencies.getMegaphoneRepository().markFinished(Megaphones.Event.PROFILE_NAMES_FOR_ALL);
 

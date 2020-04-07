@@ -39,8 +39,10 @@ import org.whispersystems.signalservice.api.KbsPinData;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
+import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 import org.whispersystems.signalservice.internal.push.LockedException;
+import org.whispersystems.signalservice.internal.push.VerifyAccountResponse;
 
 import java.io.IOException;
 import java.util.List;
@@ -210,16 +212,18 @@ public final class CodeVerificationRequest {
 
     Log.i(TAG, "Calling verifyAccountWithCode(): reglockV1? " + !TextUtils.isEmpty(registrationLockV1) + ", reglockV2? " + !TextUtils.isEmpty(registrationLockV2));
 
-    UUID uuid = accountManager.verifyAccountWithCode(code,
-                                                     null,
-                                                     registrationId,
-                                                     !hasFcm,
-                                                     registrationLockV1,
-                                                     registrationLockV2,
-                                                     unidentifiedAccessKey,
-                                                     universalUnidentifiedAccess,
-                                                     AppCapabilities.getCapabilities(isV2RegistrationLock));
-    // TODO [greyson] [pins]                         ^^ This needs to be updated. It's not just for reglock, but also if they needed to enter a PIN at all
+    VerifyAccountResponse response = accountManager.verifyAccountWithCode(code,
+                                                                          null,
+                                                                          registrationId,
+                                                                          !hasFcm,
+                                                                          registrationLockV1,
+                                                                          registrationLockV2,
+                                                                          unidentifiedAccessKey,
+                                                                          universalUnidentifiedAccess,
+                                                                          AppCapabilities.getCapabilities(true));
+
+    UUID    uuid   = UuidUtil.parseOrThrow(response.getUuid());
+    boolean hasPin = response.isStorageCapable();
 
     IdentityKeyPair    identityKey  = IdentityKeyUtil.getIdentityKeyPair(context);
     List<PreKeyRecord> records      = PreKeyUtil.generatePreKeys(context);
@@ -259,7 +263,7 @@ public final class CodeVerificationRequest {
     TextSecurePreferences.setPromptedPushRegistration(context, true);
     TextSecurePreferences.setUnauthorizedReceived(context, false);
 
-    PinState.onRegistration(context, kbsData, pin);
+    PinState.onRegistration(context, kbsData, pin, hasPin);
   }
 
   private static @Nullable ProfileKey findExistingProfileKey(@NonNull Context context, @NonNull String e164number) {

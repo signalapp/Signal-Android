@@ -28,6 +28,8 @@ public final class KbsValues {
 
   /**
    * Deliberately does not clear the {@link #MASTER_KEY}.
+   *
+   * Should only be called by {@link org.thoughtcrime.securesms.pin.PinState}
    */
   public void clearRegistrationLockAndPin() {
     store.beginWrite()
@@ -37,6 +39,7 @@ public final class KbsValues {
          .commit();
   }
 
+  /** Should only be set by {@link org.thoughtcrime.securesms.pin.PinState}. */
   public synchronized void setKbsMasterKey(@NonNull KbsPinData pinData, @NonNull String localPinHash) {
     MasterKey masterKey     = pinData.getMasterKey();
     String    tokenResponse;
@@ -53,6 +56,7 @@ public final class KbsValues {
          .commit();
   }
 
+  /** Should only be set by {@link org.thoughtcrime.securesms.pin.PinState}. */
   public synchronized void setV2RegistrationLockEnabled(boolean enabled) {
     store.beginWrite().putBoolean(V2_LOCK_ENABLED, enabled).apply();
   }

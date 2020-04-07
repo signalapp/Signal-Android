@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiImageView;
+import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.IntentUtils;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 
@@ -148,19 +149,10 @@ public class HelpFragment extends Fragment {
                             .map(view -> Feeling.getByViewId(view.getId()))
                             .findFirst().orElse(null);
 
-    Spanned body = getEmailBody(debugLog, feeling);
-
-    Intent intent = new Intent(Intent.ACTION_SENDTO);
-    intent.setData(Uri.parse("mailto:"));
-    intent.putExtra(Intent.EXTRA_EMAIL, new String[]{getString(R.string.RegistrationActivity_support_email)});
-    intent.putExtra(Intent.EXTRA_SUBJECT, getEmailSubject());
-    intent.putExtra(Intent.EXTRA_TEXT, body.toString());
-
-    if (IntentUtils.isResolvable(requireContext(), intent)) {
-      startActivity(intent);
-    } else {
-      Toast.makeText(requireContext(), R.string.HelpFragment__no_email_app_found, Toast.LENGTH_LONG).show();
-    }
+    CommunicationActions.openEmail(requireContext(),
+                                   getString(R.string.RegistrationActivity_support_email),
+                                   getEmailSubject(),
+                                   getEmailBody(debugLog, feeling).toString());
   }
 
   private String getEmailSubject() {

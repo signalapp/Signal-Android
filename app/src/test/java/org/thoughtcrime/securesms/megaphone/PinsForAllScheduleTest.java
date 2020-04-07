@@ -102,7 +102,7 @@ public class PinsForAllScheduleTest {
   public void whenUserIsANewInstallAndFlagIsDisabled_whenIShouldDisplay_thenIExpectFalse() {
     // GIVEN
     when(registrationValues.pinWasRequiredAtRegistration()).thenReturn(true);
-    when(kbsValues.isV2RegistrationLockEnabled()).thenReturn(true);
+    when(kbsValues.hasPin()).thenReturn(true);
     when(FeatureFlags.pinsForAll()).thenReturn(false);
 
     // WHEN
@@ -116,7 +116,7 @@ public class PinsForAllScheduleTest {
   public void whenUserIsANewInstallAndFlagIsEnabled_whenIShouldDisplay_thenIExpectFalse() {
     // GIVEN
     when(registrationValues.pinWasRequiredAtRegistration()).thenReturn(true);
-    when(kbsValues.isV2RegistrationLockEnabled()).thenReturn(true);
+    when(kbsValues.hasPin()).thenReturn(true);
     when(FeatureFlags.pinsForAll()).thenReturn(true);
 
     // WHEN

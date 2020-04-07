@@ -38,6 +38,7 @@ import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
@@ -289,5 +290,10 @@ public class ViewUtil {
       result = view.getResources().getDimensionPixelSize(resourceId);
     }
     return result;
+  }
+
+  public static void hideKeyboard(@NonNull Context context, @NonNull View view) {
+    InputMethodManager inputManager = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+    inputManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
   }
 }

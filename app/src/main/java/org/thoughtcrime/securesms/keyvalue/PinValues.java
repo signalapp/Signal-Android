@@ -85,6 +85,7 @@ public final class PinValues {
     return PinKeyboardType.fromCode(store.getString(KEYBOARD_TYPE, null));
   }
 
+  /** Should only be set by {@link org.thoughtcrime.securesms.pin.PinState} */
   public void setPinState(@NonNull String pinState) {
     store.beginWrite().putString(PIN_STATE, pinState).commit();
   }

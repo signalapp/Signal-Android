@@ -62,6 +62,7 @@ import org.whispersystems.signalservice.internal.push.ProfileAvatarData;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.RemoteAttestationUtil;
 import org.whispersystems.signalservice.internal.push.RemoteConfigResponse;
+import org.whispersystems.signalservice.internal.push.VerifyAccountResponse;
 import org.whispersystems.signalservice.internal.push.http.ProfileCipherOutputStreamFactory;
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
 import org.whispersystems.signalservice.internal.storage.protos.ReadOperation;
@@ -239,10 +240,10 @@ public class SignalServiceAccountManager {
    * @return The UUID of the user that was registered.
    * @throws IOException
    */
-  public UUID verifyAccountWithCode(String verificationCode, String signalingKey, int signalProtocolRegistrationId, boolean fetchesMessages,
-                                    String pin, String registrationLock,
-                                    byte[] unidentifiedAccessKey, boolean unrestrictedUnidentifiedAccess,
-                                    SignalServiceProfile.Capabilities capabilities)
+  public VerifyAccountResponse verifyAccountWithCode(String verificationCode, String signalingKey, int signalProtocolRegistrationId, boolean fetchesMessages,
+                                                     String pin, String registrationLock,
+                                                     byte[] unidentifiedAccessKey, boolean unrestrictedUnidentifiedAccess,
+                                                     SignalServiceProfile.Capabilities capabilities)
       throws IOException
   {
     return this.pushServiceSocket.verifyAccountCode(verificationCode, signalingKey,

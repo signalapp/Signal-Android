@@ -34,8 +34,7 @@ public final class ProfileName implements Parcelable {
     this(in.readString(), in.readString());
   }
 
-  public @NonNull
-  String getGivenName() {
+  public @NonNull String getGivenName() {
     return givenName;
   }
 

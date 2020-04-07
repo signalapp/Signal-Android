@@ -10,7 +10,8 @@ import java.security.SecureRandom;
 
 public class StorageServiceValues {
 
-  private static final String LAST_SYNC_TIME = "storage.last_sync_time";
+  private static final String LAST_SYNC_TIME        = "storage.last_sync_time";
+  private static final String NEEDS_ACCOUNT_RESTORE = "storage.needs_account_restore";
 
   private final KeyValueStore store;
 
@@ -28,5 +29,13 @@ public class StorageServiceValues {
 
   public void onSyncCompleted() {
     store.beginWrite().putLong(LAST_SYNC_TIME, System.currentTimeMillis()).apply();
+  }
+
+  public boolean needsAccountRestore() {
+    return store.getBoolean(NEEDS_ACCOUNT_RESTORE, false);
+  }
+
+  public void setNeedsAccountRestore(boolean value) {
+    store.beginWrite().putBoolean(NEEDS_ACCOUNT_RESTORE, value).apply();
   }
 }

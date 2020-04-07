@@ -180,7 +180,7 @@ public final class RegistrationLockV1Dialog {
           protected Boolean doInBackground(Void... voids) {
             try {
               Log.i(TAG, "Setting pin on KBS - dialog");
-              PinState.onCompleteRegistrationLockV1Reminder(context, pinValue);
+              PinState.onEnableLegacyRegistrationLockPreference(context, pinValue);
               Log.i(TAG, "Pin set on KBS");
               return true;
             } catch (IOException | UnauthenticatedResponseException e) {
@@ -235,7 +235,7 @@ public final class RegistrationLockV1Dialog {
           @Override
           protected Boolean doInBackground(Void... voids) {
             try {
-              PinState.onDisableRegistrationLockV1(context);
+              PinState.onDisableLegacyRegistrationLockPreference(context);
               return true;
             } catch (IOException | UnauthenticatedResponseException e) {
               Log.w(TAG, e);

@@ -172,6 +172,10 @@ public class Util {
     return "";
   }
 
+  public static @NonNull String emptyIfNull(@Nullable String value) {
+    return value != null ? value : "";
+  }
+
   public static <E> List<List<E>> chunk(@NonNull List<E> list, int chunkSize) {
     List<List<E>> chunks = new ArrayList<>(list.size() / chunkSize);
 

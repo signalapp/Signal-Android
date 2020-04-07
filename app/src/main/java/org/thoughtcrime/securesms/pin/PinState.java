@@ -29,6 +29,7 @@ import org.whispersystems.signalservice.internal.contacts.crypto.Unauthenticated
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
@@ -84,31 +85,59 @@ public final class PinState {
    */
   public static synchronized void onRegistration(@NonNull Context context,
                                                  @Nullable KbsPinData kbsData,
-                                                 @Nullable String pin)
+                                                 @Nullable String pin,
+                                                 boolean hasPinToRestore)
   {
     Log.i(TAG, "onNewRegistration()");
 
-    if (kbsData == null) {
-      Log.i(TAG, "No KBS PIN. Clearing any PIN state.");
-      SignalStore.kbsValues().clearRegistrationLockAndPin();
-      //noinspection deprecation Only acceptable place to write the old pin.
-      TextSecurePreferences.setV1RegistrationLockPin(context, pin);
-      //noinspection deprecation Only acceptable place to write the old pin enabled state.
-      TextSecurePreferences.setV1RegistrationLockEnabled(context, pin != null);
-    } else {
-      Log.i(TAG, "Had a KBS PIN. Saving data.");
-      SignalStore.kbsValues().setKbsMasterKey(kbsData, PinHashing.localPinHash(pin));
-      // TODO [greyson] [pins] Not always true -- when this flow is reworked, you can have a PIN but no reglock
-      SignalStore.kbsValues().setV2RegistrationLockEnabled(true);
-      resetPinRetryCount(context, pin, kbsData);
-    }
+    TextSecurePreferences.setV1RegistrationLockPin(context, pin);
 
-    if (pin != null) {
+    if (kbsData == null && pin != null) {
+      Log.i(TAG, "Registration Lock V1");
+      SignalStore.kbsValues().clearRegistrationLockAndPin();
+      TextSecurePreferences.setV1RegistrationLockEnabled(context, true);
       TextSecurePreferences.setRegistrationLockLastReminderTime(context, System.currentTimeMillis());
       TextSecurePreferences.setRegistrationLockNextReminderInterval(context, RegistrationLockReminders.INITIAL_INTERVAL);
+    } else if (kbsData != null && pin != null) {
+      Log.i(TAG, "Registration Lock V2");
+      TextSecurePreferences.setV1RegistrationLockEnabled(context, false);
+      SignalStore.kbsValues().setV2RegistrationLockEnabled(true);
+      SignalStore.kbsValues().setKbsMasterKey(kbsData, PinHashing.localPinHash(pin));
       SignalStore.pinValues().resetPinReminders();
-      ApplicationDependencies.getJobManager().add(new RefreshAttributesJob());
+      resetPinRetryCount(context, pin, kbsData);
+    } else if (hasPinToRestore) {
+      Log.i(TAG, "Has a PIN to restore.");
+      SignalStore.kbsValues().clearRegistrationLockAndPin();
+      TextSecurePreferences.setV1RegistrationLockEnabled(context, false);
+      SignalStore.storageServiceValues().setNeedsAccountRestore(true);
+    } else {
+      Log.i(TAG, "No registration lock or PIN at all.");
+      SignalStore.kbsValues().clearRegistrationLockAndPin();
+      TextSecurePreferences.setV1RegistrationLockEnabled(context, false);
     }
+
+    updateState(buildInferredStateFromOtherFields());
+  }
+
+  /**
+   * Invoked when the user is going through the PIN restoration flow (which is separate from reglock).
+   */
+  public static synchronized void onSignalPinRestore(@NonNull Context context, @NonNull KbsPinData kbsData, @NonNull String pin) {
+    SignalStore.kbsValues().setKbsMasterKey(kbsData, PinHashing.localPinHash(pin));
+    SignalStore.kbsValues().setV2RegistrationLockEnabled(false);
+    SignalStore.pinValues().resetPinReminders();
+    SignalStore.storageServiceValues().setNeedsAccountRestore(false);
+    resetPinRetryCount(context, pin, kbsData);
+
+    updateState(buildInferredStateFromOtherFields());
+  }
+
+  /**
+   * Invoked when the user skips out on PIN restoration or otherwise fails to remember their PIN.
+   */
+  public static synchronized void onPinRestoreForgottenOrSkipped() {
+    SignalStore.kbsValues().clearRegistrationLockAndPin();
+    SignalStore.storageServiceValues().setNeedsAccountRestore(false);
 
     updateState(buildInferredStateFromOtherFields());
   }
@@ -181,10 +210,11 @@ public final class PinState {
   }
 
   /**
-   * Invoked whenever registration lock is disabled for a user without a Signal PIN.
+   * Called when registration lock is disabled in the settings using the old UI (i.e. no mention of
+   * Signal PINs).
    */
   @WorkerThread
-  public static synchronized void onDisableRegistrationLockV1(@NonNull Context context)
+  public static synchronized void onDisableLegacyRegistrationLockPreference(@NonNull Context context)
       throws IOException, UnauthenticatedResponseException
   {
     Log.i(TAG, "onDisableRegistrationLockV1()");
@@ -197,12 +227,16 @@ public final class PinState {
     updateState(State.NO_REGISTRATION_LOCK);
   }
 
+  /**
+   * Called when registration lock is enabled in the settings using the old UI (i.e. no mention of
+   * Signal PINs).
+   */
   @WorkerThread
-  public static synchronized void onCompleteRegistrationLockV1Reminder(@NonNull Context context, @NonNull String pin)
+  public static synchronized void onEnableLegacyRegistrationLockPreference(@NonNull Context context, @NonNull String pin)
       throws IOException, UnauthenticatedResponseException
   {
     Log.i(TAG, "onCompleteRegistrationLockV1Reminder()");
-    assertState(State.REGISTRATION_LOCK_V1);
+    assertState(State.NO_REGISTRATION_LOCK);
 
     KbsValues                         kbsValues        = SignalStore.kbsValues();
     MasterKey                         masterKey        = kbsValues.getOrCreateMasterKey();
@@ -219,7 +253,29 @@ public final class PinState {
     TextSecurePreferences.setRegistrationLockLastReminderTime(context, System.currentTimeMillis());
     TextSecurePreferences.setRegistrationLockNextReminderInterval(context, RegistrationLockReminders.INITIAL_INTERVAL);
 
-    updateState(State.PIN_WITH_REGISTRATION_LOCK_ENABLED);
+    updateState(buildInferredStateFromOtherFields());
+  }
+
+  /**
+   * Should only be called by {@link org.thoughtcrime.securesms.migrations.RegistrationPinV2MigrationJob}.
+   */
+  @WorkerThread
+  public static synchronized void onMigrateToRegistrationLockV2(@NonNull Context context, @NonNull String pin)
+      throws IOException, UnauthenticatedResponseException
+  {
+    KbsValues                         kbsValues        = SignalStore.kbsValues();
+    MasterKey                         masterKey        = kbsValues.getOrCreateMasterKey();
+    KeyBackupService                  keyBackupService = ApplicationDependencies.getKeyBackupService();
+    KeyBackupService.PinChangeSession pinChangeSession = keyBackupService.newPinChangeSession();
+    HashedPin                         hashedPin        = PinHashing.hashPin(pin, pinChangeSession);
+    KbsPinData                        kbsData          = pinChangeSession.setPin(hashedPin, masterKey);
+
+    pinChangeSession.enableRegistrationLock(masterKey);
+
+    kbsValues.setKbsMasterKey(kbsData, PinHashing.localPinHash(pin));
+    TextSecurePreferences.clearRegistrationLockV1(context);
+
+    updateState(buildInferredStateFromOtherFields());
   }
 
   public static synchronized boolean shouldShowRegistrationLockV1Reminder() {
@@ -273,7 +329,7 @@ public final class PinState {
       }
     }
 
-    throw new IllegalStateException();
+    throw new IllegalStateException("Expected: " + Arrays.toString(allowed) + ", Actual: " + currentState);
   }
 
   private static @NonNull State getState() {
@@ -289,6 +345,7 @@ public final class PinState {
   }
 
   private static void updateState(@NonNull State state) {
+    Log.i(TAG, "Updating state to: " + state);
     SignalStore.pinValues().setPinState(state.serialize());
   }
 

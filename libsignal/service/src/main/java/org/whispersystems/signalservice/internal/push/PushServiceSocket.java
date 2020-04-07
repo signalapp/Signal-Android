@@ -271,23 +271,17 @@ public class PushServiceSocket {
     }
   }
 
-  public UUID verifyAccountCode(String verificationCode, String signalingKey, int registrationId, boolean fetchesMessages,
+  public VerifyAccountResponse verifyAccountCode(String verificationCode, String signalingKey, int registrationId, boolean fetchesMessages,
                                 String pin, String registrationLock,
                                 byte[] unidentifiedAccessKey, boolean unrestrictedUnidentifiedAccess,
                                 SignalServiceProfile.Capabilities capabilities)
       throws IOException
   {
-    AccountAttributes     signalingKeyEntity = new AccountAttributes(signalingKey, registrationId, fetchesMessages, pin, registrationLock, unidentifiedAccessKey, unrestrictedUnidentifiedAccess, capabilities);
-    String                requestBody        = JsonUtil.toJson(signalingKeyEntity);
-    String                responseBody       = makeServiceRequest(String.format(VERIFY_ACCOUNT_CODE_PATH, verificationCode), "PUT", requestBody);
-    VerifyAccountResponse response           = JsonUtil.fromJson(responseBody, VerifyAccountResponse.class);
-    Optional<UUID>        uuid               = UuidUtil.parse(response.getUuid());
+    AccountAttributes signalingKeyEntity = new AccountAttributes(signalingKey, registrationId, fetchesMessages, pin, registrationLock, unidentifiedAccessKey, unrestrictedUnidentifiedAccess, capabilities);
+    String            requestBody        = JsonUtil.toJson(signalingKeyEntity);
+    String            responseBody       = makeServiceRequest(String.format(VERIFY_ACCOUNT_CODE_PATH, verificationCode), "PUT", requestBody);
 
-    if (uuid.isPresent()) {
-      return uuid.get();
-    } else {
-      throw new IOException("Invalid UUID!");
-    }
+    return JsonUtil.fromJson(responseBody, VerifyAccountResponse.class);
   }
 
   public void setAccountAttributes(String signalingKey, int registrationId, boolean fetchesMessages,
