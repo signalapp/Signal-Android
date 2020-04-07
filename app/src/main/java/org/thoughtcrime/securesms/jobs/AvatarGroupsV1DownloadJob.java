@@ -24,19 +24,17 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class AvatarDownloadJob extends BaseJob {
+public final class AvatarGroupsV1DownloadJob extends BaseJob {
 
   public static final String KEY = "AvatarDownloadJob";
 
-  private static final String TAG = AvatarDownloadJob.class.getSimpleName();
-
-  private static final int MAX_AVATAR_SIZE = 20 * 1024 * 1024;
+  private static final String TAG = Log.tag(AvatarGroupsV1DownloadJob.class);
 
   private static final String KEY_GROUP_ID = "group_id";
 
-  private @NonNull GroupId.V1 groupId;
+  @NonNull private final GroupId.V1 groupId;
 
-  public AvatarDownloadJob(@NonNull GroupId.V1 groupId) {
+  public AvatarGroupsV1DownloadJob(@NonNull GroupId.V1 groupId) {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
                            .setMaxAttempts(10)
@@ -44,7 +42,7 @@ public class AvatarDownloadJob extends BaseJob {
          groupId);
   }
 
-  private AvatarDownloadJob(@NonNull Job.Parameters parameters, @NonNull GroupId.V1 groupId) {
+  private AvatarGroupsV1DownloadJob(@NonNull Job.Parameters parameters, @NonNull GroupId.V1 groupId) {
     super(parameters);
     this.groupId = groupId;
   }
@@ -111,10 +109,10 @@ public class AvatarDownloadJob extends BaseJob {
     return false;
   }
 
-  public static final class Factory implements Job.Factory<AvatarDownloadJob> {
+  public static final class Factory implements Job.Factory<AvatarGroupsV1DownloadJob> {
     @Override
-    public @NonNull AvatarDownloadJob create(@NonNull Parameters parameters, @NonNull Data data) {
-      return new AvatarDownloadJob(parameters, GroupId.parse(data.getString(KEY_GROUP_ID)).requireV1());
+    public @NonNull AvatarGroupsV1DownloadJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new AvatarGroupsV1DownloadJob(parameters, GroupId.parse(data.getString(KEY_GROUP_ID)).requireV1());
     }
   }
 }

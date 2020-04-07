@@ -46,6 +46,7 @@ public class ApplicationDependencies {
   private static FrameRateTracker             frameRateTracker;
   private static KeyValueStore                keyValueStore;
   private static MegaphoneRepository          megaphoneRepository;
+  private static GroupsV2Operations           groupsV2Operations;
 
   public static synchronized void init(@NonNull Application application, @NonNull Provider provider) {
     if (ApplicationDependencies.application != null || ApplicationDependencies.provider != null) {
@@ -69,6 +70,16 @@ public class ApplicationDependencies {
     }
 
     return accountManager;
+  }
+
+  public static synchronized @NonNull GroupsV2Operations getGroupsV2Operations() {
+    assertInitialization();
+
+    if (groupsV2Operations == null) {
+      groupsV2Operations = provider.provideGroupsV2Operations();
+    }
+
+    return groupsV2Operations;
   }
 
   public static synchronized @NonNull KeyBackupService getKeyBackupService() {

@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
-import org.thoughtcrime.securesms.jobs.AvatarDownloadJob;
+import org.thoughtcrime.securesms.jobs.AvatarGroupsV1DownloadJob;
 import org.thoughtcrime.securesms.jobs.CleanPreKeysJob;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
@@ -54,7 +54,7 @@ public class WorkManagerFactoryMappings {
   private static final Map<String, String> FACTORY_MAP = new HashMap<String, String>() {{
     put(AttachmentDownloadJob.class.getName(), AttachmentDownloadJob.KEY);
     put(AttachmentUploadJob.class.getName(), AttachmentUploadJob.KEY);
-    put(AvatarDownloadJob.class.getName(), AvatarDownloadJob.KEY);
+    put("AvatarDownloadJob", AvatarGroupsV1DownloadJob.KEY);
     put(CleanPreKeysJob.class.getName(), CleanPreKeysJob.KEY);
     put(CreateSignedPreKeyJob.class.getName(), CreateSignedPreKeyJob.KEY);
     put(DirectoryRefreshJob.class.getName(), DirectoryRefreshJob.KEY);

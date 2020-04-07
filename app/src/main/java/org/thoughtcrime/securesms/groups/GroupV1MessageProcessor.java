@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobs.AvatarDownloadJob;
+import org.thoughtcrime.securesms.jobs.AvatarGroupsV1DownloadJob;
 import org.thoughtcrime.securesms.jobs.PushGroupUpdateJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MmsException;
@@ -228,7 +228,7 @@ public final class GroupV1MessageProcessor {
   {
     if (group.getAvatar().isPresent()) {
       ApplicationDependencies.getJobManager()
-                             .add(new AvatarDownloadJob(GroupId.v1(group.getGroupId())));
+                             .add(new AvatarGroupsV1DownloadJob(GroupId.v1(group.getGroupId())));
     }
 
     try {
