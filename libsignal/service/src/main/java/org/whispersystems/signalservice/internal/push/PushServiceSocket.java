@@ -828,7 +828,7 @@ public class PushServiceSocket {
       throw new IOException("Missing body!");
     }
 
-    return StorageManifest.parseFrom(response.bytes());
+    return StorageManifest.parseFrom(readBodyBytes(response));
   }
 
   public StorageManifest getStorageManifestIfDifferentVersion(String authToken, long version) throws IOException {
@@ -838,7 +838,7 @@ public class PushServiceSocket {
       throw new IOException("Missing body!");
     }
 
-    return StorageManifest.parseFrom(response.bytes());
+    return StorageManifest.parseFrom(readBodyBytes(response));
   }
 
   public StorageItems readStorageItems(String authToken, ReadOperation operation) throws IOException {
@@ -848,7 +848,7 @@ public class PushServiceSocket {
       throw new IOException("Missing body!");
     }
 
-    return StorageItems.parseFrom(response.bytes());
+    return StorageItems.parseFrom(readBodyBytes(response));
   }
 
   public Optional<StorageManifest> writeStorageContacts(String authToken, WriteOperation writeOperation) throws IOException {
@@ -1733,7 +1733,7 @@ public class PushServiceSocket {
                                                  null);
 
     try {
-      return Group.parseFrom(response.bytes());
+      return Group.parseFrom(readBodyBytes(response));
     } catch (InvalidProtocolBufferException e) {
       throw new IOException("Cannot read protobuf", e);
     }
@@ -1748,7 +1748,7 @@ public class PushServiceSocket {
                                                  null);
 
     try {
-      return AvatarUploadAttributes.parseFrom(response.bytes());
+      return AvatarUploadAttributes.parseFrom(readBodyBytes(response));
     } catch (InvalidProtocolBufferException e) {
       throw new IOException("Cannot read protobuf", e);
     }
@@ -1763,7 +1763,7 @@ public class PushServiceSocket {
                                                protobufRequestBody(groupChange));
 
     try {
-      return GroupChange.parseFrom(response.bytes());
+      return GroupChange.parseFrom(readBodyBytes(response));
     } catch (InvalidProtocolBufferException e) {
       throw new IOException("Cannot read protobuf", e);
     }
@@ -1778,7 +1778,7 @@ public class PushServiceSocket {
                                                null);
 
     try {
-      return GroupChanges.parseFrom(response.bytes());
+      return GroupChanges.parseFrom(readBodyBytes(response));
     } catch (InvalidProtocolBufferException e) {
       throw new IOException("Cannot read protobuf", e);
     }
