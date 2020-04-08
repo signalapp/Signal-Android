@@ -146,40 +146,40 @@ public class GroupMessageProcessor {
       }
     }
 
-    Set<Address> recordMembers = new HashSet<>(groupRecord.getMembers());
-    Set<Address> messageMembers = new HashSet<>();
+    Set<Address> currentMembers = new HashSet<>(groupRecord.getMembers());
+    Set<Address> newMembers = new HashSet<>();
 
     for (String messageMember : group.getMembers().get()) {
-      messageMembers.add(Address.fromExternal(context, messageMember));
+      newMembers.add(Address.fromExternal(context, messageMember));
     }
 
-    Set<Address> addedMembers = new HashSet<>(messageMembers);
-    addedMembers.removeAll(recordMembers);
+    // Added members are the members who are present in newMembers but not in currentMembers
+    Set<Address> addedMembers = new HashSet<>(newMembers);
+    addedMembers.removeAll(currentMembers);
 
-    Set<Address> missingMembers = new HashSet<>(recordMembers);
-    missingMembers.removeAll(messageMembers);
+    // Kicked members are members who are present in currentMembers but not in newMembers
+    Set<Address> removedMembers = new HashSet<>(currentMembers);
+    removedMembers.removeAll(newMembers);
 
     GroupContext.Builder builder = createGroupContext(group);
     builder.setType(GroupContext.Type.UPDATE);
 
-    if (addedMembers.size() > 0) {
-      Set<Address> unionMembers = new HashSet<>(recordMembers);
-      unionMembers.addAll(messageMembers);
-      database.updateMembers(id, new LinkedList<>(unionMembers));
-
-      builder.clearMembers();
-
-      for (Address addedMember : addedMembers) {
-        builder.addMembers(addedMember.serialize());
-      }
-    } else {
-      builder.clearMembers();
+    // Update our group members if they're different
+    if (!currentMembers.equals(newMembers)) {
+      database.updateMembers(id, new LinkedList<>(newMembers));
     }
 
-    if (missingMembers.size() > 0) {
-      for (Address removedMember : missingMembers) {
-        builder.addMembers(removedMember.serialize());
-      }
+    builder.clearMembers();
+
+    // We add any new or removed members to the group context
+    // This will allow us later to iterate over them to check if they left or were added for UI display
+
+    for (Address addedMember : addedMembers) {
+      builder.addMembers(addedMember.serialize());
+    }
+
+    for (Address removedMember : removedMembers) {
+      builder.addMembers(removedMember.serialize());
     }
 
     if (group.getName().isPresent() || group.getAvatar().isPresent()) {
