@@ -2,7 +2,9 @@ package org.thoughtcrime.securesms.groups.ui;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.IdRes;
@@ -15,8 +17,9 @@ import org.thoughtcrime.securesms.R;
 
 public final class PopupMenuView extends View {
 
-  private @MenuRes  int       menu;
-  private @Nullable ItemClick callback;
+  @MenuRes  private int                    menu;
+  @Nullable private PrepareOptionsMenuItem prepareOptionsMenuItemCallback;
+  @Nullable private ItemClick              callback;
 
   public PopupMenuView(Context context) {
     super(context);
@@ -43,6 +46,16 @@ public final class PopupMenuView extends View {
 
         inflater.inflate(menu, popup.getMenu());
 
+        if (prepareOptionsMenuItemCallback != null) {
+          Menu menu = popup.getMenu();
+          for (int i = menu.size() - 1; i >= 0; i--) {
+            MenuItem item = menu.getItem(i);
+            if (!prepareOptionsMenuItemCallback.onPrepareOptionsMenuItem(item)) {
+              menu.removeItem(item.getItemId());
+            }
+          }
+        }
+
         popup.setOnMenuItemClickListener(item -> callback.onItemClick(item.getItemId()));
         popup.show();
       }
@@ -50,8 +63,25 @@ public final class PopupMenuView extends View {
   }
 
   public void setMenu(@MenuRes int menu, @NonNull ItemClick callback) {
-    this.menu     = menu;
-    this.callback = callback;
+    this.menu                           = menu;
+    this.prepareOptionsMenuItemCallback = null;
+    this.callback                       = callback;
+  }
+
+  public void setMenu(@MenuRes int menu, @NonNull PrepareOptionsMenuItem prepareOptionsMenuItem, @NonNull ItemClick callback) {
+    this.menu                           = menu;
+    this.prepareOptionsMenuItemCallback = prepareOptionsMenuItem;
+    this.callback                       = callback;
+  }
+
+  public interface PrepareOptionsMenuItem {
+
+    /**
+     * Chance to change the {@link MenuItem} after inflation.
+     *
+     * @return true to keep the {@link MenuItem}. false to remove the {@link MenuItem}.
+     */
+    boolean onPrepareOptionsMenuItem(@NonNull MenuItem menuItem);
   }
 
   public interface ItemClick {

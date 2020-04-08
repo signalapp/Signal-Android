@@ -192,12 +192,13 @@ public final class GroupsV2Operations {
                                                                                                 .setPresentation(ByteString.copyFrom(presentation.serialize())));
     }
 
-    public GroupChange.Actions.Builder createRemoveInvitationChange(final Set<byte[]> uuidCipherTextsFromInvitesToRemove) {
+    public GroupChange.Actions.Builder createRemoveInvitationChange(final Set<UuidCiphertext> uuidCipherTextsFromInvitesToRemove) {
       GroupChange.Actions.Builder builder = GroupChange.Actions
                                                        .newBuilder();
 
-      for (byte[] uuidCipherText: uuidCipherTextsFromInvitesToRemove) {
-        builder.addDeletePendingMembers(GroupChange.Actions.DeletePendingMemberAction.newBuilder().setDeletedUserId(ByteString.copyFrom(uuidCipherText)));
+      for (UuidCiphertext uuidCipherText: uuidCipherTextsFromInvitesToRemove) {
+        builder.addDeletePendingMembers(GroupChange.Actions.DeletePendingMemberAction.newBuilder()
+                                                                                     .setDeletedUserId(ByteString.copyFrom(uuidCipherText.serialize())));
       }
 
       return builder;

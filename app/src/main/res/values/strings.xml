@@ -456,9 +456,27 @@
     <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">No pending invites by other group members.</string>
     <string name="PendingMembersActivity_missing_detail_explanation">Details of people invited by other group members are not shown. If invitees choose to join, their information will be shared with the group at that time. They will not see any messages in the group until they join.</string>
 
+    <string name="PendingMembersActivity_cancel_invite">Cancel invite</string>
+    <string name="PendingMembersActivity_cancel_invites">Cancel invites</string>
+    <plurals name="PendingMembersActivity_cancel_invites">
+        <item quantity="one">Cancel invite</item>
+        <item quantity="other">Cancel %1$d invites</item>
+    </plurals>
+    <plurals name="PendingMembersActivity_error_canceling_invite">
+        <item quantity="one">Error canceling invite</item>
+        <item quantity="other">Error canceling invites</item>
+    </plurals>
+
     <plurals name="GroupMemberList_invited">
         <item quantity="one">%1$s invited 1 person</item>
         <item quantity="other">%1$s invited %2$d people</item>
+    </plurals>
+
+    <!-- GV2 Invite cancellation confirmation -->
+    <string name="GroupManagement_cancel_own_single_invite">Do you want to cancel the invite you sent to %1$s?</string>
+    <plurals name="GroupManagement_cancel_others_invites">
+        <item quantity="one">Do you want to cancel the invite sent by %1$s?</item>
+        <item quantity="other">Do you want to cancel %2$d invites sent by %1$s?</item>
     </plurals>
 
     <!-- CropImageActivity -->

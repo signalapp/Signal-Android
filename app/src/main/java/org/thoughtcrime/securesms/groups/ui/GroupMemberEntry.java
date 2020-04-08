@@ -2,12 +2,18 @@ package org.thoughtcrime.securesms.groups.ui;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.LiveData;
 
+import org.signal.zkgroup.groups.UuidCiphertext;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.DefaultValueLiveData;
+
+import java.util.Collection;
 
 public abstract class GroupMemberEntry {
 
-  private @Nullable Runnable onClick;
+            private final DefaultValueLiveData<Boolean> busy    = new DefaultValueLiveData<>(false);
+  @Nullable private       Runnable                      onClick;
 
   private GroupMemberEntry() {
   }
@@ -18,6 +24,14 @@ public abstract class GroupMemberEntry {
 
   public @Nullable Runnable getOnClick() {
     return onClick;
+  }
+
+  public LiveData<Boolean> getBusy() {
+    return busy;
+  }
+
+  public void setBusy(boolean busy) {
+    this.busy.postValue(busy);
   }
 
   public final static class FullMember extends GroupMemberEntry {
@@ -34,30 +48,40 @@ public abstract class GroupMemberEntry {
   }
 
   public final static class PendingMember extends GroupMemberEntry {
-    private final Recipient invitee;
-    private final byte[]    inviteeCipherText;
+    private final Recipient      invitee;
+    private final UuidCiphertext inviteeCipherText;
+    private final boolean        cancellable;
 
-    public PendingMember(@NonNull Recipient invitee, @NonNull byte[] inviteeCipherText) {
+    public PendingMember(@NonNull Recipient invitee, @NonNull UuidCiphertext inviteeCipherText, boolean cancellable) {
       this.invitee           = invitee;
       this.inviteeCipherText = inviteeCipherText;
+      this.cancellable       = cancellable;
     }
 
     public Recipient getInvitee() {
       return invitee;
     }
 
-    public byte[] getInviteeCipherText() {
+    public UuidCiphertext getInviteeCipherText() {
       return inviteeCipherText;
+    }
+
+    public boolean isCancellable() {
+      return cancellable;
     }
   }
 
   public final static class UnknownPendingMemberCount extends GroupMemberEntry {
-    private Recipient inviter;
-    private int       inviteCount;
+    private final Recipient                  inviter;
+    private final Collection<UuidCiphertext> ciphertexts;
+    private final boolean                    cancellable;
 
-    public UnknownPendingMemberCount(@NonNull Recipient inviter, int inviteCount) {
+    public UnknownPendingMemberCount(@NonNull Recipient inviter,
+                                     @NonNull Collection<UuidCiphertext> ciphertexts,
+                                     boolean cancellable) {
       this.inviter     = inviter;
-      this.inviteCount = inviteCount;
+      this.ciphertexts = ciphertexts;
+      this.cancellable = cancellable;
     }
 
     public Recipient getInviter() {
@@ -65,7 +89,15 @@ public abstract class GroupMemberEntry {
     }
 
     public int getInviteCount() {
-      return inviteCount;
+      return ciphertexts.size();
+    }
+
+    public Collection<UuidCiphertext> getCiphertexts() {
+      return ciphertexts;
+    }
+
+    public boolean isCancellable() {
+      return cancellable;
     }
   }
 }

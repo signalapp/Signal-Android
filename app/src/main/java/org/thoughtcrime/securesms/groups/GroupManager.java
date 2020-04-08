@@ -7,10 +7,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import org.signal.zkgroup.VerificationFailedException;
+import org.signal.zkgroup.groups.UuidCiphertext;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.whispersystems.signalservice.api.groupsv2.InvalidGroupStateException;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -52,6 +56,15 @@ public final class GroupManager {
   @WorkerThread
   public static boolean leaveGroup(@NonNull Context context, @NonNull GroupId.Push groupId) {
     return V1GroupManager.leaveGroup(context, groupId.requireV1());
+  }
+
+  @WorkerThread
+  public static void cancelInvites(@NonNull Context context,
+                                   @NonNull GroupId.V2 groupId,
+                                   @NonNull Collection<UuidCiphertext> uuidCipherTexts)
+      throws InvalidGroupStateException, VerificationFailedException, IOException
+  {
+    throw new AssertionError("NYI"); // TODO: GV2 allow invite cancellation
   }
 
   public static class GroupActionResult {

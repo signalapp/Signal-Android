@@ -48,6 +48,10 @@ public final class GroupMemberListView extends RecyclerView {
     }
   }
 
+  public void setAdminActionsListener(@Nullable AdminActionsListener adminActionsListener) {
+    membersAdapter.setAdminActionsListener(adminActionsListener);
+  }
+
   public void setMembers(@NonNull Collection<? extends GroupMemberEntry> recipients) {
     membersAdapter.updateData(recipients);
   }

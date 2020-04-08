@@ -12,6 +12,8 @@ import androidx.lifecycle.ViewModelProviders;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.groups.ui.AdminActionsListener;
+import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 
 import java.util.Objects;
@@ -44,6 +46,32 @@ public class PendingMemberInvitesFragment extends Fragment {
     othersInvited           = view.findViewById(R.id.members_others_invited);
     youInvitedEmptyState    = view.findViewById(R.id.no_pending_from_you);
     othersInvitedEmptyState = view.findViewById(R.id.no_pending_from_others);
+
+    youInvited.setAdminActionsListener(new AdminActionsListener() {
+
+      @Override
+      public void onCancelInvite(@NonNull GroupMemberEntry.PendingMember pendingMember) {
+        viewModel.cancelInviteFor(pendingMember);
+      }
+
+      @Override
+      public void onCancelAllInvites(@NonNull GroupMemberEntry.UnknownPendingMemberCount pendingMembers) {
+        throw new AssertionError();
+      }
+    });
+
+    othersInvited.setAdminActionsListener(new AdminActionsListener() {
+
+      @Override
+      public void onCancelInvite(@NonNull GroupMemberEntry.PendingMember pendingMember) {
+        throw new AssertionError();
+      }
+
+      @Override
+      public void onCancelAllInvites(@NonNull GroupMemberEntry.UnknownPendingMemberCount pendingMembers) {
+        viewModel.cancelInvitesFor(pendingMembers);
+      }
+    });
 
     return view;
   }
