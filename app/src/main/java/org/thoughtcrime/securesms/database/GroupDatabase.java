@@ -27,10 +27,10 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.UuidUtil;
-import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 
 import java.io.Closeable;
 import java.security.SecureRandom;
@@ -200,9 +200,9 @@ public final class GroupDatabase extends Database {
 
     try (Cursor cursor = database.query(table, null, query, args, null, null, orderBy)) {
       while (cursor != null && cursor.moveToNext()) {
-        List<String> members = Util.split(cursor.getString(cursor.getColumnIndexOrThrow(MEMBERS)), ",");
+        String serializedMembers = cursor.getString(cursor.getColumnIndexOrThrow(MEMBERS));
 
-        if (members.contains(recipientId.serialize())) {
+        if (RecipientId.serializedListContains(serializedMembers, recipientId)) {
           groups.add(new Reader(cursor).getCurrent());
         }
       }
@@ -450,6 +450,23 @@ public final class GroupDatabase extends Database {
     ContentValues  values   = new ContentValues();
     values.put(ACTIVE, active ? 1 : 0);
     database.update(TABLE_NAME, values, GROUP_ID + " = ?", new String[] {groupId.toString()});
+  }
+
+  @WorkerThread
+  public boolean isCurrentMember(@NonNull GroupId.Push groupId, @NonNull RecipientId recipientId) {
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+
+    try (Cursor cursor = database.query(TABLE_NAME, new String[] {MEMBERS},
+                                        GROUP_ID + " = ?", new String[] {groupId.toString()},
+                                        null, null, null))
+    {
+      if (cursor.moveToNext()) {
+        String serializedMembers = cursor.getString(cursor.getColumnIndexOrThrow(MEMBERS));
+        return RecipientId.serializedListContains(serializedMembers, recipientId);
+      } else {
+        return false;
+      }
+    }
   }
 
   private static String serializeV2GroupMembers(@NonNull Context context, @NonNull DecryptedGroup decryptedGroup) {

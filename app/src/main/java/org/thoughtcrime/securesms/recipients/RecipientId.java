@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class RecipientId implements Parcelable, Comparable<RecipientId> {
 
@@ -60,6 +61,12 @@ public class RecipientId implements Parcelable, Comparable<RecipientId> {
     }
 
     return out;
+  }
+
+  public static boolean serializedListContains(@NonNull String serialized, @NonNull RecipientId recipientId) {
+    return Pattern.compile("\\b" + recipientId.serialize() + "\\b")
+                  .matcher(serialized)
+                  .find();
   }
 
   public boolean isUnknown() {

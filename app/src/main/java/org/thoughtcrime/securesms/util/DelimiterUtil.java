@@ -1,8 +1,6 @@
 package org.thoughtcrime.securesms.util;
 
 
-import android.text.TextUtils;
-
 import java.util.regex.Pattern;
 
 public class DelimiterUtil {
@@ -16,7 +14,7 @@ public class DelimiterUtil {
   }
 
   public static String[] split(String value, char delimiter) {
-    if (TextUtils.isEmpty(value)) {
+    if (value == null || value.length() == 0) {
       return new String[0];
     } else {
       String regex = "(?<!\\\\)" + Pattern.quote(delimiter + "");

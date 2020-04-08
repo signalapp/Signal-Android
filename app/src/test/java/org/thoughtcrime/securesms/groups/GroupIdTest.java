@@ -281,4 +281,18 @@ public final class GroupIdTest {
     assertEquals("__textsecure_group__!090a0b0c0d0e0f000102030405060708", v1.toString());
     assertTrue(v1.isV1());
   }
+
+  @Test
+  public void parse_bytes_to_v1_via_push() {
+    GroupId.V1 v1 = GroupId.push(new byte[]{ 9, 10, 11, 12, 13, 14, 15, 0, 1, 2, 3, 4, 5, 6, 7, 8 }).requireV1();
+
+    assertEquals("__textsecure_group__!090a0b0c0d0e0f000102030405060708", v1.toString());
+  }
+
+  @Test
+  public void parse_bytes_to_v2_via_by_push() {
+    GroupId.V2 v2 = GroupId.push(new byte[]{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 }).requireV2();
+
+    assertEquals("__textsecure_group__!000102030405060708090a0b0c0d0e0f000102030405060708090a0b0c0d0e0f", v2.toString());
+  }
 }

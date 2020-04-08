@@ -19,7 +19,6 @@ public abstract class GroupId {
   private static final int    MMS_BYTE_LENGTH             = 16;
   private static final int    V1_MMS_BYTE_LENGTH          = 16;
   private static final int    V2_BYTE_LENGTH              = GroupIdentifier.SIZE;
-  private static final int    V2_ENCODED_LENGTH           = ENCODED_SIGNAL_GROUP_PREFIX.length() + V2_BYTE_LENGTH * 2;
 
   private final String encodedId;
 
@@ -63,6 +62,10 @@ public abstract class GroupId {
                                .getGroupIdentifier());
   }
 
+  public static GroupId.Push push(byte[] bytes) {
+    return bytes.length == V2_BYTE_LENGTH ? v2(bytes) : v1(bytes);
+  }
+
   public static @NonNull GroupId parse(@NonNull String encodedGroupId) {
     try {
       if (!isEncodedGroup(encodedGroupId)) {
@@ -71,10 +74,7 @@ public abstract class GroupId {
 
       byte[] bytes = extractDecodedId(encodedGroupId);
 
-           if (encodedGroupId.startsWith(ENCODED_MMS_GROUP_PREFIX)) return mms(bytes);
-      else if (encodedGroupId.length() == V2_ENCODED_LENGTH)        return v2(bytes);
-      else                                                          return v1(bytes);
-
+      return encodedGroupId.startsWith(ENCODED_MMS_GROUP_PREFIX) ? mms(bytes) : push(bytes);
     } catch (IOException e) {
       throw new AssertionError(e);
     }

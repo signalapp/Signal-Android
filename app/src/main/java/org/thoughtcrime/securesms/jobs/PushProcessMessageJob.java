@@ -1324,8 +1324,14 @@ public final class PushProcessMessageJob extends BaseJob {
     long threadId;
 
     if (typingMessage.getGroupId().isPresent()) {
-      RecipientId recipientId  = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(GroupId.v1(typingMessage.getGroupId().get()));
-      Recipient groupRecipient = Recipient.resolved(recipientId);
+      GroupId.Push groupId = GroupId.push(typingMessage.getGroupId().get());
+
+      if (!DatabaseFactory.getGroupDatabase(context).isCurrentMember(groupId, author.getId())) {
+        Log.w(TAG, "Seen typing indicator for non-member");
+        return;
+      }
+
+      Recipient groupRecipient = Recipient.externalGroup(context, groupId);
 
       threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
     } else {
