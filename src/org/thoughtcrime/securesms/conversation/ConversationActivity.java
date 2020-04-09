@@ -317,7 +317,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   Button                      makeDefaultSmsButton;
   private   Button                      registerButton;
   private   InputAwareLayout            container;
-  private   View                        composePanel;
   protected Stub<ReminderView>          reminderView;
   private   Stub<UnverifiedBannerView>  unverifiedBannerView;
   private   Stub<GroupShareProfileView> groupShareProfileView;
@@ -552,7 +551,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     updateTitleTextView(recipient);
     updateSubtitleTextView();
     setActionBarColor(recipient.getColor());
-    setBlockedUserState(recipient, isSecureText, isDefaultSms);
+    updateInputUI(recipient, isSecureText, isDefaultSms);
     setGroupShareProfileReminder(recipient);
     calculateCharactersRemaining();
 
@@ -645,7 +644,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       updateTitleTextView(recipient);
       updateSubtitleTextView();
       NotificationChannels.updateContactChannelName(this, recipient);
-      setBlockedUserState(recipient, isSecureText, isDefaultSms);
+      updateInputUI(recipient, isSecureText, isDefaultSms);
       supportInvalidateOptionsMenu();
       break;
     case TAKE_PHOTO:
@@ -858,6 +857,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         searchViewModel.onSearchClosed();
         searchNav.setVisibility(View.GONE);
         inputPanel.setVisibility(View.VISIBLE);
+        updateInputUI(recipient, isSecureText, isDefaultSms);
         fragment.onSearchQueryUpdated(null);
         invalidateOptionsMenu();
         return true;
@@ -1343,7 +1343,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     calculateCharactersRemaining();
     supportInvalidateOptionsMenu();
-    setBlockedUserState(recipient, isSecureText, isDefaultSms);
+    updateInputUI(recipient, isSecureText, isDefaultSms);
   }
 
   ///// Initializers
@@ -1627,7 +1627,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     unblockButton          = ViewUtil.findById(this, R.id.unblock_button);
     makeDefaultSmsButton   = ViewUtil.findById(this, R.id.make_default_sms_button);
     registerButton         = ViewUtil.findById(this, R.id.register_button);
-    composePanel           = ViewUtil.findById(this, R.id.bottom_panel);
     container              = ViewUtil.findById(this, R.id.layout_container);
     reminderView           = ViewUtil.findStubById(this, R.id.reminder_stub);
     unverifiedBannerView   = ViewUtil.findStubById(this, R.id.unverified_banner_stub);
@@ -1835,7 +1834,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       updateTitleTextView(recipient);
       updateSubtitleTextView();
 //      titleView.setVerified(identityRecords.isVerified());
-      setBlockedUserState(recipient, isSecureText, isDefaultSms);
+      updateInputUI(recipient, isSecureText, isDefaultSms);
       setActionBarColor(recipient.getColor());
       setGroupShareProfileReminder(recipient);
       updateReminders(recipient.hasSeenInviteReminder());
@@ -2043,29 +2042,29 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     setStatusBarColor(getResources().getColor(R.color.action_bar_background));
   }
 
-  private void setBlockedUserState(Recipient recipient, boolean isSecureText, boolean isDefaultSms) {
-    if (recipient.isGroupRecipient() && recipient.getAddress().isRSSFeed()) {
+  private void updateInputUI(Recipient recipient, boolean isSecureText, boolean isDefaultSms) {
+    if (recipient.isGroupRecipient() && !isActiveGroup()) {
       unblockButton.setVisibility(View.GONE);
-      composePanel.setVisibility(View.GONE);
+      inputPanel.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.GONE);
       registerButton.setVisibility(View.GONE);
     } else if (recipient.isBlocked()) {
       unblockButton.setVisibility(View.VISIBLE);
-      composePanel.setVisibility(View.GONE);
+      inputPanel.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.GONE);
       registerButton.setVisibility(View.GONE);
     } else if (!isSecureText && isPushGroupConversation()) {
       unblockButton.setVisibility(View.GONE);
-      composePanel.setVisibility(View.GONE);
+      inputPanel.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.GONE);
       registerButton.setVisibility(View.VISIBLE);
     } else if (!isSecureText && !isDefaultSms) {
       unblockButton.setVisibility(View.GONE);
-      composePanel.setVisibility(View.GONE);
+      inputPanel.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.VISIBLE);
       registerButton.setVisibility(View.GONE);
     } else {
-      composePanel.setVisibility(View.VISIBLE);
+      inputPanel.setVisibility(View.VISIBLE);
       unblockButton.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.GONE);
       registerButton.setVisibility(View.GONE);
@@ -2125,7 +2124,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private boolean isActiveGroup() {
-    if (!isGroupConversation()) return false;
+    if (!isGroupConversation() || recipient.getAddress().isRSSFeed()) return false;
 
     Optional<GroupRecord> record = DatabaseFactory.getGroupDatabase(this).getGroup(getRecipient().getAddress().toGroupString());
     return record.isPresent() && record.get().isActive();
@@ -2314,7 +2313,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       String hint = enabled ? "Message" : "Pending session request";
       inputPanel.setHint(hint);
       inputPanel.setEnabled(enabled);
-      if (enabled) {
+      if (enabled && inputPanel.getVisibility() == View.VISIBLE) {
         inputPanel.composeText.requestFocus();
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         inputMethodManager.showSoftInput(inputPanel.composeText, 0);
@@ -2939,6 +2938,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void handleReplyMessage(MessageRecord messageRecord) {
+    if (recipient.isGroupRecipient() && !isActiveGroup()) { return; }
+
     Recipient author;
 
     if (messageRecord.isOutgoing()) {
