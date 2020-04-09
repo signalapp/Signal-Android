@@ -2,7 +2,10 @@ package org.thoughtcrime.securesms.loki.redesign.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.KeyEvent
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView.OnEditorActionListener
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_display_name.*
 import network.loki.messenger.R
@@ -21,6 +24,19 @@ class DisplayNameActivity : BaseActionBarActivity() {
         setUpActionBarSessionLogo()
         setContentView(R.layout.activity_display_name)
         displayNameEditText.imeOptions = displayNameEditText.imeOptions or 16777216 // Always use incognito keyboard
+        displayNameEditText.setOnEditorActionListener(
+                OnEditorActionListener { _, actionId, event ->
+                    // Handle validation from keyboard to trigger registration
+                    if (actionId == EditorInfo.IME_ACTION_SEARCH ||
+                            actionId == EditorInfo.IME_ACTION_DONE ||
+                            (event.action === KeyEvent.ACTION_DOWN
+                                    && event.keyCode === KeyEvent.KEYCODE_ENTER)) {
+                        this.register();
+                        return@OnEditorActionListener true
+                    }
+                    // Return true if you have consumed the action, else false.
+                    false
+                })
         registerButton.setOnClickListener { register() }
     }
 
