@@ -137,11 +137,23 @@ public class GroupMessageProcessor {
     GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
     String        id       = GroupUtil.getEncodedId(group);
 
-    // Only update group if admin sent the message
+    String masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+    String ourHexEncodedPublicKey = masterHexEncodedPublicKey != null ? masterHexEncodedPublicKey : TextSecurePreferences.getLocalNumber(context);
+
     if (group.getGroupType() == SignalServiceGroup.GroupType.SIGNAL) {
+      // Only update group if admin sent the message
       String hexEncodedPublicKey = getMasterHexEncodedPublicKey(context, content.getSender());
       if (!groupRecord.getAdmins().contains(Address.fromSerialized(hexEncodedPublicKey))) {
         Log.d("Loki - Group Message", "Received a group update message from a non-admin user for " + id +". Ignoring.");
+        return null;
+      }
+
+      // We should only process update message if we were in the group
+      Address ourAddress = Address.fromSerialized(ourHexEncodedPublicKey);
+      if (!groupRecord.getMembers().contains(ourAddress) &&
+              !group.getMembers().or(Collections.emptyList()).contains(ourHexEncodedPublicKey)) {
+        Log.d("Loki - Group Message", "Received a group update message from a group we are not members in:  " + id + " . Ignoring.");
+        database.setActive(id, false);
         return null;
       }
     }
@@ -169,23 +181,14 @@ public class GroupMessageProcessor {
       database.updateMembers(id, new LinkedList<>(newMembers));
     }
 
-    builder.clearMembers();
-
     // We add any new or removed members to the group context
     // This will allow us later to iterate over them to check if they left or were added for UI display
     for (Address addedMember : addedMembers) {
-      builder.addMembers(addedMember.serialize());
+      builder.addNewMembers(addedMember.serialize());
     }
 
     for (Address removedMember : removedMembers) {
-      builder.addMembers(removedMember.serialize());
-    }
-
-    // If we were removed then we need to disable the chat
-    String masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
-    String ourHexEncodedPublicKey = masterHexEncodedPublicKey != null ? masterHexEncodedPublicKey : TextSecurePreferences.getLocalNumber(context);
-    if (removedMembers.contains(Address.fromSerialized(ourHexEncodedPublicKey))) {
-      database.setActive(id, false);
+      builder.addRemovedMembers(removedMember.serialize());
     }
 
     if (group.getName().isPresent() || group.getAvatar().isPresent()) {
@@ -197,10 +200,15 @@ public class GroupMessageProcessor {
       builder.clearName();
     }
 
-    if (!groupRecord.isActive()) database.setActive(id, true);
+    // If we were removed then we need to disable the chat
+    if (removedMembers.contains(Address.fromSerialized(ourHexEncodedPublicKey))) {
+      database.setActive(id, false);
+    } else {
+      if (!groupRecord.isActive()) database.setActive(id, true);
 
-    if (group.getMembers().isPresent()) {
-      establishSessionsWithMembersIfNeeded(context, group.getMembers().get());
+      if (group.getMembers().isPresent()) {
+        establishSessionsWithMembersIfNeeded(context, group.getMembers().get());
+      }
     }
 
     return storeMessage(context, content, group, builder.build(), outgoing);

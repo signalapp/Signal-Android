@@ -10,7 +10,6 @@ import com.google.protobuf.ByteString;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -159,7 +158,7 @@ public class GroupUtil {
 
     @NonNull  private final Context         context;
     @Nullable private final GroupContext    groupContext;
-    private final List<Recipient> members;
+    private final List<Recipient> newMembers;
     private final List<Recipient> removedMembers;
     private boolean ourDeviceWasRemoved;
 
@@ -167,33 +166,33 @@ public class GroupUtil {
       this.context      = context.getApplicationContext();
       this.groupContext = groupContext;
 
-      this.members = new LinkedList<>();
+      this.newMembers = new LinkedList<>();
       this.removedMembers = new LinkedList<>();
       this.ourDeviceWasRemoved = false;
 
-      if (groupContext != null && !groupContext.getMembersList().isEmpty()) {
-        List<String> memberList = groupContext.getMembersList();
-        List<Address> currentMembers = getCurrentGroupMembers();
+      if (groupContext != null) {
+        List<String> newMembers = groupContext.getNewMembersList();
+        for (String member : newMembers) {
+          this.newMembers.add(this.toRecipient(member));
+        }
 
-        // Add them to the member or removed members lists
-        for (String member : memberList) {
-          Address address = Address.fromSerialized(member);
-          Recipient recipient = Recipient.from(context, address, true);
-          if (currentMembers == null || currentMembers.contains(address)) {
-            this.members.add(recipient);
-          } else {
-            this.removedMembers.add(recipient);
-          }
+        List<String> removedMembers = groupContext.getRemovedMembersList();
+        for (String member : removedMembers) {
+          this.removedMembers.add(this.toRecipient(member));
         }
 
         // Check if our device was removed
         if (!removedMembers.isEmpty()) {
           String masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
           String hexEncodedPublicKey = masterHexEncodedPublicKey != null ? masterHexEncodedPublicKey : TextSecurePreferences.getLocalNumber(context);
-          Recipient self = Recipient.from(context, Address.fromSerialized(hexEncodedPublicKey), false);
-          ourDeviceWasRemoved = removedMembers.contains(self);
+          ourDeviceWasRemoved = removedMembers.contains(hexEncodedPublicKey);
         }
       }
+    }
+
+    private Recipient toRecipient(String hexEncodedPublicKey) {
+      Address address = Address.fromSerialized(hexEncodedPublicKey);
+      return Recipient.from(context, address, false);
     }
 
     public String toString(Recipient sender) {
@@ -211,10 +210,10 @@ public class GroupUtil {
 
       String title = groupContext.getName();
 
-      if (!members.isEmpty()) {
+      if (!newMembers.isEmpty()) {
         description.append("\n");
         description.append(context.getResources().getQuantityString(R.plurals.GroupUtil_joined_the_group,
-                                                                    members.size(), toString(members)));
+                                                                    newMembers.size(), toString(newMembers)));
       }
 
       if (!removedMembers.isEmpty()) {
@@ -224,8 +223,8 @@ public class GroupUtil {
       }
 
       if (title != null && !title.trim().isEmpty()) {
-        if (!members.isEmpty()) description.append(" ");
-        else                 description.append("\n");
+        String separator = (!newMembers.isEmpty() || !removedMembers.isEmpty()) ? " " : "\n";
+        description.append(separator);
         description.append(context.getString(R.string.GroupUtil_group_name_is_now, title));
       }
 
@@ -233,8 +232,8 @@ public class GroupUtil {
     }
 
     public void addListener(RecipientModifiedListener listener) {
-      if (!this.members.isEmpty()) {
-        for (Recipient member : this.members) {
+      if (!this.newMembers.isEmpty()) {
+        for (Recipient member : this.newMembers) {
           member.addListener(listener);
         }
       }
@@ -251,24 +250,6 @@ public class GroupUtil {
     }
 
     return result;
-    }
-
-    private List<Address> getCurrentGroupMembers() {
-      if (groupContext == null) { return null; }
-      GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
-      byte[] decodedGroupId = groupContext.getId().toByteArray();
-      String signalGroupId = getEncodedId(decodedGroupId, false);
-      String publicChatId = getEncodedPublicChatId(decodedGroupId);
-      String rssFeedId = getEncodedRSSFeedId(decodedGroupId);
-      GroupRecord groupRecord = null;
-      if (!groupDatabase.isUnknownGroup(signalGroupId)) {
-        groupRecord = groupDatabase.getGroup(signalGroupId).orNull();
-      } else if (!groupDatabase.isUnknownGroup(publicChatId)) {
-        groupRecord = groupDatabase.getGroup(publicChatId).orNull();
-      } else if (!groupDatabase.isUnknownGroup(rssFeedId)) {
-        groupRecord = groupDatabase.getGroup(rssFeedId).orNull();
-      }
-      return (groupRecord != null) ? groupRecord.getMembers() : null;
     }
   }
 }
