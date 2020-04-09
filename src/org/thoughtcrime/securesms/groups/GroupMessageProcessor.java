@@ -173,13 +173,19 @@ public class GroupMessageProcessor {
 
     // We add any new or removed members to the group context
     // This will allow us later to iterate over them to check if they left or were added for UI display
-
     for (Address addedMember : addedMembers) {
       builder.addMembers(addedMember.serialize());
     }
 
     for (Address removedMember : removedMembers) {
       builder.addMembers(removedMember.serialize());
+    }
+
+    // If we were removed then we need to disable the chat
+    String masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+    String ourHexEncodedPublicKey = masterHexEncodedPublicKey != null ? masterHexEncodedPublicKey : TextSecurePreferences.getLocalNumber(context);
+    if (removedMembers.contains(Address.fromSerialized(ourHexEncodedPublicKey))) {
+      database.setActive(id, false);
     }
 
     if (group.getName().isPresent() || group.getAvatar().isPresent()) {
