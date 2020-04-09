@@ -137,8 +137,7 @@ public class GroupMessageProcessor {
     GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
     String        id       = GroupUtil.getEncodedId(group);
 
-    String masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
-    String ourHexEncodedPublicKey = masterHexEncodedPublicKey != null ? masterHexEncodedPublicKey : TextSecurePreferences.getLocalNumber(context);
+    String ourHexEncodedPublicKey = getMasterHexEncodedPublicKey(context, TextSecurePreferences.getLocalNumber(context));
 
     if (group.getGroupType() == SignalServiceGroup.GroupType.SIGNAL) {
       // Only update group if admin sent the message
