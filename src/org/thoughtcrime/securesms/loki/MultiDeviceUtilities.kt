@@ -18,9 +18,9 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.loki.api.DeviceLink
-import org.whispersystems.signalservice.loki.api.LokiDeviceLinkUtilities
-import org.whispersystems.signalservice.loki.api.LokiFileServerAPI
+import org.whispersystems.signalservice.loki.api.multidevice.DeviceLink
+import org.whispersystems.signalservice.loki.api.multidevice.LokiDeviceLinkUtilities
+import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
 import org.whispersystems.signalservice.loki.utilities.recover
 import org.whispersystems.signalservice.loki.utilities.retryIfNeeded

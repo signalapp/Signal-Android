@@ -17,9 +17,9 @@ import org.thoughtcrime.securesms.loki.redesign.utilities.QRCodeUtilities
 import org.thoughtcrime.securesms.loki.toPx
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
-import org.whispersystems.signalservice.loki.api.DeviceLink
-import org.whispersystems.signalservice.loki.api.DeviceLinkingSession
-import org.whispersystems.signalservice.loki.api.DeviceLinkingSessionListener
+import org.whispersystems.signalservice.loki.api.multidevice.DeviceLink
+import org.whispersystems.signalservice.loki.api.multidevice.DeviceLinkingSession
+import org.whispersystems.signalservice.loki.api.multidevice.DeviceLinkingSessionListener
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
 
 class LinkDeviceMasterModeDialog : DialogFragment(), DeviceLinkingSessionListener {

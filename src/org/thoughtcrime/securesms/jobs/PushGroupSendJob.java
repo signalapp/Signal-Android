@@ -50,8 +50,8 @@ import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
-import org.whispersystems.signalservice.loki.api.LokiDeviceLinkUtilities;
-import org.whispersystems.signalservice.loki.api.LokiPublicChat;
+import org.whispersystems.signalservice.loki.api.multidevice.LokiDeviceLinkUtilities;
+import org.whispersystems.signalservice.loki.api.publicchats.LokiPublicChat;
 import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
 import java.io.IOException;

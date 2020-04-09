@@ -42,7 +42,7 @@ import org.thoughtcrime.securesms.util.BitmapUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.ProfileCipher
 import org.whispersystems.signalservice.api.util.StreamDetails
-import org.whispersystems.signalservice.loki.api.LokiFileServerAPI
+import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI
 import java.io.ByteArrayInputStream
 import java.io.File
 import java.security.SecureRandom
