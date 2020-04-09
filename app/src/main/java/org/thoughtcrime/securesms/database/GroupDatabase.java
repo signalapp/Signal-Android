@@ -132,6 +132,21 @@ public final class GroupDatabase extends Database {
     return Optional.fromNullable(reader.getCurrent());
   }
 
+   /**
+   * Call if you are sure this group should exist.
+   * <p>
+   * Finds group and throws if it cannot.
+   */
+  public @NonNull GroupRecord requireGroup(@NonNull GroupId groupId) {
+    Optional<GroupRecord> group = getGroup(groupId);
+
+    if (!group.isPresent()) {
+      throw new AssertionError("Group not found");
+    }
+
+    return group.get();
+  }
+
   public boolean isUnknownGroup(@NonNull GroupId groupId) {
     Optional<GroupRecord> group = getGroup(groupId);
 

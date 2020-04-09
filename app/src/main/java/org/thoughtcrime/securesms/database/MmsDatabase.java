@@ -56,6 +56,7 @@ import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
+import org.thoughtcrime.securesms.mms.MessageGroupContext;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
@@ -791,7 +792,7 @@ public class MmsDatabase extends MessagingDatabase {
         }
 
         if (body != null && (Types.isGroupQuit(outboxType) || Types.isGroupUpdate(outboxType))) {
-          return new OutgoingGroupMediaMessage(recipient, body, attachments, timestamp, 0, false, quote, contacts, previews);
+          return new OutgoingGroupMediaMessage(recipient, new MessageGroupContext(body, Types.isGroupV2(outboxType)), attachments, timestamp, 0, false, quote, contacts, previews);
         } else if (Types.isExpirationTimerUpdate(outboxType)) {
           return new OutgoingExpirationUpdateMessage(recipient, timestamp, expiresIn);
         }
@@ -1050,8 +1051,16 @@ public class MmsDatabase extends MessagingDatabase {
     if (forceSms)           type |= Types.MESSAGE_FORCE_SMS_BIT;
 
     if (message.isGroup()) {
-      if      (((OutgoingGroupMediaMessage)message).isGroupUpdate()) type |= Types.GROUP_UPDATE_BIT;
-      else if (((OutgoingGroupMediaMessage)message).isGroupQuit())   type |= Types.GROUP_QUIT_BIT;
+      OutgoingGroupMediaMessage outgoingGroupMediaMessage = (OutgoingGroupMediaMessage) message;
+      if (outgoingGroupMediaMessage.isV2Group()) {
+        MessageGroupContext.GroupV2Properties groupV2Properties = outgoingGroupMediaMessage.requireGroupV2Properties();
+        type |= Types.GROUP_V2_BIT;
+        if (groupV2Properties.isUpdate()) type |= Types.GROUP_UPDATE_BIT;
+      } else {
+        MessageGroupContext.GroupV1Properties properties = outgoingGroupMediaMessage.requireGroupV1Properties();
+        if      (properties.isUpdate()) type |= Types.GROUP_UPDATE_BIT;
+        else if (properties.isQuit())   type |= Types.GROUP_QUIT_BIT;
+      }
     }
 
     if (message.isExpirationUpdate()) {
@@ -1090,11 +1099,24 @@ public class MmsDatabase extends MessagingDatabase {
     long messageId = insertMediaMessage(message.getBody(), message.getAttachments(), quoteAttachments, message.getSharedContacts(), message.getLinkPreviews(), contentValues, insertListener);
 
     if (message.getRecipient().isGroup()) {
-      GroupReceiptDatabase receiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
-      List<Recipient>      members         = DatabaseFactory.getGroupDatabase(context).getGroupMembers(message.getRecipient().requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
+      OutgoingGroupMediaMessage outgoingGroupMediaMessage = (message instanceof OutgoingGroupMediaMessage) ? (OutgoingGroupMediaMessage) message : null;
 
-      receiptDatabase.insert(Stream.of(members).map(Recipient::getId).toList(),
-                             messageId, defaultReceiptStatus, message.getSentTimeMillis());
+      GroupReceiptDatabase receiptDatabase   = DatabaseFactory.getGroupReceiptDatabase(context);
+      RecipientDatabase    recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+      Set<RecipientId>     members           = new HashSet<>();
+
+      if (outgoingGroupMediaMessage != null && outgoingGroupMediaMessage.isV2Group()) {
+        MessageGroupContext.GroupV2Properties groupV2Properties = outgoingGroupMediaMessage.requireGroupV2Properties();
+        members.addAll(Stream.of(groupV2Properties.getActiveMembers()).map(recipientDatabase::getOrInsertFromUuid).toList());
+        if (groupV2Properties.isUpdate()) {
+          members.addAll(Stream.of(groupV2Properties.getPendingMembers()).map(recipientDatabase::getOrInsertFromUuid).toList());
+        }
+        members.remove(Recipient.self().getId());
+      } else {
+        members.addAll(Stream.of(DatabaseFactory.getGroupDatabase(context).getGroupMembers(message.getRecipient().requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF)).map(Recipient::getId).toList());
+      }
+
+      receiptDatabase.insert(members, messageId, defaultReceiptStatus, message.getSentTimeMillis());
 
       for (RecipientId recipientId : earlyDeliveryReceipts.keySet()) receiptDatabase.update(recipientId, messageId, GroupReceiptDatabase.STATUS_DELIVERED, -1);
       for (RecipientId recipientId : earlyReadReceipts.keySet())     receiptDatabase.update(recipientId, messageId, GroupReceiptDatabase.STATUS_READ, -1);

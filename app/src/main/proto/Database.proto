@@ -22,3 +22,13 @@ message ReactionList {
 
     repeated Reaction reactions = 1;
 }
+
+
+import "SignalService.proto";
+import "DecryptedGroups.proto";
+
+message DecryptedGroupV2Context {
+    signalservice.GroupContextV2 context    = 1;
+    DecryptedGroupChange         change     = 2;
+    DecryptedGroup               groupState = 3;
+}

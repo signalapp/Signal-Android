@@ -575,6 +575,11 @@ public class Recipient {
     return groupId != null && groupId.isPush();
   }
 
+  public boolean isPushV2Group() {
+    GroupId groupId = resolve().groupId;
+    return groupId != null && groupId.isV2();
+  }
+
   public @NonNull List<Recipient> getParticipants() {
     return new ArrayList<>(participants);
   }

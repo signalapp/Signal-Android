@@ -76,6 +76,7 @@ public interface MmsSmsColumns {
     protected static final long GROUP_UPDATE_BIT            = 0x10000;
     protected static final long GROUP_QUIT_BIT              = 0x20000;
     protected static final long EXPIRATION_TIMER_UPDATE_BIT = 0x40000;
+    protected static final long GROUP_V2_BIT                = 0x80000;
 
     // Encrypted Storage Information XXX
     public    static final long ENCRYPTION_MASK                  = 0xFF000000;
@@ -221,6 +222,10 @@ public interface MmsSmsColumns {
 
     public static boolean isGroupUpdate(long type) {
       return (type & GROUP_UPDATE_BIT) != 0;
+    }
+
+    public static boolean isGroupV2(long type) {
+      return (type & GROUP_V2_BIT) != 0;
     }
 
     public static boolean isGroupQuit(long type) {

@@ -6,21 +6,20 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 
-import java.io.IOException;
-import java.util.LinkedList;
+import java.util.Collections;
 import java.util.List;
 
-public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
+public final class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
 
-  private final GroupContext group;
+  private final MessageGroupContext messageGroupContext;
 
   public OutgoingGroupMediaMessage(@NonNull Recipient recipient,
-                                   @NonNull String encodedGroupContext,
+                                   @NonNull MessageGroupContext groupContext,
                                    @NonNull List<Attachment> avatar,
                                    long sentTimeMillis,
                                    long expiresIn,
@@ -28,12 +27,11 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
                                    @Nullable QuoteModel quote,
                                    @NonNull List<Contact> contacts,
                                    @NonNull List<LinkPreview> previews)
-      throws IOException
   {
-    super(recipient, encodedGroupContext, avatar, sentTimeMillis,
+    super(recipient, groupContext.getEncodedGroupContext(), avatar, sentTimeMillis,
           ThreadDatabase.DistributionTypes.CONVERSATION, expiresIn, viewOnce, quote, contacts, previews);
 
-    this.group = GroupContext.parseFrom(Base64.decode(encodedGroupContext));
+    this.messageGroupContext = groupContext;
   }
 
   public OutgoingGroupMediaMessage(@NonNull Recipient recipient,
@@ -46,12 +44,20 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
                                    @NonNull List<Contact> contacts,
                                    @NonNull List<LinkPreview> previews)
   {
-    super(recipient, Base64.encodeBytes(group.toByteArray()),
-          new LinkedList<Attachment>() {{if (avatar != null) add(avatar);}},
-          System.currentTimeMillis(),
-          ThreadDatabase.DistributionTypes.CONVERSATION, expireIn, viewOnce, quote, contacts, previews);
+    this(recipient, new MessageGroupContext(group), getAttachments(avatar), sentTimeMillis, expireIn, viewOnce, quote, contacts, previews);
+  }
 
-    this.group = group;
+  public OutgoingGroupMediaMessage(@NonNull Recipient recipient,
+                                   @NonNull DecryptedGroupV2Context group,
+                                   @Nullable final Attachment avatar,
+                                   long sentTimeMillis,
+                                   long expireIn,
+                                   boolean viewOnce,
+                                   @Nullable QuoteModel quote,
+                                   @NonNull List<Contact> contacts,
+                                   @NonNull List<LinkPreview> previews)
+  {
+    this(recipient, new MessageGroupContext(group), getAttachments(avatar), sentTimeMillis, expireIn, viewOnce, quote, contacts, previews);
   }
 
   @Override
@@ -59,15 +65,19 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
     return true;
   }
 
-  public boolean isGroupUpdate() {
-    return group.getType().getNumber() == GroupContext.Type.UPDATE_VALUE;
+  public boolean isV2Group() {
+    return messageGroupContext.isV2Group();
   }
 
-  public boolean isGroupQuit() {
-    return group.getType().getNumber() == GroupContext.Type.QUIT_VALUE;
+  public @NonNull MessageGroupContext.GroupV1Properties requireGroupV1Properties() {
+    return messageGroupContext.requireGroupV1Properties();
   }
 
-  public GroupContext getGroupContext() {
-    return group;
+  public @NonNull MessageGroupContext.GroupV2Properties requireGroupV2Properties() {
+    return messageGroupContext.requireGroupV2Properties();
+  }
+
+  private static List<Attachment> getAttachments(@Nullable Attachment avatar) {
+    return avatar == null ? Collections.emptyList() : Collections.singletonList(avatar);
   }
 }

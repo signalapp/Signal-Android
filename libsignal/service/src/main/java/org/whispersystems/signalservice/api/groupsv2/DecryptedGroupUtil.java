@@ -39,6 +39,16 @@ public final class DecryptedGroupUtil {
     return uuidList;
   }
 
+  public static ArrayList<UUID> membersToUuidList(Collection<DecryptedMember> membersList) {
+    ArrayList<UUID> uuidList = new ArrayList<>(membersList.size());
+
+    for (DecryptedMember member : membersList) {
+      uuidList.add(toUuid(member));
+    }
+
+    return uuidList;
+  }
+
   public static ArrayList<UUID> pendingToUuidList(Collection<DecryptedPendingMember> membersList) {
     ArrayList<UUID> uuidList = new ArrayList<>(membersList.size());
 
