@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.registration.RegistrationSmsHandler;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -71,7 +72,7 @@ public class SmsReceiveJob extends BaseJob {
 
   @Override
   public void onRun() throws MigrationPendingException {
-    if (TextSecurePreferences.getLocalUuid(context) == null && TextSecurePreferences.getLocalNumber(context) == null) {
+    if (TextSecurePreferences.getLocalUuid(context) == null && TextSecurePreferences.getLocalNumber(context) == null && !TextSecurePreferences.isVerifying(context)) {
       throw new NotReadyException();
     }
 
@@ -80,7 +81,14 @@ public class SmsReceiveJob extends BaseJob {
     if (message.isPresent() && !isBlocked(message.get())) {
       Optional<InsertResult> insertResult = storeMessage(message.get());
 
-      if (insertResult.isPresent()) {
+      // Creating a notification while verifying will crash the app.
+      if(TextSecurePreferences.isVerifying(context)){
+        Log.w(TAG, "*** Received SMS while verifying...");
+
+        String msg = message.get().getMessageBody();
+        RegistrationSmsHandler.handleRegistrationSms(context, msg);
+      }
+      else if (insertResult.isPresent()) {
         MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
       }
     } else if (message.isPresent()) {
