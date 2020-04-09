@@ -177,16 +177,10 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     this.toolbarLayout.setExpandedTitleColor(ThemeUtil.getThemedColor(this, R.attr.conversation_title_color));
     this.toolbarLayout.setCollapsedTitleTextColor(ThemeUtil.getThemedColor(this, R.attr.conversation_title_color));
 
-    this.threadPhotoRailView.setListener(mediaRecord -> {
-      Intent intent = new Intent(RecipientPreferenceActivity.this, MediaPreviewActivity.class);
-      intent.putExtra(MediaPreviewActivity.THREAD_ID_EXTRA, mediaRecord.getThreadId());
-      intent.putExtra(MediaPreviewActivity.DATE_EXTRA, mediaRecord.getDate());
-      intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, mediaRecord.getAttachment().getSize());
-      intent.putExtra(MediaPreviewActivity.CAPTION_EXTRA, mediaRecord.getAttachment().getCaption());
-      intent.putExtra(MediaPreviewActivity.LEFT_IS_RECENT_EXTRA, ViewCompat.getLayoutDirection(threadPhotoRailView) == ViewCompat.LAYOUT_DIRECTION_LTR);
-      intent.setDataAndType(mediaRecord.getAttachment().getDataUri(), mediaRecord.getContentType());
-      startActivity(intent);
-    });
+    this.threadPhotoRailView.setListener(mediaRecord ->
+      startActivity(MediaPreviewActivity.intentFromMediaRecord(RecipientPreferenceActivity.this,
+                                                               mediaRecord,
+                                                               ViewCompat.getLayoutDirection(threadPhotoRailView) == ViewCompat.LAYOUT_DIRECTION_LTR)));
 
     SimpleTask.run(
       () -> DatabaseFactory.getThreadDatabase(this).getThreadIdFor(recipientId),

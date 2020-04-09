@@ -117,6 +117,20 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
   private boolean               showThread;
   private MediaDatabase.Sorting sorting;
 
+  public static @NonNull Intent intentFromMediaRecord(@NonNull Context context,
+                                                      @NonNull MediaRecord mediaRecord,
+                                                      boolean leftIsRecent)
+  {
+    Intent intent = new Intent(context, MediaPreviewActivity.class);
+    intent.putExtra(MediaPreviewActivity.THREAD_ID_EXTRA, mediaRecord.getThreadId());
+    intent.putExtra(MediaPreviewActivity.DATE_EXTRA, mediaRecord.getDate());
+    intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, mediaRecord.getAttachment().getSize());
+    intent.putExtra(MediaPreviewActivity.CAPTION_EXTRA, mediaRecord.getAttachment().getCaption());
+    intent.putExtra(MediaPreviewActivity.LEFT_IS_RECENT_EXTRA, leftIsRecent);
+    intent.setDataAndType(mediaRecord.getAttachment().getDataUri(), mediaRecord.getContentType());
+    return intent;
+  }
+
   @SuppressWarnings("ConstantConditions")
   @Override
   protected void onCreate(Bundle bundle, boolean ready) {
