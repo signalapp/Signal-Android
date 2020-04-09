@@ -447,6 +447,17 @@ public class Recipient {
     return Optional.fromNullable(e164).or(Optional.fromNullable(email));
   }
 
+  public @NonNull UUID requireUuid() {
+    UUID resolved = resolving ? resolve().uuid : uuid;
+
+    if (resolved == null) {
+      throw new MissingAddressError();
+    }
+
+    return resolved;
+  }
+
+
   public @NonNull String requireE164() {
     String resolved = resolving ? resolve().e164 : e164;
 

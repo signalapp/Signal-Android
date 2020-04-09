@@ -966,7 +966,7 @@ public final class PushProcessMessageJob extends BaseJob {
       if (recipients.isGroup()) {
         updateGroupReceiptStatus(message, messageId, recipients.requireGroupId());
       } else {
-        database.markUnidentified(messageId, message.isUnidentified(recipients.requireServiceId()));
+        database.markUnidentified(messageId, isUnidentified(message, recipients));
       }
 
       database.markAsSent(messageId, true);
@@ -1120,7 +1120,7 @@ public final class PushProcessMessageJob extends BaseJob {
 
       messageId = DatabaseFactory.getSmsDatabase(context).insertMessageOutbox(threadId, outgoingTextMessage, false, message.getTimestamp(), null);
       database  = DatabaseFactory.getSmsDatabase(context);
-      database.markUnidentified(messageId, message.isUnidentified(recipient.requireServiceId()));
+      database.markUnidentified(messageId, isUnidentified(message, recipient));
     }
 
     database.markAsSent(messageId, true);
@@ -1593,6 +1593,19 @@ public final class PushProcessMessageJob extends BaseJob {
         ApplicationDependencies.getJobManager().add(downloadJob);
       }
     }
+  }
+
+  private static boolean isUnidentified(@NonNull SentTranscriptMessage message, @NonNull Recipient recipient) {
+    boolean unidentified = false;
+
+    if (recipient.hasE164()) {
+      unidentified |= message.isUnidentified(recipient.requireE164());
+    }
+    if (recipient.hasUuid()) {
+      unidentified |= message.isUnidentified(recipient.requireUuid());
+    }
+
+    return unidentified;
   }
 
   @SuppressWarnings("WeakerAccess")
