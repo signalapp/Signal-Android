@@ -1842,7 +1842,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       return;
     }
 
-    ApplicationDependencies.getJobManager().add(new RetrieveProfileJob(recipient.get()));
+    ApplicationDependencies.getJobManager().add(RetrieveProfileJob.forRecipient(recipient.get()));
   }
 
   private void onRecipientChanged(@NonNull Recipient recipient) {

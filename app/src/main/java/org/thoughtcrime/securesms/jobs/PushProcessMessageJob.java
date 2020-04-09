@@ -1274,7 +1274,7 @@ public final class PushProcessMessageJob extends BaseJob {
 
     if (messageProfileKey != null) {
       if (database.setProfileKey(recipient.getId(), messageProfileKey)) {
-        ApplicationDependencies.getJobManager().add(new RetrieveProfileJob(recipient));
+        ApplicationDependencies.getJobManager().add(RetrieveProfileJob.forRecipient(recipient));
       }
     } else {
       Log.w(TAG, "Ignored invalid profile key seen in message");

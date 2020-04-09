@@ -38,8 +38,9 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Retrieves a users profile and sets the appropriate local fields. If fetching the profile of the
- * local user, use {@link RefreshOwnProfileJob} instead.
+ * Retrieves a users profile and sets the appropriate local fields.
+ * <p>
+ * Recipient can be self if you use {@link #forRecipient} and it will delegate to {@link RefreshOwnProfileJob}.
  */
 public class RetrieveProfileJob extends BaseJob {
 
@@ -49,24 +50,36 @@ public class RetrieveProfileJob extends BaseJob {
 
   private static final String KEY_RECIPIENT = "recipient";
 
-  private final Recipient recipient;
+  private final RecipientId recipientId;
 
-  public RetrieveProfileJob(@NonNull Recipient recipient) {
+  public static Job forRecipient(@NonNull Recipient recipient) {
+    return forRecipient(recipient.getId());
+  }
+
+  public static Job forRecipient(@NonNull RecipientId recipientId) {
+    if (Recipient.self().getId().equals(recipientId)) {
+      return new RefreshOwnProfileJob();
+    } else {
+      return new RetrieveProfileJob(recipientId);
+    }
+  }
+
+  private RetrieveProfileJob(@NonNull RecipientId recipientId) {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
                            .setMaxAttempts(3)
                            .build(),
-         recipient);
+         recipientId);
   }
 
-  private RetrieveProfileJob(@NonNull Job.Parameters parameters, @NonNull Recipient recipient) {
+  private RetrieveProfileJob(@NonNull Job.Parameters parameters, @NonNull RecipientId recipientId) {
     super(parameters);
-    this.recipient = recipient;
+    this.recipientId = recipientId;
   }
 
   @Override
   public @NonNull Data serialize() {
-    return new Data.Builder().putString(KEY_RECIPIENT, recipient.getId().serialize()).build();
+    return new Data.Builder().putString(KEY_RECIPIENT, recipientId.serialize()).build();
   }
 
   @Override
@@ -76,9 +89,9 @@ public class RetrieveProfileJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException {
-    Log.i(TAG, "Retrieving profile of " + recipient.getId());
+    Log.i(TAG, "Retrieving profile of " + recipientId);
 
-    Recipient resolved = recipient.resolve();
+    Recipient resolved = Recipient.resolved(recipientId);
 
     if (resolved.isGroup()) handleGroupRecipient(resolved);
     else                    handleIndividualRecipient(resolved);
@@ -248,7 +261,7 @@ public class RetrieveProfileJob extends BaseJob {
 
     @Override
     public @NonNull RetrieveProfileJob create(@NonNull Parameters parameters, @NonNull Data data) {
-      return new RetrieveProfileJob(parameters, Recipient.resolved(RecipientId.from(data.getString(KEY_RECIPIENT))));
+      return new RetrieveProfileJob(parameters, RecipientId.from(data.getString(KEY_RECIPIENT)));
     }
   }
 }
