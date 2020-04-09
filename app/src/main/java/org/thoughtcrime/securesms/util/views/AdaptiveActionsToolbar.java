@@ -61,7 +61,13 @@ public class AdaptiveActionsToolbar extends Toolbar {
   }
 
   public static void adjustMenuActions(@NonNull Menu menu, int maxToShow, int toolbarWidthPx) {
-    int menuSize = menu.size();
+    int menuSize = 0;
+
+    for (int i = 0; i < menu.size(); i++) {
+      if (menu.getItem(i).isVisible()) {
+        menuSize++;
+      }
+    }
 
     int widthAllowed = toolbarWidthPx - ViewUtil.dpToPx(NAVIGATION_DP);
     int nItemsToShow = Math.min(maxToShow, widthAllowed / ViewUtil.dpToPx(ACTION_VIEW_WIDTH_DP));
