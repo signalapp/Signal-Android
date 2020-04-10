@@ -127,8 +127,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int GROUPS_V2                        = 55;
   private static final int ATTACHMENT_UPLOAD_TIMESTAMP      = 56;
   private static final int ATTACHMENT_CDN_NUMBER            = 57;
+  private static final int JOB_INPUT_DATA                   = 58;
 
-  private static final int    DATABASE_VERSION = ATTACHMENT_CDN_NUMBER;
+  private static final int    DATABASE_VERSION = 58;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -866,6 +867,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < ATTACHMENT_CDN_NUMBER) {
         db.execSQL("ALTER TABLE part ADD COLUMN cdn_number INTEGER DEFAULT 0");
+      }
+
+      if (oldVersion < JOB_INPUT_DATA) {
+        db.execSQL("ALTER TABLE job_spec ADD COLUMN serialized_input_data TEXT DEFAULT NULL");
       }
 
       db.setTransactionSuccessful();

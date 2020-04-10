@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -57,6 +58,14 @@ public abstract class Job {
 
   public final long getNextRunAttemptTime() {
     return nextRunAttemptTime;
+  }
+
+  public final @Nullable Data getInputData() {
+    return parameters.getInputData();
+  }
+
+  public final @NonNull Data requireInputData() {
+    return Objects.requireNonNull(parameters.getInputData());
   }
 
   /**
@@ -140,21 +149,28 @@ public abstract class Job {
 
   public static final class Result {
 
-    private static final Result SUCCESS = new Result(ResultType.SUCCESS, null);
-    private static final Result RETRY   = new Result(ResultType.RETRY, null);
-    private static final Result FAILURE = new Result(ResultType.FAILURE, null);
+    private static final Result SUCCESS_NO_DATA = new Result(ResultType.SUCCESS, null, null);
+    private static final Result RETRY           = new Result(ResultType.RETRY, null, null);
+    private static final Result FAILURE         = new Result(ResultType.FAILURE, null, null);
 
     private final ResultType       resultType;
     private final RuntimeException runtimeException;
+    private final Data             outputData;
 
-    private Result(@NonNull ResultType resultType, @Nullable RuntimeException runtimeException) {
+    private Result(@NonNull ResultType resultType, @Nullable RuntimeException runtimeException, @Nullable Data outputData) {
       this.resultType       = resultType;
       this.runtimeException = runtimeException;
+      this.outputData       = outputData;
     }
 
     /** Job completed successfully. */
     public static Result success() {
-      return SUCCESS;
+      return SUCCESS_NO_DATA;
+    }
+
+    /** Job completed successfully and wants to provide some output data. */
+    public static Result success(@Nullable Data outputData) {
+      return new Result(ResultType.SUCCESS, null, outputData);
     }
 
     /** Job did not complete successfully, but it can be retried later. */
@@ -169,7 +185,7 @@ public abstract class Job {
 
     /** Same as {@link #failure()}, except the app should also crash with the provided exception. */
     public static Result fatalFailure(@NonNull RuntimeException runtimeException) {
-      return new Result(ResultType.FAILURE, runtimeException);
+      return new Result(ResultType.FAILURE, runtimeException, null);
     }
 
     boolean isSuccess() {
@@ -186,6 +202,10 @@ public abstract class Job {
 
     @Nullable RuntimeException getException() {
       return runtimeException;
+    }
+
+    @Nullable Data getOutputData() {
+      return outputData;
     }
 
     @Override
@@ -224,6 +244,7 @@ public abstract class Job {
     private final int          maxInstances;
     private final String       queue;
     private final List<String> constraintKeys;
+    private final Data         inputData;
 
     private Parameters(@NonNull String id,
                        long createTime,
@@ -232,7 +253,8 @@ public abstract class Job {
                        long maxBackoff,
                        int maxInstances,
                        @Nullable String queue,
-                       @NonNull List<String> constraintKeys)
+                       @NonNull List<String> constraintKeys,
+                       @Nullable Data inputData)
     {
       this.id             = id;
       this.createTime     = createTime;
@@ -242,6 +264,7 @@ public abstract class Job {
       this.maxInstances   = maxInstances;
       this.queue          = queue;
       this.constraintKeys = constraintKeys;
+      this.inputData      = inputData;
     }
 
     @NonNull String getId() {
@@ -276,8 +299,12 @@ public abstract class Job {
       return constraintKeys;
     }
 
+    @Nullable Data getInputData() {
+      return inputData;
+    }
+
     public Builder toBuilder() {
-      return new Builder(id, createTime, maxBackoff, lifespan, maxAttempts, maxInstances, queue, constraintKeys);
+      return new Builder(id, createTime, maxBackoff, lifespan, maxAttempts, maxInstances, queue, constraintKeys, inputData);
     }
 
 
@@ -291,13 +318,14 @@ public abstract class Job {
       private int          maxInstances;
       private String       queue;
       private List<String> constraintKeys;
+      private Data         inputData;
 
       public Builder() {
         this(UUID.randomUUID().toString());
       }
 
       Builder(@NonNull String id) {
-        this(id, System.currentTimeMillis(), TimeUnit.SECONDS.toMillis(30), IMMORTAL, 1, UNLIMITED, null, new LinkedList<>());
+        this(id, System.currentTimeMillis(), TimeUnit.SECONDS.toMillis(30), IMMORTAL, 1, UNLIMITED, null, new LinkedList<>(), null);
       }
 
       private Builder(@NonNull String id,
@@ -307,7 +335,8 @@ public abstract class Job {
                       int maxAttempts,
                       int maxInstances,
                       @Nullable String queue,
-                      @NonNull List<String> constraintKeys)
+                      @NonNull List<String> constraintKeys,
+                      @Nullable Data inputData)
       {
         this.id             = id;
         this.createTime     = createTime;
@@ -317,6 +346,7 @@ public abstract class Job {
         this.maxInstances   = maxInstances;
         this.queue          = queue;
         this.constraintKeys = constraintKeys;
+        this.inputData      = inputData;
       }
 
       /** Should only be invoked by {@link JobController} */
@@ -394,8 +424,17 @@ public abstract class Job {
         return this;
       }
 
+      /**
+       * Sets the input data that will be made availabe to the job when it is run.
+       * Should only be set by {@link JobController}.
+       */
+      @NonNull Builder setInputData(@Nullable Data inputData) {
+        this.inputData = inputData;
+        return this;
+      }
+
       public @NonNull Parameters build() {
-        return new Parameters(id, createTime, lifespan, maxAttempts, maxBackoff, maxInstances, queue, constraintKeys);
+        return new Parameters(id, createTime, lifespan, maxAttempts, maxBackoff, maxInstances, queue, constraintKeys, inputData);
       }
     }
   }

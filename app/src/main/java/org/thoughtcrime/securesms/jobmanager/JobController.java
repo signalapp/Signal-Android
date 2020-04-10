@@ -170,7 +170,17 @@ class JobController {
   }
 
   @WorkerThread
-  synchronized void onSuccess(@NonNull Job job) {
+  synchronized void onSuccess(@NonNull Job job, @Nullable Data outputData) {
+    if (outputData != null) {
+      List<JobSpec> updates = Stream.of(jobStorage.getDependencySpecsThatDependOnJob(job.getId()))
+                                    .map(DependencySpec::getJobId)
+                                    .map(jobStorage::getJobSpec)
+                                    .map(jobSpec -> mapToJobWithInputData(jobSpec, outputData))
+                                    .toList();
+
+      jobStorage.updateJobs(updates);
+    }
+
     jobStorage.deleteJob(job.getId());
     jobTracker.onStateChange(job, JobTracker.JobState.SUCCESS);
     notifyAll();
@@ -321,6 +331,7 @@ class JobController {
                                   job.getParameters().getLifespan(),
                                   job.getParameters().getMaxInstances(),
                                   dataSerializer.serialize(job.serialize()),
+                                  null,
                                   false);
 
     List<ConstraintSpec> constraintSpecs = Stream.of(job.getParameters().getConstraintKeys())
@@ -402,6 +413,7 @@ class JobController {
                   .setQueue(jobSpec.getQueueKey())
                   .setConstraints(Stream.of(constraintSpecs).map(ConstraintSpec::getFactoryKey).toList())
                   .setMaxBackoff(jobSpec.getMaxBackoff())
+                  .setInputData(jobSpec.getSerializedInputData() != null ? dataSerializer.deserialize(jobSpec.getSerializedInputData()) : null)
                   .build();
   }
 
@@ -411,6 +423,22 @@ class JobController {
     long actualBackoff      = Math.min(exponentialBackoff, maxBackoff);
 
     return currentTime + actualBackoff;
+  }
+
+  private @NonNull JobSpec mapToJobWithInputData(@NonNull JobSpec jobSpec, @NonNull Data inputData) {
+    return new JobSpec(jobSpec.getId(),
+                       jobSpec.getFactoryKey(),
+                       jobSpec.getQueueKey(),
+                       jobSpec.getCreateTime(),
+                       jobSpec.getNextRunAttemptTime(),
+                       jobSpec.getRunAttempt(),
+                       jobSpec.getMaxAttempts(),
+                       jobSpec.getMaxBackoff(),
+                       jobSpec.getLifespan(),
+                       jobSpec.getMaxInstances(),
+                       jobSpec.getSerializedData(),
+                       dataSerializer.serialize(inputData),
+                       jobSpec.isRunning());
   }
 
   interface Callback {

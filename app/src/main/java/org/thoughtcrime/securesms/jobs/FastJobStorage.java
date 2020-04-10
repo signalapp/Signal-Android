@@ -156,6 +156,7 @@ public class FastJobStorage implements JobStorage {
                                       existing.getLifespan(),
                                       existing.getMaxInstances(),
                                       existing.getSerializedData(),
+                                      existing.getSerializedInputData(),
                                       isRunning);
         iter.set(updated);
       }
@@ -182,6 +183,7 @@ public class FastJobStorage implements JobStorage {
                                       existing.getLifespan(),
                                       existing.getMaxInstances(),
                                       serializedData,
+                                      existing.getSerializedInputData(),
                                       isRunning);
         iter.set(updated);
       }
@@ -207,6 +209,7 @@ public class FastJobStorage implements JobStorage {
                                      existing.getLifespan(),
                                      existing.getMaxInstances(),
                                      existing.getSerializedData(),
+                                     existing.getSerializedInputData(),
                                      false);
       iter.set(updated);
     }

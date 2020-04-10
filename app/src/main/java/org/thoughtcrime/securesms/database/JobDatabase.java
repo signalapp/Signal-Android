@@ -40,6 +40,7 @@ public class JobDatabase extends Database {
     private static final String MAX_INSTANCES         = "max_instances";
     private static final String LIFESPAN              = "lifespan";
     private static final String SERIALIZED_DATA       = "serialized_data";
+    private static final String SERIALIZED_INPUT_DATA = "serialized_input_data";
     private static final String IS_RUNNING            = "is_running";
 
     private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + ID                    + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -54,6 +55,7 @@ public class JobDatabase extends Database {
                                                                                     MAX_INSTANCES         + " INTEGER, " +
                                                                                     LIFESPAN              + " INTEGER, " +
                                                                                     SERIALIZED_DATA       + " TEXT, " +
+                                                                                    SERIALIZED_INPUT_DATA + " TEXT DEFAULT NULL, " +
                                                                                     IS_RUNNING            + " INTEGER)";
   }
 
@@ -165,6 +167,7 @@ public class JobDatabase extends Database {
         values.put(Jobs.MAX_INSTANCES, job.getMaxInstances());
         values.put(Jobs.LIFESPAN, job.getLifespan());
         values.put(Jobs.SERIALIZED_DATA, job.getSerializedData());
+        values.put(Jobs.SERIALIZED_INPUT_DATA, job.getSerializedInputData());
         values.put(Jobs.IS_RUNNING, job.isRunning() ? 1 : 0);
 
         String   query = Jobs.JOB_SPEC_ID + " = ?";
@@ -237,6 +240,7 @@ public class JobDatabase extends Database {
     contentValues.put(Jobs.MAX_INSTANCES, job.getMaxInstances());
     contentValues.put(Jobs.LIFESPAN, job.getLifespan());
     contentValues.put(Jobs.SERIALIZED_DATA, job.getSerializedData());
+    contentValues.put(Jobs.SERIALIZED_INPUT_DATA, job.getSerializedInputData());
     contentValues.put(Jobs.IS_RUNNING, job.isRunning() ? 1 : 0);
 
     db.insertWithOnConflict(Jobs.TABLE_NAME, null, contentValues, SQLiteDatabase.CONFLICT_IGNORE);
@@ -272,6 +276,7 @@ public class JobDatabase extends Database {
                        cursor.getLong(cursor.getColumnIndexOrThrow(Jobs.LIFESPAN)),
                        cursor.getInt(cursor.getColumnIndexOrThrow(Jobs.MAX_INSTANCES)),
                        cursor.getString(cursor.getColumnIndexOrThrow(Jobs.SERIALIZED_DATA)),
+                       cursor.getString(cursor.getColumnIndexOrThrow(Jobs.SERIALIZED_INPUT_DATA)),
                        cursor.getInt(cursor.getColumnIndexOrThrow(Jobs.IS_RUNNING)) == 1);
   }
 

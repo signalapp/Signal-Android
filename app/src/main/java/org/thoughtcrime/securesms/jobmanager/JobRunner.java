@@ -48,7 +48,7 @@ class JobRunner extends Thread {
       jobController.onJobFinished(job);
 
       if (result.isSuccess()) {
-        jobController.onSuccess(job);
+        jobController.onSuccess(job, result.getOutputData());
       } else if (result.isRetry()) {
         jobController.onRetry(job);
         job.onRetry();

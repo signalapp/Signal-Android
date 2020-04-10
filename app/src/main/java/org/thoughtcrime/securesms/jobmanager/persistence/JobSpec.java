@@ -19,6 +19,7 @@ public final class JobSpec {
   private final long    lifespan;
   private final int     maxInstances;
   private final String  serializedData;
+  private final String  serializedInputData;
   private final boolean isRunning;
 
   public JobSpec(@NonNull String id,
@@ -32,20 +33,22 @@ public final class JobSpec {
                  long lifespan,
                  int maxInstances,
                  @NonNull String serializedData,
+                 @Nullable String serializedInputData,
                  boolean isRunning)
   {
-    this.id                 = id;
-    this.factoryKey         = factoryKey;
-    this.queueKey           = queueKey;
-    this.createTime         = createTime;
-    this.nextRunAttemptTime = nextRunAttemptTime;
-    this.maxBackoff         = maxBackoff;
-    this.runAttempt         = runAttempt;
-    this.maxAttempts        = maxAttempts;
-    this.lifespan           = lifespan;
-    this.maxInstances       = maxInstances;
-    this.serializedData     = serializedData;
-    this.isRunning          = isRunning;
+    this.id                  = id;
+    this.factoryKey          = factoryKey;
+    this.queueKey            = queueKey;
+    this.createTime          = createTime;
+    this.nextRunAttemptTime  = nextRunAttemptTime;
+    this.maxBackoff          = maxBackoff;
+    this.runAttempt          = runAttempt;
+    this.maxAttempts         = maxAttempts;
+    this.lifespan            = lifespan;
+    this.maxInstances        = maxInstances;
+    this.serializedData      = serializedData;
+    this.serializedInputData = serializedInputData;
+    this.isRunning           = isRunning;
   }
 
   public @NonNull String getId() {
@@ -92,6 +95,10 @@ public final class JobSpec {
     return serializedData;
   }
 
+  public @Nullable String getSerializedInputData() {
+    return serializedInputData;
+  }
+
   public boolean isRunning() {
     return isRunning;
   }
@@ -112,18 +119,19 @@ public final class JobSpec {
            Objects.equals(id, jobSpec.id) &&
            Objects.equals(factoryKey, jobSpec.factoryKey) &&
            Objects.equals(queueKey, jobSpec.queueKey) &&
-           Objects.equals(serializedData, jobSpec.serializedData);
+           Objects.equals(serializedData, jobSpec.serializedData) &&
+           Objects.equals(serializedInputData, jobSpec.serializedInputData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, factoryKey, queueKey, createTime, nextRunAttemptTime, runAttempt, maxAttempts, maxBackoff, lifespan, maxInstances, serializedData, isRunning);
+    return Objects.hash(id, factoryKey, queueKey, createTime, nextRunAttemptTime, runAttempt, maxAttempts, maxBackoff, lifespan, maxInstances, serializedData, serializedInputData, isRunning);
   }
 
   @SuppressLint("DefaultLocale")
   @Override
   public @NonNull String toString() {
-    return String.format("id: JOB::%s | factoryKey: %s | queueKey: %s | createTime: %d | nextRunAttemptTime: %d | runAttempt: %d | maxAttempts: %d | maxBackoff: %d | maxInstances: %d | lifespan: %d | isRunning: %b | data: %s",
-                         id, factoryKey, queueKey, createTime, nextRunAttemptTime, runAttempt, maxAttempts, maxBackoff, maxInstances, lifespan, isRunning, serializedData);
+    return String.format("id: JOB::%s | factoryKey: %s | queueKey: %s | createTime: %d | nextRunAttemptTime: %d | runAttempt: %d | maxAttempts: %d | maxBackoff: %d | maxInstances: %d | lifespan: %d | isRunning: %b | data: %s | inputData: %s",
+                         id, factoryKey, queueKey, createTime, nextRunAttemptTime, runAttempt, maxAttempts, maxBackoff, maxInstances, lifespan, isRunning, serializedData, serializedInputData);
   }
 }
