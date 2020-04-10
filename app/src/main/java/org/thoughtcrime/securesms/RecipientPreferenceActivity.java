@@ -227,13 +227,6 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     this.avatar.setBackgroundColor(recipient.getColor().toActionBarColor(this));
     this.toolbarLayout.setTitle(recipient.toShortString(this));
     this.toolbarLayout.setContentScrimColor(recipient.getColor().toActionBarColor(this));
-    if (recipient.getUuid().isPresent()) {
-      toolbarLayout.setOnLongClickListener(v -> {
-        Util.copyToClipboard(this, recipient.getUuid().get().toString());
-        ServiceUtil.getVibrator(this).vibrate(200);
-        return true;
-      });
-    }
   }
 
   @Override
