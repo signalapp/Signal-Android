@@ -1935,7 +1935,7 @@
     <string name="KbsSplashFragment__introducing_pins">Introducing PINs</string>
     <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">PINs add another level of security to your account. Create one now.</string>
     <string name="KbsSplashFragment__learn_more">Learn More</string>
-    <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
+    <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
     <string name="KbsSplashFragment__registration_lock_equals_pin">Registration Lock = PIN</string>
     <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Your Registration Lock is now called a PIN, and it does more. Update it now.</string>
     <string name="KbsSplashFragment__read_more_about_pins">Read more about PINs.</string>
@@ -1955,7 +1955,7 @@
     <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Your account has been locked to protect your privacy and security. After %1$d days of inactivity in your account you\'ll be able to re-register this phone number without needing your PIN. All content will be deleted.</string>
     <string name="AccountLockedFragment__next">Next</string>
     <string name="AccountLockedFragment__learn_more">Learn More</string>
-    <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
+    <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
 
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Enter your PIN</string>
