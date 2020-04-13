@@ -55,8 +55,6 @@ public class ReactionsConversationView extends LinearLayout {
     }
   }
 
-
-
   public void clear() {
     this.records.clear();
     this.bubbleWidth = 0;
@@ -78,7 +76,9 @@ public class ReactionsConversationView extends LinearLayout {
     removeAllViews();
 
     for (Reaction reaction : reactions) {
-      addView(buildPill(getContext(), this, reaction));
+      View pill = buildPill(getContext(), this, reaction);
+      pill.setVisibility(bubbleWidth == 0 ? INVISIBLE : VISIBLE);
+      addView(pill);
     }
 
     measure(MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED), MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));

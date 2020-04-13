@@ -42,7 +42,6 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -912,10 +911,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
       return;
     }
 
-    if (bodyBubble.getWidth() != 0) {
-      setReactionsWithWidth(current, bodyBubble.getWidth());
-    }
-
+    setReactionsWithWidth(current, bodyBubble.getWidth());
     bodyBubble.setOnSizeChangedListener((width, height) -> setReactionsWithWidth(current, width));
   }
 
