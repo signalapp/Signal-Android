@@ -49,7 +49,8 @@ public final class FeatureFlags {
   private static final String UUIDS                      = "android.uuids";
   private static final String MESSAGE_REQUESTS           = "android.messageRequests";
   private static final String USERNAMES                  = "android.usernames";
-  private static final String PINS_FOR_ALL               = "android.pinsForAll";
+  private static final String PINS_FOR_ALL_LEGACY        = "android.pinsForAll";
+  private static final String PINS_FOR_ALL               = "android.pinsForAll.2";
   private static final String PINS_FOR_ALL_MANDATORY     = "android.pinsForAllMandatory";
   private static final String PINS_MEGAPHONE_KILL_SWITCH = "android.pinsMegaphoneKillSwitch";
   private static final String PROFILE_NAMES_MEGAPHONE    = "android.profileNamesMegaphone";
@@ -61,6 +62,7 @@ public final class FeatureFlags {
    */
 
   private static final Set<String> REMOTE_CAPABLE = Sets.newHashSet(
+      PINS_FOR_ALL_LEGACY,
       PINS_FOR_ALL,
       PINS_FOR_ALL_MANDATORY,
       PINS_MEGAPHONE_KILL_SWITCH,
@@ -95,6 +97,7 @@ public final class FeatureFlags {
    * Flags in this set will stay true forever once they receive a true value from a remote config.
    */
   private static final Set<String> STICKY = Sets.newHashSet(
+      PINS_FOR_ALL_LEGACY,
       PINS_FOR_ALL
   );
 
@@ -190,6 +193,7 @@ public final class FeatureFlags {
     return SignalStore.registrationValues().pinWasRequiredAtRegistration() ||
            SignalStore.kbsValues().isV2RegistrationLockEnabled()           ||
            pinsForAllMandatory()                                           ||
+           getValue(PINS_FOR_ALL_LEGACY, false)                            ||
            getValue(PINS_FOR_ALL, false);
   }
 
