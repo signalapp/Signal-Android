@@ -118,6 +118,7 @@ public class MmsDatabase extends MessagingDatabase {
                                                                                   THREAD_ID              + " INTEGER, " +
                                                                                   DATE_SENT              + " INTEGER, " +
                                                                                   DATE_RECEIVED          + " INTEGER, " +
+                                                                                  DATE_SERVER            + " INTEGER DEFAULT -1, " +
                                                                                   MESSAGE_BOX            + " INTEGER, " +
                                                                                   READ                   + " INTEGER DEFAULT 0, " +
                                                                                   "m_id"                 + " TEXT, " +
@@ -175,6 +176,7 @@ public class MmsDatabase extends MessagingDatabase {
     "CREATE INDEX IF NOT EXISTS mms_read_and_notified_and_thread_id_index ON " + TABLE_NAME + "(" + READ + "," + NOTIFIED + "," + THREAD_ID + ");",
     "CREATE INDEX IF NOT EXISTS mms_message_box_index ON " + TABLE_NAME + " (" + MESSAGE_BOX + ");",
     "CREATE INDEX IF NOT EXISTS mms_date_sent_index ON " + TABLE_NAME + " (" + DATE_SENT + ");",
+    "CREATE INDEX IF NOT EXISTS mms_date_server_index ON " + TABLE_NAME + " (" + DATE_SERVER + ");",
     "CREATE INDEX IF NOT EXISTS mms_thread_date_index ON " + TABLE_NAME + " (" + THREAD_ID + ", " + DATE_RECEIVED + ");",
     "CREATE INDEX IF NOT EXISTS mms_reactions_unread_index ON " + TABLE_NAME + " (" + REACTIONS_UNREAD + ");"
   };
@@ -183,6 +185,7 @@ public class MmsDatabase extends MessagingDatabase {
       MmsDatabase.TABLE_NAME + "." + ID + " AS " + ID,
       THREAD_ID, DATE_SENT + " AS " + NORMALIZED_DATE_SENT,
       DATE_RECEIVED + " AS " + NORMALIZED_DATE_RECEIVED,
+      DATE_SERVER,
       MESSAGE_BOX, READ,
       CONTENT_LOCATION, EXPIRY, MESSAGE_TYPE,
       MESSAGE_SIZE, STATUS, TRANSACTION_ID,
@@ -902,6 +905,7 @@ public class MmsDatabase extends MessagingDatabase {
     ContentValues contentValues = new ContentValues();
 
     contentValues.put(DATE_SENT, retrieved.getSentTimeMillis());
+    contentValues.put(DATE_SERVER, retrieved.getServerTimeMillis());
     contentValues.put(RECIPIENT_ID, retrieved.getFrom().serialize());
 
     contentValues.put(MESSAGE_BOX, mailbox);
@@ -990,7 +994,6 @@ public class MmsDatabase extends MessagingDatabase {
     ContentValuesBuilder contentBuilder = new ContentValuesBuilder(contentValues);
 
     Log.i(TAG, "Message received type: " + notification.getMessageType());
-
 
     contentBuilder.add(CONTENT_LOCATION, notification.getContentLocation());
     contentBuilder.add(DATE_SENT, System.currentTimeMillis());
@@ -1474,13 +1477,20 @@ public class MmsDatabase extends MessagingDatabase {
     public MessageRecord getCurrent() {
       SlideDeck slideDeck = new SlideDeck(context, message.getAttachments());
 
-      return new MediaMmsMessageRecord(id, message.getRecipient(), message.getRecipient(),
-                                       1, System.currentTimeMillis(), System.currentTimeMillis(),
-                                       0, threadId, message.getBody(),
-                                       slideDeck, slideDeck.getSlides().size(),
+      return new MediaMmsMessageRecord(id,
+                                       message.getRecipient(),
+                                       message.getRecipient(),
+                                       1,
+                                       System.currentTimeMillis(),
+                                       System.currentTimeMillis(),
+                                       -1,
+                                       0,
+                                       threadId, message.getBody(),
+                                       slideDeck,
+                                       slideDeck.getSlides().size(),
                                        message.isSecure() ? MmsSmsColumns.Types.getOutgoingEncryptedMessageType() : MmsSmsColumns.Types.getOutgoingSmsMessageType(),
-                                       new LinkedList<IdentityKeyMismatch>(),
-                                       new LinkedList<NetworkFailure>(),
+                                       new LinkedList<>(),
+                                       new LinkedList<>(),
                                        message.getSubscriptionId(),
                                        message.getExpiresIn(),
                                        System.currentTimeMillis(),
@@ -1493,7 +1503,10 @@ public class MmsDatabase extends MessagingDatabase {
                                                      message.getOutgoingQuote().isOriginalMissing(),
                                                      new SlideDeck(context, message.getOutgoingQuote().getAttachments())) :
                                            null,
-                                       message.getSharedContacts(), message.getLinkPreviews(), false, Collections.emptyList());
+                                       message.getSharedContacts(),
+                                       message.getLinkPreviews(),
+                                       false,
+                                       Collections.emptyList());
     }
   }
 
@@ -1565,22 +1578,23 @@ public class MmsDatabase extends MessagingDatabase {
     }
 
     private MediaMmsMessageRecord getMediaMmsMessageRecord(Cursor cursor) {
-      long                 id                   = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.ID                      ));
-      long                 dateSent             = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.NORMALIZED_DATE_SENT    ));
+      long                 id                   = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.ID));
+      long                 dateSent             = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.NORMALIZED_DATE_SENT));
       long                 dateReceived         = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.NORMALIZED_DATE_RECEIVED));
-      long                 box                  = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_BOX             ));
-      long                 threadId             = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.THREAD_ID               ));
-      long                 recipientId          = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.RECIPIENT_ID            ));
-      int                  addressDeviceId      = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS_DEVICE_ID     ));
+      long                 dateServer           = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.DATE_SERVER));
+      long                 box                  = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_BOX));
+      long                 threadId             = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.THREAD_ID));
+      long                 recipientId          = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.RECIPIENT_ID));
+      int                  addressDeviceId      = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS_DEVICE_ID));
       int                  deliveryReceiptCount = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.DELIVERY_RECEIPT_COUNT));
-      int                  readReceiptCount     = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.READ_RECEIPT_COUNT    ));
-      String               body                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.BODY                 ));
-      int                  partCount            = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.PART_COUNT            ));
+      int                  readReceiptCount     = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.READ_RECEIPT_COUNT));
+      String               body                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.BODY));
+      int                  partCount            = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.PART_COUNT));
       String               mismatchDocument     = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.MISMATCHED_IDENTITIES));
-      String               networkDocument      = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.NETWORK_FAILURE      ));
-      int                  subscriptionId       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.SUBSCRIPTION_ID       ));
-      long                 expiresIn            = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.EXPIRES_IN              ));
-      long                 expireStarted        = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.EXPIRE_STARTED          ));
+      String               networkDocument      = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.NETWORK_FAILURE));
+      int                  subscriptionId       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.SUBSCRIPTION_ID));
+      long                 expiresIn            = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.EXPIRES_IN));
+      long                 expireStarted        = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.EXPIRE_STARTED));
       boolean              unidentified         = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.UNIDENTIFIED)) == 1;
       boolean              isViewOnce           = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.VIEW_ONCE))   == 1;
       List<ReactionRecord> reactions            = parseReactions(cursor);
@@ -1601,7 +1615,7 @@ public class MmsDatabase extends MessagingDatabase {
       Quote                     quote              = getQuote(cursor);
 
       return new MediaMmsMessageRecord(id, recipient, recipient,
-                                       addressDeviceId, dateSent, dateReceived, deliveryReceiptCount,
+                                       addressDeviceId, dateSent, dateReceived, dateServer, deliveryReceiptCount,
                                        threadId, body, slideDeck, partCount, box, mismatches,
                                        networkFailures, subscriptionId, expiresIn, expireStarted,
                                        isViewOnce, readReceiptCount, quote, contacts, previews, unidentified, reactions);

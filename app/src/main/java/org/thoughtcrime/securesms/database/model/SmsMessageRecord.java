@@ -43,7 +43,7 @@ public class SmsMessageRecord extends MessageRecord {
                           String body, Recipient recipient,
                           Recipient individualRecipient,
                           int recipientDeviceId,
-                          long dateSent, long dateReceived,
+                          long dateSent, long dateReceived, long dateServer,
                           int deliveryReceiptCount,
                           long type, long threadId,
                           int status, List<IdentityKeyMismatch> mismatches,
@@ -52,7 +52,7 @@ public class SmsMessageRecord extends MessageRecord {
                           @NonNull List<ReactionRecord> reactions)
   {
     super(id, body, recipient, individualRecipient, recipientDeviceId,
-          dateSent, dateReceived, threadId, status, deliveryReceiptCount, type,
+          dateSent, dateReceived, dateServer, threadId, status, deliveryReceiptCount, type,
           mismatches, new LinkedList<>(), subscriptionId,
           expiresIn, expireStarted, readReceiptCount, unidentified, reactions);
   }

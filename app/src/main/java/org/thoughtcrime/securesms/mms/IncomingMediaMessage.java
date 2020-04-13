@@ -24,6 +24,7 @@ public class IncomingMediaMessage {
   private final String      body;
   private final boolean     push;
   private final long        sentTimeMillis;
+  private final long        serverTimeMillis;
   private final int         subscriptionId;
   private final long        expiresIn;
   private final boolean     expirationUpdate;
@@ -39,6 +40,7 @@ public class IncomingMediaMessage {
                               Optional<GroupId> groupId,
                               String body,
                               long sentTimeMillis,
+                              long serverTimeMillis,
                               List<Attachment> attachments,
                               int subscriptionId,
                               long expiresIn,
@@ -49,6 +51,7 @@ public class IncomingMediaMessage {
     this.from             = from;
     this.groupId          = groupId.orNull();
     this.sentTimeMillis   = sentTimeMillis;
+    this.serverTimeMillis = serverTimeMillis;
     this.body             = body;
     this.push             = false;
     this.subscriptionId   = subscriptionId;
@@ -63,6 +66,7 @@ public class IncomingMediaMessage {
 
   public IncomingMediaMessage(@NonNull RecipientId from,
                               long sentTimeMillis,
+                              long serverTimeMillis,
                               int subscriptionId,
                               long expiresIn,
                               boolean expirationUpdate,
@@ -79,6 +83,7 @@ public class IncomingMediaMessage {
     this.push             = true;
     this.from             = from;
     this.sentTimeMillis   = sentTimeMillis;
+    this.serverTimeMillis = serverTimeMillis;
     this.body             = body.orNull();
     this.subscriptionId   = subscriptionId;
     this.expiresIn        = expiresIn;
@@ -129,6 +134,10 @@ public class IncomingMediaMessage {
 
   public long getSentTimeMillis() {
     return sentTimeMillis;
+  }
+
+  public long getServerTimeMillis() {
+    return serverTimeMillis;
   }
 
   public long getExpiresIn() {

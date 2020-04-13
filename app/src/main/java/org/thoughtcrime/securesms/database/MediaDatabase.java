@@ -52,6 +52,7 @@ public class MediaDatabase extends Database {
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.MESSAGE_BOX + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_SENT + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_RECEIVED + ", "
+        + MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_SERVER + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.THREAD_ID + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.RECIPIENT_ID + ", "
         + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.RECIPIENT_ID + " as " + THREAD_RECIPIENT_ID + " "

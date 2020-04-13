@@ -54,10 +54,11 @@ public abstract class MessageRecord extends DisplayRecord {
   private final long                      expireStarted;
   private final boolean                   unidentified;
   private final List<ReactionRecord>      reactions;
+  private final long                      serverTimestamp;
 
   MessageRecord(long id, String body, Recipient conversationRecipient,
                 Recipient individualRecipient, int recipientDeviceId,
-                long dateSent, long dateReceived, long threadId,
+                long dateSent, long dateReceived, long dateServer, long threadId,
                 int deliveryStatus, int deliveryReceiptCount, long type,
                 List<IdentityKeyMismatch> mismatches,
                 List<NetworkFailure> networkFailures,
@@ -77,6 +78,7 @@ public abstract class MessageRecord extends DisplayRecord {
     this.expireStarted       = expireStarted;
     this.unidentified        = unidentified;
     this.reactions           = reactions;
+    this.serverTimestamp     = dateServer;
   }
 
   public abstract boolean isMms();
@@ -143,6 +145,10 @@ public abstract class MessageRecord extends DisplayRecord {
       return getDateSent();
     }
     return getDateReceived();
+  }
+
+  public long getServerTimestamp() {
+    return serverTimestamp;
   }
 
   public boolean isForcedSms() {

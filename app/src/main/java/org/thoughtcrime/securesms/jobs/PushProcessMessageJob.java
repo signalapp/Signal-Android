@@ -482,6 +482,7 @@ public final class PushProcessMessageJob extends BaseJob {
     IncomingTextMessage incomingTextMessage = new IncomingTextMessage(Recipient.externalPush(context, content.getSender()).getId(),
                                                                       content.getSenderDevice(),
                                                                       content.getTimestamp(),
+                                                                      content.getServerTimestamp(),
                                                                       "", Optional.absent(), 0,
                                                                       content.isNeedsReceipt());
 
@@ -572,8 +573,11 @@ public final class PushProcessMessageJob extends BaseJob {
       Recipient            sender       = Recipient.externalPush(context, content.getSender());
       Recipient            recipient    = getMessageDestination(content, message);
       IncomingMediaMessage mediaMessage = new IncomingMediaMessage(sender.getId(),
-                                                                   message.getTimestamp(), -1,
-                                                                   message.getExpiresInSeconds() * 1000L, true,
+                                                                   message.getTimestamp(),
+                                                                   content.getServerTimestamp(),
+                                                                   -1,
+                                                                   message.getExpiresInSeconds() * 1000L,
+                                                                   true,
                                                                    false,
                                                                    content.isNeedsReceipt(),
                                                                    Optional.absent(),
@@ -859,8 +863,11 @@ public final class PushProcessMessageJob extends BaseJob {
       Optional<List<LinkPreview>> linkPreviews   = getLinkPreviews(message.getPreviews(), message.getBody().or(""));
       Optional<Attachment>        sticker        = getStickerAttachment(message.getSticker());
       IncomingMediaMessage        mediaMessage   = new IncomingMediaMessage(Recipient.externalPush(context, content.getSender()).getId(),
-                                                                            message.getTimestamp(), -1,
-                                                                            message.getExpiresInSeconds() * 1000L, false,
+                                                                            message.getTimestamp(),
+                                                                            content.getServerTimestamp(),
+                                                                            -1,
+                                                                            message.getExpiresInSeconds() * 1000L,
+                                                                            false,
                                                                             message.isViewOnce(),
                                                                             content.isNeedsReceipt(),
                                                                             message.getBody(),
@@ -1071,7 +1078,9 @@ public final class PushProcessMessageJob extends BaseJob {
 
       IncomingTextMessage textMessage = new IncomingTextMessage(Recipient.externalPush(context, content.getSender()).getId(),
                                                                 content.getSenderDevice(),
-                                                                message.getTimestamp(), body,
+                                                                message.getTimestamp(),
+                                                                content.getServerTimestamp(),
+                                                                body,
                                                                 groupId,
                                                                 message.getExpiresInSeconds() * 1000L,
                                                                 content.isNeedsReceipt());
@@ -1498,7 +1507,7 @@ public final class PushProcessMessageJob extends BaseJob {
   private Optional<InsertResult> insertPlaceholder(@NonNull String sender, int senderDevice, long timestamp, Optional<GroupId> groupId) {
     SmsDatabase         database    = DatabaseFactory.getSmsDatabase(context);
     IncomingTextMessage textMessage = new IncomingTextMessage(Recipient.external(context, sender).getId(),
-                                                              senderDevice, timestamp, "",
+                                                              senderDevice, timestamp, -1, "",
                                                               groupId, 0, false);
 
     textMessage = new IncomingEncryptedMessage(textMessage, "");

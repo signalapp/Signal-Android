@@ -246,7 +246,7 @@ public final class GroupV1MessageProcessor {
       } else {
         SmsDatabase          smsDatabase  = DatabaseFactory.getSmsDatabase(context);
         String               body         = Base64.encodeBytes(storage.toByteArray());
-        IncomingTextMessage  incoming     = new IncomingTextMessage(Recipient.externalPush(context, content.getSender()).getId(), content.getSenderDevice(), content.getTimestamp(), body, Optional.of(GroupId.v1(group.getGroupId())), 0, content.isNeedsReceipt());
+        IncomingTextMessage  incoming     = new IncomingTextMessage(Recipient.externalPush(context, content.getSender()).getId(), content.getSenderDevice(), content.getTimestamp(), content.getServerTimestamp(), body, Optional.of(GroupId.v1(group.getGroupId())), 0, content.isNeedsReceipt());
         IncomingGroupMessage groupMessage = new IncomingGroupMessage(incoming, storage, body);
 
         Optional<InsertResult> insertResult = smsDatabase.insertMessageInbox(groupMessage);

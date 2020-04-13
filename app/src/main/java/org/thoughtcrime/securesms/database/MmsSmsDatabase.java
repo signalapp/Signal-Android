@@ -44,19 +44,27 @@ public class MmsSmsDatabase extends Database {
   public static final String MMS_TRANSPORT = "mms";
   public static final String SMS_TRANSPORT = "sms";
 
-  private static final String[] PROJECTION = {MmsSmsColumns.ID, MmsSmsColumns.UNIQUE_ROW_ID,
-                                              SmsDatabase.BODY, SmsDatabase.TYPE,
+  private static final String[] PROJECTION = {MmsSmsColumns.ID,
+                                              MmsSmsColumns.UNIQUE_ROW_ID,
+                                              SmsDatabase.BODY,
+                                              SmsDatabase.TYPE,
                                               MmsSmsColumns.THREAD_ID,
-                                              SmsDatabase.RECIPIENT_ID, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT,
+                                              SmsDatabase.RECIPIENT_ID,
+                                              SmsDatabase.ADDRESS_DEVICE_ID,
+                                              SmsDatabase.SUBJECT,
                                               MmsSmsColumns.NORMALIZED_DATE_SENT,
                                               MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
-                                              MmsDatabase.MESSAGE_TYPE, MmsDatabase.MESSAGE_BOX,
+                                              MmsSmsColumns.DATE_SERVER,
+                                              MmsDatabase.MESSAGE_TYPE,
+                                              MmsDatabase.MESSAGE_BOX,
                                               SmsDatabase.STATUS,
                                               MmsSmsColumns.UNIDENTIFIED,
                                               MmsSmsColumns.REACTIONS,
                                               MmsDatabase.PART_COUNT,
-                                              MmsDatabase.CONTENT_LOCATION, MmsDatabase.TRANSACTION_ID,
-                                              MmsDatabase.MESSAGE_SIZE, MmsDatabase.EXPIRY,
+                                              MmsDatabase.CONTENT_LOCATION,
+                                              MmsDatabase.TRANSACTION_ID,
+                                              MmsDatabase.MESSAGE_SIZE,
+                                              MmsDatabase.EXPIRY,
                                               MmsDatabase.STATUS,
                                               MmsSmsColumns.DELIVERY_RECEIPT_COUNT,
                                               MmsSmsColumns.READ_RECEIPT_COUNT,
@@ -386,7 +394,8 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.VIEW_ONCE,
                               MmsDatabase.REACTIONS,
                               MmsSmsColumns.REACTIONS_UNREAD,
-                              MmsSmsColumns.REACTIONS_LAST_SEEN};
+                              MmsSmsColumns.REACTIONS_LAST_SEEN,
+                              MmsSmsColumns.DATE_SERVER };
 
     String[] smsProjection = {SmsDatabase.DATE_SENT + " AS " + MmsSmsColumns.NORMALIZED_DATE_SENT,
                               SmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
@@ -416,7 +425,8 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.VIEW_ONCE,
                               MmsDatabase.REACTIONS,
                               MmsSmsColumns.REACTIONS_UNREAD,
-                              MmsSmsColumns.REACTIONS_LAST_SEEN};
+                              MmsSmsColumns.REACTIONS_LAST_SEEN,
+                              MmsSmsColumns.DATE_SERVER };
 
     SQLiteQueryBuilder mmsQueryBuilder = new SQLiteQueryBuilder();
     SQLiteQueryBuilder smsQueryBuilder = new SQLiteQueryBuilder();
@@ -447,6 +457,7 @@ public class MmsSmsDatabase extends Database {
     mmsColumnsPresent.add(MmsDatabase.MESSAGE_BOX);
     mmsColumnsPresent.add(MmsDatabase.DATE_SENT);
     mmsColumnsPresent.add(MmsDatabase.DATE_RECEIVED);
+    mmsColumnsPresent.add(MmsDatabase.DATE_SERVER);
     mmsColumnsPresent.add(MmsDatabase.PART_COUNT);
     mmsColumnsPresent.add(MmsDatabase.CONTENT_LOCATION);
     mmsColumnsPresent.add(MmsDatabase.TRANSACTION_ID);
@@ -486,6 +497,7 @@ public class MmsSmsDatabase extends Database {
     smsColumnsPresent.add(SmsDatabase.SUBJECT);
     smsColumnsPresent.add(SmsDatabase.DATE_SENT);
     smsColumnsPresent.add(SmsDatabase.DATE_RECEIVED);
+    smsColumnsPresent.add(SmsDatabase.DATE_SERVER);
     smsColumnsPresent.add(SmsDatabase.STATUS);
     smsColumnsPresent.add(SmsDatabase.UNIDENTIFIED);
     smsColumnsPresent.add(SmsDatabase.REACTIONS);

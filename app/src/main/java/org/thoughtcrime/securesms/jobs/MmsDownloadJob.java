@@ -235,7 +235,7 @@ public class MmsDownloadJob extends BaseJob {
       group = Optional.of(DatabaseFactory.getGroupDatabase(context).getOrCreateMmsGroupForMembers(recipients));
     }
 
-    IncomingMediaMessage   message      = new IncomingMediaMessage(from, group, body, retrieved.getDate() * 1000L, attachments, subscriptionId, 0, false, false, false);
+    IncomingMediaMessage   message      = new IncomingMediaMessage(from, group, body, retrieved.getDate() * 1000L, -1, attachments, subscriptionId, 0, false, false, false);
     Optional<InsertResult> insertResult = database.insertMessageInbox(message, contentLocation, threadId);
 
     if (insertResult.isPresent()) {

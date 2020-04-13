@@ -55,8 +55,8 @@ public class NotificationMmsMessageRecord extends MmsMessageRecord {
                                       int subscriptionId, SlideDeck slideDeck, int readReceiptCount)
   {
     super(id, "", conversationRecipient, individualRecipient, recipientDeviceId,
-          dateSent, dateReceived, threadId, Status.STATUS_NONE, deliveryReceiptCount, mailbox,
-          new LinkedList<IdentityKeyMismatch>(), new LinkedList<NetworkFailure>(), subscriptionId,
+          dateSent, dateReceived, -1, threadId, Status.STATUS_NONE, deliveryReceiptCount, mailbox,
+          new LinkedList<>(), new LinkedList<>(), subscriptionId,
           0, 0, false, slideDeck, readReceiptCount, null, Collections.emptyList(), Collections.emptyList(), false,
           Collections.emptyList());
 

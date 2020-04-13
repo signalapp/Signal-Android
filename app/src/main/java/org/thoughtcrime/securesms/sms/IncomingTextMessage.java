@@ -37,6 +37,7 @@ public class IncomingTextMessage implements Parcelable {
             private final boolean     replyPathPresent;
             private final String      pseudoSubject;
             private final long        sentTimestampMillis;
+            private final long        serverTimestampMillis;
   @Nullable private final GroupId     groupId;
             private final boolean     push;
             private final int         subscriptionId;
@@ -44,70 +45,79 @@ public class IncomingTextMessage implements Parcelable {
             private final boolean     unidentified;
 
   public IncomingTextMessage(@NonNull RecipientId sender, @NonNull SmsMessage message, int subscriptionId) {
-    this.message              = message.getDisplayMessageBody();
-    this.sender               = sender;
-    this.senderDeviceId       = SignalServiceAddress.DEFAULT_DEVICE_ID;
-    this.protocol             = message.getProtocolIdentifier();
-    this.serviceCenterAddress = message.getServiceCenterAddress();
-    this.replyPathPresent     = message.isReplyPathPresent();
-    this.pseudoSubject        = message.getPseudoSubject();
-    this.sentTimestampMillis  = message.getTimestampMillis();
-    this.subscriptionId       = subscriptionId;
-    this.expiresInMillis      = 0;
-    this.groupId              = null;
-    this.push                 = false;
-    this.unidentified         = false;
+    this.message               = message.getDisplayMessageBody();
+    this.sender                = sender;
+    this.senderDeviceId        = SignalServiceAddress.DEFAULT_DEVICE_ID;
+    this.protocol              = message.getProtocolIdentifier();
+    this.serviceCenterAddress  = message.getServiceCenterAddress();
+    this.replyPathPresent      = message.isReplyPathPresent();
+    this.pseudoSubject         = message.getPseudoSubject();
+    this.sentTimestampMillis   = message.getTimestampMillis();
+    this.serverTimestampMillis = -1;
+    this.subscriptionId        = subscriptionId;
+    this.expiresInMillis       = 0;
+    this.groupId               = null;
+    this.push                  = false;
+    this.unidentified          = false;
   }
 
-  public IncomingTextMessage(@NonNull RecipientId sender, int senderDeviceId, long sentTimestampMillis,
-                             String encodedBody, Optional<GroupId> groupId,
-                             long expiresInMillis, boolean unidentified)
+  public IncomingTextMessage(@NonNull RecipientId sender,
+                             int senderDeviceId,
+                             long sentTimestampMillis,
+                             long serverTimestampMillis,
+                             String encodedBody,
+                             Optional<GroupId> groupId,
+                             long expiresInMillis,
+                             boolean unidentified)
   {
-    this.message              = encodedBody;
-    this.sender               = sender;
-    this.senderDeviceId       = senderDeviceId;
-    this.protocol             = 31337;
-    this.serviceCenterAddress = "GCM";
-    this.replyPathPresent     = true;
-    this.pseudoSubject        = "";
-    this.sentTimestampMillis  = sentTimestampMillis;
-    this.push                 = true;
-    this.subscriptionId       = -1;
-    this.expiresInMillis      = expiresInMillis;
-    this.unidentified         = unidentified;
-    this.groupId              = groupId.orNull();
+    this.message               = encodedBody;
+    this.sender                = sender;
+    this.senderDeviceId        = senderDeviceId;
+    this.protocol              = 31337;
+    this.serviceCenterAddress  = "GCM";
+    this.replyPathPresent      = true;
+    this.pseudoSubject         = "";
+    this.sentTimestampMillis   = sentTimestampMillis;
+    this.serverTimestampMillis = serverTimestampMillis;
+    this.push                  = true;
+    this.subscriptionId        =    -1;
+    this.expiresInMillis       = expiresInMillis;
+    this.unidentified          = unidentified;
+    this.groupId               = groupId.orNull();
   }
 
   public IncomingTextMessage(Parcel in) {
-    this.message              = in.readString();
-    this.sender               = in.readParcelable(IncomingTextMessage.class.getClassLoader());
-    this.senderDeviceId       = in.readInt();
-    this.protocol             = in.readInt();
-    this.serviceCenterAddress = in.readString();
-    this.replyPathPresent     = (in.readInt() == 1);
-    this.pseudoSubject        = in.readString();
-    this.sentTimestampMillis  = in.readLong();
-    this.groupId              = GroupId.parseNullable(in.readString());
-    this.push                 = (in.readInt() == 1);
-    this.subscriptionId       = in.readInt();
-    this.expiresInMillis      = in.readLong();
-    this.unidentified         = in.readInt() == 1;
+    this.message               = in.readString();
+    this.sender                = in.readParcelable(IncomingTextMessage.class.getClassLoader());
+    this.senderDeviceId        = in.readInt();
+    this.protocol              = in.readInt();
+    this.serviceCenterAddress  = in.readString();
+    this.replyPathPresent      = (in.readInt() == 1);
+    this.pseudoSubject         = in.readString();
+    this.sentTimestampMillis   = in.readLong();
+    this.serverTimestampMillis = in.readLong();
+    this.groupId               = GroupId.parseNullable(in.readString());
+    this.push                  = (in.readInt() == 1);
+    this.subscriptionId        = in.readInt();
+    this.expiresInMillis       = in.readLong();
+    this.unidentified          = in.readInt() == 1;
   }
 
   public IncomingTextMessage(IncomingTextMessage base, String newBody) {
-    this.message              = newBody;
-    this.sender               = base.getSender();
-    this.senderDeviceId       = base.getSenderDeviceId();
-    this.protocol             = base.getProtocol();
-    this.serviceCenterAddress = base.getServiceCenterAddress();
-    this.replyPathPresent     = base.isReplyPathPresent();
-    this.pseudoSubject        = base.getPseudoSubject();
-    this.sentTimestampMillis  = base.getSentTimestampMillis();
-    this.groupId              = base.getGroupId();
-    this.push                 = base.isPush();
-    this.subscriptionId       = base.getSubscriptionId();
-    this.expiresInMillis      = base.getExpiresIn();
-    this.unidentified         = base.isUnidentified();
+    this.message               = newBody;
+    this.sender                = base.getSender();
+    this.senderDeviceId        = base.getSenderDeviceId();
+    this.protocol              = base.getProtocol();
+    this.serviceCenterAddress  = base.getServiceCenterAddress();
+    this.replyPathPresent      = base.isReplyPathPresent();
+    this.pseudoSubject         = base.getPseudoSubject();
+    this.sentTimestampMillis   = base.getSentTimestampMillis();
+    this.serverTimestampMillis = base.getServerTimestampMillis();
+    this.groupId               = base.getGroupId();
+    this.push                  = base.isPush();
+    this.subscriptionId        = base.getSubscriptionId();
+    this.expiresInMillis       = base.getExpiresIn();
+    this.unidentified          = base.isUnidentified();
   }
 
   public IncomingTextMessage(List<IncomingTextMessage> fragments) {
@@ -117,36 +127,38 @@ public class IncomingTextMessage implements Parcelable {
       body.append(message.getMessageBody());
     }
 
-    this.message              = body.toString();
-    this.sender               = fragments.get(0).getSender();
-    this.senderDeviceId       = fragments.get(0).getSenderDeviceId();
-    this.protocol             = fragments.get(0).getProtocol();
-    this.serviceCenterAddress = fragments.get(0).getServiceCenterAddress();
-    this.replyPathPresent     = fragments.get(0).isReplyPathPresent();
-    this.pseudoSubject        = fragments.get(0).getPseudoSubject();
-    this.sentTimestampMillis  = fragments.get(0).getSentTimestampMillis();
-    this.groupId              = fragments.get(0).getGroupId();
-    this.push                 = fragments.get(0).isPush();
-    this.subscriptionId       = fragments.get(0).getSubscriptionId();
-    this.expiresInMillis      = fragments.get(0).getExpiresIn();
-    this.unidentified         = fragments.get(0).isUnidentified();
+    this.message               = body.toString();
+    this.sender                = fragments.get(0).getSender();
+    this.senderDeviceId        = fragments.get(0).getSenderDeviceId();
+    this.protocol              = fragments.get(0).getProtocol();
+    this.serviceCenterAddress  = fragments.get(0).getServiceCenterAddress();
+    this.replyPathPresent      = fragments.get(0).isReplyPathPresent();
+    this.pseudoSubject         = fragments.get(0).getPseudoSubject();
+    this.sentTimestampMillis   = fragments.get(0).getSentTimestampMillis();
+    this.serverTimestampMillis = fragments.get(0).getServerTimestampMillis();
+    this.groupId               = fragments.get(0).getGroupId();
+    this.push                  = fragments.get(0).isPush();
+    this.subscriptionId        = fragments.get(0).getSubscriptionId();
+    this.expiresInMillis       = fragments.get(0).getExpiresIn();
+    this.unidentified          = fragments.get(0).isUnidentified();
   }
 
   protected IncomingTextMessage(@NonNull RecipientId sender, @Nullable GroupId groupId)
   {
-    this.message              = "";
-    this.sender               = sender;
-    this.senderDeviceId       = SignalServiceAddress.DEFAULT_DEVICE_ID;
-    this.protocol             = 31338;
-    this.serviceCenterAddress = "Outgoing";
-    this.replyPathPresent     = true;
-    this.pseudoSubject        = "";
-    this.sentTimestampMillis  = System.currentTimeMillis();
-    this.groupId              = groupId;
-    this.push                 = true;
-    this.subscriptionId       = -1;
-    this.expiresInMillis      = 0;
-    this.unidentified         = false;
+    this.message               = "";
+    this.sender                = sender;
+    this.senderDeviceId        = SignalServiceAddress.DEFAULT_DEVICE_ID;
+    this.protocol              = 31338;
+    this.serviceCenterAddress  = "Outgoing";
+    this.replyPathPresent      = true;
+    this.pseudoSubject         = "";
+    this.sentTimestampMillis   = System.currentTimeMillis();
+    this.serverTimestampMillis = sentTimestampMillis;
+    this.groupId               = groupId;
+    this.push                  = true;
+    this.subscriptionId        = -1;
+    this.expiresInMillis       = 0;
+    this.unidentified          = false;
   }
 
   public int getSubscriptionId() {
@@ -159,6 +171,10 @@ public class IncomingTextMessage implements Parcelable {
 
   public long getSentTimestampMillis() {
     return sentTimestampMillis;
+  }
+
+  public long getServerTimestampMillis() {
+    return serverTimestampMillis;
   }
 
   public String getPseudoSubject() {

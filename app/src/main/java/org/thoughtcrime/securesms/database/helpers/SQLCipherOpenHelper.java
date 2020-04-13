@@ -128,8 +128,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int ATTACHMENT_UPLOAD_TIMESTAMP      = 56;
   private static final int ATTACHMENT_CDN_NUMBER            = 57;
   private static final int JOB_INPUT_DATA                   = 58;
+  private static final int SERVER_TIMESTAMP                 = 59;
 
-  private static final int    DATABASE_VERSION = 58;
+  private static final int    DATABASE_VERSION = 59;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -871,6 +872,14 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < JOB_INPUT_DATA) {
         db.execSQL("ALTER TABLE job_spec ADD COLUMN serialized_input_data TEXT DEFAULT NULL");
+      }
+
+      if (oldVersion < SERVER_TIMESTAMP) {
+        db.execSQL("ALTER TABLE sms ADD COLUMN date_server INTEGER DEFAULT -1");
+        db.execSQL("CREATE INDEX IF NOT EXISTS sms_date_server_index ON sms (date_server)");
+
+        db.execSQL("ALTER TABLE mms ADD COLUMN date_server INTEGER DEFAULT -1");
+        db.execSQL("CREATE INDEX IF NOT EXISTS mms_date_server_index ON mms (date_server)");
       }
 
       db.setTransactionSuccessful();
