@@ -7,9 +7,9 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.redesign.utilities.*
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.loki.api.DeviceLink
 import org.whispersystems.signalservice.loki.api.LokiAPIDatabaseProtocol
 import org.whispersystems.signalservice.loki.api.LokiAPITarget
+import org.whispersystems.signalservice.loki.api.multidevice.DeviceLink
 
 // TODO: Clean this up a bit
 
@@ -84,7 +84,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
             var string = "${target.address}-${target.port}"
             val keySet = target.publicKeySet
             if (keySet != null) {
-                string += "-${keySet.idKey}-${keySet.encryptionKey}"
+                string += "-${keySet.ed25519Key}-${keySet.x25519Key}"
             }
             string
         }

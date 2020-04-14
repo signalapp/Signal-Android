@@ -34,7 +34,8 @@ class BackgroundPollWorker : PersistentAlarmManagerListener() {
             try {
                 val applicationContext = context.applicationContext as ApplicationContext
                 val broadcaster = applicationContext.broadcaster
-                LokiAPI(userHexEncodedPublicKey, lokiAPIDatabase, broadcaster).getMessages().map { messages ->
+                LokiAPI.configureIfNeeded(userHexEncodedPublicKey, lokiAPIDatabase, broadcaster)
+                LokiAPI.shared.getMessages().map { messages ->
                     messages.forEach {
                         PushContentReceiveJob(context).processEnvelope(SignalServiceEnvelope(it))
                     }

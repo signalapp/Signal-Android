@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.mms;
 import android.content.Context;
 
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.signalservice.loki.api.LokiFileServerAPI;
+import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI;
 
 public class PushMediaConstraints extends MediaConstraints {
 

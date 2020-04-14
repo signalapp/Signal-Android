@@ -137,12 +137,12 @@ import org.whispersystems.signalservice.api.messages.multidevice.StickerPackOper
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.loki.api.DeviceLink;
-import org.whispersystems.signalservice.loki.api.DeviceLinkingSession;
+import org.whispersystems.signalservice.loki.api.multidevice.DeviceLink;
+import org.whispersystems.signalservice.loki.api.multidevice.DeviceLinkingSession;
 import org.whispersystems.signalservice.loki.api.LokiAPI;
-import org.whispersystems.signalservice.loki.api.LokiDeviceLinkUtilities;
-import org.whispersystems.signalservice.loki.api.LokiFileServerAPI;
-import org.whispersystems.signalservice.loki.api.LokiPublicChat;
+import org.whispersystems.signalservice.loki.api.multidevice.LokiDeviceLinkUtilities;
+import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI;
+import org.whispersystems.signalservice.loki.api.publicchats.LokiPublicChat;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiServiceMessage;

@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.SignalServiceMessageSender
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
-import org.whispersystems.signalservice.loki.api.LokiPublicChat
+import org.whispersystems.signalservice.loki.api.publicchats.LokiPublicChat
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">imaginary.stream</domain>
-        <domain includeSubdomains="true">chat.getsession.org</domain>
+        <domain includeSubdomains="true">149.56.148.124</domain>
         <domain includeSubdomains="true">storage.seed1.loki.network</domain>
         <domain includeSubdomains="true">storage.seed2.loki.network</domain>
-        <domain includeSubdomains="true">public.loki.foundation:22023</domain>
+        <domain includeSubdomains="true">public.loki.foundation</domain>
         <domain includeSubdomains="true">file-dev.lokinet.org</domain>
         <domain includeSubdomains="true">127.0.0.1</domain>
     </domain-config>
