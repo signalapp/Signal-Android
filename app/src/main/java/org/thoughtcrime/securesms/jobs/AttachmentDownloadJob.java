@@ -30,6 +30,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
+import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
@@ -168,7 +169,7 @@ public class AttachmentDownloadJob extends BaseJob {
       InputStream                    stream          = messageReceiver.retrieveAttachment(pointer, attachmentFile, MAX_ATTACHMENT_SIZE, (total, progress) -> EventBus.getDefault().postSticky(new PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, total, progress)));
 
       database.insertAttachmentsForPlaceholder(messageId, attachmentId, stream);
-    } catch (InvalidPartException | NonSuccessfulResponseCodeException | InvalidMessageException | MmsException e) {
+    } catch (InvalidPartException | NonSuccessfulResponseCodeException | InvalidMessageException | MmsException | MissingConfigurationException e) {
       Log.w(TAG, "Experienced exception while trying to download an attachment.", e);
       markFailed(messageId, attachmentId);
     }

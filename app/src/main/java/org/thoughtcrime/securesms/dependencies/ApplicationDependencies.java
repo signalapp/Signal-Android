@@ -36,17 +36,17 @@ public class ApplicationDependencies {
   private static Application application;
   private static Provider    provider;
 
-  private static SignalServiceAccountManager  accountManager;
-  private static SignalServiceMessageSender   messageSender;
-  private static SignalServiceMessageReceiver messageReceiver;
-  private static IncomingMessageProcessor     incomingMessageProcessor;
-  private static MessageRetriever             messageRetriever;
-  private static LiveRecipientCache           recipientCache;
-  private static JobManager                   jobManager;
-  private static FrameRateTracker             frameRateTracker;
-  private static KeyValueStore                keyValueStore;
-  private static MegaphoneRepository          megaphoneRepository;
-  private static GroupsV2Operations           groupsV2Operations;
+  private static SignalServiceAccountManager       accountManager;
+  private static SignalServiceMessageSender        messageSender;
+  private static SignalServiceMessageReceiver      messageReceiver;
+  private static IncomingMessageProcessor          incomingMessageProcessor;
+  private static MessageRetriever                  messageRetriever;
+  private static LiveRecipientCache                recipientCache;
+  private static JobManager                        jobManager;
+  private static FrameRateTracker                  frameRateTracker;
+  private static KeyValueStore                     keyValueStore;
+  private static MegaphoneRepository               megaphoneRepository;
+  private static GroupsV2Operations                groupsV2Operations;
 
   public static synchronized void init(@NonNull Application application, @NonNull Provider provider) {
     if (ApplicationDependencies.application != null || ApplicationDependencies.provider != null) {

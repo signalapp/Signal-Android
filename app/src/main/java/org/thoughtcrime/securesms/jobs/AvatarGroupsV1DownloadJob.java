@@ -18,6 +18,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
+import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 
 import java.io.File;
@@ -92,7 +93,7 @@ public final class AvatarGroupsV1DownloadJob extends BaseJob {
 
         inputStream.close();
       }
-    } catch (NonSuccessfulResponseCodeException | InvalidMessageException e) {
+    } catch (NonSuccessfulResponseCodeException | InvalidMessageException | MissingConfigurationException e) {
       Log.w(TAG, e);
     } finally {
       if (attachment != null)

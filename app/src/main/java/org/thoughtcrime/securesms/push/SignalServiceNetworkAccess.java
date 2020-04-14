@@ -174,8 +174,8 @@ public class SignalServiceNetworkAccess {
 
     this.censorshipConfiguration = new HashMap<String, SignalServiceConfiguration>() {{
       put(COUNTRY_CODE_EGYPT, new SignalServiceConfiguration(new SignalServiceUrl[] {egyptGoogleService, baseGoogleService, baseAndroidService, mapsOneAndroidService, mapsTwoAndroidService, mailAndroidService},
-                                                             new SignalCdnUrl[] {egyptGoogleCdn, baseAndroidCdn, baseGoogleCdn, mapsOneAndroidCdn, mapsTwoAndroidCdn, mailAndroidCdn, mailAndroidCdn},
-                                                             new SignalCdnUrl[] {egyptGoogleCdn2, baseAndroidCdn2, baseGoogleCdn2, mapsOneAndroidCdn2, mapsTwoAndroidCdn2, mailAndroidCdn2, mailAndroidCdn2},
+                                                             makeSignalCdnUrlMapFor(new SignalCdnUrl[] {egyptGoogleCdn, baseAndroidCdn, baseGoogleCdn, mapsOneAndroidCdn, mapsTwoAndroidCdn, mailAndroidCdn, mailAndroidCdn},
+                                                                                    new SignalCdnUrl[] {egyptGoogleCdn2, baseAndroidCdn2, baseGoogleCdn2, mapsOneAndroidCdn2, mapsTwoAndroidCdn2, mailAndroidCdn2, mailAndroidCdn2}),
                                                              new SignalContactDiscoveryUrl[] {egyptGoogleDiscovery, baseGoogleDiscovery, baseAndroidDiscovery, mapsOneAndroidDiscovery, mapsTwoAndroidDiscovery, mailAndroidDiscovery},
                                                              new SignalKeyBackupServiceUrl[] {egyptGoogleKbs, baseGoogleKbs, baseAndroidKbs, mapsOneAndroidKbs, mapsTwoAndroidKbs, mailAndroidKbs},
                                                              new SignalStorageUrl[] {egyptGoogleStorage, baseGoogleStorage, baseAndroidStorage, mapsOneAndroidStorage, mapsTwoAndroidStorage, mailAndroidStorage},
@@ -184,8 +184,8 @@ public class SignalServiceNetworkAccess {
                                                              zkGroupServerPublicParams));
 
       put(COUNTRY_CODE_UAE, new SignalServiceConfiguration(new SignalServiceUrl[] {uaeGoogleService, baseAndroidService, baseGoogleService, mapsOneAndroidService, mapsTwoAndroidService, mailAndroidService},
-                                                           new SignalCdnUrl[] {uaeGoogleCdn, baseAndroidCdn, baseGoogleCdn, mapsOneAndroidCdn, mapsTwoAndroidCdn, mailAndroidCdn},
-                                                           new SignalCdnUrl[] {uaeGoogleCdn2, baseAndroidCdn2, baseGoogleCdn2, mapsOneAndroidCdn2, mapsTwoAndroidCdn2, mailAndroidCdn2},
+                                                           makeSignalCdnUrlMapFor(new SignalCdnUrl[] {uaeGoogleCdn, baseAndroidCdn, baseGoogleCdn, mapsOneAndroidCdn, mapsTwoAndroidCdn, mailAndroidCdn},
+                                                                                  new SignalCdnUrl[] {uaeGoogleCdn2, baseAndroidCdn2, baseGoogleCdn2, mapsOneAndroidCdn2, mapsTwoAndroidCdn2, mailAndroidCdn2}),
                                                            new SignalContactDiscoveryUrl[] {uaeGoogleDiscovery, baseGoogleDiscovery, baseAndroidDiscovery, mapsOneAndroidDiscovery, mapsTwoAndroidDiscovery, mailAndroidDiscovery},
                                                            new SignalKeyBackupServiceUrl[] {uaeGoogleKbs, baseGoogleKbs, baseAndroidKbs, mapsOneAndroidKbs, mapsTwoAndroidKbs, mailAndroidKbs},
                                                            new SignalStorageUrl[] {uaeGoogleStorage, baseGoogleStorage, baseAndroidStorage, mapsOneAndroidStorage, mapsTwoAndroidStorage, mailAndroidStorage},
@@ -194,8 +194,8 @@ public class SignalServiceNetworkAccess {
                                                            zkGroupServerPublicParams));
 
       put(COUNTRY_CODE_OMAN, new SignalServiceConfiguration(new SignalServiceUrl[] {omanGoogleService, baseAndroidService, baseGoogleService, mapsOneAndroidService, mapsTwoAndroidService, mailAndroidService},
-                                                            new SignalCdnUrl[] {omanGoogleCdn, baseAndroidCdn, baseGoogleCdn, mapsOneAndroidCdn, mapsTwoAndroidCdn, mailAndroidCdn},
-                                                            new SignalCdnUrl[] {omanGoogleCdn2, baseAndroidCdn2, baseGoogleCdn2, mapsOneAndroidCdn2, mapsTwoAndroidCdn2, mailAndroidCdn2},
+                                                            makeSignalCdnUrlMapFor(new SignalCdnUrl[] {omanGoogleCdn, baseAndroidCdn, baseGoogleCdn, mapsOneAndroidCdn, mapsTwoAndroidCdn, mailAndroidCdn},
+                                                                                   new SignalCdnUrl[] {omanGoogleCdn2, baseAndroidCdn2, baseGoogleCdn2, mapsOneAndroidCdn2, mapsTwoAndroidCdn2, mailAndroidCdn2}),
                                                             new SignalContactDiscoveryUrl[] {omanGoogleDiscovery, baseGoogleDiscovery, baseAndroidDiscovery, mapsOneAndroidDiscovery, mapsTwoAndroidDiscovery, mailAndroidDiscovery},
                                                             new SignalKeyBackupServiceUrl[] {omanGoogleKbs, baseGoogleKbs, baseAndroidKbs, mapsOneAndroidKbs, mapsTwoAndroidKbs, mailAndroidKbs},
                                                             new SignalStorageUrl[] {omanGoogleStorage, baseGoogleStorage, baseAndroidStorage, mapsOneAndroidStorage, mapsTwoAndroidStorage, mailAndroidStorage},
@@ -205,8 +205,8 @@ public class SignalServiceNetworkAccess {
 
 
       put(COUNTRY_CODE_QATAR, new SignalServiceConfiguration(new SignalServiceUrl[] {qatarGoogleService, baseAndroidService, baseGoogleService, mapsOneAndroidService, mapsTwoAndroidService, mailAndroidService},
-                                                             new SignalCdnUrl[] {qatarGoogleCdn, baseAndroidCdn, baseGoogleCdn, mapsOneAndroidCdn, mapsTwoAndroidCdn, mailAndroidCdn},
-                                                             new SignalCdnUrl[] {qatarGoogleCdn2, baseAndroidCdn2, baseGoogleCdn2, mapsOneAndroidCdn2, mapsTwoAndroidCdn2, mailAndroidCdn2},
+                                                             makeSignalCdnUrlMapFor(new SignalCdnUrl[] {qatarGoogleCdn, baseAndroidCdn, baseGoogleCdn, mapsOneAndroidCdn, mapsTwoAndroidCdn, mailAndroidCdn},
+                                                                                    new SignalCdnUrl[] {qatarGoogleCdn2, baseAndroidCdn2, baseGoogleCdn2, mapsOneAndroidCdn2, mapsTwoAndroidCdn2, mailAndroidCdn2}),
                                                              new SignalContactDiscoveryUrl[] {qatarGoogleDiscovery, baseGoogleDiscovery, baseAndroidDiscovery, mapsOneAndroidDiscovery, mapsTwoAndroidDiscovery, mailAndroidDiscovery},
                                                              new SignalKeyBackupServiceUrl[] {qatarGoogleKbs, baseGoogleKbs, baseAndroidKbs, mapsOneAndroidKbs, mapsTwoAndroidKbs, mailAndroidKbs},
                                                              new SignalStorageUrl[] {qatarGoogleStorage, baseGoogleStorage, baseAndroidStorage, mapsOneAndroidStorage, mapsTwoAndroidStorage, mailAndroidStorage},
@@ -216,8 +216,8 @@ public class SignalServiceNetworkAccess {
     }};
 
     this.uncensoredConfiguration = new SignalServiceConfiguration(new SignalServiceUrl[] {new SignalServiceUrl(BuildConfig.SIGNAL_URL, new SignalServiceTrustStore(context))},
-                                                                  new SignalCdnUrl[] {new SignalCdnUrl(BuildConfig.SIGNAL_CDN_URL, new SignalServiceTrustStore(context))},
-                                                                  new SignalCdnUrl[] {new SignalCdnUrl(BuildConfig.SIGNAL_CDN2_URL, new SignalServiceTrustStore(context))},
+                                                                  makeSignalCdnUrlMapFor(new SignalCdnUrl[] {new SignalCdnUrl(BuildConfig.SIGNAL_CDN_URL, new SignalServiceTrustStore(context))},
+                                                                                         new SignalCdnUrl[] {new SignalCdnUrl(BuildConfig.SIGNAL_CDN2_URL, new SignalServiceTrustStore(context))}),
                                                                   new SignalContactDiscoveryUrl[] {new SignalContactDiscoveryUrl(BuildConfig.SIGNAL_CONTACT_DISCOVERY_URL, new SignalServiceTrustStore(context))},
                                                                   new SignalKeyBackupServiceUrl[] { new SignalKeyBackupServiceUrl(BuildConfig.SIGNAL_KEY_BACKUP_URL, new SignalServiceTrustStore(context)) },
                                                                   new SignalStorageUrl[] {new SignalStorageUrl(BuildConfig.STORAGE_URL, new SignalServiceTrustStore(context))},
@@ -253,4 +253,10 @@ public class SignalServiceNetworkAccess {
     return getConfiguration(number) != this.uncensoredConfiguration;
   }
 
+  private static Map<Integer, SignalCdnUrl[]> makeSignalCdnUrlMapFor(SignalCdnUrl[] cdn0Urls, SignalCdnUrl[] cdn2Urls) {
+    Map<Integer, SignalCdnUrl[]> result = new HashMap<>();
+    result.put(0, cdn0Urls);
+    result.put(2, cdn2Urls);
+    return Collections.unmodifiableMap(result);
+  }
 }

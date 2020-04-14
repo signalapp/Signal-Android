@@ -16,7 +16,6 @@ import org.whispersystems.signalservice.FeatureFlags;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream;
 import org.whispersystems.signalservice.api.crypto.ProfileCipherInputStream;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
-import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
@@ -25,6 +24,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceStickerManifes
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
@@ -118,8 +118,7 @@ public class SignalServiceMessageReceiver {
    * @throws InvalidMessageException
    */
   public InputStream retrieveAttachment(SignalServiceAttachmentPointer pointer, File destination, long maxSizeBytes)
-      throws IOException, InvalidMessageException
-  {
+      throws IOException, InvalidMessageException, MissingConfigurationException {
     return retrieveAttachment(pointer, destination, maxSizeBytes, null);
   }
 
@@ -174,8 +173,7 @@ public class SignalServiceMessageReceiver {
    * @throws InvalidMessageException
    */
   public InputStream retrieveAttachment(SignalServiceAttachmentPointer pointer, File destination, long maxSizeBytes, ProgressListener listener)
-      throws IOException, InvalidMessageException
-  {
+      throws IOException, InvalidMessageException, MissingConfigurationException {
     if (!pointer.getDigest().isPresent()) throw new InvalidMessageException("No attachment digest!");
 
     socket.retrieveAttachment(pointer.getCdnNumber(), pointer.getRemoteId(), destination, maxSizeBytes, listener);

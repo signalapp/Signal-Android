@@ -39,6 +39,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.internal.push.UnsupportedDataMessageException;
+import org.whispersystems.signalservice.internal.push.UnsupportedDataMessageProtocolVersionException;
 import org.whispersystems.signalservice.internal.serialize.SignalServiceAddressProtobufSerializer;
 import org.whispersystems.signalservice.internal.serialize.SignalServiceMetadataProtobufSerializer;
 import org.whispersystems.signalservice.internal.serialize.protos.SignalServiceContentProto;
@@ -268,7 +269,8 @@ public final class SignalServiceContent {
     return null;
   }
 
-  private static SignalServiceDataMessage createSignalServiceMessage(SignalServiceMetadata metadata, SignalServiceProtos.DataMessage content)
+  private static SignalServiceDataMessage createSignalServiceMessage(SignalServiceMetadata metadata,
+                                                                     SignalServiceProtos.DataMessage content)
       throws ProtocolInvalidMessageException, UnsupportedDataMessageException
   {
     SignalServiceGroup                  groupInfoV1  = createGroupV1Info(content);
@@ -292,12 +294,12 @@ public final class SignalServiceContent {
     SignalServiceDataMessage.Sticker       sticker          = createSticker(content);
     SignalServiceDataMessage.Reaction      reaction         = createReaction(content);
 
-    if (content.getRequiredProtocolVersion() > SignalServiceProtos.DataMessage.ProtocolVersion.CURRENT.getNumber()) {
-      throw new UnsupportedDataMessageException(SignalServiceProtos.DataMessage.ProtocolVersion.CURRENT.getNumber(),
-                                                content.getRequiredProtocolVersion(),
-                                                metadata.getSender().getIdentifier(),
-                                                metadata.getSenderDevice(),
-                                                groupContext);
+    if (content.getRequiredProtocolVersion() > SignalServiceProtos.DataMessage.ProtocolVersion.CURRENT_VALUE) {
+      throw new UnsupportedDataMessageProtocolVersionException(SignalServiceProtos.DataMessage.ProtocolVersion.CURRENT_VALUE,
+                                                               content.getRequiredProtocolVersion(),
+                                                               metadata.getSender().getIdentifier(),
+                                                               metadata.getSenderDevice(),
+                                                               groupContext);
     }
 
     for (SignalServiceProtos.AttachmentPointer pointer : content.getAttachmentsList()) {
@@ -327,7 +329,8 @@ public final class SignalServiceContent {
                                         reaction);
   }
 
-  private static SignalServiceSyncMessage createSynchronizeMessage(SignalServiceMetadata metadata, SignalServiceProtos.SyncMessage content)
+  private static SignalServiceSyncMessage createSynchronizeMessage(SignalServiceMetadata metadata,
+                                                                   SignalServiceProtos.SyncMessage content)
       throws ProtocolInvalidMessageException, ProtocolInvalidKeyException, UnsupportedDataMessageException
   {
     if (content.hasSent()) {

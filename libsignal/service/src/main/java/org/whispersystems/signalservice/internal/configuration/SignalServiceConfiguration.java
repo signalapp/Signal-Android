@@ -3,25 +3,24 @@ package org.whispersystems.signalservice.internal.configuration;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.Dns;
 import okhttp3.Interceptor;
 
 public final class SignalServiceConfiguration {
 
-  private final SignalServiceUrl[]          signalServiceUrls;
-  private final SignalCdnUrl[]              signalCdnUrls;
-  private final SignalCdnUrl[]              signalCdn2Urls;
-  private final SignalContactDiscoveryUrl[] signalContactDiscoveryUrls;
-  private final SignalKeyBackupServiceUrl[] signalKeyBackupServiceUrls;
-  private final SignalStorageUrl[]          signalStorageUrls;
-  private final List<Interceptor>           networkInterceptors;
-  private final Optional<Dns>               dns;
-  private final byte[]                      zkGroupServerPublicParams;
+  private final SignalServiceUrl[]           signalServiceUrls;
+  private final Map<Integer, SignalCdnUrl[]> signalCdnUrlMap;
+  private final SignalContactDiscoveryUrl[]  signalContactDiscoveryUrls;
+  private final SignalKeyBackupServiceUrl[]  signalKeyBackupServiceUrls;
+  private final SignalStorageUrl[]           signalStorageUrls;
+  private final List<Interceptor>            networkInterceptors;
+  private final Optional<Dns>                dns;
+  private final byte[]                       zkGroupServerPublicParams;
 
   public SignalServiceConfiguration(SignalServiceUrl[] signalServiceUrls,
-                                    SignalCdnUrl[] signalCdnUrls,
-                                    SignalCdnUrl[] signalCdn2Urls,
+                                    Map<Integer, SignalCdnUrl[]> signalCdnUrlMap,
                                     SignalContactDiscoveryUrl[] signalContactDiscoveryUrls,
                                     SignalKeyBackupServiceUrl[] signalKeyBackupServiceUrls,
                                     SignalStorageUrl[] signalStorageUrls,
@@ -30,8 +29,7 @@ public final class SignalServiceConfiguration {
                                     byte[] zkGroupServerPublicParams)
   {
     this.signalServiceUrls          = signalServiceUrls;
-    this.signalCdnUrls              = signalCdnUrls;
-    this.signalCdn2Urls             = signalCdn2Urls;
+    this.signalCdnUrlMap            = signalCdnUrlMap;
     this.signalContactDiscoveryUrls = signalContactDiscoveryUrls;
     this.signalKeyBackupServiceUrls = signalKeyBackupServiceUrls;
     this.signalStorageUrls          = signalStorageUrls;
@@ -44,12 +42,8 @@ public final class SignalServiceConfiguration {
     return signalServiceUrls;
   }
 
-  public SignalCdnUrl[] getSignalCdnUrls() {
-    return signalCdnUrls;
-  }
-
-  public SignalCdnUrl[] getSignalCdn2Urls() {
-    return signalCdn2Urls;
+  public Map<Integer, SignalCdnUrl[]> getSignalCdnUrlMap() {
+    return signalCdnUrlMap;
   }
 
   public SignalContactDiscoveryUrl[] getSignalContactDiscoveryUrls() {

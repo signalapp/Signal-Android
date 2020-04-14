@@ -49,6 +49,7 @@ import org.whispersystems.signalservice.api.push.exceptions.CaptchaRequiredExcep
 import org.whispersystems.signalservice.api.push.exceptions.ConflictException;
 import org.whispersystems.signalservice.api.push.exceptions.ContactManifestMismatchException;
 import org.whispersystems.signalservice.api.push.exceptions.ExpectationFailedException;
+import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException;
 import org.whispersystems.signalservice.api.push.exceptions.NoContentException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
@@ -62,6 +63,7 @@ import org.whispersystems.signalservice.api.storage.StorageAuthResponse;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
 import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.whispersystems.signalservice.internal.configuration.SignalCdnUrl;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.configuration.SignalUrl;
 import org.whispersystems.signalservice.internal.contacts.entities.DiscoveryRequest;
@@ -98,6 +100,7 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -191,17 +194,16 @@ public class PushServiceSocket {
   private       long      soTimeoutMillis = TimeUnit.SECONDS.toMillis(30);
   private final Set<Call> connections     = new HashSet<>();
 
-  private final ServiceConnectionHolder[]  serviceClients;
-  private final ConnectionHolder[]         cdnClients;
-  private final ConnectionHolder[]         cdn2Clients;
-  private final ConnectionHolder[]         contactDiscoveryClients;
-  private final ConnectionHolder[]         keyBackupServiceClients;
-  private final ConnectionHolder[]         storageClients;
+  private final ServiceConnectionHolder[]        serviceClients;
+  private final Map<Integer, ConnectionHolder[]> cdnClientsMap;
+  private final ConnectionHolder[]               contactDiscoveryClients;
+  private final ConnectionHolder[]               keyBackupServiceClients;
+  private final ConnectionHolder[]               storageClients;
 
-  private final CredentialsProvider       credentialsProvider;
-  private final String                    signalAgent;
-  private final SecureRandom              random;
-  private final ClientZkProfileOperations clientZkProfileOperations;
+  private final CredentialsProvider              credentialsProvider;
+  private final String                           signalAgent;
+  private final SecureRandom                     random;
+  private final ClientZkProfileOperations        clientZkProfileOperations;
 
   public PushServiceSocket(SignalServiceConfiguration configuration,
                            CredentialsProvider credentialsProvider,
@@ -211,8 +213,7 @@ public class PushServiceSocket {
     this.credentialsProvider       = credentialsProvider;
     this.signalAgent               = signalAgent;
     this.serviceClients            = createServiceConnectionHolders(configuration.getSignalServiceUrls(), configuration.getNetworkInterceptors(), configuration.getDns());
-    this.cdnClients                = createConnectionHolders(configuration.getSignalCdnUrls(), configuration.getNetworkInterceptors(), configuration.getDns());
-    this.cdn2Clients               = createConnectionHolders(configuration.getSignalCdn2Urls(), configuration.getNetworkInterceptors(), configuration.getDns());
+    this.cdnClientsMap             = createCdnClientsMap(configuration.getSignalCdnUrlMap(), configuration.getNetworkInterceptors(), configuration.getDns());
     this.contactDiscoveryClients   = createConnectionHolders(configuration.getSignalContactDiscoveryUrls(), configuration.getNetworkInterceptors(), configuration.getDns());
     this.keyBackupServiceClients   = createConnectionHolders(configuration.getSignalKeyBackupServiceUrls(), configuration.getNetworkInterceptors(), configuration.getDns());
     this.storageClients            = createConnectionHolders(configuration.getSignalStorageUrls(), configuration.getNetworkInterceptors(), configuration.getDns());
@@ -517,8 +518,7 @@ public class PushServiceSocket {
   }
 
   public void retrieveAttachment(int cdnNumber, SignalServiceAttachmentRemoteId cdnPath, File destination, long maxSizeBytes, ProgressListener listener)
-      throws NonSuccessfulResponseCodeException, PushNetworkException
-  {
+      throws NonSuccessfulResponseCodeException, PushNetworkException, MissingConfigurationException {
     final String path;
     if (cdnPath.getV2().isPresent()) {
       path = String.format(Locale.US, ATTACHMENT_ID_DOWNLOAD_PATH, cdnPath.getV2().get());
@@ -529,30 +529,35 @@ public class PushServiceSocket {
   }
 
   public void retrieveSticker(File destination, byte[] packId, int stickerId)
-      throws NonSuccessfulResponseCodeException, PushNetworkException
-  {
+      throws NonSuccessfulResponseCodeException, PushNetworkException, MissingConfigurationException {
     String hexPackId = Hex.toStringCondensed(packId);
     downloadFromCdn(destination, 0, String.format(Locale.US, STICKER_PATH, hexPackId, stickerId), 1024 * 1024, null);
   }
 
   public byte[] retrieveSticker(byte[] packId, int stickerId)
-      throws NonSuccessfulResponseCodeException, PushNetworkException
-  {
+      throws NonSuccessfulResponseCodeException, PushNetworkException {
     String                hexPackId = Hex.toStringCondensed(packId);
     ByteArrayOutputStream output    = new ByteArrayOutputStream();
 
-    downloadFromCdn(output, 0, 0, String.format(Locale.US, STICKER_PATH, hexPackId, stickerId), 1024 * 1024, null);
+    try {
+      downloadFromCdn(output, 0, 0, String.format(Locale.US, STICKER_PATH, hexPackId, stickerId), 1024 * 1024, null);
+    } catch (MissingConfigurationException e) {
+      throw new AssertionError(e);
+    }
 
     return output.toByteArray();
   }
 
   public byte[] retrieveStickerManifest(byte[] packId)
-      throws NonSuccessfulResponseCodeException, PushNetworkException
-  {
+      throws NonSuccessfulResponseCodeException, PushNetworkException {
     String                hexPackId = Hex.toStringCondensed(packId);
     ByteArrayOutputStream output    = new ByteArrayOutputStream();
 
-    downloadFromCdn(output, 0, 0, String.format(STICKER_MANIFEST_PATH, hexPackId), 1024 * 1024, null);
+    try {
+      downloadFromCdn(output, 0, 0, String.format(STICKER_MANIFEST_PATH, hexPackId), 1024 * 1024, null);
+    } catch (MissingConfigurationException e) {
+      throw new AssertionError(e);
+    }
 
     return output.toByteArray();
   }
@@ -615,9 +620,12 @@ public class PushServiceSocket {
   }
 
   public void retrieveProfileAvatar(String path, File destination, long maxSizeBytes)
-      throws NonSuccessfulResponseCodeException, PushNetworkException
-  {
-    downloadFromCdn(destination, 0, path, maxSizeBytes, null);
+      throws NonSuccessfulResponseCodeException, PushNetworkException {
+    try {
+      downloadFromCdn(destination, 0, path, maxSizeBytes, null);
+    } catch (MissingConfigurationException e) {
+      throw new AssertionError(e);
+    }
   }
 
   public void setProfileName(String name) throws NonSuccessfulResponseCodeException, PushNetworkException {
@@ -646,7 +654,7 @@ public class PushServiceSocket {
     }
 
     if (profileAvatar != null) {
-      uploadToCdn(AVATAR_UPLOAD_PATH, formAttributes.getAcl(), formAttributes.getKey(),
+      uploadToCdn0(AVATAR_UPLOAD_PATH, formAttributes.getAcl(), formAttributes.getKey(),
                   formAttributes.getPolicy(), formAttributes.getAlgorithm(),
                   formAttributes.getCredential(), formAttributes.getDate(),
                   formAttributes.getSignature(), profileAvatar.getData(),
@@ -682,7 +690,7 @@ public class PushServiceSocket {
         throw new NonSuccessfulResponseCodeException("Unable to parse entity");
       }
 
-      uploadToCdn(AVATAR_UPLOAD_PATH, formAttributes.getAcl(), formAttributes.getKey(),
+      uploadToCdn0(AVATAR_UPLOAD_PATH, formAttributes.getAcl(), formAttributes.getKey(),
                   formAttributes.getPolicy(), formAttributes.getAlgorithm(),
                   formAttributes.getCredential(), formAttributes.getDate(),
                   formAttributes.getSignature(), profileAvatar.getData(),
@@ -896,7 +904,7 @@ public class PushServiceSocket {
   public byte[] uploadGroupV2Avatar(byte[] avatarCipherText, AvatarUploadAttributes uploadAttributes)
       throws IOException
   {
-    return uploadToCdn(AVATAR_UPLOAD_PATH, uploadAttributes.getAcl(), uploadAttributes.getKey(),
+    return uploadToCdn0(AVATAR_UPLOAD_PATH, uploadAttributes.getAcl(), uploadAttributes.getKey(),
                        uploadAttributes.getPolicy(), uploadAttributes.getAlgorithm(),
                        uploadAttributes.getCredential(), uploadAttributes.getDate(),
                        uploadAttributes.getSignature(),
@@ -910,7 +918,7 @@ public class PushServiceSocket {
       throws PushNetworkException, NonSuccessfulResponseCodeException
   {
     long   id     = Long.parseLong(uploadAttributes.getAttachmentId());
-    byte[] digest = uploadToCdn(ATTACHMENT_UPLOAD_PATH, uploadAttributes.getAcl(), uploadAttributes.getKey(),
+    byte[] digest = uploadToCdn0(ATTACHMENT_UPLOAD_PATH, uploadAttributes.getAcl(), uploadAttributes.getKey(),
                                 uploadAttributes.getPolicy(), uploadAttributes.getAlgorithm(),
                                 uploadAttributes.getCredential(), uploadAttributes.getDate(),
                                 uploadAttributes.getSignature(), attachment.getData(),
@@ -933,8 +941,7 @@ public class PushServiceSocket {
   }
 
   private void downloadFromCdn(File destination, int cdnNumber, String path, long maxSizeBytes, ProgressListener listener)
-      throws PushNetworkException, NonSuccessfulResponseCodeException
-  {
+      throws PushNetworkException, NonSuccessfulResponseCodeException, MissingConfigurationException {
     try (FileOutputStream outputStream = new FileOutputStream(destination, true)) {
       downloadFromCdn(outputStream, destination.length(), cdnNumber, path, maxSizeBytes, listener);
     } catch (IOException e) {
@@ -943,14 +950,17 @@ public class PushServiceSocket {
   }
 
   private void downloadFromCdn(OutputStream outputStream, long offset, int cdnNumber, String path, long maxSizeBytes, ProgressListener listener)
-      throws PushNetworkException, NonSuccessfulResponseCodeException
-  {
-    ConnectionHolder connectionHolder = getRandom(cdnNumber == 2 ? cdn2Clients : cdnClients, random);
-    OkHttpClient     okHttpClient     = connectionHolder.getClient()
-                                                        .newBuilder()
-                                                        .connectTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
-                                                        .readTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
-                                                        .build();
+      throws PushNetworkException, NonSuccessfulResponseCodeException, MissingConfigurationException {
+    ConnectionHolder[] cdnNumberClients = cdnClientsMap.get(cdnNumber);
+    if (cdnNumberClients == null) {
+      throw new MissingConfigurationException("Attempted to download from unsupported CDN number: " + cdnNumber + ", Our configuration supports: " + cdnClientsMap.keySet());
+    }
+    ConnectionHolder   connectionHolder = getRandom(cdnNumberClients, random);
+    OkHttpClient       okHttpClient     = connectionHolder.getClient()
+                                                          .newBuilder()
+                                                          .connectTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
+                                                          .readTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
+                                                          .build();
 
     Request.Builder request = new Request.Builder().url(connectionHolder.getUrl() + "/" + path).get();
 
@@ -1012,14 +1022,14 @@ public class PushServiceSocket {
     throw new NonSuccessfulResponseCodeException("Response: " + response);
   }
 
-  private byte[] uploadToCdn(String path, String acl, String key, String policy, String algorithm,
-                             String credential, String date, String signature,
-                             InputStream data, String contentType, long length,
-                             OutputStreamFactory outputStreamFactory, ProgressListener progressListener,
-                             CancelationSignal cancelationSignal)
+  private byte[] uploadToCdn0(String path, String acl, String key, String policy, String algorithm,
+                              String credential, String date, String signature,
+                              InputStream data, String contentType, long length,
+                              OutputStreamFactory outputStreamFactory, ProgressListener progressListener,
+                              CancelationSignal cancelationSignal)
       throws PushNetworkException, NonSuccessfulResponseCodeException
   {
-    ConnectionHolder connectionHolder = getRandom(cdnClients, random);
+    ConnectionHolder connectionHolder = getRandom(cdnClientsMap.get(0), random);
     OkHttpClient     okHttpClient     = connectionHolder.getClient()
                                                         .newBuilder()
                                                         .connectTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
@@ -1074,7 +1084,7 @@ public class PushServiceSocket {
   }
 
   private String getResumableUploadUrl(String signedUrl, Map<String, String> headers) throws IOException {
-    ConnectionHolder connectionHolder = getRandom(cdn2Clients, random);
+    ConnectionHolder connectionHolder = getRandom(cdnClientsMap.get(2), random);
     OkHttpClient     okHttpClient     = connectionHolder.getClient()
                                                         .newBuilder()
                                                         .connectTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
@@ -1135,7 +1145,7 @@ public class PushServiceSocket {
   }
 
   private byte[] uploadToCdn2(String resumableUrl, InputStream data, String contentType, long length, OutputStreamFactory outputStreamFactory, ProgressListener progressListener, CancelationSignal cancelationSignal) throws IOException {
-    ConnectionHolder connectionHolder = getRandom(cdn2Clients, random);
+    ConnectionHolder connectionHolder = getRandom(cdnClientsMap.get(2), random);
     OkHttpClient     okHttpClient     = connectionHolder.getClient()
                                                         .newBuilder()
                                                         .connectTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
@@ -1531,7 +1541,25 @@ public class PushServiceSocket {
     return serviceConnectionHolders.toArray(new ServiceConnectionHolder[0]);
   }
 
-  private ConnectionHolder[] createConnectionHolders(SignalUrl[] urls, List<Interceptor> interceptors, Optional<Dns> dns) {
+  private static Map<Integer, ConnectionHolder[]> createCdnClientsMap(final Map<Integer, SignalCdnUrl[]> signalCdnUrlMap,
+                                                                      final List<Interceptor> interceptors,
+                                                                      final Optional<Dns> dns) {
+    validateConfiguration(signalCdnUrlMap);
+    final Map<Integer, ConnectionHolder[]> result = new HashMap<>();
+    for (Map.Entry<Integer, SignalCdnUrl[]> entry : signalCdnUrlMap.entrySet()) {
+      result.put(entry.getKey(),
+                 createConnectionHolders(entry.getValue(), interceptors, dns));
+    }
+    return Collections.unmodifiableMap(result);
+  }
+
+  private static void validateConfiguration(Map<Integer, SignalCdnUrl[]> signalCdnUrlMap) {
+    if (!signalCdnUrlMap.containsKey(0) || !signalCdnUrlMap.containsKey(2)) {
+      throw new AssertionError("Configuration used to create PushServiceSocket must support CDN 0 and CDN 2");
+    }
+  }
+
+  private static ConnectionHolder[] createConnectionHolders(SignalUrl[] urls, List<Interceptor> interceptors, Optional<Dns> dns) {
     List<ConnectionHolder> connectionHolders = new LinkedList<>();
 
     for (SignalUrl url : urls) {
@@ -1541,7 +1569,7 @@ public class PushServiceSocket {
     return connectionHolders.toArray(new ConnectionHolder[0]);
   }
 
-  private OkHttpClient createConnectionClient(SignalUrl url, List<Interceptor> interceptors, Optional<Dns> dns) {
+  private static OkHttpClient createConnectionClient(SignalUrl url, List<Interceptor> interceptors, Optional<Dns> dns) {
     try {
       TrustManager[] trustManagers = BlacklistingTrustManager.createFor(url.getTrustStore());
 
