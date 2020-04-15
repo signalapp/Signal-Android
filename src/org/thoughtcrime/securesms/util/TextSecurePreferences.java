@@ -185,7 +185,10 @@ public class TextSecurePreferences {
 
   private static final String MEDIA_KEYBOARD_MODE = "pref_media_keyboard_mode";
 
+  //Session for Push Notification
   private static final String IS_USING_REMOTE_NOTIFICATION = "pref_is_using_remote_notification";
+  private static final String TOKEN_FOR_REMOTE_NOTIFICATION = "pref_token_for_remote_notification";
+  private static final String LAST_TIME_FOR_TOKEN_UPLOADING = "pref_last_time_for_token_uploading";
 
   public static boolean isUsingRemoteNotification(Context context) {
     return getBooleanPreference(context, IS_USING_REMOTE_NOTIFICATION, false);
@@ -193,6 +196,22 @@ public class TextSecurePreferences {
 
   public static void setIsUsingRemoteNotification(Context context, boolean value) {
     setBooleanPreference(context, IS_USING_REMOTE_NOTIFICATION, value);
+  }
+
+  public static String getTokenForRemoteNotification(Context context) {
+    return getStringPreference(context, TOKEN_FOR_REMOTE_NOTIFICATION, "");
+  }
+
+  public static void setTokenForRemoteNotification(Context context, String value) {
+    setStringPreference(context, TOKEN_FOR_REMOTE_NOTIFICATION, value);
+  }
+
+  public static long getLastTimeForTokenUploading(Context context) {
+    return getLongPreference(context, LAST_TIME_FOR_TOKEN_UPLOADING, 0);
+  }
+
+  public static void setLastTimeForTokenUploading(Context context, long value) {
+    setLongPreference(context, LAST_TIME_FOR_TOKEN_UPLOADING, value);
   }
 
   public static boolean isScreenLockEnabled(@NonNull Context context) {
