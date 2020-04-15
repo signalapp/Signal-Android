@@ -14,7 +14,6 @@ Let's begin with a checklist: Replace the empty checkboxes [ ] below with checke
 
 - [ ] I have searched open and closed issues for duplicates
 - [ ] I am submitting a bug report for existing functionality that does not work as intended
-- [ ] I have read https://github.com/signalapp/Signal-Android/wiki/Submitting-useful-bug-reports
 - [ ] This isn't a feature request or a discussion topic
 
 ----------------------------------------
@@ -27,8 +26,13 @@ Describe here the issue that you are experiencing.
 - list the steps
 - that reproduce the bug
 
-**Actual result:** Describe here what happens after you run the steps above (i.e. the buggy behaviour)
-**Expected result:** Describe here what should happen after you run the steps above (i.e. what would be the correct behaviour)
+**Actual result:** 
+
+Describe here what happens after you run the steps above (i.e. the buggy behaviour)
+
+**Expected result:** 
+
+Describe here what should happen after you run the steps above (i.e. what would be the correct behaviour)
 
 ### Screenshots
 <!-- you can drag and drop images below -->
@@ -36,10 +40,14 @@ Describe here the issue that you are experiencing.
 
 ### Device info
 <!-- replace the examples with your info -->
+
 **Device:** Manufacturer Model XVI
+
 **Android version:** 0.0.0
-**Signal version:** 0.0.0
+
+**Session version:** 0.0.0
 
 ### Link to debug log
+
 <!-- immediately after the bug has happened capture a debug log via Signal's advanced settings and paste the link below -->
 

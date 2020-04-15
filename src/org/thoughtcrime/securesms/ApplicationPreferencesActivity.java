@@ -52,7 +52,7 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec;
-import org.whispersystems.signalservice.loki.utilities.SerializationKt;
+import org.whispersystems.signalservice.loki.utilities.HexEncodingKt;
 
 import java.io.File;
 
@@ -341,7 +341,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
           try {
             String hexEncodedSeed = IdentityKeyUtil.retrieve(getContext(), IdentityKeyUtil.lokiSeedKey);
             if (hexEncodedSeed == null) {
-              hexEncodedSeed = SerializationKt.getHexEncodedPrivateKey(IdentityKeyUtil.getIdentityKeyPair(getContext())); // Legacy account
+              hexEncodedSeed = HexEncodingKt.getHexEncodedPrivateKey(IdentityKeyUtil.getIdentityKeyPair(getContext())); // Legacy account
             }
             String seed = new MnemonicCodec(languageFileDirectory).encode(hexEncodedSeed, MnemonicCodec.Language.Configuration.Companion.getEnglish());
             new AlertDialog.Builder(getContext())

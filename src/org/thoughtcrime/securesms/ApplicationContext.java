@@ -98,14 +98,16 @@ import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.util.StreamDetails;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
+import org.whispersystems.signalservice.loki.api.LokiAPI;
 import org.whispersystems.signalservice.loki.api.LokiAPIDatabaseProtocol;
-import org.whispersystems.signalservice.loki.api.LokiFileServerAPI;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPI;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPIDelegate;
 import org.whispersystems.signalservice.loki.api.LokiPoller;
-import org.whispersystems.signalservice.loki.api.LokiPublicChat;
-import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
-import org.whispersystems.signalservice.loki.api.LokiRSSFeed;
+import org.whispersystems.signalservice.loki.api.LokiSwarmAPI;
+import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI;
+import org.whispersystems.signalservice.loki.api.publicchats.LokiPublicChat;
+import org.whispersystems.signalservice.loki.api.publicchats.LokiPublicChatAPI;
+import org.whispersystems.signalservice.loki.api.rssfeeds.LokiRSSFeed;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -489,7 +491,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     if (userHexEncodedPublicKey == null) return;
     LokiAPIDatabase lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(this);
     Context context = this;
-    lokiPoller = new LokiPoller(userHexEncodedPublicKey, lokiAPIDatabase, broadcaster, protos -> {
+    LokiSwarmAPI.Companion.configureIfNeeded(lokiAPIDatabase);
+    LokiAPI.Companion.configureIfNeeded(userHexEncodedPublicKey, lokiAPIDatabase, broadcaster);
+    lokiPoller = new LokiPoller(userHexEncodedPublicKey, lokiAPIDatabase, protos -> {
       for (SignalServiceProtos.Envelope proto : protos) {
         new PushContentReceiveJob(context).processEnvelope(new SignalServiceEnvelope(proto));
       }
