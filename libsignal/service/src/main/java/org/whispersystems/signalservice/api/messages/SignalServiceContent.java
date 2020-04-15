@@ -293,6 +293,7 @@ public final class SignalServiceContent {
     List<SignalServiceDataMessage.Preview> previews         = createPreviews(content);
     SignalServiceDataMessage.Sticker       sticker          = createSticker(content);
     SignalServiceDataMessage.Reaction      reaction         = createReaction(content);
+    SignalServiceDataMessage.RemoteDelete  remoteDelete     = createRemoteDelete(content);
 
     if (content.getRequiredProtocolVersion() > SignalServiceProtos.DataMessage.ProtocolVersion.CURRENT_VALUE) {
       throw new UnsupportedDataMessageProtocolVersionException(SignalServiceProtos.DataMessage.ProtocolVersion.CURRENT_VALUE,
@@ -326,7 +327,8 @@ public final class SignalServiceContent {
                                         previews,
                                         sticker,
                                         content.getIsViewOnce(),
-                                        reaction);
+                                        reaction,
+                                        remoteDelete);
   }
 
   private static SignalServiceSyncMessage createSynchronizeMessage(SignalServiceMetadata metadata,
@@ -658,6 +660,16 @@ public final class SignalServiceContent {
                         reaction.getRemove(),
                         new SignalServiceAddress(UuidUtil.parseOrNull(reaction.getTargetAuthorUuid()), reaction.getTargetAuthorE164()),
                         reaction.getTargetSentTimestamp());
+  }
+
+  private static SignalServiceDataMessage.RemoteDelete createRemoteDelete(SignalServiceProtos.DataMessage content) {
+    if (!content.hasDelete() || !content.getDelete().hasTargetSentTimestamp()) {
+      return null;
+    }
+
+    SignalServiceProtos.DataMessage.Delete delete = content.getDelete();
+
+    return new SignalServiceDataMessage.RemoteDelete(delete.getTargetSentTimestamp());
   }
 
   private static List<SharedContact> createSharedContacts(SignalServiceProtos.DataMessage content) throws ProtocolInvalidMessageException {

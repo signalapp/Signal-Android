@@ -50,6 +50,9 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
   public abstract void markAsSent(long messageId, boolean secure);
   public abstract void markUnidentified(long messageId, boolean unidentified);
 
+  public abstract void markAsSending(long messageId);
+  public abstract void markAsRemoteDelete(long messageId);
+
   final int getInsecureMessagesSentForThread(long threadId) {
     SQLiteDatabase db         = databaseHelper.getReadableDatabase();
     String[]       projection = new String[]{"COUNT(*)"};

@@ -773,8 +773,10 @@ public class ThreadDatabase extends Database {
       return Extra.forMessageRequest();
     }
 
-    if (record.isMms() && ((MmsMessageRecord) record).isViewOnce()) {
-      return Extra.forRevealable();
+    if (record.isViewOnce()) {
+      return Extra.forViewOnce();
+    } else if (record.isRemoteDelete()) {
+      return Extra.forRemoteDelete();
     } else if (record.isMms() && ((MmsMessageRecord) record).getSlideDeck().getStickerSlide() != null) {
       return Extra.forSticker();
     } else if (record.isMms() && ((MmsMessageRecord) record).getSlideDeck().getSlides().size() > 1) {
@@ -899,43 +901,50 @@ public class ThreadDatabase extends Database {
     @JsonProperty private final boolean isRevealable;
     @JsonProperty private final boolean isSticker;
     @JsonProperty private final boolean isAlbum;
+    @JsonProperty private final boolean isRemoteDelete;
     @JsonProperty private final boolean isMessageRequestAccepted;
     @JsonProperty private final String  groupAddedBy;
 
     public Extra(@JsonProperty("isRevealable") boolean isRevealable,
                  @JsonProperty("isSticker") boolean isSticker,
                  @JsonProperty("isAlbum") boolean isAlbum,
+                 @JsonProperty("isRemoteDelete") boolean isRemoteDelete,
                  @JsonProperty("isMessageRequestAccepted") boolean isMessageRequestAccepted,
                  @JsonProperty("groupAddedBy") String groupAddedBy)
     {
       this.isRevealable             = isRevealable;
       this.isSticker                = isSticker;
       this.isAlbum                  = isAlbum;
+      this.isRemoteDelete           = isRemoteDelete;
       this.isMessageRequestAccepted = isMessageRequestAccepted;
       this.groupAddedBy             = groupAddedBy;
     }
 
-    public static @NonNull Extra forRevealable() {
-      return new Extra(true, false, false, true, null);
+    public static @NonNull Extra forViewOnce() {
+      return new Extra(true, false, false, false, true, null);
     }
 
     public static @NonNull Extra forSticker() {
-      return new Extra(false, true, false, true, null);
+      return new Extra(false, true, false, false, true, null);
     }
 
     public static @NonNull Extra forAlbum() {
-      return new Extra(false, false, true, true, null);
+      return new Extra(false, false, true, false, true, null);
+    }
+
+    public static @NonNull Extra forRemoteDelete() {
+      return new Extra(false, false, false, true, true, null);
     }
 
     public static @NonNull Extra forMessageRequest() {
-      return new Extra(false, false, false, false, null);
+      return new Extra(false, false, false, false, false, null);
     }
 
     public static @NonNull Extra forGroupMessageRequest(RecipientId recipientId) {
-      return new Extra(false, false, false, false, recipientId.serialize());
+      return new Extra(false, false, false, false, false, recipientId.serialize());
     }
 
-    public boolean isRevealable() {
+    public boolean isViewOnce() {
       return isRevealable;
     }
 
@@ -945,6 +954,10 @@ public class ThreadDatabase extends Database {
 
     public boolean isAlbum() {
       return isAlbum;
+    }
+
+    public boolean isRemoteDelete() {
+      return isRemoteDelete;
     }
 
     public boolean isMessageRequestAccepted() {

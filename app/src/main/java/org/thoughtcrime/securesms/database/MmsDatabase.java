@@ -168,7 +168,8 @@ public class MmsDatabase extends MessagingDatabase {
                                                                                   VIEW_ONCE              + " INTEGER DEFAULT 0, " +
                                                                                   REACTIONS              + " BLOB DEFAULT NULL, " +
                                                                                   REACTIONS_UNREAD       + " INTEGER DEFAULT 0, " +
-                                                                                  REACTIONS_LAST_SEEN    + " INTEGER DEFAULT -1);";
+                                                                                  REACTIONS_LAST_SEEN    + " INTEGER DEFAULT -1, " +
+                                                                                  REMOTE_DELETED         + " INTEGER DEFAULT 0);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS mms_thread_id_index ON " + TABLE_NAME + " (" + THREAD_ID + ");",
@@ -193,6 +194,7 @@ public class MmsDatabase extends MessagingDatabase {
       DELIVERY_RECEIPT_COUNT, READ_RECEIPT_COUNT, MISMATCHED_IDENTITIES, NETWORK_FAILURE, SUBSCRIPTION_ID,
       EXPIRES_IN, EXPIRE_STARTED, NOTIFIED, QUOTE_ID, QUOTE_AUTHOR, QUOTE_BODY, QUOTE_ATTACHMENT, QUOTE_MISSING,
       SHARED_CONTACTS, LINK_PREVIEWS, UNIDENTIFIED, VIEW_ONCE, REACTIONS, REACTIONS_UNREAD, REACTIONS_LAST_SEEN,
+      REMOTE_DELETED,
       "json_group_array(json_object(" +
           "'" + AttachmentDatabase.ROW_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + ", " +
           "'" + AttachmentDatabase.UNIQUE_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.UNIQUE_ID + ", " +
@@ -473,6 +475,7 @@ public class MmsDatabase extends MessagingDatabase {
     notifyConversationListeners(threadId);
   }
 
+  @Override
   public void markAsSending(long messageId) {
     long threadId = getThreadIdForMessage(messageId);
     updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_SENDING_TYPE, Optional.of(threadId));
@@ -489,6 +492,29 @@ public class MmsDatabase extends MessagingDatabase {
   public void markAsSent(long messageId, boolean secure) {
     long threadId = getThreadIdForMessage(messageId);
     updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_SENT_TYPE | (secure ? Types.PUSH_MESSAGE_BIT | Types.SECURE_MESSAGE_BIT : 0), Optional.of(threadId));
+    notifyConversationListeners(threadId);
+  }
+
+  @Override
+  public void markAsRemoteDelete(long messageId) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    ContentValues values = new ContentValues();
+    values.put(REMOTE_DELETED, 1);
+    values.putNull(BODY);
+    values.putNull(QUOTE_BODY);
+    values.putNull(QUOTE_AUTHOR);
+    values.putNull(QUOTE_ATTACHMENT);
+    values.putNull(QUOTE_ID);
+    values.putNull(LINK_PREVIEWS);
+    values.putNull(SHARED_CONTACTS);
+    values.putNull(REACTIONS);
+    db.update(TABLE_NAME, values, ID_WHERE, new String[] { String.valueOf(messageId) });
+
+    DatabaseFactory.getAttachmentDatabase(context).deleteAttachmentsForMessage(messageId);
+
+    long threadId = getThreadIdForMessage(messageId);
+    DatabaseFactory.getThreadDatabase(context).update(threadId, false);
     notifyConversationListeners(threadId);
   }
 
@@ -1506,7 +1532,8 @@ public class MmsDatabase extends MessagingDatabase {
                                        message.getSharedContacts(),
                                        message.getLinkPreviews(),
                                        false,
-                                       Collections.emptyList());
+                                       Collections.emptyList(),
+                                       false);
     }
   }
 
@@ -1597,6 +1624,7 @@ public class MmsDatabase extends MessagingDatabase {
       long                 expireStarted        = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.EXPIRE_STARTED));
       boolean              unidentified         = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.UNIDENTIFIED)) == 1;
       boolean              isViewOnce           = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.VIEW_ONCE))   == 1;
+      boolean              remoteDelete         = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.REMOTE_DELETED))   == 1;
       List<ReactionRecord> reactions            = parseReactions(cursor);
 
       if (!TextSecurePreferences.isReadReceiptsEnabled(context)) {
@@ -1618,7 +1646,8 @@ public class MmsDatabase extends MessagingDatabase {
                                        addressDeviceId, dateSent, dateReceived, dateServer, deliveryReceiptCount,
                                        threadId, body, slideDeck, partCount, box, mismatches,
                                        networkFailures, subscriptionId, expiresIn, expireStarted,
-                                       isViewOnce, readReceiptCount, quote, contacts, previews, unidentified, reactions);
+                                       isViewOnce, readReceiptCount, quote, contacts, previews, unidentified, reactions,
+                                       remoteDelete);
     }
 
     private List<IdentityKeyMismatch> getMismatchedIdentities(String document) {

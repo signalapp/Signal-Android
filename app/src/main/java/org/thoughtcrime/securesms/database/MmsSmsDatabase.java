@@ -28,6 +28,7 @@ import net.sqlcipher.database.SQLiteQueryBuilder;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.libsignal.util.Pair;
@@ -87,7 +88,8 @@ public class MmsSmsDatabase extends Database {
                                               MmsSmsColumns.READ,
                                               MmsSmsColumns.REACTIONS,
                                               MmsSmsColumns.REACTIONS_UNREAD,
-                                              MmsSmsColumns.REACTIONS_LAST_SEEN};
+                                              MmsSmsColumns.REACTIONS_LAST_SEEN,
+                                              MmsSmsColumns.REMOTE_DELETED};
 
   public MmsSmsDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -395,7 +397,8 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.REACTIONS,
                               MmsSmsColumns.REACTIONS_UNREAD,
                               MmsSmsColumns.REACTIONS_LAST_SEEN,
-                              MmsSmsColumns.DATE_SERVER };
+                              MmsSmsColumns.DATE_SERVER,
+                              MmsSmsColumns.REMOTE_DELETED };
 
     String[] smsProjection = {SmsDatabase.DATE_SENT + " AS " + MmsSmsColumns.NORMALIZED_DATE_SENT,
                               SmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
@@ -426,7 +429,8 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.REACTIONS,
                               MmsSmsColumns.REACTIONS_UNREAD,
                               MmsSmsColumns.REACTIONS_LAST_SEEN,
-                              MmsSmsColumns.DATE_SERVER };
+                              MmsSmsColumns.DATE_SERVER,
+                              MmsSmsColumns.REMOTE_DELETED };
 
     SQLiteQueryBuilder mmsQueryBuilder = new SQLiteQueryBuilder();
     SQLiteQueryBuilder smsQueryBuilder = new SQLiteQueryBuilder();
@@ -478,6 +482,7 @@ public class MmsSmsDatabase extends Database {
     mmsColumnsPresent.add(MmsDatabase.REACTIONS);
     mmsColumnsPresent.add(MmsDatabase.REACTIONS_UNREAD);
     mmsColumnsPresent.add(MmsDatabase.REACTIONS_LAST_SEEN);
+    mmsColumnsPresent.add(MmsDatabase.REMOTE_DELETED);
 
     Set<String> smsColumnsPresent = new HashSet<>();
     smsColumnsPresent.add(MmsSmsColumns.ID);
@@ -503,6 +508,7 @@ public class MmsSmsDatabase extends Database {
     smsColumnsPresent.add(SmsDatabase.REACTIONS);
     smsColumnsPresent.add(SmsDatabase.REACTIONS_UNREAD);
     smsColumnsPresent.add(SmsDatabase.REACTIONS_LAST_SEEN);
+    smsColumnsPresent.add(MmsDatabase.REMOTE_DELETED);
 
     @SuppressWarnings("deprecation")
     String mmsSubQuery = mmsQueryBuilder.buildUnionSubQuery(TRANSPORT, mmsProjection, mmsColumnsPresent, 4, MMS_TRANSPORT, selection, null, MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID, null);

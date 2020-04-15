@@ -110,6 +110,7 @@ import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.HtmlUtil;
+import org.thoughtcrime.securesms.util.RemoteDeleteUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -602,6 +603,14 @@ public class ConversationFragment extends Fragment
   }
 
   private void handleDeleteMessages(final Set<MessageRecord> messageRecords) {
+    if (FeatureFlags.remoteDelete()) {
+      buildRemoteDeleteConfirmationDialog(messageRecords).show();
+    } else {
+      buildLegacyDeleteConfirmationDialog(messageRecords).show();
+    }
+  }
+
+  private AlertDialog.Builder buildLegacyDeleteConfirmationDialog(Set<MessageRecord> messageRecords) {
     int                 messagesCount = messageRecords.size();
     AlertDialog.Builder builder       = new AlertDialog.Builder(getActivity());
 
@@ -610,39 +619,86 @@ public class ConversationFragment extends Fragment
     builder.setMessage(getActivity().getResources().getQuantityString(R.plurals.ConversationFragment_this_will_permanently_delete_all_n_selected_messages, messagesCount, messagesCount));
     builder.setCancelable(true);
 
-    builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialog, int which) {
-        new ProgressDialogAsyncTask<MessageRecord, Void, Void>(getActivity(),
-                                                               R.string.ConversationFragment_deleting,
-                                                               R.string.ConversationFragment_deleting_messages)
-        {
-          @Override
-          protected Void doInBackground(MessageRecord... messageRecords) {
-            for (MessageRecord messageRecord : messageRecords) {
-              boolean threadDeleted;
+    builder.setPositiveButton(R.string.delete, (dialog, which) -> {
+      new ProgressDialogAsyncTask<Void, Void, Void>(getActivity(),
+                                                    R.string.ConversationFragment_deleting,
+                                                    R.string.ConversationFragment_deleting_messages)
+      {
+        @Override
+        protected Void doInBackground(Void... voids) {
+          for (MessageRecord messageRecord : messageRecords) {
+            boolean threadDeleted;
 
-              if (messageRecord.isMms()) {
-                threadDeleted = DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
-              } else {
-                threadDeleted = DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
-              }
-
-              if (threadDeleted) {
-                threadId = -1;
-                listener.setThreadId(threadId);
-              }
+            if (messageRecord.isMms()) {
+              threadDeleted = DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
+            } else {
+              threadDeleted = DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
             }
 
-            return null;
+            if (threadDeleted) {
+              threadId = -1;
+              listener.setThreadId(threadId);
+            }
           }
-        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, messageRecords.toArray(new MessageRecord[messageRecords.size()]));
-      }
+
+          return null;
+        }
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     });
 
     builder.setNegativeButton(android.R.string.cancel, null);
-    builder.show();
+    return builder;
   }
+
+  private AlertDialog.Builder buildRemoteDeleteConfirmationDialog(Set<MessageRecord> messageRecords) {
+    Context             context       = requireActivity();
+    int                 messagesCount = messageRecords.size();
+    AlertDialog.Builder builder       = new AlertDialog.Builder(getActivity());
+
+    builder.setTitle(getActivity().getResources().getQuantityString(R.plurals.ConversationFragment_delete_selected_messages, messagesCount, messagesCount));
+    builder.setCancelable(true);
+
+    builder.setPositiveButton(R.string.ConversationFragment_delete_for_me, (dialog, which) -> {
+      new ProgressDialogAsyncTask<Void, Void, Void>(getActivity(),
+                                                    R.string.ConversationFragment_deleting,
+                                                    R.string.ConversationFragment_deleting_messages)
+      {
+        @Override
+        protected Void doInBackground(Void... voids) {
+          for (MessageRecord messageRecord : messageRecords) {
+            boolean threadDeleted;
+
+            if (messageRecord.isMms()) {
+              threadDeleted = DatabaseFactory.getMmsDatabase(context).delete(messageRecord.getId());
+            } else {
+              threadDeleted = DatabaseFactory.getSmsDatabase(context).deleteMessage(messageRecord.getId());
+            }
+
+            if (threadDeleted) {
+              threadId = -1;
+              listener.setThreadId(threadId);
+            }
+          }
+
+          return null;
+        }
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    });
+
+    if (RemoteDeleteUtil.isValidSend(messageRecords, System.currentTimeMillis())) {
+      builder.setNeutralButton(R.string.ConversationFragment_delete_for_everyone, (dialog, which) -> {
+        SignalExecutors.BOUNDED.execute(() -> {
+          for (MessageRecord message : messageRecords) {
+            MessageSender.sendRemoteDelete(context, message.getId(), message.isMms());
+          }
+        });
+      });
+    }
+
+    builder.setNegativeButton(android.R.string.cancel, null);
+    return builder;
+  }
+
 
   private void handleDisplayDetails(MessageRecord message) {
     Intent intent = new Intent(getActivity(), MessageDetailsActivity.class);
@@ -1086,6 +1142,7 @@ public class ConversationFragment extends Fragment
       if (actionMode != null) return;
 
       if (messageRecord.isSecure()                            &&
+          !messageRecord.isRemoteDelete()                     &&
           !messageRecord.isUpdate()                           &&
           !recipient.get().isBlocked()                        &&
           !messageRequestViewModel.shouldShowMessageRequest() &&

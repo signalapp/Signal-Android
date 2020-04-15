@@ -127,8 +127,10 @@ public class ThreadRecord extends DisplayRecord {
       if (TextUtils.isEmpty(getBody())) {
         if (extra != null && extra.isSticker()) {
           return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_sticker)));
-        } else if (extra != null && extra.isRevealable()) {
+        } else if (extra != null && extra.isViewOnce()) {
           return new SpannableString(emphasisAdded(getViewOnceDescription(context, contentType)));
+        } else if (extra != null && extra.isRemoteDelete()) {
+          return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_this_message_was_deleted)));
         } else {
           return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_media_message)));
         }

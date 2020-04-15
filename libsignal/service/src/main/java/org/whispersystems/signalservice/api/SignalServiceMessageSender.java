@@ -639,6 +639,13 @@ public class SignalServiceMessageSender {
       builder.setRequiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.REACTIONS_VALUE, builder.getRequiredProtocolVersion()));
     }
 
+    if (message.getRemoteDelete().isPresent()) {
+      DataMessage.Delete delete = DataMessage.Delete.newBuilder()
+                                                    .setTargetSentTimestamp(message.getRemoteDelete().get().getTargetSentTimestamp())
+                                                    .build();
+      builder.setDelete(delete);
+    }
+
     builder.setTimestamp(message.getTimestamp());
 
     return container.setDataMessage(builder).build().toByteArray();

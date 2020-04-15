@@ -56,6 +56,7 @@ import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
 import org.thoughtcrime.securesms.jobs.PushTextSendJob;
 import org.thoughtcrime.securesms.jobs.ReactionSendJob;
+import org.thoughtcrime.securesms.jobs.RemoteDeleteSendJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MmsException;
@@ -306,6 +307,19 @@ public class MessageSender {
       onMessageSent();
     } catch (NoSuchMessageException e) {
       Log.w(TAG, "[sendReactionRemoval] Could not find message! Ignoring.");
+    }
+  }
+
+  public static void sendRemoteDelete(@NonNull Context context, long messageId, boolean isMms) {
+    MessagingDatabase db = isMms ? DatabaseFactory.getMmsDatabase(context) : DatabaseFactory.getSmsDatabase(context);
+    db.markAsRemoteDelete(messageId);
+    db.markAsSending(messageId);
+
+    try {
+      ApplicationDependencies.getJobManager().add(RemoteDeleteSendJob.create(context, messageId, isMms));
+      onMessageSent();
+    } catch (NoSuchMessageException e) {
+      Log.w(TAG, "[sendNewReaction] Could not find message! Ignoring.");
     }
   }
 

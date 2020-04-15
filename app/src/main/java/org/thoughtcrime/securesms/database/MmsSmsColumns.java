@@ -24,6 +24,7 @@ public interface MmsSmsColumns {
   public static final String REACTIONS                = "reactions";
   public static final String REACTIONS_UNREAD         = "reactions_unread";
   public static final String REACTIONS_LAST_SEEN      = "reactions_last_seen";
+  public static final String REMOTE_DELETED           = "remote_deleted";
 
   public static class Types {
     protected static final long TOTAL_MASK = 0xFFFFFFFF;

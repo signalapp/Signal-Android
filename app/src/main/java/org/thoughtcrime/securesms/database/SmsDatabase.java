@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -103,7 +104,8 @@ public class SmsDatabase extends MessagingDatabase {
                                                                                   UNIDENTIFIED           + " INTEGER DEFAULT 0, " +
                                                                                   REACTIONS              + " BLOB DEFAULT NULL, " +
                                                                                   REACTIONS_UNREAD       + " INTEGER DEFAULT 0, " +
-                                                                                  REACTIONS_LAST_SEEN    + " INTEGER DEFAULT -1);";
+                                                                                  REACTIONS_LAST_SEEN    + " INTEGER DEFAULT -1, " +
+                                                                                  REMOTE_DELETED         + " INTEGER DEFAULT 0);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS sms_thread_id_index ON " + TABLE_NAME + " (" + THREAD_ID + ");",
@@ -124,7 +126,8 @@ public class SmsDatabase extends MessagingDatabase {
       PROTOCOL, READ, STATUS, TYPE,
       REPLY_PATH_PRESENT, SUBJECT, BODY, SERVICE_CENTER, DELIVERY_RECEIPT_COUNT,
       MISMATCHED_IDENTITIES, SUBSCRIPTION_ID, EXPIRES_IN, EXPIRE_STARTED,
-      NOTIFIED, READ_RECEIPT_COUNT, UNIDENTIFIED, REACTIONS, REACTIONS_UNREAD, REACTIONS_LAST_SEEN
+      NOTIFIED, READ_RECEIPT_COUNT, UNIDENTIFIED, REACTIONS, REACTIONS_UNREAD, REACTIONS_LAST_SEEN,
+      REMOTE_DELETED
   };
 
   private final String OUTGOING_INSECURE_MESSAGE_CLAUSE = "(" + TYPE + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_SENT_TYPE + " AND NOT (" + TYPE + " & " + Types.SECURE_MESSAGE_BIT + ")";
@@ -314,12 +317,28 @@ public class SmsDatabase extends MessagingDatabase {
     updateTypeBitmask(id, Types.BASE_TYPE_MASK, Types.BASE_SENT_TYPE | (isSecure ? Types.PUSH_MESSAGE_BIT | Types.SECURE_MESSAGE_BIT : 0));
   }
 
+  @Override
   public void markAsSending(long id) {
     updateTypeBitmask(id, Types.BASE_TYPE_MASK, Types.BASE_SENDING_TYPE);
   }
 
   public void markAsMissedCall(long id) {
     updateTypeBitmask(id, Types.TOTAL_MASK, Types.MISSED_CALL_TYPE);
+  }
+
+  @Override
+  public void markAsRemoteDelete(long id) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    ContentValues values = new ContentValues();
+    values.put(REMOTE_DELETED, 1);
+    values.putNull(BODY);
+    db.update(TABLE_NAME, values, ID_WHERE, new String[] { String.valueOf(id) });
+
+    long threadId = getThreadIdForMessage(id);
+
+    DatabaseFactory.getThreadDatabase(context).update(threadId, false);
+    notifyConversationListeners(threadId);
   }
 
   @Override
@@ -913,7 +932,8 @@ public class SmsDatabase extends MessagingDatabase {
                                   System.currentTimeMillis(),
                                   0,
                                   false,
-                                  Collections.emptyList());
+                                  Collections.emptyList(),
+                                  false);
     }
   }
 
@@ -955,6 +975,7 @@ public class SmsDatabase extends MessagingDatabase {
       long                 expireStarted        = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.EXPIRE_STARTED));
       String               body                 = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.BODY));
       boolean              unidentified         = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.UNIDENTIFIED)) == 1;
+      boolean              remoteDelete         = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.REMOTE_DELETED)) == 1;
       List<ReactionRecord> reactions            = parseReactions(cursor);
 
       if (!TextSecurePreferences.isReadReceiptsEnabled(context)) {
@@ -970,7 +991,7 @@ public class SmsDatabase extends MessagingDatabase {
                                   dateSent, dateReceived, dateServer, deliveryReceiptCount, type,
                                   threadId, status, mismatches, subscriptionId,
                                   expiresIn, expireStarted,
-                                  readReceiptCount, unidentified, reactions);
+                                  readReceiptCount, unidentified, reactions, remoteDelete);
     }
 
     private List<IdentityKeyMismatch> getMismatches(String document) {

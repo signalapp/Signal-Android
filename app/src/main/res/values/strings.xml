@@ -186,6 +186,7 @@
     <string name="ConversationItem_read_more">&#160; Read More</string>
     <string name="ConversationItem_download_more">&#160; Download More</string>
     <string name="ConversationItem_pending">&#160; Pending</string>
+    <string name="ConversationItem_this_message_was_deleted">This message was deleted.</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_reset_secure_session_question">Reset secure session?</string>
@@ -298,6 +299,8 @@
     <string name="ConversationFragment_sms">SMS</string>
     <string name="ConversationFragment_deleting">Deleting</string>
     <string name="ConversationFragment_deleting_messages">Deleting messages…</string>
+    <string name="ConversationFragment_delete_for_me">Delete for me</string>
+    <string name="ConversationFragment_delete_for_everyone">Delete for everyone</string>
     <string name="ConversationFragment_quoted_message_not_found">Original message not found</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Original message no longer available</string>
     <string name="ConversationFragment_failed_to_open_message">Failed to open message</string>
@@ -959,7 +962,7 @@
     <string name="SmsMessageRecord_secure_session_reset_s">%s reset the secure session.</string>
     <string name="SmsMessageRecord_duplicate_message">Duplicate message.</string>
     <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">This message could not be processed because it was sent from a newer version of Signal. You can ask your contact to send this message again after you update.</string>
-    <string name="SmsMessageRecord_error_handling_incoming_message">Error handling incoming message</string>
+    <string name="SmsMessageRecord_error_handling_incoming_message">Error handling incoming message.</string>
 
     <!-- StickerManagementActivity -->
     <string name="StickerManagementActivity_stickers">Stickers</string>
@@ -1006,6 +1009,7 @@
     <string name="ThreadRecord_view_once_photo">View-once photo</string>
     <string name="ThreadRecord_view_once_video">View-once video</string>
     <string name="ThreadRecord_view_once_media">View-once media</string>
+    <string name="ThreadRecord_this_message_was_deleted">This message was deleted.</string>
     <string name="ThreadRecord_s_is_on_signal">%s is on Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Disappearing messages disabled</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Disappearing message time set to %s</string>
@@ -1131,6 +1135,7 @@
     <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reacted %1$s to your view-once photo.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reacted %1$s to your view-once video.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Reacted %1$s to your sticker.</string>
+    <string name="MessageNotifier_this_message_was_deleted">This message was deleted.</string>
 
     <!-- Notification Channels -->
     <string name="NotificationChannel_messages">Default</string>

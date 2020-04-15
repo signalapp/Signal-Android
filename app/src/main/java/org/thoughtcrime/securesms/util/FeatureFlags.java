@@ -55,6 +55,7 @@ public final class FeatureFlags {
   private static final String PINS_MEGAPHONE_KILL_SWITCH = "android.pinsMegaphoneKillSwitch";
   private static final String PROFILE_NAMES_MEGAPHONE    = "android.profileNamesMegaphone";
   private static final String ATTACHMENTS_V3             = "android.attachmentsV3";
+  private static final String REMOTE_DELETE              = "android.remoteDelete";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -68,7 +69,8 @@ public final class FeatureFlags {
       PINS_MEGAPHONE_KILL_SWITCH,
       PROFILE_NAMES_MEGAPHONE,
       MESSAGE_REQUESTS,
-      ATTACHMENTS_V3
+      ATTACHMENTS_V3,
+      REMOTE_DELETE
   );
 
   /**
@@ -216,6 +218,11 @@ public final class FeatureFlags {
   /** Whether or not we use the attachments v3 form. */
   public static boolean attachmentsV3() {
     return getValue(ATTACHMENTS_V3, false);
+  }
+
+  /** Send support for remotely deleting a message. */
+  public static boolean remoteDelete() {
+    return getValue(REMOTE_DELETE, false);
   }
 
   /** Only for rendering debug info. */

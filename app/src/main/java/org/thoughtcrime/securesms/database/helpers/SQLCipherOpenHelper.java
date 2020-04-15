@@ -129,8 +129,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int ATTACHMENT_CDN_NUMBER            = 57;
   private static final int JOB_INPUT_DATA                   = 58;
   private static final int SERVER_TIMESTAMP                 = 59;
+  private static final int REMOTE_DELETE                    = 60;
 
-  private static final int    DATABASE_VERSION = 59;
+  private static final int    DATABASE_VERSION = 60;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -880,6 +881,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
         db.execSQL("ALTER TABLE mms ADD COLUMN date_server INTEGER DEFAULT -1");
         db.execSQL("CREATE INDEX IF NOT EXISTS mms_date_server_index ON mms (date_server)");
+      }
+
+      if (oldVersion < REMOTE_DELETE) {
+        db.execSQL("ALTER TABLE sms ADD COLUMN remote_deleted INTEGER DEFAULT 0");
+        db.execSQL("ALTER TABLE mms ADD COLUMN remote_deleted INTEGER DEFAULT 0");
       }
 
       db.setTransactionSuccessful();

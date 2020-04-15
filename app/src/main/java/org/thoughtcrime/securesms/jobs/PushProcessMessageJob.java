@@ -79,6 +79,7 @@ import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.RemoteDeleteUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.state.SessionStore;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -115,6 +116,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public final class PushProcessMessageJob extends BaseJob {
@@ -273,13 +275,14 @@ public final class PushProcessMessageJob extends BaseJob {
           return;
         }
 
-        if      (isInvalidMessage(message))         handleInvalidMessage(content.getSender(), content.getSenderDevice(), groupId, content.getTimestamp(), smsMessageId);
-        else if (message.isEndSession())            handleEndSessionMessage(content, smsMessageId);
-        else if (message.isGroupV1Update())         handleGroupV1Message(content, message, smsMessageId);
-        else if (message.isExpirationUpdate())      handleExpirationUpdate(content, message, smsMessageId);
-        else if (message.getReaction().isPresent()) handleReaction(content, message);
-        else if (isMediaMessage)                    handleMediaMessage(content, message, smsMessageId);
-        else if (message.getBody().isPresent())     handleTextMessage(content, message, smsMessageId, groupId);
+        if      (isInvalidMessage(message))             handleInvalidMessage(content.getSender(), content.getSenderDevice(), groupId, content.getTimestamp(), smsMessageId);
+        else if (message.isEndSession())                handleEndSessionMessage(content, smsMessageId);
+        else if (message.isGroupV1Update())             handleGroupV1Message(content, message, smsMessageId);
+        else if (message.isExpirationUpdate())          handleExpirationUpdate(content, message, smsMessageId);
+        else if (message.getReaction().isPresent())     handleReaction(content, message);
+        else if (message.getRemoteDelete().isPresent()) handleRemoteDelete(content, message);
+        else if (isMediaMessage)                        handleMediaMessage(content, message, smsMessageId);
+        else if (message.getBody().isPresent())         handleTextMessage(content, message, smsMessageId, groupId);
 
         if (groupId.isPresent() && groupDatabase.isUnknownGroup(groupId.get())) {
           handleUnknownGroupMessage(content, message.getGroupContext().get());
@@ -606,7 +609,7 @@ public final class PushProcessMessageJob extends BaseJob {
     Recipient     targetAuthor  = Recipient.externalPush(context, reaction.getTargetAuthor());
     MessageRecord targetMessage = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(reaction.getTargetSentTimestamp(), targetAuthor.getId());
 
-    if (targetMessage != null) {
+    if (targetMessage != null && !targetMessage.isRemoteDelete()) {
       Recipient         reactionAuthor = Recipient.externalPush(context, content.getSender());
       MessagingDatabase db             = targetMessage.isMms() ? DatabaseFactory.getMmsDatabase(context) : DatabaseFactory.getSmsDatabase(context);
 
@@ -618,9 +621,28 @@ public final class PushProcessMessageJob extends BaseJob {
         db.addReaction(targetMessage.getId(), reactionRecord);
         MessageNotifier.updateNotification(context, targetMessage.getThreadId(), false);
       }
-
+    } else if (targetMessage != null) {
+      Log.w(TAG, "[handleReaction] Found a matching message, but it's flagged as remotely deleted. timestamp: " + reaction.getTargetSentTimestamp() + "  author: " + targetAuthor.getId());
     } else {
       Log.w(TAG, "[handleReaction] Could not find matching message! timestamp: " + reaction.getTargetSentTimestamp() + "  author: " + targetAuthor.getId());
+    }
+  }
+
+  private void handleRemoteDelete(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
+    SignalServiceDataMessage.RemoteDelete delete = message.getRemoteDelete().get();
+
+    Recipient     sender        = Recipient.externalPush(context, content.getSender());
+    MessageRecord targetMessage = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(delete.getTargetSentTimestamp(), sender.getId());
+
+    if (targetMessage != null && RemoteDeleteUtil.isValidReceive(targetMessage, sender, content.getServerTimestamp())) {
+      MessagingDatabase db = targetMessage.isMms() ? DatabaseFactory.getMmsDatabase(context) : DatabaseFactory.getSmsDatabase(context);
+      db.markAsRemoteDelete(targetMessage.getId());
+      MessageNotifier.updateNotification(context, targetMessage.getThreadId(), false);
+    } else if (targetMessage == null) {
+      Log.w(TAG, "[handleRemoteDelete] Could not find matching message! timestamp: " + delete.getTargetSentTimestamp() + "  author: " + sender.getId());
+    } else {
+      Log.w(TAG, String.format(Locale.ENGLISH, "[handleRemoteDelete] Invalid remote delete! deleteTime: %d, targetTime: %d, deleteAuthor: %s, targetAuthor: %s",
+                                                content.getServerTimestamp(), targetMessage.getServerTimestamp(), sender.getId(), targetMessage.getRecipient().getId()));
     }
   }
 
@@ -751,6 +773,8 @@ public final class PushProcessMessageJob extends BaseJob {
         handleReaction(content, message.getMessage());
         threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(getSyncMessageDestination(message));
         threadId = threadId != -1 ? threadId : null;
+      } else if (message.getMessage().getRemoteDelete().isPresent()) {
+        handleRemoteDelete(content, message.getMessage());
       } else if (message.getMessage().getAttachments().isPresent() || message.getMessage().getQuote().isPresent() || message.getMessage().getPreviews().isPresent() || message.getMessage().getSticker().isPresent() || message.getMessage().isViewOnce()) {
         threadId = handleSynchronizeSentMediaMessage(message);
       } else {
@@ -1392,7 +1416,7 @@ public final class PushProcessMessageJob extends BaseJob {
     RecipientId   author  = Recipient.externalPush(context, quote.get().getAuthor()).getId();
     MessageRecord message = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(quote.get().getId(), author);
 
-    if (message != null) {
+    if (message != null && !message.isRemoteDelete()) {
       Log.i(TAG, "Found matching message record...");
 
       List<Attachment> attachments = new LinkedList<>();
@@ -1415,6 +1439,8 @@ public final class PushProcessMessageJob extends BaseJob {
       }
 
       return Optional.of(new QuoteModel(quote.get().getId(), author, message.getBody(), false, attachments));
+    } else if (message != null) {
+      Log.w(TAG, "Found the target for the quote, but it's flagged as remotely deleted.");
     }
 
     Log.w(TAG, "Didn't find matching message record...");

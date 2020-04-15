@@ -184,6 +184,10 @@ message DataMessage {
     optional uint64 targetSentTimestamp = 5;
   }
 
+  message Delete {
+    optional uint64 targetSentTimestamp = 1;
+  }
+
   enum ProtocolVersion {
     option allow_alias = true;
 
@@ -211,6 +215,7 @@ message DataMessage {
   optional uint32             requiredProtocolVersion = 12;
   optional bool               isViewOnce              = 14;
   optional Reaction           reaction                = 16;
+  optional Delete             delete                  = 17;
 }
 
 message NullMessage {

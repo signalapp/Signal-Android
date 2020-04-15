@@ -527,6 +527,8 @@ public class MessageNotifier {
           slideDeck = ((MmsMessageRecord) record).getSlideDeck();
         } else if (record.isMms() && ((MmsMessageRecord) record).isViewOnce()) {
           body = SpanUtil.italic(context.getString(getViewOnceDescription((MmsMessageRecord) record)));
+        } else if (record.isRemoteDelete()) {
+          body = SpanUtil.italic(context.getString(R.string.MessageNotifier_this_message_was_deleted));;
         } else if (record.isMms() && TextUtils.isEmpty(body) && !((MmsMessageRecord) record).getSlideDeck().getSlides().isEmpty()) {
           body = SpanUtil.italic(context.getString(R.string.MessageNotifier_media_message));
           slideDeck = ((MediaMmsMessageRecord) record).getSlideDeck();

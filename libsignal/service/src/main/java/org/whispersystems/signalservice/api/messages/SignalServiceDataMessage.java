@@ -35,6 +35,7 @@ public class SignalServiceDataMessage {
   private final Optional<Sticker>                       sticker;
   private final boolean                                 viewOnce;
   private final Optional<Reaction>                      reaction;
+  private final Optional<RemoteDelete>                  remoteDelete;
 
   /**
    * Construct a SignalServiceDataMessage.
@@ -53,7 +54,7 @@ public class SignalServiceDataMessage {
                            String body, boolean endSession, int expiresInSeconds,
                            boolean expirationUpdate, byte[] profileKey, boolean profileKeyUpdate,
                            Quote quote, List<SharedContact> sharedContacts, List<Preview> previews,
-                           Sticker sticker, boolean viewOnce, Reaction reaction)
+                           Sticker sticker, boolean viewOnce, Reaction reaction, RemoteDelete remoteDelete)
   {
     try {
       this.group = SignalServiceGroupContext.createOptional(group, groupV2);
@@ -72,6 +73,7 @@ public class SignalServiceDataMessage {
     this.sticker               = Optional.fromNullable(sticker);
     this.viewOnce              = viewOnce;
     this.reaction              = Optional.fromNullable(reaction);
+    this.remoteDelete          = Optional.fromNullable(remoteDelete);
 
     if (attachments != null && !attachments.isEmpty()) {
       this.attachments = Optional.of(attachments);
@@ -174,6 +176,10 @@ public class SignalServiceDataMessage {
     return reaction;
   }
 
+  public Optional<RemoteDelete> getRemoteDelete() {
+    return remoteDelete;
+  }
+
   public static class Builder {
 
     private List<SignalServiceAttachment> attachments    = new LinkedList<>();
@@ -193,6 +199,7 @@ public class SignalServiceDataMessage {
     private Sticker              sticker;
     private boolean              viewOnce;
     private Reaction             reaction;
+    private RemoteDelete         remoteDelete;
 
     private Builder() {}
 
@@ -300,12 +307,17 @@ public class SignalServiceDataMessage {
       return this;
     }
 
+    public Builder withRemoteDelete(RemoteDelete remoteDelete) {
+      this.remoteDelete = remoteDelete;
+      return this;
+    }
+
     public SignalServiceDataMessage build() {
       if (timestamp == 0) timestamp = System.currentTimeMillis();
       return new SignalServiceDataMessage(timestamp, group, groupV2, attachments, body, endSession,
                                           expiresInSeconds, expirationUpdate, profileKey,
                                           profileKeyUpdate, quote, sharedContacts, previews,
-                                          sticker, viewOnce, reaction);
+                                          sticker, viewOnce, reaction, remoteDelete);
     }
   }
 
@@ -440,6 +452,18 @@ public class SignalServiceDataMessage {
 
     public SignalServiceAddress getTargetAuthor() {
       return targetAuthor;
+    }
+
+    public long getTargetSentTimestamp() {
+      return targetSentTimestamp;
+    }
+  }
+
+  public static class RemoteDelete {
+    private final long targetSentTimestamp;
+
+    public RemoteDelete(long targetSentTimestamp) {
+      this.targetSentTimestamp = targetSentTimestamp;
     }
 
     public long getTargetSentTimestamp() {

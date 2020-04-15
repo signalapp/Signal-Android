@@ -432,6 +432,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     toolbar.getMenu().findItem(R.id.action_copy).setVisible(menuState.shouldShowCopyAction());
     toolbar.getMenu().findItem(R.id.action_download).setVisible(menuState.shouldShowSaveAttachmentAction());
     toolbar.getMenu().findItem(R.id.action_forward).setVisible(menuState.shouldShowForwardAction());
+    toolbar.getMenu().findItem(R.id.action_reply).setVisible(menuState.shouldShowReplyAction());
   }
 
   private boolean handleToolbarItemClicked(@NonNull MenuItem menuItem) {
