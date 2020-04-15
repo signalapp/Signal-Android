@@ -7,9 +7,10 @@ import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_conversation.view.profilePictureView
 import kotlinx.android.synthetic.main.view_user.view.*
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.database.Address
+import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.whispersystems.signalservice.loki.api.LokiAPI
 
 class UserView : LinearLayout {
     var user: String? = null
@@ -39,13 +40,29 @@ class UserView : LinearLayout {
     // endregion
 
     // region Updating
-    fun bind(user: String, isSelected: Boolean, glide: GlideRequests) {
-        profilePictureView.hexEncodedPublicKey = user
-        profilePictureView.additionalHexEncodedPublicKey = null
-        profilePictureView.isRSSFeed = false
+    fun bind(user: Recipient, isSelected: Boolean, glide: GlideRequests) {
+        val address = user.address.serialize()
+        if (user.isGroupRecipient) {
+            if (user.address.isPublicChat || user.address.isRSSFeed) {
+                profilePictureView.hexEncodedPublicKey = ""
+                profilePictureView.additionalHexEncodedPublicKey = null
+                profilePictureView.isRSSFeed = true
+            } else {
+                val threadId = GroupManager.getThreadIdFromGroupId(address, context)
+                val users = LokiAPI.userHexEncodedPublicKeyCache[threadId]?.toList() ?: listOf()
+                val randomUsers = users.sorted() // Sort to provide a level of stability
+                profilePictureView.hexEncodedPublicKey = randomUsers.getOrNull(0) ?: ""
+                profilePictureView.additionalHexEncodedPublicKey = randomUsers.getOrNull(1) ?: ""
+                profilePictureView.isRSSFeed = false
+            }
+        } else {
+            profilePictureView.hexEncodedPublicKey = address
+            profilePictureView.additionalHexEncodedPublicKey = null
+            profilePictureView.isRSSFeed = false
+        }
         profilePictureView.glide = glide
         profilePictureView.update()
-        nameTextView.text = Recipient.from(context, Address.fromSerialized(user), false).name ?: "Unknown Contact"
+        nameTextView.text = user.name ?: "Unknown Contact"
         tickImageView.setImageResource(if (isSelected) R.drawable.ic_circle_check else R.drawable.ic_circle)
     }
     // endregion

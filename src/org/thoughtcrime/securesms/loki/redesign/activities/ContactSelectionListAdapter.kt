@@ -53,7 +53,7 @@ class ContactSelectionListAdapter(private val context: Context, private val isMu
       item as ContactSelectionListLoaderItem.Contact
       viewHolder.view.setOnClickListener { contactClickListener?.onContactClick(item.recipient) }
       val isSelected = selectedContacts.contains(item.recipient)
-      viewHolder.view.bind(item.recipient.address.serialize(), isSelected, glide)
+      viewHolder.view.bind(item.recipient, isSelected, glide)
     } else if (viewHolder is DividerViewHolder) {
       item as ContactSelectionListLoaderItem.Header
       viewHolder.view.label.text = item.name
