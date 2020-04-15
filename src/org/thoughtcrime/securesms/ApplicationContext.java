@@ -30,6 +30,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.multidex.MultiDexApplication;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+
 import org.conscrypt.Conscrypt;
 import org.jetbrains.annotations.NotNull;
 import org.signal.aesgcmprovider.AesGcmProvider;
@@ -61,6 +66,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
 import org.thoughtcrime.securesms.loki.LokiPublicChatManager;
+import org.thoughtcrime.securesms.loki.LokiPushNotificationManager;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.redesign.messaging.BackgroundOpenGroupPollWorker;
@@ -197,6 +203,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     // Loki - Set up public chat manager
     lokiPublicChatManager = new LokiPublicChatManager(this);
     updatePublicChatProfilePictureIfNeeded();
+    setUpFirebaseDeviceToken();
   }
 
   @Override
@@ -451,6 +458,24 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       // TODO: Implement
       return null;
     }, this);
+  }
+
+  public void setUpFirebaseDeviceToken() {
+    Context context = this;
+    FirebaseInstanceId.getInstance().getInstanceId()
+            .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+              @Override
+              public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                if (!task.isSuccessful()) {
+                  Log.w(TAG, "getInstanceId failed", task.getException());
+                  return;
+                }
+                // Get new Instance ID token
+                String token = task.getResult().getToken();
+                String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context);
+                LokiPushNotificationManager.register(token, userHexEncodedPublicKey, context);
+              }
+            });
   }
 
   @Override

@@ -185,6 +185,16 @@ public class TextSecurePreferences {
 
   private static final String MEDIA_KEYBOARD_MODE = "pref_media_keyboard_mode";
 
+  private static final String IS_USING_REMOTE_NOTIFICATION = "pref_is_using_remote_notification";
+
+  public static boolean isUsingRemoteNotification(Context context) {
+    return getBooleanPreference(context, IS_USING_REMOTE_NOTIFICATION, false);
+  }
+
+  public static void setIsUsingRemoteNotification(Context context, boolean value) {
+    setBooleanPreference(context, IS_USING_REMOTE_NOTIFICATION, value);
+  }
+
   public static boolean isScreenLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, SCREEN_LOCK, false);
   }

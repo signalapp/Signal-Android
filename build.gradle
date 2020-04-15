@@ -16,6 +16,7 @@ buildscript {
         classpath "com.android.tools.build:gradle:$gradle_version"
         classpath files('libs/gradle-witness.jar')
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.google.gms:google-services:4.3.3'
     }
 }
 
@@ -24,6 +25,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 apply plugin: 'witness'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.gms.google-services'
 
 repositories {
     mavenLocal()
@@ -86,6 +88,8 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'android.arch.lifecycle:extensions:1.1.1'
     implementation 'android.arch.lifecycle:common-java8:1.1.1'
+
+    implementation 'com.google.firebase:firebase-messaging:18.0.0'
 
     implementation 'com.google.android.exoplayer:exoplayer-core:2.9.1'
     implementation 'com.google.android.exoplayer:exoplayer-ui:2.9.1'
