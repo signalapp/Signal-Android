@@ -1895,7 +1895,28 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         boolean isGroupActive    = groupId.isPresent() && groupDatabase.isActive(groupId.get());
         boolean isLeaveMessage   = message.getGroupInfo().isPresent() && message.getGroupInfo().get().getType() == SignalServiceGroup.Type.QUIT;
 
-        return (isContentMessage && !isGroupActive) || (sender.isBlocked() && !isLeaveMessage);
+        boolean isClosedGroup = conversation.getAddress().isSignalGroup();
+        boolean isGroupMember = true;
+
+        // Only allow messages from group members
+        if (isClosedGroup) {
+          String senderHexEncodedPublicKey = content.getSender();
+
+          try {
+            String masterHexEncodedPublicKey = PromiseUtil.timeout(LokiDeviceLinkUtilities.INSTANCE.getMasterHexEncodedPublicKey(content.getSender()), 5000).get();
+            if (masterHexEncodedPublicKey != null) {
+              senderHexEncodedPublicKey = masterHexEncodedPublicKey;
+            }
+          } catch (Exception e) {
+            e.printStackTrace();
+          }
+
+          Recipient senderMasterAddress = Recipient.from(context, Address.fromSerialized(senderHexEncodedPublicKey), false);
+
+          isGroupMember = groupId.isPresent() && groupDatabase.getGroupMembers(groupId.get(), true).contains(senderMasterAddress);
+        }
+
+        return (isContentMessage && !isGroupActive) || (sender.isBlocked() && !isLeaveMessage) || (isContentMessage && !isGroupMember);
       } else {
         return sender.isBlocked();
       }
