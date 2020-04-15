@@ -2042,6 +2042,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     setStatusBarColor(getResources().getColor(R.color.action_bar_background));
   }
 
+  // FIXME: This name is confusing because we also have updateInputPanel and setInputPanelEnabled
   private void updateInputUI(Recipient recipient, boolean isSecureText, boolean isDefaultSms) {
     if (recipient.isGroupRecipient() && !isActiveGroup()) {
       unblockButton.setVisibility(View.GONE);

@@ -1898,7 +1898,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         boolean isClosedGroup = conversation.getAddress().isSignalGroup();
         boolean isGroupMember = true;
 
-        // Only allow messages from members of a group
+        // Only allow messages from group members
         if (isClosedGroup) {
           String senderHexEncodedPublicKey = content.getSender();
 
@@ -1911,9 +1911,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
             e.printStackTrace();
           }
 
-          Recipient senderMaster = Recipient.from(context, Address.fromSerialized(senderHexEncodedPublicKey), false);
+          Recipient senderMasterAddress = Recipient.from(context, Address.fromSerialized(senderHexEncodedPublicKey), false);
 
-          isGroupMember = groupId.isPresent() && groupDatabase.getGroupMembers(groupId.get(), true).contains(senderMaster);
+          isGroupMember = groupId.isPresent() && groupDatabase.getGroupMembers(groupId.get(), true).contains(senderMasterAddress);
         }
 
         return (isContentMessage && !isGroupActive) || (sender.isBlocked() && !isLeaveMessage) || (isContentMessage && !isGroupMember);

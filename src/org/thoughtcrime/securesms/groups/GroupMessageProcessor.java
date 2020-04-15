@@ -140,18 +140,18 @@ public class GroupMessageProcessor {
     String ourHexEncodedPublicKey = getMasterHexEncodedPublicKey(context, TextSecurePreferences.getLocalNumber(context));
 
     if (group.getGroupType() == SignalServiceGroup.GroupType.SIGNAL) {
-      // Only update group if admin sent the message
+      // Only update group if the group admin sent the message
       String hexEncodedPublicKey = getMasterHexEncodedPublicKey(context, content.getSender());
       if (!groupRecord.getAdmins().contains(Address.fromSerialized(hexEncodedPublicKey))) {
         Log.d("Loki - Group Message", "Received a group update message from a non-admin user for " + id +". Ignoring.");
         return null;
       }
 
-      // We should only process update message if we were in the group
+      // We should only process update messages if we're in the group
       Address ourAddress = Address.fromSerialized(ourHexEncodedPublicKey);
       if (!groupRecord.getMembers().contains(ourAddress) &&
               !group.getMembers().or(Collections.emptyList()).contains(ourHexEncodedPublicKey)) {
-        Log.d("Loki - Group Message", "Received a group update message from a group we are not members in:  " + id + " . Ignoring.");
+        Log.d("Loki - Group Message", "Received a group update message from a group we are not a member of:  " + id + "; ignoring.");
         database.setActive(id, false);
         return null;
       }
@@ -181,7 +181,7 @@ public class GroupMessageProcessor {
     }
 
     // We add any new or removed members to the group context
-    // This will allow us later to iterate over them to check if they left or were added for UI display
+    // This will allow us later to iterate over them to check if they left or were added for UI purposes
     for (Address addedMember : addedMembers) {
       builder.addNewMembers(addedMember.serialize());
     }
