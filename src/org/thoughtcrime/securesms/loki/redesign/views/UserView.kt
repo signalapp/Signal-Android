@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.loki.redesign.views
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_conversation.view.profilePictureView
 import kotlinx.android.synthetic.main.view_user.view.*
@@ -13,7 +14,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.loki.api.LokiAPI
 
 class UserView : LinearLayout {
-    var user: String? = null
 
     // region Lifecycle
     constructor(context: Context) : super(context) {
@@ -40,6 +40,10 @@ class UserView : LinearLayout {
     // endregion
 
     // region Updating
+    fun setCheckBoxVisible(visible: Boolean) {
+        tickImageView.visibility = if (visible) View.VISIBLE else View.GONE
+    }
+
     fun bind(user: Recipient, isSelected: Boolean, glide: GlideRequests) {
         val address = user.address.serialize()
         if (user.isGroupRecipient) {

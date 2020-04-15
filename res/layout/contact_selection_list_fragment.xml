@@ -7,7 +7,6 @@
         android:id="@+id/emptyStateContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true"
         android:gravity="center_horizontal|center_vertical"
         android:orientation="vertical">
 
@@ -47,12 +46,6 @@
 
         </android.support.v4.widget.SwipeRefreshLayout>
 
-        <org.thoughtcrime.securesms.components.RecyclerViewFastScroller
-            android:id="@+id/fastScroller"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:visibility="gone"
-            android:layout_gravity="end"/>
     </LinearLayout>
 
 </FrameLayout>

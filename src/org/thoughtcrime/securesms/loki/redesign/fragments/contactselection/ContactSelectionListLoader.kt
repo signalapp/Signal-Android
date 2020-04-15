@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.redesign.activities
+package org.thoughtcrime.securesms.loki.redesign.fragments.contactselection
 
 import android.content.Context
 import network.loki.messenger.R
@@ -7,13 +7,13 @@ import org.thoughtcrime.securesms.loki.redesign.utilities.ContactUtilities
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.AsyncLoader
 
-sealed class ContactSelectionListLoaderItem {
-  class Header(val name: String): ContactSelectionListLoaderItem()
-  class Contact(val recipient: Recipient): ContactSelectionListLoaderItem()
-
+sealed class ContactSelectionListItem {
+  class Header(val name: String): ContactSelectionListItem()
+  class Contact(val recipient: Recipient): ContactSelectionListItem()
 }
 
-class ContactSelectionListLoader(context: Context, val mode: Int, val filter: String?) : AsyncLoader<List<ContactSelectionListLoaderItem>>(context) {
+class ContactSelectionListLoader(context: Context, val mode: Int, val filter: String?) : AsyncLoader<List<ContactSelectionListItem>>(context) {
+
   object DisplayMode {
     const val FLAG_FRIENDS = 1
     const val FLAG_CLOSED_GROUPS = 1 shl 1
@@ -25,7 +25,7 @@ class ContactSelectionListLoader(context: Context, val mode: Int, val filter: St
     return mode and flag > 0
   }
 
-  override fun loadInBackground(): List<ContactSelectionListLoaderItem> {
+  override fun loadInBackground(): List<ContactSelectionListItem> {
     val contacts = ContactUtilities.getAllContacts(context).filter {
       if (filter.isNullOrEmpty()) return@filter true
 
@@ -34,7 +34,7 @@ class ContactSelectionListLoader(context: Context, val mode: Int, val filter: St
       it.recipient.toShortString()
     }
 
-    val list = mutableListOf<ContactSelectionListLoaderItem>()
+    val list = mutableListOf<ContactSelectionListItem>()
     if (isFlagSet(DisplayMode.FLAG_CLOSED_GROUPS)) {
       list.addAll(getClosedGroups(contacts))
     }
@@ -50,31 +50,31 @@ class ContactSelectionListLoader(context: Context, val mode: Int, val filter: St
     return list
   }
 
-  private fun getFriends(contacts: List<Contact>): List<ContactSelectionListLoaderItem> {
+  private fun getFriends(contacts: List<Contact>): List<ContactSelectionListItem> {
     return getItems(contacts, context.getString(R.string.ContactSelectionListLoader_contacts)) {
       !it.recipient.isGroupRecipient && it.isFriend && !it.isOurDevice && !it.isSlave
     }
   }
 
-  private fun getClosedGroups(contacts: List<Contact>): List<ContactSelectionListLoaderItem> {
+  private fun getClosedGroups(contacts: List<Contact>): List<ContactSelectionListItem> {
     return getItems(contacts, context.getString(R.string.ContactSelectionListLoader_closed_groups)) {
       it.recipient.address.isSignalGroup
     }
   }
 
-  private fun getOpenGroups(contacts: List<Contact>): List<ContactSelectionListLoaderItem> {
+  private fun getOpenGroups(contacts: List<Contact>): List<ContactSelectionListItem> {
     return getItems(contacts, context.getString(R.string.ContactSelectionListLoader_open_groups)) {
       it.recipient.address.isPublicChat
     }
   }
 
-  private fun getItems(contacts: List<Contact>, title: String, contactFilter: (Contact) -> Boolean): List<ContactSelectionListLoaderItem> {
+  private fun getItems(contacts: List<Contact>, title: String, contactFilter: (Contact) -> Boolean): List<ContactSelectionListItem> {
     val items = contacts.filter(contactFilter).map {
-      ContactSelectionListLoaderItem.Contact(it.recipient)
+      ContactSelectionListItem.Contact(it.recipient)
     }
     if (items.isEmpty()) return listOf()
 
-    val header = ContactSelectionListLoaderItem.Header(title)
+    val header = ContactSelectionListItem.Header(title)
     return listOf(header) + items
   }
 }

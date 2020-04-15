@@ -54,8 +54,6 @@ object ContactUtilities {
         val isOurDevice = ourDevices.contains(address)
         val isFriend = lokiThreadDatabase.getFriendRequestStatus(thread.threadId) == LokiThreadFriendRequestStatus.FRIENDS
         var isSlave = false
-        var displayName = ""
-
         if (!recipient.isGroupRecipient) {
           val deviceLinks = lokiAPIDatabase.getDeviceLinks(address)
           isSlave = deviceLinks.find { it.slaveHexEncodedPublicKey == address } != null

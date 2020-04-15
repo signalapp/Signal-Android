@@ -19,7 +19,7 @@ package org.thoughtcrime.securesms;
 import android.content.Intent;
 import android.os.Bundle;
 
-import org.thoughtcrime.securesms.loki.redesign.fragments.ContactSelectionListFragment;
+import org.thoughtcrime.securesms.loki.redesign.fragments.contactselection.ContactSelectionListFragment;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.redesign.fragments
+package org.thoughtcrime.securesms.loki.redesign.fragments.contactselection
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -12,14 +12,10 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.contact_selection_list_fragment.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader
-import org.thoughtcrime.securesms.loki.redesign.activities.ContactClickListener
-import org.thoughtcrime.securesms.loki.redesign.activities.ContactSelectionListAdapter
-import org.thoughtcrime.securesms.loki.redesign.activities.ContactSelectionListLoader
-import org.thoughtcrime.securesms.loki.redesign.activities.ContactSelectionListLoaderItem
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
 
-class ContactSelectionListFragment : Fragment(), LoaderManager.LoaderCallbacks<List<ContactSelectionListLoaderItem>>, ContactClickListener {
+class ContactSelectionListFragment : Fragment(), LoaderManager.LoaderCallbacks<List<ContactSelectionListItem>>, ContactClickListener {
 
   companion object {
     @JvmField val DISPLAY_MODE = "display_mode"
@@ -27,26 +23,23 @@ class ContactSelectionListFragment : Fragment(), LoaderManager.LoaderCallbacks<L
     @JvmField val REFRESHABLE = "refreshable"
   }
 
+  var onContactSelectedListener: OnContactSelectedListener? = null
+
   val selectedContacts: List<String>
     get() = listAdapter.selectedContacts.map { it.address.serialize() }
 
-  private var items = listOf<ContactSelectionListLoaderItem>()
-    set(value) { field = value; listAdapter.items = value }
-
   private val listAdapter by lazy {
-    val result = ContactSelectionListAdapter(activity!!, isMulti)
+    val result = ContactSelectionListAdapter(activity!!, multiSelect)
     result.glide = GlideApp.with(this)
     result.contactClickListener = this
     result
   }
 
-  private val isMulti: Boolean by lazy {
+  private val multiSelect: Boolean by lazy {
     activity!!.intent.getBooleanExtra(MULTI_SELECT, false)
   }
 
   private var cursorFilter: String? = null
-
-  var onContactSelectedListener: OnContactSelectedListener? = null
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
@@ -67,7 +60,7 @@ class ContactSelectionListFragment : Fragment(), LoaderManager.LoaderCallbacks<L
 
   fun setQueryFilter(filter: String?) {
     cursorFilter = filter
-    this.loaderManager.restartLoader<List<ContactSelectionListLoaderItem>>(0, null, this)
+    LoaderManager.getInstance(this).restartLoader(0, null, this)
   }
 
   fun resetQueryFilter() {
@@ -83,32 +76,24 @@ class ContactSelectionListFragment : Fragment(), LoaderManager.LoaderCallbacks<L
     this.swipeRefresh.setOnRefreshListener(onRefreshListener)
   }
 
-  override fun onCreateLoader(id: Int, args: Bundle?): Loader<List<ContactSelectionListLoaderItem>> {
+  override fun onCreateLoader(id: Int, args: Bundle?): Loader<List<ContactSelectionListItem>> {
     return ContactSelectionListLoader(activity!!,
             activity!!.intent.getIntExtra(DISPLAY_MODE, ContactsCursorLoader.DisplayMode.FLAG_ALL),
             cursorFilter)
   }
 
-  override fun onLoadFinished(loader: Loader<List<ContactSelectionListLoaderItem>>, items: List<ContactSelectionListLoaderItem>) {
+  override fun onLoadFinished(loader: Loader<List<ContactSelectionListItem>>, items: List<ContactSelectionListItem>) {
     update(items)
   }
 
-  override fun onLoaderReset(loader: Loader<List<ContactSelectionListLoaderItem>>) {
+  override fun onLoaderReset(loader: Loader<List<ContactSelectionListItem>>) {
     update(listOf())
   }
 
-  private fun update(items: List<ContactSelectionListLoaderItem>) {
-    this.items = items
+  private fun update(items: List<ContactSelectionListItem>) {
+    listAdapter.items = items
     mainContentContainer.visibility = if (items.isEmpty()) View.GONE else View.VISIBLE
     emptyStateContainer.visibility = if (items.isEmpty()) View.VISIBLE else View.GONE
-    val useFastScroller = items.count() > 20
-    recyclerView.isVerticalScrollBarEnabled = !useFastScroller
-    if (useFastScroller) {
-      fastScroller.visibility = View.VISIBLE
-      fastScroller.setRecyclerView(recyclerView)
-    } else {
-      fastScroller.visibility = View.GONE
-    }
   }
 
   override fun onContactClick(contact: Recipient) {

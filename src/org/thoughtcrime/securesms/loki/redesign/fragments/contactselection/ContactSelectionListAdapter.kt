@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.redesign.activities
+package org.thoughtcrime.securesms.loki.redesign.fragments.contactselection
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.loki.redesign.views.UserView
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
 
-class ContactSelectionListAdapter(private val context: Context, private val isMulti: Boolean) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ContactSelectionListAdapter(private val context: Context, private val multiSelect: Boolean) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
   private object ViewType {
     const val Contact = 0
@@ -20,11 +20,11 @@ class ContactSelectionListAdapter(private val context: Context, private val isMu
 
   lateinit var glide: GlideRequests
   val selectedContacts = mutableSetOf<Recipient>()
-  var items = listOf<ContactSelectionListLoaderItem>()
+  var items = listOf<ContactSelectionListItem>()
     set(value) { field = value; notifyDataSetChanged() }
   var contactClickListener: ContactClickListener? = null
 
-  class ViewHolder(val view: UserView) : RecyclerView.ViewHolder(view)
+  class UserViewHolder(val view: UserView) : RecyclerView.ViewHolder(view)
   class DividerViewHolder(val view: View): RecyclerView.ViewHolder(view)
 
   override fun getItemCount(): Int {
@@ -33,14 +33,14 @@ class ContactSelectionListAdapter(private val context: Context, private val isMu
 
   override fun getItemViewType(position: Int): Int {
     return when (items[position]) {
-      is ContactSelectionListLoaderItem.Header -> ViewType.Divider
+      is ContactSelectionListItem.Header -> ViewType.Divider
       else -> ViewType.Contact
     }
   }
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
     return if (viewType == ViewType.Contact) {
-      ViewHolder(UserView(context))
+      UserViewHolder(UserView(context))
     } else {
       val view = LayoutInflater.from(context).inflate(R.layout.contact_selection_list_divider, parent, false)
       DividerViewHolder(view)
@@ -49,13 +49,14 @@ class ContactSelectionListAdapter(private val context: Context, private val isMu
 
   override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
     val item = items[position]
-    if (viewHolder is ViewHolder) {
-      item as ContactSelectionListLoaderItem.Contact
+    if (viewHolder is UserViewHolder) {
+      item as ContactSelectionListItem.Contact
       viewHolder.view.setOnClickListener { contactClickListener?.onContactClick(item.recipient) }
       val isSelected = selectedContacts.contains(item.recipient)
       viewHolder.view.bind(item.recipient, isSelected, glide)
+      viewHolder.view.setCheckBoxVisible(multiSelect)
     } else if (viewHolder is DividerViewHolder) {
-      item as ContactSelectionListLoaderItem.Header
+      item as ContactSelectionListItem.Header
       viewHolder.view.label.text = item.name
     }
   }
@@ -64,14 +65,14 @@ class ContactSelectionListAdapter(private val context: Context, private val isMu
     if (selectedContacts.contains(recipient)) {
       selectedContacts.remove(recipient)
       contactClickListener?.onContactDeselected(recipient)
-    } else {
+    } else if (multiSelect || selectedContacts.isEmpty()) {
       selectedContacts.add(recipient)
       contactClickListener?.onContactSelected(recipient)
     }
     val index = items.indexOfFirst {
       when (it) {
-        is ContactSelectionListLoaderItem.Header -> false
-        is ContactSelectionListLoaderItem.Contact -> it.recipient == recipient
+        is ContactSelectionListItem.Header -> false
+        is ContactSelectionListItem.Contact -> it.recipient == recipient
       }
     }
     notifyItemChanged(index)
