@@ -8,7 +8,6 @@ import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestSt
 
 data class Contact(
   val recipient: Recipient,
-  val threadId: Long,
   val isFriend: Boolean,
   val isSlave: Boolean,
   val isOurDevice: Boolean
@@ -35,6 +34,8 @@ object ContactUtilities {
     val lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context)
     val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
     val lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(context)
+    val groupDatabase = DatabaseFactory.getGroupDatabase(context)
+    val lokiUserDatabase = DatabaseFactory.getLokiUserDatabase(context)
 
     val ourDeviceLinks = lokiAPIDatabase.getDeviceLinks(userHexEncodedPublicKey)
     val ourDevices = ourDeviceLinks.flatMap {
@@ -43,23 +44,27 @@ object ContactUtilities {
     ourDevices.add(userHexEncodedPublicKey.toLowerCase())
 
     val cursor = threadDatabase.conversationList
-    val reader = threadDatabase.readerFor(cursor)
     val result = mutableSetOf<Contact>()
-    while (reader.next != null) {
-      val thread = reader.current
-      val recipient = thread.recipient
-      val hexEncodedPublicKey = recipient.address.serialize()
+    threadDatabase.readerFor(cursor).use { reader ->
+      while (reader.next != null) {
+        val thread = reader.current
+        val recipient = thread.recipient
+        val address = recipient.address.serialize()
 
-      val isFriend = lokiThreadDatabase.getFriendRequestStatus(thread.threadId) == LokiThreadFriendRequestStatus.FRIENDS
-      var isSlave = false
-      if (!recipient.isGroupRecipient) {
-        val deviceLinks = lokiAPIDatabase.getDeviceLinks(hexEncodedPublicKey)
-        isSlave = deviceLinks.find { it.slaveHexEncodedPublicKey == hexEncodedPublicKey } != null
+        val isOurDevice = ourDevices.contains(address)
+        val isFriend = lokiThreadDatabase.getFriendRequestStatus(thread.threadId) == LokiThreadFriendRequestStatus.FRIENDS
+        var isSlave = false
+        var displayName = ""
+
+        if (!recipient.isGroupRecipient) {
+          val deviceLinks = lokiAPIDatabase.getDeviceLinks(address)
+          isSlave = deviceLinks.find { it.slaveHexEncodedPublicKey == address } != null
+        }
+
+        result.add(Contact(recipient, isFriend, isSlave, isOurDevice))
       }
-      val isOurDevice = ourDevices.contains(hexEncodedPublicKey)
-
-      result.add(Contact(recipient, thread.threadId, isFriend, isSlave, isOurDevice))
     }
+
     return result
   }
 

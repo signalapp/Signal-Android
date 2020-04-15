@@ -29,19 +29,19 @@ import android.os.Process;
 import android.provider.OpenableColumns;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
 import org.thoughtcrime.securesms.components.SearchToolbar;
-import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.redesign.activities.ContactSelectionListLoader.DisplayMode;
+import org.thoughtcrime.securesms.loki.redesign.fragments.ContactSelectionListFragment;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -52,7 +52,6 @@ import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.io.FileInputStream;
@@ -68,7 +67,7 @@ import network.loki.messenger.R;
  * @author Jake McGinty
  */
 public class ShareActivity extends PassphraseRequiredActionBarActivity
-    implements ContactSelectionListFragment.OnContactSelectedListener, SwipeRefreshLayout.OnRefreshListener
+        implements ContactSelectionListFragment.OnContactSelectedListener
 {
   private static final String TAG = ShareActivity.class.getSimpleName();
 
@@ -96,14 +95,10 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   @Override
   protected void onCreate(Bundle icicle, boolean ready) {
     if (!getIntent().hasExtra(ContactSelectionListFragment.DISPLAY_MODE)) {
-      getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE,
-                           TextSecurePreferences.isSmsEnabled(this)
-                               ? DisplayMode.FLAG_ALL
-                               : DisplayMode.FLAG_PUSH | DisplayMode.FLAG_GROUPS);
+      getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE, DisplayMode.FLAG_ALL);
     }
 
     getIntent().putExtra(ContactSelectionListFragment.REFRESHABLE, false);
-    getIntent().putExtra(ContactSelectionListFragment.RECENTS, true);
 
     setContentView(R.layout.share_activity);
 
@@ -170,7 +165,6 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     searchAction     = findViewById(R.id.search_action);
     contactsFragment = (ContactSelectionListFragment) getSupportFragmentManager().findFragmentById(R.id.contact_selection_list_fragment);
     contactsFragment.setOnContactSelectedListener(this);
-    contactsFragment.setOnRefreshListener(this);
   }
 
   private void initializeSearch() {
@@ -281,12 +275,6 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onContactDeselected(String number) {
-
-  }
-
-  @Override
-  public void onRefresh() {
-
   }
 
   @SuppressLint("StaticFieldLeak")

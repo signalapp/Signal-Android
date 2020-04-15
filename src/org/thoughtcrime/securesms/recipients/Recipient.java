@@ -455,7 +455,8 @@ public class Recipient implements RecipientModifiedListener {
   }
 
   public synchronized String toShortString() {
-    return (getName() == null ? address.serialize() : getName());
+    String name = getName();
+    return (name == null ? address.serialize() : name);
   }
 
   public synchronized @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted) {
