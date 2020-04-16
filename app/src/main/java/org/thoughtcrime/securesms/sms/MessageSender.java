@@ -22,6 +22,7 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
 
@@ -52,6 +53,7 @@ import org.thoughtcrime.securesms.jobs.AttachmentCopyJob;
 import org.thoughtcrime.securesms.jobs.AttachmentMarkUploadedJob;
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
+import org.thoughtcrime.securesms.jobs.ProfileKeySendJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
 import org.thoughtcrime.securesms.jobs.PushTextSendJob;
@@ -79,6 +81,11 @@ import java.util.List;
 public class MessageSender {
 
   private static final String TAG = MessageSender.class.getSimpleName();
+
+  @WorkerThread
+  public static void sendProfileKey(final Context context, final long threadId) {
+    ApplicationDependencies.getJobManager().add(ProfileKeySendJob.create(context, threadId));
+  }
 
   public static long send(final Context context,
                           final OutgoingTextMessage message,
