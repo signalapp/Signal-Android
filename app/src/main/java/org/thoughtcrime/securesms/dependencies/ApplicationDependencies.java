@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
+import org.thoughtcrime.securesms.util.EarlyMessageCache;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
 import org.thoughtcrime.securesms.util.IasKeyStore;
@@ -47,6 +48,7 @@ public class ApplicationDependencies {
   private static KeyValueStore                     keyValueStore;
   private static MegaphoneRepository               megaphoneRepository;
   private static GroupsV2Operations                groupsV2Operations;
+  private static EarlyMessageCache                 earlyMessageCache;
 
   public static synchronized void init(@NonNull Application application, @NonNull Provider provider) {
     if (ApplicationDependencies.application != null || ApplicationDependencies.provider != null) {
@@ -195,6 +197,16 @@ public class ApplicationDependencies {
     return megaphoneRepository;
   }
 
+  public static synchronized @NonNull EarlyMessageCache getEarlyMessageCache() {
+    assertInitialization();
+
+    if (earlyMessageCache == null) {
+      earlyMessageCache = provider.provideEarlyMessageCache();
+    }
+
+    return earlyMessageCache;
+  }
+
   private static void assertInitialization() {
     if (application == null || provider == null) {
       throw new UninitializedException();
@@ -214,6 +226,7 @@ public class ApplicationDependencies {
     @NonNull FrameRateTracker provideFrameRateTracker();
     @NonNull KeyValueStore provideKeyValueStore();
     @NonNull MegaphoneRepository provideMegaphoneRepository();
+    @NonNull EarlyMessageCache provideEarlyMessageCache();
   }
 
   private static class UninitializedException extends IllegalStateException {

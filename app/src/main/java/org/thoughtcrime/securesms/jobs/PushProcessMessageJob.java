@@ -237,8 +237,8 @@ public final class PushProcessMessageJob extends BaseJob {
     Optional<Long> optionalSmsMessageId = smsMessageId > 0 ? Optional.of(smsMessageId) : Optional.absent();
 
     if (messageState == MessageState.DECRYPTED_OK) {
-      //noinspection ConstantConditions
-      handleMessage(serializedPlaintextContent, optionalSmsMessageId);
+      SignalServiceContent content = SignalServiceContent.deserialize(serializedPlaintextContent);
+      handleMessage(content, optionalSmsMessageId);
     } else {
       //noinspection ConstantConditions
       handleExceptionMessage(exceptionMetadata, optionalSmsMessageId);
@@ -254,10 +254,9 @@ public final class PushProcessMessageJob extends BaseJob {
   public void onFailure() {
   }
 
-  private void handleMessage(@NonNull byte[] plaintextDataBuffer, @NonNull Optional<Long> smsMessageId) {
+  private void handleMessage(@Nullable SignalServiceContent content, @NonNull Optional<Long> smsMessageId) {
     try {
-      GroupDatabase        groupDatabase = DatabaseFactory.getGroupDatabase(context);
-      SignalServiceContent content       = SignalServiceContent.deserialize(plaintextDataBuffer);
+      GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
 
       if (content == null || shouldIgnore(content)) {
         Log.i(TAG, "Ignoring message.");
@@ -333,6 +332,13 @@ public final class PushProcessMessageJob extends BaseJob {
 
       resetRecipientToPush(Recipient.externalPush(context, content.getSender()));
 
+      Optional<SignalServiceContent> earlyContent = ApplicationDependencies.getEarlyMessageCache()
+                                                                           .retrieve(Recipient.externalPush(context, content.getSender()).getId(),
+                                                                                     content.getTimestamp());
+      if (earlyContent.isPresent()) {
+        Log.i(TAG, "Found dependent content that was retrieved earlier. Processing.");
+        handleMessage(earlyContent.get(), Optional.absent());
+      }
     } catch (StorageFailedException e) {
       Log.w(TAG, e);
       handleCorruptMessage(e.getSender(), e.getSenderDevice(), timestamp, smsMessageId);
@@ -625,6 +631,7 @@ public final class PushProcessMessageJob extends BaseJob {
       Log.w(TAG, "[handleReaction] Found a matching message, but it's flagged as remotely deleted. timestamp: " + reaction.getTargetSentTimestamp() + "  author: " + targetAuthor.getId());
     } else {
       Log.w(TAG, "[handleReaction] Could not find matching message! timestamp: " + reaction.getTargetSentTimestamp() + "  author: " + targetAuthor.getId());
+      ApplicationDependencies.getEarlyMessageCache().store(targetAuthor.getId(), reaction.getTargetSentTimestamp(), content);
     }
   }
 
@@ -640,6 +647,7 @@ public final class PushProcessMessageJob extends BaseJob {
       MessageNotifier.updateNotification(context, targetMessage.getThreadId(), false);
     } else if (targetMessage == null) {
       Log.w(TAG, "[handleRemoteDelete] Could not find matching message! timestamp: " + delete.getTargetSentTimestamp() + "  author: " + sender.getId());
+      ApplicationDependencies.getEarlyMessageCache().store(sender.getId(), delete.getTargetSentTimestamp(), content);
     } else {
       Log.w(TAG, String.format(Locale.ENGLISH, "[handleRemoteDelete] Invalid remote delete! deleteTime: %d, targetTime: %d, deleteAuthor: %s, targetAuthor: %s",
                                                 content.getServerTimestamp(), targetMessage.getServerTimestamp(), sender.getId(), targetMessage.getRecipient().getId()));
@@ -1339,8 +1347,14 @@ public final class PushProcessMessageJob extends BaseJob {
       for (long timestamp : message.getTimestamps()) {
         Log.i(TAG, String.format("Received encrypted read receipt: (XXXXX, %d)", timestamp));
 
-        DatabaseFactory.getMmsSmsDatabase(context)
-                       .incrementReadReceiptCount(new SyncMessageId(Recipient.externalPush(context, content.getSender()).getId(), timestamp), content.getTimestamp());
+        Recipient     sender  = Recipient.externalPush(context, content.getSender());
+        SyncMessageId id      = new SyncMessageId(sender.getId(), timestamp);
+        boolean       handled = DatabaseFactory.getMmsSmsDatabase(context)
+                                               .incrementReadReceiptCount(id, content.getTimestamp());
+
+        if (!handled) {
+          ApplicationDependencies.getEarlyMessageCache().store(sender.getId(), timestamp, content);
+        }
       }
     }
   }

@@ -269,13 +269,17 @@ public class MmsSmsDatabase extends Database {
   }
 
   public void incrementDeliveryReceiptCount(SyncMessageId syncMessageId, long timestamp) {
-    DatabaseFactory.getSmsDatabase(context).incrementReceiptCount(syncMessageId, true, false);
-    DatabaseFactory.getMmsDatabase(context).incrementReceiptCount(syncMessageId, timestamp, true, false);
+    DatabaseFactory.getSmsDatabase(context).incrementReceiptCount(syncMessageId, true);
+    DatabaseFactory.getMmsDatabase(context).incrementReceiptCount(syncMessageId, timestamp, true);
   }
 
-  public void incrementReadReceiptCount(SyncMessageId syncMessageId, long timestamp) {
-    DatabaseFactory.getSmsDatabase(context).incrementReceiptCount(syncMessageId, false, true);
-    DatabaseFactory.getMmsDatabase(context).incrementReceiptCount(syncMessageId, timestamp, false, true);
+  public boolean incrementReadReceiptCount(SyncMessageId syncMessageId, long timestamp) {
+    boolean handled  = false;
+
+    handled |= DatabaseFactory.getSmsDatabase(context).incrementReceiptCount(syncMessageId, false);
+    handled |= DatabaseFactory.getMmsDatabase(context).incrementReceiptCount(syncMessageId, timestamp, false);
+
+    return handled;
   }
 
   public int getQuotedMessagePosition(long threadId, long quoteId, @NonNull RecipientId recipientId) {

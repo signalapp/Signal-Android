@@ -231,7 +231,6 @@ public class MmsDatabase extends MessagingDatabase {
   private static final String OUTGOING_SECURE_MESSAGES_CLAUSE   = "(" + MESSAGE_BOX + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_SENT_TYPE + " AND (" + MESSAGE_BOX + " & " + (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT) + ")";
 
   private final EarlyReceiptCache earlyDeliveryReceiptCache = new EarlyReceiptCache("MmsDelivery");
-  private final EarlyReceiptCache earlyReadReceiptCache     = new EarlyReceiptCache("MmsRead");
 
   public MmsDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -336,7 +335,7 @@ public class MmsDatabase extends MessagingDatabase {
     }
   }
 
-  public void incrementReceiptCount(SyncMessageId messageId, long timestamp, boolean deliveryReceipt, boolean readReceipt) {
+  public boolean incrementReceiptCount(SyncMessageId messageId, long timestamp, boolean deliveryReceipt) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     Cursor         cursor   = null;
     boolean        found    = false;
@@ -368,10 +367,12 @@ public class MmsDatabase extends MessagingDatabase {
         }
       }
 
-      if (!found) {
-        if (deliveryReceipt) earlyDeliveryReceiptCache.increment(messageId.getTimetamp(), messageId.getRecipientId());
-        if (readReceipt)     earlyReadReceiptCache.increment(messageId.getTimetamp(), messageId.getRecipientId());
+      if (!found && deliveryReceipt) {
+        earlyDeliveryReceiptCache.increment(messageId.getTimetamp(), messageId.getRecipientId());
+        return true;
       }
+
+      return found;
     } finally {
       if (cursor != null)
         cursor.close();
@@ -1097,7 +1098,6 @@ public class MmsDatabase extends MessagingDatabase {
     }
 
     Map<RecipientId, Long> earlyDeliveryReceipts = earlyDeliveryReceiptCache.remove(message.getSentTimeMillis());
-    Map<RecipientId, Long> earlyReadReceipts     = earlyReadReceiptCache.remove(message.getSentTimeMillis());
 
     ContentValues contentValues = new ContentValues();
     contentValues.put(DATE_SENT, message.getSentTimeMillis());
@@ -1112,7 +1112,6 @@ public class MmsDatabase extends MessagingDatabase {
     contentValues.put(VIEW_ONCE, message.isViewOnce());
     contentValues.put(RECIPIENT_ID, message.getRecipient().getId().serialize());
     contentValues.put(DELIVERY_RECEIPT_COUNT, Stream.of(earlyDeliveryReceipts.values()).mapToLong(Long::longValue).sum());
-    contentValues.put(READ_RECEIPT_COUNT, Stream.of(earlyReadReceipts.values()).mapToLong(Long::longValue).sum());
 
     List<Attachment> quoteAttachments = new LinkedList<>();
 
@@ -1148,7 +1147,6 @@ public class MmsDatabase extends MessagingDatabase {
       receiptDatabase.insert(members, messageId, defaultReceiptStatus, message.getSentTimeMillis());
 
       for (RecipientId recipientId : earlyDeliveryReceipts.keySet()) receiptDatabase.update(recipientId, messageId, GroupReceiptDatabase.STATUS_DELIVERED, -1);
-      for (RecipientId recipientId : earlyReadReceipts.keySet())     receiptDatabase.update(recipientId, messageId, GroupReceiptDatabase.STATUS_READ, -1);
     }
 
     DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
