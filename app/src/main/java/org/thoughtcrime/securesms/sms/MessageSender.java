@@ -59,6 +59,7 @@ import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
 import org.thoughtcrime.securesms.jobs.PushTextSendJob;
 import org.thoughtcrime.securesms.jobs.ReactionSendJob;
 import org.thoughtcrime.securesms.jobs.RemoteDeleteSendJob;
+import org.thoughtcrime.securesms.jobs.ResumableUploadSpecJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MmsException;
@@ -275,15 +276,17 @@ public class MessageSender {
       AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
       DatabaseAttachment databaseAttachment = attachmentDatabase.insertAttachmentForPreUpload(attachment);
 
-      Job compressionJob = AttachmentCompressionJob.fromAttachment(databaseAttachment, false, -1);
-      Job uploadJob      = new AttachmentUploadJob(databaseAttachment.getAttachmentId());
+      Job compressionJob         = AttachmentCompressionJob.fromAttachment(databaseAttachment, false, -1);
+      Job resumableUploadSpecJob = new ResumableUploadSpecJob();
+      Job uploadJob              = new AttachmentUploadJob(databaseAttachment.getAttachmentId());
 
       ApplicationDependencies.getJobManager()
                              .startChain(compressionJob)
+                             .then(resumableUploadSpecJob)
                              .then(uploadJob)
                              .enqueue();
 
-      return new PreUploadResult(databaseAttachment.getAttachmentId(), Arrays.asList(compressionJob.getId(), uploadJob.getId()));
+      return new PreUploadResult(databaseAttachment.getAttachmentId(), Arrays.asList(compressionJob.getId(), resumableUploadSpecJob.getId(), uploadJob.getId()));
     } catch (MmsException e) {
       Log.w(TAG, "preUploadPushAttachment() - Failed to upload!", e);
       return null;

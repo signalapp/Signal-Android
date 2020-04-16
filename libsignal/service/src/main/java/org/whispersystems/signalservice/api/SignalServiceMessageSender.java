@@ -80,6 +80,7 @@ import org.whispersystems.signalservice.internal.push.StaleDevices;
 import org.whispersystems.signalservice.internal.push.exceptions.MismatchedDevicesException;
 import org.whispersystems.signalservice.internal.push.exceptions.StaleDevicesException;
 import org.whispersystems.signalservice.internal.push.http.AttachmentCipherOutputStreamFactory;
+import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec;
 import org.whispersystems.signalservice.internal.util.StaticCredentialsProvider;
 import org.whispersystems.signalservice.internal.util.Util;
 import org.whispersystems.util.Base64;
@@ -350,16 +351,18 @@ public class SignalServiceMessageSender {
   }
 
   public SignalServiceAttachmentPointer uploadAttachment(SignalServiceAttachmentStream attachment) throws IOException {
-    byte[]             attachmentKey    = Util.getSecretBytes(64);
+    byte[]             attachmentKey    = attachment.getResumableUploadSpec().transform(ResumableUploadSpec::getSecretKey).or(() -> Util.getSecretBytes(64));
+    byte[]             attachmentIV     = attachment.getResumableUploadSpec().transform(ResumableUploadSpec::getIV).or(() -> Util.getSecretBytes(16));
     long               paddedLength     = PaddingInputStream.getPaddedSize(attachment.getLength());
     InputStream        dataStream       = new PaddingInputStream(attachment.getInputStream(), attachment.getLength());
     long               ciphertextLength = AttachmentCipherOutputStream.getCiphertextLength(paddedLength);
     PushAttachmentData attachmentData   = new PushAttachmentData(attachment.getContentType(),
                                                                  dataStream,
                                                                  ciphertextLength,
-                                                                 new AttachmentCipherOutputStreamFactory(attachmentKey),
+                                                                 new AttachmentCipherOutputStreamFactory(attachmentKey, attachmentIV),
                                                                  attachment.getListener(),
-                                                                 attachment.getCancelationSignal());
+                                                                 attachment.getCancelationSignal(),
+                                                                 attachment.getResumableUploadSpec().orNull());
 
     if (attachmentsV3.get()) {
       return uploadAttachmentV3(attachment, attachmentKey, attachmentData);
@@ -403,7 +406,7 @@ public class SignalServiceMessageSender {
                                               attachment.getUploadTimestamp());
   }
 
-  private SignalServiceAttachmentPointer uploadAttachmentV3(SignalServiceAttachmentStream attachment, byte[] attachmentKey, PushAttachmentData attachmentData) throws IOException {
+  public ResumableUploadSpec getResumableUploadSpec() throws IOException {
     AttachmentV3UploadAttributes       v3UploadAttributes = null;
     Optional<SignalServiceMessagePipe> localPipe          = pipe.get();
 
@@ -421,9 +424,13 @@ public class SignalServiceMessageSender {
       v3UploadAttributes = socket.getAttachmentV3UploadAttributes();
     }
 
-    byte[] digest = socket.uploadAttachment(attachmentData, v3UploadAttributes);
-    return new SignalServiceAttachmentPointer(v3UploadAttributes.getCdn(),
-                                              new SignalServiceAttachmentRemoteId(v3UploadAttributes.getKey()),
+    return socket.getResumableUploadSpec(v3UploadAttributes);
+  }
+
+  private SignalServiceAttachmentPointer uploadAttachmentV3(SignalServiceAttachmentStream attachment, byte[] attachmentKey, PushAttachmentData attachmentData) throws IOException {
+    byte[] digest = socket.uploadAttachment(attachmentData);
+    return new SignalServiceAttachmentPointer(attachmentData.getResumableUploadSpec().getCdnNumber(),
+                                              new SignalServiceAttachmentRemoteId(attachmentData.getResumableUploadSpec().getCdnKey()),
                                               attachment.getContentType(),
                                               attachmentKey,
                                               Optional.of(Util.toIntExact(attachment.getLength())),

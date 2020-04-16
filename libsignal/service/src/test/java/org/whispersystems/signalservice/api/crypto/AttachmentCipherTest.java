@@ -203,7 +203,7 @@ public class AttachmentCipherTest extends TestCase {
 
   private static EncryptResult encryptData(byte[] data, byte[] keyMaterial) throws IOException {
     ByteArrayOutputStream        outputStream  = new ByteArrayOutputStream();
-    AttachmentCipherOutputStream encryptStream = new AttachmentCipherOutputStream(keyMaterial, outputStream);
+    AttachmentCipherOutputStream encryptStream = new AttachmentCipherOutputStream(keyMaterial, null, outputStream);
 
     encryptStream.write(data);
     encryptStream.flush();

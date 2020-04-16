@@ -1,7 +1,9 @@
 package org.whispersystems.signalservice.internal.push.http;
 
 
+import org.whispersystems.libsignal.util.guava.Preconditions;
 import org.whispersystems.signalservice.api.crypto.DigestingOutputStream;
+import org.whispersystems.signalservice.api.crypto.SkippingOutputStream;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
 
 import java.io.IOException;
@@ -19,6 +21,7 @@ public class DigestingRequestBody extends RequestBody {
   private final long                contentLength;
   private final ProgressListener    progressListener;
   private final CancelationSignal   cancelationSignal;
+  private final long                contentStart;
 
   private byte[] digest;
 
@@ -26,14 +29,19 @@ public class DigestingRequestBody extends RequestBody {
                               OutputStreamFactory outputStreamFactory,
                               String contentType, long contentLength,
                               ProgressListener progressListener,
-                              CancelationSignal cancelationSignal)
+                              CancelationSignal cancelationSignal,
+                              long contentStart)
   {
+    Preconditions.checkArgument(contentLength >= contentStart);
+    Preconditions.checkArgument(contentStart >= 0);
+
     this.inputStream         = inputStream;
     this.outputStreamFactory = outputStreamFactory;
     this.contentType         = contentType;
     this.contentLength       = contentLength;
     this.progressListener    = progressListener;
     this.cancelationSignal   = cancelationSignal;
+    this.contentStart        = contentStart;
   }
 
   @Override
@@ -43,7 +51,7 @@ public class DigestingRequestBody extends RequestBody {
 
   @Override
   public void writeTo(BufferedSink sink) throws IOException {
-    DigestingOutputStream outputStream = outputStreamFactory.createFor(sink.outputStream());
+    DigestingOutputStream outputStream = outputStreamFactory.createFor(new SkippingOutputStream(contentStart, sink.outputStream()));
     byte[]                buffer       = new byte[8192];
 
     int read;
@@ -68,7 +76,7 @@ public class DigestingRequestBody extends RequestBody {
 
   @Override
   public long contentLength() {
-    if (contentLength > 0) return contentLength;
+    if (contentLength > 0) return contentLength - contentStart;
     else                   return -1;
   }
 

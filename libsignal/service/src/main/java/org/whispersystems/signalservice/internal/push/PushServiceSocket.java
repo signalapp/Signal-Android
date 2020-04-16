@@ -56,6 +56,7 @@ import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
 import org.whispersystems.signalservice.api.push.exceptions.RemoteAttestationResponseExpiredException;
+import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvalidException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.api.push.exceptions.UsernameMalformedException;
 import org.whispersystems.signalservice.api.push.exceptions.UsernameTakenException;
@@ -77,6 +78,7 @@ import org.whispersystems.signalservice.internal.push.http.CancelationSignal;
 import org.whispersystems.signalservice.internal.push.http.DigestingRequestBody;
 import org.whispersystems.signalservice.internal.push.http.NoCipherOutputStreamFactory;
 import org.whispersystems.signalservice.internal.push.http.OutputStreamFactory;
+import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec;
 import org.whispersystems.signalservice.internal.storage.protos.ReadOperation;
 import org.whispersystems.signalservice.internal.storage.protos.StorageItems;
 import org.whispersystems.signalservice.internal.storage.protos.StorageManifest;
@@ -190,6 +192,8 @@ public class PushServiceSocket {
 
   private static final Map<String, String> NO_HEADERS = Collections.emptyMap();
   private static final ResponseCodeHandler NO_HANDLER = new EmptyResponseCodeHandler();
+
+  private static final long CDN2_RESUMABLE_LINK_LIFETIME_MILLIS = TimeUnit.DAYS.toMillis(7);
 
   private       long      soTimeoutMillis = TimeUnit.SECONDS.toMillis(30);
   private final Set<Call> connections     = new HashSet<>();
@@ -929,9 +933,22 @@ public class PushServiceSocket {
     return new Pair<>(id, digest);
   }
 
-  public byte[] uploadAttachment(PushAttachmentData attachment, AttachmentV3UploadAttributes uploadAttributes) throws IOException {
-    String resumableUploadUrl = getResumableUploadUrl(uploadAttributes.getSignedUploadLocation(), uploadAttributes.getHeaders());
-    return uploadToCdn2(resumableUploadUrl,
+  public ResumableUploadSpec getResumableUploadSpec(AttachmentV3UploadAttributes uploadAttributes) throws IOException {
+    return new ResumableUploadSpec(Util.getSecretBytes(64),
+                                   Util.getSecretBytes(16),
+                                   uploadAttributes.getKey(),
+                                   uploadAttributes.getCdn(),
+                                   getResumableUploadUrl(uploadAttributes.getSignedUploadLocation(), uploadAttributes.getHeaders()),
+                                   System.currentTimeMillis() + CDN2_RESUMABLE_LINK_LIFETIME_MILLIS);
+  }
+
+  public byte[] uploadAttachment(PushAttachmentData attachment) throws IOException {
+
+    if (attachment.getResumableUploadSpec() == null || attachment.getResumableUploadSpec().getExpirationTimestamp() < System.currentTimeMillis()) {
+      throw new ResumeLocationInvalidException();
+    }
+
+    return uploadToCdn2(attachment.getResumableUploadSpec().getResumeLocation(),
                         attachment.getData(),
                         "application/octet-stream",
                         attachment.getDataSize(),
@@ -1036,7 +1053,7 @@ public class PushServiceSocket {
                                                         .readTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
                                                         .build();
 
-    DigestingRequestBody file = new DigestingRequestBody(data, outputStreamFactory, contentType, length, progressListener, cancelationSignal);
+    DigestingRequestBody file = new DigestingRequestBody(data, outputStreamFactory, contentType, length, progressListener, cancelationSignal, 0);
 
     RequestBody requestBody = new MultipartBody.Builder()
                                                .setType(MultipartBody.FORM)
@@ -1152,9 +1169,20 @@ public class PushServiceSocket {
                                                         .readTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
                                                         .build();
 
-    DigestingRequestBody file = new DigestingRequestBody(data, outputStreamFactory, contentType, length, progressListener, cancelationSignal);
+    ResumeInfo           resumeInfo = getResumeInfo(resumableUrl, length);
+    DigestingRequestBody file       = new DigestingRequestBody(data, outputStreamFactory, contentType, length, progressListener, cancelationSignal, resumeInfo.contentStart);
+
+    if (resumeInfo.contentStart == length) {
+      Log.w(TAG, "Resume start point == content length");
+      try (NowhereBufferedSink buffer = new NowhereBufferedSink()) {
+        file.writeTo(buffer);
+      }
+      return file.getTransmittedDigest();
+    }
+
     Request.Builder request = new Request.Builder().url(resumableUrl)
-                                                   .put(file);
+                                                   .put(file)
+                                                   .addHeader("Content-Range", resumeInfo.contentRange);
 
     if (connectionHolder.getHostHeader().isPresent()) {
       request.header("host", connectionHolder.getHostHeader().get());
@@ -1182,6 +1210,67 @@ public class PushServiceSocket {
         connections.remove(call);
       }
     }
+  }
+
+  private ResumeInfo getResumeInfo(String resumableUrl, long contentLength) throws IOException {
+    ConnectionHolder connectionHolder = getRandom(cdnClientsMap.get(2), random);
+    OkHttpClient     okHttpClient     = connectionHolder.getClient()
+                                                        .newBuilder()
+                                                        .connectTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
+                                                        .readTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
+                                                        .build();
+
+    final long   offset;
+    final String contentRange;
+
+    Request.Builder request = new Request.Builder().url(resumableUrl)
+                                                   .put(RequestBody.create(null, ""))
+                                                   .addHeader("Content-Range", String.format(Locale.US, "bytes */%d", contentLength));
+
+    if (connectionHolder.getHostHeader().isPresent()) {
+      request.header("host", connectionHolder.getHostHeader().get());
+    }
+
+    Call call = okHttpClient.newCall(request.build());
+
+    synchronized (connections) {
+      connections.add(call);
+    }
+
+    try {
+      Response response;
+
+      try {
+        response = call.execute();
+      } catch (IOException e) {
+        throw new PushNetworkException(e);
+      }
+
+      if (response.isSuccessful()) {
+        offset       = contentLength;
+        contentRange = null;
+      } else if (response.code() == 308) {
+        String rangeCompleted = response.header("Range");
+
+        if (rangeCompleted == null) {
+          offset = 0;
+        } else {
+          offset = Long.parseLong(rangeCompleted.split("-")[1]) + 1;
+        }
+
+        contentRange = String.format(Locale.US, "bytes %d-%d/%d", offset, contentLength - 1, contentLength);
+      } else if (response.code() == 404) {
+        throw new ResumeLocationInvalidException();
+      } else {
+        throw new NonSuccessfulResponseCodeException("Response: " + response);
+      }
+    } finally {
+      synchronized (connections) {
+        connections.remove(call);
+      }
+    }
+
+    return new ResumeInfo(contentRange, offset);
   }
 
   private String makeServiceRequest(String urlFragment, String method, String jsonBody)
@@ -1806,4 +1895,13 @@ public class PushServiceSocket {
     }
   }
 
+  private final class ResumeInfo {
+    private final String contentRange;
+    private final long   contentStart;
+
+    private ResumeInfo(String contentRange, long offset) {
+      this.contentRange = contentRange;
+      this.contentStart = offset;
+    }
+  }
 }

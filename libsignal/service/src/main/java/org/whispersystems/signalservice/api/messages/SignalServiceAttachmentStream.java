@@ -8,6 +8,7 @@ package org.whispersystems.signalservice.api.messages;
 
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.internal.push.http.CancelationSignal;
+import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec;
 
 import java.io.InputStream;
 
@@ -16,21 +17,22 @@ import java.io.InputStream;
  */
 public class SignalServiceAttachmentStream extends SignalServiceAttachment {
 
-  private final InputStream       inputStream;
-  private final long              length;
-  private final Optional<String>  fileName;
-  private final ProgressListener  listener;
-  private final CancelationSignal cancelationSignal;
-  private final Optional<byte[]>  preview;
-  private final boolean           voiceNote;
-  private final int               width;
-  private final int               height;
-  private final long              uploadTimestamp;
-  private final Optional<String>  caption;
-  private final Optional<String>  blurHash;
+  private final InputStream                       inputStream;
+  private final long                              length;
+  private final Optional<String>                  fileName;
+  private final ProgressListener                  listener;
+  private final CancelationSignal                 cancelationSignal;
+  private final Optional<byte[]>                  preview;
+  private final boolean                           voiceNote;
+  private final int                               width;
+  private final int                               height;
+  private final long                              uploadTimestamp;
+  private final Optional<String>                  caption;
+  private final Optional<String>                  blurHash;
+  private final Optional<ResumableUploadSpec>     resumableUploadSpec;
 
   public SignalServiceAttachmentStream(InputStream inputStream, String contentType, long length, Optional<String> fileName, boolean voiceNote, ProgressListener listener, CancelationSignal cancelationSignal) {
-    this(inputStream, contentType, length, fileName, voiceNote, Optional.<byte[]>absent(), 0, 0, System.currentTimeMillis(), Optional.<String>absent(), Optional.<String>absent(), listener, cancelationSignal);
+    this(inputStream, contentType, length, fileName, voiceNote, Optional.<byte[]>absent(), 0, 0, System.currentTimeMillis(), Optional.<String>absent(), Optional.<String>absent(), listener, cancelationSignal, Optional.absent());
   }
 
   public SignalServiceAttachmentStream(InputStream inputStream,
@@ -45,21 +47,23 @@ public class SignalServiceAttachmentStream extends SignalServiceAttachment {
                                        Optional<String> caption,
                                        Optional<String> blurHash,
                                        ProgressListener listener,
-                                       CancelationSignal cancelationSignal)
+                                       CancelationSignal cancelationSignal,
+                                       Optional<ResumableUploadSpec> resumableUploadSpec)
   {
     super(contentType);
-    this.inputStream       = inputStream;
-    this.length            = length;
-    this.fileName          = fileName;
-    this.listener          = listener;
-    this.voiceNote         = voiceNote;
-    this.preview           = preview;
-    this.width             = width;
-    this.height            = height;
-    this.uploadTimestamp   = uploadTimestamp;
-    this.caption           = caption;
-    this.blurHash          = blurHash;
-    this.cancelationSignal = cancelationSignal;
+    this.inputStream             = inputStream;
+    this.length                  = length;
+    this.fileName                = fileName;
+    this.listener                = listener;
+    this.voiceNote               = voiceNote;
+    this.preview                 = preview;
+    this.width                   = width;
+    this.height                  = height;
+    this.uploadTimestamp         = uploadTimestamp;
+    this.caption                 = caption;
+    this.blurHash                = blurHash;
+    this.cancelationSignal       = cancelationSignal;
+    this.resumableUploadSpec     = resumableUploadSpec;
   }
 
   @Override
@@ -118,5 +122,9 @@ public class SignalServiceAttachmentStream extends SignalServiceAttachment {
 
   public long getUploadTimestamp() {
     return uploadTimestamp;
+  }
+
+  public Optional<ResumableUploadSpec> getResumableUploadSpec() {
+    return resumableUploadSpec;
   }
 }

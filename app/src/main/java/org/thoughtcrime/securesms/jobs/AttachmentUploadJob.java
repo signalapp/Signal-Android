@@ -7,6 +7,7 @@ import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.R;
@@ -26,12 +27,15 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
 import org.thoughtcrime.securesms.service.NotificationController;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.MediaMetadataRetrieverUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
+import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvalidException;
+import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -51,8 +55,8 @@ public final class AttachmentUploadJob extends BaseJob {
 
   private static final long UPLOAD_REUSE_THRESHOLD = TimeUnit.DAYS.toMillis(3);
 
-  private static final String KEY_ROW_ID    = "row_id";
-  private static final String KEY_UNIQUE_ID = "unique_id";
+  private static final String KEY_ROW_ID      = "row_id";
+  private static final String KEY_UNIQUE_ID   = "unique_id";
 
   /**
    * Foreground notification shows while uploading attachments above this.
@@ -89,6 +93,18 @@ public final class AttachmentUploadJob extends BaseJob {
 
   @Override
   public void onRun() throws Exception {
+    final ResumableUploadSpec resumableUploadSpec;
+    if (FeatureFlags.attachmentsV3()) {
+      Data inputData = requireInputData();
+      if (!inputData.hasString(ResumableUploadSpecJob.KEY_RESUME_SPEC)) {
+        throw new ResumeLocationInvalidException("V3 Attachment upload requires a ResumableUploadSpec");
+      }
+
+      resumableUploadSpec = ResumableUploadSpec.deserialize(inputData.getString(ResumableUploadSpecJob.KEY_RESUME_SPEC));
+    } else {
+      resumableUploadSpec = null;
+    }
+
     SignalServiceMessageSender messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
     AttachmentDatabase         database           = DatabaseFactory.getAttachmentDatabase(context);
     DatabaseAttachment         databaseAttachment = database.getAttachment(attachmentId);
@@ -108,7 +124,7 @@ public final class AttachmentUploadJob extends BaseJob {
     Log.i(TAG, "Uploading attachment for message " + databaseAttachment.getMmsId() + " with ID " + databaseAttachment.getAttachmentId());
 
     try (NotificationController notification = getNotificationForAttachment(databaseAttachment)) {
-      SignalServiceAttachment        localAttachment  = getAttachmentFor(databaseAttachment, notification);
+      SignalServiceAttachment        localAttachment  = getAttachmentFor(databaseAttachment, notification, resumableUploadSpec);
       SignalServiceAttachmentPointer remoteAttachment = messageSender.uploadAttachment(localAttachment.asStream());
       Attachment                     attachment       = PointerAttachment.forPointer(Optional.of(remoteAttachment), null, databaseAttachment.getFastPreflightId()).get();
 
@@ -133,10 +149,12 @@ public final class AttachmentUploadJob extends BaseJob {
 
   @Override
   protected boolean onShouldRetry(@NonNull Exception exception) {
+    if (exception instanceof ResumeLocationInvalidException) return false;
+
     return exception instanceof IOException;
   }
 
-  private @NonNull SignalServiceAttachment getAttachmentFor(Attachment attachment, @Nullable NotificationController notification) throws InvalidAttachmentException {
+  private @NonNull SignalServiceAttachment getAttachmentFor(Attachment attachment, @Nullable NotificationController notification, @Nullable ResumableUploadSpec resumableUploadSpec) throws InvalidAttachmentException {
     try {
       if (attachment.getDataUri() == null || attachment.getSize() == 0) throw new IOException("Assertion failed, outgoing attachment has no data!");
       InputStream is = PartAuthority.getAttachmentStream(context, attachment.getDataUri());
@@ -151,6 +169,7 @@ public final class AttachmentUploadJob extends BaseJob {
                                                                        .withUploadTimestamp(System.currentTimeMillis())
                                                                        .withCaption(attachment.getCaption())
                                                                        .withCancelationSignal(this::isCanceled)
+                                                                       .withResumableUploadSpec(resumableUploadSpec)
                                                                        .withListener((total, progress) -> {
                                                                          EventBus.getDefault().postSticky(new PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, total, progress));
                                                                          if (notification != null) {

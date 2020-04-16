@@ -10,6 +10,7 @@ import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
@@ -18,6 +19,7 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.Mac;
 import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 public class AttachmentCipherOutputStream extends DigestingOutputStream {
@@ -26,6 +28,7 @@ public class AttachmentCipherOutputStream extends DigestingOutputStream {
   private final Mac    mac;
 
   public AttachmentCipherOutputStream(byte[] combinedKeyMaterial,
+                                      byte[] iv,
                                       OutputStream outputStream)
       throws IOException
   {
@@ -35,12 +38,17 @@ public class AttachmentCipherOutputStream extends DigestingOutputStream {
       this.mac          = initializeMac();
       byte[][] keyParts = Util.split(combinedKeyMaterial, 32, 32);
 
-      this.cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(keyParts[0], "AES"));
+      if (iv == null) {
+        this.cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(keyParts[0], "AES"));
+      } else {
+        this.cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(keyParts[0], "AES"), new IvParameterSpec(iv));
+      }
+
       this.mac.init(new SecretKeySpec(keyParts[1], "HmacSHA256"));
 
       mac.update(cipher.getIV());
       super.write(cipher.getIV());
-    } catch (InvalidKeyException e) {
+    } catch (InvalidKeyException | InvalidAlgorithmParameterException e) {
       throw new AssertionError(e);
     }
   }

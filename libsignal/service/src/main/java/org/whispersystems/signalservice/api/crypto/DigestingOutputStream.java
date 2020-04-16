@@ -17,7 +17,7 @@ public abstract class DigestingOutputStream extends FilterOutputStream {
     super(outputStream);
 
     try {
-      this.runningDigest = MessageDigest.getInstance("SHA256");
+      this.runningDigest = MessageDigest.getInstance("SHA-256");
     } catch (NoSuchAlgorithmException e) {
       throw new AssertionError(e);
     }

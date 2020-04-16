@@ -107,12 +107,11 @@ public class PushGroupSendJob extends PushSendJob {
         throw new MmsException("Inactive group!");
       }
 
-      MmsDatabase          database                    = DatabaseFactory.getMmsDatabase(context);
-      OutgoingMediaMessage message                     = database.getOutgoingMessage(messageId);
-      JobManager.Chain     compressAndUploadAttachment = createCompressingAndUploadAttachmentsChain(jobManager, message);
+      MmsDatabase            database                    = DatabaseFactory.getMmsDatabase(context);
+      OutgoingMediaMessage   message                     = database.getOutgoingMessage(messageId);
+      Set<String>            attachmentUploadIds         = enqueueCompressingAndUploadAttachmentsChains(jobManager, message);
 
-      compressAndUploadAttachment.then(new PushGroupSendJob(messageId, destination, filterAddress))
-                                 .enqueue();
+      jobManager.add(new PushGroupSendJob(messageId, destination, filterAddress), attachmentUploadIds);
 
     } catch (NoSuchMessageException | MmsException e) {
       Log.w(TAG, "Failed to enqueue message.", e);

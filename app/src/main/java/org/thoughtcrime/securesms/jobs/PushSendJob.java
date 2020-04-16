@@ -57,8 +57,10 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public abstract class PushSendJob extends SendJob {
@@ -146,7 +148,7 @@ public abstract class PushSendJob extends SendJob {
     return null;
   }
 
-  protected static JobManager.Chain createCompressingAndUploadAttachmentsChain(@NonNull JobManager jobManager, OutgoingMediaMessage message) {
+  protected static Set<String> enqueueCompressingAndUploadAttachmentsChains(@NonNull JobManager jobManager, OutgoingMediaMessage message) {
     List<Attachment> attachments = new LinkedList<>();
 
     attachments.addAll(message.getAttachments());
@@ -162,12 +164,17 @@ public abstract class PushSendJob extends SendJob {
                              .map(Contact.Avatar::getAttachment).withoutNulls()
                              .toList());
 
-    List<AttachmentCompressionJob> compressionJobs = Stream.of(attachments).map(a -> AttachmentCompressionJob.fromAttachment((DatabaseAttachment) a, false, -1)).toList();
+    return new HashSet<>(Stream.of(attachments).map(a -> {
+                                                 AttachmentUploadJob attachmentUploadJob = new AttachmentUploadJob(((DatabaseAttachment) a).getAttachmentId());
 
-    List<AttachmentUploadJob> attachmentJobs = Stream.of(attachments).map(a -> new AttachmentUploadJob(((DatabaseAttachment) a).getAttachmentId())).toList();
+                                                 jobManager.startChain(AttachmentCompressionJob.fromAttachment((DatabaseAttachment) a, false, -1))
+                                                           .then(new ResumableUploadSpecJob())
+                                                           .then(attachmentUploadJob)
+                                                           .enqueue();
 
-    return jobManager.startChain(compressionJobs)
-                     .then(attachmentJobs);
+                                                 return attachmentUploadJob.getId();
+                                               })
+                                               .toList());
   }
 
   protected @NonNull List<SignalServiceAttachment> getAttachmentPointersFor(List<Attachment> attachments) {
