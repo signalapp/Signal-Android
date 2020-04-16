@@ -1688,5 +1688,8 @@
     <string name="sheet_pn_mode_no_option_picked_dialog_title">Please Pick an Option</string>
     <string name="sheet_pn_mode_confirm_button_title">Confirm</string>
     <string name="sheet_pn_mode_skip_button_title">Skip</string>
+    <string name="preferences_notifications_strategy_category_title">Notification Strategy</string>
+    <string name="preferences_notifications_use_fcm_option_title">Use FCM</string>
+    <string name="preferences_notifications_use_fcm_option_explanation">Using Firebase Cloud Messaging allows for more reliable push notifications, but exposes your IP to Google.</string>
 
 </resources>

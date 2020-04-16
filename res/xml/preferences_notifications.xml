@@ -21,6 +21,19 @@
 
     <PreferenceCategory android:layout="@layout/preference_divider" />
 
+    <PreferenceCategory android:title="@string/preferences_notifications_strategy_category_title">
+
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+            android:dependency="pref_key_enable_notifications"
+            android:key="pref_key_use_fcm"
+            android:title="@string/preferences_notifications_use_fcm_option_title"
+            android:summary="@string/preferences_notifications_use_fcm_option_explanation"
+            android:defaultValue="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:layout="@layout/preference_divider" />
+
     <PreferenceCategory android:title="@string/activity_notification_settings_style_section_title">
 
         <org.thoughtcrime.securesms.preferences.widgets.SignalPreference
