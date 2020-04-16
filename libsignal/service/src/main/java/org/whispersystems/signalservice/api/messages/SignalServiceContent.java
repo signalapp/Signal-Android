@@ -316,7 +316,7 @@ public final class SignalServiceContent {
     return new SignalServiceDataMessage(metadata.getTimestamp(),
                                         groupInfoV1, groupInfoV2,
                                         attachments,
-                                        content.getBody(),
+                                        content.hasBody() ? content.getBody() : null,
                                         endSession,
                                         content.getExpireTimer(),
                                         expirationUpdate,
