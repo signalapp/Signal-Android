@@ -688,8 +688,13 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     private class BlockClickedListener implements Preference.OnPreferenceClickListener {
       @Override
       public boolean onPreferenceClick(Preference preference) {
-        if (recipient.get().isBlocked()) BlockUnblockDialog.handleUnblock(preference.getContext(), getLifecycle(), recipient.getId(), null);
-        else                             BlockUnblockDialog.handleBlock(preference.getContext(), getLifecycle(), recipient.getId());
+        Context context = preference.getContext();
+
+        if (recipient.get().isBlocked()) {
+          BlockUnblockDialog.showUnblockFor(context, getLifecycle(), recipient.get(), () -> RecipientUtil.unblock(context, recipient.get()));
+        } else {
+          BlockUnblockDialog.showBlockFor(context, getLifecycle(), recipient.get(), () -> RecipientUtil.block(context, recipient.get()));
+        }
 
         return true;
       }

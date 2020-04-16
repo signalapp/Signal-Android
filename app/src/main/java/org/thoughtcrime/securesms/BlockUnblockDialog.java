@@ -1,9 +1,11 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
+import android.content.res.Resources;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.Lifecycle;
 
@@ -14,76 +16,113 @@ import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 
+/**
+ * This should be used whenever we want to prompt the user to block/unblock a recipient.
+ */
 public final class BlockUnblockDialog {
 
-  private BlockUnblockDialog() {
-  }
+  private BlockUnblockDialog() { }
 
-  public static void handleBlock(@NonNull Context context,
-                                 @NonNull Lifecycle lifecycle,
-                                 @NonNull RecipientId recipientId)
+  public static void showBlockFor(@NonNull Context context,
+                                  @NonNull Lifecycle lifecycle,
+                                  @NonNull Recipient recipient,
+                                  @NonNull Runnable onBlock)
   {
-    SimpleTask.run(
-      lifecycle,
-      () -> {
-        AlertDialog.Builder builder  = new AlertDialog.Builder(context);
-        Recipient           resolved = Recipient.resolved(recipientId);
-
-        if (resolved.isGroup()) {
-          if (DatabaseFactory.getGroupDatabase(context).isActive(resolved.requireGroupId())) {
-            builder.setTitle(R.string.RecipientPreferenceActivity_block_and_leave_group);
-          } else {
-            builder.setTitle(R.string.RecipientPreferenceActivity_block_group);
-          }
-          builder.setMessage(R.string.RecipientPreferenceActivity_block_and_leave_group_description);
-        } else {
-          builder.setTitle(R.string.RecipientPreferenceActivity_block_this_contact_question)
-                 .setMessage(R.string.RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact);
-        }
-
-        return builder.setCancelable(true)
-                      .setNegativeButton(android.R.string.cancel, null)
-                      .setPositiveButton(R.string.RecipientPreferenceActivity_block, (dialog, which) -> setBlocked(context, resolved, true));
-      },
-      AlertDialog.Builder::show);
+    SimpleTask.run(lifecycle,
+                   () -> buildBlockFor(context, recipient, onBlock, null),
+                   AlertDialog.Builder::show);
   }
 
-  public static void handleUnblock(@NonNull Context context,
-                                   @NonNull Lifecycle lifecycle,
-                                   @NonNull RecipientId recipientId,
-                                   @Nullable Runnable postUnblock)
+  public static void showBlockAndDeleteFor(@NonNull Context context,
+                                           @NonNull Lifecycle lifecycle,
+                                           @NonNull Recipient recipient,
+                                           @NonNull Runnable onBlock,
+                                           @NonNull Runnable onBlockAndDelete)
   {
-    SimpleTask.run(
-      lifecycle,
-      () -> {
-        AlertDialog.Builder builder  = new AlertDialog.Builder(context);
-        Recipient           resolved = Recipient.resolved(recipientId);
-
-        if (resolved.isGroup()) {
-          builder.setTitle(R.string.RecipientPreferenceActivity_unblock_this_group_question)
-                 .setMessage(R.string.RecipientPreferenceActivity_unblock_this_group_description);
-        } else {
-          builder.setTitle(R.string.RecipientPreferenceActivity_unblock_this_contact_question)
-                 .setMessage(R.string.RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact);
-        }
-
-        return builder.setCancelable(true)
-                      .setNegativeButton(android.R.string.cancel, null)
-                      .setPositiveButton(R.string.RecipientPreferenceActivity_unblock, (dialog, which) -> {
-                        setBlocked(context, resolved, false);
-                        if (postUnblock != null) postUnblock.run();
-                      });
-      },
-      AlertDialog.Builder::show);
+    SimpleTask.run(lifecycle,
+        () -> buildBlockFor(context, recipient, onBlock, onBlockAndDelete),
+        AlertDialog.Builder::show);
   }
 
-  private static void setBlocked(@NonNull final Context context, final Recipient recipient, final boolean blocked) {
-    SignalExecutors.BOUNDED.execute(() -> {
-      if (blocked) {
-        RecipientUtil.block(context, recipient);
+  public static void showUnblockFor(@NonNull Context context,
+                                    @NonNull Lifecycle lifecycle,
+                                    @NonNull Recipient recipient,
+                                    @NonNull Runnable onUnblock)
+  {
+    SimpleTask.run(lifecycle,
+                   () -> buildUnblockFor(context, recipient, onUnblock),
+                   AlertDialog.Builder::show);
+  }
+
+  @WorkerThread
+  private static AlertDialog.Builder buildBlockFor(@NonNull Context context,
+                                                   @NonNull Recipient recipient,
+                                                   @NonNull Runnable onBlock,
+                                                   @Nullable Runnable onBlockAndDelete)
+  {
+    recipient = recipient.resolve();
+
+    AlertDialog.Builder builder   = new AlertDialog.Builder(context);
+    Resources           resources = context.getResources();
+
+    if (recipient.isGroup()) {
+      if (DatabaseFactory.getGroupDatabase(context).isActive(recipient.requireGroupId())) {
+        builder.setTitle(resources.getString(R.string.BlockUnblockDialog_block_and_leave_s, recipient.getDisplayName(context)));
+        builder.setMessage(R.string.BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates);
+        builder.setPositiveButton(R.string.BlockUnblockDialog_block_and_leave, ((dialog, which) -> onBlock.run()));
+        builder.setNegativeButton(android.R.string.cancel, null);
       } else {
-        RecipientUtil.unblock(context, recipient);
+        builder.setTitle(resources.getString(R.string.BlockUnblockDialog_block_s, recipient.getDisplayName(context)));
+        builder.setMessage(R.string.BlockUnblockDialog_group_members_wont_be_able_to_add_you);
+        builder.setPositiveButton(R.string.RecipientPreferenceActivity_block, ((dialog, which) -> onBlock.run()));
+        builder.setNegativeButton(android.R.string.cancel, null);
       }
-    });
+    } else {
+      builder.setTitle(resources.getString(R.string.BlockUnblockDialog_block_s, recipient.getDisplayName(context)));
+      builder.setMessage(R.string.BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages);
+
+      if (onBlockAndDelete != null) {
+        builder.setNeutralButton(android.R.string.cancel, null);
+        builder.setPositiveButton(R.string.BlockUnblockDialog_block_and_delete, (d, w) -> onBlockAndDelete.run());
+        builder.setNegativeButton(R.string.BlockUnblockDialog_block, (d, w) -> onBlock.run());
+      } else {
+        builder.setPositiveButton(R.string.BlockUnblockDialog_block, ((dialog, which) -> onBlock.run()));
+        builder.setNegativeButton(android.R.string.cancel, null);
+      }
+    }
+
+    return builder;
+  }
+
+  @WorkerThread
+  private static AlertDialog.Builder buildUnblockFor(@NonNull Context context,
+                                                     @NonNull Recipient recipient,
+                                                     @NonNull Runnable onUnblock)
+  {
+    recipient = recipient.resolve();
+
+    AlertDialog.Builder builder   = new AlertDialog.Builder(context);
+    Resources           resources = context.getResources();
+
+    if (recipient.isGroup()) {
+      if (DatabaseFactory.getGroupDatabase(context).isActive(recipient.requireGroupId())) {
+        builder.setTitle(resources.getString(R.string.BlockUnblockDialog_unblock_s, recipient.getDisplayName(context)));
+        builder.setMessage(R.string.BlockUnblockDialog_group_members_will_be_able_to_add_you);
+        builder.setPositiveButton(R.string.RecipientPreferenceActivity_unblock, ((dialog, which) -> onUnblock.run()));
+        builder.setNegativeButton(android.R.string.cancel, null);
+      } else {
+        builder.setTitle(resources.getString(R.string.BlockUnblockDialog_unblock_s, recipient.getDisplayName(context)));
+        builder.setMessage(R.string.BlockUnblockDialog_group_members_will_be_able_to_add_you);
+        builder.setPositiveButton(R.string.RecipientPreferenceActivity_unblock, ((dialog, which) -> onUnblock.run()));
+        builder.setNegativeButton(android.R.string.cancel, null);
+      }
+    } else {
+      builder.setTitle(resources.getString(R.string.BlockUnblockDialog_unblock_s, recipient.getDisplayName(context)));
+      builder.setMessage(R.string.BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other);
+      builder.setPositiveButton(R.string.RecipientPreferenceActivity_unblock, ((dialog, which) -> onUnblock.run()));
+      builder.setNegativeButton(android.R.string.cancel, null);
+    }
+
+    return builder;
   }
 }

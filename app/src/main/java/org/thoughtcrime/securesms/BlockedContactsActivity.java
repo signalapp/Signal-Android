@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.preferences.BlockedContactListItem;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
 public class BlockedContactsActivity extends PassphraseRequiredActionBarActivity {
@@ -106,10 +107,10 @@ public class BlockedContactsActivity extends PassphraseRequiredActionBarActivity
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
       Recipient recipient = ((BlockedContactListItem)view).getRecipient();
-      BlockUnblockDialog.handleUnblock(requireContext(),
-                                       getLifecycle(),
-                                       recipient.getId(),
-                                       () -> LoaderManager.getInstance(this).restartLoader(0, null, this));
+      BlockUnblockDialog.showUnblockFor(requireContext(), getLifecycle(), recipient, () -> {
+        RecipientUtil.unblock(requireContext(), recipient);
+        LoaderManager.getInstance(this).restartLoader(0, null, this);
+      });
     }
 
     private static class BlockedContactAdapter extends CursorAdapter {
