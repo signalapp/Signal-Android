@@ -185,34 +185,35 @@ public class TextSecurePreferences {
 
   private static final String MEDIA_KEYBOARD_MODE = "pref_media_keyboard_mode";
 
-  //Session for Push Notification
-  private static final String IS_USING_REMOTE_NOTIFICATION = "pref_is_using_remote_notification";
-  private static final String TOKEN_FOR_REMOTE_NOTIFICATION = "pref_token_for_remote_notification";
-  private static final String LAST_TIME_FOR_TOKEN_UPLOADING = "pref_last_time_for_token_uploading";
+  // region FCM
+  private static final String IS_USING_FCM = "pref_is_using_fcm";
+  private static final String FCM_TOKEN = "pref_fcm_token";
+  private static final String LAST_FCM_TOKEN_UPLOAD_TIME = "pref_last_fcm_token_upload_time";
 
-  public static boolean isUsingRemoteNotification(Context context) {
-    return getBooleanPreference(context, IS_USING_REMOTE_NOTIFICATION, false);
+  public static boolean isUsingFCM(Context context) {
+    return getBooleanPreference(context, IS_USING_FCM, false);
   }
 
-  public static void setIsUsingRemoteNotification(Context context, boolean value) {
-    setBooleanPreference(context, IS_USING_REMOTE_NOTIFICATION, value);
+  public static void setIsUsingFCM(Context context, boolean value) {
+    setBooleanPreference(context, IS_USING_FCM, value);
   }
 
-  public static String getTokenForRemoteNotification(Context context) {
-    return getStringPreference(context, TOKEN_FOR_REMOTE_NOTIFICATION, "");
+  public static String getFCMToken(Context context) {
+    return getStringPreference(context, FCM_TOKEN, "");
   }
 
-  public static void setTokenForRemoteNotification(Context context, String value) {
-    setStringPreference(context, TOKEN_FOR_REMOTE_NOTIFICATION, value);
+  public static void setFCMToken(Context context, String value) {
+    setStringPreference(context, FCM_TOKEN, value);
   }
 
-  public static long getLastTimeForTokenUploading(Context context) {
-    return getLongPreference(context, LAST_TIME_FOR_TOKEN_UPLOADING, 0);
+  public static long getLastFCMUploadTime(Context context) {
+    return getLongPreference(context, LAST_FCM_TOKEN_UPLOAD_TIME, 0);
   }
 
-  public static void setLastTimeForTokenUploading(Context context, long value) {
-    setLongPreference(context, LAST_TIME_FOR_TOKEN_UPLOADING, value);
+  public static void setLastFCMUploadTime(Context context, long value) {
+    setLongPreference(context, LAST_FCM_TOKEN_UPLOAD_TIME, value);
   }
+  // endregion
 
   public static boolean isScreenLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, SCREEN_LOCK, false);

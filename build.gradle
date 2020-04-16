@@ -6,6 +6,8 @@ buildscript {
     ext.kovenant_version = "3.3.0"
     ext.identicon_version = "v11"
     ext.rss_parser_version = "2.0.4"
+    ext.google_services_version = "4.3.3"
+    ext.firebase_messaging_version = "18.0.0"
 
     repositories {
         mavenLocal()
@@ -16,7 +18,7 @@ buildscript {
         classpath "com.android.tools.build:gradle:$gradle_version"
         classpath files('libs/gradle-witness.jar')
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.google.gms:google-services:4.3.3'
+        classpath "com.google.gms:google-services:$google_services_version"
     }
 }
 
@@ -89,7 +91,7 @@ dependencies {
     implementation 'android.arch.lifecycle:extensions:1.1.1'
     implementation 'android.arch.lifecycle:common-java8:1.1.1'
 
-    implementation 'com.google.firebase:firebase-messaging:18.0.0'
+    implementation "com.google.firebase:firebase-messaging:$firebase_messaging_version"
 
     implementation 'com.google.android.exoplayer:exoplayer-core:2.9.1'
     implementation 'com.google.android.exoplayer:exoplayer-ui:2.9.1'

@@ -30,10 +30,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.multidex.MultiDexApplication;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 
 import org.conscrypt.Conscrypt;
 import org.jetbrains.annotations.NotNull;
@@ -103,6 +100,7 @@ import org.whispersystems.signalservice.loki.api.LokiAPIDatabaseProtocol;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPI;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPIDelegate;
 import org.whispersystems.signalservice.loki.api.LokiPoller;
+import org.whispersystems.signalservice.loki.api.LokiPushNotificationAcknowledgement;
 import org.whispersystems.signalservice.loki.api.LokiSwarmAPI;
 import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI;
 import org.whispersystems.signalservice.loki.api.publicchats.LokiPublicChat;
@@ -188,6 +186,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
     // Loki - Set up P2P API if needed
     setUpP2PAPI();
+    // Loki - Set up push notification acknowledgement
+    LokiPushNotificationAcknowledgement.Companion.configureIfNeeded(BuildConfig.DEBUG);
     // Loki - Update device mappings
     if (setUpStorageAPIIfNeeded()) {
       String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
@@ -205,7 +205,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     // Loki - Set up public chat manager
     lokiPublicChatManager = new LokiPublicChatManager(this);
     updatePublicChatProfilePictureIfNeeded();
-    setUpFirebaseDeviceToken();
+    setUpFCMIfNeeded();
   }
 
   @Override
@@ -462,22 +462,17 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     }, this);
   }
 
-  public void setUpFirebaseDeviceToken() {
+  public void setUpFCMIfNeeded() {
     Context context = this;
-    FirebaseInstanceId.getInstance().getInstanceId()
-            .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-              @Override
-              public void onComplete(@NonNull Task<InstanceIdResult> task) {
-                if (!task.isSuccessful()) {
-                  Log.w(TAG, "getInstanceId failed", task.getException());
-                  return;
-                }
-                // Get new Instance ID token
-                String token = task.getResult().getToken();
-                String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context);
-                LokiPushNotificationManager.register(token, userHexEncodedPublicKey, context);
-              }
-            });
+    FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(task -> {
+      if (!task.isSuccessful()) {
+        Log.w(TAG, "getInstanceId failed", task.getException());
+        return;
+      }
+      String token = task.getResult().getToken();
+      String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context);
+      LokiPushNotificationManager.register(token, userHexEncodedPublicKey, context);
+    });
   }
 
   @Override
