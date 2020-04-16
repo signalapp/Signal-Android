@@ -185,6 +185,36 @@ public class TextSecurePreferences {
 
   private static final String MEDIA_KEYBOARD_MODE = "pref_media_keyboard_mode";
 
+  // region FCM
+  private static final String IS_USING_FCM = "pref_is_using_fcm";
+  private static final String FCM_TOKEN = "pref_fcm_token";
+  private static final String LAST_FCM_TOKEN_UPLOAD_TIME = "pref_last_fcm_token_upload_time";
+
+  public static boolean isUsingFCM(Context context) {
+    return getBooleanPreference(context, IS_USING_FCM, false);
+  }
+
+  public static void setIsUsingFCM(Context context, boolean value) {
+    setBooleanPreference(context, IS_USING_FCM, value);
+  }
+
+  public static String getFCMToken(Context context) {
+    return getStringPreference(context, FCM_TOKEN, "");
+  }
+
+  public static void setFCMToken(Context context, String value) {
+    setStringPreference(context, FCM_TOKEN, value);
+  }
+
+  public static long getLastFCMUploadTime(Context context) {
+    return getLongPreference(context, LAST_FCM_TOKEN_UPLOAD_TIME, 0);
+  }
+
+  public static void setLastFCMUploadTime(Context context, long value) {
+    setLongPreference(context, LAST_FCM_TOKEN_UPLOAD_TIME, value);
+  }
+  // endregion
+
   public static boolean isScreenLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, SCREEN_LOCK, false);
   }

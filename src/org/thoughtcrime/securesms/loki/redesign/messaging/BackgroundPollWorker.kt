@@ -6,6 +6,7 @@ import nl.komponents.kovenant.functional.map
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob
+import org.thoughtcrime.securesms.loki.LokiPushNotificationManager
 import org.thoughtcrime.securesms.service.PersistentAlarmManagerListener
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope
