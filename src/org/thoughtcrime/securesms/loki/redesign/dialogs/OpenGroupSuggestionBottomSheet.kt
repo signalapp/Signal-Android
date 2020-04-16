@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_open_group_suggestion_bottom_sheet.*
 import network.loki.messenger.R
 
-public class OpenGroupSuggestionBottomSheet : BottomSheetDialogFragment() {
+class OpenGroupSuggestionBottomSheet : BottomSheetDialogFragment() {
     var onJoinTapped: (() -> Unit)? = null
     var onDismissTapped: (() -> Unit)? = null
 
