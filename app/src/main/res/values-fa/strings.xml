@@ -1509,10 +1509,6 @@
     <item quantity="other">پین باید حداقل شامل %1$d رقم باشد</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">یک پین جدید ایجاد کنید</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">از آنجایی که این دستگاه ثبت شده است، شما می‌توانید یک پین جدید بسازید. اگر پین خود را فراموش کنید، برای ثبت دوباره، باید به مدت %1$d روز صبر کنید.</item>
-    <item quantity="other">از آنجایی که این دستگاه ثبت شده است، شما می‌توانید یک پین جدید بسازید. اگر پین خود را فراموش کنید، برای ثبت دوباره، باید به مدت %1$d روز صبر کنید.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">پین خود را ایجاد کنید</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">پین‌ها یک لایهٔ امنیتی دیگر به حساب شما اضافه می‌کنند. شما به پین برای ثبت نام دوباره در سیگنال احتیاج دارید.</string>
   <!--ConfirmKbsPinFragment-->

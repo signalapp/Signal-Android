@@ -1435,10 +1435,6 @@ nambari yako ya simu</string>
     <item quantity="other">Nenosiro lazima liwe na angalau nambari %1$d</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Unda Nenosiri jipya</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">Unaweza kuchagua PINI mpya kwa sababu kifaa hiki kimesajiliwa. Kama utasahau PINI yako, unaweza kungoja baada ya siku %1$d ili kusajili upya tena.</item>
-    <item quantity="other">Unaweza kuchagua Nenosiri jipya kwa sababu kifaa hiki kimesajiliwa. Iwapo utasahau Nenosiri lako, utahitajika kusubiri%1$d ili kusajili upya tena.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Unda Nenosiri lako</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Nenosiri hazifanani. Jaribu tena.</string>

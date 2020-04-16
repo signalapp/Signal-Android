@@ -1517,10 +1517,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
     <item quantity="other">El PIN debe constar al menos de %1$d cifras</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Crear nuevo PIN</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">Es posible seleccionar un nuevo PIN porque este dispositivo aún está registrado. Si olvidas tu PIN, tendrás que esperar %1$d día para volver a registrarte.</item>
-    <item quantity="other">Es posible seleccionar un nuevo PIN porque este dispositivo aún está registrado. Si olvidas tu PIN, tendrás que esperar %1$d días para volver a registrarte.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Crea tu PIN</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">El PIN añade un extra de seguridad a tu cuenta y es imposible recuperarlo. Necesitarás el PIN para volver a registrarte en Signal.</string>
   <!--ConfirmKbsPinFragment-->

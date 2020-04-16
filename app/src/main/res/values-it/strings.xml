@@ -1516,10 +1516,6 @@
     <item quantity="other">Il PIN deve essere almeno di %1$d cifre</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Crea un nuovo PIN</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">Puoi scegliere un nuovo PIN poiché questo dispositivo è registrato. Se ti dimentichi il tuo PIN, potresti dover attendere %1$d giorno per registrarti di nuovo.</item>
-    <item quantity="other">Puoi scegliere un nuovo PIN poiché questo dispositivo è registrato. Se ti dimentichi il tuo PIN, potresti dover attendere %1$d giorni per registrarti di nuovo.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Crea il tuo PIN</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">I PIN aggiungono ulteriore sicurezza al tuo account e non possono essere recuperati. Avrai bisogno del tuo PIN per registrarti di nuovo con Signal.</string>
   <!--ConfirmKbsPinFragment-->

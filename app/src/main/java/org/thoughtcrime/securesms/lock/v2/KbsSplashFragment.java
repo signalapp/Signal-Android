@@ -66,7 +66,7 @@ public final class KbsSplashFragment extends Fragment {
 
   private void setUpRegLockDisabled() {
     title.setText(R.string.KbsSplashFragment__introducing_pins);
-    description.setText(R.string.KbsSplashFragment__pins_add_another_level_of_security_to_your_account);
+    description.setText(R.string.KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted);
     primaryAction.setText(R.string.KbsSplashFragment__create_your_pin);
     secondaryAction.setText(R.string.KbsSplashFragment__learn_more);
   }

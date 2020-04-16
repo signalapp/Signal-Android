@@ -1581,12 +1581,6 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
     <item quantity="other">PIN mora vsebovati vsaj %1$d številk</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Ustvari nov PIN</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">Naprava je registrirana, zato lahko izberete nov PIN. Če ga boste pozabili, boste morali na ponovno prijavo čakati %1$d dan.</item>
-    <item quantity="two">Naprava je registrirana, zato lahko izberete nov PIN. Če ga boste pozabili, boste morali na ponovno prijavo čakati %1$d dni.</item>
-    <item quantity="few">Naprava je registrirana, zato lahko izberete nov PIN. Če ga boste pozabili, boste morali na ponovno prijavo čakati %1$d dni.</item>
-    <item quantity="other">Naprava je registrirana, zato lahko izberete nov PIN. Če ga boste pozabili, boste morali na ponovno prijavo čakati %1$d dni.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Ustvarite svoj PIN</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">S kodo PIN boste izboljšali varnost svojega računa Signal. Koda PIN ni obnovljiva. Le z njo se boste lahko znova prijavili v svoj račun Signal.</string>
   <!--ConfirmKbsPinFragment-->

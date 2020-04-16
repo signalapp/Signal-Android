@@ -1516,10 +1516,6 @@ Du er à jour!</string>
     <item quantity="other">PIN må vera minst %1$d siffer</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Lag ny PIN</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">Du kan velja ein ny PIN sidan denne eininga er registrert. Viss du gløymer PIN-koden din, må du venta %1$d dag før du kan registrera på nytt.</item>
-    <item quantity="other">Du kan velja ein ny PIN sidan denne eininga er registrert. Viss du gløymer PIN-koden din, må du venta %1$d dagar før du kan registrera på nytt.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Lag din PIN</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN-kodar gir ekstra tryggleik til kontoen din. Du må hugsa koden, sidan du ikkje kan sjå han etter han er oppretta. Du må bruka PIN-koden om du vil registrera nummeret ditt med Signal på nytt.</string>
   <!--ConfirmKbsPinFragment-->

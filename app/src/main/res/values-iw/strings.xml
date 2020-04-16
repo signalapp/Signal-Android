@@ -1590,12 +1590,6 @@
     <item quantity="other">PIN חייב להיות לפחות %1$d ספרות</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">צור PIN חדש</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">אתה יכול לבחור PIN חדש מאחר שמכשיר זה רשום. אם תשכח את ה־PIN שלך, תצטרך להמתין יום %1$d כדי להירשם שוב.</item>
-    <item quantity="two">אתה יכול לבחור PIN חדש מאחר שמכשיר זה רשום. אם תשכח את ה־PIN שלך, תצטרך להמתין %1$d ימים כדי להירשם שוב.</item>
-    <item quantity="many">אתה יכול לבחור PIN חדש מאחר שמכשיר זה רשום. אם תשכח את ה־PIN שלך, תצטרך להמתין %1$d ימים כדי להירשם שוב.</item>
-    <item quantity="other">אתה יכול לבחור PIN חדש מאחר שמכשיר זה רשום. אם תשכח את ה־PIN שלך, תצטרך להמתין %1$d ימים כדי להירשם שוב.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">צור את ה־PIN שלך</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">קודי PIN מוסיפים אקסטרה אבטחה אל החשבון שלך והם אינם ניתנים להשבה. תצטרך את ה־PIN שלך כדי להירשם שוב אל Signal.</string>
   <!--ConfirmKbsPinFragment-->

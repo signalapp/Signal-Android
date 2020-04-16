@@ -1515,10 +1515,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
     <item quantity="other">Via PIN estu almenaŭ %1$d ciferajn longa</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Krei novan PIN</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">Vi povas elekti novan PIN, ĉar via aparato estas registrita. Se vi forgesos vian PIN, vi bezonos atendi %1$d tagon antaŭ ol registriĝi ree.</item>
-    <item quantity="other">Vi povas elekti novan PIN, ĉar via aparato estas registrita. Se vi forgesos vian PIN, vi bezonos atendi %1$d tagojn antaŭ ol registriĝi ree.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Krei vian PIN</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN aldonas plian tavolon de sekurigo ĉe via konto, kaj ĝi ne estas rehavebla. Vi bezonos vian PIN por re-registriĝi al Signal. </string>
   <!--ConfirmKbsPinFragment-->

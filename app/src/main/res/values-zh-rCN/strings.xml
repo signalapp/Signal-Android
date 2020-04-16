@@ -1419,9 +1419,6 @@
     <item quantity="other">PIN 必须不少于 %1$d 数字</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">新建 PIN</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="other">该设备已注册，可创建新的 PIN。如果忘记 PIN，需等待 %1$d 天方可重新注册。</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">创建 PIN 密码</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN 为帐户增加了额外保护并且不可恢复。重新注册 Signal 时需提供 PIN。</string>
   <!--ConfirmKbsPinFragment-->

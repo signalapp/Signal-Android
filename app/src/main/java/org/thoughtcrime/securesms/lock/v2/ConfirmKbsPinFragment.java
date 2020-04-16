@@ -62,11 +62,13 @@ public class ConfirmKbsPinFragment extends BaseKbsPinFragment<ConfirmKbsPinViewM
     getDescription().setText(R.string.ConfirmKbsPinFragment__confirm_your_pin);
     getKeyboardToggle().setVisibility(View.INVISIBLE);
     getLabel().setText("");
+    getDescription().setLearnMoreVisible(false);
   }
 
   private void initializeViewStatesForPinChange() {
     getTitle().setText(R.string.CreateKbsPinFragment__create_a_new_pin);
     getDescription().setText(R.string.ConfirmKbsPinFragment__confirm_your_pin);
+    getDescription().setLearnMoreVisible(false);
     getKeyboardToggle().setVisibility(View.INVISIBLE);
     getLabel().setText("");
   }
@@ -81,7 +83,7 @@ public class ConfirmKbsPinFragment extends BaseKbsPinFragment<ConfirmKbsPinViewM
         getInput().setEnabled(false);
         break;
       case RE_ENTER_PIN:
-        getLabel().setText(R.string.ConfirmKbsPinFragment__re_enter_pin);
+        getLabel().setText(R.string.ConfirmKbsPinFragment__re_enter_your_pin);
         break;
       case PIN_DOES_NOT_MATCH:
         getLabel().setText(SpanUtil.color(ContextCompat.getColor(requireContext(), R.color.red),

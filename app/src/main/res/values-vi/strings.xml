@@ -1473,9 +1473,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
     <item quantity="other">PIN phải có tối thiểu %1$d chữ số</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Tạo mã PIN mới</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="other">Bạn có thể chọn mã PIN mới vì thiết bị này đã được đăng kí. Nếu bạn quên mã PIN, bạn có thể phải chờ %1$d ngày để được đăng kí lại.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Tạo mã PIN của bạn</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">Mã PIN thêm một lớp bảo mật cho tài khoản của bạn. Mã PIN không thể được khôi phục. Bạn sẽ cần mã PIN để đăng kí lại với Signal.</string>
   <!--ConfirmKbsPinFragment-->

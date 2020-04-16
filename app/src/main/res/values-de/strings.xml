@@ -1505,10 +1505,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
     <item quantity="other">PIN muss aus mindestens %1$d Ziffern bestehen</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Neue PIN erstellen</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">Da dieses Gerät registriert ist, kannst du eine neue PIN wählen. Falls du deine PIN vergisst, musst du möglicherweise %1$d Tag warten, um dich erneut zu registrieren.</item>
-    <item quantity="other">Da dieses Gerät registriert ist, kannst du eine neue PIN wählen. Falls du deine PIN vergisst, musst du möglicherweise %1$d Tage warten, um dich erneut zu registrieren.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Deine PIN erstellen</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PINs sichern dein Konto zusätzlich ab und können nicht wiederhergestellt werden. Du benötigst deine PIN, um Signal erneut zu registrieren.</string>
   <!--ConfirmKbsPinFragment-->

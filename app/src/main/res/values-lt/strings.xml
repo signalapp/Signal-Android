@@ -1590,12 +1590,6 @@
     <item quantity="other">PIN kode privalo būti bent %1$d skaitmuo</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Sukurti naują PIN kodą</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">Kadangi šis įrenginys yra registruotas, galite pasirinkti naują PIN kodą. Jei pamiršite savo PIN kodą, turėsite laukti %1$d dieną, kol galėsite vėl registruoti.</item>
-    <item quantity="few">Kadangi šis įrenginys yra registruotas, galite pasirinkti naują PIN kodą. Jei pamiršite savo PIN kodą, turėsite laukti %1$d dienas, kol galėsite vėl registruoti.</item>
-    <item quantity="many">Kadangi šis įrenginys yra registruotas, galite pasirinkti naują PIN kodą. Jei pamiršite savo PIN kodą, turėsite laukti %1$d dienų, kol galėsite vėl registruoti.</item>
-    <item quantity="other">Kadangi šis įrenginys yra registruotas, galite pasirinkti naują PIN kodą. Jei pamiršite savo PIN kodą, turėsite laukti %1$d dieną, kol galėsite vėl registruoti.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Susikurti PIN kodą</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN kodai prideda jūsų paskyrai papildomo saugumo ir negali būti atkurti. Norint vėl registruotis Signal, jums reikės jūsų PIN kodo.</string>
   <!--ConfirmKbsPinFragment-->

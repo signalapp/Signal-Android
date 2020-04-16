@@ -1487,10 +1487,6 @@
     <item quantity="other">ಪಿನ್ ಕನಿಷ್ಠ %1$dಅಂಕಿಗಳನ್ನು ಹೊಂದಿರಬೇಕು</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">ಹೊಸ ಪಿನ್ ರಚಿಸಿ</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">ಈ ಸಾಧನವನ್ನು ನೋಂದಾಯಿಸಲಾಗಿರುವುದರಿಂದ ನೀವು ಹೊಸ ಪಿನ್ ಆಯ್ಕೆ ಮಾಡಬಹುದು. ನಿಮ್ಮ ಪಿನ್ ಅನ್ನು ನೀವು ಮರೆತರೆ, ಮತ್ತೆ ನೋಂದಾಯಿಸಲು ನೀವು %1$d ದಿನಗಳಷ್ಟು ಸಮಯ ಕಾಯಬೇಕಾಗಬಹುದು.</item>
-    <item quantity="other">ಈ ಸಾಧನವನ್ನು ನೋಂದಾಯಿಸಲಾಗಿರುವುದರಿಂದ ನೀವು ಹೊಸ ಪಿನ್ ಆಯ್ಕೆ ಮಾಡಬಹುದು. ನಿಮ್ಮ ಪಿನ್ ಅನ್ನು ನೀವು ಮರೆತರೆ, ಮತ್ತೆ ನೋಂದಾಯಿಸಲು ನೀವು %1$d ದಿನಗಳಷ್ಟು ಸಮಯ ಕಾಯಬೇಕಾಗಬಹುದು.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">ನಿಮ್ಮ ಪಿನ್ ರಚಿಸಿ </string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">ಪಿನ್‌ಗಳು ನಿಮ್ಮ ಖಾತೆಗೆ ಹೆಚ್ಚುವರಿ ಸುರಕ್ಷತೆಯನ್ನು ಸೇರಿಸುತ್ತವೆ ಮತ್ತು ಅದನ್ನು ಹಿಂಪಡೆಯಲಾಗುವುದಿಲ್ಲ. Signal ನೊಂದಿಗೆ ಮತ್ತೆ ನೋಂದಾಯಿಸಲು ನಿಮಗೆ ನಿಮ್ಮ ಪಿನ್ ಅಗತ್ಯವಿದೆ.</string>
   <!--ConfirmKbsPinFragment-->

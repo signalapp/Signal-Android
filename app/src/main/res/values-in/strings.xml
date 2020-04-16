@@ -1476,9 +1476,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
     <item quantity="other">PIN harus terdiri dari minimal %1$d digit</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Buat PIN baru</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="other">Anda dapat membuat PIN baru karena perangkat ini telah terdaftar. Jika Anda lupa PIN, Anda perlu menunggu %1$d hari untuk mendaftar lagi.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Buat PIN Anda</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN menambah keamanan tambahan ke akun Anda dan tidak dapat dipulihkan setelah diatur. Anda akan membutuhkan PIN ini untuk mendaftarkan ulang nomor Anda ke Signal.</string>
   <!--ConfirmKbsPinFragment-->

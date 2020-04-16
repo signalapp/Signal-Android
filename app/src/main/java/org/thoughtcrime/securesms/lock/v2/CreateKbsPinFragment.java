@@ -9,8 +9,6 @@ import org.thoughtcrime.securesms.R;
 
 public class CreateKbsPinFragment extends BaseKbsPinFragment<CreateKbsPinViewModel> {
 
-  private static final int PIN_LOCKOUT_DAYS = 7;
-
   @Override
   protected void initializeViewStates() {
     CreateKbsPinFragmentArgs args = CreateKbsPinFragmentArgs.fromBundle(requireArguments());
@@ -29,25 +27,24 @@ public class CreateKbsPinFragment extends BaseKbsPinFragment<CreateKbsPinViewMod
     getTitle().setText(R.string.CreateKbsPinFragment__create_a_new_pin);
 
     if (isForgotPin) {
-      getDescription().setText(requireContext().getResources()
-                                               .getQuantityString(R.plurals.CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered,
-                                                                  PIN_LOCKOUT_DAYS,
-                                                                  PIN_LOCKOUT_DAYS));
+      getDescription().setText(R.string.CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered);
+      getDescription().setLearnMoreVisible(false);
     } else {
-      getDescription().setText(R.string.CreateKbsPinFragment__pins_add_extra_security_to_your_account);
+      getDescription().setText(R.string.CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted);
+      getDescription().setLearnMoreVisible(true);
     }
   }
 
   private void initializeViewStatesForPinCreate() {
     getTitle().setText(R.string.CreateKbsPinFragment__create_your_pin);
-    getDescription().setText(R.string.CreateKbsPinFragment__pins_add_extra_security_to_your_account);
+    getDescription().setText(R.string.CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted);
+    getDescription().setLearnMoreVisible(true);
   }
 
   @Override
   protected CreateKbsPinViewModel initializeViewModel() {
     CreateKbsPinViewModel    viewModel = ViewModelProviders.of(this).get(CreateKbsPinViewModel.class);
     CreateKbsPinFragmentArgs args      = CreateKbsPinFragmentArgs.fromBundle(requireArguments());
-
 
     viewModel.getNavigationEvents().observe(getViewLifecycleOwner(), e -> onConfirmPin(e.getUserEntry(), e.getKeyboard(), args.getIsPinChange()));
     viewModel.getKeyboard().observe(getViewLifecycleOwner(), k -> {

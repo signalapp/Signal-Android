@@ -1476,9 +1476,6 @@
     <item quantity="other">PIN碼必需至少%1$d個字元</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">建立一個新 PIN 碼</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="other">你可以選擇一個新的PIN碼，因為此裝置已被註冊。 如果你忘記了PIN碼，則可能需要等待%1$d天才能重新註冊。</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">建立你的 PIN 碼</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN碼可為你的帳號增加額外的安全性，並且無法恢復。你需要輸入PIN碼才能再次註冊Signal。</string>
   <!--ConfirmKbsPinFragment-->

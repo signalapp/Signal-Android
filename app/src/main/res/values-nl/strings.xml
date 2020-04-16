@@ -1520,10 +1520,6 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
     <item quantity="other">Je pincode moet uit ten minste %1$d getallen bestaan.</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Nieuwe pincode aanmaken</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">Omdat dit apparaat is geregistreerd kun je er voor kiezen een nieuwe pincode in te stellen. Als je je pincode vergeet, dan moet je misschien %1$d dag wachten voor je je telefoonnummer weer kunt registreren.</item>
-    <item quantity="other">Omdat dit apparaat is geregistreerd kun je er voor kiezen een nieuwe pincode in te stellen. Als je je pincode vergeet, dan moet je misschien %1$d dagen wachten voor je je telefoonnummer weer kunt registreren.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Pincode aanmaken</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">Pincodes voegen een extra niveau van beveiliging toe aan je account. Je moet je pincode onthouden want je kunt hem niet terugzien. Je hebt je pincode nodig als je je telefoonnummer in de toekomst opnieuw bij Signal wilt registreren.</string>
   <!--ConfirmKbsPinFragment-->

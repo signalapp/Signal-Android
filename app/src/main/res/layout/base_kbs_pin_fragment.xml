@@ -20,9 +20,9 @@
             app:layout_constraintBottom_toTopOf="@id/edit_kbs_pin_keyboard_toggle"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.20"
-            tools:text="Create your PIN" />
+            tools:text="@string/CreateKbsPinFragment__create_your_pin" />
 
-        <TextView
+        <org.thoughtcrime.securesms.util.views.LearnMoreTextView
             android:id="@+id/edit_kbs_pin_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
             android:textColor="?attr/title_text_color_secondary"
             app:layout_constraintTop_toBottomOf="@id/edit_kbs_pin_title"
-            tools:text="PINs add an extra layer of security to your account. Write your PIN down and keep it in a safe place. It can\'t be recovered." />
+            tools:text="@string/CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted" />
 
         <EditText
             android:id="@+id/edit_kbs_pin_input"
@@ -79,7 +79,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/edit_kbs_pin_input"
             app:layout_goneMarginTop="65dp"
-            tools:text="PIN must be at least 6 digits" />
+            tools:text="PIN must be at least 4 digits" />
 
         <Button
             android:id="@+id/edit_kbs_pin_keyboard_toggle"

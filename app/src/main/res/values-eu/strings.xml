@@ -1496,10 +1496,6 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
     <item quantity="other">PINa behintzat %1$d zenbakiz osatua izan behar da</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Sortu PIN berria</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">PIN berri bat eska dezakezu gailu hau errejistratuta dagoelako. Zure PINa ahaztuz gero, agian egun %1$d itxaron beharko duzu berriro errejistratu ahal izateko.</item>
-    <item quantity="other">PIN berri bat eska dezakezu gailu hau errejistratuta dagoelako. Zure PINa ahaztuz gero, agian %1$d egun itxaron beharko duzu berriro errejistratu ahal izateko.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Sortu zure PINa</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN-ek segurtasun extra gehitzen diote zure kontuari eta ezin dira berreskuratu. Zure PINa beharko duzu berriro Signal-en errejistratu ahal izateko.</string>
   <!--ConfirmKbsPinFragment-->

@@ -1437,10 +1437,6 @@
     <item quantity="other">پن گھٹ توں گھٹ %1$d  ہندسیاں دا ہوناں چاہیدا اے</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">اک نواں پن بناؤ</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">تسیں اک نواں پن چن سکدے او کیوں جے ایہہ آلہ رجسٹر شدہ اے۔ جے تسیں آپناں پن بھل جاوو، تے تہانوں فیر رجسٹر کرن لئی %1$d دن تیکر انتظار کرنا پئے گا۔</item>
-    <item quantity="other">تسیں اک نواں پن چن سکدے او کیوں جے ایہہ آلہ رجسٹر شدہ اے۔ جے تسیں آپناں پن بھل جاوو، تے تہانوں فیر رجسٹر کرن لئی %1$d  دناں تیکر انتظار کرنا پئے گا۔</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">آپناں پن بناوو</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">پناں میچ نئیں کر دیاں۔ فیر کوشش کرو</string>

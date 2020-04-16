@@ -1412,9 +1412,6 @@
     <item quantity="other">PIN ត្រូវមានយ៉ាងហោចណាស់ %1$d ខ្ទង់</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">បង្កើតលេខ PIN ថ្មី</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="other">អ្នកអាចជ្រើសរើសលេខកូដ PIN ថ្មី ដោយសារឧបករណ៍នេះបានចុះឈ្មោះហើយ។ បើអ្នកភ្លេចលេខកូដ PIN របស់អ្នក អ្នកអាចត្រូវរង់ចាំ %1$d ថ្ងៃ ដើម្បីចុះឈ្មោះម្តងទៀត។</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">បង្កើតលេខ PIN របស់អ្នក</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">លេខកូដ PINs បន្ថែមសុវត្ថិភាពទៅគណនីរបស់អ្នក និងមិនអាចស្តារឡើងវិញទេ។ អ្នកត្រូវការលេខកូដ PIN ដើម្បីចុះឈ្មោះជាមួយ Signal ម្តងទៀត។</string>
   <!--ConfirmKbsPinFragment-->

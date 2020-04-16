@@ -18,12 +18,14 @@ import androidx.fragment.app.Fragment;
 import com.airbnb.lottie.LottieAnimationView;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
+import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
 
 abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> extends Fragment {
 
   private TextView            title;
-  private TextView            description;
+  private LearnMoreTextView   description;
   private EditText            input;
   private TextView            label;
   private TextView            keyboardToggle;
@@ -57,6 +59,10 @@ abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> extends
       keyboardToggle.setText(resolveKeyboardToggleText(keyboardType));
     });
 
+    description.setOnLinkClickListener(v -> {
+      CommunicationActions.openBrowserLink(requireContext(), getString(R.string.BaseKbsPinFragment__learn_more_url));
+    });
+
     initializeListeners();
   }
 
@@ -75,7 +81,7 @@ abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> extends
     return title;
   }
 
-  protected TextView getDescription() {
+  protected LearnMoreTextView getDescription() {
     return description;
   }
 

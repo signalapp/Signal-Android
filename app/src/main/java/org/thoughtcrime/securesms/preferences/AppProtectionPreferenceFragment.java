@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
 import org.thoughtcrime.securesms.lock.v2.RegistrationLockUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.pin.PinState;
+import org.thoughtcrime.securesms.pin.RegistrationLockV2Dialog;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
@@ -417,35 +418,16 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
       boolean     value   = (boolean) newValue;
-      AlertDialog loading = SimpleProgressDialog.show(requireContext());
 
       Log.i(TAG, "Getting ready to change registration lock setting to: " + value);
 
-      SimpleTask.run(SignalExecutors.UNBOUNDED, () -> {
-        try {
-          if (value) {
-            PinState.onEnableRegistrationLockForUserWithPin();
-            Log.i(TAG, "Successfully enabled registration lock.");
-          } else {
-            PinState.onDisableRegistrationLockForUserWithPin();
-            Log.i(TAG, "Successfully disabled registration lock.");
-          }
-          return true;
-        } catch (IOException e) {
-          Log.w(TAG, "Failed to change registration lock setting.", e);
-          return false;
-        }
-      }, (success) -> {
-        loading.dismiss();
+      if (value) {
+        RegistrationLockV2Dialog.showEnableDialog(requireContext(), () -> ((CheckBoxPreference) preference).setChecked(true));
+      } else {
+        RegistrationLockV2Dialog.showDisableDialog(requireContext(), () -> ((CheckBoxPreference) preference).setChecked(false));
+      }
 
-        if (!success) {
-          int stringRes =  value ? R.string.preferences_app_protection__failed_to_enable_registration_lock
-                                 : R.string.preferences_app_protection__failed_to_disable_registration_lock;
-
-          Toast.makeText(requireContext(), stringRes, Toast.LENGTH_LONG).show();
-        }
-      });
-      return true;
+      return false;
     }
   }
 }

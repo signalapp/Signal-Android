@@ -1519,10 +1519,6 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
     <item quantity="other">A PIN kódnak legalább %1$d számjegyből kell állnia.</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Új PIN létrehozása</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">Mivel ez a készülék regisztrálva van, ezért lehetőséged van új PIN kód választására. Ha elfelejted a kódodat, csak %1$d várakozást követően regisztrálhatsz újra.</item>
-    <item quantity="other">Mivel ez a készülék regisztrálva van, ezért lehetőséged van új PIN kód választására. Ha elfelejted a kódodat, csak %1$d várakozást követően regisztrálhatsz újra.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">PIN létrehozása</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">A PIN kód használata növeli fiókod biztonságát, és nem lehet helyreállítani. Minden olyan esetben szükséged lesz rá, amikor a Signal-ra szeretnéd regisztrálni.</string>
   <!--ConfirmKbsPinFragment-->

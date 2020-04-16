@@ -1510,10 +1510,6 @@
     <item quantity="other">PIN-i duhet të jetë të paktën %1$d shifra</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Krijoni një PIN të ri</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">Mund të zgjidhni një PIN të ri, ngaqë kjo pajisje është e regjistruar. Nëse e harroni PIN-in tuaj, mund të duhet të prisni %1$d ditë për ta riregjistruar.</item>
-    <item quantity="other">Mund të zgjidhni një PIN të ri, ngaqë kjo pajisje është e regjistruar. Nëse e harroni PIN-in tuaj, mund të duhet të prisni %1$d ditë për ta riregjistruar.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Krijoni PIN-in tuaj</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN-et shtojnë siguri ekstra te llogaria juaj dhe s’mund të rimerren. Që të riregjistroheni me Signal, do t’ju duhet PIN-i juaj.</string>
   <!--ConfirmKbsPinFragment-->

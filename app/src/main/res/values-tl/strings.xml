@@ -1516,10 +1516,6 @@
     <item quantity="other">Ang PIN ay kailangang hindi bababa sa %1$d numero</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Lumikha ng bagong PIN</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">Maaari kang pumili ng bagong PIN dahil ang device na ito ay nakarehistro. Kung makalimutan mo ang iyong PIN, baka kailanganin mong maghintay ng %1$d araw para magrehistrong muli.</item>
-    <item quantity="other">Maaari kang pumili ng bagong PIN dahil ang device na ito ay nakarehistro. Kung makalimutan mo ang iyong PIN, baka kailanganin mong maghintay ng %1$d araw para magrehistrong muli.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Likhain ang iyong PIN</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">Ang mga PIN ay naglalagay ng karagdagang seguridad para sa iyong account. Kakailanganin mo ang iyong PIN upang makapagrehistrong muli sa Signal.</string>
   <!--ConfirmKbsPinFragment-->

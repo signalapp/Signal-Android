@@ -138,7 +138,7 @@ public final class Megaphones {
                           .setMandatory(true)
                           .setImage(R.drawable.kbs_pin_megaphone)
                           .setTitle(R.string.KbsMegaphone__create_a_pin)
-                          .setBody(R.string.KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account)
+                          .setBody(R.string.KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped)
                           .setActionButton(R.string.KbsMegaphone__create_pin, (megaphone, listener) -> {
                             Intent intent = CreateKbsPinActivity.getIntentForPinCreate(ApplicationDependencies.getApplication());
 

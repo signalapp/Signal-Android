@@ -1550,11 +1550,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
     <item quantity="other">PIN-ul trebuie să conțină cel puțin %1$d cifre</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Creați un nou PIN</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">Puteți alege un PIN nou, deoarece acest dispozitiv este înregistrat. Dacă uitați codul PIN, poate fi necesar să așteptați %1$d zi pentru a vă înregistra din nou.</item>
-    <item quantity="few">Puteți alege un PIN nou, deoarece acest dispozitiv este înregistrat. Dacă uitați codul PIN, poate fi necesar să așteptați %1$d zile pentru a vă înregistra din nou.</item>
-    <item quantity="other">Puteți alege un PIN nou, deoarece acest dispozitiv este înregistrat. Dacă uitați codul PIN, poate fi necesar să așteptați %1$d zile pentru a vă înregistra din nou.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Creați-vă PIN-ul</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN-ul adăuga un nivel suplimentar contului dvs. și nu poate fi recuperat. Veți avea nevoie de PIN-ul dvs. pentru a vă înregistra din nou la Signal.</string>
   <!--ConfirmKbsPinFragment-->

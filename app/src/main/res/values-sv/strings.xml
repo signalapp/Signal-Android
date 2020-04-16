@@ -1510,10 +1510,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
     <item quantity="other">PIN-kod måste vara minst %1$d siffror</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Skapa en ny PIN-kod</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">Du kan välja en ny PIN-kod eftersom den här enheten är registrerad. Om du glömmer din PIN-kod kan du behöva vänta %1$d dag för att registrera igen.</item>
-    <item quantity="other">Du kan välja en ny PIN-kod eftersom den här enheten är registrerad. Om du glömmer din PIN-kod kan du behöva vänta %1$d dagar för att registrera igen.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Skapa din PIN-kod</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN-koder lägger till extra säkerhet till ditt konto och kan inte återställas. Du behöver din PIN-kod för att registrera med Signal igen.</string>
   <!--ConfirmKbsPinFragment-->

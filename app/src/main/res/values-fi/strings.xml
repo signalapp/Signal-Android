@@ -1510,10 +1510,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
     <item quantity="other">PIN-koodin on oltava vähintään %1$d numeroa</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Luo uusi PIN-koodi</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">Voit valita uuden PIN-koodin, koska tämä laite on rekisteröity. Jos unohdat PIN-koodisi, voit joutua odottamaan %1$d päivän rekisteröityäksesi uudelleen.</item>
-    <item quantity="other">Voit valita uuden PIN-koodin, koska tämä laite on rekisteröity. Jos unohdat PIN-koodisi, voit joutua odottamaan %1$d päivää rekisteröityäksesi uudelleen.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Luo PIN-koodisi</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN-koodit lisäävät tilisi turvallisuutta, eikä niitä voi palauttaa. Tarvitset PIN-koodisi rekisteröityäksesi Signaliin uudestaan.</string>
   <!--ConfirmKbsPinFragment-->

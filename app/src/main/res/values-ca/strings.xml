@@ -1510,10 +1510,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
     <item quantity="other">El PIN ha de tenir un mínim de %1$d dígits.</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Crea un PIN nou</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">Podeu triar un PIN nou perquè aquest dispositiu està registrat. Si l\'oblideu, pot ser que hàgiu d\'esperar %1$d dia per tornar-vos a registrar.</item>
-    <item quantity="other">Podeu triar un PIN nou perquè aquest dispositiu està registrat. Si l\'oblideu, pot ser que hàgiu d\'esperar %1$d dies per tornar-vos a registrar.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Creeu el PIN</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">Els PIN afegeixen seguretat extra al compte i no es poden recuperar. Us caldrà el PIN per registrar-vos al Signal un altre cop.</string>
   <!--ConfirmKbsPinFragment-->

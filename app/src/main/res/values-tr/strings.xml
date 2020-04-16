@@ -1499,10 +1499,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
     <item quantity="other">PIN en az %1$d haneli olmalıdır</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Yeni PIN oluştur</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">Bu cihaz kaydedildiği için yeni bir PIN kodu seçebilirsiniz. Eğer PIN\'inizi unutursanız, yeniden kaydolmak için %1$d gün beklemeniz gerekebilir.</item>
-    <item quantity="other">Bu cihaz kaydedildiği için yeni bir PIN kodu seçebilirsiniz. Eğer PIN\'inizi unutursanız, yeniden kaydolmak için %1$d gün beklemeniz gerekebilir.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">PIN\'inizi oluşturun</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN\'ler hesabınıza fazladan bir güvenlik katmanı ekler ve unutulduğunda kurtarılamazlardır. Signal\'e yeniden kaydolurken PIN\'inize ihtiyacınız olacaktır.</string>
   <!--ConfirmKbsPinFragment-->

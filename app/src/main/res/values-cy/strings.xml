@@ -1592,12 +1592,6 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="other">Rhaid i\'r PIN fod yn o leiaf %1$d digid</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Crëwch PIN newydd</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">Gallwch ddewis PIN newydd gan fod y ddyfais wedi ei chofrestru. Os fyddwch yn anghofio eich PIN, efallai y bydd angen i chi aros am %1$d diwrnod i chi gofrestru eto.</item>
-    <item quantity="two">Gallwch ddewis PIN newydd gan fod y ddyfais wedi ei chofrestru. Os fyddwch yn anghofio eich PIN, efallai y bydd angen i chi aros am %1$d diwrnod i chi gofrestru eto.</item>
-    <item quantity="many">Gallwch ddewis PIN newydd gan fod y ddyfais wedi ei chofrestru. Os fyddwch yn anghofio eich PIN, efallai y bydd angen i chi aros am %1$d diwrnod i chi gofrestru eto.</item>
-    <item quantity="other">Gallwch ddewis PIN newydd gan fod y ddyfais wedi ei chofrestru. Os fyddwch yn anghofio eich PIN, efallai y bydd angen i chi aros am %1$d diwrnod i chi gofrestru eto.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Crëwch eich PIN</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">Mae\'r PIN yn ychwanegu diogelwch ychwanegol i\'ch cyfrif ac nid oes modd ei adfer. Bydd angen y PIN arnoch chi i gofrestru gyda Signal eto.</string>
   <!--ConfirmKbsPinFragment-->

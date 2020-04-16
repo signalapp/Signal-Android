@@ -1448,10 +1448,6 @@
     <item quantity="other">Το PIN πρέπει να είναι τουλάχιστον %1$d ψηφία</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Δημιουργία νέου PIN</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">Μπορείτε να επιλέξετε ένα νέο PIN επειδή αυτή η συσκευή είναι εγγεγραμμένη. Αν ξεχάσετε το PIN σας, θα πρέπει να περιμένετε %1$d ημέρα για να εγγραφείτε ξανά.</item>
-    <item quantity="other">Μπορείτε να επιλέξετε ένα νέο PIN επειδή αυτή η συσκευή είναι εγγεγραμμένη. Αν ξεχάσετε το PIN σας, θα πρέπει να περιμένετε %1$d ημέρες για να εγγραφείτε ξανά.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Δημιουργία του PIN σας</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">Τα PIN προσθέτουν επιπλέον ασφάλεια στο λογαριασμό σας και δεν μπορούν να επανακτηθούν. Θα χρειαστείτε το PIN σας για να εγγραφείτε ξανά στο Signal.</string>
   <!--ConfirmKbsPinFragment-->

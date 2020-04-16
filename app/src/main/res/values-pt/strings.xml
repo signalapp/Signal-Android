@@ -1512,10 +1512,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
     <item quantity="other">O PIN deverá conter pelo menos %1$d dígitos</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Criar um novo PIN</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">Você pode escolher um PIN novo porque este dispositivo está registado. Se se esquecer do seu PIN, poderá necessitar de %1$d dia para registar de novo.</item>
-    <item quantity="other">Você pode escolher um PIN novo porque este dispositivo está registado. Se se esquecer do seu PIN, poderá necessitar de %1$d dias para registar de novo.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Criar o seu PIN</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">Os PINs adicionam uma camada de segurança extra à sua conta e não podem ser recuperados. Necessita do seu PIN para registar-se novamente no Signal.</string>
   <!--ConfirmKbsPinFragment-->

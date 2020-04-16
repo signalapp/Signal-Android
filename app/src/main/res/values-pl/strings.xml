@@ -1582,12 +1582,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
     <item quantity="other">PIN musi mieć przynajmniej %1$d cyfry</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Utwórz nowy PIN</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">To urządzenie jest zarejestrowane, więc możesz wybrać nowy PIN. Jeśli zapomnisz swojego PINu, będziesz musiał(a) zaczekać %1$d dzień, aby ponownie się zarejestrować.</item>
-    <item quantity="few">To urządzenie jest zarejestrowane, więc możesz wybrać nowy PIN. Jeśli zapomnisz swojego PINu, będziesz musiał(a) zaczekać %1$d dni, aby ponownie się zarejestrować.</item>
-    <item quantity="many">To urządzenie jest zarejestrowane, więc możesz wybrać nowy PIN. Jeśli zapomnisz swojego PINu, będziesz musiał(a) zaczekać %1$d dni, aby ponownie się zarejestrować.</item>
-    <item quantity="other">To urządzenie jest zarejestrowane, więc możesz wybrać nowy PIN. Jeśli zapomnisz swojego PINu, będziesz musiał(a) zaczekać %1$d dni, aby ponownie się zarejestrować.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Utwórz swój PIN</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">Kody PIN zapewniają dodatkową ochronę Twojego konta i nie da się ich odzyskać. Będziesz potrzebować swojego PINu, aby ponownie zarejestrować się w Signal.</string>
   <!--ConfirmKbsPinFragment-->

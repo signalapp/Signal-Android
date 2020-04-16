@@ -1589,12 +1589,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
     <item quantity="other">PIN musí mít alespoň %1$d číslic</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Vytvořit nový PIN</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">Můžete si vybrat nový PIN, protože toto zařízení je zaregistrováno. Pokud váš PIN zapomenete, budete pro novou registraci muset čekat %1$d den.</item>
-    <item quantity="few">Můžete si vybrat nový PIN, protože toto zařízení je zaregistrováno. Pokud váš PIN zapomenete, budete pro novou registraci muset čekat %1$d dny.</item>
-    <item quantity="many">Můžete si vybrat nový PIN, protože toto zařízení je zaregistrováno. Pokud váš PIN zapomenete, budete pro novou registraci muset čekat %1$d dnů.</item>
-    <item quantity="other">Můžete si vybrat nový PIN, protože toto zařízení je zaregistrováno. Pokud váš PIN zapomenete, budete pro novou registraci muset čekat %1$d dnů.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Vytvořit váš PIN</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN přidává další zabezpečení vašeho účtu a nelze jej obnovit. Váš PIN budete potřebovat při opakované registraci do Signalu.</string>
   <!--ConfirmKbsPinFragment-->

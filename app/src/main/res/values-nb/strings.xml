@@ -1483,10 +1483,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">Opprett numerisk PIN-kode</string>
   <!--CreateKbsPinFragment-->
   <string name="CreateKbsPinFragment__create_a_new_pin">Opprett en ny PIN-kode</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">Du kan velge en ny PIN-kode fordi denne enheten er registrert. Hvis du glemmer PIN-koden, kan det hende du må vente %1$d dag for å registrere deg igjen. </item>
-    <item quantity="other">Du kan velge en ny PIN-kode fordi denne enheten er registrert. Hvis du glemmer PIN-koden, kan det hende du må vente %1$d dager å registrere seg på nytt.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Opprett PIN-koden</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN-koder gir ekstra sikkerhet for kontoen din og kan ikke gjenopprettes. Du trenger PIN-koden din for å registrere deg hos Signal igjen.</string>
   <!--ConfirmKbsPinFragment-->

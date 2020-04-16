@@ -1476,9 +1476,6 @@
     <item quantity="other">รหัส PIN ต้องมีอย่างน้อย %1$d หลัก</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">สร้างรหัส PIN ใหม่</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="other">คุณสามารถเลือกรหัส PIN ได้ใหม่เนื่องจากอุปกรณ์นี้ได้ลงทะเบียนแล้ว ถ้าคุณลืมรหัส PIN ของคุณ คุณอาจต้องรออีก %1$d วัน เพื่อที่จะลงทะเบียนได้อีกครั้ง</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">สร้างรหัส PIN ของคุณ</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">รหัส PIN เพิ่มความปลอดภัยให้กับบัญชีของคุณ และรหัสจะไม่สามารถถูกกู้คืนได้ คุณจำเป็นต้องมีรหัส PIN ของคุณเพื่อลงทะเบียนกับ Signal อีกครั้ง</string>
   <!--ConfirmKbsPinFragment-->

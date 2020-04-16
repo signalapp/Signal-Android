@@ -1583,12 +1583,6 @@
     <item quantity="other">PIN-код должен быть не короче %1$d цифр</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Создать новый PIN-код</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">Вы можете выбрать новый PIN-код, так как это устройство зарегистрировано. Если вы забудете свой PIN-код, возможно, вам потребуется подождать %1$d день, чтобы зарегистрироваться заново.</item>
-    <item quantity="few">Вы можете выбрать новый PIN-код, так как это устройство зарегистрировано. Если вы забудете свой PIN-код, возможно, вам потребуется подождать %1$d дня, чтобы зарегистрироваться заново.</item>
-    <item quantity="many">Вы можете выбрать новый PIN-код, так как это устройство зарегистрировано. Если вы забудете свой PIN-код, возможно, вам потребуется подождать %1$d дней, чтобы зарегистрироваться заново.</item>
-    <item quantity="other">Вы можете выбрать новый PIN-код, так как это устройство зарегистрировано. Если вы забудете свой PIN-код, возможно, вам потребуется подождать %1$d дней, чтобы зарегистрироваться заново.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Создать PIN-код</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN-коды улучшают безопасность вашей учётной записи и не могут быть восстановлены. PIN-код вам потребуется, чтобы зарегистрироваться в Signal заново.</string>
   <!--ConfirmKbsPinFragment-->

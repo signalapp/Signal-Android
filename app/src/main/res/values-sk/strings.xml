@@ -1589,12 +1589,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
     <item quantity="other">PIN kód musí mať min. %1$d číslic</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Vytvoriť nový PIN</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="one">Pretože toto zariadenie je registrované, môžete si vybrať nový PIN kód. Ak zabudnete svoj PIN kód, pravdepodobne budete musieť čakať %1$d deň na opätovnú registráciu.</item>
-    <item quantity="few">Pretože toto zariadenie je registrované, môžete si vybrať nový PIN kód. Ak zabudnete svoj PIN kód, pravdepodobne budete musieť čakať %1$d dní na opätovnú registráciu.</item>
-    <item quantity="many">Pretože toto zariadenie je registrované, môžete si vybrať nový PIN kód. Ak zabudnete svoj PIN kód, pravdepodobne budete musieť čakať %1$d dní na opätovnú registráciu.</item>
-    <item quantity="other">Pretože toto zariadenie je registrované, môžete si vybrať nový PIN kód. Ak zabudnete svoj PIN kód, pravdepodobne budete musieť čakať %1$d dní na opätovnú registráciu.</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">Vytvorte si PIN</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN kódy pridávajú k vášmu účtu ďalšiu vrstvu zabezpečenia a nie je možné ich obnoviť. Svoj PIN kód budete potrebovať pri opätovnej registrácii do Signalu.</string>
   <!--ConfirmKbsPinFragment-->

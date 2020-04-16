@@ -1436,9 +1436,6 @@
     <item quantity="other">PINは %1$d 桁以上の数字にしてください</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">新しい PIN を作成</string>
-  <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-    <item quantity="other">このデバイスを登録したため、新しい PIN を選択できます。PIN を忘れると、再登録まで %1$d 日間待たなければならないことがあります。</item>
-  </plurals>
   <string name="CreateKbsPinFragment__create_your_pin">PIN を作成</string>
   <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PINはアカウントのセキュリティを強化します。Signalに再登録する際に必要になり、回復はできません。</string>
   <!--ConfirmKbsPinFragment-->

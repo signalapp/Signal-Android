@@ -521,6 +521,9 @@
     <!-- Job -->
     <string name="Job_working_in_the_background">Working in the background…</string>
 
+    <!-- LearnMoreTextView -->
+    <string name="LearnMoreTextView_learn_more">Learn more</string>
+
     <!-- MessageDetailsRecipient -->
     <string name="MessageDetailsRecipient_failed_to_send">Failed to send</string>
     <string name="MessageDetailsRecipient_new_safety_number">New safety number</string>
@@ -906,6 +909,13 @@
     <string name="RegistrationActivity_phone_number_description">Phone number</string>
     <string name="RegistrationActivity_country_code_description">Country code</string>
     <string name="RegistrationActivity_call">Call</string>
+
+    <!-- RegistrationLockV2Dialog -->
+    <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Turn on Registration Lock?</string>
+    <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Turn off Registration Lock?</string>
+    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">If you forget your Signal PIN when registering with Signal again, you’ll be locked out of your account for 7 days.</string>
+    <string name="RegistrationLockV2Dialog_turn_on">Turn on</string>
+    <string name="RegistrationLockV2Dialog_turn_off">Turn off</string>
 
     <!-- RevealableMessageView -->
     <string name="RevealableMessageView_view_photo">View Photo</string>
@@ -1905,6 +1915,7 @@
     <string name="BaseKbsPinFragment__next">Next</string>
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Create alphanumeric PIN</string>
     <string name="BaseKbsPinFragment__create_numeric_pin">Create numeric PIN</string>
+    <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
 
     <!-- CreateKbsPinFragment -->
     <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
@@ -1916,12 +1927,9 @@
         <item quantity="other">PIN must be at least %1$d digits</item>
     </plurals>
     <string name="CreateKbsPinFragment__create_a_new_pin">Create a new PIN</string>
-    <plurals name="CreateKbsPinFragment__you_can_choose_a_new_pin_because_this_device_is_registered">
-        <item quantity="one">You can choose a new PIN because this device is registered. If you forget your PIN, you may need to wait %1$d day to register again.</item>
-        <item quantity="other">You can choose a new PIN because this device is registered. If you forget your PIN, you may need to wait %1$d days to register again.</item>
-    </plurals>
+    <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">You can change your PIN as long as this device is registered.</string>
     <string name="CreateKbsPinFragment__create_your_pin">Create your PIN</string>
-    <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PINs add extra security to your account and can\'t be recovered. You\'ll need your PIN to register with Signal again.</string>
+    <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PINs keep information stored with Signal encrypted so only you can access it. Your profile, settings, and contacts will restore when you reinstall Signal.</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">PINs don\'t match. Try again.</string>
@@ -1929,12 +1937,12 @@
     <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN creation failed</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Your PIN was not saved. We\'ll prompt you to create a PIN later.</string>
     <string name="ConfirmKbsPinFragment__pin_created">PIN created.</string>
-    <string name="ConfirmKbsPinFragment__re_enter_pin">Re-enter PIN</string>
+    <string name="ConfirmKbsPinFragment__re_enter_your_pin">Re-enter your PIN</string>
     <string name="ConfirmKbsPinFragment__creating_pin">Creating PIN…</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">Introducing PINs</string>
-    <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">PINs add another level of security to your account. Create one now.</string>
+    <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PINs keep information stored with Signal encrypted so only you can access it. Your profile, settings, and contacts will restore when you reinstall Signal.</string>
     <string name="KbsSplashFragment__learn_more">Learn More</string>
     <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
     <string name="KbsSplashFragment__registration_lock_equals_pin">Registration Lock = PIN</string>
@@ -1997,7 +2005,7 @@
 
     <!-- KBS Megaphone -->
     <string name="KbsMegaphone__create_a_pin">Create a PIN</string>
-    <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">PINs add another layer of security to your Signal account.</string>
+    <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PINs keep information that’s stored with Signal encrypted.</string>
     <string name="KbsMegaphone__create_pin">Create PIN</string>
     <string name="KbsMegaphone__introducing_pins">Introducing PINs</string>
     <string name="KbsMegaphone__update_pin">Update PIN</string>
