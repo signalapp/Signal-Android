@@ -1,15 +1,25 @@
 package org.thoughtcrime.securesms.loki.redesign.activities
 
+import android.app.AlertDialog
+import android.content.Intent
 import android.graphics.drawable.TransitionDrawable
 import android.os.Bundle
+import android.os.Handler
 import android.support.annotation.DrawableRes
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_display_name.registerButton
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_pn_mode.*
 import network.loki.messenger.R
+import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
+import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.redesign.utilities.setUpActionBarSessionLogo
+import org.thoughtcrime.securesms.loki.redesign.utilities.show
+import org.thoughtcrime.securesms.util.GroupUtil
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 
 class PNModeActivity : BaseActionBarActivity() {
     private var selectedOptionView: LinearLayout? = null
@@ -71,7 +81,32 @@ class PNModeActivity : BaseActionBarActivity() {
     }
 
     private fun register() {
-        // TODO: Implement
+        if (selectedOptionView == null) {
+            val dialog = AlertDialog.Builder(this)
+            dialog.setMessage(R.string.activity_pn_mode_no_option_picked_dialog_title)
+            dialog.setPositiveButton(R.string.ok) { _, _ -> }
+            dialog.create().show()
+            return
+        }
+        val displayName = TextSecurePreferences.getProfileName(this)
+        TextSecurePreferences.setHasSeenWelcomeScreen(this, true)
+        TextSecurePreferences.setPromptedPushRegistration(this, true)
+        TextSecurePreferences.setIsUsingFCM(this, (selectedOptionView == fcmOptionView))
+        TextSecurePreferences.setHasSeenPNModeSheet(this, true) // Shouldn't be shown to users who've done the new onboarding
+        val application = ApplicationContext.getInstance(this)
+        application.setUpStorageAPIIfNeeded()
+        application.setUpP2PAPI()
+        val publicChatAPI = ApplicationContext.getInstance(this).lokiPublicChatAPI
+        if (publicChatAPI != null) {
+            // TODO: This won't be necessary anymore when we don't auto-join the Loki Public Chat anymore
+            application.createDefaultPublicChatsIfNeeded()
+            val servers = DatabaseFactory.getLokiThreadDatabase(this).getAllPublicChatServers()
+            servers.forEach { publicChatAPI.setDisplayName(displayName, it) }
+        }
+        application.registerForFCMIfNeeded()
+        val intent = Intent(this, HomeActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        show(intent)
     }
     // endregion
 }

@@ -17,7 +17,8 @@ object LokiPushNotificationManager {
 
     private const val tokenExpirationInterval = 2 * 24 * 60 * 60 * 1000
 
-    fun disableFCM(token: String, context: Context?) {
+    @JvmStatic
+    fun unregister(token: String, context: Context?) {
         val parameters = mapOf( "token" to token )
         val url = "${server}/register"
         val body = RequestBody.create(MediaType.get("application/json"), JsonUtil.toJson(parameters))

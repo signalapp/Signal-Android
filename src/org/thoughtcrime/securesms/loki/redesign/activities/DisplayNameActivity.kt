@@ -9,11 +9,9 @@ import android.widget.TextView.OnEditorActionListener
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_display_name.*
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
-import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.loki.redesign.utilities.push
 import org.thoughtcrime.securesms.loki.redesign.utilities.setUpActionBarSessionLogo
-import org.thoughtcrime.securesms.loki.redesign.utilities.show
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.ProfileCipher
 
@@ -54,20 +52,7 @@ class DisplayNameActivity : BaseActionBarActivity() {
         val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(displayNameEditText.windowToken, 0)
         TextSecurePreferences.setProfileName(this, displayName)
-        TextSecurePreferences.setHasSeenWelcomeScreen(this, true)
-        TextSecurePreferences.setPromptedPushRegistration(this, true)
-        val application = ApplicationContext.getInstance(this)
-        application.setUpStorageAPIIfNeeded()
-        application.setUpP2PAPI()
-        val publicChatAPI = ApplicationContext.getInstance(this).lokiPublicChatAPI
-        if (publicChatAPI != null) {
-            // TODO: This won't be necessary anymore when we don't auto-join the Loki Public Chat anymore
-            application.createDefaultPublicChatsIfNeeded()
-            val servers = DatabaseFactory.getLokiThreadDatabase(this).getAllPublicChatServers()
-            servers.forEach { publicChatAPI.setDisplayName(displayName, it) }
-        }
-        val intent = Intent(this, HomeActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        show(intent)
+        val intent = Intent(this, PNModeActivity::class.java)
+        push(intent)
     }
 }
