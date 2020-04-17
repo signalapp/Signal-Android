@@ -103,7 +103,7 @@ class PNModeActivity : BaseActionBarActivity() {
             val servers = DatabaseFactory.getLokiThreadDatabase(this).getAllPublicChatServers()
             servers.forEach { publicChatAPI.setDisplayName(displayName, it) }
         }
-        application.registerForFCMIfNeeded()
+        application.registerForFCMIfNeeded(true)
         val intent = Intent(this, HomeActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         show(intent)

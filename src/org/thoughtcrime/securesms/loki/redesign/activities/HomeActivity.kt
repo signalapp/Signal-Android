@@ -162,7 +162,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             bottomSheet.onConfirmTapped = { isUsingFCM ->
                 TextSecurePreferences.setHasSeenPNModeSheet(this, true)
                 TextSecurePreferences.setIsUsingFCM(this, isUsingFCM)
-                ApplicationContext.getInstance(this).registerForFCMIfNeeded()
+                ApplicationContext.getInstance(this).registerForFCMIfNeeded(true)
                 bottomSheet.dismiss()
             }
             bottomSheet.onSkipTapped = {

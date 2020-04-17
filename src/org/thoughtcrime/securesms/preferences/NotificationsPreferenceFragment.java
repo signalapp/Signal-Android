@@ -39,7 +39,7 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
     this.findPreference(fcmKey)
         .setOnPreferenceChangeListener((preference, newValue) -> {
           TextSecurePreferences.setIsUsingFCM(getContext(), (boolean) newValue);
-          ApplicationContext.getInstance(getContext()).registerForFCMIfNeeded();
+          ApplicationContext.getInstance(getContext()).registerForFCMIfNeeded(true);
           return true;
         });
 
