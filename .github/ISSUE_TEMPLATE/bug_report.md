@@ -23,7 +23,7 @@ If applicable, add screenshots or logs to help explain your problem.
 
  - Device: [e.g. Samsung Galaxy S8]
  - OS: [e.g. Android Pie]
- - Version of Loki Messenger or latest commit hash
+ - Version of Session or latest commit hash
 
 **Additional context**
 

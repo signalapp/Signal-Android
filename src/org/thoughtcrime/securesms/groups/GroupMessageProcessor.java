@@ -36,7 +36,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup.Type;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.loki.api.LokiDeviceLinkUtilities;
+import org.whispersystems.signalservice.loki.api.multidevice.LokiDeviceLinkUtilities;
 import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
 import java.util.Collections;
@@ -137,49 +137,57 @@ public class GroupMessageProcessor {
     GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
     String        id       = GroupUtil.getEncodedId(group);
 
-    // Only update group if admin sent the message
+    String ourHexEncodedPublicKey = getMasterHexEncodedPublicKey(context, TextSecurePreferences.getLocalNumber(context));
+
     if (group.getGroupType() == SignalServiceGroup.GroupType.SIGNAL) {
+      // Only update group if the group admin sent the message
       String hexEncodedPublicKey = getMasterHexEncodedPublicKey(context, content.getSender());
       if (!groupRecord.getAdmins().contains(Address.fromSerialized(hexEncodedPublicKey))) {
         Log.d("Loki - Group Message", "Received a group update message from a non-admin user for " + id +". Ignoring.");
         return null;
       }
+
+      // We should only process update messages if we're in the group
+      Address ourAddress = Address.fromSerialized(ourHexEncodedPublicKey);
+      if (!groupRecord.getMembers().contains(ourAddress) &&
+              !group.getMembers().or(Collections.emptyList()).contains(ourHexEncodedPublicKey)) {
+        Log.d("Loki - Group Message", "Received a group update message from a group we are not a member of:  " + id + "; ignoring.");
+        database.setActive(id, false);
+        return null;
+      }
     }
 
-    Set<Address> recordMembers = new HashSet<>(groupRecord.getMembers());
-    Set<Address> messageMembers = new HashSet<>();
+    Set<Address> currentMembers = new HashSet<>(groupRecord.getMembers());
+    Set<Address> newMembers = new HashSet<>();
 
     for (String messageMember : group.getMembers().get()) {
-      messageMembers.add(Address.fromExternal(context, messageMember));
+      newMembers.add(Address.fromExternal(context, messageMember));
     }
 
-    Set<Address> addedMembers = new HashSet<>(messageMembers);
-    addedMembers.removeAll(recordMembers);
+    // Added members are the members who are present in newMembers but not in currentMembers
+    Set<Address> addedMembers = new HashSet<>(newMembers);
+    addedMembers.removeAll(currentMembers);
 
-    Set<Address> missingMembers = new HashSet<>(recordMembers);
-    missingMembers.removeAll(messageMembers);
+    // Kicked members are members who are present in currentMembers but not in newMembers
+    Set<Address> removedMembers = new HashSet<>(currentMembers);
+    removedMembers.removeAll(newMembers);
 
     GroupContext.Builder builder = createGroupContext(group);
     builder.setType(GroupContext.Type.UPDATE);
 
-    if (addedMembers.size() > 0) {
-      Set<Address> unionMembers = new HashSet<>(recordMembers);
-      unionMembers.addAll(messageMembers);
-      database.updateMembers(id, new LinkedList<>(unionMembers));
-
-      builder.clearMembers();
-
-      for (Address addedMember : addedMembers) {
-        builder.addMembers(addedMember.serialize());
-      }
-    } else {
-      builder.clearMembers();
+    // Update our group members if they're different
+    if (!currentMembers.equals(newMembers)) {
+      database.updateMembers(id, new LinkedList<>(newMembers));
     }
 
-    if (missingMembers.size() > 0) {
-      for (Address removedMember : missingMembers) {
-        builder.addMembers(removedMember.serialize());
-      }
+    // We add any new or removed members to the group context
+    // This will allow us later to iterate over them to check if they left or were added for UI purposes
+    for (Address addedMember : addedMembers) {
+      builder.addNewMembers(addedMember.serialize());
+    }
+
+    for (Address removedMember : removedMembers) {
+      builder.addRemovedMembers(removedMember.serialize());
     }
 
     if (group.getName().isPresent() || group.getAvatar().isPresent()) {
@@ -191,10 +199,15 @@ public class GroupMessageProcessor {
       builder.clearName();
     }
 
-    if (!groupRecord.isActive()) database.setActive(id, true);
+    // If we were removed then we need to disable the chat
+    if (removedMembers.contains(Address.fromSerialized(ourHexEncodedPublicKey))) {
+      database.setActive(id, false);
+    } else {
+      if (!groupRecord.isActive()) database.setActive(id, true);
 
-    if (group.getMembers().isPresent()) {
-      establishSessionsWithMembersIfNeeded(context, group.getMembers().get());
+      if (group.getMembers().isPresent()) {
+        establishSessionsWithMembersIfNeeded(context, group.getMembers().get());
+      }
     }
 
     return storeMessage(context, content, group, builder.build(), outgoing);

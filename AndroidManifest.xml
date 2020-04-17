@@ -47,6 +47,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -112,6 +113,9 @@
             android:name="org.thoughtcrime.securesms.loki.redesign.activities.DisplayNameActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.PNModeActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity"
             android:screenOrientation="portrait"
@@ -509,6 +513,14 @@
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:exported="true"
             android:theme="@style/TextSecure.LightNoActionBar" />
+        <service
+            android:name="org.thoughtcrime.securesms.service.PushNotificationService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
         <service
             android:name="org.thoughtcrime.securesms.service.WebRtcCallService"
             android:enabled="true" />

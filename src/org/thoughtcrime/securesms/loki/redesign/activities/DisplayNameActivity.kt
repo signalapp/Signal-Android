@@ -2,15 +2,16 @@ package org.thoughtcrime.securesms.loki.redesign.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.KeyEvent
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView.OnEditorActionListener
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_display_name.*
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
-import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.loki.redesign.utilities.push
 import org.thoughtcrime.securesms.loki.redesign.utilities.setUpActionBarSessionLogo
-import org.thoughtcrime.securesms.loki.redesign.utilities.show
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.ProfileCipher
 
@@ -21,6 +22,19 @@ class DisplayNameActivity : BaseActionBarActivity() {
         setUpActionBarSessionLogo()
         setContentView(R.layout.activity_display_name)
         displayNameEditText.imeOptions = displayNameEditText.imeOptions or 16777216 // Always use incognito keyboard
+        displayNameEditText.setOnEditorActionListener(
+                OnEditorActionListener { _, actionId, event ->
+                    // Handle validation from keyboard to trigger registration
+                    if (actionId == EditorInfo.IME_ACTION_SEARCH ||
+                            actionId == EditorInfo.IME_ACTION_DONE ||
+                            (event.action === KeyEvent.ACTION_DOWN
+                                    && event.keyCode === KeyEvent.KEYCODE_ENTER)) {
+                        this.register();
+                        return@OnEditorActionListener true
+                    }
+                    // Return true if you have consumed the action, else false.
+                    false
+                })
         registerButton.setOnClickListener { register() }
     }
 
@@ -38,20 +52,7 @@ class DisplayNameActivity : BaseActionBarActivity() {
         val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(displayNameEditText.windowToken, 0)
         TextSecurePreferences.setProfileName(this, displayName)
-        TextSecurePreferences.setHasSeenWelcomeScreen(this, true)
-        TextSecurePreferences.setPromptedPushRegistration(this, true)
-        val application = ApplicationContext.getInstance(this)
-        application.setUpStorageAPIIfNeeded()
-        application.setUpP2PAPI()
-        val publicChatAPI = ApplicationContext.getInstance(this).lokiPublicChatAPI
-        if (publicChatAPI != null) {
-            // TODO: This won't be necessary anymore when we don't auto-join the Loki Public Chat anymore
-            application.createDefaultPublicChatsIfNeeded()
-            val servers = DatabaseFactory.getLokiThreadDatabase(this).getAllPublicChatServers()
-            servers.forEach { publicChatAPI.setDisplayName(displayName, it) }
-        }
-        val intent = Intent(this, HomeActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        show(intent)
+        val intent = Intent(this, PNModeActivity::class.java)
+        push(intent)
     }
 }

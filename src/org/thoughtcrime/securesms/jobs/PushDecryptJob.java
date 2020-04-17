@@ -137,12 +137,12 @@ import org.whispersystems.signalservice.api.messages.multidevice.StickerPackOper
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.loki.api.DeviceLink;
-import org.whispersystems.signalservice.loki.api.DeviceLinkingSession;
+import org.whispersystems.signalservice.loki.api.multidevice.DeviceLink;
+import org.whispersystems.signalservice.loki.api.multidevice.DeviceLinkingSession;
 import org.whispersystems.signalservice.loki.api.LokiAPI;
-import org.whispersystems.signalservice.loki.api.LokiDeviceLinkUtilities;
-import org.whispersystems.signalservice.loki.api.LokiFileServerAPI;
-import org.whispersystems.signalservice.loki.api.LokiPublicChat;
+import org.whispersystems.signalservice.loki.api.multidevice.LokiDeviceLinkUtilities;
+import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI;
+import org.whispersystems.signalservice.loki.api.publicchats.LokiPublicChat;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiServiceMessage;
@@ -1895,7 +1895,28 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         boolean isGroupActive    = groupId.isPresent() && groupDatabase.isActive(groupId.get());
         boolean isLeaveMessage   = message.getGroupInfo().isPresent() && message.getGroupInfo().get().getType() == SignalServiceGroup.Type.QUIT;
 
-        return (isContentMessage && !isGroupActive) || (sender.isBlocked() && !isLeaveMessage);
+        boolean isClosedGroup = conversation.getAddress().isSignalGroup();
+        boolean isGroupMember = true;
+
+        // Only allow messages from group members
+        if (isClosedGroup) {
+          String senderHexEncodedPublicKey = content.getSender();
+
+          try {
+            String masterHexEncodedPublicKey = PromiseUtil.timeout(LokiDeviceLinkUtilities.INSTANCE.getMasterHexEncodedPublicKey(content.getSender()), 5000).get();
+            if (masterHexEncodedPublicKey != null) {
+              senderHexEncodedPublicKey = masterHexEncodedPublicKey;
+            }
+          } catch (Exception e) {
+            e.printStackTrace();
+          }
+
+          Recipient senderMasterAddress = Recipient.from(context, Address.fromSerialized(senderHexEncodedPublicKey), false);
+
+          isGroupMember = groupId.isPresent() && groupDatabase.getGroupMembers(groupId.get(), true).contains(senderMasterAddress);
+        }
+
+        return (isContentMessage && !isGroupActive) || (sender.isBlocked() && !isLeaveMessage) || (isContentMessage && !isGroupMember);
       } else {
         return sender.isBlocked();
       }

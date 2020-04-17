@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.loki.JazzIdenticonDrawable
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 
 // TODO: Look into a better way of handling different sizes. Maybe an enum (with associated values) encapsulating the different modes?
 
@@ -60,12 +61,15 @@ class ProfilePictureView : RelativeLayout {
         fun setProfilePictureIfNeeded(imageView: ImageView, hexEncodedPublicKey: String, @DimenRes sizeID: Int) {
             glide.clear(imageView)
             if (hexEncodedPublicKey.isNotEmpty()) {
-                val signalProfilePicture = Recipient.from(context, Address.fromSerialized(hexEncodedPublicKey), false).contactPhoto
+                val recipient = Recipient.from(context, Address.fromSerialized(hexEncodedPublicKey), false);
+                val signalProfilePicture = recipient.contactPhoto
                 if (signalProfilePicture != null && (signalProfilePicture as? ProfileContactPhoto)?.avatarObject != "0" && (signalProfilePicture as? ProfileContactPhoto)?.avatarObject != "") {
                     glide.load(signalProfilePicture).diskCacheStrategy(DiskCacheStrategy.ALL).circleCrop().into(imageView)
                 } else {
                     val size = resources.getDimensionPixelSize(sizeID)
-                    val jazzIcon = JazzIdenticonDrawable(size, size, hexEncodedPublicKey)
+                    val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
+                    val hepk = if (recipient.isLocalNumber && masterHexEncodedPublicKey != null) masterHexEncodedPublicKey else hexEncodedPublicKey
+                    val jazzIcon = JazzIdenticonDrawable(size, size, hepk)
                     glide.load(jazzIcon).diskCacheStrategy(DiskCacheStrategy.ALL).circleCrop().into(imageView)
                 }
             } else {

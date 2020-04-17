@@ -26,7 +26,7 @@ import org.whispersystems.curve25519.Curve25519
 import org.whispersystems.libsignal.ecc.Curve
 import org.whispersystems.libsignal.ecc.ECKeyPair
 import org.whispersystems.libsignal.util.KeyHelper
-import org.whispersystems.signalservice.loki.api.DeviceLink
+import org.whispersystems.signalservice.loki.api.multidevice.DeviceLink
 import org.whispersystems.signalservice.loki.utilities.hexEncodedPublicKey
 import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
 
