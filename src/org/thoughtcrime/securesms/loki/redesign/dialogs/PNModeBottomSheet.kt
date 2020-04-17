@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.loki.redesign.dialogs
 
+import android.app.AlertDialog
 import android.content.DialogInterface
 import android.graphics.drawable.TransitionDrawable
 import android.os.Bundle
@@ -31,7 +32,7 @@ class PNModeBottomSheet : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         fcmOptionView.setOnClickListener { toggleFCM() }
         backgroundPollingOptionView.setOnClickListener { toggleBackgroundPolling() }
-        confirmButton.setOnClickListener { onConfirmTapped?.invoke(selectedOptionView == fcmOptionView) }
+        confirmButton.setOnClickListener { confirm() }
         skipButton.setOnClickListener { onSkipTapped?.invoke() }
     }
 
@@ -84,4 +85,16 @@ class PNModeBottomSheet : BottomSheetDialogFragment() {
             }
         }
     }
+
+    private fun confirm() {
+        if (selectedOptionView == null) {
+            val dialog = AlertDialog.Builder(context)
+            dialog.setTitle(R.string.sheet_pn_mode_no_option_picked_dialog_title)
+            dialog.setPositiveButton(R.string.ok) { _, _ -> }
+            dialog.create().show()
+            return
+        }
+        onConfirmTapped?.invoke(selectedOptionView == fcmOptionView)
+    }
+    // endregion
 }

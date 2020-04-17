@@ -83,7 +83,7 @@ class PNModeActivity : BaseActionBarActivity() {
     private fun register() {
         if (selectedOptionView == null) {
             val dialog = AlertDialog.Builder(this)
-            dialog.setMessage(R.string.activity_pn_mode_no_option_picked_dialog_title)
+            dialog.setTitle(R.string.activity_pn_mode_no_option_picked_dialog_title)
             dialog.setPositiveButton(R.string.ok) { _, _ -> }
             dialog.create().show()
             return
