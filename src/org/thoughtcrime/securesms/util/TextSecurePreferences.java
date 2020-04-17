@@ -189,6 +189,7 @@ public class TextSecurePreferences {
   private static final String IS_USING_FCM = "pref_is_using_fcm";
   private static final String FCM_TOKEN = "pref_fcm_token";
   private static final String LAST_FCM_TOKEN_UPLOAD_TIME = "pref_last_fcm_token_upload_time";
+  private static final String HAS_SEEN_PN_MODE_SHEET = "pref_has_seen_pn_mode_sheet";
 
   public static boolean isUsingFCM(Context context) {
     return getBooleanPreference(context, IS_USING_FCM, false);
@@ -212,6 +213,14 @@ public class TextSecurePreferences {
 
   public static void setLastFCMUploadTime(Context context, long value) {
     setLongPreference(context, LAST_FCM_TOKEN_UPLOAD_TIME, value);
+  }
+
+  public static boolean hasSeenPNModeSheet(Context context) {
+    return getBooleanPreference(context, HAS_SEEN_PN_MODE_SHEET, false);
+  }
+
+  public static void setHasSeenPNModeSheet(Context context, boolean value) {
+    setBooleanPreference(context, HAS_SEEN_PN_MODE_SHEET, value);
   }
   // endregion
 

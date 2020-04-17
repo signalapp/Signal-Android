@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.loki.redesign.dialogs
 
+import android.content.DialogInterface
 import android.graphics.drawable.TransitionDrawable
 import android.os.Bundle
 import android.support.annotation.DrawableRes
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.fragment_pn_mode_bottom_sheet.*
 import network.loki.messenger.R
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 
 class PNModeBottomSheet : BottomSheetDialogFragment() {
     private var selectedOptionView: LinearLayout? = null
@@ -31,6 +33,11 @@ class PNModeBottomSheet : BottomSheetDialogFragment() {
         backgroundPollingOptionView.setOnClickListener { toggleBackgroundPolling() }
         confirmButton.setOnClickListener { onConfirmTapped?.invoke(selectedOptionView == fcmOptionView) }
         skipButton.setOnClickListener { onSkipTapped?.invoke() }
+    }
+
+    override fun onDismiss(dialog: DialogInterface?) {
+        TextSecurePreferences.setHasSeenPNModeSheet(context, true)
+        super.onDismiss(dialog)
     }
 
     // region Animation

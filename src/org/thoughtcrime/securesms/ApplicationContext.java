@@ -205,7 +205,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     // Loki - Set up public chat manager
     lokiPublicChatManager = new LokiPublicChatManager(this);
     updatePublicChatProfilePictureIfNeeded();
-    setUpFCMIfNeeded();
+    registerForFCMIfNeeded();
   }
 
   @Override
@@ -462,7 +462,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     }, this);
   }
 
-  public void setUpFCMIfNeeded() {
+  public void registerForFCMIfNeeded() {
     Context context = this;
     FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(task -> {
       if (!task.isSuccessful()) {
@@ -471,7 +471,12 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       }
       String token = task.getResult().getToken();
       String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context);
-      LokiPushNotificationManager.register(token, userHexEncodedPublicKey, context);
+      if (userHexEncodedPublicKey == null) return;
+      if (TextSecurePreferences.isUsingFCM(this)) {
+        LokiPushNotificationManager.register(token, userHexEncodedPublicKey, context);
+      } else {
+        LokiPushNotificationManager.unregister(token, context);
+      }
     });
   }
 
