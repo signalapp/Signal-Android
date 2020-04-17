@@ -23,16 +23,14 @@ class DisplayNameActivity : BaseActionBarActivity() {
         setContentView(R.layout.activity_display_name)
         displayNameEditText.imeOptions = displayNameEditText.imeOptions or 16777216 // Always use incognito keyboard
         displayNameEditText.setOnEditorActionListener(
-                OnEditorActionListener { _, actionId, event ->
-                    // Handle validation from keyboard to trigger registration
-                    if (actionId == EditorInfo.IME_ACTION_SEARCH ||
-                            actionId == EditorInfo.IME_ACTION_DONE ||
-                            (event.action === KeyEvent.ACTION_DOWN
-                                    && event.keyCode === KeyEvent.KEYCODE_ENTER)) {
-                        this.register();
+                OnEditorActionListener { _, actionID, event ->
+                    if (actionID == EditorInfo.IME_ACTION_SEARCH ||
+                        actionID == EditorInfo.IME_ACTION_DONE ||
+                       (event.action == KeyEvent.ACTION_DOWN &&
+                        event.keyCode == KeyEvent.KEYCODE_ENTER)) {
+                        this.register()
                         return@OnEditorActionListener true
                     }
-                    // Return true if you have consumed the action, else false.
                     false
                 })
         registerButton.setOnClickListener { register() }
