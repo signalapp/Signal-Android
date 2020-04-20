@@ -69,8 +69,8 @@ import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.redesign.messaging.BackgroundOpenGroupPollWorker;
 import org.thoughtcrime.securesms.loki.redesign.messaging.BackgroundPollWorker;
 import org.thoughtcrime.securesms.loki.redesign.messaging.LokiAPIDatabase;
-import org.thoughtcrime.securesms.loki.redesign.messaging.LokiRSSFeedPoller;
 import org.thoughtcrime.securesms.loki.redesign.messaging.LokiUserDatabase;
+import org.thoughtcrime.securesms.loki.redesign.shelved.LokiRSSFeedPoller;
 import org.thoughtcrime.securesms.loki.redesign.utilities.Broadcaster;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
@@ -111,7 +111,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.security.SecureRandom;
 import java.security.Security;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -534,8 +533,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   public void createRSSFeedsIfNeeded() {
+    return;
+    /*
     ArrayList<LokiRSSFeed> feeds = new ArrayList<>();
-//    feeds.add(lokiNewsFeed());
+    feeds.add(lokiNewsFeed());
     feeds.add(lokiMessengerUpdatesFeed());
     for (LokiRSSFeed feed : feeds) {
       boolean isFeedSetUp = TextSecurePreferences.isChatSetUp(this, feed.getId());
@@ -544,9 +545,12 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         TextSecurePreferences.markChatSetUp(this, feed.getId());
       }
     }
+     */
   }
 
   private void createRSSFeedPollersIfNeeded() {
+    return;
+    /*
     // Only create the RSS feed pollers if their threads aren't deleted
     LokiRSSFeed lokiNewsFeed = lokiNewsFeed();
     long lokiNewsFeedThreadID = GroupManager.getRSSFeedThreadId(lokiNewsFeed.getId(), this);
@@ -562,6 +566,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     if (lokiMessengerUpdatesFeedPoller == null) {
       lokiMessengerUpdatesFeedPoller = new LokiRSSFeedPoller(this, lokiMessengerUpdatesFeed());
     }
+     */
   }
 
   private void setUpThreadDeletionListeners(long threadID, Runnable onDelete) {
@@ -586,9 +591,12 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   public void startRSSFeedPollersIfNeeded() {
+    return;
+    /*
     createRSSFeedPollersIfNeeded();
     if (lokiNewsFeedPoller != null) lokiNewsFeedPoller.startIfNeeded();
     if (lokiMessengerUpdatesFeedPoller != null) lokiMessengerUpdatesFeedPoller.startIfNeeded();
+     */
   }
 
   private void resubmitProfilePictureIfNeeded() {
