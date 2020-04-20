@@ -73,6 +73,32 @@
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true" />
 
+        <LinearLayout
+            android:id="@+id/emptyStateContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="32dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/medium_font_size"
+                android:textColor="@color/text"
+                android:text="You don't have any contacts yet" />
+
+            <Button
+                style="@style/MediumProminentOutlineButton"
+                android:id="@+id/createNewPrivateChatButton"
+                android:layout_width="196dp"
+                android:layout_height="@dimen/medium_button_height"
+                android:layout_marginTop="@dimen/medium_spacing"
+                android:text="Start a Session" />
+
+        </LinearLayout>
+
     </RelativeLayout>
 
 </LinearLayout>

@@ -112,6 +112,8 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         recyclerView.adapter = homeAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         ItemTouchHelper(SwipeCallback(this)).attachToRecyclerView(recyclerView)
+        // Set up empty state view
+        createNewPrivateChatButton.setOnClickListener { createNewPrivateChat() }
         // This is a workaround for the fact that CursorRecyclerViewAdapter doesn't actually auto-update (even though it says it will)
         LoaderManager.getInstance(this).restartLoader(0, null, object : LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -121,6 +123,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
 
             override fun onLoadFinished(loader: Loader<Cursor>, cursor: Cursor?) {
                 homeAdapter.changeCursor(cursor)
+                updateEmptyState()
             }
 
             override fun onLoaderReset(cursor: Loader<Cursor>) {
@@ -181,6 +184,14 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
     }
     // endregion
 
+    // region Updating
+    private fun updateEmptyState() {
+        val threadCount = (recyclerView.adapter as HomeAdapter).itemCount
+        emptyStateContainer.visibility = if (threadCount == 0) View.VISIBLE else View.GONE
+    }
+    // endregion
+
+    // region Interaction
     override fun handleSeedReminderViewContinueButtonTapped() {
         val intent = Intent(this, SeedActivity::class.java)
         show(intent)
