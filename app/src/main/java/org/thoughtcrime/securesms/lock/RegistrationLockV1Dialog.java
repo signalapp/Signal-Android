@@ -72,7 +72,7 @@ public final class RegistrationLockV1Dialog {
   }
 
   private static void showLegacyPinReminder(@NonNull Context context) {
-    AlertDialog dialog = new AlertDialog.Builder(context, ThemeUtil.isDarkTheme(context) ? R.style.RationaleDialogDark : R.style.RationaleDialogLight)
+    AlertDialog dialog = new AlertDialog.Builder(context, ThemeUtil.isDarkTheme(context) ? R.style.Theme_Signal_AlertDialog_Dark_Cornered : R.style.Theme_Signal_AlertDialog_Light_Cornered)
                                         .setView(R.layout.registration_lock_reminder_view)
                                         .setCancelable(true)
                                         .setOnCancelListener(d -> RegistrationLockReminders.scheduleReminder(context, false))

@@ -696,19 +696,19 @@
         <item name="colorControlNormal">@color/core_white</item>
     </style>
 
-    <style name="RationaleDialogLight" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <style name="Theme.Signal.AlertDialog.Light.Cornered" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowBackground">@drawable/dialog_corners_light</item>
     </style>
 
-    <style name="RationaleDialogDark" parent="Theme.AppCompat.Dialog.Alert">
+    <style name="Theme.Signal.AlertDialog.Dark.Cornered" parent="Theme.AppCompat.Dialog.Alert">
         <item name="android:windowBackground">@drawable/dialog_corners_dark</item>
     </style>
 
-    <style name="RationaleDialogLight.SignalAccent">
+    <style name="Theme.Signal.AlertDialog.Light.Cornered.ColoredAccent">
         <item name="colorAccent">@color/core_ultramarine</item>
     </style>
 
-    <style name="RationaleDialogDark.SignalAccent">
+    <style name="Theme.Signal.AlertDialog.Dark.Cornered.ColoredAccent">
         <item name="colorAccent">@color/core_ultramarine_light</item>
     </style>
 

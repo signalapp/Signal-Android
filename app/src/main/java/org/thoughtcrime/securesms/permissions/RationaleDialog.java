@@ -54,7 +54,7 @@ public class RationaleDialog {
 
     text.setText(message);
 
-    return new AlertDialog.Builder(context, ThemeUtil.isDarkTheme(context) ? R.style.RationaleDialogDark : R.style.RationaleDialogLight)
+    return new AlertDialog.Builder(context, ThemeUtil.isDarkTheme(context) ? R.style.Theme_Signal_AlertDialog_Dark_Cornered : R.style.Theme_Signal_AlertDialog_Light_Cornered)
                           .setView(view);
   }
 

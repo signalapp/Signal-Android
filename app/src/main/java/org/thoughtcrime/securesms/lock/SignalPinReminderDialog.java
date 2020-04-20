@@ -44,7 +44,7 @@ public final class SignalPinReminderDialog {
   public static void show(@NonNull Context context, @NonNull Launcher launcher, @NonNull Callback mainCallback) {
     Log.i(TAG, "Showing PIN reminder dialog.");
 
-    AlertDialog dialog = new AlertDialog.Builder(context, ThemeUtil.isDarkTheme(context) ? R.style.RationaleDialogDark_SignalAccent : R.style.RationaleDialogLight_SignalAccent)
+    AlertDialog dialog = new AlertDialog.Builder(context, ThemeUtil.isDarkTheme(context) ? R.style.Theme_Signal_AlertDialog_Dark_Cornered_ColoredAccent : R.style.Theme_Signal_AlertDialog_Light_Cornered_ColoredAccent)
                                         .setView(R.layout.kbs_pin_reminder_view)
                                         .setCancelable(false)
                                         .setOnCancelListener(d -> RegistrationLockReminders.scheduleReminder(context, false))
