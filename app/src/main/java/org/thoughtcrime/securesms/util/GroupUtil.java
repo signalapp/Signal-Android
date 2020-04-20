@@ -18,7 +18,10 @@ import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
+import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupContext;
+import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
@@ -104,6 +107,24 @@ public final class GroupUtil {
       Log.w(TAG, e);
       return new GroupDescription(context, null);
     }
+  }
+
+  @WorkerThread
+  public static void setDataMessageGroupContext(@NonNull Context context,
+                                                @NonNull SignalServiceDataMessage.Builder dataMessageBuilder,
+                                                @NonNull GroupId.Push groupId)
+  {
+    if (groupId.isV2()) {
+        GroupDatabase                   groupDatabase     = DatabaseFactory.getGroupDatabase(context);
+        GroupDatabase.GroupRecord       groupRecord       = groupDatabase.requireGroup(groupId);
+        GroupDatabase.V2GroupProperties v2GroupProperties = groupRecord.requireV2GroupProperties();
+        SignalServiceGroupV2            group             = SignalServiceGroupV2.newBuilder(v2GroupProperties.getGroupMasterKey())
+                                                                                .withRevision(v2GroupProperties.getGroupRevision())
+                                                                                .build();
+        dataMessageBuilder.asGroupMessage(group);
+      } else {
+        dataMessageBuilder.asGroupMessage(new SignalServiceGroup(groupId.getDecodedId()));
+      }
   }
 
   public static class GroupDescription {

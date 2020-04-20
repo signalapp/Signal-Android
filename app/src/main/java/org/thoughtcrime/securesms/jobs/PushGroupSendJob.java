@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
@@ -248,7 +249,7 @@ public class PushGroupSendJob extends PushSendJob {
     rotateSenderCertificateIfNecessary();
 
     SignalServiceMessageSender                 messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
-    GroupId                                    groupId            = groupRecipient.requireGroupId();
+    GroupId.Push                               groupId            = groupRecipient.requireGroupId().requirePush();
     Optional<byte[]>                           profileKey         = getProfileKey(groupRecipient);
     Optional<Quote>                            quote              = getQuoteFor(message);
     Optional<SignalServiceDataMessage.Sticker> sticker            = getStickerFor(message);
@@ -308,17 +309,7 @@ public class PushGroupSendJob extends PushSendJob {
       SignalServiceDataMessage.Builder builder = SignalServiceDataMessage.newBuilder()
                                                                          .withTimestamp(message.getSentTimeMillis());
 
-      if (groupId.isV2()) {
-        GroupDatabase                   groupDatabase     = DatabaseFactory.getGroupDatabase(context);
-        GroupDatabase.GroupRecord       groupRecord       = groupDatabase.requireGroup(groupId);
-        GroupDatabase.V2GroupProperties v2GroupProperties = groupRecord.requireV2GroupProperties();
-        SignalServiceGroupV2            group             = SignalServiceGroupV2.newBuilder(v2GroupProperties.getGroupMasterKey())
-                                                                                .withRevision(v2GroupProperties.getGroupRevision())
-                                                                                .build();
-        builder.asGroupMessage(group);
-      } else {
-        builder.asGroupMessage(new SignalServiceGroup(groupId.getDecodedId()));
-      }
+      GroupUtil.setDataMessageGroupContext(context, builder, groupId);
 
       SignalServiceDataMessage groupMessage = builder.withAttachments(attachmentPointers)
                                                      .withBody(message.getBody())
