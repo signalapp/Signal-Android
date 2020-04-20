@@ -166,7 +166,7 @@ public class LeaveGroupJob extends BaseJob {
   public static class Factory implements Job.Factory<LeaveGroupJob> {
     @Override
     public @NonNull LeaveGroupJob create(@NonNull Parameters parameters, @NonNull Data data) {
-      return new LeaveGroupJob(GroupId.v1(Base64.decodeOrThrow(data.getString(KEY_GROUP_ID))),
+      return new LeaveGroupJob(GroupId.v1orThrow(Base64.decodeOrThrow(data.getString(KEY_GROUP_ID))),
                                data.getString(KEY_GROUP_NAME),
                                RecipientId.fromSerializedList(data.getString(KEY_MEMBERS)),
                                RecipientId.fromSerializedList(data.getString(KEY_RECIPIENTS)),

@@ -96,7 +96,7 @@ public class IncomingTextMessage implements Parcelable {
     this.pseudoSubject         = in.readString();
     this.sentTimestampMillis   = in.readLong();
     this.serverTimestampMillis = in.readLong();
-    this.groupId               = GroupId.parseNullable(in.readString());
+    this.groupId               = GroupId.parseNullableOrThrow(in.readString());
     this.push                  = (in.readInt() == 1);
     this.subscriptionId        = in.readInt();
     this.expiresInMillis       = in.readLong();

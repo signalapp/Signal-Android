@@ -211,7 +211,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeExistingGroup() {
-    final GroupId groupId = GroupId.parseNullable(getIntent().getStringExtra(GROUP_ID_EXTRA));
+    final GroupId groupId = GroupId.parseNullableOrThrow(getIntent().getStringExtra(GROUP_ID_EXTRA));
 
     if (groupId != null) {
       new FillExistingGroupInfoAsyncTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, groupId);

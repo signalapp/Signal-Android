@@ -29,6 +29,8 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.groups.BadGroupIdException;
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -226,14 +228,23 @@ public final class PushDecryptMessageJob extends BaseJob {
     }
   }
 
-  private static PushProcessMessageJob.ExceptionMetadata toExceptionMetadata(@NonNull UnsupportedDataMessageException e) throws NoSenderException {
+  private static PushProcessMessageJob.ExceptionMetadata toExceptionMetadata(@NonNull UnsupportedDataMessageException e)
+      throws NoSenderException
+  {
     String sender = e.getSender();
 
     if (sender == null) throw new NoSenderException();
 
+    GroupId groupId = null;
+    try {
+      groupId = GroupUtil.idFromGroupContext(e.getGroup().orNull());
+    } catch (BadGroupIdException ex) {
+      Log.w(TAG, "Bad group id found in unsupported data message", ex);
+    }
+
     return new PushProcessMessageJob.ExceptionMetadata(sender,
                                                        e.getSenderDevice(),
-                                                       e.getGroup().transform(GroupUtil::idFromGroupContext).orNull());
+                                                       groupId);
   }
 
   private static PushProcessMessageJob.ExceptionMetadata toExceptionMetadata(@NonNull ProtocolException e) throws NoSenderException {

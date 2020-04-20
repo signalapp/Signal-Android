@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.groups.BadGroupIdException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupV1MessageProcessor;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -342,6 +343,8 @@ public final class PushProcessMessageJob extends BaseJob {
     } catch (StorageFailedException e) {
       Log.w(TAG, e);
       handleCorruptMessage(e.getSender(), e.getSenderDevice(), timestamp, smsMessageId);
+    } catch (BadGroupIdException e) {
+      Log.w(TAG, "Ignoring message with bad group id", e);
     }
   }
 
@@ -518,6 +521,7 @@ public final class PushProcessMessageJob extends BaseJob {
   }
 
   private long handleSynchronizeSentEndSessionMessage(@NonNull SentTranscriptMessage message)
+      throws BadGroupIdException
   {
     SmsDatabase               database                  = DatabaseFactory.getSmsDatabase(context);
     Recipient                 recipient                 = getSyncMessageDestination(message);
@@ -544,7 +548,7 @@ public final class PushProcessMessageJob extends BaseJob {
   private void handleGroupV1Message(@NonNull SignalServiceContent content,
                                     @NonNull SignalServiceDataMessage message,
                                     @NonNull Optional<Long> smsMessageId)
-      throws StorageFailedException
+      throws StorageFailedException, BadGroupIdException
   {
     GroupV1MessageProcessor.process(context, content, message, false);
 
@@ -559,6 +563,7 @@ public final class PushProcessMessageJob extends BaseJob {
 
   private void handleUnknownGroupMessage(@NonNull SignalServiceContent content,
                                          @NonNull SignalServiceGroupContext group)
+      throws BadGroupIdException
   {
     if (group.getGroupV1().isPresent()) {
       SignalServiceGroup groupV1 = group.getGroupV1().get();
@@ -575,7 +580,7 @@ public final class PushProcessMessageJob extends BaseJob {
   private void handleExpirationUpdate(@NonNull SignalServiceContent content,
                                       @NonNull SignalServiceDataMessage message,
                                       @NonNull Optional<Long> smsMessageId)
-      throws StorageFailedException
+      throws StorageFailedException, BadGroupIdException
   {
     try {
       MmsDatabase          database     = DatabaseFactory.getMmsDatabase(context);
@@ -717,7 +722,9 @@ public final class PushProcessMessageJob extends BaseJob {
     }
   }
 
-  private void handleSynchronizeMessageRequestResponse(@NonNull MessageRequestResponseMessage response) {
+  private void handleSynchronizeMessageRequestResponse(@NonNull MessageRequestResponseMessage response)
+      throws BadGroupIdException
+  {
     RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
     ThreadDatabase    threadDatabase    = DatabaseFactory.getThreadDatabase(context);
 
@@ -761,8 +768,7 @@ public final class PushProcessMessageJob extends BaseJob {
 
   private void handleSynchronizeSentMessage(@NonNull SignalServiceContent content,
                                             @NonNull SentTranscriptMessage message)
-      throws StorageFailedException
-
+      throws StorageFailedException, BadGroupIdException
   {
     try {
       GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
@@ -880,7 +886,7 @@ public final class PushProcessMessageJob extends BaseJob {
   private void handleMediaMessage(@NonNull SignalServiceContent content,
                                   @NonNull SignalServiceDataMessage message,
                                   @NonNull Optional<Long> smsMessageId)
-      throws StorageFailedException
+      throws StorageFailedException, BadGroupIdException
   {
     notifyTypingStoppedFromIncomingMessage(getMessageDestination(content, message), content.getSender(), content.getSenderDevice());
 
@@ -944,7 +950,9 @@ public final class PushProcessMessageJob extends BaseJob {
     }
   }
 
-  private long handleSynchronizeSentExpirationUpdate(@NonNull SentTranscriptMessage message) throws MmsException {
+  private long handleSynchronizeSentExpirationUpdate(@NonNull SentTranscriptMessage message)
+      throws MmsException, BadGroupIdException
+  {
     MmsDatabase database   = DatabaseFactory.getMmsDatabase(context);
     Recipient   recipient  = getSyncMessageDestination(message);
 
@@ -963,7 +971,7 @@ public final class PushProcessMessageJob extends BaseJob {
   }
 
   private long handleSynchronizeSentMediaMessage(@NonNull SentTranscriptMessage message)
-      throws MmsException
+      throws MmsException, BadGroupIdException
   {
     MmsDatabase                 database        = DatabaseFactory.getMmsDatabase(context);
     Recipient                   recipients      = getSyncMessageDestination(message);
@@ -1042,7 +1050,9 @@ public final class PushProcessMessageJob extends BaseJob {
     return threadId;
   }
 
-  private void handleGroupRecipientUpdate(@NonNull SentTranscriptMessage message) {
+  private void handleGroupRecipientUpdate(@NonNull SentTranscriptMessage message)
+      throws BadGroupIdException
+  {
     Recipient recipient = getSyncMessageDestination(message);
 
     if (!recipient.isGroup()) {
@@ -1091,7 +1101,7 @@ public final class PushProcessMessageJob extends BaseJob {
                                  @NonNull SignalServiceDataMessage message,
                                  @NonNull Optional<Long> smsMessageId,
                                  @NonNull Optional<GroupId> groupId)
-      throws StorageFailedException
+      throws StorageFailedException, BadGroupIdException
   {
     SmsDatabase database  = DatabaseFactory.getSmsDatabase(context);
     String      body      = message.getBody().isPresent() ? message.getBody().get() : "";
@@ -1132,7 +1142,7 @@ public final class PushProcessMessageJob extends BaseJob {
   }
 
   private long handleSynchronizeSentTextMessage(@NonNull SentTranscriptMessage message)
-      throws MmsException
+      throws MmsException, BadGroupIdException
   {
     Recipient recipient       = getSyncMessageDestination(message);
     String    body            = message.getMessage().getBody().or("");
@@ -1361,6 +1371,7 @@ public final class PushProcessMessageJob extends BaseJob {
 
   private void handleTypingMessage(@NonNull SignalServiceContent content,
                                    @NonNull SignalServiceTypingMessage typingMessage)
+      throws BadGroupIdException
   {
     if (!TextSecurePreferences.isTypingIndicatorsEnabled(context)) {
       return;
@@ -1554,20 +1565,28 @@ public final class PushProcessMessageJob extends BaseJob {
     return database.insertMessageInbox(textMessage);
   }
 
-  private Recipient getSyncMessageDestination(@NonNull SentTranscriptMessage message) {
+  private Recipient getSyncMessageDestination(@NonNull SentTranscriptMessage message)
+      throws BadGroupIdException
+  {
     return getGroupRecipient(message.getMessage().getGroupContext())
            .or(() -> Recipient.externalPush(context, message.getDestination().get()));
   }
 
   private Recipient getMessageDestination(@NonNull SignalServiceContent content,
                                           @NonNull SignalServiceDataMessage message)
+      throws BadGroupIdException
   {
     return getGroupRecipient(message.getGroupContext())
            .or(() -> Recipient.externalPush(context, content.getSender()));
   }
 
-  private Optional<Recipient> getGroupRecipient(Optional<SignalServiceGroupContext> message) {
-    return message.transform(groupContext -> Recipient.externalGroup(context, GroupUtil.idFromGroupContext(groupContext)));
+  private Optional<Recipient> getGroupRecipient(Optional<SignalServiceGroupContext> message)
+      throws BadGroupIdException
+  {
+    if (message.isPresent()) {
+      return Optional.of(Recipient.externalGroup(context, GroupUtil.idFromGroupContext(message.get())));
+    }
+    return Optional.absent();
   }
 
   private void notifyTypingStoppedFromIncomingMessage(@NonNull Recipient conversationRecipient, @NonNull SignalServiceAddress sender, int device) {
@@ -1580,7 +1599,9 @@ public final class PushProcessMessageJob extends BaseJob {
     }
   }
 
-  private boolean shouldIgnore(@Nullable SignalServiceContent content) {
+  private boolean shouldIgnore(@Nullable SignalServiceContent content)
+      throws BadGroupIdException
+  {
     if (content == null) {
       Log.w(TAG, "Got a message with null content.");
       return true;
@@ -1596,7 +1617,7 @@ public final class PushProcessMessageJob extends BaseJob {
         return true;
       } else if (conversation.isGroup()) {
         GroupDatabase     groupDatabase = DatabaseFactory.getGroupDatabase(context);
-        Optional<GroupId> groupId       = message.getGroupContext().transform(GroupUtil::idFromGroupContext);
+        Optional<GroupId> groupId       = GroupUtil.idFromGroupContext(message.getGroupContext());
 
         if (groupId.isPresent() && groupDatabase.isUnknownGroup(groupId.get())) {
           return false;
@@ -1694,7 +1715,7 @@ public final class PushProcessMessageJob extends BaseJob {
         } else {
           ExceptionMetadata exceptionMetadata = new ExceptionMetadata(data.getString(KEY_EXCEPTION_SENDER),
                                                                       data.getInt(KEY_EXCEPTION_DEVICE),
-                                                                      GroupId.parseNullable(data.getStringOrDefault(KEY_EXCEPTION_GROUP_ID, null)));
+                                                                      GroupId.parseNullableOrThrow(data.getStringOrDefault(KEY_EXCEPTION_GROUP_ID, null)));
 
           return new PushProcessMessageJob(parameters,
                                            state,

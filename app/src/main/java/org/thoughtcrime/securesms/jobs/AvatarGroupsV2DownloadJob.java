@@ -124,7 +124,7 @@ public final class AvatarGroupsV2DownloadJob extends BaseJob {
     @Override
     public @NonNull AvatarGroupsV2DownloadJob create(@NonNull Parameters parameters, @NonNull Data data) {
       return new AvatarGroupsV2DownloadJob(parameters,
-                                           GroupId.parse(data.getString(KEY_GROUP_ID)).requireV2(),
+                                           GroupId.parseOrThrow(data.getString(KEY_GROUP_ID)).requireV2(),
                                            data.getString(CDN_KEY));
     }
   }

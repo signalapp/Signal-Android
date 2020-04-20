@@ -25,7 +25,6 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
@@ -186,7 +185,7 @@ public final class GroupDatabase extends Database {
                                                                null, null, null);
     try {
       if (cursor != null && cursor.moveToNext()) {
-        return GroupId.parse(cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID)))
+        return GroupId.parseOrThrow(cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID)))
                       .requireMms();
       } else {
         GroupId.Mms groupId = GroupId.createMms(new SecureRandom());
@@ -519,7 +518,7 @@ public final class GroupDatabase extends Database {
         return null;
       }
 
-      return new GroupRecord(GroupId.parse(cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID))),
+      return new GroupRecord(GroupId.parseOrThrow(cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID))),
                              RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT_ID))),
                              cursor.getString(cursor.getColumnIndexOrThrow(TITLE)),
                              cursor.getString(cursor.getColumnIndexOrThrow(MEMBERS)),

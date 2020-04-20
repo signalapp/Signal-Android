@@ -99,7 +99,7 @@ public class RequestGroupInfoJob extends BaseJob {
     public @NonNull RequestGroupInfoJob create(@NonNull Parameters parameters, @NonNull Data data) {
       return new RequestGroupInfoJob(parameters,
                                      RecipientId.from(data.getString(KEY_SOURCE)),
-                                     GroupId.parse(data.getString(KEY_GROUP_ID)));
+                                     GroupId.parseOrThrow(data.getString(KEY_GROUP_ID)));
     }
   }
 }

@@ -113,7 +113,7 @@ public final class AvatarGroupsV1DownloadJob extends BaseJob {
   public static final class Factory implements Job.Factory<AvatarGroupsV1DownloadJob> {
     @Override
     public @NonNull AvatarGroupsV1DownloadJob create(@NonNull Parameters parameters, @NonNull Data data) {
-      return new AvatarGroupsV1DownloadJob(parameters, GroupId.parse(data.getString(KEY_GROUP_ID)).requireV1());
+      return new AvatarGroupsV1DownloadJob(parameters, GroupId.parseOrThrow(data.getString(KEY_GROUP_ID)).requireV1());
     }
   }
 }

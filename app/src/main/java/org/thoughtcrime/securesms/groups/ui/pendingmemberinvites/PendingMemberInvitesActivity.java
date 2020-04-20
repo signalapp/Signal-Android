@@ -37,7 +37,7 @@ public class PendingMemberInvitesActivity extends PassphraseRequiredActionBarAct
 
     if (savedInstanceState == null) {
       getSupportFragmentManager().beginTransaction()
-                                 .replace(R.id.container, PendingMemberInvitesFragment.newInstance(GroupId.parse(getIntent().getStringExtra(GROUP_ID)).requireV2()))
+                                 .replace(R.id.container, PendingMemberInvitesFragment.newInstance(GroupId.parseOrThrow(getIntent().getStringExtra(GROUP_ID)).requireV2()))
                                  .commitNow();
     }
 

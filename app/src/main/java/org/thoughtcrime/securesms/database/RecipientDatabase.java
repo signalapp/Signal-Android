@@ -561,7 +561,7 @@ public class RecipientDatabase extends Database {
       for (SignalGroupV1Record insert : groupV1Inserts) {
         db.insertOrThrow(TABLE_NAME, null, getValuesForStorageGroupV1(insert));
 
-        Recipient recipient = Recipient.externalGroup(context, GroupId.v1(insert.getGroupId()));
+        Recipient recipient = Recipient.externalGroup(context, GroupId.v1orThrow(insert.getGroupId()));
 
         threadDatabase.setArchived(recipient.getId(), insert.isArchived());
         recipient.live().refresh();
@@ -575,7 +575,7 @@ public class RecipientDatabase extends Database {
           throw new AssertionError("Had an update, but it didn't match any rows!");
         }
 
-        Recipient recipient = Recipient.externalGroup(context, GroupId.v1(update.getOld().getGroupId()));
+        Recipient recipient = Recipient.externalGroup(context, GroupId.v1orThrow(update.getOld().getGroupId()));
 
         threadDatabase.setArchived(recipient.getId(), update.getNew().isArchived());
         recipient.live().refresh();
@@ -670,7 +670,7 @@ public class RecipientDatabase extends Database {
 
   private static @NonNull ContentValues getValuesForStorageGroupV1(@NonNull SignalGroupV1Record groupV1) {
     ContentValues values = new ContentValues();
-    values.put(GROUP_ID, GroupId.v1(groupV1.getGroupId()).toString());
+    values.put(GROUP_ID, GroupId.v1orThrow(groupV1.getGroupId()).toString());
     values.put(GROUP_TYPE, GroupType.SIGNAL_V1.getId());
     values.put(PROFILE_SHARING, groupV1.isProfileSharingEnabled() ? "1" : "0");
     values.put(BLOCKED, groupV1.isBlocked() ? "1" : "0");
@@ -733,7 +733,7 @@ public class RecipientDatabase extends Database {
     String  username                   = cursor.getString(cursor.getColumnIndexOrThrow(USERNAME));
     String  e164                       = cursor.getString(cursor.getColumnIndexOrThrow(PHONE));
     String  email                      = cursor.getString(cursor.getColumnIndexOrThrow(EMAIL));
-    GroupId groupId                    = GroupId.parseNullable(cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID)));
+    GroupId groupId                    = GroupId.parseNullableOrThrow(cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID)));
     int     groupType                  = cursor.getInt(cursor.getColumnIndexOrThrow(GROUP_TYPE));
     boolean blocked                    = cursor.getInt(cursor.getColumnIndexOrThrow(BLOCKED))                == 1;
     String  messageRingtone            = cursor.getString(cursor.getColumnIndexOrThrow(MESSAGE_RINGTONE));
@@ -1406,7 +1406,7 @@ public class RecipientDatabase extends Database {
         db.update(TABLE_NAME, setBlocked, UUID + " = ?", new String[] { uuid });
       }
 
-      List<GroupId.V1> groupIdStrings = Stream.of(groupIds).map(GroupId::v1).toList();
+      List<GroupId.V1> groupIdStrings = Stream.of(groupIds).map(GroupId::v1orThrow).toList();
 
       for (GroupId.V1 groupId : groupIdStrings) {
         db.update(TABLE_NAME, setBlocked, GROUP_ID + " = ?", new String[] { groupId.toString() });

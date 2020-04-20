@@ -30,30 +30,46 @@ public abstract class GroupId {
     return new GroupId.Mms(mmsGroupIdBytes);
   }
 
-  public static @NonNull GroupId.V1 v1(byte[] gv1GroupIdBytes) {
+  public static @NonNull GroupId.V1 v1orThrow(byte[] gv1GroupIdBytes) {
+    try {
+      return v1(gv1GroupIdBytes);
+    } catch (BadGroupIdException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  public static @NonNull GroupId.V1 v1(byte[] gv1GroupIdBytes) throws BadGroupIdException {
     if (gv1GroupIdBytes.length == V2_BYTE_LENGTH) {
-      throw new AssertionError();
+      throw new BadGroupIdException();
     }
     return new GroupId.V1(gv1GroupIdBytes);
   }
 
   public static GroupId.V1 createV1(@NonNull SecureRandom secureRandom) {
-    return v1(Util.getSecretBytes(secureRandom, V1_MMS_BYTE_LENGTH));
+    return v1orThrow(Util.getSecretBytes(secureRandom, V1_MMS_BYTE_LENGTH));
   }
 
   public static GroupId.Mms createMms(@NonNull SecureRandom secureRandom) {
     return mms(Util.getSecretBytes(secureRandom, MMS_BYTE_LENGTH));
   }
 
-  public static GroupId.V2 v2(@NonNull byte[] bytes) {
+  public static GroupId.V2 v2orThrow(@NonNull byte[] bytes) {
+    try {
+      return v2(bytes);
+    } catch (BadGroupIdException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  public static GroupId.V2 v2(@NonNull byte[] bytes) throws BadGroupIdException {
     if (bytes.length != V2_BYTE_LENGTH) {
-      throw new AssertionError();
+      throw new BadGroupIdException();
     }
     return new GroupId.V2(bytes);
   }
 
   public static GroupId.V2 v2(@NonNull GroupIdentifier groupIdentifier) {
-    return v2(groupIdentifier.serialize());
+    return v2orThrow(groupIdentifier.serialize());
   }
 
   public static GroupId.V2 v2(@NonNull GroupMasterKey masterKey) {
@@ -62,30 +78,54 @@ public abstract class GroupId {
                                .getGroupIdentifier());
   }
 
-  public static GroupId.Push push(byte[] bytes) {
+  public static GroupId.Push push(byte[] bytes) throws BadGroupIdException {
     return bytes.length == V2_BYTE_LENGTH ? v2(bytes) : v1(bytes);
   }
 
-  public static @NonNull GroupId parse(@NonNull String encodedGroupId) {
+  public static GroupId.Push pushOrThrow(byte[] bytes) {
+    try {
+      return push(bytes);
+    } catch (BadGroupIdException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  public static @NonNull GroupId parseOrThrow(@NonNull String encodedGroupId) {
+    try {
+      return parse(encodedGroupId);
+    } catch (BadGroupIdException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  public static @NonNull GroupId parse(@NonNull String encodedGroupId) throws BadGroupIdException {
     try {
       if (!isEncodedGroup(encodedGroupId)) {
-        throw new IOException("Invalid encoding");
+        throw new BadGroupIdException("Invalid encoding");
       }
 
       byte[] bytes = extractDecodedId(encodedGroupId);
 
       return encodedGroupId.startsWith(ENCODED_MMS_GROUP_PREFIX) ? mms(bytes) : push(bytes);
     } catch (IOException e) {
-      throw new AssertionError(e);
+      throw new BadGroupIdException(e);
     }
   }
 
-  public static @Nullable GroupId parseNullable(@Nullable String encodedGroupId) {
+  public static @Nullable GroupId parseNullable(@Nullable String encodedGroupId) throws BadGroupIdException {
     if (encodedGroupId == null) {
       return null;
     }
 
     return parse(encodedGroupId);
+  }
+
+  public static @Nullable GroupId parseNullableOrThrow(@Nullable String encodedGroupId) {
+    if (encodedGroupId == null) {
+      return null;
+    }
+
+    return parseOrThrow(encodedGroupId);
   }
 
   public static boolean isEncodedGroup(@NonNull String groupId) {

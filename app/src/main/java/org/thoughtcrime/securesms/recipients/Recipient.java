@@ -271,7 +271,7 @@ public class Recipient {
         }
       }
     } else if (GroupId.isEncodedGroup(identifier)) {
-      id = db.getOrInsertFromGroupId(GroupId.parse(identifier));
+      id = db.getOrInsertFromGroupId(GroupId.parseOrThrow(identifier));
     } else if (NumberUtil.isValidEmail(identifier)) {
       id = db.getOrInsertFromEmail(identifier);
     } else {

@@ -28,7 +28,6 @@ import org.whispersystems.signalservice.api.messages.SignalServiceGroup.Type;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
@@ -140,7 +139,7 @@ public class PushGroupUpdateJob extends BaseJob {
     public @NonNull PushGroupUpdateJob create(@NonNull Parameters parameters, @NonNull org.thoughtcrime.securesms.jobmanager.Data data) {
       return new PushGroupUpdateJob(parameters,
                                     RecipientId.from(data.getString(KEY_SOURCE)),
-                                    GroupId.parse(data.getString(KEY_GROUP_ID)));
+                                    GroupId.parseOrThrow(data.getString(KEY_GROUP_ID)));
     }
   }
 }

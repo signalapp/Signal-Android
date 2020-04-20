@@ -80,7 +80,7 @@ public class PendingMemberInvitesFragment extends Fragment {
   public void onActivityCreated(@Nullable Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
 
-    GroupId.V2 groupId = GroupId.parse(Objects.requireNonNull(requireArguments().getString(GROUP_ID))).requireV2();
+    GroupId.V2 groupId = GroupId.parseOrThrow(Objects.requireNonNull(requireArguments().getString(GROUP_ID))).requireV2();
 
     PendingMemberInvitesViewModel.Factory factory = new PendingMemberInvitesViewModel.Factory(requireContext(), groupId);
 

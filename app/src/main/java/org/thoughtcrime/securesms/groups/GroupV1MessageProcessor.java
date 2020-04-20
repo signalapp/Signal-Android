@@ -70,7 +70,7 @@ public final class GroupV1MessageProcessor {
 
     GroupDatabase         database = DatabaseFactory.getGroupDatabase(context);
     SignalServiceGroup    group    = groupV1.get();
-    GroupId               id       = GroupId.v1(group.getGroupId());
+    GroupId               id       = GroupId.v1orThrow(group.getGroupId());
     Optional<GroupRecord> record   = database.getGroup(id);
 
     if (record.isPresent() && group.getType() == Type.UPDATE) {
@@ -93,7 +93,7 @@ public final class GroupV1MessageProcessor {
                                                   boolean outgoing)
   {
     GroupDatabase        database = DatabaseFactory.getGroupDatabase(context);
-    GroupId.V1           id       = GroupId.v1(group.getGroupId());
+    GroupId.V1           id       = GroupId.v1orThrow(group.getGroupId());
     GroupContext.Builder builder  = createGroupContext(group);
     builder.setType(GroupContext.Type.UPDATE);
 
@@ -127,7 +127,7 @@ public final class GroupV1MessageProcessor {
   {
 
     GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
-    GroupId.V1    id       = GroupId.v1(group.getGroupId());
+    GroupId.V1    id       = GroupId.v1orThrow(group.getGroupId());
 
     Set<RecipientId> recordMembers  = new HashSet<>(groupRecord.getMembers());
     Set<RecipientId> messageMembers = new HashSet<>();
@@ -203,7 +203,7 @@ public final class GroupV1MessageProcessor {
                                        boolean  outgoing)
   {
     GroupDatabase     database = DatabaseFactory.getGroupDatabase(context);
-    GroupId           id       = GroupId.v1(group.getGroupId());
+    GroupId           id       = GroupId.v1orThrow(group.getGroupId());
     List<RecipientId> members  = record.getMembers();
 
     GroupContext.Builder builder = createGroupContext(group);
@@ -228,13 +228,13 @@ public final class GroupV1MessageProcessor {
   {
     if (group.getAvatar().isPresent()) {
       ApplicationDependencies.getJobManager()
-                             .add(new AvatarGroupsV1DownloadJob(GroupId.v1(group.getGroupId())));
+                             .add(new AvatarGroupsV1DownloadJob(GroupId.v1orThrow(group.getGroupId())));
     }
 
     try {
       if (outgoing) {
         MmsDatabase               mmsDatabase     = DatabaseFactory.getMmsDatabase(context);
-        RecipientId               recipientId     = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(GroupId.v1(group.getGroupId()));
+        RecipientId               recipientId     = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(GroupId.v1orThrow(group.getGroupId()));
         Recipient                 recipient       = Recipient.resolved(recipientId);
         OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(recipient, storage, null, content.getTimestamp(), 0, false, null, Collections.emptyList(), Collections.emptyList());
         long                      threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
@@ -246,7 +246,7 @@ public final class GroupV1MessageProcessor {
       } else {
         SmsDatabase          smsDatabase  = DatabaseFactory.getSmsDatabase(context);
         String               body         = Base64.encodeBytes(storage.toByteArray());
-        IncomingTextMessage  incoming     = new IncomingTextMessage(Recipient.externalPush(context, content.getSender()).getId(), content.getSenderDevice(), content.getTimestamp(), content.getServerTimestamp(), body, Optional.of(GroupId.v1(group.getGroupId())), 0, content.isNeedsReceipt());
+        IncomingTextMessage  incoming     = new IncomingTextMessage(Recipient.externalPush(context, content.getSender()).getId(), content.getSenderDevice(), content.getTimestamp(), content.getServerTimestamp(), body, Optional.of(GroupId.v1orThrow(group.getGroupId())), 0, content.isNeedsReceipt());
         IncomingGroupMessage groupMessage = new IncomingGroupMessage(incoming, storage, body);
 
         Optional<InsertResult> insertResult = smsDatabase.insertMessageInbox(groupMessage);

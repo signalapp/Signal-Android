@@ -11,6 +11,7 @@ import com.google.protobuf.ByteString;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.groups.BadGroupIdException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
@@ -38,7 +39,9 @@ public final class GroupUtil {
   /**
    * Result may be a v1 or v2 GroupId.
    */
-  public static GroupId idFromGroupContext(@NonNull SignalServiceGroupContext groupContext) {
+  public static @NonNull GroupId idFromGroupContext(@NonNull SignalServiceGroupContext groupContext)
+      throws BadGroupIdException
+  {
     if (groupContext.getGroupV1().isPresent()) {
       return GroupId.v1(groupContext.getGroupV1().get().getGroupId());
     } else if (groupContext.getGroupV2().isPresent()) {
@@ -48,11 +51,24 @@ public final class GroupUtil {
     }
   }
 
+  public static @NonNull GroupId idFromGroupContextOrThrow(@NonNull SignalServiceGroupContext groupContext) {
+    try {
+      return idFromGroupContext(groupContext);
+    } catch (BadGroupIdException e) {
+      throw new AssertionError(e);
+    }
+  }
+
   /**
    * Result may be a v1 or v2 GroupId.
    */
-  public static @NonNull Optional<GroupId> idFromGroupContext(@NonNull Optional<SignalServiceGroupContext> groupContext) {
-    return groupContext.transform(GroupUtil::idFromGroupContext);
+  public static @NonNull Optional<GroupId> idFromGroupContext(@NonNull Optional<SignalServiceGroupContext> groupContext)
+      throws BadGroupIdException
+  {
+    if (groupContext.isPresent()) {
+      return Optional.of(idFromGroupContext(groupContext.get()));
+    }
+    return Optional.absent();
   }
 
   @WorkerThread

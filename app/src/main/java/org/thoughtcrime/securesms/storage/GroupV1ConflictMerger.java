@@ -18,12 +18,12 @@ class GroupV1ConflictMerger implements StorageSyncHelper.ConflictMerger<SignalGr
   private final Map<GroupId, SignalGroupV1Record> localByGroupId;
 
   GroupV1ConflictMerger(@NonNull Collection<SignalGroupV1Record> localOnly) {
-    localByGroupId = Stream.of(localOnly).collect(Collectors.toMap(g -> GroupId.v1(g.getGroupId()), g -> g));
+    localByGroupId = Stream.of(localOnly).collect(Collectors.toMap(g -> GroupId.v1orThrow(g.getGroupId()), g -> g));
   }
 
   @Override
   public @NonNull Optional<SignalGroupV1Record> getMatching(@NonNull SignalGroupV1Record record) {
-    return Optional.fromNullable(localByGroupId.get(GroupId.v1(record.getGroupId())));
+    return Optional.fromNullable(localByGroupId.get(GroupId.v1orThrow(record.getGroupId())));
   }
 
   @Override
