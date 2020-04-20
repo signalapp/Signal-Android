@@ -122,9 +122,9 @@ public final class RegistrationCodeRequest {
     /**
      * Device is requesting a phone call.
      *
-     * Neither FCM or SMS retrieval is relevant in this mode.
+     * FCM could be relevant but SMS retrieval is not relevant in this mode.
      */
-    PHONE_CALL(false, false);
+    PHONE_CALL(true, false);
 
     private final boolean fcm;
     private final boolean smsRetrieverSupported;
