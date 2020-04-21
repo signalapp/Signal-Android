@@ -15,7 +15,7 @@ object LokiPushNotificationManager {
         LokiPushNotificationAcknowledgement.shared.server
     }
 
-    private const val tokenExpirationInterval = 2 * 24 * 60 * 60 * 1000
+    private const val tokenExpirationInterval = 12 * 60 * 60 * 1000
 
     @JvmStatic
     fun unregister(token: String, context: Context?) {
@@ -50,7 +50,7 @@ object LokiPushNotificationManager {
     fun register(token: String, hexEncodedPublicKey: String, context: Context?, force: Boolean) {
         val oldToken = TextSecurePreferences.getFCMToken(context)
         val lastUploadDate = TextSecurePreferences.getLastFCMUploadTime(context)
-        if (!force && token == oldToken && System.currentTimeMillis() - lastUploadDate < tokenExpirationInterval) {  return }
+        if (!force && token == oldToken && System.currentTimeMillis() - lastUploadDate < tokenExpirationInterval) { return }
         val parameters = mapOf( "token" to token, "pubKey" to hexEncodedPublicKey )
         val url = "${server}/register"
         val body = RequestBody.create(MediaType.get("application/json"), JsonUtil.toJson(parameters))
