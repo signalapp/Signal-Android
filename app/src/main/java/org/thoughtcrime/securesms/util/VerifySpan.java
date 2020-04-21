@@ -1,13 +1,12 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
-import android.content.Intent;
-import androidx.annotation.NonNull;
 import android.text.style.ClickableSpan;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+
 import org.thoughtcrime.securesms.VerifyIdentityActivity;
-import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.libsignal.IdentityKey;
@@ -32,10 +31,6 @@ public class VerifySpan extends ClickableSpan {
 
   @Override
   public void onClick(@NonNull View widget) {
-    Intent intent = new Intent(context, VerifyIdentityActivity.class);
-    intent.putExtra(VerifyIdentityActivity.RECIPIENT_EXTRA, recipientId);
-    intent.putExtra(VerifyIdentityActivity.IDENTITY_EXTRA, new IdentityKeyParcelable(identityKey));
-    intent.putExtra(VerifyIdentityActivity.VERIFIED_EXTRA, false);
-    context.startActivity(intent);
+    context.startActivity(VerifyIdentityActivity.newIntent(context, recipientId, identityKey, false));
   }
 }
