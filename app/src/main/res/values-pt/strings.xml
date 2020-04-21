@@ -27,7 +27,7 @@
   <string name="ApplicationPreferencesActivity_disable_passphrase">Desativar frase-passe?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Isto irá desbloquear permanentemente o Signal e as notificações de mensagens.</string>
   <string name="ApplicationPreferencesActivity_disable">Desativar</string>
-  <string name="ApplicationPreferencesActivity_unregistering">A eliminar o registo…</string>
+  <string name="ApplicationPreferencesActivity_unregistering">A eliminar o registo...</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">A eliminar o registo do serviço de mensagens e chamadas do Signal…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Desativar as mensagens e chamadas do Signal?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Desative as mensagens e chamadas do Signal eliminando o seu registo do servidor. Será necessário registar novamente o seu número de telefone caso novamente no futuro as pretenda utilizar.</string>
@@ -368,7 +368,7 @@
   <string name="GroupCreateActivity_contacts_invalid_number">Um dos membros do seu grupo tem um número inválido. Por favor corrija ou remova esse contacto e tente novamente.</string>
   <string name="GroupCreateActivity_avatar_content_description">Avatar do grupo</string>
   <string name="GroupCreateActivity_menu_apply_button">Aplicar</string>
-  <string name="GroupCreateActivity_creating_group">A criar %1$s…</string>
+  <string name="GroupCreateActivity_creating_group">A criar %1$s...</string>
   <string name="GroupCreateActivity_updating_group">A atualizar %1$s…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Não foi possível adicionar %1$s porque não é um utilizador Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">A carregar detalhes do grupo…</string>
@@ -390,7 +390,7 @@
   <string name="InviteActivity_share_with_contacts">Partilhar com os contactos</string>
   <string name="InviteActivity_choose_how_to_share">Escolha como partilhar</string>
   <string name="InviteActivity_cancel">Cancelar</string>
-  <string name="InviteActivity_sending">A enviar…</string>
+  <string name="InviteActivity_sending">A enviar...</string>
   <string name="InviteActivity_heart_content_description">Coração</string>
   <string name="InviteActivity_invitations_sent">Convites enviados!</string>
   <string name="InviteActivity_invite_to_signal">Convidar para o Signal</string>
@@ -1154,7 +1154,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Se pretende verificar a segurança da sua encriptação ponta-a-ponta com o contacto %s, compare o número acima com o equivalente no dispositivo do seu contacto. Em alternativa, poderá fazer a digitalização do código QR exibido no outro dispositivo ou pedir que façam digitalização do seu código. <a href="https://signal.org/redirect/safety-numbers">Saber mais</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Toque para ler</string>
-  <string name="verify_display_fragment__loading">A carregar…</string>
+  <string name="verify_display_fragment__loading">A carregar...</string>
   <string name="verify_display_fragment__verified">Verificado</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Partilhar número de segurança</string>
@@ -1521,7 +1521,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">O seu PIN não foi guardado. Iremos pedir-lhe para criar o PIN mais tarde.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN criado.</string>
   <string name="ConfirmKbsPinFragment__re_enter_pin">Reintroduza o PIN</string>
-  <string name="ConfirmKbsPinFragment__creating_pin">A criar PIN…</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">A criar PIN...</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Introdução aos PINs</string>
   <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">Os PINs adicionam outro nível de segurança à sua conta. Crie um agora.</string>
@@ -1594,8 +1594,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="ProfileNamesMegaphone__confirm_name">Confirmar nome</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ícone de transporte</string>
-  <string name="ConversationListFragment_loading">A carregar…</string>
-  <string name="CallNotificationBuilder_connecting">A ligar…</string>
+  <string name="ConversationListFragment_loading">A carregar...</string>
+  <string name="CallNotificationBuilder_connecting">A ligar...</string>
   <string name="Permissions_permission_required">Permissão necessária</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">O Signal requer permissão de acesso a SMS para enviar uma mensagem SMS, mas esta foi negada permanentemente. Por favor, aceda às definições das aplicações do seu telemóvel, selecione a aplicação Signal e, nas \"Permissões\" ative \"SMS\".</string>
   <string name="Permissions_continue">Continuar</string>

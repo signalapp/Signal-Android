@@ -111,6 +111,8 @@
   <string name="CommunicationActions_start_voice_call">发起语音通话？</string>
   <string name="CommunicationActions_cancel">取消</string>
   <string name="CommunicationActions_call">呼叫</string>
+  <string name="CommunicationActions_insecure_call">不安全的通话</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">运营商可能会收取额外的费用。 您呼叫的号码未在Signal中注册。 该呼叫将通过您的移动运营商发出，而不是通过互联网发出。</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">您与 %1$s 的安全码已更改。可能有人试图截获你的通信，或者只是 %2$s 重装了 Signal。</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">您可能需要验证该联系人的安全码。</string>
@@ -201,10 +203,22 @@
   <string name="ConversationActivity_no_results">无结果</string>
   <string name="ConversationActivity_sticker_pack_installed">已安装表情包</string>
   <string name="ConversationActivity_new_say_it_with_stickers">新功能！可以发表情啦！</string>
+  <string name="ConversationActivity_block_s">屏蔽%1$s?</string>
+  <string name="ConversationActivity_block_and_leave_s">屏蔽并离开%1$s?</string>
+  <string name="ConversationActivity_unblock_s">解除屏蔽%1$s?</string>
+  <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">将可再次接收该联系人的消息和呼叫。</string>
+  <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">组成员将能够再次将您添加到此组。</string>
+  <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">被屏蔽的人将不能给你打电话或发送消息。</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">您将离开此组，不再接收消息或更新。</string>
   <string name="ConversationActivity_block">屏蔽</string>
+  <string name="ConversationActivity_block_and_delete">屏蔽和删除</string>
   <string name="ConversationActivity_cancel">取消</string>
   <string name="ConversationActivity_delete_conversation">删除对话？</string>
+  <string name="ConversationActivity_delete_and_leave_group">删除和退出群组?</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">此对话将从您所有的设备中删除。</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">你将离开这个组，它将从你所有的设备中删除。</string>
   <string name="ConversationActivity_delete">删除</string>
+  <string name="ConversationActivity_delete_and_leave">删除并退出</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d 条未读消息</item>
@@ -243,6 +257,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">左滑任何消息可快速回复</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">一次性媒体文件在发送之后将自动删除</string>
   <string name="ConversationFragment_you_already_viewed_this_message">已查看该消息</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">你可以在这个对话中为自己添加笔记。 如果您的帐户有任何连接设备，新的笔记将同步。</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">设备上没有安装浏览器。</string>
   <!--ConversationListFragment-->
@@ -262,6 +277,8 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">已将 %d 个对话移至收件箱</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_created">您的配置文件名已经创建。</string>
+  <string name="ConversationListFragment__your_profile_name_has_been_saved">您的配置文件名已经保存。</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">密钥交换消息</string>
   <!--ConversationListItemAction-->
@@ -281,6 +298,9 @@
   <string name="CustomDefaultPreference_using_default">使用默认：%s</string>
   <string name="CustomDefaultPreference_none">无</string>
   <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">选择照片</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">拍照</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">从相册中选择...</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">删除图片</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">刚刚</string>
@@ -312,6 +332,7 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">该设备不支持 Google Play 服务。点击禁用系统电池优化，防止 Signal 非活动时无法获取新消息。</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">分享至</string>
+  <string name="ShareActivity_multiple_attachments_are_only_supported">多个附件只支持图像和视频</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">检索消息中…</string>
   <!--GcmRefreshJob-->
@@ -485,9 +506,19 @@
   <string name="MessageRequestBottomView_delete">删除</string>
   <string name="MessageRequestBottomView_block">屏蔽</string>
   <string name="MessageRequestBottomView_unblock">取消屏蔽</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">你想让%1$s给你发信息吗? 除非你接受，否则他们不会知道你看过他们的信息。</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">你想加入这个小组%1$s吗? 除非你接受，否则他们不会知道你看过他们的信息。</string>
+  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">解除对%1$s消息的阻塞并相互call。</string>
+  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">取消阻止以允许组成员再次将您添加到此组。</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s 的成员</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s 和 %2$s 的成员</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s、%2$s 和 %3$s 的成员</string>
+  <plurals name="MessageRequestProfileView_members">
+    <item quantity="other">%1$d 成员</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="other">%1$d成员(+%2$d 获邀请)</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="other">%d 其他群组</item>
   </plurals>
@@ -681,9 +712,14 @@
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">编辑</string>
   <string name="SubmitDebugLogActivity_done">完成</string>
+  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">点击一行删除它</string>
   <string name="SubmitDebugLogActivity_submit">提交</string>
+  <string name="SubmitDebugLogActivity_failed_to_submit_logs">未能提交日志</string>
   <string name="SubmitDebugLogActivity_success">成功！</string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">复制此 URL 并将其添加到问题报告或支持电子邮件:\n\n<b>%1$s</b>
+</string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">已复制到剪切板</string>
+  <string name="SubmitDebugLogActivity_ok">好</string>
   <string name="SubmitDebugLogActivity_share">分享</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">群组已更新</string>
@@ -707,6 +743,7 @@
   <string name="ThreadRecord_you_marked_unverified">已将您标识为未验证</string>
   <string name="ThreadRecord_message_could_not_be_processed">无法处理消息</string>
   <string name="ThreadRecord_message_request">通信请求</string>
+  <string name="ThreadRecord_s_added_you_to_the_group">%1$s把你也加进来了</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal 更新</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal 新版本可用，点击升级</string>
@@ -1118,10 +1155,34 @@
   <string name="AndroidManifest_archived_conversations">已存档对话</string>
   <string name="AndroidManifest_remove_photo">删除图片</string>
   <!--Message Requests Megaphone-->
+  <string name="MessageRequestsMegaphone__message_requests">通信请求</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">用户现在可以选择接受一个新的对话，配置文件名可以让人们知道谁在给他们发信息。</string>
+  <string name="MessageRequestsMegaphone__add_profile_name">添加用户名</string>
+  <string name="MessageRequestsMegaphone__new_message_requests">新：通信请求</string>
+  <string name="MessageRequestsMegaphone__add_name">新增名称</string>
+  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">现在，您可以选择是否接受新的对话。您会看到“接受”，“删除”或“阻止”选项。</string>
   <!--HelpFragment-->
   <string name="HelpFragment__help">帮助</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">您阅读常见问题了吗？</string>
   <string name="HelpFragment__next">下一步</string>
+  <string name="HelpFragment__contact_us">联系我们</string>
+  <string name="HelpFragment__tell_us_whats_going_on">告诉我们发生了什么</string>
+  <string name="HelpFragment__include_debug_log">包括调试日志。</string>
+  <string name="HelpFragment__whats_this">这是什么?</string>
+  <string name="HelpFragment__how_do_you_feel">你觉得怎么样？ （可选的）</string>
+  <string name="HelpFragment__support_info">支持信息</string>
+  <string name="HelpFragment__subject">主题 :</string>
+  <string name="HelpFragment__signal_android_support_request">Signal Android支持请求</string>
+  <string name="HelpFragment__device_info">设备信息：</string>
+  <string name="HelpFragment__android_version">Android版本：</string>
+  <string name="HelpFragment__signal_version">Signal版本:</string>
+  <string name="HelpFragment__locale">语言环境：</string>
+  <string name="HelpFragment__debug_log">调试日志：</string>
+  <string name="HelpFragment__na">n/a</string>
+  <string name="HelpFragment__could_not_upload_logs">无法上传日志</string>
   <string name="HelpFragment__signal_support">Signal 支持</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">请尽可能描述一下，以帮助我们理解该问题。</string>
+  <string name="HelpFragment__no_email_app_found">找不到电子邮件应用程序。</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">导入</string>
   <string name="arrays__use_default">使用默认</string>
@@ -1489,8 +1550,11 @@
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">稍后您会被提示。在%1$d天内会强制要求确认你的PIN码。</string>
   <!--Profile Names Megaphone-->
   <string name="ProfileNamesMegaphone__add_a_profile_name">添加一个用户名</string>
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">当您开始新的对话或分享时，将显示此内容。</string>
   <string name="ProfileNamesMegaphone__add_profile_name">添加用户名</string>
   <string name="ProfileNamesMegaphone__confirm_your_profile_name">确认您的用户名</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">您的个人资料现在可以包含可选的姓氏。</string>
+  <string name="ProfileNamesMegaphone__confirm_name">确认姓名</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">传输图标</string>
   <string name="ConversationListFragment_loading">正在加载…</string>
@@ -1556,6 +1620,7 @@
   <string name="preferences_app_protection__pin">PIN</string>
   <string name="preferences_app_protection__change">修改</string>
   <string name="preferences_app_protection__create">创建</string>
+  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account">您的PIN码为您的帐户增加了一层额外的安全保护。在Signal上注册电话号码时，系统会要求您输入。如果您忘记了PIN码，则帐户将被锁定7天。</string>
   <string name="AppProtectionPreferenceFragment_none">无</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">注册锁定 PIN 密码不是您刚刚收到的短信验证码。请输入之前在应用中设置的 PIN。</string>
   <string name="registration_activity__registration_lock_pin">注册锁定 PIN</string>

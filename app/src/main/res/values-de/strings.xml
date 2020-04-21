@@ -1187,7 +1187,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="HelpFragment__have_you_read_our_faq_yet">Hast du bereits die FAQ gelesen?</string>
   <string name="HelpFragment__next">Weiter</string>
   <string name="HelpFragment__contact_us">Kontaktiere uns</string>
-  <string name="HelpFragment__tell_us_whats_going_on">Teile uns mit, was los ist</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Sag uns, was los ist</string>
   <string name="HelpFragment__include_debug_log">Diagnoseprotokoll beifügen.</string>
   <string name="HelpFragment__whats_this">Was ist das?</string>
   <string name="HelpFragment__how_do_you_feel">Wie fühlst du dich? (Optional)</string>

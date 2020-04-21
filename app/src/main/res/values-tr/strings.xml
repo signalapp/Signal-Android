@@ -115,6 +115,7 @@
   <string name="CommunicationActions_cancel">İptal</string>
   <string name="CommunicationActions_call">Ara</string>
   <string name="CommunicationActions_insecure_call">Şifresiz arama</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Operatör tarifelendirmesine tabii tutulabilir. Aramaya çalıştığınız numara Signal\'e kayıtlı değil. Bu arama internet üzerinden değil telefon operatörünüz tarafından gerçekleştirilecektir.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s ile olan güvenlik numaranız değişti. Bu, birisinin iletişiminizi kesmeye çalıştığı ya da %2$s Signal\'i yeniden yüklemiş olduğu anlamına gelebilir.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Bu kişiyle güvenlik numaranızı doğrulamak isteyebilirsiniz.</string>
@@ -484,7 +485,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Seçmek için dokunun</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Bir başlık ekleyin…</string>
+  <string name="MediaSendActivity_add_a_caption">Bir başlık ekleyin...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Boyut sınırını aştığı için bir öğe kaldırıldı.</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera kullanılamıyor.</string>
   <string name="MediaSendActivity_message_to_s">%s kişisine ileti</string>
@@ -536,6 +537,10 @@
   <plurals name="MessageRequestProfileView_members">
     <item quantity="one">%1$d üye</item>
     <item quantity="other">%1$d üye</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d üye (+%2$d davetli)</item>
+    <item quantity="other">%1$d üye (+%2$d davetli)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d diğer</item>
@@ -950,7 +955,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="contact_filter_toolbar__show_dial_pad_description">Arama tuşlarını göster</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Kişi yok.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Kişiler yükleniyor…</string>
+  <string name="contact_selection_group_activity__finding_contacts">Kişiler yükleniyor...</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Kişi Fotoğrafı</string>
   <!--ContactSelectionListFragment-->
@@ -1075,8 +1080,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="log_submit_activity__button_got_it">Anladım</string>
   <string name="log_submit_activity__button_compose_email">Eposta oluştur</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Bu günlük katkıda bulunanların görebilmeleri için herkese açık bir şekilde gönderilecektir. Göndermeden önce inceleyip düzenleyebilirsiniz.</string>
-  <string name="log_submit_activity__loading_logs">Günlükler yükleniyor…</string>
-  <string name="log_submit_activity__uploading_logs">Günlükler gönderiliyor…</string>
+  <string name="log_submit_activity__loading_logs">Günlükler yükleniyor...</string>
+  <string name="log_submit_activity__uploading_logs">Günlükler gönderiliyor...</string>
   <string name="log_submit_activity__choose_email_app">Eposta uygulaması seçin</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Lütfen uygulamamdan çıkan bu günlüğü inceleyin: %1$s</string>
   <string name="log_submit_activity__network_failure">Ağ hatası. Lütfen tekrar deneyin.</string>
@@ -1189,14 +1194,25 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Yeni bir konuşmayı kabul edip etmeme seçeneğine sahipsiniz. \"Kabul et\", \"Sil\" veya \"Engelle\" gibi seçenekler göreceksiniz.</string>
   <!--HelpFragment-->
   <string name="HelpFragment__help">Yardım</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">SSS sayfamızı okudunuz mu?</string>
   <string name="HelpFragment__next">İleri</string>
   <string name="HelpFragment__contact_us">Bizimle iletişime geçin</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Neler olduğunu anlatın</string>
+  <string name="HelpFragment__include_debug_log">Hata ayıklama günlüğünü ekleyin</string>
+  <string name="HelpFragment__whats_this">Bu nedir?</string>
+  <string name="HelpFragment__how_do_you_feel">Nasıl hissediyorsunuz?</string>
+  <string name="HelpFragment__support_info">Destek Bilgisi</string>
   <string name="HelpFragment__subject">Konu:</string>
+  <string name="HelpFragment__signal_android_support_request">Signal Android Destek İsteği</string>
   <string name="HelpFragment__device_info">Cihaz bilgisi:</string>
   <string name="HelpFragment__android_version">Android sürümü:</string>
   <string name="HelpFragment__signal_version">Signal sürümü:</string>
+  <string name="HelpFragment__locale">Dil:</string>
+  <string name="HelpFragment__debug_log">Hata Ayıklama Günlüğü:</string>
+  <string name="HelpFragment__na">mevcut değil</string>
   <string name="HelpFragment__could_not_upload_logs">Günlükler karşıya yüklenemedi</string>
   <string name="HelpFragment__signal_support">Signal Desteği</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">Lütfen sorunu anlamamıza yardımcı olabilecek şekilde açıklayın.</string>
   <string name="HelpFragment__no_email_app_found">Eposta uygulaması bulunamadı.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">İçe Aktar</string>
@@ -1508,7 +1524,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN\'iniz kaydedilmedi. PIN oluşturmanız için daha sonra hatırlatacağız.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN oluşturuldu.</string>
   <string name="ConfirmKbsPinFragment__re_enter_pin">PIN\'i tekrar girin</string>
-  <string name="ConfirmKbsPinFragment__creating_pin">PIN oluşturuluyor…</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">PIN oluşturuluyor...</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Karşınızda PIN\'ler</string>
   <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">PIN\'ler hesabınızın güvenliğine bir katman daha ekler. Şimdi oluşturun.</string>
@@ -1582,7 +1598,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ulaştırma simgesi</string>
   <string name="ConversationListFragment_loading">Yükleniyor…</string>
-  <string name="CallNotificationBuilder_connecting">Bağlanıyor…</string>
+  <string name="CallNotificationBuilder_connecting">Bağlanıyor...</string>
   <string name="Permissions_permission_required">İzin gerekli</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal, SMS göndermek için SMS iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"SMS\"i etkinleştirin.</string>
   <string name="Permissions_continue">Devam Et</string>

@@ -382,7 +382,7 @@
   <string name="GroupCreateActivity_contacts_invalid_number">Vienam Jūsu grupas dalībniekam ir numurs, kuru nevar pareizi nolasīt. Lūdzu labojiet vai dzēsiet šo kontaktu un mēģiniet vēlreiz.</string>
   <string name="GroupCreateActivity_avatar_content_description">Grupas ikona</string>
   <string name="GroupCreateActivity_menu_apply_button">Pielietot</string>
-  <string name="GroupCreateActivity_creating_group">Izveido %1$s…</string>
+  <string name="GroupCreateActivity_creating_group">Izveido %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Aktualizē %1$s…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nevarēja pievienot %1$s, jo tie nav Signal lietotāji.</string>
   <string name="GroupCreateActivity_loading_group_details">Notiek grupas datu ielāde…</string>
@@ -422,7 +422,7 @@
   <string name="InviteActivity_no_app_to_share_to">Izskatās, ka Tev nav nevienas aplikācijas, caur kuru dalīties.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Draugi neļauj draugiem sazināties nedroši (nešifrēti).</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">Darbojas fonā…</string>
+  <string name="Job_working_in_the_background">Darbojas fonā...</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Neizdevās nosūtīt</string>
   <string name="MessageDetailsRecipient_new_safety_number">Jauns drošības numurs</string>
@@ -975,7 +975,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="contact_filter_toolbar__show_dial_pad_description">Parādīt cipartastatūru</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Nav kontaktu.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Ielādē kontaktus…</string>
+  <string name="contact_selection_group_activity__finding_contacts">Ielādē kontaktus...</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Kontakta attēls</string>
   <!--ContactSelectionListFragment-->
@@ -1106,8 +1106,8 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="log_submit_activity__button_got_it">Pieleca</string>
   <string name="log_submit_activity__button_compose_email">Rakstīt e-pastu</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Šis žurnāls tiks publiskots internetā, lai lietotnes palīgi varētu to apskatīt. Jūs to variet pārskatīt un rediģēt pirms iesniegšanas.</string>
-  <string name="log_submit_activity__loading_logs">Ielādē žurnālus…</string>
-  <string name="log_submit_activity__uploading_logs">Augšupielādē žurnālus…</string>
+  <string name="log_submit_activity__loading_logs">Ielādē žurnālus...</string>
+  <string name="log_submit_activity__uploading_logs">Augšupielādē žurnālus...</string>
   <string name="log_submit_activity__choose_email_app">Izvēlieties e-pasta lietotni</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Lūdzu, pārskatiet šo žurnālu no manas lietotnes: %1$s</string>
   <string name="log_submit_activity__network_failure">Savienojuma kļūda. Lūdzu, mēģiniet vēlreiz.</string>
@@ -1555,7 +1555,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Jūsu PIN netika saglabāts. Mēs aicināsim jūs izveidot PIN vēlāk.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN izveidots.</string>
   <string name="ConfirmKbsPinFragment__re_enter_pin">Ievadiet PIN atkārtoti</string>
-  <string name="ConfirmKbsPinFragment__creating_pin">Tiek veidots jauns PIN…</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">Tiek veidots jauns PIN...</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Iepazīstinām ar PINiem</string>
   <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">PIN piešķir jūsu kontam vēl vienu drošības līmeni. Izveidojiet to tagad.</string>
@@ -1669,7 +1669,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Lai izveidotu dublikātus (rezerves kopijas), Signālam nepieciešama pieeja ārējai datu noliktavai,  bet tā tiek pastāvīgi liegta. Lūdzu, dodieties uz lietotnes iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"Noiktava\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Pēdējā rezerves kopija: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Darbībā</string>
-  <string name="LocalBackupJob_creating_backup">Tiek veidota rezerves kopija…</string>
+  <string name="LocalBackupJob_creating_backup">Tiek veidota rezerves kopija...</string>
   <string name="ProgressPreference_d_messages_so_far">pagaidām %d ziņas</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Lūdzu, ievadiet verifikācijas kodu, kurš nosūtīts uz %s.</string>
   <string name="RegistrationActivity_wrong_number">Nepareizs numurs</string>

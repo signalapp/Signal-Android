@@ -10,12 +10,12 @@
   <string name="AbstractNotificationBuilder_new_message">ข้อความใหม่</string>
   <!--AlbumThumbnailView-->
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Signal กำลังอัพเดท…</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal กำลังอัพเดท...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">ขณะนี้: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">คุณยังไม่ได้ตั้งวลีรหัสผ่าน</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="other">%d ข้อความต่อบทสนทนา</item>
+    <item quantity="other">%d ข้อความต่อการสนทนา</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">ลบข้อความเก่าทั้งหมดเดี๋ยวนี้เลยหรือไม่?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
@@ -26,7 +26,7 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">นี่จะปลดล็อก Signal และการแจ้งเตือนข้อความอย่างถาวร</string>
   <string name="ApplicationPreferencesActivity_disable">ปิดใช้งาน</string>
   <string name="ApplicationPreferencesActivity_unregistering">ยกเลิกการลงทะเบียน</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">กำลังยกเลิกการลงทะเบียนการใช้งานข้อความ Signal และการโทร…</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">กำลังยกเลิกการลงทะเบียนการใช้งานข้อความ Signal และการโทร...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">ปิดใช้งานข้อความและการโทร Signal หรือไม่?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">ปิดใช้งานข้อความและการโทร Signal ด้วยการยกเลิกการลงทะเบียนจากเซิร์ฟเวอร์ คุณจะต้องลงทะเบียนหมายเลขโทรศัพท์ใหม่หากต้องการกลับมาใช้งานอีกในอนาคต</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์</string>
@@ -67,8 +67,8 @@
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">เพื่อที่จะแนบข้อมูลตำแหน่งที่ตั้ง Signal ต้องได้รับอนุญาตให้เข้าถึงตำแหน่งที่ตั้ง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ตำแหน่งที่ตั้ง\"</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">เพื่อที่จะถ่ายรูป Signal ต้องได้รับอนุญาตให้เข้าถึงกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"กล้อง\"</string>
   <!--AttachmentUploadJob-->
-  <string name="AttachmentUploadJob_uploading_media">กำลังอัพโหลดสื่อ…</string>
-  <string name="AttachmentUploadJob_compressing_video_start">กำลังบีบอัดวิดีโอ…</string>
+  <string name="AttachmentUploadJob_uploading_media">กำลังอัพโหลดสื่อ...</string>
+  <string name="AttachmentUploadJob_compressing_video_start">กำลังบีบอัดวิดีโอ...</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">เกิดข้อผิดพลาดในการเล่นเสียง</string>
   <!--BlockedContactsActivity-->
@@ -334,7 +334,7 @@
   <string name="ShareActivity_share_with">แบ่งปันกับ</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">การแนบแฟ้มหลายชิ้นแนบได้เฉพาะรูปภาพและวิดีโอ</string>
   <!--GcmBroadcastReceiver-->
-  <string name="GcmBroadcastReceiver_retrieving_a_message">กำลังเรียกข้อความกลับมา…</string>
+  <string name="GcmBroadcastReceiver_retrieving_a_message">กำลังเรียกข้อความกลับมา...</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">การสื่อสารของ Signal ล้มเหลวอย่างถาวร!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ไม่สามารถลงทะเบียนกับ Google Play Services การใช้งานข้อความและการโทร Signal ได้ถูกปิดใช้งาน กรุณาลองลงทะเบียนอีกครั้งใน การตั้งค่า &gt; ขั้นสูง</string>
@@ -390,7 +390,7 @@
   <string name="InviteActivity_no_app_to_share_to">ดูเหมือนว่าคุณไม่มีแอปอะไรที่จะแบ่งปันได้</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">เพื่อนต้องไม่ยอมให้เพื่อนคุยกันโดยไม่มีการเข้ารหัส</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">กำลังทำงานอยู่เบื้องหลัง…</string>
+  <string name="Job_working_in_the_background">กำลังทำงานอยู่เบื้องหลัง...</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">การส่งล้มเหลว</string>
   <string name="MessageDetailsRecipient_new_safety_number">หมายเลขความปลอดภัยใหม่</string>
@@ -465,7 +465,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">แตะเพื่อเลือก</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">เพิ่มคำบรรยายภาพ…</string>
+  <string name="MediaSendActivity_add_a_caption">เพิ่มคำบรรยายภาพ...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">ไอเทมนี้ถูกลบเพราะมีขนาดใหญ่เกินกำหนด</string>
   <string name="MediaSendActivity_camera_unavailable">ใช้กล้องไม่ได้</string>
   <string name="MediaSendActivity_message_to_s">ข้อความถึง %s</string>
@@ -515,6 +515,9 @@
   <string name="MessageRequestProfileView_member_of_many_groups">สมาชิกของ %1$s%2$s และ %3$s</string>
   <plurals name="MessageRequestProfileView_members">
     <item quantity="other">%1$d สมาชิก</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="other">%1$d สมาชิก (+%2$d ถูกเชิญ)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="other">%d อื่นๆ</item>
@@ -765,7 +768,7 @@
   <string name="UsernameEditFragment_encountered_a_network_error">พบความผิดพลาดของเครือข่าย</string>
   <string name="UsernameEditFragment_this_username_is_taken">มีผู้ใช้ชื่อนี้แล้ว</string>
   <string name="UsernameEditFragment_this_username_is_available">ใช้ชื่อผู้ใช้นี้ได้</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">ชื่อผู้ใช้จะรวมถึง a-Z, 0-9 และเส้นใต้ เท่านั้น</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">ชื่อผู้ใช้จะมีได้เฉพาะ a-Z, 0-9 และ _</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ชื่อผู้ใช้ไม่สามารถเริ่มต้นด้วยตัวเลข</string>
   <string name="UsernameEditFragment_username_is_invalid">ชื่อผู้ใช้ไม่ถูกต้อง</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ชื่อผู้ใช้จะต้องมี %1$dถึง %2$d ตัวอักษร</string>
@@ -969,7 +972,7 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">ภาพของผู้ติดต่อ</string>
   <!--audio_view-->
-  <string name="audio_view__play_pause_accessibility_description">เล่น … หยุด</string>
+  <string name="audio_view__play_pause_accessibility_description">เล่น ... หยุด</string>
   <string name="audio_view__download_accessibility_description">ดาวน์โหลด</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">เสียง</string>
@@ -1046,8 +1049,8 @@
   <string name="log_submit_activity__button_got_it">เข้าใจแล้ว</string>
   <string name="log_submit_activity__button_compose_email">เขียนอีเมล</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">ปูมนี้จะถูกเผยแพร่สู่สาธารณะทางออนไลน์ เพื่อให้ผู้ร่วมพัฒนาโปรแกรมได้เห็น คุณสามารถตรวจสอบและแก้ไขปูมได้ก่อนส่ง</string>
-  <string name="log_submit_activity__loading_logs">กำลังโหลดปูม…</string>
-  <string name="log_submit_activity__uploading_logs">กำลังอัปโหลดปูม…</string>
+  <string name="log_submit_activity__loading_logs">กำลังโหลดปูม...</string>
+  <string name="log_submit_activity__uploading_logs">กำลังอัปโหลดปูม...</string>
   <string name="log_submit_activity__choose_email_app">เลือกแอปอีเมล</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">กรุณาพิจารณาปูมนี้จากแอปของฉัน: %1$s</string>
   <string name="log_submit_activity__network_failure">เครือข่ายล้มเหลว  โปรดลองอีกครั้ง</string>

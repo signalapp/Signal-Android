@@ -3,7 +3,7 @@
   <string name="yes">آہو</string>
   <string name="no">نئیں</string>
   <string name="delete"> مٹا دیو</string>
-  <string name="please_wait">مہربانی کر کے انتظار کرو…</string>
+  <string name="please_wait">مہربانی کر کے انتظار کرو...</string>
   <string name="save">محفوظ کرو</string>
   <string name="note_to_self">اپنے لئی نوٹ کرو</string>
   <!--AbstractNotificationBuilder-->

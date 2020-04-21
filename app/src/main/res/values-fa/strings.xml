@@ -251,7 +251,7 @@
     <item quantity="other">در حال ذخیره‌ %1$d پیوست</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="one">در حال ذخیره پیوست در حافظهٔ…</item>
+    <item quantity="one">در حال ذخیره پیوست در حافظهٔ...</item>
     <item quantity="other">در حال ذخیره‌ %1$d پیوست در حافظهٔ…</item>
   </plurals>
   <string name="ConversationFragment_pending">در انتظار…</string>
@@ -281,7 +281,7 @@
     <item quantity="other">این باعث پاک شدن دائمی %1$d مکالمه انتخاب شده خواهد شد.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">در حال حذف</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">حذف مکالمه‌های انتخاب شده…</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">حذف مکالمه‌های انتخاب شده...</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">مکالمه بایگانی شد</item>
     <item quantity="other">%d مکالمه بایگانی شد</item>
@@ -390,7 +390,7 @@
   <string name="InviteActivity_share_with_contacts">اشتراک‌ گذاری با مخاطبان</string>
   <string name="InviteActivity_choose_how_to_share">انتخاب نحوهٔ اشتراک گذاری</string>
   <string name="InviteActivity_cancel">لغو</string>
-  <string name="InviteActivity_sending">در حال ارسال…</string>
+  <string name="InviteActivity_sending">در حال ارسال...</string>
   <string name="InviteActivity_heart_content_description">قلب</string>
   <string name="InviteActivity_invitations_sent">دعوت‌نامه‌ها ارسال شدند!</string>
   <string name="InviteActivity_invite_to_signal">دعوت به Signal</string>
@@ -477,7 +477,7 @@
   <string name="NotificationBarManager__cancel_call">لغو تماس</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">پیام چندرسانه‌ای</string>
-  <string name="NotificationMmsMessageRecord_downloading_mms_message">دریافت پیام چند‌رسانه‌ای…</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">دریافت پیام چند‌رسانه‌ای...</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">خطا در دریافت پیام چندرسانه‌ای، برای تلاش مجدد ضربه بزنید</string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">ارسال به %s</string>
@@ -485,7 +485,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">برای انتخاب ضربه بزنید</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">افزودن یک زیرنویس…</string>
+  <string name="MediaSendActivity_add_a_caption">افزودن یک زیرنویس...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">یک مورد به دلیل تجاوز از محدودیت اندازه حذف شد</string>
   <string name="MediaSendActivity_camera_unavailable">دوربین در دسترس نیست.</string>
   <string name="MediaSendActivity_message_to_s">پیام به %s </string>
@@ -538,6 +538,10 @@
     <item quantity="one">عضو %1$d</item>
     <item quantity="other">اعضای %1$d</item>
   </plurals>
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d عضو (+%2$d دعوت شدند)</item>
+    <item quantity="other">%1$d عضو (+%2$d دعوت شدند)</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d گروه دیگر</item>
     <item quantity="other"> %d گروه دیگر</item>
@@ -560,13 +564,13 @@
   <string name="DeviceProvisioningActivity_content_progress_success">دستگاه تایید شد!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">هیچ دستگاهی یافت نشد.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">خطا شبکه.</string>
-  <string name="DeviceProvisioningActivity_content_progress_key_error">کد کیوآر نامعتبر.</string>
+  <string name="DeviceProvisioningActivity_content_progress_key_error">کد QR نامعتبر است.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">پوزش، تا کنون دستگاه‌های زیادی را پیوند داده‌اید، سعی کنید برخی از آن‌ها را حذف کنید.</string>
-  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">پوزش، این کد کیوآر برای پیوند دستگاه معتبر نمی باشد.</string>
+  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">متاسفانه این کد QR برای اتصال دستگاه معتبر نيست.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">پیوند یک دستگاه Signal؟</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">به نظر می آید شما سعی دارید از طریق یک اسکنر شخص ثالث دستگاه Signal خود را پیوند دهید. جهت حفظ امنیت، لطفاً کد را دوباره از داخل Signal اسکن کنید.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal نیاز به مجوز دوربین دارد تا بتواند یک کد کیوآر را اسکن کند، اما این اجازه داده نشده است. لطفاً به تنظیمات برنامه رفته، \"مجوز ها\" را انتخاب کنید، و \"دوربین\" را فعال کنید.</string>
-  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">عدم توانایی در اسکن کد کیوآر بدون مجوز دوربین</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal جهت اسکن کردن کد QR نیاز به دسترسی به دوربین دارد، اما این دسترسی داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «دوربین» را فعال کنید.</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">امکان اسکن کردن کد QR بدون مجوز دوربین وجود ندارد</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">پیام های ناپدید شونده</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">پیام های شما انقضا نخواهند یافت.</string>
@@ -639,7 +643,7 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">شماره‌ای که شما
 مشخص کرده‌اید (%s) معتبر نیست.</string>
   <string name="RegistrationActivity_missing_google_play_services">سرویس های گوگل پلی موجود نمی باشد</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">این دستگاه فاقد سرویس های گوگل پلی می باشد. شما می‌توانید به استفاده از Signal ادامه دهید، اما این پیکربندی می‌تواند باعث کاهش اطمینان‌پذیری یا عملکرد شود.\n\n اگر یک کاربر حرفه‌ای نبوده یا در حال اجرای یک ROM سفارشی اندروید نیستید، یا فکر می‌کنید که این پیام اشتباهاً به شما نشان داده شده است، برای دریافت کمک در فرآیند رفع اشکال با support@signal.org تماس بگیرید.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">این دستگاه فاقد خدمات Google Play است. شما می‌توانید به استفاده از Signal ادامه دهید، اما این پیکربندی می‌تواند باعث کاهش اطمینان‌پذیری یا عملکرد شود.\n\n اگر یک کاربر حرفه‌ای یا در حال اجرای یک ROM سفارشی اندروید نیستید یا فکر می‌کنید که این پیام به اشتباه به شما نشان داده شده است، برای دریافت کمک در فرآیند عیب‌یابی با support@signal.org تماس بگیرید.</string>
   <string name="RegistrationActivity_i_understand">می فهمم</string>
   <string name="RegistrationActivity_play_services_error">خطا پلی استور</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">گوگل پلی استور در حال به روز رسانی بوده یا موقتاً در دسترس نیست. لطفاً دوباره تلاش کنید.</string>
@@ -793,14 +797,14 @@
   <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">دیگر کاربران Signal می‌توانند از طریق نام کاربری و بدون نیاز به دانستن شمارهٔ همراه شما درخواستِ پیام ارسال کنند. انتخاب نام کاربری اختیاری است.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">مخاطب شما در حال استفاده از یک نسخهٔ قدیمی Signal است. لطفاً پیش از تأیید شمارهٔ امنیتی شما از او بخواهید به‌روزرسانی کند.</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">مخاطب شما در حال اجرای یک نسخهٔ جدیدتر Signal با یک QR code ناسازگار است. لطفاً برای مقایسه به‌روزرسانی کنید.</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">کد کیوآر اسکن شده کد تأیید شماره امنیتی فرمت شده صحیح نیست. لطفاً دوباره اسکن کنید.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">مخاطب شما در حال اجرای نسخهٔ جدیدتر Signal با یک کد QR ناسازگار است. لطفاً برای مقایسه به‌روزرسانی کنید.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">کد QR اسکن شده، یک کد تأیید عدد ایمنی است که به صورت صحیح قالب‌بندی نشده است. لطفاً دوباره اسکن کنید.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">اشتراک گذاری شمارهٔ امنیتی از طریق…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">شماره امنیتی ما:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">به نظر می‌رسد که شما هیچ برنامه‌ای برای اشتراک گذاری ندارید.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">هیچ شماره امنیتی برای مقایسه در کلیپ بورد پیدا نشد</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal  به منظور اسکن کد کیوآر نیاز به دسترسی دوربین دارد، اما این اجازه داده نشده است. لطفاً به قسمت تنظیمات برنامه رفته، \"مجوز ها\" را انتخاب کنید، و \"دوربین\" را فعال کنید.</string>
-  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">عدم توانایی در اسکن کد کیوآر بدون مجوز دوربین</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal جهت اسکن کردن کد QR نیاز به دسترسی به دوربین دارد، اما این دسترسی داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «دوربین» را فعال کنید. </string>
+  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">امکان اسکن کردن کد QR بدون مجوز دوربین وجود ندارد</string>
   <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">پیام بد رمزگذاری شده</string>
@@ -949,7 +953,7 @@
   <string name="contact_filter_toolbar__show_dial_pad_description">نمایش شماره‌ گیر</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">مخاطبی یافت نشد.</string>
-  <string name="contact_selection_group_activity__finding_contacts">در حال بارگذاری مخاطب ها…</string>
+  <string name="contact_selection_group_activity__finding_contacts">در حال بارگذاری مخاطب ها...</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">تصویر مخاطب</string>
   <!--ContactSelectionListFragment-->
@@ -1008,7 +1012,7 @@
   <string name="country_selection_fragment__loading_countries">در حال بارگذاری کشور ها…</string>
   <string name="country_selection_fragment__search">جستجو</string>
   <!--device_add_fragment-->
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">کد کیوآر نمایش داده شده روی دستگاه را برای پیوند دادن اسکن کنید</string>
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">برای پیوند دادن، تصویر QR نمایش داده شده روی دستگاه را اسکن کنید.</string>
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">پیوند دستگاه</string>
   <!--device_list_fragment-->
@@ -1065,7 +1069,7 @@
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">چیزی یافت نشد</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">عدم توانایی در خوانش گزارش روی دستگاه شما. همچنان می توانید از طریق ADB گزارش دیباگ را دریافت کنید.</string>
+  <string name="log_submit_activity__log_fetch_failed">عدم توانایی در خوانش گزارش روی دستگاه شما. همچنان می‌توانید از طریق ADB گزارش اشکال‌زدایی را دریافت کنید.</string>
   <string name="log_submit_activity__thanks">از کمک شما سپاسگزاریم!</string>
   <string name="log_submit_activity__submitting">در حال ارسال</string>
   <string name="log_submit_activity__no_browser_installed">هیچ مرورگری نصب نشده است</string>
@@ -1074,8 +1078,8 @@
   <string name="log_submit_activity__button_got_it">فهمیدم</string>
   <string name="log_submit_activity__button_compose_email">نوشتن ایمیل</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">این گزارش به صورت آنلاین برای بازنگری مشارکت کنندگان منتشر خواهد شد، می‌توانید آن را قبل از ارسال بررسی کرده و ویرایش کنید.</string>
-  <string name="log_submit_activity__loading_logs">بارگذاری گزارش ها…</string>
-  <string name="log_submit_activity__uploading_logs">آپلود گزارش ها…</string>
+  <string name="log_submit_activity__loading_logs">بارگذاری گزارش ها...</string>
+  <string name="log_submit_activity__uploading_logs">آپلود گزارش ها...</string>
   <string name="log_submit_activity__choose_email_app">انتخاب برنامه ایمیل</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">لطفاً این گزارش از برنامه من را بازبینی کنید: %1$s</string>
   <string name="log_submit_activity__network_failure">خطا شبکه. لطفاً دوباره تلاش کنید.</string>
@@ -1151,7 +1155,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ اگر مایل هستید تا امنیت رمزگذاری خود را با %s تایید کنید، عدد آمده در بالا را با عدد روی دستگاه آن ها مقایسه کنید. در غیر این صورت، میتوانید کد روی گوشی آن ها را اسکن کرده یا از آن ها بخواهید تا کد شما را اسکن کنند. <a href="https://signal.org/redirect/safety-numbers">بیشتر یاد بگیرید.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">برای اسکن کردن ضربه بزنید</string>
-  <string name="verify_display_fragment__loading">در حال بارگذاری…</string>
+  <string name="verify_display_fragment__loading">در حال بارگذاری...</string>
   <string name="verify_display_fragment__verified">تایید شده</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">اشتراک گذاری شمارهٔ امنیتی</string>
@@ -1518,7 +1522,7 @@
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">پین شما ذخیره نشد. ما بعداً از شما خواهیم خواست تا یک پین دیگر ایجاد کنید.</string>
   <string name="ConfirmKbsPinFragment__pin_created">پین ایجاد شد.</string>
   <string name="ConfirmKbsPinFragment__re_enter_pin">دوباره پین را وارد کنید</string>
-  <string name="ConfirmKbsPinFragment__creating_pin">ایجاد پین…</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">ایجاد پین...</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">تعریف پین‌ها</string>
   <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">پین‌ها یک لایهٔ امنیتی دیگر به حساب شما اضافه می‌کنند. یک پین ایجاد کنید.</string>
@@ -1591,17 +1595,17 @@
   <string name="ProfileNamesMegaphone__confirm_name">تأیید اسم</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">نگارک انتقال</string>
-  <string name="ConversationListFragment_loading">در حال بارگذاری…</string>
+  <string name="ConversationListFragment_loading">در حال بارگذاری...</string>
   <string name="CallNotificationBuilder_connecting">در حال اتصال…</string>
   <string name="Permissions_permission_required">مجوز لازم است</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal برای ارسال پیامک نیاز به مجوز پیامک دارد اما این دسترسی به‌ داده نشده است. لطفاً به تنظیمات برنامه‌ رفته، \"مجوزها\" را انتخاب کنید و \"پیامک\" را فعال کنید.</string>
   <string name="Permissions_continue">ادامه</string>
-  <string name="Permissions_not_now">الان نه</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal برای جستجو مخاطبان نیاز به دسترسی به مخاطبان دارد اما این اجازه داده نشده است. لطفاً به تنظیمات برنامه رفته، \"مجوزها\" را انتخاب کنید، \"مخاطبان\" را فعال کنید.</string>
+  <string name="Permissions_not_now">حالا نه</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal برای جستجوی مخاطبین نیاز به دسترسی به مخاطبان دارد، اما این دسترسی داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «مخاطبان» را فعال کنید.</string>
   <string name="conversation_activity__enable_signal_messages">فعال‌سازی پیام های Signal</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">در حال انتقال پایگاه داده Signal</string>
   <string name="PushDecryptJob_new_locked_message">پیام قفل شده جدید</string>
-  <string name="PushDecryptJob_unlock_to_view_pending_messages">جهت دیدن پیام های در حال انتظار قفل را باز کنید</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">جهت دیدن پیام‌های در حال انتظار قفل را باز کنید</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">گذرواژهٔ پشتیبان‌گیری</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">پشتیبان‌ها روی یک حافظهٔ خارجی ذخیره و با گذرواژهٔ زیر رمزنگاری خواهند شد. شما برای بازگردانی پشتیبان خود باید گذرواژهٔ زیر را داشته باشید.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">من این گذرواژه را یادداشت کرده‌ام. بدون آن، قادر به بازگردانی پشتیبان خود نخواهم بود.</string>
@@ -1658,8 +1662,8 @@
   <string name="AppProtectionPreferenceFragment_none">هیچ‌کدام</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">پین قفل ثبت‌نام همان کد تأییدی که الان از طریق پیامک دریافت کردید نیست. لطفاً رمزی را که قبلاً در برنامه تنظیم کرده بودید را وارد کنید.</string>
   <string name="registration_activity__registration_lock_pin">پین قفل ثبت‌نام</string>
-  <string name="registration_activity__forgot_pin">پین را فراموش کرده‌اید؟</string>
-  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">پین می تواند از چهار رقم یا تعداد ارقام بیشتری تشکیل شود. اگر پین خود را فراموش کردید، حساب کاربری شما تا هفت روز قفل خواهند شد.</string>
+  <string name="registration_activity__forgot_pin">پین را فراموش کردید؟</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">پین می تواند از چهار رقم یا تعداد ارقام بیشتری تشکیل شود. اگر پین خود را فراموش کردید، حساب کاربری شما تا هفت روز قفل خواهد شد.</string>
   <string name="registration_lock_dialog_view__enter_pin">پین را وارد کنید</string>
   <string name="registration_lock_dialog_view__confirm_pin">پین را تأیید کنید</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">پین قفل ثبت‌نام خود را وارد کنید</string>
@@ -1678,7 +1682,7 @@
   <string name="RegistrationActivity_registration_lock_pin">پین قفل ثبت‌نام</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">قفل ثبت‌نام برای این شماره فعال است. لطفاً پین قفل ثبت‌نام را وارد کنید.</string>
   <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">قفل ثبت‌نام برای شماره‌ٔ شما فعال شد. برای کمک به شما در بخاطر سپردن پین قفل ثبت‌نام، Signal به صورت دوره‌ای از شما می‌خواهد تا آن را تأیید کنید.</string>
-  <string name="RegistrationLockDialog_i_forgot_my_pin">پین را فراموش کرده‌ام.</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">پین را فراموش کردم.</string>
   <string name="RegistrationLockDialog_forgotten_pin">پین فراموش شده؟</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">قفل ثبت‌نام کمک می‌کند تا شماره‌ٔ خود را از تلاش‌ غیرمجاز برای ثبت‌نام محافظت کنید. هر موقع که بخواهید می‌توانید این ویژگی را در تنظیمات حریم خصوصی Signal غیرفعال کنید</string>
   <string name="RegistrationLockDialog_registration_lock">قفل ثبت‌نام</string>

@@ -455,7 +455,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">निवडण्यासाठी टॅप करा</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">एक कॅप्शन जोडा…</string>
+  <string name="MediaSendActivity_add_a_caption">एक कॅप्शन जोडा...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">एक आयटम काढला गेला कारण त्याने आकार मर्यादा ओलांडली होती</string>
   <string name="MediaSendActivity_camera_unavailable">कॅमेरा अनुपलब्ध.</string>
   <string name="MediaSendActivity_message_to_s">%s ला संदेश</string>

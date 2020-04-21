@@ -3,14 +3,14 @@
   <string name="yes">Oo</string>
   <string name="no">Hindi</string>
   <string name="delete">Delete</string>
-  <string name="please_wait">Maghintay lang…</string>
+  <string name="please_wait">Maghintay lang...</string>
   <string name="save">I-save</string>
   <string name="note_to_self">Sulat para sa sarili</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Bagong mensahe</string>
   <!--AlbumThumbnailView-->
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Nag-u-update ang Signal…</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">Nag-u-update ang Signal...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Sa ngayon nasa: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Hindi ka pa nagset ng passphrase!</string>
@@ -28,7 +28,7 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Permanente nitong ia-unlock ang Signal at mga notipikasyong pangmensahe.</string>
   <string name="ApplicationPreferencesActivity_disable">I-disable</string>
   <string name="ApplicationPreferencesActivity_unregistering">Tinatanggal ang pagkakarehistro</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Tinatanggal ang pagkakarehistro mula sa mga mensahe at tawag sa Signal…</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Tinatanggal ang pagkakarehistro mula sa mga mensahe at tawag sa Signal...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">I-disable ang mga mensahe at tawag sa Signal?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">I-disable ang mga mensahe at tawag sa Signal sa pamamagitan ng pagtatanggal ng pagkakarehistro sa server. Kakailanganin mong muling irehistro ang numero ng iyong telepono upang muli itong magamit sa hinaharap.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Nagka-error sa pagkonekta sa server!</string>
@@ -70,8 +70,8 @@
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Kailangan ng Signal ng pahintulot sa Lokasyon upang makapaglakip ng lokasyon, ngunit permanente itong ipinagbabawal. Pumunta sa app settings menu, piliin ang \"Mga Pahintulot\", at i-enable ang \"Lokasyon\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Kailangan ng Signal ng pahintulot sa Camera upang makakuha ng mga larawan, ngunit permanente itong ipinagbabawal. Pumunta sa app settings menu, piliin ang \"Mga Pahintulot\", at i-enable ang \"Camera\".</string>
   <!--AttachmentUploadJob-->
-  <string name="AttachmentUploadJob_uploading_media">Nag-a-upload ng media…</string>
-  <string name="AttachmentUploadJob_compressing_video_start">Nagko-compress ng video…</string>
+  <string name="AttachmentUploadJob_uploading_media">Nag-a-upload ng media...</string>
+  <string name="AttachmentUploadJob_compressing_video_start">Nagko-compress ng video...</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Nagka-error sa pagpapatugtog ng audio!</string>
   <!--BlockedContactsActivity-->
@@ -254,12 +254,12 @@
     <item quantity="one">Isine-save ang nakalakip sa storage…</item>
     <item quantity="other">Isine-save ang %1$d kalakip sa storage…</item>
   </plurals>
-  <string name="ConversationFragment_pending">Nakabinbin…</string>
+  <string name="ConversationFragment_pending">Nakabinbin...</string>
   <string name="ConversationFragment_push">Data (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Binubura</string>
-  <string name="ConversationFragment_deleting_messages">Binubura ang mga mensahe…</string>
+  <string name="ConversationFragment_deleting_messages">Binubura ang mga mensahe...</string>
   <string name="ConversationFragment_quoted_message_not_found">Ang orihinal na mensahe ay hindi mahanap</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Ang orihinal na mensahe ay wala na</string>
   <string name="ConversationFragment_failed_to_open_message">Nabigong buksan ang mensahe</string>
@@ -281,7 +281,7 @@
     <item quantity="other">Permanente nitong buburahin ang lahat sa %1$d piniling pag-uusap. </item>
   </plurals>
   <string name="ConversationListFragment_deleting">Binubura</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">Binubura ang mga piniling pag-uusap…</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Binubura ang mga piniling pag-uusap...</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">Nailagay na sa archive ang pag-uusap</item>
     <item quantity="other">Nailagay na sa archive ang %d pag-uusap</item>
@@ -331,7 +331,7 @@
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Sa pamamagitan ng pag-unlink sa device na ito, hindi na ito makakapagpadala o makakatanggap ng mga mensahe.</string>
   <string name="DeviceListActivity_network_connection_failed">Nabigo ang koneksyon sa network</string>
   <string name="DeviceListActivity_try_again">Subukang muli</string>
-  <string name="DeviceListActivity_unlinking_device">Ina-unlik ang device…</string>
+  <string name="DeviceListActivity_unlinking_device">Ina-unlik ang device...</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Ina-unlink ang device</string>
   <string name="DeviceListActivity_network_failed">Nabigo ang network!</string>
   <!--DeviceListItem-->
@@ -348,7 +348,7 @@
   <string name="ShareActivity_share_with">Ibahagi kay</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Ang maramihang kalakip ay suportado lamang para sa mga imahe at videos</string>
   <!--GcmBroadcastReceiver-->
-  <string name="GcmBroadcastReceiver_retrieving_a_message">May kinukuhang mensahe…</string>
+  <string name="GcmBroadcastReceiver_retrieving_a_message">May kinukuhang mensahe...</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanenteng kabiguan ng Signal sa komunikasyon!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Hindi nagawang magparehistro ng Signal sa Google Play Services. Ang mga mensahe at tawag sa Signal ay na-disable, subukang muling magparehistro sa Settings &gt; Advanced.</string>
@@ -371,7 +371,7 @@
   <string name="GroupCreateActivity_creating_group">Nililikha ang %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Ina-update ang %1$s…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Hindi maidagdag sina %1$s dahil hindi sila gumagamit ng Signal.</string>
-  <string name="GroupCreateActivity_loading_group_details">Nilo-load ang mga detalye ng grupo…</string>
+  <string name="GroupCreateActivity_loading_group_details">Nilo-load ang mga detalye ng grupo...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Nasa grupo ka na.</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Ibahagi ang iyong profile name at photo sa grupong ito?</string>
@@ -390,7 +390,7 @@
   <string name="InviteActivity_share_with_contacts">Ibahagi sa mga kontak</string>
   <string name="InviteActivity_choose_how_to_share">Piliin kung paano ibabahagi</string>
   <string name="InviteActivity_cancel">Kanselahin</string>
-  <string name="InviteActivity_sending">Ipinapadala…</string>
+  <string name="InviteActivity_sending">Ipinapadala...</string>
   <string name="InviteActivity_heart_content_description">Puso</string>
   <string name="InviteActivity_invitations_sent">Naipadala na ang mga imbitasyon!</string>
   <string name="InviteActivity_invite_to_signal">Imbitahan sa Signal</string>
@@ -406,7 +406,7 @@
   <string name="InviteActivity_no_app_to_share_to">Mukhang wala kang anumang app na maaaring bahaginan.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Hindi hinahayaan ng magkakaibigan na mag-chat ang mga kaibigan nang unencrypted.</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">Gumagana sa background…</string>
+  <string name="Job_working_in_the_background">Gumagana sa background...</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Nabigong ipadala</string>
   <string name="MessageDetailsRecipient_new_safety_number">Bagong numerong pangkaligtasan</string>
@@ -433,9 +433,9 @@
     <item quantity="other">Permanente nitong buburahin ang lahat sa %1$d piniling file. Ang anumang text na mensaheng may kaugnayan sa mga item na ito ay buburahin din.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Binubura</string>
-  <string name="MediaOverviewActivity_Media_delete_progress_message">Binubura ang mga mensahe…</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Binubura ang mga mensahe...</string>
   <string name="MediaOverviewActivity_Select_all">Piliin lahat</string>
-  <string name="MediaOverviewActivity_collecting_attachments">Tinitipon ang mga kalakip…</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Tinitipon ang mga kalakip...</string>
   <string name="MediaOverviewActivity_Sort_by">Pasunud-sunurin ayon sa</string>
   <string name="MediaOverviewActivity_Newest">Pinakabago</string>
   <string name="MediaOverviewActivity_Oldest">Pinakaluma</string>
@@ -485,7 +485,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Pindutin upang piliin</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Magdagdag ng caption…</string>
+  <string name="MediaSendActivity_add_a_caption">Magdagdag ng caption...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">May item na tinanggal dahil lumampas ito sa limitasyon ng laki</string>
   <string name="MediaSendActivity_camera_unavailable">Hindi available ang camera</string>
   <string name="MediaSendActivity_message_to_s">Mensahe para kay %s</string>
@@ -560,7 +560,7 @@
         \n• Magpadala ng mga mensahe sa ngalan mo
     </string>
   <string name="DeviceProvisioningActivity_content_progress_title">Nili-link ang device</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Nili-link ang bagong device…</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Nili-link ang bagong device...</string>
   <string name="DeviceProvisioningActivity_content_progress_success">Aprubado ang device!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Walang device na nahanap.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Nagka-error sa network.</string>
@@ -802,7 +802,7 @@
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Gumagamit ng lumang bersyon ng Signal ang iyong kontak. Pakisabi sa kaniyang mag-update bago iberipika ang iyong numerong pangkaligtasan.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Ang iyong kontak ay gumagamit ng mas bagong bersyon ng Signal na may hindi katugma na format ng QR code. Mag-update para tumugma.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Ang na-scan na QR code ay hindi verification code ng numerong pangkaligtasan na na-format nang tama. Pakisubukang i-scan muli.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">Ibahagi ang numerong pangkaligtasan sa pamamagitan ng…</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Ibahagi ang numerong pangkaligtasan sa pamamagitan ng...</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Aming numerong pangkaligtasan sa Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Mukhang wala kang anumang app na maaaring bahaginan.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Walang tumutugmang numerong pangkaligtasan na nahanap sa clipboard</string>
@@ -956,7 +956,7 @@
   <string name="contact_filter_toolbar__show_dial_pad_description">Ipakita ang dialpad</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Walang kontak.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Nilo-load ang mga kontak…</string>
+  <string name="contact_selection_group_activity__finding_contacts">Nilo-load ang mga kontak...</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Larawan ng Kontak</string>
   <!--ContactSelectionListFragment-->
@@ -998,7 +998,7 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Larawan ng kontak</string>
   <!--audio_view-->
-  <string name="audio_view__play_pause_accessibility_description">I-play … I-pause</string>
+  <string name="audio_view__play_pause_accessibility_description">I-play ... I-pause</string>
   <string name="audio_view__download_accessibility_description">I-download</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Audio</string>
@@ -1012,7 +1012,7 @@
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Mag-scroll pababa</string>
   <!--country_selection_fragment-->
-  <string name="country_selection_fragment__loading_countries">Nilo-load ang mga bansa…</string>
+  <string name="country_selection_fragment__loading_countries">Nilo-load ang mga bansa...</string>
   <string name="country_selection_fragment__search">Maghanap</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">I-scan ang QR code na makikita sa device upang i-link</string>
@@ -1081,8 +1081,8 @@
   <string name="log_submit_activity__button_got_it">OK</string>
   <string name="log_submit_activity__button_compose_email">Magsulat ng email</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Pampublikong ipapaskil online ang log na ito para makita ng mga contributor, puwede mo itong suriin at i-edit bago isumite.</string>
-  <string name="log_submit_activity__loading_logs">Inilo-load ang mga log…</string>
-  <string name="log_submit_activity__uploading_logs">Ina-upload ang mga log…</string>
+  <string name="log_submit_activity__loading_logs">Inilo-load ang mga log...</string>
+  <string name="log_submit_activity__uploading_logs">Ina-upload ang mga log...</string>
   <string name="log_submit_activity__choose_email_app">Pumili ng app na pang-email</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Pakisuri ang log na ito mula sa aking app: %1$s</string>
   <string name="log_submit_activity__network_failure">Nabigo ang network. Pakisubukang muli.</string>
@@ -1105,7 +1105,7 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">TINGNAN</string>
   <string name="message_recipients_list_item__resend">IPADALANG MULI</string>
-  <string name="message_recipients_list_item__resending">Ipinapadalang muli…</string>
+  <string name="message_recipients_list_item__resending">Ipinapadalang muli...</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s ay sumali sa grupo.</item>
@@ -1158,7 +1158,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Kung gusto mong iberipika ang seguridad ng iyong encryption kay %s, ikumpara ang numero sa itaas sa numero sa kanyang device. Isang alternatibo dito, maaari mong i-scan ang code sa kanyang telepono, o hilingin sa kanyang i-scan ang iyong code. <a href="https://signal.org/redirect/safety-numbers">Matuto pa.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Pindutin para mag-scan</string>
-  <string name="verify_display_fragment__loading">Naglo-load…</string>
+  <string name="verify_display_fragment__loading">Naglo-load...</string>
   <string name="verify_display_fragment__verified">Beripikado</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Ibahagi ang numerong pangkaligtasan</string>
@@ -1371,7 +1371,7 @@
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__unknown_contact">Bagong mensahe para kay…</string>
+  <string name="contact_selection_list__unknown_contact">Bagong mensahe para kay...</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Tawagan</string>
   <!--conversation_callable_secure-->
@@ -1476,7 +1476,7 @@
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">Binubura</string>
-  <string name="trimmer__deleting_old_messages">Binubura ang mga lumang mensahe…</string>
+  <string name="trimmer__deleting_old_messages">Binubura ang mga lumang mensahe...</string>
   <string name="trimmer__old_messages_successfully_deleted">Ang mga lumang mensahe ay matagumpay na nabura</string>
   <!--Insights-->
   <string name="Insights__percent">%</string>
@@ -1525,7 +1525,7 @@
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Ang iyong PIN ay hindi nai-save. Paaalahanan ka namin na lumikha ng PIN sa ibang pagkakataon.</string>
   <string name="ConfirmKbsPinFragment__pin_created">Nalikha na ang PIN.</string>
   <string name="ConfirmKbsPinFragment__re_enter_pin">Muling ilagay ang PIN</string>
-  <string name="ConfirmKbsPinFragment__creating_pin">Lumilikha ng PIN…</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">Lumilikha ng PIN...</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Ipinakikilala ang mga PIN</string>
   <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">Ang mga PIN ay nagdadagdag ng isa pang antas ng seguridad sa iyong account. Lumikha ng isa ngayon.</string>
@@ -1598,8 +1598,8 @@
   <string name="ProfileNamesMegaphone__confirm_name">Kumpirmahin ang Pangalan</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icon ng transportasyon</string>
-  <string name="ConversationListFragment_loading">Naglo-load…</string>
-  <string name="CallNotificationBuilder_connecting">Kumokonekta…</string>
+  <string name="ConversationListFragment_loading">Naglo-load...</string>
+  <string name="CallNotificationBuilder_connecting">Kumokonekta...</string>
   <string name="Permissions_permission_required">Kailangan ang pahintulot</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Kailangan ng Signal ang pahintulot sa SMS upang makapagpadala ng SMS, ngunit ito ay permanenteng ipinagbabawal. Pumunta sa app settings, piliin ang \"Mga Pahintulot\", at i-enable ang  \"SMS\".</string>
   <string name="Permissions_continue">Magpatuloy</string>
@@ -1624,8 +1624,8 @@
   <string name="RegistrationActivity_restore">I-restore</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Hindi makakapag-import ng mga backup mula sa mga mas bagong bersyon ng Signal</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Hindi tamang passphrase ng backup</string>
-  <string name="RegistrationActivity_checking">Sinusuri…</string>
-  <string name="RegistrationActivity_d_messages_so_far">%d mensahe sa ngayon…</string>
+  <string name="RegistrationActivity_checking">Sinusuri...</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d mensahe sa ngayon...</string>
   <string name="RegistrationActivity_restore_from_backup">I-restore mula sa backup?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">I-restore ang iyong mga mensahe at media mula sa isang lokal na backup. Kung hindi ka magre-restore ngayon, hindi ka na makakapag-restore sa hinaharap.</string>
   <string name="RegistrationActivity_backup_size_s">Size ng backup: %s</string>
@@ -1644,7 +1644,7 @@
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Kailangan ng Signal ng pahintulot sa paggamit ng panlabas na storage upang makalikha ng mga backup, ngunit ito ay permanenteng ipinagbabawal. Pumunta sa app settings, piliin ang \"Pahintulot\", at i-enable ang \"Storage\". </string>
   <string name="ChatsPreferenceFragment_last_backup_s">Huling backup: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Isinasagawa</string>
-  <string name="LocalBackupJob_creating_backup">Lumilikha ng backup…</string>
+  <string name="LocalBackupJob_creating_backup">Lumilikha ng backup...</string>
   <string name="ProgressPreference_d_messages_so_far">%d mensahe sa ngayon</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Pakilagay ang verification code na ipinadala kay %s.</string>
   <string name="RegistrationActivity_wrong_number">Mali ang numero</string>

@@ -26,7 +26,7 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Signal とメッセージ通知のロックが完全に解除されます。</string>
   <string name="ApplicationPreferencesActivity_disable">無効</string>
   <string name="ApplicationPreferencesActivity_unregistering">登録を削除中</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signal でのメッセージ・通話を登録解除しています…</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signal でのメッセージ・通話を登録解除しています...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal でのメッセージ・通話を無効にしますか？</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">サーバから登録を削除することで、Signal のメッセージ・通話を無効にします。再び Signal を使用するには、電話番号を再登録する必要があります。</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">サーバー接続中にエラーが発生しました！</string>
@@ -111,6 +111,8 @@
   <string name="CommunicationActions_start_voice_call">音声通話を始めますか？</string>
   <string name="CommunicationActions_cancel">キャンセル</string>
   <string name="CommunicationActions_call">通話</string>
+  <string name="CommunicationActions_insecure_call">保護されていない通話</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">携帯キャリアの通話料がかかる場合があります。今通話している番号は Signal に登録されていません。この通話はインターネットではなく携帯キャリアの電話回線を利用しています。</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s に対する安全番号が変更されました。誰かが通話の傍受を試みているか、%2$s が Signal を再インストールした可能性があります。</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">この連絡先に対する安全番号を確認することをお勧めします。</string>
@@ -206,14 +208,17 @@
   <string name="ConversationActivity_unblock_s">%1$s をブロック解除しますか？</string>
   <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">お互いにメッセージや通話ができるようになります。</string>
   <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">グループのメンバーはあなたをもう一度このグループに加えることができます。</string>
+  <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">ブロックされた人はあなたにメッセージを送れたり、通話したりできません。</string>
   <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">このグループから退出して、今後メッセージや更新を受信しなくなります。</string>
   <string name="ConversationActivity_block">ブロック</string>
+  <string name="ConversationActivity_block_and_delete">ブロックして削除</string>
   <string name="ConversationActivity_cancel">キャンセル</string>
   <string name="ConversationActivity_delete_conversation">会話を削除しますか？</string>
   <string name="ConversationActivity_delete_and_leave_group">グループから退出して削除しますか？</string>
   <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">この会話はすべての端末から削除されます。</string>
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">このグループから退出し、すべての端末から削除します。</string>
   <string name="ConversationActivity_delete">削除</string>
+  <string name="ConversationActivity_delete_and_leave">退出して削除</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d 件の未読メッセージ</item>
@@ -272,6 +277,7 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">%d 件の会話を受信ボックスに移動しました</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_created">プロフィール名を作成しました。</string>
   <string name="ConversationListFragment__your_profile_name_has_been_saved">プロフィール名を保存しました。</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">鍵交換のメッセージ</string>
@@ -347,7 +353,7 @@
   <string name="GroupCreateActivity_contacts_invalid_number">グループの中に正しく読み取れない電話番号を持つメンバーがいます。番号を修正するか、そのメンバーを削除してからもう一度お試しください。</string>
   <string name="GroupCreateActivity_avatar_content_description">グループアバター</string>
   <string name="GroupCreateActivity_menu_apply_button">適用</string>
-  <string name="GroupCreateActivity_creating_group">%1$s を作成しています…</string>
+  <string name="GroupCreateActivity_creating_group">%1$s を作成しています...</string>
   <string name="GroupCreateActivity_updating_group">%1$s をアップデートしています…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s は Signal ユーザではないので追加できませんでした。</string>
   <string name="GroupCreateActivity_loading_group_details">グループの詳細を読み込んでいます…</string>
@@ -369,7 +375,7 @@
   <string name="InviteActivity_share_with_contacts">連絡先と共有</string>
   <string name="InviteActivity_choose_how_to_share">共有方法を選択</string>
   <string name="InviteActivity_cancel">キャンセル</string>
-  <string name="InviteActivity_sending">送信しています…</string>
+  <string name="InviteActivity_sending">送信しています...</string>
   <string name="InviteActivity_heart_content_description">ハート</string>
   <string name="InviteActivity_invitations_sent">招待状を送りました！</string>
   <string name="InviteActivity_invite_to_signal">Signal に招待する</string>
@@ -458,7 +464,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">タップして選択</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">キャプションを追加…</string>
+  <string name="MediaSendActivity_add_a_caption">キャプションを追加...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">アイテムはサイズの上限を超えたため削除されました。</string>
   <string name="MediaSendActivity_camera_unavailable">カメラは利用できません。</string>
   <string name="MediaSendActivity_message_to_s">%s へのメッセージ</string>
@@ -502,6 +508,12 @@
   <string name="MessageRequestProfileView_member_of_one_group">%1$s のメンバー</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s と %2$s のメンバー</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s、%2$s および %3$s のメンバー</string>
+  <plurals name="MessageRequestProfileView_members">
+    <item quantity="other">%1$d メンバー</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="other">%1$d メンバー (+%2$d 件の招待)</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="other">他 %d 人</item>
   </plurals>
@@ -1093,7 +1105,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s に対する暗号化を検証したい場合は、上記の番号が相手デバイスの番号と一致するか確認してください。代わりに、相手のデバイスの QR コードを読み取るか、こちらの QR コードを相手に読み取ってもらうこともできます。<a href="https://signal.org/redirect/safety-numbers">詳細を見る。</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">タップしてスキャンする</string>
-  <string name="verify_display_fragment__loading">読み込んでいます…</string>
+  <string name="verify_display_fragment__loading">読み込んでいます...</string>
   <string name="verify_display_fragment__verified">この連絡先は確認済みです</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">安全番号を共有する</string>
@@ -1122,6 +1134,12 @@
   <string name="AndroidManifest_archived_conversations">アーカイブ済みの会話</string>
   <string name="AndroidManifest_remove_photo">写真を消去</string>
   <!--Message Requests Megaphone-->
+  <string name="MessageRequestsMegaphone__message_requests">メッセージリクエスト</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">ユーザが新しい会話を了承するかどうかを選択できるようになりました。プロフィール名で、誰が自分にメッセージを送っているのかを知ることができます。</string>
+  <string name="MessageRequestsMegaphone__add_profile_name">プロフィール名を追加</string>
+  <string name="MessageRequestsMegaphone__new_message_requests">New: メッセージリクエスト</string>
+  <string name="MessageRequestsMegaphone__add_name">名前を追加</string>
+  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">新しい会話を了承するかどうかを選択できるようになりました。今後、新しい会話には「了承」、「削除」および「ブロック」という選択肢が表示されます。</string>
   <!--HelpFragment-->
   <string name="HelpFragment__help">ヘルプ</string>
   <string name="HelpFragment__have_you_read_our_faq_yet">よくある質問を見る</string>
@@ -1133,13 +1151,16 @@
   <string name="HelpFragment__how_do_you_feel">今の状況は？ (任意)</string>
   <string name="HelpFragment__support_info">Support Info</string>
   <string name="HelpFragment__subject">Subject:</string>
+  <string name="HelpFragment__signal_android_support_request">Signal Android Support Request</string>
   <string name="HelpFragment__device_info">Device info:</string>
   <string name="HelpFragment__android_version">Android version:</string>
   <string name="HelpFragment__signal_version">Signal version:</string>
   <string name="HelpFragment__locale">Locale:</string>
   <string name="HelpFragment__debug_log">Debug Log:</string>
+  <string name="HelpFragment__na">n/a</string>
   <string name="HelpFragment__signal_support">Signalサポート</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">どのような問題が発生しているのか、詳細に記述してください。</string>
+  <string name="HelpFragment__no_email_app_found">メールアプリがありません。</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">インポート</string>
   <string name="arrays__use_default">既定を使う</string>
@@ -1241,6 +1262,7 @@
   <string name="preferences__dark_theme">暗い</string>
   <string name="preferences__appearance">デザイン</string>
   <string name="preferences__theme">テーマ</string>
+  <string name="preferences__system_default">システムの既定</string>
   <string name="preferences__default">既定</string>
   <string name="preferences__language">言語</string>
   <string name="preferences__signal_messages_and_calls">Signal のメッセージと通話</string>
@@ -1445,7 +1467,7 @@
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN は保存されませんでした。後ほど PIN の作成ダイアログが表示されます。</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN を作成しました。</string>
   <string name="ConfirmKbsPinFragment__re_enter_pin">PIN を再入力</string>
-  <string name="ConfirmKbsPinFragment__creating_pin">PIN を作成しています…</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">PIN を作成しています...</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">PIN のご紹介</string>
   <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">PIN はアカウントのセキュリティを強化します。いますぐ作成しましょう。</string>
@@ -1505,14 +1527,16 @@
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">後ほど再度お知らせします。PIN の作成は %1$d 日後に必須となります。</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">後ほど再度お知らせします。PIN の確認は %1$d 日後に必須となります。</string>
   <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__add_a_profile_name">プロフィール名を追加</string>
   <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">これは共有したり新しい会話を始めた際に表示されます。</string>
   <string name="ProfileNamesMegaphone__add_profile_name">プロフィール名を追加する</string>
+  <string name="ProfileNamesMegaphone__confirm_your_profile_name">プロフィール名の確認</string>
   <string name="ProfileNamesMegaphone__your_profile_can_now_include">プロフィールに任意で姓を追加できます。</string>
   <string name="ProfileNamesMegaphone__confirm_name">名前の確認</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">転送アイコン</string>
-  <string name="ConversationListFragment_loading">読み込んでいます…</string>
-  <string name="CallNotificationBuilder_connecting">接続しています…</string>
+  <string name="ConversationListFragment_loading">読み込んでいます...</string>
+  <string name="CallNotificationBuilder_connecting">接続しています...</string>
   <string name="Permissions_permission_required">アクセス許可が必要です</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">SMS を送信するには、Signal に SMS へのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューの「アクセス許可」で「SMS」を有効にしてください。</string>
   <string name="Permissions_continue">続行</string>

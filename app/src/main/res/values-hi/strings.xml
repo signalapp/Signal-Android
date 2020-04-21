@@ -60,6 +60,7 @@
   <string name="AttachmentKeyboard_file">फ़ाइल</string>
   <string name="AttachmentKeyboard_contact">संपर्क</string>
   <string name="AttachmentKeyboard_location">स्थान</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal को आपके फ़ोटो और वीडियो दिखाने के लिय अनुमति चाहिए।</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">मीडिया का चयन करने के लिए कोई ऐप नहीं मिल सकता है</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">फ़ोटो, वीडियो या ऑडियो संलग्न करने के लिए Signal को संग्रहण अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स मेनू पर जारी रखें, \"अनुमतियां\" चुनें, और \"संग्रहण\" सक्षम करें।</string>
@@ -111,6 +112,7 @@
   <string name="CommunicationActions_start_voice_call">वॉयस कॉल शुरू करें?</string>
   <string name="CommunicationActions_cancel">रद्द करें</string>
   <string name="CommunicationActions_call">कॉल</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">कैरियर दरें लागू हो सकती हैं। आपके द्वारा कॉल किया जा रहा नंबर Signal से रजिस्टर्ड नहीं है। इस कॉल को आपके मोबाइल कैरियर के माध्यम से रखा जाएगा, इंटरनेट पर नहीं।</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s के साथ आपका सुरक्षा नंबर बदल गया है। इसका मतलब यह हो सकता है कि कोई आपके संचार को रोकने की कोशिश कर रहा है, या उस %2$s ने Signal को फिर से इंस्टॉल किया है।</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">आप इस संपर्क के साथ अपना सुरक्षा नंबर सत्यापित करना चाह सकते हैं।</string>
@@ -343,7 +345,7 @@
   <string name="GroupCreateActivity_contacts_invalid_number">आपके समूह के सदस्यों में से एक में एक संपर्क नंबर है जिसे सही ढंग से पढ़ा नहीं जा सकता है। कृपया उस संपर्क को ठीक करें या हटाएं और पुनः प्रयास करें।</string>
   <string name="GroupCreateActivity_avatar_content_description">समूह अवतार</string>
   <string name="GroupCreateActivity_menu_apply_button">लागू करें</string>
-  <string name="GroupCreateActivity_creating_group">%1$sबनाया जा रहा है… </string>
+  <string name="GroupCreateActivity_creating_group">%1$sबनाया जा रहा है... </string>
   <string name="GroupCreateActivity_updating_group">%1$s अद्यतन किया जा रहा है…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s नहीं जोड़ सका क्योंकि वे Signal उपयोगकर्ता नहीं हैं।</string>
   <string name="GroupCreateActivity_loading_group_details">समूह माहिती लोड किया जा रहा है</string>
@@ -365,7 +367,7 @@
   <string name="InviteActivity_share_with_contacts">संपर्कों के साथ शेयर करें</string>
   <string name="InviteActivity_choose_how_to_share">शेयर करने का तरीका चुनें</string>
   <string name="InviteActivity_cancel">रद्द करें</string>
-  <string name="InviteActivity_sending">भेजा जा रहा है…</string>
+  <string name="InviteActivity_sending">भेजा जा रहा है...</string>
   <string name="InviteActivity_heart_content_description">दिल</string>
   <string name="InviteActivity_invitations_sent">आमंत्रण भेजा गया</string>
   <string name="InviteActivity_invite_to_signal">Signal को आमंत्रित करें</string>
@@ -455,7 +457,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">चयन के लिए टैप करें</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">शीर्षक लिखें…</string>
+  <string name="MediaSendActivity_add_a_caption">शीर्षक लिखें...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">इस चीज़ का आकार उसकी सीमा से ज़्यादा है, जिस वजह से इसे हटा दिया गया है</string>
   <string name="MediaSendActivity_camera_unavailable">कैमरा अनुपलब्ध।</string>
   <string name="MediaSendActivity_message_to_s">%s को मेसेज</string>
@@ -594,7 +596,7 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">आपके द्वारा निर्दिष्ट नंबर (%s) अमान्य है।</string>
   <string name="RegistrationActivity_missing_google_play_services">लापता Google Play Services</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">इस डिवाइस में Google Play सेवाएं अनुपलब्ध हैं। आप अभी भी Signal का उपयोग कर सकते हैं, लेकिन इस कॉन्फ़िगरेशन के परिणामस्वरूप कम विश्वसनीयता या प्रदर्शन हो सकता है। \n\n अगर आप एक उन्नत उपयोगकर्ता नहीं हैं, बाद वाले Android ROM नहीं चला रहे हैं, या मानते हैं कि आप इसे गलती से देख रहे हैं, तो कृपया support@signal.org पर निवारण कीजिए </string>
-  <string name="RegistrationActivity_i_understand">मै समझता हुँ…</string>
+  <string name="RegistrationActivity_i_understand">मै समझता हुँ...</string>
   <string name="RegistrationActivity_play_services_error">Play Services त्रुटि</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play सेवाएं अपडेट हो रही है या अस्थायी रूप से अनुपलब्ध है। कृपया पुन: प्रयास करें।</string>
   <string name="RegistrationActivity_terms_and_privacy">नियम और गोपनीयता नीति</string>
@@ -1019,7 +1021,7 @@
   <string name="log_submit_activity__button_got_it">समझ गया </string>
   <string name="log_submit_activity__button_compose_email">ईमेल लिखें</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">यह लॉग योगदानकर्ताओं के देखने के लिए सार्वजनिक रूप से ऑनलाइन पोस्ट किया जाएगा, आप सबमिट करने से पहले इसकी जांच और संपादन कर सकते हैं।</string>
-  <string name="log_submit_activity__loading_logs">लॉग लोड हो रहा है …</string>
+  <string name="log_submit_activity__loading_logs">लॉग लोड हो रहा है ...</string>
   <string name="log_submit_activity__uploading_logs">लॉग अपलोड किए जा रहे हैं</string>
   <string name="log_submit_activity__choose_email_app">ईमेल ऐप चुनें</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">कृपया मेरे ऐप %1$s से इस लॉग की समीक्षा करें</string>
@@ -1161,7 +1163,7 @@
     <item quantity="other">%dघंटे </item>
   </plurals>
   <!--preferences.xml-->
-  <string name="preferences__sms_mms">SMS और MMS…</string>
+  <string name="preferences__sms_mms">SMS और MMS...</string>
   <string name="preferences__pref_all_sms_title">सभी SMS प्राप्त करें</string>
   <string name="preferences__pref_all_mms_title">सभी MMS प्राप्त करें</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">सभी आने वाले पाठ मेसेज के लिए Signal का उपयोग करें</string>
@@ -1464,7 +1466,7 @@
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">परिवहन चिह्न</string>
   <string name="ConversationListFragment_loading">लोड हो रहा है</string>
-  <string name="CallNotificationBuilder_connecting">जोङ रहे हैं…</string>
+  <string name="CallNotificationBuilder_connecting">जोङ रहे हैं...</string>
   <string name="Permissions_permission_required">अनुमति की आवश्यकता</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">SMS भेजने के लिए Signal को एसएमएस की अनुमति की आवश्यकता है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स जारी रखें, \"अनुमतियां\" चुनें और \"एसएमएस\" सक्षम करें।</string>
   <string name="Permissions_continue">आगे </string>

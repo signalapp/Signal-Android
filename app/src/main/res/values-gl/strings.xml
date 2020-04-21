@@ -855,7 +855,7 @@
   <string name="contact_filter_toolbar__show_dial_pad_description">Mostrar teclado de marcación</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Sen contactos.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Cargando contactos…</string>
+  <string name="contact_selection_group_activity__finding_contacts">Cargando contactos...</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Foto do contacto</string>
   <!--ContactSelectionListFragment-->
@@ -977,8 +977,8 @@
   <string name="log_submit_activity__button_got_it">Entendo</string>
   <string name="log_submit_activity__button_compose_email">Redactar correo</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Este rexistro publicarase en liña para que os colaboradores poidan velo; podes examinalo e editalo antes de o enviar.</string>
-  <string name="log_submit_activity__loading_logs">Cargando rexistros…</string>
-  <string name="log_submit_activity__uploading_logs">Cargando rexistros…</string>
+  <string name="log_submit_activity__loading_logs">Cargando rexistros...</string>
+  <string name="log_submit_activity__uploading_logs">Cargando rexistros...</string>
   <string name="log_submit_activity__choose_email_app">Elixe a aplicación de correo</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Revisa este rexistro desde a miña aplicación: %1$s</string>
   <string name="log_submit_activity__network_failure">Erro de rede. Téntao de novo.</string>
@@ -1380,7 +1380,7 @@
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona do tráfico</string>
   <string name="ConversationListFragment_loading">Cargando…</string>
-  <string name="CallNotificationBuilder_connecting">Conectando…</string>
+  <string name="CallNotificationBuilder_connecting">Conectando...</string>
   <string name="Permissions_permission_required">Permiso obrigatorio</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal necesita permiso para acceder ás mensaxes SMS e poder enviar unha, pero foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"SMS\".</string>
   <string name="Permissions_continue">Continuar</string>

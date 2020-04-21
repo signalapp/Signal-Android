@@ -1063,8 +1063,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="log_submit_activity__button_got_it">Ålreit</string>
   <string name="log_submit_activity__button_compose_email">Skriv epost</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Denne loggen blir publisert på nett for bruk blant bidragsytere. Du kan undersøke og redigere den før du sender den inn.</string>
-  <string name="log_submit_activity__loading_logs">Laster inn logger…</string>
-  <string name="log_submit_activity__uploading_logs">Laster opp logger…</string>
+  <string name="log_submit_activity__loading_logs">Laster inn logger...</string>
+  <string name="log_submit_activity__uploading_logs">Laster opp logger...</string>
   <string name="log_submit_activity__choose_email_app">Velg e-postprogram</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Vennligst prøv denne loggen fra appen min: %1$s</string>
   <string name="log_submit_activity__network_failure">Nettverksfeil. Vær så snill, prøv på nytt.</string>
@@ -1491,7 +1491,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN-koden din ble ikke lagret. Vi ber deg om å opprette en PIN-kode senere.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN laget.</string>
   <string name="ConfirmKbsPinFragment__re_enter_pin">Skriv inn PIN-koden på nytt</string>
-  <string name="ConfirmKbsPinFragment__creating_pin">Oppretter PIN…</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">Oppretter PIN...</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Vi introduserer PIN-koder</string>
   <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">PIN-koder tilfører et nytt sikkerhetsnivå til kontoen din. Lag en nå.</string>
