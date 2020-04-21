@@ -112,14 +112,14 @@
 
     <Preference
         android:key="pref_kbs_change"
-        android:summary="@string/preferences_app_protection__your_pin_backs_up_profile_settings_and_preferences"
+        android:summary="@string/preferences_app_protection__pins_keep_information_stored_with_signal_encrypted"
         android:title="@string/preferences_app_protection__change_your_pin" />
 
     <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
         android:defaultValue="false"
         android:enabled="false"
         android:key="kbs.v2_lock_enabled"
-        android:summary="@string/preferences_app_protection__registration_lock_adds_and_extra_layer_of_security"
+        android:summary="@string/preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register"
         android:title="@string/preferences_app_protection__registration_lock" />
 
   </PreferenceCategory>
