@@ -72,7 +72,8 @@ public class ProfileKeySendJob extends BaseJob {
     Recipient conversationRecipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId);
 
     if (conversationRecipient == null) {
-      throw new AssertionError("We have a thread but no recipient!");
+      Log.w(TAG, "Thread no longer present");
+      return;
     }
 
     List<Recipient> destinations = Stream.of(recipients).map(Recipient::resolved).toList();
