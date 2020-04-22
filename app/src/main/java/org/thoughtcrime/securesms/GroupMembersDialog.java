@@ -51,7 +51,10 @@ public final class GroupMembersDialog {
         for (Recipient member : members) {
           GroupMemberEntry.FullMember entry = new GroupMemberEntry.FullMember(member);
 
-          entry.setOnClick(() -> contactClick(member));
+          entry.setOnClick(() -> {
+            dialog.dismiss();
+            contactClick(member);
+          });
 
           if (member.isLocalNumber()) {
             pendingMembers.add(0, entry);
