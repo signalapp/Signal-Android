@@ -84,7 +84,14 @@ final class VideoThumbnailsExtractor {
         decoder.configure(mediaFormat, outputSurface.getSurface(), null, 0);
         decoder.start();
 
-        long duration = mediaFormat.getLong(MediaFormat.KEY_DURATION);
+        long duration = 0;
+
+        if (mediaFormat.containsKey(MediaFormat.KEY_DURATION)) {
+          duration = mediaFormat.getLong(MediaFormat.KEY_DURATION);
+        } else {
+          Log.w(TAG, "Video is missing duration!");
+        }
+
         callback.durationKnown(duration);
 
         doExtract(extractor, decoder, outputSurface, outputWidthRotated, outputHeightRotated, duration, thumbnailCount, callback);
