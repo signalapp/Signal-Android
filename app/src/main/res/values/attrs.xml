@@ -281,6 +281,13 @@
     <attr name="debuglog_color_warn" format="color" />
     <attr name="debuglog_color_error" format="color" />
 
+    <attr name="recipient_message_icon" format="reference"/>
+    <attr name="recipient_call_icon" format="reference"/>
+    <attr name="recipient_block_icon" format="reference"/>
+    <attr name="recipient_view_safety_icon" format="reference"/>
+    <attr name="recipient_make_admin_icon" format="reference"/>
+    <attr name="recipient_remove_icon" format="reference"/>
+
     <declare-styleable name="ColorPreference">
         <attr name="itemLayout" format="reference" />
         <attr name="choices" format="reference" />

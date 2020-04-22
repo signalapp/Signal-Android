@@ -359,7 +359,7 @@
         <item name="menu_multi_select_icon">@drawable/ic_select_24</item>
         <item name="menu_archive_icon">@drawable/ic_archive_white_24dp</item>
 
-        <item name="message_icon">@drawable/ic_message_outline_tinted_24</item>
+        <item name="message_icon">@drawable/ic_message_outline_tinted_bitmap_24</item>
         <item name="notifications_icon">@drawable/ic_bell_outline_24</item>
         <item name="privacy_icon">@drawable/ic_lock_outline_24</item>
         <item name="appearance_icon">@drawable/ic_appearance_outline_24</item>
@@ -637,7 +637,7 @@
         <item name="menu_multi_select_icon">@drawable/ic_select_24</item>
         <item name="menu_archive_icon">@drawable/ic_archive_white_24dp</item>
 
-        <item name="message_icon">@drawable/ic_message_solid_tinted_24</item>
+        <item name="message_icon">@drawable/ic_message_solid_tinted_bitmap_24</item>
         <item name="notifications_icon">@drawable/ic_bell_solid_24</item>
         <item name="privacy_icon">@drawable/ic_lock_solid_24</item>
         <item name="appearance_icon">@drawable/ic_appearance_solid_24</item>
@@ -779,6 +779,53 @@
 
     <style name="Theme.Design.BottomSheetDialog.Fixed">
         <item name="android:windowIsFloating">false</item>
+    </style>
+
+    <style name="Theme.Design.Light.BottomSheetDialog.Fixed.Rounded">
+        <item name="bottomSheetStyle">@style/Widget.Design.BottomSheet.Modal.Rounded.Light</item>
+    </style>
+
+    <style name="Theme.Design.BottomSheetDialog.Fixed.Rounded">
+        <item name="bottomSheetStyle">@style/Widget.Design.BottomSheet.Modal.Rounded</item>
+    </style>
+
+    <style name="Widget.Design.BottomSheet.Modal.Rounded.Light">
+        <item name="android:background">@drawable/rounded_dialog</item>
+    </style>
+
+    <style name="Widget.Design.BottomSheet.Modal.Rounded">
+        <item name="android:background">@drawable/rounded_dialog_dark</item>
+    </style>
+
+    <style name="Signal.RecipientBottomSheet.Light" parent="Theme.Design.Light.BottomSheetDialog.Fixed.Rounded">
+        <item name="icon_tint">@color/core_grey_75</item>
+
+        <item name="title_text_color_primary">@color/core_grey_90</item>
+        <item name="title_text_color_secondary">@color/core_grey_60</item>
+
+        <item name="recipient_message_icon">@drawable/ic_message_outline_tinted_24</item>
+        <item name="recipient_call_icon">@drawable/ic_phone_right_outline_tinted_24</item>
+        <item name="recipient_block_icon">@drawable/ic_block_tinted_24</item>
+        <item name="recipient_view_safety_icon">@drawable/ic_info_outline_tinted_24</item>
+        <item name="recipient_make_admin_icon">@drawable/ic_group_outline_24</item>
+        <item name="recipient_remove_icon">@drawable/ic_leave_tinted_24</item>
+    </style>
+
+    <style name="Signal.RecipientBottomSheet" parent="Theme.Design.BottomSheetDialog.Fixed.Rounded">
+        <item name="icon_tint">@color/core_grey_15</item>
+
+        <item name="title_text_color_primary">@color/core_grey_05</item>
+        <item name="title_text_color_secondary">@color/core_grey_25</item>
+
+        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/core_grey_75</item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
+
+        <item name="recipient_message_icon">@drawable/ic_message_solid_tinted_24</item>
+        <item name="recipient_call_icon">@drawable/ic_phone_right_solid_tinted_24</item>
+        <item name="recipient_block_icon">@drawable/ic_block_tinted_24</item>
+        <item name="recipient_view_safety_icon">@drawable/ic_info_solid_tinted_24</item>
+        <item name="recipient_make_admin_icon">@drawable/ic_group_solid_24</item>
+        <item name="recipient_remove_icon">@drawable/ic_leave_tinted_24</item>
     </style>
 
 </resources>

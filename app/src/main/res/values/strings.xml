@@ -2131,6 +2131,16 @@
     <string name="RegistrationLockDialog_reminder">Reminder:</string>
     <string name="recipient_preferences__about">About</string>
     <string name="Recipient_unknown">Unknown</string>
+
+    <!-- RecipientBottomSheet -->
+    <string name="RecipientBottomSheet_message">Message</string>
+    <string name="RecipientBottomSheet_call">Call</string>
+    <string name="RecipientBottomSheet_block">Block</string>
+    <string name="RecipientBottomSheet_unblock">Unblock</string>
+    <string name="RecipientBottomSheet_view_safety_number">View safety number</string>
+    <string name="RecipientBottomSheet_make_group_admin">Make group admin</string>
+    <string name="RecipientBottomSheet_remove_as_admin">Remove as admin</string>
+    <string name="RecipientBottomSheet_remove_from_group">Remove from group</string>
     <!-- EOF -->
 
 </resources>
