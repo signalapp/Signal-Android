@@ -86,6 +86,7 @@ public class Recipient {
   private final Uri                    contactUri;
   private final ProfileName            profileName;
   private final String                 profileAvatar;
+  private final boolean                hasProfileImage;
   private final boolean                profileSharing;
   private final String                 notificationChannel;
   private final UnidentifiedAccessMode unidentifiedAccessMode;
@@ -316,6 +317,7 @@ public class Recipient {
     this.contactUri             = null;
     this.profileName            = ProfileName.EMPTY;
     this.profileAvatar          = null;
+    this.hasProfileImage        = false;
     this.profileSharing         = false;
     this.notificationChannel    = null;
     this.unidentifiedAccessMode = UnidentifiedAccessMode.DISABLED;
@@ -357,6 +359,7 @@ public class Recipient {
     this.contactUri             = details.contactUri;
     this.profileName            = details.profileName;
     this.profileAvatar          = details.profileAvatar;
+    this.hasProfileImage        = details.hasProfileImage;
     this.profileSharing         = details.profileSharing;
     this.notificationChannel    = details.notificationChannel;
     this.unidentifiedAccessMode = details.unidentifiedAccessMode;
@@ -631,7 +634,7 @@ public class Recipient {
   public @Nullable ContactPhoto getContactPhoto() {
     if      (localNumber)                                    return null;
     else if (isGroupInternal() && groupAvatarId.isPresent()) return new GroupRecordContactPhoto(groupId, groupAvatarId.get());
-    else if (profileAvatar != null)                          return new ProfileContactPhoto(this, profileAvatar);
+    else if (profileAvatar != null && hasProfileImage)       return new ProfileContactPhoto(this, profileAvatar);
     else if (systemContactPhoto != null)                     return new SystemContactPhoto(id, systemContactPhoto, 0);
     else                                                     return null;
   }

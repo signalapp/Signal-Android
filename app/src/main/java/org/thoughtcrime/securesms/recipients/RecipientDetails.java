@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -50,6 +51,7 @@ public class RecipientDetails {
   final byte[]                 profileKey;
   final byte[]                 profileKeyCredential;
   final String                 profileAvatar;
+  final boolean                hasProfileImage;
   final boolean                profileSharing;
   final boolean                systemContact;
   final boolean                isLocalNumber;
@@ -95,6 +97,7 @@ public class RecipientDetails {
     this.profileKey                      = settings.getProfileKey();
     this.profileKeyCredential            = settings.getProfileKeyCredential();
     this.profileAvatar                   = settings.getProfileAvatar();
+    this.hasProfileImage                 = settings.hasProfileImage();
     this.profileSharing                  = settings.isProfileSharing();
     this.systemContact                   = systemContact;
     this.isLocalNumber                   = isLocalNumber;
@@ -141,6 +144,7 @@ public class RecipientDetails {
     this.profileKey             = null;
     this.profileKeyCredential   = null;
     this.profileAvatar          = null;
+    this.hasProfileImage        = false;
     this.profileSharing         = false;
     this.systemContact          = true;
     this.isLocalNumber          = false;

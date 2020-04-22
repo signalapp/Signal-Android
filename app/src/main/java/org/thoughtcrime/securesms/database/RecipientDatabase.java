@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -397,7 +398,7 @@ public class RecipientDatabase extends Database {
 
     try (Cursor cursor = database.query(table, RECIPIENT_FULL_PROJECTION, query, args, null, null, null)) {
       if (cursor != null && cursor.moveToNext()) {
-        return getRecipientSettings(cursor);
+        return getRecipientSettings(context, cursor);
       } else {
         throw new MissingRecipientError(id);
       }
@@ -686,7 +687,7 @@ public class RecipientDatabase extends Database {
 
     try (Cursor cursor = db.query(table, RECIPIENT_FULL_PROJECTION, query, args, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
-        out.add(getRecipientSettings(cursor));
+        out.add(getRecipientSettings(context, cursor));
       }
     }
 
@@ -727,7 +728,7 @@ public class RecipientDatabase extends Database {
     return out;
   }
 
-  private static @NonNull RecipientSettings getRecipientSettings(@NonNull Cursor cursor) {
+  private static @NonNull RecipientSettings getRecipientSettings(@NonNull Context context, @NonNull Cursor cursor) {
     long    id                         = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
     UUID    uuid                       = UuidUtil.parseOrNull(cursor.getString(cursor.getColumnIndexOrThrow(UUID)));
     String  username                   = cursor.getString(cursor.getColumnIndexOrThrow(USERNAME));
@@ -808,7 +809,8 @@ public class RecipientDatabase extends Database {
                                  profileKey, profileKeyCredential,
                                  systemDisplayName, systemContactPhoto,
                                  systemPhoneLabel, systemContactUri,
-                                 ProfileName.fromParts(profileGivenName, profileFamilyName), signalProfileAvatar, profileSharing,
+                                 ProfileName.fromParts(profileGivenName, profileFamilyName), signalProfileAvatar,
+                                 AvatarHelper.hasAvatar(context, RecipientId.from(id)), profileSharing,
                                  notificationChannel, UnidentifiedAccessMode.fromMode(unidentifiedAccessMode),
                                  forceSmsSelection,
                                  Recipient.Capability.deserialize(uuidCapabilityValue),
@@ -1655,6 +1657,7 @@ public class RecipientDatabase extends Database {
     private final String                          systemContactUri;
     private final ProfileName                     signalProfileName;
     private final String                          signalProfileAvatar;
+    private final boolean                         hasProfileImage;
     private final boolean                         profileSharing;
     private final String                          notificationChannel;
     private final UnidentifiedAccessMode          unidentifiedAccessMode;
@@ -1691,6 +1694,7 @@ public class RecipientDatabase extends Database {
                       @Nullable String systemContactUri,
                       @NonNull ProfileName signalProfileName,
                       @Nullable String signalProfileAvatar,
+                      boolean hasProfileImage,
                       boolean profileSharing,
                       @Nullable String notificationChannel,
                       @NonNull UnidentifiedAccessMode unidentifiedAccessMode,
@@ -1727,6 +1731,7 @@ public class RecipientDatabase extends Database {
       this.systemContactUri       = systemContactUri;
       this.signalProfileName      = signalProfileName;
       this.signalProfileAvatar    = signalProfileAvatar;
+      this.hasProfileImage        = hasProfileImage;
       this.profileSharing         = profileSharing;
       this.notificationChannel    = notificationChannel;
       this.unidentifiedAccessMode = unidentifiedAccessMode;
@@ -1841,6 +1846,10 @@ public class RecipientDatabase extends Database {
 
     public @Nullable String getProfileAvatar() {
       return signalProfileAvatar;
+    }
+
+    public boolean hasProfileImage() {
+      return hasProfileImage;
     }
 
     public boolean isProfileSharing() {
