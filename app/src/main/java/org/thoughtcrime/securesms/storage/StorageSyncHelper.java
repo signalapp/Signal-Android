@@ -83,23 +83,29 @@ public final class StorageSyncHelper {
                                                                                 @NonNull Optional<SignalAccountRecord> accountInsert,
                                                                                 @NonNull Set<RecipientId> archivedRecipients)
   {
-    Set<StorageId>           completeKeys      = new LinkedHashSet<>(currentLocalKeys);
+    if (accountUpdate.isPresent() && accountInsert.isPresent()) {
+      throw new AssertionError("Cannot update and insert an account at  the same time!");
+    }
+
+    Set<StorageId>           completeIds       = new LinkedHashSet<>(currentLocalKeys);
     Set<SignalStorageRecord> storageInserts    = new LinkedHashSet<>();
     Set<ByteBuffer>          storageDeletes    = new LinkedHashSet<>();
     Map<RecipientId, byte[]> storageKeyUpdates = new HashMap<>();
 
     for (RecipientSettings insert : inserts) {
       storageInserts.add(StorageSyncModels.localToRemoteRecord(insert, archivedRecipients));
+      completeIds.add(StorageId.forContact(insert.getStorageId()));
     }
 
     if (accountInsert.isPresent()) {
       storageInserts.add(SignalStorageRecord.forAccount(accountInsert.get()));
+      completeIds.add(accountInsert.get().getId());
     }
 
     for (RecipientSettings delete : deletes) {
       byte[] key = Objects.requireNonNull(delete.getStorageId());
       storageDeletes.add(ByteBuffer.wrap(key));
-      completeKeys.remove(StorageId.forContact(key));
+      completeIds.remove(StorageId.forContact(key));
     }
 
     for (RecipientSettings update : updates) {
@@ -108,8 +114,8 @@ public final class StorageSyncHelper {
 
       storageInserts.add(StorageSyncModels.localToRemoteRecord(update, newKey, archivedRecipients));
       storageDeletes.add(ByteBuffer.wrap(oldKey));
-      completeKeys.remove(StorageId.forContact(oldKey));
-      completeKeys.add(StorageId.forContact(newKey));
+      completeIds.remove(StorageId.forContact(oldKey));
+      completeIds.add(StorageId.forContact(newKey));
       storageKeyUpdates.put(update.getId(), newKey);
     }
 
@@ -119,18 +125,18 @@ public final class StorageSyncHelper {
 
       storageInserts.add(SignalStorageRecord.forAccount(StorageId.forAccount(newKey), accountUpdate.get()));
       storageDeletes.add(ByteBuffer.wrap(oldKey));
-      completeKeys.remove(StorageId.forAccount(oldKey));
-      completeKeys.add(StorageId.forAccount(newKey));
+      completeIds.remove(StorageId.forAccount(oldKey));
+      completeIds.add(StorageId.forAccount(newKey));
       storageKeyUpdates.put(Recipient.self().getId(), newKey);
     }
 
     if (storageInserts.isEmpty() && storageDeletes.isEmpty()) {
       return Optional.absent();
     } else {
-      List<byte[]>          contactDeleteBytes   = Stream.of(storageDeletes).map(ByteBuffer::array).toList();
-      List<StorageId>       completeKeysBytes    = new ArrayList<>(completeKeys);
-      SignalStorageManifest manifest             = new SignalStorageManifest(currentManifestVersion + 1, completeKeysBytes);
-      WriteOperationResult  writeOperationResult = new WriteOperationResult(manifest, new ArrayList<>(storageInserts), contactDeleteBytes);
+      List<byte[]>          storageDeleteBytes   = Stream.of(storageDeletes).map(ByteBuffer::array).toList();
+      List<StorageId>       completeIdsBytes     = new ArrayList<>(completeIds);
+      SignalStorageManifest manifest             = new SignalStorageManifest(currentManifestVersion + 1, completeIdsBytes);
+      WriteOperationResult  writeOperationResult = new WriteOperationResult(manifest, new ArrayList<>(storageInserts), storageDeleteBytes);
 
       return Optional.of(new LocalWriteResult(writeOperationResult, storageKeyUpdates));
     }
