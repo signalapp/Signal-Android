@@ -26,13 +26,8 @@ public class CreateKbsPinFragment extends BaseKbsPinFragment<CreateKbsPinViewMod
   private void initializeViewStatesForPinChange(boolean isForgotPin) {
     getTitle().setText(R.string.CreateKbsPinFragment__create_a_new_pin);
 
-    if (isForgotPin) {
-      getDescription().setText(R.string.CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered);
-      getDescription().setLearnMoreVisible(false);
-    } else {
-      getDescription().setText(R.string.CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted);
-      getDescription().setLearnMoreVisible(true);
-    }
+    getDescription().setText(R.string.CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered);
+    getDescription().setLearnMoreVisible(true);
   }
 
   private void initializeViewStatesForPinCreate() {
