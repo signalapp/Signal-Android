@@ -31,7 +31,7 @@
             android:layout_width="196dp"
             android:layout_height="@dimen/medium_button_height"
             android:layout_marginTop="@dimen/medium_spacing"
-            android:text="Link a Device" />
+            android:text="Link a Device (Beta)" />
 
     </LinearLayout>
 
