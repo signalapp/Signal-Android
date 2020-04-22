@@ -211,7 +211,7 @@ final class GroupMemberListAdapter extends LifecycleRecyclerAdapter<GroupMemberL
         popupMenu.setMenu(R.menu.others_invite_pending_menu,
                           item -> {
                             if (item.getItemId() == R.id.cancel_invites) {
-                              item.setTitle(context.getResources().getQuantityString(R.plurals.PendingMembersActivity_cancel_invites, pendingMembers.getInviteCount(),
+                              item.setTitle(context.getResources().getQuantityString(R.plurals.PendingMembersActivity_cancel_d_invites, pendingMembers.getInviteCount(),
                                                                                      pendingMembers.getInviteCount()));
                               return true;
                             }

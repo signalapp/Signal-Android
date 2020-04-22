@@ -467,7 +467,7 @@
 
     <string name="PendingMembersActivity_cancel_invite">Cancel invite</string>
     <string name="PendingMembersActivity_cancel_invites">Cancel invites</string>
-    <plurals name="PendingMembersActivity_cancel_invites">
+    <plurals name="PendingMembersActivity_cancel_d_invites">
         <item quantity="one">Cancel invite</item>
         <item quantity="other">Cancel %1$d invites</item>
     </plurals>
@@ -811,8 +811,8 @@
     <string name="PinRestoreEntryFragment_cancel">Cancel</string>
     <string name="PinRestoreEntryFragment_skip">Skip</string>
     <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
-        <item quantity="one">You have %1$d attempt remaining. If you run out of attempts, you can create a new PIN. You can register and use your account but you’ll lose some saved settings like your profile information.</item>
-        <item quantity="many">You have %1$d attempts remaining. If you run out of attempts, you can create a new PIN. You can register and use your account but you’ll lose some saved settings like your profile information.</item>
+        <item quantity="one">You have %1$d attempt remaining. If you run out of attempts, you can create a new PIN. You can register and use your account but you\'ll lose some saved settings like your profile information.</item>
+        <item quantity="other">You have %1$d attempts remaining. If you run out of attempts, you can create a new PIN. You can register and use your account but you\'ll lose some saved settings like your profile information.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_support_email" translatable="false">support@signal.org</string>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal Registration - Need Help with PIN for Android</string>
