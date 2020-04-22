@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -133,7 +134,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
 
       out.write(new DeviceContact(RecipientUtil.toSignalServiceAddress(context, recipient),
                                   Optional.of(recipient.getDisplayName(context)),
-                                  getSystemAvatar(recipient.getContactUri()),
+                                  getAvatar(recipient.getId(), recipient.getContactUri()),
                                   Optional.fromNullable(recipient.getColor().serialize()),
                                   verifiedMessage,
                                   ProfileKeyUtil.profileKeyOptional(recipient.getProfileKey()),
@@ -190,7 +191,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
 
         out.write(new DeviceContact(RecipientUtil.toSignalServiceAddress(context, recipient),
                                     name,
-                                    getSystemAvatar(recipient.getContactUri()),
+                                    getAvatar(recipient.getId(), recipient.getContactUri()),
                                     color,
                                     verified,
                                     profileKey,
@@ -255,6 +256,34 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
         throw new NetworkException(ioe);
       }
     }
+  }
+
+  private Optional<SignalServiceAttachmentStream> getAvatar(@NonNull RecipientId recipientId, @Nullable Uri uri) {
+    Optional<SignalServiceAttachmentStream> stream = getProfileAvatar(recipientId);
+
+    if (!stream.isPresent()) {
+      return getSystemAvatar(uri);
+    }
+
+    return stream;
+  }
+
+  private Optional<SignalServiceAttachmentStream> getProfileAvatar(@NonNull RecipientId recipientId) {
+    if (AvatarHelper.hasAvatar(context, recipientId)) {
+      try {
+        long length = AvatarHelper.getAvatarLength(context, recipientId);
+        return Optional.of(SignalServiceAttachmentStream.newStreamBuilder()
+                                                        .withStream(AvatarHelper.getAvatar(context, recipientId))
+                                                        .withContentType("image/*")
+                                                        .withLength(length)
+                                                        .build());
+      } catch (IOException e) {
+        Log.w(TAG, "Failed to read profile avatar!", e);
+        return Optional.absent();
+      }
+    }
+
+    return Optional.absent();
   }
 
   private Optional<SignalServiceAttachmentStream> getSystemAvatar(@Nullable Uri uri) {
