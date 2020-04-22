@@ -75,6 +75,12 @@
   <string name="AudioSlidePlayer_error_playing_audio">Heli esitamisel tekkis viga!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Blokeeritud kontaktid</string>
+  <!--BlockUnblockDialog-->
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Grupi liikmetel on võimalik sind sellesse gruppi uuesti lisada.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Teil on võimalik üksteisele sõnumeid saata ja helistada.</string>
+  <string name="BlockUnblockDialog_unblock">Eemalda blokeering</string>
+  <string name="BlockUnblockDialog_block">Blokeeri</string>
+  <string name="BlockUnblockDialog_block_and_delete">Blokeeri ja kustuta</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Täna</string>
   <string name="BucketedThreadMedia_Yesterday">Eile</string>
@@ -203,11 +209,9 @@
   <string name="ConversationActivity_no_results">Tulemusi pole</string>
   <string name="ConversationActivity_sticker_pack_installed">Kleepsupakk paigaldatud</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Uus! Ütle seda koos kleepsudega</string>
-  <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">Teil on võimalik üksteisele sõnumeid saata ja helistada.</string>
-  <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">Grupi liikmetel on võimalik sind sellesse gruppi uuesti lisada.</string>
-  <string name="ConversationActivity_block">Blokeeri</string>
   <string name="ConversationActivity_cancel">Loobu</string>
   <string name="ConversationActivity_delete_conversation">Kustutad vestluse?</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Sa lahkud sellest grupist ja see kustutatakse kõigist sinu seadmetest.</string>
   <string name="ConversationActivity_delete">Kustuta</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -360,6 +364,10 @@
   <string name="GroupShareProfileView_make_visible">Tee nähtavaks</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Sina</string>
+  <!--GV2 access levels-->
+  <!--PendingMembersActivity-->
+  <string name="PendingMembersActivity_people_you_invited">Sinu kutsutud inimesed</string>
+  <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grupi avatar</string>
   <string name="CropImageActivity_profile_avatar">Pilt</string>
@@ -371,7 +379,7 @@
   <string name="InviteActivity_share_with_contacts">Jaga kontaktidega</string>
   <string name="InviteActivity_choose_how_to_share">Vali, kuidas jagada</string>
   <string name="InviteActivity_cancel">Tühista</string>
-  <string name="InviteActivity_sending">Saatmine...</string>
+  <string name="InviteActivity_sending">Saatmine…</string>
   <string name="InviteActivity_heart_content_description">Süda</string>
   <string name="InviteActivity_invitations_sent">Kutsed saadetud!</string>
   <string name="InviteActivity_invite_to_signal">Kutsu Signalisse</string>
@@ -388,6 +396,8 @@
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Sõbrad ei luba sõpradel krüptimata rääkida.</string>
   <!--Job-->
   <string name="Job_working_in_the_background">Taustal töötamine…</string>
+  <!--LearnMoreTextView-->
+  <string name="LearnMoreTextView_learn_more">Rohkem infot</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Saatmine ebaõnnestus</string>
   <string name="MessageDetailsRecipient_new_safety_number">Uus turvanumber</string>
@@ -465,7 +475,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Koputa valimiseks</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Lisa pealkiri...</string>
+  <string name="MediaSendActivity_add_a_caption">Lisa pealkiri…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Üksus eemaldati, sest see ületas suuruspiirangut.</string>
   <string name="MediaSendActivity_camera_unavailable">Kaamera pole saadaval.</string>
   <string name="MediaSendActivity_message_to_s">Sõnum kasutajale %s</string>
@@ -497,6 +507,20 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s keelas haihtuvad sõnumid.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Sa määrasid haihtuva sõnumi taimeriks %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s määras haihtuva sõnumi taimeriks %2$s.</string>
+  <!--GV2 specific-->
+  <!--GV2 member additions-->
+  <string name="MessageRecord_you_joined_the_group">Sa ühinesid grupiga.</string>
+  <string name="MessageRecord_s_joined_the_group">%1$s liitusid grupiga.</string>
+  <!--GV2 member removals-->
+  <!--GV2 role change-->
+  <!--GV2 invitations-->
+  <!--GV2 invitation revokes-->
+  <!--GV2 invitation acceptance-->
+  <!--GV2 title change-->
+  <!--GV2 avatar change-->
+  <!--GV2 attribute access level change-->
+  <!--GV2 membership access level change-->
+  <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Sinu turvanumber kontaktiga %s on muutunud.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Sa märkisid oma turvanumbri kontaktiga %s kinnitatuks</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Sa märkisid teisest seadmest oma turvanumbri kontaktiga %s kinnitatuks</string>
@@ -556,6 +580,16 @@
   <string name="PlacePickerActivity_accept_address">Kinnita aadress</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Google Play Services versioon, mis sul on installitud, ei toimi korrektselt. Palun taasinstalli Google Play Services ja proovi uuesti.</string>
+  <!--PinRestoreEntryFragment-->
+  <string name="PinRestoreEntryFragment_incorrect_pin">Sobimatu PIN-kood</string>
+  <string name="PinRestoreEntryFragment_create_new_pin">Loo uus PIN-kood</string>
+  <string name="PinRestoreEntryFragment_contact_support">Võta ühendust kasutajatoega</string>
+  <string name="PinRestoreEntryFragment_cancel">Loobu</string>
+  <string name="PinRestoreEntryFragment_skip">Jäta vahele</string>
+  <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Sisesta tähtnumbriline PIN</string>
+  <string name="PinRestoreEntryFragment_enter_numeric_pin">Sisesta numbriline PIN</string>
+  <!--PinRestoreLockedFragment-->
+  <string name="PinRestoreLockedFragment_create_your_pin">Loo enda PIN-kood</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Hinda seda rakendust</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Kui sa naudid selle rakenduse kasutamist, palun võta aega ja hinda seda, et meid aidata.</string>
@@ -570,16 +604,7 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Sina</string>
   <!--RecipientPreferencesActivity-->
-  <string name="RecipientPreferenceActivity_block_this_contact_question">Blokeerid selle kontakti?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Sa ei saa sellelt kontaktilt enam sõnumeid ja kõnesid vastu võtta.</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group">Blokeerid ja lahkud sellest grupist?</string>
-  <string name="RecipientPreferenceActivity_block_group">Blokeerid selle grupi?</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group_description">Sa ei saa sellest grupist rohkem sõnumeid ja uuendusi.</string>
   <string name="RecipientPreferenceActivity_block">Blokeeri</string>
-  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Eemaldada kontakti blokeering?</string>
-  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Sa saad uuesti sellelt kontaktilt sõnumeid ja kõnesid vastu võtta.</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_question">Eemaldad grupi blokeeringu?</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_description">Grupi liikmetel on võimalik sind uuesti gruppi lisada.</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">Grupist lahkumisel tekkis viga</string>
   <string name="RecipientPreferenceActivity_unblock">Eemalda blokeering</string>
   <string name="RecipientPreferenceActivity_enabled">Lubatud</string>
@@ -640,6 +665,7 @@
   <string name="RegistrationActivity_phone_number_description">Telefoninumber</string>
   <string name="RegistrationActivity_country_code_description">Riigikood</string>
   <string name="RegistrationActivity_call">Helista</string>
+  <!--RegistrationLockV2Dialog-->
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Vaata pilti</string>
   <string name="RevealableMessageView_view_video">Vaata videot</string>
@@ -919,7 +945,7 @@
   <string name="contact_filter_toolbar__show_dial_pad_description">Kuva klahvistikku</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Kontakte pole.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Laadin kontakte...</string>
+  <string name="contact_selection_group_activity__finding_contacts">Laadin kontakte…</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Kontakti pilt</string>
   <!--ContactSelectionListFragment-->
@@ -1044,8 +1070,8 @@
   <string name="log_submit_activity__button_got_it">Selge</string>
   <string name="log_submit_activity__button_compose_email">Koosta e-kiri</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">See logi postitatakse Internetti avalikult, et kaastöötajad saaksid seda näha, sa võid seda enne postitamist vaadata ja muuta. </string>
-  <string name="log_submit_activity__loading_logs">Logide laadimine...</string>
-  <string name="log_submit_activity__uploading_logs">Logide üleslaadimine...</string>
+  <string name="log_submit_activity__loading_logs">Logide laadimine…</string>
+  <string name="log_submit_activity__uploading_logs">Logide üleslaadimine…</string>
   <string name="log_submit_activity__choose_email_app">Vali e-posti rakendus</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Palun vaata see logi üle minu rakendusest: %1$s</string>
   <string name="log_submit_activity__network_failure">Võrgu viga. Palun proovi uuesti.</string>
@@ -1121,7 +1147,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Kui soovid kinnitada oma krüpteeringut kasutajaga %s, võrdle ülalolevat numbrit nende seadmes oleva numbriga. Võid ka skaneerida nende telefonis olevat koodi või paluda tal skaneerida sinu oma. <a href="https://signal.org/redirect/safety-numbers">Lisateave.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Koputa skäneerimiseks</string>
-  <string name="verify_display_fragment__loading">Laadimine...</string>
+  <string name="verify_display_fragment__loading">Laadimine…</string>
   <string name="verify_display_fragment__verified">Kinnitatud</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Jaga turvanumbrit</string>
@@ -1459,12 +1485,10 @@
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Kinnita enda PIN-kood.</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">PINi loomine ebaõnnestus</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN loodud.</string>
-  <string name="ConfirmKbsPinFragment__re_enter_pin">Sisesta PIN-kood uuesti</string>
-  <string name="ConfirmKbsPinFragment__creating_pin">PINi loomine...</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">PINi loomine…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Tutvustame PIN-koode</string>
   <string name="KbsSplashFragment__learn_more">Uuri täpsemalt</string>
-  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registreerimislukk = PIN-kood</string>
   <string name="KbsSplashFragment__update_pin">Uuenda PINi</string>
   <string name="KbsSplashFragment__create_your_pin">Loo enda PIN-kood</string>
@@ -1477,7 +1501,6 @@
   <string name="AccountLockedFragment__account_locked">Konto lukustatud</string>
   <string name="AccountLockedFragment__next">Edasi</string>
   <string name="AccountLockedFragment__learn_more">Uuri täpsemalt</string>
-  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Sisesta enda PIN-kood</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Sisesta PIN-kood, mille tegid enda konto jaoks. See erineb SMS-kontrollkoodist.</string>
@@ -1498,8 +1521,8 @@
   <string name="ProfileNamesMegaphone__confirm_name">Kinnita nimi</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transpordi ikoon</string>
-  <string name="ConversationListFragment_loading">Laadimine...</string>
-  <string name="CallNotificationBuilder_connecting">Ühendumine...</string>
+  <string name="ConversationListFragment_loading">Laadimine…</string>
+  <string name="CallNotificationBuilder_connecting">Ühendumine…</string>
   <string name="Permissions_permission_required">Luba on vajalik</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal vajab SMS-uba, et saata SMSi, ent see on püsivalt keelatud. Palun jätka rakenduse seadetes, vali \"Load\" ja luba \"SMS\".</string>
   <string name="Permissions_continue">Jätka</string>
@@ -1553,9 +1576,8 @@
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lukusta Signali juurdepääs Androidi lukustuskuva või sõrmejäljega</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Ekraaniluku ebaaktiivsuse ajalõpp</string>
   <string name="preferences_app_protection__signal_pin">Signali PIN</string>
-  <string name="preferences_app_protection__pin">PIN-kood</string>
-  <string name="preferences_app_protection__change">Muuda</string>
-  <string name="preferences_app_protection__create">Loo</string>
+  <string name="preferences_app_protection__create_a_pin">Loo PIN</string>
+  <string name="preferences_app_protection__change_your_pin">Muuda enda PIN-koodi</string>
   <string name="AppProtectionPreferenceFragment_none">Puudub</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Registreerimisluku PIN ei ole sama, mis SMSi kinnituskood, mille just said. Palun sisesta PIN, mille seadistasid eelnevalt rakenduse siseselt.</string>
   <string name="registration_activity__registration_lock_pin">Registreerimisluku PIN</string>

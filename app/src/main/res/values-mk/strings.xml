@@ -220,9 +220,9 @@
   <string name="RatingManager_no_thanks">Не, благодарам</string>
   <string name="RatingManager_later">Покасно</string>
   <!--RecipientPreferencesActivity-->
-  <string name="RecipientPreferenceActivity_block_this_contact_question">Блокирај го контактот?</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_block_this_contact_question">Блокирај го контактот?</string> -->
   <string name="RecipientPreferenceActivity_block">Блокирај</string>
-  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Одблокирај го контактот?</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_unblock_this_contact_question">Одблокирај го контактот?</string> -->
   <string name="RecipientPreferenceActivity_unblock">Одблокирај</string>
   <string name="RecipientPreferenceActivity_enabled">Овозможено</string>
   <string name="RecipientPreferenceActivity_disabled">Оневозможено</string>

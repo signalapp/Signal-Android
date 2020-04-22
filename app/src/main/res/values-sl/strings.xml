@@ -3,14 +3,14 @@
   <string name="yes">Da</string>
   <string name="no">Ne</string>
   <string name="delete">Izbriši</string>
-  <string name="please_wait">Prosimo počakajte ...</string>
+  <string name="please_wait">Prosimo počakajte …</string>
   <string name="save">Shrani</string>
   <string name="note_to_self">Osebna zabeležka</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Novo sporočilo</string>
   <!--AlbumThumbnailView-->
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Aplikacija Signal se posodablja ...</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">Aplikacija Signal se posodablja …</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Trenutno: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Niste še nastavili gesla!</string>
@@ -32,7 +32,7 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">S tem boste odklenili aplikacijo Signal in obvestila o sporočilih.</string>
   <string name="ApplicationPreferencesActivity_disable">Onemogoči</string>
   <string name="ApplicationPreferencesActivity_unregistering">Odjava poteka</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Odjavljanje aplikacije Signal od sporočil in klicev ...</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Odjavljanje aplikacije Signal od sporočil in klicev …</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Res želite izklopiti sporočila in klice Signal?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">S tem boste izklopili sporočila in klice Signal ter se odjavili s strežnika. Za ponovno uporabo se boste morali zopet prijaviti s svojo telefonsko številko.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Napaka pri povezavi s strežnikom!</string>
@@ -76,12 +76,20 @@
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Dostop do lokacije je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do lokacije, kadar želite k sporočilom dodati podatek o svoji trenutni lokaciji. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Lokacija\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Dostop do kamere je bil trajno onemogočen. Aplikacija Signal za zajemanje fotografij potrebuje dovoljenje za dostop do kamere. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Kamera\".</string>
   <!--AttachmentUploadJob-->
-  <string name="AttachmentUploadJob_uploading_media">Prenos multimedijske datoteke ...</string>
-  <string name="AttachmentUploadJob_compressing_video_start">Kompresija videa ...</string>
+  <string name="AttachmentUploadJob_uploading_media">Prenos multimedijske datoteke …</string>
+  <string name="AttachmentUploadJob_compressing_video_start">Kompresija videa …</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Napaka pri predvajanju zvoka!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Blokirani uporabniki</string>
+  <!--BlockUnblockDialog-->
+  <string name="BlockUnblockDialog_block_and_leave_s">Blokiram in zapustim skupino %1$s?</string>
+  <string name="BlockUnblockDialog_block_s">Blokiram uporabnika %1$s?</string>
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Drugi člani vas bodo lahko ponovno dodali v skupino.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Lahko si bosta pošiljala sporočila in se klicala.</string>
+  <string name="BlockUnblockDialog_unblock_s">Odblokiram uporabnika %1$s?</string>
+  <string name="BlockUnblockDialog_unblock">Odblokiraj</string>
+  <string name="BlockUnblockDialog_block">Blokiraj</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Danes</string>
   <string name="BucketedThreadMedia_Yesterday">Včeraj</string>
@@ -115,6 +123,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">Želite odstraniti predstavitveno fotografijo?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Spletnega brskalnika ni bilo mogoče najti.</string>
+  <string name="CommunicationActions_no_email_app_found">Nismo našli nobene aplikacije za e-pošto.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Telefonski klic je že v teku.</string>
   <string name="CommunicationActions_start_video_call">Začetek video klica?</string>
   <string name="CommunicationActions_start_voice_call">Začetek glasovnega klica?</string>
@@ -212,15 +221,6 @@
   <string name="ConversationActivity_no_results">Brez rezultata.</string>
   <string name="ConversationActivity_sticker_pack_installed">Nameščen je bil paket nalepk</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Novo! Povejte z nalepkami!</string>
-  <string name="ConversationActivity_block_s">Blokiram uporabnika %1$s?</string>
-  <string name="ConversationActivity_block_and_leave_s">Blokiram in zapustim skupino %1$s?</string>
-  <string name="ConversationActivity_unblock_s">Odblokiram uporabnika %1$s?</string>
-  <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">Lahko si bosta pošiljala sporočila in se klicala.</string>
-  <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">Drugi člani vas bodo lahko ponovno dodali v skupino.</string>
-  <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">Blokirani uporabniki vas ne bodo mogli klicati ali vam pošiljati sporočila.</string>
-  <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">Zapustili boste skupino in ne boste več prejemali sporočil oziroma posodobitev.</string>
-  <string name="ConversationActivity_block">Blokiraj</string>
-  <string name="ConversationActivity_block_and_delete">Blokiraj in izbriši</string>
   <string name="ConversationActivity_cancel">Prekliči</string>
   <string name="ConversationActivity_delete_conversation">Izbrišem pogovor?</string>
   <string name="ConversationActivity_delete_and_leave_group">Blokiram in zapustim skupino?</string>
@@ -269,17 +269,17 @@
     <item quantity="other">Shranjujem %1$d priponk</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="one">Shranjevanje priloge v shrambo ...</item>
-    <item quantity="two">Shranjevanje %1$d prilog v shrambo ...</item>
-    <item quantity="few">Shranjevanje %1$d prilog v shrambo ...</item>
-    <item quantity="other">Shranjevanje %1$d prilog v shrambo ...</item>
+    <item quantity="one">Shranjevanje priloge v shrambo …</item>
+    <item quantity="two">Shranjevanje %1$d prilog v shrambo …</item>
+    <item quantity="few">Shranjevanje %1$d prilog v shrambo …</item>
+    <item quantity="other">Shranjevanje %1$d prilog v shrambo …</item>
   </plurals>
-  <string name="ConversationFragment_pending">V teku ...</string>
+  <string name="ConversationFragment_pending">V teku …</string>
   <string name="ConversationFragment_push">Podatkovno (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Brišem</string>
-  <string name="ConversationFragment_deleting_messages">Izbris sporočil ...</string>
+  <string name="ConversationFragment_deleting_messages">Izbris sporočil …</string>
   <string name="ConversationFragment_quoted_message_not_found">Izvorno sporočilo ni bilo najdeno</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Izvorno sporočilo ni več na voljo</string>
   <string name="ConversationFragment_failed_to_open_message">Odpiranje sporočila ni uspelo</string>
@@ -305,7 +305,7 @@
     <item quantity="other">S tem boste nepovratno izbrisali vseh %1$d izbranih pogovorov.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Brisanje</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">Izbris izbranih pogovorov ...</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Izbris izbranih pogovorov …</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">Premaknjen v arhiv</item>
     <item quantity="two">%d premaknjena v arhiv</item>
@@ -359,7 +359,7 @@
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Z odstranitvijo naprave ta ne bo več mogla pošiljati ali prejemati sporočil.</string>
   <string name="DeviceListActivity_network_connection_failed">Povezovanje z omrežjem neuspešno</string>
   <string name="DeviceListActivity_try_again">Poskusite znova</string>
-  <string name="DeviceListActivity_unlinking_device">Odstranjevanje naprave ...</string>
+  <string name="DeviceListActivity_unlinking_device">Odstranjevanje naprave …</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Odstranjujem napravo</string>
   <string name="DeviceListActivity_network_failed">Povezovanje ni uspelo!</string>
   <!--DeviceListItem-->
@@ -376,7 +376,7 @@
   <string name="ShareActivity_share_with">Deli z</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Več priponk je možnih le pri slikah in videu</string>
   <!--GcmBroadcastReceiver-->
-  <string name="GcmBroadcastReceiver_retrieving_a_message">Pridobivanje sporočila ...</string>
+  <string name="GcmBroadcastReceiver_retrieving_a_message">Pridobivanje sporočila …</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trajna okvara pri komunikaciji aplikacije Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Registracija z Google Play Services ni bila uspešna. Podatkovna komunikacija je izklopljena, prosimo, poskusite s ponovno registracijo v meniju Nastavive &gt; Napredno.</string>
@@ -397,9 +397,9 @@
   <string name="GroupCreateActivity_avatar_content_description">Avatar skupine</string>
   <string name="GroupCreateActivity_menu_apply_button">Uveljavi</string>
   <string name="GroupCreateActivity_creating_group">Ustvarjam %1$s …</string>
-  <string name="GroupCreateActivity_updating_group">Posodabljanje %1$s ...</string>
+  <string name="GroupCreateActivity_updating_group">Posodabljanje %1$s …</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Stik %1$s ni bil dodan, ker ni uporabnik aplikacije Signal.</string>
-  <string name="GroupCreateActivity_loading_group_details">Nalaganje podrobnosti o skupini ...</string>
+  <string name="GroupCreateActivity_loading_group_details">Nalaganje podrobnosti o skupini …</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Ste že v skupini.</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Želite deliti ime svojega profila in predstavitveno fotografijo s to skupino?</string>
@@ -407,6 +407,9 @@
   <string name="GroupShareProfileView_make_visible">Naredi vidno</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Vi</string>
+  <!--GV2 access levels-->
+  <!--PendingMembersActivity-->
+  <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar skupine</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -418,7 +421,7 @@
   <string name="InviteActivity_share_with_contacts">Deli s stiki</string>
   <string name="InviteActivity_choose_how_to_share">Izbira načina deljenja</string>
   <string name="InviteActivity_cancel">Prekliči</string>
-  <string name="InviteActivity_sending">Pošiljanje ...</string>
+  <string name="InviteActivity_sending">Pošiljanje …</string>
   <string name="InviteActivity_heart_content_description">Srce</string>
   <string name="InviteActivity_invitations_sent">Vabilo je bilo poslano!</string>
   <string name="InviteActivity_invite_to_signal">Povabi k uporabi</string>
@@ -438,7 +441,9 @@
   <string name="InviteActivity_no_app_to_share_to">Kaže, da nimate nameščene nobene primerne aplikacije.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Pametni ljudje uporabljajo šifrirano komunikacijo!</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">Delovanje v ozadju ...</string>
+  <string name="Job_working_in_the_background">Delovanje v ozadju …</string>
+  <!--LearnMoreTextView-->
+  <string name="LearnMoreTextView_learn_more">Več o funkciji zakriti pošiljatelj</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Pošiljanje ni uspelo</string>
   <string name="MessageDetailsRecipient_new_safety_number">Novo varnostno število</string>
@@ -469,9 +474,9 @@
     <item quantity="other">S tem boste nepovratno izbrisali %1$d izbranih datotek. Vsak tekst povezan s temi datotekami bo prav tako izbrisan.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Brišem</string>
-  <string name="MediaOverviewActivity_Media_delete_progress_message">Izbris sporočil ...</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Izbris sporočil …</string>
   <string name="MediaOverviewActivity_Select_all">Označi vse</string>
-  <string name="MediaOverviewActivity_collecting_attachments">Nabiranje prilog ...</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Nabiranje prilog …</string>
   <string name="MediaOverviewActivity_Sort_by">Razvrščanje</string>
   <string name="MediaOverviewActivity_Newest">Najnovejše</string>
   <string name="MediaOverviewActivity_Oldest">Najstarejše</string>
@@ -525,7 +530,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Tapnite za izbor</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Dodajanje besedila ...</string>
+  <string name="MediaSendActivity_add_a_caption">Dodajanje besedila …</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Predmet je bil odstranjen, ker je presegel omejitev velikosti.</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera ni dostopna.</string>
   <string name="MediaSendActivity_message_to_s">Sporočilo za uporabnika %s</string>
@@ -559,6 +564,21 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">Uporabnik %1$s je izklopil izginjajoča sporočila.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Čas poteka sporočil ste nastavili na %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">Uporabnik %1$s je nastavil čas poteka sporočil na %2$s.</string>
+  <!--GV2 specific-->
+  <!--GV2 member additions-->
+  <string name="MessageRecord_you_joined_the_group">Pridružili ste se skupini.</string>
+  <string name="MessageRecord_s_joined_the_group">%1$s stikov se je priključilo skupini.</string>
+  <!--GV2 member removals-->
+  <string name="MessageRecord_you_left_the_group">Zapustili ste skupino.</string>
+  <!--GV2 role change-->
+  <!--GV2 invitations-->
+  <!--GV2 invitation revokes-->
+  <!--GV2 invitation acceptance-->
+  <!--GV2 title change-->
+  <!--GV2 avatar change-->
+  <!--GV2 attribute access level change-->
+  <!--GV2 membership access level change-->
+  <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Varnostno število z uporabnikom %s je bilo spremenjeno.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Varnostno število z uporabnikom %s ste označili kot potrjeno</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Varnostno število z uporabnikom %s ste na drugi napravi označili kot potrjeno</string>
@@ -607,7 +627,7 @@
 • brala vsa vaša sporočila,
 \n• pošiljala sporočila v vašem imenu.</string>
   <string name="DeviceProvisioningActivity_content_progress_title">Povezujem napravo</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Povezovanje z novo napravo ...</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Povezovanje z novo napravo …</string>
   <string name="DeviceProvisioningActivity_content_progress_success">Naprava je potrjena!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nobena naprava ni bila najdena.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Napaka omrežja.</string>
@@ -635,6 +655,14 @@
   <string name="PlacePickerActivity_accept_address">Sprejmi naslov</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Različica programa Google Play Services, ki jo imate nameščeno, ne deluje, kot bi morala. Prosimo, ponovno namestite Google Play Services in poskusite znova.</string>
+  <!--PinRestoreEntryFragment-->
+  <string name="PinRestoreEntryFragment_incorrect_pin">Napačen PIN</string>
+  <string name="PinRestoreEntryFragment_cancel">Prekliči</string>
+  <string name="PinRestoreEntryFragment_skip">Preskoči</string>
+  <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Vnesite alfanumerični PIN</string>
+  <string name="PinRestoreEntryFragment_enter_numeric_pin">Vnesite številčni PIN</string>
+  <!--PinRestoreLockedFragment-->
+  <string name="PinRestoreLockedFragment_create_your_pin">Ustvarite svoj PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Oceni to aplikacijo</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Če se vam zdi aplikacija Signal koristna in uporabna, vas prosimo, da si vzamete nekaj trenutkov in jo ocenite.</string>
@@ -649,16 +677,7 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Vi</string>
   <!--RecipientPreferencesActivity-->
-  <string name="RecipientPreferenceActivity_block_this_contact_question">Blokiram tega uporabnika?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Sporočil in klicev tega uporabnika ne boste več prejemali.</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group">Blokiram in zapustim skupino?</string>
-  <string name="RecipientPreferenceActivity_block_group">Blokiram skupino?</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group_description">Od te skupine ne boste več prejemali sporočil in posodobitev.</string>
   <string name="RecipientPreferenceActivity_block">Blokiraj</string>
-  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Odblokiram tega uporabnika?</string>
-  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Zopet boste lahko prejemali sporočila in klice tega uporabnika.</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_question">Odblokiram skupino?</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_description">Obstoječi člani vas bodo lahko ponovno dodali v skupino.</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">Napaka ob zapuščanju skupine</string>
   <string name="RecipientPreferenceActivity_unblock">Odblokiraj</string>
   <string name="RecipientPreferenceActivity_enabled">Vklopljeno</string>
@@ -715,6 +734,7 @@
   <string name="RegistrationActivity_phone_number_description">Telefonska številka</string>
   <string name="RegistrationActivity_country_code_description">Koda države</string>
   <string name="RegistrationActivity_call">Kliči</string>
+  <!--RegistrationLockV2Dialog-->
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Ogled fotografije</string>
   <string name="RevealableMessageView_view_video">Ogled videa</string>
@@ -757,7 +777,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="SmsMessageRecord_secure_session_reset_s">Oseba %s je ponastavila varno sejo.</string>
   <string name="SmsMessageRecord_duplicate_message">Podvojeno sporočilo.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Sporočilo ni moglo biti obdelano, ker je bilo poslano iz novejše različice aplikacije Signal. Po posodobitvi aplikacije lahko prosite osebo na drugi strani naj vam ga ponovno pošlje.</string>
-  <string name="SmsMessageRecord_error_handling_incoming_message">Napaka pri obdelavi dohodnega sporočila</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Napaka pri obdelavi dohodnega sporočila.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Nalepke</string>
   <!--StickerManagementAdapter-->
@@ -843,7 +863,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Vaš partner uporablja zastarelo različico aplikacije Signal. Za pregled in potrditev varnostnega števila jo bo moral nadgraditi.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Vaš partner uporablja novejšo različico aplikacije Signal z nekompatibilnimi kodami QR. Prosimo, nadgradite svojo aplikacijo.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Skenirana koda QR ne vsebuje pravilno formatirane informacije z varnostnim številom. Poskusite znova.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">Deli varnostno število preko ...</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Deli varnostno število preko …</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Skupno varnostno število:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Kaže, da nimate nameščene nobene primerne aplikacije.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Iz odložišča ni bilo mogoče pridobiti nobenega varnostnega števila za primerjavo</string>
@@ -991,7 +1011,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="change_passphrase_activity__new_passphrase">Novo geslo</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Ponovno vnesite novo geslo</string>
   <!--contact_selection_activity-->
-  <string name="contact_selection_activity__enter_name_or_number">Vnesite ime ali številko ...</string>
+  <string name="contact_selection_activity__enter_name_or_number">Vnesite ime ali številko …</string>
   <string name="contact_selection_activity__invite_to_signal">Povabi na Signal</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Izbriši vneseni tekst</string>
@@ -999,7 +1019,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="contact_filter_toolbar__show_dial_pad_description">Prikaži številčno tipkovnico</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Ni stikov.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Nalagam stike ...</string>
+  <string name="contact_selection_group_activity__finding_contacts">Nalagam stike …</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Fotografija stika</string>
   <!--ContactSelectionListFragment-->
@@ -1041,7 +1061,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Fotografija stika</string>
   <!--audio_view-->
-  <string name="audio_view__play_pause_accessibility_description">Predvajanje ... pavza</string>
+  <string name="audio_view__play_pause_accessibility_description">Predvajanje … pavza</string>
   <string name="audio_view__download_accessibility_description">Prenesi</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Zvok</string>
@@ -1055,7 +1075,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Na dno</string>
   <!--country_selection_fragment-->
-  <string name="country_selection_fragment__loading_countries">Nalaganje držav ...</string>
+  <string name="country_selection_fragment__loading_countries">Nalaganje držav …</string>
   <string name="country_selection_fragment__search">Poišči</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Za povezavo skenirajte kodo QR na napravi</string>
@@ -1136,8 +1156,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="log_submit_activity__button_got_it">Razumem</string>
   <string name="log_submit_activity__button_compose_email">Sestavi elektronsko sporočilo</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Ta zabeležba bo javno objavljena na spletu in v ogled razvijalcem aplikacije. Pred oddajo jo lahko pregledate in popravite.</string>
-  <string name="log_submit_activity__loading_logs">Nalagam sistemske zabaležbe ...</string>
-  <string name="log_submit_activity__uploading_logs">Prenašam sistemske zabeležbe ...</string>
+  <string name="log_submit_activity__loading_logs">Nalagam sistemske zabaležbe …</string>
+  <string name="log_submit_activity__uploading_logs">Prenašam sistemske zabeležbe …</string>
   <string name="log_submit_activity__choose_email_app">Izberite odjemalca za e-pošto</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Prosim preglejte to sistemsko zabeležbo mojega odjemalca: %1$s</string>
   <string name="log_submit_activity__network_failure">Napaka omrežja. Poskusite znova.</string>
@@ -1160,7 +1180,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">PREGLED</string>
   <string name="message_recipients_list_item__resend">PONOVNO POŠLJI</string>
-  <string name="message_recipients_list_item__resending">Ponovno pošiljanje ...</string>
+  <string name="message_recipients_list_item__resending">Ponovno pošiljanje …</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s stik se je priključil skupini.</item>
@@ -1215,7 +1235,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Če želite preveriti zasebnost vaše komunikacije z uporabnikom %s, primerjajte gornje število s številom na njegovi napravi. Lahko tudi skenirate kodo na njegovi napravi ali ga prosite, naj skenira vašo. <a href="https://signal.org/redirect/safety-numbers">Več.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tapnite za skeniranje</string>
-  <string name="verify_display_fragment__loading">Nalaganje ...</string>
+  <string name="verify_display_fragment__loading">Nalaganje …</string>
   <string name="verify_display_fragment__verified">Potrjeno</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Deli varnostno število</string>
@@ -1430,7 +1450,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__unknown_contact">Novo sporočilo za ...</string>
+  <string name="contact_selection_list__unknown_contact">Novo sporočilo za …</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Kliči</string>
   <!--conversation_callable_secure-->
@@ -1537,7 +1557,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">Brišem</string>
-  <string name="trimmer__deleting_old_messages">Brisanje starih sporočil ...</string>
+  <string name="trimmer__deleting_old_messages">Brisanje starih sporočil …</string>
   <string name="trimmer__old_messages_successfully_deleted">Stara sporočila so bila uspešno izbrisana</string>
   <!--Insights-->
   <string name="Insights__percent">%</string>
@@ -1582,20 +1602,16 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Ustvari nov PIN</string>
   <string name="CreateKbsPinFragment__create_your_pin">Ustvarite svoj PIN</string>
-  <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">S kodo PIN boste izboljšali varnost svojega računa Signal. Koda PIN ni obnovljiva. Le z njo se boste lahko znova prijavili v svoj račun Signal.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN se ne ujema. Poskusite znova.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Potrdite svoj PIN.</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Kreiranje PIN kode ni uspelo</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Vaš PIN ni bil shranjen. Kasneje vas bomo spomnili, da ustvarite novega.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN je bil ustvarjen.</string>
-  <string name="ConfirmKbsPinFragment__re_enter_pin">Ponovno vnesite PIN</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Ustvarjam PIN …</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Predstavljamo vam PIN kode!</string>
-  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">S kodo PIN boste izboljšali varnost svojega računa. Ustvarite svoj PIN zdaj!</string>
-  <string name="KbsSplashFragment__learn_more">Več o tem...</string>
-  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
+  <string name="KbsSplashFragment__learn_more">Več o tem…</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">PIN = koda za prijavo v omrežje</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Koda PIN za prijavo v omrežje je izboljšana in odslej ponuja več možnosti. Posodobite jo zdaj!</string>
   <string name="KbsSplashFragment__read_more_about_pins">Preberite več o varnostni PIN kodi.</string>
@@ -1612,8 +1628,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="AccountLockedFragment__account_locked">Račun je zaklenjen</string>
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Zaradi zaščite vaše varnosti in zasebnosti je bil vaš račun zaklenjen. Po %1$d dneh neaktivnosti računa se boste zopet lahko prijavili s to telefonsko številko brez vnosa kode PIN. Vsa vsebina bo izbrisana.</string>
   <string name="AccountLockedFragment__next">Naprej</string>
-  <string name="AccountLockedFragment__learn_more">Več o tem...</string>
-  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
+  <string name="AccountLockedFragment__learn_more">Več o tem…</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Vnesite svoj PIN</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Vnesite PIN, ki ste ga ustvarili za zaklep svojega računa. Tu ne gre za SMS potrditveno kodo.</string>
@@ -1657,10 +1672,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Ustvari PIN</string>
-  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">S kodo PIN boste izboljšali varnost svojega računa Signal.</string>
   <string name="KbsMegaphone__create_pin">Ustvari PIN</string>
   <string name="KbsMegaphone__introducing_pins">Predstavljamo vam PIN kode!</string>
-  <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Koda PIN za prijavo v omrežje je izboljšana in odslej ponuja več možnosti. Posodobitev zahteva le nekaj trenutkov.</string>
   <string name="KbsMegaphone__update_pin">Posodobite PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Spomnili vas bomo kasneje. Uporaba kode PIN bo postala obvezna čez %1$d dni.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Spomnili vas bomo kasneje. Potrditev kode PIN bo obvezna čez %1$d dni.</string>
@@ -1673,8 +1686,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ProfileNamesMegaphone__confirm_name">Potrditev imena</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
-  <string name="ConversationListFragment_loading">Nalaganje ...</string>
-  <string name="CallNotificationBuilder_connecting">Povezujem...</string>
+  <string name="ConversationListFragment_loading">Nalaganje …</string>
+  <string name="CallNotificationBuilder_connecting">Povezujem…</string>
   <string name="Permissions_permission_required">Zahtevano dovoljenje</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Dovoljenje za dostop do sporočil SMS je bilo trajno odvzeto. Aplikacija Signal potrebuje dovoljenje za dostop do sporočil SMS za pošiljanje sporočil SMS. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"SMS\".</string>
   <string name="Permissions_continue">Nadaljuj</string>
@@ -1699,8 +1712,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="RegistrationActivity_restore">Obnovi</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Uvoz varnostnih kopij iz novejših različic aplikacije Signal ni mogoč</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Napačno geslo varnostne kopije</string>
-  <string name="RegistrationActivity_checking">Preverjanje ...</string>
-  <string name="RegistrationActivity_d_messages_so_far">%d sporočil zaenkrat ...</string>
+  <string name="RegistrationActivity_checking">Preverjanje …</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d sporočil zaenkrat …</string>
   <string name="RegistrationActivity_restore_from_backup">Obnovim iz varnostne kopije?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Obnovite svoja sporočila in multimedijske datoteke, shranjene na lokalni varnostni kopiji. Če tega ne boste storili zdaj, kasneje ne bo več mogoče.</string>
   <string name="RegistrationActivity_backup_size_s">Velikost varnostne kopije: %s</string>
@@ -1719,7 +1732,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Dovoljenja za dostop do zunanjega pomnilnika, ki ga Aplikacija Signal potrebuje za varnostno kopiranje, je bilo trajno odvzeto. Prosimo, pojdite v sistemski meni z nastavitvami za aplikacije, izberite \"Dovoljenja\" in označite polje \"Zunanja shramba\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Zadnja varnostna kopija: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">V teku</string>
-  <string name="LocalBackupJob_creating_backup">Ustvarjanje varnostne kopije ...</string>
+  <string name="LocalBackupJob_creating_backup">Ustvarjanje varnostne kopije …</string>
   <string name="ProgressPreference_d_messages_so_far">%d sporočil zaenkrat</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Prosimo, vnesite potrditveno kodo, poslano na %s.</string>
   <string name="RegistrationActivity_wrong_number">Napačna številka</string>
@@ -1733,10 +1746,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Uporaba sistemskega zaklepanja in prstnih odtisov za zaklep aplikacije</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Časovni interval pred zaklepom aplikacije</string>
   <string name="preferences_app_protection__signal_pin">Signal PIN</string>
-  <string name="preferences_app_protection__pin">PIN</string>
-  <string name="preferences_app_protection__change">Zamenjava</string>
-  <string name="preferences_app_protection__create">Ustvari</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account">S kodo PIN boste izboljšali varnost svojega računa Signal. Po njej boste vprašani vsakič, ko se boste želeli na novo prijaviti s svojo telefonsko številko. Če boste pozabili svoj PIN, boste za 7 dni ostali zaklenjeni iz svojega računa Signal.</string>
+  <string name="preferences_app_protection__create_a_pin">Ustvari PIN</string>
   <string name="AppProtectionPreferenceFragment_none">Brez</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Koda PIN za prijavo v omrežje ni enaka potrditveni kodi SMS, ki ste jo prejeli ravnokar. Prosimo, vnesite PIN, ki ste ga predhodno določili za zaklepanje.</string>
   <string name="registration_activity__registration_lock_pin">PIN za prijavo v omrežje</string>

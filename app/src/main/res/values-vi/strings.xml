@@ -73,6 +73,14 @@
   <string name="AudioSlidePlayer_error_playing_audio">Lỗi chạy tập tin âm thanh!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Các liên hệ đã chặn</string>
+  <!--BlockUnblockDialog-->
+  <string name="BlockUnblockDialog_block_and_leave_s">Chặn và rời khỏi %1$s?</string>
+  <string name="BlockUnblockDialog_block_s">Chặn %1$s?</string>
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Các thành viên trong nhóm có thể thêm lại bạn vào nhóm.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Các bạn sẽ có thể nhắn tin và gọi cho nhau.</string>
+  <string name="BlockUnblockDialog_unblock_s">Bỏ chặn %1$s?</string>
+  <string name="BlockUnblockDialog_unblock">Bỏ chặn</string>
+  <string name="BlockUnblockDialog_block">Chặn</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Hôm nay</string>
   <string name="BucketedThreadMedia_Yesterday">Hôm qua</string>
@@ -106,6 +114,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">Bỏ ảnh đại diện?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Không tìm thấy trình duyệt.</string>
+  <string name="CommunicationActions_no_email_app_found">Không tìm thấy ứng dụng email.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Một cuộc gọi di động đã được tiến hành.</string>
   <string name="CommunicationActions_start_video_call">Bắt đầu cuộc gọi video?</string>
   <string name="CommunicationActions_start_voice_call">Bắt đầu cuộc gọi thoại?</string>
@@ -203,15 +212,6 @@
   <string name="ConversationActivity_no_results">Không có kết quả</string>
   <string name="ConversationActivity_sticker_pack_installed">Đã cài đặt gói nhãn dán</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Mới! Thể hiện cảm xúc bằng nhãn dán</string>
-  <string name="ConversationActivity_block_s">Chặn %1$s?</string>
-  <string name="ConversationActivity_block_and_leave_s">Chặn và rời khỏi %1$s?</string>
-  <string name="ConversationActivity_unblock_s">Bỏ chặn %1$s?</string>
-  <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">Các bạn sẽ có thể nhắn tin và gọi cho nhau.</string>
-  <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">Các thành viên trong nhóm có thể thêm lại bạn vào nhóm.</string>
-  <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">Người bị chặn sẽ không thể gọi hay nhắn tin cho bạn.</string>
-  <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">Bạn sẽ rời nhóm và không còn nhận tin nhắn hay cập nhật từ nhóm này nữa.</string>
-  <string name="ConversationActivity_block">Chặn</string>
-  <string name="ConversationActivity_block_and_delete">Chặn và xóa</string>
   <string name="ConversationActivity_cancel">Hủy</string>
   <string name="ConversationActivity_delete_conversation">Xoá cuộc hội thoại?</string>
   <string name="ConversationActivity_delete_and_leave_group">Xóa và rời nhóm?</string>
@@ -354,7 +354,7 @@
   <string name="GroupCreateActivity_contacts_invalid_number">Một người trong nhóm có số điện thoại không hợp lệ. Vui lòng điều chỉnh liên lạc đó hoặc xóa đi và thử lại.</string>
   <string name="GroupCreateActivity_avatar_content_description">Biểu tượng nhóm</string>
   <string name="GroupCreateActivity_menu_apply_button">Áp dụng</string>
-  <string name="GroupCreateActivity_creating_group">Đang tạo %1$s...</string>
+  <string name="GroupCreateActivity_creating_group">Đang tạo %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Đang cập nhật %1$s…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Không thể thêm %1$s vì họ không phải người dùng Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Đang tải chi tiết nhóm…</string>
@@ -365,6 +365,9 @@
   <string name="GroupShareProfileView_make_visible">Cho phép thấy</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Bạn</string>
+  <!--GV2 access levels-->
+  <!--PendingMembersActivity-->
+  <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Ảnh đại diện của nhóm</string>
   <string name="CropImageActivity_profile_avatar">Ảnh đại diện</string>
@@ -376,7 +379,7 @@
   <string name="InviteActivity_share_with_contacts">Chia sẻ với liên hệ</string>
   <string name="InviteActivity_choose_how_to_share">Chọn cách chia sẻ</string>
   <string name="InviteActivity_cancel">Hủy bỏ</string>
-  <string name="InviteActivity_sending">Đang gửi...</string>
+  <string name="InviteActivity_sending">Đang gửi…</string>
   <string name="InviteActivity_heart_content_description">Thích</string>
   <string name="InviteActivity_invitations_sent">Đã gửi lời mời!</string>
   <string name="InviteActivity_invite_to_signal">Mời dùng Signal</string>
@@ -391,6 +394,8 @@
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Một người bạn tốt không để bạn mình nhắn tin không mã hoá.</string>
   <!--Job-->
   <string name="Job_working_in_the_background">Đang xử lí duới nền…</string>
+  <!--LearnMoreTextView-->
+  <string name="LearnMoreTextView_learn_more">Tìm hiểu thêm</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Không thể gửi</string>
   <string name="MessageDetailsRecipient_new_safety_number">Mã số an toàn mới</string>
@@ -465,7 +470,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Nhấn để chọn</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Thêm chú thích...</string>
+  <string name="MediaSendActivity_add_a_caption">Thêm chú thích…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Một mục đã bị loại bỏ vì quá kích cỡ giới hạn</string>
   <string name="MediaSendActivity_camera_unavailable">Máy ảnh không khả dụng</string>
   <string name="MediaSendActivity_message_to_s">Tin nhắn đến %s</string>
@@ -496,6 +501,19 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s đã tắt tính năng tự hủy tin nhắn.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Bạn đã đặt tự hủy tin nhắn sau %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s đã đặt tự hủy tin nhắn sau %2$s.</string>
+  <!--GV2 specific-->
+  <!--GV2 member additions-->
+  <string name="MessageRecord_s_joined_the_group">%1$s đã tham gia nhóm.</string>
+  <!--GV2 member removals-->
+  <!--GV2 role change-->
+  <!--GV2 invitations-->
+  <!--GV2 invitation revokes-->
+  <!--GV2 invitation acceptance-->
+  <!--GV2 title change-->
+  <!--GV2 avatar change-->
+  <!--GV2 attribute access level change-->
+  <!--GV2 membership access level change-->
+  <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Mã số an toàn của bạn với %s đã thay đổi.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Bạn đã xác minh mã số an toàn với %s</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Bạn đã xác minh mã số an toàn với %s từ thiết bị khác</string>
@@ -564,6 +582,15 @@
   <string name="PlacePickerActivity_accept_address">Chấp nhận địa chỉ</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Phiên bản của Dịch vụ Google Play bạn sử dụng không hoạt động đúng. Vui lòng cài lại Dịch vụ Google Play và thử lại.</string>
+  <!--PinRestoreEntryFragment-->
+  <string name="PinRestoreEntryFragment_incorrect_pin">Mã PIN không chính xác</string>
+  <string name="PinRestoreEntryFragment_contact_support">Liên lạc Hỗ trợ</string>
+  <string name="PinRestoreEntryFragment_cancel">Hủy</string>
+  <string name="PinRestoreEntryFragment_skip">Bỏ qua</string>
+  <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Nhập mã PIN gồm chữ và số</string>
+  <string name="PinRestoreEntryFragment_enter_numeric_pin">Nhập mã PIN bao gồm số</string>
+  <!--PinRestoreLockedFragment-->
+  <string name="PinRestoreLockedFragment_create_your_pin">Tạo mã PIN của bạn</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Đánh giá ứng dụng này</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Nếu bạn thích ứng dụng này, hãy dành chút thời gian đánh giá nó.</string>
@@ -578,16 +605,7 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Bạn</string>
   <!--RecipientPreferencesActivity-->
-  <string name="RecipientPreferenceActivity_block_this_contact_question">Chặn liên lạc này?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Bạn sẽ không còn nhận tin nhắn và cuộc gọi từ liên hệ này nữa.</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group">Chặn và rời nhóm này?</string>
-  <string name="RecipientPreferenceActivity_block_group">Chặn nhóm này?</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group_description">Bạn sẽ không còn nhận tin nhắn hay cập nhật từ nhóm này nữa.</string>
   <string name="RecipientPreferenceActivity_block">Chặn</string>
-  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Bỏ chặn liên lạc này?</string>
-  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Bạn sẽ lại có thể nhận tin nhắn và cuộc gọi từ liên hệ này.</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_question">Bỏ chặn nhóm này?</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_description">Các thành viên đang trong nhóm có thể thêm lại bạn vào nhóm</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">Lỗi khi rời nhóm</string>
   <string name="RecipientPreferenceActivity_unblock">Bỏ chặn</string>
   <string name="RecipientPreferenceActivity_enabled">Đã bật</string>
@@ -643,6 +661,7 @@ mã quốc gia bạn</string>
   <string name="RegistrationActivity_phone_number_description">Số điện thoại</string>
   <string name="RegistrationActivity_country_code_description">Mã quốc gia</string>
   <string name="RegistrationActivity_call">Gọi</string>
+  <!--RegistrationLockV2Dialog-->
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Xem ảnh</string>
   <string name="RevealableMessageView_view_video">Xem video</string>
@@ -685,7 +704,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="SmsMessageRecord_secure_session_reset_s">%s đã tái thiết lập phiên bảo mật.</string>
   <string name="SmsMessageRecord_duplicate_message">Tin nhắn trùng lặp.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Không thể xử lí tin nhắn vì nó được gửi từ phiên bản Signal mới hơn. Bạn có thể yêu cầu người gửi nhắn lại sau khi bạn cập nhật Signal.</string>
-  <string name="SmsMessageRecord_error_handling_incoming_message">Lỗi xử lý tin nhắn đến</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Lỗi khi xử lý tin nhắn đến.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Nhãn dán</string>
   <!--StickerManagementAdapter-->
@@ -789,7 +808,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_no_web_browser_installed">Không tìm thấy trình duyệt!</string>
   <!--ApplicationMigrationService-->
-  <string name="ApplicationMigrationService_import_in_progress">Đang nhập...</string>
+  <string name="ApplicationMigrationService_import_in_progress">Đang nhập…</string>
   <string name="ApplicationMigrationService_importing_text_messages">Đang nhập tin nhắn văn bản</string>
   <string name="ApplicationMigrationService_import_complete">Nhập thành công</string>
   <string name="ApplicationMigrationService_system_database_import_is_complete">Hoàn tất nhập cơ sở dữ liệu hệ thống.</string>
@@ -924,7 +943,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="contact_filter_toolbar__show_dial_pad_description">HIện bàn phím quay số</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Không có liên hệ.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Đang tải danh bạ...</string>
+  <string name="contact_selection_group_activity__finding_contacts">Đang tải danh bạ…</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Ảnh liên hệ</string>
   <!--ContactSelectionListFragment-->
@@ -1043,8 +1062,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="log_submit_activity__button_got_it">Đã rõ</string>
   <string name="log_submit_activity__button_compose_email">Soạn email</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Nhật kí này sẽ được đăng trực tuyến công khai cho những người đóng góp theo dõi, bạn có thể kiểm tra và sửa đổi nó trước khi gửi đi.</string>
-  <string name="log_submit_activity__loading_logs">Đang tải nhật kí...</string>
-  <string name="log_submit_activity__uploading_logs">Đang tải lên nhật kí...</string>
+  <string name="log_submit_activity__loading_logs">Đang tải nhật kí…</string>
+  <string name="log_submit_activity__uploading_logs">Đang tải lên nhật kí…</string>
   <string name="log_submit_activity__choose_email_app">Chọn ứng dụng email</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Vui lòng xem nhật kí dò lỗi từ ứng dụng của tôi: %1$s</string>
   <string name="log_submit_activity__network_failure">Không thể kết nối mạng. Hãy thử lại.</string>
@@ -1061,7 +1080,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="import_fragment__import_a_plaintext_backup_file">Nhập tập tin sao lưu văn bản không mã hoá. Tương thích với \'Sao lưu &amp; Phục hồi SMS.\'</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Xem toàn bộ cuộc trò chuyện</string>
-  <string name="load_more_header__loading">Đang tải...</string>
+  <string name="load_more_header__loading">Đang tải…</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Không có đa phương tiện</string>
   <!--message_recipients_list_item-->
@@ -1119,7 +1138,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Nếu bạn muốn xác minh độ bảo mật của mã hoá với %s, so sánh dãy số trên với dãy số trên thiết bị của họ. Hoặc bạn có thể quét mã QR trên thiết bị của họ, hoặc yêu cầu họ quét mã của bạn. <a href="https://signal.org/redirect/safety-numbers">Tìm hiểu thêm.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Nhấn để quét</string>
-  <string name="verify_display_fragment__loading">Đang tải...</string>
+  <string name="verify_display_fragment__loading">Đang tải…</string>
   <string name="verify_display_fragment__verified">Đã xác minh</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Chia sẻ mã số an toàn</string>
@@ -1474,20 +1493,16 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Tạo mã PIN mới</string>
   <string name="CreateKbsPinFragment__create_your_pin">Tạo mã PIN của bạn</string>
-  <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">Mã PIN thêm một lớp bảo mật cho tài khoản của bạn. Mã PIN không thể được khôi phục. Bạn sẽ cần mã PIN để đăng kí lại với Signal.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Mã PIN không khớp. Vui lòng thử lại.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Xác nhận mã PIN của bạn.</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Không thể tạo mã PIN</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Mã PIN của bạn chưa được lưu. Chúng tôi sẽ nhắc bạn tạo mã PIN sau.</string>
   <string name="ConfirmKbsPinFragment__pin_created">Mã PIN đã được tạo.</string>
-  <string name="ConfirmKbsPinFragment__re_enter_pin">Nhập lại mã PIN</string>
-  <string name="ConfirmKbsPinFragment__creating_pin">Đang tạo mã PIN...</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">Đang tạo mã PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Giới thiệu mã PIN</string>
-  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">Mã PIN thêm một lớp bảo mật cho tài khoản của bạn. Tạo mã PIN ngay.</string>
   <string name="KbsSplashFragment__learn_more">Tìm hiểu thêm</string>
-  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Khóa Đăng ký = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Khóa đăng kí giờ trở thành mã PIN hữu dụng hơn. Cập nhật mã PIN ngay.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Đọc thêm về mã PIN.</string>
@@ -1505,7 +1520,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Tài khoản của bạn đã bị khóa để đảm bảo sự riêng tư và bảo mật. Sau %1$d ngày không sử dụng bạn có thể đăng kí lại số điện thoại mà không cần mã PIN nhưng toàn bộ dữ liệu sẽ bị xóa.</string>
   <string name="AccountLockedFragment__next">Tiếp</string>
   <string name="AccountLockedFragment__learn_more">Tìm hiểu thêm</string>
-  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Nhập mã PIN của bạn</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Nhập mã PIN bạn đã tạo cho tài khoản. Mã này khác với mã xác minh SMS của bạn.</string>
@@ -1534,10 +1548,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Tạo mã PIN</string>
-  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">Mã PIN thêm một lớp bảo mật cho tài khoản Signal của bạn.</string>
   <string name="KbsMegaphone__create_pin">Tạo mã PIN</string>
   <string name="KbsMegaphone__introducing_pins">Giới thiệu mã PIN</string>
-  <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Khóa đăng kí giờ trở thành mã PIN. Cập nhật mã PIN chỉ tốn vài giây.</string>
   <string name="KbsMegaphone__update_pin">Cập nhật mã PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Chúng tôi sẽ nhắc bạn sau. Việc tạo mã PIN sẽ trở nên bắt buộc sau %1$d ngày.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Chúng tôi sẽ nhắc bạn sau. Xác minh mã PIN của bạn sẽ trở nên bắt buộc sau %1$d ngày.</string>
@@ -1550,8 +1562,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ProfileNamesMegaphone__confirm_name">Xác nhận tên</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Biểu tượng chuyển tải</string>
-  <string name="ConversationListFragment_loading">Đang tải...</string>
-  <string name="CallNotificationBuilder_connecting">Đang kết nối...</string>
+  <string name="ConversationListFragment_loading">Đang tải…</string>
+  <string name="CallNotificationBuilder_connecting">Đang kết nối…</string>
   <string name="Permissions_permission_required">Cần quyền</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal cần quyền SMS để gửi SMS, nhưng đã bị từ chối vĩnh viễn. Vui lòng mở cài đặt ứng dụng, chọn \"Qiuyền\" và bật \"SMS\".</string>
   <string name="Permissions_continue">Tiếp tục</string>
@@ -1610,10 +1622,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Khoá truy cập Signal bằng mật khẩu Android hoặc vân tay</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Thời gian chờ trước khi tự động khoá</string>
   <string name="preferences_app_protection__signal_pin">Mã PIN Signal</string>
-  <string name="preferences_app_protection__pin">PIN</string>
-  <string name="preferences_app_protection__change">Thay đổi</string>
-  <string name="preferences_app_protection__create">Tạo</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account">Mã PIN thêm một lớp bảo mật vào tài khoản của bạn. Bạn sẽ được hỏi nhập mã PIN khi bạn đăng ký số điện thoại của mình với Signal. Nếu bạn quên mã PIN của mình, bạn sẽ bị khoá khỏi tài khoản của mình trong 7 ngày.</string>
+  <string name="preferences_app_protection__create_a_pin">Tạo mã PIN</string>
+  <string name="preferences_app_protection__change_your_pin">Thay đổi mã PIN của bạn.</string>
   <string name="AppProtectionPreferenceFragment_none">Không</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Mã PIN Khóa Đăng ký khác hoàn toàn mã xác minh SMS bạn vừa nhận được. Vui lòng điền mã PIN mà bạn sử dụng trước đó.</string>
   <string name="registration_activity__registration_lock_pin">Mã PIN Khóa Đăng ký</string>

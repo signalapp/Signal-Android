@@ -73,6 +73,9 @@
   <string name="AudioSlidePlayer_error_playing_audio">បញ្ហាការចាក់សំឡេង!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">បិទលេខទំនាក់ទំនង</string>
+  <!--BlockUnblockDialog-->
+  <string name="BlockUnblockDialog_unblock">បើកវិញ</string>
+  <string name="BlockUnblockDialog_block">រារាំង</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">ថ្ងៃនេះ</string>
   <string name="BucketedThreadMedia_Yesterday">ម្សិលមិញ</string>
@@ -201,7 +204,6 @@
   <string name="ConversationActivity_no_results">គ្មានលទ្ធផល</string>
   <string name="ConversationActivity_sticker_pack_installed">កញ្ចប់ស្ទីកគ័របានដំឡើង</string>
   <string name="ConversationActivity_new_say_it_with_stickers">ថ្មី! និយាយជាមួយស្ទីកគ័រ</string>
-  <string name="ConversationActivity_block">រារាំង</string>
   <string name="ConversationActivity_cancel">បោះបង់</string>
   <string name="ConversationActivity_delete">លុប</string>
   <!--ConversationAdapter-->
@@ -345,6 +347,9 @@
   <string name="GroupShareProfileView_make_visible">ធ្វើឲ្យអាចមើលឃើញ</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">អ្នក</string>
+  <!--GV2 access levels-->
+  <!--PendingMembersActivity-->
+  <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">រូបតំណាងក្រុម</string>
   <string name="CropImageActivity_profile_avatar">រូបតំណាង</string>
@@ -356,7 +361,7 @@
   <string name="InviteActivity_share_with_contacts">ចែករំលែកជាមួយបញ្ជីទំនាក់ទំនង</string>
   <string name="InviteActivity_choose_how_to_share">ជ្រើសរើសរបៀបចែករំលែក</string>
   <string name="InviteActivity_cancel">បោះបង់</string>
-  <string name="InviteActivity_sending">កំពុងផ្ញើ...</string>
+  <string name="InviteActivity_sending">កំពុងផ្ញើ…</string>
   <string name="InviteActivity_heart_content_description">បេះដូង</string>
   <string name="InviteActivity_invitations_sent">លិខិតអញ្ជើញបានផ្ញើ!</string>
   <string name="InviteActivity_invite_to_signal">អញ្ជើញចូលប្រើSignal</string>
@@ -371,6 +376,8 @@
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">មិត្តភក្តិមិនអោយមិត្តភក្តិជជែកដោយមិនកាណាល់កូដសម្ងាត់។</string>
   <!--Job-->
   <string name="Job_working_in_the_background">កំពុងដំណើរការសកម្មភាពខាងក្នុង…</string>
+  <!--LearnMoreTextView-->
+  <string name="LearnMoreTextView_learn_more">សិក្សាបន្ថែម</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">ផ្ញើបរាជ័យ</string>
   <string name="MessageDetailsRecipient_new_safety_number">លេខសុវត្ថិភាពថ្មី</string>
@@ -445,7 +452,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">ចុចដើម្បីជ្រើសរើស</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">ដាក់ចំណងជើងមួយ...</string>
+  <string name="MediaSendActivity_add_a_caption">ដាក់ចំណងជើងមួយ…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">ចំណុចមួយត្រូវបានលុបចេញព្រោះវាលើសពីទំហំកំណត់</string>
   <string name="MediaSendActivity_camera_unavailable">កាមេរ៉ាមិនដំណើរការ</string>
   <string name="MediaSendActivity_message_to_s">សារទៅកាន់ %s</string>
@@ -476,6 +483,19 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s បានបិទសារបាត់ទៅវិញ។</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">អ្នកបានកំណត់រយៈពេលសារបាត់ទៅវិញជា %1$s។</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s បានកំណត់រយៈពេលលុបសារ %2$s។</string>
+  <!--GV2 specific-->
+  <!--GV2 member additions-->
+  <string name="MessageRecord_s_joined_the_group">%1$s ចូលក្រុម។</string>
+  <!--GV2 member removals-->
+  <!--GV2 role change-->
+  <!--GV2 invitations-->
+  <!--GV2 invitation revokes-->
+  <!--GV2 invitation acceptance-->
+  <!--GV2 title change-->
+  <!--GV2 avatar change-->
+  <!--GV2 attribute access level change-->
+  <!--GV2 membership access level change-->
+  <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">លេខសុវត្ថិភាពអ្នក %s បានផ្លាស់ប្តូរ។</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">អ្នកបានផ្ទៀងផ្ទាត់លេខសុវត្ថិភាពជាមួយ %s</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">អ្នកបានផ្ទៀងផ្ទាត់លេខសុវត្ថិភាព %sដោយបានផ្ទៀងផ្ទាត់ជាមួយឧបករណ៍ផ្សេង</string>
@@ -533,6 +553,14 @@
   <string name="PlacePickerActivity_accept_address">ទទួលយកអសយដ្ឋាន</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">កំណែ Google Play Services ដែលបានដំឡើងមិនត្រឹមត្រូវទេ។ សូមដំឡើង Google Play Services សារជាថ្មី និងព្យាយាមម្តងទៀត។</string>
+  <!--PinRestoreEntryFragment-->
+  <string name="PinRestoreEntryFragment_incorrect_pin">លេខកូដ PIN មិនត្រឹមត្រូវ</string>
+  <string name="PinRestoreEntryFragment_cancel">បោះបង់</string>
+  <string name="PinRestoreEntryFragment_skip">រំលង</string>
+  <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">បញ្ចូលលេខ PIN អក្សរក្រមលេខ</string>
+  <string name="PinRestoreEntryFragment_enter_numeric_pin">បញ្ចូលលេខកូដ PIN</string>
+  <!--PinRestoreLockedFragment-->
+  <string name="PinRestoreLockedFragment_create_your_pin">បង្កើតលេខ PIN របស់អ្នក</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">ដាក់ពិន្ទុកម្មវិធីនេះ</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">បើអ្នកចូលចិត្តប្រើប្រាស់កម្មវិធីនេះ សូមចំណាយពេលបន្តិច ដើម្បីជួយដាក់ពិន្ទុផង។</string>
@@ -547,16 +575,7 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">អ្នក</string>
   <!--RecipientPreferencesActivity-->
-  <string name="RecipientPreferenceActivity_block_this_contact_question">បិទលេខទំនាក់ទំនងនេះ?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">អ្នកនឹងលែងទទួលសារ និងការហៅចូលពីលេខទំនាក់ទំនងនេះទៀតហើយ។</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group">ប្លក់ហើយចេញពីក្រុម?</string>
-  <string name="RecipientPreferenceActivity_block_group">ប្លក់ក្រុមនេះ?</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group_description">អ្នកនឹងលែងទទួលសារឬការព័ត៌មានពីក្រុមនេះ</string>
   <string name="RecipientPreferenceActivity_block">ហាមឃាត់</string>
-  <string name="RecipientPreferenceActivity_unblock_this_contact_question">មិនបិទលេខទំនាក់ទំនងនេះទេ?</string>
-  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">អ្នកនឹងទទួលបានសារ និងការហៅចូលពីលេខទំនាក់ទំនងនេះម្តងទៀត។</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_question">បើកសោរក្រុមនេះ?</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_description">សមាជិកដែលមានស្រាប់នឹងអាចបន្ថែមអ្នកទៅក្រុមម្តងទៀត។</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">បញ្ហាចាកចេញពីក្រុម</string>
   <string name="RecipientPreferenceActivity_unblock">បើកវិញ</string>
   <string name="RecipientPreferenceActivity_enabled">បានបើក</string>
@@ -613,6 +632,7 @@
   <string name="RegistrationActivity_phone_number_description">លេខទូរស័ព្ទ</string>
   <string name="RegistrationActivity_country_code_description">កូដប្រទេស</string>
   <string name="RegistrationActivity_call">ហៅចេញ</string>
+  <!--RegistrationLockV2Dialog-->
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">បើកមើលរូបភាព</string>
   <string name="RevealableMessageView_view_video">បង្ហាញវីដេអូ</string>
@@ -655,7 +675,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s កំណត់ការចូលប្រើប្រាស់សុវត្ថិភាពឡើងវិញ។</string>
   <string name="SmsMessageRecord_duplicate_message">សារស្ទួន។</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">សារនេះ មិនអាចដំណើរការបាន ព្រោះវាត្រូវបានផ្ញើចេញពី Signal ជំនាន់ថ្មីជាង។ អ្នកអាចទាក់ទងដៃគូសន្ទនារបស់អ្នក ដើម្បីផ្ញើសារនេះម្តងទៀតបន្ទាប់ពីអ្នកបានធ្វើបច្ចុប្បន្នភាព។</string>
-  <string name="SmsMessageRecord_error_handling_incoming_message">បញ្ហាទទួលសារផ្ញើចូល</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">បញ្ហាទទួលសារផ្ញើចូល។</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">ស្ទីកគ័រ</string>
   <!--StickerManagementAdapter-->
@@ -889,7 +909,7 @@
   <string name="contact_filter_toolbar__show_dial_pad_description">បង្ហាញក្តារចុចលេខ</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">គ្មានបញ្ជីលេខទំនាក់ទំនង។</string>
-  <string name="contact_selection_group_activity__finding_contacts">កំពុងផ្ទុកបញ្ជីទំនាក់ទំនង...</string>
+  <string name="contact_selection_group_activity__finding_contacts">កំពុងផ្ទុកបញ្ជីទំនាក់ទំនង…</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">រូបភាពទំនាក់ទំនង</string>
   <!--ContactSelectionListFragment-->
@@ -1008,8 +1028,8 @@
   <string name="log_submit_activity__button_got_it">ទទួលបាន</string>
   <string name="log_submit_activity__button_compose_email">បង្កើតសារថ្មី</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">កំណត់ត្រានេះនឹងត្រូវបិតផ្សាយជាសាធារណៈតាមអនឡាញ សម្រាប់អ្នកចូលរួម ដើម្បីបង្ហើញ អ្នកអាចត្រួតពិនិត្យ និងកែប្រែ មុនពេលដាក់បញ្ជូន។</string>
-  <string name="log_submit_activity__loading_logs">កំពុងផ្ទុកកំណត់ត្រា...</string>
-  <string name="log_submit_activity__uploading_logs">កំពុងបញ្ជូនកំណត់ត្រា...</string>
+  <string name="log_submit_activity__loading_logs">កំពុងផ្ទុកកំណត់ត្រា…</string>
+  <string name="log_submit_activity__uploading_logs">កំពុងបញ្ជូនកំណត់ត្រា…</string>
   <string name="log_submit_activity__choose_email_app">ជ្រើសរើសកម្មវិធីអ៊ីមែល</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">សូមពិនិត្យកំណត់ត្រានេះពីកម្មវិធីរបស់ខ្ញុំ៖ %1$s</string>
   <string name="log_submit_activity__network_failure">បញ្ហាបណ្តាញ។ សូមសាកល្បងម្តងទៀត។</string>
@@ -1084,7 +1104,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[បើអ្នកចង់ផ្ទៀងផ្ទាត់សុវត្ថិភាពកូដនីយកម្មរបស់អ្នកជាមួយ %s ប្រៀបធៀបលេខខាងលើជាមួយលេខនៅលើឧបករណ៍របស់ពួកគេ។ ផ្សេងពីនេះទៀត អ្នកអាចស្កេនកូដលើទូរស័ព្ទរបស់ពួកគេ ឬសុំពួកគេឲ្យស្កេនកូដលើទូរស័ព្ទរបស់អ្នក។ <a href="https://signal.org/redirect/safety-numbers">ស្វែងយល់បន្ថែម</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">ចុច ដើម្បីស្កែន</string>
-  <string name="verify_display_fragment__loading">កំពុងផ្ទុក...</string>
+  <string name="verify_display_fragment__loading">កំពុងផ្ទុក…</string>
   <string name="verify_display_fragment__verified">បានផ្ទៀងផ្ទាត់</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">ចែករំលែកលេខសុវត្ថិភាព</string>
@@ -1413,20 +1433,16 @@
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">បង្កើតលេខ PIN ថ្មី</string>
   <string name="CreateKbsPinFragment__create_your_pin">បង្កើតលេខ PIN របស់អ្នក</string>
-  <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">លេខកូដ PINs បន្ថែមសុវត្ថិភាពទៅគណនីរបស់អ្នក និងមិនអាចស្តារឡើងវិញទេ។ អ្នកត្រូវការលេខកូដ PIN ដើម្បីចុះឈ្មោះជាមួយ Signal ម្តងទៀត។</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PINs មិនត្រូវគ្នា។ សាកល្បងម្តងទៀត។</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">ផ្ទៀងផ្ទាត់លេខ PIN របស់អ្នក។</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">ការបង្កើត PIN បរាជ័យ</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">លេខ PIN របស់អ្នកមិនបានរក្សាទុក។ យើងនឹងណែនាំអ្នកអោយបង្កើតកូដ PIN នៅពេលក្រោយ។</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN ត្រូវបានបង្កើត។</string>
-  <string name="ConfirmKbsPinFragment__re_enter_pin">បញ្ចូលលេខ PIN ម្តងទៀត</string>
   <string name="ConfirmKbsPinFragment__creating_pin">កំពុងបង្កើត PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">ការណែនាំ លេខPINs</string>
-  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">លេខកូដ PINs បន្ថែមកម្រិតសុវត្ថិភាពទៅគណនីរបស់អ្នក។ បង្កើតមួយឥឡូវនេះ។</string>
   <string name="KbsSplashFragment__learn_more">ស្វែងយល់បន្ថែម</string>
-  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">ចាក់សោរការចុះឈ្មោះ = លេខ PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">ការចាក់សោរការចុះឈ្មោះរបស់អ្នក ឥឡូវត្រូវបានហៅថា លេខកូដ PIN និងវាមានមុខងារច្រើន។ ធ្វើបច្ចុប្បន្នភាពវាឥឡូវនេះ។</string>
   <string name="KbsSplashFragment__read_more_about_pins">អានបន្ថែមអំពីលេខកូដ PINs។</string>
@@ -1444,7 +1460,6 @@
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">គណនីរបស់អ្នកត្រូវបានជាប់សោរ ដើម្បីការពារឯកជនភាព និងសុវត្ថិភាព។ បន្ទាប់ពី %1$d ថ្ងៃនៃអសកម្មភាពក្នុងគណនីរបស់អ្នក អ្នកនឹងអាចចុះឈ្មោះជាមួយលេខទូរស័ព្ទនេះម្តងទៀត ដោយមិនចាំបាច់មានលេខកូដ PIN របស់អ្នកទេ។ ខ្លឹមសារទាំងអស់នឹងត្រូវលុបចោល។</string>
   <string name="AccountLockedFragment__next">បន្ទាប់</string>
   <string name="AccountLockedFragment__learn_more">ស្វែងយល់បន្ថែម</string>
-  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">បញ្ចូលលេខ PIN របស់អ្នក</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">បញ្ចូលលេខ PIN ដែលអ្នកបានបង្កើតសម្រាប់ គណនីរបស់អ្នក។ នេះខុសពីលេខកូដផ្ទៀងផ្ទាត់ពីសារ SMS ។</string>
@@ -1473,10 +1488,8 @@
   </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">បង្កើតលេខកូដ PIN មួយ</string>
-  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">លេខកូដ PINs បង្កើតស្រទាប់សុវត្ថិភាពបន្ថែមលើគណនី Signal របស់អ្នក។</string>
   <string name="KbsMegaphone__create_pin">បង្កើតលេខកូដ PIN</string>
   <string name="KbsMegaphone__introducing_pins">ការណែនាំ លេខPINs</string>
-  <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">ការចាក់សោរការចុះឈ្មោះរបស់អ្នក ឥឡូវត្រូវបានហៅថា លេខកូដ PIN។ ធ្វើបច្ចុប្បន្នភាពវា ចំណាយពេលប៉ុន្មានវិនាទីប៉ុណ្ណោះ។</string>
   <string name="KbsMegaphone__update_pin">បច្ចុប្បន្នភាពកូដ PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">យើងនឹងរំលឹកអ្នកពេលក្រោយ។ ការបង្កើតលេខកូដ PIN នឹងចាំបាច់ក្នុង %1$d ថ្ងៃ។</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">យើងនឹងរំលឹកអ្នកពេលក្រោយ។ ការបញ្ជាក់លេខកូដ PIN នឹងចាំបាច់ក្នុង %1$d ថ្ងៃ។</string>
@@ -1485,8 +1498,8 @@
   <string name="ProfileNamesMegaphone__your_profile_can_now_include">ពត៌មានផ្ទាល់ខ្លួនរបស់អ្នកឥឡូវអាចរួមបញ្ចូលត្រកូលស្រេចចិត្ត។</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">រូបសញ្ញាជញ្ជូន</string>
-  <string name="ConversationListFragment_loading">កំពុងផ្ទុក...</string>
-  <string name="CallNotificationBuilder_connecting">កំពុងតភ្ជាប់...</string>
+  <string name="ConversationListFragment_loading">កំពុងផ្ទុក…</string>
+  <string name="CallNotificationBuilder_connecting">កំពុងតភ្ជាប់…</string>
   <string name="Permissions_permission_required">ទាមទារការអនុញ្ញាត</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signalត្រូវការសិទ្ធិប្រើប្រាស់សារ SMS ដើម្បីផ្ញើសារ SMS ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់ ជ្រើសរើស \"ការអនុញ្ញាត\" និងបើក \"សារ SMS\"។</string>
   <string name="Permissions_continue">បន្ត</string>
@@ -1545,9 +1558,8 @@
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">ចាក់សោរការប្រើប្រាស់ Signal ជាមួយសោរអេក្រង់ Android ឬ ក្រយៅដៃ</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">អេក្រង់ជាប់សោរ ទុកចោលហួសកំណត់ </string>
   <string name="preferences_app_protection__signal_pin">លេខកូដ PIN Signal</string>
-  <string name="preferences_app_protection__pin">លេខ PIN</string>
-  <string name="preferences_app_protection__change">ផ្លាស់ប្តូរ</string>
-  <string name="preferences_app_protection__create">បង្កើត</string>
+  <string name="preferences_app_protection__create_a_pin">បង្កើតលេខកូដ PIN មួយ</string>
+  <string name="preferences_app_protection__change_your_pin">ផ្លាស់ប្តូរលេខ PIN របស់អ្នក</string>
   <string name="AppProtectionPreferenceFragment_none">គ្មាន</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">លេខPIN សម្រាប់ចាក់សោរការចុះឈ្មោះ មិនដូចគ្នានឹងលេខកូដផ្ទៀងផ្ទាត់ទទួលពីសារSMS ។ សូមបញ្ចូលលេខកូដដែលអ្នកបានកំណត់ពីមុន ក្នុងកម្មវិធីនេះ។</string>
   <string name="registration_activity__registration_lock_pin">លេខ PIN សម្រាប់ចាក់សោការចុះឈ្មោះ</string>

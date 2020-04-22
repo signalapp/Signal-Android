@@ -76,6 +76,15 @@
   <string name="AudioSlidePlayer_error_playing_audio">Fout bij afspelen van audio!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Geblokkeerde contactpersonen</string>
+  <!--BlockUnblockDialog-->
+  <string name="BlockUnblockDialog_block_and_leave_s">%1$s blokkeren en verlaten?</string>
+  <string name="BlockUnblockDialog_block_s">%1$s blokkeren?</string>
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Groepsleden zullen je weer aan deze groep kunnen toevoegen.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Jullie zullen elkaar weer berichten kunnen sturen en elkaar weer kunnen bellen via Signal.</string>
+  <string name="BlockUnblockDialog_unblock_s">%1$s deblokkeren?</string>
+  <string name="BlockUnblockDialog_unblock">Deblokkeren</string>
+  <string name="BlockUnblockDialog_block">Blokkeren</string>
+  <string name="BlockUnblockDialog_block_and_delete">Blokkeren en verwijderen</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Vandaag</string>
   <string name="BucketedThreadMedia_Yesterday">Gisteren</string>
@@ -109,6 +118,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">Profielfoto verwijderen?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Geen webbrowser gevonden.</string>
+  <string name="CommunicationActions_no_email_app_found">Geen e-mail-app gevonden op je apparaat.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Er is al een telefoongesprek gaande.</string>
   <string name="CommunicationActions_start_video_call">Video-oproep beginnen?</string>
   <string name="CommunicationActions_start_voice_call">Spraak-oproep beginnen?</string>
@@ -206,15 +216,6 @@
   <string name="ConversationActivity_no_results">Geen resultaten</string>
   <string name="ConversationActivity_sticker_pack_installed">Stickerpakket geïnstalleerd</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Nieuw: zeg het met stickers</string>
-  <string name="ConversationActivity_block_s">%1$s blokkeren?</string>
-  <string name="ConversationActivity_block_and_leave_s">%1$s blokkeren en verlaten?</string>
-  <string name="ConversationActivity_unblock_s">%1$s deblokkeren?</string>
-  <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">Jullie zullen elkaar weer berichten kunnen sturen en elkaar weer kunnen bellen via Signal.</string>
-  <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">Groepsleden zullen je weer aan deze groep toe kunnen voegen.</string>
-  <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">Je zult de oproepen en berichten afkomstig van geblokkeerde contactpersonen niet te zien krijgen. Geblokkeerde contacten kunnen niet zien dat ze geblokkeerd zijn: het lijkt voor hen alsof je telefoon over gaat, en alsof berichten worden afgeleverd. Je huidige profielnaam en foto blijven zichtbaar voor je contactpersoon maar op zijn / haar apparaat worden voor ze niet langer bijgewerkt als je ze veranderd.</string>
-  <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">Je zult deze groep verlaten en niet langer berichten of meldingen ontvangen.</string>
-  <string name="ConversationActivity_block">Blokkeren</string>
-  <string name="ConversationActivity_block_and_delete">Blokkeren en verwijderen</string>
   <string name="ConversationActivity_cancel">Audio-opname annuleren</string>
   <string name="ConversationActivity_delete_conversation">Gesprek verwijderen?</string>
   <string name="ConversationActivity_delete_and_leave_group">Groep verwijderen en verlaten?</string>
@@ -265,7 +266,7 @@
   <string name="ConversationFragment_failed_to_open_message">Openen van bericht is mislukt</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Je kunt elk bericht naar rechts vegen om snel een reactie te schijven</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Je kunt elk bericht naar links vegen om snel een reactie te schijven</string>
-  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Uitgaande eenmaligeweergave-media worden onmiddellijk gewist zodra ze zijn verzonden. Je kunt je eigen media dus niet terugzien. Gebruik eenmaligeweergave-berichten niet ter beveiliging, want Signal kan niet garanderen dat een bericht op het apparaat van een ander daadwerkelijk wordt gewist.</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Uitgaande eenmaligeweergave-media worden onmiddellijk gewist zodra ze zijn verzonden. Je kunt je eigen media dus niet terugzien. – Gebruik eenmaligeweergave-berichten niet ter beveiliging, want Signal kan niet garanderen dat een bericht op het apparaat van een ander daadwerkelijk wordt gewist.</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Je hebt dit bericht al weergegeven</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Je kunt in dit gesprek notities voor jezelf achterlaten. Als je gebruik maakt van gekoppelde apparaten dan zullen notities worden gesynchroniseerd.</string>
   <!--ConversationListActivity-->
@@ -379,6 +380,12 @@
   <string name="GroupShareProfileView_make_visible">Zichtbaar maken</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Jij</string>
+  <!--GV2 access levels-->
+  <!--PendingMembersActivity-->
+  <string name="PendingMembersActivity_people_you_invited">Personen wie jij hebt uitgenodigd</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">Uitnodigingen door andere leden verzonden</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">Profielinformatie van personen wie zijn uitgenodigd voor de groep wordt niet weergegeven. Als een genodigde er voor kiest de uitnodiging te aanvaarden, dan zullen op dat moment zijn of haar profielnaam en -afbeelding zichtbaar worden voor de groep. Deze personen zullen nog geen groepsberichten ontvangen, totdat ze de uitnodiging hebben aanvaard.</string>
+  <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Groepsafbeelding</string>
   <string name="CropImageActivity_profile_avatar">Profielfoto</string>
@@ -407,6 +414,8 @@
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Vrienden laten vrienden niet onversleuteld chatten.</string>
   <!--Job-->
   <string name="Job_working_in_the_background">Bezig op de achtergrond…</string>
+  <!--LearnMoreTextView-->
+  <string name="LearnMoreTextView_learn_more">Meer leren hierover</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Verzenden mislukt</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nieuw veiligheidsnummer</string>
@@ -517,6 +526,21 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s heeft zelf-wissende berichten uitgeschakeld.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Je hebt de timer voor zelf-wissende berichten op %1$s ingesteld.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s heeft de timer voor zelf-wissende berichten op %2$s ingesteld.</string>
+  <!--GV2 specific-->
+  <!--GV2 member additions-->
+  <string name="MessageRecord_you_joined_the_group">Je bent lid geworden van de groep.</string>
+  <string name="MessageRecord_s_joined_the_group">%1$s zijn toegevoegd aan de groep.</string>
+  <!--GV2 member removals-->
+  <string name="MessageRecord_you_left_the_group">Je kunt geen berichten verzenden omdat je de groep hebt verlaten.</string>
+  <!--GV2 role change-->
+  <!--GV2 invitations-->
+  <!--GV2 invitation revokes-->
+  <!--GV2 invitation acceptance-->
+  <!--GV2 title change-->
+  <!--GV2 avatar change-->
+  <!--GV2 attribute access level change-->
+  <!--GV2 membership access level change-->
+  <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Je veiligheidsnummer met %s is veranderd.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Je hebt je veiligheidsnummer met %s gemarkeerd als ‘geverifieerd’</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Je hebt je veiligheidsnummer met %s gemarkeerd als ‘geverifieerd’ vanaf een ander apparaat</string>
@@ -574,7 +598,7 @@
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Zelf-wissende berichten</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Berichten zullen zichzelf niet wissen.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Nieuwe berichten die in dit gesprek verzonden en ontvangen worden zullen zichzelf voor elke individuele deelnemer aan dit gesprek wissen, %s nadat hij het heeft gelezen. Gebruik zelf-wissende berichten niet ter beveiliging, want Signal kan niet garanderen dat een bericht op het apparaat van een ander daadwerkelijk wordt gewist.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Nieuwe berichten die in dit gesprek verzonden en ontvangen worden zullen zichzelf voor elke individuele deelnemer aan dit gesprek wissen, %s nadat hij het heeft gelezen. – Gebruik zelf-wissende berichten niet ter beveiliging, want Signal kan niet garanderen dat een bericht op het apparaat van een ander daadwerkelijk wordt gewist.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Voer wachtwoord in</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-pictogram</string>
@@ -588,6 +612,17 @@
   <string name="PlacePickerActivity_accept_address">Adres aanvaarden</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">De versie van Google Play Services die je in gebruik hebt werkt niet zoals het hoort. Installeer Google Play Services opnieuw en probeer het nog eens.</string>
+  <!--PinRestoreEntryFragment-->
+  <string name="PinRestoreEntryFragment_incorrect_pin">Incorrecte pincode</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Als je je je pincode niet kan herinneren, dan kun je een nieuwe pincode aanmaken. Je kunt Signal dan weer gebruiken, maar sommige instellingen waaronder je profielnaam en -foto zullen dan niet bewaard blijven.</string>
+  <string name="PinRestoreEntryFragment_create_new_pin">Nieuwe pincode aanmaken</string>
+  <string name="PinRestoreEntryFragment_contact_support">Neem contact op met ondersteuning</string>
+  <string name="PinRestoreEntryFragment_cancel">Audio-opname annuleren</string>
+  <string name="PinRestoreEntryFragment_skip">Overslaan</string>
+  <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Voer alfanumerieke pincode in.</string>
+  <string name="PinRestoreEntryFragment_enter_numeric_pin">Voer numerieke pincode in.</string>
+  <!--PinRestoreLockedFragment-->
+  <string name="PinRestoreLockedFragment_create_your_pin">Pincode aanmaken</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Beoordeel deze app</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Gebruik je deze app graag? Help ons door anderen te laten weten wat je van de app vindt.</string>
@@ -602,16 +637,7 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">jou</string>
   <!--RecipientPreferencesActivity-->
-  <string name="RecipientPreferenceActivity_block_this_contact_question">Gesprekspartner blokkeren?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Je zult de oproepen en berichten van deze contactpersoon niet langer te zien krijgen. Geblokkeerde contacten kunnen niet zien dat ze geblokkeerd zijn: het lijkt voor hen alsof je telefoon over gaat, en alsof berichten worden afgeleverd. Als je je profiel zichtbaar hebt gemaakt, dan blijven je huidige profielnaam en foto zichtbaar voor je contactpersoon maar op zijn / haar apparaat worden voor ze niet langer bijgewerkt als je ze veranderd.</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group">Groep blokkeren en verlaten?</string>
-  <string name="RecipientPreferenceActivity_block_group">Groep blokkeren?</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group_description">Je zult niet langer berichten en meldingen van deze groep ontvangen.</string>
   <string name="RecipientPreferenceActivity_block">Blokkeren</string>
-  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Gesprekspartner deblokkeren?</string>
-  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Je zult weer berichten en oproepen van deze gesprekspartner kunnen ontvangen.</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_question">Groep deblokkeren?</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_description">Huidige leden van de groep zullen jou weer aan de groep kunnen toevoegen.</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">Fout bij het verlaten van de groep</string>
   <string name="RecipientPreferenceActivity_unblock">Deblokkeren</string>
   <string name="RecipientPreferenceActivity_enabled">Ingeschakeld</string>
@@ -674,6 +700,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="RegistrationActivity_phone_number_description">Telefoonnummer</string>
   <string name="RegistrationActivity_country_code_description">Landcode</string>
   <string name="RegistrationActivity_call">Bellen</string>
+  <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Als je je pincode bent vergeten wanneer je Signal opnieuw wilt registreren, dan zul je voor 7 dagen Signal niet kunnen gebruiken met dit telefoonnummer.</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Foto weergeven</string>
   <string name="RevealableMessageView_view_video">Video weergeven</string>
@@ -718,7 +746,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SmsMessageRecord_secure_session_reset_s">%s heeft de beveiligde sessie opnieuw ingesteld.</string>
   <string name="SmsMessageRecord_duplicate_message">Gedupliceerd bericht.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Dit bericht kon niet worden verwerkt omdat het is verzonden vanuit een nieuwere versie van Signal. Je kunt je gesprekspartner vragen om dit bericht opnieuw te verzenden nadat je jouw Signal-app hebt bijgewerkt naar een nieuwere versie.</string>
-  <string name="SmsMessageRecord_error_handling_incoming_message">Fout bij het verwerken van een inkomend bericht</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Fout bij verwerken van inkomend bericht.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Stickers</string>
   <!--StickerManagementAdapter-->
@@ -1520,21 +1548,20 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
     <item quantity="other">Je pincode moet uit ten minste %1$d getallen bestaan.</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Nieuwe pincode aanmaken</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Zolang je telefoonnummer nog voor dit apparaat geregistreerd staat kun je je pincode nog wijzigen.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Pincode aanmaken</string>
-  <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">Pincodes voegen een extra niveau van beveiliging toe. Je moet je pincode onthouden want je kunt hem niet terugzien. Je hebt je pincode nodig als je je telefoonnummer in de toekomst opnieuw bij Signal wilt registreren.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Met een pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Zelfs Signal\'s ontwikkelaars kunnen je informatie niet inzien. Je kunt dan je profielnaam en -foto, je instellingen en je contacten herstellen wanneer je Signal opnieuw installeert.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">De pincodes komen niet overeen, probeer het opnieuw.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Bevestig je pincode.</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Pincode aanmaken mislukt</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Je pincode is niet opgeslagen. Signal zal je later vragen een pincode aan te maken.</string>
   <string name="ConfirmKbsPinFragment__pin_created">Pincode aangemaakt.</string>
-  <string name="ConfirmKbsPinFragment__re_enter_pin">Voer pincode opnieuw in</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Pincode aan het aanmaken…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">We introduceren pincodes</string>
-  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">Pincodes voegen een extra niveau van beveiliging toe. Het wordt aanbevolen om er nu een aan te maken.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Met een pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Zelfs Signal\'s ontwikkelaars kunnen je informatie niet inzien. Je kunt dan je profielnaam en -foto, je instellingen en je contacten herstellen wanneer je Signal opnieuw installeert.</string>
   <string name="KbsSplashFragment__learn_more">Lees meer</string>
-  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/nl/articles/360007059792-Registratievergrendeling</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registratievergrendeling = Pincode</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Registratievergrendeling heet vanaf nu ‘pincode’, en je kunt er meer mee doen. Je moet de pincode welke je tot nog toe gebruikte bijwerken.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Lees meer over pincodes</string>
@@ -1552,8 +1579,6 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Om je privacy en beveiliging te beschermen is Signal vergrendeld voor dit telefoonnummer. Na %1$d dagen waarin Signal niet is met jouw telefoonnummer is gebruikt zul je je telefoonnummer opnieuw zonder je pincode kunnen registreren, maar als je zonder pincode opnieuw registreert zal alle inhoud worden gewist.</string>
   <string name="AccountLockedFragment__next">Volgende</string>
   <string name="AccountLockedFragment__learn_more">Lees meer</string>
-  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/nl/articles/360007059792-Registratievergrendeling
-</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Voer je pincode in</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Voer de pincode in welke je eerder hebt aangemaakt om te voorkomen dat anderen met jouw telefoonnummer kunnen registreren. Dit is niet dezelfde code als je sms-verificatiecode.</string>
@@ -1587,10 +1612,8 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Een pincode aanmaken</string>
-  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">Pincodes voegen een extra niveau van beveiliging toe.</string>
   <string name="KbsMegaphone__create_pin">Pincode aanmaken</string>
   <string name="KbsMegaphone__introducing_pins">We introduceren pincodes</string>
-  <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Registratievergrendeling heet vanaf nu ‘pincode’. Je zult de pincode die je tot nu toe gebruikte moeten bijwerken, maar dat kost slechts enkele seconden.</string>
   <string name="KbsMegaphone__update_pin">Pincode bijwerken</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Je zult er later aan worden herinnert dat je nog een pincode moet aanmaken. Dit wordt binnen %1$d dagen verplicht.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Je zult er later aan worden herinnert dat je nog moet bevestigen dat je je huidige pincode nog bezit. Dit wordt binnen %1$d dagen verplicht.</string>
@@ -1663,10 +1686,9 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Vergrendel Signal met de Android-schermvergrendeling of vingerafdruk</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Inactiviteitsduur voor schermvergrendeling</string>
   <string name="preferences_app_protection__signal_pin">Signal-pincode</string>
-  <string name="preferences_app_protection__pin">Pincode</string>
-  <string name="preferences_app_protection__change">Wijzigen</string>
-  <string name="preferences_app_protection__create">Aanmaken</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account">Een pincode voegt een extra niveau van beveiliging toe. Als je een pincode instelt zal om die pincode worden gevraagd wanneer je je telefoonnummer registreert. Als je je pincode in de tussentijd vergeet, dan zul je voor 7 dagen Signal niet kunnen gebruiken met dit telefoonnummer.</string>
+  <string name="preferences_app_protection__create_a_pin">Pincode aanmaken</string>
+  <string name="preferences_app_protection__change_your_pin">Pincode wijzigen</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Met een pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Zelfs Signal\'s ontwikkelaars kunnen je informatie niet inzien. Je kunt dan je profielnaam en -foto, je instellingen en je contacten herstellen wanneer je Signal opnieuw installeert.</string>
   <string name="AppProtectionPreferenceFragment_none">Geen</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">De pincode voor registratievergrendeling is niet hetzelfde als de sms-verificatiecode die je net ontvangen hebt. Voer de pincode in die je hiervoor in de app ingesteld hebt.</string>
   <string name="registration_activity__registration_lock_pin">Registratievergrendeling</string>

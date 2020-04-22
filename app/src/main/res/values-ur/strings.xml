@@ -73,6 +73,9 @@
   <string name="AudioSlidePlayer_error_playing_audio">آڈیو چلانے میں خرابی ہو رہی ہے!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">بلاک کردہ رابطے</string>
+  <!--BlockUnblockDialog-->
+  <string name="BlockUnblockDialog_unblock">ان بلاک</string>
+  <string name="BlockUnblockDialog_block">بلاک</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">آج</string>
   <string name="BucketedThreadMedia_Yesterday">کل</string>
@@ -202,7 +205,6 @@
   <string name="ConversationActivity_no_results">کوئی نتیجہ نہیں</string>
   <string name="ConversationActivity_sticker_pack_installed">اسٹیکر پیک نصب ہو گیا ہے</string>
   <string name="ConversationActivity_new_say_it_with_stickers">نیا!اسٹیکرز کے ساتھ کہو</string>
-  <string name="ConversationActivity_block">بلاک</string>
   <string name="ConversationActivity_cancel">منسوخ کریں</string>
   <string name="ConversationActivity_delete_conversation">گفتگو حذف کر دیں؟</string>
   <string name="ConversationActivity_delete">حذف کریں</string>
@@ -356,6 +358,9 @@
   <string name="GroupShareProfileView_make_visible">دکھائیں</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">آپ</string>
+  <!--GV2 access levels-->
+  <!--PendingMembersActivity-->
+  <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">اوتار گروپ</string>
   <string name="CropImageActivity_profile_avatar">اوتار</string>
@@ -384,6 +389,8 @@
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">دوست دوست کو بغیر خفیہ گفتگو نہیں کرنے دیتے ہیں۔</string>
   <!--Job-->
   <string name="Job_working_in_the_background">پس منظر میں کام ہو رہا ہے</string>
+  <!--LearnMoreTextView-->
+  <string name="LearnMoreTextView_learn_more">مزید پڑھیں</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">بھیجنے میں ناکام</string>
   <string name="MessageDetailsRecipient_new_safety_number">نیا حفاظتی نمبر</string>
@@ -489,6 +496,19 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$sپیغامات غیر فعال ہو رہے ہیں۔</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">آپ غائب پیغام ٹائمر کو %1$sمیں ترتیب دے رہے ہیں۔</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$sغائب پیغام ٹائمر کو %2$sمیں ترتیب دے رہے ہیں۔</string>
+  <!--GV2 specific-->
+  <!--GV2 member additions-->
+  <string name="MessageRecord_s_joined_the_group">%1$sگروپ میں شامل ہوئے۔</string>
+  <!--GV2 member removals-->
+  <!--GV2 role change-->
+  <!--GV2 invitations-->
+  <!--GV2 invitation revokes-->
+  <!--GV2 invitation acceptance-->
+  <!--GV2 title change-->
+  <!--GV2 avatar change-->
+  <!--GV2 attribute access level change-->
+  <!--GV2 membership access level change-->
+  <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">آپ کا حفاظتی نمبر %sکے ساتھ تبدیل ہو چکا ہے۔</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">آپ نے تصدیق شدہ اپنے حفاظتی نمبر کے ساتھ %sنشان لگایا</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">آپ نے دوسری ڈیوائس سے تصدیق شدہ اپنے حفاظتی نمبر کو %sکے ساتھ نشان لگایا۔</string>
@@ -547,6 +567,15 @@
   <string name="PlacePickerActivity_accept_address">ایڈریس قبول کریں</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">گوگل پلے سروسز کاجو ورژن آپ نے نصب کیا ہے وہ صحیح کام نہیں کر رہا۔ براہ کرم گوگل پلے سروسز دوبارہ نصب کریں اور دوبارہ کوشش کریں۔</string>
+  <!--PinRestoreEntryFragment-->
+  <string name="PinRestoreEntryFragment_incorrect_pin">غلط پن</string>
+  <string name="PinRestoreEntryFragment_contact_support">سپورٹ سے رابطہ کریں</string>
+  <string name="PinRestoreEntryFragment_cancel">منسوخ کریں</string>
+  <string name="PinRestoreEntryFragment_skip">چھوڑ دو</string>
+  <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Alphanumeric کا پن درج کریں</string>
+  <string name="PinRestoreEntryFragment_enter_numeric_pin">عددی پن درج کریں</string>
+  <!--PinRestoreLockedFragment-->
+  <string name="PinRestoreLockedFragment_create_your_pin">اپنا پن بنائیں</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">ایپ کی درجہ بندی کریں</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">اگر آپ اس ایپ کو استعمال کرکے لطف اٹھا رہے ہیں، براہ کرم ایک لمحہ لیں جس سے درجہ بندی کرنے میں ہماری مدد ہو۔</string>
@@ -559,16 +588,7 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">آپ</string>
   <!--RecipientPreferencesActivity-->
-  <string name="RecipientPreferenceActivity_block_this_contact_question">اس رابطے کو بلاک کریں؟</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">آپ کو مزید اس رابطہ سے پیغامات اور کالیں وصول نہیں ہونگے۔</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group">اس گروپ کو بلاک کریں اور چھوڑ دیں؟</string>
-  <string name="RecipientPreferenceActivity_block_group">اس گروپ کو بلاک کریں</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group_description">آپ کو مزید اس گروپ سے پیغامات اورتجادید وصول نہیں ہونگے۔</string>
   <string name="RecipientPreferenceActivity_block">بلاک</string>
-  <string name="RecipientPreferenceActivity_unblock_this_contact_question">اس رابطہ کو ان بلاک کریں</string>
-  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">آپ اس رابطہ سے دوبارہ پیغامات اور کالز وصول کرنے کے قابل ہونگے،</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_question">اس گروپ کو ان بلاک کریں؟</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_description">موجودہ ممبران آپ کو دوبارہ گروپ میں شامل کرنے کے قابل ہونگے۔</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">گروپ چھوڑنے میں خرابی ہو رہی ہے</string>
   <string name="RecipientPreferenceActivity_unblock">ان بلاک</string>
   <string name="RecipientPreferenceActivity_enabled">فعال ہونا </string>
@@ -623,6 +643,7 @@
   <string name="RegistrationActivity_phone_number_description">فون نمبر</string>
   <string name="RegistrationActivity_country_code_description">ملک کا کوڈ</string>
   <string name="RegistrationActivity_call">کال</string>
+  <!--RegistrationLockV2Dialog-->
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">تصویر دیکھیں</string>
   <string name="RevealableMessageView_view_video">ویڈیو دیکھیں</string>
@@ -659,7 +680,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%sمحفوظ سیشن کو دوبارہ ترتیب دیں</string>
   <string name="SmsMessageRecord_duplicate_message">ملتے جلتے پیغام۔</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">یہ پیغام آگے نہیں بڑھ سکتا کیونکہ یہ Signal کے نئے ورژن سے بھیجا گیا تھا۔ اپنے رابطے سے تجدید کے بعد دوبارہ پیغام بھیجنے کا کہیں۔</string>
-  <string name="SmsMessageRecord_error_handling_incoming_message"> موصول ہونے والے پیغام کو ہینڈل کرنے میں خرابی ہو رہی ہے</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">آنے والا پیغام کو سنبھالنے میں غلطی۔</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">اسٹیکرز</string>
   <!--StickerManagementAdapter-->
@@ -1428,7 +1449,6 @@
   <string name="ConfirmKbsPinFragment__pin_creation_failed">پن کی تشکیل ناکام ہوگئی</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">آپ کا پن محفوظ نہیں ہوا تھا۔ ہم آپ کو بعد میں ایک پن بنانے کا اشارہ کریں گے۔</string>
   <string name="ConfirmKbsPinFragment__pin_created">پن تیار کیا گیا۔</string>
-  <string name="ConfirmKbsPinFragment__re_enter_pin">پن دوبارہ داخل کریں</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">پن ز متعارف ہو رہے ہیں</string>
   <string name="KbsSplashFragment__learn_more">مزید پڑھیں</string>
@@ -1517,9 +1537,7 @@
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">لاک Signal انڈروئد سکرین لاک یا فنگر پرنٹ کے ساتھ رسائی کر چکا ہے</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">غیر سرگرمی سکرین لاک کا وقت ختم ہو چکا ہے</string>
   <string name="preferences_app_protection__signal_pin">Signal پن</string>
-  <string name="preferences_app_protection__pin">پن</string>
-  <string name="preferences_app_protection__change">تبدیلی</string>
-  <string name="preferences_app_protection__create">بنائیں</string>
+  <string name="preferences_app_protection__change_your_pin">اپنا پن تبدیل کریں</string>
   <string name="AppProtectionPreferenceFragment_none">کوئی نہیں</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">رجسٹریشن لاک پن وہی نہیں ہے جو آپ نے ابھی موصول کردہ ایس ایم ایس کا تصدیقی کوڈ سے کیا ہے۔ براہ کرم درخواست میں جو پن آپ نے پہلے تشکیل کیا تھا اسے درج کریں۔</string>
   <string name="registration_activity__registration_lock_pin">رجسٹریشن لاک پن</string>

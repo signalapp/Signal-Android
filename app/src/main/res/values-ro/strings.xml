@@ -10,7 +10,7 @@
   <string name="AbstractNotificationBuilder_new_message">Mesaj nou</string>
   <!--AlbumThumbnailView-->
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Signal se actualizează...</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal se actualizează…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Acum: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Nu ați setat încă o parolă!</string>
@@ -79,6 +79,15 @@
   <string name="AudioSlidePlayer_error_playing_audio">Eroare la redarea audio!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Contacte blocate</string>
+  <!--BlockUnblockDialog-->
+  <string name="BlockUnblockDialog_block_and_leave_s">Blocați și părăsiți %1$s?</string>
+  <string name="BlockUnblockDialog_block_s">Blochez %1$s?</string>
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Membrii grupului vă vor putea adăuga din nou la acest grup.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Vei putea să vă trimiteți mesaje și să vă sunați reciproc.</string>
+  <string name="BlockUnblockDialog_unblock_s">Deblocați %1$s?</string>
+  <string name="BlockUnblockDialog_unblock">Deblochează</string>
+  <string name="BlockUnblockDialog_block">Blochează</string>
+  <string name="BlockUnblockDialog_block_and_delete">Blocați și ștergeți</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Azi</string>
   <string name="BucketedThreadMedia_Yesterday">Ieri</string>
@@ -112,6 +121,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">Elimin poza de profil?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nu s-a găsit nici un web browser.</string>
+  <string name="CommunicationActions_no_email_app_found">Nu a fost găsită nici o aplicație de email.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Un apel celular este deja în desfășurare.</string>
   <string name="CommunicationActions_start_video_call">Începeți apelul video?</string>
   <string name="CommunicationActions_start_voice_call">Începeți apelul vocal?</string>
@@ -209,15 +219,6 @@
   <string name="ConversationActivity_no_results">Niciun rezultat</string>
   <string name="ConversationActivity_sticker_pack_installed">Pachetul cu autocolante este instalat</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Nou! Spune-o cu autocolante</string>
-  <string name="ConversationActivity_block_s">Blochez %1$s?</string>
-  <string name="ConversationActivity_block_and_leave_s">Blocați și părăsiți %1$s?</string>
-  <string name="ConversationActivity_unblock_s">Deblocați %1$s?</string>
-  <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">Vei putea să vă trimiteți mesaje și să vă sunați reciproc.</string>
-  <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">Membrii grupului vă vor putea adăuga din nou la acest grup.</string>
-  <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">Persoanele blocate nu vor putea să vă sune sau să vă trimită mesaje.</string>
-  <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">Veți părăsi acest grup și nu veți mai primi mesaje sau actualizări.</string>
-  <string name="ConversationActivity_block">Blochează</string>
-  <string name="ConversationActivity_block_and_delete">Blocați și ștergeți</string>
   <string name="ConversationActivity_cancel">Anulați</string>
   <string name="ConversationActivity_delete_conversation">Șterg conversația?</string>
   <string name="ConversationActivity_delete_and_leave_group">Ștergeți și părăsiți grupul?</string>
@@ -393,6 +394,14 @@
   <string name="GroupShareProfileView_make_visible">Faceți vizibil</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Tu</string>
+  <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">Oricine</string>
+  <string name="GroupManagement_access_level_all_members">Toți membrii</string>
+  <!--PendingMembersActivity-->
+  <string name="PendingMembersActivity_people_you_invited">Persoane pe care le-ați invitat</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">Invitații de la alți membri ai grupului</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">Nu sunt afișate detalii despre persoanele invitate de alți membri ai grupului. Dacă invitații aleg să se alăture, informațiile lor vor fi partajate grupului în acel moment. Nu vor vedea niciun mesaj din grup până nu se alătură.</string>
+  <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar de grup</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -404,7 +413,7 @@
   <string name="InviteActivity_share_with_contacts">Distribuie la contacte</string>
   <string name="InviteActivity_choose_how_to_share">Alegeți cum să distribuiți</string>
   <string name="InviteActivity_cancel">Anulați</string>
-  <string name="InviteActivity_sending">Se trimite...</string>
+  <string name="InviteActivity_sending">Se trimite…</string>
   <string name="InviteActivity_heart_content_description">Inimă</string>
   <string name="InviteActivity_invitations_sent">Invitațiile au fost trimise!</string>
   <string name="InviteActivity_invite_to_signal">Invitați la Signal</string>
@@ -423,6 +432,8 @@
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Prietenii nu-și lasă prietenii să converseze necriptat.</string>
   <!--Job-->
   <string name="Job_working_in_the_background">Se procesează în fundal…</string>
+  <!--LearnMoreTextView-->
+  <string name="LearnMoreTextView_learn_more">Aflați mai multe</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Expediere eşuată</string>
   <string name="MessageDetailsRecipient_new_safety_number">Număr nou de siguranță</string>
@@ -505,7 +516,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Apăsați pentru a selecta</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Adaugă un titlu...</string>
+  <string name="MediaSendActivity_add_a_caption">Adaugă un titlu…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Un element a fost eliminat pentru că depășește limita de mărime</string>
   <string name="MediaSendActivity_camera_unavailable">Cameră indisponibilă.</string>
   <string name="MediaSendActivity_message_to_s">Mesaj către %s</string>
@@ -538,6 +549,20 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s a dezactivat mesajele care dispar.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ați setat timpul pentru dispariția mesajelor la %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a setat timpul pentru dispariția mesajelor la %2$s.</string>
+  <!--GV2 specific-->
+  <!--GV2 member additions-->
+  <string name="MessageRecord_you_joined_the_group">Te-ai alăturat grupului.</string>
+  <string name="MessageRecord_s_joined_the_group">%1$s s-au alăturat grupului.</string>
+  <!--GV2 member removals-->
+  <!--GV2 role change-->
+  <!--GV2 invitations-->
+  <!--GV2 invitation revokes-->
+  <!--GV2 invitation acceptance-->
+  <!--GV2 title change-->
+  <!--GV2 avatar change-->
+  <!--GV2 attribute access level change-->
+  <!--GV2 membership access level change-->
+  <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Numărul dvs. de siguranță pentru %s s-a schimbat.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Ați marcat numărul tău de siguranță cu %s ca și verificat</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Ați marcat numărul tău de siguranță cu %s ca și verificat de pe alt dispozitiv</string>
@@ -612,6 +637,17 @@
   <string name="PlacePickerActivity_accept_address">Acceptă adresa</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Această versiune de Google Play Services pe care o ai instalată nu funcționează corect. Te rog reinstalează Google Play Services și încearcă din nou.</string>
+  <!--PinRestoreEntryFragment-->
+  <string name="PinRestoreEntryFragment_incorrect_pin">PIN incorect</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Dacă nu vă mai amintiți codul PIN, puteți crea unul nou. Vă puteți înregistra și utiliza contul, dar veți pierde unele setări salvate, cum ar fi informațiile despre profil.</string>
+  <string name="PinRestoreEntryFragment_create_new_pin">Creeați un PIN nou</string>
+  <string name="PinRestoreEntryFragment_contact_support">Contactați suportul</string>
+  <string name="PinRestoreEntryFragment_cancel">Anulați</string>
+  <string name="PinRestoreEntryFragment_skip">Omiteți</string>
+  <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Introduceți un PIN alfanumeric</string>
+  <string name="PinRestoreEntryFragment_enter_numeric_pin">Introduceți un PIN numeric</string>
+  <!--PinRestoreLockedFragment-->
+  <string name="PinRestoreLockedFragment_create_your_pin">Creați-vă PIN-ul</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Evaluați aplicaţia</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Dacă vă place aplicaţia, vă rog ajutați-ne cu o evaluare.</string>
@@ -626,16 +662,7 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Tu</string>
   <!--RecipientPreferencesActivity-->
-  <string name="RecipientPreferenceActivity_block_this_contact_question">Blochez acest contact?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Nu o să mai primești mesaje și apeluri de la acest contact.</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group">Blocați și părăsiți acest grup?</string>
-  <string name="RecipientPreferenceActivity_block_group">Blochează acest grup</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group_description">Nu vei mai putea primi mesaje sau actualizări de la acest grup.</string>
   <string name="RecipientPreferenceActivity_block">Blochează</string>
-  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Deblochez acest contact?</string>
-  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">O să poți primi din nou mesaje și apeluri de la acest contact.</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_question">Deblochez acest grup?</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_description">Membrii existenți vor putea să te adauge la grup din nou.</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">Eroare la părăsirea grupului</string>
   <string name="RecipientPreferenceActivity_unblock">Deblochează</string>
   <string name="RecipientPreferenceActivity_enabled">Activat</string>
@@ -694,6 +721,8 @@ furnizat (%s) este invalid.</string>
   <string name="RegistrationActivity_phone_number_description">Număr de telefon</string>
   <string name="RegistrationActivity_country_code_description">Prefixul țării</string>
   <string name="RegistrationActivity_call">Apelează</string>
+  <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Dacă uitați PIN-ul dvs. Signal atunci când vă înregistrați din nou cu Signal, veți fi blocat din cont timp de 7 zile.</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Vizualizați poza</string>
   <string name="RevealableMessageView_view_video">Vizualizare videoclip</string>
@@ -737,7 +766,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="SmsMessageRecord_secure_session_reset_s">%s a resetat sesiunea securizată.</string>
   <string name="SmsMessageRecord_duplicate_message">Mesaj duplicat.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Acest mesaj nu a putut fi procesat deoarece a fost trimis de pe o versiune mai nouă versiune de Signal. Puteți solicita contactului dvs. să trimită din nou acest mesaj după ce actualizați.    </string>
-  <string name="SmsMessageRecord_error_handling_incoming_message">Eroare la procesarea mesajului primit</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Eroare la procesarea mesajului primit.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Autocolante</string>
   <!--StickerManagementAdapter-->
@@ -978,7 +1007,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="contact_filter_toolbar__show_dial_pad_description">Afișați tastatura numerică</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Nu aveți contacte.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Se încarcă contactele...</string>
+  <string name="contact_selection_group_activity__finding_contacts">Se încarcă contactele…</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Poză contact</string>
   <!--ContactSelectionListFragment-->
@@ -1020,7 +1049,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Poză contact</string>
   <!--audio_view-->
-  <string name="audio_view__play_pause_accessibility_description">Redare ... Pauză</string>
+  <string name="audio_view__play_pause_accessibility_description">Redare … Pauză</string>
   <string name="audio_view__download_accessibility_description">Descarcă</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Audio</string>
@@ -1109,8 +1138,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="log_submit_activity__button_got_it">Am înțeles</string>
   <string name="log_submit_activity__button_compose_email">Compune e-mail</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Acest jurnal va fi postat public online pentru a fi analizat de contribuitori, puteți examina şi edita jurnalul înainte de al trimite.</string>
-  <string name="log_submit_activity__loading_logs">Se încarcă jurnalele...</string>
-  <string name="log_submit_activity__uploading_logs">Se încarcă jurnalele...</string>
+  <string name="log_submit_activity__loading_logs">Se încarcă jurnalele…</string>
+  <string name="log_submit_activity__uploading_logs">Se încarcă jurnalele…</string>
   <string name="log_submit_activity__choose_email_app">Alegeți aplicație de e-mail</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Vă rog revizuiți acest jurnal din aplicația mea: %1$s</string>
   <string name="log_submit_activity__network_failure">Eroare de rețea. Vă rugăm încercați din nou.</string>
@@ -1187,7 +1216,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Dacă doriți să verificați securitatea criptării cu %s, comparați numărul de deasupra cu numărul de pe dispozitivul lor. Alternativ, puteți scana codul de pe telefonul lor sau îi puteți ruga să scaneze codul dvs. <a href="https://signal.org/redirect/safety-numbers">Aflați mai multe.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Apăsați pentru a scana</string>
-  <string name="verify_display_fragment__loading">Se încarcă...</string>
+  <string name="verify_display_fragment__loading">Se încarcă…</string>
   <string name="verify_display_fragment__verified">Verificat</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Distribuie numărul de siguranță</string>
@@ -1550,21 +1579,20 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
     <item quantity="other">PIN-ul trebuie să conțină cel puțin %1$d cifre</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Creați un nou PIN</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Puteți schimba codul PIN atât timp cât acest dispozitiv este înregistrat.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Creați-vă PIN-ul</string>
-  <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">PIN-ul adăuga un nivel suplimentar contului dvs. și nu poate fi recuperat. Veți avea nevoie de PIN-ul dvs. pentru a vă înregistra din nou la Signal.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-urile păstrează informațiile stocate în Signal criptate, astfel încât numai tu să le poți accesa. Profilul, setările și contactele se vor restabili atunci când reinstalați Signal.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-urile nu se potrivesc. Încercați din nou.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Confirmați PIN-ul dvs.</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Crearea PIN-ului a eșuat</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN-ul dvs. nu a fost salvat. Vă vom solicita să creați un PIN mai târziu.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN creat.</string>
-  <string name="ConfirmKbsPinFragment__re_enter_pin">Introduceți din nou PIN-ul</string>
-  <string name="ConfirmKbsPinFragment__creating_pin">Se creează PIN-ul...</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">Se creează PIN-ul…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Vă prezentăm PIN-uri</string>
-  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">PIN-urile adaugă un nivel adițional de securitate la contul dvs. Creați unul acum.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN-urile păstrează informațiile stocate în Signal criptate, astfel încât numai tu să le poți accesa. Profilul, setările și contactele se vor restabili atunci când reinstalați Signal.</string>
   <string name="KbsSplashFragment__learn_more">Află mai multe</string>
-  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Blocarea Înregistrării = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Blocarea înregistrării este numită acum PIN și face mai multe. Actualizați-l acum.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Aflați mai multe despre PIN-uri.</string>
@@ -1582,7 +1610,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Contul dvs. a fost blocat pentru a vă proteja confidențialitatea și securitatea. După %1$d zile de inactivitate în contul dvs., veți putea să vă reînregistrați acest număr de telefon fără a avea nevoie de codul PIN. Tot conținutul va fi șters.</string>
   <string name="AccountLockedFragment__next">Următorul</string>
   <string name="AccountLockedFragment__learn_more">Aflați mai multe</string>
-  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Introduceți PIN-ul dvs.</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Introduceți codul PIN pe care l-ați creat pentru contul dvs. Acesta este diferit față de codul dvs. de verificare prin SMS.</string>
@@ -1621,10 +1648,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Creați un PIN</string>
-  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">PIN-urile adaugă un nivel adițional de securitate la contul dvs. Signal.</string>
   <string name="KbsMegaphone__create_pin">Creați PIN</string>
   <string name="KbsMegaphone__introducing_pins">Vă prezentăm PIN-uri</string>
-  <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">Blocarea înregistrării este numită acum PIN. Actualizarea lui durează câteva secunde.</string>
   <string name="KbsMegaphone__update_pin">Actualizați PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Vă amintim mai târziu. Creearea unui PIN o să devină obligatorie în %1$d zile.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Vă amintim mai târziu. Confirmarea PIN-ului dvs. o să devină obligatorie în %1$d zile.</string>
@@ -1637,8 +1662,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ProfileNamesMegaphone__confirm_name">Confirmați numele</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pictogramă transport</string>
-  <string name="ConversationListFragment_loading">Se încarcă...</string>
-  <string name="CallNotificationBuilder_connecting">Se conectează...</string>
+  <string name="ConversationListFragment_loading">Se încarcă…</string>
+  <string name="CallNotificationBuilder_connecting">Se conectează…</string>
   <string name="Permissions_permission_required">E nevoie de permisiune</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal are nevoie de permisiunea SMS pentru a putea trimite SMS dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"SMS\".</string>
   <string name="Permissions_continue">Continuă</string>
@@ -1697,10 +1722,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Blocați accesul la Signal prin ecranul de blocare Android sau prin amprentă</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Expirare timp blocare ecran pentru inactivitate</string>
   <string name="preferences_app_protection__signal_pin">PIN Signal</string>
-  <string name="preferences_app_protection__pin">PIN</string>
-  <string name="preferences_app_protection__change">Schimbați</string>
-  <string name="preferences_app_protection__create">Creează</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account">Codul dvs. PIN adaugă un strat suplimentar de securitate la contul dvs. Vi se va cere acest lucru atunci când vă înregistrați numărul de telefon cu Signal. Dacă uitați codul PIN, veți fi blocat din cont timp de 7 zile.</string>
+  <string name="preferences_app_protection__create_a_pin">Creați un PIN</string>
+  <string name="preferences_app_protection__change_your_pin">Schimbați-vă PIN-ul</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-urile păstrează informațiile stocate în Signal criptate, astfel încât numai tu să le poți accesa. Profilul, setările și contactele se vor restabili atunci când reinstalați Signal.</string>
   <string name="AppProtectionPreferenceFragment_none">Niciuna</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Codul PIN de Blocare a Înregistrării nu este același cu codul de verificare pe care tocmai l-ați primit prin SMS. Vă rugăm să introduceți PIN-ul configurat anterior în aplicație.</string>
   <string name="registration_activity__registration_lock_pin">PIN de blocare a înregistrării</string>

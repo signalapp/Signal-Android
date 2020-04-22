@@ -76,6 +76,15 @@
   <string name="AudioSlidePlayer_error_playing_audio">خطا در پخش صوت!</string>
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">مخاطبان مسدود شده</string>
+  <!--BlockUnblockDialog-->
+  <string name="BlockUnblockDialog_block_and_leave_s">می‌خواهید گروه %1$s را مسدود و ترک کنید؟</string>
+  <string name="BlockUnblockDialog_block_s"> گروه %1$s مسدود شود؟</string>
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">اعضای گروه می‌توانند دوباره شما را به این گروه اضافه کنند.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">شما قادر خواهید بود به یکدیگر پیام دهید و با آنها تماس بگیرید.</string>
+  <string name="BlockUnblockDialog_unblock_s">گروه %1$s از حالت مسدود خارج شود؟</string>
+  <string name="BlockUnblockDialog_unblock">رفع مسدودیت</string>
+  <string name="BlockUnblockDialog_block">مسدودسازی</string>
+  <string name="BlockUnblockDialog_block_and_delete">بلاک و حذف</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">امروز</string>
   <string name="BucketedThreadMedia_Yesterday">دیروز</string>
@@ -109,6 +118,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">حذف عکس پروفایل؟</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found"> مرورگر اینترنت یافت نشد.</string>
+  <string name="CommunicationActions_no_email_app_found">برنامهٔ ایمیل یافت نشد.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">یک تماس تلفنی در جریان است.</string>
   <string name="CommunicationActions_start_video_call">شروع تماس تصویری؟</string>
   <string name="CommunicationActions_start_voice_call">شروع تماس صوتی؟</string>
@@ -206,15 +216,6 @@
   <string name="ConversationActivity_no_results">بدون نتیجه</string>
   <string name="ConversationActivity_sticker_pack_installed">بسته استیکر نصب شد</string>
   <string name="ConversationActivity_new_say_it_with_stickers">قابلیت جدید! حرف خود را با استیکر بزنید</string>
-  <string name="ConversationActivity_block_s"> گروه %1$s مسدود شود؟</string>
-  <string name="ConversationActivity_block_and_leave_s">می‌خواهید گروه %1$s را مسدود و ترک کنید؟</string>
-  <string name="ConversationActivity_unblock_s">گروه %1$s از حالت مسدود خارج شود؟</string>
-  <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">شما قادر خواهید بود به یکدیگر پیام دهید و با آنها تماس بگیرید.</string>
-  <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">اعضای گروه می‌توانند دوباره شما را به این گروه اضافه کنند.</string>
-  <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">افراد مسدود شده قادر به برقراری تماس یا تبادل پیام با شما نخواهند بود.</string>
-  <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">شما این گروه را ترک کرده و دیگر پیام‌ها و به‌روزرسانی‌ها را دریافت نخواهید کرد.</string>
-  <string name="ConversationActivity_block">مسدودسازی</string>
-  <string name="ConversationActivity_block_and_delete">مسدود و حذف</string>
   <string name="ConversationActivity_cancel">لغو</string>
   <string name="ConversationActivity_delete_conversation">مکالمه حذف شود؟</string>
   <string name="ConversationActivity_delete_and_leave_group">حذف و ترک گروه؟</string>
@@ -251,7 +252,7 @@
     <item quantity="other">در حال ذخیره‌ %1$d پیوست</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="one">در حال ذخیره پیوست در حافظهٔ...</item>
+    <item quantity="one">در حال ذخیره پیوست در حافظهٔ…</item>
     <item quantity="other">در حال ذخیره‌ %1$d پیوست در حافظهٔ…</item>
   </plurals>
   <string name="ConversationFragment_pending">در انتظار…</string>
@@ -281,7 +282,7 @@
     <item quantity="other">این باعث پاک شدن دائمی %1$d مکالمه انتخاب شده خواهد شد.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">در حال حذف</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">حذف مکالمه‌های انتخاب شده...</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">حذف مکالمه‌های انتخاب شده…</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">مکالمه بایگانی شد</item>
     <item quantity="other">%d مکالمه بایگانی شد</item>
@@ -379,6 +380,9 @@
   <string name="GroupShareProfileView_make_visible">آشکار کن</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">شما</string>
+  <!--GV2 access levels-->
+  <!--PendingMembersActivity-->
+  <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">چهرک گروه</string>
   <string name="CropImageActivity_profile_avatar">چهرک</string>
@@ -390,7 +394,7 @@
   <string name="InviteActivity_share_with_contacts">اشتراک‌ گذاری با مخاطبان</string>
   <string name="InviteActivity_choose_how_to_share">انتخاب نحوهٔ اشتراک گذاری</string>
   <string name="InviteActivity_cancel">لغو</string>
-  <string name="InviteActivity_sending">در حال ارسال...</string>
+  <string name="InviteActivity_sending">در حال ارسال…</string>
   <string name="InviteActivity_heart_content_description">قلب</string>
   <string name="InviteActivity_invitations_sent">دعوت‌نامه‌ها ارسال شدند!</string>
   <string name="InviteActivity_invite_to_signal">دعوت به Signal</string>
@@ -407,6 +411,8 @@
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">دوستان واقعی به دوستان خود اجازهٔ گفتگوی رمزگذاری نشده را نمی‌دهند.</string>
   <!--Job-->
   <string name="Job_working_in_the_background">در حال کار در پس‌زمینه…</string>
+  <!--LearnMoreTextView-->
+  <string name="LearnMoreTextView_learn_more">بیشتر یاد بگیرید</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">عدم موفقیت در ارسال</string>
   <string name="MessageDetailsRecipient_new_safety_number">شمارهٔ امنیتی جدید</string>
@@ -477,7 +483,7 @@
   <string name="NotificationBarManager__cancel_call">لغو تماس</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">پیام چندرسانه‌ای</string>
-  <string name="NotificationMmsMessageRecord_downloading_mms_message">دریافت پیام چند‌رسانه‌ای...</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">دریافت پیام چند‌رسانه‌ای…</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">خطا در دریافت پیام چندرسانه‌ای، برای تلاش مجدد ضربه بزنید</string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">ارسال به %s</string>
@@ -485,7 +491,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">برای انتخاب ضربه بزنید</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">افزودن یک زیرنویس...</string>
+  <string name="MediaSendActivity_add_a_caption">افزودن یک زیرنویس…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">یک مورد به دلیل تجاوز از محدودیت اندازه حذف شد</string>
   <string name="MediaSendActivity_camera_unavailable">دوربین در دسترس نیست.</string>
   <string name="MediaSendActivity_message_to_s">پیام به %s </string>
@@ -517,6 +523,21 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s پیام های ناپدید شونده را غیرفعال کرد.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">شما زمان سنج پیام های ناپدید شونده را روی %1$s تنظیم کردید.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s زمان سنج پیام های ناپدید شونده را روی %2$s قرار داد.</string>
+  <!--GV2 specific-->
+  <!--GV2 member additions-->
+  <string name="MessageRecord_you_joined_the_group">شما به گروه پیوستید.</string>
+  <string name="MessageRecord_s_joined_the_group">%1$s به گروه پیوست.</string>
+  <!--GV2 member removals-->
+  <string name="MessageRecord_you_left_the_group">شما گروه را ترک کردید</string>
+  <!--GV2 role change-->
+  <!--GV2 invitations-->
+  <!--GV2 invitation revokes-->
+  <!--GV2 invitation acceptance-->
+  <!--GV2 title change-->
+  <!--GV2 avatar change-->
+  <!--GV2 attribute access level change-->
+  <!--GV2 membership access level change-->
+  <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">شماره امنیتی شما با %s تغییر یافت.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">شما شماره امنیتی خود با %s  را تایید شده علامت گذاری کردید</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">شما شماره امنیتی خود با %s را از دستگاه دیگری تایید شده علامت گذاری کردید</string>
@@ -588,6 +609,15 @@
   <string name="PlacePickerActivity_accept_address">پذیرش نشانی</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">نسخه گوگل پلی سرویس که شما نصب کرده اید به درستی کار نمی کند. لطفاً آن را دوباره کنید و مجددا تلاش کنید.</string>
+  <!--PinRestoreEntryFragment-->
+  <string name="PinRestoreEntryFragment_incorrect_pin">پین نادرست</string>
+  <string name="PinRestoreEntryFragment_contact_support">ارتباط با پشتیبانی</string>
+  <string name="PinRestoreEntryFragment_cancel">لغو</string>
+  <string name="PinRestoreEntryFragment_skip">پرش</string>
+  <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">پین حرفی‌-عددی را وارد کنید</string>
+  <string name="PinRestoreEntryFragment_enter_numeric_pin">پین عددی را وارد کنید</string>
+  <!--PinRestoreLockedFragment-->
+  <string name="PinRestoreLockedFragment_create_your_pin">پین خود را ایجاد کنید</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">امتیازدهی این برنامه</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">اگر از استفاده از این برنامه لذت می برید، لطفاً برای کمک به ما یک لحظه وقت بگذارید و آن را امتیاز دهید.</string>
@@ -602,16 +632,7 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">شما</string>
   <!--RecipientPreferencesActivity-->
-  <string name="RecipientPreferenceActivity_block_this_contact_question">مسدود کردن این مخاطب؟</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">شما ديگر هیچ تماس و پيامی از این مخاطب دريافت نخواهید کرد.</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group">مسدودسازی و ترک این گروه؟</string>
-  <string name="RecipientPreferenceActivity_block_group">مسدودسازی این گروه؟</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group_description">شما دیگر از این گروه پیام یا به‌روزرسانی دریافت نخواهید کرد.</string>
   <string name="RecipientPreferenceActivity_block">مسدود سازی</string>
-  <string name="RecipientPreferenceActivity_unblock_this_contact_question">رفع مسدودیت این مخاطب؟</string>
-  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">شما دوباره قادر به دریافت پیام و تماس از این مخاطب خواهید بود.</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_question">رفع مسدودیت این گروه؟</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_description">اعضا فعلی قادر خواهند بود دوباره شما را به گروه اضافه کنند.</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">خطا در ترک گروه</string>
   <string name="RecipientPreferenceActivity_unblock">رفع مسدودیت</string>
   <string name="RecipientPreferenceActivity_enabled">فعال</string>
@@ -671,6 +692,7 @@
   <string name="RegistrationActivity_phone_number_description">شمارهٔ همراه</string>
   <string name="RegistrationActivity_country_code_description">کد کشور</string>
   <string name="RegistrationActivity_call">تماس</string>
+  <!--RegistrationLockV2Dialog-->
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">مشاهده تصویر</string>
   <string name="RevealableMessageView_view_video">مشاهده ویدئو</string>
@@ -713,7 +735,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s نشست امن را مجدداً تنظیم کرد.</string>
   <string name="SmsMessageRecord_duplicate_message">پیام تکراری.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">این پیام قابل پردازش نیست چون از یک نسخه جدیدتر Signal ارسال شده است. می توانید از مخاطب خود بخواهید تا این پیام را دوباره بعد از به‌روزرسانی برای شما ارسال کند.</string>
-  <string name="SmsMessageRecord_error_handling_incoming_message">خطا در کنترل پیام دریافتی</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">خطا هنگام دریافت پیام.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">استیکر ها</string>
   <!--StickerManagementAdapter-->
@@ -953,7 +975,7 @@
   <string name="contact_filter_toolbar__show_dial_pad_description">نمایش شماره‌ گیر</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">مخاطبی یافت نشد.</string>
-  <string name="contact_selection_group_activity__finding_contacts">در حال بارگذاری مخاطب ها...</string>
+  <string name="contact_selection_group_activity__finding_contacts">در حال بارگذاری مخاطب ها…</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">تصویر مخاطب</string>
   <!--ContactSelectionListFragment-->
@@ -1078,8 +1100,8 @@
   <string name="log_submit_activity__button_got_it">فهمیدم</string>
   <string name="log_submit_activity__button_compose_email">نوشتن ایمیل</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">این گزارش به صورت آنلاین برای بازنگری مشارکت کنندگان منتشر خواهد شد، می‌توانید آن را قبل از ارسال بررسی کرده و ویرایش کنید.</string>
-  <string name="log_submit_activity__loading_logs">بارگذاری گزارش ها...</string>
-  <string name="log_submit_activity__uploading_logs">آپلود گزارش ها...</string>
+  <string name="log_submit_activity__loading_logs">بارگذاری گزارش ها…</string>
+  <string name="log_submit_activity__uploading_logs">آپلود گزارش ها…</string>
   <string name="log_submit_activity__choose_email_app">انتخاب برنامه ایمیل</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">لطفاً این گزارش از برنامه من را بازبینی کنید: %1$s</string>
   <string name="log_submit_activity__network_failure">خطا شبکه. لطفاً دوباره تلاش کنید.</string>
@@ -1155,7 +1177,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ اگر مایل هستید تا امنیت رمزگذاری خود را با %s تایید کنید، عدد آمده در بالا را با عدد روی دستگاه آن ها مقایسه کنید. در غیر این صورت، میتوانید کد روی گوشی آن ها را اسکن کرده یا از آن ها بخواهید تا کد شما را اسکن کنند. <a href="https://signal.org/redirect/safety-numbers">بیشتر یاد بگیرید.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">برای اسکن کردن ضربه بزنید</string>
-  <string name="verify_display_fragment__loading">در حال بارگذاری...</string>
+  <string name="verify_display_fragment__loading">در حال بارگذاری…</string>
   <string name="verify_display_fragment__verified">تایید شده</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">اشتراک گذاری شمارهٔ امنیتی</string>
@@ -1514,20 +1536,16 @@
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">یک پین جدید ایجاد کنید</string>
   <string name="CreateKbsPinFragment__create_your_pin">پین خود را ایجاد کنید</string>
-  <string name="CreateKbsPinFragment__pins_add_extra_security_to_your_account">پین‌ها یک لایهٔ امنیتی دیگر به حساب شما اضافه می‌کنند. شما به پین برای ثبت نام دوباره در سیگنال احتیاج دارید.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">پین‌ها مطابقت ندارند. دوباره تلاش کنید.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">پین خود را تایید کنید</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">پین ایجاد نشد</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">پین شما ذخیره نشد. ما بعداً از شما خواهیم خواست تا یک پین دیگر ایجاد کنید.</string>
   <string name="ConfirmKbsPinFragment__pin_created">پین ایجاد شد.</string>
-  <string name="ConfirmKbsPinFragment__re_enter_pin">دوباره پین را وارد کنید</string>
-  <string name="ConfirmKbsPinFragment__creating_pin">ایجاد پین...</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">ایجاد پین…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">تعریف پین‌ها</string>
-  <string name="KbsSplashFragment__pins_add_another_level_of_security_to_your_account">پین‌ها یک لایهٔ امنیتی دیگر به حساب شما اضافه می‌کنند. یک پین ایجاد کنید.</string>
   <string name="KbsSplashFragment__learn_more">اطلاعات بیشتر</string>
-  <string name="KbsSplashFragment__learn_more_link">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">قفل ثبت‌نام = پین</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">قفل ثبت‌نام شما اکنون پین نام دارد، و کارهای بیشتری را انجام می‌دهد. هم‌اکنون آن را به‌روزرسانی کنید.</string>
   <string name="KbsSplashFragment__read_more_about_pins">در مورد پین‌ها بیشتر بخوانید.</string>
@@ -1545,7 +1563,6 @@
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">حساب‌ شما به منظور حفاظت از حریم خصوصی و امنیت شما قفل شده است. بعد از %1$d روز عدم فعالیت، می توانید دوباره با این شماره و بدون نیاز به پین ثبت نام کنید. تمام محتویات پاک خواهند شد.</string>
   <string name="AccountLockedFragment__next">بعدی</string>
   <string name="AccountLockedFragment__learn_more">اطلاعات بیشتر</string>
-  <string name="AccountLockedFragment__learn_more_url">https://support.signal.org/hc/en-us/articles/360007059792-Registration-Lock</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">پین خود را وارد کنید</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">پین ایجاد شده برای حساب خود را وارد کنید. این کد با کد تأیید پیامکی شما تفاوت دارد.</string>
@@ -1579,10 +1596,8 @@
   </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">یک پین جدید ایجاد کنید</string>
-  <string name="KbsMegaphone__pins_add_another_layer_of_security_to_your_signal_account">پین‌ها یک لایهٔ امنیتی دیگر به حساب ‌Signal شما اضافه می‌کنند.</string>
   <string name="KbsMegaphone__create_pin">ایجاد پین</string>
   <string name="KbsMegaphone__introducing_pins">معرفی پین‌ها</string>
-  <string name="KbsMegaphone__your_registration_lock_is_now_called_a_pin">قفل ثبت‌نام شما اکنون پین نام دارد. به‌روزرسانی آن فقط چند ثانیه زمان می‌برد.</string>
   <string name="KbsMegaphone__update_pin">به‌روزرسانی پین</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">در آینده به شما یادآوری خواهیم کرد. ایجاد پین از %1$d روز دیگر الزامی خواهد شد.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">در آینده به شما یادآوری خواهیم کرد. ایجاد پین از %1$d روز دیگر الزامی خواهد شد.</string>
@@ -1595,7 +1610,7 @@
   <string name="ProfileNamesMegaphone__confirm_name">تأیید اسم</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">نگارک انتقال</string>
-  <string name="ConversationListFragment_loading">در حال بارگذاری...</string>
+  <string name="ConversationListFragment_loading">در حال بارگذاری…</string>
   <string name="CallNotificationBuilder_connecting">در حال اتصال…</string>
   <string name="Permissions_permission_required">مجوز لازم است</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal برای ارسال پیامک نیاز به مجوز پیامک دارد اما این دسترسی به‌ داده نشده است. لطفاً به تنظیمات برنامه‌ رفته، \"مجوزها\" را انتخاب کنید و \"پیامک\" را فعال کنید.</string>
@@ -1655,10 +1670,8 @@
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">قفل دسترسی Signal با قفل صفحهٔ اندروید یا اثر انگشت</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">قفل خودکار صفحه به دلیل عدم فعالیت</string>
   <string name="preferences_app_protection__signal_pin">پین Signal</string>
-  <string name="preferences_app_protection__pin">پین</string>
-  <string name="preferences_app_protection__change">تغییر</string>
-  <string name="preferences_app_protection__create">ایجاد</string>
-  <string name="preferences_app_protection__your_pin_adds_an_extra_layer_of_security_to_your_account">پین یک لایهٔ امنیتی دیگر به حساب شما اضافه می‌کند. پین به هنگام ثبت نام از شما پرسیده خواهد شد. اگر پین خود را فراموش کنید، حساب کاربری شما تا ۷ روز قفل خواهد شد.</string>
+  <string name="preferences_app_protection__create_a_pin">یک پین جدید ایجاد کنید</string>
+  <string name="preferences_app_protection__change_your_pin">پین خود را تغییر دهید</string>
   <string name="AppProtectionPreferenceFragment_none">هیچ‌کدام</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">پین قفل ثبت‌نام همان کد تأییدی که الان از طریق پیامک دریافت کردید نیست. لطفاً رمزی را که قبلاً در برنامه تنظیم کرده بودید را وارد کنید.</string>
   <string name="registration_activity__registration_lock_pin">پین قفل ثبت‌نام</string>

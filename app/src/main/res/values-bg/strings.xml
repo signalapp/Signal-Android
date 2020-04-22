@@ -10,7 +10,7 @@
   <string name="AbstractNotificationBuilder_new_message">Ново съобщение</string>
   <!--AlbumThumbnailView-->
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Signal се обновява...</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal се обновява…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">В момента: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Все още не сте заложили парола!</string>
@@ -70,8 +70,8 @@
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal се нуждае от достъп до местоположението Ви, за да може да го прикачва, но той му е отказан. Моля, отидете на настройки в менюто и изберете \"Разрешения\" и \"Местоположение\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal се нуждае от достъп до камерта Ви, за да може да прави снимки, но той му е отказан. Моля, отидете на настройки в менюто и изберете \"Разрешения\" и \"Камера\".</string>
   <!--AttachmentUploadJob-->
-  <string name="AttachmentUploadJob_uploading_media">Качване на медия...</string>
-  <string name="AttachmentUploadJob_compressing_video_start">Компресиране на видео...</string>
+  <string name="AttachmentUploadJob_uploading_media">Качване на медия…</string>
+  <string name="AttachmentUploadJob_compressing_video_start">Компресиране на видео…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Грешка при възпроизвеждане на аудио!</string>
   <!--BlockedContactsActivity-->
@@ -204,15 +204,15 @@
   <string name="ConversationActivity_no_results">Няма резултати</string>
   <string name="ConversationActivity_sticker_pack_installed">Пакетът със стикери е инсталиран</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Ново! Кажи го със стикери</string>
-  <string name="ConversationActivity_block_s">Блокирай %1$s?</string>
-  <string name="ConversationActivity_block_and_leave_s">Блокирай и напусни %1$s?</string>
-  <string name="ConversationActivity_unblock_s">Отблокирай %1$s?</string>
-  <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">Ще можете да си пишете и да се обаждате един на друг.</string>
-  <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">Членове на групата ще могат да те добавят обратно в групата.</string>
-  <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">Блокирани хора няма да могат да ти се обаждат или изпращат съобщения.</string>
-  <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">Ще напуснеш групата и повече няма да получаваш съобщения или обновления от нея.</string>
-  <string name="ConversationActivity_block">Блокиране</string>
-  <string name="ConversationActivity_block_and_delete">Блокирай и изтрий</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_block_s">Блокирай %1$s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_block_and_leave_s">Блокирай и напусни %1$s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_unblock_s">Отблокирай %1$s?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_you_will_be_able_to_message_and_call_each_other">Ще можете да си пишете и да се обаждате един на друг.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_group_members_will_be_able_to_add_you_to_this_group_again">Членове на групата ще могат да те добавят обратно в групата.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_blocked_people_will_not_be_able_to_call_you_or_send_you_messages">Блокирани хора няма да могат да ти се обаждат или изпращат съобщения.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_you_will_leave_this_group_and_no_longer_receive_messages_or_updates">Ще напуснеш групата и повече няма да получаваш съобщения или обновления от нея.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_block">Блокиране</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_block_and_delete">Блокирай и изтрий</string> -->
   <string name="ConversationActivity_cancel">Отказ</string>
   <string name="ConversationActivity_delete_conversation">Изтрий разговора?</string>
   <string name="ConversationActivity_delete_and_leave_group">Изтриване и напускане на групата?</string>
@@ -352,7 +352,7 @@
   <string name="GroupCreateActivity_contacts_invalid_number">Един от членовете на групата има номер, който не може да бъде разпознат правилно. Моля, оправи номера на контакта или го премахни.</string>
   <string name="GroupCreateActivity_avatar_content_description">Аватар за групата</string>
   <string name="GroupCreateActivity_menu_apply_button">Изпълни</string>
-  <string name="GroupCreateActivity_creating_group">Създаване на %1$s...</string>
+  <string name="GroupCreateActivity_creating_group">Създаване на %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Обновяване %1$s…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Неуспешно добавяне на %1$s, защото те не са потребители на Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Зареждане на информация за групата…</string>
@@ -430,7 +430,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Натиснете, за да изберете</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Добави описание...</string>
+  <string name="MediaSendActivity_add_a_caption">Добави описание…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Един елемент бе премахнат, защото надхвърля ограничението за размер</string>
   <string name="MediaSendActivity_camera_unavailable">Не е открита камера.</string>
   <string name="MediaSendActivity_message_to_s">Изпрати на %s</string>
@@ -487,7 +487,7 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">Не е открито устройство.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Проблем с мобилната мрежа.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Невалиден QR код.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">За съжалние имате твърде много свързани устройства, опитайте да премахнете някои от тях...</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">За съжалние имате твърде много свързани устройства, опитайте да премахнете някои от тях…</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">За съжаление това не е валидна QR връзка.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Свързване със Signal устройство?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Изглежда се опитвате да свържете Signal устройство с външна скенер програма. За Ваша сигурност, моля сканирайте кодът повторно използвайки Signal.</string>
@@ -518,16 +518,16 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Ти</string>
   <!--RecipientPreferencesActivity-->
-  <string name="RecipientPreferenceActivity_block_this_contact_question">Блокиране на този контакт?</string>
-  <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Повече няма да получавате съобщения и обаждания от този контакт.</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group">Бликиране и напускане на групата?</string>
-  <string name="RecipientPreferenceActivity_block_group">Блокирване на групата?</string>
-  <string name="RecipientPreferenceActivity_block_and_leave_group_description">Повече няма да получавате съобщения или обновления от тази група.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_block_this_contact_question">Блокиране на този контакт?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Повече няма да получавате съобщения и обаждания от този контакт.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_block_and_leave_group">Бликиране и напускане на групата?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_block_group">Блокирване на групата?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_block_and_leave_group_description">Повече няма да получавате съобщения или обновления от тази група.</string> -->
   <string name="RecipientPreferenceActivity_block">Блокиране</string>
-  <string name="RecipientPreferenceActivity_unblock_this_contact_question">Отблокиране на този контакт?</string>
-  <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Отново ще може да получавате съобщения и обаждания от този контакт.</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_question">Отбликирване на тази група?</string>
-  <string name="RecipientPreferenceActivity_unblock_this_group_description">Текущи членове на групата ще могат да те добавят обратно в групата.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_unblock_this_contact_question">Отблокиране на този контакт?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Отново ще може да получавате съобщения и обаждания от този контакт.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_unblock_this_group_question">Отбликирване на тази група?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_unblock_this_group_description">Текущи членове на групата ще могат да те добавят обратно в групата.</string> -->
   <string name="RecipientPreferenceActivity_error_leaving_group">Грешка при напускане на групата</string>
   <string name="RecipientPreferenceActivity_unblock">Отблокиране</string>
   <string name="RecipientPreferenceActivity_enabled">Активирано</string>
@@ -812,7 +812,7 @@
   <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Няма контакти.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Зареждане на контакти...</string>
+  <string name="contact_selection_group_activity__finding_contacts">Зареждане на контакти…</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Снимка на Контактът</string>
   <!--ContactSelectionListFragment-->
@@ -931,8 +931,8 @@
   <string name="log_submit_activity__button_got_it">Ясно</string>
   <string name="log_submit_activity__button_compose_email">Създаване на имейл</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Този лог ще бъде публичен и разработчиците ще могат да го рагледат, може да го прегледате и промените преди да го изпратите.</string>
-  <string name="log_submit_activity__loading_logs">Зареждане на логовете...</string>
-  <string name="log_submit_activity__uploading_logs">Изпращане на логовте...</string>
+  <string name="log_submit_activity__loading_logs">Зареждане на логовете…</string>
+  <string name="log_submit_activity__uploading_logs">Изпращане на логовте…</string>
   <string name="log_submit_activity__choose_email_app">Изберете имейл приложение</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Моля прегледайте логът на моето приложение: %1$s</string>
   <string name="log_submit_activity__network_failure">Грешка в мрежата. Моля, опитайте отново.</string>
@@ -1311,7 +1311,7 @@
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Икона за транспорт</string>
   <string name="ConversationListFragment_loading">Зареждане…</string>
-  <string name="CallNotificationBuilder_connecting">Свързване...</string>
+  <string name="CallNotificationBuilder_connecting">Свързване…</string>
   <string name="Permissions_permission_required">Нужда от разрешение за достъп</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal се нуждае от достъп до SMS-те Ви, за да може да изпраща  нови, но той му е отказан. Моля, отидете в настройки в менюто и изберете \"Разрешения\" и \"SMS\".</string>
   <string name="Permissions_continue">Продължи</string>
@@ -1361,7 +1361,7 @@
   <string name="preferences_app_protection__screen_lock">Заключен екран</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Заключване на достъпа до Signal с вградените в Андроид заключен екран или отпечатък</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Време за активирнае при неактивност</string>
-  <string name="preferences_app_protection__create">Създай</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__create">Създай</string> -->
   <string name="AppProtectionPreferenceFragment_none">Нищо</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">ПИН-ът за регистрационното заключване не е същия като СМС кодът за потвърждение, който получихте. Моля, въведете ПИН-а, който сте задали по-рано в приложението.</string>
   <string name="registration_activity__registration_lock_pin">ПИН за регистрационно заключване</string>
