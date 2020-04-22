@@ -115,7 +115,8 @@ final class MenuState {
            !messageRecord.isPending()      &&
            !messageRecord.isFailed()       &&
            !isDisplayingMessageRequest     &&
-           messageRecord.isSecure();
+           messageRecord.isSecure()        &&
+           !messageRecord.getRecipient().isBlocked();
   }
 
   static boolean isActionMessage(@NonNull MessageRecord messageRecord) {

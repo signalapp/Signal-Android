@@ -82,6 +82,10 @@ public class TypingSendJob extends BaseJob {
       return;
     }
 
+    if (recipient.isBlocked()) {
+      Log.w(TAG, "Not sending typing indicators to blocked recipients.");
+    }
+
     List<Recipient>  recipients = Collections.singletonList(recipient);
     Optional<byte[]> groupId    = Optional.absent();
 

@@ -304,7 +304,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   Button                     makeDefaultSmsButton;
   private   Button                     registerButton;
   private   InputAwareLayout           container;
-  private   View                       composePanel;
   protected Stub<ReminderView>         reminderView;
   private   Stub<UnverifiedBannerView> unverifiedBannerView;
   private   Stub<GroupShareProfileView> groupShareProfileView;
@@ -767,6 +766,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
     }
 
+    if (recipient != null && recipient.get().isBlocked()) {
+      if (isSecureText) {
+        menu.findItem(R.id.menu_call_secure).setVisible(false);
+        menu.findItem(R.id.menu_video_secure).setVisible(false);
+      } else {
+        menu.findItem(R.id.menu_call_insecure).setVisible(false);
+      }
+    }
+
     searchViewItem = menu.findItem(R.id.menu_search);
 
     SearchView                     searchView    = (SearchView) searchViewItem.getActionView();
@@ -812,6 +820,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         searchNav.setVisibility(View.GONE);
         inputPanel.setVisibility(View.VISIBLE);
         fragment.onSearchQueryUpdated(null);
+        setBlockedUserState(recipient.get(), isSecureText, isDefaultSms);
         invalidateOptionsMenu();
         return true;
       }
@@ -1623,7 +1632,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     unblockButton            = ViewUtil.findById(this, R.id.unblock_button);
     makeDefaultSmsButton     = ViewUtil.findById(this, R.id.make_default_sms_button);
     registerButton           = ViewUtil.findById(this, R.id.register_button);
-    composePanel             = ViewUtil.findById(this, R.id.bottom_panel);
     container                = ViewUtil.findById(this, R.id.layout_container);
     reminderView             = ViewUtil.findStubById(this, R.id.reminder_stub);
     unverifiedBannerView     = ViewUtil.findStubById(this, R.id.unverified_banner_stub);
@@ -2030,21 +2038,21 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void setBlockedUserState(Recipient recipient, boolean isSecureText, boolean isDefaultSms) {
     if (recipient.isBlocked() && !FeatureFlags.messageRequests()) {
       unblockButton.setVisibility(View.VISIBLE);
-      composePanel.setVisibility(View.GONE);
+      inputPanel.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.GONE);
       registerButton.setVisibility(View.GONE);
     } else if (!isSecureText && isPushGroupConversation()) {
       unblockButton.setVisibility(View.GONE);
-      composePanel.setVisibility(View.GONE);
+      inputPanel.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.GONE);
       registerButton.setVisibility(View.VISIBLE);
     } else if (!isSecureText && !isDefaultSms) {
       unblockButton.setVisibility(View.GONE);
-      composePanel.setVisibility(View.GONE);
+      inputPanel.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.VISIBLE);
       registerButton.setVisibility(View.GONE);
     } else {
-      composePanel.setVisibility(View.VISIBLE);
+      inputPanel.setVisibility(View.VISIBLE);
       unblockButton.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.GONE);
       registerButton.setVisibility(View.GONE);
@@ -2761,7 +2769,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     public void onTextChanged(String text) {
-      if (enabled && threadId > 0 && isSecureText && !isSmsForced()) {
+      if (enabled && threadId > 0 && isSecureText && !isSmsForced() && !recipient.get().isBlocked()) {
         ApplicationContext.getInstance(ConversationActivity.this).getTypingStatusSender().onTypingStarted(threadId);
       }
     }
