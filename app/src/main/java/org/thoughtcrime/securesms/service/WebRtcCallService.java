@@ -492,10 +492,12 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       return;
     }
 
-    try {
-      callManager.setAudioEnable(microphoneEnabled);
-    } catch (CallException e) {
-      callFailure("Enabling audio failed: ", e);
+    if (activePeer.getState() == CallState.CONNECTED) {
+      try {
+        callManager.setAudioEnable(microphoneEnabled);
+      } catch (CallException e) {
+        callFailure("Enabling audio failed: ", e);
+      }
     }
 
     if (activePeer != null) {
