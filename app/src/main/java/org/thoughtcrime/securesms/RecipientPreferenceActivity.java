@@ -429,7 +429,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
           aboutPreference.setSummary(recipient.getCustomLabel());
         }
 
-        aboutPreference.setSecure(recipient.getRegistered() == RecipientDatabase.RegisteredState.REGISTERED);
+        aboutPreference.setState(recipient.getRegistered() == RecipientDatabase.RegisteredState.REGISTERED, recipient.isBlocked());
 
         IdentityUtil.getRemoteIdentityKey(getActivity(), recipient).addListener(new ListenableFuture.Listener<Optional<IdentityRecord>>() {
           @Override

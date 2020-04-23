@@ -770,9 +770,19 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       if (isSecureText) {
         menu.findItem(R.id.menu_call_secure).setVisible(false);
         menu.findItem(R.id.menu_video_secure).setVisible(false);
+
+        if (menu.findItem(R.id.menu_expiring_messages) != null) {
+          menu.findItem(R.id.menu_expiring_messages).setVisible(false);
+        }
+
+        if (menu.findItem(R.id.menu_expiring_messages_off) != null) {
+          menu.findItem(R.id.menu_expiring_messages_off).setVisible(false);
+        }
       } else {
         menu.findItem(R.id.menu_call_insecure).setVisible(false);
       }
+
+      menu.findItem(R.id.menu_mute_notifications).setVisible(false);
     }
 
     searchViewItem = menu.findItem(R.id.menu_search);
@@ -983,24 +993,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleUnblock() {
-    int titleRes = R.string.ConversationActivity_unblock_this_contact_question;
-    int bodyRes  = R.string.ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact;
-
-    if (recipient.get().isGroup()) {
-      titleRes = R.string.ConversationActivity_unblock_this_group_question;
-      bodyRes  = R.string.ConversationActivity_unblock_this_group_description;
-    }
-
-    //noinspection CodeBlock2Expr
-    new AlertDialog.Builder(this)
-                   .setTitle(titleRes)
-                   .setMessage(bodyRes)
-                   .setNegativeButton(android.R.string.cancel, null)
-                   .setPositiveButton(R.string.ConversationActivity_unblock, (dialog, which) -> {
-                     SignalExecutors.BOUNDED.execute(() -> {
-                       RecipientUtil.unblock(ConversationActivity.this, recipient.get());
-                     });
-                   }).show();
+    BlockUnblockDialog.showUnblockFor(this, getLifecycle(), recipient.get(), () -> {
+      SignalExecutors.BOUNDED.execute(() -> {
+        RecipientUtil.unblock(ConversationActivity.this, recipient.get());
+      });
+    });
   }
 
   @TargetApi(Build.VERSION_CODES.KITKAT)
