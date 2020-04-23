@@ -79,11 +79,16 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Ĉu bloki kaj forlasi %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Ĉu bloki %1$s?</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Vi ne plu ricevos mesaĝojn kaj ĝisdatigojn el tiu ĉi grupo kaj grupanoj ne plu povos realdoni vin al ĉi tiu grupo.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Grupanoj ne plu povos realdoni vin al tiu ĉi grupo.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Grupanoj povos denove aldoni vin al tiu ĉi grupo.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Vi povos mesaĝi kaj alvoki unu la alian.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokitaj kontaktoj ne eblos sendi al vi mesaĝojn aŭ alvoki vin.</string>
   <string name="BlockUnblockDialog_unblock_s">Ĉu malbloki %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Malbloki</string>
   <string name="BlockUnblockDialog_block">Bloki</string>
+  <string name="BlockUnblockDialog_block_and_leave">Bloki kaj forlasi</string>
+  <string name="BlockUnblockDialog_block_and_delete">Bloki kaj forigi</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Hodiaŭ</string>
   <string name="BucketedThreadMedia_Yesterday">Hieraŭ</string>
@@ -165,6 +170,7 @@
   <string name="ConversationItem_read_more">  Legi pli</string>
   <string name="ConversationItem_download_more">   Elŝuti pli</string>
   <string name="ConversationItem_pending">  Pritraktota</string>
+  <string name="ConversationItem_this_message_was_deleted">Tiu ĉi mesaĝo forviŝiĝis.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Ĉu restarigi sekuran seancon?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ĉi tio eble helpos, se vi havas ĉifrajn problemojn en ĉi tiu interparolo. Viaj mesaĝoj konserviĝos.</string>
@@ -260,6 +266,8 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Forviŝado</string>
   <string name="ConversationFragment_deleting_messages">Forviŝado de mesaĝoj…</string>
+  <string name="ConversationFragment_delete_for_me">Forviŝi nur por mi</string>
+  <string name="ConversationFragment_delete_for_everyone">Forviŝi por ĉiuj</string>
   <string name="ConversationFragment_quoted_message_not_found">Origina mesaĝo ne troveblas</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Origina mesaĝo ne plu disponeblas</string>
   <string name="ConversationFragment_failed_to_open_message">Malsukceso malfermi la mesaĝon</string>
@@ -373,6 +381,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Ne eblis aldoni %1$s, ĉar li aŭ ŝi ne estas Signal-uzanto.</string>
   <string name="GroupCreateActivity_loading_group_details">Ŝargo de la grupdetaloj…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Vi jam estas en la grupo.</string>
+  <string name="GroupCreateActivity_remove_member_description">Forigi grupanon</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Ĉu kunhavigi viajn profilajn nomon kaj foton kun tiu ĉi grupo?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Ĉu vi volas videbligi viajn profilajn nomon kaj foton al ĉiuj nunaj kaj venontaj grupanoj?</string>
@@ -380,8 +389,36 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Vi</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">Iu</string>
+  <string name="GroupManagement_access_level_all_members">Ĉiuj grupanoj</string>
+  <string name="GroupManagement_access_level_only_admins">Nur administrantoj</string>
   <!--PendingMembersActivity-->
+  <string name="PendingMemberInvitesActivity_pending_group_invites">Pritraktotaj grupinvitoj</string>
+  <string name="PendingMembersActivity_people_you_invited">Homoj, kiujn vi invitis</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">Vi ne havas invitojn  pritraktotajn.</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">Invitoj el aliaj grupanoj</string>
+  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Neniu pritraktota invito el aliaj grupanoj.</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">La detaloj pri homoj invititaj de aliaj grupanoj ne montriĝas. Ĉu invititoj decidas aliĝi, iliaj informoj tiam kunhaviĝos kun la grupo. Ili ne vidos mesaĝojn antaŭ ol ili aliĝas.</string>
+  <string name="PendingMembersActivity_cancel_invite">Nuligi inviton</string>
+  <string name="PendingMembersActivity_cancel_invites">Nuligi invitojn</string>
+  <plurals name="PendingMembersActivity_cancel_d_invites">
+    <item quantity="one">Nuligi inviton</item>
+    <item quantity="other">Nuligi %1$d invitojn</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_canceling_invite">
+    <item quantity="one">Eraro dum nuligo de la invito</item>
+    <item quantity="other">Eraro dum nuligo de la invitoj</item>
+  </plurals>
+  <plurals name="GroupMemberList_invited">
+    <item quantity="one">%1$s invitis 1 homon</item>
+    <item quantity="other">%1$s invitis %2$d homojn</item>
+  </plurals>
   <!--GV2 Invite cancellation confirmation-->
+  <string name="GroupManagement_cancel_own_single_invite">Ĉu vi volas nuligi inviton senditan de vi al %1$s?</string>
+  <plurals name="GroupManagement_cancel_others_invites">
+    <item quantity="one">Ĉu vi volas nuligi la inviton senditan de %1$s?</item>
+    <item quantity="other">Ĉu vi volas nuligi la %2$d invitojn senditajn de %1$s?</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Bildo de la grupo</string>
   <string name="CropImageActivity_profile_avatar">Avataro</string>
@@ -524,16 +561,53 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s agordis la malaperon de la memviŝontaj mesaĝoj al %2$s.</string>
   <!--GV2 specific-->
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_added_s">Vi aldonis %1$s.</string>
+  <string name="MessageRecord_s_added_s">%1$s aldonis %2$s.</string>
+  <string name="MessageRecord_s_added_you">%1$s aldonis vin al la grupo.</string>
   <string name="MessageRecord_you_joined_the_group">Vi aniĝis al la grupo.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s estis aldonitaj al la grupo.</string>
   <!--GV2 member removals-->
+  <string name="MessageRecord_you_removed_s">Vi forigis %1$s.</string>
+  <string name="MessageRecord_s_removed_s">%1$s forigis %2$s.</string>
+  <string name="MessageRecord_s_removed_you_from_the_group">%1$s forigis vin el la grupo.</string>
   <string name="MessageRecord_you_left_the_group">Vi forlasis la grupon.</string>
+  <string name="MessageRecord_s_left_the_group">%1$s forlasis la grupon.</string>
   <!--GV2 role change-->
+  <string name="MessageRecord_you_made_s_an_admin">Vi donis al %1$s la rolon de administranto.</string>
+  <string name="MessageRecord_s_made_s_an_admin">%1$sdonis al %2$s la rolon de administranto.</string>
+  <string name="MessageRecord_s_made_you_an_admin">%1$sdonis al vi la rolon de administranto.</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">Vi forigis la rolon de administranto de %1$s.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s forigis al vi la rolon de administranto.</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s forigis la rolon de administranto de %2$s.</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_invited_s_to_the_group">Vi invitis %1$s al la grupo.</string>
+  <string name="MessageRecord_s_invited_you_to_the_group">%1$s invitis vin al la grupo.</string>
+  <plurals name="MessageRecord_s_invited_members">
+    <item quantity="one">%1$s invitis unu homon al la grupo.</item>
+    <item quantity="other">%1$s invitis %2$d homojn al la grupo.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
+  <plurals name="MessageRecord_you_revoked_invites">
+    <item quantity="one">Vi senvalidigis unu inviton al la grupo.</item>
+    <item quantity="other">Vi senvalidigis %1$d invitojn al la grupo.</item>
+  </plurals>
+  <plurals name="MessageRecord_s_revoked_invites">
+    <item quantity="one">%1$s senvalidigis unu inviton al la grupo.</item>
+    <item quantity="other">%1$s senvalidigis %2$d invitojn al la grupo.</item>
+  </plurals>
+  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Iu malakceptis inviton al la grupo.</string>
+  <string name="MessageRecord_you_declined_the_invitation_to_the_group">Vi malakceptis la inviton al la grupo.</string>
   <!--GV2 invitation acceptance-->
+  <string name="MessageRecord_you_accepted_invite">Vi akceptis la inviton al la grupo.</string>
+  <string name="MessageRecord_s_accepted_invite">%1$s akceptis la inviton al la grupo.</string>
+  <string name="MessageRecord_you_added_invited_member_s">Vi aldonis invititon %1$s.</string>
+  <string name="MessageRecord_s_added_invited_member_s">%1$s aldonis invititon %2$s.</string>
   <!--GV2 title change-->
+  <string name="MessageRecord_you_changed_the_group_name_to_s">Vi ŝanĝis la grupnomon al „%1$s“.</string>
+  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ŝanĝis la grupnomon al „%2$s“.</string>
   <!--GV2 avatar change-->
+  <string name="MessageRecord_you_changed_the_group_avatar">Vi ŝanĝis la grupavataron.</string>
+  <string name="MessageRecord_s_changed_the_group_avatar">%1$s ŝanĝis la grupavataron.</string>
   <!--GV2 attribute access level change-->
   <!--GV2 membership access level change-->
   <!--End of GV2 specific update messages-->
@@ -777,6 +851,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ThreadRecord_view_once_photo">Nurunufoje videbla foto</string>
   <string name="ThreadRecord_view_once_video">Nurunufoje videbla videaĵo</string>
   <string name="ThreadRecord_view_once_media">Nurunufoje videbla aŭdvidaĵo</string>
+  <string name="ThreadRecord_this_message_was_deleted">Tiu ĉi mesaĝo forviŝiĝis.</string>
   <string name="ThreadRecord_s_is_on_signal">%s estas ĉe Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Memviŝontaj mesaĝoj malŝaltita</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Daŭro de memviŝontaj mesaĝoj agordita je %s</string>
@@ -886,6 +961,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagis per %1$s al via nurunufoje videbla bildo.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagis per %1$s al via nurunufoje videbla videaĵo.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagis per %1$s al via glumarko.</string>
+  <string name="MessageNotifier_this_message_was_deleted">Tiu ĉi mesaĝo forviŝiĝis.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Defaŭlta</string>
   <string name="NotificationChannel_calls">Alvokoj</string>

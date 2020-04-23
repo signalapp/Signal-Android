@@ -84,6 +84,8 @@
   <string name="BlockUnblockDialog_unblock_s">Ikkje blokker %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Fjern blokkering</string>
   <string name="BlockUnblockDialog_block">Blokker</string>
+  <string name="BlockUnblockDialog_block_and_leave">Blokker og forlat</string>
+  <string name="BlockUnblockDialog_block_and_delete">Blokker og slett</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">I dag</string>
   <string name="BucketedThreadMedia_Yesterday">I går</string>
@@ -165,6 +167,7 @@
   <string name="ConversationItem_read_more">  Les meir</string>
   <string name="ConversationItem_download_more">  Last ned meir</string>
   <string name="ConversationItem_pending">  Ventar</string>
+  <string name="ConversationItem_this_message_was_deleted">Meldinga er sletta.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Vil du tilbakestilla sikker økt?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Dette kan hjelpa viss du har krypteringsproblem med samtalen. Meldingane dine vert ikkje fjerna.</string>
@@ -260,6 +263,8 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Sletter</string>
   <string name="ConversationFragment_deleting_messages">Slettar meldingar …</string>
+  <string name="ConversationFragment_delete_for_me">Slett for meg</string>
+  <string name="ConversationFragment_delete_for_everyone">Slett for alle</string>
   <string name="ConversationFragment_quoted_message_not_found">Fann ikkje den opphavlege meldinga</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Den opphavlege meldinga er ikkje lenger tilgjengeleg</string>
   <string name="ConversationFragment_failed_to_open_message">Klarte ikkje opna meldinga</string>
@@ -373,6 +378,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Klarte ikkje å leggja til %1$s fordi vedkomande ikkje brukar Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Lastar inn gruppedetaljar …</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Du ligg allereie i gruppa.</string>
+  <string name="GroupCreateActivity_remove_member_description">Fjern medlem</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Del profilnamnet og bildet ditt med denne gruppa?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Vil du gjera profilnamnet og bildet ditt synleg for alle noverande og framtidige medlem av denne gruppa?</string>
@@ -380,7 +386,25 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Du</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">Kven som helst</string>
+  <string name="GroupManagement_access_level_all_members">Alle medlem</string>
+  <string name="GroupManagement_access_level_only_admins">Berre administratorar</string>
   <!--PendingMembersActivity-->
+  <string name="PendingMembersActivity_people_you_invited">Folk du har invitert</string>
+  <string name="PendingMembersActivity_cancel_invite">Trekk tilbake invitasjon</string>
+  <string name="PendingMembersActivity_cancel_invites">Trekk tilbake invitasjonar</string>
+  <plurals name="PendingMembersActivity_cancel_d_invites">
+    <item quantity="one">Trekk tilbake invitasjon</item>
+    <item quantity="other">Trekk tilbake %1$d invitasjonar</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_canceling_invite">
+    <item quantity="one">Klarte ikkje trekka tilbake invitasjon</item>
+    <item quantity="other">Klarte ikkje trekka tilbake invitasjonar</item>
+  </plurals>
+  <plurals name="GroupMemberList_invited">
+    <item quantity="one">%1$s inviterte person</item>
+    <item quantity="other">%1$s inviterte %2$d personar</item>
+  </plurals>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Gruppe-avatar</string>
@@ -524,8 +548,10 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s stilte inn utløpstida for forsvinnande meldingar til %2$s</string>
   <!--GV2 specific-->
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_joined_the_group">Du blei med i gruppa.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s vart med i gruppa.</string>
   <!--GV2 member removals-->
+  <string name="MessageRecord_you_removed_s">Du fjerna %1$s.</string>
   <!--GV2 role change-->
   <!--GV2 invitations-->
   <!--GV2 invitation revokes-->
@@ -772,6 +798,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="ThreadRecord_view_once_photo">Éivisningsbilete</string>
   <string name="ThreadRecord_view_once_video">Éivisningsvideo</string>
   <string name="ThreadRecord_view_once_media">Éivisningsmedia</string>
+  <string name="ThreadRecord_this_message_was_deleted">Meldinga er sletta</string>
   <string name="ThreadRecord_s_is_on_signal">%s er på Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Forsvinnande meldingar skrudd av</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Utløpstid for melding endra til %s</string>
@@ -881,6 +908,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagerte med %1$s til éivisningsbildet ditt.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagerte med %1$s til éivisningsfilmen din.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">reagerte med %1$s til klistremerket ditt.</string>
+  <string name="MessageNotifier_this_message_was_deleted">Meldinga er sletta</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Forvald</string>
   <string name="NotificationChannel_calls">Samtalar</string>

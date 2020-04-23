@@ -85,11 +85,14 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Užblokuoti ir išeiti iš %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Užblokuoti %1$s?</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Grupės dalyviai nebegalės vėl pridėti jūsų į šią grupę.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Grupės dalyviai galės ir vėl jus pridėti į šią grupę.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Galėsite vieni kitiems rašyti žinutes bei skambinti.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Užblokuoti žmonės negalės jums skambinti ar siųsti žinučių.</string>
   <string name="BlockUnblockDialog_unblock_s">Atblokuoti %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Atblokuoti</string>
   <string name="BlockUnblockDialog_block">Užblokuoti</string>
+  <string name="BlockUnblockDialog_block_and_leave">Užblokuoti ir išeiti</string>
   <string name="BlockUnblockDialog_block_and_delete">Užblokuoti ir ištrinti</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Šiandien</string>
@@ -172,6 +175,7 @@
   <string name="ConversationItem_read_more">  Skaityti daugiau</string>
   <string name="ConversationItem_download_more">  Atsisiųsti daugiau</string>
   <string name="ConversationItem_pending">  Laukiama</string>
+  <string name="ConversationItem_this_message_was_deleted">Ši žinutė buvo ištrinta.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Atstatyti saugųjį seansą?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tai gali padėti, jeigu turite problemų su šifravimu. Jūsų žinutės bus išsaugotos.</string>
@@ -281,6 +285,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Ištrinama</string>
   <string name="ConversationFragment_deleting_messages">Ištrinamos žinutės…</string>
+  <string name="ConversationFragment_delete_for_everyone">Ištrinti visiems</string>
   <string name="ConversationFragment_quoted_message_not_found">Pradinė žinutė nerasta</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Pradinė žinutė daugiau nebeprieinama</string>
   <string name="ConversationFragment_failed_to_open_message">Nepavyko atverti žinutės</string>
@@ -402,6 +407,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nepavyko pridėti %1$s, kadangi tai nėra Signal naudotojas.</string>
   <string name="GroupCreateActivity_loading_group_details">Įkeliama išsamesnė grupės informacija…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Jūs jau esate grupėje.</string>
+  <string name="GroupCreateActivity_remove_member_description">Šalinti dalyvį</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Bendrinti jūsų profilio vardą ir nuotrauką su šia grupe?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Ar norite padaryti savo profilio vardą ir nuotrauką matomą visiems esamiems ir būsimiems šios grupės dalyviams?</string>
@@ -568,16 +574,28 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nustatė išnykstančių žinučių laikmatį į %2$s.</string>
   <!--GV2 specific-->
   <!--GV2 member additions-->
+  <string name="MessageRecord_s_added_you">%1$s pridėjo jus į grupę.</string>
   <string name="MessageRecord_you_joined_the_group">Jūs prisijungėte prie grupės.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s prisijungė prie grupės.</string>
   <!--GV2 member removals-->
+  <string name="MessageRecord_you_removed_s">Jūs pašalinote %1$s.</string>
+  <string name="MessageRecord_s_removed_you_from_the_group">%1$s pašalino jus iš grupės.</string>
   <string name="MessageRecord_you_left_the_group">Jūs išėjote iš grupės.</string>
+  <string name="MessageRecord_s_left_the_group">%1$s išėjo iš grupės.</string>
   <!--GV2 role change-->
   <!--GV2 invitations-->
   <!--GV2 invitation revokes-->
+  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Kažkas atmetė pakvietimą prisijungti prie grupės.</string>
+  <string name="MessageRecord_you_declined_the_invitation_to_the_group">Jūs atmetėte pakvietimą prisijungti prie grupės.</string>
   <!--GV2 invitation acceptance-->
+  <string name="MessageRecord_you_accepted_invite">Jūs priėmėte pakvietimą prisijungti prie grupės.</string>
+  <string name="MessageRecord_s_accepted_invite">%1$s priėmė pakvietimą prisijungti prie grupės.</string>
   <!--GV2 title change-->
+  <string name="MessageRecord_you_changed_the_group_name_to_s">Jūs pakeitėte grupės pavadinimą į \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s pakeitė grupės pavadinimą į \"%2$s\".</string>
   <!--GV2 avatar change-->
+  <string name="MessageRecord_you_changed_the_group_avatar">Jūs pakeitėte grupės avatarą.</string>
+  <string name="MessageRecord_s_changed_the_group_avatar">%1$s pakeitė grupės avatarą.</string>
   <!--GV2 attribute access level change-->
   <!--GV2 membership access level change-->
   <!--End of GV2 specific update messages-->
@@ -660,6 +678,7 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Jūsų turima įdiegta „Google Play“ paslaugų versija nefunkcionuoja tinkamai. Prašome iš naujo įdiegti „Google Play“ paslaugas ir bandyti dar kartą.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">Neteisingas PIN</string>
+  <string name="PinRestoreEntryFragment_need_help">Reikia pagalbos?</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Sukurti naują PIN kodą</string>
   <string name="PinRestoreEntryFragment_contact_support">Susisiekti su palaikymu</string>
   <string name="PinRestoreEntryFragment_cancel">Atsisakyti</string>
@@ -668,6 +687,7 @@
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Įvesti skaitinį PIN kodą</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Susikurti PIN kodą</string>
+  <string name="PinRestoreLockedFragment_create_new_pin">Sukurti naują PIN kodą</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Įvertinkite šią programėlę</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Jeigu jūs mėgaujatės naudodamiesi šia programėle, skirkite minutėlę mums padėti ir įvertinkite ją.</string>
@@ -746,6 +766,10 @@
   <string name="RegistrationActivity_country_code_description">Šalies kodas</string>
   <string name="RegistrationActivity_call">Skambinti</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Įjungti registracijos užraktą?</string>
+  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Išjungti registracijos užraktą?</string>
+  <string name="RegistrationLockV2Dialog_turn_on">Įjungti</string>
+  <string name="RegistrationLockV2Dialog_turn_off">Išjungti</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Žiūrėti nuotrauką</string>
   <string name="RevealableMessageView_view_video">Rodyti vaizdo įrašą</string>
@@ -832,6 +856,7 @@
   <string name="ThreadRecord_view_once_photo">Vienkartinės peržiūros nuotrauka</string>
   <string name="ThreadRecord_view_once_video">Vienkartinės peržiūros vaizdo įrašas</string>
   <string name="ThreadRecord_view_once_media">Vienkartinės peržiūros medija</string>
+  <string name="ThreadRecord_this_message_was_deleted">Ši žinutė buvo ištrinta.</string>
   <string name="ThreadRecord_s_is_on_signal">%s atėjo į Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Išnykstančios žinutės išjungtos</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Išnykstančių žinučių laikas nustatytas į %s</string>
@@ -941,6 +966,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Sureagavo į jūsų vienkartinės peržiūros nuotrauką: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">Sureagavo į jūsų vienkartinės peržiūros vaizdo įrašą: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Sureagavo į jūsų lipduką: %1$s.</string>
+  <string name="MessageNotifier_this_message_was_deleted">Ši žinutė buvo ištrinta.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Numatytoji</string>
   <string name="NotificationChannel_calls">Skambučiai</string>
@@ -1761,6 +1787,8 @@
   <string name="preferences_app_protection__signal_pin">Signal PIN kodas</string>
   <string name="preferences_app_protection__create_a_pin">Sukurti PIN kodą</string>
   <string name="preferences_app_protection__change_your_pin">Keisti PIN kodą</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">Nepavyko įjungti registracijos užrakto.</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">Nepavyko išjungti registracijos užrakto.</string>
   <string name="AppProtectionPreferenceFragment_none">Nėra</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Registracijos užrakto PIN nėra tas pats, kas jūsų gautas SMS patvirtinimo kodas. Įveskite PIN, kurį esate anksčiau sukonfigūravę programėlėje.</string>
   <string name="registration_activity__registration_lock_pin">Registracijos užrakto PIN</string>

@@ -86,7 +86,7 @@
   <string name="BlockUnblockDialog_block_and_leave_s">Zablokować i opuścić %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Zablokować %1$s?</string>
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Nie będziesz już otrzymywać wiadomości ani aktualizacji z tej grupy, a jej członkowie nie będą mogli ponownie Cię do niej dodać.</string>
-  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Członkowie grupy będą mogli ponownie dodać Cię do grupy.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Członkowie grupy nie będą mogli ponownie dodać Cię do grupy.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Członkowie grupy będą mogli ponownie dodać Cię do grupy.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Będziecie w stanie wysyłać wiadomości i wykonywać połączenia do siebie nawzajem.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Zablokowane osoby nie będą mogły do Ciebie dzwonić ani wysyłać Ci wiadomości.</string>
@@ -287,7 +287,7 @@
   <string name="ConversationFragment_deleting">Usuwanie</string>
   <string name="ConversationFragment_deleting_messages">Usuwanie wiadomości…</string>
   <string name="ConversationFragment_delete_for_me">Usuń u mnie</string>
-  <string name="ConversationFragment_delete_for_everyone">Usuń u wszystkiech</string>
+  <string name="ConversationFragment_delete_for_everyone">Usuń u wszystkich</string>
   <string name="ConversationFragment_quoted_message_not_found">Nie znaleziono oryginalnej wiadomości</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Oryginalna wiadomość nie jest już dostępna</string>
   <string name="ConversationFragment_failed_to_open_message">Nie udało się otworzyć wiadomości</string>
@@ -615,7 +615,7 @@
   <string name="MessageRecord_s_added_s">%1$s dodał(a) %2$s.</string>
   <string name="MessageRecord_s_added_you">%1$s dodał(a) Cię do grupy.</string>
   <string name="MessageRecord_you_joined_the_group">Dołączyłeś(aś) do tej grupy.</string>
-  <string name="MessageRecord_s_joined_the_group">%1$s dołączyli do grupy.</string>
+  <string name="MessageRecord_s_joined_the_group">%1$s dołączył(a) do grupy.</string>
   <!--GV2 member removals-->
   <string name="MessageRecord_you_removed_s">Usunąłeś(ęłaś) %1$s.</string>
   <string name="MessageRecord_s_removed_s">%1$s usunął(ęła) %2$s.</string>
@@ -662,8 +662,8 @@
   <string name="MessageRecord_you_changed_the_group_name_to_s">Zmieniłeś(aś) nazwę grupy na “%1$s“.</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s zmienił(a) nazwę grupy na \"%2$s\".</string>
   <!--GV2 avatar change-->
-  <string name="MessageRecord_you_changed_the_group_avatar">Zmieniłeś(aś) awatara grupy.</string>
-  <string name="MessageRecord_s_changed_the_group_avatar">%1$s zmienił(a) awatara grupy.</string>
+  <string name="MessageRecord_you_changed_the_group_avatar">Zmieniłeś(aś) awatar grupy.</string>
+  <string name="MessageRecord_s_changed_the_group_avatar">%1$s zmienił(a) awatar grupy.</string>
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Zmieniłeś(aś), kto może edytować informacje o grupie na \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s zmienił(a), kto może edytować informacje o grupie na \"%2$s\".</string>
@@ -752,7 +752,7 @@
   <string name="PinRestoreEntryFragment_skip_pin_entry">Pominąć wpisywanie PINu?</string>
   <string name="PinRestoreEntryFragment_need_help">Potrzebujesz pomocy?</string>
   <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Twój PIN to %1$d+ znakowy, utworzony przez Ciebie kod, który może być liczbowy lub alfanumeryczny. Jeśli nie pamiętasz swojego PINu, możesz utworzyć nowy. Możesz zarejestrować się i używać swojego konta, ale stracisz niektóre zapisane ustawienia, takie jak informacje w Twoim profilu.</string>
-  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Jeśli nie pamiętasz swojego PINu, możesz utworzyć nowy. Możesz zarejestrować się i używać swojego konta, ale stracisz niektóre zapisane ustawienia, takie jak informacje w Twoim profilu.</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Jeśli nie pamiętasz swojego PINu, możesz utworzyć nowy. Możesz zarejestrować się i używać swojego konta, ale stracisz niektóre zapisane ustawienia, takie jak informacje o Twoim profilu.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Utwórz nowy PIN</string>
   <string name="PinRestoreEntryFragment_contact_support">Kontakt z pomocą techniczną</string>
   <string name="PinRestoreEntryFragment_cancel">Anuluj</string>
@@ -1871,7 +1871,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_app_protection__create_a_pin">Utwórz PIN</string>
   <string name="preferences_app_protection__change_your_pin">Zmień swój PIN</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Kody PIN gwarantują, że informacje przechowywane w Signal są zaszyfrowane i tylko Ty masz do nich dostęp. Twój profil, ustawienia i kontakty zostaną przywrócone, gdy ponownie zainstalujesz Signal.</string>
-  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Zwiększa bezpieczeństwo, wymagając podania Twojego PINu Signal przy ponownej rejestracji numeru telefonu w Signal.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Zwiększ bezpieczeństwo, wymagając podania Twojego PINu Signal przy ponownej rejestracji numeru telefonu w Signal.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Nie udało się włączyć blokady rejestracji.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Nie udało się wyłączyć blokady rejestracji.</string>
   <string name="AppProtectionPreferenceFragment_none">Brak</string>

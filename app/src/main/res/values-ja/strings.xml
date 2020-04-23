@@ -163,6 +163,7 @@
   <string name="ConversationItem_read_more">  詳細を読む</string>
   <string name="ConversationItem_download_more">  更にダウンロード</string>
   <string name="ConversationItem_pending">  保留中</string>
+  <string name="ConversationItem_this_message_was_deleted">このメッセージが削除されました。</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">セキュアセッションをリセットしますか？</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">この会話の暗号化に問題がある場合、改善される可能性があります。メッセージは削除されません。</string>
@@ -366,6 +367,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">あなた</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">誰でも</string>
   <!--PendingMembersActivity-->
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
@@ -736,6 +738,7 @@
   <string name="ThreadRecord_view_once_photo">消える写真</string>
   <string name="ThreadRecord_view_once_video">消える動画</string>
   <string name="ThreadRecord_view_once_media">消えるメディア</string>
+  <string name="ThreadRecord_this_message_was_deleted">このメッセージが削除されました。</string>
   <string name="ThreadRecord_s_is_on_signal">%s が Signal に登録しました！</string>
   <string name="ThreadRecord_disappearing_messages_disabled">消えるメッセージが無効にされました</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">消えるメッセージのタイマーが %s に設定されました</string>
@@ -844,6 +847,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">あなたの消える写真に %1$s。</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">あなたの消えるビデオに %1$s。</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">あなたのステッカーに %1$s。</string>
+  <string name="MessageNotifier_this_message_was_deleted">このメッセージが削除されました。</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">既定</string>
   <string name="NotificationChannel_calls">通話</string>

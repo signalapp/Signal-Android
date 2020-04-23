@@ -79,11 +79,15 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Të bllokohet dhe braktiset %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Të bllokohet %1$s?</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">S’do të merrni më mesazhe apo përditësime nga ky grup, dhe anëtarët e tij s’do të jenë në gjendje t’ju shtojnë sërish te ky grup.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Anëtarët e grupit s’do të jenë në gjendje t’ju rishtojnë te ky grup.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Anëtarë të grupit do të jenë në gjendje t’ju rishtojnë te ky grup.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Do të jeni në gjendje t’i shkruani mesazhe dhe t’i bëni thirrje njëri-tjetrit.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Personat e bllokuar s’do të jenë në gjendje t’ju bëjnë thirrje apo t’ju dërgojnë mesazhe.</string>
   <string name="BlockUnblockDialog_unblock_s">Të zhbllokohet %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Zhbllokoje</string>
   <string name="BlockUnblockDialog_block">Bllokoje</string>
+  <string name="BlockUnblockDialog_block_and_leave">Bllokoje dhe Braktise</string>
   <string name="BlockUnblockDialog_block_and_delete">Bllokoje dhe Fshije</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Sot</string>
@@ -166,6 +170,7 @@
   <string name="ConversationItem_read_more">  Lexoni Më Tepër</string>
   <string name="ConversationItem_download_more">  Shkarkoni Më Tepër</string>
   <string name="ConversationItem_pending">  Pezull</string>
+  <string name="ConversationItem_this_message_was_deleted">Ky mesazh u fshi.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Të rikthehet te parazgjedhjet sesioni i sigurt?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Kjo mund të ndihmojë nëse keni probleme fshehtëzimi në këtë bisedë. Mesazhet tuaja do të ruhen.</string>
@@ -261,6 +266,8 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Po fshihet</string>
   <string name="ConversationFragment_deleting_messages">Po fshihen mesazhet…</string>
+  <string name="ConversationFragment_delete_for_me">Fshije për mua</string>
+  <string name="ConversationFragment_delete_for_everyone">Fshije për këdo</string>
   <string name="ConversationFragment_quoted_message_not_found">S\’u gjet mesazhi origjinal</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Mesazhi origjinal s\’gjendet më</string>
   <string name="ConversationFragment_failed_to_open_message">S’u arrit të hapet mesazhe</string>
@@ -374,6 +381,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">S\’u shtua dot %1$s, ngaqë s\’është përdorues Signal-i.</string>
   <string name="GroupCreateActivity_loading_group_details">Po ngarkohen hollësi grupi…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Jeni tashmë te grupi.</string>
+  <string name="GroupCreateActivity_remove_member_description">Hiqe anëtarin</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Të ndahet emri dhe fotoja juaj e profilit me këtë grup?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Doni t\’i bëni emrin dhe foton e profilit të dukshme për krejt anëtarët e tanishëm dhe të ardhshëm të këtij grupi?</string>
@@ -381,11 +389,36 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Ju</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">Këdo</string>
+  <string name="GroupManagement_access_level_all_members">Krejt anëtarët</string>
+  <string name="GroupManagement_access_level_only_admins">Vetëm përgjegjësit</string>
   <!--PendingMembersActivity-->
+  <string name="PendingMemberInvitesActivity_pending_group_invites">Ftesa për në grupe pezull</string>
   <string name="PendingMembersActivity_people_you_invited">Persona që keni ftuar</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">S’keni ftesa pezull.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Ftesa nga anëtarë të tjerë të grupit</string>
+  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">S’ka ftesa pezull nga anëtarë të tjerë grupi.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Nuk shfaqen hollësi të personave të ftuar nga anëtarë të tjerë të grupit. Nëse të ftuarit zgjedhin të marrin pjesë, të dhënat e tyre do të do t’u shfaqen grupit në atë kohë.S’do të shohin ndonjë mesazh te grupi, para se të marrin pjesë në të.</string>
+  <string name="PendingMembersActivity_cancel_invite">Anuloje ftesën</string>
+  <string name="PendingMembersActivity_cancel_invites">Anuloji ftesat</string>
+  <plurals name="PendingMembersActivity_cancel_d_invites">
+    <item quantity="one">Anuloje ftesën</item>
+    <item quantity="other">Anuloni %1$d ftesa</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_canceling_invite">
+    <item quantity="one">Gabim në anulim ftese</item>
+    <item quantity="other">Gabim në anulim ftesash</item>
+  </plurals>
+  <plurals name="GroupMemberList_invited">
+    <item quantity="one">%1$s ftoi 1 person</item>
+    <item quantity="other">%1$s ftoi %2$d vetë</item>
+  </plurals>
   <!--GV2 Invite cancellation confirmation-->
+  <string name="GroupManagement_cancel_own_single_invite">Doni të anulohet ftesa që dërguat për %1$s?</string>
+  <plurals name="GroupManagement_cancel_others_invites">
+    <item quantity="one">Doni të anulohet ftesa e dërguar nga %1$s?</item>
+    <item quantity="other">Doni të anulohen %2$d iftesat e dërguara nga %1$s?</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar grupi</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -528,18 +561,59 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s e vuri kohëmatësin e tretjes së mesazheve në %2$s.</string>
   <!--GV2 specific-->
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_added_s">Shtuat %1$s.</string>
+  <string name="MessageRecord_s_added_s">%1$s shtoi %2$s.</string>
+  <string name="MessageRecord_s_added_you">%1$s ju shtoi te grupi.</string>
   <string name="MessageRecord_you_joined_the_group">U bëtë pjesë e grupit.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s u bënë pjesë e grupit.</string>
   <!--GV2 member removals-->
+  <string name="MessageRecord_you_removed_s">Hoqët %1$s.</string>
+  <string name="MessageRecord_s_removed_s">%1$s hoqi %2$s.</string>
+  <string name="MessageRecord_s_removed_you_from_the_group">%1$s ju hoqi nga grupi.</string>
   <string name="MessageRecord_you_left_the_group">E braktisët grupin.</string>
+  <string name="MessageRecord_s_left_the_group">%1$s e la grupin.</string>
   <!--GV2 role change-->
+  <string name="MessageRecord_you_made_s_an_admin">E bëtë %1$s përgjegjës.</string>
+  <string name="MessageRecord_s_made_s_an_admin">%1$s bëri %2$s përgjegjës.</string>
+  <string name="MessageRecord_s_made_you_an_admin">%1$s ju bëri përgjegjës.</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">I shfuqizuat %1$s privilegje përgjegjësi.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s shfuqizoi privilegjet tuaja si përgjegjës.</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s i shfuqizoi %2$s privilegje përgjegjësi.</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_invited_s_to_the_group">Ftuat %1$s te grupi.</string>
+  <string name="MessageRecord_s_invited_you_to_the_group">%1$s ju ftoi te grupi.</string>
+  <plurals name="MessageRecord_s_invited_members">
+    <item quantity="one">%1$s ftoi 1 person te grupi.</item>
+    <item quantity="other">%1$s ftoi %2$d vetë te grupi.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
+  <plurals name="MessageRecord_you_revoked_invites">
+    <item quantity="one">Shfuqizuat një ftese për te grupi.</item>
+    <item quantity="other">Shfuqizuat %1$d ftesa për te grupi.</item>
+  </plurals>
+  <plurals name="MessageRecord_s_revoked_invites">
+    <item quantity="one">%1$s shfuqizoi një ftesë për te grupi.</item>
+    <item quantity="other">%1$s shfuqizoi %2$d ftesa për te grupi.</item>
+  </plurals>
+  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Dikush hodhi poshtë një ftesë për te grupi.</string>
+  <string name="MessageRecord_you_declined_the_invitation_to_the_group">Hodhët poshtë ftesën për te grupi.</string>
   <!--GV2 invitation acceptance-->
+  <string name="MessageRecord_you_accepted_invite">Pranuat ftesën për te grupi.</string>
+  <string name="MessageRecord_s_accepted_invite">%1$s pranoi një ftesë për te grupi.</string>
+  <string name="MessageRecord_you_added_invited_member_s">Shtuat anëtarët e ftuar %1$s.</string>
+  <string name="MessageRecord_s_added_invited_member_s">%1$s shtoi anëtarin e ftuar %2$s.</string>
   <!--GV2 title change-->
+  <string name="MessageRecord_you_changed_the_group_name_to_s">Ndryshuat emrin e grupit në \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ndryshoi emrin e grupit në \"%2$s\".</string>
   <!--GV2 avatar change-->
+  <string name="MessageRecord_you_changed_the_group_avatar">Ndryshuat avatarin e grupit.</string>
+  <string name="MessageRecord_s_changed_the_group_avatar">%1$s ndryshoi avatarin e grupit.</string>
   <!--GV2 attribute access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Ndryshuat cili mund të përpunojë të dhëna grupi te \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s ndryshoi se cilët mund të përpunojnë të dhëna grupi te \"%2$s\".</string>
   <!--GV2 membership access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Ndryshuat cilët mund të përpunojnë anëtarësi grupi te \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ndryshoi se cilët mund të përpunojnë anëtarësi grupi te \"%2$s\".</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Numri juaj i sigurisë me %s është ndryshuar.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">E shënuat numrin tuaj të sigurisë me %s si të verifikuar</string>
@@ -612,15 +686,26 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Versioni i Google Play Services që keni instaluar nuk funksionon saktë. Ju lutemi. riinstaloni Google Play Services dhe riprovoni.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">PIN i pasaktë</string>
+  <string name="PinRestoreEntryFragment_skip_pin_entry">Të anashkalohet dhënie PIN-i?</string>
+  <string name="PinRestoreEntryFragment_need_help">Ju duhet ndihmë?</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">PIN-i juaj është një kod me %1$d ose më tepër shifra që krijuat dhe që mund të jetë numerik ose alfanumerik.\n\nNëse s’mbani mend PIN-in tuaj, mund të krijoni një të ri. Mund të regjistroni dhe përdorni llogarinë tuaj, por do të humbni disa nga rregullimet e ruajtura, bie fjala, të dhënat e profilit tuaj.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Nëse s’mbani mend PIN-in tuaj, mund të krijoni një të ri. Mund të regjistroni dhe përdorni llogarinë tuaj, por do të humbni disa nga rregullimet e ruajtura, bie fjala, të dhëna të profilit tuaj.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Krijoni PIN të Ri</string>
   <string name="PinRestoreEntryFragment_contact_support">Lidhuni Me Asistencën</string>
   <string name="PinRestoreEntryFragment_cancel">Anuloje</string>
   <string name="PinRestoreEntryFragment_skip">Anashkaloje</string>
+  <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
+    <item quantity="one">Keni edhe %1$d provë. Nëse ju mbarohen provat, mund të krijoni një PIN të ri. Mund të regjistroni dhe përdorni llogarinë tuaj, por do të humbni disa nga rregullimet e ruajtura, bie fjala, të dhënat e profilit tuaj.</item>
+    <item quantity="other">Keni edhe %1$d prova. Nëse ju mbarohen provat, mund të krijoni një PIN të ri. Mund të regjistroni dhe përdorni llogarinë tuaj, por do të humbni disa nga rregullimet e ruajtura, bie fjala, të dhënat e profilit tuaj.</item>
+  </plurals>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Regjistrim Signal-i - Ju Duhet Ndihmë me PIN-in për Android</string>
+  <string name="PinRestoreEntryFragment_subject_signal_registration">Subjekt: Regjistrim Signal-i - Më Duhet Ndihmë me PIN-in për Android\nTë dhëna pajisjeje: %1$s\nVersion Android: %2$s\nVersion Signal-i: %3$s\nGjuhë: %4$s</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Jepni PIN alfanumerik</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Jepni PIN numerik</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Krijoni PIN-in tuaj</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Ju janë mbaruar hamendësimet e PIN-it, por prapë mundë të hyni në llogarinë tuaj Signal duke krijuar një PIN të ri. Për hir të privatësisë dhe sigurisë tuaj, llogaria juaj do të rikthehet pa ndonjë të dhënë profili apo rregullime të ruajtura.</string>
+  <string name="PinRestoreLockedFragment_create_new_pin">Krijoni PIN të ri</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Vlerësojeni këtë aplikacion</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Nëse ju pëlqen ta përdorni këtë aplikacion, ju lutemi, ndaluni një çast të na ndihmoni duke e vlerësuar atë.</string>
@@ -696,7 +781,11 @@
   <string name="RegistrationActivity_country_code_description">Kod vendi</string>
   <string name="RegistrationActivity_call">Thirrje</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Të aktivizohet Kyçja e Regjistrimeve?</string>
+  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Të çaktivizohet Kyçja e Regjistrimeve?</string>
   <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Nëse harroni PIN-in tuaj të Signal-it, kur riregjistroheni në Signal, do të liheni jashtë llogarisë tuaj për 7 ditë.</string>
+  <string name="RegistrationLockV2Dialog_turn_on">Aktivizoje</string>
+  <string name="RegistrationLockV2Dialog_turn_off">Çaktivizoje</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Shihni Foton</string>
   <string name="RevealableMessageView_view_video">Shiheni Videon</string>
@@ -781,6 +870,7 @@
   <string name="ThreadRecord_view_once_photo">Foto për t’u parë vetëm një herë</string>
   <string name="ThreadRecord_view_once_video">Video për t’u parë vetëm një herë</string>
   <string name="ThreadRecord_view_once_media">Media për t’u parë vetëm një herë</string>
+  <string name="ThreadRecord_this_message_was_deleted">Ky mesazh u fshi.</string>
   <string name="ThreadRecord_s_is_on_signal">%s është në Signal! </string>
   <string name="ThreadRecord_disappearing_messages_disabled">Zhdukja e mesazheve është e çaktivizuar</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Koha për zhdukje mesazhesh është vënë %s</string>
@@ -890,6 +980,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagoi me %1$s ndaj fotos tuaj për një parje të vetme.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagoi me %1$s ndaj videos tuaj për një parje të vetme.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagoi me %1$s ndaj ngjitësit tuaj.</string>
+  <string name="MessageNotifier_this_message_was_deleted">Ky mesazh u fshi.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Parazgjedhje</string>
   <string name="NotificationChannel_calls">Thirrje</string>
@@ -1447,6 +1538,7 @@
   <string name="conversation__menu_view_all_media">Krejt mediat</string>
   <string name="conversation__menu_conversation_settings">Rregullime bisedash</string>
   <string name="conversation__menu_add_shortcut">Shtoje te skena e kreut</string>
+  <string name="conversation__menu_pending_members">Anëtarë pezull</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Zgjero flluskën</string>
   <!--conversation_callable_insecure-->
@@ -1548,6 +1640,7 @@
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Krijimi i PIN-it dështoi</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN-i juaj s’u ruajt.Do t’ju kujtojmë më vonë të krijoni një PIN.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN-i u krijua.</string>
+  <string name="ConfirmKbsPinFragment__re_enter_your_pin">Rijepni PIN-in tuaj</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Po krijohet PIN-i…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Ju paraqesim PIN-et</string>
@@ -1605,6 +1698,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Krijoni PIN</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN-et i mbajnë të fshehtëzuara të dhënat që depozitohen me Signal-in</string>
   <string name="KbsMegaphone__create_pin">Krijoni PIN</string>
   <string name="KbsMegaphone__introducing_pins">Ju paraqesim PIN-et</string>
   <string name="KbsMegaphone__update_pin">Përditësoni PIN-in</string>
@@ -1682,6 +1776,9 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="preferences_app_protection__create_a_pin">Krijoni PIN</string>
   <string name="preferences_app_protection__change_your_pin">Ndryshoni PIN-in tuaj</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-et i mbajnë të fshehtëzuara të dhëna e depozituara me Signal, që kështu të mund t’i përdorni. Profili, rregullimet dhe kontaktet tuaja do të rikthehen, kur të riinstaloni Signal-in.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Shtoni siguri ekstra duke kërkuar doemos që për PIN-in tuaj Signal të regjistrohet sërish numri juaj i telefonit me Signal.</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">S’u arrit të aktivizohej kyçje regjistrimesh.</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">S’u arrit të çaktivizohej kyçje regjistrimesh.</string>
   <string name="AppProtectionPreferenceFragment_none">Asnjë</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN-i i Kyçjes së Regjistrimit s\’është i njëjtë me kodin e verifikimit SMS që sapo morët. Ju lutemi, jepni PIN-in që formësuat më herët te aplikacioni.</string>
   <string name="registration_activity__registration_lock_pin">PIN Kyçjeje Regjistrimi</string>

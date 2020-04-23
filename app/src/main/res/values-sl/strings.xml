@@ -85,11 +85,16 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Blokiram in zapustim skupino %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Blokiram uporabnika %1$s?</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Od skupine ne boste več prejemali sporočil in posodobitev. Člani skupine vas ne bodo več mogli dodati nazaj v skupino.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Člani skupine vas ne bodo mogli dodati nazaj v skupino.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Drugi člani vas bodo lahko ponovno dodali v skupino.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Lahko si bosta pošiljala sporočila in se klicala.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokirani uporabniki vas ne bodo mogli klicati ali vam pošiljati sporočil.</string>
   <string name="BlockUnblockDialog_unblock_s">Odblokiram uporabnika %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Odblokiraj</string>
   <string name="BlockUnblockDialog_block">Blokiraj</string>
+  <string name="BlockUnblockDialog_block_and_leave">Blokiraj in zapusti</string>
+  <string name="BlockUnblockDialog_block_and_delete">Blokiraj in izbriši</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Danes</string>
   <string name="BucketedThreadMedia_Yesterday">Včeraj</string>
@@ -171,6 +176,7 @@
   <string name="ConversationItem_read_more">Več informacij</string>
   <string name="ConversationItem_download_more">Naloži več</string>
   <string name="ConversationItem_pending">V teku</string>
+  <string name="ConversationItem_this_message_was_deleted">Sporočilo je bilo izbrisano</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Ponastavim varno sejo?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">To lahko pomaga pri težavah s šifriranjem med pogovorom. Vaša sporočila bodo ohranjena.</string>
@@ -280,6 +286,8 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Brišem</string>
   <string name="ConversationFragment_deleting_messages">Izbris sporočil …</string>
+  <string name="ConversationFragment_delete_for_me">Izbriši zame</string>
+  <string name="ConversationFragment_delete_for_everyone">Izbriši za vse</string>
   <string name="ConversationFragment_quoted_message_not_found">Izvorno sporočilo ni bilo najdeno</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Izvorno sporočilo ni več na voljo</string>
   <string name="ConversationFragment_failed_to_open_message">Odpiranje sporočila ni uspelo</string>
@@ -401,6 +409,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Stik %1$s ni bil dodan, ker ni uporabnik aplikacije Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Nalaganje podrobnosti o skupini …</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Ste že v skupini.</string>
+  <string name="GroupCreateActivity_remove_member_description">Odstrani člana</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Želite deliti ime svojega profila in predstavitveno fotografijo s to skupino?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Želite, da sta ime vašega profila in predstavitvena fotografija vidna sedanjim in bodočim članom te skupine?</string>
@@ -408,8 +417,44 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Vi</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">Kdorkoli</string>
+  <string name="GroupManagement_access_level_all_members">Vsi člani</string>
+  <string name="GroupManagement_access_level_only_admins">Samo administratorji</string>
   <!--PendingMembersActivity-->
+  <string name="PendingMemberInvitesActivity_pending_group_invites">Čakajoča povabila v skupine</string>
+  <string name="PendingMembersActivity_people_you_invited">Ljudje, ki ste jih povabili</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">Nimate čakajočih povabil.</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">Povabila drugih članov skupine</string>
+  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Ni čakajočih povabil drugih članov skupine.</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">Podrobosti o uporabnikih povabljenih s strani drugih članov skupine so zakrite. Če bodo povabljeni sprejeli povabilo v skupino, bodo njihove informacije postale vidne tudi drugim članom skupine. Dokler se ne pridružijo, ne bodo mogli spremljati sporočil v skupini.</string>
+  <string name="PendingMembersActivity_cancel_invite">Prekliči povabilo</string>
+  <string name="PendingMembersActivity_cancel_invites">Prekliči povabila</string>
+  <plurals name="PendingMembersActivity_cancel_d_invites">
+    <item quantity="one">Prekliči povabilo</item>
+    <item quantity="two">Prekliči %1$d povabili</item>
+    <item quantity="few">Prekliči %1$d povabila</item>
+    <item quantity="other">Prekliči %1$d povabil</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_canceling_invite">
+    <item quantity="one">Napaka pri preklicu povabila</item>
+    <item quantity="two">Napaka pri preklicu povabil</item>
+    <item quantity="few">Napaka pri preklicu povabil</item>
+    <item quantity="other">Napaka pri preklicu povabil</item>
+  </plurals>
+  <plurals name="GroupMemberList_invited">
+    <item quantity="one">Uporabnik %1$s je povabil eno osebo</item>
+    <item quantity="two">Uporabnik %1$s je povabil %2$d osebi</item>
+    <item quantity="few">Uporabnik %1$s je povabil %2$d osebe</item>
+    <item quantity="other">%1$s je povabil %2$d oseb</item>
+  </plurals>
   <!--GV2 Invite cancellation confirmation-->
+  <string name="GroupManagement_cancel_own_single_invite">Želite preklicati povabilo, ki ste ga poslali uporabniku %1$s?</string>
+  <plurals name="GroupManagement_cancel_others_invites">
+    <item quantity="one">Želite preklicati povabilo uporabnika %1$s?</item>
+    <item quantity="two">Želite preklicati %2$d povabili uporabnika %1$s?</item>
+    <item quantity="few">Želite preklicati %2$d povabila uporabnika %1$s?</item>
+    <item quantity="other">Želite preklicati %2$d povabil uporabnika %1$s?</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar skupine</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -566,18 +611,65 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">Uporabnik %1$s je nastavil čas poteka sporočil na %2$s.</string>
   <!--GV2 specific-->
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_added_s">Dodali ste uporabnika %1$s.</string>
+  <string name="MessageRecord_s_added_s">Oseba %1$s je dodala uporabnika %2$s.</string>
+  <string name="MessageRecord_s_added_you">Oseba %1$s vas je dodala v skupino.</string>
   <string name="MessageRecord_you_joined_the_group">Pridružili ste se skupini.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s stikov se je priključilo skupini.</string>
   <!--GV2 member removals-->
+  <string name="MessageRecord_you_removed_s">Odstranili ste uporabnika %1$s.</string>
+  <string name="MessageRecord_s_removed_s">Oseba %1$s je odstranila uporabnika %2$s.</string>
+  <string name="MessageRecord_s_removed_you_from_the_group">Oseba %1$s vas je odstranila iz skupine.</string>
   <string name="MessageRecord_you_left_the_group">Zapustili ste skupino.</string>
+  <string name="MessageRecord_s_left_the_group">Oseba %1$s je zapustila skupino.</string>
   <!--GV2 role change-->
+  <string name="MessageRecord_you_made_s_an_admin">Osebo %1$s ste določili za administratorja.</string>
+  <string name="MessageRecord_s_made_s_an_admin">Osdeba %1$s je določila uporabnika %2$s za administratorja.</string>
+  <string name="MessageRecord_s_made_you_an_admin">Oseba %1$s vas je določila za administratorja.</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">Uporabniku %1$s ste odvzeli administratorska pooblastila.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">Oseba %1$s vam je odvzela administratorska pooblastila.</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">Oseba %1$s je odvzela administratorska pooblastila uporabniku %2$s.</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_invited_s_to_the_group">Uporabnika %1$s ste povabili v skupino.</string>
+  <string name="MessageRecord_s_invited_you_to_the_group">Oseba %1$s vas je povabila v skupino.</string>
+  <plurals name="MessageRecord_s_invited_members">
+    <item quantity="one">Oseba %1$s je povabila enega uporabnika v skupino.</item>
+    <item quantity="two">Oseba %1$s je povabila %2$d uporabnika v skupino.</item>
+    <item quantity="few">Oseba %1$s je povabila %2$d uporabnike v skupino.</item>
+    <item quantity="other">Oseba %1$s je povabila %2$d uporabnikov v skupino.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
+  <plurals name="MessageRecord_you_revoked_invites">
+    <item quantity="one">Preklicali ste povabilo v skupino.</item>
+    <item quantity="two">Preklicali ste %1$d povabili v skupino.</item>
+    <item quantity="few">Preklicali ste %1$d povabila v skupino.</item>
+    <item quantity="other">Preklicali ste %1$d povabil v skupino.</item>
+  </plurals>
+  <plurals name="MessageRecord_s_revoked_invites">
+    <item quantity="one">Oseba %1$s je preklicala povabilo v skupino.</item>
+    <item quantity="two">Oseba %1$s je preklicala %2$d povabili v skupino.</item>
+    <item quantity="few">Oseba %1$s je preklicala %2$dpovabila v skupino.</item>
+    <item quantity="other">Oseba %1$s je preklicala %2$d povabil v skupino.</item>
+  </plurals>
+  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Nekdo je zavrnil povabilo v skupino.</string>
+  <string name="MessageRecord_you_declined_the_invitation_to_the_group">Zavrnili ste povabilo v skupino.</string>
   <!--GV2 invitation acceptance-->
+  <string name="MessageRecord_you_accepted_invite">Sprejeli ste povabilo v skupino.</string>
+  <string name="MessageRecord_s_accepted_invite">Uporabnik %1$s je sprejel povabilo v skupino.</string>
+  <string name="MessageRecord_you_added_invited_member_s">Dodali ste povabljenega uporabnika %1$s.</string>
+  <string name="MessageRecord_s_added_invited_member_s">Oseba %1$s je dodala povabljenega uporabnika %2$s.</string>
   <!--GV2 title change-->
+  <string name="MessageRecord_you_changed_the_group_name_to_s">Spremenili ste ime skupine v \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_the_group_name_to_s">Oseba %1$s je spremenila ime skupine v \"%2$s\".</string>
   <!--GV2 avatar change-->
+  <string name="MessageRecord_you_changed_the_group_avatar">Spremenili ste skupinin avatar.</string>
+  <string name="MessageRecord_s_changed_the_group_avatar">Oseba %1$s je spremenila skupinin avatar.</string>
   <!--GV2 attribute access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Spremenili ste, kdo lahko upravlja informacije o skupini: \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">Oseba %1$s je spremenila, kdo lahko upravlja informacije o skupini: \"%2$s\".</string>
   <!--GV2 membership access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Spremenili ste, kdo lahko upravlja članstvo v skupini: \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">Oseba %1$s je spremenila, kdo lahko upravlja članstvo v skupini: \"%2$s\".</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Varnostno število z uporabnikom %s je bilo spremenjeno.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Varnostno število z uporabnikom %s ste označili kot potrjeno</string>
@@ -657,12 +749,28 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Različica programa Google Play Services, ki jo imate nameščeno, ne deluje, kot bi morala. Prosimo, ponovno namestite Google Play Services in poskusite znova.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">Napačen PIN</string>
+  <string name="PinRestoreEntryFragment_skip_pin_entry">Želite preskočiti vnos kode PIN?</string>
+  <string name="PinRestoreEntryFragment_need_help">Potrebujete pomoč?</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Vaš PIN je %1$d+ številčna koda, ki je lahko sestavljena zgolj iz številk ali iz alfanumeričnih znakov.\n\nČe se ne morete spomniti svoje kode PIN, lahko ustvarite novo. Z njo se lahko ponovno registrirate in uporabljate svoj račun, izgubili pa boste nekatere nastavitve, kot so npr. informacije iz vašega profila.</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Če se ne morete spomniti svoje kode PIN, lahko ustvarite novo. Z njo se lahko ponovno registrirate in uporabljate svoj račun, izgubili pa boste nekatere nastavitve, kot so npr. informacije iz vašega profila.</string>
+  <string name="PinRestoreEntryFragment_create_new_pin">Ustvari nov PIN</string>
+  <string name="PinRestoreEntryFragment_contact_support">Stopi v stik s pomočjo uporabnikom</string>
   <string name="PinRestoreEntryFragment_cancel">Prekliči</string>
   <string name="PinRestoreEntryFragment_skip">Preskoči</string>
+  <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
+    <item quantity="one">Na voljo imate še %1$d poskus. Če boste ostali brez, lahko ustvarite novi PIN. Z njim se lahko ponovno registrirate in uporabljate svoj račun, izgubili pa boste nekatere nastavitve shranjene v vašem profilu.</item>
+    <item quantity="two">Na voljo imate še %1$d poskusa. Če boste ostali brez, lahko ustvarite novi PIN. Z njim se lahko ponovno registrirate in uporabljate svoj račun, izgubili pa boste nekatere nastavitve shranjene v vašem profilu.</item>
+    <item quantity="few">Na voljo imate še %1$d poskuse. Če boste ostali brez, lahko ustvarite novi PIN. Z njim se lahko ponovno registrirate in uporabljate svoj račun, izgubili pa boste nekatere nastavitve shranjene v vašem profilu.</item>
+    <item quantity="other">Na voljo imate še %1$d poskusov. Če boste ostali brez, lahko ustvarite novi PIN. Z njim se lahko ponovno registrirate in uporabljate svoj račun, izgubili pa boste nekatere nastavitve, kot so npr. informacije iz vašega profila.</item>
+  </plurals>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Registracija storitve Signal - Potrebujem pomoč pri vnosu kode PIN za Android</string>
+  <string name="PinRestoreEntryFragment_subject_signal_registration">Zadeva: Registracija Signal - Potrebujem pomoč pri vnosu kode PIN za Android\nInformacije o napravi: %1$s\nRazličica Androida: %2$s\nRazličica aplikacije Signal: %3$s\nJezik: %4$s</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Vnesite alfanumerični PIN</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Vnesite številčni PIN</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Ustvarite svoj PIN</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Ostali ste brez poskusov za vnos kode PIN. Za dostop do svojega računa SIgnal morate ustvariti nov PIN. Zaradi vaše varnosti in zasebnosti bo vaš račun obnovljen brez informacij shranjenih na vašem profilu.</string>
+  <string name="PinRestoreLockedFragment_create_new_pin">Ustvari nov PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Oceni to aplikacijo</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Če se vam zdi aplikacija Signal koristna in uporabna, vas prosimo, da si vzamete nekaj trenutkov in jo ocenite.</string>
@@ -735,6 +843,11 @@
   <string name="RegistrationActivity_country_code_description">Koda države</string>
   <string name="RegistrationActivity_call">Kliči</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Želite vklopiti kodo za zaklep registracije?</string>
+  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Želite izklopiti kodo za zaklep registracije?</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Če boste pozabili svoj Signal PIN, ko se boste ponovno registrirali v Signal, se bo vaš račun za 7 dni zaklenil.</string>
+  <string name="RegistrationLockV2Dialog_turn_on">Vklopi</string>
+  <string name="RegistrationLockV2Dialog_turn_off">Izklopi</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Ogled fotografije</string>
   <string name="RevealableMessageView_view_video">Ogled videa</string>
@@ -819,6 +932,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ThreadRecord_view_once_photo">Slika za enkraten ogled</string>
   <string name="ThreadRecord_view_once_video">Video za enkraten ogled</string>
   <string name="ThreadRecord_view_once_media">Medijska datoteka za enkraten ogled</string>
+  <string name="ThreadRecord_this_message_was_deleted">Sporočilo je bilo izbrisano</string>
   <string name="ThreadRecord_s_is_on_signal">%s uporablja Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Izginjajoča sporočila so izklopljena</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas poteka sporočila je nastavljen na %s</string>
@@ -928,6 +1042,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">%1$s spremenjeno v vašo fotografijo za enkraten ogled.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">%1$s spremenjeno v vaš video za enkraten ogled.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s spremenjeno v vašo nalepko.</string>
+  <string name="MessageNotifier_this_message_was_deleted">Sporočilo je bilo izbrisano</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Privzeto</string>
   <string name="NotificationChannel_calls">Klici</string>
@@ -1503,6 +1618,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="conversation__menu_view_all_media">Vsa multimedijska sporočila</string>
   <string name="conversation__menu_conversation_settings">Nastavitve pogovora</string>
   <string name="conversation__menu_add_shortcut">Dodaj na domači zaslon</string>
+  <string name="conversation__menu_pending_members">Čakajoči člani</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Razširi pojavno okno</string>
   <!--conversation_callable_insecure-->
@@ -1601,16 +1717,20 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
     <item quantity="other">PIN mora vsebovati vsaj %1$d številk</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Ustvari nov PIN</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">PIN lahko spreminjate dokler je naprava registrirana.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Ustvarite svoj PIN</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Koda PIN zavaruje informacije shranjene na Signalu z uporabo enkripcije, tako da so dostopne le vam. Vaš profil, nastavitve in stiki bodo obnovljeni ob ponovni namestitvi aplikacije Signal.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN se ne ujema. Poskusite znova.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Potrdite svoj PIN.</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Kreiranje PIN kode ni uspelo</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Vaš PIN ni bil shranjen. Kasneje vas bomo spomnili, da ustvarite novega.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN je bil ustvarjen.</string>
+  <string name="ConfirmKbsPinFragment__re_enter_your_pin">Ponovno vnesite svoj PIN</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Ustvarjam PIN …</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Predstavljamo vam PIN kode!</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Koda PIN zavaruje informacije shranjene na Signalu z uporabo enkripcije, tako da so dostopne le vam. Vaš profil, nastavitve in stiki bodo obnovljeni ob ponovni namestitvi aplikacije Signal.</string>
   <string name="KbsSplashFragment__learn_more">Več o tem…</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">PIN = koda za prijavo v omrežje</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Koda PIN za prijavo v omrežje je izboljšana in odslej ponuja več možnosti. Posodobite jo zdaj!</string>
@@ -1672,6 +1792,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Ustvari PIN</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Koda PIN zavaruje informacije shranjene na Signalu z uporabo enkripcije.</string>
   <string name="KbsMegaphone__create_pin">Ustvari PIN</string>
   <string name="KbsMegaphone__introducing_pins">Predstavljamo vam PIN kode!</string>
   <string name="KbsMegaphone__update_pin">Posodobite PIN</string>
@@ -1747,6 +1868,11 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Časovni interval pred zaklepom aplikacije</string>
   <string name="preferences_app_protection__signal_pin">Signal PIN</string>
   <string name="preferences_app_protection__create_a_pin">Ustvari PIN</string>
+  <string name="preferences_app_protection__change_your_pin">Spremenite svoj PIN</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Koda PIN zavaruje informacije shranjene na Signalu z uporabo enkripcije, tako da so dostopne le vam. Vaš profil, nastavitve in stiki bodo obnovljeni ob ponovni namestitvi aplikacije Signal.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Izboljšajte varnost svojega uporabniškega računa z zahtevo po vnosu Signal PIN kode pri registraciji telefona s strežniki Signal.</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">Neuspešen vklop kode za zaklep registracije.</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">Neuspešen izklop kode za zaklep registracije.</string>
   <string name="AppProtectionPreferenceFragment_none">Brez</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Koda PIN za prijavo v omrežje ni enaka potrditveni kodi SMS, ki ste jo prejeli ravnokar. Prosimo, vnesite PIN, ki ste ga predhodno določili za zaklepanje.</string>
   <string name="registration_activity__registration_lock_pin">PIN za prijavo v omrežje</string>

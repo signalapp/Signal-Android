@@ -393,10 +393,32 @@
   <string name="GroupManagement_access_level_all_members">Alla medlemmar</string>
   <string name="GroupManagement_access_level_only_admins">Endast administratörer</string>
   <!--PendingMembersActivity-->
+  <string name="PendingMemberInvitesActivity_pending_group_invites">Väntande gruppinbjudningar</string>
   <string name="PendingMembersActivity_people_you_invited">Personer du bjudit in</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">Du har inga väntande inbjudningar.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Inbjudningar från andra gruppmedlemmar</string>
+  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Inga väntande inbjudningar från andra gruppmedlemmar.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Detaljer om personer som är inbjudna av andra gruppmedlemmar visas inte. Om inbjudna väljer att gå med kommer deras information att delas med gruppen vid den tiden. De kommer inte att se några meddelanden i gruppen förrän de går med.</string>
+  <string name="PendingMembersActivity_cancel_invite">Avbryt inbjudan</string>
+  <string name="PendingMembersActivity_cancel_invites">Avbryt inbjudningar</string>
+  <plurals name="PendingMembersActivity_cancel_d_invites">
+    <item quantity="one">Avbryt inbjudan</item>
+    <item quantity="other">Avbryt %1$d inbjudningar</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_canceling_invite">
+    <item quantity="one">Fel vid avbrytning av inbjudan</item>
+    <item quantity="other">Fel vid avbrytning av inbjudningar</item>
+  </plurals>
+  <plurals name="GroupMemberList_invited">
+    <item quantity="one">%1$s bjöd in 1 person</item>
+    <item quantity="other">%1$s bjöd in %2$d personer</item>
+  </plurals>
   <!--GV2 Invite cancellation confirmation-->
+  <string name="GroupManagement_cancel_own_single_invite">Vill du avbryta inbjudan du skickat till %1$s?</string>
+  <plurals name="GroupManagement_cancel_others_invites">
+    <item quantity="one">Vill du avbryta inbjudan som skickats av %1$s?</item>
+    <item quantity="other">Vill du avbryta %2$d inbjudningar skickade av %1$s?</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Gruppavatar</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -539,18 +561,59 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ställde in tidsgränsen för försvinnande meddelanden till %2$s. </string>
   <!--GV2 specific-->
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_added_s">Du lade till %1$s.</string>
+  <string name="MessageRecord_s_added_s">%1$s lade till %2$s.</string>
+  <string name="MessageRecord_s_added_you">%1$s lade till dig i gruppen</string>
   <string name="MessageRecord_you_joined_the_group">Du gick med i gruppen.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s gick med i gruppen.</string>
   <!--GV2 member removals-->
+  <string name="MessageRecord_you_removed_s">Du tog bort %1$s.</string>
+  <string name="MessageRecord_s_removed_s">%1$s tog bort %2$s.</string>
+  <string name="MessageRecord_s_removed_you_from_the_group">%1$s tog bort dig från gruppen.</string>
   <string name="MessageRecord_you_left_the_group">Du lämnade gruppen.</string>
+  <string name="MessageRecord_s_left_the_group">%1$s lämnade gruppen.</string>
   <!--GV2 role change-->
+  <string name="MessageRecord_you_made_s_an_admin">Du gjorde %1$s till administratör.</string>
+  <string name="MessageRecord_s_made_s_an_admin">%1$s gjorde %2$s till administratör.</string>
+  <string name="MessageRecord_s_made_you_an_admin">%1$s gjorde dig till administratör.</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">Du återkallade administratörsbehörigheter från %1$s.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s återkallade dina administratörsbehörigheter.\"</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s återkallade administratörsbehörigheter från %2$s.</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_invited_s_to_the_group">Du bjöd in %1$s till gruppen.</string>
+  <string name="MessageRecord_s_invited_you_to_the_group">%1$s bjöd in dig till gruppen.</string>
+  <plurals name="MessageRecord_s_invited_members">
+    <item quantity="one">%1$s bjöd in 1 person till gruppen.</item>
+    <item quantity="other">%1$s bjöd in %2$d personer till gruppen.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
+  <plurals name="MessageRecord_you_revoked_invites">
+    <item quantity="one">Du återkallade en inbjudan till gruppen.</item>
+    <item quantity="other">Du återkallade %1$d inbjudningar till gruppen.</item>
+  </plurals>
+  <plurals name="MessageRecord_s_revoked_invites">
+    <item quantity="one">%1$s återkallade en inbjudan till gruppen.</item>
+    <item quantity="other">%1$s återkallade %2$d inbjudningar till gruppen.</item>
+  </plurals>
+  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Någon avböjde en inbjudan till gruppen.</string>
+  <string name="MessageRecord_you_declined_the_invitation_to_the_group">Du avböjde inbjudan till gruppen.</string>
   <!--GV2 invitation acceptance-->
+  <string name="MessageRecord_you_accepted_invite">Du accepterade inbjudan till gruppen.</string>
+  <string name="MessageRecord_s_accepted_invite">%1$s accepterade en inbjudan till gruppen.</string>
+  <string name="MessageRecord_you_added_invited_member_s">Du lade till inbjuden medlem %1$s.</string>
+  <string name="MessageRecord_s_added_invited_member_s">%1$s lade till inbjuden medlem %2$s.</string>
   <!--GV2 title change-->
+  <string name="MessageRecord_you_changed_the_group_name_to_s">Du ändrade gruppnamnet till \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ändrade gruppnamnet till \"%2$s\".</string>
   <!--GV2 avatar change-->
+  <string name="MessageRecord_you_changed_the_group_avatar">Du ändrade gruppavataren.</string>
+  <string name="MessageRecord_s_changed_the_group_avatar">%1$s ändrade gruppavataren.</string>
   <!--GV2 attribute access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Du ändrade vem som kan redigera gruppinformation till \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s ändrade vem som kan redigera gruppinformation till \"%2$s\".</string>
   <!--GV2 membership access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Du ändrade vem som kan redigera gruppmedlemskap till \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ändrade vem som kan redigera gruppmedlemskap till \"%2$s\".</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ditt säkerhetsnummer med %s har ändrats.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Du markerade ditt säkerhetsnummer med %s som verifierat</string>
@@ -624,15 +687,26 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Versionen av Google Play-tjänster som du har installerat fungerar inte korrekt. Vänligen installera om Google Play-tjänster och försök igen.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">Felaktig PIN-kod</string>
+  <string name="PinRestoreEntryFragment_skip_pin_entry">Hoppa över PIN-kodsposten?</string>
+  <string name="PinRestoreEntryFragment_need_help">Behöver du hjälp?</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Din PIN-kod är en %1$d+-siffrig kod du skapade som kan vara numerisk eller alfanumerisk.\n\nOm du inte kommer ihåg din PIN-kod kan du skapa en ny. Du kan registrera och använda ditt konto men du kommer att förlora några sparade inställningar som din profilinformation.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Om du inte kommer ihåg din PIN-kod kan du skapa en ny. Du kan registrera och använda ditt konto men du kommer att förlora några sparade inställningar som din profilinformation.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Skapa ny PIN-kod</string>
   <string name="PinRestoreEntryFragment_contact_support">Kontakta supporten</string>
   <string name="PinRestoreEntryFragment_cancel">Avbryt</string>
   <string name="PinRestoreEntryFragment_skip">Hoppa över</string>
+  <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
+    <item quantity="one">Du har %1$d försök kvar. Om du får slut på försök kan du skapa en ny PIN-kod. Du kan registrera och använda ditt konto men du kommer att förlora några sparade inställningar som din profilinformation.</item>
+    <item quantity="other">Du har %1$d försök kvar. Om du får slut på försök kan du skapa en ny PIN-kod. Du kan registrera och använda ditt konto men du kommer att förlora några sparade inställningar som din profilinformation.</item>
+  </plurals>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal-registrering - Behöver du hjälp med PIN-kod för Android</string>
+  <string name="PinRestoreEntryFragment_subject_signal_registration">Ämne: Signal-registrering - Behöver du hjälp med PIN-kod för Android\nEnhetsinformation: %1$s\nAndroid version: %2$s\nSignal version: %3$s\nSpråk: %4$s</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Ange alfanumerisk PIN-kod</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Ange numerisk PIN-kod</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Skapa din PIN-kod</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Du har slut på gissningar av PIN-koden men du kan fortfarande komma åt ditt Signal-konto genom att skapa en ny PIN-kod. För din integritet och säkerhet kommer ditt konto kommer att återställas utan några sparade profilinformation eller inställningar.</string>
+  <string name="PinRestoreLockedFragment_create_new_pin">Skapa ny PIN-kod</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Betygsätt denna app</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Om du gillar att använda den här appen, vänligen ta en stund för att hjälpa oss genom att betygsätta den.</string>
@@ -706,7 +780,11 @@ angav (%s) är ogiltigt.</string>
   <string name="RegistrationActivity_country_code_description">Landskod</string>
   <string name="RegistrationActivity_call">Ring</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Slå på registreringslås?</string>
+  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Slå av registreringslås?</string>
   <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Om du glömmer din PIN-kod när du registrerar dig med Signal igen, kommer du att vara låst från ditt konto i 7 dagar. </string>
+  <string name="RegistrationLockV2Dialog_turn_on">Slå på</string>
+  <string name="RegistrationLockV2Dialog_turn_off">Slå av</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Visa foto</string>
   <string name="RevealableMessageView_view_video">Visa video</string>
@@ -1459,6 +1537,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="conversation__menu_view_all_media">Alla media</string>
   <string name="conversation__menu_conversation_settings">Konversationsinställningar</string>
   <string name="conversation__menu_add_shortcut">Lägg till på hemskärmen</string>
+  <string name="conversation__menu_pending_members">Väntande medlemmar</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Expandera popup</string>
   <!--conversation_callable_insecure-->
@@ -1560,6 +1639,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Det gick inte att skapa PIN-kod</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Din PIN-kod sparades inte. Vi uppmanar dig att skapa en PIN-kod senare.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN-kod skapad.</string>
+  <string name="ConfirmKbsPinFragment__re_enter_your_pin">Ange din PIN-kod igen</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Skapar PIN-kod…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Introducerar PIN-koder</string>
@@ -1615,6 +1695,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Skapa en PIN-kod</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN-koder håller information som lagras med Signal krypterad.</string>
   <string name="KbsMegaphone__create_pin">Skapa PIN-kod</string>
   <string name="KbsMegaphone__introducing_pins">Introducerar PIN-koder</string>
   <string name="KbsMegaphone__update_pin">Uppdatera PIN-kod</string>
@@ -1692,6 +1773,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_app_protection__create_a_pin">Skapa en PIN-kod</string>
   <string name="preferences_app_protection__change_your_pin">Ändra din PIN-kod</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-koder håller information lagrad med Signal krypterad så bara du kan komma åt den. Din profil, inställningar och kontakter återställs när du installerar om Signal.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Lägg till extra säkerhet genom att kräva din Signal-PIN-kod för att registrera ditt telefonnummer med Signal igen.</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">Det gick inte att aktivera registreringslåset.</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">Det gick inte att inaktivera registreringslåset.</string>
   <string name="AppProtectionPreferenceFragment_none">Ingen</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN-koden för registreringslåset är inte samma som SMS-verifieringskoden du precis fick. Vänligen ange PIN-koden du tidigare ställde in i appen.</string>
   <string name="registration_activity__registration_lock_pin">PIN-kod för registreringslås</string>

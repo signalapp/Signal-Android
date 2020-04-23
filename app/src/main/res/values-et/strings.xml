@@ -211,6 +211,7 @@
   <string name="ConversationActivity_new_say_it_with_stickers">Uus! Ütle seda koos kleepsudega</string>
   <string name="ConversationActivity_cancel">Loobu</string>
   <string name="ConversationActivity_delete_conversation">Kustutad vestluse?</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">See vestlus kustutatakse kõigist sinu seadmetest.</string>
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Sa lahkud sellest grupist ja see kustutatakse kõigist sinu seadmetest.</string>
   <string name="ConversationActivity_delete">Kustuta</string>
   <!--ConversationAdapter-->
@@ -367,6 +368,7 @@
   <!--GV2 access levels-->
   <!--PendingMembersActivity-->
   <string name="PendingMembersActivity_people_you_invited">Sinu kutsutud inimesed</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">Kutsed teiste grupi liikmete poolt</string>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grupi avatar</string>
@@ -512,6 +514,7 @@
   <string name="MessageRecord_you_joined_the_group">Sa ühinesid grupiga.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s liitusid grupiga.</string>
   <!--GV2 member removals-->
+  <string name="MessageRecord_you_left_the_group">Sa lahkusid grupist</string>
   <!--GV2 role change-->
   <!--GV2 invitations-->
   <!--GV2 invitation revokes-->

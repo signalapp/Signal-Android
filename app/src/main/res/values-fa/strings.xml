@@ -79,11 +79,15 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">می‌خواهید گروه %1$s را مسدود و ترک کنید؟</string>
   <string name="BlockUnblockDialog_block_s"> گروه %1$s مسدود شود؟</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">شما دیگر از این گروه پیام و به‌روزرسانی دریافت نخواهید کرد. و اعضا قادر نخواهند بود دوباره شما را به این گروه اضافه کنند.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">اعضای گروه دیگر قادر نخواهند بود شما را به این گروه اضافه کنند.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">اعضای گروه می‌توانند دوباره شما را به این گروه اضافه کنند.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">شما قادر خواهید بود به یکدیگر پیام دهید و با آنها تماس بگیرید.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">افراد مسدود شده قادر به برقراری تماس با یا ارسال پیام به شما نخواهند بود.</string>
   <string name="BlockUnblockDialog_unblock_s">گروه %1$s از حالت مسدود خارج شود؟</string>
   <string name="BlockUnblockDialog_unblock">رفع مسدودیت</string>
   <string name="BlockUnblockDialog_block">مسدودسازی</string>
+  <string name="BlockUnblockDialog_block_and_leave">می‌خواهید گروه را ترک و مسدود کنید؟</string>
   <string name="BlockUnblockDialog_block_and_delete">بلاک و حذف</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">امروز</string>
@@ -166,6 +170,7 @@
   <string name="ConversationItem_read_more">  بیشتر بخوانید</string>
   <string name="ConversationItem_download_more"> دانلود بیشتر</string>
   <string name="ConversationItem_pending">  در انتظار</string>
+  <string name="ConversationItem_this_message_was_deleted">این پیام حذف شد</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">تنظیم مجدد نشست امن؟</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">اگر در این مکالمه با مشکلات رمزگذاری روبرو هستید این کار ممکن است کمک کند. پیام‌های شما باقی خواهند ماند.</string>
@@ -261,6 +266,8 @@
   <string name="ConversationFragment_sms">پیامک</string>
   <string name="ConversationFragment_deleting">در حال حذف کردن</string>
   <string name="ConversationFragment_deleting_messages">حذف پیام‌‌ها…</string>
+  <string name="ConversationFragment_delete_for_me">حذف برای من</string>
+  <string name="ConversationFragment_delete_for_everyone">حذف برای همه</string>
   <string name="ConversationFragment_quoted_message_not_found">پیام اصلی یافت نشد</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">پیام اصلی دیگر موجود نمی باشد</string>
   <string name="ConversationFragment_failed_to_open_message">عدم موفقیت در باز کردن پیام</string>
@@ -374,6 +381,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">امکان افزودن %1$s وجود ندارد چون کاربر Signal نمی باشد.</string>
   <string name="GroupCreateActivity_loading_group_details">بارگذاری جزئیات گروه…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">شما در حال حاضر در این گروه هستید.</string>
+  <string name="GroupCreateActivity_remove_member_description">حذف عضو گروه</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">اشتراک گذاری نام و تصویر پروفایل خود با این گروه؟</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">آیا می‌خواهید نام و تصویر نمایه شما برای همه اعضا فعلی و کسانی که در آینده عضو می شوند آشکار شود؟</string>
@@ -381,8 +389,36 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">شما</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">همه</string>
+  <string name="GroupManagement_access_level_all_members">همهٔ اعضا</string>
+  <string name="GroupManagement_access_level_only_admins">فقط مدیران</string>
   <!--PendingMembersActivity-->
+  <string name="PendingMemberInvitesActivity_pending_group_invites">دعوت‌های در حال انتظار</string>
+  <string name="PendingMembersActivity_people_you_invited">افرادی که شما دعوت کردید</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">شما هیچ دعوت در حال انتظاری ندارید</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">دعوت‌های اعضای دیگر گروه</string>
+  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">هیچ دعوتی از اعضای دیگر گروه وجود ندارد</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">جزئیات افراد دعوت شده از جانب اعضای دیگر گروه نشان داده نمی‌شوند. اگر دعوت‌شوندگان تصمیم به عضویت بگیرند، آنگاه اطلاعات آن‌ها نشان داده خواهد شد. آن‌ها تا زمانی که عضو نشوند هیچ پیامی از گروه را نخواهند دید.</string>
+  <string name="PendingMembersActivity_cancel_invite">لغو دعوت</string>
+  <string name="PendingMembersActivity_cancel_invites">لغو دعوت‌ها</string>
+  <plurals name="PendingMembersActivity_cancel_d_invites">
+    <item quantity="one">لغو دعوت</item>
+    <item quantity="other">لغو %1$d دعوت</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_canceling_invite">
+    <item quantity="one">اشکال در لغو دعوت</item>
+    <item quantity="other">اشکال در لغو دعوت‌ها</item>
+  </plurals>
+  <plurals name="GroupMemberList_invited">
+    <item quantity="one">%1$s ۱ نفر را دعوت کرد</item>
+    <item quantity="other">%1$s %2$d نفر را دعوت کرد</item>
+  </plurals>
   <!--GV2 Invite cancellation confirmation-->
+  <string name="GroupManagement_cancel_own_single_invite">آیا می‌خواهید دعوتی که به %1$s فرستادید را لغو کنید؟</string>
+  <plurals name="GroupManagement_cancel_others_invites">
+    <item quantity="one">آیا می‌خواهید دعوت ارسال‌شده از جانب %1$s را لغو کنید؟</item>
+    <item quantity="other">آیا می‌خواهید %2$d دعوت ارسال‌شده از جانب %1$s را لغو کنید؟</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">چهرک گروه</string>
   <string name="CropImageActivity_profile_avatar">چهرک</string>
@@ -525,18 +561,59 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s زمان سنج پیام های ناپدید شونده را روی %2$s قرار داد.</string>
   <!--GV2 specific-->
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_added_s">شما %1$s را اضافه کردید.</string>
+  <string name="MessageRecord_s_added_s">%1$s %2$s را اضافه کرد.</string>
+  <string name="MessageRecord_s_added_you">%1$s شما را به گروه اضافه کرد.</string>
   <string name="MessageRecord_you_joined_the_group">شما به گروه پیوستید.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s به گروه پیوست.</string>
   <!--GV2 member removals-->
+  <string name="MessageRecord_you_removed_s">شما %1$s را حذف کردید.</string>
+  <string name="MessageRecord_s_removed_s">%1$s %2$s را حذف کرد.</string>
+  <string name="MessageRecord_s_removed_you_from_the_group">%1$s شما را از گروه حذف کرد.</string>
   <string name="MessageRecord_you_left_the_group">شما گروه را ترک کردید</string>
+  <string name="MessageRecord_s_left_the_group">%1$s گروه را ترک کرد.</string>
   <!--GV2 role change-->
+  <string name="MessageRecord_you_made_s_an_admin">شما %1$s را به مدیر تبدیل کردید.</string>
+  <string name="MessageRecord_s_made_s_an_admin">%1$s %2$s را به مدیر تبدیل کرد.</string>
+  <string name="MessageRecord_s_made_you_an_admin">%1$s شما را به مدیر تبدیل کرد.</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">شما امتیازات مدیریت %1$s را لغو کردید.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s امتیازات مدیریت شما را لغو کرد.</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s امتیازات مدیریت %2$s را لغو کرد.</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_invited_s_to_the_group">شما %1$s را به گروه دعوت کردید.</string>
+  <string name="MessageRecord_s_invited_you_to_the_group">%1$s شما را به گروه دعوت کرد.</string>
+  <plurals name="MessageRecord_s_invited_members">
+    <item quantity="one">%1$s ۱ نفر را به گروه دعوت کرد.</item>
+    <item quantity="other">%1$s %2$d نفر را به گروه دعوت کرد.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
+  <plurals name="MessageRecord_you_revoked_invites">
+    <item quantity="one">شما یک دعوت به گروه را لغو کردید.</item>
+    <item quantity="other">شما %1$d دعوت‌ را لغو کردید.</item>
+  </plurals>
+  <plurals name="MessageRecord_s_revoked_invites">
+    <item quantity="one">%1$s یک دعوت به گروه را لغو کرد.</item>
+    <item quantity="other">%1$s %2$d دعوت‌ به گروه را لغو کرد.</item>
+  </plurals>
+  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">یک نفر دعوت به گروه را رد کرد.</string>
+  <string name="MessageRecord_you_declined_the_invitation_to_the_group">شما دعوت به گروه را رد کردید.</string>
   <!--GV2 invitation acceptance-->
+  <string name="MessageRecord_you_accepted_invite">شما دعوت به گروه را پذیرفتید.</string>
+  <string name="MessageRecord_s_accepted_invite">%1$s دعوت به گروه را قبول کرد.</string>
+  <string name="MessageRecord_you_added_invited_member_s">شما %1$s را اضافه کردید.</string>
+  <string name="MessageRecord_s_added_invited_member_s">%1$s %2$s را اضافه کرد.</string>
   <!--GV2 title change-->
+  <string name="MessageRecord_you_changed_the_group_name_to_s">شما نام گروه را به «%1$s» تغییر دادید.</string>
+  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s نام گروه را به «%2$s» تغییر داد.</string>
   <!--GV2 avatar change-->
+  <string name="MessageRecord_you_changed_the_group_avatar">شما عکس گروه را عوض کردید.</string>
+  <string name="MessageRecord_s_changed_the_group_avatar">%1$s عکس گروه را تغییر داد.</string>
   <!--GV2 attribute access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">شما قابلیت ویرایش اطلاعات گروه را به «%1$s» انتقال دادید.</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s قابلیت ویرایش اطلاعات گروه را به «%2$s» انتقال داد.</string>
   <!--GV2 membership access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">شما قابلیت ویرایش اعضای گروه را به «%1$s» انتقال دادید.</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s قابلیت ویرایش اعضای گروه را به «%2$s» انتقال داد.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">شماره امنیتی شما با %s تغییر یافت.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">شما شماره امنیتی خود با %s  را تایید شده علامت گذاری کردید</string>
@@ -611,13 +688,26 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">نسخه گوگل پلی سرویس که شما نصب کرده اید به درستی کار نمی کند. لطفاً آن را دوباره کنید و مجددا تلاش کنید.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">پین نادرست</string>
+  <string name="PinRestoreEntryFragment_skip_pin_entry">رد ورود پین؟</string>
+  <string name="PinRestoreEntryFragment_need_help">به راهنمایی نیاز دارید؟</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">پین شما یک کد %1$d+ رقمی است که می‌تواند شامل اعداد یا حروف باشد.\n\n اگر نمی‌توانید پین را به یاد بیاورید، می‌توانید یک پین جدید ایجاد کنید. می‌توانید دوباره ثبت‌نام و از حساب‌تان استفاده کنید اما تنظیمات ذخیره شده مانند اطلاعات پروفایل‌‌تان را از دست می‌دهید.</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">اگر نمی‌توانید پین را به یاد بیاورید، یک پین جدید ایجاد کنید. شما می‌توانید ثبت‌نام و از حساب‌تان استفاده کنید اما تنظیمات ذخیره‌ شده مانند اطلاعت پروفایل‌تان را از دست می‌دهید.</string>
+  <string name="PinRestoreEntryFragment_create_new_pin">ایجاد پین جدید</string>
   <string name="PinRestoreEntryFragment_contact_support">ارتباط با پشتیبانی</string>
   <string name="PinRestoreEntryFragment_cancel">لغو</string>
   <string name="PinRestoreEntryFragment_skip">پرش</string>
+  <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
+    <item quantity="one">شما %1$d فرصت دیگر باقی دارید. اگر فرصت‌های شما تمام شوند، می‌توانید یک پین جدید بسازید. شما می‌توانید ثبت‌نام و از حساب خود استفاده کنید ولی برخی تنظیمات ذخیره‌شده مانند اطلاعات پروفایل‌تان را از دست می‌دهید.</item>
+    <item quantity="other">شما %1$d فرصت دیگر باقی دارید. اگر فرصت‌های شما تمام شوند، می‌توانید یک پین جدید بسازید. شما می‌توانید ثبت‌نام و از حساب خود استفاده کنید ولی برخی تنظیمات ذخیره‌شده مانند اطلاعات پروفایل‌تان را از دست می‌دهید.</item>
+  </plurals>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">ثبت‌نام Signal - نیاز به راهنمایی در مورد پین اندروید</string>
+  <string name="PinRestoreEntryFragment_subject_signal_registration">موضوع: ثبت‌نام سیگنال - نیاز به راهنمایی برای اندروید\n اطلاعات دستگاه: %1$s\nنسخهٔ اندروید: %2$s\n نسخهٔ سیگنال %3$s\n زبان: %4$s</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">پین حرفی‌-عددی را وارد کنید</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">پین عددی را وارد کنید</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">پین خود را ایجاد کنید</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">فرصت‌های شما برای حدس پین تمام شد، اما شما هنوز می‌توانید با ایجاد یک پین جدید به حساب Signal تان دسترسی داشته باشید. به منظور حفظ امنیت و حریم خصوصی شما، حساب شما بدون هیچ اطلاعات و تنظیماتی ذخیره‌شده‌ای از پروفایل شما بازنشانی خواهد شد.</string>
+  <string name="PinRestoreLockedFragment_create_new_pin">ایجاد پین جدید</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">امتیازدهی این برنامه</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">اگر از استفاده از این برنامه لذت می برید، لطفاً برای کمک به ما یک لحظه وقت بگذارید و آن را امتیاز دهید.</string>
@@ -693,6 +783,11 @@
   <string name="RegistrationActivity_country_code_description">کد کشور</string>
   <string name="RegistrationActivity_call">تماس</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">روشن کردن قفل ثبت‌نام؟</string>
+  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">خاموش کردن قفل ثبت‌نام؟</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">اگر شما پین سیگنال خود را هنگام ثبت‌نام دوباره فراموش کنید، حساب شما به مدت ۷ روز قفل خواهد شد و قادر به استفاده از آن نخواهید بود.</string>
+  <string name="RegistrationLockV2Dialog_turn_on">روشن</string>
+  <string name="RegistrationLockV2Dialog_turn_off">خاموش</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">مشاهده تصویر</string>
   <string name="RevealableMessageView_view_video">مشاهده ویدئو</string>
@@ -777,6 +872,7 @@
   <string name="ThreadRecord_view_once_photo">عکس یکبار مصرف</string>
   <string name="ThreadRecord_view_once_video">ویدئوی یکبار مصرف</string>
   <string name="ThreadRecord_view_once_media">رسانهٔ یکبار مصرف</string>
+  <string name="ThreadRecord_this_message_was_deleted">این پیام حذف شد</string>
   <string name="ThreadRecord_s_is_on_signal">%s به Signal پیوست!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">پیام های ناپدید شونده غیر فعال شدند</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">زمان پیام ناپدید شونده  روی %s تنظیم شد</string>
@@ -886,6 +982,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">%1$s به تصویر یکبار مصرف شما واکنش نشان داد.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">%1$s به ویدئوی یکبار مصرف شما واکنش نشان داد.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s به استیکر شما واکنش نشان داد.</string>
+  <string name="MessageNotifier_this_message_was_deleted">این پیام حذف شد</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">پیش‌فرض</string>
   <string name="NotificationChannel_calls">تماس‌ها</string>
@@ -1443,6 +1540,7 @@
   <string name="conversation__menu_view_all_media">تمام رسانه‌ها</string>
   <string name="conversation__menu_conversation_settings">تنظیمات مکالمه</string>
   <string name="conversation__menu_add_shortcut">افزودن به صفحهٔ اصلی</string>
+  <string name="conversation__menu_pending_members">اعضای در حال انتظار</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">بسط پاپ آپ</string>
   <!--conversation_callable_insecure-->
@@ -1535,16 +1633,20 @@
     <item quantity="other">پین باید حداقل شامل %1$d رقم باشد</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">یک پین جدید ایجاد کنید</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">تا زمانی که این دستگاه ثبت شده باشد شما می‌توانید پین خود را تغییر دهید.</string>
   <string name="CreateKbsPinFragment__create_your_pin">پین خود را ایجاد کنید</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">پین‌ها اطلاعات ذخیره شده در Signal را رمز‌گذاری می‌کنند تا فقط شما قادر به دسترسی به آن‌ها باشید. پروفایل، تنظیمات و مخاطبین شما هنگام نصب دوبارهٔ سیگنال بازگردانی می‌شوند.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">پین‌ها مطابقت ندارند. دوباره تلاش کنید.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">پین خود را تایید کنید</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">پین ایجاد نشد</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">پین شما ذخیره نشد. ما بعداً از شما خواهیم خواست تا یک پین دیگر ایجاد کنید.</string>
   <string name="ConfirmKbsPinFragment__pin_created">پین ایجاد شد.</string>
+  <string name="ConfirmKbsPinFragment__re_enter_your_pin">پین خود را دوباره وارد نمایید</string>
   <string name="ConfirmKbsPinFragment__creating_pin">ایجاد پین…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">تعریف پین‌ها</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">پین‌ها اطلاعات ذخیره شده در Signal را رمز‌گذاری می‌کنند تا فقط شما قادر به دسترسی به آن‌ها باشید. پروفایل، تنظیمات و مخاطبین شما هنگام نصب دوبارهٔ سیگنال بازنشانی می‌شوند.</string>
   <string name="KbsSplashFragment__learn_more">اطلاعات بیشتر</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">قفل ثبت‌نام = پین</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">قفل ثبت‌نام شما اکنون پین نام دارد، و کارهای بیشتری را انجام می‌دهد. هم‌اکنون آن را به‌روزرسانی کنید.</string>
@@ -1596,6 +1698,7 @@
   </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">یک پین جدید ایجاد کنید</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">پین‌ها اطلاعات ذخیره شده در Signal را رمزگذاری می‌کنند.</string>
   <string name="KbsMegaphone__create_pin">ایجاد پین</string>
   <string name="KbsMegaphone__introducing_pins">معرفی پین‌ها</string>
   <string name="KbsMegaphone__update_pin">به‌روزرسانی پین</string>
@@ -1672,6 +1775,10 @@
   <string name="preferences_app_protection__signal_pin">پین Signal</string>
   <string name="preferences_app_protection__create_a_pin">یک پین جدید ایجاد کنید</string>
   <string name="preferences_app_protection__change_your_pin">پین خود را تغییر دهید</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">پین‌ها اطلاعات ذخیره شده در Signal را رمز‌گذاری می‌کنند تا فقط شما قادر به دسترسی به آن‌ها باشید. پروفایل، تنظیمات و مخاطبین شما هنگام نصب دوبارهٔ سیگنال بازگردانی می‌شوند.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">امنیت بیشتر با افزودن درخواست پین Signal برای ثبت‌نام دوباره</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">قفل ثبت‌نام فعال نشد.</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">قفل ثبت‌نام غیرفعال نشد.</string>
   <string name="AppProtectionPreferenceFragment_none">هیچ‌کدام</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">پین قفل ثبت‌نام همان کد تأییدی که الان از طریق پیامک دریافت کردید نیست. لطفاً رمزی را که قبلاً در برنامه تنظیم کرده بودید را وارد کنید.</string>
   <string name="registration_activity__registration_lock_pin">پین قفل ثبت‌نام</string>

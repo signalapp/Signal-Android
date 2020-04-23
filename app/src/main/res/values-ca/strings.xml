@@ -79,11 +79,15 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Voleu blocar i abandonar %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Voleu blocar %1$s?</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Ja no rebreu cap més missatge ni novetat d\'aquest grup i els membres no us hi podran tornar a afegir.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Els membres del grup no us hi podran tornar a afegir.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Els membres del grup us podran afegir a aquest grup un altre cop.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Us podreu trucar i enviar missatges.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Les persones blocades no us podran trucar ni enviar missatges.</string>
   <string name="BlockUnblockDialog_unblock_s">Voleu desblocar %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Desbloca</string>
   <string name="BlockUnblockDialog_block">Bloca</string>
+  <string name="BlockUnblockDialog_block_and_leave">Bloca i abandona</string>
   <string name="BlockUnblockDialog_block_and_delete">Bloca\'l i suprimeix-lo</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Avui</string>
@@ -166,6 +170,7 @@
   <string name="ConversationItem_read_more">  Més informació</string>
   <string name="ConversationItem_download_more">  Baixa\'n més</string>
   <string name="ConversationItem_pending">  Pendent</string>
+  <string name="ConversationItem_this_message_was_deleted">Aquest missatge s\'ha suprimit.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Voleu restablir la sessió segura?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Això pot ajudar si teniu problemes d\'encriptació en aquesta conversa. Els missatges es mantindran.</string>
@@ -261,6 +266,8 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Se suprimeix</string>
   <string name="ConversationFragment_deleting_messages">Se suprimeixen missatges…</string>
+  <string name="ConversationFragment_delete_for_me">Suprimeix per a mi</string>
+  <string name="ConversationFragment_delete_for_everyone">Suprimeix per a tothom</string>
   <string name="ConversationFragment_quoted_message_not_found">No s\'ha trobat el missatge original.</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">El missatge original ja no està disponible.</string>
   <string name="ConversationFragment_failed_to_open_message">Ha fallat obrir el missatge.</string>
@@ -374,6 +381,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">No s\'ha pogut afegir %1$s perquè no és un usuari de Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Es carreguen els detalls del grup…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Ja sou dins del grup.</string>
+  <string name="GroupCreateActivity_remove_member_description">Suprimeix el membre</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Voleu compartir el nom i la foto del perfil amb aquest grup?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Voleu que el nom i la foto del perfil siguin visibles a tots els membres actuals i futurs d\'aquest grup?</string>
@@ -381,11 +389,36 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Vós</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">Qualsevol</string>
+  <string name="GroupManagement_access_level_all_members">Tots els membres</string>
+  <string name="GroupManagement_access_level_only_admins">Només els administradors</string>
   <!--PendingMembersActivity-->
+  <string name="PendingMemberInvitesActivity_pending_group_invites">Invitacions de grup pendents</string>
   <string name="PendingMembersActivity_people_you_invited">Persones que heu convidat</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">No teniu invitacions pendents.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Invitacions d\'altres membres del grup</string>
+  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">No hi ha invitacions pendents d\'altres membres del grup.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">No es mostren els detalls de les persones convidades per altres membres del grup. Si trien afegir-s\'hi, la informació es compartirà amb el grup en aquell moment. No veuran cap missatge del grup fins que no s\'hi afegeixin.</string>
+  <string name="PendingMembersActivity_cancel_invite">Cancel·la la invitació</string>
+  <string name="PendingMembersActivity_cancel_invites">Cancel·la les invitacions</string>
+  <plurals name="PendingMembersActivity_cancel_d_invites">
+    <item quantity="one">Cancel·la la invitació</item>
+    <item quantity="other">Cancel·la %1$d invitacions</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_canceling_invite">
+    <item quantity="one">Error en cancel·lar la invitació</item>
+    <item quantity="other">Error en cancel·lar les invitacions</item>
+  </plurals>
+  <plurals name="GroupMemberList_invited">
+    <item quantity="one">%1$s ha convidat 1 persona</item>
+    <item quantity="other">%1$s ha convidat %2$d persones</item>
+  </plurals>
   <!--GV2 Invite cancellation confirmation-->
+  <string name="GroupManagement_cancel_own_single_invite">Voleu cancel·lar la invitació que heu enviat a %1$s?</string>
+  <plurals name="GroupManagement_cancel_others_invites">
+    <item quantity="one">Voleu cancel·lar la invitació enviada per %1$s?</item>
+    <item quantity="other">Voleu cancel·lar %2$d invitacions enviades per %1$s?</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar del grup</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -528,18 +561,59 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ha establert el temporitzador dels missatges efímers a %2$s.</string>
   <!--GV2 specific-->
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_added_s">Hi heu afegit %1$s.</string>
+  <string name="MessageRecord_s_added_s">%1$s ha afegit %2$s.</string>
+  <string name="MessageRecord_s_added_you">%1$s us ha afegit al grup.</string>
   <string name="MessageRecord_you_joined_the_group">Us heu unit al grup.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s s\'han unit al grup.</string>
   <!--GV2 member removals-->
+  <string name="MessageRecord_you_removed_s">Heu suprimit %1$s.</string>
+  <string name="MessageRecord_s_removed_s">%1$s ha suprimit %2$s.</string>
+  <string name="MessageRecord_s_removed_you_from_the_group">%1$s us ha suprimit del grup.</string>
   <string name="MessageRecord_you_left_the_group">Heu abandonat el grup.</string>
+  <string name="MessageRecord_s_left_the_group">%1$s ha abandonat el grup.</string>
   <!--GV2 role change-->
+  <string name="MessageRecord_you_made_s_an_admin">Heu fet que %1$s sigui administrador/a.</string>
+  <string name="MessageRecord_s_made_s_an_admin">%1$s ha fet que %2$s sigui administrador/a.</string>
+  <string name="MessageRecord_s_made_you_an_admin">%1$s us ha fet administrador/a.</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">Heu rebutjat els privilegis d\'administrador/a de %1$s.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s us ha revocat els privilegis d\'administrador/a.</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ha rebutjat els privilegis d\'administrador/a de %2$s.</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_invited_s_to_the_group">Heu convidat %1$s al grup.</string>
+  <string name="MessageRecord_s_invited_you_to_the_group">%1$s us ha convidat al grup.</string>
+  <plurals name="MessageRecord_s_invited_members">
+    <item quantity="one">%1$s ha convidat 1 persona al grup.</item>
+    <item quantity="other">%1$s ha convidat %2$d persones al grup.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
+  <plurals name="MessageRecord_you_revoked_invites">
+    <item quantity="one">Heu rebutjat una invitació al grup.</item>
+    <item quantity="other">Heu rebutjat %1$d invitacions al grup.</item>
+  </plurals>
+  <plurals name="MessageRecord_s_revoked_invites">
+    <item quantity="one">%1$s ha rebutjat una invitació al grup.</item>
+    <item quantity="other">%1$s ha rebutjat %2$d invitacions al grup.</item>
+  </plurals>
+  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Algú ha rebutjat una invitació al grup.</string>
+  <string name="MessageRecord_you_declined_the_invitation_to_the_group">Heu rebutjat la invitació al grup.</string>
   <!--GV2 invitation acceptance-->
+  <string name="MessageRecord_you_accepted_invite">Heu acceptat la invitació al grup.</string>
+  <string name="MessageRecord_s_accepted_invite">%1$s ha acceptat una invitació al grup.</string>
+  <string name="MessageRecord_you_added_invited_member_s">Hi heu afegit el membre convidat %1$s.</string>
+  <string name="MessageRecord_s_added_invited_member_s">%1$s ha afegit el membre convidat %2$s.</string>
   <!--GV2 title change-->
+  <string name="MessageRecord_you_changed_the_group_name_to_s">Heu canviat el nom del grup a \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ha canviat el nom del grup a \"%2$s\".</string>
   <!--GV2 avatar change-->
+  <string name="MessageRecord_you_changed_the_group_avatar">Heu canviat l\'avatar del grup.</string>
+  <string name="MessageRecord_s_changed_the_group_avatar">%1$s ha canviat l\'avatar del grup.</string>
   <!--GV2 attribute access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Heu canviat qui pot editar la informació del grup a \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s ha canviat qui pot editar la informació del grup a \"%2$s\".</string>
   <!--GV2 membership access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Heu canviat qui pot editar els membres del grup a \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ha canviat qui pot editar els membres del grup a \"%2$s\".</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">El número de seguretat amb %s ha canviat.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Heu verificat el número de seguretat amb %s</string>
@@ -613,6 +687,9 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">La versió del Google Play Services que hi ha instal·lada no funciona correctament. Reinstal·leu-lo i tornar a provar-ho.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">PIN incorrecte</string>
+  <string name="PinRestoreEntryFragment_skip_pin_entry">Voleu ometre l\'entrada del PIN?</string>
+  <string name="PinRestoreEntryFragment_need_help">Us cal ajuda?</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">El PIN és un codi d\'un mínim de %1$d dígits que heu creat que pot ser numèric o alfanumèric.\n\nSi no recordeu el PIN, en podeu crear un de nou. Podeu registrar-vos i usar el vostre compte, però perdreu algunes configuracions desades, com ara la informació del perfil.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Si no recordeu el PIN, en podeu crear un de nou. Podeu registrar-vos i usar el compte, però perdreu algunes configuracions desades, com ara la informació del perfil.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Crea un PIN nou</string>
   <string name="PinRestoreEntryFragment_contact_support">Contacteu amb l\'Assistència</string>
@@ -780,6 +857,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ThreadRecord_view_once_photo">Fotografia d\'una sola visualització</string>
   <string name="ThreadRecord_view_once_video">Vídeo d\'una sola visualització</string>
   <string name="ThreadRecord_view_once_media">Contingut d\'una sola visualització</string>
+  <string name="ThreadRecord_this_message_was_deleted">Aquest missatge s\'ha suprimit.</string>
   <string name="ThreadRecord_s_is_on_signal">%s és al Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Missatges efímers desactivats</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">El temps del missatge efímer s\'ha establit a %s</string>
@@ -889,6 +967,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">%1$s  ha reaccionat a la vostra foto d\'una visualització.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">%1$s  ha reaccionat al vostre vídeo d\'una visualització.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s ha reaccionat al vostre adhesiu.</string>
+  <string name="MessageNotifier_this_message_was_deleted">Aquest missatge s\'ha suprimit.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Per defecte</string>
   <string name="NotificationChannel_calls">Trucades</string>

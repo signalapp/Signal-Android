@@ -77,10 +77,10 @@
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Blokerede kontakter</string>
   <!--BlockUnblockDialog-->
-  <string name="BlockUnblockDialog_block_and_leave_s">Blokér og forlad%1$s?</string>
+  <string name="BlockUnblockDialog_block_and_leave_s">Blokér og forlad %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Blokér %1$s?</string>
-  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Du vil ikke længere modtage beskeder eller opdateringer fra denne gruppe, og medlemmer kan ikke tilføje dig til denne gruppe igen.</string>
-  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Gruppemedlemmer kan ikke tilføje dig til denne gruppe igen.</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Du vil ikke længere modtage beskeder eller opdateringer fra gruppen, og medlemmer kan ikke tilføje dig til gruppen igen</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Gruppemedlemmer kan ikke tilføje dig til gruppen igen</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Medlemmer af gruppen kan tilføje dig til gruppen igen</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">I vil være i stand til at sende beskeder og ringe til hinanden</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokerede personer vil hverken kunne ringe eller sende beskeder til dig</string>
@@ -171,7 +171,7 @@
   <string name="ConversationItem_read_more">  Læs mere </string>
   <string name="ConversationItem_download_more">  Download mere</string>
   <string name="ConversationItem_pending">  Afventer </string>
-  <string name="ConversationItem_this_message_was_deleted">Beskeden blev slettet.</string>
+  <string name="ConversationItem_this_message_was_deleted">Beskeden blev slettet</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Reset sikker forbindelse?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Dette vil muligvis hjælpe hvis du oplever krypteringsproblemer med samtalen. Dine beskeder bevares</string>
@@ -396,9 +396,9 @@
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Afventende gruppeinvitationer</string>
   <string name="PendingMembersActivity_people_you_invited">Personer du har inviteret</string>
-  <string name="PendingMembersActivity_you_have_no_pending_invites">Du har ingen afventende invitationer.</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">Du har ingen afventende invitationer</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Invitationer fra andre medlemmer af gruppen</string>
-  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Ingen afventende invitationer fra andre gruppemedlemmer.</string>
+  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Ingen afventende invitationer fra andre gruppemedlemmer</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Detaljer om personer inviteret af andre medlemmer af gruppen, vises ikke. Hvis de inviterede accepterer at deltage, vil deres information blive delt med gruppen derefter. De vil ingen beskeder se fra gruppen, før de deltager</string>
   <string name="PendingMembersActivity_cancel_invite">Annuller invitation</string>
   <string name="PendingMembersActivity_cancel_invites">Annuller invitationer</string>
@@ -562,59 +562,59 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s har sat beskeder med tidsudløb til at udløbe efter %2$s</string>
   <!--GV2 specific-->
   <!--GV2 member additions-->
-  <string name="MessageRecord_you_added_s">Du tilføjede %1$s.</string>
-  <string name="MessageRecord_s_added_s">%1$s tilføjede %2$s.</string>
+  <string name="MessageRecord_you_added_s">Du tilføjede %1$s</string>
+  <string name="MessageRecord_s_added_s">%1$s tilføjede %2$s</string>
   <string name="MessageRecord_s_added_you">%1$s tilføjede dig til gruppen</string>
   <string name="MessageRecord_you_joined_the_group">Du er medlem i gruppen</string>
   <string name="MessageRecord_s_joined_the_group">%1$s tilsluttede sig gruppen</string>
   <!--GV2 member removals-->
-  <string name="MessageRecord_you_removed_s">Du fjernede %1$s.</string>
-  <string name="MessageRecord_s_removed_s">%1$s fjernede %2$s.</string>
-  <string name="MessageRecord_s_removed_you_from_the_group">%1$s fjernede dig fra gruppen.</string>
-  <string name="MessageRecord_you_left_the_group">Du forlod gruppen.</string>
-  <string name="MessageRecord_s_left_the_group">%1$s forlod gruppen.</string>
+  <string name="MessageRecord_you_removed_s">Du fjernede %1$s</string>
+  <string name="MessageRecord_s_removed_s">%1$s fjernede %2$s</string>
+  <string name="MessageRecord_s_removed_you_from_the_group">%1$s fjernede dig fra gruppen</string>
+  <string name="MessageRecord_you_left_the_group">Du forlod gruppen</string>
+  <string name="MessageRecord_s_left_the_group">%1$s forlod gruppen</string>
   <!--GV2 role change-->
-  <string name="MessageRecord_you_made_s_an_admin">Du gjorde %1$s til administrator.</string>
-  <string name="MessageRecord_s_made_s_an_admin">%1$s gjorde %2$s til administrator.</string>
-  <string name="MessageRecord_s_made_you_an_admin">%1$s gjorde dig til administrator.</string>
-  <string name="MessageRecord_you_revoked_admin_privileges_from_s">Du tilbagekaldte administratorrettighederne fra %1$s.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s tilbagekaldte dine administratorrettigheder.</string>
-  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s tilbagekaldte administratorrettighederne fra %2$s.</string>
+  <string name="MessageRecord_you_made_s_an_admin">Du gjorde %1$s til administrator</string>
+  <string name="MessageRecord_s_made_s_an_admin">%1$s gjorde %2$s til administrator</string>
+  <string name="MessageRecord_s_made_you_an_admin">%1$s gjorde dig til administrator</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">Du tilbagekaldte administratorrettighederne fra %1$s</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s tilbagekaldte dine administratorrettigheder</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s tilbagekaldte administratorrettighederne fra %2$s</string>
   <!--GV2 invitations-->
-  <string name="MessageRecord_you_invited_s_to_the_group">Du inviterede %1$s til gruppen.</string>
-  <string name="MessageRecord_s_invited_you_to_the_group">%1$s tilføjede dig til gruppen.</string>
+  <string name="MessageRecord_you_invited_s_to_the_group">Du inviterede %1$s til gruppen</string>
+  <string name="MessageRecord_s_invited_you_to_the_group">%1$s tilføjede dig til gruppen</string>
   <plurals name="MessageRecord_s_invited_members">
     <item quantity="one">%1$s inviterede 1 person til gruppen.</item>
-    <item quantity="other">%1$s inviterede %2$d personer til gruppen.</item>
+    <item quantity="other">%1$s inviterede %2$d personer til gruppen</item>
   </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">Du tilbagekaldte en invitation til gruppen.</item>
-    <item quantity="other">Du tilbagekaldte %1$d invitationer til gruppen.</item>
+    <item quantity="other">Du tilbagekaldte %1$d invitationer til gruppen</item>
   </plurals>
   <plurals name="MessageRecord_s_revoked_invites">
     <item quantity="one">%1$s tilbagekaldte en invitation til gruppen.</item>
-    <item quantity="other">%1$s tilbagekaldte %2$d invitationer til gruppen.</item>
+    <item quantity="other">%1$s tilbagekaldte %2$d invitationer til gruppen</item>
   </plurals>
-  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">En person afviste en invitation til gruppen.</string>
-  <string name="MessageRecord_you_declined_the_invitation_to_the_group">Du afviste invitationen til gruppen.</string>
+  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">En person afviste en invitation til gruppen</string>
+  <string name="MessageRecord_you_declined_the_invitation_to_the_group">Du afviste invitationen til gruppen</string>
   <!--GV2 invitation acceptance-->
-  <string name="MessageRecord_you_accepted_invite">Du accepterede invitationen til gruppen.</string>
-  <string name="MessageRecord_s_accepted_invite">%1$s accepterede en invitation til gruppen.</string>
-  <string name="MessageRecord_you_added_invited_member_s">Du tilføjede inviteret medlem %1$s.</string>
-  <string name="MessageRecord_s_added_invited_member_s">%1$s tilføjede inviteret medlem %2$s.</string>
+  <string name="MessageRecord_you_accepted_invite">Du accepterede invitationen til gruppen</string>
+  <string name="MessageRecord_s_accepted_invite">%1$s accepterede en invitation til gruppen</string>
+  <string name="MessageRecord_you_added_invited_member_s">Du tilføjede inviteret medlem %1$s</string>
+  <string name="MessageRecord_s_added_invited_member_s">%1$s tilføjede inviteret medlem %2$s</string>
   <!--GV2 title change-->
-  <string name="MessageRecord_you_changed_the_group_name_to_s">Du ændrede gruppens navn til \"%1$s\".</string>
-  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ændrede gruppens navn til \"%2$s\".</string>
+  <string name="MessageRecord_you_changed_the_group_name_to_s">Du ændrede gruppens navn til \"%1$s\"</string>
+  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ændrede gruppens navn til \"%2$s\"</string>
   <!--GV2 avatar change-->
-  <string name="MessageRecord_you_changed_the_group_avatar">Du ændrede gruppens avatar.</string>
-  <string name="MessageRecord_s_changed_the_group_avatar">%1$s ændrede gruppens avatar.</string>
+  <string name="MessageRecord_you_changed_the_group_avatar">Du ændrede gruppens avatar</string>
+  <string name="MessageRecord_s_changed_the_group_avatar">%1$s ændrede gruppens avatar</string>
   <!--GV2 attribute access level change-->
-  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Du ændrede, hvem der kan redigere gruppeinfo til \"%1$s\".</string>
-  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s ændrede, hvem der kan redigere gruppeinfo til \"%2$s\".</string>
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Du ændrede, hvem der kan redigere gruppeinfo til \"%1$s\"</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s ændrede, hvem der kan redigere gruppeinfo til \"%2$s\"</string>
   <!--GV2 membership access level change-->
-  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Du ændrede, hvem som kan redigere medlemskab af gruppen til \"%1$s\".</string>
-  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ændrede, hvem som kan redigere medlemskab af gruppen til \"%2$s\".</string>
+  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Du ændrede, hvem som kan redigere medlemskab af gruppen til \"%1$s\"</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ændrede, hvem som kan redigere medlemskab af gruppen til \"%2$s\"</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Dit sikkerhedsnummer med %s er ændret</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Du har markeret dit sikkerhedsnummer med %s som verificeret</string>
@@ -691,16 +691,24 @@
   <string name="PinRestoreEntryFragment_incorrect_pin">Forkert PIN</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">Drop pinkode-indtastning?</string>
   <string name="PinRestoreEntryFragment_need_help">Brug for hjælp?</string>
-  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Din pinkode er en %1$d+ cifret kode, du oprettede, og som kan være numerisk eller alfanumerisk.\n\nHvis du ikke kan huske din pinkode, kan du oprette en ny. Du kan registrere og bruge din konto, men du vil miste nogle gemte indstillinger som dine profiloplysninger.</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Din pinkode er en %1$d+ cifret kode, du oprettede, og som kan være numerisk eller alfanumerisk.\n\nHvis du ikke kan huske din pinkode, kan du oprette en ny. Du kan registrere og bruge din konto, men du vil miste nogle gemte indstillinger som dine profiloplysninger</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Hvis du glemmer din PIN, kan du oprette en ny. Du kan registrere og bruge din konto, men du vil miste nogle indstillinger, såsom din profil information</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Opret ny PIN</string>
   <string name="PinRestoreEntryFragment_contact_support">Kontakt Support</string>
   <string name="PinRestoreEntryFragment_cancel">Annullér</string>
   <string name="PinRestoreEntryFragment_skip">Spring over</string>
+  <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
+    <item quantity="one">Du har %1$d forsøg tilbage. Hvis du løber tør for forsøg, kan du oprette en ny pinkode. Du kan registrere og bruge din konto, men du mister nogle gemte indstillinger som dine profiloplysninger.</item>
+    <item quantity="other">Du har %1$d forsøg tilbage. Hvis du løber tør for forsøg, kan du oprette en ny pinkode. Du kan registrere og bruge din konto, men du mister nogle gemte indstillinger som dine profiloplysninger</item>
+  </plurals>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal registrering - Brug for hjælp med pinkode til Android</string>
+  <string name="PinRestoreEntryFragment_subject_signal_registration">Emne: Signal registrering - Brug for hjælp med pinkode til Android\nEnhedsinformation: %1$s\nAndroid-version: %2$s\nSignal-version: %3$s\nLokale: %4$s</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Skriv alfanumerisk PIN</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Skriv numerisk PIN</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Opret din PIN</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Du har løbet tør for pinkode gæt, men du kan stadig få adgang til din Signal konto ved at oprette en ny pinkode. Af hensyn til dit privatliv og sikkerhed gendannes din konto uden gemte profiloplysninger eller indstillinger</string>
+  <string name="PinRestoreLockedFragment_create_new_pin">Opret ny pinkode</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Bedøm app\'en</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Hvis du kan lide at bruge app\'en, så hjælp os venligst ved at give den en bedømmelse</string>
@@ -776,7 +784,11 @@ nummer (%s) er ugyldigt</string>
   <string name="RegistrationActivity_country_code_description">Landekode</string>
   <string name="RegistrationActivity_call">Ring op</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Aktiver registreringslås?</string>
+  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Deaktiver registreringslås?</string>
   <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Hvis du glemmer din PIN-kode til Signal ved genregistrering af Signal, vil du blive låst ude af din konto i 7 dage</string>
+  <string name="RegistrationLockV2Dialog_turn_on">Aktivér</string>
+  <string name="RegistrationLockV2Dialog_turn_off">Deaktivér</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Vis billede</string>
   <string name="RevealableMessageView_view_video">Se video</string>
@@ -1531,6 +1543,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="conversation__menu_view_all_media">Alle mediefiler</string>
   <string name="conversation__menu_conversation_settings">Samtale indstillinger</string>
   <string name="conversation__menu_add_shortcut">Føj til startskærm</string>
+  <string name="conversation__menu_pending_members">Afventende medlemmer</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Udvid popup</string>
   <!--conversation_callable_insecure-->
@@ -1632,6 +1645,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Fejl ved oprettelse af PIN</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN koden blev ikke gemt. Du bliver bedt om at oprette en PIN kode senere</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN oprettet</string>
+  <string name="ConfirmKbsPinFragment__re_enter_your_pin">Indtast din pinkode igen</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Opretter PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Introducerer PIN´s</string>
@@ -1687,6 +1701,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Opret en PIN</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Pinkoder opbevarer krypterede oplysninger, som er lagret med Signal.</string>
   <string name="KbsMegaphone__create_pin">Opret PIN</string>
   <string name="KbsMegaphone__introducing_pins">Introducerer PIN´s</string>
   <string name="KbsMegaphone__update_pin">Opdatér PIN</string>
@@ -1764,6 +1779,9 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences_app_protection__create_a_pin">Opret PIN-kode</string>
   <string name="preferences_app_protection__change_your_pin">Skift din PIN-kode</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-koder sikrer information lagret med Signal er krypteret, så kun du kan få adgang til den. Din profil, indstillinger og kontakter gendannes, når du installerer Signal igen</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Tilføj ekstra sikkerhed ved at kræve din Signal-pinkode til at registrere dit telefonnummer med Signal igen.</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">Aktivering af registreringslås mislykkedes.</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">Deaktivering af registreringslås mislykkedes.</string>
   <string name="AppProtectionPreferenceFragment_none">Ingen</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Verifikationskode er ikke den samme, som den kode du netop har modtaget på SMS. Indtast venligst koden du tidligere har indtastet i applikationen</string>
   <string name="registration_activity__registration_lock_pin">Registreringskode</string>

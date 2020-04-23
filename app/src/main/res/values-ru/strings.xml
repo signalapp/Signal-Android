@@ -85,11 +85,15 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Заблокировать и покинуть %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Заблокировать %1$s?</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Вы больше не будете получать сообщения и обновления от этой группы, и участники группы не смогут снова добавить вас в неё.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Участники группы не смогут снова добавить вас в неё.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Участники группы смогут снова добавить вас в неё.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Вы сможете отправлять сообщения и звонить друг другу.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Заблокированные люди не смогут звонить вам или отправлять вам сообщения.</string>
   <string name="BlockUnblockDialog_unblock_s">Разблокировать %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Разблокировать</string>
   <string name="BlockUnblockDialog_block">Заблокировать</string>
+  <string name="BlockUnblockDialog_block_and_leave">Заблокировать и покинуть</string>
   <string name="BlockUnblockDialog_block_and_delete">Заблокировать и удалить</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Сегодня</string>
@@ -172,6 +176,7 @@
   <string name="ConversationItem_read_more">  Читать далее</string>
   <string name="ConversationItem_download_more">  Скачать больше</string>
   <string name="ConversationItem_pending">  Ожидание</string>
+  <string name="ConversationItem_this_message_was_deleted">Это сообщение было удалено.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Сбросить защищенный сеанс?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Это может помочь, если у вас возникли проблемы с шифрованием в этом разговоре. Ваши сообщения будут сохранены.</string>
@@ -281,6 +286,8 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Удаление</string>
   <string name="ConversationFragment_deleting_messages">Удаляем сообщения…</string>
+  <string name="ConversationFragment_delete_for_me">Удалить для меня</string>
+  <string name="ConversationFragment_delete_for_everyone">Удалить для всех</string>
   <string name="ConversationFragment_quoted_message_not_found">Исходное сообщение не найдено</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Исходное сообщение больше не доступно</string>
   <string name="ConversationFragment_failed_to_open_message">Не удалось открыть сообщение</string>
@@ -402,6 +409,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Невозможно добавить %1$s, так как он (она) не является пользователем Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Загружаем информацию о группе…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Вы уже в группе.</string>
+  <string name="GroupCreateActivity_remove_member_description">Удалить участника</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Открыть ваше имя и фотографию этой группе?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Вы хотите сделать имя и фотографию из своего профиля видимыми для всех текущих и будущих участников этой группы?</string>
@@ -409,11 +417,44 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Вы</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">Любой человек</string>
+  <string name="GroupManagement_access_level_all_members">Все участники</string>
+  <string name="GroupManagement_access_level_only_admins">Только администраторы</string>
   <!--PendingMembersActivity-->
+  <string name="PendingMemberInvitesActivity_pending_group_invites">Приглашения в группу в ожидании</string>
   <string name="PendingMembersActivity_people_you_invited">Люди, которых пригласили вы</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">У вас нет приглашений в ожидании.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Приглашения от других участников группы</string>
+  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Нет приглашений в ожидании от других участников группы.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Подробности людей, приглашённых другими участниками группы, не показываются. Если приглашённые решат присоединиться, их информация станет доступна группе с того времени. Они не увидят никаких сообщений в группе до того, как присоединятся.</string>
+  <string name="PendingMembersActivity_cancel_invite">Отменить приглашение</string>
+  <string name="PendingMembersActivity_cancel_invites">Отменить приглашения</string>
+  <plurals name="PendingMembersActivity_cancel_d_invites">
+    <item quantity="one">Отменить приглашение</item>
+    <item quantity="few">Отменить %1$d приглашения</item>
+    <item quantity="many">Отменить %1$d приглашений</item>
+    <item quantity="other">Отменить %1$d приглашений</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_canceling_invite">
+    <item quantity="one">Ошибка отмены приглашения</item>
+    <item quantity="few">Ошибка отмены приглашений</item>
+    <item quantity="many">Ошибка отмены приглашений</item>
+    <item quantity="other">Ошибка отмены приглашений</item>
+  </plurals>
+  <plurals name="GroupMemberList_invited">
+    <item quantity="one">%1$s пригласил(-а) 1 человека</item>
+    <item quantity="few">%1$s пригласил(-а) %2$d людей</item>
+    <item quantity="many">%1$s пригласил(-а) %2$d людей</item>
+    <item quantity="other">%1$s пригласил(-а) %2$d людей</item>
+  </plurals>
   <!--GV2 Invite cancellation confirmation-->
+  <string name="GroupManagement_cancel_own_single_invite">Вы хотите отменить своё приглашение для %1$s?</string>
+  <plurals name="GroupManagement_cancel_others_invites">
+    <item quantity="one">Вы хотите отменить приглашение от %1$s?</item>
+    <item quantity="few">Вы хотите отменить %2$d приглашения от %1$s?</item>
+    <item quantity="many">Вы хотите отменить %2$d приглашений от %1$s?</item>
+    <item quantity="other">Вы хотите отменить %2$d приглашений от %1$s?</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Аватар группы</string>
   <string name="CropImageActivity_profile_avatar">Аватар</string>
@@ -570,18 +611,65 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s установил(-а) время исчезновения сообщений в%2$s.</string>
   <!--GV2 specific-->
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_added_s">Вы добавили %1$s.</string>
+  <string name="MessageRecord_s_added_s">%1$s добавил(-а) %2$s.</string>
+  <string name="MessageRecord_s_added_you">%1$s добавил(-а) вас в группу.</string>
   <string name="MessageRecord_you_joined_the_group">Вы присоединились к группе.</string>
-  <string name="MessageRecord_s_joined_the_group">%1$s присоединились к группе.</string>
+  <string name="MessageRecord_s_joined_the_group">%1$s присоединился к группе.</string>
   <!--GV2 member removals-->
+  <string name="MessageRecord_you_removed_s">Вы удалили %1$s.</string>
+  <string name="MessageRecord_s_removed_s">%1$s удалил(-а) %2$s.</string>
+  <string name="MessageRecord_s_removed_you_from_the_group">%1$s удалил(-а) вас из группы.</string>
   <string name="MessageRecord_you_left_the_group">Вы покинули группу.</string>
+  <string name="MessageRecord_s_left_the_group">%1$s покинул(-а) группу.</string>
   <!--GV2 role change-->
+  <string name="MessageRecord_you_made_s_an_admin">Вы сделали %1$s администратором.</string>
+  <string name="MessageRecord_s_made_s_an_admin">%1$s сделал(-а) %2$s администратором.</string>
+  <string name="MessageRecord_s_made_you_an_admin">%1$s сделал(-а) вас администратором.</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">Вы отозвали привилегии администратора у %1$s.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s отозвал(-а) ваши привилегии администратора.</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s отозвал(-а) привилегии администратора у %2$s.</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_invited_s_to_the_group">Вы пригласили %1$s в группу.</string>
+  <string name="MessageRecord_s_invited_you_to_the_group">%1$s пригласил(-а) вас в группу.</string>
+  <plurals name="MessageRecord_s_invited_members">
+    <item quantity="one">%1$s пригласил(-а) 1 человека в группу.</item>
+    <item quantity="few">%1$s пригласил(-а) %2$d людей в группу.</item>
+    <item quantity="many">%1$s пригласил(-а) %2$d людей в группу.</item>
+    <item quantity="other">%1$s пригласил(-а) %2$d людей в группу.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
+  <plurals name="MessageRecord_you_revoked_invites">
+    <item quantity="one">Вы отозвали приглашение в группу.</item>
+    <item quantity="few">Вы отозвали %1$d приглашения в группу.</item>
+    <item quantity="many">Вы отозвали %1$d приглашений в группу.</item>
+    <item quantity="other">Вы отозвали %1$d приглашений в группу.</item>
+  </plurals>
+  <plurals name="MessageRecord_s_revoked_invites">
+    <item quantity="one">%1$s отозвал(-а) приглашение в группу.</item>
+    <item quantity="few">%1$s отозвал(-а) %2$d приглашения в группу.</item>
+    <item quantity="many">%1$s отозвал(-а) %2$d приглашений в группу.</item>
+    <item quantity="other">%1$s отозвал(-а) %2$d приглашений в группу.</item>
+  </plurals>
+  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Кто-то отклонил приглашение в группу.</string>
+  <string name="MessageRecord_you_declined_the_invitation_to_the_group">Вы отклонили приглашение в группу.</string>
   <!--GV2 invitation acceptance-->
+  <string name="MessageRecord_you_accepted_invite">Вы приняли приглашение в группу.</string>
+  <string name="MessageRecord_s_accepted_invite">%1$s принял(-а) приглашение в группу.</string>
+  <string name="MessageRecord_you_added_invited_member_s">Вы добавили приглашённого участника %1$s.</string>
+  <string name="MessageRecord_s_added_invited_member_s">%1$s добавил(-а) приглашённого участника %2$s.</string>
   <!--GV2 title change-->
+  <string name="MessageRecord_you_changed_the_group_name_to_s">Вы изменили имя группы на «%1$s».</string>
+  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s изменил(-а) имя группы на «%2$s».</string>
   <!--GV2 avatar change-->
+  <string name="MessageRecord_you_changed_the_group_avatar">Вы изменили аватар группы.</string>
+  <string name="MessageRecord_s_changed_the_group_avatar">%1$s изменил(-а) аватар группы.</string>
   <!--GV2 attribute access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Вы изменили, кто может редактировать информацию группы, на «%1$s».</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s изменил(-а), кто может редактировать информацию группы, на «%2$s».</string>
   <!--GV2 membership access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Вы изменили, кто может редактировать членство в группе, на «%1$s».</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s изменил(-а), кто может редактировать членство в группе, на «%2$s».</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ваш код безопасности с %s изменился.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Вы отметили код безопасности с %s как подтверждённый</string>
@@ -661,15 +749,28 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Установленная версия Служб Google Play работает некорректно. Пожалуйста, переустановите Службы Google Play и попробуйте ещё раз.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">Неверный PIN-код</string>
+  <string name="PinRestoreEntryFragment_skip_pin_entry">Пропустить ввод PIN-кода?</string>
+  <string name="PinRestoreEntryFragment_need_help">Нужна помощь?</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Ваш PIN — это код из %1$d+ символов, созданный вами, который может быть цифровым или буквенно-цифровым.\n\nЕсли вы не можете вспомнить свой PIN-код, вы можете создать новый. Вы сможете зарегистрироваться и использовать свою учётную запись, но потеряете некоторые сохранённые настройки, например информацию вашего профиля.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Если вы не можете вспомнить свой PIN-код, вы можете создать новый. Вы сможете зарегистрироваться и использовать свою учётную запись, но потеряете некоторые сохранённые настройки, например информацию вашего профиля.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Создать новый PIN-код</string>
   <string name="PinRestoreEntryFragment_contact_support">Связаться с поддержкой</string>
   <string name="PinRestoreEntryFragment_cancel">Отменить</string>
   <string name="PinRestoreEntryFragment_skip">Пропустить</string>
+  <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
+    <item quantity="one">У вас осталась %1$d попытка. Если вы исчерпаете попытки, вы сможете создать новый PIN-код. Вы сможете зарегистрироваться и использовать свою учётную запись, но потеряете некоторые сохранённые настройки, например информацию вашего профиля.</item>
+    <item quantity="few">У вас осталось %1$d попытки. Если вы исчерпаете попытки, вы сможете создать новый PIN-код. Вы сможете зарегистрироваться и использовать свою учётную запись, но потеряете некоторые сохранённые настройки, например информацию вашего профиля.</item>
+    <item quantity="many">У вас осталось %1$d попыток. Если вы исчерпаете попытки, вы сможете создать новый PIN-код. Вы сможете зарегистрироваться и использовать свою учётную запись, но потеряете некоторые сохранённые настройки, например информацию вашего профиля.</item>
+    <item quantity="other">У вас осталось %1$d попыток. Если вы исчерпаете попытки, вы сможете создать новый PIN-код. Вы сможете зарегистрироваться и использовать свою учётную запись, но потеряете некоторые сохранённые настройки, например информацию вашего профиля.</item>
+  </plurals>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Регистрация в Signal - Нужна помощь с PIN-кодом для Android</string>
+  <string name="PinRestoreEntryFragment_subject_signal_registration">Тема: Регистрация в Signal - Нужна помощь с PIN-кодом для Android\nИнформация об устройстве: %1$s\nВерсия Android: %2$s\n Версия Signal: %3$s\nРегион: %4$s</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Ввести буквенно-цифровой PIN-код</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Ввести цифровой PIN-код</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Создать PIN-код</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">У вас закончились попытки ввода PIN-кода, но вы всё равно можете получить доступ к своей учётной записи Signal, создав новый PIN-код. Для вашей конфиденциальности и безопасности ваша учётная запись будет восстановлена без какой-либо сохранённой информации профиля или настроек.</string>
+  <string name="PinRestoreLockedFragment_create_new_pin">Создать новый PIN-код</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Оцените это приложение</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Если вам нравится это приложение, пожалуйста, найдите минутку, чтобы помочь нам, поставив ему оценку.</string>
@@ -742,7 +843,11 @@
   <string name="RegistrationActivity_country_code_description">Код страны</string>
   <string name="RegistrationActivity_call">Позвонить</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Включить блокировку регистрации?</string>
+  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Отключить блокировку регистрации?</string>
   <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Если вы забудете свой PIN-код Signal при повторной регистрации в Signal, вы потеряете доступ к своей учётной записи на 7 дней.</string>
+  <string name="RegistrationLockV2Dialog_turn_on">Включить</string>
+  <string name="RegistrationLockV2Dialog_turn_off">Отключить</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Просмотреть фото</string>
   <string name="RevealableMessageView_view_video">Просмотреть видео</string>
@@ -829,6 +934,7 @@
   <string name="ThreadRecord_view_once_photo">Одноразовое фото</string>
   <string name="ThreadRecord_view_once_video">Одноразовое видео</string>
   <string name="ThreadRecord_view_once_media">Одноразовое медиа</string>
+  <string name="ThreadRecord_this_message_was_deleted">Это сообщение было удалено.</string>
   <string name="ThreadRecord_s_is_on_signal">%s теперь в Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Исчезающие сообщения отключены</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Время исчезновения сообщений – %s</string>
@@ -938,6 +1044,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Отреагировал(-а) %1$s на ваше одноразовое фото.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">Отреагировал(-а) %1$s на ваше одноразовое видео.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Отреагировал(-а) %1$s на ваш стикер.</string>
+  <string name="MessageNotifier_this_message_was_deleted">Это сообщение было удалено.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">По умолчанию</string>
   <string name="NotificationChannel_calls">Звонки</string>
@@ -1513,6 +1620,7 @@
   <string name="conversation__menu_view_all_media">Все медиа-файлы</string>
   <string name="conversation__menu_conversation_settings">Настройки разговора</string>
   <string name="conversation__menu_add_shortcut">Добавить на главный экран</string>
+  <string name="conversation__menu_pending_members">Участники в ожидании</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Расширить</string>
   <!--conversation_callable_insecure-->
@@ -1613,17 +1721,18 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">Создать новый PIN-код</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Вы можете изменить свой PIN-код, пока это устройство зарегистрировано.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Создать PIN-код</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-коды шифруют информацию, хранящуюся в сервисе Signal, так что только вы можете получить к ней доступ. Ваши профиль, настройки и контакты будут восстановлены, если вы переустановите Signal.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-коды хранят информацию в сервисе Signal зашифрованной, так что только вы можете получить к ней доступ. Ваши настройки, контакты и профиль будут восстановлены, если вы переустановите Signal.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-коды не совпадают. Попробуйте ещё раз.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Подтвердите свой PIN-код.</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Не удалось создать PIN-код</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Ваш PIN-код не был сохранён. Мы попросим вас создать PIN-код позднее.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN-код создан.</string>
+  <string name="ConfirmKbsPinFragment__re_enter_your_pin">Введите PIN-код ещё раз</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Создание PIN-кода…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Представляем PIN-коды</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN-коды шифруют информацию, хранящуюся в сервисе Signal, так что только вы можете получить к ней доступ. Ваши профиль, настройки и контакты будут восстановлены, если вы переустановите Signal.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN-коды хранят информацию в сервисе Signal зашифрованной, так что только вы можете получить к ней доступ. Ваши настройки, контакты и профиль будут восстановлены, если вы переустановите Signal.</string>
   <string name="KbsSplashFragment__learn_more">Узнать больше</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Блокировка регистрации = PIN-код</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">«Блокировка регистрации» теперь называется «PIN-код» и умеет больше. Обновите его прямо сейчас.</string>
@@ -1685,6 +1794,7 @@
   </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Создать PIN-код</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN-коды шифруют информацию, хранящуюся в сервисе Signal.</string>
   <string name="KbsMegaphone__create_pin">Создать PIN-код</string>
   <string name="KbsMegaphone__introducing_pins">Представляем PIN-коды</string>
   <string name="KbsMegaphone__update_pin">Обновить PIN-код</string>
@@ -1761,7 +1871,10 @@
   <string name="preferences_app_protection__signal_pin">PIN-код Signal</string>
   <string name="preferences_app_protection__create_a_pin">Создайте PIN-код</string>
   <string name="preferences_app_protection__change_your_pin">Измените свой PIN-код</string>
-  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-коды шифруют информацию, хранящуюся в сервисе Signal, так что только вы можете получить к ней доступ. Ваши профиль, настройки и контакты будут восстановлены, если вы переустановите Signal.</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-коды хранят информацию в сервисе Signal зашифрованной, так что только вы можете получить к ней доступ. Ваши настройки, контакты и профиль будут восстановлены, если вы переустановите Signal.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Улучшите безопасность, потребовав вводить ваш PIN-код Signal при повторной регистрации вашего номера телефона в Signal.</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">Не удалось включить блокировку регистрации.</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">Не удалось отключить блокировку регистрации.</string>
   <string name="AppProtectionPreferenceFragment_none">Нет</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN-код блокировки регистрации — это не то же самое, что код подтверждения, который вы только что получили в SMS. Пожалуйста, введите PIN-код, который вы ранее задали в приложении.</string>
   <string name="registration_activity__registration_lock_pin">PIN-код блокировки регистрации</string>
