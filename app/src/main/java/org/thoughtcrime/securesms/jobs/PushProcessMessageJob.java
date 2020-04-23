@@ -407,7 +407,8 @@ public final class PushProcessMessageJob extends BaseJob {
             .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER,       remotePeer)
             .putExtra(WebRtcCallService.EXTRA_REMOTE_DEVICE,     content.getSenderDevice())
             .putExtra(WebRtcCallService.EXTRA_OFFER_DESCRIPTION, message.getDescription())
-            .putExtra(WebRtcCallService.EXTRA_TIMESTAMP,         content.getTimestamp());
+            .putExtra(WebRtcCallService.EXTRA_TIMESTAMP,         content.getTimestamp())
+            .putExtra(WebRtcCallService.EXTRA_OFFER_TYPE,        message.getType().getCode());
 
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) context.startForegroundService(intent);
       else                                                context.startService(intent);

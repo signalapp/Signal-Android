@@ -78,7 +78,7 @@ final class RecipientDialogViewModel extends ViewModel {
     recipientDialogRepository.getRecipient(recipient -> CommunicationActions.startConversation(activity, recipient, null));
   }
 
-  void onSecureCallClicked(@NonNull Activity activity) {
+  void onSecureCallClicked(@NonNull FragmentActivity activity) {
     recipientDialogRepository.getRecipient(recipient -> CommunicationActions.startVoiceCall(activity, recipient));
   }
 

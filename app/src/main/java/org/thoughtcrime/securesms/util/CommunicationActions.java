@@ -18,23 +18,26 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.TaskStackBuilder;
+import androidx.fragment.app.FragmentActivity;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.messagerequests.CalleeMustAcceptMessageRequestDialogFragment;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.sms.MessageSender;
+import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 
 public class CommunicationActions {
 
   private static final String TAG = Log.tag(CommunicationActions.class);
 
-  public static void startVoiceCall(@NonNull Activity activity, @NonNull Recipient recipient) {
+  public static void startVoiceCall(@NonNull FragmentActivity activity, @NonNull Recipient recipient) {
     if (TelephonyUtil.isAnyPstnLineBusy(activity)) {
       Toast.makeText(activity,
                      R.string.CommunicationActions_a_cellular_call_is_already_in_progress,
@@ -60,7 +63,7 @@ public class CommunicationActions {
     });
   }
 
-  public static void startVideoCall(@NonNull Activity activity, @NonNull Recipient recipient) {
+  public static void startVideoCall(@NonNull FragmentActivity activity, @NonNull Recipient recipient) {
     if (TelephonyUtil.isAnyPstnLineBusy(activity)) {
       Toast.makeText(activity,
                      R.string.CommunicationActions_a_cellular_call_is_already_in_progress,
@@ -173,29 +176,69 @@ public class CommunicationActions {
     }
   }
 
-  private static void startCallInternal(@NonNull Activity activity, @NonNull Recipient recipient, boolean isVideo) {
+  private static void startCallInternal(@NonNull FragmentActivity activity, @NonNull Recipient recipient, boolean isVideo) {
+    if (isVideo) startVideoCallInternal(activity, recipient);
+    else         startAudioCallInternal(activity, recipient);
+  }
+
+  private static void startAudioCallInternal(@NonNull FragmentActivity activity, @NonNull Recipient recipient) {
+    Permissions.with(activity)
+               .request(Manifest.permission.RECORD_AUDIO)
+               .ifNecessary()
+               .withRationaleDialog(activity.getString(R.string.ConversationActivity__to_call_s_signal_needs_access_to_your_microphone, recipient.getDisplayName(activity)),
+                   R.drawable.ic_mic_solid_24)
+               .withPermanentDenialDialog(activity.getString(R.string.ConversationActivity__to_call_s_signal_needs_access_to_your_microphone, recipient.getDisplayName(activity)))
+               .onAllGranted(() -> {
+                 Intent intent = new Intent(activity, WebRtcCallService.class);
+                 intent.setAction(WebRtcCallService.ACTION_OUTGOING_CALL)
+                       .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER, new RemotePeer(recipient.getId()))
+                       .putExtra(WebRtcCallService.EXTRA_OFFER_TYPE, OfferMessage.Type.AUDIO_CALL.getCode());
+                 activity.startService(intent);
+
+                 MessageSender.onMessageSent();
+
+                 if (FeatureFlags.profileForCalling() && recipient.resolve().getProfileKey() == null) {
+                   CalleeMustAcceptMessageRequestDialogFragment.create(recipient.getId())
+                                                               .show(activity.getSupportFragmentManager(), null);
+                 } else {
+                   Intent activityIntent = new Intent(activity, WebRtcCallActivity.class);
+
+                   activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                   activity.startActivity(activityIntent);
+                 }
+               })
+               .execute();
+  }
+
+  private static void startVideoCallInternal(@NonNull FragmentActivity activity, @NonNull Recipient recipient) {
     Permissions.with(activity)
                .request(Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA)
                .ifNecessary()
-               .withRationaleDialog(activity.getString(R.string.ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera, recipient.getDisplayName(activity)),
+               .withRationaleDialog(activity.getString(R.string.ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s, recipient.getDisplayName(activity)),
                                     R.drawable.ic_mic_solid_24,
                                     R.drawable.ic_video_solid_24_tinted)
                .withPermanentDenialDialog(activity.getString(R.string.ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s, recipient.getDisplayName(activity)))
                .onAllGranted(() -> {
                  Intent intent = new Intent(activity, WebRtcCallService.class);
                  intent.setAction(WebRtcCallService.ACTION_OUTGOING_CALL)
-                       .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER, new RemotePeer(recipient.getId()));
+                       .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER, new RemotePeer(recipient.getId()))
+                       .putExtra(WebRtcCallService.EXTRA_OFFER_TYPE, OfferMessage.Type.VIDEO_CALL.getCode());
                  activity.startService(intent);
 
-                 Intent activityIntent = new Intent(activity, WebRtcCallActivity.class);
-                 activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                 if (isVideo) {
-                   activityIntent.putExtra(WebRtcCallActivity.EXTRA_ENABLE_VIDEO_IF_AVAILABLE, true);
-                 }
-
                  MessageSender.onMessageSent();
-                 activity.startActivity(activityIntent);
+
+                 if (FeatureFlags.profileForCalling() && recipient.resolve().getProfileKey() == null) {
+                   CalleeMustAcceptMessageRequestDialogFragment.create(recipient.getId())
+                                                               .show(activity.getSupportFragmentManager(), null);
+                 } else {
+                   Intent activityIntent = new Intent(activity, WebRtcCallActivity.class);
+
+                   activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                       .putExtra(WebRtcCallActivity.EXTRA_ENABLE_VIDEO_IF_AVAILABLE, true);
+
+                   activity.startActivity(activityIntent);
+                 }
                })
                .execute();
   }

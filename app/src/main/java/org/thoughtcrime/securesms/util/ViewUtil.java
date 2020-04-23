@@ -198,6 +198,10 @@ public class ViewUtil {
     }
   }
 
+  public static float pxToDp(float px) {
+    return px / Resources.getSystem().getDisplayMetrics().density;
+  }
+
   public static int dpToPx(Context context, int dp) {
     return (int)((dp * context.getResources().getDisplayMetrics().density) + 0.5);
   }

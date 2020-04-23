@@ -666,7 +666,8 @@ public class SignalServiceMessageSender {
       OfferMessage offer = callMessage.getOfferMessage().get();
       builder.setOffer(CallMessage.Offer.newBuilder()
                                         .setId(offer.getId())
-                                        .setDescription(offer.getDescription()));
+                                        .setDescription(offer.getDescription())
+                                        .setType(offer.getType().getProtoType()));
     } else if (callMessage.getAnswerMessage().isPresent()) {
       AnswerMessage answer = callMessage.getAnswerMessage().get();
       builder.setAnswer(CallMessage.Answer.newBuilder()

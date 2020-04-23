@@ -43,8 +43,15 @@ message Content {
 
 message CallMessage {
   message Offer {
+    enum Type {
+      OFFER_AUDIO_CALL      = 0;
+      OFFER_VIDEO_CALL      = 1;
+      OFFER_NEED_PERMISSION = 2;
+    }
+
     optional uint64 id          = 1;
     optional string description = 2;
+    optional Type   type        = 3;
   }
 
   message Answer {

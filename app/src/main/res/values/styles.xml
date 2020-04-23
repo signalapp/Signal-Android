@@ -262,6 +262,13 @@
         <item name="android:textOff">@null</item>
     </style>
 
+    <style name="WebRtcCallV2CompoundButton">
+        <item name="android:layout_height">56dp</item>
+        <item name="android:layout_width">56dp</item>
+        <item name="android:textOn">@null</item>
+        <item name="android:textOff">@null</item>
+    </style>
+
     <style name="IdentityKey">
         <item name="android:fontFamily">monospace</item>
         <item name="android:typeface">monospace</item>
@@ -415,5 +422,10 @@
     <style name="Signal.Button.TextButton.Drawable">
          <item name="android:textAlignment">viewStart</item>
          <item name="android:drawablePadding">16dp</item>
+    </style>
+
+    <style name="Widget.Signal.Button.CalleeDialog" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/core_ultramarine</item>
+        <item name="android:background">@drawable/callee_dialog_button_background</item>
     </style>
 </resources>
