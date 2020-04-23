@@ -13,18 +13,26 @@ import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.ringrtc.Camera;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 
 /**
  * Handles retrieving the data to be shown in {@link CameraContactSelectionFragment}.
  */
 class CameraContactsRepository {
+
+  private static final String TAG = Log.tag(CameraContactsRepository.class);
 
   private static final int RECENT_MAX = 25;
 
@@ -33,6 +41,8 @@ class CameraContactsRepository {
   private final GroupDatabase     groupDatabase;
   private final RecipientDatabase recipientDatabase;
   private final ContactRepository contactRepository;
+  private final Executor          serialExecutor;
+  private final ExecutorService   parallelExecutor;
 
   CameraContactsRepository(@NonNull Context context) {
     this.context           = context.getApplicationContext();
@@ -40,6 +50,8 @@ class CameraContactsRepository {
     this.groupDatabase     = DatabaseFactory.getGroupDatabase(context);
     this.recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
     this.contactRepository = new ContactRepository(context);
+    this.serialExecutor    = SignalExecutors.SERIAL;
+    this.parallelExecutor  = SignalExecutors.BOUNDED;
   }
 
   void getCameraContacts(@NonNull Callback<CameraContacts> callback) {
@@ -47,12 +59,22 @@ class CameraContactsRepository {
   }
 
   void getCameraContacts(@NonNull String query, @NonNull Callback<CameraContacts> callback) {
-    SignalExecutors.BOUNDED.execute(() -> {
-      List<Recipient> recents  = getRecents(query);
-      List<Recipient> contacts = getContacts(query);
-      List<Recipient> groups   = getGroups(query);
+    serialExecutor.execute(() -> {
+      Future<List<Recipient>> recents  = parallelExecutor.submit(() -> getRecents(query));
+      Future<List<Recipient>> contacts = parallelExecutor.submit(() -> getContacts(query));
+      Future<List<Recipient>> groups   = parallelExecutor.submit(() -> getGroups(query));
 
-      callback.onComplete(new CameraContacts(recents, contacts, groups));
+      try {
+        long           startTime = System.currentTimeMillis();
+        CameraContacts result    = new CameraContacts(recents.get(), contacts.get(), groups.get());
+
+        Log.d(TAG, "Total time: " + (System.currentTimeMillis() - startTime) + " ms");
+
+        callback.onComplete(result);
+      } catch (InterruptedException | ExecutionException e) {
+        Log.w(TAG, "Failed to perform queries.", e);
+        callback.onComplete(new CameraContacts(Collections.emptyList(), Collections.emptyList(), Collections.emptyList()));
+      }
     });
   }
 

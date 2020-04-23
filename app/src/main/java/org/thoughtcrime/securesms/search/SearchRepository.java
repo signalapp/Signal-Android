@@ -88,7 +88,6 @@ public class SearchRepository {
     }
 
     serialExecutor.execute(() -> {
-
       String cleanQuery = sanitizeQuery(query);
 
       Future<List<Recipient>>     contacts      = parallelExecutor.submit(() -> queryContacts(cleanQuery));
