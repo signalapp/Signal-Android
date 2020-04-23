@@ -11,6 +11,7 @@ public class DefaultValueLiveData<T> extends MutableLiveData<T> {
   private final T defaultValue;
 
   public DefaultValueLiveData(@NonNull T defaultValue) {
+    super(defaultValue);
     this.defaultValue = defaultValue;
   }
 
