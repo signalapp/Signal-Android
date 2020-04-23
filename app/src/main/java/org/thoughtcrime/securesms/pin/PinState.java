@@ -329,7 +329,13 @@ public final class PinState {
       }
     }
 
-    throw new IllegalStateException("Expected: " + Arrays.toString(allowed) + ", Actual: " + currentState);
+    switch (currentState) {
+      case NO_REGISTRATION_LOCK:                throw new InvalidState_NoRegistrationLock();
+      case REGISTRATION_LOCK_V1:                throw new InvalidState_RegistrationLockV1();
+      case PIN_WITH_REGISTRATION_LOCK_ENABLED:  throw new InvalidState_PinWithRegistrationLockEnabled();
+      case PIN_WITH_REGISTRATION_LOCK_DISABLED: throw new InvalidState_PinWithRegistrationLockDisabled();
+      default:                                  throw new IllegalStateException("Expected: " + Arrays.toString(allowed) + ", Actual: " + currentState);
+    }
   }
 
   private static @NonNull State getState() {
@@ -428,4 +434,9 @@ public final class PinState {
       super(message);
     }
   }
+
+  private static class InvalidState_NoRegistrationLock extends IllegalStateException {}
+  private static class InvalidState_RegistrationLockV1 extends IllegalStateException {}
+  private static class InvalidState_PinWithRegistrationLockEnabled extends IllegalStateException {}
+  private static class InvalidState_PinWithRegistrationLockDisabled extends IllegalStateException {}
 }
