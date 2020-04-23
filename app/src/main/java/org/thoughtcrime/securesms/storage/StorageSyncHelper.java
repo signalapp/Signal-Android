@@ -133,25 +133,38 @@ public final class StorageSyncHelper {
     }
 
     for (RecipientSettings update : updates) {
-      byte[] oldKey = update.getStorageId();
-      byte[] newKey = generateKey();
+      StorageId oldId;
+      StorageId newId;
 
-      storageInserts.add(StorageSyncModels.localToRemoteRecord(update, newKey, archivedRecipients));
-      storageDeletes.add(ByteBuffer.wrap(oldKey));
-      completeIds.remove(StorageId.forContact(oldKey));
-      completeIds.add(StorageId.forContact(newKey));
-      storageKeyUpdates.put(update.getId(), newKey);
+      switch (update.getGroupType()) {
+        case NONE:
+          oldId = StorageId.forContact(update.getStorageId());
+          newId = StorageId.forContact(generateKey());
+          break;
+        case SIGNAL_V1:
+          oldId = StorageId.forGroupV1(update.getStorageId());
+          newId = StorageId.forGroupV1(generateKey());
+          break;
+        default:
+          throw new AssertionError("Unsupported type!");
+      }
+
+      storageInserts.add(StorageSyncModels.localToRemoteRecord(update, newId.getRaw(), archivedRecipients));
+      storageDeletes.add(ByteBuffer.wrap(oldId.getRaw()));
+      completeIds.remove(oldId);
+      completeIds.add(newId);
+      storageKeyUpdates.put(update.getId(), newId.getRaw());
     }
 
     if (accountUpdate.isPresent()) {
-      byte[] oldKey = accountUpdate.get().getId().getRaw();
-      byte[] newKey = generateKey();
+      StorageId oldId = accountUpdate.get().getId();
+      StorageId newId = StorageId.forAccount(generateKey());
 
-      storageInserts.add(SignalStorageRecord.forAccount(StorageId.forAccount(newKey), accountUpdate.get()));
-      storageDeletes.add(ByteBuffer.wrap(oldKey));
-      completeIds.remove(StorageId.forAccount(oldKey));
-      completeIds.add(StorageId.forAccount(newKey));
-      storageKeyUpdates.put(Recipient.self().getId(), newKey);
+      storageInserts.add(SignalStorageRecord.forAccount(newId, accountUpdate.get()));
+      storageDeletes.add(ByteBuffer.wrap(oldId.getRaw()));
+      completeIds.remove(oldId);
+      completeIds.add(newId);
+      storageKeyUpdates.put(Recipient.self().getId(), newId.getRaw());
     }
 
     if (storageInserts.isEmpty() && storageDeletes.isEmpty()) {

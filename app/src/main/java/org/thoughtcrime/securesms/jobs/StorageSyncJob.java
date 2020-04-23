@@ -275,7 +275,7 @@ public class StorageSyncJob extends BaseJob {
         case ManifestRecord.Identifier.Type.GROUPV2_VALUE:
           RecipientSettings settings = recipientDatabase.getByStorageId(id.getRaw());
           if (settings != null) {
-            records.add(StorageSyncModels.localToRemoteRecord(settings, archivedRecipients));
+
           } else {
             Log.w(TAG, "Missing local recipient model! Type: " + id.getType());
           }
