@@ -259,10 +259,10 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
   }
 
   private Optional<SignalServiceAttachmentStream> getAvatar(@NonNull RecipientId recipientId, @Nullable Uri uri) {
-    Optional<SignalServiceAttachmentStream> stream = getProfileAvatar(recipientId);
+    Optional<SignalServiceAttachmentStream> stream = getSystemAvatar(uri);
 
     if (!stream.isPresent()) {
-      return getSystemAvatar(uri);
+      return getProfileAvatar(recipientId);
     }
 
     return stream;
