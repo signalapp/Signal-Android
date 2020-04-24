@@ -194,6 +194,7 @@ public final class FeatureFlags {
   public static boolean pinsForAll() {
     return SignalStore.registrationValues().pinWasRequiredAtRegistration() ||
            SignalStore.kbsValues().isV2RegistrationLockEnabled()           ||
+           SignalStore.kbsValues().hasPin()                                ||
            pinsForAllMandatory()                                           ||
            getValue(PINS_FOR_ALL_LEGACY, false)                            ||
            getValue(PINS_FOR_ALL, false);

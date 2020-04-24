@@ -181,6 +181,12 @@ public final class PinState {
   @WorkerThread
   public static synchronized void onEnableRegistrationLockForUserWithPin() throws IOException {
     Log.i(TAG, "onEnableRegistrationLockForUserWithPin()");
+
+    if (getState() == State.PIN_WITH_REGISTRATION_LOCK_ENABLED) {
+      Log.i(TAG, "Registration lock already enabled. Skipping.");
+      return;
+    }
+
     assertState(State.PIN_WITH_REGISTRATION_LOCK_DISABLED);
 
     SignalStore.kbsValues().setV2RegistrationLockEnabled(false);
@@ -198,6 +204,12 @@ public final class PinState {
   @WorkerThread
   public static synchronized void onDisableRegistrationLockForUserWithPin() throws IOException {
     Log.i(TAG, "onDisableRegistrationLockForUserWithPin()");
+
+    if (getState() == State.PIN_WITH_REGISTRATION_LOCK_DISABLED) {
+      Log.i(TAG, "Registration lock already disabled. Skipping.");
+      return;
+    }
+
     assertState(State.PIN_WITH_REGISTRATION_LOCK_ENABLED);
 
     SignalStore.kbsValues().setV2RegistrationLockEnabled(true);
