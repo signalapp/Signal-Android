@@ -12,7 +12,7 @@
     android:labelFor="@id/action_icon"
     android:paddingStart="@dimen/selection_item_header_width"
     android:singleLine="true"
-    android:text="@string/contact_selection_activity__invite_to_signal"
+    android:text="@string/contact_selection_activity__new_group"
     android:textAlignment="viewStart"
-    app:drawableStartCompat="?attr/contact_selection_invite_icon"
+    app:drawableStartCompat="?attr/contact_selection_new_group_icon"
     tools:ignore="RtlSymmetry" />

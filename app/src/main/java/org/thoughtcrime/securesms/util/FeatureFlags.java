@@ -242,6 +242,11 @@ public final class FeatureFlags {
     return getValue(CALLING_PIP, false);
   }
 
+  /** New group UI elements. */
+  public static boolean newGroupUI() {
+    return getValue(NEW_GROUP_UI, false);
+  }
+
   /** Only for rendering debug info. */
   public static synchronized @NonNull Map<String, Boolean> getMemoryValues() {
     return new TreeMap<>(REMOTE_VALUES);

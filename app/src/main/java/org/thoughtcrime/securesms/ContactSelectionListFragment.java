@@ -55,6 +55,7 @@ import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.UsernameUtil;
@@ -100,15 +101,16 @@ public final class ContactSelectionListFragment extends    Fragment
   private RecyclerViewFastScroller    fastScroller;
   private ContactSelectionListAdapter cursorRecyclerViewAdapter;
 
+  @Nullable private FixedViewsAdapter headerAdapter;
   @Nullable private FixedViewsAdapter footerAdapter;
-  @Nullable private InviteCallback    inviteCallback;
+  @Nullable private ListCallback      listCallback;
 
   @Override
   public void onAttach(@NonNull Context context) {
     super.onAttach(context);
 
-    if (context instanceof InviteCallback) {
-      inviteCallback = (InviteCallback) context;
+    if (context instanceof ListCallback) {
+      listCallback = (ListCallback) context;
     }
   }
 
@@ -192,9 +194,16 @@ public final class ContactSelectionListFragment extends    Fragment
 
     RecyclerViewConcatenateAdapterStickyHeader concatenateAdapter = new RecyclerViewConcatenateAdapterStickyHeader();
 
+    if (listCallback != null && FeatureFlags.newGroupUI()) {
+      headerAdapter = new FixedViewsAdapter(createNewGroupItem(listCallback));
+      headerAdapter.hide();
+      concatenateAdapter.addAdapter(headerAdapter);
+    }
+
     concatenateAdapter.addAdapter(cursorRecyclerViewAdapter);
-    if (inviteCallback != null) {
-      footerAdapter = new FixedViewsAdapter(createInviteActionView(inviteCallback));
+
+    if (listCallback != null) {
+      footerAdapter = new FixedViewsAdapter(createInviteActionView(listCallback));
       footerAdapter.hide();
       concatenateAdapter.addAdapter(footerAdapter);
     }
@@ -203,10 +212,17 @@ public final class ContactSelectionListFragment extends    Fragment
     recyclerView.addItemDecoration(new StickyHeaderDecoration(concatenateAdapter, true, true));
   }
 
-  private View createInviteActionView(@NonNull InviteCallback inviteCallback) {
+  private View createInviteActionView(@NonNull ListCallback listCallback) {
     View view = LayoutInflater.from(requireContext())
                               .inflate(R.layout.contact_selection_invite_action_item, (ViewGroup) requireView(), false);
-    view.setOnClickListener(v -> inviteCallback.onInvite());
+    view.setOnClickListener(v -> listCallback.onInvite());
+    return view;
+  }
+
+  private View createNewGroupItem(@NonNull ListCallback listCallback) {
+    View view = LayoutInflater.from(requireContext())
+                              .inflate(R.layout.contact_selection_new_group_item, (ViewGroup) requireView(), false);
+    view.setOnClickListener(v -> listCallback.onNewGroup());
     return view;
   }
 
@@ -270,6 +286,10 @@ public final class ContactSelectionListFragment extends    Fragment
 
     if (footerAdapter != null) {
       footerAdapter.show();
+    }
+
+    if (headerAdapter != null) {
+      headerAdapter.show();
     }
 
     emptyText.setText(R.string.contact_selection_group_activity__no_contacts);
@@ -392,7 +412,8 @@ public final class ContactSelectionListFragment extends    Fragment
     void onContactDeselected(Optional<RecipientId> recipientId, String number);
   }
 
-  public interface InviteCallback {
+  public interface ListCallback {
     void onInvite();
+    void onNewGroup();
   }
 }

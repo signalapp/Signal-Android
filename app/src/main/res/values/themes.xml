@@ -418,6 +418,9 @@
         <item name="pending_member_background">@color/core_grey_02</item>
         <item name="pending_member_empty_text_color">@color/core_grey_60</item>
 
+        <item name="contact_selection_new_group_icon">@drawable/ic_new_group_circle_light</item>
+        <item name="contact_selection_invite_icon">@drawable/ic_invite_circle_light</item>
+
         <item name="colorControlNormal">@color/core_grey_90</item>
     </style>
 
@@ -692,6 +695,9 @@
 
         <item name="pending_member_background">@color/core_grey_80</item>
         <item name="pending_member_empty_text_color">@color/core_grey_25</item>
+
+        <item name="contact_selection_new_group_icon">@drawable/ic_new_group_circle_dark</item>
+        <item name="contact_selection_invite_icon">@drawable/ic_invite_circle_dark</item>
 
         <item name="colorControlNormal">@color/core_white</item>
     </style>

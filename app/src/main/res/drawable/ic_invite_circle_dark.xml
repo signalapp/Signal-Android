@@ -2,12 +2,12 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="oval">
-            <solid android:color="#70707C" />
+            <solid android:color="@color/core_grey_75" />
         </shape>
     </item>
     <item
         android:bottom="10dp"
-        android:drawable="@drawable/ic_invite_28dp"
+        android:drawable="@drawable/ic_invite_ultramarine_28"
         android:left="10dp"
         android:right="10dp"
         android:top="10dp" />
