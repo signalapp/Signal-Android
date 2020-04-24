@@ -1174,12 +1174,8 @@ public class RecipientDatabase extends Database {
 
   @Deprecated
   public void setRegistered(@NonNull RecipientId id, RegisteredState registeredState) {
-    ContentValues contentValues = new ContentValues(2);
+    ContentValues contentValues = new ContentValues(1);
     contentValues.put(REGISTERED, registeredState.getId());
-
-    if (registeredState == RegisteredState.REGISTERED) {
-      contentValues.put(STORAGE_SERVICE_ID, Base64.encodeBytes(StorageSyncHelper.generateKey()));
-    }
 
     if (update(id, contentValues)) {
       if (registeredState == RegisteredState.REGISTERED) {
