@@ -695,10 +695,18 @@
   <string name="PinRestoreEntryFragment_contact_support">Contacteu amb l\'Assistència</string>
   <string name="PinRestoreEntryFragment_cancel">Cancel·la</string>
   <string name="PinRestoreEntryFragment_skip">Omet</string>
+  <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
+    <item quantity="one">Us resta %1$d intent. Si us quedeu sense intents, podeu crear un PIN nou. Podeu registrar-vos i usar el compte, però perdreu algunes configuracions desades, com ara la informació del perfil.</item>
+    <item quantity="other">Us resten %1$d intents. Si us quedeu sense intents, podeu crear un PIN nou. Podeu registrar-vos i usar el compte, però perdreu algunes configuracions desades, com ara la informació del perfil.</item>
+  </plurals>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Registre del Signal - Cal ajuda amb el PIN per a Android</string>
+  <string name="PinRestoreEntryFragment_subject_signal_registration">Assumpte: registre del Signal - cal ajuda amb el PIN per a Android\nInformació del dispositiu: %1$s\nVersió d\'Android: %2$s\nVersió del Signal: %3$s\nLlengua: %4$s</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Escriviu un PIN alfanumèric</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Marqueu un PIN numèric</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Creeu el PIN</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Se us han acabat els intents del PIN, però encara podeu accedir al compte del Signal creant un PIN nou. Per a la vostra privadesa i seguretat, el compte es restaurarà sense cap tipus d\'informació ni configuració de perfil.</string>
+  <string name="PinRestoreLockedFragment_create_new_pin">Crea un PIN nou</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Valoreu l\'aplicació</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Si gaudiu usant aquesta aplicació, podeu ajudar-nos valorant-la.</string>
@@ -772,7 +780,11 @@ especificat (%s) no és vàlid.</string>
   <string name="RegistrationActivity_country_code_description">Codi de país</string>
   <string name="RegistrationActivity_call">Truca</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Voleu activar el bloqueig de registre?</string>
+  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Voleu desactivar el bloqueig de registre?</string>
   <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Si heu oblidat el PIN quan us torneu a registrar al Signal, se us blocarà el compte durant 7 dies.</string>
+  <string name="RegistrationLockV2Dialog_turn_on">Activa</string>
+  <string name="RegistrationLockV2Dialog_turn_off">Desactiva</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Mostra la fotografia</string>
   <string name="RevealableMessageView_view_video">Mostra el vídeo</string>
@@ -1525,6 +1537,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="conversation__menu_view_all_media">Tot el contingut</string>
   <string name="conversation__menu_conversation_settings">Configuració de la conversa</string>
   <string name="conversation__menu_add_shortcut">Afegeix a la pantalla d\'inici</string>
+  <string name="conversation__menu_pending_members">Membres pendents</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Expandeix la finestra emergent</string>
   <!--conversation_callable_insecure-->
@@ -1626,6 +1639,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Ha fallat crear el PIN.</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">El PIN no s\'ha desat. Us demanarem de crear-lo més tard.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN creat.</string>
+  <string name="ConfirmKbsPinFragment__re_enter_your_pin">Torneu a marcar el PIN.</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Es crea un PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">S\'introdueixen els PIN</string>
@@ -1681,6 +1695,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Crea un PIN</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Els PIN mantenen encriptada la informació desada amb el Signal.</string>
   <string name="KbsMegaphone__create_pin">Crea un PIN</string>
   <string name="KbsMegaphone__introducing_pins">S\'introdueixen els PIN</string>
   <string name="KbsMegaphone__update_pin">Actualitza el PIN</string>
@@ -1758,6 +1773,9 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences_app_protection__create_a_pin">Crea un PIN</string>
   <string name="preferences_app_protection__change_your_pin">Canvieu el PIN</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Els PIN mantenen encriptada la informació desada amb el Signal de manera que no hi pugui accedir ningú més. El perfil, la configuració i els contactes es restauraran quan el reinstal·leu.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Afegiu-hi més seguretat fent que el PIN torni a registrar el número de telèfon al Signal.</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">Ha fallat activar el bloqueig de registre.</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">Ha fallat desactivar el bloqueig de registre.</string>
   <string name="AppProtectionPreferenceFragment_none">Cap</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">El PIN de bloqueig del registre no és el mateix que el codi de verificació de l\'SMS que heu rebut. Si us plau, escriviu el PIN que heu configurat a l\'aplicació.</string>
   <string name="registration_activity__registration_lock_pin">PIN de bloqueig del registre</string>

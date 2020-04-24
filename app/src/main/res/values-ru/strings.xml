@@ -1794,7 +1794,7 @@
   </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Создать PIN-код</string>
-  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN-коды шифруют информацию, хранящуюся в сервисе Signal.</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN-коды хранят информацию в сервисе Signal зашифрованной.</string>
   <string name="KbsMegaphone__create_pin">Создать PIN-код</string>
   <string name="KbsMegaphone__introducing_pins">Представляем PIN-коды</string>
   <string name="KbsMegaphone__update_pin">Обновить PIN-код</string>

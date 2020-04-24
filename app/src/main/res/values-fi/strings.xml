@@ -79,6 +79,7 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Estä ja poistu ryhmästä %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Estä %1$s?</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Et tule vastaanottamaan viestejä tai päivityksiä tältä ryhmältä, eivätkä ryhmän jäsenet voi lisätä sinua takaisin ryhmään.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Ryhmän jäsenet eivät enää voi lisätä sinua takaisin tähän ryhmään.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Ryhmän jäsenet voivat lisätä sinut takaisin tähän ryhmään.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Voitte jatkossa lähettää viestejä ja soittaa toisillenne.</string>
@@ -688,15 +689,21 @@
   <string name="PinRestoreEntryFragment_incorrect_pin">Väärä PIN</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">Ohita PIN-koodin syöttö?</string>
   <string name="PinRestoreEntryFragment_need_help">Tarvitsetko apua?</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">PIN-koodi on sinun luoma %1$d+ numeroinen koodi, joka voi olla numeerinen tai aakkosnumeerinen.\n\nJos et muista PIN-koodiasi, voit luoda uuden. Voit rekisteröidä ja käyttää tiliäsi, mutta menetät tallennetut asetukset, kuten profiilitietosi.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Jos et muista PIN-koodiasi, voit luoda uuden. Voit rekisteröidä ja käyttää tiliäsi, mutta menetät tallennetut asetukset, kuten profiilitietosi.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Luo uusi PIN-koodi</string>
   <string name="PinRestoreEntryFragment_contact_support">Ota yhteyttä tukeen</string>
   <string name="PinRestoreEntryFragment_cancel">Peruuta</string>
   <string name="PinRestoreEntryFragment_skip">Ohita</string>
+  <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
+    <item quantity="one">Sinulla on %1$d yritys jäljellä. Jos yritykset loppuvat, voit luoda uuden PIN-koodin. Voit rekisteröidä ja käyttää tiliäsi, mutta menetät tallennetut asetukset, kuten profiilitietosi.</item>
+    <item quantity="other">Sinulla on %1$d yritystä jäljellä. Jos yritykset loppuvat, voit luoda uuden PIN-koodin. Voit rekisteröidä ja käyttää tiliäsi, mutta menetät tallennetut asetukset, kuten profiilitietosi.</item>
+  </plurals>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Syötä aakkosnumeerinen PIN</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Syötä numeerinen PIN</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Luo PIN-koodisi</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">PIN-arvailut ovat loppuneet, mutta voit silti käyttää Signal-tiliäsi luomalla uuden PIN-koodin. Yksityisyytesi ja turvallisuutesi vuoksi tili palautetaan ilman tallennettuja profiilitietoja tai asetuksia.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Luo uusi PIN-koodi</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Arvostele tämä sovellus</string>

@@ -242,23 +242,23 @@
     <item quantity="one">Dit zal het geselecteerde bericht alleen voor jou onherroepelijk wissen, maar dus niet voor je gesprekspartner(s).</item>
     <item quantity="other">Dit zal alle %1$d geselecteerde berichten alleen voor jou onherroepelijk wissen, maar dus niet voor je gesprekspartner(s).</item>
   </plurals>
-  <string name="ConversationFragment_save_to_sd_card">Opslaan naar SD-kaart?</string>
+  <string name="ConversationFragment_save_to_sd_card">Opslaan naar telefoonopslag?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-    <item quantity="one">Als je dit bestand opslaat op de SD-kaart wordt het niet versleuteld opgeslagen en hebben alle andere apps op je apparaat toegang tot dit bestand.\n\nDoorgaan?</item>
-    <item quantity="other">Als je deze %1$d bestanden opslaat op de SD-kaart worden ze niet versleuteld opgeslagen en hebben alle andere apps op je apparaat ook toegang tot deze bestanden.\n\nDoorgaan?</item>
+    <item quantity="one">Als je dit bestand opslaat op de telefoonopslag wordt het niet versleuteld opgeslagen en hebben alle andere apps op je apparaat toegang tot dit bestand.\n\nDoorgaan?</item>
+    <item quantity="other">Als je deze %1$d bestanden opslaat op de telefoonopslag worden ze niet versleuteld opgeslagen en hebben alle andere apps op je apparaat ook toegang tot deze bestanden.\n\nDoorgaan?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
-    <item quantity="one">Fout tijdens het opslaan van de bijlage op de SD-kaart!</item>
-    <item quantity="other">Fout tijdens het opslaan van de bijlage op de SD-kaart!</item>
+    <item quantity="one">Fout tijdens het opslaan van de bijlage op de telefoonopslag!</item>
+    <item quantity="other">Fout tijdens het opslaan van de bijlagen op de telefoonopslag!</item>
   </plurals>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kan niet schrijven naar SD-kaart!</string>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kan niet schrijven naar telefoonopslag!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Bijlage aan het opslaan</item>
     <item quantity="other">%1$d bijlagen aan het opslaan</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="one">Bijlage aan het opslaan naar SD-kaart…</item>
-    <item quantity="other">%1$d bijlagen aan het opslaan naar SD-kaart…</item>
+    <item quantity="one">Bijlage aan het opslaan naar telefoonopslag…</item>
+    <item quantity="other">%1$d bijlagen aan het opslaan naar telefoonopslag…</item>
   </plurals>
   <string name="ConversationFragment_pending">In afwachting…</string>
   <string name="ConversationFragment_push">Internet (beveiligd Signal-protocol)</string>

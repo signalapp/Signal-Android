@@ -657,7 +657,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Fe wnaethoch chi wrthod gwahoddiad i\'r grŵp.</string>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Fe wnaethoch chi dderbyn y gwahoddiad i\'r grŵp.</string>
-  <string name="MessageRecord_s_accepted_invite">Fe wnaeth %1$d dderbyn gwahoddiad i\'r grŵp.</string>
+  <string name="MessageRecord_s_accepted_invite">Fe wnaeth %1$s dderbyn gwahoddiad i\'r grŵp.</string>
   <string name="MessageRecord_you_added_invited_member_s">Fe wnaethoch ychwanegu aelod gwahoddedig %1$s.</string>
   <string name="MessageRecord_s_added_invited_member_s">Fe wnaeth %1$s ychwanegu aelod gwahoddedig %2$s. .</string>
   <!--GV2 title change-->
