@@ -21,7 +21,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.autofill.HintConstants;
 import androidx.core.app.DialogCompat;
+import androidx.core.view.ViewCompat;
 
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -72,6 +74,7 @@ public final class SignalPinReminderDialog {
         ServiceUtil.getInputMethodManager(pinEditText.getContext()).showSoftInput(pinEditText, 0);
       }
     });
+    ViewCompat.setAutofillHints(pinEditText, HintConstants.AUTOFILL_HINT_PASSWORD);
 
     switch (SignalStore.pinValues().getKeyboardType()) {
       case NUMERIC:

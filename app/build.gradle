@@ -275,6 +275,7 @@ dependencies {
     implementation "androidx.camera:camera-camera2:1.0.0-beta01"
     implementation "androidx.camera:camera-lifecycle:1.0.0-beta01"
     implementation "androidx.concurrent:concurrent-futures:1.0.0"
+    implementation "androidx.autofill:autofill:1.0.0"
 
     implementation('com.google.firebase:firebase-messaging:17.3.4') {
         exclude group: 'com.google.firebase', module: 'firebase-core'

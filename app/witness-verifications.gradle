@@ -27,6 +27,9 @@ dependencyVerification {
         ['androidx.asynclayoutinflater:asynclayoutinflater:1.0.0',
          'f7eab60c57addd94bb06275832fe7600611beaaae1a1ec597c231956faf96c8b'],
 
+        ['androidx.autofill:autofill:1.0.0',
+         'c9468f56e05006ea151a426c54957cd0799b8b83a579d2846dd22061f33e5ecd'],
+
         ['androidx.camera:camera-camera2:1.0.0-beta01',
          '02e15ad76153d09adcd6631627960707a8786333a8276d05dcbefc2bfe4ef5a1'],
 

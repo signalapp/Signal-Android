@@ -17,6 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
+import androidx.autofill.HintConstants;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
@@ -87,6 +89,7 @@ public class PinRestoreEntryFragment extends Fragment {
       }
       return false;
     });
+    ViewCompat.setAutofillHints(pinEntry, HintConstants.AUTOFILL_HINT_PASSWORD);
 
     enableAndFocusPinEntry();
 

@@ -4,11 +4,14 @@ import android.animation.Animator;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
+import android.view.autofill.AutofillManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RawRes;
 import androidx.appcompat.app.AlertDialog;
+import androidx.autofill.HintConstants;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -39,6 +42,7 @@ public class ConfirmKbsPinFragment extends BaseKbsPinFragment<ConfirmKbsPinViewM
     } else {
       initializeViewStatesForPinCreate();
     }
+    ViewCompat.setAutofillHints(getInput(), HintConstants.AUTOFILL_HINT_NEW_PASSWORD);
   }
 
   @Override

@@ -1,7 +1,11 @@
 package org.thoughtcrime.securesms.lock.v2;
 
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.PluralsRes;
+import androidx.autofill.HintConstants;
+import androidx.core.view.ViewCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
@@ -21,6 +25,7 @@ public class CreateKbsPinFragment extends BaseKbsPinFragment<CreateKbsPinViewMod
 
     getLabel().setText(getPinLengthRestrictionText(R.plurals.CreateKbsPinFragment__pin_must_be_at_least_digits));
     getConfirm().setEnabled(false);
+    ViewCompat.setAutofillHints(getInput(), HintConstants.AUTOFILL_HINT_NEW_PASSWORD);
   }
 
   private void initializeViewStatesForPinChange(boolean isForgotPin) {
