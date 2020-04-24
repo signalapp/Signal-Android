@@ -1870,7 +1870,7 @@
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Период бездействия для блокировки экрана</string>
   <string name="preferences_app_protection__signal_pin">PIN-код Signal</string>
   <string name="preferences_app_protection__create_a_pin">Создайте PIN-код</string>
-  <string name="preferences_app_protection__change_your_pin">Измените свой PIN-код</string>
+  <string name="preferences_app_protection__change_your_pin">Изменить свой PIN-код</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-коды хранят информацию в сервисе Signal зашифрованной, так что только вы можете получить к ней доступ. Ваши настройки, контакты и профиль будут восстановлены, если вы переустановите Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Улучшите безопасность, потребовав вводить ваш PIN-код Signal при повторной регистрации вашего номера телефона в Signal.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Не удалось включить блокировку регистрации.</string>

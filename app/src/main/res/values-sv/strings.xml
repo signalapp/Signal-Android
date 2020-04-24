@@ -52,7 +52,7 @@
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(bild)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(ljud)</string>
-  <string name="DraftDatabase_Draft_video_snippet">(film)</string>
+  <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(plats)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(svar)</string>
   <!--AttachmentKeyboard-->
@@ -84,8 +84,8 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Gruppmedlemmar kommer att kunna lägga till dig i denna grupp igen.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Ni kommer att kunna meddela och ringa varandra.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blockerade personer kan inte ringa dig eller skicka meddelanden.</string>
-  <string name="BlockUnblockDialog_unblock_s">Avblockera %1$s?</string>
-  <string name="BlockUnblockDialog_unblock">Avblockera</string>
+  <string name="BlockUnblockDialog_unblock_s">Sluta blockera %1$s?</string>
+  <string name="BlockUnblockDialog_unblock">Sluta blockera</string>
   <string name="BlockUnblockDialog_block">Blockera</string>
   <string name="BlockUnblockDialog_block_and_leave">Blockera och lämna</string>
   <string name="BlockUnblockDialog_block_and_delete">Blockera och ta bort</string>
@@ -194,11 +194,11 @@
   <string name="ConversationActivity_lets_switch_to_signal">Låt oss byta till Signal %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Fel vid lämnande av grupp</string>
   <string name="ConversationActivity_specify_recipient">Vänligen välj en kontakt</string>
-  <string name="ConversationActivity_unblock_this_contact_question">Avblockera denna kontakt?</string>
-  <string name="ConversationActivity_unblock_this_group_question">Avblockera denna grupp?</string>
+  <string name="ConversationActivity_unblock_this_contact_question">Sluta blockera denna kontakt?</string>
+  <string name="ConversationActivity_unblock_this_group_question">Sluta blockera denna grupp?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Du kommer att kunna ta emot meddelanden och samtal från den här kontakten igen.</string>
   <string name="ConversationActivity_unblock_this_group_description">Befintliga medlemmar kommer att kunna lägga dig till gruppen igen.</string>
-  <string name="ConversationActivity_unblock">Avblockera</string>
+  <string name="ConversationActivity_unblock">Sluta blockera</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Bilagan överskrider storleksgränserna för den typ av meddelande du skickar.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera otillgänglig</string>
   <string name="ConversationActivity_unable_to_record_audio">Det går inte att spela in ljud!</string>
@@ -519,8 +519,8 @@
   <string name="NotificationBarManager__cancel_call">Avbryt samtal</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediameddelande</string>
-  <string name="NotificationMmsMessageRecord_downloading_mms_message">Hämtning av MMS-meddelanden</string>
-  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Fel vid hämtning av MMS-meddelanden, tryck för att försöka igen</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">Hämtar av MMS-meddelande</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Fel vid hämtning av MMS-meddelande, tryck för att försöka igen</string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">Skicka till %s</string>
   <string name="MediaPickerActivity__menu_open_camera">Öppna kameran</string>
@@ -624,11 +624,11 @@
   <string name="MessageRequestBottomView_accept">Acceptera</string>
   <string name="MessageRequestBottomView_delete">Ta bort</string>
   <string name="MessageRequestBottomView_block">Blockera</string>
-  <string name="MessageRequestBottomView_unblock">Avblockera</string>
+  <string name="MessageRequestBottomView_unblock">Sluta blockera</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Vill du låta %1$s skicka meddelanden till dig? De vet inte att du har sett deras meddelanden förrän du accepterar.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Vill du gå med i gruppen %1$s? De vet inte att du har sett deras meddelanden förrän du accepterar.</string>
-  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Avblockera %1$s för att skicka meddelande och ringa varandra.</string>
-  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Avblockera för att tillåta gruppmedlemmar att lägga till dig i den här gruppen igen.</string>
+  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Sluta blockera %1$s för att skicka meddelande och ringa varandra.</string>
+  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Sluta blockera för att tillåta gruppmedlemmar att lägga till dig i den här gruppen igen.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Medlem av %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Medlem av %1$s och %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Medlem av %1$s, %2$s, och %3$s</string>
@@ -723,7 +723,7 @@
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blockera</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">Fel vid lämnande av grupp</string>
-  <string name="RecipientPreferenceActivity_unblock">Avblockera</string>
+  <string name="RecipientPreferenceActivity_unblock">Sluta blockera</string>
   <string name="RecipientPreferenceActivity_enabled">Aktiverad</string>
   <string name="RecipientPreferenceActivity_disabled">Inaktiverad</string>
   <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Tillgängliga när ett meddelande har skickats eller tagits emot.</string>
@@ -913,7 +913,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt använder en gammal version av Signal. Vänligen be dem uppdatera innan du verifierar ditt säkerhetsnummer.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Din kontakt använder en nyare version av Signal med ett inkompatibelt QR-kodformat. Var god uppdatera för att jämföra dem.</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Den skannade QR-koden är inte en korrekt formaterad verifieringskod för säkerhetsnummer. Vänligen försök att läsa in den igen.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Den skannade QR-koden är inte en korrekt formaterad verifieringskod för säkerhetsnummer. Vänligen försök att skanna den igen.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Dela säkerhetsnummer via…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Vårt säkerhetsnummer för Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Verkar som att du inte har några appar att dela till.</string>
