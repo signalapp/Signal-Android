@@ -100,6 +100,10 @@ public class MmsDownloadJob extends BaseJob {
 
   @Override
   public void onRun() {
+    if (TextSecurePreferences.getLocalUuid(context) == null && TextSecurePreferences.getLocalNumber(context) == null) {
+      throw new NotReadyException();
+    }
+
     MmsDatabase                               database     = DatabaseFactory.getMmsDatabase(context);
     Optional<MmsDatabase.MmsNotificationInfo> notification = database.getNotification(messageId);
 
@@ -264,5 +268,8 @@ public class MmsDownloadJob extends BaseJob {
                                 data.getLong(KEY_THREAD_ID),
                                 data.getBoolean(KEY_AUTOMATIC));
     }
+  }
+
+  private static class NotReadyException extends RuntimeException {
   }
 }

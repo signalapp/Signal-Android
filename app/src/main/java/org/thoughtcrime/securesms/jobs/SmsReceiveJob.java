@@ -170,6 +170,6 @@ public class SmsReceiveJob extends BaseJob {
     }
   }
 
-  private class NotReadyException extends RuntimeException {
+  private static class NotReadyException extends RuntimeException {
   }
 }
