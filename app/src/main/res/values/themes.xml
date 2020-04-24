@@ -150,7 +150,7 @@
         <!-- Allows for Overrides -->
     </style>
 
-    <style name="TextSecure.BaseLightTheme" parent="@style/Theme.AppCompat.Light">
+    <style name="TextSecure.BaseLightTheme" parent="@style/Theme.MaterialComponents.Light.Bridge">
         <item name="theme_type">light</item>
         <item name="icon_tint">@color/core_grey_75</item>
         <item name="icon_tint_dark">@color/core_grey_15</item>
@@ -421,6 +421,8 @@
         <item name="contact_selection_new_group_icon">@drawable/ic_new_group_circle_light</item>
         <item name="contact_selection_invite_icon">@drawable/ic_invite_circle_light</item>
 
+        <item name="chipStyle">@style/Signal.Chip.Action.Light</item>
+
         <item name="colorControlNormal">@color/core_grey_90</item>
     </style>
 
@@ -428,7 +430,7 @@
         <!-- leave empty to allow overriding -->
     </style>
 
-    <style name="TextSecure.BaseDarkTheme" parent="@style/Theme.AppCompat">
+    <style name="TextSecure.BaseDarkTheme" parent="@style/Theme.MaterialComponents.Bridge">
         <item name="theme_type">dark</item>
         <item name="icon_tint">@color/core_grey_15</item>
         <item name="icon_tint_dark">?icon_tint</item>
@@ -699,6 +701,8 @@
         <item name="contact_selection_new_group_icon">@drawable/ic_new_group_circle_dark</item>
         <item name="contact_selection_invite_icon">@drawable/ic_invite_circle_dark</item>
 
+        <item name="chipStyle">@style/Signal.Chip.Action</item>
+
         <item name="colorControlNormal">@color/core_white</item>
     </style>
 
@@ -834,6 +838,26 @@
         <item name="recipient_view_safety_icon">@drawable/ic_info_solid_tinted_24</item>
         <item name="recipient_make_admin_icon">@drawable/ic_group_solid_24</item>
         <item name="recipient_remove_icon">@drawable/ic_leave_tinted_24</item>
+    </style>
+
+    <style name="Signal.Chip.Action" parent="Widget.MaterialComponents.Chip.Action">
+        <item name="chipIconSize">32dp</item>
+        <item name="chipStartPadding">0dp</item>
+        <item name="closeIcon">@drawable/ic_x</item>
+        <item name="closeIconSize">12dp</item>
+        <item name="textEndPadding">4dp</item>
+        <!-- Negative padding gives us 4dp between icon and text, while allowing 10dp for when no icon -->
+        <item name="iconEndPadding">-6dp</item>
+        <item name="textStartPadding">10dp</item>
+        <item name="android:textColor">@color/core_white</item>
+        <item name="chipBackgroundColor">@color/core_grey_80</item>
+        <item name="closeIconTint">@color/core_grey_15</item>
+    </style>
+
+    <style name="Signal.Chip.Action.Light">
+        <item name="android:textColor">@color/core_grey_90</item>
+        <item name="chipBackgroundColor">@color/core_grey_05</item>
+        <item name="closeIconTint">@color/core_grey_60</item>
     </style>
 
 </resources>

@@ -415,6 +415,12 @@ public class Recipient {
                                  context.getString(R.string.Recipient_unknown));
   }
 
+  public @NonNull String getShortDisplayName(@NonNull Context context) {
+    return Util.getFirstNonEmpty(getName(context),
+                                 getProfileName().getGivenName(),
+                                 getDisplayName(context));
+  }
+
   public @NonNull MaterialColor getColor() {
     if (isGroupInternal()) {
       return MaterialColor.GROUP;
@@ -608,6 +614,10 @@ public class Recipient {
 
   public @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted) {
     return getFallbackContactPhotoDrawable(context, inverted, DEFAULT_FALLBACK_PHOTO_PROVIDER);
+  }
+
+  public @NonNull Drawable getSmallFallbackContactPhotoDrawable(Context context, boolean inverted) {
+    return getSmallFallbackContactPhotoDrawable(context, inverted, DEFAULT_FALLBACK_PHOTO_PROVIDER);
   }
 
   public @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted, @Nullable FallbackPhotoProvider fallbackPhotoProvider) {

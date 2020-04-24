@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <org.thoughtcrime.securesms.contacts.ContactSelectionListItem
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -38,7 +37,7 @@
                 android:ellipsize="marquee"
                 style="@style/Signal.Text.Body"
                 android:fontFamily="sans-serif-medium"
-                tools:text="Ottttooooooooo Ocataaaaaaaavius" />
+                tools:text="@sample/contacts.json/data/name" />
 
         <LinearLayout android:id="@+id/number_container"
                       android:orientation="horizontal"
@@ -54,7 +53,7 @@
                       android:textAppearance="?android:attr/textAppearanceSmall"
                       android:textSize="14sp"
                       android:fontFamily="sans-serif-light"
-                      tools:text="+1 (555) 555-5555" />
+                      tools:text="@sample/contacts.json/data/number" />
 
             <TextView android:id="@+id/label"
                       android:layout_width="wrap_content"
@@ -64,11 +63,10 @@
                       android:singleLine="true"
                       android:textAppearance="?android:attr/textAppearanceSmall"
                       android:fontFamily="sans-serif-light"
-                      tools:text="Mobile"
+                      tools:text="@sample/contacts.json/data/label"
                       tools:ignore="RtlSymmetry" />
 
         </LinearLayout>
-
 
     </LinearLayout>
 

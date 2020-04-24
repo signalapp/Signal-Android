@@ -1,0 +1,117 @@
+package org.thoughtcrime.securesms.contacts;
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.PixelFormat;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
+import com.google.android.material.chip.Chip;
+
+import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
+import org.thoughtcrime.securesms.mms.GlideRequests;
+import org.thoughtcrime.securesms.recipients.Recipient;
+
+public final class ContactChip extends Chip {
+
+  @Nullable private SelectedContact contact;
+
+  public ContactChip(Context context) {
+    super(context);
+  }
+
+  public ContactChip(Context context, AttributeSet attrs) {
+    super(context, attrs);
+  }
+
+  public ContactChip(Context context, AttributeSet attrs, int defStyleAttr) {
+    super(context, attrs, defStyleAttr);
+  }
+
+  public void setContact(@NonNull SelectedContact contact) {
+    this.contact = contact;
+  }
+
+  public @Nullable SelectedContact getContact() {
+    return contact;
+  }
+
+  public void setAvatar(@NonNull GlideRequests requestManager, @Nullable Recipient recipient) {
+    if (recipient != null) {
+      requestManager.clear(this);
+
+      Drawable     fallbackContactPhotoDrawable = recipient.getFallbackContactPhotoDrawable(getContext(), false);
+      ContactPhoto contactPhoto                 = recipient.getContactPhoto();
+
+      if (contactPhoto == null) {
+        setChipIcon(new HalfScaleDrawable(fallbackContactPhotoDrawable));
+      } else {
+        requestManager.load(contactPhoto)
+                      .fallback(fallbackContactPhotoDrawable)
+                      .error(fallbackContactPhotoDrawable)
+                      .diskCacheStrategy(DiskCacheStrategy.ALL)
+                      .circleCrop()
+                      .into(new CustomTarget<Drawable>() {
+                        @Override
+                        public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                          setChipIcon(resource);
+                        }
+
+                        @Override
+                        public void onLoadCleared(@Nullable Drawable placeholder) {
+                          setChipIcon(placeholder);
+                        }
+                      });
+      }
+    }
+  }
+
+  private static class HalfScaleDrawable extends Drawable {
+
+    private final Drawable fallbackContactPhotoDrawable;
+
+    HalfScaleDrawable(Drawable fallbackContactPhotoDrawable) {
+      this.fallbackContactPhotoDrawable = fallbackContactPhotoDrawable;
+    }
+
+    @Override
+    public void setBounds(int left, int top, int right, int bottom) {
+      super.setBounds(left, top, right, bottom);
+      fallbackContactPhotoDrawable.setBounds(left, top, 2 * right - left, 2 * bottom - top);
+    }
+
+    @Override
+    public void setBounds(@NonNull Rect bounds) {
+      super.setBounds(bounds);
+    }
+
+    @Override
+    public void draw(@NonNull Canvas canvas) {
+      canvas.save();
+      canvas.scale(0.5f, 0.5f);
+      fallbackContactPhotoDrawable.draw(canvas);
+      canvas.restore();
+    }
+
+    @Override
+    public void setAlpha(int alpha) {
+    }
+
+    @Override
+    public void setColorFilter(@Nullable ColorFilter colorFilter) {
+    }
+
+    @Override
+    public int getOpacity() {
+      return PixelFormat.OPAQUE;
+    }
+  }
+}

@@ -28,6 +28,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,26 +36,32 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.google.android.material.chip.ChipGroup;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import org.thoughtcrime.securesms.components.RecyclerViewFastScroller;
+import org.thoughtcrime.securesms.contacts.ContactChip;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListItem;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.contacts.SelectedContact;
+import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.permissions.Permissions;
-import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
+import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -67,9 +74,7 @@ import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Fragment for selecting a one or more contacts from a list.
@@ -88,8 +93,9 @@ public final class ContactSelectionListFragment extends    Fragment
   public static final String REFRESHABLE  = "refreshable";
   public static final String RECENTS      = "recents";
 
+  private final Debouncer scrollDebounce = new Debouncer(100);
+
   private TextView                    emptyText;
-  private Set<SelectedContact>        selectedContacts;
   private OnContactSelectedListener   onContactSelectedListener;
   private SwipeRefreshLayout          swipeRefresh;
   private View                        showContactsLayout;
@@ -100,10 +106,13 @@ public final class ContactSelectionListFragment extends    Fragment
   private RecyclerView                recyclerView;
   private RecyclerViewFastScroller    fastScroller;
   private ContactSelectionListAdapter cursorRecyclerViewAdapter;
+  private ChipGroup                   chipGroup;
+  private HorizontalScrollView        chipGroupScrollContainer;
 
   @Nullable private FixedViewsAdapter headerAdapter;
   @Nullable private FixedViewsAdapter footerAdapter;
   @Nullable private ListCallback      listCallback;
+            private GlideRequests     glideRequests;
 
   @Override
   public void onAttach(@NonNull Context context) {
@@ -132,14 +141,16 @@ public final class ContactSelectionListFragment extends    Fragment
                  if (!TextSecurePreferences.hasSuccessfullyRetrievedDirectory(getActivity())) {
                    handleContactPermissionGranted();
                  } else {
-                   this.getLoaderManager().initLoader(0, null, this);
+                   LoaderManager.getInstance(this).initLoader(0, null, this);
                  }
                })
                .onAnyDenied(() -> {
-                 getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+                 FragmentActivity activity = requireActivity();
 
-                 if (getActivity().getIntent().getBooleanExtra(RECENTS, false)) {
-                   getLoaderManager().initLoader(0, null, ContactSelectionListFragment.this);
+                 activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+                 if (activity.getIntent().getBooleanExtra(RECENTS, false)) {
+                   LoaderManager.getInstance(this).initLoader(0, null, ContactSelectionListFragment.this);
                  } else {
                    initializeNoContactsPermission();
                  }
@@ -151,17 +162,22 @@ public final class ContactSelectionListFragment extends    Fragment
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.contact_selection_list_fragment, container, false);
 
-    emptyText               = ViewUtil.findById(view, android.R.id.empty);
-    recyclerView            = ViewUtil.findById(view, R.id.recycler_view);
-    swipeRefresh            = ViewUtil.findById(view, R.id.swipe_refresh);
-    fastScroller            = ViewUtil.findById(view, R.id.fast_scroller);
-    showContactsLayout      = view.findViewById(R.id.show_contacts_container);
-    showContactsButton      = view.findViewById(R.id.show_contacts_button);
-    showContactsDescription = view.findViewById(R.id.show_contacts_description);
-    showContactsProgress    = view.findViewById(R.id.progress);
+    emptyText                = ViewUtil.findById(view, android.R.id.empty);
+    recyclerView             = ViewUtil.findById(view, R.id.recycler_view);
+    swipeRefresh             = ViewUtil.findById(view, R.id.swipe_refresh);
+    fastScroller             = ViewUtil.findById(view, R.id.fast_scroller);
+    showContactsLayout       = view.findViewById(R.id.show_contacts_container);
+    showContactsButton       = view.findViewById(R.id.show_contacts_button);
+    showContactsDescription  = view.findViewById(R.id.show_contacts_description);
+    showContactsProgress     = view.findViewById(R.id.progress);
+    chipGroup                = view.findViewById(R.id.chipGroup);
+    chipGroupScrollContainer = view.findViewById(R.id.chipGroupScrollContainer);
+
     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-    swipeRefresh.setEnabled(getActivity().getIntent().getBooleanExtra(REFRESHABLE, true));
+    swipeRefresh.setEnabled(requireActivity().getIntent().getBooleanExtra(REFRESHABLE, true));
+
+    autoScrollOnNewItem();
 
     return view;
   }
@@ -171,26 +187,22 @@ public final class ContactSelectionListFragment extends    Fragment
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
   }
 
-  public @NonNull List<SelectedContact> getSelectedContacts() {
-    List<SelectedContact> selected = new LinkedList<>();
-    if (selectedContacts != null) {
-      selected.addAll(selectedContacts);
-    }
-
-    return selected;
+  @NonNull List<SelectedContact> getSelectedContacts() {
+    return cursorRecyclerViewAdapter.getSelectedContacts();
   }
 
   private boolean isMulti() {
-    return getActivity().getIntent().getBooleanExtra(MULTI_SELECT, false);
+    return requireActivity().getIntent().getBooleanExtra(MULTI_SELECT, false);
   }
 
   private void initializeCursor() {
+    glideRequests = GlideApp.with(this);
+
     cursorRecyclerViewAdapter = new ContactSelectionListAdapter(requireContext(),
-                                                                GlideApp.with(this),
+                                                                glideRequests,
                                                                 null,
                                                                 new ListClickListener(),
                                                                 isMulti());
-    selectedContacts = cursorRecyclerViewAdapter.getSelectedContacts();
 
     RecyclerViewConcatenateAdapterStickyHeader concatenateAdapter = new RecyclerViewConcatenateAdapterStickyHeader();
 
@@ -263,7 +275,7 @@ public final class ContactSelectionListFragment extends    Fragment
   }
 
   public void reset() {
-    selectedContacts.clear();
+    cursorRecyclerViewAdapter.clearSelectedContacts();
 
     if (!isDetached() && !isRemoving() && getActivity() != null && !getActivity().isFinishing()) {
       getLoaderManager().restartLoader(0, null, this);
@@ -356,7 +368,7 @@ public final class ContactSelectionListFragment extends    Fragment
       SelectedContact selectedContact = contact.isUsernameType() ? SelectedContact.forUsername(contact.getRecipientId().orNull(), contact.getNumber())
                                                                  : SelectedContact.forPhone(contact.getRecipientId().orNull(), contact.getNumber());
 
-      if (!isMulti() || !selectedContacts.contains(selectedContact)) {
+      if (!isMulti() || !cursorRecyclerViewAdapter.isSelectedContact(selectedContact)) {
         if (contact.isUsernameType()) {
           AlertDialog loadingDialog = SimpleProgressDialog.show(requireContext());
 
@@ -366,8 +378,8 @@ public final class ContactSelectionListFragment extends    Fragment
             loadingDialog.dismiss();
             if (uuid.isPresent()) {
               Recipient recipient = Recipient.externalUsername(requireContext(), uuid.get(), contact.getNumber());
-              selectedContacts.add(SelectedContact.forUsername(recipient.getId(), contact.getNumber()));
-              contact.setChecked(true);
+              SelectedContact selected = SelectedContact.forUsername(recipient.getId(), contact.getNumber());
+              markContactSelected(selected, contact);
 
               if (onContactSelectedListener != null) {
                 onContactSelectedListener.onContactSelected(Optional.of(recipient.getId()), null);
@@ -381,22 +393,64 @@ public final class ContactSelectionListFragment extends    Fragment
             }
           });
         } else {
-          selectedContacts.add(selectedContact);
-          contact.setChecked(true);
+          markContactSelected(selectedContact, contact);
 
           if (onContactSelectedListener != null) {
             onContactSelectedListener.onContactSelected(contact.getRecipientId(), contact.getNumber());
           }
         }
       } else {
-        selectedContacts.remove(selectedContact);
-        contact.setChecked(false);
+        markContactUnselected(selectedContact, contact);
 
         if (onContactSelectedListener != null) {
           onContactSelectedListener.onContactDeselected(contact.getRecipientId(), contact.getNumber());
         }
+      }}
+  }
+
+  private void markContactSelected(@NonNull SelectedContact selectedContact, @NonNull ContactSelectionListItem listItem) {
+    cursorRecyclerViewAdapter.addSelectedContact(selectedContact);
+    listItem.setChecked(true);
+    if (isMulti() && FeatureFlags.newGroupUI()) {
+      chipGroup.addView(newChipForContact(listItem, selectedContact));
+    }
+  }
+
+  private void markContactUnselected(@NonNull SelectedContact selectedContact, @NonNull ContactSelectionListItem listItem) {
+    cursorRecyclerViewAdapter.removeFromSelectedContacts(selectedContact);
+    listItem.setChecked(false);
+    removeChipForContact(selectedContact);
+  }
+
+  private void removeChipForContact(@NonNull SelectedContact contact) {
+    for (int i = chipGroup.getChildCount() - 1; i >= 0; i--) {
+      View v = chipGroup.getChildAt(i);
+      if (v instanceof ContactChip && contact.matches(((ContactChip) v).getContact())) {
+        chipGroup.removeView(v);
       }
     }
+  }
+
+  private View newChipForContact(@NonNull ContactSelectionListItem contact, @NonNull SelectedContact selectedContact) {
+    final ContactChip chip = new ContactChip(requireContext());
+    chip.setText(contact.getChipName());
+    chip.setContact(selectedContact);
+
+    LiveRecipient recipient = contact.getRecipient();
+    if (recipient != null) {
+      recipient.observe(getViewLifecycleOwner(), resolved -> {
+          chip.setAvatar(glideRequests, resolved);
+          chip.setText(resolved.getShortDisplayName(chip.getContext()));
+        }
+      );
+    }
+
+    chip.setCloseIconVisible(true);
+    chip.setOnCloseIconClickListener(view -> {
+      markContactUnselected(selectedContact, contact);
+      chipGroup.removeView(chip);
+    });
+    return chip;
   }
 
   public void setOnContactSelectedListener(OnContactSelectedListener onContactSelectedListener) {
@@ -405,6 +459,19 @@ public final class ContactSelectionListFragment extends    Fragment
 
   public void setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener onRefreshListener) {
     this.swipeRefresh.setOnRefreshListener(onRefreshListener);
+  }
+
+  private void autoScrollOnNewItem() {
+    chipGroup.addOnLayoutChangeListener((view1, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+      if (right > oldRight) {
+        scrollDebounce.publish(this::smoothScrollChipsToEnd);
+      }
+    });
+  }
+
+  private void smoothScrollChipsToEnd() {
+    int x = chipGroupScrollContainer.getLayoutDirection() == View.LAYOUT_DIRECTION_LTR ? chipGroup.getWidth() : 0;
+    chipGroupScrollContainer.smoothScrollTo(x, 0);
   }
 
   public interface OnContactSelectedListener {
