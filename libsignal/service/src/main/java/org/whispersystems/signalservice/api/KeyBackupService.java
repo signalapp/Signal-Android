@@ -169,7 +169,6 @@ public final class KeyBackupService {
         Log.i(TAG, "Restore " + status.getStatus());
         switch (status.getStatus()) {
           case OK:
-            Log.i(TAG, String.format(Locale.US,"Restore OK! data: %s tries: %d", Hex.toStringCondensed(status.getData().toByteArray()), status.getTries()));
             KbsData kbsData = hashedPin.decryptKbsDataIVCipherText(status.getData().toByteArray());
             MasterKey masterKey = kbsData.getMasterKey();
             return new KbsPinData(masterKey, nextToken);

@@ -94,7 +94,7 @@ public class WebSocketConnection extends WebSocketListener {
   }
 
   public synchronized void connect() {
-    Log.w(TAG, "WSC connect()...");
+    Log.i(TAG, "WSC connect()...");
 
     if (client == null) {
       String filledUri;
@@ -137,7 +137,7 @@ public class WebSocketConnection extends WebSocketListener {
   }
 
   public synchronized void disconnect() {
-    Log.w(TAG, "WSC disconnect()...");
+    Log.i(TAG, "WSC disconnect()...");
 
     if (client != null) {
       client.close(1000, "OK");
@@ -222,7 +222,7 @@ public class WebSocketConnection extends WebSocketListener {
   @Override
   public synchronized void onOpen(WebSocket webSocket, Response response) {
     if (client != null && keepAliveSender == null) {
-      Log.w(TAG, "onConnected()");
+      Log.i(TAG, "onConnected()");
       attempts        = 0;
       connected       = true;
       keepAliveSender = new KeepAliveSender();
@@ -234,11 +234,11 @@ public class WebSocketConnection extends WebSocketListener {
 
   @Override
   public synchronized void onMessage(WebSocket webSocket, ByteString payload) {
-    Log.w(TAG, "WSC onMessage()");
+    Log.d(TAG, "WSC onMessage()");
     try {
       WebSocketMessage message = WebSocketMessage.parseFrom(payload.toByteArray());
 
-      Log.w(TAG, "Message Type: " + message.getType().getNumber());
+      Log.d(TAG, "Message Type: " + message.getType().getNumber());
 
       if (message.getType().getNumber() == WebSocketMessage.Type.REQUEST_VALUE)  {
         incomingRequests.add(message.getRequest());
@@ -256,7 +256,7 @@ public class WebSocketConnection extends WebSocketListener {
 
   @Override
   public synchronized void onClosed(WebSocket webSocket, int code, String reason) {
-    Log.w(TAG, "onClose()...");
+    Log.i(TAG, "onClose()...");
     this.connected = false;
 
     Iterator<Map.Entry<Long, SettableFuture<Pair<Integer, String>>>> iterator = outgoingRequests.entrySet().iterator();
@@ -290,8 +290,7 @@ public class WebSocketConnection extends WebSocketListener {
 
   @Override
   public synchronized void onFailure(WebSocket webSocket, Throwable t, Response response) {
-    Log.w(TAG, "onFailure()");
-    Log.w(TAG, t);
+    Log.w(TAG, "onFailure()", t);
 
     if (response != null && (response.code() == 401 || response.code() == 403)) {
       if (listener != null) listener.onAuthenticationFailure();
@@ -304,12 +303,12 @@ public class WebSocketConnection extends WebSocketListener {
 
   @Override
   public void onMessage(WebSocket webSocket, String text) {
-    Log.w(TAG, "onMessage(text)! " + text);
+    Log.d(TAG, "onMessage(text)! " + text);
   }
 
   @Override
   public synchronized void onClosing(WebSocket webSocket, int code, String reason) {
-    Log.w(TAG, "onClosing()!...");
+    Log.i(TAG, "onClosing()!...");
     webSocket.close(1000, "OK");
   }
 
@@ -338,7 +337,7 @@ public class WebSocketConnection extends WebSocketListener {
         try {
           sleepTimer.sleep(TimeUnit.SECONDS.toMillis(KEEPALIVE_TIMEOUT_SECONDS));
 
-          Log.w(TAG, "Sending keep alive...");
+          Log.d(TAG, "Sending keep alive...");
           sendKeepAlive();
         } catch (Throwable e) {
           Log.w(TAG, e);
