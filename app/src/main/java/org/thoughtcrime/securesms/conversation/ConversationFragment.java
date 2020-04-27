@@ -65,6 +65,8 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.MessageDetailsActivity;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.sharing.ShareActivity;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.components.ConversationTypingView;
@@ -1300,6 +1302,13 @@ public class ConversationFragment extends Fragment
       if (getContext() == null) return;
 
       ReactionsBottomSheetDialogFragment.create(messageId, isMms).show(requireFragmentManager(), null);
+    }
+
+    @Override
+    public void onGroupMemberAvatarClicked(@NonNull RecipientId recipientId, @NonNull GroupId groupId) {
+      if (getContext() == null) return;
+
+      RecipientBottomSheetDialogFragment.create(recipientId, groupId).show(requireFragmentManager(), "BOTTOM");
     }
   }
 

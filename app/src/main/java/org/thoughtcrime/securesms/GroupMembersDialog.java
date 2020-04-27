@@ -72,18 +72,7 @@ public final class GroupMembersDialog {
   }
 
   private void contactClick(@NonNull Recipient recipient) {
-    GroupId groupId = groupRecipient.requireGroupId();
-
-    if (groupId.isV2()) {
-      RecipientBottomSheetDialogFragment.create(recipient.getId(), groupId)
-                                        .show(fragmentActivity.getSupportFragmentManager(), "BOTTOM");
-    } else if (recipient.getContactUri() != null) {
-        Intent intent = new Intent(fragmentActivity, RecipientPreferenceActivity.class);
-        intent.putExtra(RecipientPreferenceActivity.RECIPIENT_ID, recipient.getId());
-
-        fragmentActivity.startActivity(intent);
-    } else {
-      fragmentActivity.startActivity(RecipientExporter.export(recipient).asAddContactIntent());
-    }
+    RecipientBottomSheetDialogFragment.create(recipient.getId(), groupRecipient.requireGroupId())
+                                      .show(fragmentActivity.getSupportFragmentManager(), "BOTTOM");
   }
 }
