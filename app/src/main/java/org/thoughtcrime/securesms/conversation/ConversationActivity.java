@@ -753,36 +753,26 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (recipient != null && recipient.get().isLocalNumber()) {
       if (isSecureText) {
-        menu.findItem(R.id.menu_call_secure).setVisible(false);
-        menu.findItem(R.id.menu_video_secure).setVisible(false);
+        hideMenuItem(menu, R.id.menu_call_secure);
+        hideMenuItem(menu, R.id.menu_video_secure);
       } else {
-        menu.findItem(R.id.menu_call_insecure).setVisible(false);
+        hideMenuItem(menu, R.id.menu_call_insecure);
       }
 
-      MenuItem muteItem = menu.findItem(R.id.menu_mute_notifications);
-
-      if (muteItem != null) {
-        muteItem.setVisible(false);
-      }
+      hideMenuItem(menu, R.id.menu_mute_notifications);
     }
 
     if (recipient != null && recipient.get().isBlocked()) {
       if (isSecureText) {
-        menu.findItem(R.id.menu_call_secure).setVisible(false);
-        menu.findItem(R.id.menu_video_secure).setVisible(false);
-
-        if (menu.findItem(R.id.menu_expiring_messages) != null) {
-          menu.findItem(R.id.menu_expiring_messages).setVisible(false);
-        }
-
-        if (menu.findItem(R.id.menu_expiring_messages_off) != null) {
-          menu.findItem(R.id.menu_expiring_messages_off).setVisible(false);
-        }
+        hideMenuItem(menu, R.id.menu_call_secure);
+        hideMenuItem(menu, R.id.menu_video_secure);
+        hideMenuItem(menu, R.id.menu_expiring_messages);
+        hideMenuItem(menu, R.id.menu_expiring_messages_off);
       } else {
-        menu.findItem(R.id.menu_call_insecure).setVisible(false);
+        hideMenuItem(menu, R.id.menu_call_insecure);
       }
 
-      menu.findItem(R.id.menu_mute_notifications).setVisible(false);
+      hideMenuItem(menu, R.id.menu_mute_notifications);
     }
 
     searchViewItem = menu.findItem(R.id.menu_search);
@@ -2987,6 +2977,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     invalidateOptionsMenu();
+  }
+
+  private static void hideMenuItem(@NonNull Menu menu, @IdRes int menuItem) {
+    if (menu.findItem(menuItem) != null) {
+      menu.findItem(menuItem).setVisible(false);
+    }
   }
 
   private class UnverifiedDismissedListener implements UnverifiedBannerView.DismissListener {
