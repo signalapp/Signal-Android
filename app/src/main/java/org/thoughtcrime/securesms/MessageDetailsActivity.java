@@ -62,6 +62,7 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.lang.ref.WeakReference;
@@ -439,8 +440,8 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     }
 
     private void onResendClicked(View v) {
-      MessageSender.resend(MessageDetailsActivity.this, messageRecord);
       resendButton.setVisibility(View.GONE);
+      SignalExecutors.BOUNDED.execute(() -> MessageSender.resend(MessageDetailsActivity.this, messageRecord));
     }
   }
 }
