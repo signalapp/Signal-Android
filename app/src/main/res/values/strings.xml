@@ -429,6 +429,7 @@
     <!-- GroupCreateActivity -->
     <string name="GroupCreateActivity_actionbar_title">New group</string>
     <string name="GroupCreateActivity_actionbar_edit_title">Edit group</string>
+    <string name="GroupCreateActivity_actionbar_manage_title">Manage group</string>
     <string name="GroupCreateActivity_group_name_hint">Group name</string>
     <string name="GroupCreateActivity_actionbar_mms_title">New MMS group</string>
     <string name="GroupCreateActivity_contacts_dont_support_push">You have selected a contact that doesn\'t support Signal groups, so this group will be MMS.</string>
@@ -457,6 +458,14 @@
     <string name="GroupManagement_access_level_all_members">All members</string>
     <string name="GroupManagement_access_level_only_admins">Only admins</string>
     <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string>
+    <array name="GroupManagement_edit_group_membership_choices">
+        <item>@string/GroupManagement_access_level_all_members</item>
+        <item>@string/GroupManagement_access_level_only_admins</item>
+    </array>
+    <array name="GroupManagement_edit_group_info_choices">
+        <item>@string/GroupManagement_access_level_all_members</item>
+        <item>@string/GroupManagement_access_level_only_admins</item>
+    </array>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMemberInvitesActivity_pending_group_invites">Pending group invites</string>
@@ -476,6 +485,20 @@
         <item quantity="one">Error canceling invite</item>
         <item quantity="other">Error canceling invites</item>
     </plurals>
+
+    <!-- ManageGroupActivity -->
+    <string name="ManageGroupActivity_disappearing_messages">Disappearing messages</string>
+    <string name="ManageGroupActivity_pending_group_invites">Pending group invites</string>
+    <string name="ManageGroupActivity_who_can_edit_group_membership">Who can edit group membership</string>
+    <string name="ManageGroupActivity_who_can_edit_group_info">Who can edit group info</string>
+    <string name="ManageGroupActivity_block_group">Block group</string>
+    <string name="ManageGroupActivity_leave_group">Leave group</string>
+
+    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
+    <string name="ManageGroupActivity_failed_to_update_the_group">Failed to update the group</string>
+
+    <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Choose who can add or invite new members</string>
+    <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Choose who can change the group name and photo</string>
 
     <plurals name="GroupMemberList_invited">
         <item quantity="one">%1$s invited 1 person</item>
@@ -1836,6 +1859,7 @@
     <!-- conversation -->
     <string name="conversation__menu_add_attachment">Add attachment</string>
     <string name="conversation__menu_edit_group">Edit group</string>
+    <string name="conversation__menu_manage_group">Manage group</string>
     <string name="conversation__menu_leave_group">Leave group</string>
     <string name="conversation__menu_view_all_media">All media</string>
     <string name="conversation__menu_conversation_settings">Conversation settings</string>
@@ -2167,6 +2191,9 @@
     <string name="RecipientBottomSheet_make_group_admin">Make group admin</string>
     <string name="RecipientBottomSheet_remove_as_admin">Remove as admin</string>
     <string name="RecipientBottomSheet_remove_from_group">Remove from group</string>
+
+    <string name="GroupRecipientListItem_admin">Admin</string>
+
     <!-- EOF -->
 
 </resources>

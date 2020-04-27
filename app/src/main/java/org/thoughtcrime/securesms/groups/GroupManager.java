@@ -12,6 +12,7 @@ import org.signal.zkgroup.groups.UuidCiphertext;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.groupsv2.InvalidGroupStateException;
+import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.IOException;
@@ -59,12 +60,41 @@ public final class GroupManager {
   }
 
   @WorkerThread
+  public static void updateGroupTimer(@NonNull Context context, @NonNull GroupId.Push groupId, int expirationTime)
+      throws GroupChangeFailedException, GroupInsufficientRightsException
+  {
+    if (groupId.isV2()) {
+      throw new GroupChangeFailedException(new AssertionError("NYI")); // TODO: GV2 allow timer change
+    } else {
+      V1GroupManager.updateGroupTimer(context, groupId.requireV1(), expirationTime);
+    }
+  }
+
+  @WorkerThread
   public static void cancelInvites(@NonNull Context context,
                                    @NonNull GroupId.V2 groupId,
                                    @NonNull Collection<UuidCiphertext> uuidCipherTexts)
       throws InvalidGroupStateException, VerificationFailedException, IOException
   {
     throw new AssertionError("NYI"); // TODO: GV2 allow invite cancellation
+  }
+
+  @WorkerThread
+  public static void applyMembershipAdditionRightsChange(@NonNull Context context,
+                                                         @NonNull GroupId.V2 groupId,
+                                                         @NonNull GroupAccessControl newRights)
+      throws GroupChangeFailedException, GroupInsufficientRightsException
+  {
+    throw new GroupChangeFailedException(new AssertionError("NYI")); // TODO: GV2 allow membership addition rights change
+  }
+
+  @WorkerThread
+  public static void applyAttributesRightsChange(@NonNull Context context,
+                                                 @NonNull GroupId.V2 groupId,
+                                                 @NonNull GroupAccessControl newRights)
+      throws GroupChangeFailedException, GroupInsufficientRightsException
+  {
+    throw new GroupChangeFailedException(new AssertionError("NYI")); // TODO: GV2 allow attributes rights change
   }
 
   public static class GroupActionResult {

@@ -15,12 +15,14 @@ import com.google.protobuf.InvalidProtocolBufferException;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
+import org.signal.storageservice.protos.groups.AccessControl;
 import org.signal.storageservice.protos.groups.Member;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import org.thoughtcrime.securesms.groups.GroupAccessControl;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -650,6 +652,34 @@ public final class GroupDatabase extends Database {
 
     public boolean isAdmin(@NonNull Recipient recipient) {
       return isV2Group() && requireV2GroupProperties().isAdmin(recipient);
+    }
+
+    /**
+     * Who is allowed to add to the membership of this group.
+     */
+    public GroupAccessControl getMembershipAdditionAccessControl() {
+      if (isV2Group()) {
+        if (requireV2GroupProperties().getDecryptedGroup().getAccessControl().getMembers() == AccessControl.AccessRequired.MEMBER) {
+          return GroupAccessControl.ALL_MEMBERS;
+        }
+        return GroupAccessControl.ONLY_ADMINS;
+      } else {
+        return GroupAccessControl.ALL_MEMBERS;
+      }
+    }
+
+    /**
+     * Who is allowed to modify the attributes of this group, name/avatar/timer etc.
+     */
+    public GroupAccessControl getAttributesAccessControl() {
+      if (isV2Group()) {
+        if (requireV2GroupProperties().getDecryptedGroup().getAccessControl().getAttributes() == AccessControl.AccessRequired.MEMBER) {
+          return GroupAccessControl.ALL_MEMBERS;
+        }
+        return GroupAccessControl.ONLY_ADMINS;
+      } else {
+        return GroupAccessControl.ALL_MEMBERS;
+      }
     }
   }
 

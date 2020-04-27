@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.DiffUtil;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
@@ -17,7 +18,7 @@ import org.thoughtcrime.securesms.util.LifecycleRecyclerAdapter;
 import org.thoughtcrime.securesms.util.LifecycleViewHolder;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 final class GroupMemberListAdapter extends LifecycleRecyclerAdapter<GroupMemberListAdapter.ViewHolder> {
 
@@ -27,12 +28,19 @@ final class GroupMemberListAdapter extends LifecycleRecyclerAdapter<GroupMemberL
 
   private final ArrayList<GroupMemberEntry> data = new ArrayList<>();
 
-  @Nullable private AdminActionsListener adminActionsListener;
+  @Nullable private AdminActionsListener   adminActionsListener;
+  @Nullable private RecipientClickListener recipientClickListener;
 
-  void updateData(@NonNull Collection<? extends GroupMemberEntry> recipients) {
-    data.clear();
-    data.addAll(recipients);
-    notifyDataSetChanged();
+  void updateData(@NonNull List<? extends GroupMemberEntry> recipients) {
+    if (data.isEmpty()) {
+      data.addAll(recipients);
+      notifyDataSetChanged();
+    } else {
+      DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffCallback(data, recipients));
+      data.clear();
+      data.addAll(recipients);
+      diffResult.dispatchUpdatesTo(this);
+    }
   }
 
   @Override
@@ -41,11 +49,11 @@ final class GroupMemberListAdapter extends LifecycleRecyclerAdapter<GroupMemberL
       case FULL_MEMBER:
         return new FullMemberViewHolder(LayoutInflater.from(parent.getContext())
                                                       .inflate(R.layout.group_recipient_list_item,
-                                                               parent, false), adminActionsListener);
+                                                               parent, false), recipientClickListener, adminActionsListener);
       case OWN_INVITE_PENDING:
         return new OwnInvitePendingMemberViewHolder(LayoutInflater.from(parent.getContext())
                                                                   .inflate(R.layout.group_recipient_list_item,
-                                                                           parent, false), adminActionsListener);
+                                                                           parent, false), recipientClickListener, adminActionsListener);
       case OTHER_INVITE_PENDING_COUNT:
         return new UnknownPendingMemberCountViewHolder(LayoutInflater.from(parent.getContext())
                                                                      .inflate(R.layout.group_recipient_list_item,
@@ -57,6 +65,10 @@ final class GroupMemberListAdapter extends LifecycleRecyclerAdapter<GroupMemberL
 
   void setAdminActionsListener(@Nullable AdminActionsListener adminActionsListener) {
     this.adminActionsListener = adminActionsListener;
+  }
+
+  void setRecipientClickListener(@Nullable RecipientClickListener recipientClickListener) {
+    this.recipientClickListener = recipientClickListener;
   }
 
   @Override
@@ -86,24 +98,31 @@ final class GroupMemberListAdapter extends LifecycleRecyclerAdapter<GroupMemberL
 
   static abstract class ViewHolder extends LifecycleViewHolder {
 
-                     final Context              context;
-             private final AvatarImageView      avatar;
-             private final TextView             recipient;
-                     final PopupMenuView        popupMenu;
-                     final View                 popupMenuContainer;
-                     final ProgressBar          busyProgress;
-    @Nullable        final AdminActionsListener adminActionsListener;
+              final Context                context;
+              final AvatarImageView        avatar;
+              final TextView               recipient;
+              final PopupMenuView          popupMenu;
+              final View                   popupMenuContainer;
+              final ProgressBar            busyProgress;
+              final View                   admin;
+    @Nullable final RecipientClickListener recipientClickListener;
+    @Nullable final AdminActionsListener   adminActionsListener;
 
-    ViewHolder(@NonNull View itemView, @Nullable AdminActionsListener adminActionsListener) {
+    ViewHolder(@NonNull View itemView,
+               @Nullable RecipientClickListener recipientClickListener,
+               @Nullable AdminActionsListener adminActionsListener)
+    {
       super(itemView);
 
-      this.context              = itemView.getContext();
-      this.avatar               = itemView.findViewById(R.id.recipient_avatar);
-      this.recipient            = itemView.findViewById(R.id.recipient_name);
-      this.popupMenu            = itemView.findViewById(R.id.popupMenu);
-      this.popupMenuContainer   = itemView.findViewById(R.id.popupMenuProgressContainer);
-      this.busyProgress         = itemView.findViewById(R.id.menuBusyProgress);
-      this.adminActionsListener = adminActionsListener;
+      this.context                = itemView.getContext();
+      this.avatar                 = itemView.findViewById(R.id.recipient_avatar);
+      this.recipient              = itemView.findViewById(R.id.recipient_name);
+      this.popupMenu              = itemView.findViewById(R.id.popupMenu);
+      this.popupMenuContainer     = itemView.findViewById(R.id.popupMenuProgressContainer);
+      this.busyProgress           = itemView.findViewById(R.id.menuBusyProgress);
+      this.admin                  = itemView.findViewById(R.id.admin);
+      this.recipientClickListener = recipientClickListener;
+      this.adminActionsListener   = adminActionsListener;
     }
 
     void bindRecipient(@NonNull Recipient recipient) {
@@ -117,15 +136,23 @@ final class GroupMemberListAdapter extends LifecycleRecyclerAdapter<GroupMemberL
       this.avatar.setRecipient(recipient);
     }
 
+    void bindRecipientClick(@NonNull Recipient recipient) {
+      View.OnClickListener onClickListener = v -> {
+        if (recipientClickListener != null) {
+          recipientClickListener.onClick(recipient);
+        }
+      };
+      this.avatar.setOnClickListener(onClickListener);
+      this.recipient.setOnClickListener(onClickListener);
+    }
+
     void bind(@NonNull GroupMemberEntry memberEntry) {
       busyProgress.setVisibility(View.GONE);
+      admin.setVisibility(View.GONE);
       hideMenu();
 
-      Runnable             onClick         = memberEntry.getOnClick();
-      View.OnClickListener onClickListener = v -> { if (onClick != null) onClick.run(); };
-
-      avatar.setOnClickListener(onClickListener);
-      recipient.setOnClickListener(onClickListener);
+      avatar.setOnClickListener(null);
+      recipient.setOnClickListener(null);
 
       memberEntry.getBusy().observe(this, busy -> {
         busyProgress.setVisibility(busy ? View.VISIBLE : View.GONE);
@@ -146,8 +173,11 @@ final class GroupMemberListAdapter extends LifecycleRecyclerAdapter<GroupMemberL
 
   final static class FullMemberViewHolder extends ViewHolder {
 
-    FullMemberViewHolder(@NonNull View itemView, @Nullable AdminActionsListener adminActionsListener) {
-      super(itemView, adminActionsListener);
+    FullMemberViewHolder(@NonNull View itemView,
+                         @Nullable RecipientClickListener recipientClickListener,
+                         @Nullable AdminActionsListener adminActionsListener)
+    {
+      super(itemView, recipientClickListener, adminActionsListener);
     }
 
     @Override
@@ -157,13 +187,18 @@ final class GroupMemberListAdapter extends LifecycleRecyclerAdapter<GroupMemberL
       GroupMemberEntry.FullMember fullMember = (GroupMemberEntry.FullMember) memberEntry;
 
       bindRecipient(fullMember.getMember());
+      bindRecipientClick(fullMember.getMember());
+      admin.setVisibility(fullMember.isAdmin() ? View.VISIBLE : View.INVISIBLE);
     }
   }
 
   final static class OwnInvitePendingMemberViewHolder extends ViewHolder {
 
-    OwnInvitePendingMemberViewHolder(@NonNull View itemView, @Nullable AdminActionsListener adminActionsListener) {
-      super(itemView, adminActionsListener);
+    OwnInvitePendingMemberViewHolder(@NonNull View itemView,
+                         @Nullable RecipientClickListener recipientClickListener,
+                         @Nullable AdminActionsListener adminActionsListener)
+    {
+      super(itemView, recipientClickListener, adminActionsListener);
     }
 
     @Override
@@ -173,6 +208,7 @@ final class GroupMemberListAdapter extends LifecycleRecyclerAdapter<GroupMemberL
       GroupMemberEntry.PendingMember pendingMember = (GroupMemberEntry.PendingMember) memberEntry;
 
       bindRecipient(pendingMember.getInvitee());
+      bindRecipientClick(pendingMember.getInvitee());
 
       if (pendingMember.isCancellable() && adminActionsListener != null) {
         popupMenu.setMenu(R.menu.own_invite_pending_menu,
@@ -191,7 +227,7 @@ final class GroupMemberListAdapter extends LifecycleRecyclerAdapter<GroupMemberL
   final static class UnknownPendingMemberCountViewHolder extends ViewHolder {
 
     UnknownPendingMemberCountViewHolder(@NonNull View itemView, @Nullable AdminActionsListener adminActionsListener) {
-      super(itemView, adminActionsListener);
+      super(itemView, null, adminActionsListener);
     }
 
     @Override
@@ -226,6 +262,42 @@ final class GroupMemberListAdapter extends LifecycleRecyclerAdapter<GroupMemberL
                           });
         showMenu();
       }
+    }
+  }
+
+  private final static class DiffCallback extends DiffUtil.Callback {
+    private final List<? extends GroupMemberEntry> oldData;
+    private final List<? extends GroupMemberEntry> newData;
+
+    DiffCallback(List<? extends GroupMemberEntry> oldData, List<? extends GroupMemberEntry> newData) {
+      this.oldData = oldData;
+      this.newData = newData;
+    }
+
+    @Override
+    public int getOldListSize() {
+      return oldData.size();
+    }
+
+    @Override
+    public int getNewListSize() {
+      return newData.size();
+    }
+
+    @Override
+    public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
+      GroupMemberEntry oldItem = oldData.get(oldItemPosition);
+      GroupMemberEntry newItem = newData.get(newItemPosition);
+
+      return oldItem.sameId(newItem);
+    }
+
+    @Override
+    public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
+      GroupMemberEntry oldItem = oldData.get(oldItemPosition);
+      GroupMemberEntry newItem = newData.get(newItemPosition);
+
+      return oldItem.equals(newItem);
     }
   }
 }

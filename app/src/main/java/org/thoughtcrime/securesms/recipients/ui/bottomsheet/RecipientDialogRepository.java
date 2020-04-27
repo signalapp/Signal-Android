@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -16,42 +15,27 @@ import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 
 final class RecipientDialogRepository {
 
-  @NonNull  private final GroupDatabase groupDatabase;
-  @NonNull  private final Context       context;
-  @NonNull  private final RecipientId   recipientId;
-  @Nullable private final GroupId       groupId;
+  @NonNull  private final Context     context;
+  @NonNull  private final RecipientId recipientId;
+  @Nullable private final GroupId     groupId;
 
   RecipientDialogRepository(@NonNull Context context,
                             @NonNull RecipientId recipientId,
                             @Nullable GroupId groupId)
   {
-    this.context       = context;
-    this.groupDatabase = DatabaseFactory.getGroupDatabase(context);
-    this.recipientId   = recipientId;
-    this.groupId       = groupId;
+    this.context     = context;
+    this.recipientId = recipientId;
+    this.groupId     = groupId;
   }
 
-  @NonNull RecipientId getRecipientId() {
+  @NonNull
+  RecipientId getRecipientId() {
     return recipientId;
   }
 
-  @Nullable GroupId getGroupId() {
+  @Nullable
+  GroupId getGroupId() {
     return groupId;
-  }
-
-  void isAdminOfGroup(@NonNull RecipientId recipientId, @NonNull AdminCallback callback) {
-    SimpleTask.run(SignalExecutors.BOUNDED,
-                   () -> {
-                     if (groupId != null) {
-                       Recipient recipient = Recipient.resolved(recipientId);
-                       return groupDatabase.getGroup(groupId)
-                                           .transform(g -> g.isAdmin(recipient))
-                                           .or(false);
-                     } else {
-                       return false;
-                     }
-                   },
-                   callback::isAdmin);
   }
 
   void getIdentity(@NonNull IdentityCallback callback) {
@@ -62,14 +46,10 @@ final class RecipientDialogRepository {
                    callback::remoteIdentity);
   }
 
-  public void getRecipient(@NonNull RecipientCallback recipientCallback) {
+  void getRecipient(@NonNull RecipientCallback recipientCallback) {
     SimpleTask.run(SignalExecutors.BOUNDED,
                    () -> Recipient.resolved(recipientId),
                    recipientCallback::onRecipient);
-  }
-
-  interface AdminCallback {
-    void isAdmin(boolean admin);
   }
 
   interface IdentityCallback {

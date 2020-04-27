@@ -4,9 +4,41 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 
+import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
+import org.whispersystems.libsignal.util.guava.Function;
+
+import java.util.concurrent.Executor;
+
 public final class LiveDataUtil {
 
   private LiveDataUtil() {
+  }
+
+  /**
+   * Runs the {@param backgroundFunction} on {@link SignalExecutors#BOUNDED}.
+   * <p>
+   * The background function order is run serially, albeit possibly across multiple threads.
+   * <p>
+   * The background function may not run for all {@param source} updates. Later updates taking priority.
+   */
+  public static <A, B> LiveData<B> mapAsync(@NonNull LiveData<A> source, @NonNull Function<A, B> backgroundFunction) {
+    return mapAsync(SignalExecutors.BOUNDED, source, backgroundFunction);
+  }
+
+  /**
+   * Runs the {@param backgroundFunction} on the supplied {@param executor}.
+   * <p>
+   * Regardless of the executor supplied, the background function is run serially.
+   * <p>
+   * The background function may not run for all {@param source} updates. Later updates taking priority.
+   */
+  public static <A, B> LiveData<B> mapAsync(@NonNull Executor executor, @NonNull LiveData<A> source, @NonNull Function<A, B> backgroundFunction) {
+    MediatorLiveData<B> outputLiveData   = new MediatorLiveData<>();
+    Executor            liveDataExecutor = new SerialLiveDataExecutor(executor);
+
+    outputLiveData.addSource(source, currentValue -> liveDataExecutor.execute(() -> outputLiveData.postValue(backgroundFunction.apply(currentValue))));
+
+    return outputLiveData;
   }
 
   /**
@@ -61,6 +93,44 @@ public final class LiveDataUtil {
             }
           }
         });
+      }
+    }
+  }
+
+  /**
+   * Executor decorator that runs serially but enqueues just the latest task, dropping any pending task.
+   * <p>
+   * Based on SerialExecutor https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Executor.html
+   * but modified to represent a queue of size one which is replaced by the latest call to {@link #execute(Runnable)}.
+   */
+  private static final class SerialLiveDataExecutor implements Executor {
+    private final Executor executor;
+    private       Runnable next;
+    private       Runnable active;
+
+    SerialLiveDataExecutor(@NonNull Executor executor) {
+      this.executor = executor;
+    }
+
+    public synchronized void execute(@NonNull Runnable command) {
+      next = () -> {
+        try {
+          command.run();
+        } finally {
+          scheduleNext();
+        }
+      };
+
+      if (active == null) {
+        scheduleNext();
+      }
+    }
+
+    private synchronized void scheduleNext() {
+      active = next;
+      next   = null;
+      if (active != null) {
+        executor.execute(active);
       }
     }
   }

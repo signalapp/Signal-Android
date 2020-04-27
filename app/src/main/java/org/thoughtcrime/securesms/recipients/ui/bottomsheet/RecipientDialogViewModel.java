@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -17,12 +16,12 @@ import org.thoughtcrime.securesms.RecipientPreferenceActivity;
 import org.thoughtcrime.securesms.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.groups.LiveGroup;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.CommunicationActions;
-import org.thoughtcrime.securesms.util.DefaultValueLiveData;
-import org.thoughtcrime.securesms.util.livedata.LiveDataPair;
+import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 final class RecipientDialogViewModel extends ViewModel {
 
@@ -39,23 +38,22 @@ final class RecipientDialogViewModel extends ViewModel {
     this.recipientDialogRepository = recipientDialogRepository;
     this.identity                  = new MutableLiveData<>();
 
-    MutableLiveData<Boolean> localIsAdmin     = new DefaultValueLiveData<>(false);
-    MutableLiveData<Boolean> recipientIsAdmin = new DefaultValueLiveData<>(false);
+    boolean recipientIsSelf = recipientDialogRepository.getRecipientId().equals(Recipient.self().getId());
 
-    if (recipientDialogRepository.getGroupId() != null && recipientDialogRepository.getGroupId().isV2()) {
-      recipientDialogRepository.isAdminOfGroup(Recipient.self().getId(), localIsAdmin::setValue);
-      recipientDialogRepository.isAdminOfGroup(recipientDialogRepository.getRecipientId(), recipientIsAdmin::setValue);
+    if (recipientDialogRepository.getGroupId() != null && recipientDialogRepository.getGroupId().isV2() && !recipientIsSelf) {
+      LiveGroup source = new LiveGroup(recipientDialogRepository.getGroupId());
+
+      LiveData<Boolean> localIsAdmin     = source.isSelfAdmin();
+      LiveData<Boolean> recipientIsAdmin = source.getRecipientIsAdmin(recipientDialogRepository.getRecipientId());
+
+      adminActionStatus = LiveDataUtil.combineLatest(localIsAdmin, recipientIsAdmin,
+        (localAdmin, recipientAdmin) ->
+          new AdminActionStatus(localAdmin,
+            localAdmin && !recipientAdmin,
+            localAdmin && recipientAdmin));
+    } else {
+      adminActionStatus = new MutableLiveData<>(new AdminActionStatus(false, false, false));
     }
-
-    adminActionStatus = Transformations.map(new LiveDataPair<>(localIsAdmin, recipientIsAdmin, false, false),
-      pair -> {
-        boolean localAdmin     = pair.first();
-        boolean recipientAdmin = pair.second();
-
-        return new AdminActionStatus(localAdmin,
-                                     localAdmin && !recipientAdmin,
-                                     localAdmin && recipientAdmin);
-      });
 
     recipient = Recipient.live(recipientDialogRepository.getRecipientId()).getLiveData();
 

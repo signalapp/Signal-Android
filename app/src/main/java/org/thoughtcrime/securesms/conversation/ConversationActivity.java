@@ -148,7 +148,11 @@ import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
+import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
+import org.thoughtcrime.securesms.groups.GroupInsufficientRightsException;
+import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.ui.LeaveGroupDialog;
+import org.thoughtcrime.securesms.groups.ui.managegroup.ManageGroupActivity;
 import org.thoughtcrime.securesms.groups.ui.pendingmemberinvites.PendingMemberInvitesActivity;
 import org.thoughtcrime.securesms.insights.InsightsLauncher;
 import org.thoughtcrime.securesms.invites.InviteReminderModel;
@@ -846,6 +850,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case R.id.menu_distribution_broadcast:    handleDistributionBroadcastEnabled(item);          return true;
     case R.id.menu_distribution_conversation: handleDistributionConversationEnabled(item);       return true;
     case R.id.menu_edit_group:                handleEditPushGroup();                             return true;
+    case R.id.menu_manage_group:              handleManagePushGroup();                           return true;
     case R.id.menu_pending_members:           handlePendingMembers();                            return true;
     case R.id.menu_leave:                     handleLeavePushGroup();                            return true;
     case R.id.menu_invite:                    handleInviteLink();                                return true;
@@ -924,29 +929,43 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 //////// Event Handlers
 
   private void handleSelectMessageExpiration() {
-    if (isPushGroupConversation() && !isActiveGroup()) {
+    boolean activeGroup = isActiveGroup();
+
+    if (isPushGroupConversation() && !activeGroup) {
       return;
     }
 
-    //noinspection CodeBlock2Expr
-    ExpirationDialog.show(this, recipient.get().getExpireMessages(), expirationTime -> {
-      new AsyncTask<Void, Void, Void>() {
-        @Override
-        protected Void doInBackground(Void... params) {
-          DatabaseFactory.getRecipientDatabase(ConversationActivity.this).setExpireMessages(recipient.getId(), expirationTime);
-          OutgoingExpirationUpdateMessage outgoingMessage = new OutgoingExpirationUpdateMessage(getRecipient(), System.currentTimeMillis(), expirationTime * 1000L);
-          MessageSender.send(ConversationActivity.this, outgoingMessage, threadId, false, null);
-
-          return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-          invalidateOptionsMenu();
-          if (fragment != null) fragment.setLastSeen(0);
-        }
-      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-    });
+    ExpirationDialog.show(this, recipient.get().getExpireMessages(),
+      expirationTime ->
+        SimpleTask.run(
+          getLifecycle(),
+          () -> {
+            if (activeGroup) {
+              try {
+                GroupManager.updateGroupTimer(ConversationActivity.this, getRecipient().requireGroupId().requirePush(), expirationTime);
+              } catch (GroupInsufficientRightsException e) {
+                Log.w(TAG, e);
+                return ConversationActivity.this.getString(R.string.ManageGroupActivity_you_dont_have_the_rights_to_do_this);
+              } catch (GroupChangeFailedException e) {
+                Log.w(TAG, e);
+                return ConversationActivity.this.getString(R.string.ManageGroupActivity_failed_to_update_the_group);
+              }
+            } else {
+              DatabaseFactory.getRecipientDatabase(ConversationActivity.this).setExpireMessages(recipient.getId(), expirationTime);
+              OutgoingExpirationUpdateMessage outgoingMessage = new OutgoingExpirationUpdateMessage(getRecipient(), System.currentTimeMillis(), expirationTime * 1000L);
+              MessageSender.send(ConversationActivity.this, outgoingMessage, threadId, false, null);
+            }
+            return null;
+          },
+          (errorString) -> {
+            if (errorString != null) {
+              Toast.makeText(ConversationActivity.this, errorString, Toast.LENGTH_SHORT).show();
+            } else {
+              invalidateOptionsMenu();
+              if (fragment != null) fragment.setLastSeen(0);
+            }
+          })
+    );
   }
 
   private void handleMuteNotifications() {
@@ -1129,6 +1148,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     startActivityForResult(intent, GROUP_EDIT);
   }
 
+  private void handleManagePushGroup() {
+    startActivityForResult(ManageGroupActivity.newIntent(ConversationActivity.this, recipient.get().requireGroupId()), GROUP_EDIT);
+  }
+
   private void handlePendingMembers() {
     startActivity(PendingMemberInvitesActivity.newIntent(ConversationActivity.this, recipient.get().requireGroupId().requireV2()));
   }
@@ -1182,7 +1205,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleDisplayGroupRecipients() {
-    new GroupMembersDialog(this, getRecipient(), getLifecycle()).display();
+    new GroupMembersDialog(this, getRecipient()).display();
   }
 
   private void handleAddToContacts() {
