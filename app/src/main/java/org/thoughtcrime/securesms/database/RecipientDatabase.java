@@ -1281,7 +1281,7 @@ public class RecipientDatabase extends Database {
     String   selection = BLOCKED         + " = ? AND " +
                          REGISTERED      + " = ? AND " +
                          GROUP_ID        + " IS NULL AND " +
-                         "(" + SYSTEM_DISPLAY_NAME + " NOT NULL OR " + SEARCH_PROFILE_NAME + " NOT NULL OR " + USERNAME + " NOT NULL)";
+                         "(" + SORT_NAME + " NOT NULL OR " + USERNAME + " NOT NULL)";
     String[] args      = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()) };
     String   orderBy   = SORT_NAME + ", " + SYSTEM_DISPLAY_NAME + ", " + SEARCH_PROFILE_NAME + ", " + USERNAME + ", " + PHONE;
 
@@ -1292,16 +1292,15 @@ public class RecipientDatabase extends Database {
     query = TextUtils.isEmpty(query) ? "*" : query;
     query = "%" + query + "%";
 
-    String   selection = BLOCKED         + " = ? AND " +
-                         REGISTERED      + " = ? AND " +
-                         GROUP_ID        + " IS NULL AND " +
+    String   selection = BLOCKED     + " = ? AND " +
+                         REGISTERED  + " = ? AND " +
+                         GROUP_ID    + " IS NULL AND " +
                          "(" +
-                           PHONE               + " LIKE ? OR " +
-                           SYSTEM_DISPLAY_NAME + " LIKE ? OR " +
-                           SEARCH_PROFILE_NAME + " LIKE ? OR " +
-                           USERNAME            + " LIKE ?" +
+                           PHONE     + " LIKE ? OR " +
+                           SORT_NAME + " LIKE ? OR " +
+                           USERNAME  + " LIKE ?" +
                          ")";
-    String[] args      = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), query, query, query, query };
+    String[] args      = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), query, query, query };
     String   orderBy   = SORT_NAME + ", " + SYSTEM_DISPLAY_NAME + ", " + SEARCH_PROFILE_NAME + ", " + PHONE;
 
     return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy);
@@ -1345,10 +1344,10 @@ public class RecipientDatabase extends Database {
 
     String   selection = BLOCKED + " = ? AND " +
                          "(" +
-                           SYSTEM_DISPLAY_NAME + " LIKE ? OR " +
-                           SEARCH_PROFILE_NAME + " LIKE ? OR " +
-                           PHONE               + " LIKE ? OR " +
-                           EMAIL               + " LIKE ?" +
+                           SORT_NAME + " LIKE ? OR " +
+                           USERNAME  + " LIKE ? OR " +
+                           PHONE     + " LIKE ? OR " +
+                           EMAIL     + " LIKE ?" +
                          ")";
     String[] args      = new String[] { "0", query, query, query, query };
 
@@ -1357,9 +1356,9 @@ public class RecipientDatabase extends Database {
 
   public @NonNull List<Recipient> getRecipientsForMultiDeviceSync() {
     String   subquery  = "SELECT " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.RECIPIENT_ID + " FROM " + ThreadDatabase.TABLE_NAME;
-    String   selection = REGISTERED      + " = ? AND " +
-                         GROUP_ID        + " IS NULL AND " +
-                         ID              + " != ? AND " +
+    String   selection = REGISTERED + " = ? AND " +
+                         GROUP_ID   + " IS NULL AND " +
+                         ID         + " != ? AND " +
                          "(" + SYSTEM_DISPLAY_NAME + " NOT NULL OR " + ID + " IN (" + subquery + "))";
     String[] args      = new String[] { String.valueOf(RegisteredState.REGISTERED.getId()), Recipient.self().getId().serialize() };
 
