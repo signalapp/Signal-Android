@@ -90,7 +90,7 @@ public class StorageForcePushJob extends BaseJob {
                                                              .map(s -> StorageSyncModels.localToRemoteRecord(s, Objects.requireNonNull(newContactStorageIds.get(s.getId())).getRaw(), archivedRecipients))
                                                              .toList();
 
-    SignalStorageRecord accountRecord    = StorageSyncHelper.buildAccountRecord(context, StorageId.forAccount(Recipient.self().fresh().getStorageServiceId()));
+    SignalStorageRecord accountRecord    = StorageSyncHelper.buildAccountRecord(context, Recipient.self().fresh());
     List<StorageId>     allNewStorageIds = new ArrayList<>(newContactStorageIds.values());
 
     inserts.add(accountRecord);

@@ -340,23 +340,23 @@ public final class StorageSyncHelper {
     return !OptionalUtil.byteArrayEquals(update.getOld().getProfileKey(), update.getNew().getProfileKey());
   }
 
-  public static Optional<SignalAccountRecord> getPendingAccountSyncUpdate(@NonNull Context context) {
-    if (DatabaseFactory.getRecipientDatabase(context).getDirtyState(Recipient.self().getId()) != RecipientDatabase.DirtyState.UPDATE) {
+  public static Optional<SignalAccountRecord> getPendingAccountSyncUpdate(@NonNull Context context, @NonNull Recipient self) {
+    if (DatabaseFactory.getRecipientDatabase(context).getDirtyState(self.getId()) != RecipientDatabase.DirtyState.UPDATE) {
       return Optional.absent();
     }
-    return Optional.of(buildAccountRecord(context, null).getAccount().get());
+    return Optional.of(buildAccountRecord(context, self).getAccount().get());
   }
 
-  public static Optional<SignalAccountRecord> getPendingAccountSyncInsert(@NonNull Context context) {
-    if (DatabaseFactory.getRecipientDatabase(context).getDirtyState(Recipient.self().getId()) != RecipientDatabase.DirtyState.INSERT) {
+  public static Optional<SignalAccountRecord> getPendingAccountSyncInsert(@NonNull Context context, @NonNull Recipient self) {
+    if (DatabaseFactory.getRecipientDatabase(context).getDirtyState(self.getId()) != RecipientDatabase.DirtyState.INSERT) {
       return Optional.absent();
     }
-    return Optional.of(buildAccountRecord(context, null).getAccount().get());
+    return Optional.of(buildAccountRecord(context, self).getAccount().get());
   }
 
-  public static SignalStorageRecord buildAccountRecord(@NonNull Context context, @Nullable StorageId id) {
-    Recipient           self    = Recipient.self().fresh();
-    SignalAccountRecord account = new SignalAccountRecord.Builder(id != null ? id.getRaw() : self.getStorageServiceId())
+  public static SignalStorageRecord buildAccountRecord(@NonNull Context context, @NonNull Recipient self) {
+
+    SignalAccountRecord account = new SignalAccountRecord.Builder(self.getStorageServiceId())
                                                          .setProfileKey(self.getProfileKey())
                                                          .setGivenName(self.getProfileName().getGivenName())
                                                          .setFamilyName(self.getProfileName().getFamilyName())
