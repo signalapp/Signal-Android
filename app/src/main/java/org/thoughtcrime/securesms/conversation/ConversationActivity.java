@@ -322,6 +322,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   protected HidingLinearLayout       inlineAttachmentToggle;
   private   InputPanel               inputPanel;
   private   View                     panelParent;
+  private   GroupMembersDialog       groupMembersDialog;
 
   private LinkPreviewViewModel         linkPreviewViewModel;
   private ConversationSearchViewModel  searchViewModel;
@@ -504,6 +505,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     markLastSeen();
     AudioSlidePlayer.stopAll();
     EventBus.getDefault().unregister(this);
+
+    if(groupMembersDialog != null)
+      groupMembersDialog.dismiss();
   }
 
   @Override
@@ -1192,7 +1196,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleDisplayGroupRecipients() {
-    new GroupMembersDialog(this, getRecipient(), getLifecycle()).display();
+    groupMembersDialog = new GroupMembersDialog(this, getRecipient(), getLifecycle());
+    groupMembersDialog.display();
   }
 
   private void handleAddToContacts() {
