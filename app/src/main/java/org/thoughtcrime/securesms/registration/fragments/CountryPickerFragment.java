@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -67,6 +68,8 @@ public final class CountryPickerFragment extends ListFragment implements LoaderM
   public void onLoadFinished(@NonNull Loader<ArrayList<Map<String, String>>> loader,
                              @NonNull ArrayList<Map<String, String>> results)
   {
+    ((TextView) getListView().getEmptyView()).setText(
+            R.string.country_selection_fragment__no_matching_countries);
     String[] from = { "country_name", "country_code" };
     int[]    to   = { R.id.country_name, R.id.country_code };
 
