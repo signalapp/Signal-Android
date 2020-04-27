@@ -13,6 +13,7 @@ import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 import org.whispersystems.signalservice.api.storage.StorageId;
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
 
+import java.nio.ByteBuffer;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -42,8 +43,17 @@ public final class StorageSyncValidations {
   }
 
   private static void validateManifestAndInserts(@NonNull SignalStorageManifest manifest, @NonNull List<SignalStorageRecord> inserts) {
-    Set<StorageId> allSet    = new HashSet<>(manifest.getStorageIds());
-    Set<StorageId> insertSet = new HashSet<>(Stream.of(inserts).map(SignalStorageRecord::getId).toList());
+    Set<StorageId>  allSet    = new HashSet<>(manifest.getStorageIds());
+    Set<StorageId>  insertSet = new HashSet<>(Stream.of(inserts).map(SignalStorageRecord::getId).toList());
+    Set<ByteBuffer> rawIdSet  = Stream.of(allSet).map(id -> ByteBuffer.wrap(id.getRaw())).collect(Collectors.toSet());
+
+    if (allSet.size() != manifest.getStorageIds().size()) {
+      throw new DuplicateStorageIdError();
+    }
+
+    if (rawIdSet.size() != allSet.size()) {
+      throw new DuplicateRawIdError();
+    }
 
     int accountCount = 0;
     for (StorageId id : manifest.getStorageIds()) {
@@ -79,6 +89,12 @@ public final class StorageSyncValidations {
         }
       }
     }
+  }
+
+  private static final class DuplicateStorageIdError extends Error {
+  }
+
+  private static final class DuplicateRawIdError extends Error {
   }
 
   private static final class DuplicateInsertInWriteError extends Error {

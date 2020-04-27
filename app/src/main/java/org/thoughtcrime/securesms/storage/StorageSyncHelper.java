@@ -74,7 +74,6 @@ public final class StorageSyncHelper {
    * @return If changes need to be written, then it will return those changes. If no changes need
    *         to be written, this will return {@link Optional#absent()}.
    */
-  // TODO [greyson] [storage] Test this
   public static @NonNull Optional<LocalWriteResult> buildStorageUpdatesForLocal(long currentManifestVersion,
                                                                                 @NonNull List<StorageId> currentLocalKeys,
                                                                                 @NonNull List<RecipientSettings> updates,
