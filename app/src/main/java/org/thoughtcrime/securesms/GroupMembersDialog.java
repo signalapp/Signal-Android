@@ -22,6 +22,7 @@ public final class GroupMembersDialog {
   private final Context   context;
   private final Recipient groupRecipient;
   private final Lifecycle lifecycle;
+  private AlertDialog dialog;
 
   public GroupMembersDialog(@NonNull Context context,
                             @NonNull Recipient groupRecipient,
@@ -37,14 +38,13 @@ public final class GroupMembersDialog {
       lifecycle,
       () -> DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupRecipient.requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_INCLUDING_SELF),
       members -> {
-        AlertDialog dialog = new AlertDialog.Builder(context)
+        dialog = new AlertDialog.Builder(context)
                                             .setTitle(R.string.ConversationActivity_group_members)
                                             .setIconAttribute(R.attr.group_members_dialog_icon)
                                             .setCancelable(true)
                                             .setView(R.layout.dialog_group_members)
                                             .setPositiveButton(android.R.string.ok, null)
                                             .show();
-
         GroupMemberListView memberListView = dialog.findViewById(R.id.list_members);
 
         ArrayList<GroupMemberEntry.FullMember> pendingMembers = new ArrayList<>(members.size());
@@ -67,6 +67,11 @@ public final class GroupMembersDialog {
         memberListView.setMembers(pendingMembers);
       }
     );
+  }
+
+  public void dismiss() {
+    if(dialog.isShowing())
+      dialog.dismiss();
   }
 
   private void contactClick(@NonNull Recipient recipient) {
