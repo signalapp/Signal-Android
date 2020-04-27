@@ -101,7 +101,7 @@
   <string name="BucketedThreadMedia_This_week">W tym tygodniu</string>
   <string name="BucketedThreadMedia_This_month">W tym miesiącu</string>
   <string name="BucketedThreadMedia_Large">Duży</string>
-  <string name="BucketedThreadMedia_Medium">Średnie</string>
+  <string name="BucketedThreadMedia_Medium">Średni</string>
   <string name="BucketedThreadMedia_Small">Mały</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Przychodzące połączenie</string>
@@ -109,19 +109,19 @@
   <string name="CameraActivity_image_save_failure">Błąd przy zapisie obrazu.</string>
   <!--CameraXFragment-->
   <string name="CameraXFragment_tap_for_photo_hold_for_video">Dotknij, aby zrobić zdjęcie. Przytrzymaj, aby nagrać wideo.</string>
-  <string name="CameraXFragment_capture_description">Przechwyć</string>
+  <string name="CameraXFragment_capture_description">Zrób zdjęcie</string>
   <string name="CameraXFragment_change_camera_description">Zmień aparat</string>
   <string name="CameraXFragment_open_gallery_description">Otwórz galerię</string>
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Ostatnie kontakty</string>
   <string name="CameraContacts_signal_contacts">Kontakty Signal</string>
   <string name="CameraContacts_signal_groups">Grupy Signal</string>
-  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Możesz udostępnić w maksymalnie %d konwersacjach.</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Możesz udostępnić w maksymalnie %d konwersacji(ach).</string>
   <string name="CameraContacts_select_signal_recipients">Wybierz odbiorców Signal</string>
   <string name="CameraContacts_no_signal_contacts">Brak kontaktów Signal</string>
   <string name="CameraContacts_you_can_only_use_the_camera_button">Aby wysłać zdjęcia kontaktom Signal, możesz użyć tylko przycisku aparatu.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Nie możesz znaleźć kontaktu?</string>
-  <string name="CameraContacts_invite_a_contact_to_join_signal">Zaproś do korzystania z Signal</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Zaproś kontakt do korzystania z Signal</string>
   <string name="CameraContacts__menu_search">Szukaj</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Usuń</string>
@@ -129,7 +129,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nie znaleziono przeglądarki internetowej.</string>
   <string name="CommunicationActions_no_email_app_found">Nie znaleziono aplikacji email.</string>
-  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Połączenie komórkowe jest już w toku.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Trwa już połączenie komórkowe.</string>
   <string name="CommunicationActions_start_video_call">Rozpocząć połączenie wideo?</string>
   <string name="CommunicationActions_start_voice_call">Rozpocząć połączenie głosowe?</string>
   <string name="CommunicationActions_cancel">Anuluj</string>
@@ -144,7 +144,7 @@
   <string name="ContactsCursorLoader_recent_chats">Ostatnie rozmowy</string>
   <string name="ContactsCursorLoader_contacts">Kontakty</string>
   <string name="ContactsCursorLoader_groups">Grupy</string>
-  <string name="ContactsCursorLoader_phone_number_search">Znajdź numeru telefonu</string>
+  <string name="ContactsCursorLoader_phone_number_search">Znajdź numer telefonu</string>
   <string name="ContactsCursorLoader_username_search">Znajdź użytkownika</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Wiadomość %s</string>
@@ -217,8 +217,8 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal wymaga pozwolenia na dostęp do aparatu w celu umożliwienia robienia zdjęć i nagrywania filmów, ale zostało one na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Aparat\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal wymaga pozwolenia na dostęp do aparatu w celu umożliwienia robienia zdjęć i nagrywania filmów</string>
   <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Włącz uprawnienia mikrofonu, aby nagrać wideo z dźwiękiem.</string>
-  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Aby nagrać wideo, Signal wymaga dostępu do mikrofonu, ale zostało ono na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Mikrofon\" oraz \"Aparat\".</string>
-  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Aby nagrać film, Signal potrzebuje dostępu do mikrofonu.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Aby nagrać wideo, Signal wymaga pozwolenia na dostęp do mikrofonu, ale zostało ono odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Mikrofon\" oraz \"Aparat\".</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Aby nagrać wideo, Signal potrzebuje dostępu do mikrofonu.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal nie może wysyłać wiadomości SMS/MMS, ponieważ nie jest to Twoją domyślną aplikacją do obsługi SMS-ów. Czy chcesz to zmienić w ustawieniach Androida?</string>
   <string name="ConversationActivity_yes">Tak</string>
@@ -463,7 +463,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Udostępnij</string>
   <string name="InviteActivity_choose_contacts">Wybierz kontakty</string>
-  <string name="InviteActivity_share_with_contacts">Podziel się ze znajomymi</string>
+  <string name="InviteActivity_share_with_contacts">Udostępnij kontaktom</string>
   <string name="InviteActivity_choose_how_to_share">Wybierz sposób udostępnienia</string>
   <string name="InviteActivity_cancel">Anuluj</string>
   <string name="InviteActivity_sending">Wysyłanie…</string>
@@ -513,7 +513,7 @@
     <item quantity="other">Usunąć zaznaczone elementy?</item>
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">To spowoduje trwałe usunięcie wybranego pliku. Wszystkie wiadomości powiązane z tymi plikami również zostaną usunięte.</item>
+    <item quantity="one">To spowoduje trwałe usunięcie wybranego pliku. Wiadomość powiązana z tym plikiem również zostanie usunięta.</item>
     <item quantity="few">To spowoduje trwałe usunięcie %1$d wybranych plików. Wszystkie wiadomości powiązane z tymi plikami również zostaną usunięte.</item>
     <item quantity="many">To spowoduje trwałe usunięcie %1$d wybranych plików. Wszystkie wiadomości powiązane z tymi plikami również zostaną usunięte.</item>
     <item quantity="other">To spowoduje trwałe usunięcie %1$d wybranych plików. Wszystkie wiadomości powiązane z tymi plikami również zostaną usunięte.</item>
@@ -534,13 +534,13 @@
     <item quantity="one">%1$d element %2$s</item>
     <item quantity="few">%1$d elementy %2$s</item>
     <item quantity="many">%1$d elementów %2$s</item>
-    <item quantity="other">%1$d elementów %2$s</item>
+    <item quantity="other">%1$d elementy %2$s</item>
   </plurals>
   <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$d element</item>
     <item quantity="few">%1$d elementy</item>
     <item quantity="many">%1$d elementów</item>
-    <item quantity="other">%1$d elementów</item>
+    <item quantity="other">%1$d elementy</item>
   </plurals>
   <string name="MediaOverviewActivity_file">Plik</string>
   <string name="MediaOverviewActivity_audio">Dźwięk</string>
@@ -552,7 +552,7 @@
   <string name="MediaOverviewActivity_sent_by_you_to_s">Wysłano przez Ciebie do %1$s</string>
   <!--Megaphones-->
   <string name="Megaphones_introducing_reactions">Przedstawiamy reakcje</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Stuknij i przytrzymaj wiadomość, aby szybko pokazać jak się czujesz. </string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Stuknij i przytrzymaj wiadomość, aby szybko pokazać co czujesz. </string>
   <string name="Megaphones_remind_me_later">Przypomnij później</string>
   <string name="Megaphones_verify_your_signal_pin">Zweryfikuj swój PIN Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Co jakiś czas będziemy prosić Cię o weryfikację PINu, abyś go zapamiętał(a).</string>
@@ -581,7 +581,7 @@
   <string name="MediaSendActivity_message_to_s">Wiadomość do %s</string>
   <string name="MediaSendActivity_message">Wiadomość</string>
   <string name="MediaSendActivity_select_recipients">Wybierz odbiorców</string>
-  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal wymaga dostępu do Twoich kontaktów w celu wyświetlenia ich.</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal wymaga dostępu do Twoich kontaktów, by móc je wyświetlić.</string>
   <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal wymaga pozwolenia na dostęp do kontaktów aby wyświetlić Twoje kontakty, ale zostało one na stałe odrzucone. Przejdź do menu ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Kontakty\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Nie można udostępnić więcej niż %d plik multimediów.</item>
@@ -1685,7 +1685,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="InsightsDashboardFragment__not_enough_data">Za mało danych</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Twoja statystyka procentowa jest obliczana na podstawie ilości wiadomości, które nie zniknęły, ani nie zostały usunięte, wysłanych w ciągu ostatnich %1$ddni.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Rozpocznij rozmowę</string>
-  <string name="InsightsDashboardFragment__invite_your_contacts">Rozpocznij bezpieczną komunikację i włącz nowe funkcje, które wykraczają poza ograniczenia niezaszyfrowanych wiadomości SMS, zapraszając więcej kontaktów do przyłączenia się do Signal.</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Rozpocznij bezpieczną komunikację i włącz nowe funkcje, które wykraczają poza ograniczenia niezaszyfrowanych wiadomości SMS, zapraszając więcej kontaktów do używania Signal.</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Ta statystyka została wygenerowana lokalnie na Twoim urządzeniu i jest dostępna tylko dla Ciebie. Nigdy nie jest ona nigdzie przesyłana.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Zaszyfrowane wiadomości</string>
   <string name="InsightsDashboardFragment__cancel">Anuluj</string>
@@ -1723,7 +1723,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Kody PIN gwarantują, że informacje przechowywane w Signal są zaszyfrowane i tylko Ty masz do nich dostęp. Twój profil, ustawienia i kontakty zostaną przywrócone, gdy ponownie zainstalujesz Signal.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Kody PIN się różnią. Spróbuj ponownie.</string>
-  <string name="ConfirmKbsPinFragment__confirm_your_pin">Potwierdź swój PIN</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">Potwierdź swój PIN.</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Utworzenie PINu nie powiodło się</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Twój PIN nie został zapisany. Później poprosimy Cię o utworzenie PINu.</string>
   <string name="ConfirmKbsPinFragment__pin_created">Utworzono PIN.</string>
@@ -1887,7 +1887,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_app_protection__registration_lock_pin">PIN blokady rejestracji</string>
   <string name="preferences_app_protection__registration_lock">Blokada rejestracji</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Musisz wprowadzić PIN blokady rejestracji</string>
-  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Twój kod PIN ma co najmniej %d cyfr(y) lub znak(i)</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Twój kod PIN ma co najmniej %d cyfr(y) lub znaków(i)</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Nieprawidłowy PIN blokady rejestracji</string>
   <string name="RegistrationActivity_too_many_attempts">Zbyt wiele prób</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Zbyt wiele nieprawidłowych prób wprowadzenia kodu PIN blokady rejestracji. Spróbuj ponownie za jeden dzień.</string>
@@ -1907,7 +1907,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Błąd podczas łączenia się z usługą</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Wyłączyć PIN blokady rejestracji?</string>
   <string name="RegistrationLockDialog_disable">Wyłącz</string>
-  <string name="RegistrationActivity_pin_incorrect">Nieprawidłowy kod PIN</string>
+  <string name="RegistrationActivity_pin_incorrect">Nieprawidłowy PIN</string>
   <string name="RegistrationActivity_you_have_d_tries_remaining">Pozostało ci %d prób(y)</string>
   <string name="preferences_chats__backups">Kopie zapasowe</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal jest zablokowany</string>

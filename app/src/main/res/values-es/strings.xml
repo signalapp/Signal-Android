@@ -701,7 +701,7 @@
     <item quantity="other">Te quedan %1$d intentos. Cuando los agotes, podrás crear un nuevo PIN. Podrás registrar y usar tu cuenta pero perderás los ajustes guardados, incluyendo los datos de tu perfil.</item>
   </plurals>
   <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Registro en Signal - Ayuda con el PIN en Android</string>
-  <string name="PinRestoreEntryFragment_subject_signal_registration">Asunto: Registro en Signal - Ayuda con el PIN en Android\nInfo de dispositivo: %1$s\nVersión de Android: %2$s\nVersión de Signal: %3$s\nLocalización: %4$s</string>
+  <string name="PinRestoreEntryFragment_subject_signal_registration">Asunto: Registro en Signal - Ayuda con el PIN en Android\nInfo de dispositivo: %1$s\nVersión de Android: %2$s\nVersión de Signal: %3$s\nIdioma: %4$s</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Introducir PIN alfanumérico</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Introducir PIN numérico</string>
   <!--PinRestoreLockedFragment-->

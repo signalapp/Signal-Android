@@ -85,9 +85,9 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">לחסום ולעזוב את %1$s?</string>
   <string name="BlockUnblockDialog_block_s">לחסום את %1$s?</string>
-  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">לא תקבל יותר הודעות או עדכונים מקבוצה זו, וחברי קבוצה לא יוכלו להוסיף אותך שוב אל קבוצה זו.</string>
-  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">חברי קבוצה יוכלו להוסיף אותך שוב אל קבוצה זו.</string>
-  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">חברי קבוצה יוכלו להוסיף אותך שוב אל קבוצה זו.</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">לא תקבל יותר הודעות או עדכונים מקבוצה זו, וחברי הקבוצה לא יוכלו להוסיף אותך שוב אל קבוצה זו.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">חברי הקבוצה לא יוכלו להוסיף אותך שוב אל קבוצה זו.</string>
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">חברי הקבוצה יוכלו להוסיף אותך שוב אל קבוצה זו.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">תוכלו להתכתב ולהתקשר אחד לשני.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">אנשים חסומים לא יוכלו להתקשר אליך או לשלוח לך הודעות.</string>
   <string name="BlockUnblockDialog_unblock_s">לבטל חסימה של %1$s?</string>
@@ -419,14 +419,14 @@
   <!--GV2 access levels-->
   <string name="GroupManagement_access_level_anyone">כל אחד</string>
   <string name="GroupManagement_access_level_all_members">כל חברי הקבוצה</string>
-  <string name="GroupManagement_access_level_only_admins">רק מינהלנים</string>
+  <string name="GroupManagement_access_level_only_admins">רק מנהלים</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">הזמנות קבוצה ממתינות</string>
   <string name="PendingMembersActivity_people_you_invited">אנשים שהזמנת</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">אין לך הזמנות ממתינות.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">הזמנות ע״י חברי קבוצה אחרים</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">אין הזמנות ממתינות על ידי חברי קבוצה אחרים.</string>
-  <string name="PendingMembersActivity_missing_detail_explanation">פרטים של אנשים שהוזמנו על ידי חברי קבוצה אחרים אינם נראים. אם מוזמנים בוחרים להצטרף, המידע שלהם ישותף עם הקבוצה בזמן הזה. הם לא יראו הודעות כלשהן בקבוצה עד שהם יצטרפו.</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">פרטים של אנשים שהוזמנו על ידי חברי קבוצה אחרים אינם נראים. אם מוזמנים בוחרים להצטרף, המידע שלהם ישותף עם הקבוצה בזמן ההצטרפות. הם לא יראו הודעות כלשהן בקבוצה עד שהם יצטרפו.</string>
   <string name="PendingMembersActivity_cancel_invite">בטל הזמנה</string>
   <string name="PendingMembersActivity_cancel_invites">בטל הזמנות</string>
   <plurals name="PendingMembersActivity_cancel_d_invites">
@@ -623,12 +623,12 @@
   <string name="MessageRecord_you_left_the_group">עזבת את הקבוצה.</string>
   <string name="MessageRecord_s_left_the_group">%1$s עזב את הקבוצה.</string>
   <!--GV2 role change-->
-  <string name="MessageRecord_you_made_s_an_admin">עשית את %1$s מינהלן.</string>
-  <string name="MessageRecord_s_made_s_an_admin">%1$s עשה את %2$s מינהלן.</string>
-  <string name="MessageRecord_s_made_you_an_admin">%1$s עשה אותך מינהלן.</string>
-  <string name="MessageRecord_you_revoked_admin_privileges_from_s">שללת זכויות מינהל מן %1$s.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s שלל את זכויות המינהל שלך.</string>
-  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s שלל זכויות מינהל מן %2$s.</string>
+  <string name="MessageRecord_you_made_s_an_admin">נתת זכויות מנהל ל-%1$s.</string>
+  <string name="MessageRecord_s_made_s_an_admin">%1$s נתן זכויות מנהל ל-%2$s.</string>
+  <string name="MessageRecord_s_made_you_an_admin">%1$s האציל/ה עליך זכויות מנהל.</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">שללת זכויות מנהל מ-%1$s.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s שלל ממך את זכויות המנהל.</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s שלל זכויות מנהל מ-%2$s.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">הזמנת את %1$s אל הקבוצה.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s הזמין אותך אל הקבוצה.</string>
@@ -636,7 +636,7 @@
     <item quantity="one">%1$s הזמין איש 1 אל הקבוצה.</item>
     <item quantity="two">%1$s הזמין %2$d אנשים אל הקבוצה.</item>
     <item quantity="many">%1$s הזמין %2$d אנשים אל הקבוצה.</item>
-    <item quantity="other">%1$s הזמין %2$d אנשים אל הקבוצה.</item>
+    <item quantity="other">%1$s הזמין %2$d אנשים לקבוצה.</item>
   </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
@@ -651,25 +651,25 @@
     <item quantity="many">%1$s שלל %2$d הזמנות אל הקבוצה.</item>
     <item quantity="other">%1$s שלל %2$d הזמנות אל הקבוצה.</item>
   </plurals>
-  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">מישהו סירב הזמנה אל הקבוצה.</string>
-  <string name="MessageRecord_you_declined_the_invitation_to_the_group">סירבת את ההזמנה אל הקבוצה.</string>
+  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">מישהו סירב להזמנה לקבוצה.</string>
+  <string name="MessageRecord_you_declined_the_invitation_to_the_group">סירבת להזמנה לקבוצה.</string>
   <!--GV2 invitation acceptance-->
-  <string name="MessageRecord_you_accepted_invite">הסכמת אל ההזמנה אל הקבוצה.</string>
-  <string name="MessageRecord_s_accepted_invite">%1$s הסכים אל הזמנה אל הקבוצה.</string>
+  <string name="MessageRecord_you_accepted_invite">הסכמת להזמנה לקבוצה.</string>
+  <string name="MessageRecord_s_accepted_invite">%1$s הסכים להזמנה לקבוצה.</string>
   <string name="MessageRecord_you_added_invited_member_s">הוספת את חבר הקבוצה המוזמן %1$s.</string>
   <string name="MessageRecord_s_added_invited_member_s">%1$s הוסיף את חבר הקבוצה המוזמן %2$s.</string>
   <!--GV2 title change-->
-  <string name="MessageRecord_you_changed_the_group_name_to_s">שינית את שם הקבוצה אל \"%1$s\".</string>
-  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s שינה את שם הקבוצה אל \"%2$s\".</string>
+  <string name="MessageRecord_you_changed_the_group_name_to_s">שינית את שם הקבוצה ל \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s שינה את שם הקבוצה ל \"%2$s\".</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">שינית את יצגן הקבוצה.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s שינה את יצגן הקבוצה.</string>
   <!--GV2 attribute access level change-->
-  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">שינית מי יכול לערוך מידע קבוצה אל \"%1$s\".</string>
-  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s שינה מי יכול לערוך מידע קבוצה אל \"%2$s\".</string>
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">שינית מי יכול לערוך מידע קבוצה ל \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s שינה מי יכול לערוך מידע קבוצה ל \"%2$s\".</string>
   <!--GV2 membership access level change-->
-  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">שינית מי יכול לערוך חברות קבוצה אל \"%1$s\".</string>
-  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s שינה מי יכול לערוך חברות קבוצה \"%2$s\".</string>
+  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">שינית מי יכול לערוך חברות קבוצה ל \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s שינה מי יכול לערוך חברות קבוצה ל \"%2$s\".</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">מספר הביטחון שלך עם %s השתנה.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">סימנת את מספר הביטחון שלך עם %s כמוודא</string>
@@ -751,26 +751,26 @@
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">PIN שגוי</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">לדלג על הכנסת PIN?</string>
-  <string name="PinRestoreEntryFragment_need_help">צריך עזרה?</string>
-  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">ה־PIN שלך הוא קוד בן %1$d+ ספרות שיצרת שיכול להיות מספרי או אלפאנומרי.\n\nאם אתה לא זוכר את ה־PIN שלך, אתה יכול ליצור אחד חדש. אתה יכול להירשם ולהשתמש בחשבון שלך אבל תאבד מספר הגדרות מסוימות כמו מידע הפרופיל שלך.</string>
-  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">אם אתה לא זוכר את ה־PIN שלך, אתה יכול ליצור אחד חדש. אתה יכול להירשם ולהשתמש בחשבון שלך אבל תאבד מספר הגדרות מסוימות כמו מידע הפרופיל שלך.</string>
-  <string name="PinRestoreEntryFragment_create_new_pin">צור PIN חדש</string>
-  <string name="PinRestoreEntryFragment_contact_support">צור קשר עם תמיכה</string>
+  <string name="PinRestoreEntryFragment_need_help">צריך/ה עזרה?</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">ה־PIN שלך הוא קוד בן %1$d+ ספרות שאת/ה יוצר/ת, ויכול להיות מספרי או אלפאנומרי.\n\nאם את/ה לא זוכר/ת את ה־PIN שלך, את/ה יכול/ה ליצור אחד חדש. את/ה יכול/ה להירשם ולהשתמש בחשבון שלך - אבל תאבד/י מספר הגדרות מסוימות כמו מידע הפרופיל שלך.</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">אם את/ה לא זוכר/ת את ה־PIN שלך, ניתן ליצור אחד חדש. תוכל/י להירשם ולהשתמש בחשבון שלך אבל תאבד/י מספר הגדרות מסוימות כמו מידע הפרופיל שלך.</string>
+  <string name="PinRestoreEntryFragment_create_new_pin">יצירת PIN חדש</string>
+  <string name="PinRestoreEntryFragment_contact_support">יצירת קשר עם תמיכה</string>
   <string name="PinRestoreEntryFragment_cancel">בטל</string>
   <string name="PinRestoreEntryFragment_skip">דלג</string>
   <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
     <item quantity="one">יש לך ניסיון %1$d נותר. אם הניסיונות יאזלו לך, אתה יכול ליצור PIN חדש. אתה יכול להירשם ולהשתמש בחשבון שלך אבל תאבד מספר הגדרות מסוימות כמו מידע הפרופיל שלך.</item>
     <item quantity="two">יש לך %1$d ניסינות נותרים. אם הניסיונות יאזלו לך, אתה יכול ליצור PIN חדש. אתה יכול להירשם ולהשתמש בחשבון שלך אבל תאבד מספר הגדרות מסוימות כמו מידע הפרופיל שלך.</item>
     <item quantity="many">יש לך %1$d ניסינות נותרים. אם הניסיונות יאזלו לך, אתה יכול ליצור PIN חדש. אתה יכול להירשם ולהשתמש בחשבון שלך אבל תאבד מספר הגדרות מסוימות כמו מידע הפרופיל שלך.</item>
-    <item quantity="other">יש לך %1$d ניסינות נותרים. אם הניסיונות יאזלו לך, אתה יכול ליצור PIN חדש. אתה יכול להירשם ולהשתמש בחשבון שלך אבל תאבד מספר הגדרות מסוימות כמו מידע הפרופיל שלך.</item>
+    <item quantity="other">יש לך %1$d ניסינות נותרים. אם הניסיונות יאזלו לך, ניתן ליצור PIN חדש. ניתן להירשם ולהשתמש בחשבון שלך אבל תאבד/י מספר הגדרות מסוימות כמו מידע הפרופיל שלך.</item>
   </plurals>
-  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">הרשמת Signal - עזרה עם PIN עבור Android</string>
-  <string name="PinRestoreEntryFragment_subject_signal_registration">נושא: הרשמת Signal - עזרה עם PIN עבור Android\nמידע מכשיר: %1$s\nגרסת Android: %2$s\nגרסת Signal: %3$s\nאזור: %4$s</string>
-  <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">הכנס PIN אלפאנומרי</string>
-  <string name="PinRestoreEntryFragment_enter_numeric_pin">הכנס PIN מספרי</string>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">הרשמה ל-Signal - עזרה עם PIN עבור Android</string>
+  <string name="PinRestoreEntryFragment_subject_signal_registration">נושא: הרשמה ל-Signal - עזרה עם PIN עבור Android\nמידע מכשיר: %1$s\nגרסה Android: %2$s\nגרסה Signal: %3$s\nאזור: %4$s</string>
+  <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">הכנס/י PIN אלפאנומרי</string>
+  <string name="PinRestoreEntryFragment_enter_numeric_pin">הכנס/י PIN מספרי</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">צור את ה־PIN שלך</string>
-  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">ניחושי PIN אזלו לך, אבל אתה עדין יכול להשיג גישה אל חשבון Signal שלך ע״י יצירת PIN חדש. למען פרטיותך ואבטחתך, חשבונך ישוחזר בלי מידע פרופיל שמור כלשהו או הגדרות שמורות כלשהן.</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">ניחושי PIN אזלו לך, אבל את/ה עדין יכול/ה לגשת אל חשבון Signal שלך ע״י יצירת PIN חדש. למען פרטיותך ואבטחתך, חשבונך ישוחזר בלי מידע פרופיל שמור כלשהו או הגדרות שמורות כלשהן.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">צור PIN חדש</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">דרג יישום זה</string>
@@ -852,7 +852,7 @@
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_turn_on_registration_lock">להפעיל נעילת הרשמה?</string>
   <string name="RegistrationLockV2Dialog_turn_off_registration_lock">לכבות נעילת הרשמה?</string>
-  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">אם תשכח את PIN של Signal שלך בעת הרשמה אל Signal שוב, תינעל מחוץ אל חשבונך למשך 7 ימים.</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">אם תשכח/י את ה-PIN של Signal בעת הרשמה אל Signal שוב, תינעל/י מחוץ אל חשבונך למשך 7 ימים.</string>
   <string name="RegistrationLockV2Dialog_turn_on">הפעל</string>
   <string name="RegistrationLockV2Dialog_turn_off">כבה</string>
   <!--RevealableMessageView-->

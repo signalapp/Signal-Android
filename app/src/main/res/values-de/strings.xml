@@ -1768,7 +1768,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_app_protection__create_a_pin">Erstelle eine PIN</string>
   <string name="preferences_app_protection__change_your_pin">PIN ändern</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PINs halten deine bei Signal gespeicherten Informationen verschlüsselt, sodass nur du auf sie zugreifen kannst. Falls du Signal erneut installierst, werden so dein Profil und deine Einstellungen und Kontakte wiederhergestellt.</string>
-  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Macht als zusätzliche Sicherheitsmaßnahme deine Signal-PIN erforderlich, sobald du deine Telefonnummer erneut bei Signal registrierst.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Als zusätzliche Sicherheitsmaßnahme deine Signal-PIN erforderlich machen, sobald du deine Telefonnummer erneut bei Signal registrierst.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Registrierungssperre konnte nicht aktiviert werden.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Registrierungssperre konnte nicht deaktiviert werden.</string>
   <string name="AppProtectionPreferenceFragment_none">Keine</string>

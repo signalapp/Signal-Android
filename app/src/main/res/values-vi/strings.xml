@@ -162,6 +162,7 @@
   <string name="ConversationItem_read_more">Xem thêm</string>
   <string name="ConversationItem_download_more">Tải thêm</string>
   <string name="ConversationItem_pending">Đang chờ</string>
+  <string name="ConversationItem_this_message_was_deleted">Tin nhắn này đã bị xóa.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Đặt lại phiên bảo mật?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Thao tác này có thể giúp bạn khi đang có vấn đề về mã hoá cuộc trò chuyện. Các tin nhắn sẽ được giữ lại.</string>
@@ -584,13 +585,24 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Phiên bản của Dịch vụ Google Play bạn sử dụng không hoạt động đúng. Vui lòng cài lại Dịch vụ Google Play và thử lại.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">Mã PIN không chính xác</string>
+  <string name="PinRestoreEntryFragment_skip_pin_entry">Bỏ qua điền PIN?</string>
+  <string name="PinRestoreEntryFragment_need_help">Cần hỗ trợ?</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Nếu bạn không nhớ mã PIN, bạn có thể tạo PIN mới. Bạn có thể đăng kí và dùng tài khoản của bạn nhưng sẽ mất một số dữ liệu như thông tin hồ sơ.</string>
+  <string name="PinRestoreEntryFragment_create_new_pin">Tạo PIN mới</string>
   <string name="PinRestoreEntryFragment_contact_support">Liên lạc Hỗ trợ</string>
   <string name="PinRestoreEntryFragment_cancel">Hủy</string>
   <string name="PinRestoreEntryFragment_skip">Bỏ qua</string>
+  <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
+    <item quantity="other">Bạn còn %1$d lần thử. Nếu bạn hết lần thử, bạn có thể tạo PIN mới. Bạn có thể đăng kí và dùng tài khoản của bạn nhưng sẽ mất một số dữ liệu như thông tin hồ sơ.</item>
+  </plurals>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Đăng kí Signal - Cần giúp đỡ về PIN trên Android</string>
+  <string name="PinRestoreEntryFragment_subject_signal_registration">Chủ đề: Đăng kí Signal - Cần giúp đỡ về PIN trên Android\nThông tin thiết bị: %1$s\nPhiên bản Android: %2$s\nPhiên bản Signal: %3$s\nVùng: %4$s</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Nhập mã PIN gồm chữ và số</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Nhập mã PIN bao gồm số</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Tạo mã PIN của bạn</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Bạn đã hết số lần thử mã PIN, nhưng bạn vẫn có thể truy cập tài khoản Signal bằng cách tạo PIN mới. Để đảm bảo bảo mật và tính riêng tư, tài khoản mới của bạn sẽ được khôi phục nhưng thông tin hồ sơ và cài đặt thì không.</string>
+  <string name="PinRestoreLockedFragment_create_new_pin">Tạo PIN mới</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Đánh giá ứng dụng này</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Nếu bạn thích ứng dụng này, hãy dành chút thời gian đánh giá nó.</string>
@@ -662,6 +674,11 @@ mã quốc gia bạn</string>
   <string name="RegistrationActivity_country_code_description">Mã quốc gia</string>
   <string name="RegistrationActivity_call">Gọi</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Bật Khóa đăng kí?</string>
+  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Tắt Khóa đăng kí?</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Nếu bạn quên mã PIN Signal khi đăng kí lại với Signal, bạn sẽ không thể truy cập tài khoản trong 7 ngày.</string>
+  <string name="RegistrationLockV2Dialog_turn_on">Bật</string>
+  <string name="RegistrationLockV2Dialog_turn_off">Tắt</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Xem ảnh</string>
   <string name="RevealableMessageView_view_video">Xem video</string>
@@ -746,6 +763,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ThreadRecord_view_once_photo">Ảnh xem một lần</string>
   <string name="ThreadRecord_view_once_video">Video xem một lần</string>
   <string name="ThreadRecord_view_once_media">Đa phương tiện xem một lần</string>
+  <string name="ThreadRecord_this_message_was_deleted">Tin nhắn này đã bị xóa.</string>
   <string name="ThreadRecord_s_is_on_signal">%s đang sử dụng Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Tin nhắn tự hủy đã được vô hiệu hóa</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tin nhắn sẽ tự hủy sau %s</string>
@@ -855,6 +873,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Đã bày tỏ cảm xúc %1$s cho ảnh xem một lần của bạn.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">Đã bày tỏ cảm xúc %1$s cho video xem một lần của bạn.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Đã bày tỏ cảm xúc %1$s cho nhãn dán của bạn.</string>
+  <string name="MessageNotifier_this_message_was_deleted">Tin nhắn này đã bị xóa.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Mặc định</string>
   <string name="NotificationChannel_calls">Cuộc gọi</string>

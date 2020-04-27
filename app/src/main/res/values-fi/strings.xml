@@ -699,6 +699,8 @@
     <item quantity="one">Sinulla on %1$d yritys jäljellä. Jos yritykset loppuvat, voit luoda uuden PIN-koodin. Voit rekisteröidä ja käyttää tiliäsi, mutta menetät tallennetut asetukset, kuten profiilitietosi.</item>
     <item quantity="other">Sinulla on %1$d yritystä jäljellä. Jos yritykset loppuvat, voit luoda uuden PIN-koodin. Voit rekisteröidä ja käyttää tiliäsi, mutta menetät tallennetut asetukset, kuten profiilitietosi.</item>
   </plurals>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signalin rekisteröinti - Tarvitsen apua PIN-koodilla Androidille</string>
+  <string name="PinRestoreEntryFragment_subject_signal_registration">Aihe: Signalin rekisteröinti - Tarvitsen apua PIN-koodilla Androidille\nLaitteen tiedot: %1$s\nAndroid versio: %2$s\nSignal versio: %3$s\nMaa: %4$s</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Syötä aakkosnumeerinen PIN</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Syötä numeerinen PIN</string>
   <!--PinRestoreLockedFragment-->
@@ -1771,6 +1773,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences_app_protection__create_a_pin">Luo PIN-koodi</string>
   <string name="preferences_app_protection__change_your_pin">Vaihda PIN-koodi</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-koodit pitävät Signalin luona tallennetut tiedot salattuina, jotta vain sinä pääset niihin käsiksi. Profiilisi, asetuksesi ja yhteystietosi palautuvat kun asennat Signalin uudelleen.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Paranna turvallisuutta vaatimalla Signal PIN-koodisi silloin kun rekisteröit puhelinnumerosi uudelleen.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Rekisteröinnin lukitusta ei voitu ottaa käyttöön.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Rekisteröinnin lukitusta ei voitu poistaa käytöstä.</string>
   <string name="AppProtectionPreferenceFragment_none">Ei mitään</string>

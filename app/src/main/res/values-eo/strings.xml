@@ -609,7 +609,11 @@
   <string name="MessageRecord_you_changed_the_group_avatar">Vi ŝanĝis la grupavataron.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s ŝanĝis la grupavataron.</string>
   <!--GV2 attribute access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Vi ŝanĝis, kiu povas modifi la grupinformojn al „%1$s“.</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s ŝanĝis, kiu povas modifi la grupinformojn al „%2$s“.</string>
   <!--GV2 membership access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Vi ŝanĝis, kiu povas modifi la grupan membrecon al „%1$s“.</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ŝanĝis, kiu povas modifi la grupan membrecon al „%2$s“.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Via sekuriga numero kun %s ŝanĝiĝis.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Vi markis vian sekurigan numeron kun %s kiel konfirmita.</string>
@@ -684,12 +688,26 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">La instalita versio de la Google-servoj „Play“ ne bone funkcias. Bv. re-instali „Google Play Services“, kaj provi denove.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">Malĝusta PIN</string>
+  <string name="PinRestoreEntryFragment_skip_pin_entry">Ĉu preterpasi PIN-enigon?</string>
+  <string name="PinRestoreEntryFragment_need_help">Ĉu vi bezonas helpon?</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Via PIN (persona identiga numero) estas kodo almenaŭ %1$d signojn longa, kiun vi kreis, kaj ĝi povas esti cifera aŭ litercifera.\n\nSe vi ne povas rememori vian PIN, vi povas krei novan. Vi povos registri kaj uzi vian konton, sed vi perdos kelkajn agordojn (kiel vian profilinformon).</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Se vi ne povas rememori vian PIN, vi povas krei novan. Vi povos registri kaj uzi vian konton, sed vi perdos kelkajn agordojn (kiel vian profilinformon).</string>
+  <string name="PinRestoreEntryFragment_create_new_pin">Krei novan PIN</string>
+  <string name="PinRestoreEntryFragment_contact_support">Kontakti subtenon</string>
   <string name="PinRestoreEntryFragment_cancel">Nuligi</string>
   <string name="PinRestoreEntryFragment_skip">Preterpasi</string>
+  <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
+    <item quantity="one">Restas %1$d provo. Se vi ne plu havas provojn, vi povas krei novan PIN. Vi povas registri kaj uzi vian konton, sed vi perdos kelkajn agordojn (kiel vian profilinformon).</item>
+    <item quantity="other">Restas %1$d provoj. Se vi ne plu havas provojn, vi povas krei novan PIN. Vi povas registri kaj uzi vian konton, sed vi perdos kelkajn agordojn (kiel vian profilinformon).</item>
+  </plurals>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal-registriĝo — Helpbezono pri PIN ĉe Android</string>
+  <string name="PinRestoreEntryFragment_subject_signal_registration">Pri: Signal-registriĝo — Helpbezono pri PIN ĉe Android\nAparata informo: %1$s\nAndroid-versio: %2$s\nSignal-versio: %3$s\nLokaĵaro: %4$s</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Entajpu literciferan PIN</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Entajpu ciferan PIN</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Krei vian PIN</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Vi ne plu povas enigi vian PIN, sed vi tamen povas aliri vian Signal-konton por krei novan PIN. Pro via privateco kaj sekureco, via konto restariĝos sen iuj konservitaj profilinformojn aŭ agordojn.</string>
+  <string name="PinRestoreLockedFragment_create_new_pin">Krei novan PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Pritaksi tiun aplikaĵon</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Se vi ŝatas uzi tiun aplikaĵon, bv. helpi nin per via pritakso.</string>
@@ -766,6 +784,11 @@
   <string name="RegistrationActivity_country_code_description">Landokodo</string>
   <string name="RegistrationActivity_call">Alvoko</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Ĉu aktivigi blokon de registriĝo?</string>
+  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Ĉu malaktivigi blokon de registriĝo?</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Se vi forgesas vian Signal-PIN registrante kun Signal denove, vi ne plu povos aliri vian konton dum 7 tagoj.</string>
+  <string name="RegistrationLockV2Dialog_turn_on">Aktivigi</string>
+  <string name="RegistrationLockV2Dialog_turn_off">Malaktivigi</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Vidi foton</string>
   <string name="RevealableMessageView_view_video">Vidi videaĵon</string>
@@ -1519,6 +1542,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="conversation__menu_view_all_media">Ĉiuj aŭvidaĵoj</string>
   <string name="conversation__menu_conversation_settings">Agordoj pri interparolo</string>
   <string name="conversation__menu_add_shortcut">Aldoni al la ĉefekrano</string>
+  <string name="conversation__menu_pending_members">Pritraktotaj anojn</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Montri spruĉmenuon</string>
   <!--conversation_callable_insecure-->
@@ -1611,16 +1635,20 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
     <item quantity="other">Via PIN estu almenaŭ %1$d ciferajn longa</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Krei novan PIN</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Vi povas ŝanĝi vian PIN tiel longe, kiel tiu ĉi aparato estas registrita.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Krei vian PIN</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN konservas informojn ĉifritajn ĉe Signal, tiel ke nur vi povas aliri ilin. Via profilo, viaj agordoj kaj kontaktoj revenos, kiam vi reinstalos Signal-on.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">La du PIN-oj malsamas. Re-provu.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Konfirmu vian PIN.</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Kreo de la PIN malsukcesis</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Via PIN ne konserviĝis. Ni petos vin krei PIN-on poste.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN kreiĝis.</string>
+  <string name="ConfirmKbsPinFragment__re_enter_your_pin">Reentajpu vian PIN</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Kreo de PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Jen la „persona identiga numero“ (PIN)</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN konservas informojn ĉifritajn ĉe Signal, tiel ke nur vi povas aliri ilin. Via profilo, viaj agordoj kaj kontaktoj revenos, kiam vi reinstalos Signal-on.</string>
   <string name="KbsSplashFragment__learn_more">Scii pli</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Bloko de registriĝo = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">„Bloko de registriĝo“ nomiĝas nun „PIN“, kaj ĝi faras pli. Ĝisdatigu ĝin nun.</string>
@@ -1672,6 +1700,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Krei  PIN-on</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">La informoj konservitaj ĉe Signal estas  ĉifritaj pere de PIN.</string>
   <string name="KbsMegaphone__create_pin">Krei  PIN-on</string>
   <string name="KbsMegaphone__introducing_pins">Jen la „persona identiga numero“ (PIN)</string>
   <string name="KbsMegaphone__update_pin">Ĝisdatigi PIN-on</string>
@@ -1747,6 +1776,11 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Neaktiveca eltempiĝo antaŭ ol ŝlosi la ekranon</string>
   <string name="preferences_app_protection__signal_pin">Signal-PIN</string>
   <string name="preferences_app_protection__create_a_pin">Krei  PIN-on</string>
+  <string name="preferences_app_protection__change_your_pin">Ŝanĝu vian PIN</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN konservas informojn ĉifritajn ĉe Signal, tiel ke nur vi povas aliri ilin. Via profilo, viaj agordoj kaj kontaktoj revenos, kiam vi reinstalos Signal-on.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Aldonu plian sekurigon postulante, ke via Signal-PIN estu deviga por reregistri vian telefonnumeron al Signal.</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">Malsukceso ebligi la blokon de registriĝo</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">Malsukceso malebligi la blokon de registriĝo</string>
   <string name="AppProtectionPreferenceFragment_none">Neniu</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">La persona identiga numero de bloko de registriĝo ne estas la sama kodo kiel la SMS-kontrolkodo, kiun vi ĵus ricevis. Bv. entajpi la personan identigan numeron, kiun vi antaŭe agordis en la aplikaĵo.</string>
   <string name="registration_activity__registration_lock_pin">PIN de bloko de registriĝo</string>
@@ -1775,7 +1809,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Bloko de registriĝo helpas protekti vian telefonnumeron kontraŭ nerajtigita provo de registriĝo. Tio povas estas malŝaltita en viaj Signal-agordoj pri privateco</string>
   <string name="RegistrationLockDialog_registration_lock">Bloko de registriĝo</string>
   <string name="RegistrationLockDialog_enable">Ŝalti</string>
-  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">La PIN estu almenaŭ %d ciferajn longa.</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">La PIN de bloko de registriĝo estu almenaŭ %d ciferajn longa.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">La du PIN, kiujn vi entajpis, ne kongruas.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Eraro dum konekto al servo</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Ĉu malŝalti la PIN de bloko de registriĝo?</string>

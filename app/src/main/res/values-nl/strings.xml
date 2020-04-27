@@ -690,7 +690,7 @@
   <string name="PinRestoreEntryFragment_incorrect_pin">Incorrecte pincode</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">Pincode invoeren overslaan?</string>
   <string name="PinRestoreEntryFragment_need_help">Hulp nodig?</string>
-  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Je pincode is een code welke je zelf hebt aangemaakt en welke bestaat uit %1$d of meer cijfers of een combinatie van cijfers en letters. Als je je je pincode niet kunt herinneren, dan kun je een nieuwe pincode aanmaken. Je kunt Signal dan wel weer registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam en -afbeelding zullen dan verloren gaan.</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Je pincode is een code welke je zelf hebt aangemaakt en welke bestaat uit %1$d of meer cijfers of een combinatie van cijfers en letters. Als je je je pincode niet kunt herinneren, dan kun je een nieuwe pincode aanmaken. Je kunt Signal dan wel weer registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam en -foto zullen dan verloren gaan.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Als je je je pincode niet kan herinneren, dan kun je een nieuwe pincode aanmaken. Je kunt Signal dan weer gebruiken, maar sommige instellingen waaronder je profielnaam en -foto zullen dan niet bewaard blijven.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Nieuwe pincode aanmaken</string>
   <string name="PinRestoreEntryFragment_contact_support">Neem contact op met ondersteuning</string>
@@ -880,7 +880,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ThreadRecord_this_message_was_deleted">Dit bericht is gewist.</string>
   <string name="ThreadRecord_s_is_on_signal">%s is bereikbaar via Signal.</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Zelfwissende berichten uitgeschakeld</string>
-  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Timer voor zelfwissende berichten op %s ingesteld</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Zelfwissende berichten op %s ingesteld</string>
   <string name="ThreadRecord_safety_number_changed">Veiligheidsnummer is veranderd</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Je veiligheidsnummer met %s is veranderd.</string>
   <string name="ThreadRecord_you_marked_verified">Door jou als geverifieerd gemarkeerd</string>
@@ -914,7 +914,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="UsernameEditFragment_this_username_is_taken">Deze gebruikersnaam is al in gebruik.</string>
   <string name="UsernameEditFragment_this_username_is_available">Deze gebruikersnaam is nog beschikbaar.</string>
   <string name="UsernameEditFragment_usernames_can_only_include">Gebruikersnamen mogen alleen de karakters a-Z, 0-9 en onderstreep gebruiken.</string>
-  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Gebruikersnamen mogen niet met een getal beginnen.</string>
+  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Gebruikersnamen mogen niet met een cijfer beginnen.</string>
   <string name="UsernameEditFragment_username_is_invalid">Gebruikersnaam is ongeldig.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Gebruikersnamen moeten uit ten minste %1$d en maximaal %2$d karakters bestaan.</string>
   <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Via je unieke gebruikersnaam kunnen andere Signal-gebruikers je een verzoek sturen om berichten aan je te mogen zenden zonder je telefoonnummer te weten. Een gebruikersnaam instellen is optioneel.</string>
@@ -1636,8 +1636,8 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
     <item quantity="other">Je pincode moet uit ten minste %1$d karakters bestaan</item>
   </plurals>
   <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
-    <item quantity="one">Je pincode moet uit ten minste %1$d getal bestaan.</item>
-    <item quantity="other">Je pincode moet uit ten minste %1$d getallen bestaan.</item>
+    <item quantity="one">Je pincode moet uit ten minste %1$d cijfer bestaan</item>
+    <item quantity="other">Je pincode moet uit ten minste %1$d cijfers bestaan</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Nieuwe pincode aanmaken</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Zolang je telefoonnummer nog voor dit apparaat geregistreerd staat kun je je pincode nog wijzigen.</string>
@@ -1674,7 +1674,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="AccountLockedFragment__learn_more">Lees meer</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Voer je pincode in</string>
-  <string name="RegistrationLockFragment__enter_the_pin_you_created">Voer de pincode in welke je eerder hebt aangemaakt om te voorkomen dat anderen met jouw telefoonnummer kunnen registreren. Dit is niet dezelfde code als je sms-verificatiecode.</string>
+  <string name="RegistrationLockFragment__enter_the_pin_you_created">Voer de pincode in welke je eerder hebt aangemaakt om informatie versleuteld op te slaan op Signal\'s servers. Dit is niet dezelfde code als je sms-verificatiecode.</string>
   <string name="RegistrationLockFragment__enter_alphanumeric_pin">Voer alfanumerieke pincode in.</string>
   <string name="RegistrationLockFragment__enter_numeric_pin">Voer numerieke pincode in.</string>
   <string name="RegistrationLockFragment__next">Volgende</string>
@@ -1783,7 +1783,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_app_protection__create_a_pin">Pincode aanmaken</string>
   <string name="preferences_app_protection__change_your_pin">Pincode wijzigen</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Met een pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam en -foto, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Zelfs Signal\'s ontwikkelaars kunnen je informatie niet inzien.</string>
-  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Voeg extra bescherming toe om te voorkomen dat iemand wie je telefoonnummer kaapt in jouw naam Signal kan gebruiken. Als je dit inschakelt zal Signal ook om je pincode vragen als je Signal opnieuw registreert op het zelfde telefoonnummer.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Door dit in te schakelen voeg je extra beveiliging toe. Je zult dan wanneer je je huidige telefoonnummer opnieuw probeert te registreren pas na 7 dagen het invoeren van je pincode kunnen overslaan. Hierdoor kan niemand behalve jij Signal registreren met je huidige telefoonnummer.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Het is niet gelukt on registratievergrendeling in te schakelen.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Het is niet gelukt om registratievergrendeling uit te schakelen.</string>
   <string name="AppProtectionPreferenceFragment_none">Geen</string>
@@ -1799,7 +1799,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_app_protection__registration_lock_pin">Registratievergrendeling</string>
   <string name="preferences_app_protection__registration_lock">Registratievergrendeling</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Je moet je pincode voor registratievergrendeling invoeren</string>
-  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Je pincode bestaat uit ten minste %d getallen of karakters</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Je pincode bestaat uit ten minste %d cijfers of karakters</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Ongeldige pincode voor registratievergrendeling</string>
   <string name="RegistrationActivity_too_many_attempts">Te veel pogingen</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Je hebt te veel ongeldige pogingen ondernomen om een pincode voor registratievergrendeling in te voeren, probeer het morgen opnieuw.</string>
@@ -1814,7 +1814,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registratievergrendeling beschermt je telefoonnummer tegen niet-geautoriseerde registratiepogingen. Deze functie kan op elk moment in je Signal-privacyinstellingen uitgeschakeld worden.</string>
   <string name="RegistrationLockDialog_registration_lock">Registratievergrendeling</string>
   <string name="RegistrationLockDialog_enable">Inschakelen</string>
-  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">De pincode voor registratievergrendeling moet ten minste %d getallen lang zijn.</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">De pincode voor registratievergrendeling moet ten minste %d cijfers lang zijn.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">De twee ingevoerde pincodes komen niet overeen.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Fout bij het verbinden met Signal\'s servers</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Registratievergrendeling uitschakelen?</string>

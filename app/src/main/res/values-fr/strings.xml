@@ -84,6 +84,7 @@
   <string name="BlockUnblockDialog_unblock_s">Débloquer %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Débloquer</string>
   <string name="BlockUnblockDialog_block">Bloquer</string>
+  <string name="BlockUnblockDialog_block_and_leave">Bloquer et partir</string>
   <string name="BlockUnblockDialog_block_and_delete">Bloquer et supprimer</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Aujourd’hui</string>
@@ -166,6 +167,7 @@
   <string name="ConversationItem_read_more">  En savoir plus</string>
   <string name="ConversationItem_download_more">   Télécharger plus</string>
   <string name="ConversationItem_pending">  En attente</string>
+  <string name="ConversationItem_this_message_was_deleted">Ce message a été supprimé</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Réinitialiser la session sécurisée ?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Cela peut aider si vous éprouvez des problèmes de chiffrement dans cette conversation. Vos messages seront conservés.</string>
@@ -374,6 +376,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Impossible d’ajouter %1$s, car cette personne n’utilise pas Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Chargement des détails du groupe…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Vous faites déjà partie de ce groupe.</string>
+  <string name="GroupCreateActivity_remove_member_description">Supprimer le membre</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Partager vos nom et photo de profil avec ce groupe ?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Voulez-vous que vos nom et photo de profil soient visibles pour tous les membres actuels et futurs de ce groupe ?</string>
@@ -381,10 +384,14 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Vous</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_all_members">Tous les membres</string>
+  <string name="GroupManagement_access_level_only_admins">Seulement les administrateurs</string>
   <!--PendingMembersActivity-->
   <string name="PendingMembersActivity_people_you_invited">Les personnes que vous avez invitées</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Invitations par d’autres membres du groupe</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Les détails des personnes invitées par d’autres membres du groupe ne sont pas affichés. Si les personnes invitées choisissent de le rejoindre, leurs renseignements seront communiqués au groupe à ce moment-là. Elles ne verront aucun message dans le groupe avant de l’avoir rejoint.</string>
+  <string name="PendingMembersActivity_cancel_invite">Annuler l\'invitation</string>
+  <string name="PendingMembersActivity_cancel_invites">Annuler les invitations</string>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar du groupe</string>
@@ -528,16 +535,30 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a défini l’expiration des messages éphémères à %2$s.</string>
   <!--GV2 specific-->
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_added_s">Vous avez ajouté %1$s.</string>
+  <string name="MessageRecord_s_added_s">%1$s a ajouté %2$s.</string>
   <string name="MessageRecord_you_joined_the_group">Vous vous êtes joint au groupe.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s se sont joints au groupe.</string>
   <!--GV2 member removals-->
+  <string name="MessageRecord_you_removed_s">Vous avez supprimé %1$s.</string>
+  <string name="MessageRecord_s_removed_you_from_the_group">%1$s vous a supprimé du groupe.</string>
   <string name="MessageRecord_you_left_the_group">Vous avez quitté le groupe.</string>
+  <string name="MessageRecord_s_left_the_group">%1$s a quitté le groupe.</string>
   <!--GV2 role change-->
+  <string name="MessageRecord_s_made_you_an_admin">%1$s vous a fait administrateur.</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">Vous avez révoqué les privilèges d’admin pour %1$s.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s a révoqué vos privilèges d’admin.</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_invited_s_to_the_group">Vous avez invité %1$s au groupe.</string>
+  <string name="MessageRecord_s_invited_you_to_the_group">%1$s vous a invité au groupe.</string>
   <!--GV2 invitation revokes-->
+  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Quelqu\'un a décliné l\'invitation au groupe.</string>
+  <string name="MessageRecord_you_declined_the_invitation_to_the_group">Vous avez décliné l\'invitation du groupe.</string>
   <!--GV2 invitation acceptance-->
+  <string name="MessageRecord_you_accepted_invite">Vous avez accepté l\'invitation du groupe.</string>
   <!--GV2 title change-->
   <!--GV2 avatar change-->
+  <string name="MessageRecord_you_changed_the_group_avatar">Vous avez changé l\'avatar du groupe.</string>
   <!--GV2 attribute access level change-->
   <!--GV2 membership access level change-->
   <!--End of GV2 specific update messages-->
@@ -610,6 +631,8 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">La version des services Google Play installée ne fonctionne pas correctement. Veuillez réinstaller les Services Google Play et ressayer.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">Le NIP est erroné</string>
+  <string name="PinRestoreEntryFragment_skip_pin_entry">Ignorer la saisie du code PIN ?</string>
+  <string name="PinRestoreEntryFragment_need_help">Besoin d’aide ?</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Si vous ne vous souvenez pas de votre NIP, vous pouvez en créer un nouveau. Vous pouvez vous inscrire et utiliser votre compte, mais vous perdrez certains paramètres enregistrés comme les renseignements de votre profil.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Créer un nouveau NIP</string>
   <string name="PinRestoreEntryFragment_contact_support">Contacter l’assistance</string>
@@ -619,6 +642,7 @@
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Saisissez un NIP numérique</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Créer votre NIP</string>
+  <string name="PinRestoreLockedFragment_create_new_pin">Créer un nouveau NIP</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Notez cette appli</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Si vous aimez cette appli, veuillez prendre quelques instants pour nous aider la notant.</string>
@@ -690,6 +714,8 @@
   <string name="RegistrationActivity_call">Appeler</string>
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Si vous oubliez votre PIN Signal lors de votre nouvelle inscription, Votre compte sera bloqué pendant 7 jour.</string>
+  <string name="RegistrationLockV2Dialog_turn_on">Activer</string>
+  <string name="RegistrationLockV2Dialog_turn_off">Désactiver</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Visualiser la photo</string>
   <string name="RevealableMessageView_view_video">Visualiser la vidéo</string>
@@ -773,6 +799,7 @@
   <string name="ThreadRecord_view_once_photo">Photo éphémère</string>
   <string name="ThreadRecord_view_once_video">Vidéo éphémère</string>
   <string name="ThreadRecord_view_once_media">Média éphémère</string>
+  <string name="ThreadRecord_this_message_was_deleted">Ce message a été supprimé</string>
   <string name="ThreadRecord_s_is_on_signal">%s est sur Signal.</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Les messages éphémères sont désactivés</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">L’expiration des messages éphémères a été définie à %s</string>
@@ -882,6 +909,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">A réagi %1$s à votre photo éphémère.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">A réagi %1$s à votre vidéo éphémère.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">A réagi %1$s à votre autocollant.</string>
+  <string name="MessageNotifier_this_message_was_deleted">Ce message a été supprimé</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Valeur par défaut</string>
   <string name="NotificationChannel_calls">Appels</string>
@@ -1537,6 +1565,7 @@
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Échec de création du NIP</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Votre NIP n’a pas été enregistré. Nous vous inviterons à en créer un ultérieurement.</string>
   <string name="ConfirmKbsPinFragment__pin_created">Votre NIP a été créé.</string>
+  <string name="ConfirmKbsPinFragment__re_enter_your_pin">Re-saisissez votre NIP.</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Création du NIP…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Nous présentons les NIP</string>
@@ -1669,6 +1698,7 @@
   <string name="preferences_app_protection__create_a_pin">Créer un NIP</string>
   <string name="preferences_app_protection__change_your_pin">Changer de NIP</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Les codes PIN permettent à Signal d\'en-crypté vos informations stoker afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés lorsque vous réinstallez Signal.</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">Impossible d\'activer le verrouillage d\'enregistrement.</string>
   <string name="AppProtectionPreferenceFragment_none">Aucun</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Le NIP de blocage de l’inscription ne correspond pas au code de vérification que vous venez de recevoir par texto. Veuillez saisir le NIP que vous avez précédemment défini dans l’application.</string>
   <string name="registration_activity__registration_lock_pin">NIP de blocage de l’inscription</string>
