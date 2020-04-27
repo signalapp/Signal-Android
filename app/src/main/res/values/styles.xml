@@ -420,8 +420,8 @@
     </style>
 
     <style name="Widget.Signal.Button.TextButton.Drawable">
-         <item name="android:textAlignment">viewStart</item>
-         <item name="android:drawablePadding">16dp</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:drawablePadding">16dp</item>
     </style>
 
     <style name="Widget.Signal.Button.TextButton.Red" >

@@ -102,11 +102,11 @@
     </style>
 
     <style name="TextAppearance.Signal.Body2" parent="@style/TextAppearance.AppCompat.Body2">
-     </style>
+    </style>
 
     <style name="TextAppearance.Signal.Body1.Bold">
-         <item name="android:textStyle">bold</item>
-     </style>
+        <item name="android:textStyle">bold</item>
+    </style>
 
     <style name="TextAppearance.Signal.Caption" parent="@style/TextAppearance.AppCompat.Caption">
     </style>

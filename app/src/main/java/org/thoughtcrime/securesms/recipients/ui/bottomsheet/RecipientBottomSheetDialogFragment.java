@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -61,8 +60,8 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     setStyle(DialogFragment.STYLE_NORMAL,
-             ThemeUtil.isDarkTheme(requireContext()) ? R.style.Signal_RecipientBottomSheet
-                                                     : R.style.Signal_RecipientBottomSheet_Light);
+             ThemeUtil.isDarkTheme(requireContext()) ? R.style.Theme_Signal_RecipientBottomSheet
+                                                     : R.style.Theme_Signal_RecipientBottomSheet_Light);
     super.onCreate(savedInstanceState);
   }
 

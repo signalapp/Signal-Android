@@ -793,27 +793,33 @@
         <item name="android:windowIsFloating">false</item>
     </style>
 
-    <style name="Theme.Design.Light.BottomSheetDialog.Fixed.Rounded">
-        <item name="bottomSheetStyle">@style/Widget.Design.BottomSheet.Modal.Rounded.Light</item>
+    <style name="ShapeAppearanceOverlay.Signal.BottomSheet.Rounded" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">8dp</item>
+        <item name="cornerSizeTopLeft">8dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
     </style>
 
-    <style name="Theme.Design.BottomSheetDialog.Fixed.Rounded">
-        <item name="bottomSheetStyle">@style/Widget.Design.BottomSheet.Modal.Rounded</item>
+    <style name="Widget.Signal.BottomSheet.Rounded" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
+        <item name="backgroundTint">@color/core_grey_75</item>
     </style>
 
-    <style name="Widget.Design.BottomSheet.Modal.Rounded.Light">
-        <item name="android:background">@drawable/rounded_dialog</item>
+    <style name="Widget.Signal.BottomSheet.Rounded.Light">
+        <item name="backgroundTint">@color/white</item>
     </style>
 
-    <style name="Widget.Design.BottomSheet.Modal.Rounded">
-        <item name="android:background">@drawable/rounded_dialog_dark</item>
-    </style>
-
-    <style name="Signal.RecipientBottomSheet.Light" parent="Theme.Design.Light.BottomSheetDialog.Fixed.Rounded">
+    <style name="Theme.Signal.RecipientBottomSheet.Light">
+        <item name="bottomSheetStyle">@style/Widget.Signal.BottomSheet.Rounded.Light</item>
         <item name="icon_tint">@color/core_grey_75</item>
 
+        <item name="android:textColorPrimary">@color/core_grey_90</item>
         <item name="title_text_color_primary">@color/core_grey_90</item>
         <item name="title_text_color_secondary">@color/core_grey_60</item>
+
+        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/white</item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
 
         <item name="recipient_message_icon">@drawable/ic_message_outline_tinted_24</item>
         <item name="recipient_call_icon">@drawable/ic_phone_right_outline_tinted_24</item>
@@ -823,14 +829,18 @@
         <item name="recipient_remove_icon">@drawable/ic_leave_tinted_24</item>
     </style>
 
-    <style name="Signal.RecipientBottomSheet" parent="Theme.Design.BottomSheetDialog.Fixed.Rounded">
+    <style name="Theme.Signal.RecipientBottomSheet" parent="Theme.MaterialComponents.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="bottomSheetStyle">@style/Widget.Signal.BottomSheet.Rounded</item>
         <item name="icon_tint">@color/core_grey_15</item>
 
+        <item name="android:textColorPrimary">@color/core_grey_05</item>
         <item name="title_text_color_primary">@color/core_grey_05</item>
         <item name="title_text_color_secondary">@color/core_grey_25</item>
 
         <item name="android:navigationBarColor" tools:ignore="NewApi">@color/core_grey_75</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
+        <item name="android:statusBarColor" tools:ignore="NewApi">@color/transparent</item>
 
         <item name="recipient_message_icon">@drawable/ic_message_solid_tinted_24</item>
         <item name="recipient_call_icon">@drawable/ic_phone_right_solid_tinted_24</item>
