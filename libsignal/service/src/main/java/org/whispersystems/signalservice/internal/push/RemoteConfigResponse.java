@@ -19,12 +19,19 @@ public class RemoteConfigResponse {
     @JsonProperty
     private boolean enabled;
 
+    @JsonProperty
+    private String value;
+
     public String getName() {
       return name;
     }
 
     public boolean isEnabled() {
       return enabled;
+    }
+
+    public String getValue() {
+      return value;
     }
   }
 }

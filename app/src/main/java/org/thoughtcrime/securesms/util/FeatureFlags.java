@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit;
  *
  * When creating a new flag:
  * - Create a new string constant. This should almost certainly be prefixed with "android."
- * - Add a method to retrieve the value using {@link #getValue(String, boolean)}. You can also add
+ * - Add a method to retrieve the value using {@link #getBoolean(String, boolean)}. You can also add
  *   other checks here, like requiring other flags.
  * - If you want to be able to change a flag remotely, place it in {@link #REMOTE_CAPABLE}.
  * - If you would like to force a value for testing, place an entry in {@link #FORCED_VALUES}.
@@ -37,7 +37,7 @@ import java.util.concurrent.TimeUnit;
  *
  * Other interesting things you can do:
  * - Make a flag {@link #HOT_SWAPPABLE}
- * - Make a flag {@link #STICKY}
+ * - Make a flag {@link #STICKY} -- booleans only!
  * - Register a listener for flag changes in  {@link #FLAG_CHANGE_LISTENERS}
  */
 public final class FeatureFlags {
@@ -86,7 +86,7 @@ public final class FeatureFlags {
    * an addition to this map.
    */
   @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
-  private static final Map<String, Boolean> FORCED_VALUES = new HashMap<String, Boolean>() {{
+  private static final Map<String, Object> FORCED_VALUES = new HashMap<String, Object>() {{
   }};
 
   /**
@@ -124,14 +124,14 @@ public final class FeatureFlags {
     put(MESSAGE_REQUESTS, (change) -> SignalStore.setMessageRequestEnableTime(change == Change.ENABLED ? System.currentTimeMillis() : 0));
   }};
 
-  private static final Map<String, Boolean> REMOTE_VALUES = new TreeMap<>();
+  private static final Map<String, Object> REMOTE_VALUES = new TreeMap<>();
 
   private FeatureFlags() {}
 
   public static synchronized void init() {
-    Map<String, Boolean> current = parseStoredConfig(SignalStore.remoteConfigValues().getCurrentConfig());
-    Map<String, Boolean> pending = parseStoredConfig(SignalStore.remoteConfigValues().getPendingConfig());
-    Map<String, Change>  changes = computeChanges(current, pending);
+    Map<String, Object> current = parseStoredConfig(SignalStore.remoteConfigValues().getCurrentConfig());
+    Map<String, Object> pending = parseStoredConfig(SignalStore.remoteConfigValues().getPendingConfig());
+    Map<String, Change> changes = computeChanges(current, pending);
 
     SignalStore.remoteConfigValues().setCurrentConfig(mapToJson(pending));
     REMOTE_VALUES.putAll(pending);
@@ -151,10 +151,10 @@ public final class FeatureFlags {
     }
   }
 
-  public static synchronized void update(@NonNull Map<String, Boolean> config) {
-    Map<String, Boolean> memory  = REMOTE_VALUES;
-    Map<String, Boolean> disk    = parseStoredConfig(SignalStore.remoteConfigValues().getPendingConfig());
-    UpdateResult         result  = updateInternal(config, memory, disk, REMOTE_CAPABLE, HOT_SWAPPABLE, STICKY);
+  public static synchronized void update(@NonNull Map<String, Object> config) {
+    Map<String, Object> memory  = REMOTE_VALUES;
+    Map<String, Object> disk    = parseStoredConfig(SignalStore.remoteConfigValues().getPendingConfig());
+    UpdateResult        result  = updateInternal(config, memory, disk, REMOTE_CAPABLE, HOT_SWAPPABLE, STICKY);
 
     SignalStore.remoteConfigValues().setPendingConfig(mapToJson(result.getDisk()));
     REMOTE_VALUES.clear();
@@ -171,7 +171,7 @@ public final class FeatureFlags {
 
   /** UUID-related stuff that shouldn't be activated until the user-facing launch. */
   public static synchronized boolean uuids() {
-    return getValue(UUIDS, false);
+    return getBoolean(UUIDS, false);
   }
 
   /** Favoring profile names when displaying contacts. */
@@ -181,12 +181,12 @@ public final class FeatureFlags {
 
   /** MessageRequest stuff */
   public static synchronized boolean messageRequests() {
-    return getValue(MESSAGE_REQUESTS, false);
+    return getBoolean(MESSAGE_REQUESTS, false);
   }
 
   /** Creating usernames, sending messages by username. Requires {@link #uuids()}. */
   public static synchronized boolean usernames() {
-    boolean value = getValue(USERNAMES, false);
+    boolean value = getBoolean(USERNAMES, false);
     if (value && !uuids()) throw new MissingFlagRequirementError();
     return value;
   }
@@ -202,76 +202,81 @@ public final class FeatureFlags {
            SignalStore.kbsValues().isV2RegistrationLockEnabled()           ||
            SignalStore.kbsValues().hasPin()                                ||
            pinsForAllMandatory()                                           ||
-           getValue(PINS_FOR_ALL_LEGACY, false)                            ||
-           getValue(PINS_FOR_ALL, false);
+           getBoolean(PINS_FOR_ALL_LEGACY, false)                          ||
+           getBoolean(PINS_FOR_ALL, false);
   }
 
   /** Makes it so the user will eventually see a fullscreen splash requiring them to create a PIN. */
   public static boolean pinsForAllMandatory() {
-    return getValue(PINS_FOR_ALL_MANDATORY, false);
+    return getBoolean(PINS_FOR_ALL_MANDATORY, false);
   }
 
   /** Safety flag to disable Pins for All Megaphone */
   public static boolean pinsForAllMegaphoneKillSwitch() {
-    return getValue(PINS_MEGAPHONE_KILL_SWITCH, false);
+    return getBoolean(PINS_MEGAPHONE_KILL_SWITCH, false);
   }
 
   /** Safety switch for disabling profile names megaphone */
   public static boolean profileNamesMegaphone() {
-    return getValue(PROFILE_NAMES_MEGAPHONE, false) &&
+    return getBoolean(PROFILE_NAMES_MEGAPHONE, false) &&
            TextSecurePreferences.getFirstInstallVersion(ApplicationDependencies.getApplication()) < 600;
   }
 
   /** Whether or not we use the attachments v3 form. */
   public static boolean attachmentsV3() {
-    return getValue(ATTACHMENTS_V3, false);
+    return getBoolean(ATTACHMENTS_V3, false);
   }
 
   /** Send support for remotely deleting a message. */
   public static boolean remoteDelete() {
-    return getValue(REMOTE_DELETE, false);
+    return getBoolean(REMOTE_DELETE, false);
   }
 
   /** Whether or not profile sharing is required for calling */
   public static boolean profileForCalling() {
-    return messageRequests() && getValue(PROFILE_FOR_CALLING, false);
+    return messageRequests() && getBoolean(PROFILE_FOR_CALLING, false);
   }
 
   /** Whether or not to display Calling PIP */
   public static boolean callingPip() {
-    return getValue(CALLING_PIP, false);
+    return getBoolean(CALLING_PIP, false);
   }
 
   /** New group UI elements. */
   public static boolean newGroupUI() {
-    return getValue(NEW_GROUP_UI, false);
+    return getBoolean(NEW_GROUP_UI, false);
   }
 
   /** Only for rendering debug info. */
-  public static synchronized @NonNull Map<String, Boolean> getMemoryValues() {
+  public static synchronized @NonNull Map<String, Object> getMemoryValues() {
     return new TreeMap<>(REMOTE_VALUES);
   }
 
   /** Only for rendering debug info. */
-  public static synchronized @NonNull Map<String, Boolean> getDiskValues() {
+  public static synchronized @NonNull Map<String, Object> getDiskValues() {
     return new TreeMap<>(parseStoredConfig(SignalStore.remoteConfigValues().getCurrentConfig()));
   }
 
   /** Only for rendering debug info. */
-  public static synchronized @NonNull Map<String, Boolean> getForcedValues() {
+  public static synchronized @NonNull Map<String, Object> getPendingDiskValues() {
+    return new TreeMap<>(parseStoredConfig(SignalStore.remoteConfigValues().getPendingConfig()));
+  }
+
+  /** Only for rendering debug info. */
+  public static synchronized @NonNull Map<String, Object> getForcedValues() {
     return new TreeMap<>(FORCED_VALUES);
   }
 
   @VisibleForTesting
-  static @NonNull UpdateResult updateInternal(@NonNull Map<String, Boolean> remote,
-                                              @NonNull Map<String, Boolean> localMemory,
-                                              @NonNull Map<String, Boolean> localDisk,
-                                              @NonNull Set<String>          remoteCapable,
-                                              @NonNull Set<String>          hotSwap,
-                                              @NonNull Set<String>          sticky)
+  static @NonNull UpdateResult updateInternal(@NonNull Map<String, Object> remote,
+                                              @NonNull Map<String, Object> localMemory,
+                                              @NonNull Map<String, Object> localDisk,
+                                              @NonNull Set<String>         remoteCapable,
+                                              @NonNull Set<String>         hotSwap,
+                                              @NonNull Set<String>         sticky)
   {
-    Map<String, Boolean> newMemory = new TreeMap<>(localMemory);
-    Map<String, Boolean> newDisk   = new TreeMap<>(localDisk);
+    Map<String, Object> newMemory = new TreeMap<>(localMemory);
+    Map<String, Object> newDisk   = new TreeMap<>(localDisk);
 
     Set<String> allKeys = new HashSet<>();
     allKeys.addAll(remote.keySet());
@@ -281,12 +286,26 @@ public final class FeatureFlags {
     Stream.of(allKeys)
           .filter(remoteCapable::contains)
           .forEach(key -> {
-            Boolean remoteValue = remote.get(key);
-            Boolean diskValue   = localDisk.get(key);
-            Boolean newValue    = remoteValue;
+            Object remoteValue = remote.get(key);
+            Object diskValue   = localDisk.get(key);
+            Object newValue    = remoteValue;
 
-            if (sticky.contains(key)) {
+            if (newValue != null && diskValue != null && newValue.getClass() != diskValue.getClass()) {
+              Log.w(TAG, "Type mismatch! key: " + key);
+
+              newDisk.remove(key);
+
+              if (hotSwap.contains(key)) {
+                newMemory.remove(key);
+              }
+
+              return;
+            }
+
+            if (sticky.contains(key) && (newValue instanceof Boolean || diskValue instanceof Boolean)) {
               newValue = diskValue == Boolean.TRUE ? Boolean.TRUE : newValue;
+            } else if (sticky.contains(key)) {
+              Log.w(TAG, "Tried to make a non-boolean sticky! Ignoring. (key: " + key + ")");
             }
 
             if (newValue != null) {
@@ -319,7 +338,7 @@ public final class FeatureFlags {
   }
 
   @VisibleForTesting
-  static @NonNull Map<String, Change> computeChanges(@NonNull Map<String, Boolean> oldMap, @NonNull Map<String, Boolean> newMap) {
+  static @NonNull Map<String, Change> computeChanges(@NonNull Map<String, Object> oldMap, @NonNull Map<String, Object> newMap) {
     Map<String, Change> changes = new HashMap<>();
     Set<String>         allKeys = new HashSet<>();
 
@@ -327,37 +346,59 @@ public final class FeatureFlags {
     allKeys.addAll(newMap.keySet());
 
     for (String key : allKeys) {
-      Boolean oldValue = oldMap.get(key);
-      Boolean newValue = newMap.get(key);
+      Object oldValue = oldMap.get(key);
+      Object newValue = newMap.get(key);
 
       if (oldValue == null && newValue == null) {
         throw new AssertionError("Should not be possible.");
       } else if (oldValue != null && newValue == null) {
         changes.put(key, Change.REMOVED);
+      } else if (newValue != oldValue && newValue instanceof Boolean) {
+        changes.put(key, (boolean) newValue ? Change.ENABLED : Change.DISABLED);
       } else if (newValue != oldValue) {
-        changes.put(key, newValue ? Change.ENABLED : Change.DISABLED);
+        changes.put(key, Change.CHANGED);
       }
     }
 
     return changes;
   }
 
-  private static boolean getValue(@NonNull String key, boolean defaultValue) {
-    Boolean forced = FORCED_VALUES.get(key);
+  private static boolean getBoolean(@NonNull String key, boolean defaultValue) {
+    Boolean forced = (Boolean) FORCED_VALUES.get(key);
     if (forced != null) {
       return forced;
     }
 
-    Boolean remote = REMOTE_VALUES.get(key);
-    if (remote != null) {
-      return remote;
+    Object remote = REMOTE_VALUES.get(key);
+    if (remote instanceof Boolean) {
+      return (boolean) remote;
+    } else if (remote != null) {
+      Log.w(TAG, "Expected a boolean for key '" + key + "', but got something else! Falling back to the default.");
     }
 
     return defaultValue;
   }
 
-  private static Map<String, Boolean> parseStoredConfig(String stored) {
-    Map<String, Boolean> parsed = new HashMap<>();
+  private static int getInteger(@NonNull String key, int defaultValue) {
+    Integer forced = (Integer) FORCED_VALUES.get(key);
+    if (forced != null) {
+      return forced;
+    }
+
+    String remote = (String) REMOTE_VALUES.get(key);
+    if (remote != null) {
+      try {
+        return Integer.parseInt(remote);
+      } catch (NumberFormatException e) {
+        Log.w(TAG, "Expected an int for key '" + key + "', but got something else! Falling back to the default.");
+      }
+    }
+
+    return defaultValue;
+  }
+
+  private static Map<String, Object> parseStoredConfig(String stored) {
+    Map<String, Object> parsed = new HashMap<>();
 
     if (TextUtils.isEmpty(stored)) {
       Log.i(TAG, "No remote config stored. Skipping.");
@@ -370,7 +411,7 @@ public final class FeatureFlags {
 
       while (iter.hasNext()) {
         String key = iter.next();
-        parsed.put(key, root.getBoolean(key));
+        parsed.put(key, root.get(key));
       }
     } catch (JSONException e) {
       throw new AssertionError("Failed to parse! Cleared storage.");
@@ -379,12 +420,12 @@ public final class FeatureFlags {
     return parsed;
   }
 
-  private static @NonNull String mapToJson(@NonNull Map<String, Boolean> map) {
+  private static @NonNull String mapToJson(@NonNull Map<String, Object> map) {
     try {
       JSONObject json = new JSONObject();
 
-      for (Map.Entry<String, Boolean> entry : map.entrySet()) {
-        json.put(entry.getKey(), (boolean) entry.getValue());
+      for (Map.Entry<String, Object> entry : map.entrySet()) {
+        json.put(entry.getKey(), entry.getValue());
       }
 
       return json.toString();
@@ -409,21 +450,21 @@ public final class FeatureFlags {
 
   @VisibleForTesting
   static final class UpdateResult {
-    private final Map<String, Boolean> memory;
-    private final Map<String, Boolean> disk;
-    private final Map<String, Change> memoryChanges;
+    private final Map<String, Object> memory;
+    private final Map<String, Object> disk;
+    private final Map<String, Change>  memoryChanges;
 
-    UpdateResult(@NonNull Map<String, Boolean> memory, @NonNull Map<String, Boolean> disk, @NonNull Map<String, Change> memoryChanges) {
+    UpdateResult(@NonNull Map<String, Object> memory, @NonNull Map<String, Object> disk, @NonNull Map<String, Change> memoryChanges) {
       this.memory        = memory;
       this.disk          = disk;
       this.memoryChanges = memoryChanges;
     }
 
-    public @NonNull Map<String, Boolean> getMemory() {
+    public @NonNull Map<String, Object> getMemory() {
       return memory;
     }
 
-    public @NonNull Map<String, Boolean> getDisk() {
+    public @NonNull Map<String, Object> getDisk() {
       return disk;
     }
 
@@ -438,7 +479,7 @@ public final class FeatureFlags {
   }
 
   enum Change {
-    ENABLED, DISABLED, REMOVED
+    ENABLED, DISABLED, CHANGED, REMOVED
   }
 
   /** Read and write versioned profile information. */

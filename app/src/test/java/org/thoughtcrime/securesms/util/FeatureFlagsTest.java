@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
 import org.junit.Test;
+import org.thoughtcrime.securesms.BaseUnitTest;
 import org.thoughtcrime.securesms.util.FeatureFlags.Change;
 import org.thoughtcrime.securesms.util.FeatureFlags.UpdateResult;
 
@@ -14,23 +15,23 @@ import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
-public class FeatureFlagsTest {
+public class FeatureFlagsTest extends BaseUnitTest {
 
   private static final String A = "A";
   private static final String B = "B";
 
   @Test
   public void updateInternal_newValue_ignoreNotInRemoteCapable() {
-    UpdateResult result = FeatureFlags.updateInternal(mapOf("A", true,
-                                                            "B", true),
+    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true,
+                                                            B, true),
                                                       mapOf(),
                                                       mapOf(),
-                                                      setOf("A"),
+                                                      setOf(A),
                                                       setOf(),
                                                       setOf());
 
     assertEquals(mapOf(), result.getMemory());
-    assertEquals(mapOf("A", true), result.getDisk());
+    assertEquals(mapOf(A, true), result.getDisk());
     assertTrue(result.getMemoryChanges().isEmpty());
   }
 
@@ -287,10 +288,24 @@ public class FeatureFlagsTest {
   }
 
   @Test
+  public void updateInternal_removeValue_typeMismatch_hotSwap() {
+    UpdateResult result = FeatureFlags.updateInternal(mapOf(A, "5"),
+                                                      mapOf(A, true),
+                                                      mapOf(A, true),
+                                                      setOf(A),
+                                                      setOf(A),
+                                                      setOf());
+
+    assertEquals(mapOf(), result.getMemory());
+    assertEquals(mapOf(), result.getDisk());
+    assertEquals(Change.REMOVED, result.getMemoryChanges().get(A));
+  }
+
+  @Test
   public void updateInternal_twoNewValues() {
     UpdateResult result = FeatureFlags.updateInternal(mapOf(A, true,
-                                                            B, false),
-                                                      mapOf(),
+        B, false),
+        mapOf(),
                                                       mapOf(),
                                                       setOf(A, B),
                                                       setOf(),
@@ -320,19 +335,22 @@ public class FeatureFlagsTest {
 
   @Test
   public void computeChanges_generic() {
-    Map<String, Boolean> oldMap = new HashMap<String, Boolean>() {{
+    Map<String, Object> oldMap = new HashMap<String, Object>() {{
       put("a", true);
       put("b", false);
       put("c", true);
       put("d", false);
+      put("g", 5);
+      put("h", 5);
     }};
 
-    Map<String, Boolean> newMap = new HashMap<String, Boolean>() {{
+    Map<String, Object> newMap = new HashMap<String, Object>() {{
       put("a", true);
       put("b", true);
       put("c", false);
       put("e", true);
       put("f", false);
+      put("h", 7);
     }};
 
     Map<String, Change> changes = FeatureFlags.computeChanges(oldMap, newMap);
@@ -343,6 +361,7 @@ public class FeatureFlagsTest {
     assertEquals(Change.REMOVED, changes.get("d"));
     assertEquals(Change.ENABLED, changes.get("e"));
     assertEquals(Change.DISABLED, changes.get("f"));
+    assertEquals(Change.CHANGED, changes.get("h"));
   }
 
   private static <V> Set<V> setOf(V... values) {

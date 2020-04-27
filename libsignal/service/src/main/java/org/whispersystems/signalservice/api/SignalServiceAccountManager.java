@@ -582,12 +582,12 @@ public class SignalServiceAccountManager {
     }
   }
 
-  public Map<String, Boolean> getRemoteConfig() throws IOException {
+  public Map<String, Object> getRemoteConfig() throws IOException {
     RemoteConfigResponse response = this.pushServiceSocket.getRemoteConfig();
-    Map<String, Boolean> out      = new HashMap<>();
+    Map<String, Object>  out      = new HashMap<>();
 
     for (RemoteConfigResponse.Config config : response.getConfig()) {
-      out.put(config.getName(), config.isEnabled());
+      out.put(config.getName(), config.getValue() != null ? config.getValue() : config.isEnabled());
     }
 
     return out;
