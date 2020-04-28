@@ -79,8 +79,11 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Blokker og forlat %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Blokker %1$s?</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Du vil ikkje lenger motta meldingar eller oppdateringar frå denne gruppa, og medlem vil ikkje lenger kunna legga deg til gruppa igjen.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Gruppemedlem vil ikkje kunna legga deg til i gruppa igjen.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Gruppemedlem vil kunna legga deg til i gruppa igjen.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Dokker kan senda meldingar og ringa til kvarandre.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokkerte kontaktar vil ikkje kunna ringa deg eller senda deg meldingar.</string>
   <string name="BlockUnblockDialog_unblock_s">Ikkje blokker %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Fjern blokkering</string>
   <string name="BlockUnblockDialog_block">Blokker</string>
