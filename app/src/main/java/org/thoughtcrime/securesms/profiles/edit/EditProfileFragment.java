@@ -34,8 +34,7 @@ import com.google.android.gms.common.util.IOUtils;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.lock.v2.RegistrationLockUtil;
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediasend.AvatarSelectionActivity;
 import org.thoughtcrime.securesms.mediasend.AvatarSelectionBottomSheetDialogFragment;
@@ -46,7 +45,6 @@ import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.registration.RegistrationUtil;
-import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
@@ -58,6 +56,7 @@ import java.io.InputStream;
 import static android.app.Activity.RESULT_OK;
 import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.DISPLAY_USERNAME;
 import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.EXCLUDE_SYSTEM;
+import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.GROUP_ID;
 import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.NEXT_BUTTON_TEXT;
 import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.NEXT_INTENT;
 import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.SHOW_TOOLBAR;
@@ -122,10 +121,13 @@ public class EditProfileFragment extends Fragment {
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    initializeResources(view);
-    initializeViewModel(requireArguments().getBoolean(EXCLUDE_SYSTEM, false), savedInstanceState != null);
-    initializeProfileName();
+    final GroupId      groupId     = GroupId.parseNullableOrThrow(requireArguments().getString(GROUP_ID, null));
+    final GroupId.Push pushGroupId = groupId != null ? groupId.requirePush() : null;
+
+    initializeResources(view, pushGroupId != null);
+    initializeViewModel(requireArguments().getBoolean(EXCLUDE_SYSTEM, false), pushGroupId,  savedInstanceState != null);
     initializeProfileAvatar();
+    initializeProfileName();
     initializeUsername();
 
     requireActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
@@ -189,14 +191,21 @@ public class EditProfileFragment extends Fragment {
     }
   }
 
-  private void initializeViewModel(boolean excludeSystem, boolean hasSavedInstanceState) {
-    EditProfileRepository        repository = new EditProfileRepository(requireContext(), excludeSystem);
-    EditProfileViewModel.Factory factory    = new EditProfileViewModel.Factory(repository, hasSavedInstanceState);
+  private void initializeViewModel(boolean excludeSystem, @Nullable GroupId.Push groupId, boolean hasSavedInstanceState) {
+    EditProfileRepository repository;
+
+    if (groupId != null) {
+      repository = new EditPushGroupProfileRepository(requireContext(), groupId);
+    } else {
+      repository = new EditSelfProfileRepository(requireContext(), excludeSystem);
+    }
+
+    EditProfileViewModel.Factory factory = new EditProfileViewModel.Factory(repository, hasSavedInstanceState, groupId);
 
     viewModel = ViewModelProviders.of(this, factory).get(EditProfileViewModel.class);
   }
 
-  private void initializeResources(@NonNull View view) {
+  private void initializeResources(@NonNull View view, boolean isEditingGroup) {
     Bundle arguments = requireArguments();
 
     this.toolbar            = view.findViewById(R.id.toolbar);
@@ -228,10 +237,21 @@ public class EditProfileFragment extends Fragment {
                                                                        trimInPlace(s);
                                                                        viewModel.setGivenName(s.toString());
                                                                      }));
-    this.familyName.addTextChangedListener(new AfterTextChanged(s -> {
-                                                                       trimInPlace(s);
-                                                                       viewModel.setFamilyName(s.toString());
-                                                                     }));
+
+    if (isEditingGroup) {
+      givenName.setHint(R.string.EditProfileFragment__group_name);
+      toolbar.setTitle(R.string.EditProfileFragment__edit_group_name_and_photo);
+      preview.setVisibility(View.GONE);
+      familyName.setVisibility(View.GONE);
+      familyName.setEnabled(false);
+      view.findViewById(R.id.description_text).setVisibility(View.GONE);
+      view.<ImageView>findViewById(R.id.avatar_placeholder).setImageResource(R.drawable.ic_group_outline_40);
+    } else {
+      this.familyName.addTextChangedListener(new AfterTextChanged(s -> {
+                                                                         trimInPlace(s);
+                                                                         viewModel.setFamilyName(s.toString());
+                                                                       }));
+    }
 
     this.finishButton.setOnClickListener(v -> {
       this.finishButton.setIndeterminateProgressMode(true);
@@ -254,22 +274,20 @@ public class EditProfileFragment extends Fragment {
   }
 
   private void initializeProfileName() {
-    viewModel.givenName().observe(this, givenName -> updateFieldIfNeeded(this.givenName, givenName));
-
-    viewModel.familyName().observe(this, familyName -> updateFieldIfNeeded(this.familyName, familyName));
-
-    viewModel.profileName().observe(this, profileName -> {
-      preview.setText(profileName.toString());
-
-      boolean validEntry = !profileName.isGivenNameEmpty();
-
-      finishButton.setEnabled(validEntry);
-      finishButton.setAlpha(validEntry ? 1f : 0.5f);
+    viewModel.isFormValid().observe(getViewLifecycleOwner(), isValid -> {
+      finishButton.setEnabled(isValid);
+      finishButton.setAlpha(isValid ? 1f : 0.5f);
     });
+
+    viewModel.givenName().observe(getViewLifecycleOwner(), givenName -> updateFieldIfNeeded(this.givenName, givenName));
+
+    viewModel.familyName().observe(getViewLifecycleOwner(), familyName -> updateFieldIfNeeded(this.familyName, familyName));
+
+    viewModel.profileName().observe(getViewLifecycleOwner(), profileName -> preview.setText(profileName.toString()));
   }
 
   private void initializeProfileAvatar() {
-    viewModel.avatar().observe(this, bytes -> {
+    viewModel.avatar().observe(getViewLifecycleOwner(), bytes -> {
       if (bytes == null) return;
 
       GlideApp.with(this)
@@ -280,7 +298,7 @@ public class EditProfileFragment extends Fragment {
   }
 
   private void initializeUsername() {
-    viewModel.username().observe(this, this::onUsernameChanged);
+    viewModel.username().observe(getViewLifecycleOwner(), this::onUsernameChanged);
   }
 
   private static void updateFieldIfNeeded(@NonNull EditText field, @NonNull String value) {
@@ -303,7 +321,11 @@ public class EditProfileFragment extends Fragment {
   }
 
   private void startAvatarSelection() {
-    AvatarSelectionBottomSheetDialogFragment.create(viewModel.hasAvatar(), true, REQUEST_CODE_SELECT_AVATAR).show(getChildFragmentManager(), null);
+    AvatarSelectionBottomSheetDialogFragment.create(viewModel.canRemoveProfilePhoto(),
+                                                    true,
+                                                    REQUEST_CODE_SELECT_AVATAR,
+                                                    viewModel.isGroup())
+                                            .show(getChildFragmentManager(), null);
   }
 
   private void handleUpload() {

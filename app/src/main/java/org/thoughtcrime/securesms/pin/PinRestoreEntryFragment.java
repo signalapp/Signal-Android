@@ -28,7 +28,6 @@ import com.dd.CircularProgressButton;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.KbsConstants;
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType;
 import org.thoughtcrime.securesms.logging.Log;
@@ -39,7 +38,6 @@ import org.thoughtcrime.securesms.registration.RegistrationUtil;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
-import org.whispersystems.signalservice.internal.storage.protos.SignalStorage;
 
 import java.util.Locale;
 
@@ -233,7 +231,7 @@ public class PinRestoreEntryFragment extends Fragment {
 
     if (Recipient.self().getProfileName().isEmpty() || !AvatarHelper.hasAvatar(activity, Recipient.self().getId())) {
       final Intent main    = new Intent(activity, MainActivity.class);
-      final Intent profile = EditProfileActivity.getIntent(activity, false);
+      final Intent profile = EditProfileActivity.getIntentForUserProfile(activity);
 
       profile.putExtra("next_intent", main);
       startActivity(profile);

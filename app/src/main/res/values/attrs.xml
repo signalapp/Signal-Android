@@ -194,6 +194,7 @@
     <attr name="menu_reply_icon" format="reference" />
     <attr name="menu_multi_select_icon" format="reference" />
     <attr name="menu_archive_icon" format="reference" />
+    <attr name="menu_edit_icon" format="reference" />
 
     <attr name="message_icon" format="reference" />
     <attr name="notifications_icon" format="reference" />

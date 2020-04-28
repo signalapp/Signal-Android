@@ -12,23 +12,34 @@ import androidx.navigation.Navigation;
 
 import org.thoughtcrime.securesms.BaseActionBarActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DynamicRegistrationTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
 @SuppressLint("StaticFieldLeak")
 public class EditProfileActivity extends BaseActionBarActivity implements EditProfileFragment.Controller {
 
-  public static final String NEXT_INTENT       = "next_intent";
-  public static final String EXCLUDE_SYSTEM    = "exclude_system";
-  public static final String DISPLAY_USERNAME  = "display_username";
-  public static final String NEXT_BUTTON_TEXT  = "next_button_text";
-  public static final String SHOW_TOOLBAR      = "show_back_arrow";
+  public static final String NEXT_INTENT      = "next_intent";
+  public static final String EXCLUDE_SYSTEM   = "exclude_system";
+  public static final String DISPLAY_USERNAME = "display_username";
+  public static final String NEXT_BUTTON_TEXT = "next_button_text";
+  public static final String SHOW_TOOLBAR     = "show_back_arrow";
+  public static final String GROUP_ID         = "group_id";
 
   private final DynamicTheme dynamicTheme = new DynamicRegistrationTheme();
 
-  public static @NonNull Intent getIntent(@NonNull Context context, boolean showToolbar) {
+  public static @NonNull Intent getIntentForUserProfile(@NonNull Context context) {
     Intent intent = new Intent(context, EditProfileActivity.class);
-    intent.putExtra(EditProfileActivity.SHOW_TOOLBAR, showToolbar);
+    intent.putExtra(EditProfileActivity.SHOW_TOOLBAR, false);
+    return intent;
+  }
+
+  public static @NonNull Intent getIntentForGroupProfile(@NonNull Context context, @NonNull GroupId.Push groupId) {
+    Intent intent = new Intent(context, EditProfileActivity.class);
+    intent.putExtra(EditProfileActivity.SHOW_TOOLBAR, true);
+    intent.putExtra(EditProfileActivity.GROUP_ID, groupId.toString());
+    intent.putExtra(EditProfileActivity.NEXT_BUTTON_TEXT, R.string.save);
     return intent;
   }
 

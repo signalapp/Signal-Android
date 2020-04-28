@@ -87,13 +87,12 @@ final class V1GroupManager {
   static GroupActionResult updateGroup(@NonNull  Context          context,
                                        @NonNull  GroupId          groupId,
                                        @NonNull  Set<RecipientId> memberAddresses,
-                                       @Nullable Bitmap           avatar,
+                                       @Nullable byte[]           avatarBytes,
                                        @Nullable String           name)
       throws InvalidNumberException
   {
     final GroupDatabase groupDatabase    = DatabaseFactory.getGroupDatabase(context);
     final RecipientId   groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
-    final byte[]        avatarBytes      = BitmapUtil.toByteArray(avatar);
 
     memberAddresses.add(Recipient.self().getId());
     groupDatabase.updateMembers(groupId, new LinkedList<>(memberAddresses));

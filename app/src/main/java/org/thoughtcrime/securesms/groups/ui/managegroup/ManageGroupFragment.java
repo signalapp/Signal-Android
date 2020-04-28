@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -29,6 +32,7 @@ import org.thoughtcrime.securesms.groups.ui.pendingmemberinvites.PendingMemberIn
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity;
 import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
 
 import java.util.Objects;
@@ -69,6 +73,12 @@ public class ManageGroupFragment extends Fragment {
   }
 
   @Override
+  public void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setHasOptionsMenu(true);
+  }
+
+  @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater,
                                      @Nullable ViewGroup container,
                                      @Nullable Bundle savedInstanceState)
@@ -99,7 +109,7 @@ public class ManageGroupFragment extends Fragment {
     super.onActivityCreated(savedInstanceState);
 
     Context                      context = requireContext();
-    GroupId.Push                 groupId = GroupId.parseOrThrow(Objects.requireNonNull(requireArguments().getString(GROUP_ID))).requirePush();
+    GroupId.Push                 groupId = getPushGroupId();
     ManageGroupViewModel.Factory factory = new ManageGroupViewModel.Factory(context, groupId);
 
     viewModel = ViewModelProviders.of(requireActivity(), factory).get(ManageGroupViewModel.class);
@@ -175,6 +185,27 @@ public class ManageGroupFragment extends Fragment {
     viewModel.getCanEditGroupAttributes().observe(getViewLifecycleOwner(), canEdit -> disappearingMessages.setEnabled(canEdit));
 
     groupMemberList.setRecipientClickListener(recipient -> RecipientBottomSheetDialogFragment.create(recipient.getId(), groupId).show(requireFragmentManager(), "BOTTOM"));
+  }
+
+  @Override
+  public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+    inflater.inflate(R.menu.manage_group_fragment, menu);
+
+    viewModel.getCanEditGroupAttributes().observe(getViewLifecycleOwner(), canEdit -> menu.findItem(R.id.action_edit).setVisible(canEdit));
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    if (item.getItemId() == R.id.action_edit) {
+      startActivity(EditProfileActivity.getIntentForGroupProfile(requireActivity(), getPushGroupId()));
+      return true;
+    }
+
+    return false;
+  }
+
+  private GroupId.Push getPushGroupId() {
+    return GroupId.parseOrThrow(Objects.requireNonNull(requireArguments().getString(GROUP_ID))).requirePush();
   }
 
   private void setMediaCursorFactory(@Nullable ManageGroupViewModel.CursorFactory cursorFactory) {

@@ -65,11 +65,13 @@ import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
+import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.SelectedRecipientsAdapter;
 import org.thoughtcrime.securesms.util.SelectedRecipientsAdapter.OnRecipientDeletedListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -203,7 +205,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     recipientsPanel.setPanelChangeListener(this);
     findViewById(R.id.contacts_button).setOnClickListener(new AddRecipientButtonListener());
     avatar.setImageDrawable(getDefaultGroupAvatar());
-    avatar.setOnClickListener(view -> AvatarSelectionBottomSheetDialogFragment.create(avatarBmp != null, false, REQUEST_CODE_SELECT_AVATAR).show(getSupportFragmentManager(), null));
+    avatar.setOnClickListener(view -> AvatarSelectionBottomSheetDialogFragment.create(avatarBmp != null, false, REQUEST_CODE_SELECT_AVATAR, true).show(getSupportFragmentManager(), null));
   }
 
   private Drawable getDefaultGroupAvatar() {
@@ -215,6 +217,10 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
 
     if (groupId != null) {
       new FillExistingGroupInfoAsyncTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, groupId);
+
+      if (FeatureFlags.newGroupUI() && groupId.isPush()) {
+        avatar.setOnClickListener(v -> startActivity(EditProfileActivity.getIntentForGroupProfile(this, groupId.requirePush())));
+      }
     }
   }
 

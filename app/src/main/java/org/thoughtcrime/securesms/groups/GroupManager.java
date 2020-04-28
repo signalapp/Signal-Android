@@ -9,8 +9,11 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.groups.UuidCiphertext;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.whispersystems.signalservice.api.groupsv2.InvalidGroupStateException;
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
@@ -18,6 +21,7 @@ import org.whispersystems.signalservice.api.util.InvalidNumberException;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public final class GroupManager {
@@ -33,6 +37,20 @@ public final class GroupManager {
     return V1GroupManager.createGroup(context, addresses, avatar, name, mms);
   }
 
+  @WorkerThread
+  public static GroupActionResult updateGroup(@NonNull  Context context,
+                                              @NonNull  GroupId groupId,
+                                              @Nullable byte[]  avatar,
+                                              @Nullable String  name)
+      throws InvalidNumberException
+  {
+
+    List<Recipient> members = DatabaseFactory.getGroupDatabase(context)
+                                             .getGroupMembers(groupId, GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
+
+    return V1GroupManager.updateGroup(context, groupId, getMemberIds(members), avatar, name);
+  }
+
   public static GroupActionResult updateGroup(@NonNull  Context        context,
                                               @NonNull  GroupId        groupId,
                                               @NonNull  Set<Recipient> members,
@@ -42,7 +60,7 @@ public final class GroupManager {
   {
     Set<RecipientId> addresses = getMemberIds(members);
 
-    return V1GroupManager.updateGroup(context, groupId, addresses, avatar, name);
+    return V1GroupManager.updateGroup(context, groupId, addresses, BitmapUtil.toByteArray(avatar), name);
   }
 
   private static Set<RecipientId> getMemberIds(Collection<Recipient> recipients) {

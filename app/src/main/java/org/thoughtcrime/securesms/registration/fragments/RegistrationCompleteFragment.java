@@ -36,7 +36,7 @@ public final class RegistrationCompleteFragment extends BaseRegistrationFragment
       activity.startActivity(new Intent(activity, PinRestoreActivity.class));
     } else if (!isReregister()) {
       final Intent main    = new Intent(activity, MainActivity.class);
-      final Intent profile = EditProfileActivity.getIntent(activity, false);
+      final Intent profile = EditProfileActivity.getIntentForUserProfile(activity);
 
       Intent kbs = CreateKbsPinActivity.getIntentForPinCreate(requireContext());
       activity.startActivity(chainIntents(chainIntents(profile, kbs), main));
