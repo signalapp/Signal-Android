@@ -117,7 +117,17 @@ public final class StorageSyncHelper {
 
     for (RecipientSettings insert : inserts) {
       storageInserts.add(StorageSyncModels.localToRemoteRecord(insert, archivedRecipients));
-      completeIds.add(StorageId.forContact(insert.getStorageId()));
+
+      switch (insert.getGroupType()) {
+        case NONE:
+          completeIds.add(StorageId.forContact(insert.getStorageId()));
+          break;
+        case SIGNAL_V1:
+          completeIds.add(StorageId.forGroupV1(insert.getStorageId()));
+          break;
+        default:
+          throw new AssertionError("Unsupported type!");
+      }
     }
 
     if (accountInsert.isPresent()) {
