@@ -7,7 +7,7 @@ final class SignalPinReminderSchedule implements MegaphoneSchedule {
 
   @Override
   public boolean shouldDisplay(int seenCount, long lastSeen, long firstVisible, long currentTime) {
-    if (!SignalStore.kbsValues().isV2RegistrationLockEnabled()) {
+    if (!SignalStore.kbsValues().hasPin()) {
       return false;
     }
 
