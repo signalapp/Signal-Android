@@ -116,8 +116,12 @@ public class WebRtcCallActivity extends Activity {
   @Override
   public boolean onKeyDown(int keyCode, KeyEvent event) {
     if (keyCode == KeyEvent.KEYCODE_VOLUME_UP || keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
-      handleSilenceRinger();
-      return true;
+      WebRtcViewModel model = EventBus.getDefault().getStickyEvent(WebRtcViewModel.class);
+
+      if (model != null && model.getState() == WebRtcViewModel.State.CALL_INCOMING) {
+        handleSilenceRinger();
+        return true;
+      }
     }
     return super.onKeyDown(keyCode, event);
   }
