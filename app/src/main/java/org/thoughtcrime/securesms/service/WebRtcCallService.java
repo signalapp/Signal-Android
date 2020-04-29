@@ -583,9 +583,8 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     audioManager.startOutgoingRinger(OutgoingRinger.Type.RINGING);
     bluetoothStateManager.setWantsConnection(true);
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-      setCallInProgressNotification(TYPE_OUTGOING_RINGING, activePeer);
-    }
+    setCallInProgressNotification(TYPE_OUTGOING_RINGING, activePeer);
+
     DatabaseFactory.getSmsDatabase(this).insertOutgoingCall(activePeer.getId());
 
     retrieveTurnServers().addListener(new SuccessOnlyListener<List<PeerConnection.IceServer>>(this.activePeer.getState(), this.activePeer.getCallId()) {
@@ -629,9 +628,8 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
 
     initializeVideo();
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-      setCallInProgressNotification(TYPE_INCOMING_CONNECTING, activePeer);
-    }
+    setCallInProgressNotification(TYPE_INCOMING_CONNECTING, activePeer);
+
     retrieveTurnServers().addListener(new SuccessOnlyListener<List<PeerConnection.IceServer>>(this.activePeer.getState(), this.activePeer.getCallId()) {
         @Override
         public void onSuccessContinue(List<PeerConnection.IceServer> iceServers) {
@@ -857,9 +855,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     }
 
     registerPowerButtonReceiver();
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-      setCallInProgressNotification(TYPE_INCOMING_RINGING, activePeer);
-    }
+    setCallInProgressNotification(TYPE_INCOMING_RINGING, activePeer);
   }
 
   private void handleRemoteRinging(Intent intent) {
@@ -902,9 +898,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
 
     unregisterPowerButtonReceiver();
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-      setCallInProgressNotification(TYPE_ESTABLISHED, activePeer);
-    }
+    setCallInProgressNotification(TYPE_ESTABLISHED, activePeer);
 
     try {
       callManager.setCommunicationMode();
@@ -1012,16 +1006,14 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     RemotePeer remotePeer = getRemotePeer(intent);
 
     Log.i(TAG, "handleEndedReceivedOfferWhileActive(): call_id: " + remotePeer.getCallId());
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-      switch (activePeer.getState()) {
-        case DIALING:
-        case REMOTE_RINGING: setCallInProgressNotification(TYPE_OUTGOING_RINGING,    activePeer); break;
-        case IDLE:           setCallInProgressNotification(TYPE_INCOMING_CONNECTING, activePeer); break;
-        case ANSWERING:      setCallInProgressNotification(TYPE_INCOMING_CONNECTING, activePeer); break;
-        case LOCAL_RINGING:  setCallInProgressNotification(TYPE_INCOMING_RINGING,    activePeer); break;
-        case CONNECTED:      setCallInProgressNotification(TYPE_ESTABLISHED,         activePeer); break;
-        default:             throw new IllegalStateException();
-      }
+    switch (activePeer.getState()) {
+      case DIALING:
+      case REMOTE_RINGING: setCallInProgressNotification(TYPE_OUTGOING_RINGING,    activePeer); break;
+      case IDLE:           setCallInProgressNotification(TYPE_INCOMING_CONNECTING, activePeer); break;
+      case ANSWERING:      setCallInProgressNotification(TYPE_INCOMING_CONNECTING, activePeer); break;
+      case LOCAL_RINGING:  setCallInProgressNotification(TYPE_INCOMING_RINGING,    activePeer); break;
+      case CONNECTED:      setCallInProgressNotification(TYPE_ESTABLISHED,         activePeer); break;
+      default:             throw new IllegalStateException();
     }
 
     if (activePeer.getState() == CallState.IDLE) {
