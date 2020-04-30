@@ -99,9 +99,8 @@ public final class SignalPinReminderDialog {
     reminder.setMovementMethod(LinkMovementMethod.getInstance());
 
     PinVerifier.Callback callback = getPinWatcherCallback(context, dialog, pinEditText, pinStatus, mainCallback);
-    PinVerifier          verifier = SignalStore.kbsValues().isV2RegistrationLockEnabled()
-                                    ? new V2PinVerifier()
-                                    : new V1PinVerifier(context);
+    PinVerifier          verifier = SignalStore.kbsValues().hasPin() ? new V2PinVerifier()
+                                                                     : new V1PinVerifier(context);
 
     skip.setOnClickListener(v -> {
       dialog.dismiss();
