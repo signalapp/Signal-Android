@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/custom_notifications_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/custom_notifications_enable_switch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_arrow_left_24"
+        app:title="@string/CustomNotificationsDialogFragment__custom_notifications" />
+
+    <TextView
+        android:id="@+id/custom_notifications_message_section_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/CustomNotificationsDialogFragment__messages"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:textColor="@color/ultramarine_text_button"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/custom_notifications_toolbar" />
+
+    <TextView
+        android:id="@+id/custom_notifications_enable_label"
+        style="@style/Widget.Signal.Button.TextButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/CustomNotificationsDialogFragment__use_custom_notifications"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/custom_notifications_message_section_header" />
+
+    <TextView
+        android:id="@+id/custom_notifications_sound_label"
+        style="@style/Widget.Signal.Button.TextButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="@string/CustomNotificationsDialogFragment__notification_sound"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/custom_notifications_enable_label" />
+
+    <TextView
+        android:id="@+id/custom_notifications_vibrate_label"
+        style="@style/Widget.Signal.Button.TextButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="@string/CustomNotificationsDialogFragment__vibrate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/custom_notifications_sound_label" />
+
+    <Switch
+        android:id="@+id/custom_notifications_enable_switch"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:enabled="false"
+        app:layout_constraintBottom_toBottomOf="@id/custom_notifications_enable_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/custom_notifications_enable_label"
+        app:layout_constraintTop_toTopOf="@id/custom_notifications_enable_label" />
+
+    <TextView
+        android:id="@+id/custom_notifications_sound_selection"
+        style="@style/Widget.Signal.Button.TextButton.Ultramarine"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:gravity="end"
+        app:layout_constraintBottom_toBottomOf="@id/custom_notifications_sound_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/custom_notifications_sound_label"
+        app:layout_constraintTop_toTopOf="@id/custom_notifications_sound_label"
+        tools:text="Default (Popcorn)" />
+
+    <Switch
+        android:id="@+id/custom_notifications_vibrate_switch"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/custom_notifications_vibrate_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/custom_notifications_vibrate_label"
+        app:layout_constraintTop_toTopOf="@id/custom_notifications_vibrate_label" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

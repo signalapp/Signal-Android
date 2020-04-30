@@ -669,6 +669,10 @@ public class Recipient {
     return System.currentTimeMillis() <= muteUntil;
   }
 
+  public long getMuteUntil() {
+    return muteUntil;
+  }
+
   public boolean isBlocked() {
     return blocked;
   }

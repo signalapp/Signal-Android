@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 import java.util.List;
 
@@ -44,6 +43,8 @@ public class ManageGroupViewModel extends ViewModel {
   private final LiveData<GroupAccessControl>                editMembershipRights;
   private final LiveData<GroupAccessControl>                editGroupAttributesRights;
   private final MutableLiveData<GroupViewState>             groupViewState            = new MutableLiveData<>(null);
+  private final LiveData<MuteState>                         muteState;
+  private final LiveData<Boolean>                           hasCustomNotifications;
 
   private ManageGroupViewModel(@NonNull Context context, @NonNull ManageGroupRepository manageGroupRepository) {
     this.context               = context;
@@ -62,6 +63,10 @@ public class ManageGroupViewModel extends ViewModel {
     this.editGroupAttributesRights = liveGroup.getAttributesAccessControl();
     this.disappearingMessageTimer  = Transformations.map(liveGroup.getExpireMessages(), expiration -> ExpirationUtil.getExpirationDisplayValue(context, expiration));
     this.canEditGroupAttributes    = liveGroup.selfCanEditGroupAttributes();
+    this.muteState                 = Transformations.map(liveGroup.getGroupRecipient(),
+                                                         recipient -> new MuteState(recipient.getMuteUntil(), recipient.isMuted()));
+    this.hasCustomNotifications    = Transformations.map(liveGroup.getGroupRecipient(),
+                                                         recipient -> recipient.getNotificationChannel() != null);
   }
 
   @WorkerThread
@@ -91,6 +96,10 @@ public class ManageGroupViewModel extends ViewModel {
     return title;
   }
 
+  LiveData<MuteState> getMuteState() {
+    return muteState;
+  }
+
   LiveData<GroupAccessControl> getMembershipRights() {
     return editMembershipRights;
   }
@@ -111,6 +120,10 @@ public class ManageGroupViewModel extends ViewModel {
     return disappearingMessageTimer;
   }
 
+  LiveData<Boolean> hasCustomNotifications() {
+    return hasCustomNotifications;
+  }
+
   void handleExpirationSelection() {
     manageGroupRepository.getRecipient(groupRecipient ->
                                          ExpirationDialog.show(context,
@@ -129,6 +142,14 @@ public class ManageGroupViewModel extends ViewModel {
   void blockAndLeave(@NonNull FragmentActivity activity) {
     manageGroupRepository.getRecipient(recipient -> BlockUnblockDialog.showBlockFor(activity, activity.getLifecycle(), recipient,
                                        () -> RecipientUtil.block(context, recipient)));
+  }
+
+  void setMuteUntil(long muteUntil) {
+    manageGroupRepository.setMuteUntil(muteUntil);
+  }
+
+  void clearMuteUntil() {
+    manageGroupRepository.setMuteUntil(0);
   }
 
   @WorkerThread
@@ -160,6 +181,24 @@ public class ManageGroupViewModel extends ViewModel {
 
     @NonNull CursorFactory getMediaCursorFactory() {
       return mediaCursorFactory;
+    }
+  }
+
+  static final class MuteState {
+    private final long    mutedUntil;
+    private final boolean isMuted;
+
+    MuteState(long mutedUntil, boolean isMuted) {
+      this.mutedUntil = mutedUntil;
+      this.isMuted    = isMuted;
+    }
+
+    public long getMutedUntil() {
+      return mutedUntil;
+    }
+
+    public boolean isMuted() {
+      return isMuted;
     }
   }
 

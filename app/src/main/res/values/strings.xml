@@ -494,6 +494,11 @@
     <string name="ManageGroupActivity_who_can_edit_group_info">Who can edit group info</string>
     <string name="ManageGroupActivity_block_group">Block group</string>
     <string name="ManageGroupActivity_leave_group">Leave group</string>
+    <string name="ManageGroupActivity_mute_notifications">Mute notifications</string>
+    <string name="ManageGroupActivity_custom_notifications">Custom notifications</string>
+    <string name="ManageGroupActivity_until_s">Until %1$s</string>
+    <string name="ManageGroupActivity_off">Off</string>
+    <string name="ManageGroupActivity_on">On</string>
 
     <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
     <string name="ManageGroupActivity_failed_to_update_the_group">Failed to update the group</string>
@@ -507,6 +512,13 @@
         <item quantity="one">%1$s invited 1 person</item>
         <item quantity="other">%1$s invited %2$d people</item>
     </plurals>
+
+    <!-- CustomNotificationsDialogFragment -->
+    <string name="CustomNotificationsDialogFragment__custom_notifications">Custom notifications</string>
+    <string name="CustomNotificationsDialogFragment__messages">Messages</string>
+    <string name="CustomNotificationsDialogFragment__use_custom_notifications">Use custom notifications</string>
+    <string name="CustomNotificationsDialogFragment__notification_sound">Notification sound</string>
+    <string name="CustomNotificationsDialogFragment__vibrate">Vibrate</string>
 
     <!-- GV2 Invite cancellation confirmation -->
     <string name="GroupManagement_cancel_own_single_invite">Do you want to cancel the invite you sent to %1$s?</string>

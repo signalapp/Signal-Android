@@ -42,6 +42,10 @@ public class DateUtils extends android.text.format.DateUtils {
     return System.currentTimeMillis() - millis <= unit.toMillis(span);
   }
 
+  private static boolean isWithinAbs(final long millis, final long span, final TimeUnit unit) {
+    return Math.abs(System.currentTimeMillis() - millis) <= unit.toMillis(span);
+  }
+
   private static boolean isYesterday(final long when) {
     return DateUtils.isToday(when + TimeUnit.DAYS.toMillis(1));
   }
@@ -90,6 +94,20 @@ public class DateUtils extends android.text.format.DateUtils {
 
       return getFormattedDateTime(timestamp, format.toString(), locale);
     }
+  }
+
+  public static String getTimeString(final Context c, final Locale locale, final long timestamp) {
+    StringBuilder format = new StringBuilder();
+
+    if      (isSameDay(System.currentTimeMillis(), timestamp)) format.append("");
+    else if (isWithinAbs(timestamp,   6, TimeUnit.DAYS))       format.append("EEE ");
+    else if (isWithinAbs(timestamp, 364, TimeUnit.DAYS))       format.append("MMM d, ");
+    else                                                       format.append("MMM d, yyyy, ");
+
+    if (DateFormat.is24HourFormat(c)) format.append("HH:mm");
+    else                              format.append("hh:mm a");
+
+    return getFormattedDateTime(timestamp, format.toString(), locale);
   }
 
   public static String getDayPrecisionTimeSpanString(Context context, Locale locale, long timestamp) {

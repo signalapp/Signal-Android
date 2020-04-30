@@ -11,16 +11,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.Group;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import org.thoughtcrime.securesms.MediaPreviewActivity;
+import org.thoughtcrime.securesms.MuteDialog;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.ThreadPhotoRailView;
@@ -28,13 +32,17 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.groups.ui.LeaveGroupDialog;
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupRightsDialog;
+import org.thoughtcrime.securesms.groups.ui.notifications.CustomNotificationsDialogFragment;
 import org.thoughtcrime.securesms.groups.ui.pendingmemberinvites.PendingMemberInvitesActivity;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity;
 import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
+import org.thoughtcrime.securesms.util.DateUtils;
 
+import java.util.Locale;
 import java.util.Objects;
 
 public class ManageGroupFragment extends Fragment {
@@ -61,6 +69,10 @@ public class ManageGroupFragment extends Fragment {
   private Button                             disappearingMessages;
   private Button                             blockGroup;
   private Button                             leaveGroup;
+  private Switch                             muteNotificationsSwitch;
+  private TextView                           muteNotificationsUntilLabel;
+  private TextView                           customNotificationsButton;
+  private Group                              customNotificationsControls;
 
   static ManageGroupFragment newInstance(@NonNull String groupId) {
     ManageGroupFragment fragment = new ManageGroupFragment();
@@ -85,21 +97,25 @@ public class ManageGroupFragment extends Fragment {
   {
     View view = inflater.inflate(R.layout.group_manage_fragment, container, false);
 
-    avatar                   = view.findViewById(R.id.group_avatar);
-    groupTitle               = view.findViewById(R.id.group_title);
-    memberCount              = view.findViewById(R.id.member_count);
-    groupMemberList          = view.findViewById(R.id.group_members);
-    listPending              = view.findViewById(R.id.listPending);
-    threadPhotoRailView      = view.findViewById(R.id.recent_photos);
-    groupMediaCard           = view.findViewById(R.id.group_media_card);
-    accessControlCard        = view.findViewById(R.id.group_access_control_card);
-    pendingMembersCard       = view.findViewById(R.id.group_pending_card);
-    photoRailLabel           = view.findViewById(R.id.rail_label);
-    editGroupAccessValue     = view.findViewById(R.id.edit_group_access_value);
-    editGroupMembershipValue = view.findViewById(R.id.edit_group_membership_value);
-    disappearingMessages     = view.findViewById(R.id.disappearing_messages);
-    blockGroup               = view.findViewById(R.id.blockGroup);
-    leaveGroup               = view.findViewById(R.id.leaveGroup);
+    avatar                      = view.findViewById(R.id.group_avatar);
+    groupTitle                  = view.findViewById(R.id.group_title);
+    memberCount                 = view.findViewById(R.id.member_count);
+    groupMemberList             = view.findViewById(R.id.group_members);
+    listPending                 = view.findViewById(R.id.listPending);
+    threadPhotoRailView         = view.findViewById(R.id.recent_photos);
+    groupMediaCard              = view.findViewById(R.id.group_media_card);
+    accessControlCard           = view.findViewById(R.id.group_access_control_card);
+    pendingMembersCard          = view.findViewById(R.id.group_pending_card);
+    photoRailLabel              = view.findViewById(R.id.rail_label);
+    editGroupAccessValue        = view.findViewById(R.id.edit_group_access_value);
+    editGroupMembershipValue    = view.findViewById(R.id.edit_group_membership_value);
+    disappearingMessages        = view.findViewById(R.id.disappearing_messages);
+    blockGroup                  = view.findViewById(R.id.blockGroup);
+    leaveGroup                  = view.findViewById(R.id.leaveGroup);
+    muteNotificationsUntilLabel = view.findViewById(R.id.group_mute_notifications_until);
+    muteNotificationsSwitch     = view.findViewById(R.id.group_mute_notifications_switch);
+    customNotificationsButton   = view.findViewById(R.id.group_custom_notifications_button);
+    customNotificationsControls = view.findViewById(R.id.group_custom_notifications_controls);
 
     return view;
   }
@@ -185,6 +201,47 @@ public class ManageGroupFragment extends Fragment {
     viewModel.getCanEditGroupAttributes().observe(getViewLifecycleOwner(), canEdit -> disappearingMessages.setEnabled(canEdit));
 
     groupMemberList.setRecipientClickListener(recipient -> RecipientBottomSheetDialogFragment.create(recipient.getId(), groupId).show(requireFragmentManager(), "BOTTOM"));
+
+    final CompoundButton.OnCheckedChangeListener muteSwitchListener = (buttonView, isChecked) -> {
+      if (isChecked) {
+        MuteDialog.show(context, viewModel::setMuteUntil, () -> muteNotificationsSwitch.setChecked(false));
+      } else {
+        viewModel.clearMuteUntil();
+      }
+    };
+
+    viewModel.getMuteState().observe(getViewLifecycleOwner(), muteState -> {
+      if (muteNotificationsSwitch.isChecked() != muteState.isMuted()) {
+        muteNotificationsSwitch.setOnCheckedChangeListener(null);
+        muteNotificationsSwitch.setChecked(muteState.isMuted());
+      }
+
+      muteNotificationsSwitch.setEnabled(true);
+      muteNotificationsSwitch.setOnCheckedChangeListener(muteSwitchListener);
+      muteNotificationsUntilLabel.setVisibility(muteState.isMuted() ? View.VISIBLE : View.GONE);
+
+      if (muteState.isMuted()) {
+        muteNotificationsUntilLabel.setText(getString(R.string.ManageGroupActivity_until_s,
+                                                      DateUtils.getTimeString(requireContext(),
+                                                                              Locale.getDefault(),
+                                                                              muteState.getMutedUntil())));
+      }
+    });
+
+    if (NotificationChannels.supported()) {
+      customNotificationsControls.setVisibility(View.VISIBLE);
+
+      customNotificationsButton.setOnClickListener(v -> CustomNotificationsDialogFragment.create(groupId)
+                                                                                         .show(requireFragmentManager(), "CUSTOM_NOTIFICATIONS"));
+
+      //noinspection CodeBlock2Expr
+      viewModel.hasCustomNotifications().observe(getViewLifecycleOwner(), hasCustomNotifications -> {
+        customNotificationsButton.setText(hasCustomNotifications ? R.string.ManageGroupActivity_on
+                                                                 : R.string.ManageGroupActivity_off);
+      });
+    } else {
+      customNotificationsControls.setVisibility(View.GONE);
+    }
   }
 
   @Override

@@ -85,13 +85,95 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/group_notifications_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="?android:attr/windowBackground"
+            app:layout_constraintTop_toBottomOf="@id/group_disappearing_messages_card">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/group_mute_notifications"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="start|center_vertical"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:text="@string/ManageGroupActivity_mute_notifications"
+                    android:textAppearance="@style/TextAppearance.Signal.Body1"
+                    app:layout_constraintBottom_toTopOf="@id/group_mute_notifications_until"
+                    app:layout_constraintEnd_toStartOf="@id/group_mute_notifications_switch"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_goneMarginBottom="8dp" />
+
+                <TextView
+                    android:id="@+id/group_mute_notifications_until"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@id/group_custom_notifications"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/group_mute_notifications"
+                    tools:text="Until 12:42 PM" />
+
+                <Switch
+                    android:id="@+id/group_mute_notifications_switch"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:enabled="false"
+                    app:layout_constraintBottom_toTopOf="@id/group_custom_notifications_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/group_mute_notifications"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/group_custom_notifications"
+                    style="@style/Widget.Signal.Button.TextButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="start|center_vertical"
+                    android:text="@string/ManageGroupActivity_custom_notifications"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/group_mute_notifications_switch"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <Button
+                    android:id="@+id/group_custom_notifications_button"
+                    style="@style/Widget.Signal.Button.TextButton.Ultramarine"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:textAlignment="textEnd"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/group_custom_notifications"
+                    app:layout_constraintTop_toBottomOf="@id/group_mute_notifications_switch"
+                    tools:text="Off" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/group_custom_notifications_controls"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:constraint_referenced_ids="group_custom_notifications,group_custom_notifications_button"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
             android:id="@+id/group_media_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:visibility="gone"
             app:cardBackgroundColor="?android:attr/windowBackground"
-            app:layout_constraintTop_toBottomOf="@id/group_disappearing_messages_card"
+            app:layout_constraintTop_toBottomOf="@id/group_notifications_card"
             tools:visibility="visible">
 
             <LinearLayout

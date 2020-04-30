@@ -3,6 +3,9 @@ package org.thoughtcrime.securesms.util.livedata;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
+import androidx.lifecycle.MutableLiveData;
+
+import com.annimon.stream.function.Predicate;
 
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.whispersystems.libsignal.util.guava.Function;
@@ -12,6 +15,26 @@ import java.util.concurrent.Executor;
 public final class LiveDataUtil {
 
   private LiveDataUtil() {
+  }
+
+  public static @NonNull <A> LiveData<A> filterNotNull(@NonNull LiveData<A> source) {
+    //noinspection Convert2MethodRef
+    return filter(source, a -> a != null);
+  }
+
+  /**
+   * Filters output of a given live data based off a predicate.
+   */
+  public static @NonNull <A> LiveData<A> filter(@NonNull LiveData<A> source, @NonNull Predicate<A> predicate) {
+    MediatorLiveData<A> mediator = new MediatorLiveData<>();
+
+    mediator.addSource(source, newValue -> {
+      if (predicate.test(newValue)) {
+        mediator.setValue(newValue);
+      }
+    });
+
+    return mediator;
   }
 
   /**

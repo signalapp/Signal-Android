@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.groups.GroupInsufficientRightsException;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 
@@ -99,6 +100,13 @@ final class ManageGroupRepository {
     SimpleTask.run(SignalExecutors.BOUNDED,
                    () -> Recipient.externalGroup(context, groupId),
                    recipientCallback::accept);
+  }
+
+  public void setMuteUntil(long until) {
+    SignalExecutors.BOUNDED.execute(() -> {
+      RecipientId recipientId = Recipient.externalGroup(context, groupId).getId();
+      DatabaseFactory.getRecipientDatabase(context).setMuted(recipientId, until);
+    });
   }
 
   static final class GroupStateResult {

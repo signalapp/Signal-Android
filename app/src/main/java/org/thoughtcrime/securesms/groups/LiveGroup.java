@@ -5,7 +5,7 @@ import android.content.res.Resources;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
 import com.annimon.stream.ComparatorCompat;
@@ -16,78 +16,74 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
+import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Comparator;
 import java.util.List;
 
-public final class LiveGroup extends MediatorLiveData<GroupDatabase.GroupRecord> {
+public final class LiveGroup {
 
   private static final Comparator<GroupMemberEntry.FullMember>         LOCAL_FIRST  = (m1, m2) -> Boolean.compare(m2.getMember().isLocalNumber(), m1.getMember().isLocalNumber());
   private static final Comparator<GroupMemberEntry.FullMember>         ADMIN_FIRST  = (m1, m2) -> Boolean.compare(m2.isAdmin(), m1.isAdmin());
   private static final Comparator<? super GroupMemberEntry.FullMember> MEMBER_ORDER = ComparatorCompat.chain(LOCAL_FIRST)
                                                                                                       .thenComparing(ADMIN_FIRST);
 
-  private final GroupDatabase       groupDatabase;
-  private final LiveData<Recipient> recipient;
+  private final GroupDatabase                       groupDatabase;
+  private final LiveData<Recipient>                 recipient;
+  private final LiveData<GroupDatabase.GroupRecord> groupRecord;
 
   public LiveGroup(@NonNull GroupId groupId) {
-    Context context = ApplicationDependencies.getApplication();
+    Context                        context       = ApplicationDependencies.getApplication();
+    MutableLiveData<LiveRecipient> liveRecipient = new MutableLiveData<>();
 
     this.groupDatabase = DatabaseFactory.getGroupDatabase(context);
+    this.recipient     = Transformations.switchMap(liveRecipient, LiveRecipient::getLiveData);
+    this.groupRecord   = LiveDataUtil.filterNotNull(LiveDataUtil.mapAsync(recipient, groupRecipient-> groupDatabase.getGroup(groupRecipient.getId()).orNull()));
 
-    recipient = Recipient.externalGroup(context, groupId).live().getLiveData();
-
-    addSource(recipient, this::refresh);
-  }
-
-  private void refresh(@NonNull Recipient groupRecipient) {
-    SignalExecutors.BOUNDED.execute(() -> {
-        Optional<GroupDatabase.GroupRecord> group = groupDatabase.getGroup(groupRecipient.getId());
-        if (group.isPresent()) {
-          postValue(group.get());
-        }
-      }
-    );
+    SignalExecutors.BOUNDED.execute(() -> liveRecipient.postValue(Recipient.externalGroup(context, groupId).live()));
   }
 
   public LiveData<String> getTitle() {
-    return Transformations.map(this, GroupDatabase.GroupRecord::getTitle);
+    return Transformations.map(groupRecord, GroupDatabase.GroupRecord::getTitle);
+  }
+
+  public LiveData<Recipient> getGroupRecipient() {
+    return recipient;
   }
 
   public LiveData<Boolean> isSelfAdmin() {
-    return Transformations.map(this, g -> g.isAdmin(Recipient.self()));
+    return Transformations.map(groupRecord, g -> g.isAdmin(Recipient.self()));
   }
 
   public LiveData<Boolean> getRecipientIsAdmin(@NonNull RecipientId recipientId) {
-    return LiveDataUtil.mapAsync(this, g -> g.isAdmin(Recipient.resolved(recipientId)));
+    return LiveDataUtil.mapAsync(groupRecord, g -> g.isAdmin(Recipient.resolved(recipientId)));
   }
 
   public LiveData<Integer> getPendingMemberCount() {
-    return Transformations.map(this, g -> g.isV2Group() ? g.requireV2GroupProperties().getDecryptedGroup().getPendingMembersCount() : 0);
+    return Transformations.map(groupRecord, g -> g.isV2Group() ? g.requireV2GroupProperties().getDecryptedGroup().getPendingMembersCount() : 0);
   }
 
   public LiveData<GroupAccessControl> getMembershipAdditionAccessControl() {
-    return Transformations.map(this, GroupDatabase.GroupRecord::getMembershipAdditionAccessControl);
+    return Transformations.map(groupRecord, GroupDatabase.GroupRecord::getMembershipAdditionAccessControl);
   }
 
   public LiveData<GroupAccessControl> getAttributesAccessControl() {
-    return Transformations.map(this, GroupDatabase.GroupRecord::getAttributesAccessControl);
+    return Transformations.map(groupRecord, GroupDatabase.GroupRecord::getAttributesAccessControl);
   }
 
   public LiveData<List<GroupMemberEntry.FullMember>> getFullMembers() {
-     return LiveDataUtil.mapAsync(this,
-                                  g -> Stream.of(g.getMembers())
-                                             .map(m -> {
-                                               Recipient recipient = Recipient.resolved(m);
-                                               return new GroupMemberEntry.FullMember(recipient, g.isAdmin(recipient));
-                                             })
-                                             .sorted(MEMBER_ORDER)
-                                             .toList());
+    return LiveDataUtil.mapAsync(groupRecord,
+                                 g -> Stream.of(g.getMembers())
+                                            .map(m -> {
+                                              Recipient recipient = Recipient.resolved(m);
+                                              return new GroupMemberEntry.FullMember(recipient, g.isAdmin(recipient));
+                                            })
+                                            .sorted(MEMBER_ORDER)
+                                            .toList());
   }
 
   public LiveData<Integer> getExpireMessages() {
@@ -98,16 +94,16 @@ public final class LiveGroup extends MediatorLiveData<GroupDatabase.GroupRecord>
     return LiveDataUtil.combineLatest(isSelfAdmin(),
                                       getAttributesAccessControl(),
                                       (admin, rights) -> {
-                                          switch (rights) {
-                                            case ALL_MEMBERS:
-                                              return true;
-                                            case ONLY_ADMINS:
-                                              return admin;
-                                            default:
-                                              throw new AssertionError();
-                                          }
+                                        switch (rights) {
+                                          case ALL_MEMBERS:
+                                            return true;
+                                          case ONLY_ADMINS:
+                                            return admin;
+                                          default:
+                                            throw new AssertionError();
                                         }
-                                      );
+                                      }
+    );
   }
 
   public LiveData<String> getMembershipCountDescription(@NonNull Resources resources) {
