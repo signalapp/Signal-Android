@@ -551,10 +551,15 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s stilte inn utløpstida for forsvinnande meldingar til %2$s</string>
   <!--GV2 specific-->
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_added_s">Du la til %1$s.</string>
+  <string name="MessageRecord_s_added_s">%1$s la til %2$s</string>
+  <string name="MessageRecord_s_added_you">%1$s la deg til i gruppa.</string>
   <string name="MessageRecord_you_joined_the_group">Du blei med i gruppa.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s vart med i gruppa.</string>
   <!--GV2 member removals-->
   <string name="MessageRecord_you_removed_s">Du fjerna %1$s.</string>
+  <string name="MessageRecord_s_removed_s">%1$s fjerna %2$s.</string>
+  <string name="MessageRecord_s_removed_you_from_the_group">%1$s fjerna deg frå gruppa.</string>
   <!--GV2 role change-->
   <!--GV2 invitations-->
   <!--GV2 invitation revokes-->
@@ -718,6 +723,7 @@ Ver deg sjølv i kvar einaste melding.</string>
   <string name="RegistrationActivity_country_code_description">Landkode</string>
   <string name="RegistrationActivity_call">Ring</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_turn_off">Skru av</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Vis bilde</string>
   <string name="RevealableMessageView_view_video">Vis video</string>
@@ -760,6 +766,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s tilbakestilte sikker økt.</string>
   <string name="SmsMessageRecord_duplicate_message">Dupliser melding.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Kunne ikkje behandla meldinga sidan ho vart sendt frå ei nyare utgåve av Signal. Du kan be kontakten din om å senda denne meldinga på nytt etter at du har oppgradert.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Klarte ikkje handtera innkommande melding.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Klistremerke</string>
   <!--StickerManagementAdapter-->
@@ -1564,6 +1571,7 @@ Du er à jour!</string>
     <item quantity="other">PIN må vera minst %1$d siffer</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Lag ny PIN</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Du kan endra PIN-en så lenge denne eininga er registrert.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Lag din PIN</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-kodane er ulike. Prøv igjen.</string>
@@ -1571,6 +1579,7 @@ Du er à jour!</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Klarte ikkje laga PIN</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN-koden vart ikkje lagra. Me spør deg seinare om å laga ein PIN-kode.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN oppretta.</string>
+  <string name="ConfirmKbsPinFragment__re_enter_your_pin">Skriv inn PIN-en din på nytt</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Opprettar PIN …</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Her kjem PIN-kodar</string>

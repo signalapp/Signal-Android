@@ -91,6 +91,8 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">حظر ومغادرة %1$s؟</string>
   <string name="BlockUnblockDialog_block_s">حظر %1$s؟</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">لن تستقبل بعد الآن رسائل أو تحديثات من هذه المجموعة، ولن يتمكن الأعضاء من إضافتك مرة أخرى إلى هذه المجموعة.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">لن يتمكن أعضاء المجموعة من إضافتك إلى مجموعتهم مرة أخرى.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">سيتمكن أعضاء المجموعة من إضافتك في مجموعتهم مرة أخرى.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">ستتمكن من التراسل والحديث مع بعضكما.</string>
   <string name="BlockUnblockDialog_unblock_s">إلغاء حظر %1$s؟</string>
@@ -428,6 +430,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">لا يمكن إضافة %1$s لأنهم ليس من مستخدمين Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">تحميل بيانات المجموعة…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">أنت في المجموعة بالفعل.</string>
+  <string name="GroupCreateActivity_remove_member_description">إزالة عضو</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">هل تريد مشاركة الاسم والصورة من ملفّك الشخصي مع هذه المجموعة؟</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">هل تُريد إظهار اسمك وصورتك الشخصية لكل الأعضاء الحاليين والمستقبليين في هذه المجموعة؟</string>
@@ -435,6 +438,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">أنت</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_all_members">كل الأعضاء</string>
   <!--PendingMembersActivity-->
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->

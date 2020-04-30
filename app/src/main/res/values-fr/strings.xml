@@ -79,8 +79,11 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Bloquer et quitter %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Bloquer %1$s ?</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Vous ne recevrez plus de message ni de mises à jour de ce groupe, les membres ne pourront plus vous ajouter à nouveau à ce groupe.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Les membres du groupe ne pourront plus vous ajouter à ce groupe.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Les membres du groupe pourront de nouveau vous ajouter à ce groupe.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Vous pourrez vous envoyer des messages et vous appeler mutuellement.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Les personnes bloquées ne pourront ni vous appeler ni vous envoyer de messages.</string>
   <string name="BlockUnblockDialog_unblock_s">Débloquer %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Débloquer</string>
   <string name="BlockUnblockDialog_block">Bloquer</string>
@@ -263,6 +266,8 @@
   <string name="ConversationFragment_sms">Texto</string>
   <string name="ConversationFragment_deleting">Suppression</string>
   <string name="ConversationFragment_deleting_messages">Suppression des messages…</string>
+  <string name="ConversationFragment_delete_for_me">Supprimer pour moi</string>
+  <string name="ConversationFragment_delete_for_everyone">Supprimer pour tous</string>
   <string name="ConversationFragment_quoted_message_not_found">Le message original est introuvable</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Le message original n’est plus disponible</string>
   <string name="ConversationFragment_failed_to_open_message">Échec d’ouverture du message</string>
@@ -384,15 +389,36 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Vous</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">N\'importe qui</string>
   <string name="GroupManagement_access_level_all_members">Tous les membres</string>
   <string name="GroupManagement_access_level_only_admins">Seulement les administrateurs</string>
   <!--PendingMembersActivity-->
+  <string name="PendingMemberInvitesActivity_pending_group_invites">Invitations de groupe en attente</string>
   <string name="PendingMembersActivity_people_you_invited">Les personnes que vous avez invitées</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">Vous n\'avez aucune invitation en attente.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Invitations par d’autres membres du groupe</string>
+  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Aucune invitation en attente d\'autres membres du groupe.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Les détails des personnes invitées par d’autres membres du groupe ne sont pas affichés. Si les personnes invitées choisissent de le rejoindre, leurs renseignements seront communiqués au groupe à ce moment-là. Elles ne verront aucun message dans le groupe avant de l’avoir rejoint.</string>
   <string name="PendingMembersActivity_cancel_invite">Annuler l\'invitation</string>
   <string name="PendingMembersActivity_cancel_invites">Annuler les invitations</string>
+  <plurals name="PendingMembersActivity_cancel_d_invites">
+    <item quantity="one">Annuler l\'invitation</item>
+    <item quantity="other">Annuler%1$d invitations</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_canceling_invite">
+    <item quantity="one">Erreur lors de l\'annulation de l\'invitation</item>
+    <item quantity="other">Erreur lors de l\'annulation des invitations</item>
+  </plurals>
+  <plurals name="GroupMemberList_invited">
+    <item quantity="one">%1$s a invité 1 personne</item>
+    <item quantity="other">%1$s a invité %2$d personnes</item>
+  </plurals>
   <!--GV2 Invite cancellation confirmation-->
+  <string name="GroupManagement_cancel_own_single_invite">Voulez-vous annuler l\'invitation envoyée à %1$s?</string>
+  <plurals name="GroupManagement_cancel_others_invites">
+    <item quantity="one">Voulez-vous annuler l\'invitation envoyée par %1$s?</item>
+    <item quantity="other">Voulez-vous annuler %2$d invitations envoyées par %1$s?</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar du groupe</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -537,21 +563,34 @@
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Vous avez ajouté %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s a ajouté %2$s.</string>
+  <string name="MessageRecord_s_added_you">%1$s vous a ajouté⋅e au groupe.</string>
   <string name="MessageRecord_you_joined_the_group">Vous vous êtes joint au groupe.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s se sont joints au groupe.</string>
   <!--GV2 member removals-->
   <string name="MessageRecord_you_removed_s">Vous avez supprimé %1$s.</string>
+  <string name="MessageRecord_s_removed_s">%1$s a supprimé %2$s.</string>
   <string name="MessageRecord_s_removed_you_from_the_group">%1$s vous a supprimé du groupe.</string>
   <string name="MessageRecord_you_left_the_group">Vous avez quitté le groupe.</string>
   <string name="MessageRecord_s_left_the_group">%1$s a quitté le groupe.</string>
   <!--GV2 role change-->
+  <string name="MessageRecord_you_made_s_an_admin">Vous avez promu %1$s comme admin.</string>
+  <string name="MessageRecord_s_made_s_an_admin">%1$s a promu%2$s comme admin.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s vous a fait administrateur.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Vous avez révoqué les privilèges d’admin pour %1$s.</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s a révoqué vos privilèges d’admin.</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s a retiré les privilèges d\'administration à %2$s.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Vous avez invité %1$s au groupe.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s vous a invité au groupe.</string>
+  <plurals name="MessageRecord_s_invited_members">
+    <item quantity="one">%1$s a invité 1 personne dans le groupe.</item>
+    <item quantity="other">%1$s a invité %2$d personnes dans le groupe.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
+  <plurals name="MessageRecord_you_revoked_invites">
+    <item quantity="one">Vous avez révoqué une invitation au groupe.</item>
+    <item quantity="other">Vous avez révoqué %1$d invitations au groupe.</item>
+  </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Quelqu\'un a décliné l\'invitation au groupe.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Vous avez décliné l\'invitation du groupe.</string>
   <!--GV2 invitation acceptance-->
@@ -633,15 +672,23 @@
   <string name="PinRestoreEntryFragment_incorrect_pin">Le NIP est erroné</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">Ignorer la saisie du code PIN ?</string>
   <string name="PinRestoreEntryFragment_need_help">Besoin d’aide ?</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Votre code NIP est un code à plus de %1$d chiffres que vous avez créé. Il peut être numérique ou alpha-numérique.\n\nSi vous ne vous souvenez plus de votre code, vous pouvez en créer un nouveau. Vous pourrez alors vous inscrire et utiliser votre compte, mais vous perdrez certains paramètres sauvegardés, tels que vos informations de profil.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Si vous ne vous souvenez pas de votre NIP, vous pouvez en créer un nouveau. Vous pouvez vous inscrire et utiliser votre compte, mais vous perdrez certains paramètres enregistrés comme les renseignements de votre profil.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Créer un nouveau NIP</string>
   <string name="PinRestoreEntryFragment_contact_support">Contacter l’assistance</string>
   <string name="PinRestoreEntryFragment_cancel">Annuler</string>
   <string name="PinRestoreEntryFragment_skip">Ignorer</string>
+  <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
+    <item quantity="one">Il vous reste%1$d essai. Si vous épuisez tous vos essais, vous pouvez créer un nouveau code NIP. Vous pourrez alors vous inscrire et utiliser votre compte, mais vous perdrez certains paramètres sauvegardés, tels que vos informations de profil.</item>
+    <item quantity="other">Il vous reste %1$d essais. Si vous épuisez tous vos essais, vous pouvez créer un nouveau code NIP. Vous pourrez alors vous inscrire et utiliser votre compte, mais vous perdrez certains paramètres sauvegardés, tels que vos informations de profil.</item>
+  </plurals>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Inscription à Signal - besoin d\'aide avec le code NIP sur Android</string>
+  <string name="PinRestoreEntryFragment_subject_signal_registration">Sujet : Inscription à Signal - besoin d\'aide avec le code NIP sur Android\nInformations sur le terminal : %1$s\nVersion Android : %2$s\nVersion de Signal : %3$s\nLangue : %4$s</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Saisissez un NIP alphanumérique</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Saisissez un NIP numérique</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Créer votre NIP</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Vous avez épuisé tous vos essais de code NIP, mais vous pouvez toujours accéder à votre compte Signal en créant un nouveau code. Pour votre vie privée et votre sécurité, votre compte sera restauré exception faite de vos informations de profil et préférences.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Créer un nouveau NIP</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Notez cette appli</string>
@@ -1464,6 +1511,7 @@
   <string name="conversation__menu_view_all_media">Tous les médias</string>
   <string name="conversation__menu_conversation_settings">Paramètres de la conversation</string>
   <string name="conversation__menu_add_shortcut">Ajouter à l’écran d’accueil</string>
+  <string name="conversation__menu_pending_members">Membres en attente</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Étendre la fenêtre surgissante</string>
   <!--conversation_callable_insecure-->
@@ -1558,7 +1606,7 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">Créer un nouveau NIP</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Vous pouvez modifier votre NIP tant que cet appareil est enregistré.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Créer votre NIP</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Les codes PIN permettent à Signal d\'en-crypté vos informations stoker afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés lorsque vous réinstallez Signal.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Les codes PIN permettent à Signal de chiffrer vos informations stockées afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés lorsque vous réinstallez Signal.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Les NIP ne correspondent pas. Veuillez ressayez.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Confirmez votre NIP</string>
@@ -1569,7 +1617,7 @@
   <string name="ConfirmKbsPinFragment__creating_pin">Création du NIP…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Nous présentons les NIP</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Les codes PIN permettent à Signal d\'en-crypté vos informations stoker afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés lorsque vous réinstallez Signal.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Les codes PIN permettent à Signal de chiffrer vos informations stockées afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés lorsque vous réinstallez Signal.</string>
   <string name="KbsSplashFragment__learn_more">En savoir plus</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Blocage de l’inscription = NIP</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Votre blocage de l’inscription s’appelle désormais un NIP et il accomplit encore plus. Mettez-le à jour maintenant.</string>
@@ -1697,7 +1745,7 @@
   <string name="preferences_app_protection__signal_pin">NIP de Signal</string>
   <string name="preferences_app_protection__create_a_pin">Créer un NIP</string>
   <string name="preferences_app_protection__change_your_pin">Changer de NIP</string>
-  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Les codes PIN permettent à Signal d\'en-crypté vos informations stoker afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés lorsque vous réinstallez Signal.</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Les codes PIN permettent à Signal de chiffrer vos informations stockées afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés lorsque vous réinstallez Signal.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Impossible d\'activer le verrouillage d\'enregistrement.</string>
   <string name="AppProtectionPreferenceFragment_none">Aucun</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Le NIP de blocage de l’inscription ne correspond pas au code de vérification que vous venez de recevoir par texto. Veuillez saisir le NIP que vous avez précédemment défini dans l’application.</string>

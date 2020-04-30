@@ -397,7 +397,7 @@
   <string name="PendingMembersActivity_people_you_invited">Von dir eingeladene Personen</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">Du hast keine ausstehenden Einladungen.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Einladungen anderer Gruppenmitglieder</string>
-  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Keine ausstehenden Einladungen von anderen Gruppenmitgliedern.</string>
+  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Keine ausstehenden Einladungen anderer Gruppenmitglieder.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Details zu von anderen Gruppenmitgliedern eingeladenen Personen werden nicht angezeigt. Erst wenn Eingeladene annehmen, werden deren Informationen mit der Gruppe geteilt. Solange sie nicht angenommen haben, werden sie keine Gruppennachrichten erhalten.</string>
   <string name="PendingMembersActivity_cancel_invite">Einladung abbrechen</string>
   <string name="PendingMembersActivity_cancel_invites">Einladungen abbrechen</string>
@@ -406,8 +406,8 @@
     <item quantity="other">%1$d Einladungen abbrechen</item>
   </plurals>
   <plurals name="PendingMembersActivity_error_canceling_invite">
-    <item quantity="one">Fehler beim Abbrechen der Einladung</item>
-    <item quantity="other">Fehler beim Abbrechen der Einladungen</item>
+    <item quantity="one">Einladung konnte nicht abgebrochen werden</item>
+    <item quantity="other">Einladungen konnten nicht abgebrochen werden</item>
   </plurals>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s hat 1 Person eingeladen</item>
@@ -1768,7 +1768,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_app_protection__create_a_pin">Erstelle eine PIN</string>
   <string name="preferences_app_protection__change_your_pin">PIN ändern</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PINs halten deine bei Signal gespeicherten Informationen verschlüsselt, sodass nur du auf sie zugreifen kannst. Falls du Signal erneut installierst, werden so dein Profil und deine Einstellungen und Kontakte wiederhergestellt.</string>
-  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Als zusätzliche Sicherheitsmaßnahme deine Signal-PIN erforderlich machen, sobald du deine Telefonnummer erneut bei Signal registrierst.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Als zusätzliches Sicherheitsmerkmal deine Signal-PIN erforderlich machen, sobald du deine Telefonnummer erneut bei Signal registrierst.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Registrierungssperre konnte nicht aktiviert werden.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Registrierungssperre konnte nicht deaktiviert werden.</string>
   <string name="AppProtectionPreferenceFragment_none">Keine</string>
