@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.media.MediaDataSource;
 import android.media.MediaMetadataRetriever;
 import android.os.Build;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -114,7 +115,7 @@ public final class AttachmentUploadJob extends BaseJob {
     }
 
     long timeSinceUpload = System.currentTimeMillis() - databaseAttachment.getUploadTimestamp();
-    if (timeSinceUpload < UPLOAD_REUSE_THRESHOLD) {
+    if (timeSinceUpload < UPLOAD_REUSE_THRESHOLD && !TextUtils.isEmpty(databaseAttachment.getLocation())) {
       Log.i(TAG, "We can re-use an already-uploaded file. It was uploaded " + timeSinceUpload + " ms ago. Skipping.");
       return;
     } else if (databaseAttachment.getUploadTimestamp() > 0) {

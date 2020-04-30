@@ -535,13 +535,9 @@ public class AttachmentDatabase extends Database {
     }
 
     values.put(TRANSFER_STATE, TRANSFER_PROGRESS_DONE);
-    values.put(CDN_NUMBER, 0);
-    values.put(CONTENT_LOCATION, (String)null);
-    values.put(CONTENT_DISPOSITION, (String)null);
-    values.put(DIGEST, (byte[])null);
-    values.put(NAME, (String) null);
-    values.put(FAST_PREFLIGHT_ID, (String)null);
     values.put(TRANSFER_FILE, (String)null);
+
+    values.put(TRANSFORM_PROPERTIES, TransformProperties.forSkipTransform().serialize());
 
     if (database.update(TABLE_NAME, values, PART_ID_WHERE, attachmentId.toStrings()) == 0) {
       //noinspection ResultOfMethodCallIgnored
@@ -1198,7 +1194,9 @@ public class AttachmentDatabase extends Database {
       }
     }
 
-    boolean useTemplateUpload = template.getUploadTimestamp() > attachment.getUploadTimestamp() && template.getTransferState() == TRANSFER_PROGRESS_DONE;
+    boolean useTemplateUpload = template.getUploadTimestamp() > attachment.getUploadTimestamp() &&
+                                template.getTransferState() == TRANSFER_PROGRESS_DONE           &&
+                                template.getTransformProperties().shouldSkipTransform();
 
     ContentValues contentValues = new ContentValues();
     contentValues.put(MMS_ID, mmsId);
