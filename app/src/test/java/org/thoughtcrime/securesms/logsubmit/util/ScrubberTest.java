@@ -58,11 +58,17 @@ public final class ScrubberTest {
     { "An email and a number abc@def.com +155556789012345",
       "An email and a number a...@... +*************45" },
 
-    { "__textsecure_group__!abcdefg1234567890",
-      "__...group...90" },
+    { "__textsecure_group__!000102030405060708090a0b0c0d0e0f",
+      "__...group...0f" },
 
-    { "A group id __textsecure_group__!abcdefg0987654321 surrounded with text",
-      "A group id __...group...21 surrounded with text" },
+    { "A group id __textsecure_group__!000102030405060708090a0b0c0d0e1a surrounded with text",
+      "A group id __...group...1a surrounded with text" },
+
+    { "__signal_group__v2__!0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+      "__...group_v2...ef" },
+
+    { "A group v2 id __signal_group__v2__!23456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef01 surrounded with text",
+      "A group v2 id __...group_v2...01 surrounded with text" },
 
     { "a37cb654-c9e0-4c1e-93df-3d11ca3c97f4",
       "********-****-****-****-**********f4" },

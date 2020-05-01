@@ -17,8 +17,6 @@
 
 package org.thoughtcrime.securesms.logsubmit.util;
 
-import android.text.TextUtils;
-
 import androidx.annotation.NonNull;
 
 import java.util.regex.Matcher;
@@ -49,8 +47,14 @@ public final class Scrubber {
   /**
    * The middle group will be censored.
    */
-  private static final Pattern GROUP_ID_PATTERN = Pattern.compile("(__)(textsecure_group__![^\\s]+)([^\\s]{2})");
-  private static final String  GROUP_ID_CENSOR  = "...group...";
+  private static final Pattern GROUP_ID_V1_PATTERN = Pattern.compile("(__)(textsecure_group__![^\\s]+)([^\\s]{2})");
+  private static final String  GROUP_ID_V1_CENSOR = "...group...";
+
+  /**
+   * The middle group will be censored.
+   */
+  private static final Pattern GROUP_ID_V2_PATTERN = Pattern.compile("(__)(signal_group__v2__![^\\s]+)([^\\s]{2})");
+  private static final String  GROUP_ID_V2_CENSOR  = "...group_v2...";
 
   /**
    * The middle group will be censored.
@@ -62,7 +66,8 @@ public final class Scrubber {
 
     in = scrubE164(in);
     in = scrubEmail(in);
-    in = scrubGroups(in);
+    in = scrubGroupsV1(in);
+    in = scrubGroupsV2(in);
     in = scrubUuids(in);
 
     return in;
@@ -83,11 +88,19 @@ public final class Scrubber {
                                             .append(EMAIL_CENSOR));
   }
 
-  private static CharSequence scrubGroups(@NonNull CharSequence in) {
+  private static CharSequence scrubGroupsV1(@NonNull CharSequence in) {
     return scrub(in,
-                 GROUP_ID_PATTERN,
+                 GROUP_ID_V1_PATTERN,
                  (matcher, output) -> output.append(matcher.group(1))
-                                            .append(GROUP_ID_CENSOR)
+                                            .append(GROUP_ID_V1_CENSOR)
+                                            .append(matcher.group(3)));
+  }
+
+  private static CharSequence scrubGroupsV2(@NonNull CharSequence in) {
+    return scrub(in,
+                 GROUP_ID_V2_PATTERN,
+                 (matcher, output) -> output.append(matcher.group(1))
+                                            .append(GROUP_ID_V2_CENSOR)
                                             .append(matcher.group(3)));
   }
 
