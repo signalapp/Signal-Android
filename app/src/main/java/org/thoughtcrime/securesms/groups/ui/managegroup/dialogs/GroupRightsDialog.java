@@ -24,17 +24,17 @@ public final class GroupRightsDialog {
     rights = currentRights;
 
     builder = new AlertDialog.Builder(context)
-                .setTitle(type.message)
-                .setSingleChoiceItems(type.choices, currentRights.ordinal(), (dialog, which) -> rights = GroupAccessControl.values()[which])
-                .setNegativeButton(android.R.string.cancel, (dialog, which) -> {
-                })
-                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
-                  GroupAccessControl newGroupAccessControl = rights;
+                             .setTitle(type.message)
+                             .setSingleChoiceItems(type.choices, currentRights.ordinal(), (dialog, which) -> rights = GroupAccessControl.values()[which])
+                             .setNegativeButton(android.R.string.cancel, (dialog, which) -> {
+                             })
+                             .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                               GroupAccessControl newGroupAccessControl = rights;
 
-                  if (newGroupAccessControl != currentRights) {
-                    onChange.changed(currentRights, newGroupAccessControl);
-                  }
-                });
+                               if (newGroupAccessControl != currentRights) {
+                                 onChange.changed(currentRights, newGroupAccessControl);
+                               }
+                             });
   }
 
   public void show() {
@@ -46,6 +46,7 @@ public final class GroupRightsDialog {
   }
 
   public enum Type {
+
     MEMBERSHIP(R.string.GroupManagement_choose_who_can_add_or_invite_new_members,
                R.array.GroupManagement_edit_group_membership_choices),
 

@@ -58,7 +58,7 @@ public final class GroupIdTest {
 
     GroupId.V2 groupId = GroupId.v2(new GroupMasterKey(Hex.fromStringCondensed("0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef")));
 
-    assertEquals("__signal_group__v2__!9f475f59b2518bff6df22e820803f0e3585bd99e686fa7e7fbfc2f92fd5d953e", groupId.toString());
+    assertEquals("__signal_group__v2__!8c4a5ec277691282f64b965b1b9affc0285380c993c413f7560967d502dcf2e6", groupId.toString());
     assertFalse(groupId.isMms());
     assertFalse(groupId.isV1());
     assertTrue(groupId.isV2());

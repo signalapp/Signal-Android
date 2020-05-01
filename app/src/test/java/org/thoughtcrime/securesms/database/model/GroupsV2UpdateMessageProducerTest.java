@@ -13,7 +13,6 @@ import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.signal.storageservice.protos.groups.AccessControl;
-import org.signal.storageservice.protos.groups.DisappearingMessagesTimer;
 import org.signal.storageservice.protos.groups.Member;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
@@ -21,6 +20,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedModifyMemberRole;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval;
 import org.signal.storageservice.protos.groups.local.DecryptedString;
+import org.signal.storageservice.protos.groups.local.DecryptedTimer;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.Arrays;
@@ -538,7 +538,7 @@ public final class GroupsV2UpdateMessageProducerTest {
     }
 
     ChangeBuilder promote(@NonNull UUID pendingMember) {
-      builder.addPromotePendingMembers(UuidUtil.toByteString(pendingMember));
+      builder.addPromotePendingMembers(DecryptedMember.newBuilder().setUuid(UuidUtil.toByteString(pendingMember)));
       return this;
     }
 
@@ -555,8 +555,8 @@ public final class GroupsV2UpdateMessageProducerTest {
     }
 
     ChangeBuilder timer(int duration) {
-      builder.setNewTimer(DisappearingMessagesTimer.newBuilder()
-                                                   .setDuration(duration));
+      builder.setNewTimer(DecryptedTimer.newBuilder()
+                                        .setDuration(duration));
       return this;
     }
 
@@ -575,11 +575,11 @@ public final class GroupsV2UpdateMessageProducerTest {
     }
   }
 
-  private ChangeBuilder changeBy(@NonNull UUID groupEditor) {
+  private static ChangeBuilder changeBy(@NonNull UUID groupEditor) {
     return new ChangeBuilder(groupEditor);
   }
 
-  private @NonNull GroupsV2UpdateMessageProducer.DescribeMemberStrategy createDescriber(@NonNull Map<UUID, String> map) {
+  private static @NonNull GroupsV2UpdateMessageProducer.DescribeMemberStrategy createDescriber(@NonNull Map<UUID, String> map) {
     return uuid -> {
       String name = map.get(uuid);
       assertNotNull(name);

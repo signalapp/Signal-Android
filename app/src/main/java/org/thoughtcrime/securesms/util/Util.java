@@ -457,7 +457,13 @@ public class Util {
 
   public static void assertMainThread() {
     if (!isMainThread()) {
-      throw new AssertionError("Main-thread assertion failed.");
+      throw new AssertionError("Must run on main thread.");
+    }
+  }
+
+  public static void assertNotMainThread() {
+    if (isMainThread()) {
+      throw new AssertionError("Cannot run on main thread.");
     }
   }
 

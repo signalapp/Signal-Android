@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.zkgroup.util.UUIDUtil;
+import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.UUID;
 
@@ -17,7 +18,7 @@ public final class DecryptedGroupUtilTest {
   public void can_extract_uuid_from_decrypted_member() {
     UUID            uuid            = UUID.randomUUID();
     DecryptedMember decryptedMember = DecryptedMember.newBuilder()
-                                                     .setUuid(ByteString.copyFrom(UUIDUtil.serialize(uuid)))
+                                                     .setUuid(UuidUtil.toByteString(uuid))
                                                      .build();
 
     UUID parsed = DecryptedGroupUtil.toUuid(decryptedMember);
@@ -28,7 +29,7 @@ public final class DecryptedGroupUtilTest {
   @Test
   public void can_extract_editor_uuid_from_decrypted_group_change() {
     UUID                 uuid        = UUID.randomUUID();
-    ByteString           editor      = ByteString.copyFrom(UUIDUtil.serialize(uuid));
+    ByteString           editor      = UuidUtil.toByteString(uuid);
     DecryptedGroupChange groupChange = DecryptedGroupChange.newBuilder()
                                                            .setEditor(editor)
                                                            .build();

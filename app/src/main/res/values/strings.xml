@@ -502,6 +502,7 @@
 
     <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
     <string name="ManageGroupActivity_failed_to_update_the_group">Failed to update the group</string>
+    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">You\'re not a member of the group</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Edit name and picture</string>
 

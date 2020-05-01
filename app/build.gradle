@@ -295,7 +295,7 @@ dependencies {
     implementation 'org.signal:aesgcmprovider:0.0.3'
 
     implementation project(':libsignal-service')
-    implementation 'org.signal:zkgroup-android:0.4.1'
+    implementation 'org.signal:zkgroup-android:0.7.0'
 
     implementation 'org.signal:argon2:13.1@aar'
 

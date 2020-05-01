@@ -90,6 +90,7 @@ public final class JobManagerFactories {
       put(RequestGroupInfoJob.KEY,                   new RequestGroupInfoJob.Factory());
       put(ResumableUploadSpecJob.KEY,                new ResumableUploadSpecJob.Factory());
       put(StorageAccountRestoreJob.KEY,              new StorageAccountRestoreJob.Factory());
+      put(RequestGroupV2InfoJob.KEY,                 new RequestGroupV2InfoJob.Factory());
       put(RetrieveProfileAvatarJob.KEY,              new RetrieveProfileAvatarJob.Factory());
       put(RetrieveProfileJob.KEY,                    new RetrieveProfileJob.Factory());
       put(RotateCertificateJob.KEY,                  new RotateCertificateJob.Factory());

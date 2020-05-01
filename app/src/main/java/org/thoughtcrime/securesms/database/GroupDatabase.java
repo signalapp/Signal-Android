@@ -267,13 +267,14 @@ public final class GroupDatabase extends Database {
     create(groupId, null, members, null, null, null, null);
   }
 
-  public void create(@NonNull GroupId.V2 groupId,
-                     @Nullable SignalServiceAttachmentPointer avatar,
-                     @Nullable String relay,
-                     @NonNull GroupMasterKey groupMasterKey,
-                     @NonNull DecryptedGroup groupState)
+  public GroupId.V2 create(@NonNull GroupMasterKey groupMasterKey,
+                           @NonNull DecryptedGroup groupState)
   {
-    create(groupId, groupState.getTitle(), Collections.emptyList(), avatar, relay, groupMasterKey, groupState);
+    GroupId.V2 groupId = GroupId.v2(groupMasterKey);
+
+    create(groupId, groupState.getTitle(), Collections.emptyList(), null, null, groupMasterKey, groupState);
+
+    return groupId;
   }
 
   /**
@@ -287,12 +288,14 @@ public final class GroupDatabase extends Database {
                       @Nullable GroupMasterKey groupMasterKey,
                       @Nullable DecryptedGroup groupState)
   {
-    List<RecipientId> members = new ArrayList<>(new HashSet<>(memberCollection));
+    RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+    RecipientId       groupRecipientId  = recipientDatabase.getOrInsertFromGroupId(groupId);
+    List<RecipientId> members           = new ArrayList<>(new HashSet<>(memberCollection));
 
     Collections.sort(members);
 
     ContentValues contentValues = new ContentValues();
-    contentValues.put(RECIPIENT_ID, DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId).serialize());
+    contentValues.put(RECIPIENT_ID, groupRecipientId.serialize());
     contentValues.put(GROUP_ID, groupId.toString());
     contentValues.put(TITLE, title);
     contentValues.put(MEMBERS, RecipientId.toSerializedList(members));
@@ -328,8 +331,11 @@ public final class GroupDatabase extends Database {
 
     databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, contentValues);
 
-    RecipientId groupRecipient = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
-    Recipient.live(groupRecipient).refresh();
+    if (groupState != null && groupState.hasDisappearingMessagesTimer()) {
+      recipientDatabase.setExpireMessages(groupRecipientId, groupState.getDisappearingMessagesTimer().getDuration());
+    }
+
+    Recipient.live(groupRecipientId).refresh();
 
     notifyConversationListListeners();
   }
@@ -365,8 +371,10 @@ public final class GroupDatabase extends Database {
   }
 
   public void update(@NonNull GroupId.V2 groupId, @NonNull DecryptedGroup decryptedGroup) {
-    String        title         = decryptedGroup.getTitle();
-    ContentValues contentValues = new ContentValues();
+    RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+    RecipientId       groupRecipientId  = recipientDatabase.getOrInsertFromGroupId(groupId);
+    String            title             = decryptedGroup.getTitle();
+    ContentValues     contentValues     = new ContentValues();
 
     contentValues.put(TITLE, title);
     contentValues.put(V2_REVISION, decryptedGroup.getVersion());
@@ -377,8 +385,11 @@ public final class GroupDatabase extends Database {
                                                 GROUP_ID + " = ?",
                                                 new String[]{ groupId.toString() });
 
-    RecipientId groupRecipient = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
-    Recipient.live(groupRecipient).refresh();
+    if (decryptedGroup.hasDisappearingMessagesTimer()) {
+      recipientDatabase.setExpireMessages(groupRecipientId, decryptedGroup.getDisappearingMessagesTimer().getDuration());
+    }
+
+    Recipient.live(groupRecipientId).refresh();
 
     notifyConversationListListeners();
   }
@@ -497,6 +508,21 @@ public final class GroupDatabase extends Database {
     Collections.sort(groupMembers);
 
     return RecipientId.toSerializedList(groupMembers);
+  }
+
+  public List<GroupId.V2> getAllGroupV2Ids() {
+    List<GroupId.V2> result = new LinkedList<>();
+
+    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, new String[]{ GROUP_ID }, null, null, null, null, null)) {
+      while (cursor.moveToNext()) {
+        GroupId groupId = GroupId.parseOrThrow(cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID)));
+        if (groupId.isV2()) {
+          result.add(groupId.requireV2());
+        }
+      }
+    }
+
+    return result;
   }
 
   public static class Reader implements Closeable {
@@ -750,8 +776,8 @@ public final class GroupDatabase extends Database {
     FULL_MEMBERS_AND_PENDING_INCLUDING_SELF(true, true),
     FULL_MEMBERS_AND_PENDING_EXCLUDING_SELF(false, true);
 
-    private boolean includeSelf;
-    private boolean includePending;
+    private final boolean includeSelf;
+    private final boolean includePending;
 
     MemberSet(boolean includeSelf, boolean includePending) {
       this.includeSelf    = includeSelf;

@@ -148,9 +148,11 @@ import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
+import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
 import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
 import org.thoughtcrime.securesms.groups.GroupInsufficientRightsException;
 import org.thoughtcrime.securesms.groups.GroupManager;
+import org.thoughtcrime.securesms.groups.GroupNotAMemberException;
 import org.thoughtcrime.securesms.groups.ui.LeaveGroupDialog;
 import org.thoughtcrime.securesms.groups.ui.managegroup.ManageGroupActivity;
 import org.thoughtcrime.securesms.groups.ui.pendingmemberinvites.PendingMemberInvitesActivity;
@@ -947,7 +949,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
               } catch (GroupInsufficientRightsException e) {
                 Log.w(TAG, e);
                 return ConversationActivity.this.getString(R.string.ManageGroupActivity_you_dont_have_the_rights_to_do_this);
-              } catch (GroupChangeFailedException e) {
+              } catch (GroupNotAMemberException e) {
+                Log.w(TAG, e);
+                return ConversationActivity.this.getString(R.string.ManageGroupActivity_youre_not_a_member_of_the_group);
+              } catch (GroupChangeFailedException | GroupChangeBusyException | IOException e) {
                 Log.w(TAG, e);
                 return ConversationActivity.this.getString(R.string.ManageGroupActivity_failed_to_update_the_group);
               }

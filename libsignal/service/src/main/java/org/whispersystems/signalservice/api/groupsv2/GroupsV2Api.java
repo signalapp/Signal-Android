@@ -1,7 +1,10 @@
 package org.whispersystems.signalservice.api.groupsv2;
 
+import com.google.protobuf.ByteString;
+
 import org.signal.storageservice.protos.groups.AvatarUploadAttributes;
 import org.signal.storageservice.protos.groups.Group;
+import org.signal.storageservice.protos.groups.GroupAttributeBlob;
 import org.signal.storageservice.protos.groups.GroupChange;
 import org.signal.storageservice.protos.groups.GroupChanges;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
@@ -86,7 +89,7 @@ public final class GroupsV2Api {
 
     byte[] cipherText;
     try {
-      cipherText = new ClientZkGroupCipher(groupSecretParams).encryptBlob(avatar);
+      cipherText = new ClientZkGroupCipher(groupSecretParams).encryptBlob(GroupAttributeBlob.newBuilder().setAvatar(ByteString.copyFrom(avatar)).build().toByteArray());
     } catch (VerificationFailedException e) {
       throw new AssertionError(e);
     }

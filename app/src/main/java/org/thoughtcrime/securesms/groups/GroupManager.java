@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.whispersystems.signalservice.api.groupsv2.InvalidGroupStateException;
-import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.IOException;
@@ -34,7 +33,7 @@ public final class GroupManager {
   {
     Set<RecipientId> addresses = getMemberIds(members);
 
-    return V1GroupManager.createGroup(context, addresses, avatar, name, mms);
+    return GroupManagerV1.createGroup(context, addresses, avatar, name, mms);
   }
 
   @WorkerThread
@@ -48,7 +47,7 @@ public final class GroupManager {
     List<Recipient> members = DatabaseFactory.getGroupDatabase(context)
                                              .getGroupMembers(groupId, GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
 
-    return V1GroupManager.updateGroup(context, groupId, getMemberIds(members), avatar, name);
+    return GroupManagerV1.updateGroup(context, groupId, getMemberIds(members), avatar, name);
   }
 
   public static GroupActionResult updateGroup(@NonNull  Context        context,
@@ -60,7 +59,7 @@ public final class GroupManager {
   {
     Set<RecipientId> addresses = getMemberIds(members);
 
-    return V1GroupManager.updateGroup(context, groupId, addresses, BitmapUtil.toByteArray(avatar), name);
+    return GroupManagerV1.updateGroup(context, groupId, addresses, BitmapUtil.toByteArray(avatar), name);
   }
 
   private static Set<RecipientId> getMemberIds(Collection<Recipient> recipients) {
@@ -74,17 +73,29 @@ public final class GroupManager {
 
   @WorkerThread
   public static boolean leaveGroup(@NonNull Context context, @NonNull GroupId.Push groupId) {
-    return V1GroupManager.leaveGroup(context, groupId.requireV1());
+    return GroupManagerV1.leaveGroup(context, groupId.requireV1());
+  }
+
+  @WorkerThread
+  public static void updateGroupFromServer(@NonNull Context context,
+                                           @NonNull GroupId.V2 groupId,
+                                           int version)
+      throws GroupChangeBusyException, IOException, GroupNotAMemberException
+  {
+    try (GroupManagerV2.GroupEditor edit = new GroupManagerV2(context).edit(groupId)) {
+      edit.updateLocalToServerVersion(version);
+    }
   }
 
   @WorkerThread
   public static void updateGroupTimer(@NonNull Context context, @NonNull GroupId.Push groupId, int expirationTime)
-      throws GroupChangeFailedException, GroupInsufficientRightsException
+      throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, GroupChangeBusyException
   {
     if (groupId.isV2()) {
-      throw new GroupChangeFailedException(new AssertionError("NYI")); // TODO: GV2 allow timer change
+      new GroupManagerV2(context).edit(groupId.requireV2())
+                                 .updateGroupTimer(expirationTime);
     } else {
-      V1GroupManager.updateGroupTimer(context, groupId.requireV1(), expirationTime);
+      GroupManagerV1.updateGroupTimer(context, groupId.requireV1(), expirationTime);
     }
   }
 

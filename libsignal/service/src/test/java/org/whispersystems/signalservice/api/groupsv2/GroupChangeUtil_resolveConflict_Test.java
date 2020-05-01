@@ -4,27 +4,30 @@ import com.google.protobuf.ByteString;
 
 import org.junit.Test;
 import org.signal.storageservice.protos.groups.AccessControl;
-import org.signal.storageservice.protos.groups.DisappearingMessagesTimer;
 import org.signal.storageservice.protos.groups.GroupChange;
 import org.signal.storageservice.protos.groups.Member;
 import org.signal.storageservice.protos.groups.PendingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
-import org.signal.storageservice.protos.groups.local.DecryptedMember;
-import org.signal.storageservice.protos.groups.local.DecryptedModifyMemberRole;
-import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
-import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval;
 import org.signal.storageservice.protos.groups.local.DecryptedString;
-import org.signal.zkgroup.InvalidInputException;
+import org.signal.storageservice.protos.groups.local.DecryptedTimer;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
-import java.security.SecureRandom;
-import java.util.Arrays;
 import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.admin;
+import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.demoteAdmin;
+import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.encrypt;
+import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.encryptedMember;
+import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.member;
+import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.pendingMember;
+import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.pendingMemberRemoval;
+import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.presentation;
+import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.promoteAdmin;
+import static org.whispersystems.signalservice.api.groupsv2.ProtoTestUtils.randomProfileKey;
 
 public final class GroupChangeUtil_resolveConflict_Test {
 
@@ -257,9 +260,9 @@ public final class GroupChangeUtil_resolveConflict_Test {
                                                          .addPendingMembers(pendingMember(member2))
                                                          .build();
     DecryptedGroupChange decryptedChange = DecryptedGroupChange.newBuilder()
-                                                               .addPromotePendingMembers(UuidUtil.toByteString(member1))
-                                                               .addPromotePendingMembers(UuidUtil.toByteString(member2))
-                                                               .addPromotePendingMembers(UuidUtil.toByteString(member3))
+                                                               .addPromotePendingMembers(member(member1))
+                                                               .addPromotePendingMembers(member(member2))
+                                                               .addPromotePendingMembers(member(member3))
                                                                .build();
     GroupChange.Actions  change          = GroupChange.Actions.newBuilder()
                                                               .addPromotePendingMembers(GroupChange.Actions.PromotePendingMemberAction.newBuilder().setPresentation(presentation(member1, randomProfileKey())))
@@ -370,10 +373,10 @@ public final class GroupChangeUtil_resolveConflict_Test {
   @Test
   public void field_12__timer_change_is_preserved() {
     DecryptedGroup       groupState      = DecryptedGroup.newBuilder()
-                                                         .setDisappearingMessagesTimer(DisappearingMessagesTimer.newBuilder().setDuration(123))
+                                                         .setDisappearingMessagesTimer(DecryptedTimer.newBuilder().setDuration(123))
                                                          .build();
     DecryptedGroupChange decryptedChange = DecryptedGroupChange.newBuilder()
-                                                               .setNewTimer(DisappearingMessagesTimer.newBuilder().setDuration(456))
+                                                               .setNewTimer(DecryptedTimer.newBuilder().setDuration(456))
                                                                .build();
     GroupChange.Actions  change          = GroupChange.Actions.newBuilder()
                                                               .setModifyDisappearingMessagesTimer(GroupChange.Actions.ModifyDisappearingMessagesTimerAction.newBuilder().setTimer(ByteString.EMPTY))
@@ -387,10 +390,10 @@ public final class GroupChangeUtil_resolveConflict_Test {
   @Test
   public void field_12__no_timer_change_is_removed() {
     DecryptedGroup       groupState      = DecryptedGroup.newBuilder()
-                                                         .setDisappearingMessagesTimer(DisappearingMessagesTimer.newBuilder().setDuration(123))
+                                                         .setDisappearingMessagesTimer(DecryptedTimer.newBuilder().setDuration(123))
                                                          .build();
     DecryptedGroupChange decryptedChange = DecryptedGroupChange.newBuilder()
-                                                               .setNewTimer(DisappearingMessagesTimer.newBuilder().setDuration(123))
+                                                               .setNewTimer(DecryptedTimer.newBuilder().setDuration(123))
                                                                .build();
     GroupChange.Actions  change          = GroupChange.Actions.newBuilder()
                                                               .setModifyDisappearingMessagesTimer(GroupChange.Actions.ModifyDisappearingMessagesTimerAction.newBuilder().setTimer(ByteString.EMPTY))
@@ -467,93 +470,5 @@ public final class GroupChangeUtil_resolveConflict_Test {
     GroupChange.Actions resolvedActions = GroupChangeUtil.resolveConflict(groupState, decryptedChange, change).build();
 
     assertTrue(GroupChangeUtil.changeIsEmpty(resolvedActions));
-  }
-
-  private static ProfileKey randomProfileKey() {
-    byte[] contents = new byte[32];
-    new SecureRandom().nextBytes(contents);
-    try {
-      return new ProfileKey(contents);
-    } catch (InvalidInputException e) {
-      throw new AssertionError();
-    }
-  }
-
-  /**
-   * Emulates encryption by creating a unique {@link ByteString} that won't equal a byte string created from the {@link UUID}.
-   */
-  private static ByteString encrypt(UUID uuid) {
-    byte[] uuidBytes = UuidUtil.toByteArray(uuid);
-    return ByteString.copyFrom(Arrays.copyOf(uuidBytes, uuidBytes.length + 1));
-  }
-
-  /**
-   * Emulates a presentation by concatenating the uuid and profile key which makes it suitable for
-   * equality assertions in these tests.
-   */
-  private static ByteString presentation(UUID uuid, ProfileKey profileKey) {
-    byte[] uuidBytes       = UuidUtil.toByteArray(uuid);
-    byte[] profileKeyBytes = profileKey.serialize();
-    byte[] concat          = new byte[uuidBytes.length + profileKeyBytes.length];
-
-    System.arraycopy(uuidBytes, 0, concat, 0, uuidBytes.length);
-    System.arraycopy(profileKeyBytes, 0, concat, uuidBytes.length, profileKeyBytes.length);
-
-    return ByteString.copyFrom(concat);
-  }
-
-  private static DecryptedModifyMemberRole promoteAdmin(UUID member) {
-    return DecryptedModifyMemberRole.newBuilder()
-                                    .setUuid(UuidUtil.toByteString(member))
-                                    .setRole(Member.Role.ADMINISTRATOR)
-                                    .build();
-  }
-
-  private static DecryptedModifyMemberRole demoteAdmin(UUID member) {
-    return DecryptedModifyMemberRole.newBuilder()
-                                    .setUuid(UuidUtil.toByteString(member))
-                                    .setRole(Member.Role.DEFAULT)
-                                    .build();
-  }
-
-  private Member encryptedMember(UUID uuid, ProfileKey profileKey) {
-    return Member.newBuilder()
-                 .setPresentation(presentation(uuid, profileKey))
-                 .build();
-  }
-
-  private static DecryptedMember member(UUID uuid) {
-    return DecryptedMember.newBuilder()
-                          .setUuid(UuidUtil.toByteString(uuid))
-                          .setRole(Member.Role.DEFAULT)
-                          .build();
-  }
-
-  private static DecryptedPendingMemberRemoval pendingMemberRemoval(UUID uuid) {
-    return DecryptedPendingMemberRemoval.newBuilder()
-                                        .setUuid(UuidUtil.toByteString(uuid))
-                                        .build();
-  }
-
-  private static DecryptedPendingMember pendingMember(UUID uuid) {
-    return DecryptedPendingMember.newBuilder()
-                                 .setUuid(UuidUtil.toByteString(uuid))
-                                 .setRole(Member.Role.DEFAULT)
-                                 .build();
-  }
-
-  private static DecryptedMember member(UUID uuid, ProfileKey profileKey) {
-    return DecryptedMember.newBuilder()
-                          .setUuid(UuidUtil.toByteString(uuid))
-                          .setRole(Member.Role.DEFAULT)
-                          .setProfileKey(ByteString.copyFrom(profileKey.serialize()))
-                          .build();
-  }
-
-  private static DecryptedMember admin(UUID uuid) {
-    return DecryptedMember.newBuilder()
-                          .setUuid(UuidUtil.toByteString(uuid))
-                          .setRole(Member.Role.ADMINISTRATOR)
-                          .build();
   }
 }

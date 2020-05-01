@@ -45,9 +45,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-final class V1GroupManager {
+final class GroupManagerV1 {
 
-  private static final String TAG = Log.tag(V1GroupManager.class);
+  private static final String TAG = Log.tag(GroupManagerV1.class);
 
   static @NonNull GroupActionResult createGroup(@NonNull Context          context,
                                                 @NonNull Set<RecipientId> memberIds,

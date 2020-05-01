@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
 
-import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.groups.GroupSecretParams;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -47,7 +46,14 @@ public final class AvatarGroupsV2DownloadJob extends BaseJob {
                        .setMaxAttempts(10)
                        .build(),
          groupId,
-         cdnKey);
+         requireNonEmpty(cdnKey));
+  }
+
+  private static String requireNonEmpty(@NonNull String string) {
+    if (string.isEmpty()) {
+      throw new AssertionError();
+    }
+    return string;
   }
 
   private AvatarGroupsV2DownloadJob(@NonNull Parameters parameters, @NonNull GroupId.V2 groupId, @NonNull String cdnKey) {
@@ -102,7 +108,7 @@ public final class AvatarGroupsV2DownloadJob extends BaseJob {
         database.onAvatarUpdated(groupId, true);
       }
 
-    } catch (NonSuccessfulResponseCodeException | VerificationFailedException e) {
+    } catch (NonSuccessfulResponseCodeException e) {
       Log.w(TAG, e);
     } finally {
       if (attachment != null && attachment.exists())

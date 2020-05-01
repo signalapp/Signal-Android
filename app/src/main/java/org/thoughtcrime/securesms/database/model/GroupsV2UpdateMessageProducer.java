@@ -210,23 +210,24 @@ final class GroupsV2UpdateMessageProducer {
   private void describePromotePending(@NonNull DecryptedGroupChange change, @NonNull List<String> updates) {
     boolean editorIsYou = change.getEditor().equals(youUuid);
 
-    for (ByteString member : change.getPromotePendingMembersList()) {
-      boolean newMemberIsYou = member.equals(youUuid);
+    for (DecryptedMember newMember : change.getPromotePendingMembersList()) {
+      ByteString uuid           = newMember.getUuid();
+      boolean    newMemberIsYou = uuid.equals(youUuid);
 
       if (editorIsYou) {
         if (newMemberIsYou) {
           updates.add(context.getString(R.string.MessageRecord_you_accepted_invite));
         } else {
-          updates.add(context.getString(R.string.MessageRecord_you_added_invited_member_s, describe(member)));
+          updates.add(context.getString(R.string.MessageRecord_you_added_invited_member_s, describe(uuid)));
         }
       } else {
         if (newMemberIsYou) {
           updates.add(context.getString(R.string.MessageRecord_s_added_you, describe(change.getEditor())));
         } else {
-          if (member.equals(change.getEditor())) {
-            updates.add(context.getString(R.string.MessageRecord_s_accepted_invite, describe(member)));
+          if (uuid.equals(change.getEditor())) {
+            updates.add(context.getString(R.string.MessageRecord_s_accepted_invite, describe(uuid)));
           } else {
-            updates.add(context.getString(R.string.MessageRecord_s_added_invited_member_s, describe(change.getEditor()), describe(member)));
+            updates.add(context.getString(R.string.MessageRecord_s_added_invited_member_s, describe(change.getEditor()), describe(uuid)));
           }
         }
       }
@@ -282,7 +283,7 @@ final class GroupsV2UpdateMessageProducer {
       }
     }
   }
-  
+
   private void describeNewMembershipAccess(@NonNull DecryptedGroupChange change, @NonNull List<String> updates) {
     boolean editorIsYou = change.getEditor().equals(youUuid);
 

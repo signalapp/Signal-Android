@@ -4,8 +4,8 @@ import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.signal.storageservice.protos.groups.AccessControl;
-import org.signal.storageservice.protos.groups.DisappearingMessagesTimer;
 import org.signal.storageservice.protos.groups.Group;
+import org.signal.storageservice.protos.groups.GroupAttributeBlob;
 import org.signal.storageservice.protos.groups.GroupChange;
 import org.signal.storageservice.protos.groups.Member;
 import org.signal.storageservice.protos.groups.PendingMember;
@@ -16,6 +16,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedModifyMemberRole;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval;
 import org.signal.storageservice.protos.groups.local.DecryptedString;
+import org.signal.storageservice.protos.groups.local.DecryptedTimer;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.NotarySignature;
 import org.signal.zkgroup.ServerPublicParams;
@@ -30,10 +31,10 @@ import org.signal.zkgroup.profiles.ProfileKey;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.signal.zkgroup.profiles.ProfileKeyCredentialPresentation;
 import org.signal.zkgroup.util.UUIDUtil;
+import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
-import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -46,8 +47,10 @@ import java.util.UUID;
  */
 public final class GroupsV2Operations {
 
+  private static final String TAG = GroupsV2Operations.class.getSimpleName();
+
   /** Used for undecryptable pending invites */
-  public static final UUID UNKNOWN_UUID = new UUID(0, 0);
+  public static final UUID UNKNOWN_UUID = UuidUtil.UNKNOWN_UUID;
 
   private final ServerPublicParams        serverPublicParams;
   private final ClientZkProfileOperations clientZkProfileOperations;
@@ -222,7 +225,7 @@ public final class GroupsV2Operations {
     }
 
     public DecryptedGroup decryptGroup(Group group)
-      throws VerificationFailedException, InvalidGroupStateException, InvalidProtocolBufferException
+        throws VerificationFailedException, InvalidGroupStateException
     {
       List<Member>                 membersList             = group.getMembersList();
       List<PendingMember>          pendingMembersList      = group.getPendingMembersList();
@@ -237,20 +240,15 @@ public final class GroupsV2Operations {
         decryptedPendingMembers.add(decryptMember(member));
       }
 
-      DecryptedGroup.Builder builder = DecryptedGroup.newBuilder()
-                                                     .setTitle(decryptTitle(group.getTitle()))
-                                                     .setAvatar(group.getAvatar())
-                                                     .setAccessControl(group.getAccessControl())
-                                                     .setVersion(group.getVersion())
-                                                     .addAllMembers(decryptedMembers)
-                                                     .addAllPendingMembers(decryptedPendingMembers);
-
-      DisappearingMessagesTimer messagesTimer = decryptDisappearingMessagesTimer(group.getDisappearingMessagesTimer());
-      if (messagesTimer != null) {
-        builder.setDisappearingMessagesTimer(messagesTimer);
-      }
-
-      return builder.build();
+      return DecryptedGroup.newBuilder()
+                           .setTitle(decryptTitle(group.getTitle()))
+                           .setAvatar(group.getAvatar())
+                           .setAccessControl(group.getAccessControl())
+                           .setVersion(group.getVersion())
+                           .addAllMembers(decryptedMembers)
+                           .addAllPendingMembers(decryptedPendingMembers)
+                           .setDisappearingMessagesTimer(DecryptedTimer.newBuilder().setDuration(decryptDisappearingMessagesTimer(group.getDisappearingMessagesTimer())))
+                           .build();
     }
 
     /**
@@ -261,7 +259,7 @@ public final class GroupsV2Operations {
      *               are not signed, but should be empty.
      */
     public DecryptedGroupChange decryptChange(GroupChange groupChange, boolean verify)
-      throws InvalidProtocolBufferException, VerificationFailedException, InvalidGroupStateException
+        throws InvalidProtocolBufferException, VerificationFailedException, InvalidGroupStateException
     {
       GroupChange.Actions actions = verify ? getVerifiedActions(groupChange) : getActions(groupChange);
 
@@ -269,12 +267,22 @@ public final class GroupsV2Operations {
     }
 
     public DecryptedGroupChange decryptChange(GroupChange.Actions actions)
-      throws InvalidProtocolBufferException, VerificationFailedException, InvalidGroupStateException
+        throws VerificationFailedException, InvalidGroupStateException
+    {
+      return decryptChange(actions, null);
+    }
+
+    public DecryptedGroupChange decryptChange(GroupChange.Actions actions, UUID source)
+        throws VerificationFailedException, InvalidGroupStateException
     {
       DecryptedGroupChange.Builder builder = DecryptedGroupChange.newBuilder();
 
       // Field 1
-      builder.setEditor(decryptUuidToByteString(actions.getSourceUuid()));
+      if (source != null) {
+        builder.setEditor(UuidUtil.toByteString(source));
+      } else {
+        builder.setEditor(decryptUuidToByteString(actions.getSourceUuid()));
+      }
 
       // Field 2
       builder.setVersion(actions.getVersion());
@@ -283,7 +291,9 @@ public final class GroupsV2Operations {
       for (GroupChange.Actions.AddMemberAction addMemberAction : actions.getAddMembersList()) {
         UUID uuid = decryptUuid(addMemberAction.getAdded().getUserId());
         builder.addNewMembers(DecryptedMember.newBuilder()
-                                             .setUuid(ByteString.copyFrom(UUIDUtil.serialize(uuid)))
+                                             .setJoinedAtVersion(actions.getVersion())
+                                             .setRole(addMemberAction.getAdded().getRole())
+                                             .setUuid(UuidUtil.toByteString(uuid))
                                              .setProfileKey(decryptProfileKeyToByteString(addMemberAction.getAdded().getProfileKey(), uuid)));
       }
 
@@ -309,7 +319,7 @@ public final class GroupsV2Operations {
           builder.addModifiedProfileKeys(DecryptedMember.newBuilder()
                                                         .setRole(Member.Role.UNKNOWN)
                                                         .setJoinedAtVersion(-1)
-                                                        .setUuid(ByteString.copyFrom(UUIDUtil.serialize(uuid)))
+                                                        .setUuid(UuidUtil.toByteString(uuid))
                                                         .setProfileKey(ByteString.copyFrom(decryptProfileKey(ByteString.copyFrom(presentation.getProfileKeyCiphertext().serialize()), uuid).serialize())));
         } catch (InvalidInputException e) {
           throw new InvalidGroupStateException(e);
@@ -324,7 +334,7 @@ public final class GroupsV2Operations {
         UUID          uuid           = decryptUuidOrUnknown(uuidCipherText);
 
         builder.addNewPendingMembers(DecryptedPendingMember.newBuilder()
-                                                           .setUuid(ByteString.copyFrom(UUIDUtil.serialize(uuid)))
+                                                           .setUuid(UuidUtil.toByteString(uuid))
                                                            .setUuidCipherText(uuidCipherText)
                                                            .setRole(member.getRole())
                                                            .setAddedByUuid(decryptUuidToByteString(added.getAddedByUserId()))
@@ -337,7 +347,7 @@ public final class GroupsV2Operations {
         UUID       uuid           = decryptUuidOrUnknown(uuidCipherText);
 
         builder.addDeletePendingMembers(DecryptedPendingMemberRemoval.newBuilder()
-                                                                     .setUuid(ByteString.copyFrom(UUIDUtil.serialize(uuid)))
+                                                                     .setUuid(UuidUtil.toByteString(uuid))
                                                                      .setUuidCipherText(uuidCipherText));
       }
 
@@ -349,8 +359,13 @@ public final class GroupsV2Operations {
         } catch (InvalidInputException e) {
           throw new InvalidGroupStateException(e);
         }
-        UUID       uuid  = clientZkGroupCipher.decryptUuid(profileKeyCredentialPresentation.getUuidCiphertext());
-        builder.addPromotePendingMembers(UuidUtil.toByteString(uuid));
+        UUID       uuid       = clientZkGroupCipher.decryptUuid(profileKeyCredentialPresentation.getUuidCiphertext());
+        ProfileKey profileKey = clientZkGroupCipher.decryptProfileKey(profileKeyCredentialPresentation.getProfileKeyCiphertext(), uuid);
+        builder.addPromotePendingMembers(DecryptedMember.newBuilder()
+                                                        .setJoinedAtVersion(-1)
+                                                        .setRole(Member.Role.DEFAULT)
+                                                        .setUuid(UuidUtil.toByteString(uuid))
+                                                        .setProfileKey(ByteString.copyFrom(profileKey.serialize())));
       }
 
       // Field 10
@@ -365,8 +380,8 @@ public final class GroupsV2Operations {
 
       // Field 12
       if (actions.hasModifyDisappearingMessagesTimer()) {
-        int duration = decryptDisappearingMessagesTimer(actions.getModifyDisappearingMessagesTimer().getTimer()).getDuration();
-        builder.setNewTimer(DisappearingMessagesTimer.newBuilder().setDuration(duration));
+        int duration = decryptDisappearingMessagesTimer(actions.getModifyDisappearingMessagesTimer().getTimer());
+        builder.setNewTimer(DecryptedTimer.newBuilder().setDuration(duration));
       }
 
       // Field 13
@@ -383,27 +398,28 @@ public final class GroupsV2Operations {
     }
 
     private DecryptedMember decryptMember(Member member)
-      throws InvalidGroupStateException, VerificationFailedException
+        throws InvalidGroupStateException, VerificationFailedException
     {
       ByteString userId = member.getUserId();
       UUID       uuid   = decryptUuid(userId);
 
       return DecryptedMember.newBuilder()
-                            .setUuid(ByteString.copyFrom(UUIDUtil.serialize(uuid)))
+                            .setUuid(UuidUtil.toByteString(uuid))
+                            .setJoinedAtVersion(member.getJoinedAtVersion())
                             .setProfileKey(decryptProfileKeyToByteString(member.getProfileKey(), uuid))
                             .setRole(member.getRole())
                             .build();
     }
 
     private DecryptedPendingMember decryptMember(PendingMember member)
-      throws InvalidGroupStateException, VerificationFailedException
+        throws InvalidGroupStateException, VerificationFailedException
     {
       ByteString userIdCipherText = member.getMember().getUserId();
       UUID       uuid             = decryptUuidOrUnknown(userIdCipherText);
       UUID       addedBy          = decryptUuid(member.getAddedByUserId());
 
       return DecryptedPendingMember.newBuilder()
-                                   .setUuid(ByteString.copyFrom(UUIDUtil.serialize(uuid)))
+                                   .setUuid(UuidUtil.toByteString(uuid))
                                    .setUuidCipherText(userIdCipherText)
                                    .setAddedByUuid(ByteString.copyFrom(UUIDUtil.serialize(addedBy)))
                                    .setRole(member.getMember().getRole())
@@ -452,43 +468,52 @@ public final class GroupsV2Operations {
 
     private ByteString encryptTitle(String title) {
       try {
-        return ByteString.copyFrom(clientZkGroupCipher.encryptBlob((title == null ? "" : title).getBytes(StandardCharsets.UTF_8)));
+        GroupAttributeBlob blob = GroupAttributeBlob.newBuilder().setTitle(title).build();
+
+        return ByteString.copyFrom(clientZkGroupCipher.encryptBlob(blob.toByteArray()));
       } catch (VerificationFailedException e) {
         throw new AssertionError(e);
       }
     }
 
-    private String decryptTitle(ByteString cipherText) throws VerificationFailedException {
-      return new String(decryptBlob(cipherText), StandardCharsets.UTF_8);
+    private String decryptTitle(ByteString cipherText) {
+      return decryptBlob(cipherText).getTitle();
     }
 
-    private DisappearingMessagesTimer decryptDisappearingMessagesTimer(ByteString encryptedTimerMessage)
-      throws VerificationFailedException, InvalidProtocolBufferException
-    {
-      return DisappearingMessagesTimer.parseFrom(decryptBlob(encryptedTimerMessage));
+    private int decryptDisappearingMessagesTimer(ByteString encryptedTimerMessage) {
+      return decryptBlob(encryptedTimerMessage).getDisappearingMessagesDuration();
     }
 
-    private byte[] decryptBlob(ByteString blob) throws VerificationFailedException {
+    public byte[] decryptAvatar(byte[] bytes) {
+      return decryptBlob(bytes).getAvatar().toByteArray();
+    }
+
+    private GroupAttributeBlob decryptBlob(ByteString blob) {
       return decryptBlob(blob.toByteArray());
     }
 
-    public byte[] decryptAvatar(byte[] bytes) throws VerificationFailedException {
-      return decryptBlob(bytes);
-    }
-
-    private byte[] decryptBlob(byte[] bytes) throws VerificationFailedException {
+    private GroupAttributeBlob decryptBlob(byte[] bytes) {
       // TODO GV2: Minimum field length checking should be responsibility of clientZkGroupCipher#decryptBlob
-      if (bytes == null) return null;
-      if (bytes.length == 0) return bytes;
-      if (bytes.length < 28) throw new VerificationFailedException();
-      return clientZkGroupCipher.decryptBlob(bytes);
+      if (bytes == null || bytes.length == 0) {
+        return GroupAttributeBlob.getDefaultInstance();
+      }
+      if (bytes.length < 29) {
+        Log.w(TAG, "Bad encrypted blob length");
+        return GroupAttributeBlob.getDefaultInstance();
+      }
+      try {
+        return GroupAttributeBlob.parseFrom(clientZkGroupCipher.decryptBlob(bytes));
+      } catch (InvalidProtocolBufferException | VerificationFailedException e) {
+        Log.w(TAG, "Bad encrypted blob");
+        return GroupAttributeBlob.getDefaultInstance();
+      }
     }
 
     private ByteString encryptTimer(int timerDurationSeconds) {
        try {
-         DisappearingMessagesTimer timer = DisappearingMessagesTimer.newBuilder()
-                                                                    .setDuration(timerDurationSeconds)
-                                                                    .build();
+         GroupAttributeBlob timer = GroupAttributeBlob.newBuilder()
+                                                      .setDisappearingMessagesDuration(timerDurationSeconds)
+                                                      .build();
          return ByteString.copyFrom(clientZkGroupCipher.encryptBlob(timer.toByteArray()));
        } catch (VerificationFailedException e) {
          throw new AssertionError(e);
@@ -499,7 +524,7 @@ public final class GroupsV2Operations {
      * Verifies signature and parses actions on a group change.
      */
     private GroupChange.Actions getVerifiedActions(GroupChange groupChange)
-      throws VerificationFailedException, InvalidProtocolBufferException
+        throws VerificationFailedException, InvalidProtocolBufferException
     {
       byte[] actionsByteArray = groupChange.getActions().toByteArray();
 
@@ -519,7 +544,7 @@ public final class GroupsV2Operations {
      * Parses actions on a group change without verification.
      */
     private GroupChange.Actions getActions(GroupChange groupChange)
-      throws InvalidProtocolBufferException
+        throws InvalidProtocolBufferException
     {
       return GroupChange.Actions.parseFrom(groupChange.getActions());
     }
@@ -534,6 +559,13 @@ public final class GroupsV2Operations {
       return GroupChange.Actions.newBuilder()
                                 .setModifyAttributesAccess(GroupChange.Actions.ModifyAttributesAccessControlAction.newBuilder()
                                                                                                                   .setAttributesAccess(newRights));
+    }
+
+    public GroupChange.Actions.Builder createChangeMemberRole(UUID uuid, Member.Role role) {
+      return GroupChange.Actions.newBuilder()
+                                .addModifyMemberRoles(GroupChange.Actions.ModifyMemberRoleAction.newBuilder()
+                                                                         .setUserId(encryptUuid(uuid))
+                                                                         .setRole(role));
     }
   }
 

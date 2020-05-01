@@ -17,10 +17,12 @@ import net.sqlcipher.database.SQLiteDatabase;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.thoughtcrime.securesms.color.MaterialColor;
+import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.groups.v2.ProfileKeySet;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileName;
@@ -47,11 +49,14 @@ import org.whispersystems.signalservice.api.util.UuidUtil;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
@@ -977,6 +982,30 @@ public class RecipientDatabase extends Database {
       Recipient.live(id).refresh();
       StorageSyncHelper.scheduleSyncForDataChange();
       return true;
+    }
+    return false;
+  }
+
+  /**
+   * Sets the profile key iff currently null.
+   * <p>
+   * If it sets it, it also clears out the profile key credential and resets the unidentified access mode.
+   * @return true iff changed.
+   */
+  public boolean setProfileKeyIfAbsent(@NonNull RecipientId id, @NonNull ProfileKey profileKey) {
+    SQLiteDatabase database    = databaseHelper.getWritableDatabase();
+    String         selection   = ID + " = ? AND " + PROFILE_KEY + " is NULL";
+    String[]       args        = new String[]{id.serialize()};
+    ContentValues  valuesToSet = new ContentValues(3);
+
+    valuesToSet.put(PROFILE_KEY, Base64.encodeBytes(profileKey.serialize()));
+    valuesToSet.putNull(PROFILE_KEY_CREDENTIAL);
+    valuesToSet.put(UNIDENTIFIED_ACCESS_MODE, UnidentifiedAccessMode.UNKNOWN.getMode());
+
+    if (database.update(TABLE_NAME, valuesToSet, selection, args) > 0) {
+      markDirty(id, DirtyState.UPDATE);
+      Recipient.live(id).refresh();
+      return true;
     } else {
       return false;
     }
@@ -1011,6 +1040,56 @@ public class RecipientDatabase extends Database {
       markDirty(id, DirtyState.UPDATE);
       Recipient.live(id).refresh();
     }
+  }
+
+  /**
+   * Fills in gaps (nulls) in profile key knowledge from new profile keys.
+   * <p>
+   * If from authoritative source, this will overwrite local, otherwise it will only write to the
+   * database if missing.
+   */
+  public Collection<RecipientId> persistProfileKeySet(@NonNull ProfileKeySet profileKeySet) {
+    Map<UUID, ProfileKey> profileKeys              = profileKeySet.getProfileKeys();
+    Map<UUID, ProfileKey> authoritativeProfileKeys = profileKeySet.getAuthoritativeProfileKeys();
+    int                   totalKeys                = profileKeys.size() + authoritativeProfileKeys.size();
+
+    if (totalKeys == 0) {
+      return Collections.emptyList();
+    }
+
+    Log.i(TAG, String.format(Locale.US, "Persisting %d Profile keys, %d of which are authoritative", totalKeys, authoritativeProfileKeys.size()));
+
+    HashSet<RecipientId> updated = new HashSet<>(totalKeys);
+    RecipientId          selfId  = Recipient.self().getId();
+
+    for (Map.Entry<UUID, ProfileKey> entry : profileKeys.entrySet()) {
+      RecipientId recipientId = getOrInsertFromUuid(entry.getKey());
+
+      if (setProfileKeyIfAbsent(recipientId, entry.getValue())) {
+        Log.i(TAG, "Learned new profile key");
+        updated.add(recipientId);
+      }
+    }
+
+    for (Map.Entry<UUID, ProfileKey> entry : authoritativeProfileKeys.entrySet()) {
+      RecipientId recipientId = getOrInsertFromUuid(entry.getKey());
+
+      if (selfId.equals(recipientId)) {
+        Log.i(TAG, "Seen authoritative update for self");
+        if (!entry.getValue().equals(ProfileKeyUtil.getSelfProfileKey())) {
+          Log.w(TAG, "Seen authoritative update for self that didn't match local, scheduling storage sync");
+          StorageSyncHelper.scheduleSyncForDataChange();
+        }
+      } else {
+        Log.i(TAG, String.format("Profile key from owner %s", recipientId));
+        if (setProfileKey(recipientId, entry.getValue())) {
+          Log.i(TAG, "Learned new profile key from owner");
+          updated.add(recipientId);
+        }
+      }
+    }
+
+    return updated;
   }
 
   public void setProfileName(@NonNull RecipientId id, @NonNull ProfileName profileName) {
