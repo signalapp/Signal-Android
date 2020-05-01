@@ -20,6 +20,9 @@
     <issue id="RestrictedApi" severity="error">
         <ignore path="*/org/thoughtcrime/securesms/mediasend/camerax/VideoCapture.java" />
         <ignore path="*/org/thoughtcrime/securesms/mediasend/camerax/CameraXModule.java" />
+        <ignore path="*/org/thoughtcrime/securesms/conversation/*.java" />
+        <ignore path="*/org/thoughtcrime/securesms/lock/v2/CreateKbsPinViewModel.java" />
+        <ignore path="*/org/thoughtcrime/securesms/jobs/StickerPackDownloadJob.java" />
     </issue>
 
 </lint>
