@@ -380,7 +380,7 @@ public class MessageSender {
     } else if (!forceSms && isPushTextSend(context, recipient, keyExchange)) {
       sendTextPush(recipient, messageId);
     } else {
-      sendSms(context, recipient, messageId);
+      sendSms(recipient, messageId);
     }
   }
 
@@ -411,9 +411,9 @@ public class MessageSender {
     }
   }
 
-  private static void sendSms(Context context, Recipient recipient, long messageId) {
+  private static void sendSms(Recipient recipient, long messageId) {
     JobManager jobManager = ApplicationDependencies.getJobManager();
-    jobManager.add(new SmsSendJob(context, messageId, recipient));
+    jobManager.add(new SmsSendJob(messageId, recipient));
   }
 
   private static void sendMms(Context context, long messageId) {

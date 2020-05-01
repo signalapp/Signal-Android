@@ -1416,8 +1416,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
         database.markAsOutbox(messageRecord.getId());
         database.markAsForcedSms(messageRecord.getId());
 
-        ApplicationDependencies.getJobManager().add(new SmsSendJob(context,
-                                                                   messageRecord.getId(),
+        ApplicationDependencies.getJobManager().add(new SmsSendJob(messageRecord.getId(),
                                                                    messageRecord.getIndividualRecipient()));
       }
     });
