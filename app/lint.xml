@@ -17,6 +17,9 @@
     <issue id="ButtonOrder" severity="error" />
     <issue id="ExtraTranslation" severity="warning" />
 
+    <!-- Custom lints -->
+    <issue id="LogNotSignal" severity="warning" />
+
     <issue id="RestrictedApi" severity="error">
         <ignore path="*/org/thoughtcrime/securesms/mediasend/camerax/VideoCapture.java" />
         <ignore path="*/org/thoughtcrime/securesms/mediasend/camerax/CameraXModule.java" />
