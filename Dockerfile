@@ -1,5 +1,23 @@
 FROM debian:buster
 
+RUN apt-get update -y && \
+    apt-get install -y \
+        gpg
+
+COPY keys/snapshot.debian.org/buster.pubkey /etc/apt/buster.pubkey
+COPY keys/snapshot.debian.org/buster-updates.pubkey /etc/apt/buster-updates.pubkey
+COPY keys/snapshot.debian.org/buster-security.pubkey /etc/apt/buster-security.pubkey
+RUN apt-key add /etc/apt/buster.pubkey && \
+    apt-key add /etc/apt/buster-updates.pubkey && \
+    apt-key add /etc/apt/buster-security.pubkey
+
+ENV SNAPSHOT "20200502T085134Z"
+
+RUN rm /etc/apt/sources.list && \
+    printf "deb http://snapshot.debian.org/archive/debian/${SNAPSHOT}/ buster main\n" >> /etc/apt/sources.list && \
+    printf "deb http://snapshot.debian.org/archive/debian-security/${SNAPSHOT}/ buster/updates main\n" >> /etc/apt/sources.list && \
+    printf "deb http://snapshot.debian.org/archive/debian/${SNAPSHOT}/ buster-updates main\n" >> /etc/apt/sources.list
+
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN dpkg --add-architecture i386 && \
