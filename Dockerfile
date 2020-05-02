@@ -1,11 +1,8 @@
-FROM ubuntu:20.04
+FROM debian:buster
 
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN dpkg --add-architecture i386 && \
-    apt-get update -y && \
-    apt-get install -y \
-        software-properties-common && \
     apt-get update -y && \
     apt-get install -y \
         libc6:i386=2.31-0ubuntu9 \
