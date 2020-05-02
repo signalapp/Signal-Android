@@ -31,7 +31,6 @@ RUN dpkg --add-architecture i386 && \
         wget \
         openjdk-11-jdk=11.0.7+10-3~deb10u1 \
         git \
-        unzip \
         opensc \
         pcscd && \
     rm -rf /var/lib/apt/lists/* && \
@@ -51,4 +50,4 @@ RUN cd /usr/local/ && \
 RUN echo y | android update sdk --no-ui -a --filter ${ANDROID_API_LEVELS}
 RUN echo y | android update sdk --no-ui -a --filter extra-android-m2repository,extra-android-support,extra-google-google_play_services,extra-google-m2repository
 RUN echo y | android update sdk --no-ui -a --filter tools,platform-tools,build-tools-${ANDROID_BUILD_TOOLS_VERSION}
-RUN rm -rf ${ANDROID_HOME}/tools && unzip ${ANDROID_HOME}/temp/*.zip -d ${ANDROID_HOME}
+RUN rm -rf ${ANDROID_HOME}/tools
