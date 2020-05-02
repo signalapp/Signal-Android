@@ -18,6 +18,9 @@ RUN rm /etc/apt/sources.list && \
     printf "deb http://snapshot.debian.org/archive/debian-security/${SNAPSHOT}/ buster/updates main\n" >> /etc/apt/sources.list && \
     printf "deb http://snapshot.debian.org/archive/debian/${SNAPSHOT}/ buster-updates main\n" >> /etc/apt/sources.list
 
+# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=863199#23
+RUN mkdir -p /usr/share/man/man1
+
 RUN dpkg --add-architecture i386 && \
     apt-get update -y && \
     apt-get install -y -o Acquire::http::Pipeline-Depth="0" \
