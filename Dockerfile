@@ -1,5 +1,7 @@
 FROM ubuntu:20.04
 
+ENV DEBIAN_FRONTEND noninteractive
+
 RUN dpkg --add-architecture i386 && \
     apt-get update -y && \
     apt-get install -y software-properties-common && \
