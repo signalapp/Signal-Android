@@ -8,12 +8,12 @@ RUN dpkg --add-architecture i386 && \
         software-properties-common && \
     apt-get update -y && \
     apt-get install -y \
-        libc6:i386=2.26-0ubuntu2.1 \
-        libncurses5:i386=6.0+20160625-1ubuntu1 \
-        libstdc++6:i386=7.2.0-8ubuntu3.2 \
-        lib32z1=1:1.2.11.dfsg-0ubuntu2 \
+        libc6:i386=2.31-0ubuntu9 \
+        libncurses6:i386=6.2-0ubuntu2 \
+        libstdc++6:i386=10-20200411-0ubuntu1 \
+        lib32z1=1:1.2.11.dfsg-2ubuntu1 \
         wget \
-        openjdk-8-jdk=8u171-b11-0ubuntu0.17.10.1 \
+        openjdk-11-jdk=11.0.7+10-3ubuntu1 \
         git \
         unzip \
         opensc \
