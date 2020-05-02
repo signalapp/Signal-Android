@@ -53,4 +53,6 @@
     <color name="storage_color_audio">@color/core_ultramarine</color>
     <color name="storage_color_files">#ffA23474</color>
 
+    <color name="launcher_background">@color/white</color>
+    <color name="launcher_status_bar">@color/white</color>
 </resources>

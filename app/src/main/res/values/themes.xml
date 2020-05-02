@@ -146,6 +146,11 @@
         <item name="android:backgroundDimEnabled">false</item>
     </style>
 
+    <style name="TextSecure.LauncherTheme" parent="@style/Theme.AppCompat.NoActionBar">
+        <item name="colorPrimaryDark">@color/launcher_status_bar</item>
+        <item name="android:windowBackground">@color/launcher_background</item>
+    </style>
+
     <style name="TextSecure.LightTheme" parent="TextSecure.BaseLightTheme">
         <!-- Allows for Overrides -->
     </style>

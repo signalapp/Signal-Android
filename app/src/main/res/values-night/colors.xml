@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+    <color name="launcher_background">@color/core_grey_95</color>
+    <color name="launcher_status_bar">@color/core_grey_95</color>
+</resources>
