@@ -18,8 +18,6 @@ RUN rm /etc/apt/sources.list && \
     printf "deb http://snapshot.debian.org/archive/debian-security/${SNAPSHOT}/ buster/updates main\n" >> /etc/apt/sources.list && \
     printf "deb http://snapshot.debian.org/archive/debian/${SNAPSHOT}/ buster-updates main\n" >> /etc/apt/sources.list
 
-ENV DEBIAN_FRONTEND noninteractive
-
 RUN dpkg --add-architecture i386 && \
     apt-get update -y && \
     apt-get install -y \
