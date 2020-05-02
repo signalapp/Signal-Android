@@ -23,7 +23,7 @@ RUN mkdir -p /usr/share/man/man1
 
 RUN dpkg --add-architecture i386 && \
     apt-get update -y && \
-    apt-get install -y -o Acquire::http::Pipeline-Depth="0" \
+    apt-get install -y \
         libc6:i386=2.28-10 \
         libncurses6:i386=6.1+20181013-2+deb10u2 \
         libstdc++6:i386=8.3.0-6 \
