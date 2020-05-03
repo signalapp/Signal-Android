@@ -22,6 +22,9 @@ RUN mkdir -p /usr/share/man/man1
 
 RUN dpkg --add-architecture i386 && \
     apt-get update && apt-get install -y \
+        android-sdk=25.0.0+11+deb10u1 \
+        android-sdk-build-tools=27.0.1+11+deb10u1 \
+        android-sdk-platform-tools=27.0.0+11+deb10u1 \
         git \
         lib32z1=1:1.2.11.dfsg-1 \
         libc6:i386=2.28-10 \
@@ -33,18 +36,3 @@ RUN dpkg --add-architecture i386 && \
         wget \
         && \
     rm -rf /var/lib/apt/lists/*
-
-ENV ANDROID_SDK_FILENAME android-sdk_r24.4.1-linux.tgz
-ENV ANDROID_SDK_URL https://dl.google.com/android/${ANDROID_SDK_FILENAME}
-ENV ANDROID_API_LEVELS android-28
-ENV ANDROID_BUILD_TOOLS_VERSION 28.0.3
-ENV ANDROID_HOME /usr/local/android-sdk-linux
-ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
-RUN cd /usr/local/ && \
-    wget -q ${ANDROID_SDK_URL} && \
-    tar --no-same-owner -xzf ${ANDROID_SDK_FILENAME} && \
-    rm ${ANDROID_SDK_FILENAME} 
-RUN echo y | android update sdk --no-ui -a --filter ${ANDROID_API_LEVELS}
-RUN echo y | android update sdk --no-ui -a --filter extra-android-m2repository,extra-android-support,extra-google-google_play_services,extra-google-m2repository
-RUN echo y | android update sdk --no-ui -a --filter tools,platform-tools,build-tools-${ANDROID_BUILD_TOOLS_VERSION}
-RUN rm -rf ${ANDROID_HOME}/tools
