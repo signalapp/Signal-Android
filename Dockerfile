@@ -22,15 +22,15 @@ RUN mkdir -p /usr/share/man/man1
 
 RUN dpkg --add-architecture i386 && \
     apt-get update && apt-get install -y \
+        git \
+        lib32z1=1:1.2.11.dfsg-1 \
         libc6:i386=2.28-10 \
         libncurses6:i386=6.1+20181013-2+deb10u2 \
         libstdc++6:i386=8.3.0-6 \
-        lib32z1=1:1.2.11.dfsg-1 \
-        wget \
         openjdk-11-jdk=11.0.7+10-3~deb10u1 \
-        git \
         opensc \
         pcscd \
+        wget \
         && \
     rm -rf /var/lib/apt/lists/*
 
