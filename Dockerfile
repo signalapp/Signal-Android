@@ -1,7 +1,6 @@
 FROM debian:buster-slim
 
-RUN apt-get update && \
-    apt-get install -y \
+RUN apt-get update && apt-get install -y \
         gpg
 
 COPY keys/snapshot.debian.org/buster.pubkey /etc/apt/buster.pubkey
@@ -22,8 +21,7 @@ RUN rm /etc/apt/sources.list && \
 RUN mkdir -p /usr/share/man/man1
 
 RUN dpkg --add-architecture i386 && \
-    apt-get update && \
-    apt-get install -y \
+    apt-get update && apt-get install -y \
         libc6:i386=2.28-10 \
         libncurses6:i386=6.1+20181013-2+deb10u2 \
         libstdc++6:i386=8.3.0-6 \
