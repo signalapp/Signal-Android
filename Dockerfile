@@ -30,7 +30,8 @@ RUN dpkg --add-architecture i386 && \
         openjdk-11-jdk=11.0.7+10-3~deb10u1 \
         git \
         opensc \
-        pcscd && \
+        pcscd \
+        && \
     rm -rf /var/lib/apt/lists/*
 
 ENV ANDROID_SDK_FILENAME android-sdk_r24.4.1-linux.tgz
