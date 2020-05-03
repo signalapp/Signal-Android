@@ -33,9 +33,7 @@ RUN dpkg --add-architecture i386 && \
         git \
         opensc \
         pcscd && \
-    rm -rf /var/lib/apt/lists/* && \
-    apt-get autoremove -y && \
-    apt-get clean
+    rm -rf /var/lib/apt/lists/*
 
 ENV ANDROID_SDK_FILENAME android-sdk_r24.4.1-linux.tgz
 ENV ANDROID_SDK_URL https://dl.google.com/android/${ANDROID_SDK_FILENAME}
