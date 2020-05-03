@@ -22,9 +22,6 @@ RUN mkdir -p /usr/share/man/man1
 
 RUN dpkg --add-architecture i386 && \
     apt-get update && apt-get install -y \
-        android-sdk=25.0.0+11+deb10u1 \
-        android-sdk-build-tools=27.0.1+11+deb10u1 \
-        android-sdk-platform-tools=27.0.0+11+deb10u1 \
         git \
         lib32z1=1:1.2.11.dfsg-1 \
         libc6:i386=2.28-10 \
@@ -33,6 +30,25 @@ RUN dpkg --add-architecture i386 && \
         openjdk-11-jdk=11.0.7+10-3~deb10u1 \
         opensc \
         pcscd \
+        unzip \
         wget \
         && \
     rm -rf /var/lib/apt/lists/*
+
+ENV ANDROID_SDK_FILENAME commandlinetools-linux-6200805_latest.zip
+ENV ANDROID_SDK_SHA f10f9d5bca53cc27e2d210be2cbc7c0f1ee906ad9b868748d74d62e10f2c8275
+ENV ANDROID_SDK_URL https://dl.google.com/android/repository/${ANDROID_SDK_FILENAME}
+ENV ANDROID_API_LEVELS android-28
+ENV ANDROID_BUILD_TOOLS_VERSION 28.0.3
+ENV ANDROID_HOME /usr/local/android-sdk-linux
+
+RUN wget -q ${ANDROID_SDK_URL} && \
+    echo ${ANDROID_SDK_SHA} ${ANDROID_SDK_FILENAME} | sha256sum -c \
+    unzip -q ${ANDROID_SDK_FILENAME} -d ${ANDROID_HOME} && \
+    rm ${ANDROID_SDK_FILENAME}
+
+ENV PATH ${PATH}:${ANDROID_HOME}/tools/bin
+RUN yes | sdkmanager --licenses --sdk_root=${ANDROID_HOME} && \
+    sdkmanager --install --sdk_root=${ANDROID_HOME} "platforms;${ANDROID_API_LEVELS}" && \
+    sdkmanager --install --sdk_root=${ANDROID_HOME} "build-tools;${ANDROID_BUILD_TOOLS_VERSION}" && \
+    sdkmanager --install --sdk_root=${ANDROID_HOME} "platform-tools"
