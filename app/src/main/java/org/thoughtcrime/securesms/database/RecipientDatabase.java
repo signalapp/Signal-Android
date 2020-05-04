@@ -400,7 +400,7 @@ public class RecipientDatabase extends Database {
       if (cursor != null && cursor.moveToNext()) {
         return getRecipientSettings(context, cursor);
       } else {
-        throw new MissingRecipientError(id);
+        throw new MissingRecipientException(id);
       }
     }
   }
@@ -1928,8 +1928,8 @@ public class RecipientDatabase extends Database {
     }
   }
 
-  public static class MissingRecipientError extends AssertionError {
-    public MissingRecipientError(@Nullable RecipientId id) {
+  public static class MissingRecipientException extends IllegalStateException {
+    public MissingRecipientException(@Nullable RecipientId id) {
       super("Failed to find recipient with ID: " + id);
     }
   }

@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.recipients;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.text.TextUtils;
 
 import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
@@ -12,14 +11,13 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase.MissingRecipientError;
+import org.thoughtcrime.securesms.database.RecipientDatabase.MissingRecipientException;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -61,12 +59,12 @@ public final class LiveRecipientCache {
 
       recipients.put(id, newLive);
 
-      MissingRecipientError prettyStackTraceError = new MissingRecipientError(newLive.getId());
+      MissingRecipientException prettyStackTraceError = new MissingRecipientException(newLive.getId());
 
       SignalExecutors.BOUNDED.execute(() -> {
         try {
           newLive.resolve();
-        } catch (MissingRecipientError e) {
+        } catch (MissingRecipientException e) {
           throw prettyStackTraceError;
         }
       });
@@ -88,11 +86,11 @@ public final class LiveRecipientCache {
         } else if (localE164 != null) {
           localRecipientId = recipientDatabase.getByE164(localE164).orNull();
         } else {
-          throw new AssertionError("Tried to call getSelf() before local data was set!");
+          throw new IllegalStateException("Tried to call getSelf() before local data was set!");
         }
 
         if (localRecipientId == null) {
-          throw new MissingRecipientError(localRecipientId);
+          throw new MissingRecipientException(localRecipientId);
         }
       }
     }
