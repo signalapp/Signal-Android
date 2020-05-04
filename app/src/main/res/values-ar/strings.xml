@@ -642,9 +642,18 @@
   <string name="MessageRecord_you_made_s_an_admin">لقد جعلت %1$s مشرفاً.</string>
   <string name="MessageRecord_s_made_s_an_admin">لقد جعل %1$s %2$s مشرفاً.</string>
   <string name="MessageRecord_s_made_you_an_admin">لقد جعلك %1$s مشرفاً.</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">لقد قمت بسحب امتيازات المشرف من %1$s .</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">قام %1$s  بإلغاء امتيازات المشرف الخاصة بك. \"</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">قام %1$s  بإلغاء امتيازات المشرف من %2$s.</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_invited_s_to_the_group">لقد دعوت %1$s إلى المجموعة.</string>
+  <string name="MessageRecord_s_invited_you_to_the_group">دعاك %1$s  إلى المجموعة.</string>
   <!--GV2 invitation revokes-->
+  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">رفض شخص ما دعوة إلى المجموعة.</string>
+  <string name="MessageRecord_you_declined_the_invitation_to_the_group">لقد رفضت الدعوة إلى المجموعة.</string>
   <!--GV2 invitation acceptance-->
+  <string name="MessageRecord_you_accepted_invite">لقد قبلت الدعوة إلى المجموعة.</string>
+  <string name="MessageRecord_s_accepted_invite">قبل %1$s  دعوة إلى المجموعة.</string>
   <!--GV2 title change-->
   <!--GV2 avatar change-->
   <!--GV2 attribute access level change-->

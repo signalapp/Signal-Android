@@ -274,7 +274,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Je kunt elk bericht naar rechts vegen om snel een reactie te schijven</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Je kunt elk bericht naar links vegen om snel een reactie te schijven</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Uitgaande eenmaligeweergave-media worden onmiddellijk gewist zodra ze zijn verzonden. Je kunt je eigen media dus niet terugzien. – Gebruik eenmaligeweergave-berichten niet ter beveiliging, want Signal kan niet garanderen dat een bericht op het apparaat van een ander daadwerkelijk wordt gewist.</string>
-  <string name="ConversationFragment_you_already_viewed_this_message">Je hebt dit bericht al weergegeven</string>
+  <string name="ConversationFragment_you_already_viewed_this_message">Je hebt dit eenmaligeweergave-bericht al weergegeven</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Je kunt in dit gesprek notities voor jezelf achterlaten. Als je gebruik maakt van gekoppelde apparaten dan zullen notities worden gesynchroniseerd.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Er is geen browser op je apparaat geïnstalleerd.</string>
