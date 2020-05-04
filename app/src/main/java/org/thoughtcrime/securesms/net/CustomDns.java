@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 
+import org.thoughtcrime.securesms.logging.Log;
 import org.xbill.DNS.ARecord;
 import org.xbill.DNS.Lookup;
 import org.xbill.DNS.Record;
@@ -22,6 +23,8 @@ import okhttp3.Dns;
  * A {@link Dns} implementation that specifies the hostname of a specific DNS.
  */
 public class CustomDns implements Dns {
+
+  private static final String TAG = Log.tag(CustomDns.class);
 
   private final String dnsHostname;
 
@@ -55,7 +58,8 @@ public class CustomDns implements Dns {
   private static @NonNull Lookup doLookup(@NonNull String hostname) throws UnknownHostException {
     try {
       return new Lookup(hostname);
-    } catch (TextParseException e) {
+    } catch (Throwable e) {
+      Log.w(TAG, e);
       throw new UnknownHostException();
     }
   }
