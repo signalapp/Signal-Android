@@ -1612,7 +1612,7 @@
   <string name="KbsReminderDialog__enter_your_signal_pin">輸入你的 Signal PIN 碼</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">為了幫助你記住PIN碼，我們會要求你定期輸入。 我們會漸漸地減少要求。</string>
   <string name="KbsReminderDialog__skip">略過</string>
-  <string name="KbsReminderDialog__submit">上傳</string>
+  <string name="KbsReminderDialog__submit">確定</string>
   <string name="KbsReminderDialog__forgot_pin">忘記 PIN 碼？</string>
   <string name="KbsReminderDialog__incorrect_pin_try_again">不正確的PIN碼。請再試一次。</string>
   <!--AccountLockedFragment-->
@@ -1697,7 +1697,7 @@
   <string name="RegistrationActivity_backup_timestamp_s">備份時間戳記：%s</string>
   <string name="BackupDialog_enable_local_backups">啟用本機備份？</string>
   <string name="BackupDialog_enable_backups">啟用備份</string>
-  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">確保你已了解，請標記確認核取框</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">確保你已了解，請標記確認檢查框。</string>
   <string name="BackupDialog_delete_backups">刪除備份？</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">關閉及刪除所有本機備份？</string>
   <string name="BackupDialog_delete_backups_statement">刪除備份</string>

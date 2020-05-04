@@ -1700,7 +1700,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Krei  PIN-on</string>
-  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">La informoj konservitaj ĉe Signal estas  ĉifritaj pere de PIN.</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">La informoj konservitaj ĉe Signal estas  ĉifritaj danke al PIN.</string>
   <string name="KbsMegaphone__create_pin">Krei  PIN-on</string>
   <string name="KbsMegaphone__introducing_pins">Jen la „persona identiga numero“ (PIN)</string>
   <string name="KbsMegaphone__update_pin">Ĝisdatigi PIN-on</string>

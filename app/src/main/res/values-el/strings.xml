@@ -600,6 +600,8 @@
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Αποδεχτήκατε την πρόσκληση στην ομάδα.</string>
   <string name="MessageRecord_s_accepted_invite">Ο/Η %1$s αποδέχτηκε την πρόσκληση στην ομάδα.</string>
+  <string name="MessageRecord_you_added_invited_member_s">Προσθέσατε τον/-ην %1$s.</string>
+  <string name="MessageRecord_s_added_invited_member_s">Ο/Η %1$s προσέθεσε τον/-ην %2$s.</string>
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">Αλλάξατε το όνομα της ομάδας σε \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">Ο/Η %1$s άλλαξε το όνομα της ομάδας σε \"%2$s\".</string>
@@ -1770,6 +1772,7 @@
   <string name="preferences_app_protection__create_a_pin">Δημιουργήστε ένα PIN</string>
   <string name="preferences_app_protection__change_your_pin">Αλλαγή του PIN σας</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Τα PIN κρατούν τις πληροφορίες που αποθηκεύονται στο Signal κρυπτογραφημένες, οπότε μόνο εσείς μπορείτε να έχετε πρόσβαση σε αυτές. Το προφίλ σας, οι ρυθμίσεις και οι επαφές να επαναφερθούν όταν επανεγκαταστήσετε το Signal.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Προσθέστε επιπλέον ασφάλεια απαιτώντας το Signal PIN σας για να εγγράψετε τον αριθμό τηλεφώνου σας στο Signal ξανά.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Αποτυχία ενεργοποίησης Κλειδώματος εγγραφής.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Αποτυχία απενεργοποίησης Κλειδώματος εγγραφής.</string>
   <string name="AppProtectionPreferenceFragment_none">Κανένα</string>

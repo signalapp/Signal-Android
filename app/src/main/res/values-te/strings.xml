@@ -42,6 +42,7 @@
   <string name="ApplicationPreferencesActivity_Off">ఆఫ్</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">ఎస్సెమ్మెస్ %1$s, ఎమ్మెమ్మెస్ %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">స్క్రీన్ లాక్ %1$s, నమోదు లాక్ %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">తెరకి తాళం%1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">థీమ్ %1$s, భాష %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -60,6 +61,8 @@
   <string name="AttachmentKeyboard_file">పత్రం</string>
   <string name="AttachmentKeyboard_contact">పరిచయం</string>
   <string name="AttachmentKeyboard_location">స్థానం</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">ఫోటోలు మరియు వీడియోలను చూపించేందుకు Signal కి అనుమతి కావాలి</string>
+  <string name="AttachmentKeyboard_give_access">అందుబాటు కల్పించు</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">మీడియా ఎంచుకోవడానికి అనువర్తనం దొరకదు.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">చిత్రాలు , వీడియోలు లేదా ఆడియోను అటాచ్ చేయడానికి Signal కు నిల్వ అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్ల మెనుకు కొనసాగండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"నిల్వ\" ను ప్రారంభించండి.</string>
@@ -74,8 +77,18 @@
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">నిరోధించిన పరిచయాలు</string>
   <!--BlockUnblockDialog-->
+  <string name="BlockUnblockDialog_block_and_leave_s">అడ్డగించు మరియు వదిలివేయి 1%1$s</string>
+  <string name="BlockUnblockDialog_block_s">అడ్డగించు 1%1$s</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">ఇకపై మీరు ఈ సమూహము నుండి సందేశాలను లేదా నవీకరణాలను అందుకోరు, మరియు సమూహములో ఉన్న వారు మిమ్మల్ని తిరిగి అందులో చేర్చలేరు.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">సమూహములో ఉన్న వారు మిమ్మల్ని తిరిగి అందులో చేర్చలేరు.</string>
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">సమూహములో ఉన్న వారు మిమ్మల్ని తిరిగి అందులో చేర్చగలరు.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">మీరు ఒకరికొకరు సందేశములు పంపుకోవచ్చు మరియు మాట్లాడుకోవచ్చు.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">అడ్డగింపబడిన వ్యక్తులు మీతో మాట్లాడడం లేదా మీకు సందేశములు పంపడం చేయలేరు.</string>
+  <string name="BlockUnblockDialog_unblock_s">అడ్డం తొలగించు 1%1$s</string>
   <string name="BlockUnblockDialog_unblock">అనుమతించు</string>
   <string name="BlockUnblockDialog_block">నిరోధించు</string>
+  <string name="BlockUnblockDialog_block_and_leave">అడ్డగించు మరియు వదిలివేయి</string>
+  <string name="BlockUnblockDialog_block_and_delete">అడ్డగించు మరియు తొలగించు</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">నేడు</string>
   <string name="BucketedThreadMedia_Yesterday">నిన్న</string>
@@ -109,11 +122,14 @@
   <string name="ClearProfileActivity_remove_profile_photo">రూపచిత్రం  తీసివేయాలా?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">వెబ్ బ్రౌజర్ కనుగొనబడలేదు.</string>
+  <string name="CommunicationActions_no_email_app_found">ఈమెయిల్ చేసే అనువర్తనం దొరకలేదు.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">సెల్యులార్ కాల్ ఇప్పటికే పురోగతిలో ఉంది.</string>
   <string name="CommunicationActions_start_video_call">వీడియో కాల్ ప్రారంభించాలా?</string>
   <string name="CommunicationActions_start_voice_call">వాయిస్ కాల్ ప్రారంభించాలా?</string>
   <string name="CommunicationActions_cancel">రద్దు</string>
   <string name="CommunicationActions_call">కాల్</string>
+  <string name="CommunicationActions_insecure_call">భద్రత లేని పిలుపు</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">ఖర్చు అవ్వచ్చు. మీరు పిలవతలుచుకున్న అంకె Signal తో అనుసంధానించి లేదు. ఈ పిలుపు అంతర్జాలం ద్వారా కాకుండా మామూలుగా చేయబడుతుంది.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">మీ భద్రత అంకె %1$s మర్చబడింధి.ధీని అర్ధం ఎమిటీ అంటె మీ సంభాషనని ఎవరొ అడ్డూకుంటునారు ,లేదా %2$s కేవలం Signal తిరిగి పునఃస్థాపన జరుగుతుంధి.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ఈ పరిచయంతో మీ భద్రత సంఖ్య ధ్రువీకరించాలనుకోవొచ్చు.</string>
@@ -154,6 +170,7 @@
   <string name="ConversationItem_read_more">  ఇంకా చదవండి</string>
   <string name="ConversationItem_download_more"> మరిన్ని డౌన్‌లోడ్ చేయండి </string>
   <string name="ConversationItem_pending">  పెండింగ్</string>
+  <string name="ConversationItem_this_message_was_deleted">ఈ సందేశం తొలగించబడింది.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question"> సురక్షిత  సెషన్ పునరుద్ధరించు ?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">మీకు ఈ సంభాషణ లో ఎన్క్రిప్షన్ సమస్యలు ఉన్నట్లయితే ఇది సహాయపడవచ్చు. మీ సందేశాలు ఉంచబడతాయి.</string>
@@ -206,7 +223,11 @@
   <string name="ConversationActivity_new_say_it_with_stickers">కొత్త! స్టిక్కర్లతో చెప్పండి</string>
   <string name="ConversationActivity_cancel">రద్దు</string>
   <string name="ConversationActivity_delete_conversation">సందేశాలను తొలగించాలా?</string>
+  <string name="ConversationActivity_delete_and_leave_group">సమూహం తొలగించేసి వదిలివేయాలా?</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">ఈ సంభాషణ మీ పరికరాల నుండి తొలగింపబడుద్ది.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">మీరు ఈ సమూహాన్ని వదిలి వెళతారు మరియు ఇది మీ పరికరాల నుండి తొలగింపబడుతుంది.</string>
   <string name="ConversationActivity_delete">తొలగించండి</string>
+  <string name="ConversationActivity_delete_and_leave">తొలగించు మరియు వదిలివేయి</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d చదవని సందేశం </item>
@@ -249,6 +270,8 @@
   <string name="ConversationFragment_sms">ఎస్సెమ్మెస్</string>
   <string name="ConversationFragment_deleting">తొలగిపోతున్నాయ్</string>
   <string name="ConversationFragment_deleting_messages">సందేశాలను తొలగిస్తోంది …</string>
+  <string name="ConversationFragment_delete_for_me">నాకు తొలగించు</string>
+  <string name="ConversationFragment_delete_for_everyone">అందరికి తొలగించు</string>
   <string name="ConversationFragment_quoted_message_not_found">అసలు సందేశం కనుగొనబడలేదు</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">అసలు సందేశం ఇకపై అందుబాటులో లేదు</string>
   <string name="ConversationFragment_failed_to_open_message">సందేశాన్ని తెరవడంలో విఫలమైంది</string>
@@ -280,6 +303,8 @@
     <item quantity="one">సంభాషణ ఇన్బాక్స్కు తరలించబడినది</item>
     <item quantity="other">%d సంభాషణలు ఇన్బాక్స్కు తరలించబడినవి</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_created">మీ రూపం యొక్క పేరు తయారు చేయబడింది.</string>
+  <string name="ConversationListFragment__your_profile_name_has_been_saved">మీ రూపం యొక్క పేరు భద్రపరచబడింది.</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">కీ  సందేశం మార్పిడి</string>
   <!--ConversationListItemAction-->
@@ -299,6 +324,9 @@
   <string name="CustomDefaultPreference_using_default">ఉపయోగించి అప్రమేయం: %s</string>
   <string name="CustomDefaultPreference_none">ఏదీ కాదు</string>
   <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">చిత్రము ఎంచుకో</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">చిత్రము తీయి</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">చిత్రశాల నుంచి ఎంచుకో</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">చిత్రం  తీసివేయండి</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">ఇప్పుడు</string>
@@ -331,6 +359,7 @@
 క్రియారహితంగా ఉన్నప్పుడు సందేశాలను పొందటం నుండి Signal నిరోధించే వ్యవస్థ బ్యాటరీ అనుకూలతలు డిసేబుల్ నొక్కండి.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">తో పంచు</string>
+  <string name="ShareActivity_multiple_attachments_are_only_supported">కేవలం ఛాయాచిత్రములు మరియు చలనచిత్రములు మాత్రమే ఒకటి కన్నా ఎక్కువ పంపగలం</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">సందేశాన్ని తిరిగి పొందుతోంది…</string>
   <!--GcmRefreshJob-->
@@ -357,6 +386,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">వారిని ఇందులో %1$sకలపలేము ఎందుకంటే వారు Signal వినియోగదరులు కారు</string>
   <string name="GroupCreateActivity_loading_group_details">సమూహ వివరాలను లోడ్ చేస్తోంది…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">మీరు ఇప్పటికే సమూహంలో ఉన్నారు.</string>
+  <string name="GroupCreateActivity_remove_member_description">సభ్యుడు లేదా సభ్యురాలిని తొలగించు</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">మీ రూపం పేరు మరియు చిత్రం  ఈ గ్రూపుతో షేర్ చేయాలా?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">మీరు మీ రూపం పేరు మరియు చిత్రం  ఈ సమూహం యొక్క అన్ని ప్రస్తుత మరియు భవిష్యత్తు సభ్యులకు కనిపించాలనుకుంటున్నారా?</string>
@@ -364,8 +394,36 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">మీరు</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">ఎవరైనా</string>
+  <string name="GroupManagement_access_level_all_members">సభ్యులందరు</string>
+  <string name="GroupManagement_access_level_only_admins">పరిపాలకులు మాత్రమే</string>
   <!--PendingMembersActivity-->
+  <string name="PendingMemberInvitesActivity_pending_group_invites">ఆమోదించవలసిన సమూహ ఆహ్వానములు</string>
+  <string name="PendingMembersActivity_people_you_invited">మీరు ఆహ్వానించినవారు</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">మీరు ఆమోదించవలసిన ఆహ్వానములు లేవు</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">మిగతా సమూహ సభ్యుల ఆహ్వానములు</string>
+  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">మిగతా సమూహ సభ్యుల ఆహ్వానములలో ఆమోదించవలసినవి లేవు</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">మిగతా సమూహ సభ్యులచే ఆహ్వానింపబడిన వ్యక్తుల వివరాలు చూపబడవు. ఆ వ్యక్తులు సమూహములో చేరినపుడు వారి వివరాలు పంచబడతాయి. వారు సమూహములో చేరనంత వరకు సమూహములోని సందేశములు చూడలేరు.</string>
+  <string name="PendingMembersActivity_cancel_invite">ఆహ్వానం రద్దుచేయి</string>
+  <string name="PendingMembersActivity_cancel_invites">ఆహ్వానములు రద్దుచేయి</string>
+  <plurals name="PendingMembersActivity_cancel_d_invites">
+    <item quantity="one">ఆహ్వానం రద్దుచేయి</item>
+    <item quantity="other">%1$d ఆహ్వానములు రద్దుచేయి</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_canceling_invite">
+    <item quantity="one">ఆహ్వానము రద్దుచేయడం కుదరలేదు</item>
+    <item quantity="other">ఆహ్వానములు రద్దుచేయడం కుదరలేదు</item>
+  </plurals>
+  <plurals name="GroupMemberList_invited">
+    <item quantity="one">%1$sఒక వ్యక్తిని ఆహ్వానించారు</item>
+    <item quantity="other">%1$s%2$dవ్యక్తులను ఆహ్వానించారు</item>
+  </plurals>
   <!--GV2 Invite cancellation confirmation-->
+  <string name="GroupManagement_cancel_own_single_invite">మీరు %1$s కి పంపిన ఆహ్వానము రద్దు చేయదలుచుకున్నారా?</string>
+  <plurals name="GroupManagement_cancel_others_invites">
+    <item quantity="one">మీరు %1$s పంపిన ఆహ్వానము రద్దు చేయదలుచుకున్నారా?</item>
+    <item quantity="other">మీరు %1$s పంపిన %2$d ఆహ్వానములు రద్దు చేయదలుచుకున్నారా?</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">గ్రూప్ అవతార్</string>
   <string name="CropImageActivity_profile_avatar">అవతారము</string>
@@ -450,7 +508,12 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$sనుండి%2$sవరకు పంపబడింది</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">మీరు పంపారు%1$s</string>
   <!--Megaphones-->
+  <string name="Megaphones_introducing_reactions">స్పందనలు పరిచయం చేస్తున్నాం</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">త్వరగా మీ భావనలను తెలియచేయడానికి ఏ ఒక్క సందేశమునైన నొక్కి పట్టుకోండి.</string>
   <string name="Megaphones_remind_me_later">తరువాత నాకు గుర్తు చేయండి</string>
+  <string name="Megaphones_verify_your_signal_pin">మీ Signal పిన్ ను నిర్ధారించండి</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">మీరు మీ పిన్ ను గుర్తుంచుకోవడానికి మేము అప్పుడప్పుడు పిన్ ను నిర్ధారించమని అడుగుతాము.</string>
+  <string name="Megaphones_verify_pin">పిన్ ను నిర్ధారించండి</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">పురోగతి లో Signal కాల్</string>
   <string name="NotificationBarManager__establishing_signal_call">స్థాపించబడుతున్న Signal కాల్</string>
@@ -503,16 +566,59 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s కనుమరుగవుతున్న సందేశాన్ని టైమర్కు సెట్ చేయండి %2$s.</string>
   <!--GV2 specific-->
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_added_s">మీరు %1$sని జోడించారు.</string>
+  <string name="MessageRecord_s_added_s">%1$s %2$sని జోడించారు.</string>
+  <string name="MessageRecord_s_added_you">%1$s మిమ్మల్ని సమూహానికి జోడించారు.</string>
+  <string name="MessageRecord_you_joined_the_group">మీరు సమూహములో చేరారు.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s సమూహంలొ చేరారు.</string>
   <!--GV2 member removals-->
+  <string name="MessageRecord_you_removed_s">మీరు %1$sని తొలగించారు</string>
+  <string name="MessageRecord_s_removed_s">%1$s %2$sని తొలగించారు</string>
+  <string name="MessageRecord_s_removed_you_from_the_group">మిమ్మల్ని %1$s సమూహములోనుండి తొలగించారు</string>
+  <string name="MessageRecord_you_left_the_group">మీరు సమూహన్ని విడిచిపెట్టారు</string>
+  <string name="MessageRecord_s_left_the_group">%1$s సమూహన్ని విడిచిపెట్టారు</string>
   <!--GV2 role change-->
+  <string name="MessageRecord_you_made_s_an_admin">మీరు %1$sని పరిపాలకుడిని చేశారు</string>
+  <string name="MessageRecord_s_made_s_an_admin">%1$s %2$sని పరిపాలకుడిని చేశారు</string>
+  <string name="MessageRecord_s_made_you_an_admin">మిమ్మల్ని %1$s పరిపాలకుడిని చేశారు</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">మీరు %1$s యొక్క పరిపాలనా యోగ్యతను తొలగించారు.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s మీ పరిపాలనా యోగ్యతను తొలగించారు.</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s %2$s యొక్క పరిపాలనా యోగ్యతను తొలగించారు.</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_invited_s_to_the_group">మీరు %1$sని సమూహానికి ఆహ్వానించారు.</string>
+  <string name="MessageRecord_s_invited_you_to_the_group">%1$s మిమ్మల్ని సమూహానికి ఆహ్వానించారు.</string>
+  <plurals name="MessageRecord_s_invited_members">
+    <item quantity="one">%1$s ఒక వ్యక్తిని సమూహానికి ఆహ్వానించారు.</item>
+    <item quantity="other">%1$s %2$d వ్యక్తులను సమూహానికి ఆహ్వానించారు.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
+  <plurals name="MessageRecord_you_revoked_invites">
+    <item quantity="one">మీరు ఒక సమూహ ఆహ్వానాన్ని వెనక్కి తీసుకున్నారు</item>
+    <item quantity="other">మీరు %1$d సమూహ ఆహ్వానములని వెనక్కి తీసుకున్నారు.</item>
+  </plurals>
+  <plurals name="MessageRecord_s_revoked_invites">
+    <item quantity="one"> %1$s ఒక సమూహ ఆహ్వానాన్ని వెనక్కి తీసుకున్నారు.</item>
+    <item quantity="other"> %1$s %2$d సమూహ ఆహ్వానములని వెనక్కి తీసుకున్నారు.</item>
+  </plurals>
+  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">ఎవరో సమూహ ఆహ్వానాన్ని తిరస్కరించారు.</string>
+  <string name="MessageRecord_you_declined_the_invitation_to_the_group">మీరు సమూహ ఆహ్వానాన్ని తిరస్కరించారు.</string>
   <!--GV2 invitation acceptance-->
+  <string name="MessageRecord_you_accepted_invite">మీరు సమూహ ఆహ్వానాన్ని ఆమోదించారు.</string>
+  <string name="MessageRecord_s_accepted_invite">%1$s సమూహ ఆహ్వానాన్ని ఆమోదించారు.</string>
+  <string name="MessageRecord_you_added_invited_member_s">మీరు ఆహ్వానింపబడిన %1$sని జోడించారు.</string>
+  <string name="MessageRecord_s_added_invited_member_s">%1$s ఆహ్వానింపబడిన %2$sని జోడించారు.</string>
   <!--GV2 title change-->
+  <string name="MessageRecord_you_changed_the_group_name_to_s">మీరు సమూహ పేరును \"%1$s\"కి మార్చారు. </string>
+  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s సమూహ పేరును \"%2$s\"కి మార్చారు. </string>
   <!--GV2 avatar change-->
+  <string name="MessageRecord_you_changed_the_group_avatar">మీరు సమూహ చిత్రాన్ని మార్చారు. </string>
+  <string name="MessageRecord_s_changed_the_group_avatar">%1$s సమూహ చిత్రాన్ని మార్చారు.</string>
   <!--GV2 attribute access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">మీరు సమూహ వివరాలను మార్చగలిగినవారు ని \"%1$s\"కు మార్చారు. </string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s సమూహ వివరాలను మార్చగలిగినవారు ని \"%2$s\"కు మార్చారు. </string>
   <!--GV2 membership access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">మీరు సమూహ సభ్యత్వాన్ని మార్చగలిగినవారు ని \"%1$s\"కు మార్చారు. </string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s సమూహ సభ్యత్వాన్ని మార్చగలిగినవారు ని \"%2$s\"కు మార్చారు. </string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">%s తో మీ భద్రత సంఖ్య మార్చబడింది.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">మీరు మీ భద్రతా నంబర్ను%s ధృవీకరించినట్లు గుర్తు పెట్టారు</string>
@@ -524,9 +630,21 @@
   <string name="MessageRequestBottomView_delete">తొలగించండి</string>
   <string name="MessageRequestBottomView_block">నిరోధించు</string>
   <string name="MessageRequestBottomView_unblock">అనుమతించు</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">మీరు %1$sని మీకు సందేశాలు పంపించగలమంటారా? మీరు అంగీకరించే వరకు మీరు వారి సందేశాలను చూశారని వారికి తెలియదు.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">మీరు %1$s సమూహంలో చేరాలనుకుంటున్నారా? మీరు అంగీకరించే వరకు మీరు వారి సందేశాలను చూశారని వారికి తెలియదు.</string>
+  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">ఒకరికొకరు సందేశములు పంపుకోవడానికి మరియు మాట్లాడుకోవడానికి %1$sకి అడ్డుతొలగించండి.</string>
+  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">సమూహములో ఉన్న వారు మిమ్మల్ని అందులో జోడించడానికి అడ్డుతొలగించండి.</string>
   <string name="MessageRequestProfileView_member_of_one_group">సభ్యుడు %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$sమరియు %2$sసభ్యుడు</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s,%2$s, మరియు%3$s సభ్యుడు</string>
+  <plurals name="MessageRequestProfileView_members">
+    <item quantity="one">%1$dసభ్యుడు</item>
+    <item quantity="other">%1$d సభ్యులు</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one"> %1$d సభ్యుడు (%2$d ఆహ్వానింపబడినవారు)</item>
+    <item quantity="other">%1$d సభ్యులు (+%2$d ఆహ్వానింపబడినవారు)</item>
+  </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%dఇతర</item>
     <item quantity="other">%dఇతరులు </item>
@@ -574,6 +692,8 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">గూగుల్ ఫ్లే సేవలు ఒక్క వివరణం సరిగ్గ పని చెయ్యటంలేదు. దయచేసి  గూగుల్ ఫ్లే సేవలను మరల నెలకొల్పండి.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">తప్పయిన పిన్</string>
+  <string name="PinRestoreEntryFragment_skip_pin_entry">పిన్ నమోదుని దాటవేయమంటారా?</string>
+  <string name="PinRestoreEntryFragment_need_help">సాయం అవసరమా?</string>
   <string name="PinRestoreEntryFragment_contact_support">మద్దతును సంప్రదించండి</string>
   <string name="PinRestoreEntryFragment_cancel">రద్దు</string>
   <string name="PinRestoreEntryFragment_skip">దాటవేయి</string>
@@ -727,6 +847,7 @@
   <string name="ThreadRecord_view_once_photo">ఒకసారి-దృశ్యం  ఫోటో</string>
   <string name="ThreadRecord_view_once_video">ఒకసారి-దృశ్యం వీడియో</string>
   <string name="ThreadRecord_view_once_media">ఒకసారి-దృశ్యం మీడియా</string>
+  <string name="ThreadRecord_this_message_was_deleted">ఈ సందేశం తొలగించబడింది.</string>
   <string name="ThreadRecord_s_is_on_signal">1%s Signal ఉంది!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">కనుమరుగవుతున్న సందేశాలు నిలిపివేయబడ్డాయి</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s"> కనుమరుగవుథున సంధెషం కొరకు సమయం కుర్చుత కొసం %s</string>
@@ -835,6 +956,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">మీ వీక్షణ-ఒకసారి ఫోటోకు %1$s ప్రతిస్పందించింది.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">మీ వీక్షణ-ఒకసారి వీడియోకు %1$s ప్రతిస్పందించింది.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">మీ స్టిక్కర్‌కు %1$s స్పందించింది.</string>
+  <string name="MessageNotifier_this_message_was_deleted">ఈ సందేశం తొలగించబడింది.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">అప్రమేయం</string>
   <string name="NotificationChannel_calls">కాల్స్</string>
@@ -1159,6 +1281,7 @@
   <string name="HelpFragment__help">సహాయం</string>
   <string name="HelpFragment__next">తరువాత</string>
   <string name="HelpFragment__signal_support">Signal మద్దతు</string>
+  <string name="HelpFragment__no_email_app_found">ఈమెయిల్ చేసే అనువర్తనం దొరకలేదు.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">దిగుమతి</string>
   <string name="arrays__use_default"> అప్రమేయం ఉపయోగించు</string>

@@ -73,7 +73,7 @@
   <string name="AttachmentKeyboard_file">ملف</string>
   <string name="AttachmentKeyboard_contact">جهة اتصال</string>
   <string name="AttachmentKeyboard_location">موقع جغرافي</string>
-  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">يحتاج Signal إلى الإذن لعرض صورك ومرئياتك.</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">تحتاج Signal إلى إذن لإظهار الصور ومقاطع الفيديو الخاصة بك.</string>
   <string name="AttachmentKeyboard_give_access">امنح الصلاحيات</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">لم يتم العثور على تطبيق لاختيار ملف.</string>
@@ -89,15 +89,17 @@
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">جهات الاتصال المحظورة</string>
   <!--BlockUnblockDialog-->
-  <string name="BlockUnblockDialog_block_and_leave_s">حظر ومغادرة %1$s؟</string>
+  <string name="BlockUnblockDialog_block_and_leave_s">حظر و مغادرة %1$s؟</string>
   <string name="BlockUnblockDialog_block_s">حظر %1$s؟</string>
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">لن تستقبل بعد الآن رسائل أو تحديثات من هذه المجموعة، ولن يتمكن الأعضاء من إضافتك مرة أخرى إلى هذه المجموعة.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">لن يتمكن أعضاء المجموعة من إضافتك إلى مجموعتهم مرة أخرى.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">سيتمكن أعضاء المجموعة من إضافتك في مجموعتهم مرة أخرى.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">ستتمكن من التراسل والحديث مع بعضكما.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">لن يتمكن الأشخاص المحظورون من الاتصال بك ولا إرسال الرسائل إليك.</string>
   <string name="BlockUnblockDialog_unblock_s">إلغاء حظر %1$s؟</string>
   <string name="BlockUnblockDialog_unblock">رفع الحظر</string>
   <string name="BlockUnblockDialog_block">حظر</string>
+  <string name="BlockUnblockDialog_block_and_delete">حظر و حذف</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">اليوم</string>
   <string name="BucketedThreadMedia_Yesterday">البارحة</string>
@@ -178,6 +180,7 @@
   <string name="ConversationItem_read_more">  قراءة المزيد</string>
   <string name="ConversationItem_download_more">  تحميل المزيد</string>
   <string name="ConversationItem_pending">  معلّق</string>
+  <string name="ConversationItem_this_message_was_deleted">تم حذف هذه الرسالة.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">إعادة ضبط جلسة آمنة؟</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">سوف يتم الاحتفاظ برسائلك. هذا قد يساعد في حال وجود مشاكل في التشفير بهذه المحادثة.</string>
@@ -439,8 +442,21 @@
   <string name="GroupMembersDialog_you">أنت</string>
   <!--GV2 access levels-->
   <string name="GroupManagement_access_level_all_members">كل الأعضاء</string>
+  <string name="GroupManagement_access_level_only_admins">للمشرفين فقط</string>
   <!--PendingMembersActivity-->
+  <string name="PendingMembersActivity_people_you_invited">الأشخاص الذين دعوتهم</string>
+  <string name="PendingMembersActivity_cancel_invite">إلغاء الدعوة</string>
+  <string name="PendingMembersActivity_cancel_invites">إلغاء الدعوات</string>
   <!--GV2 Invite cancellation confirmation-->
+  <string name="GroupManagement_cancel_own_single_invite">هل تريد إلغاء الدعوة التي أرسلتها إلى %1$s؟</string>
+  <plurals name="GroupManagement_cancel_others_invites">
+    <item quantity="zero">هل تريد إلغاء %2$d من الدعوات المرسلة من طرف %1$s ؟</item>
+    <item quantity="one">هل تريد إلغاء الدعوة التي أرسلتها إلى %1$s؟</item>
+    <item quantity="two">هل تريد إلغاء %2$d من الدعوات المرسلة من طرف %1$s ؟</item>
+    <item quantity="few">هل تريد إلغاء %2$d من الدعوات المرسلة من طرف %1$s ؟</item>
+    <item quantity="many">هل تريد إلغاء %2$d من الدعوات المرسلة من طرف %1$s ؟</item>
+    <item quantity="other">هل تريد إلغاء %2$d من الدعوات المرسلة من طرف %1$s ؟</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">الصورة الرمزية للمجموعة</string>
   <string name="CropImageActivity_profile_avatar">الصورة الرمزية</string>
@@ -611,9 +627,21 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s حدد مدّة ظهور الرّسائل قبل اختفائها ب %2$s.</string>
   <!--GV2 specific-->
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_added_s">أضفت %1$s.</string>
+  <string name="MessageRecord_s_added_s">%1$s أضاف %2$s.</string>
+  <string name="MessageRecord_s_added_you">%1$s أضافك إلى المجموعة.</string>
+  <string name="MessageRecord_you_joined_the_group">لقد انضممت إلى المجموعة.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s انضموا إلى المجموعة.</string>
   <!--GV2 member removals-->
+  <string name="MessageRecord_you_removed_s">لقد قمت بإزالة %1$s .</string>
+  <string name="MessageRecord_s_removed_s">%1$s أزال %2$s .</string>
+  <string name="MessageRecord_s_removed_you_from_the_group"> %1$s أزالك من المجموعة.</string>
+  <string name="MessageRecord_you_left_the_group">لقد تركت المجموعة.</string>
+  <string name="MessageRecord_s_left_the_group"> %1$s ترك المجموعة.</string>
   <!--GV2 role change-->
+  <string name="MessageRecord_you_made_s_an_admin">لقد جعلت %1$s مشرفاً.</string>
+  <string name="MessageRecord_s_made_s_an_admin">لقد جعل %1$s %2$s مشرفاً.</string>
+  <string name="MessageRecord_s_made_you_an_admin">لقد جعلك %1$s مشرفاً.</string>
   <!--GV2 invitations-->
   <!--GV2 invitation revokes-->
   <!--GV2 invitation acceptance-->
@@ -866,6 +894,7 @@
   <string name="ThreadRecord_view_once_photo">صورة لمشاهدة لمرة واحدة</string>
   <string name="ThreadRecord_view_once_video">فيديو لمشاهدة لمرة واحدة</string>
   <string name="ThreadRecord_view_once_media">وسيط لمشاهدة لمرة واحدة</string>
+  <string name="ThreadRecord_this_message_was_deleted">تم حذف هذه الرسالة.</string>
   <string name="ThreadRecord_s_is_on_signal">%sمتواجد على Signal !</string>
   <string name="ThreadRecord_disappearing_messages_disabled">الرسائل المختفية غير مفعّلة</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">ضبط توقيت إخفاء الرسائل إلى %s</string>
@@ -975,6 +1004,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">تفاعل %1$s مع الصورة لمشاهدة-واحدة الخاصّة بك.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">تفاعل %1$s مع فيديو المشاهدة-لمرة واحدة الخاص بك.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">تم تفاعل %1$s مع الملصق الخاص بك.</string>
+  <string name="MessageNotifier_this_message_was_deleted">تم حذف هذه الرسالة.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">افتراضي</string>
   <string name="NotificationChannel_calls">المُكالمات</string>

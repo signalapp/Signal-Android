@@ -129,6 +129,7 @@
   <string name="CommunicationActions_cancel">Loobu</string>
   <string name="CommunicationActions_call">Helista</string>
   <string name="CommunicationActions_insecure_call">Ebaturvaline kõne</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Võivad rakenduda mobiilioperaatori tasud. Number, millele helistate, pole Signal-is registreeritud. See kõne tehakse teie mobiilioperaatori, mitte Interneti kaudu.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Sinu turvanumber kontaktiga %1$s on muutunud. See võib tähendada, et keegi proovib sinu vestlusesse sekkuda või et %2$s lihtsalt taasinstallis Signali.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Sa võid tahta kinnitada oma turvanumbrit selle kontaktiga.</string>
@@ -689,6 +690,7 @@
   <string name="PinRestoreEntryFragment_incorrect_pin">Sobimatu PIN-kood</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">Kas jätta PIN-koodi sisestamine vahele?</string>
   <string name="PinRestoreEntryFragment_need_help">Kas vajad abi?</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Sinu PIN-kood on sinu loodud %1$d-kohaline kood, mis võib olla numbriline või tähtnumbriline.\n\nKui sa ei mäleta oma PIN-koodi, saad luua uue. Saad oma kontot registreerida ja kasutada, kuid kaotad mõned salvestatud sätted, näiteks oma profiiliteabe.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Kui sa ei mäleta oma PIN-koodi, saad luua uue. Saad oma kontot registreerida ja kasutada, kuid kaotad mõned salvestatud seaded, näiteks oma profiiliteabe.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Loo uus PIN-kood</string>
   <string name="PinRestoreEntryFragment_contact_support">Võta ühendust kasutajatoega</string>
@@ -856,6 +858,7 @@
   <string name="SubmitDebugLogActivity_submit">Postita</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Silumislogi postitamine ei õnnestunud</string>
   <string name="SubmitDebugLogActivity_success">Õnnestus!</string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopeeri see aadress ja lisa oma probleemiteatesse või toe e-kirja:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Lõikelauale kopeeritud</string>
   <string name="SubmitDebugLogActivity_ok">OK</string>
   <string name="SubmitDebugLogActivity_share">Jaga</string>
@@ -1304,9 +1307,11 @@
   <string name="AndroidManifest_remove_photo">Eemalda pilt</string>
   <!--Message Requests Megaphone-->
   <string name="MessageRequestsMegaphone__message_requests">Sõnumisoovid</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Kasutajad saavad nüüd valida, kas nõustuvad uue vestlusega. Profiilinimed võimaldavad inimestel teada, kes nendega suhtleb.</string>
   <string name="MessageRequestsMegaphone__add_profile_name">Lisa profiilinimi</string>
   <string name="MessageRequestsMegaphone__new_message_requests">Uus: sõnumisoovid</string>
   <string name="MessageRequestsMegaphone__add_name">Lisa nimi</string>
+  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Saad nüüd valida, kas nõustuda uue vestlusega. Näed valikud \"Nõustu\", \"Kustuta\" või \"Blokeeri\".</string>
   <!--HelpFragment-->
   <string name="HelpFragment__help">Abi</string>
   <string name="HelpFragment__have_you_read_our_faq_yet">Kas oled juba meie KKK-d lugenud?</string>
@@ -1327,6 +1332,7 @@
   <string name="HelpFragment__na">puudub</string>
   <string name="HelpFragment__could_not_upload_logs">Logide üleslaadimine ei õnnestunud</string>
   <string name="HelpFragment__signal_support">Signal-i kasutajatugi</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">Palun ole võimalikult kirjeldav, et aidata meil probleemist aru saada.</string>
   <string name="HelpFragment__no_email_app_found">E-posti rakendust ei leitud.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Impordi</string>
@@ -1632,7 +1638,7 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">Loo uus PIN-kood</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">PIN-koodi saab muuta senikaua kuni see seade on registreeritud.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Loo enda PIN-kood</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-koodid hoiavad Signal-is salvestatud teabe krüptituna, et ainult sinul on sellele juurdepääs. Kui paigaldad Signal-i uuesti, sii sinu profiil, sätted ja kontaktid taastatakse.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-koodid hoiavad Signal-is salvestatud teabe krüptituna, et ainult sinul on sellele juurdepääs. Kui paigaldad Signal-i uuesti, siis sinu profiil, sätted ja kontaktid taastatakse.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-koodid pole samad. Proovi uuesti.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Kinnita enda PIN-kood.</string>
@@ -1643,20 +1649,23 @@
   <string name="ConfirmKbsPinFragment__creating_pin">PINi loomine…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Tutvustame PIN-koode</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN-koodid hoiavad Signal-is salvestatud teabe krüptituna, et ainult sinul on sellele juurdepääs. Kui paigaldad Signal-i uuesti, sii sinu profiil, sätted ja kontaktid taastatakse.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN-koodid hoiavad Signal-is salvestatud teabe krüptituna, et ainult sinul on sellele juurdepääs. Kui paigaldad Signal-i uuesti, siis sinu profiil, sätted ja kontaktid taastatakse.</string>
   <string name="KbsSplashFragment__learn_more">Uuri täpsemalt</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registreerimislukk = PIN-kood</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Sinu registreerimislukk on nüüd PIN-kood ja see teeb rohkemgi. Uuenda seda nüüd.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Loe ähemalt PIN-koodide kohta.</string>
   <string name="KbsSplashFragment__update_pin">Uuenda PINi</string>
   <string name="KbsSplashFragment__create_your_pin">Loo enda PIN-kood</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Sisesta Signal-i PIN-kood</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">PIN-koodi meeldejätmise aitamiseks palume sul seda aeg-ajalt sisestada. Aja möödudes küsime seda harvem.</string>
   <string name="KbsReminderDialog__skip">Jäta vahele</string>
   <string name="KbsReminderDialog__submit">Postita</string>
   <string name="KbsReminderDialog__forgot_pin">Unustasid PINi?</string>
   <string name="KbsReminderDialog__incorrect_pin_try_again">Lubamatu PIN-kood. Proovi uuesti.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Konto lukustatud</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Sinu konto on sinu privaatsuse ja turvalisuse kaitseks lukustatud. Pärast %1$d päeva mitteaktiivsust sinu kontol on sul võimalik see telefoninumber ilma PIN-koodi vajamata uuesti registreerida. Kogu sisu eemaldatakse.</string>
   <string name="AccountLockedFragment__next">Edasi</string>
   <string name="AccountLockedFragment__learn_more">Uuri täpsemalt</string>
   <!--KbsLockFragment-->
@@ -1669,6 +1678,19 @@
   <string name="RegistrationLockFragment__forgot_pin">Unustasid PINi?</string>
   <string name="RegistrationLockFragment__incorrect_pin">Sobimatu PIN-kood</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Kas unustasid PIN-koodi?</string>
+  <string name="RegistrationLockFragment__not_many_tries_left">Palju katseid pole enam jäänud!</string>
+  <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
+    <item quantity="one">Sinu privaatsuse ja turvalisuse huvides ei ole võimalik sinu PIN-koodi taastada. Kui sa ei suuda PIN-koodi meenutada, siis on sul võimalik pärast %1$d päeva konto mitteaktiivsust võimalik uuesti SMS-i abil kinnitada. Sellisel juhul su konto tühjendatakse ja kogu sisu eemaldatakse.</item>
+    <item quantity="other">Sinu privaatsuse ja turvalisuse huvides ei ole võimalik sinu PIN-koodi taastada. Kui sa ei suuda PIN-koodi meenutada, siis on sul võimalik pärast %1$d päeva konto mitteaktiivsust võimalik uuesti SMS-i abil kinnitada. Sellisel juhul su konto tühjendatakse ja kogu sisu eemaldatakse.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
+    <item quantity="one">Lubamatu PIN-kood. %1$d katse jäänud.</item>
+    <item quantity="other">Lubamatu PIN-kood. %1$d katse jäänud.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
+    <item quantity="one">Kui sul saavad katsed otsa, siis lukustatakse su konto %1$d päevaks. pärast %1$d päeva konto mitteaktiivsust on sul võimalik konto uuesti registreerida ilma PIN-koodita. Konto tühjendatakse ja kogu sisu kustutatakse.</item>
+    <item quantity="other">Kui sul saavad katsed otsa, siis lukustatakse su konto %1$d päevaks. pärast%1$d päeva konto mitteaktiivsust on sul võimalik konto uuesti registreerida ilma PIN-koodita. Konto tühjendatakse ja kogu sisu kustutatakse.</item>
+  </plurals>
   <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
     <item quantity="one">Sul on %1$d katse jäänud.</item>
     <item quantity="other">Sul on %1$d katset jäänud.</item>
@@ -1715,6 +1737,7 @@
   <string name="preferences_chats__backup_chats_to_external_storage">Varunda vestlused välismällu</string>
   <string name="preferences_chats__create_backup">Loo varundus</string>
   <string name="preferences_chats__verify_backup_passphrase">Kinnita varunduse salaväljend</string>
+  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Testi oma varukoopia salaväljendit ja kinnita, et see vastab.</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Sisesta varunduse salaväljend</string>
   <string name="RegistrationActivity_restore">Taasta</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Uuematest Signali versioonidest ei saa varundusi importida</string>
@@ -1732,7 +1755,10 @@
   <string name="BackupDialog_disable_and_delete_all_local_backups">Kustuta ja keela kõik kohalikud varundused?</string>
   <string name="BackupDialog_delete_backups_statement">Kustuta varundused</string>
   <string name="BackupDialog_copied_to_clipboard">Lõikelauale kopeeritud</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">Kinnitamiseks sisesta salaväljend</string>
   <string name="BackupDialog_verify">Kinnita</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Sisestasid varukoopia salaväljendi edukalt</string>
+  <string name="BackupDialog_passphrase_was_not_correct">Salaväljend ei olnud õige</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal vajab välismälu õigust, et luua varundusi, ent see on püsivalt keelatud. Palun jätka rakenduse seadetes, vali \"Load\" ning luba \"Mäluruum\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Viimane varundus: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Töötamisel</string>
@@ -1752,7 +1778,8 @@
   <string name="preferences_app_protection__signal_pin">Signali PIN</string>
   <string name="preferences_app_protection__create_a_pin">Loo PIN</string>
   <string name="preferences_app_protection__change_your_pin">Muuda enda PIN-koodi</string>
-  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-koodid hoiavad Signal-is salvestatud teabe krüptituna, et ainult sinul on sellele juurdepääs. Kui paigaldad Signal-i uuesti, sii sinu profiil, sätted ja kontaktid taastatakse.</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-koodid hoiavad Signal-is salvestatud teabe krüptituna, et ainult sinul on sellele juurdepääs. Kui paigaldad Signal-i uuesti, siis sinu profiil, sätted ja kontaktid taastatakse.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Lisa turvalisust, nõudes selle telefoninumbri Signal-is uuesti registreerimiseks Signal-i PIN-koodi.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Registreerimisluku lubamine ei õnnestunud.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Registreerimisluku keelamine ei õnnestunud.</string>
   <string name="AppProtectionPreferenceFragment_none">Puudub</string>

@@ -269,7 +269,7 @@
   <string name="ConversationFragment_delete_for_me">حذف برای من</string>
   <string name="ConversationFragment_delete_for_everyone">حذف برای همه</string>
   <string name="ConversationFragment_quoted_message_not_found">پیام اصلی یافت نشد</string>
-  <string name="ConversationFragment_quoted_message_no_longer_available">پیام اصلی دیگر موجود نمی باشد</string>
+  <string name="ConversationFragment_quoted_message_no_longer_available">پیام اصلی دیگر در دسترس نیست</string>
   <string name="ConversationFragment_failed_to_open_message">عدم موفقیت در باز کردن پیام</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">برای پاسخ دهی سریع روی هر پیام به سمت راست بکشید</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">برای پاسخ دهی سریع روی هر پیام به سمت چپ بکشید</string>
@@ -325,7 +325,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">انتخاب از گالری</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">حذف عکس</string>
   <!--DateUtils-->
-  <string name="DateUtils_just_now">الان</string>
+  <string name="DateUtils_just_now">الآن</string>
   <string name="DateUtils_minutes_ago">%d دقیقه</string>
   <string name="DateUtils_today">امروز</string>
   <string name="DateUtils_yesterday">دیروز</string>
@@ -378,7 +378,7 @@
   <string name="GroupCreateActivity_menu_apply_button">اعمال</string>
   <string name="GroupCreateActivity_creating_group">ایجاد %1$s…</string>
   <string name="GroupCreateActivity_updating_group">به روز رسانی %1$s…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">امکان افزودن %1$s وجود ندارد چون کاربر Signal نمی باشد.</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">امکان افزودن این کاربر وجود ندارد چون %1$s کاربر Signal نیست.</string>
   <string name="GroupCreateActivity_loading_group_details">بارگذاری جزئیات گروه…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">شما در حال حاضر در این گروه هستید.</string>
   <string name="GroupCreateActivity_remove_member_description">حذف عضو گروه</string>
@@ -420,8 +420,8 @@
     <item quantity="other">آیا می‌خواهید %2$d دعوت ارسال‌شده از جانب %1$s را لغو کنید؟</item>
   </plurals>
   <!--CropImageActivity-->
-  <string name="CropImageActivity_group_avatar">چهرک گروه</string>
-  <string name="CropImageActivity_profile_avatar">چهرک</string>
+  <string name="CropImageActivity_group_avatar">عکس گروه</string>
+  <string name="CropImageActivity_profile_avatar">عکس</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">برای ضبط کردن پیام صوتی ضربه زده و نگه دارید، برای ارسال رها کنید</string>
   <!--InviteActivity-->
@@ -534,7 +534,7 @@
   <string name="MediaSendActivity_message">پیام</string>
   <string name="MediaSendActivity_select_recipients">گیرندگان را انتخاب کنید</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">برای اینکه Signal مخاطبان شما ره نمایش دهد نیاز دارد به آنها دسترسی داشته باشد.</string>
-  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">برای اینکه Signal مخاطبان شما را به شما نشان دهد، نیاز دارد تا به مخاطبان دسترسی داشته باشد، اما این اجازه به صورت دائمی رد شده است. لطفاً به قسمت تنظیمات برنامه رفته، \"مجوز ها\" را انتخاب کنید، و \"مخاطبان\" را فعال کنید.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal برای نشان دادن مخاطبان شما نیاز به دسترسی به مخاطبان دارد، اما این دسترسی داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «مخاطبان» را فعال کنید.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">شما نمی توانید بیش از %d مورد را به اشتراک بگذارید.</item>
     <item quantity="other">شما نمی توانید بیش از %d مورد را به اشتراک بگذارید.</item>
@@ -554,7 +554,7 @@
   <string name="MessageRecord_s_called_you">%s با شما تماس گرفت</string>
   <string name="MessageRecord_called_s">با %s تماس گرفته شد</string>
   <string name="MessageRecord_missed_call_from">تماس از دست رفته از %s</string>
-  <string name="MessageRecord_s_joined_signal">%s روی Signal می باشد!</string>
+  <string name="MessageRecord_s_joined_signal">%s در Signal است!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">شما پیام های ناپدید شونده را غیر فعال کردید.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s پیام های ناپدید شونده را غیرفعال کرد.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">شما زمان سنج پیام های ناپدید شونده را روی %1$s تنظیم کردید.</string>
@@ -661,7 +661,7 @@
   <string name="DeviceProvisioningActivity_content_progress_content">پیوند دهی دستگاه جدید…</string>
   <string name="DeviceProvisioningActivity_content_progress_success">دستگاه تایید شد!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">هیچ دستگاهی یافت نشد.</string>
-  <string name="DeviceProvisioningActivity_content_progress_network_error">خطا شبکه.</string>
+  <string name="DeviceProvisioningActivity_content_progress_network_error">خطای شبکه.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">کد QR نامعتبر است.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">پوزش، تا کنون دستگاه‌های زیادی را پیوند داده‌اید، سعی کنید برخی از آن‌ها را حذف کنید.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">متاسفانه این کد QR برای اتصال دستگاه معتبر نيست.</string>
@@ -681,7 +681,7 @@
   <string name="PassphrasePromptActivity_unlock_signal">باز کردن قفل Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">نقشه</string>
-  <string name="PlacePickerActivity_not_a_valid_address">نشانی معتبر نمی باشد</string>
+  <string name="PlacePickerActivity_not_a_valid_address">آدرس معتبر نیست</string>
   <string name="PlacePickerActivity_drop_pin">قرار دادن نشانگر</string>
   <string name="PlacePickerActivity_accept_address">پذیرش نشانی</string>
   <!--PlayServicesProblemFragment-->
@@ -753,7 +753,7 @@
   <string name="RegistrationActivity_invalid_number">شماره نامعتبر</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">شماره‌ای که شما
 مشخص کرده‌اید (%s) معتبر نیست.</string>
-  <string name="RegistrationActivity_missing_google_play_services">سرویس های گوگل پلی موجود نمی باشد</string>
+  <string name="RegistrationActivity_missing_google_play_services">سرویس‌های گوگل پلی موجود نیستند</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">این دستگاه فاقد خدمات Google Play است. شما می‌توانید به استفاده از Signal ادامه دهید، اما این پیکربندی می‌تواند باعث کاهش اطمینان‌پذیری یا عملکرد شود.\n\n اگر یک کاربر حرفه‌ای یا در حال اجرای یک ROM سفارشی اندروید نیستید یا فکر می‌کنید که این پیام به اشتباه به شما نشان داده شده است، برای دریافت کمک در فرآیند عیب‌یابی با support@signal.org تماس بگیرید.</string>
   <string name="RegistrationActivity_i_understand">می فهمم</string>
   <string name="RegistrationActivity_play_services_error">خطا پلی استور</string>
@@ -837,7 +837,7 @@
   <string name="StickerManagementAdapter_installed_stickers">استیکر های نصب شده</string>
   <string name="StickerManagementAdapter_stickers_you_received">استیکر هایی که دریافت کردید</string>
   <string name="StickerManagementAdapter_signal_artist_series">سری های هنرمند Signal</string>
-  <string name="StickerManagementAdapter_no_stickers_installed">هیچ استیکری نصب نمی باشد</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">هیچ استیکری نصب نشده است</string>
   <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">استیکر هایی که از پیام های ورودی دریافت می شوند اینجا نمایش داده خواهند شد</string>
   <string name="StickerManagementAdapter_untitled">بدون نام</string>
   <string name="StickerManagementAdapter_unknown">ناشناخته</string>
@@ -880,7 +880,7 @@
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">شمارهٔ امنیتی شما با %s تغییر یافت.</string>
   <string name="ThreadRecord_you_marked_verified">شما تایید شده علامت زدید</string>
   <string name="ThreadRecord_you_marked_unverified">شما تایید نشده علامت زدید</string>
-  <string name="ThreadRecord_message_could_not_be_processed">پیام قابل پردازش نمی باشد</string>
+  <string name="ThreadRecord_message_could_not_be_processed">پیام قابل پردازش نیست</string>
   <string name="ThreadRecord_message_request">درخواست تبادل پیام</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s شما را به گروه اضافه کرد</string>
   <!--UpdateApkReadyListener-->
@@ -933,7 +933,7 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">بی‌صدا کردن اعلان‌‌ها</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_no_web_browser_installed">هیچ مرورگر اینترنتی نصب نمی باشد!</string>
+  <string name="OutdatedBuildReminder_no_web_browser_installed">هیچ مرورگر اینترنتی نصب نشده است!</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">درون برد در حال انجام</string>
   <string name="ApplicationMigrationService_importing_text_messages">درون برد پیام های متنی</string>
@@ -995,7 +995,7 @@
   <string name="NotificationChannel_missing_display_name">ناشناخته</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">نام نمایه با موفقیت تنظیم شد.</string>
-  <string name="ProfileEditNameFragment_encountered_a_network_error">خطا شبکه رخ داد.</string>
+  <string name="ProfileEditNameFragment_encountered_a_network_error">خطای شبکه رخ داد.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">پاسخ سریع هنگام قفل بودن Signal در دسترس نیست!</string>
   <string name="QuickResponseService_problem_sending_message">خطا در ارسال پیام!</string>
@@ -1019,7 +1019,7 @@
     <item quantity="other">%d مورد</item>
   </plurals>
   <!--UnauthorizedReminder-->
-  <string name="UnauthorizedReminder_device_no_longer_registered">این دستگاه دیگر ثبت شده نمی باشد</string>
+  <string name="UnauthorizedReminder_device_no_longer_registered">این دستگاه دیگر ثبت شده نیست</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">این احتمالا به این خاطر است که شما شماره تلفن خود در Signal را روی یک دستگاه دیگر ثبت کرده‌اید. برای ثبت نام مجدد ضربه بزنید.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">خطا در پخش ویدئو</string>
@@ -1027,7 +1027,7 @@
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">برای پاسخ به تماس %s، به Signal اجازهٔ دسترسی به میکروفون خود را بدهید.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal برای برقراری و دریافت تماس نیاز مجوزهای میکروفون و دوربین دارد، اما دسترسی به آن‌ها به طور دائمی لغو شده است. لطفاً به تنظیمات برنامه رفته، در قسمت \"مجوزها\"، \"میکروفون\" و \"دوربین\" را فعال کنید.</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">شماره امنیتی مکالمه شما با %1$s تغییر یافته است. این میتواند به این معنا باشد که شخصی سعی دارد تا مکالمه شما را شنود کند، یا %2$s برنامه Signal را دوباره نصب کرده است.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers">شمارهٔ امنیتی مکالمهٔ شما با %1$s تغییر یافته است. این می‌تواند به این معنا باشد که شخصی سعی دارد تا مکالمه شما را شنود کند یا %2$s برنامهٔ Signal را دوباره نصب کرده است.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">شاید بخواهید شماره امتیتی خود را با این مخاطب تایید کنید.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">شماره امنیتی جدید</string>
   <string name="WebRtcCallScreen_accept">پذیرش</string>
@@ -1052,8 +1052,8 @@
   <string name="attachment_type_selector__camera_description">دوربین</string>
   <string name="attachment_type_selector__location">موقعیت</string>
   <string name="attachment_type_selector__location_description">موقعیت</string>
-  <string name="attachment_type_selector__gif">جیف</string>
-  <string name="attachment_type_selector__gif_description">جیف</string>
+  <string name="attachment_type_selector__gif">گیف</string>
+  <string name="attachment_type_selector__gif_description">گیف</string>
   <string name="attachment_type_selector__gallery_description">تصویر یا ویدئو</string>
   <string name="attachment_type_selector__file_description">فایل</string>
   <string name="attachment_type_selector__gallery">گالری</string>
@@ -1079,7 +1079,7 @@
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal نیاز به دسترسی به مخاطبان دارد تا مخاطبان شما را نمایش دهد، اما مجوز آن به طور دائم رد شده است. لطفاً به منو تنظیمات برنامه رفته، \"مجوز ها\" را انتخاب کرده و \"مخاطبان\" را فعال کنید.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">خطا در بازیابی مخاطبان، اتصال اینترنت خود را بررسی کنید</string>
   <string name="ContactSelectionListFragment_username_not_found">نام کاربری یافت نشد</string>
-  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" یک کاربر Signal نمی باشد. لطفاً نام کاربری را بررسی کرده و دوباره تلاش کنید.</string>
+  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" یک کاربر Signal نیست. لطفاً نام کاربری را بررسی کرده و دوباره تلاش کنید.</string>
   <string name="ContactSelectionListFragment_okay">باشه</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">هیچ مخاطب مسدود شده‌ای وجود ندارد</string>
@@ -1173,9 +1173,9 @@
   <string name="IdentityUtil_unverified_banner_one">شماره امنیتی شما با %s تغییر کرده است و دیگر مورد تایید نیست</string>
   <string name="IdentityUtil_unverified_banner_two">شماره های امنیتی شما با %1$s و %2$s دیگر مورد تایید نمی باشند</string>
   <string name="IdentityUtil_unverified_banner_many">شماره های امنیتی شما با %1$s، %2$s و %3$s  دیگر مورد تایید نمی باشند </string>
-  <string name="IdentityUtil_unverified_dialog_one">شماره امنیتی شما با %1$s تغییر کرده و دیگر معتبر نیست. این می توان به این معنا باشد که کسی سعی دارد تا ارتباطات شما را شنود کرده، یا %1$s Signal را مجددا نصب کرده است.</string>
-  <string name="IdentityUtil_unverified_dialog_two">شماره های امنیتی شما با %1$s و %2$s دیگر مورد تایید نمی باشند. این میتواند به این معنا باشد که شخصی سعی دارد تا ارتباطات شما را شنود کند، یا اینکه آن ها برنامه Signal را دوباره نصب کرده اند.</string>
-  <string name="IdentityUtil_unverified_dialog_many">شماره های امنیتی شما با %1$s،%2$s، و %3$s دیگر مورد تایید نمی باشند. این می تواند به این معنا باشد که شخصی سعی دارد تا ارتباطات شما را شنود کند، یا اینکه آن ها برنامه Signal را دوباره نصب کرده اند.</string>
+  <string name="IdentityUtil_unverified_dialog_one">شمارهٔ امنیتی شما با %1$s تغییر کرده و دیگر معتبر نیست. این می‌تواند به این معنا باشد که شخصی سعی دارد تا مکالمهٔ شما را شنود کند یا %1$s Signal را دوباره نصب کرده است.</string>
+  <string name="IdentityUtil_unverified_dialog_two">شماره‌های امنیتی شما با %1$s و %2$s دیگر مورد تأیید نیستند. این می‌تواند به این معنا باشد که شخصی سعی دارد تا ارتباطات شما را شنود کند، یا اینکه آن‌ها برنامهٔ Signal را دوباره نصب کرده‌اند.</string>
+  <string name="IdentityUtil_unverified_dialog_many">شماره های امنیتی شما با %1$s، %2$s و %3$s دیگر مورد تأیید نیستند. این می‌تواند به این معنا باشد که شخصی سعی دارد تا ارتباطات شما را شنود کند یا اینکه آن‌ها برنامه Signal را دوباره نصب کرده‌اند.</string>
   <string name="IdentityUtil_untrusted_dialog_one">شماره امنیتی شما با %s تغییر یافت.</string>
   <string name="IdentityUtil_untrusted_dialog_two">شماره‌ های امنیتی شما با %1$s و %2$s تغییر کرد.</string>
   <string name="IdentityUtil_untrusted_dialog_many">شماره‌های امنیتی شما با %1$s، %2$s و %3$s تغییر کرد.</string>
@@ -1184,7 +1184,7 @@
     <item quantity="other">%d نفر دیگر</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">جستجو جیف‌ها و استیکرها</string>
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">جستجوی گیف‌ها و استیکرها</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">چیزی یافت نشد</string>
   <!--log_submit_activity-->
@@ -1201,7 +1201,7 @@
   <string name="log_submit_activity__uploading_logs">آپلود گزارش ها…</string>
   <string name="log_submit_activity__choose_email_app">انتخاب برنامه ایمیل</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">لطفاً این گزارش از برنامه من را بازبینی کنید: %1$s</string>
-  <string name="log_submit_activity__network_failure">خطا شبکه. لطفاً دوباره تلاش کنید.</string>
+  <string name="log_submit_activity__network_failure">خطای شبکه. لطفاً دوباره تلاش کنید.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">آیا مایل به درون برد پیام های متنی موجود خود به پایگاه داده رمزگذاری شده Signal می باشید؟</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">پایگاه دادهٔ پيش‌‌فرض سيستم به هيچ شکلی تغییر نخواهد کرد.</string>
@@ -1227,7 +1227,7 @@
     <item quantity="one">%1$s به گروه پیوست.</item>
     <item quantity="other">%1$s به گروه پیوست.</item>
   </plurals>
-  <string name="GroupUtil_group_name_is_now">نام گروه اکنون \'%1$s\' می باشد.</string>
+  <string name="GroupUtil_group_name_is_now">نام گروه اکنون \'%1$s\' است.</string>
   <!--profile_group_share_view-->
   <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">آیا می‌خواهید نام و تصویر نمایه خود را برای این گروه آشکار کنید؟</string>
   <!--prompt_passphrase_activity-->
@@ -1359,7 +1359,7 @@
   <string name="arrays__max">بیشینه</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
-    <item quantity="one">%dس</item>
+    <item quantity="one">%d ساعت</item>
     <item quantity="other">%d ساعت</item>
   </plurals>
   <!--preferences.xml-->
