@@ -43,7 +43,7 @@ ENV ANDROID_BUILD_TOOLS_VERSION 28.0.3
 ENV ANDROID_HOME /usr/local/android-sdk-linux
 
 RUN wget -q ${ANDROID_SDK_URL} && \
-    echo ${ANDROID_SDK_SHA} ${ANDROID_SDK_FILENAME} | sha256sum -c \
+    echo ${ANDROID_SDK_SHA} ${ANDROID_SDK_FILENAME} | sha256sum -c && \
     unzip -q ${ANDROID_SDK_FILENAME} -d ${ANDROID_HOME} && \
     rm ${ANDROID_SDK_FILENAME}
 
