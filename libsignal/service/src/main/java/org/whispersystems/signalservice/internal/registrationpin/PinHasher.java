@@ -10,8 +10,8 @@ public final class PinHasher {
   public static byte[] normalize(String pin) {
     pin = pin.trim();
 
-    if (allNumeric(pin)) {
-      pin = new String(toArabic(pin));
+    if (PinString.allNumeric(pin)) {
+      pin = PinString.toArabic(pin);
     }
 
     pin = Normalizer.normalize(pin, Normalizer.Form.NFKD);
@@ -25,28 +25,5 @@ public final class PinHasher {
 
   public interface Argon2 {
     byte[] hash(byte[] password);
-  }
-
-  private static boolean allNumeric(CharSequence pin) {
-    for (int i = 0; i < pin.length(); i++) {
-      if (!Character.isDigit(pin.charAt(i))) return false;
-    }
-    return true;
-  }
-
-  /**
-   * Converts a string of not necessarily Arabic numerals to Arabic 0..9 characters.
-   */
-  private static char[] toArabic(CharSequence numerals) {
-    int length = numerals.length();
-    char[] arabic = new char[length];
-
-    for (int i = 0; i < length; i++) {
-      int digit = Character.digit(numerals.charAt(i), 10);
-
-      arabic[i] = (char) ('0' + digit);
-    }
-
-    return arabic;
   }
 }

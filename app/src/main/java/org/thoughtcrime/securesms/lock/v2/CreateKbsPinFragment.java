@@ -1,15 +1,20 @@
 package org.thoughtcrime.securesms.lock.v2;
 
-import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.PluralsRes;
 import androidx.autofill.HintConstants;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.SpanUtil;
 
 public class CreateKbsPinFragment extends BaseKbsPinFragment<CreateKbsPinViewModel> {
 
@@ -47,6 +52,15 @@ public class CreateKbsPinFragment extends BaseKbsPinFragment<CreateKbsPinViewMod
     CreateKbsPinFragmentArgs args      = CreateKbsPinFragmentArgs.fromBundle(requireArguments());
 
     viewModel.getNavigationEvents().observe(getViewLifecycleOwner(), e -> onConfirmPin(e.getUserEntry(), e.getKeyboard(), args.getIsPinChange()));
+    viewModel.getErrorEvents().observe(getViewLifecycleOwner(), e -> {
+      if (e == CreateKbsPinViewModel.PinErrorEvent.WEAK_PIN) {
+        getLabel().setText(SpanUtil.color(ContextCompat.getColor(requireContext(), R.color.red),
+                                          getString(R.string.CreateKbsPinFragment__choose_a_stronger_pin)));
+        shake(getInput(), () -> getInput().getText().clear());
+      } else {
+        throw new AssertionError("Unexpected PIN error!");
+      }
+    });
     viewModel.getKeyboard().observe(getViewLifecycleOwner(), k -> {
       getLabel().setText(getLabelText(k));
       getInput().getText().clear();
@@ -75,5 +89,24 @@ public class CreateKbsPinFragment extends BaseKbsPinFragment<CreateKbsPinViewMod
 
   private String getPinLengthRestrictionText(@PluralsRes int plurals) {
     return requireContext().getResources().getQuantityString(plurals, KbsConstants.MINIMUM_PIN_LENGTH, KbsConstants.MINIMUM_PIN_LENGTH);
+  }
+
+  private static void shake(@NonNull EditText view, @NonNull Runnable afterwards) {
+    TranslateAnimation shake = new TranslateAnimation(0, 30, 0, 0);
+    shake.setDuration(50);
+    shake.setRepeatCount(7);
+    shake.setAnimationListener(new Animation.AnimationListener() {
+      @Override
+      public void onAnimationStart(Animation animation) {}
+
+      @Override
+      public void onAnimationEnd(Animation animation) {
+        afterwards.run();
+      }
+
+      @Override
+      public void onAnimationRepeat(Animation animation) {}
+    });
+    view.startAnimation(shake);
   }
 }
