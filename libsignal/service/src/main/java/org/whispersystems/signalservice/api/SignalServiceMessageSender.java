@@ -1278,7 +1278,8 @@ public class SignalServiceMessageSender {
                                                          .setContentType(attachment.getContentType())
                                                          .setKey(ByteString.copyFrom(attachment.getKey()))
                                                          .setDigest(ByteString.copyFrom(attachment.getDigest().get()))
-                                                         .setSize(attachment.getSize().get());
+                                                         .setSize(attachment.getSize().get())
+                                                         .setUploadTimestamp(attachment.getUploadTimestamp());
 
     if (attachment.getRemoteId().getV2().isPresent()) {
       builder.setCdnId(attachment.getRemoteId().getV2().get());

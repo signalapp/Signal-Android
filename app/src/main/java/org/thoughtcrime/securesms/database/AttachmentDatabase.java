@@ -1196,7 +1196,8 @@ public class AttachmentDatabase extends Database {
 
     boolean useTemplateUpload = template.getUploadTimestamp() > attachment.getUploadTimestamp() &&
                                 template.getTransferState() == TRANSFER_PROGRESS_DONE           &&
-                                template.getTransformProperties().shouldSkipTransform();
+                                template.getTransformProperties().shouldSkipTransform()         &&
+                                !attachment.getTransformProperties().isVideoEdited();
 
     ContentValues contentValues = new ContentValues();
     contentValues.put(MMS_ID, mmsId);
