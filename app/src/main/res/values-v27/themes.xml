@@ -43,7 +43,7 @@
         <item name="android:windowLightNavigationBar">false</item>
     </style>
 
-    <style name="Theme.Design.Light.BottomSheetDialog.Fixed">
+    <style name="Theme.Signal.Light.BottomSheetDialog.Fixed">
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:statusBarColor">@color/transparent</item>
@@ -51,7 +51,7 @@
         <item name="android:windowLightNavigationBar">true</item>
     </style>
 
-    <style name="Theme.Design.BottomSheetDialog.Fixed">
+    <style name="Theme.Signal.BottomSheetDialog.Fixed">
         <item name="android:windowIsFloating">false</item>
         <item name="android:statusBarColor">@color/transparent</item>
         <item name="android:windowLightStatusBar">false</item>

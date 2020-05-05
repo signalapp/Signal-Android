@@ -21,7 +21,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import org.thoughtcrime.securesms.ClearProfileAvatarActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
 import java.util.ArrayList;
@@ -63,8 +62,8 @@ public class AvatarSelectionBottomSheetDialogFragment extends BottomSheetDialogF
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     setStyle(DialogFragment.STYLE_NORMAL,
-             ThemeUtil.isDarkTheme(requireContext()) ? R.style.Theme_Design_BottomSheetDialog_Fixed
-                                                     : R.style.Theme_Design_Light_BottomSheetDialog_Fixed);
+             ThemeUtil.isDarkTheme(requireContext()) ? R.style.Theme_Signal_BottomSheetDialog_Fixed
+                                                     : R.style.Theme_Signal_Light_BottomSheetDialog_Fixed);
 
     super.onCreate(savedInstanceState);
 

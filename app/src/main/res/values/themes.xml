@@ -789,12 +789,39 @@
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
     </style>
 
-    <style name="Theme.Design.Light.BottomSheetDialog.Fixed">
+    <style name="Theme.Signal.Light.BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+    </style>
+
+    <style name="Theme.Signal.BottomSheetDialog" parent="Theme.Design.BottomSheetDialog">
+    </style>
+
+    <style name="Theme.Signal.Light.BottomSheetDialog.Fixed">
         <item name="android:windowIsFloating">false</item>
     </style>
 
-    <style name="Theme.Design.BottomSheetDialog.Fixed">
+    <style name="Theme.Signal.BottomSheetDialog.Fixed" parent="Theme.Design.BottomSheetDialog">
         <item name="android:windowIsFloating">false</item>
+    </style>
+
+    <style name="Theme.Signal.BottomSheetDialog.Fixed.ReactWithAny">
+        <item name="bottomSheetStyle">@style/Widget.Signal.BottomSheet.ReactWithAny</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="Theme.Signal.Light.BottomSheetDialog.Fixed.ReactWithAny">
+        <item name="bottomSheetStyle">@style/Widget.Signal.BottomSheet.ReactWithAny.Light</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
+    </style>
+
+    <style name="Widget.Signal.BottomSheet.ReactWithAny" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="backgroundTint">@color/core_grey_75</item>
+        <item name="behavior_peekHeight">@dimen/react_with_any_emoji_bottom_sheet_dialog_fragment_min_height</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
+    </style>
+
+    <style name="Widget.Signal.BottomSheet.ReactWithAny.Light">
+        <item name="backgroundTint">@color/white</item>
     </style>
 
     <style name="ShapeAppearanceOverlay.Signal.BottomSheet.Rounded" parent="">

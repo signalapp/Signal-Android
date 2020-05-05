@@ -59,6 +59,7 @@ public final class FeatureFlags {
   private static final String PROFILE_FOR_CALLING        = "android.profileForCalling";
   private static final String CALLING_PIP                = "android.callingPip";
   private static final String NEW_GROUP_UI               = "android.newGroupUI";
+  private static final String REACT_WITH_ANY_EMOJI       = "android.reactWithAnyEmoji";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -76,7 +77,8 @@ public final class FeatureFlags {
       REMOTE_DELETE,
       PROFILE_FOR_CALLING,
       CALLING_PIP,
-      NEW_GROUP_UI
+      NEW_GROUP_UI,
+      REACT_WITH_ANY_EMOJI
   );
 
   /**
@@ -98,7 +100,8 @@ public final class FeatureFlags {
    */
   private static final Set<String> HOT_SWAPPABLE = Sets.newHashSet(
       PINS_MEGAPHONE_KILL_SWITCH,
-      ATTACHMENTS_V3
+      ATTACHMENTS_V3,
+      REACT_WITH_ANY_EMOJI
   );
 
   /**
@@ -245,6 +248,11 @@ public final class FeatureFlags {
   /** New group UI elements. */
   public static boolean newGroupUI() {
     return getBoolean(NEW_GROUP_UI, false);
+  }
+
+  /** React with Any Emoji */
+  public static boolean reactWithAnyEmoji() {
+    return getBoolean(REACT_WITH_ANY_EMOJI, false);
   }
 
   /** Only for rendering debug info. */

@@ -156,4 +156,7 @@
     <dimen name="picture_in_picture_gesture_helper_pip_width">90dp</dimen>
     <dimen name="picture_in_picture_gesture_helper_pip_height">160dp</dimen>
 
+    <dimen name="react_with_any_emoji_bottom_sheet_dialog_fragment_min_height">340dp</dimen>
+    <dimen name="react_with_any_emoji_bottom_sheet_dialog_fragment_tabs_height">36dp</dimen>
+
 </resources>

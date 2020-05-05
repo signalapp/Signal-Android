@@ -49,12 +49,11 @@
             app:layout_constraintRight_toRightOf="@id/reaction_3"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <org.thoughtcrime.securesms.components.emoji.EmojiImageView
             android:id="@+id/reaction_1"
             android:layout_width="32dp"
             android:layout_height="48dp"
             android:alpha="0"
-            android:src="@drawable/reaction_scrubber_love_48"
             android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/reaction_2"
@@ -63,12 +62,11 @@
             tools:alpha="1"
             tools:translationY="0dp" />
 
-        <ImageView
+        <org.thoughtcrime.securesms.components.emoji.EmojiImageView
             android:id="@+id/reaction_2"
             android:layout_width="32dp"
             android:layout_height="48dp"
             android:alpha="0"
-            android:src="@drawable/reaction_scrubber_like_48"
             android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/reaction_3"
@@ -77,12 +75,11 @@
             tools:alpha="1"
             tools:translationY="0dp" />
 
-        <ImageView
+        <org.thoughtcrime.securesms.components.emoji.EmojiImageView
             android:id="@+id/reaction_3"
             android:layout_width="32dp"
             android:layout_height="48dp"
             android:alpha="0"
-            android:src="@drawable/reaction_scrubber_dislike_48"
             android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/reaction_4"
@@ -91,12 +88,11 @@
             tools:alpha="1"
             tools:translationY="0dp" />
 
-        <ImageView
+        <org.thoughtcrime.securesms.components.emoji.EmojiImageView
             android:id="@+id/reaction_4"
             android:layout_width="32dp"
             android:layout_height="48dp"
             android:alpha="0"
-            android:src="@drawable/reaction_scrubber_haha_48"
             android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/reaction_5"
@@ -105,12 +101,11 @@
             tools:alpha="1"
             tools:translationY="0dp" />
 
-        <ImageView
+        <org.thoughtcrime.securesms.components.emoji.EmojiImageView
             android:id="@+id/reaction_5"
             android:layout_width="32dp"
             android:layout_height="48dp"
             android:alpha="0"
-            android:src="@drawable/reaction_scrubber_wow_48"
             android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/reaction_6"
@@ -119,12 +114,11 @@
             tools:alpha="1"
             tools:translationY="0dp" />
 
-        <ImageView
+        <org.thoughtcrime.securesms.components.emoji.EmojiImageView
             android:id="@+id/reaction_6"
             android:layout_width="32dp"
             android:layout_height="48dp"
             android:alpha="0"
-            android:src="@drawable/reaction_scrubber_sad_48"
             android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/reaction_7"
@@ -133,12 +127,11 @@
             tools:alpha="1"
             tools:translationY="0dp" />
 
-        <ImageView
+        <org.thoughtcrime.securesms.components.emoji.EmojiImageView
             android:id="@+id/reaction_7"
             android:layout_width="32dp"
             android:layout_height="48dp"
             android:alpha="0"
-            android:src="@drawable/reaction_scrubber_angry_48"
             android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

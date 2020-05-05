@@ -197,6 +197,7 @@ import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.GroupShareProfileView;
 import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
 import org.thoughtcrime.securesms.providers.BlobProvider;
+import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientExporter;
@@ -269,7 +270,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                ComposeText.CursorPositionChangedListener,
                ConversationSearchBottomBar.EventListener,
                StickerKeyboardProvider.StickerEventListener,
-               AttachmentKeyboard.Callback
+               AttachmentKeyboard.Callback,
+               ConversationReactionOverlay.OnReactionSelectedListener,
+               ReactWithAnyEmojiBottomSheetDialogFragment.Callback
 {
 
   private static final int SHORTCUT_ICON_SIZE = Build.VERSION.SDK_INT >= 26 ? ViewUtil.dpToPx(72) : ViewUtil.dpToPx(48 + 16 * 2);
@@ -1714,7 +1717,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     inlineAttachmentButton.setOnClickListener(v -> handleAddAttachment());
 
-    reactionOverlay.setOnReactionSelectedListener(this::onReactionSelected);
+    reactionOverlay.setOnReactionSelectedListener(this);
   }
 
   protected void initializeActionBar() {
@@ -1831,9 +1834,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                 .show(TooltipPopup.POSITION_ABOVE);
   }
 
-
-  private void onReactionSelected(MessageRecord messageRecord, String emoji) {
+  @Override
+  public void onReactionSelected(MessageRecord messageRecord, String emoji) {
     final Context context = getApplicationContext();
+
+    reactionOverlay.hide();
 
     SignalExecutors.BOUNDED.execute(() -> {
       ReactionRecord oldRecord = Stream.of(messageRecord.getReactions())
@@ -1847,6 +1852,35 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         MessageSender.sendNewReaction(context, messageRecord.getId(), messageRecord.isMms(), emoji);
       }
     });
+  }
+
+  @Override
+  public void onCustomReactionSelected(@NonNull MessageRecord messageRecord, boolean hasAddedCustomEmoji) {
+    ReactionRecord oldRecord = Stream.of(messageRecord.getReactions())
+                                     .filter(record -> record.getAuthor().equals(Recipient.self().getId()))
+                                     .findFirst()
+                                     .orElse(null);
+
+    if (oldRecord != null && hasAddedCustomEmoji) {
+      final Context context = getApplicationContext();
+
+      reactionOverlay.hide();
+
+      SignalExecutors.BOUNDED.execute(() -> MessageSender.sendReactionRemoval(context,
+                                                                              messageRecord.getId(),
+                                                                              messageRecord.isMms(),
+                                                                              oldRecord));
+    } else {
+      reactionOverlay.hideAllButMask();
+
+      ReactWithAnyEmojiBottomSheetDialogFragment.createForMessageRecord(messageRecord)
+                                                .show(getSupportFragmentManager(), "BOTTOM");
+    }
+  }
+
+  @Override
+  public void onReactWithAnyEmojiDialogDismissed() {
+    reactionOverlay.hideMask();
   }
 
   @Override
