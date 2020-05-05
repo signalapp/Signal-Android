@@ -18,7 +18,7 @@
     <issue id="ExtraTranslation" severity="warning" />
 
     <!-- Custom lints -->
-    <issue id="LogNotSignal" severity="warning" />
+    <issue id="LogNotSignal" severity="error" />
 
     <issue id="RestrictedApi" severity="error">
         <ignore path="*/org/thoughtcrime/securesms/mediasend/camerax/VideoCapture.java" />

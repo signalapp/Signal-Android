@@ -45,7 +45,6 @@ import android.media.MediaMuxer;
 import android.media.MediaRecorder.AudioSource;
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.util.Log;
 import android.util.Size;
 import android.view.Display;
 import android.view.Surface;
@@ -74,6 +73,7 @@ import androidx.camera.core.impl.VideoCaptureConfig;
 import androidx.camera.core.impl.utils.executor.CameraXExecutors;
 import androidx.camera.core.internal.utils.UseCaseConfigUtil;
 
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.video.VideoUtil;
 
 import java.io.File;
