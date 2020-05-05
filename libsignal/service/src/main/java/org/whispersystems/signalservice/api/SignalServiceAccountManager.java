@@ -26,9 +26,7 @@ import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.crypto.ProfileCipherOutputStream;
 import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api;
-import org.whispersystems.signalservice.api.groupsv2.GroupsV2Authorization;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
-import org.whispersystems.signalservice.api.kbs.HashedPin;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
 import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo;
@@ -757,9 +755,5 @@ public class SignalServiceAccountManager {
 
   public GroupsV2Api getGroupsV2Api() {
     return new GroupsV2Api(pushServiceSocket, groupsV2Operations);
-  }
-
-  public GroupsV2Authorization createGroupsV2Authorization(UUID self) {
-    return new GroupsV2Authorization(self, pushServiceSocket, groupsV2Operations.getAuthOperations());
   }
 }

@@ -731,6 +731,10 @@ public class Recipient {
     return groupsV2Capability;
   }
 
+  public Capability getUuidCapability() {
+    return uuidCapability;
+  }
+
   public @Nullable byte[] getProfileKey() {
     return profileKey;
   }

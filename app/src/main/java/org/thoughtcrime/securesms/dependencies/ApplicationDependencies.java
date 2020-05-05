@@ -7,13 +7,14 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.IncomingMessageProcessor;
 import org.thoughtcrime.securesms.gcm.MessageRetriever;
+import org.thoughtcrime.securesms.groups.GroupsV2AuthorizationMemoryValueCache;
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.keyvalue.KeyValueStore;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.util.EarlyMessageCache;
 import org.thoughtcrime.securesms.util.FeatureFlags;
@@ -24,8 +25,7 @@ import org.whispersystems.signalservice.api.KeyBackupService;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
-import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api;
-import org.whispersystems.signalservice.api.groupsv2.GroupsV2Authorization;
+import org.thoughtcrime.securesms.groups.GroupsV2Authorization;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 
 /**
@@ -84,7 +84,8 @@ public class ApplicationDependencies {
     assertInitialization();
 
     if (groupsV2Authorization == null) {
-      groupsV2Authorization = getSignalServiceAccountManager().createGroupsV2Authorization(Recipient.self().getUuid().get());
+      GroupsV2Authorization.ValueCache authCache = new GroupsV2AuthorizationMemoryValueCache(SignalStore.groupsV2AuthorizationCache());
+      groupsV2Authorization = new GroupsV2Authorization(getSignalServiceAccountManager().getGroupsV2Api(), authCache);
     }
 
     return groupsV2Authorization;

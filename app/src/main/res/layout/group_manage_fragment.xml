@@ -160,7 +160,7 @@
                     android:id="@+id/group_custom_notifications_controls"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    app:constraint_referenced_ids="group_custom_notifications,group_custom_notifications_button"/>
+                    app:constraint_referenced_ids="group_custom_notifications,group_custom_notifications_button" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -268,12 +268,40 @@
             app:cardBackgroundColor="?android:attr/windowBackground"
             app:layout_constraintTop_toBottomOf="@id/group_access_control_card">
 
-            <org.thoughtcrime.securesms.groups.ui.GroupMemberListView
-                android:id="@+id/group_members"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:maxHeight="280dp"
-                tools:listitem="@layout/group_recipient_list_item" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/member_count_2"
+                    style="@style/TextAppearance.Signal.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
+                    tools:text="12 members" />
+
+                <Button
+                    android:id="@+id/add_members"
+                    style="@style/Widget.Signal.Button.TextButton.Drawable.Ultramarine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:drawableStart="?attr/manage_group_add_members_icon"
+                    android:drawablePadding="8dp"
+                    android:text="@string/ManageGroupActivity_add_members"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+                <org.thoughtcrime.securesms.groups.ui.GroupMemberListView
+                    android:id="@+id/group_members"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:maxHeight="280dp"
+                    tools:listitem="@layout/group_recipient_list_item" />
+
+            </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 

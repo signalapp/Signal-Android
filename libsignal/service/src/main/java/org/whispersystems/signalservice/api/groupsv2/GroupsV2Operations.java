@@ -170,6 +170,28 @@ public final class GroupsV2Operations {
       return actions;
     }
 
+    public GroupChange.Actions.Builder createModifyGroupMembershipChange(Set<GroupCandidate> membersToAdd, UUID selfUuid) {
+      final GroupOperations groupOperations = forGroup(groupSecretParams);
+
+      GroupChange.Actions.Builder actions = GroupChange.Actions.newBuilder();
+
+      for (GroupCandidate credential : membersToAdd) {
+        Member.Role          newMemberRole        = Member.Role.DEFAULT;
+        ProfileKeyCredential profileKeyCredential = credential.getProfileKeyCredential().orNull();
+
+        if (profileKeyCredential != null) {
+          actions.addAddMembers(GroupChange.Actions.AddMemberAction.newBuilder()
+                                                                   .setAdded(groupOperations.member(profileKeyCredential, newMemberRole)));
+        } else {
+          actions.addAddPendingMembers(GroupChange.Actions.AddPendingMemberAction.newBuilder()
+                                                                                 .setAdded(groupOperations.invitee(credential.getUuid(), newMemberRole)
+                                                                                                          .setAddedByUserId(encryptUuid(selfUuid))));
+        }
+      }
+
+      return actions;
+    }
+
     public GroupChange.Actions.Builder createModifyGroupTimerChange(int timerDurationSeconds) {
       return GroupChange.Actions
                         .newBuilder()
@@ -233,7 +255,11 @@ public final class GroupsV2Operations {
       List<DecryptedPendingMember> decryptedPendingMembers = new ArrayList<>(pendingMembersList.size());
 
       for (Member member : membersList) {
-        decryptedMembers.add(decryptMember(member));
+        try {
+          decryptedMembers.add(decryptMember(member).build());
+        } catch (InvalidInputException e) {
+          throw new InvalidGroupStateException(e);
+        }
       }
 
       for (PendingMember member : pendingMembersList) {
@@ -289,12 +315,11 @@ public final class GroupsV2Operations {
 
       // Field 3
       for (GroupChange.Actions.AddMemberAction addMemberAction : actions.getAddMembersList()) {
-        UUID uuid = decryptUuid(addMemberAction.getAdded().getUserId());
-        builder.addNewMembers(DecryptedMember.newBuilder()
-                                             .setJoinedAtVersion(actions.getVersion())
-                                             .setRole(addMemberAction.getAdded().getRole())
-                                             .setUuid(UuidUtil.toByteString(uuid))
-                                             .setProfileKey(decryptProfileKeyToByteString(addMemberAction.getAdded().getProfileKey(), uuid)));
+        try {
+          builder.addNewMembers(decryptMember(addMemberAction.getAdded()).setJoinedAtVersion(actions.getVersion()));
+        } catch (InvalidInputException e) {
+          throw new InvalidGroupStateException(e);
+        }
       }
 
       // Field 4
@@ -327,7 +352,7 @@ public final class GroupsV2Operations {
       }
 
       // Field 7
-      for (GroupChange.Actions.AddPendingMemberAction addPendingMemberAction:actions.getAddPendingMembersList()) {
+      for (GroupChange.Actions.AddPendingMemberAction addPendingMemberAction : actions.getAddPendingMembersList()) {
         PendingMember added          = addPendingMemberAction.getAdded();
         Member        member         = added.getMember();
         ByteString    uuidCipherText = member.getUserId();
@@ -397,18 +422,28 @@ public final class GroupsV2Operations {
       return builder.build();
     }
 
-    private DecryptedMember decryptMember(Member member)
-        throws InvalidGroupStateException, VerificationFailedException
+    private DecryptedMember.Builder decryptMember(Member member)
+        throws InvalidGroupStateException, VerificationFailedException, InvalidInputException
     {
-      ByteString userId = member.getUserId();
-      UUID       uuid   = decryptUuid(userId);
+      if (member.getPresentation().isEmpty()) {
+        UUID uuid = decryptUuid(member.getUserId());
 
-      return DecryptedMember.newBuilder()
-                            .setUuid(UuidUtil.toByteString(uuid))
-                            .setJoinedAtVersion(member.getJoinedAtVersion())
-                            .setProfileKey(decryptProfileKeyToByteString(member.getProfileKey(), uuid))
-                            .setRole(member.getRole())
-                            .build();
+        return DecryptedMember.newBuilder()
+                              .setUuid(UuidUtil.toByteString(uuid))
+                              .setJoinedAtVersion(member.getJoinedAtVersion())
+                              .setProfileKey(decryptProfileKeyToByteString(member.getProfileKey(), uuid))
+                              .setRole(member.getRole());
+      } else {
+        ProfileKeyCredentialPresentation profileKeyCredentialPresentation = new ProfileKeyCredentialPresentation(member.getPresentation().toByteArray());
+        UUID                             uuid                             = clientZkGroupCipher.decryptUuid(profileKeyCredentialPresentation.getUuidCiphertext());
+        ProfileKey                       profileKey                       = clientZkGroupCipher.decryptProfileKey(profileKeyCredentialPresentation.getProfileKeyCiphertext(), uuid);
+
+        return DecryptedMember.newBuilder()
+                              .setUuid(UuidUtil.toByteString(uuid))
+                              .setJoinedAtVersion(member.getJoinedAtVersion())
+                              .setProfileKey(ByteString.copyFrom(profileKey.serialize()))
+                              .setRole(member.getRole());
+      }
     }
 
     private DecryptedPendingMember decryptMember(PendingMember member)

@@ -91,25 +91,27 @@ public final class LiveGroup {
   }
 
   public LiveData<Boolean> selfCanEditGroupAttributes() {
-    return LiveDataUtil.combineLatest(isSelfAdmin(),
-                                      getAttributesAccessControl(),
-                                      (admin, rights) -> {
-                                        switch (rights) {
-                                          case ALL_MEMBERS:
-                                            return true;
-                                          case ONLY_ADMINS:
-                                            return admin;
-                                          default:
-                                            throw new AssertionError();
-                                        }
-                                      }
-    );
+    return LiveDataUtil.combineLatest(isSelfAdmin(), getAttributesAccessControl(), this::applyAccessControl);
   }
 
+  public LiveData<Boolean> selfCanAddMembers() {
+    return LiveDataUtil.combineLatest(isSelfAdmin(), getMembershipAdditionAccessControl(), this::applyAccessControl);
+  }
+
+  /**
+   * A string representing the count of full members and pending members if > 0.
+   */
   public LiveData<String> getMembershipCountDescription(@NonNull Resources resources) {
     return LiveDataUtil.combineLatest(getFullMembers(),
                                       getPendingMemberCount(),
                                       (fullMembers, invitedCount) -> getMembershipDescription(resources, invitedCount, fullMembers.size()));
+  }
+
+  /**
+   * A string representing the count of full members.
+   */
+  public LiveData<String> getFullMembershipCountDescription(@NonNull Resources resources) {
+    return Transformations.map(getFullMembers(), fullMembers -> getMembershipDescription(resources, 0, fullMembers.size()));
   }
 
   private static String getMembershipDescription(@NonNull Resources resources, int invitedCount, int fullMemberCount) {
@@ -117,5 +119,13 @@ public final class LiveGroup {
                                                           fullMemberCount, invitedCount)
                             : resources.getQuantityString(R.plurals.MessageRequestProfileView_members, fullMemberCount,
                                                           fullMemberCount);
+  }
+
+  private boolean applyAccessControl(boolean isAdmin, @NonNull GroupAccessControl rights) {
+    switch (rights) {
+      case ALL_MEMBERS: return true;
+      case ONLY_ADMINS: return isAdmin;
+      default:          throw new AssertionError();
+    }
   }
 }

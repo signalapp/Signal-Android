@@ -34,6 +34,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.FeatureFlags;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.groupsv2.CredentialResponse;
+import org.whispersystems.signalservice.api.groupsv2.GroupsV2AuthorizationString;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId;
 import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo;
@@ -72,6 +73,7 @@ import org.whispersystems.signalservice.internal.contacts.entities.DiscoveryResp
 import org.whispersystems.signalservice.internal.contacts.entities.KeyBackupRequest;
 import org.whispersystems.signalservice.internal.contacts.entities.KeyBackupResponse;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
+import org.whispersystems.signalservice.internal.push.exceptions.GroupPatchNotAcceptedException;
 import org.whispersystems.signalservice.internal.push.exceptions.MismatchedDevicesException;
 import org.whispersystems.signalservice.internal.push.exceptions.NotInGroupException;
 import org.whispersystems.signalservice.internal.push.exceptions.StaleDevicesException;
@@ -1836,26 +1838,29 @@ public class PushServiceSocket {
   }
 
   private static final ResponseCodeHandler GROUPS_V2_PUT_RESPONSE_HANDLER   = NO_HANDLER;
-  private static final ResponseCodeHandler GROUPS_V2_PATCH_RESPONSE_HANDLER = NO_HANDLER;
   private static final ResponseCodeHandler GROUPS_V2_GET_LOGS_HANDLER       = NO_HANDLER;
   private static final ResponseCodeHandler GROUPS_V2_GET_CURRENT_HANDLER    = responseCode -> {
     if (responseCode == 403) throw new NotInGroupException();
   };
+  private static final ResponseCodeHandler GROUPS_V2_PATCH_RESPONSE_HANDLER = responseCode -> {
+    if (responseCode == 400) throw new GroupPatchNotAcceptedException();
+    if (responseCode == 403) throw new NotInGroupException();
+  };
 
-  public void putNewGroupsV2Group(Group group, String authorization)
+  public void putNewGroupsV2Group(Group group, GroupsV2AuthorizationString authorization)
       throws NonSuccessfulResponseCodeException, PushNetworkException
   {
-      makeStorageRequest(authorization,
+      makeStorageRequest(authorization.toString(),
                          GROUPSV2_GROUP,
                          "PUT",
                          protobufRequestBody(group),
                          GROUPS_V2_PUT_RESPONSE_HANDLER);
   }
 
-  public Group getGroupsV2Group(String authorization)
+  public Group getGroupsV2Group(GroupsV2AuthorizationString authorization)
       throws NonSuccessfulResponseCodeException, PushNetworkException, InvalidProtocolBufferException
   {
-      ResponseBody response = makeStorageRequest(authorization,
+      ResponseBody response = makeStorageRequest(authorization.toString(),
                                                  GROUPSV2_GROUP,
                                                  "GET",
                                                  null,
@@ -1888,10 +1893,10 @@ public class PushServiceSocket {
     return GroupChange.parseFrom(readBodyBytes(response));
   }
 
-  public GroupChanges getGroupsV2GroupHistory(int fromVersion, String authorization)
+  public GroupChanges getGroupsV2GroupHistory(int fromVersion, GroupsV2AuthorizationString authorization)
     throws NonSuccessfulResponseCodeException, PushNetworkException, InvalidProtocolBufferException
   {
-    ResponseBody response = makeStorageRequest(authorization,
+    ResponseBody response = makeStorageRequest(authorization.toString(),
                                                String.format(Locale.US, GROUPSV2_GROUP_CHANGES, fromVersion),
                                                "GET",
                                                null,

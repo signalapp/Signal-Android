@@ -11,9 +11,12 @@ import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.groups.UuidCiphertext;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.groupsv2.InvalidGroupStateException;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
@@ -24,6 +27,8 @@ import java.util.List;
 import java.util.Set;
 
 public final class GroupManager {
+
+  private static final String TAG = Log.tag(GroupManager.class);
 
   public static @NonNull GroupActionResult createGroup(@NonNull  Context        context,
                                                        @NonNull  Set<Recipient> members,
@@ -88,12 +93,43 @@ public final class GroupManager {
   }
 
   @WorkerThread
+  public static void setMemberAdmin(@NonNull Context context,
+                                    @NonNull GroupId.V2 groupId,
+                                    @NonNull RecipientId recipientId,
+                                    boolean admin)
+      throws GroupChangeBusyException, GroupChangeFailedException, GroupInsufficientRightsException, GroupNotAMemberException, IOException
+  {
+    try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
+      editor.setMemberAdmin(recipientId, admin);
+    }
+  }
+
+  @WorkerThread
+  public static void updateSelfProfileKeyInGroup(@NonNull Context context, @NonNull GroupId.V2 groupId)
+      throws IOException, GroupChangeBusyException, GroupInsufficientRightsException, GroupNotAMemberException, GroupChangeFailedException
+  {
+    try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
+      editor.updateSelfProfileKeyInGroup();
+    }
+  }
+
+  @WorkerThread
+  public static void acceptInvite(@NonNull Context context, @NonNull GroupId.V2 groupId)
+      throws GroupChangeBusyException, GroupChangeFailedException, GroupNotAMemberException, GroupInsufficientRightsException, IOException
+  {
+    try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
+      editor.acceptInvite();
+    }
+  }
+
+  @WorkerThread
   public static void updateGroupTimer(@NonNull Context context, @NonNull GroupId.Push groupId, int expirationTime)
       throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, GroupChangeBusyException
   {
     if (groupId.isV2()) {
-      new GroupManagerV2(context).edit(groupId.requireV2())
-                                 .updateGroupTimer(expirationTime);
+      try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
+        editor.updateGroupTimer(expirationTime);
+      }
     } else {
       GroupManagerV1.updateGroupTimer(context, groupId.requireV1(), expirationTime);
     }
@@ -103,27 +139,53 @@ public final class GroupManager {
   public static void cancelInvites(@NonNull Context context,
                                    @NonNull GroupId.V2 groupId,
                                    @NonNull Collection<UuidCiphertext> uuidCipherTexts)
-      throws InvalidGroupStateException, VerificationFailedException, IOException
+      throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, GroupChangeBusyException
   {
-    throw new AssertionError("NYI"); // TODO: GV2 allow invite cancellation
+    try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
+      editor.cancelInvites(uuidCipherTexts);
+    }
   }
 
   @WorkerThread
   public static void applyMembershipAdditionRightsChange(@NonNull Context context,
                                                          @NonNull GroupId.V2 groupId,
                                                          @NonNull GroupAccessControl newRights)
-      throws GroupChangeFailedException, GroupInsufficientRightsException
+       throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, GroupChangeBusyException
   {
-    throw new GroupChangeFailedException(new AssertionError("NYI")); // TODO: GV2 allow membership addition rights change
+    try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
+      editor.updateMembershipRights(newRights);
+    }
   }
 
   @WorkerThread
   public static void applyAttributesRightsChange(@NonNull Context context,
                                                  @NonNull GroupId.V2 groupId,
                                                  @NonNull GroupAccessControl newRights)
-      throws GroupChangeFailedException, GroupInsufficientRightsException
+      throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, GroupChangeBusyException
   {
-    throw new GroupChangeFailedException(new AssertionError("NYI")); // TODO: GV2 allow attributes rights change
+    try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
+      editor.updateAttributesRights(newRights);
+    }
+  }
+
+  public static void addMembers(@NonNull Context context,
+                                @NonNull GroupId.Push groupId,
+                                @NonNull Collection<RecipientId> newMembers)
+      throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, GroupChangeBusyException, MembershipNotSuitableForV2Exception
+  {
+    if (groupId.isV2()) {
+      try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
+        editor.addMembers(newMembers);
+      }
+    } else {
+      GroupDatabase.GroupRecord groupRecord = DatabaseFactory.getGroupDatabase(context).requireGroup(groupId);
+      List<RecipientId>         members     = groupRecord.getMembers();
+      byte[]                    avatar      = Util.readFully(AvatarHelper.getAvatar(context, groupRecord.getRecipientId()));
+      Set<RecipientId>          addresses   = new HashSet<>(members);
+
+      addresses.addAll(newMembers);
+      GroupManagerV1.updateGroup(context, groupId, addresses, avatar, groupRecord.getTitle());
+    }
   }
 
   public static class GroupActionResult {

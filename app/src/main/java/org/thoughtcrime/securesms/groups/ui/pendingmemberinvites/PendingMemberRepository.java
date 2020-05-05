@@ -12,24 +12,25 @@ import com.google.protobuf.ByteString;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.zkgroup.InvalidInputException;
-import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.groups.UuidCiphertext;
 import org.signal.zkgroup.util.UUIDUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
+import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.groups.GroupInsufficientRightsException;
 import org.thoughtcrime.securesms.groups.GroupManager;
+import org.thoughtcrime.securesms.groups.GroupNotAMemberException;
 import org.thoughtcrime.securesms.groups.GroupProtoUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
-import org.whispersystems.signalservice.api.groupsv2.InvalidGroupStateException;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
 import java.util.concurrent.Executor;
 
 /**
@@ -104,7 +105,7 @@ final class PendingMemberRepository {
     try {
       GroupManager.cancelInvites(context, groupId, uuidCipherTexts);
       return true;
-    } catch (InvalidGroupStateException | VerificationFailedException | IOException e) {
+    } catch (GroupChangeFailedException | GroupInsufficientRightsException | IOException | GroupNotAMemberException | GroupChangeBusyException e) {
       Log.w(TAG, e);
       return false;
     }

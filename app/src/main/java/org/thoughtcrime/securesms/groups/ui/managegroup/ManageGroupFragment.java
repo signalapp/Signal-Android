@@ -23,11 +23,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProviders;
 
+import org.thoughtcrime.securesms.ContactSelectionListFragment;
 import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.MuteDialog;
+import org.thoughtcrime.securesms.PushContactSelectionActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.ThreadPhotoRailView;
+import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.groups.ui.LeaveGroupDialog;
@@ -39,9 +42,11 @@ import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.util.DateUtils;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -51,12 +56,14 @@ public class ManageGroupFragment extends Fragment {
   private static final String TAG = Log.tag(ManageGroupFragment.class);
 
   private static final int RETURN_FROM_MEDIA = 33114;
+  private static final int PICK_CONTACT      = 61341;
 
   private ManageGroupViewModel               viewModel;
   private GroupMemberListView                groupMemberList;
   private View                               listPending;
   private TextView                           groupTitle;
-  private TextView                           memberCount;
+  private TextView                           memberCountUnderAvatar;
+  private TextView                           memberCountAboveList;
   private AvatarImageView                    avatar;
   private ThreadPhotoRailView                threadPhotoRailView;
   private View                               groupMediaCard;
@@ -69,6 +76,7 @@ public class ManageGroupFragment extends Fragment {
   private Button                             disappearingMessages;
   private Button                             blockGroup;
   private Button                             leaveGroup;
+  private Button                             addMembers;
   private Switch                             muteNotificationsSwitch;
   private TextView                           muteNotificationsUntilLabel;
   private TextView                           customNotificationsButton;
@@ -99,7 +107,8 @@ public class ManageGroupFragment extends Fragment {
 
     avatar                      = view.findViewById(R.id.group_avatar);
     groupTitle                  = view.findViewById(R.id.group_title);
-    memberCount                 = view.findViewById(R.id.member_count);
+    memberCountUnderAvatar      = view.findViewById(R.id.member_count);
+    memberCountAboveList        = view.findViewById(R.id.member_count_2);
     groupMemberList             = view.findViewById(R.id.group_members);
     listPending                 = view.findViewById(R.id.listPending);
     threadPhotoRailView         = view.findViewById(R.id.recent_photos);
@@ -112,6 +121,7 @@ public class ManageGroupFragment extends Fragment {
     disappearingMessages        = view.findViewById(R.id.disappearing_messages);
     blockGroup                  = view.findViewById(R.id.blockGroup);
     leaveGroup                  = view.findViewById(R.id.leaveGroup);
+    addMembers                  = view.findViewById(R.id.add_members);
     muteNotificationsUntilLabel = view.findViewById(R.id.group_mute_notifications_until);
     muteNotificationsSwitch     = view.findViewById(R.id.group_mute_notifications_switch);
     customNotificationsButton   = view.findViewById(R.id.group_custom_notifications_button);
@@ -147,12 +157,13 @@ public class ManageGroupFragment extends Fragment {
       });
 
     viewModel.getTitle().observe(getViewLifecycleOwner(), groupTitle::setText);
-    viewModel.getMemberCountSummary().observe(getViewLifecycleOwner(), memberCount::setText);
+    viewModel.getMemberCountSummary().observe(getViewLifecycleOwner(), memberCountUnderAvatar::setText);
+    viewModel.getFullMemberCountSummary().observe(getViewLifecycleOwner(), memberCountAboveList::setText);
+    viewModel.getGroupRecipient().observe(getViewLifecycleOwner(), avatar::setRecipient);
 
     viewModel.getGroupViewState().observe(getViewLifecycleOwner(), vs -> {
       if (vs == null) return;
       photoRailLabel.setOnClickListener(v -> startActivity(MediaOverviewActivity.forThread(context, vs.getThreadId())));
-      avatar.setRecipient(vs.getGroupRecipient());
 
       setMediaCursorFactory(vs.getMediaCursorFactory());
 
@@ -177,6 +188,12 @@ public class ManageGroupFragment extends Fragment {
     disappearingMessages.setOnClickListener(v -> viewModel.handleExpirationSelection());
     blockGroup.setOnClickListener(v -> viewModel.blockAndLeave(requireActivity()));
 
+    addMembers.setOnClickListener(v -> {
+      Intent intent = new Intent(requireActivity(), PushContactSelectionActivity.class);
+      intent.putExtra(ContactSelectionListFragment.DISPLAY_MODE, ContactsCursorLoader.DisplayMode.FLAG_PUSH);
+      startActivityForResult(intent, PICK_CONTACT);
+    });
+
     viewModel.getMembershipRights().observe(getViewLifecycleOwner(), r -> {
         if (r != null) {
           editGroupMembershipValue.setText(r.getString());
@@ -199,6 +216,7 @@ public class ManageGroupFragment extends Fragment {
     });
 
     viewModel.getCanEditGroupAttributes().observe(getViewLifecycleOwner(), canEdit -> disappearingMessages.setEnabled(canEdit));
+    viewModel.getCanAddMembers().observe(getViewLifecycleOwner(), canEdit -> addMembers.setVisibility(canEdit ? View.VISIBLE : View.GONE));
 
     groupMemberList.setRecipientClickListener(recipient -> RecipientBottomSheetDialogFragment.create(recipient.getId(), groupId).show(requireFragmentManager(), "BOTTOM"));
 
@@ -290,6 +308,9 @@ public class ManageGroupFragment extends Fragment {
     super.onActivityResult(requestCode, resultCode, data);
     if (requestCode == RETURN_FROM_MEDIA) {
       applyMediaCursorFactory();
+    } else if (requestCode == PICK_CONTACT) {
+      List<RecipientId> selected = data.getParcelableArrayListExtra(PushContactSelectionActivity.KEY_SELECTED_RECIPIENTS);
+      viewModel.onAddMembers(selected);
     }
   }
 }

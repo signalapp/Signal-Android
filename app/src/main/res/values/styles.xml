@@ -432,6 +432,10 @@
         <item name="android:textColor">@color/ultramarine_text_button</item>
     </style>
 
+    <style name="Widget.Signal.Button.TextButton.Drawable.Ultramarine" >
+        <item name="android:textColor">@color/ultramarine_text_button</item>
+    </style>
+
     <style name="Widget.Signal.Button.CalleeDialog" parent="Widget.AppCompat.Button">
         <item name="android:textColor">@color/core_ultramarine</item>
         <item name="android:background">@drawable/callee_dialog_button_background</item>

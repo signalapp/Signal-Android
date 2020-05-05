@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupNotAMemberException;
 import org.thoughtcrime.securesms.groups.GroupProtoUtil;
+import org.thoughtcrime.securesms.groups.GroupsV2Authorization;
 import org.thoughtcrime.securesms.groups.v2.ProfileKeySet;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob;
@@ -31,7 +32,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupHistoryEntry;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api;
-import org.whispersystems.signalservice.api.groupsv2.GroupsV2Authorization;
 import org.whispersystems.signalservice.api.groupsv2.InvalidGroupStateException;
 import org.whispersystems.signalservice.internal.push.exceptions.NotInGroupException;
 
@@ -217,7 +217,7 @@ public final class GroupsV2StateProcessor {
                                                     .orNull();
 
       try {
-        latestServerGroup = groupsV2Api.getGroup(groupSecretParams, groupsV2Authorization);
+        latestServerGroup = groupsV2Api.getGroup(groupSecretParams, groupsV2Authorization.getAuthorizationForToday(selfUuid, groupSecretParams));
       } catch (NotInGroupException e) {
         throw new GroupNotAMemberException(e);
       } catch (VerificationFailedException | InvalidGroupStateException e) {
@@ -238,7 +238,7 @@ public final class GroupsV2StateProcessor {
 
     private List<GroupLogEntry> getFullMemberHistory(@NonNull UUID selfUuid, int logsNeededFrom) throws IOException {
       try {
-        Collection<DecryptedGroupHistoryEntry> groupStatesFromRevision = groupsV2Api.getGroupHistory(groupSecretParams, logsNeededFrom, groupsV2Authorization);
+        Collection<DecryptedGroupHistoryEntry> groupStatesFromRevision = groupsV2Api.getGroupHistory(groupSecretParams, logsNeededFrom, groupsV2Authorization.getAuthorizationForToday(selfUuid, groupSecretParams));
         ArrayList<GroupLogEntry>               history                 = new ArrayList<>(groupStatesFromRevision.size());
 
         for (DecryptedGroupHistoryEntry entry : groupStatesFromRevision) {

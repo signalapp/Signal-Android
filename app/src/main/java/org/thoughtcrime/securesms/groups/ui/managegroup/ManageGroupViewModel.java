@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.groups.ui.managegroup;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.widget.Toast;
 
@@ -14,7 +15,11 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.BlockUnblockDialog;
+import org.thoughtcrime.securesms.ContactSelectionListFragment;
 import org.thoughtcrime.securesms.ExpirationDialog;
+import org.thoughtcrime.securesms.GroupCreateActivity;
+import org.thoughtcrime.securesms.PushContactSelectionActivity;
+import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
 import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.database.loaders.MediaLoader;
 import org.thoughtcrime.securesms.database.loaders.ThreadMediaLoader;
@@ -23,6 +28,7 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.LiveGroup;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -36,12 +42,15 @@ public class ManageGroupViewModel extends ViewModel {
   private final LiveData<String>                            title;
   private final LiveData<Boolean>                           isAdmin;
   private final LiveData<Boolean>                           canEditGroupAttributes;
+  private final LiveData<Boolean>                           canAddMembers;
   private final LiveData<List<GroupMemberEntry.FullMember>> members;
   private final LiveData<Integer>                           pendingMemberCount;
   private final LiveData<String>                            disappearingMessageTimer;
   private final LiveData<String>                            memberCountSummary;
+  private final LiveData<String>                            fullMemberCountSummary;
   private final LiveData<GroupAccessControl>                editMembershipRights;
   private final LiveData<GroupAccessControl>                editGroupAttributesRights;
+  private final LiveData<Recipient>                         groupRecipient;
   private final MutableLiveData<GroupViewState>             groupViewState            = new MutableLiveData<>(null);
   private final LiveData<MuteState>                         muteState;
   private final LiveData<Boolean>                           hasCustomNotifications;
@@ -59,13 +68,16 @@ public class ManageGroupViewModel extends ViewModel {
     this.members                   = liveGroup.getFullMembers();
     this.pendingMemberCount        = liveGroup.getPendingMemberCount();
     this.memberCountSummary        = liveGroup.getMembershipCountDescription(context.getResources());
+    this.fullMemberCountSummary    = liveGroup.getFullMembershipCountDescription(context.getResources());
     this.editMembershipRights      = liveGroup.getMembershipAdditionAccessControl();
     this.editGroupAttributesRights = liveGroup.getAttributesAccessControl();
     this.disappearingMessageTimer  = Transformations.map(liveGroup.getExpireMessages(), expiration -> ExpirationUtil.getExpirationDisplayValue(context, expiration));
     this.canEditGroupAttributes    = liveGroup.selfCanEditGroupAttributes();
-    this.muteState                 = Transformations.map(liveGroup.getGroupRecipient(),
+    this.canAddMembers             = liveGroup.selfCanAddMembers();
+    this.groupRecipient            = liveGroup.getGroupRecipient();
+    this.muteState                 = Transformations.map(this.groupRecipient,
                                                          recipient -> new MuteState(recipient.getMuteUntil(), recipient.isMuted()));
-    this.hasCustomNotifications    = Transformations.map(liveGroup.getGroupRecipient(),
+    this.hasCustomNotifications    = Transformations.map(this.groupRecipient,
                                                          recipient -> recipient.getNotificationChannel() != null);
   }
 
@@ -86,6 +98,14 @@ public class ManageGroupViewModel extends ViewModel {
 
   LiveData<String> getMemberCountSummary() {
     return memberCountSummary;
+  }
+
+  LiveData<String> getFullMemberCountSummary() {
+    return fullMemberCountSummary;
+  }
+
+  public LiveData<Recipient> getGroupRecipient() {
+    return groupRecipient;
   }
 
   LiveData<GroupViewState> getGroupViewState() {
@@ -116,6 +136,10 @@ public class ManageGroupViewModel extends ViewModel {
     return canEditGroupAttributes;
   }
 
+  LiveData<Boolean> getCanAddMembers() {
+    return canAddMembers;
+  }
+
   LiveData<String> getDisappearingMessageTimer() {
     return disappearingMessageTimer;
   }
@@ -144,6 +168,10 @@ public class ManageGroupViewModel extends ViewModel {
                                        () -> RecipientUtil.block(context, recipient)));
   }
 
+  void onAddMembers(List<RecipientId> selected) {
+    manageGroupRepository.addMembers(selected, this::showErrorToast);
+  }
+
   void setMuteUntil(long muteUntil) {
     manageGroupRepository.setMuteUntil(muteUntil);
   }
@@ -154,7 +182,7 @@ public class ManageGroupViewModel extends ViewModel {
 
   @WorkerThread
   private void showErrorToast(@NonNull ManageGroupRepository.FailureReason e) {
-    Util.runOnMain(() -> Toast.makeText(context, e.getToastMessage(), Toast.LENGTH_SHORT).show());
+    Util.runOnMain(() -> Toast.makeText(context, e.getToastMessage(), Toast.LENGTH_LONG).show());
   }
 
   static final class GroupViewState {

@@ -32,3 +32,12 @@ message DecryptedGroupV2Context {
     DecryptedGroupChange         change     = 2;
     DecryptedGroup               groupState = 3;
 }
+
+message TemporalAuthCredentialResponse {
+    int32 date                   = 1;
+    bytes authCredentialResponse = 2;
+}
+
+message TemporalAuthCredentialResponses {
+    repeated TemporalAuthCredentialResponse credentialResponse = 1;
+}

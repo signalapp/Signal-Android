@@ -34,7 +34,6 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.util.InvalidNumberException;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 
 import java.io.ByteArrayInputStream;
@@ -89,7 +88,6 @@ final class GroupManagerV1 {
                                        @NonNull  Set<RecipientId> memberAddresses,
                                        @Nullable byte[]           avatarBytes,
                                        @Nullable String           name)
-      throws InvalidNumberException
   {
     final GroupDatabase groupDatabase    = DatabaseFactory.getGroupDatabase(context);
     final RecipientId   groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);

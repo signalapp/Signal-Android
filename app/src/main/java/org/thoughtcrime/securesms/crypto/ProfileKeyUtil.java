@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.profiles.ProfileKey;
+import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Util;
@@ -53,6 +54,18 @@ public final class ProfileKeyUtil {
     return null;
   }
 
+  public static @Nullable ProfileKeyCredential profileKeyCredentialOrNull(@Nullable byte[] profileKeyCredential) {
+    if (profileKeyCredential != null) {
+      try {
+        return new ProfileKeyCredential(profileKeyCredential);
+      } catch (InvalidInputException e) {
+        Log.w(TAG, String.format(Locale.US, "Seen non-null profile key credential of wrong length %d", profileKeyCredential.length), e);
+      }
+    }
+
+    return null;
+  }
+
   public static @NonNull ProfileKey profileKeyOrThrow(@NonNull byte[] profileKey) {
     try {
       return new ProfileKey(profileKey);
@@ -67,6 +80,10 @@ public final class ProfileKeyUtil {
 
   public static @NonNull Optional<ProfileKey> profileKeyOptionalOrThrow(@NonNull byte[] profileKey) {
     return Optional.of(profileKeyOrThrow(profileKey));
+  }
+
+  public static @NonNull Optional<ProfileKeyCredential> profileKeyCredentialOptional(@Nullable byte[] profileKey) {
+    return Optional.fromNullable(profileKeyCredentialOrNull(profileKey));
   }
 
   public static @NonNull ProfileKey createNew() {
