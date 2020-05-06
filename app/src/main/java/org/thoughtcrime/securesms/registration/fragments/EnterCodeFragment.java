@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.registration.service.RegistrationCodeRequest;
 import org.thoughtcrime.securesms.registration.service.RegistrationService;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 import org.thoughtcrime.securesms.util.CommunicationActions;
+import org.thoughtcrime.securesms.util.SupportEmailUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 
@@ -306,21 +307,13 @@ public final class EnterCodeFragment extends BaseRegistrationFragment {
   }
 
   private void sendEmailToSupport() {
+    String body = SupportEmailUtil.generateSupportEmailBody(requireContext(),
+                                                            getString(R.string.RegistrationActivity_code_support_subject),
+                                                            null,
+                                                            null);
     CommunicationActions.openEmail(requireContext(),
-                                   getString(R.string.RegistrationActivity_support_email),
+                                   SupportEmailUtil.getSupportEmailAddress(requireContext()),
                                    getString(R.string.RegistrationActivity_code_support_subject),
-                                   getString(R.string.RegistrationActivity_code_support_body,
-                                             getDevice(),
-                                             getAndroidVersion(),
-                                             BuildConfig.VERSION_NAME,
-                                             Locale.getDefault()));
-  }
-
-  private static String getDevice() {
-    return String.format("%s %s (%s)", Build.MANUFACTURER, Build.MODEL, Build.PRODUCT);
-  }
-
-  private static String getAndroidVersion() {
-    return String.format("%s (%s, %s)", Build.VERSION.RELEASE, Build.VERSION.INCREMENTAL, Build.DISPLAY);
+                                   body);
   }
 }

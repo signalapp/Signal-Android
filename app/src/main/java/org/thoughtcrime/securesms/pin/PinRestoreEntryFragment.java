@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.registration.RegistrationUtil;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.SupportEmailUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Locale;
@@ -195,14 +196,14 @@ public class PinRestoreEntryFragment extends Fragment {
                    .setMessage(getString(R.string.PinRestoreEntryFragment_your_pin_is_a_d_digit_code, KbsConstants.MINIMUM_PIN_LENGTH))
                    .setPositiveButton(R.string.PinRestoreEntryFragment_create_new_pin, null)
                    .setNeutralButton(R.string.PinRestoreEntryFragment_contact_support, (dialog, which) -> {
+                     String body = SupportEmailUtil.generateSupportEmailBody(requireContext(),
+                                                                             getString(R.string.PinRestoreEntryFragment_signal_registration_need_help_with_pin),
+                                                                             null,
+                                                                             null);
                      CommunicationActions.openEmail(requireContext(),
-                                                    getString(R.string.PinRestoreEntryFragment_support_email),
+                                                    SupportEmailUtil.getSupportEmailAddress(requireContext()),
                                                     getString(R.string.PinRestoreEntryFragment_signal_registration_need_help_with_pin),
-                                                    getString(R.string.PinRestoreEntryFragment_subject_signal_registration,
-                                                              getDevice(),
-                                                              getAndroidVersion(),
-                                                              BuildConfig.VERSION_NAME,
-                                                              Locale.getDefault()));
+                                                    body);
                    })
                    .setNegativeButton(R.string.PinRestoreEntryFragment_cancel, null)
                    .show();

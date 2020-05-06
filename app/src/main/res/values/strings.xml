@@ -856,9 +856,7 @@
         <item quantity="one">You have %1$d attempt remaining. If you run out of attempts, you can create a new PIN. You can register and use your account but you\'ll lose some saved settings like your profile information.</item>
         <item quantity="other">You have %1$d attempts remaining. If you run out of attempts, you can create a new PIN. You can register and use your account but you\'ll lose some saved settings like your profile information.</item>
     </plurals>
-    <string name="PinRestoreEntryFragment_support_email" translatable="false">support@signal.org</string>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal Registration - Need Help with PIN for Android</string>
-    <string name="PinRestoreEntryFragment_subject_signal_registration">Subject: Signal Registration - Need Help with PIN for Android\nDevice info: %1$s\nAndroid version: %2$s\nSignal version: %3$s\nLocale: %4$s</string>
     <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Enter alphanumeric PIN</string>
     <string name="PinRestoreEntryFragment_enter_numeric_pin">Enter numeric PIN</string>
 
@@ -1053,6 +1051,16 @@
     <string name="SubmitDebugLogActivity_copied_to_clipboard">Copied to clipboard</string>
     <string name="SubmitDebugLogActivity_ok">Ok</string>
     <string name="SubmitDebugLogActivity_share">Share</string>
+
+    <!-- SupportEmailUtil -->
+    <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>
+    <string name="SupportEmailUtil_subject">Subject:</string>
+    <string name="SupportEmailUtil_signal_android_support_request">Signal Android Support Request</string>
+    <string name="SupportEmailUtil_device_info">Device info:</string>
+    <string name="SupportEmailUtil_android_version">Android version:</string>
+    <string name="SupportEmailUtil_signal_version">Signal version:</string>
+    <string name="SupportEmailUtil_signal_package">Signal package:</string>
+    <string name="SupportEmailUtil_locale">Locale:</string>
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Group updated</string>
@@ -1634,12 +1642,7 @@
     <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string>
     <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string>
     <string name="HelpFragment__support_info">Support Info</string>
-    <string name="HelpFragment__subject">Subject:</string>
     <string name="HelpFragment__signal_android_support_request">Signal Android Support Request</string>
-    <string name="HelpFragment__device_info">Device info:</string>
-    <string name="HelpFragment__android_version">Android version:</string>
-    <string name="HelpFragment__signal_version">Signal version:</string>
-    <string name="HelpFragment__locale">Locale:</string>
     <string name="HelpFragment__debug_log">Debug Log:</string>
     <string name="HelpFragment__na">n/a</string>
     <string name="HelpFragment__could_not_upload_logs">Could not upload logs</string>
@@ -2159,9 +2162,7 @@
     <string name="RegistrationActivity_wrong_number">Wrong number</string>
     <string name="RegistrationActivity_call_me_instead_available_in">Call me instead \n (Available in %1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Contact Signal Support</string>
-    <string name="RegistrationActivity_support_email" translatable="false">support@signal.org</string>
     <string name="RegistrationActivity_code_support_subject">Signal Registration - Verification Code for Android</string>
-    <string name="RegistrationActivity_code_support_body">Subject: Signal Registration - Verification Code for Android\nDevice info: %1$s\nAndroid version: %2$s\nSignal version: %3$s\nLocale: %4$s</string>
     <string name="BackupUtil_never">Never</string>
     <string name="BackupUtil_unknown">Unknown</string>
     <string name="preferences_app_protection__screen_lock">Screen lock</string>
