@@ -93,7 +93,6 @@ def abiPostFix = ['universal'   : 0,
 android {
     flavorDimensions "none"
     compileSdkVersion 28
-    buildToolsVersion '28.0.3'
     useLibrary 'org.apache.http.legacy'
 
     dexOptions {
