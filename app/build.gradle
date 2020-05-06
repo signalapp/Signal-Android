@@ -95,6 +95,7 @@ android {
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
     useLibrary 'org.apache.http.legacy'
+    ndkVersion "21.0.6113669"
 
     dexOptions {
         javaMaxHeapSize "4g"
