@@ -15,7 +15,6 @@ apply plugin: 'maven'
 apply plugin: 'signing'
 apply plugin: 'witness'
 apply plugin: 'idea'
-apply from: 'witness-verifications.gradle'
 
 sourceCompatibility = 1.8
 archivesBaseName    = "signal-service-java"

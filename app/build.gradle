@@ -26,7 +26,6 @@ apply plugin: 'com.google.protobuf'
 apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'witness'
 apply from: 'translations.gradle'
-apply from: 'witness-verifications.gradle'
 
 repositories {
     maven {
