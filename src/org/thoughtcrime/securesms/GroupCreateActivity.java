@@ -43,7 +43,6 @@ import com.bumptech.glide.request.transition.Transition;
 import org.thoughtcrime.securesms.avatar.AvatarSelection;
 import org.thoughtcrime.securesms.components.PushRecipientsPanel;
 import org.thoughtcrime.securesms.components.PushRecipientsPanel.RecipientsPanelChangedListener;
-import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.contacts.RecipientsEditor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
@@ -57,6 +56,8 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.GroupManager.GroupActionResult;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.redesign.fragments.contactselection.ContactSelectionListFragment;
+import org.thoughtcrime.securesms.loki.redesign.fragments.contactselection.ContactSelectionListLoader.DisplayMode;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BitmapUtil;
@@ -321,11 +322,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     @Override
     public void onClick(View v) {
       Intent intent = new Intent(GroupCreateActivity.this, PushContactSelectionActivity.class);
-      if (groupToUpdate.isPresent()) {
-        intent.putExtra(ContactSelectionListFragment.DISPLAY_MODE, DisplayMode.FLAG_PUSH);
-      } else {
-        intent.putExtra(ContactSelectionListFragment.DISPLAY_MODE, DisplayMode.FLAG_PUSH | DisplayMode.FLAG_SMS);
-      }
+      intent.putExtra(ContactSelectionListFragment.DISPLAY_MODE, DisplayMode.FLAG_FRIENDS);
       startActivityForResult(intent, PICK_CONTACT);
     }
   }

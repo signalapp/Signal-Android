@@ -1663,13 +1663,14 @@
     <string name="session_restore_banner_dismiss_button_title">Dismiss</string>
     <string name="session_restore_banner_restore_button_title">Restore</string>
 
-    <!-- Loki -->
-
     <!-- Session -->
     <string name="activity_register_public_key_copied_message">Copied to clipboard</string>
     <string name="activity_home_leave_group_dialog_message">Are you sure you want to leave this group?</string>
     <string name="activity_home_delete_conversation_dialog_message">Are you sure you want to delete this conversation?</string>
     <string name="activity_home_conversation_deleted_message">Conversation deleted</string>
+    <string name="fragment_contact_selection_contacts_title">Contacts</string>
+    <string name="fragment_contact_selection_closed_groups_title">Closed Groups</string>
+    <string name="fragment_contact_selection_open_groups_title">Open Groups</string>
     <string name="activity_pn_mode_title">Push Notifications</string>
     <string name="activity_pn_mode_explanation">There are two ways Session can handle push notifications. Make sure to read the descriptions carefully before you choose.</string>
     <string name="activity_pn_mode_fcm_option_title">Firebase Cloud Messaging</string>

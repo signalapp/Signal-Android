@@ -26,9 +26,10 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.components.ContactFilterToolbar;
 import org.thoughtcrime.securesms.components.ContactFilterToolbar.OnFilterChangedListener;
-import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.loki.redesign.fragments.contactselection.ContactSelectionListFragment;
+import org.thoughtcrime.securesms.loki.redesign.fragments.contactselection.ContactSelectionListLoader.DisplayMode;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
@@ -40,7 +41,7 @@ import java.util.concurrent.ExecutionException;
 
 import network.loki.messenger.R;
 
-public class InviteActivity extends PassphraseRequiredActionBarActivity implements ContactSelectionListFragment.OnContactSelectedListener {
+public class InviteActivity extends PassphraseRequiredActionBarActivity {
 
   private ContactSelectionListFragment contactsFragment;
   private EditText                     inviteText;
@@ -52,7 +53,7 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
 
   @Override
   protected void onCreate(Bundle savedInstanceState, boolean ready) {
-    getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE, DisplayMode.FLAG_SMS);
+    getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE, DisplayMode.FLAG_FRIENDS);
     getIntent().putExtra(ContactSelectionListFragment.MULTI_SELECT, true);
     getIntent().putExtra(ContactSelectionListFragment.REFRESHABLE, false);
 
@@ -84,7 +85,6 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
     if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
       heart.getViewTreeObserver().addOnPreDrawListener(new HeartPreDrawListener());
     }
-    contactsFragment.setOnContactSelectedListener(this);
     shareButton.setOnClickListener(new ShareClickListener());
     smsButton.setOnClickListener(new SmsClickListener());
     smsCancelButton.setOnClickListener(new SmsCancelClickListener());
@@ -99,12 +99,10 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
     return animation;
   }
 
-  @Override
   public void onContactSelected(String number) {
     updateSmsButtonText();
   }
 
-  @Override
   public void onContactDeselected(String number) {
     updateSmsButtonText();
   }
@@ -132,7 +130,6 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
   }
 
   private void cancelSmsSelection() {
-    contactsFragment.reset();
     updateSmsButtonText();
     ViewUtil.animateOut(smsSendFrame, slideOutAnimation, View.GONE);
   }
@@ -241,7 +238,6 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
       ViewUtil.animateOut(smsSendFrame, slideOutAnimation, View.GONE).addListener(new Listener<Boolean>() {
         @Override
         public void onSuccess(Boolean result) {
-          contactsFragment.reset();
         }
 
         @Override
