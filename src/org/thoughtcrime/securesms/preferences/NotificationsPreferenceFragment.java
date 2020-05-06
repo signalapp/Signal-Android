@@ -14,6 +14,7 @@ import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.text.TextUtils;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
@@ -31,6 +32,16 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
   @Override
   public void onCreate(Bundle paramBundle) {
     super.onCreate(paramBundle);
+
+    // Set up FCM toggle
+    String fcmKey = "pref_key_use_fcm";
+    ((SwitchPreferenceCompat)findPreference(fcmKey)).setChecked(TextSecurePreferences.isUsingFCM(getContext()));
+    this.findPreference(fcmKey)
+        .setOnPreferenceChangeListener((preference, newValue) -> {
+          TextSecurePreferences.setIsUsingFCM(getContext(), (boolean) newValue);
+          ApplicationContext.getInstance(getContext()).registerForFCMIfNeeded(true);
+          return true;
+        });
 
     Preference ledBlinkPref = this.findPreference(TextSecurePreferences.LED_BLINK_PREF);
 

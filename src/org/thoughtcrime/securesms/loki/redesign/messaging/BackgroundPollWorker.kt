@@ -28,6 +28,7 @@ class BackgroundPollWorker : PersistentAlarmManagerListener() {
     }
 
     override fun onAlarm(context: Context, scheduledTime: Long): Long {
+        if (TextSecurePreferences.isUsingFCM(context)) { return 0L }
         if (scheduledTime != 0L) {
             val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
             val lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(context)

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.redesign.messaging
+package org.thoughtcrime.securesms.loki.redesign.shelved
 
 import android.content.Context
 import android.os.Handler

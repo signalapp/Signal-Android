@@ -6,6 +6,8 @@ buildscript {
     ext.kovenant_version = "3.3.0"
     ext.identicon_version = "v11"
     ext.rss_parser_version = "2.0.4"
+    ext.google_services_version = "4.3.3"
+    ext.firebase_messaging_version = "18.0.0"
 
     repositories {
         mavenLocal()
@@ -16,6 +18,7 @@ buildscript {
         classpath "com.android.tools.build:gradle:$gradle_version"
         classpath files('libs/gradle-witness.jar')
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.google.gms:google-services:$google_services_version"
     }
 }
 
@@ -24,6 +27,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 apply plugin: 'witness'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.gms.google-services'
 
 repositories {
     mavenLocal()
@@ -86,6 +90,8 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'android.arch.lifecycle:extensions:1.1.1'
     implementation 'android.arch.lifecycle:common-java8:1.1.1'
+
+    implementation "com.google.firebase:firebase-messaging:$firebase_messaging_version"
 
     implementation 'com.google.android.exoplayer:exoplayer-core:2.9.1'
     implementation 'com.google.android.exoplayer:exoplayer-ui:2.9.1'
@@ -184,8 +190,8 @@ dependencies {
     implementation "com.github.ybq:Android-SpinKit:1.4.0"
 }
 
-def canonicalVersionCode = 48
-def canonicalVersionName = "1.0.11"
+def canonicalVersionCode = 49
+def canonicalVersionName = "1.1.0"
 
 def postFixSize = 10
 def abiPostFix = ['armeabi-v7a' : 1,

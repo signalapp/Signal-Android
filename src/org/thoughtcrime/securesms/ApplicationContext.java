@@ -30,6 +30,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.multidex.MultiDexApplication;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import org.conscrypt.Conscrypt;
 import org.jetbrains.annotations.NotNull;
 import org.signal.aesgcmprovider.AesGcmProvider;
@@ -61,13 +63,14 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
 import org.thoughtcrime.securesms.loki.LokiPublicChatManager;
+import org.thoughtcrime.securesms.loki.LokiPushNotificationManager;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.redesign.messaging.BackgroundOpenGroupPollWorker;
 import org.thoughtcrime.securesms.loki.redesign.messaging.BackgroundPollWorker;
 import org.thoughtcrime.securesms.loki.redesign.messaging.LokiAPIDatabase;
-import org.thoughtcrime.securesms.loki.redesign.messaging.LokiRSSFeedPoller;
 import org.thoughtcrime.securesms.loki.redesign.messaging.LokiUserDatabase;
+import org.thoughtcrime.securesms.loki.redesign.shelved.LokiRSSFeedPoller;
 import org.thoughtcrime.securesms.loki.redesign.utilities.Broadcaster;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
@@ -97,6 +100,7 @@ import org.whispersystems.signalservice.loki.api.LokiAPIDatabaseProtocol;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPI;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPIDelegate;
 import org.whispersystems.signalservice.loki.api.LokiPoller;
+import org.whispersystems.signalservice.loki.api.LokiPushNotificationAcknowledgement;
 import org.whispersystems.signalservice.loki.api.LokiSwarmAPI;
 import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI;
 import org.whispersystems.signalservice.loki.api.publicchats.LokiPublicChat;
@@ -107,7 +111,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.security.SecureRandom;
 import java.security.Security;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -182,6 +185,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
     // Loki - Set up P2P API if needed
     setUpP2PAPI();
+    // Loki - Set up push notification acknowledgement
+    LokiPushNotificationAcknowledgement.Companion.configureIfNeeded(BuildConfig.DEBUG);
     // Loki - Update device mappings
     if (setUpStorageAPIIfNeeded()) {
       String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
@@ -199,6 +204,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     // Loki - Set up public chat manager
     lokiPublicChatManager = new LokiPublicChatManager(this);
     updatePublicChatProfilePictureIfNeeded();
+    registerForFCMIfNeeded(false);
   }
 
   @Override
@@ -455,6 +461,24 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     }, this);
   }
 
+  public void registerForFCMIfNeeded(Boolean force) {
+    Context context = this;
+    FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(task -> {
+      if (!task.isSuccessful()) {
+        Log.w(TAG, "getInstanceId failed", task.getException());
+        return;
+      }
+      String token = task.getResult().getToken();
+      String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context);
+      if (userHexEncodedPublicKey == null) return;
+      if (TextSecurePreferences.isUsingFCM(this)) {
+        LokiPushNotificationManager.register(token, userHexEncodedPublicKey, context, force);
+      } else {
+        LokiPushNotificationManager.unregister(token, context);
+      }
+    });
+  }
+
   @Override
   public void ping(@NotNull String s) {
     // TODO: Implement
@@ -509,8 +533,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   public void createRSSFeedsIfNeeded() {
+    return;
+    /*
     ArrayList<LokiRSSFeed> feeds = new ArrayList<>();
-//    feeds.add(lokiNewsFeed());
+    feeds.add(lokiNewsFeed());
     feeds.add(lokiMessengerUpdatesFeed());
     for (LokiRSSFeed feed : feeds) {
       boolean isFeedSetUp = TextSecurePreferences.isChatSetUp(this, feed.getId());
@@ -519,9 +545,12 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         TextSecurePreferences.markChatSetUp(this, feed.getId());
       }
     }
+     */
   }
 
   private void createRSSFeedPollersIfNeeded() {
+    return;
+    /*
     // Only create the RSS feed pollers if their threads aren't deleted
     LokiRSSFeed lokiNewsFeed = lokiNewsFeed();
     long lokiNewsFeedThreadID = GroupManager.getRSSFeedThreadId(lokiNewsFeed.getId(), this);
@@ -537,6 +566,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     if (lokiMessengerUpdatesFeedPoller == null) {
       lokiMessengerUpdatesFeedPoller = new LokiRSSFeedPoller(this, lokiMessengerUpdatesFeed());
     }
+     */
   }
 
   private void setUpThreadDeletionListeners(long threadID, Runnable onDelete) {
@@ -561,9 +591,12 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   public void startRSSFeedPollersIfNeeded() {
+    return;
+    /*
     createRSSFeedPollersIfNeeded();
     if (lokiNewsFeedPoller != null) lokiNewsFeedPoller.startIfNeeded();
     if (lokiMessengerUpdatesFeedPoller != null) lokiMessengerUpdatesFeedPoller.startIfNeeded();
+     */
   }
 
   private void resubmitProfilePictureIfNeeded() {

@@ -1671,4 +1671,26 @@
     <string name="fragment_contact_selection_contacts_title">Contacts</string>
     <string name="fragment_contact_selection_closed_groups_title">Closed Groups</string>
     <string name="fragment_contact_selection_open_groups_title">Open Groups</string>
+    <string name="activity_pn_mode_title">Push Notifications</string>
+    <string name="activity_pn_mode_explanation">There are two ways Session can handle push notifications. Make sure to read the descriptions carefully before you choose.</string>
+    <string name="activity_pn_mode_fcm_option_title">Firebase Cloud Messaging</string>
+    <string name="activity_pn_mode_fcm_option_explanation">Session will use the Firebase Cloud Messaging service to receive push notifications. You’ll be notified of new messages reliably and immediately. Using FCM means that this device will communicate directly with Google’s servers to retrieve push notifications, which will expose your IP address to Google. Your messages will still be onion-routed and end-to-end encrypted, so the contents of your messages will remain completely private.</string>
+    <string name="activity_pn_mode_background_polling_option_title">Background Polling</string>
+    <string name="activity_pn_mode_background_polling_option_explanation">Session will occasionally check for new messages in the background. This guarantees full privacy protection, but message notifications may be significantly delayed.</string>
+    <string name="activity_pn_mode_recommended_option_tag">Recommended</string>
+    <string name="activity_pn_mode_no_option_picked_dialog_title">Please Pick an Option</string>
+    <string name="sheet_pn_mode_title">Push Notifications</string>
+    <string name="sheet_pn_mode_explanation">Session now features two ways to handle push notifications. Make sure to read the descriptions carefully before you choose.</string>
+    <string name="sheet_pn_mode_fcm_option_title">Firebase Cloud Messaging</string>
+    <string name="sheet_pn_mode_fcm_option_explanation">Session will use the Firebase Cloud Messaging service to receive push notifications. You’ll be notified of new messages reliably and immediately. Using FCM means that this device will communicate directly with Google’s servers to retrieve push notifications, which will expose your IP address to Google. Your messages will still be onion-routed and end-to-end encrypted, so the contents of your messages will remain completely private.</string>
+    <string name="sheet_pn_mode_background_polling_option_title">Background Polling</string>
+    <string name="sheet_pn_mode_background_polling_option_explanation">Session will occasionally check for new messages in the background. This guarantees full privacy protection, but message notifications may be significantly delayed.</string>
+    <string name="sheet_pn_mode_recommended_option_tag">Recommended</string>
+    <string name="sheet_pn_mode_no_option_picked_dialog_title">Please Pick an Option</string>
+    <string name="sheet_pn_mode_confirm_button_title">Confirm</string>
+    <string name="sheet_pn_mode_skip_button_title">Skip</string>
+    <string name="preferences_notifications_strategy_category_title">Notification Strategy</string>
+    <string name="preferences_notifications_use_fcm_option_title">Use FCM</string>
+    <string name="preferences_notifications_use_fcm_option_explanation">Using Firebase Cloud Messaging allows for more reliable push notifications, but exposes your IP to Google.</string>
+
 </resources>

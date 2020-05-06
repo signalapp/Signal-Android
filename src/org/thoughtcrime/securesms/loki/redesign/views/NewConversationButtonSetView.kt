@@ -39,6 +39,7 @@ class NewConversationButtonSetView : RelativeLayout {
     // endregion
 
     // region Settings
+    private val minDragDistance by lazy { toPx(40, resources).toFloat() }
     private val maxDragDistance by lazy { toPx(56, resources).toFloat() }
     private val dragMargin by lazy { toPx(16, resources).toFloat() }
     private val bottomMargin by lazy { resources.getDimension(R.dimen.new_conversation_button_bottom_offset) }
@@ -252,7 +253,8 @@ class NewConversationButtonSetView : RelativeLayout {
                     expandedButton?.collapse()
                     this.expandedButton = null
                     collapse()
-                    if (event.action == MotionEvent.ACTION_UP) {
+                    val distanceFromRestPosition = touch.distanceTo(buttonRestPosition)
+                    if (event.action == MotionEvent.ACTION_UP && distanceFromRestPosition > (minDragDistance + mainButton.collapsedSize / 2)) {
                         if (sessionButton.contains(touch) || touch.isAbove(sessionButton, dragMargin)) { delegate?.createNewPrivateChat() }
                         else if (closedGroupButton.contains(touch) || touch.isRightOf(closedGroupButton, dragMargin)) { delegate?.createNewClosedGroup() }
                         else if (openGroupButton.contains(touch) || touch.isLeftOf(openGroupButton, dragMargin)) { delegate?.joinOpenGroup() }
