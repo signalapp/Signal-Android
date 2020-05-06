@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.v2.GroupCandidateHelper;
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingGroupUpdateMessage;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -407,15 +407,15 @@ final class GroupManagerV2 {
     GroupId.V2                groupId                 = GroupId.v2(masterKey);
     Recipient                 groupRecipient          = Recipient.externalGroup(context, groupId);
     DecryptedGroupV2Context   decryptedGroupV2Context = GroupProtoUtil.createDecryptedGroupV2Context(masterKey, decryptedGroup, plainGroupChange);
-    OutgoingGroupMediaMessage outgoingMessage         = new OutgoingGroupMediaMessage(groupRecipient,
-                                                                                      decryptedGroupV2Context,
-                                                                                      null,
-                                                                                      System.currentTimeMillis(),
-                                                                                      0,
-                                                                                      false,
-                                                                                      null,
-                                                                                      Collections.emptyList(),
-                                                                                      Collections.emptyList());
+    OutgoingGroupUpdateMessage outgoingMessage        = new OutgoingGroupUpdateMessage(groupRecipient,
+                                                                                       decryptedGroupV2Context,
+                                                                                       null,
+                                                                                       System.currentTimeMillis(),
+                                                                                       0,
+                                                                                       false,
+                                                                                       null,
+                                                                                       Collections.emptyList(),
+                                                                                       Collections.emptyList());
 
     long threadId = MessageSender.send(context, outgoingMessage, -1, false, null);
 

@@ -185,10 +185,6 @@ public class IncomingTextMessage implements Parcelable {
     return message;
   }
 
-  public IncomingTextMessage withMessageBody(String message) {
-    return new IncomingTextMessage(this, message);
-  }
-
   public RecipientId getSender() {
     return sender;
   }

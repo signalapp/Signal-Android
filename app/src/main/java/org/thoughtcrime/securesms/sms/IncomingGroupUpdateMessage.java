@@ -2,18 +2,13 @@ package org.thoughtcrime.securesms.sms;
 
 import static org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 
-public class IncomingGroupMessage extends IncomingTextMessage {
+public final class IncomingGroupUpdateMessage extends IncomingTextMessage {
 
   private final GroupContext groupContext;
 
-  public IncomingGroupMessage(IncomingTextMessage base, GroupContext groupContext, String body) {
+  public IncomingGroupUpdateMessage(IncomingTextMessage base, GroupContext groupContext, String body) {
     super(base, body);
     this.groupContext = groupContext;
-  }
-
-  @Override
-  public IncomingGroupMessage withMessageBody(String body) {
-    return new IncomingGroupMessage(this, groupContext, body);
   }
 
   @Override

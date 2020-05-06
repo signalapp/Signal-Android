@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.groups.BadGroupIdException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingGroupUpdateMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -75,7 +75,7 @@ public final class GroupUtil {
   }
 
   @WorkerThread
-  public static Optional<OutgoingGroupMediaMessage> createGroupLeaveMessage(@NonNull Context context, @NonNull Recipient groupRecipient) {
+  public static Optional<OutgoingGroupUpdateMessage> createGroupLeaveMessage(@NonNull Context context, @NonNull Recipient groupRecipient) {
     GroupId       encodedGroupId = groupRecipient.requireGroupId();
     GroupDatabase groupDatabase  = DatabaseFactory.getGroupDatabase(context);
 
@@ -91,7 +91,7 @@ public final class GroupUtil {
                                             .setType(GroupContext.Type.QUIT)
                                             .build();
 
-    return Optional.of(new OutgoingGroupMediaMessage(groupRecipient, groupContext, null, System.currentTimeMillis(), 0, false, null, Collections.emptyList(), Collections.emptyList()));
+    return Optional.of(new OutgoingGroupUpdateMessage(groupRecipient, groupContext, null, System.currentTimeMillis(), 0, false, null, Collections.emptyList(), Collections.emptyList()));
   }
 
 

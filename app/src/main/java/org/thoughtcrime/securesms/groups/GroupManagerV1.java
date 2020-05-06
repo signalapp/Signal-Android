@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.jobs.LeaveGroupJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
-import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingGroupUpdateMessage;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -145,7 +145,7 @@ final class GroupManagerV1 {
       avatarAttachment = new UriAttachment(avatarUri, MediaUtil.IMAGE_PNG, AttachmentDatabase.TRANSFER_PROGRESS_DONE, avatar.length, null, false, false, null, null, null, null);
     }
 
-    OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(groupRecipient, groupContext, avatarAttachment, System.currentTimeMillis(), 0, false, null, Collections.emptyList(), Collections.emptyList());
+    OutgoingGroupUpdateMessage outgoingMessage = new OutgoingGroupUpdateMessage(groupRecipient, groupContext, avatarAttachment, System.currentTimeMillis(), 0, false, null, Collections.emptyList(), Collections.emptyList());
     long                      threadId        = MessageSender.send(context, outgoingMessage, -1, false, null);
 
     return new GroupActionResult(groupRecipient, threadId);
@@ -153,9 +153,9 @@ final class GroupManagerV1 {
 
   @WorkerThread
   static boolean leaveGroup(@NonNull Context context, @NonNull GroupId.V1 groupId) {
-    Recipient                           groupRecipient = Recipient.externalGroup(context, groupId);
-    long                                threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
-    Optional<OutgoingGroupMediaMessage> leaveMessage   = GroupUtil.createGroupLeaveMessage(context, groupRecipient);
+    Recipient                            groupRecipient = Recipient.externalGroup(context, groupId);
+    long                                 threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
+    Optional<OutgoingGroupUpdateMessage> leaveMessage   = GroupUtil.createGroupLeaveMessage(context, groupRecipient);
 
     if (threadId != -1 && leaveMessage.isPresent()) {
       try {

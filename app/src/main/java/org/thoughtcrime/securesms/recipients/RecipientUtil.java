@@ -24,7 +24,7 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceMessageRequestResponseJob;
 import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingGroupUpdateMessage;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.GroupUtil;
@@ -117,8 +117,8 @@ public class RecipientUtil {
     }
 
     if (DatabaseFactory.getGroupDatabase(context).isActive(resolved.requireGroupId())) {
-      long                                threadId     = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(resolved);
-      Optional<OutgoingGroupMediaMessage> leaveMessage = GroupUtil.createGroupLeaveMessage(context, resolved);
+      long                                 threadId     = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(resolved);
+      Optional<OutgoingGroupUpdateMessage> leaveMessage = GroupUtil.createGroupLeaveMessage(context, resolved);
 
       if (threadId != -1 && leaveMessage.isPresent()) {
         ApplicationDependencies.getJobManager().add(LeaveGroupJob.create(recipient));

@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
 import org.thoughtcrime.securesms.mms.MmsException;
-import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingGroupUpdateMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -169,7 +169,7 @@ public class PushGroupSendJob extends PushSendJob {
 
       if      (filterRecipient != null)                                                        target = Collections.singletonList(Recipient.resolved(filterRecipient).getId());
       else if (!existingNetworkFailures.isEmpty())                                             target = Stream.of(existingNetworkFailures).map(nf -> nf.getRecipientId(context)).toList();
-      else if (groupRecipient.isPushV2Group() && message instanceof OutgoingGroupMediaMessage) target = getGroupMessageV2Recipients((OutgoingGroupMediaMessage) message);
+      else if (groupRecipient.isPushV2Group() && message instanceof OutgoingGroupUpdateMessage) target = getGroupMessageV2Recipients((OutgoingGroupUpdateMessage) message);
       else                                                                                     target = getGroupMessageRecipients(groupRecipient.requireGroupId(), messageId);
 
       List<SendMessageResult>   results                  = deliver(message, groupRecipient, target);
@@ -266,7 +266,7 @@ public class PushGroupSendJob extends PushSendJob {
                                                                       .toList();
 
     if (message.isGroup()) {
-      OutgoingGroupMediaMessage groupMessage = (OutgoingGroupMediaMessage) message;
+      OutgoingGroupUpdateMessage groupMessage = (OutgoingGroupUpdateMessage) message;
 
       if (groupMessage.isV2Group()) {
         MessageGroupContext.GroupV2Properties properties   = groupMessage.requireGroupV2Properties();
@@ -336,7 +336,7 @@ public class PushGroupSendJob extends PushSendJob {
     return Stream.of(members).map(Recipient::getId).toList();
   }
 
-  private @NonNull List<RecipientId> getGroupMessageV2Recipients(@NonNull OutgoingGroupMediaMessage message) {
+  private @NonNull List<RecipientId> getGroupMessageV2Recipients(@NonNull OutgoingGroupUpdateMessage message) {
     UUID                                  selfUUId          = Recipient.self().getUuid().get();
     MessageGroupContext.GroupV2Properties groupV2Properties = message.requireGroupV2Properties();
     boolean                               includePending    = groupV2Properties.isUpdate();

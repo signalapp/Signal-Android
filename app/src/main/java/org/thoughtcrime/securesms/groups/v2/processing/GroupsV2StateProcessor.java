@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MmsException;
-import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingGroupUpdateMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupHistoryEntry;
@@ -253,12 +253,12 @@ public final class GroupsV2StateProcessor {
 
     private void storeMessage(@NonNull DecryptedGroupV2Context decryptedGroupV2Context, long timestamp) {
       try {
-        MmsDatabase               mmsDatabase     = DatabaseFactory.getMmsDatabase(context);
-        RecipientId               recipientId     = recipientDatabase.getOrInsertFromGroupId(groupId);
-        Recipient                 recipient       = Recipient.resolved(recipientId);
-        OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(recipient, decryptedGroupV2Context, null, timestamp, 0, false, null, Collections.emptyList(), Collections.emptyList());
-        long                      threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
-        long                      messageId       = mmsDatabase.insertMessageOutbox(outgoingMessage, threadId, false, null);
+        MmsDatabase                mmsDatabase     = DatabaseFactory.getMmsDatabase(context);
+        RecipientId                recipientId     = recipientDatabase.getOrInsertFromGroupId(groupId);
+        Recipient                  recipient       = Recipient.resolved(recipientId);
+        OutgoingGroupUpdateMessage outgoingMessage = new OutgoingGroupUpdateMessage(recipient, decryptedGroupV2Context, null, timestamp, 0, false, null, Collections.emptyList(), Collections.emptyList());
+        long                       threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+        long                       messageId       = mmsDatabase.insertMessageOutbox(outgoingMessage, threadId, false, null);
 
         mmsDatabase.markAsSent(messageId, true);
       } catch (MmsException e) {

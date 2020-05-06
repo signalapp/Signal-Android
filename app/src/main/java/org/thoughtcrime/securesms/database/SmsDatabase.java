@@ -42,13 +42,12 @@ import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
+import org.thoughtcrime.securesms.sms.IncomingGroupUpdateMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -618,8 +617,8 @@ public class SmsDatabase extends MessagingDatabase {
       type |= Types.SECURE_MESSAGE_BIT;
     } else if (message.isGroup()) {
       type |= Types.SECURE_MESSAGE_BIT;
-      if      (((IncomingGroupMessage)message).isUpdate()) type |= Types.GROUP_UPDATE_BIT;
-      else if (((IncomingGroupMessage)message).isQuit())   type |= Types.GROUP_QUIT_BIT;
+      if      (((IncomingGroupUpdateMessage)message).isUpdate()) type |= Types.GROUP_UPDATE_BIT;
+      else if (((IncomingGroupUpdateMessage)message).isQuit())   type |= Types.GROUP_QUIT_BIT;
     } else if (message.isEndSession()) {
       type |= Types.SECURE_MESSAGE_BIT;
       type |= Types.END_SESSION_BIT;

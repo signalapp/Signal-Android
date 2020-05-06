@@ -59,7 +59,7 @@ import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
-import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingGroupUpdateMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.mms.QuoteModel;
@@ -822,7 +822,7 @@ public class MmsDatabase extends MessagingDatabase {
         }
 
         if (body != null && (Types.isGroupQuit(outboxType) || Types.isGroupUpdate(outboxType))) {
-          return new OutgoingGroupMediaMessage(recipient, new MessageGroupContext(body, Types.isGroupV2(outboxType)), attachments, timestamp, 0, false, quote, contacts, previews);
+          return new OutgoingGroupUpdateMessage(recipient, new MessageGroupContext(body, Types.isGroupV2(outboxType)), attachments, timestamp, 0, false, quote, contacts, previews);
         } else if (Types.isExpirationTimerUpdate(outboxType)) {
           return new OutgoingExpirationUpdateMessage(recipient, timestamp, expiresIn);
         }
@@ -1081,13 +1081,13 @@ public class MmsDatabase extends MessagingDatabase {
     if (forceSms)           type |= Types.MESSAGE_FORCE_SMS_BIT;
 
     if (message.isGroup()) {
-      OutgoingGroupMediaMessage outgoingGroupMediaMessage = (OutgoingGroupMediaMessage) message;
-      if (outgoingGroupMediaMessage.isV2Group()) {
-        MessageGroupContext.GroupV2Properties groupV2Properties = outgoingGroupMediaMessage.requireGroupV2Properties();
+      OutgoingGroupUpdateMessage outgoingGroupUpdateMessage = (OutgoingGroupUpdateMessage) message;
+      if (outgoingGroupUpdateMessage.isV2Group()) {
+        MessageGroupContext.GroupV2Properties groupV2Properties = outgoingGroupUpdateMessage.requireGroupV2Properties();
         type |= Types.GROUP_V2_BIT;
         if (groupV2Properties.isUpdate()) type |= Types.GROUP_UPDATE_BIT;
       } else {
-        MessageGroupContext.GroupV1Properties properties = outgoingGroupMediaMessage.requireGroupV1Properties();
+        MessageGroupContext.GroupV1Properties properties = outgoingGroupUpdateMessage.requireGroupV1Properties();
         if      (properties.isUpdate()) type |= Types.GROUP_UPDATE_BIT;
         else if (properties.isQuit())   type |= Types.GROUP_QUIT_BIT;
       }
@@ -1127,14 +1127,14 @@ public class MmsDatabase extends MessagingDatabase {
     long messageId = insertMediaMessage(message.getBody(), message.getAttachments(), quoteAttachments, message.getSharedContacts(), message.getLinkPreviews(), contentValues, insertListener);
 
     if (message.getRecipient().isGroup()) {
-      OutgoingGroupMediaMessage outgoingGroupMediaMessage = (message instanceof OutgoingGroupMediaMessage) ? (OutgoingGroupMediaMessage) message : null;
+      OutgoingGroupUpdateMessage outgoingGroupUpdateMessage = (message instanceof OutgoingGroupUpdateMessage) ? (OutgoingGroupUpdateMessage) message : null;
 
       GroupReceiptDatabase receiptDatabase   = DatabaseFactory.getGroupReceiptDatabase(context);
       RecipientDatabase    recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
       Set<RecipientId>     members           = new HashSet<>();
 
-      if (outgoingGroupMediaMessage != null && outgoingGroupMediaMessage.isV2Group()) {
-        MessageGroupContext.GroupV2Properties groupV2Properties = outgoingGroupMediaMessage.requireGroupV2Properties();
+      if (outgoingGroupUpdateMessage != null && outgoingGroupUpdateMessage.isV2Group()) {
+        MessageGroupContext.GroupV2Properties groupV2Properties = outgoingGroupUpdateMessage.requireGroupV2Properties();
         members.addAll(Stream.of(groupV2Properties.getActiveMembers()).map(recipientDatabase::getOrInsertFromUuid).toList());
         if (groupV2Properties.isUpdate()) {
           members.addAll(Stream.of(groupV2Properties.getPendingMembers()).map(recipientDatabase::getOrInsertFromUuid).toList());

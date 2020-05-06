@@ -14,19 +14,19 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupC
 import java.util.Collections;
 import java.util.List;
 
-public final class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
+public final class OutgoingGroupUpdateMessage extends OutgoingSecureMediaMessage {
 
   private final MessageGroupContext messageGroupContext;
 
-  public OutgoingGroupMediaMessage(@NonNull Recipient recipient,
-                                   @NonNull MessageGroupContext groupContext,
-                                   @NonNull List<Attachment> avatar,
-                                   long sentTimeMillis,
-                                   long expiresIn,
-                                   boolean viewOnce,
-                                   @Nullable QuoteModel quote,
-                                   @NonNull List<Contact> contacts,
-                                   @NonNull List<LinkPreview> previews)
+  public OutgoingGroupUpdateMessage(@NonNull Recipient recipient,
+                                    @NonNull MessageGroupContext groupContext,
+                                    @NonNull List<Attachment> avatar,
+                                    long sentTimeMillis,
+                                    long expiresIn,
+                                    boolean viewOnce,
+                                    @Nullable QuoteModel quote,
+                                    @NonNull List<Contact> contacts,
+                                    @NonNull List<LinkPreview> previews)
   {
     super(recipient, groupContext.getEncodedGroupContext(), avatar, sentTimeMillis,
           ThreadDatabase.DistributionTypes.CONVERSATION, expiresIn, viewOnce, quote, contacts, previews);
@@ -34,28 +34,28 @@ public final class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage 
     this.messageGroupContext = groupContext;
   }
 
-  public OutgoingGroupMediaMessage(@NonNull Recipient recipient,
-                                   @NonNull GroupContext group,
-                                   @Nullable final Attachment avatar,
-                                   long sentTimeMillis,
-                                   long expireIn,
-                                   boolean viewOnce,
-                                   @Nullable QuoteModel quote,
-                                   @NonNull List<Contact> contacts,
-                                   @NonNull List<LinkPreview> previews)
+  public OutgoingGroupUpdateMessage(@NonNull Recipient recipient,
+                                    @NonNull GroupContext group,
+                                    @Nullable final Attachment avatar,
+                                    long sentTimeMillis,
+                                    long expireIn,
+                                    boolean viewOnce,
+                                    @Nullable QuoteModel quote,
+                                    @NonNull List<Contact> contacts,
+                                    @NonNull List<LinkPreview> previews)
   {
     this(recipient, new MessageGroupContext(group), getAttachments(avatar), sentTimeMillis, expireIn, viewOnce, quote, contacts, previews);
   }
 
-  public OutgoingGroupMediaMessage(@NonNull Recipient recipient,
-                                   @NonNull DecryptedGroupV2Context group,
-                                   @Nullable final Attachment avatar,
-                                   long sentTimeMillis,
-                                   long expireIn,
-                                   boolean viewOnce,
-                                   @Nullable QuoteModel quote,
-                                   @NonNull List<Contact> contacts,
-                                   @NonNull List<LinkPreview> previews)
+  public OutgoingGroupUpdateMessage(@NonNull Recipient recipient,
+                                    @NonNull DecryptedGroupV2Context group,
+                                    @Nullable final Attachment avatar,
+                                    long sentTimeMillis,
+                                    long expireIn,
+                                    boolean viewOnce,
+                                    @Nullable QuoteModel quote,
+                                    @NonNull List<Contact> contacts,
+                                    @NonNull List<LinkPreview> previews)
   {
     this(recipient, new MessageGroupContext(group), getAttachments(avatar), sentTimeMillis, expireIn, viewOnce, quote, contacts, previews);
   }
