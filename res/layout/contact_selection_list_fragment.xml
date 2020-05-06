@@ -1,13 +1,13 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/emptyStateContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal|center_vertical"
+        android:gravity="center"
         android:orientation="vertical">
 
         <TextView
@@ -16,6 +16,7 @@
             android:text="You don't have any contacts yet"
             android:textColor="@color/text"
             android:textSize="@dimen/medium_font_size" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -25,9 +26,9 @@
         android:orientation="vertical">
     
         <android.support.v4.widget.SwipeRefreshLayout
-                android:id="@+id/swipeRefresh"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
@@ -36,13 +37,14 @@
                 android:clipToPadding="false"
                 android:scrollbars="vertical" />
 
-            <TextView android:id="@android:id/empty"
+            <TextView
+                android:id="@+id/loadingTextView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center|center_vertical"
-                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:textColor="@color/text"
                 android:text="@string/contact_selection_group_activity__finding_contacts"
-                android:textSize="20sp" />
+                android:textSize="@dimen/large_font_size" />
 
         </android.support.v4.widget.SwipeRefreshLayout>
 

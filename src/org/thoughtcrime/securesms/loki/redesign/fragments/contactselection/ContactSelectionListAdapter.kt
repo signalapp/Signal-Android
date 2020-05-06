@@ -12,20 +12,19 @@ import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
 
 class ContactSelectionListAdapter(private val context: Context, private val multiSelect: Boolean) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-  private object ViewType {
-    const val Contact = 0
-    const val Divider = 1
-  }
-
   lateinit var glide: GlideRequests
   val selectedContacts = mutableSetOf<Recipient>()
   var items = listOf<ContactSelectionListItem>()
     set(value) { field = value; notifyDataSetChanged() }
   var contactClickListener: ContactClickListener? = null
 
+  private object ViewType {
+    const val Contact = 0
+    const val Divider = 1
+  }
+
   class UserViewHolder(val view: UserView) : RecyclerView.ViewHolder(view)
-  class DividerViewHolder(val view: View): RecyclerView.ViewHolder(view)
+  class DividerViewHolder(val view: View) : RecyclerView.ViewHolder(view)
 
   override fun getItemCount(): Int {
     return items.size

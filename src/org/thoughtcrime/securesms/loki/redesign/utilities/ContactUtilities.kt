@@ -12,12 +12,11 @@ data class Contact(
   val isSlave: Boolean,
   val isOurDevice: Boolean
 ) {
+
   override fun equals(other: Any?): Boolean {
     if (this === other) return true
     if (other?.javaClass != javaClass) return false
-
     other as Contact
-
     return recipient == other.recipient
   }
 
@@ -34,15 +33,11 @@ object ContactUtilities {
     val lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context)
     val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
     val lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(context)
-    val groupDatabase = DatabaseFactory.getGroupDatabase(context)
-    val lokiUserDatabase = DatabaseFactory.getLokiUserDatabase(context)
-
     val ourDeviceLinks = lokiAPIDatabase.getDeviceLinks(userHexEncodedPublicKey)
     val ourDevices = ourDeviceLinks.flatMap {
       listOf( it.masterHexEncodedPublicKey.toLowerCase(), it.slaveHexEncodedPublicKey.toLowerCase() )
     }.toMutableSet()
     ourDevices.add(userHexEncodedPublicKey.toLowerCase())
-
     val cursor = threadDatabase.conversationList
     val result = mutableSetOf<Contact>()
     threadDatabase.readerFor(cursor).use { reader ->
@@ -50,7 +45,6 @@ object ContactUtilities {
         val thread = reader.current
         val recipient = thread.recipient
         val address = recipient.address.serialize()
-
         val isOurDevice = ourDevices.contains(address)
         val isFriend = lokiThreadDatabase.getFriendRequestStatus(thread.threadId) == LokiThreadFriendRequestStatus.FRIENDS
         var isSlave = false
@@ -58,12 +52,9 @@ object ContactUtilities {
           val deviceLinks = lokiAPIDatabase.getDeviceLinks(address)
           isSlave = deviceLinks.find { it.slaveHexEncodedPublicKey == address } != null
         }
-
         result.add(Contact(recipient, isFriend, isSlave, isOurDevice))
       }
     }
-
     return result
   }
-
 }

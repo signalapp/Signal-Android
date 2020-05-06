@@ -16,17 +16,15 @@ import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
 
 class ContactSelectionListFragment : Fragment(), LoaderManager.LoaderCallbacks<List<ContactSelectionListItem>>, ContactClickListener {
-
-  companion object {
-    @JvmField val DISPLAY_MODE = "display_mode"
-    @JvmField val MULTI_SELECT = "multi_select"
-    @JvmField val REFRESHABLE = "refreshable"
-  }
-
+  private var cursorFilter: String? = null
   var onContactSelectedListener: OnContactSelectedListener? = null
 
   val selectedContacts: List<String>
     get() = listAdapter.selectedContacts.map { it.address.serialize() }
+
+  private val multiSelect: Boolean by lazy {
+    activity!!.intent.getBooleanExtra(MULTI_SELECT, false)
+  }
 
   private val listAdapter by lazy {
     val result = ContactSelectionListAdapter(activity!!, multiSelect)
@@ -35,18 +33,22 @@ class ContactSelectionListFragment : Fragment(), LoaderManager.LoaderCallbacks<L
     result
   }
 
-  private val multiSelect: Boolean by lazy {
-    activity!!.intent.getBooleanExtra(MULTI_SELECT, false)
+  companion object {
+    @JvmField val DISPLAY_MODE = "display_mode"
+    @JvmField val MULTI_SELECT = "multi_select"
+    @JvmField val REFRESHABLE = "refreshable"
   }
 
-  private var cursorFilter: String? = null
+  interface OnContactSelectedListener {
+    fun onContactSelected(number: String?)
+    fun onContactDeselected(number: String?)
+  }
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
-
     recyclerView.layoutManager = LinearLayoutManager(activity)
     recyclerView.adapter = listAdapter
-    swipeRefresh.isEnabled = activity!!.intent.getBooleanExtra(REFRESHABLE, true)
+    swipeRefreshLayout.isEnabled = activity!!.intent.getBooleanExtra(REFRESHABLE, true)
   }
 
   override fun onStart() {
@@ -65,15 +67,15 @@ class ContactSelectionListFragment : Fragment(), LoaderManager.LoaderCallbacks<L
 
   fun resetQueryFilter() {
     setQueryFilter(null)
-    swipeRefresh.isRefreshing = false
+    swipeRefreshLayout.isRefreshing = false
   }
 
   fun setRefreshing(refreshing: Boolean) {
-    swipeRefresh.isRefreshing = refreshing
+    swipeRefreshLayout.isRefreshing = refreshing
   }
 
   fun setOnRefreshListener(onRefreshListener: OnRefreshListener?) {
-    this.swipeRefresh.setOnRefreshListener(onRefreshListener)
+    swipeRefreshLayout.setOnRefreshListener(onRefreshListener)
   }
 
   override fun onCreateLoader(id: Int, args: Bundle?): Loader<List<ContactSelectionListItem>> {
@@ -106,10 +108,5 @@ class ContactSelectionListFragment : Fragment(), LoaderManager.LoaderCallbacks<L
 
   override fun onContactDeselected(contact: Recipient) {
     onContactSelectedListener?.onContactDeselected(contact.address.serialize())
-  }
-
-  interface OnContactSelectedListener {
-    fun onContactSelected(number: String?)
-    fun onContactDeselected(number: String?)
   }
 }

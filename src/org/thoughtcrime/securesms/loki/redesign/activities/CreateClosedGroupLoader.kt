@@ -8,7 +8,7 @@ class CreateClosedGroupLoader(context: Context) : AsyncLoader<List<String>>(cont
 
     override fun loadInBackground(): List<String> {
         val contacts = ContactUtilities.getAllContacts(context)
-        // Only show the master device of the users we are friends with
+        // Only show the master devices of the users we are friends with
         return contacts.filter { contact ->
             !contact.recipient.isGroupRecipient && contact.isFriend && !contact.isOurDevice && !contact.isSlave
         }.map {

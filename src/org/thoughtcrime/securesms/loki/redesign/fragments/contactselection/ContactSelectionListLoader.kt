@@ -8,8 +8,8 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.AsyncLoader
 
 sealed class ContactSelectionListItem {
-  class Header(val name: String): ContactSelectionListItem()
-  class Contact(val recipient: Recipient): ContactSelectionListItem()
+  class Header(val name: String) : ContactSelectionListItem()
+  class Contact(val recipient: Recipient) : ContactSelectionListItem()
 }
 
 class ContactSelectionListLoader(context: Context, val mode: Int, val filter: String?) : AsyncLoader<List<ContactSelectionListItem>>(context) {
@@ -35,6 +35,7 @@ class ContactSelectionListLoader(context: Context, val mode: Int, val filter: St
     }
 
     val list = mutableListOf<ContactSelectionListItem>()
+
     if (isFlagSet(DisplayMode.FLAG_CLOSED_GROUPS)) {
       list.addAll(getClosedGroups(contacts))
     }
@@ -51,19 +52,19 @@ class ContactSelectionListLoader(context: Context, val mode: Int, val filter: St
   }
 
   private fun getFriends(contacts: List<Contact>): List<ContactSelectionListItem> {
-    return getItems(contacts, context.getString(R.string.ContactSelectionListLoader_contacts)) {
+    return getItems(contacts, context.getString(R.string.fragment_contact_selection_contacts_title)) {
       !it.recipient.isGroupRecipient && it.isFriend && !it.isOurDevice && !it.isSlave
     }
   }
 
   private fun getClosedGroups(contacts: List<Contact>): List<ContactSelectionListItem> {
-    return getItems(contacts, context.getString(R.string.ContactSelectionListLoader_closed_groups)) {
+    return getItems(contacts, context.getString(R.string.fragment_contact_selection_closed_groups_title)) {
       it.recipient.address.isSignalGroup
     }
   }
 
   private fun getOpenGroups(contacts: List<Contact>): List<ContactSelectionListItem> {
-    return getItems(contacts, context.getString(R.string.ContactSelectionListLoader_open_groups)) {
+    return getItems(contacts, context.getString(R.string.fragment_contact_selection_open_groups_title)) {
       it.recipient.address.isPublicChat
     }
   }
@@ -72,9 +73,11 @@ class ContactSelectionListLoader(context: Context, val mode: Int, val filter: St
     val items = contacts.filter(contactFilter).map {
       ContactSelectionListItem.Contact(it.recipient)
     }
+
     if (items.isEmpty()) return listOf()
 
     val header = ContactSelectionListItem.Header(title)
+
     return listOf(header) + items
   }
 }

@@ -47,13 +47,13 @@ class UserView : LinearLayout {
     fun bind(user: Recipient, isSelected: Boolean, glide: GlideRequests) {
         val address = user.address.serialize()
         if (user.isGroupRecipient) {
-            if (user.address.isPublicChat || user.address.isRSSFeed) {
+            if ("Session Public Chat" == user.name || user.address.isRSSFeed) {
                 profilePictureView.hexEncodedPublicKey = ""
                 profilePictureView.additionalHexEncodedPublicKey = null
                 profilePictureView.isRSSFeed = true
             } else {
-                val threadId = GroupManager.getThreadIdFromGroupId(address, context)
-                val users = LokiAPI.userHexEncodedPublicKeyCache[threadId]?.toList() ?: listOf()
+                val threadID = GroupManager.getThreadIdFromGroupId(address, context)
+                val users = LokiAPI.userHexEncodedPublicKeyCache[threadID]?.toList() ?: listOf()
                 val randomUsers = users.sorted() // Sort to provide a level of stability
                 profilePictureView.hexEncodedPublicKey = randomUsers.getOrNull(0) ?: ""
                 profilePictureView.additionalHexEncodedPublicKey = randomUsers.getOrNull(1) ?: ""

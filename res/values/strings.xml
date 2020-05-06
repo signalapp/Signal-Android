@@ -1668,9 +1668,7 @@
     <string name="activity_home_leave_group_dialog_message">Are you sure you want to leave this group?</string>
     <string name="activity_home_delete_conversation_dialog_message">Are you sure you want to delete this conversation?</string>
     <string name="activity_home_conversation_deleted_message">Conversation deleted</string>
-
-    <!-- ContactSelectionListLoader -->
-    <string name="ContactSelectionListLoader_contacts">Contacts</string>
-    <string name="ContactSelectionListLoader_closed_groups">Groups</string>
-    <string name="ContactSelectionListLoader_open_groups">Public Chats</string>
+    <string name="fragment_contact_selection_contacts_title">Contacts</string>
+    <string name="fragment_contact_selection_closed_groups_title">Closed Groups</string>
+    <string name="fragment_contact_selection_open_groups_title">Open Groups</string>
 </resources>
