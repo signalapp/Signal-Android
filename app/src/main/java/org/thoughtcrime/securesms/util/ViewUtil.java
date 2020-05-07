@@ -21,15 +21,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
-import androidx.annotation.IdRes;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.view.ViewCompat;
-import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
-
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -39,63 +30,26 @@ import android.view.ViewStub;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
+
+import androidx.annotation.IdRes;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.thoughtcrime.securesms.util.views.Stub;
 
-public class ViewUtil {
-  @SuppressWarnings("deprecation")
+public final class ViewUtil {
+
+  private ViewUtil() {
+  }
+
   public static void setBackground(final @NonNull View v, final @Nullable Drawable drawable) {
-    if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN) {
-      v.setBackground(drawable);
-    } else {
-      v.setBackgroundDrawable(drawable);
-    }
-  }
-
-  public static void setY(final @NonNull View v, final int y) {
-    if (VERSION.SDK_INT >= 11) {
-      ViewCompat.setY(v, y);
-    } else {
-      ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams)v.getLayoutParams();
-      params.topMargin = y;
-      v.setLayoutParams(params);
-    }
-  }
-
-  public static float getY(final @NonNull View v) {
-    if (VERSION.SDK_INT >= 11) {
-      return ViewCompat.getY(v);
-    } else {
-      return ((ViewGroup.MarginLayoutParams)v.getLayoutParams()).topMargin;
-    }
-  }
-
-  public static void setX(final @NonNull View v, final int x) {
-    if (VERSION.SDK_INT >= 11) {
-      ViewCompat.setX(v, x);
-    } else {
-      ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams)v.getLayoutParams();
-      params.leftMargin = x;
-      v.setLayoutParams(params);
-    }
-  }
-
-  public static float getX(final @NonNull View v) {
-    if (VERSION.SDK_INT >= 11) {
-      return ViewCompat.getX(v);
-    } else {
-      return ((LayoutParams)v.getLayoutParams()).leftMargin;
-    }
-  }
-
-  public static void swapChildInPlace(ViewGroup parent, View toRemove, View toAdd, int defaultIndex) {
-    int childIndex = parent.indexOfChild(toRemove);
-    if (childIndex > -1) parent.removeView(toRemove);
-    parent.addView(toAdd, childIndex > -1 ? childIndex : defaultIndex);
+    v.setBackground(drawable);
   }
 
   @SuppressWarnings("unchecked")
@@ -103,18 +57,24 @@ public class ViewUtil {
     return (T)((ViewStub)parent.findViewById(stubId)).inflate();
   }
 
-  @SuppressWarnings("unchecked")
+  /**
+   * @deprecated Use {@link View#findViewById} directly.
+   */
+  @Deprecated
   public static <T extends View> T findById(@NonNull View parent, @IdRes int resId) {
-    return (T) parent.findViewById(resId);
+    return parent.findViewById(resId);
   }
 
-  @SuppressWarnings("unchecked")
+  /**
+   * @deprecated Use {@link Activity#findViewById} directly.
+   */
+  @Deprecated
   public static <T extends View> T findById(@NonNull Activity parent, @IdRes int resId) {
-    return (T) parent.findViewById(resId);
+    return parent.findViewById(resId);
   }
 
   public static <T extends View> Stub<T> findStubById(@NonNull Activity parent, @IdRes int resId) {
-    return new Stub<T>((ViewStub)parent.findViewById(resId));
+    return new Stub<>(parent.findViewById(resId));
   }
 
   private static Animation getAlphaAnimation(float from, float to, int duration) {
@@ -182,18 +142,15 @@ public class ViewUtil {
 
   @SuppressLint("RtlHardcoded")
   public static void setTextViewGravityStart(final @NonNull TextView textView, @NonNull Context context) {
-    if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN_MR1) {
-      if (DynamicLanguage.getLayoutDirection(context) == View.LAYOUT_DIRECTION_RTL) {
-        textView.setGravity(Gravity.RIGHT);
-      } else {
-        textView.setGravity(Gravity.LEFT);
-      }
+    if (DynamicLanguage.getLayoutDirection(context) == View.LAYOUT_DIRECTION_RTL) {
+      textView.setGravity(Gravity.RIGHT);
+    } else {
+      textView.setGravity(Gravity.LEFT);
     }
   }
 
   public static void mirrorIfRtl(View view, Context context) {
-    if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN_MR1 &&
-        DynamicLanguage.getLayoutDirection(context) == View.LAYOUT_DIRECTION_RTL) {
+    if (DynamicLanguage.getLayoutDirection(context) == View.LAYOUT_DIRECTION_RTL) {
       view.setScaleX(-1.0f);
     }
   }

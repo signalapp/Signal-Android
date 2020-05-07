@@ -90,9 +90,9 @@ public final class RecyclerViewFastScroller extends LinearLayout {
     final int action = event.getAction();
     switch (action) {
     case MotionEvent.ACTION_DOWN:
-      if (event.getX() < ViewUtil.getX(handle) - handle.getPaddingLeft() ||
-          event.getY() < ViewUtil.getY(handle) - handle.getPaddingTop() ||
-          event.getY() > ViewUtil.getY(handle) + handle.getHeight() + handle.getPaddingBottom())
+      if (event.getX() < handle.getX() - handle.getPaddingLeft() ||
+          event.getY() < handle.getY() - handle.getPaddingTop() ||
+          event.getY() > handle.getY() + handle.getHeight() + handle.getPaddingBottom())
       {
         return false;
       }
@@ -150,9 +150,9 @@ public final class RecyclerViewFastScroller extends LinearLayout {
     if (recyclerView != null) {
       final int itemCount = recyclerView.getAdapter().getItemCount();
       float proportion;
-      if (ViewUtil.getY(handle) == 0) {
+      if (handle.getY() == 0) {
         proportion = 0f;
-      } else if (ViewUtil.getY(handle) + handle.getHeight() >= height - TRACK_SNAP_RANGE) {
+      } else if (handle.getY() + handle.getHeight() >= height - TRACK_SNAP_RANGE) {
         proportion = 1f;
       } else {
         proportion = y / (float)height;
@@ -169,10 +169,10 @@ public final class RecyclerViewFastScroller extends LinearLayout {
     final int handleHeight = handle.getHeight();
     final int bubbleHeight = bubble.getHeight();
     final int handleY = Util.clamp((int)((height - handleHeight) * y), 0, height - handleHeight);
-    ViewUtil.setY(handle, handleY);
-    ViewUtil.setY(bubble, Util.clamp(handleY - bubbleHeight - bubble.getPaddingBottom() + handleHeight,
-                                     0,
-                                     height - bubbleHeight));
+    handle.setY(handleY);
+    bubble.setY(Util.clamp(handleY - bubbleHeight - bubble.getPaddingBottom() + handleHeight,
+                           0,
+                           height - bubbleHeight));
   }
 
   private void showBubble() {
