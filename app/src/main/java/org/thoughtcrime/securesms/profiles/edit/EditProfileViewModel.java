@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.profiles.edit;
 
-import android.view.animation.Transformation;
-
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +15,8 @@ import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.util.livedata.LiveDataPair;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.Objects;
+
 class EditProfileViewModel extends ViewModel {
 
   private final MutableLiveData<String>           givenName           = new MutableLiveData<>();
@@ -24,7 +24,9 @@ class EditProfileViewModel extends ViewModel {
   private final LiveData<ProfileName>             internalProfileName = Transformations.map(new LiveDataPair<>(givenName, familyName),
                                                                                             pair -> ProfileName.fromParts(pair.first(), pair.second()));
   private final MutableLiveData<byte[]>           internalAvatar      = new MutableLiveData<>();
+  private final MutableLiveData<byte[]>           originalAvatar      = new MutableLiveData<>();
   private final MutableLiveData<Optional<String>> internalUsername    = new MutableLiveData<>();
+  private final MutableLiveData<String>           originalDisplayName = new MutableLiveData<>();
   private final LiveData<Boolean>                 isFormValid         = Transformations.map(givenName, name -> !name.isEmpty());
   private final EditProfileRepository             repository;
   private final GroupId                           groupId;
@@ -37,7 +39,10 @@ class EditProfileViewModel extends ViewModel {
 
     if (!hasInstanceState) {
       if (groupId != null) {
-        repository.getCurrentDisplayName(givenName::setValue);
+        repository.getCurrentDisplayName(value -> {
+          givenName.setValue(value);
+          originalDisplayName.setValue(value);
+        });
       } else {
         repository.getCurrentProfileName(name -> {
           givenName.setValue(name.getGivenName());
@@ -45,7 +50,10 @@ class EditProfileViewModel extends ViewModel {
         });
       }
 
-      repository.getCurrentAvatar(internalAvatar::setValue);
+      repository.getCurrentAvatar(value -> {
+        internalAvatar.setValue(value);
+        originalAvatar.setValue(value);
+      });
     }
   }
 
@@ -110,7 +118,15 @@ class EditProfileViewModel extends ViewModel {
       return;
     }
 
-    repository.uploadProfile(profileName, displayName, internalAvatar.getValue(), uploadResultConsumer);
+    byte[] oldAvatar      = originalAvatar.getValue();
+    byte[] newAvatar      = internalAvatar.getValue();
+    String oldDisplayName = isGroup() ? originalDisplayName.getValue() : null;
+
+    repository.uploadProfile(profileName,
+                             Objects.equals(oldDisplayName, displayName) ? null : displayName,
+                             newAvatar,
+                             oldAvatar != newAvatar,
+                             uploadResultConsumer);
   }
 
   static class Factory implements ViewModelProvider.Factory {

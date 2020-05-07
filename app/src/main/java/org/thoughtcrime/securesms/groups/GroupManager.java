@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.groups.UuidCiphertext;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -15,10 +14,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.signalservice.api.groupsv2.InvalidGroupStateException;
-import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -45,26 +41,31 @@ public final class GroupManager {
   public static GroupActionResult updateGroup(@NonNull  Context context,
                                               @NonNull  GroupId groupId,
                                               @Nullable byte[]  avatar,
+                                                        boolean avatarChanged,
                                               @Nullable String  name)
-      throws InvalidNumberException
+    throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, GroupChangeBusyException
   {
+    if (groupId.isV2()) {
+      try (GroupManagerV2.GroupEditor edit = new GroupManagerV2(context).edit(groupId.requireV2())) {
+        return edit.updateGroupTitleAndAvatar(name, avatarChanged ? avatar : null);
+      }
+    } else {
+      List<Recipient> members = DatabaseFactory.getGroupDatabase(context)
+                                               .getGroupMembers(groupId, GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
 
-    List<Recipient> members = DatabaseFactory.getGroupDatabase(context)
-                                             .getGroupMembers(groupId, GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
-
-    return GroupManagerV1.updateGroup(context, groupId, getMemberIds(members), avatar, name);
+      return updateGroup(context, groupId.requireV1(), new HashSet<>(members), avatar, name);
+    }
   }
 
-  public static GroupActionResult updateGroup(@NonNull  Context        context,
-                                              @NonNull  GroupId        groupId,
-                                              @NonNull  Set<Recipient> members,
-                                              @Nullable Bitmap         avatar,
-                                              @Nullable String         name)
-      throws InvalidNumberException
+  public static @Nullable GroupActionResult updateGroup(@NonNull  Context        context,
+                                                        @NonNull  GroupId.V1     groupId,
+                                                        @NonNull  Set<Recipient> members,
+                                                        @Nullable byte[]         avatar,
+                                                        @Nullable String         name)
   {
     Set<RecipientId> addresses = getMemberIds(members);
 
-    return GroupManagerV1.updateGroup(context, groupId, addresses, BitmapUtil.toByteArray(avatar), name);
+    return GroupManagerV1.updateGroup(context, groupId, addresses, avatar, name);
   }
 
   private static Set<RecipientId> getMemberIds(Collection<Recipient> recipients) {

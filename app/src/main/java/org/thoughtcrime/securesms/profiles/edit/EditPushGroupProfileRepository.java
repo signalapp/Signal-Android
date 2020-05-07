@@ -8,8 +8,12 @@ import androidx.annotation.WorkerThread;
 import androidx.core.util.Consumer;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
+import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.groups.GroupInsufficientRightsException;
 import org.thoughtcrime.securesms.groups.GroupManager;
+import org.thoughtcrime.securesms.groups.GroupNotAMemberException;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileName;
@@ -18,7 +22,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.IOException;
 
@@ -64,16 +67,17 @@ class EditPushGroupProfileRepository implements EditProfileRepository {
 
   @Override
   public void uploadProfile(@NonNull ProfileName profileName,
-                            @NonNull String displayName,
+                            @Nullable String displayName,
                             @Nullable byte[] avatar,
+                            boolean avatarChanged,
                             @NonNull Consumer<UploadResult> uploadResultConsumer)
   {
     SimpleTask.run(() -> {
       try {
-        GroupManager.updateGroup(context, groupId, avatar, displayName);
+        GroupManager.updateGroup(context, groupId, avatar, avatarChanged, displayName);
 
         return UploadResult.SUCCESS;
-      } catch (InvalidNumberException e) {
+      } catch (GroupChangeFailedException | GroupInsufficientRightsException | IOException | GroupNotAMemberException | GroupChangeBusyException e) {
         return UploadResult.ERROR_IO;
       }
 

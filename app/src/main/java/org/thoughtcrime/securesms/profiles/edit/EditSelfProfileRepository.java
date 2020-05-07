@@ -108,14 +108,16 @@ class EditSelfProfileRepository implements EditProfileRepository {
   }
 
   @Override
-  public void uploadProfile(@NonNull ProfileName profileName, @NonNull String displayName, @Nullable byte[] avatar, @NonNull Consumer<UploadResult> uploadResultConsumer) {
+  public void uploadProfile(@NonNull ProfileName profileName, @Nullable String displayName, @Nullable byte[] avatar, boolean avatarChanged, @NonNull Consumer<UploadResult> uploadResultConsumer) {
     SimpleTask.run(() -> {
       DatabaseFactory.getRecipientDatabase(context).setProfileName(Recipient.self().getId(), profileName);
 
-      try {
-        AvatarHelper.setAvatar(context, Recipient.self().getId(), avatar != null ? new ByteArrayInputStream(avatar) : null);
-      } catch (IOException e) {
-        return UploadResult.ERROR_IO;
+      if (avatarChanged) {
+        try {
+          AvatarHelper.setAvatar(context, Recipient.self().getId(), avatar != null ? new ByteArrayInputStream(avatar) : null);
+        } catch (IOException e) {
+          return UploadResult.ERROR_IO;
+        }
       }
 
       ApplicationDependencies.getJobManager()
