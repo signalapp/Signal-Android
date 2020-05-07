@@ -690,7 +690,7 @@ public final class GroupDatabase extends Database {
         }
         return GroupAccessControl.ONLY_ADMINS;
       } else {
-        return GroupAccessControl.ALL_MEMBERS;
+        return id.isV1() ? GroupAccessControl.ALL_MEMBERS : GroupAccessControl.ONLY_ADMINS;
       }
     }
 
@@ -704,7 +704,7 @@ public final class GroupDatabase extends Database {
         }
         return GroupAccessControl.ONLY_ADMINS;
       } else {
-        return GroupAccessControl.ALL_MEMBERS;
+        return id.isV1() ? GroupAccessControl.ALL_MEMBERS : GroupAccessControl.ONLY_ADMINS;
       }
     }
   }
