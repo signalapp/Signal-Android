@@ -7,9 +7,9 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.redesign.utilities.*
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.loki.api.LokiAPIDatabaseProtocol
+import org.whispersystems.signalservice.loki.database.LokiAPIDatabaseProtocol
 import org.whispersystems.signalservice.loki.api.LokiAPITarget
-import org.whispersystems.signalservice.loki.api.multidevice.DeviceLink
+import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLink
 
 // TODO: Clean this up a bit
 

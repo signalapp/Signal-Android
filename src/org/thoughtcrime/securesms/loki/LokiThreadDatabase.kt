@@ -12,9 +12,9 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.libsignal.loki.LokiSessionResetStatus
 import org.whispersystems.signalservice.internal.util.JsonUtil
-import org.whispersystems.signalservice.loki.api.publicchats.LokiPublicChat
-import org.whispersystems.signalservice.loki.messaging.LokiThreadDatabaseProtocol
-import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
+import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChat
+import org.whispersystems.signalservice.loki.database.LokiThreadDatabaseProtocol
+import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus
 import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation
 
 class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiThreadDatabaseProtocol {

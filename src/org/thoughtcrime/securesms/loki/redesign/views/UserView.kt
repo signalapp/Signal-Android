@@ -11,7 +11,7 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.whispersystems.signalservice.loki.api.LokiAPI
+import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager
 
 class UserView : LinearLayout {
 
@@ -53,7 +53,7 @@ class UserView : LinearLayout {
                 profilePictureView.isRSSFeed = true
             } else {
                 val threadID = GroupManager.getThreadIdFromGroupId(address, context)
-                val users = LokiAPI.userHexEncodedPublicKeyCache[threadID]?.toList() ?: listOf()
+                val users = MentionsManager.userHexEncodedPublicKeyCache[threadID]?.toList() ?: listOf()
                 val randomUsers = users.sorted() // Sort to provide a level of stability
                 profilePictureView.hexEncodedPublicKey = randomUsers.getOrNull(0) ?: ""
                 profilePictureView.additionalHexEncodedPublicKey = randomUsers.getOrNull(1) ?: ""

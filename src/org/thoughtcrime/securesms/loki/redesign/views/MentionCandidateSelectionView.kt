@@ -10,7 +10,7 @@ import android.widget.ListView
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.toPx
 import org.thoughtcrime.securesms.mms.GlideRequests
-import org.whispersystems.signalservice.loki.messaging.Mention
+import org.whispersystems.signalservice.loki.protocol.mentions.Mention
 
 class MentionCandidateSelectionView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : ListView(context, attrs, defStyleAttr) {
     private var mentionCandidates = listOf<Mention>()

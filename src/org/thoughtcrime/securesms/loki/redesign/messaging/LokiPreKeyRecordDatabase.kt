@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.loki.redesign.utilities.get
 import org.thoughtcrime.securesms.loki.redesign.utilities.getInt
 import org.thoughtcrime.securesms.loki.redesign.utilities.insertOrUpdate
 import org.whispersystems.libsignal.state.PreKeyRecord
-import org.whispersystems.signalservice.loki.messaging.LokiPreKeyRecordDatabaseProtocol
+import org.whispersystems.signalservice.loki.database.LokiPreKeyRecordDatabaseProtocol
 
 class LokiPreKeyRecordDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiPreKeyRecordDatabaseProtocol {
 

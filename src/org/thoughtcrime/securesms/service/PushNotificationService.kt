@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.libsignal.logging.Log
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope
 import org.whispersystems.signalservice.internal.util.Base64
-import org.whispersystems.signalservice.loki.messaging.LokiMessageWrapper
+import org.whispersystems.signalservice.loki.api.LokiMessageWrapper
 
 class PushNotificationService : FirebaseMessagingService() {
 

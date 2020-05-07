@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.loki.redesign.dialogs.*
 import org.thoughtcrime.securesms.loki.signAndSendDeviceLinkMessage
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.loki.api.multidevice.DeviceLink
+import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLink
 import org.whispersystems.signalservice.loki.api.LokiAPI
 import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI
 import java.util.*

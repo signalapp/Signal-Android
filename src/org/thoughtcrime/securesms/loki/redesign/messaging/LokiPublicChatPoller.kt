@@ -22,11 +22,11 @@ import org.whispersystems.signalservice.api.messages.SignalServiceGroup
 import org.whispersystems.signalservice.api.messages.multidevice.SentTranscriptMessage
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI
-import org.whispersystems.signalservice.loki.api.multidevice.LokiDeviceLinkUtilities
-import org.whispersystems.signalservice.loki.api.publicchats.LokiPublicChat
-import org.whispersystems.signalservice.loki.api.publicchats.LokiPublicChatAPI
-import org.whispersystems.signalservice.loki.api.publicchats.LokiPublicChatMessage
-import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
+import org.whispersystems.signalservice.loki.protocol.multidevice.LokiDeviceLinkUtilities
+import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChat
+import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChatAPI
+import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChatMessage
+import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus
 import org.whispersystems.signalservice.loki.utilities.successBackground
 import java.security.MessageDigest
 import java.util.*

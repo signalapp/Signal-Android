@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.loki.api.publicchats.LokiPublicChat
+import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChat
 
 object OpenGroupUtilities {
 

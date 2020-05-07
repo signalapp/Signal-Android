@@ -137,16 +137,17 @@ import org.whispersystems.signalservice.api.messages.multidevice.StickerPackOper
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.loki.api.multidevice.DeviceLink;
-import org.whispersystems.signalservice.loki.api.multidevice.DeviceLinkingSession;
 import org.whispersystems.signalservice.loki.api.LokiAPI;
-import org.whispersystems.signalservice.loki.api.multidevice.LokiDeviceLinkUtilities;
 import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI;
-import org.whispersystems.signalservice.loki.api.publicchats.LokiPublicChat;
+import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChat;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
-import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
-import org.whispersystems.signalservice.loki.messaging.LokiServiceMessage;
-import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
+import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager;
+import org.whispersystems.signalservice.loki.protocol.meta.LokiServiceMessage;
+import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLink;
+import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLinkingSession;
+import org.whispersystems.signalservice.loki.protocol.multidevice.LokiDeviceLinkUtilities;
+import org.whispersystems.signalservice.loki.protocol.todo.LokiMessageFriendRequestStatus;
+import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus;
 import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
 import java.io.InputStream;
@@ -1147,7 +1148,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           InsertResult result = insertResult.get();
           // Loki - Cache the user hex encoded public key (for mentions)
           LokiAPIUtilities.INSTANCE.populateUserHexEncodedPublicKeyCacheIfNeeded(result.getThreadId(), context);
-          LokiAPI.Companion.cache(textMessage.getSender().serialize(), result.getThreadId());
+          MentionsManager.INSTANCE.cache(textMessage.getSender().serialize(), result.getThreadId());
 
           // Loki - Store message server ID
           updateGroupChatMessageServerID(messageServerIDOrNull, insertResult);
@@ -1289,7 +1290,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private void handleSessionRequestIfNeeded(@NonNull SignalServiceContent content) {
     if (!content.isFriendRequest() || !isSessionRequest(content)) { return; }
     // Check if the session request came from a member in one of our groups or one of our friends
-    LokiDeviceLinkUtilities.INSTANCE.getMasterHexEncodedPublicKey(content.getSender()).success( masterHexEncodedPublicKey -> {
+    LokiDeviceLinkUtilities.INSTANCE.getMasterHexEncodedPublicKey(content.getSender()).success(masterHexEncodedPublicKey -> {
       String sender = masterHexEncodedPublicKey != null ? masterHexEncodedPublicKey : content.getSender();
       long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(sender), false));
       LokiThreadFriendRequestStatus threadFriendRequestStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID);

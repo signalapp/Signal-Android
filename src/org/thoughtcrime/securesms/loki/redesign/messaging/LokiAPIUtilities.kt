@@ -4,12 +4,12 @@ import android.content.Context
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.loki.api.LokiAPI
+import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager
 
 object LokiAPIUtilities {
 
     fun populateUserHexEncodedPublicKeyCacheIfNeeded(threadID: Long, context: Context) {
-        if (LokiAPI.userHexEncodedPublicKeyCache[threadID] != null) { return }
+        if (MentionsManager.userHexEncodedPublicKeyCache[threadID] != null) { return }
         val result = mutableSetOf<String>()
         val messageDatabase = DatabaseFactory.getMmsSmsDatabase(context)
         val reader = messageDatabase.readerFor(messageDatabase.getConversation(threadID))
@@ -24,6 +24,6 @@ object LokiAPIUtilities {
         }
         reader.close()
         result.add(TextSecurePreferences.getLocalNumber(context))
-        LokiAPI.userHexEncodedPublicKeyCache[threadID] = result
+        MentionsManager.userHexEncodedPublicKeyCache[threadID] = result
     }
 }

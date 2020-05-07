@@ -4,8 +4,8 @@ import android.content.Context
 import nl.komponents.kovenant.ui.successUi
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus
-import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
+import org.whispersystems.signalservice.loki.protocol.todo.LokiMessageFriendRequestStatus
+import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus
 
 object FriendRequestHandler {
   enum class ActionType { Sending, Sent, Failed }

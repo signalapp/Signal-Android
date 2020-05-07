@@ -4,7 +4,7 @@ import android.content.Context
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
+import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus
 
 data class Contact(
   val recipient: Recipient,

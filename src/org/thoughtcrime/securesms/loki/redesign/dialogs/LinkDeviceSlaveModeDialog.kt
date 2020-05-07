@@ -15,9 +15,9 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.loki.redesign.utilities.MnemonicUtilities
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
-import org.whispersystems.signalservice.loki.api.multidevice.DeviceLink
-import org.whispersystems.signalservice.loki.api.multidevice.DeviceLinkingSession
-import org.whispersystems.signalservice.loki.api.multidevice.DeviceLinkingSessionListener
+import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLink
+import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLinkingSession
+import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLinkingSessionListener
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
 
 class LinkDeviceSlaveModeDialog : DialogFragment(), DeviceLinkingSessionListener {

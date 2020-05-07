@@ -21,7 +21,7 @@ import org.whispersystems.libsignal.ecc.Curve
 import org.whispersystems.libsignal.state.PreKeyBundle
 import org.whispersystems.libsignal.util.KeyHelper
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.loki.messaging.LokiPreKeyBundleDatabaseProtocol
+import org.whispersystems.signalservice.loki.database.LokiPreKeyBundleDatabaseProtocol
 
 class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiPreKeyBundleDatabaseProtocol {
 

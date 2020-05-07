@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.loki.redesign.utilities.get
 import org.thoughtcrime.securesms.loki.redesign.utilities.insertOrUpdate
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.loki.messaging.LokiUserDatabaseProtocol
+import org.whispersystems.signalservice.loki.database.LokiUserDatabaseProtocol
 
 class LokiUserDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiUserDatabaseProtocol {
 

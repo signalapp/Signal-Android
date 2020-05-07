@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.loki.getColorWithID
 import org.thoughtcrime.securesms.loki.toPx
-import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus
+import org.whispersystems.signalservice.loki.protocol.todo.LokiMessageFriendRequestStatus
 
 class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : LinearLayout(context, attrs, defStyleAttr) {
     private var isUISetUp = false

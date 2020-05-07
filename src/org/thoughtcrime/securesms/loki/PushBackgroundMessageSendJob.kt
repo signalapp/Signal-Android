@@ -93,7 +93,7 @@ class PushBackgroundMessageSendJob private constructor(
     }
 
     if (message.get("unpairingRequest", false)) {
-      dataMessage.asUnpairingRequest(true)
+      dataMessage.asUnlinkingRequest(true)
     }
 
     if (message.get("sessionRestore", false)) {

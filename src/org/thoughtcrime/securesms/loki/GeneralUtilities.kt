@@ -7,7 +7,7 @@ import android.support.annotation.ColorRes
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
+import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus
 import kotlin.math.roundToInt
 
 fun Resources.getColorWithID(@ColorRes id: Int, theme: Resources.Theme?): Int {

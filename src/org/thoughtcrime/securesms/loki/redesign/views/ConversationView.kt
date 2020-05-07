@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.loki.redesign.messaging.LokiAPIUtilities.popul
 import org.thoughtcrime.securesms.loki.redesign.utilities.MentionUtilities.highlightMentions
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.DateUtils
-import org.whispersystems.signalservice.loki.api.LokiAPI
+import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager
 import java.util.*
 
 class ConversationView : LinearLayout {
@@ -53,7 +53,7 @@ class ConversationView : LinearLayout {
                 profilePictureView.hexEncodedPublicKey = ""
                 profilePictureView.isRSSFeed = true
             } else {
-                val users = LokiAPI.userHexEncodedPublicKeyCache[thread.threadId]?.toList() ?: listOf()
+                val users = MentionsManager.userHexEncodedPublicKeyCache[thread.threadId]?.toList() ?: listOf()
                 val randomUsers = users.sorted() // Sort to provide a level of stability
                 profilePictureView.hexEncodedPublicKey = randomUsers.getOrNull(0) ?: ""
                 profilePictureView.additionalHexEncodedPublicKey = randomUsers.getOrNull(1) ?: ""
