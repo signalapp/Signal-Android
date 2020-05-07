@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -40,6 +41,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
   private Button                   makeGroupAdminButton;
   private Button                   removeAdminButton;
   private Button                   removeFromGroupButton;
+  private ProgressBar              adminActionBusy;
 
   public static BottomSheetDialogFragment create(@NonNull RecipientId recipientId,
                                                  @Nullable GroupId groupId)
@@ -80,6 +82,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
     makeGroupAdminButton   = view.findViewById(R.id.make_group_admin_button);
     removeAdminButton      = view.findViewById(R.id.remove_group_admin_button);
     removeFromGroupButton  = view.findViewById(R.id.remove_from_group_button);
+    adminActionBusy        = view.findViewById(R.id.admin_action_busy);
 
     return view;
   }
@@ -150,8 +153,17 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
     blockButton.setOnClickListener(view -> viewModel.onBlockClicked(requireActivity()));
     unblockButton.setOnClickListener(view -> viewModel.onUnblockClicked(requireActivity()));
 
-    makeGroupAdminButton.setOnClickListener(view -> viewModel.onMakeGroupAdminClicked());
-    removeAdminButton.setOnClickListener(view -> viewModel.onRemoveGroupAdminClicked());
-    removeFromGroupButton.setOnClickListener(view -> viewModel.onRemoveFromGroupClicked());
+    makeGroupAdminButton.setOnClickListener(view -> viewModel.onMakeGroupAdminClicked(requireActivity()));
+    removeAdminButton.setOnClickListener(view -> viewModel.onRemoveGroupAdminClicked(requireActivity()));
+
+    removeFromGroupButton.setOnClickListener(view -> viewModel.onRemoveFromGroupClicked(requireActivity(), this::dismiss));
+
+    viewModel.getAdminActionBusy().observe(getViewLifecycleOwner(), busy -> {
+      adminActionBusy.setVisibility(busy ? View.VISIBLE : View.GONE);
+
+      makeGroupAdminButton.setEnabled(!busy);
+      removeAdminButton.setEnabled(!busy);
+      removeFromGroupButton.setEnabled(!busy);
+    });
   }
 }

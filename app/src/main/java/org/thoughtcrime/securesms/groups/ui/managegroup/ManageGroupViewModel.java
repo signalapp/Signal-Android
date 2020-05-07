@@ -21,6 +21,8 @@ import org.thoughtcrime.securesms.database.loaders.ThreadMediaLoader;
 import org.thoughtcrime.securesms.groups.GroupAccessControl;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.LiveGroup;
+import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
+import org.thoughtcrime.securesms.groups.ui.GroupErrors;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -205,8 +207,8 @@ public class ManageGroupViewModel extends ViewModel {
   }
 
   @WorkerThread
-  private void showErrorToast(@NonNull ManageGroupRepository.FailureReason e) {
-    Util.runOnMain(() -> Toast.makeText(context, e.getToastMessage(), Toast.LENGTH_LONG).show());
+  private void showErrorToast(@NonNull GroupChangeFailureReason e) {
+    Util.runOnMain(() -> Toast.makeText(context, GroupErrors.getUserDisplayMessage(e), Toast.LENGTH_LONG).show());
   }
 
   static final class GroupViewState {

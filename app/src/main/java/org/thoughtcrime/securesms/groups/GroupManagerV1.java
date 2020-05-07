@@ -171,7 +171,32 @@ final class GroupManagerV1 {
       groupDatabase.remove(groupId, Recipient.self().getId());
       return true;
     } else {
+      Log.i(TAG, "Group was already inactive. Skipping.");
       return false;
+    }
+  }
+
+  @WorkerThread
+  static boolean silentLeaveGroup(@NonNull Context context, @NonNull GroupId.V1 groupId) {
+    if (DatabaseFactory.getGroupDatabase(context).isActive(groupId)) {
+      Recipient                            groupRecipient = Recipient.externalGroup(context, groupId);
+      long                                 threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
+      Optional<OutgoingGroupUpdateMessage> leaveMessage   = GroupUtil.createGroupLeaveMessage(context, groupRecipient);
+
+      if (threadId != -1 && leaveMessage.isPresent()) {
+        ApplicationDependencies.getJobManager().add(LeaveGroupJob.create(groupRecipient));
+
+        GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
+        groupDatabase.setActive(groupId, false);
+        groupDatabase.remove(groupId, Recipient.self().getId());
+        return true;
+      } else {
+        Log.w(TAG, "Failed to leave group.");
+        return false;
+      }
+    } else {
+      Log.i(TAG, "Group was already inactive. Skipping.");
+      return true;
     }
   }
 

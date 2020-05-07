@@ -77,8 +77,44 @@ public final class GroupManager {
   }
 
   @WorkerThread
-  public static boolean leaveGroup(@NonNull Context context, @NonNull GroupId.Push groupId) {
-    return GroupManagerV1.leaveGroup(context, groupId.requireV1());
+  public static void leaveGroup(@NonNull Context context, @NonNull GroupId.Push groupId)
+      throws GroupChangeBusyException, GroupChangeFailedException, IOException
+  {
+    if (groupId.isV2()) {
+      try (GroupManagerV2.GroupEditor edit = new GroupManagerV2(context).edit(groupId.requireV2())) {
+        edit.leaveGroup();
+        Log.i(TAG, "Left group " + groupId);
+      } catch (GroupInsufficientRightsException e) {
+        Log.w(TAG, "Unexpected prevention from leaving " + groupId + " due to rights", e);
+        throw new GroupChangeFailedException(e);
+      } catch (GroupNotAMemberException e) {
+        Log.w(TAG, "Already left group " + groupId, e);
+      }
+    } else {
+      if (!GroupManagerV1.leaveGroup(context, groupId.requireV1())) {
+        Log.w(TAG, "GV1 group leave failed" + groupId);
+        throw new GroupChangeFailedException();
+      }
+    }
+  }
+
+  @WorkerThread
+  public static boolean silentLeaveGroup(@NonNull Context context, @NonNull GroupId.Push groupId) {
+    if (groupId.isV2()) {
+      throw new AssertionError("NYI"); // TODO [Alan] GV2 support silent leave for block and leave operations on GV2
+    } else {
+      return GroupManagerV1.silentLeaveGroup(context, groupId.requireV1());
+    }
+  }
+
+  @WorkerThread
+  public static void ejectFromGroup(@NonNull Context context, @NonNull GroupId.V2 groupId, @NonNull Recipient recipient)
+      throws GroupChangeBusyException, GroupChangeFailedException, GroupInsufficientRightsException, GroupNotAMemberException, IOException
+  {
+    try (GroupManagerV2.GroupEditor edit = new GroupManagerV2(context).edit(groupId.requireV2())) {
+      edit.ejectMember(recipient.getId());
+      Log.i(TAG, "Member removed from group " + groupId);
+    }
   }
 
   @WorkerThread

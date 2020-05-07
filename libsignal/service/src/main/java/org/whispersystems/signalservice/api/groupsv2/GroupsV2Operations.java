@@ -192,6 +192,17 @@ public final class GroupsV2Operations {
       return actions;
     }
 
+    public GroupChange.Actions.Builder createRemoveMembersChange(final Set<UUID> membersToRemove) {
+      GroupChange.Actions.Builder actions = GroupChange.Actions.newBuilder();
+
+      for (UUID remove: membersToRemove) {
+        actions.addDeleteMembers(GroupChange.Actions.DeleteMemberAction.newBuilder()
+                                                                       .setDeletedUserId(encryptUuid(remove)));
+      }
+
+      return actions;
+    }
+
     public GroupChange.Actions.Builder createModifyGroupTimerChange(int timerDurationSeconds) {
       return GroupChange.Actions
                         .newBuilder()

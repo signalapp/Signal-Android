@@ -246,6 +246,27 @@ final class GroupManagerV2 {
     }
 
     @WorkerThread
+    @NonNull GroupManager.GroupActionResult leaveGroup()
+        throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
+    {
+      return ejectMember(Recipient.self().getId());
+    }
+
+    @WorkerThread
+    @NonNull GroupManager.GroupActionResult ejectMember(@NonNull RecipientId recipientId)
+        throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
+    {
+      Recipient                      recipient = Recipient.resolved(recipientId);
+      GroupManager.GroupActionResult result    = commitChangeWithConflictResolution(groupOperations.createRemoveMembersChange(Collections.singleton(recipient.getUuid().get())));
+
+      if (recipient.isLocalNumber()) {
+        groupDatabase.setActive(groupId, false);
+      }
+
+      return result;
+    }
+
+    @WorkerThread
     @Nullable GroupManager.GroupActionResult updateSelfProfileKeyInGroup()
         throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
     {

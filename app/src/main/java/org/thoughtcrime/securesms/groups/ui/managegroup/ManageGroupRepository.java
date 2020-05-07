@@ -3,11 +3,9 @@ package org.thoughtcrime.securesms.groups.ui.managegroup;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
 import androidx.annotation.WorkerThread;
 import androidx.core.util.Consumer;
 
-import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.groups.GroupAccessControl;
@@ -18,6 +16,8 @@ import org.thoughtcrime.securesms.groups.GroupInsufficientRightsException;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.GroupNotAMemberException;
 import org.thoughtcrime.securesms.groups.MembershipNotSuitableForV2Exception;
+import org.thoughtcrime.securesms.groups.ui.GroupChangeErrorCallback;
+import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
 
 final class ManageGroupRepository {
 
@@ -57,47 +56,47 @@ final class ManageGroupRepository {
     return new GroupStateResult(threadId, groupRecipient);
   }
 
-  void setExpiration(int newExpirationTime, @NonNull Error error) {
+  void setExpiration(int newExpirationTime, @NonNull GroupChangeErrorCallback error) {
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {
         GroupManager.updateGroupTimer(context, groupId.requirePush(), newExpirationTime);
       } catch (GroupInsufficientRightsException e) {
         Log.w(TAG, e);
-        error.onError(FailureReason.NO_RIGHTS);
+        error.onError(GroupChangeFailureReason.NO_RIGHTS);
       } catch (GroupNotAMemberException e) {
         Log.w(TAG, e);
-        error.onError(FailureReason.NOT_A_MEMBER);
+        error.onError(GroupChangeFailureReason.NOT_A_MEMBER);
       } catch (GroupChangeFailedException | GroupChangeBusyException | IOException e) {
         Log.w(TAG, e);
-        error.onError(FailureReason.OTHER);
+        error.onError(GroupChangeFailureReason.OTHER);
       }
     });
   }
 
-  void applyMembershipRightsChange(@NonNull GroupAccessControl newRights, @NonNull Error error) {
+  void applyMembershipRightsChange(@NonNull GroupAccessControl newRights, @NonNull GroupChangeErrorCallback error) {
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {
         GroupManager.applyMembershipAdditionRightsChange(context, groupId.requireV2(), newRights);
       } catch (GroupInsufficientRightsException | GroupNotAMemberException e) {
         Log.w(TAG, e);
-        error.onError(FailureReason.NO_RIGHTS);
+        error.onError(GroupChangeFailureReason.NO_RIGHTS);
       } catch (GroupChangeFailedException | GroupChangeBusyException | IOException e) {
         Log.w(TAG, e);
-        error.onError(FailureReason.OTHER);
+        error.onError(GroupChangeFailureReason.OTHER);
       }
     });
   }
 
-  void applyAttributesRightsChange(@NonNull GroupAccessControl newRights, @NonNull Error error) {
+  void applyAttributesRightsChange(@NonNull GroupAccessControl newRights, @NonNull GroupChangeErrorCallback error) {
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {
         GroupManager.applyAttributesRightsChange(context, groupId.requireV2(), newRights);
       } catch (GroupInsufficientRightsException | GroupNotAMemberException e) {
         Log.w(TAG, e);
-        error.onError(FailureReason.NO_RIGHTS);
+        error.onError(GroupChangeFailureReason.NO_RIGHTS);
       } catch (GroupChangeFailedException | GroupChangeBusyException | IOException e) {
         Log.w(TAG, e);
-        error.onError(FailureReason.OTHER);
+        error.onError(GroupChangeFailureReason.OTHER);
       }
     });
   }
@@ -115,19 +114,19 @@ final class ManageGroupRepository {
     });
   }
 
-  void addMembers(@NonNull List<RecipientId> selected, @NonNull Error error) {
+  void addMembers(@NonNull List<RecipientId> selected, @NonNull GroupChangeErrorCallback error) {
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {
         GroupManager.addMembers(context, groupId, selected);
       } catch (GroupInsufficientRightsException | GroupNotAMemberException e) {
         Log.w(TAG, e);
-        error.onError(FailureReason.NO_RIGHTS);
+        error.onError(GroupChangeFailureReason.NO_RIGHTS);
       } catch (GroupChangeFailedException | GroupChangeBusyException | IOException e) {
         Log.w(TAG, e);
-        error.onError(FailureReason.OTHER);
+        error.onError(GroupChangeFailureReason.OTHER);
       } catch (MembershipNotSuitableForV2Exception e) {
         Log.w(TAG, e);
-        error.onError(FailureReason.NOT_CAPABLE);
+        error.onError(GroupChangeFailureReason.NOT_CAPABLE);
       }
     });
   }
@@ -153,24 +152,4 @@ final class ManageGroupRepository {
     }
   }
 
-  public enum FailureReason {
-    NO_RIGHTS(R.string.ManageGroupActivity_you_dont_have_the_rights_to_do_this),
-    NOT_CAPABLE(R.string.ManageGroupActivity_not_capable),
-    NOT_A_MEMBER(R.string.ManageGroupActivity_youre_not_a_member_of_the_group),
-    OTHER(R.string.ManageGroupActivity_failed_to_update_the_group);
-
-    private final @StringRes int toastMessage;
-
-    FailureReason(@StringRes int toastMessage) {
-      this.toastMessage = toastMessage;
-    }
-
-    public @StringRes int getToastMessage() {
-      return toastMessage;
-    }
-  }
-
-  public interface Error {
-    void onError(@NonNull FailureReason failureReason);
-  }
 }
