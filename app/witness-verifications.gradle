@@ -153,6 +153,12 @@ dependencyVerification {
         ['androidx.navigation:navigation-ui:2.1.0',
          '1ec0558d692982c5bcfcca6de5b5972723e6b4a9870aa7fc1eddf5e869f116ed'],
 
+        ['androidx.paging:paging-common:2.1.2',
+         '891dd24bad908d5d866d7d3545114ab2d26994847cd0200ac68477287c0710b5'],
+
+        ['androidx.paging:paging-runtime:2.1.2',
+         '4e81d8ab584a184e2781c6f0d50b6f00acd11741f759270e7c976ef3307d78a7'],
+
         ['androidx.preference:preference:1.0.0',
          'ea9fde25606eb456210ffe9f7e51048abd776b55a34c0cc6608282b5699122d1'],
 

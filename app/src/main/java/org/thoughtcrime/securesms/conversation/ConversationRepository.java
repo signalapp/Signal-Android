@@ -1,9 +1,10 @@
 package org.thoughtcrime.securesms.conversation;
 
 import android.content.Context;
-import android.database.Cursor;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -13,28 +14,27 @@ import org.whispersystems.libsignal.util.Pair;
 
 import java.util.concurrent.Executor;
 
-public class ConversationRepository {
+class ConversationRepository {
 
   private final Context  context;
   private final Executor executor;
 
-  public ConversationRepository() {
+  ConversationRepository() {
     this.context  = ApplicationDependencies.getApplication();
     this.executor = SignalExecutors.BOUNDED;
   }
 
-  public void getConversationData(long threadId,
-                                  int offset,
-                                  int limit,
-                                  long lastSeen,
-                                  int previousOffset,
-                                  boolean firstLoad,
-                                  @NonNull Callback<ConversationData> callback)
-  {
-    executor.execute(() -> callback.onComplete(getConversationDataInternal(threadId, offset, limit, lastSeen, previousOffset, firstLoad)));
+  LiveData<ConversationData> getConversationData(long threadId, long lastSeen, int jumpToPosition) {
+    MutableLiveData<ConversationData> liveData = new MutableLiveData<>();
+
+    executor.execute(() -> {
+      liveData.postValue(getConversationDataInternal(threadId, lastSeen, jumpToPosition));
+    });
+
+    return liveData;
   }
 
-  private @NonNull ConversationData getConversationDataInternal(long threadId, int offset, int limit, long lastSeen, int previousOffset, boolean firstLoad) {
+  private @NonNull ConversationData getConversationDataInternal(long threadId, long lastSeen, int jumpToPosition) {
     Pair<Long, Boolean> lastSeenAndHasSent = DatabaseFactory.getThreadDatabase(context).getLastSeenAndHasSent(threadId);
 
     boolean hasSent = lastSeenAndHasSent.second();
@@ -45,13 +45,7 @@ public class ConversationRepository {
 
     boolean isMessageRequestAccepted     = RecipientUtil.isMessageRequestAccepted(context, threadId);
     boolean hasPreMessageRequestMessages = RecipientUtil.isPreMessageRequestThread(context, threadId);
-    Cursor  cursor                       = DatabaseFactory.getMmsSmsDatabase(context).getConversation(threadId, offset, limit);
 
-    return new ConversationData(cursor, offset, limit, lastSeen, previousOffset, firstLoad, hasSent, isMessageRequestAccepted, hasPreMessageRequestMessages);
-  }
-
-
-  interface Callback<E> {
-    void onComplete(@NonNull E result);
+    return new ConversationData(lastSeen, hasSent, isMessageRequestAccepted, hasPreMessageRequestMessages, jumpToPosition);
   }
 }

@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.libsignal.util.Pair;
 
+import java.io.Closeable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -536,7 +537,7 @@ public class MmsSmsDatabase extends Database {
     return new Reader(cursor);
   }
 
-  public class Reader {
+  public class Reader implements Closeable {
 
     private final Cursor                 cursor;
     private       SmsDatabase.Reader     smsReader;
@@ -577,6 +578,7 @@ public class MmsSmsDatabase extends Database {
       else                                                throw new AssertionError("Bad type: " + type);
     }
 
+    @Override
     public void close() {
       cursor.close();
     }

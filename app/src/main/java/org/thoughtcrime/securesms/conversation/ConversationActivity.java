@@ -596,7 +596,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       break;
     case ADD_CONTACT:
       onRecipientChanged(recipient.get());
-      fragment.reloadList();
       break;
     case PICK_LOCATION:
       SignalPlace place = new SignalPlace(PlacePickerActivity.addressFromData(data));

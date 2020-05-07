@@ -21,7 +21,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -51,10 +50,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
@@ -76,7 +72,7 @@ import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearL
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.contactshare.SharedContactDetailsActivity;
-import org.thoughtcrime.securesms.conversation.ConversationAdapter.HeaderViewHolder;
+import org.thoughtcrime.securesms.conversation.ConversationAdapter.StickyHeaderViewHolder;
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.ItemClickListener;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase;
@@ -136,10 +132,8 @@ import java.util.Set;
 
 @SuppressLint("StaticFieldLeak")
 public class ConversationFragment extends Fragment {
-  private static final String TAG       = ConversationFragment.class.getSimpleName();
-  private static final String KEY_LIMIT = "limit";
+  private static final String TAG = ConversationFragment.class.getSimpleName();
 
-  private static final int PARTIAL_CONVERSATION_LIMIT = 500;
   private static final int SCROLL_ANIMATION_THRESHOLD = 50;
   private static final int CODE_ADD_EDIT_CONTACT      = 77;
 
@@ -209,7 +203,12 @@ public class ConversationFragment extends Fragment {
     setupListLayoutListeners();
 
     this.conversationViewModel = ViewModelProviders.of(requireActivity(), new ConversationViewModel.Factory()).get(ConversationViewModel.class);
-    conversationViewModel.getConversation().observe(this, this::presentConversation);
+    conversationViewModel.getMessages().observe(this, list -> {
+      if (getListAdapter() != null) {
+        getListAdapter().submitList(list);
+      }
+    });
+    conversationViewModel.getConversationMetadata().observe(this, this::presentConversationMetadata);
 
     return view;
   }
@@ -290,14 +289,6 @@ public class ConversationFragment extends Fragment {
     initializeResources();
     messageRequestViewModel.setConversationInfo(recipient.getId(), threadId);
     initializeListAdapter();
-
-    if (threadId == -1) {
-      conversationViewModel.refreshConversation();
-    }
-  }
-
-  public void reloadList() {
-    conversationViewModel.refreshConversation();
   }
 
   public void moveToLastSeen() {
@@ -402,14 +393,12 @@ public class ConversationFragment extends Fragment {
 
     long lastSeen          = this.getActivity().getIntent().getLongExtra(ConversationActivity.LAST_SEEN_EXTRA, -1);
     int  startingPosition  = this.getActivity().getIntent().getIntExtra(ConversationActivity.STARTING_POSITION_EXTRA, -1);
-    int  limit             = getArguments() != null ? getArguments().getInt(KEY_LIMIT, PARTIAL_CONVERSATION_LIMIT) : PARTIAL_CONVERSATION_LIMIT;
 
     this.recipient         = Recipient.live(getActivity().getIntent().getParcelableExtra(ConversationActivity.RECIPIENT_EXTRA));
     this.threadId          = this.getActivity().getIntent().getLongExtra(ConversationActivity.THREAD_ID_EXTRA, -1);
     this.unknownSenderView = new UnknownSenderView(getActivity(), recipient.get(), threadId);
 
-
-    conversationViewModel.onConversationDataAvailable(recipient.get(), threadId, lastSeen, startingPosition, limit);
+    conversationViewModel.onConversationDataAvailable(threadId, lastSeen, startingPosition);
 
     OnScrollListener scrollListener = new ConversationScrollListener(getActivity());
     list.addOnScrollListener(scrollListener);
@@ -422,7 +411,7 @@ public class ConversationFragment extends Fragment {
   private void initializeListAdapter() {
     if (this.recipient != null && this.threadId != -1) {
       Log.d(TAG, "Initializing adapter for " + recipient.getId());
-      ConversationAdapter adapter = new ConversationAdapter(requireContext(), GlideApp.with(this), locale, selectionClickListener, null, this.recipient.get());
+      ConversationAdapter adapter = new ConversationAdapter(GlideApp.with(this), locale, selectionClickListener, this.recipient.get());
       list.setAdapter(adapter);
       list.addItemDecoration(new StickyHeaderDecoration(adapter, false, false));
 
@@ -436,7 +425,6 @@ public class ConversationFragment extends Fragment {
 
   private void initializeLoadMoreView(ViewSwitcher loadMoreView) {
     loadMoreView.setOnClickListener(v -> {
-      conversationViewModel.onLoadMoreClicked();
       loadMoreView.showNext();
       loadMoreView.setOnClickListener(null);
     });
@@ -569,7 +557,7 @@ public class ConversationFragment extends Fragment {
       list.removeItemDecoration(lastSeenDecoration);
     }
 
-    lastSeenDecoration = new ConversationAdapter.LastSeenHeader(getListAdapter(), lastSeen);
+    lastSeenDecoration = new LastSeenHeader(getListAdapter(), lastSeen);
     list.addItemDecoration(lastSeenDecoration);
   }
 
@@ -839,6 +827,7 @@ public class ConversationFragment extends Fragment {
       clearHeaderIfNotTyping(getListAdapter());
       setLastSeen(0);
       getListAdapter().addFastRecord(messageRecord);
+      list.post(() -> list.scrollToPosition(0));
     }
 
     return messageRecord.getId();
@@ -851,6 +840,7 @@ public class ConversationFragment extends Fragment {
       clearHeaderIfNotTyping(getListAdapter());
       setLastSeen(0);
       getListAdapter().addFastRecord(messageRecord);
+      list.post(() -> list.scrollToPosition(0));
     }
 
     return messageRecord.getId();
@@ -862,18 +852,13 @@ public class ConversationFragment extends Fragment {
     }
   }
 
-  private void presentConversation(@NonNull ConversationData conversation) {
-    Cursor             cursor = conversation.getCursor();
-    int                count  = cursor.getCount();
-
+  private void presentConversationMetadata(@NonNull ConversationData conversation) {
     ConversationAdapter adapter = getListAdapter();
     if (adapter == null) {
       return;
     }
 
-    if (cursor.getCount() >= PARTIAL_CONVERSATION_LIMIT && conversation.hasLimit()) {
-      adapter.setFooterView(topLoadMoreView);
-    } else if (FeatureFlags.messageRequests()) {
+    if (FeatureFlags.messageRequests()) {
       adapter.setFooterView(conversationBanner);
     } else {
       adapter.setFooterView(null);
@@ -893,40 +878,26 @@ public class ConversationFragment extends Fragment {
       }
     }
 
-    if (conversation.hasOffset()) {
-      adapter.setHeaderView(bottomLoadMoreView);
-    }
-
-    adapter.changeCursor(cursor);
     listener.onCursorChanged();
 
-    int lastSeenPosition = adapter.findLastSeenPosition(conversationViewModel.getLastSeen());
+    list.post(() -> {
 
-    if (isTypingIndicatorShowing()) {
-      lastSeenPosition = Math.max(lastSeenPosition - 1, 0);
-    }
+      int lastSeenPosition = adapter.findLastSeenPosition(conversationViewModel.getLastSeen());
 
-    if (conversation.isFirstLoad()) {
-      if (conversationViewModel.getStartingPosition() >= 0) {
-        scrollToStartingPosition(conversationViewModel.getStartingPosition());
+      if (isTypingIndicatorShowing()) {
+        lastSeenPosition = Math.max(lastSeenPosition - 1, 0);
+      }
+
+      if (conversation.shouldJumpToMessage()) {
+        scrollToStartingPosition(conversation.getJumpToPosition());
       } else if (conversation.isMessageRequestAccepted()) {
         scrollToLastSeenPosition(lastSeenPosition);
-      } else if (FeatureFlags.messageRequests()) {
-        list.post(() -> getListLayoutManager().scrollToPosition(adapter.getItemCount() - 1));
       }
-    } else if (conversation.getPreviousOffset() > 0) {
-      int scrollPosition = conversation.getPreviousOffset() + getListLayoutManager().findFirstVisibleItemPosition();
-      scrollPosition = Math.min(scrollPosition, count - 1);
 
-      View firstView = list.getLayoutManager().getChildAt(scrollPosition);
-      int pixelOffset = (firstView == null) ? 0 : (firstView.getBottom() - list.getPaddingBottom());
-
-      getListLayoutManager().scrollToPositionWithOffset(scrollPosition, pixelOffset);
-    }
-
-    if (lastSeenPosition <= 0) {
-      setLastSeen(0);
-    }
+      if (lastSeenPosition <= 0) {
+        setLastSeen(0);
+      }
+    });
   }
 
   private void scrollToStartingPosition(final int startingPosition) {
@@ -973,23 +944,14 @@ public class ConversationFragment extends Fragment {
   }
 
   private void moveToMessagePosition(int position, @Nullable Runnable onMessageNotFound) {
-    int activeOffset = conversationViewModel.getActiveOffset();
-
-    Log.d(TAG, "Moving to message position: " + position + "  activeOffset: " + activeOffset + "  cursorCount: " + getListAdapter().getCursorCount());
-
-    if (position >= activeOffset && position >= 0 && position < getListAdapter().getCursorCount()) {
-      int offset = activeOffset > 0 ? activeOffset - 1 : 0;
-      list.scrollToPosition(position - offset);
-      getListAdapter().pulseHighlightItem(position - offset);
-    } else if (position < 0) {
+    if (position >= 0) {
+      list.scrollToPosition(position);
+      getListAdapter().pulseHighlightItem(position);
+    } else {
       Log.w(TAG, "Tried to navigate to message, but it wasn't found.");
       if (onMessageNotFound != null) {
         onMessageNotFound.run();
       }
-    } else {
-      Log.i(TAG, "Message was outside of the loaded range. Need to restart the loader.");
-
-      conversationViewModel.onMoveJumpToMessageOutOfRange(position);
     }
   }
 
@@ -1083,7 +1045,7 @@ public class ConversationFragment extends Fragment {
       return getListLayoutManager().findLastVisibleItemPosition();
     }
 
-    private void bindScrollHeader(HeaderViewHolder headerViewHolder, int positionId) {
+    private void bindScrollHeader(StickyHeaderViewHolder headerViewHolder, int positionId) {
       if (((ConversationAdapter)list.getAdapter()).getHeaderId(positionId) != -1) {
         ((ConversationAdapter) list.getAdapter()).onBindHeaderViewHolder(headerViewHolder, positionId);
       }
@@ -1400,7 +1362,7 @@ public class ConversationFragment extends Fragment {
     }
   }
 
-  private static class ConversationDateHeader extends HeaderViewHolder {
+  private static class ConversationDateHeader extends StickyHeaderViewHolder {
 
     private final Animation animateIn;
     private final Animation animateOut;
