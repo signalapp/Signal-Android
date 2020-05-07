@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.groups.ui.managegroup;
 
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.widget.Toast;
 
@@ -15,11 +14,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.BlockUnblockDialog;
-import org.thoughtcrime.securesms.ContactSelectionListFragment;
 import org.thoughtcrime.securesms.ExpirationDialog;
-import org.thoughtcrime.securesms.GroupCreateActivity;
-import org.thoughtcrime.securesms.PushContactSelectionActivity;
-import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
 import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.database.loaders.MediaLoader;
 import org.thoughtcrime.securesms.database.loaders.ThreadMediaLoader;
@@ -30,12 +25,16 @@ import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
+import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 import java.util.List;
 
 public class ManageGroupViewModel extends ViewModel {
+
+  private static final int MAX_COLLAPSED_MEMBERS = 5;
 
   private final Context                                     context;
   private final ManageGroupRepository                       manageGroupRepository;
@@ -54,6 +53,8 @@ public class ManageGroupViewModel extends ViewModel {
   private final MutableLiveData<GroupViewState>             groupViewState            = new MutableLiveData<>(null);
   private final LiveData<MuteState>                         muteState;
   private final LiveData<Boolean>                           hasCustomNotifications;
+  private final LiveData<Boolean>                           canCollapseMemberList;
+  private final DefaultValueLiveData<CollapseState>         memberListCollapseState   = new DefaultValueLiveData<>(CollapseState.COLLAPSED);
 
   private ManageGroupViewModel(@NonNull Context context, @NonNull ManageGroupRepository manageGroupRepository) {
     this.context               = context;
@@ -65,7 +66,12 @@ public class ManageGroupViewModel extends ViewModel {
 
     this.title                     = liveGroup.getTitle();
     this.isAdmin                   = liveGroup.isSelfAdmin();
-    this.members                   = liveGroup.getFullMembers();
+    this.canCollapseMemberList     = LiveDataUtil.combineLatest(memberListCollapseState,
+                                                                Transformations.map(liveGroup.getFullMembers(), m -> m.size() > MAX_COLLAPSED_MEMBERS),
+                                                                (state, hasEnoughMembers) -> state != CollapseState.OPEN && hasEnoughMembers);
+    this.members                   = LiveDataUtil.combineLatest(liveGroup.getFullMembers(),
+                                                                memberListCollapseState,
+                                                                this::filterMemberList);
     this.pendingMemberCount        = liveGroup.getPendingMemberCount();
     this.memberCountSummary        = liveGroup.getMembershipCountDescription(context.getResources());
     this.fullMemberCountSummary    = liveGroup.getFullMembershipCountDescription(context.getResources());
@@ -148,6 +154,10 @@ public class ManageGroupViewModel extends ViewModel {
     return hasCustomNotifications;
   }
 
+  public LiveData<Boolean> getCanCollapseMemberList() {
+    return canCollapseMemberList;
+  }
+
   void handleExpirationSelection() {
     manageGroupRepository.getRecipient(groupRecipient ->
                                          ExpirationDialog.show(context,
@@ -178,6 +188,20 @@ public class ManageGroupViewModel extends ViewModel {
 
   void clearMuteUntil() {
     manageGroupRepository.setMuteUntil(0);
+  }
+
+  void revealCollapsedMembers() {
+    memberListCollapseState.setValue(CollapseState.OPEN);
+  }
+
+  private @NonNull List<GroupMemberEntry.FullMember> filterMemberList(@NonNull List<GroupMemberEntry.FullMember> members,
+                                                                      @NonNull CollapseState collapseState)
+  {
+    if (collapseState == CollapseState.COLLAPSED && members.size() > MAX_COLLAPSED_MEMBERS) {
+      return members.subList(0, MAX_COLLAPSED_MEMBERS);
+    } else {
+      return members;
+    }
   }
 
   @WorkerThread
@@ -228,6 +252,11 @@ public class ManageGroupViewModel extends ViewModel {
     public boolean isMuted() {
       return isMuted;
     }
+  }
+
+  private enum CollapseState {
+    OPEN,
+    COLLAPSED
   }
 
   interface CursorFactory {

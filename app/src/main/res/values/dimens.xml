@@ -159,4 +159,7 @@
     <dimen name="react_with_any_emoji_bottom_sheet_dialog_fragment_min_height">340dp</dimen>
     <dimen name="react_with_any_emoji_bottom_sheet_dialog_fragment_tabs_height">36dp</dimen>
 
+    <dimen name="group_manage_fragment_card_vertical_padding">12dp</dimen>
+    <dimen name="group_manage_fragment_row_height">52dp</dimen>
+    <dimen name="group_manage_fragment_row_horizontal_padding">16dp</dimen>
 </resources>

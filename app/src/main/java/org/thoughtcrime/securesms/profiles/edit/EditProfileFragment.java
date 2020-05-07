@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.registration.RegistrationUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -66,6 +67,7 @@ public class EditProfileFragment extends Fragment {
   private static final String TAG                        = Log.tag(EditProfileFragment.class);
   private static final String AVATAR_STATE               = "avatar";
   private static final short  REQUEST_CODE_SELECT_AVATAR = 31726;
+  private static final int    MAX_GROUP_NAME_LENGTH      = 32;
 
   private Toolbar                toolbar;
   private View                   title;
@@ -130,7 +132,9 @@ public class EditProfileFragment extends Fragment {
     initializeProfileName();
     initializeUsername();
 
-    requireActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
+    if (groupId == null) {
+      requireActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
+    }
   }
 
   @Override
@@ -234,7 +238,7 @@ public class EditProfileFragment extends Fragment {
                .execute());
 
     this.givenName .addTextChangedListener(new AfterTextChanged(s -> {
-                                                                       trimInPlace(s);
+                                                                       trimInPlace(s, isEditingGroup);
                                                                        viewModel.setGivenName(s.toString());
                                                                      }));
 
@@ -248,7 +252,7 @@ public class EditProfileFragment extends Fragment {
       view.<ImageView>findViewById(R.id.avatar_placeholder).setImageResource(R.drawable.ic_group_outline_40);
     } else {
       this.familyName.addTextChangedListener(new AfterTextChanged(s -> {
-                                                                         trimInPlace(s);
+                                                                         trimInPlace(s, false);
                                                                          viewModel.setFamilyName(s.toString());
                                                                        }));
     }
@@ -389,8 +393,10 @@ public class EditProfileFragment extends Fragment {
     animation.start();
   }
 
-  private static void trimInPlace(Editable s) {
-    int trimmedLength = ProfileName.trimToFit(s.toString()).length();
+  private static void trimInPlace(Editable s, boolean isGroup) {
+    int trimmedLength = isGroup ? StringUtil.trimToFit(s.toString(), MAX_GROUP_NAME_LENGTH).length()
+                                : StringUtil.trimToFit(s.toString(), ProfileName.MAX_PART_LENGTH).length();
+
     if (s.length() > trimmedLength) {
       s.delete(trimmedLength, s.length());
     }

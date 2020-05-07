@@ -3,7 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="64dp">
+    android:layout_height="64dp"
+    android:background="?selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
 
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/recipient_avatar"
@@ -37,8 +40,8 @@
         android:layout_marginEnd="16dp"
         android:gravity="start|center_vertical"
         android:text="@string/GroupRecipientListItem_admin"
-        android:textColor="?attr/title_text_color_secondary"
         android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:textColor="?attr/title_text_color_secondary"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/recipient_name"
         app:layout_constraintEnd_toStartOf="@+id/popupMenuProgressContainer"

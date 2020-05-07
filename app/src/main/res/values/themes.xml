@@ -406,6 +406,7 @@
 
         <item name="group_members_dialog_icon">@drawable/ic_group_outline_24</item>
         <item name="manage_group_add_members_icon">@drawable/ic_add_members_circle_light</item>
+        <item name="manage_group_view_all_icon">@drawable/ic_view_all_circle_light</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
 
         <item name="search_toolbar_background">@color/white</item>
@@ -691,6 +692,7 @@
 
         <item name="group_members_dialog_icon">@drawable/ic_group_solid_24</item>
         <item name="manage_group_add_members_icon">@drawable/ic_add_members_circle_dark</item>
+        <item name="manage_group_view_all_icon">@drawable/ic_view_all_circle_dark</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
         <item name="search_toolbar_background">@color/core_grey_95</item>
         <item name="search_background">@color/black</item>

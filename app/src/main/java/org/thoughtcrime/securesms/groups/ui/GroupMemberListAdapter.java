@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
@@ -137,13 +138,17 @@ final class GroupMemberListAdapter extends LifecycleRecyclerAdapter<GroupMemberL
     }
 
     void bindRecipientClick(@NonNull Recipient recipient) {
-      View.OnClickListener onClickListener = v -> {
-        if (recipientClickListener != null) {
+      if (recipient.equals(Recipient.self())) {
+        this.itemView.setEnabled(false);
+        return;
+      }
+
+      this.itemView.setEnabled(true);
+      this.itemView.setOnClickListener(v -> {
+        if (recipientClickListener != null && getAdapterPosition() != RecyclerView.NO_POSITION) {
           recipientClickListener.onClick(recipient);
         }
-      };
-      this.avatar.setOnClickListener(onClickListener);
-      this.recipient.setOnClickListener(onClickListener);
+      });
     }
 
     void bind(@NonNull GroupMemberEntry memberEntry) {
@@ -151,8 +156,7 @@ final class GroupMemberListAdapter extends LifecycleRecyclerAdapter<GroupMemberL
       admin.setVisibility(View.GONE);
       hideMenu();
 
-      avatar.setOnClickListener(null);
-      recipient.setOnClickListener(null);
+      itemView.setOnClickListener(null);
 
       memberEntry.getBusy().observe(this, busy -> {
         busyProgress.setVisibility(busy ? View.VISIBLE : View.GONE);

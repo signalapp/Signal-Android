@@ -416,12 +416,13 @@
     </declare-styleable>
 
     <style name="Widget.Signal.Button.TextButton" parent="Widget.AppCompat.Button.Borderless">
-        <item name="android:textAppearance">@style/TextAppearance.Signal.Body1</item>
+        <item name="android:textAppearance">@style/TextAppearance.Signal.Body2</item>
     </style>
 
     <style name="Widget.Signal.Button.TextButton.Drawable">
         <item name="android:textAlignment">viewStart</item>
         <item name="android:drawablePadding">16dp</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
     </style>
 
     <style name="Widget.Signal.Button.TextButton.Red" >

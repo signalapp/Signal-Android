@@ -34,7 +34,10 @@ public final class GroupMemberListView extends RecyclerView {
   }
 
   private void initialize(@NonNull Context context, @Nullable AttributeSet attrs) {
-    setHasFixedSize(true);
+    if (maxHeight > 0) {
+      setHasFixedSize(true);
+    }
+
     setLayoutManager(new LinearLayoutManager(context));
     setAdapter(membersAdapter);
 
