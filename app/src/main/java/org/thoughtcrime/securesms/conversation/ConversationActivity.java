@@ -159,6 +159,7 @@ import org.thoughtcrime.securesms.groups.ui.pendingmemberinvites.PendingMemberIn
 import org.thoughtcrime.securesms.insights.InsightsLauncher;
 import org.thoughtcrime.securesms.invites.InviteReminderModel;
 import org.thoughtcrime.securesms.invites.InviteReminderRepository;
+import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
@@ -497,6 +498,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     setBlockedUserState(recipientSnapshot, isSecureText, isDefaultSms);
     setGroupShareProfileReminder(recipientSnapshot);
     calculateCharactersRemaining();
+
+    if (recipientSnapshot.getGroupId().isPresent() && recipientSnapshot.getGroupId().get().isV2()) {
+      ApplicationDependencies.getJobManager().add(new RequestGroupV2InfoJob(recipientSnapshot.getGroupId().get().requireV2()));
+    }
 
     MessageNotifier.setVisibleThread(threadId);
     markThreadAsRead();
