@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.groups;
 
-import android.content.Context;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
@@ -43,9 +41,8 @@ final class GroupsV2CapabilityChecker {
     for (RecipientId recipientId : recipientIdsSet) {
       Recipient            member         = Recipient.resolved(recipientId);
       Recipient.Capability gv2Capability  = member.getGroupsV2Capability();
-      Recipient.Capability uuidCapability = member.getUuidCapability();
 
-      if (gv2Capability == Recipient.Capability.UNKNOWN || uuidCapability == Recipient.Capability.UNKNOWN) {
+      if (gv2Capability == Recipient.Capability.UNKNOWN) {
         if (!ApplicationDependencies.getJobManager().runSynchronously(RetrieveProfileJob.forRecipient(member), TimeUnit.SECONDS.toMillis(1000)).isPresent()) {
           throw new IOException("Recipient capability was not retrieved in time");
         }
@@ -53,11 +50,6 @@ final class GroupsV2CapabilityChecker {
 
       if (gv2Capability != Recipient.Capability.SUPPORTED) {
         Log.i(TAG, "At least one recipient does not support GV2, capability was " + gv2Capability);
-        return false;
-      }
-
-      if (uuidCapability != Recipient.Capability.SUPPORTED) {
-        Log.i(TAG, "At least one recipient does not support UUID, capability was " + uuidCapability);
         return false;
       }
     }
