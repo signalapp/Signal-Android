@@ -442,7 +442,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     protected Optional<GroupActionResult> doInBackground(Void... aVoid) {
-      return Optional.of(GroupManager.createGroup(activity, members, avatar, name, false));
+      return Optional.of(GroupManager.createGroupV1(activity, members, BitmapUtil.toByteArray(avatar), name, false));
     }
 
     @Override

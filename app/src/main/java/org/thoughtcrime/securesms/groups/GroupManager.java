@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.groups;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +14,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
@@ -27,15 +27,40 @@ public final class GroupManager {
 
   private static final String TAG = Log.tag(GroupManager.class);
 
+  @WorkerThread
   public static @NonNull GroupActionResult createGroup(@NonNull  Context        context,
                                                        @NonNull  Set<Recipient> members,
-                                                       @Nullable Bitmap         avatar,
+                                                       @Nullable byte[]         avatar,
                                                        @Nullable String         name,
                                                                  boolean        mms)
+      throws GroupChangeBusyException, GroupChangeFailedException, IOException
   {
-    Set<RecipientId> addresses = getMemberIds(members);
+    boolean          shouldAttemptToCreateV2 = !mms && FeatureFlags.groupsV2create();
+    Set<RecipientId> memberIds               = getMemberIds(members);
 
-    return GroupManagerV1.createGroup(context, addresses, avatar, name, mms);
+    if (shouldAttemptToCreateV2) {
+      try {
+        try (GroupManagerV2.GroupCreator groupCreator = new GroupManagerV2(context).create()) {
+          return groupCreator.createGroup(memberIds, name, avatar);
+        }
+      } catch (MembershipNotSuitableForV2Exception e) {
+        Log.w(TAG, "Attempted to make a GV2, but membership was not suitable, falling back to GV1", e);
+
+        return GroupManagerV1.createGroup(context, memberIds, avatar, name, false);
+      }
+    } else {
+      return GroupManagerV1.createGroup(context, memberIds, avatar, name, mms);
+    }
+  }
+
+  @WorkerThread
+  public static @NonNull GroupActionResult createGroupV1(@NonNull  Context        context,
+                                                         @NonNull  Set<Recipient> members,
+                                                         @Nullable byte[]         avatar,
+                                                         @Nullable String         name,
+                                                                   boolean        mms)
+  {
+    return GroupManagerV1.createGroup(context, getMemberIds(members), avatar, name, mms);
   }
 
   @WorkerThread

@@ -50,11 +50,10 @@ final class GroupManagerV1 {
 
   static @NonNull GroupActionResult createGroup(@NonNull Context          context,
                                                 @NonNull Set<RecipientId> memberIds,
-                                                @Nullable Bitmap          avatar,
+                                                @Nullable byte[]          avatarBytes,
                                                 @Nullable String          name,
                                                           boolean         mms)
   {
-    final byte[]        avatarBytes      = BitmapUtil.toByteArray(avatar);
     final GroupDatabase groupDatabase    = DatabaseFactory.getGroupDatabase(context);
     final SecureRandom  secureRandom     = new SecureRandom();
     final GroupId       groupId          = mms ? GroupId.createMms(secureRandom) : GroupId.createV1(secureRandom);
