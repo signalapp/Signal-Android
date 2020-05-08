@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import org.signal.zkgroup.groups.GroupMasterKey;
 import org.signal.zkgroup.groups.UuidCiphertext;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -120,12 +121,13 @@ public final class GroupManager {
 
   @WorkerThread
   public static void updateGroupFromServer(@NonNull Context context,
-                                           @NonNull GroupId.V2 groupId,
-                                           int version)
+                                           @NonNull GroupMasterKey groupMasterKey,
+                                           int version,
+                                           long timestamp)
       throws GroupChangeBusyException, IOException, GroupNotAMemberException
   {
-    try (GroupManagerV2.GroupEditor edit = new GroupManagerV2(context).edit(groupId)) {
-      edit.updateLocalToServerVersion(version);
+    try (GroupManagerV2.GroupUpdater updater = new GroupManagerV2(context).updater(groupMasterKey)) {
+      updater.updateLocalToServerVersion(version, timestamp);
     }
   }
 

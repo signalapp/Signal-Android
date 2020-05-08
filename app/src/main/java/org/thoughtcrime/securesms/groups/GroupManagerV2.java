@@ -89,6 +89,11 @@ final class GroupManagerV2 {
     return new GroupEditor(groupId, GroupsV2ProcessingLock.acquireGroupProcessingLock());
   }
 
+  @WorkerThread
+  GroupUpdater updater(@NonNull GroupMasterKey groupId) throws GroupChangeBusyException {
+    return new GroupUpdater(groupId, GroupsV2ProcessingLock.acquireGroupProcessingLock());
+  }
+
   class GroupCreator implements Closeable {
 
     private final Closeable lock;
@@ -316,14 +321,6 @@ final class GroupManagerV2 {
       return commitChangeWithConflictResolution(groupOperations.createAcceptInviteChange(groupCandidate.getProfileKeyCredential().get()));
     }
 
-    @WorkerThread
-    void updateLocalToServerVersion(int version)
-        throws IOException, GroupNotAMemberException
-    {
-        new GroupsV2StateProcessor(context).forGroup(groupMasterKey)
-                                           .updateLocalGroupToRevision(version, System.currentTimeMillis());
-    }
-
     private @NonNull GroupManager.GroupActionResult commitChangeWithConflictResolution(@NonNull GroupChange.Actions.Builder change)
         throws GroupChangeFailedException, GroupNotAMemberException, GroupInsufficientRightsException, IOException
     {
@@ -413,6 +410,30 @@ final class GroupManagerV2 {
         Log.w(TAG, e);
         throw new GroupChangeFailedException(e);
       }
+    }
+
+    @Override
+    public void close() throws IOException {
+      lock.close();
+    }
+  }
+
+  class GroupUpdater implements Closeable {
+
+    private final Closeable      lock;
+    private final GroupMasterKey groupMasterKey;
+
+    GroupUpdater(@NonNull GroupMasterKey groupMasterKey, @NonNull Closeable lock) {
+      this.lock           = lock;
+      this.groupMasterKey = groupMasterKey;
+    }
+
+    @WorkerThread
+    void updateLocalToServerVersion(int version, long timestamp)
+        throws IOException, GroupNotAMemberException
+    {
+        new GroupsV2StateProcessor(context).forGroup(groupMasterKey)
+                                           .updateLocalGroupToRevision(version, timestamp);
     }
 
     @Override
