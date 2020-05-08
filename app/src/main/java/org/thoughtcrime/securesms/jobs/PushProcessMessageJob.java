@@ -350,7 +350,14 @@ public final class PushProcessMessageJob extends BaseJob {
         else                                                         Log.w(TAG, "Contains no known sync types...");
       } else if (content.getCallMessage().isPresent()) {
         Log.i(TAG, "Got call message...");
-        SignalServiceCallMessage message = content.getCallMessage().get();
+
+        SignalServiceCallMessage message             = content.getCallMessage().get();
+        Optional<Integer>        destinationDeviceId = message.getDestinationDeviceId();
+
+        if (destinationDeviceId.isPresent() && destinationDeviceId.get() != 1) {
+          Log.i(TAG, String.format(Locale.US, "Ignoring call message that is not for this device! intended: %d, this: %d", destinationDeviceId.get(), 1));
+          return;
+        }
 
         if      (message.getOfferMessage().isPresent())      handleCallOfferMessage(content, message.getOfferMessage().get(), smsMessageId);
         else if (message.getAnswerMessage().isPresent())     handleCallAnswerMessage(content, message.getAnswerMessage().get());
@@ -454,7 +461,8 @@ public final class PushProcessMessageJob extends BaseJob {
             .putExtra(WebRtcCallService.EXTRA_REMOTE_DEVICE,     content.getSenderDevice())
             .putExtra(WebRtcCallService.EXTRA_OFFER_DESCRIPTION, message.getDescription())
             .putExtra(WebRtcCallService.EXTRA_TIMESTAMP,         content.getTimestamp())
-            .putExtra(WebRtcCallService.EXTRA_OFFER_TYPE,        message.getType().getCode());
+            .putExtra(WebRtcCallService.EXTRA_OFFER_TYPE,        message.getType().getCode())
+            .putExtra(WebRtcCallService.EXTRA_MULTI_RING,        content.getCallMessage().get().isMultiRing());
 
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) context.startForegroundService(intent);
       else                                                context.startService(intent);
@@ -472,7 +480,8 @@ public final class PushProcessMessageJob extends BaseJob {
           .putExtra(WebRtcCallService.EXTRA_CALL_ID,            message.getId())
           .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER,        remotePeer)
           .putExtra(WebRtcCallService.EXTRA_REMOTE_DEVICE,      content.getSenderDevice())
-          .putExtra(WebRtcCallService.EXTRA_ANSWER_DESCRIPTION, message.getDescription());
+          .putExtra(WebRtcCallService.EXTRA_ANSWER_DESCRIPTION, message.getDescription())
+          .putExtra(WebRtcCallService.EXTRA_MULTI_RING,         content.getCallMessage().get().isMultiRing());
 
     context.startService(intent);
   }
@@ -513,9 +522,12 @@ public final class PushProcessMessageJob extends BaseJob {
       RemotePeer remotePeer = new RemotePeer(Recipient.externalPush(context, content.getSender()).getId());
 
       intent.setAction(WebRtcCallService.ACTION_RECEIVE_HANGUP)
-            .putExtra(WebRtcCallService.EXTRA_CALL_ID,       message.getId())
-            .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER,   remotePeer)
-            .putExtra(WebRtcCallService.EXTRA_REMOTE_DEVICE, content.getSenderDevice());
+            .putExtra(WebRtcCallService.EXTRA_CALL_ID,          message.getId())
+            .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER,      remotePeer)
+            .putExtra(WebRtcCallService.EXTRA_REMOTE_DEVICE,    content.getSenderDevice())
+            .putExtra(WebRtcCallService.EXTRA_HANGUP_IS_LEGACY, message.isLegacy())
+            .putExtra(WebRtcCallService.EXTRA_HANGUP_DEVICE_ID, message.getDeviceId())
+            .putExtra(WebRtcCallService.EXTRA_HANGUP_TYPE,      message.getType().getCode());
 
       context.startService(intent);
     }

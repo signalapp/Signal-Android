@@ -71,15 +71,28 @@ message CallMessage {
   }
 
   message Hangup {
-    optional uint64 id = 1;
+    enum Type {
+      HANGUP_NORMAL   = 0;
+      HANGUP_ACCEPTED = 1;
+      HANGUP_DECLINED = 2;
+      HANGUP_BUSY     = 3;
+    }
+
+    optional uint64 id       = 1;
+    optional Type   type     = 2;
+    optional uint32 deviceId = 3;
   }
 
 
-  optional Offer     offer     = 1;
-  optional Answer    answer    = 2;
-  repeated IceUpdate iceUpdate = 3;
-  optional Hangup    hangup    = 4;
-  optional Busy      busy      = 5;
+  optional Offer     offer               = 1;
+  optional Answer    answer              = 2;
+  repeated IceUpdate iceUpdate           = 3;
+  optional Hangup    legacyHangup        = 4;
+  optional Busy      busy                = 5;
+  // 6 is reserved.
+  optional Hangup    hangup              = 7;
+  optional bool      multiRing           = 8;
+  optional uint32    destinationDeviceId = 9;
 }
 
 message DataMessage {

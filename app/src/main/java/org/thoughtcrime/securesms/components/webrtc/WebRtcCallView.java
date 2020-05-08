@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.webrtc.RendererCommon;
 import org.webrtc.SurfaceViewRenderer;
+import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 
 public class WebRtcCallView extends FrameLayout {
 
@@ -288,6 +289,25 @@ public class WebRtcCallView extends FrameLayout {
 
   public void setStatus(@NonNull String status) {
     this.status.setText(status);
+  }
+
+  public void setStatusFromHangupType(@NonNull HangupMessage.Type hangupType) {
+    switch (hangupType) {
+      case NORMAL:
+        status.setText(R.string.RedPhone_ending_call);
+        break;
+      case ACCEPTED:
+        status.setText(R.string.WebRtcCallActivity__answered_on_a_linked_device);
+        break;
+      case DECLINED:
+        status.setText(R.string.WebRtcCallActivity__declined_on_a_linked_device);
+        break;
+      case BUSY:
+        status.setText(R.string.WebRtcCallActivity__busy_on_a_linked_device);
+        break;
+      default:
+        throw new IllegalStateException("Unknown hangup type: " + hangupType);
+    }
   }
 
   public void setWebRtcControls(WebRtcControls webRtcControls) {

@@ -35,6 +35,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -63,6 +64,7 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.webrtc.SurfaceViewRenderer;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.SignalProtocolAddress;
+import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 
 import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
 
@@ -379,11 +381,12 @@ public class WebRtcCallActivity extends AppCompatActivity {
     callScreen.setStatus(getString(R.string.WebRtcCallActivity__calling));
   }
 
-  private void handleTerminate(@NonNull Recipient recipient, @NonNull SurfaceViewRenderer localRenderer /*, int terminationType */) {
-    Log.i(TAG, "handleTerminate called");
+  private void handleTerminate(@NonNull Recipient recipient, @NonNull HangupMessage.Type hangupType) {
+    Log.i(TAG, "handleTerminate called: " + hangupType.name());
 
     callScreen.setRecipient(recipient);
-    callScreen.setStatus(getString(R.string.RedPhone_ending_call));
+    callScreen.setStatusFromHangupType(hangupType);
+
     EventBus.getDefault().removeStickyEvent(WebRtcViewModel.class);
 
     delayedFinish();
@@ -431,13 +434,13 @@ public class WebRtcCallActivity extends AppCompatActivity {
     dialog.setPositiveButton(R.string.RedPhone_got_it, new OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
-        WebRtcCallActivity.this.handleTerminate(event.getRecipient(), event.getLocalRenderer());
+        WebRtcCallActivity.this.handleTerminate(event.getRecipient(), HangupMessage.Type.NORMAL);
       }
     });
     dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
       @Override
       public void onCancel(DialogInterface dialog) {
-        WebRtcCallActivity.this.handleTerminate(event.getRecipient(), event.getLocalRenderer());
+        WebRtcCallActivity.this.handleTerminate(event.getRecipient(), HangupMessage.Type.NORMAL);
       }
     });
     dialog.show();
@@ -448,7 +451,7 @@ public class WebRtcCallActivity extends AppCompatActivity {
     final Recipient   recipient = event.getRecipient();
 
     if (theirKey == null) {
-      handleTerminate(recipient, event.getLocalRenderer());
+      handleTerminate(recipient, HangupMessage.Type.NORMAL);
     }
 
     String          name            = recipient.getDisplayName(this);
@@ -479,7 +482,7 @@ public class WebRtcCallActivity extends AppCompatActivity {
                    })
                    .setNegativeButton(R.string.WebRtcCallScreen_end_call, (d, w) -> {
                      d.dismiss();
-                     handleTerminate(recipient, event.getLocalRenderer());
+                     handleTerminate(recipient, HangupMessage.Type.NORMAL);
                    })
                    .show();
   }
@@ -505,16 +508,19 @@ public class WebRtcCallActivity extends AppCompatActivity {
     viewModel.setRecipient(event.getRecipient());
 
     switch (event.getState()) {
-      case CALL_CONNECTED:          handleCallConnected(event);                                      break;
-      case NETWORK_FAILURE:         handleServerFailure(event);                                      break;
-      case CALL_RINGING:            handleCallRinging(event);                                        break;
-      case CALL_DISCONNECTED:       handleTerminate(event.getRecipient(), event.getLocalRenderer()); break;
-      case NO_SUCH_USER:            handleNoSuchUser(event);                                         break;
-      case RECIPIENT_UNAVAILABLE:   handleRecipientUnavailable(event);                               break;
-      case CALL_INCOMING:           handleIncomingCall(event);                                       break;
-      case CALL_OUTGOING:           handleOutgoingCall(event);                                       break;
-      case CALL_BUSY:               handleCallBusy(event);                                           break;
-      case UNTRUSTED_IDENTITY:      handleUntrustedIdentity(event);                                  break;
+      case CALL_CONNECTED:          handleCallConnected(event);                                         break;
+      case NETWORK_FAILURE:         handleServerFailure(event);                                         break;
+      case CALL_RINGING:            handleCallRinging(event);                                           break;
+      case CALL_DISCONNECTED:       handleTerminate(event.getRecipient(), HangupMessage.Type.NORMAL);   break;
+      case CALL_ACCEPTED_ELSEWHERE: handleTerminate(event.getRecipient(), HangupMessage.Type.ACCEPTED); break;
+      case CALL_DECLINED_ELSEWHERE: handleTerminate(event.getRecipient(), HangupMessage.Type.DECLINED); break;
+      case CALL_ONGOING_ELSEWHERE:  handleTerminate(event.getRecipient(), HangupMessage.Type.BUSY);     break;
+      case NO_SUCH_USER:            handleNoSuchUser(event);                                            break;
+      case RECIPIENT_UNAVAILABLE:   handleRecipientUnavailable(event);                                  break;
+      case CALL_INCOMING:           handleIncomingCall(event);                                          break;
+      case CALL_OUTGOING:           handleOutgoingCall(event);                                          break;
+      case CALL_BUSY:               handleCallBusy(event);                                              break;
+      case UNTRUSTED_IDENTITY:      handleUntrustedIdentity(event);                                     break;
     }
 
     callScreen.setLocalRenderer(event.getLocalRenderer());

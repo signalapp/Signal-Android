@@ -10,19 +10,19 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.ResultReceiver;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Pair;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import org.greenrobot.eventbus.EventBus;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.CallManager.CallEvent;
 import org.signal.ringrtc.Remote;
-
-import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
@@ -73,7 +73,6 @@ import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 
-import java.lang.Thread;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -107,51 +106,58 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   public static final String EXTRA_REMOTE_DEVICE      = "remote_device";
   public static final String EXTRA_OFFER_DESCRIPTION  = "offer_description";
   public static final String EXTRA_OFFER_TYPE         = "offer_type";
+  public static final String EXTRA_MULTI_RING         = "multi_ring";
+  public static final String EXTRA_HANGUP_TYPE        = "hangup_type";
+  public static final String EXTRA_HANGUP_IS_LEGACY   = "hangup_is_legacy";
+  public static final String EXTRA_HANGUP_DEVICE_ID   = "hangup_device_id";
   public static final String EXTRA_ANSWER_DESCRIPTION = "answer_description";
   public static final String EXTRA_ICE_CANDIDATES     = "ice_candidates";
   public static final String EXTRA_ENABLE             = "enable_value";
   public static final String EXTRA_BROADCAST          = "broadcast";
   public static final String EXTRA_ANSWER_WITH_VIDEO = "enable_video";
 
-  public static final String ACTION_OUTGOING_CALL               = "CALL_OUTGOING";
-  public static final String ACTION_DENY_CALL                   = "DENY_CALL";
-  public static final String ACTION_LOCAL_HANGUP                = "LOCAL_HANGUP";
-  public static final String ACTION_SET_MUTE_AUDIO              = "SET_MUTE_AUDIO";
-  public static final String ACTION_FLIP_CAMERA                 = "FLIP_CAMERA";
-  public static final String ACTION_BLUETOOTH_CHANGE            = "BLUETOOTH_CHANGE";
-  public static final String ACTION_WIRED_HEADSET_CHANGE        = "WIRED_HEADSET_CHANGE";
-  public static final String ACTION_SCREEN_OFF                  = "SCREEN_OFF";
-  public static final String ACTION_IS_IN_CALL_QUERY            = "IS_IN_CALL";
-  public static final String ACTION_SET_AUDIO_SPEAKER           = "SET_AUDIO_SPEAKER";
-  public static final String ACTION_SET_AUDIO_BLUETOOTH         = "SET_AUDIO_BLUETOOTH";
-  public static final String ACTION_CALL_CONNECTED              = "CALL_CONNECTED";
-  public static final String ACTION_START_OUTGOING_CALL         = "START_OUTGOING_CALL";
-  public static final String ACTION_START_INCOMING_CALL         = "START_INCOMING_CALL";
-  public static final String ACTION_LOCAL_RINGING               = "LOCAL_RINGING";
-  public static final String ACTION_REMOTE_RINGING              = "REMOTE_RINGING";
-  public static final String ACTION_ACCEPT_CALL                 = "ACCEPT_CALL";
-  public static final String ACTION_SEND_OFFER                  = "SEND_OFFER";
-  public static final String ACTION_SEND_ANSWER                 = "SEND_ANSWER";
-  public static final String ACTION_SEND_ICE_CANDIDATES         = "SEND_ICE_CANDIDATES";
-  public static final String ACTION_SEND_HANGUP                 = "SEND_HANGUP";
-  public static final String ACTION_SEND_BUSY                   = "SEND_BUSY";
-  public static final String ACTION_RECEIVE_OFFER               = "RECEIVE_OFFER";
-  public static final String ACTION_RECEIVE_ANSWER              = "RECEIVE_ANSWER";
-  public static final String ACTION_RECEIVE_ICE_CANDIDATES      = "RECEIVE_ICE_CANDIDATES";
-  public static final String ACTION_RECEIVE_HANGUP              = "RECEIVE_HANGUP";
-  public static final String ACTION_RECEIVE_BUSY                = "RECEIVE_BUSY";
-  public static final String ACTION_REMOTE_VIDEO_ENABLE         = "REMOTE_VIDEO_ENABLE";
-  public static final String ACTION_SET_ENABLE_VIDEO            = "SET_ENABLE_VIDEO";
-  public static final String ACTION_ENDED_REMOTE_HANGUP         = "ENDED_REMOTE_HANGUP";
-  public static final String ACTION_ENDED_REMOTE_BUSY           = "ENDED_REMOTE_BUSY";
-  public static final String ACTION_ENDED_REMOTE_GLARE          = "ENDED_REMOTE_GLARE";
-  public static final String ACTION_ENDED_TIMEOUT               = "ENDED_TIMEOUT";
-  public static final String ACTION_ENDED_INTERNAL_FAILURE      = "ENDED_INTERNAL_FAILURE";
-  public static final String ACTION_ENDED_SIGNALING_FAILURE     = "ENDED_SIGNALING_FAILURE";
-  public static final String ACTION_ENDED_CONNECTION_FAILURE    = "ENDED_CONNECTION_FAILURE";
-  public static final String ACTION_ENDED_RX_OFFER_EXPIRED      = "ENDED_RX_OFFER_EXPIRED";
-  public static final String ACTION_ENDED_RX_OFFER_WHILE_ACTIVE = "ENDED_RX_OFFER_WHILE_ACTIVE";
-  public static final String ACTION_CALL_CONCLUDED              = "CALL_CONCLUDED";
+  public static final String ACTION_OUTGOING_CALL                = "CALL_OUTGOING";
+  public static final String ACTION_DENY_CALL                    = "DENY_CALL";
+  public static final String ACTION_LOCAL_HANGUP                 = "LOCAL_HANGUP";
+  public static final String ACTION_SET_MUTE_AUDIO               = "SET_MUTE_AUDIO";
+  public static final String ACTION_FLIP_CAMERA                  = "FLIP_CAMERA";
+  public static final String ACTION_BLUETOOTH_CHANGE             = "BLUETOOTH_CHANGE";
+  public static final String ACTION_WIRED_HEADSET_CHANGE         = "WIRED_HEADSET_CHANGE";
+  public static final String ACTION_SCREEN_OFF                   = "SCREEN_OFF";
+  public static final String ACTION_IS_IN_CALL_QUERY             = "IS_IN_CALL";
+  public static final String ACTION_SET_AUDIO_SPEAKER            = "SET_AUDIO_SPEAKER";
+  public static final String ACTION_SET_AUDIO_BLUETOOTH          = "SET_AUDIO_BLUETOOTH";
+  public static final String ACTION_CALL_CONNECTED               = "CALL_CONNECTED";
+  public static final String ACTION_START_OUTGOING_CALL          = "START_OUTGOING_CALL";
+  public static final String ACTION_START_INCOMING_CALL          = "START_INCOMING_CALL";
+  public static final String ACTION_LOCAL_RINGING                = "LOCAL_RINGING";
+  public static final String ACTION_REMOTE_RINGING               = "REMOTE_RINGING";
+  public static final String ACTION_ACCEPT_CALL                  = "ACCEPT_CALL";
+  public static final String ACTION_SEND_OFFER                   = "SEND_OFFER";
+  public static final String ACTION_SEND_ANSWER                  = "SEND_ANSWER";
+  public static final String ACTION_SEND_ICE_CANDIDATES          = "SEND_ICE_CANDIDATES";
+  public static final String ACTION_SEND_HANGUP                  = "SEND_HANGUP";
+  public static final String ACTION_SEND_BUSY                    = "SEND_BUSY";
+  public static final String ACTION_RECEIVE_OFFER                = "RECEIVE_OFFER";
+  public static final String ACTION_RECEIVE_ANSWER               = "RECEIVE_ANSWER";
+  public static final String ACTION_RECEIVE_ICE_CANDIDATES       = "RECEIVE_ICE_CANDIDATES";
+  public static final String ACTION_RECEIVE_HANGUP               = "RECEIVE_HANGUP";
+  public static final String ACTION_RECEIVE_BUSY                 = "RECEIVE_BUSY";
+  public static final String ACTION_REMOTE_VIDEO_ENABLE          = "REMOTE_VIDEO_ENABLE";
+  public static final String ACTION_SET_ENABLE_VIDEO             = "SET_ENABLE_VIDEO";
+  public static final String ACTION_ENDED_REMOTE_HANGUP          = "ENDED_REMOTE_HANGUP";
+  public static final String ACTION_ENDED_REMOTE_HANGUP_ACCEPTED = "ENDED_REMOTE_HANGUP_ACCEPTED";
+  public static final String ACTION_ENDED_REMOTE_HANGUP_DECLINED = "ENDED_REMOTE_HANGUP_DECLINED";
+  public static final String ACTION_ENDED_REMOTE_HANGUP_BUSY     = "ENDED_REMOTE_HANGUP_BUSY";
+  public static final String ACTION_ENDED_REMOTE_BUSY            = "ENDED_REMOTE_BUSY";
+  public static final String ACTION_ENDED_REMOTE_GLARE           = "ENDED_REMOTE_GLARE";
+  public static final String ACTION_ENDED_TIMEOUT                = "ENDED_TIMEOUT";
+  public static final String ACTION_ENDED_INTERNAL_FAILURE       = "ENDED_INTERNAL_FAILURE";
+  public static final String ACTION_ENDED_SIGNALING_FAILURE      = "ENDED_SIGNALING_FAILURE";
+  public static final String ACTION_ENDED_CONNECTION_FAILURE     = "ENDED_CONNECTION_FAILURE";
+  public static final String ACTION_ENDED_RX_OFFER_EXPIRED       = "ENDED_RX_OFFER_EXPIRED";
+  public static final String ACTION_ENDED_RX_OFFER_WHILE_ACTIVE  = "ENDED_RX_OFFER_WHILE_ACTIVE";
+  public static final String ACTION_CALL_CONCLUDED               = "CALL_CONCLUDED";
 
   private CameraState localCameraState    = CameraState.UNKNOWN;
   private boolean     microphoneEnabled   = true;
@@ -204,45 +210,48 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     if (intent == null || intent.getAction() == null) return START_NOT_STICKY;
 
     serviceExecutor.execute(() -> {
-      if      (intent.getAction().equals(ACTION_RECEIVE_OFFER))               handleReceivedOffer(intent);
-      else if (intent.getAction().equals(ACTION_RECEIVE_BUSY))                handleReceivedBusy(intent);
-      else if (intent.getAction().equals(ACTION_OUTGOING_CALL) && isIdle())   handleOutgoingCall(intent);
-      else if (intent.getAction().equals(ACTION_DENY_CALL))                   handleDenyCall(intent);
-      else if (intent.getAction().equals(ACTION_LOCAL_HANGUP))                handleLocalHangup(intent);
-      else if (intent.getAction().equals(ACTION_SET_MUTE_AUDIO))              handleSetMuteAudio(intent);
-      else if (intent.getAction().equals(ACTION_FLIP_CAMERA))                 handleSetCameraFlip(intent);
-      else if (intent.getAction().equals(ACTION_BLUETOOTH_CHANGE))            handleBluetoothChange(intent);
-      else if (intent.getAction().equals(ACTION_WIRED_HEADSET_CHANGE))        handleWiredHeadsetChange(intent);
-      else if (intent.getAction().equals(ACTION_SCREEN_OFF))                  handleScreenOffChange(intent);
-      else if (intent.getAction().equals(ACTION_CALL_CONNECTED))              handleCallConnected(intent);
-      else if (intent.getAction().equals(ACTION_IS_IN_CALL_QUERY))            handleIsInCallQuery(intent);
-      else if (intent.getAction().equals(ACTION_SET_AUDIO_SPEAKER))           handleSetSpeakerAudio(intent);
-      else if (intent.getAction().equals(ACTION_SET_AUDIO_BLUETOOTH))         handleSetBluetoothAudio(intent);
-      else if (intent.getAction().equals(ACTION_START_OUTGOING_CALL))         handleStartOutgoingCall(intent);
-      else if (intent.getAction().equals(ACTION_START_INCOMING_CALL))         handleStartIncomingCall(intent);
-      else if (intent.getAction().equals(ACTION_ACCEPT_CALL))                 handleAcceptCall(intent);
-      else if (intent.getAction().equals(ACTION_LOCAL_RINGING))               handleLocalRinging(intent);
-      else if (intent.getAction().equals(ACTION_REMOTE_RINGING))              handleRemoteRinging(intent);
-      else if (intent.getAction().equals(ACTION_SEND_OFFER))                  handleSendOffer(intent);
-      else if (intent.getAction().equals(ACTION_SEND_ANSWER))                 handleSendAnswer(intent);
-      else if (intent.getAction().equals(ACTION_SEND_ICE_CANDIDATES))         handleSendIceCandidates(intent);
-      else if (intent.getAction().equals(ACTION_SEND_HANGUP))                 handleSendHangup(intent);
-      else if (intent.getAction().equals(ACTION_SEND_BUSY))                   handleSendBusy(intent);
-      else if (intent.getAction().equals(ACTION_RECEIVE_ANSWER))              handleReceivedAnswer(intent);
-      else if (intent.getAction().equals(ACTION_RECEIVE_ICE_CANDIDATES))      handleReceivedIceCandidates(intent);
-      else if (intent.getAction().equals(ACTION_RECEIVE_HANGUP))              handleReceivedHangup(intent);
-      else if (intent.getAction().equals(ACTION_REMOTE_VIDEO_ENABLE))         handleRemoteVideoEnable(intent);
-      else if (intent.getAction().equals(ACTION_SET_ENABLE_VIDEO))            handleSetEnableVideo(intent);
-      else if (intent.getAction().equals(ACTION_ENDED_REMOTE_HANGUP))         handleEndedRemoteHangup(intent);
-      else if (intent.getAction().equals(ACTION_ENDED_REMOTE_BUSY))           handleEndedRemoteBusy(intent);
-      else if (intent.getAction().equals(ACTION_ENDED_REMOTE_GLARE))          handleEndedRemoteGlare(intent);
-      else if (intent.getAction().equals(ACTION_ENDED_TIMEOUT))               handleEndedTimeout(intent);
-      else if (intent.getAction().equals(ACTION_ENDED_INTERNAL_FAILURE))      handleEndedInternalFailure(intent);
-      else if (intent.getAction().equals(ACTION_ENDED_SIGNALING_FAILURE))     handleEndedSignalingFailure(intent);
-      else if (intent.getAction().equals(ACTION_ENDED_CONNECTION_FAILURE))    handleEndedConnectionFailure(intent);
-      else if (intent.getAction().equals(ACTION_ENDED_RX_OFFER_EXPIRED))      handleEndedReceivedOfferExpired(intent);
-      else if (intent.getAction().equals(ACTION_ENDED_RX_OFFER_WHILE_ACTIVE)) handleEndedReceivedOfferWhileActive(intent);
-      else if (intent.getAction().equals(ACTION_CALL_CONCLUDED))              handleCallConcluded(intent);
+      if      (intent.getAction().equals(ACTION_RECEIVE_OFFER))                handleReceivedOffer(intent);
+      else if (intent.getAction().equals(ACTION_RECEIVE_BUSY))                 handleReceivedBusy(intent);
+      else if (intent.getAction().equals(ACTION_OUTGOING_CALL) && isIdle())    handleOutgoingCall(intent);
+      else if (intent.getAction().equals(ACTION_DENY_CALL))                    handleDenyCall(intent);
+      else if (intent.getAction().equals(ACTION_LOCAL_HANGUP))                 handleLocalHangup(intent);
+      else if (intent.getAction().equals(ACTION_SET_MUTE_AUDIO))               handleSetMuteAudio(intent);
+      else if (intent.getAction().equals(ACTION_FLIP_CAMERA))                  handleSetCameraFlip(intent);
+      else if (intent.getAction().equals(ACTION_BLUETOOTH_CHANGE))             handleBluetoothChange(intent);
+      else if (intent.getAction().equals(ACTION_WIRED_HEADSET_CHANGE))         handleWiredHeadsetChange(intent);
+      else if (intent.getAction().equals(ACTION_SCREEN_OFF))                   handleScreenOffChange(intent);
+      else if (intent.getAction().equals(ACTION_CALL_CONNECTED))               handleCallConnected(intent);
+      else if (intent.getAction().equals(ACTION_IS_IN_CALL_QUERY))             handleIsInCallQuery(intent);
+      else if (intent.getAction().equals(ACTION_SET_AUDIO_SPEAKER))            handleSetSpeakerAudio(intent);
+      else if (intent.getAction().equals(ACTION_SET_AUDIO_BLUETOOTH))          handleSetBluetoothAudio(intent);
+      else if (intent.getAction().equals(ACTION_START_OUTGOING_CALL))          handleStartOutgoingCall(intent);
+      else if (intent.getAction().equals(ACTION_START_INCOMING_CALL))          handleStartIncomingCall(intent);
+      else if (intent.getAction().equals(ACTION_ACCEPT_CALL))                  handleAcceptCall(intent);
+      else if (intent.getAction().equals(ACTION_LOCAL_RINGING))                handleLocalRinging(intent);
+      else if (intent.getAction().equals(ACTION_REMOTE_RINGING))               handleRemoteRinging(intent);
+      else if (intent.getAction().equals(ACTION_SEND_OFFER))                   handleSendOffer(intent);
+      else if (intent.getAction().equals(ACTION_SEND_ANSWER))                  handleSendAnswer(intent);
+      else if (intent.getAction().equals(ACTION_SEND_ICE_CANDIDATES))          handleSendIceCandidates(intent);
+      else if (intent.getAction().equals(ACTION_SEND_HANGUP))                  handleSendHangup(intent);
+      else if (intent.getAction().equals(ACTION_SEND_BUSY))                    handleSendBusy(intent);
+      else if (intent.getAction().equals(ACTION_RECEIVE_ANSWER))               handleReceivedAnswer(intent);
+      else if (intent.getAction().equals(ACTION_RECEIVE_ICE_CANDIDATES))       handleReceivedIceCandidates(intent);
+      else if (intent.getAction().equals(ACTION_RECEIVE_HANGUP))               handleReceivedHangup(intent);
+      else if (intent.getAction().equals(ACTION_REMOTE_VIDEO_ENABLE))          handleRemoteVideoEnable(intent);
+      else if (intent.getAction().equals(ACTION_SET_ENABLE_VIDEO))             handleSetEnableVideo(intent);
+      else if (intent.getAction().equals(ACTION_ENDED_REMOTE_HANGUP))          handleEndedRemoteHangup(intent);
+      else if (intent.getAction().equals(ACTION_ENDED_REMOTE_HANGUP_ACCEPTED)) handleEndedRemoteHangupAccepted(intent);
+      else if (intent.getAction().equals(ACTION_ENDED_REMOTE_HANGUP_BUSY))     handleEndedRemoteHangupBusy(intent);
+      else if (intent.getAction().equals(ACTION_ENDED_REMOTE_HANGUP_DECLINED)) handleEndedRemoteHangupDeclined(intent);
+      else if (intent.getAction().equals(ACTION_ENDED_REMOTE_BUSY))            handleEndedRemoteBusy(intent);
+      else if (intent.getAction().equals(ACTION_ENDED_REMOTE_GLARE))           handleEndedRemoteGlare(intent);
+      else if (intent.getAction().equals(ACTION_ENDED_TIMEOUT))                handleEndedTimeout(intent);
+      else if (intent.getAction().equals(ACTION_ENDED_INTERNAL_FAILURE))       handleEndedInternalFailure(intent);
+      else if (intent.getAction().equals(ACTION_ENDED_SIGNALING_FAILURE))      handleEndedSignalingFailure(intent);
+      else if (intent.getAction().equals(ACTION_ENDED_CONNECTION_FAILURE))     handleEndedConnectionFailure(intent);
+      else if (intent.getAction().equals(ACTION_ENDED_RX_OFFER_EXPIRED))       handleEndedReceivedOfferExpired(intent);
+      else if (intent.getAction().equals(ACTION_ENDED_RX_OFFER_WHILE_ACTIVE))  handleEndedReceivedOfferWhileActive(intent);
+      else if (intent.getAction().equals(ACTION_CALL_CONCLUDED))               handleCallConcluded(intent);
 
     });
 
@@ -378,6 +387,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     String            offer        = intent.getStringExtra(EXTRA_OFFER_DESCRIPTION);
     Long              timeStamp    = intent.getLongExtra(EXTRA_TIMESTAMP, -1);
     OfferMessage.Type offerType    = OfferMessage.Type.fromCode(intent.getStringExtra(EXTRA_OFFER_TYPE));
+    boolean           isMultiRing  = intent.getBooleanExtra(EXTRA_MULTI_RING, false);
 
     Log.i(TAG, "handleReceivedOffer(): id: " + callId.format(remoteDevice));
 
@@ -399,8 +409,10 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
 
     isRemoteVideoOffer = offerType == OfferMessage.Type.VIDEO_CALL;
 
+    CallManager.CallMediaType callType = getCallMediaTypeFromOfferType(offerType);
+
     try {
-      callManager.receivedOffer(callId, remotePeer, remoteDevice, offer, timeStamp);
+      callManager.receivedOffer(callId, remotePeer, remoteDevice, offer, timeStamp, callType, isMultiRing, true);
     } catch  (CallException e) {
       callFailure("Unable to process received offer: ", e);
     }
@@ -417,8 +429,11 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
 
     initializeVideo();
 
+    OfferMessage.Type         offerType     = OfferMessage.Type.fromCode(intent.getStringExtra(EXTRA_OFFER_TYPE));
+    CallManager.CallMediaType callMediaType = getCallMediaTypeFromOfferType(offerType);
+
     try {
-      callManager.call(remotePeer);
+      callManager.call(remotePeer, callMediaType);
     } catch  (CallException e) {
       callFailure("Unable to create outgoing call: ", e);
     }
@@ -605,8 +620,10 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
                                 camera,
                                 iceServers,
                                 isAlwaysTurn,
+                                1,
                                 deviceList,
-                                enableVideoOnCreate);
+                                enableVideoOnCreate,
+                                true);
           } catch  (CallException e) {
             callFailure("Unable to proceed with call: ", e);
           }
@@ -637,7 +654,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
           boolean isAlwaysTurn = TextSecurePreferences.isTurnOnly(WebRtcCallService.this);
           boolean hideIp       = !activePeer.getRecipient().isSystemContact() || isAlwaysTurn;
 
-          LinkedList<Integer> deviceList = new LinkedList<Integer>();
+          LinkedList<Integer> deviceList = new LinkedList<>();
 
           try {
             callManager.proceed(activePeer.getCallId(),
@@ -648,8 +665,10 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
                                 camera,
                                 iceServers,
                                 hideIp,
+                                1,
                                 deviceList,
-                                false);
+                                false,
+                                true);
           } catch  (CallException e) {
             callFailure("Unable to proceed with call: ", e);
           }
@@ -686,7 +705,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     RemotePeer        remotePeer   = getRemotePeer(intent);
     CallId            callId       = getCallId(intent);
     Integer           remoteDevice = intent.getIntExtra(EXTRA_REMOTE_DEVICE, -1);
-    Boolean           broadcast    = intent.getBooleanExtra(EXTRA_BROADCAST, false);
+    boolean           broadcast    = intent.getBooleanExtra(EXTRA_BROADCAST, false);
     String            offer        = intent.getStringExtra(EXTRA_OFFER_DESCRIPTION);
     OfferMessage.Type offerType    = OfferMessage.Type.fromCode(intent.getStringExtra(EXTRA_OFFER_TYPE));
 
@@ -697,32 +716,34 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       offerType = OfferMessage.Type.NEED_PERMISSION;
     }
 
-    OfferMessage             offerMessage = new OfferMessage(callId.longValue(), offer, offerType);
-    SignalServiceCallMessage callMessage  = SignalServiceCallMessage.forOffer(offerMessage);
+    OfferMessage             offerMessage        = new OfferMessage(callId.longValue(), offer, offerType);
+    Integer                  destinationDeviceId = broadcast ? null : remoteDevice;
+    SignalServiceCallMessage callMessage         = SignalServiceCallMessage.forOffer(offerMessage, true, destinationDeviceId);
 
-    sendCallMessage(remotePeer, remoteDevice, broadcast, callMessage);
+    sendCallMessage(remotePeer, callMessage);
   }
 
   private void handleSendAnswer(Intent intent) {
     RemotePeer remotePeer   = getRemotePeer(intent);
     CallId     callId       = getCallId(intent);
     Integer    remoteDevice = intent.getIntExtra(EXTRA_REMOTE_DEVICE, -1);
-    Boolean    broadcast    = intent.getBooleanExtra(EXTRA_BROADCAST, false);
+    boolean    broadcast    = intent.getBooleanExtra(EXTRA_BROADCAST, false);
     String     answer       = intent.getStringExtra(EXTRA_ANSWER_DESCRIPTION);
 
     Log.i(TAG, "handleSendAnswer: id: " + callId.format(remoteDevice));
 
-    AnswerMessage            answerMessage = new AnswerMessage(callId.longValue(), answer);
-    SignalServiceCallMessage callMessage   = SignalServiceCallMessage.forAnswer(answerMessage);
+    AnswerMessage            answerMessage       = new AnswerMessage(callId.longValue(), answer);
+    Integer                  destinationDeviceId = broadcast ? null : remoteDevice;
+    SignalServiceCallMessage callMessage         = SignalServiceCallMessage.forAnswer(answerMessage, true, destinationDeviceId);
 
-    sendCallMessage(remotePeer, remoteDevice, broadcast, callMessage);
+    sendCallMessage(remotePeer, callMessage);
   }
 
   private void handleSendIceCandidates(Intent intent) {
     RemotePeer remotePeer   = getRemotePeer(intent);
     CallId     callId       = getCallId(intent);
     Integer    remoteDevice = intent.getIntExtra(EXTRA_REMOTE_DEVICE, -1);
-    Boolean    broadcast    = intent.getBooleanExtra(EXTRA_BROADCAST, false);
+    boolean    broadcast    = intent.getBooleanExtra(EXTRA_BROADCAST, false);
     ArrayList<IceCandidateParcel> iceCandidates = intent.getParcelableArrayListExtra(EXTRA_ICE_CANDIDATES);
 
     Log.i(TAG, "handleSendIceCandidates: id: " + callId.format(remoteDevice));
@@ -732,48 +753,55 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       iceUpdateMessages.add(parcel.getIceUpdateMessage(callId));
     }
 
-    SignalServiceCallMessage callMessage = SignalServiceCallMessage.forIceUpdates(iceUpdateMessages);
+    Integer                  destinationDeviceId = broadcast ? null : remoteDevice;
+    SignalServiceCallMessage callMessage         = SignalServiceCallMessage.forIceUpdates(iceUpdateMessages, true, destinationDeviceId);
 
-    sendCallMessage(remotePeer, remoteDevice, broadcast, callMessage);
+    sendCallMessage(remotePeer, callMessage);
   }
 
   private void handleSendHangup(Intent intent) {
-    RemotePeer remotePeer   = getRemotePeer(intent);
-    CallId     callId       = getCallId(intent);
-    Integer    remoteDevice = intent.getIntExtra(EXTRA_REMOTE_DEVICE, -1);
-    Boolean    broadcast    = intent.getBooleanExtra(EXTRA_BROADCAST, false);
+    RemotePeer         remotePeer   = getRemotePeer(intent);
+    CallId             callId       = getCallId(intent);
+    Integer            remoteDevice = intent.getIntExtra(EXTRA_REMOTE_DEVICE, -1);
+    boolean            broadcast    = intent.getBooleanExtra(EXTRA_BROADCAST, false);
+    HangupMessage.Type type         = HangupMessage.Type.fromCode(intent.getStringExtra(EXTRA_HANGUP_TYPE));
+    boolean            isLegacy     = intent.getBooleanExtra(EXTRA_HANGUP_IS_LEGACY, true);
+    int                deviceId     = intent.getIntExtra(EXTRA_HANGUP_DEVICE_ID, 0);
 
     Log.i(TAG, "handleSendHangup: id: " + callId.format(remoteDevice));
 
-    HangupMessage             hangupMessage = new HangupMessage(callId.longValue());
-    SignalServiceCallMessage  callMessage   = SignalServiceCallMessage.forHangup(hangupMessage);
+    HangupMessage            hangupMessage       = new HangupMessage(callId.longValue(), type, deviceId, isLegacy);
+    Integer                  destinationDeviceId = broadcast ? null : remoteDevice;
+    SignalServiceCallMessage callMessage         = SignalServiceCallMessage.forHangup(hangupMessage, true, destinationDeviceId);
 
-    sendCallMessage(remotePeer, remoteDevice, broadcast, callMessage);
+    sendCallMessage(remotePeer, callMessage);
   }
 
   private void handleSendBusy(Intent intent) {
     RemotePeer remotePeer   = getRemotePeer(intent);
     CallId     callId       = getCallId(intent);
     Integer    remoteDevice = intent.getIntExtra(EXTRA_REMOTE_DEVICE, -1);
-    Boolean    broadcast    = intent.getBooleanExtra(EXTRA_BROADCAST, false);
+    boolean    broadcast    = intent.getBooleanExtra(EXTRA_BROADCAST, false);
 
     Log.i(TAG, "handleSendBusy: id: " + callId.format(remoteDevice));
 
-    BusyMessage              busyMessage = new BusyMessage(callId.longValue());
-    SignalServiceCallMessage callMessage = SignalServiceCallMessage.forBusy(busyMessage);
+    BusyMessage              busyMessage         = new BusyMessage(callId.longValue());
+    Integer                  destinationDeviceId = broadcast ? null : remoteDevice;
+    SignalServiceCallMessage callMessage         = SignalServiceCallMessage.forBusy(busyMessage, true, destinationDeviceId);
 
-    sendCallMessage(remotePeer, remoteDevice, broadcast, callMessage);
+    sendCallMessage(remotePeer, callMessage);
   }
 
   private void handleReceivedAnswer(Intent intent) {
-    CallId     callId       = getCallId(intent);
-    Integer    remoteDevice = intent.getIntExtra(EXTRA_REMOTE_DEVICE, -1);
-    String     description  = intent.getStringExtra(EXTRA_ANSWER_DESCRIPTION);
+    CallId       callId         = getCallId(intent);
+    Integer      remoteDevice   = intent.getIntExtra(EXTRA_REMOTE_DEVICE, -1);
+    String       description    = intent.getStringExtra(EXTRA_ANSWER_DESCRIPTION);
+    boolean      isMultiRing    = intent.getBooleanExtra(EXTRA_MULTI_RING, false);
 
     Log.i(TAG, "handleReceivedAnswer(): id: " + callId.format(remoteDevice));
 
     try {
-      callManager.receivedAnswer(callId, remoteDevice, description);
+      callManager.receivedAnswer(callId, remoteDevice, description , isMultiRing);
     } catch  (CallException e) {
       callFailure("receivedAnswer() failed: ", e);
     }
@@ -799,13 +827,16 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   }
 
   private void handleReceivedHangup(Intent intent) {
-    CallId     callId       = getCallId(intent);
-    Integer    remoteDevice = intent.getIntExtra(EXTRA_REMOTE_DEVICE, -1);
+    CallId                 callId         = getCallId(intent);
+    Integer                remoteDevice   = intent.getIntExtra(EXTRA_REMOTE_DEVICE, -1);
+    HangupMessage.Type     hangupType     = HangupMessage.Type.fromCode(intent.getStringExtra(EXTRA_HANGUP_TYPE));
+    Integer                deviceId       = intent.getIntExtra(EXTRA_HANGUP_DEVICE_ID, 0);
+    CallManager.HangupType callHangupType = getCallHangupTypeFromHangupType(hangupType);
 
     Log.i(TAG, "handleReceivedHangup(): id: " + callId.format(remoteDevice));
 
     try {
-      callManager.receivedHangup(callId, remoteDevice);
+      callManager.receivedHangup(callId, remoteDevice, callHangupType, deviceId);
     } catch  (CallException e) {
       callFailure("receivedHangup() failed: ", e);
     }
@@ -1043,6 +1074,30 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     }
   }
 
+  private void handleEndedRemoteHangupAccepted(Intent intent) {
+    RemotePeer remotePeer = getRemotePeer(intent);
+
+    if (remotePeer.callIdEquals(activePeer)) {
+      sendMessage(WebRtcViewModel.State.CALL_ACCEPTED_ELSEWHERE, remotePeer, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled, isRemoteVideoOffer);
+    }
+  }
+
+  private void handleEndedRemoteHangupBusy(Intent intent) {
+    RemotePeer remotePeer = getRemotePeer(intent);
+
+    if (remotePeer.callIdEquals(activePeer)) {
+      sendMessage(WebRtcViewModel.State.CALL_ONGOING_ELSEWHERE, remotePeer, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled, isRemoteVideoOffer);
+    }
+  }
+
+  private void handleEndedRemoteHangupDeclined(Intent intent) {
+    RemotePeer remotePeer = getRemotePeer(intent);
+
+    if (remotePeer.callIdEquals(activePeer)) {
+      sendMessage(WebRtcViewModel.State.CALL_DECLINED_ELSEWHERE, remotePeer, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled, isRemoteVideoOffer);
+    }
+  }
+
   private void delayedBusyFinish(CallId callId) {
     if (activePeer != null && callId.equals(activePeer.getCallId())) {
       Log.i(TAG, "delayedBusyFinish(): calling terminate()");
@@ -1268,11 +1323,11 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     this.startActivity(activityIntent);
   }
 
-  private @NonNull CallId getCallId(Intent intent) {
+  private static @NonNull CallId getCallId(Intent intent) {
     return new CallId(intent.getLongExtra(EXTRA_CALL_ID, -1));
   }
 
-  private @NonNull RemotePeer getRemotePeer(Intent intent) {
+  private static @NonNull RemotePeer getRemotePeer(Intent intent) {
     RemotePeer remotePeer = intent.getParcelableExtra(EXTRA_REMOTE_PEER);
     if (remotePeer == null) throw new AssertionError("No RemotePeer in intent!");
 
@@ -1297,6 +1352,44 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     }
 
     terminate();
+  }
+
+  private static @NonNull CallManager.CallMediaType getCallMediaTypeFromOfferType(@NonNull OfferMessage.Type offerType) {
+    return offerType == OfferMessage.Type.VIDEO_CALL ? CallManager.CallMediaType.VIDEO_CALL : CallManager.CallMediaType.AUDIO_CALL;
+  }
+
+  private static @NonNull OfferMessage.Type getOfferTypeFromCallMediaType(@NonNull CallManager.CallMediaType mediaType) {
+    return mediaType == CallManager.CallMediaType.VIDEO_CALL ? OfferMessage.Type.VIDEO_CALL : OfferMessage.Type.AUDIO_CALL;
+  }
+
+  private static @NonNull CallManager.HangupType getCallHangupTypeFromHangupType(@NonNull HangupMessage.Type hangupType) {
+    switch (hangupType) {
+      case ACCEPTED:
+        return CallManager.HangupType.ACCEPTED;
+      case BUSY:
+        return CallManager.HangupType.BUSY;
+      case NORMAL:
+        return CallManager.HangupType.NORMAL;
+      case DECLINED:
+        return CallManager.HangupType.DECLINED;
+      default:
+        throw new IllegalArgumentException("Unexpected hangup type: " + hangupType);
+    }
+  }
+
+  private static @NonNull HangupMessage.Type getHangupTypeFromCallHangupType(@NonNull CallManager.HangupType hangupType) {
+    switch (hangupType) {
+      case ACCEPTED:
+        return HangupMessage.Type.ACCEPTED;
+      case BUSY:
+        return HangupMessage.Type.BUSY;
+      case NORMAL:
+        return HangupMessage.Type.NORMAL;
+      case DECLINED:
+        return HangupMessage.Type.DECLINED;
+      default:
+        throw new IllegalArgumentException("Unexpected hangup type: " + hangupType);
+    }
   }
 
   @Nullable
@@ -1530,9 +1623,9 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     }
   }
 
-  private void sendCallMessage(RemotePeer remotePeer, Integer remoteDevice, Boolean broadcast, SignalServiceCallMessage callMessage) {
+  private void sendCallMessage(RemotePeer remotePeer, SignalServiceCallMessage callMessage) {
     ListenableFutureTask<Boolean> listenableFutureTask = sendMessage(remotePeer, callMessage);
-    listenableFutureTask.addListener(new SendCallMessageListener<Boolean>(remotePeer));
+    listenableFutureTask.addListener(new SendCallMessageListener<>(remotePeer));
   }
 
   private LockManager.PhoneState getInCallPhoneState() {
@@ -1613,6 +1706,15 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
         case ENDED_REMOTE_HANGUP:
           intent.setAction(ACTION_ENDED_REMOTE_HANGUP);
           break;
+        case ENDED_REMOTE_HANGUP_ACCEPTED:
+          intent.setAction(ACTION_ENDED_REMOTE_HANGUP_ACCEPTED);
+          break;
+        case ENDED_REMOTE_HANGUP_BUSY:
+          intent.setAction(ACTION_ENDED_REMOTE_HANGUP_BUSY);
+          break;
+        case ENDED_REMOTE_HANGUP_DECLINED:
+          intent.setAction(ACTION_ENDED_REMOTE_HANGUP_DECLINED);
+          break;
         case ENDED_REMOTE_BUSY:
           intent.setAction(ACTION_ENDED_REMOTE_BUSY);
           break;
@@ -1639,6 +1741,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
           break;
         case ENDED_LOCAL_HANGUP:
         case ENDED_APP_DROPPED_CALL:
+        case ENDED_IGNORE_CALLS_FROM_NON_MULTIRING_CALLERS:
           Log.i(TAG, "Ignoring event: " + event);
           return;
         default:
@@ -1667,11 +1770,12 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   }
 
   @Override
-  public void onSendOffer(CallId callId, Remote remote, Integer remoteDevice, Boolean broadcast, String offer) {
-    Log.i(TAG, "onSendOffer: id: " + callId.format(remoteDevice));
+  public void onSendOffer(CallId callId, Remote remote, Integer remoteDevice, Boolean broadcast, String offer, CallManager.CallMediaType callMediaType) {
+    Log.i(TAG, "onSendOffer: id: " + callId.format(remoteDevice) + " type: " + callMediaType.name());
 
     if (remote instanceof RemotePeer) {
       RemotePeer remotePeer = (RemotePeer)remote;
+      String     offerType  = getOfferTypeFromCallMediaType(callMediaType).getCode();
       Intent     intent     = new Intent(this, WebRtcCallService.class);
 
       intent.setAction(ACTION_SEND_OFFER)
@@ -1680,7 +1784,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
             .putExtra(EXTRA_REMOTE_DEVICE,     remoteDevice)
             .putExtra(EXTRA_BROADCAST,         broadcast)
             .putExtra(EXTRA_OFFER_DESCRIPTION, offer)
-            .putExtra(EXTRA_OFFER_TYPE,        (enableVideoOnCreate ? OfferMessage.Type.VIDEO_CALL : OfferMessage.Type.AUDIO_CALL).getCode());
+            .putExtra(EXTRA_OFFER_TYPE,        offerType);
 
       startService(intent);
     } else {
@@ -1736,18 +1840,21 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   }
 
   @Override
-  public void onSendHangup(CallId callId, Remote remote, Integer remoteDevice, Boolean broadcast) {
-    Log.i(TAG, "onSendHangup: id: " + callId.format(remoteDevice));
+  public void onSendHangup(CallId callId, Remote remote, Integer remoteDevice, Boolean broadcast, CallManager.HangupType hangupType, Integer deviceId, Boolean useLegacyHangupMessage) {
+    Log.i(TAG, "onSendHangup: id: " + callId.format(remoteDevice) + " type: " + hangupType.name() + " isLegacy: " + useLegacyHangupMessage);
 
     if (remote instanceof RemotePeer) {
       RemotePeer remotePeer = (RemotePeer)remote;
       Intent     intent     = new Intent(this, WebRtcCallService.class);
 
       intent.setAction(ACTION_SEND_HANGUP)
-            .putExtra(EXTRA_CALL_ID,       callId.longValue())
-            .putExtra(EXTRA_REMOTE_PEER,   remotePeer)
-            .putExtra(EXTRA_REMOTE_DEVICE, remoteDevice)
-            .putExtra(EXTRA_BROADCAST,     broadcast);
+            .putExtra(EXTRA_CALL_ID,          callId.longValue())
+            .putExtra(EXTRA_REMOTE_PEER,      remotePeer)
+            .putExtra(EXTRA_REMOTE_DEVICE,    remoteDevice)
+            .putExtra(EXTRA_BROADCAST,        broadcast)
+            .putExtra(EXTRA_HANGUP_DEVICE_ID, deviceId.intValue())
+            .putExtra(EXTRA_HANGUP_IS_LEGACY, useLegacyHangupMessage.booleanValue())
+            .putExtra(EXTRA_HANGUP_TYPE,      getHangupTypeFromCallHangupType(hangupType).getCode());
 
       startService(intent);
     } else {

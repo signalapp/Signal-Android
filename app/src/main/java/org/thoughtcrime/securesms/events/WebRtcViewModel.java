@@ -24,6 +24,11 @@ public class WebRtcViewModel {
     RECIPIENT_UNAVAILABLE,
     NO_SUCH_USER,
     UNTRUSTED_IDENTITY,
+
+    // Multiring Hangup States
+    CALL_ACCEPTED_ELSEWHERE,
+    CALL_DECLINED_ELSEWHERE,
+    CALL_ONGOING_ELSEWHERE
   }
 
 

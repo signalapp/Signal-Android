@@ -684,9 +684,28 @@ public class SignalServiceMessageSender {
                                                   .setSdpMLineIndex(update.getSdpMLineIndex()));
       }
     } else if (callMessage.getHangupMessage().isPresent()) {
-      builder.setHangup(CallMessage.Hangup.newBuilder().setId(callMessage.getHangupMessage().get().getId()));
+      CallMessage.Hangup.Type    protoType        = callMessage.getHangupMessage().get().getType().getProtoType();
+      CallMessage.Hangup.Builder builderForHangup = CallMessage.Hangup.newBuilder()
+                                                                      .setType(protoType)
+                                                                      .setId(callMessage.getHangupMessage().get().getId());
+
+      if (protoType != CallMessage.Hangup.Type.HANGUP_NORMAL) {
+        builderForHangup.setDeviceId(callMessage.getHangupMessage().get().getDeviceId());
+      }
+
+      if (callMessage.getHangupMessage().get().isLegacy()) {
+        builder.setLegacyHangup(builderForHangup);
+      } else {
+        builder.setHangup(builderForHangup);
+      }
     } else if (callMessage.getBusyMessage().isPresent()) {
       builder.setBusy(CallMessage.Busy.newBuilder().setId(callMessage.getBusyMessage().get().getId()));
+    }
+
+    builder.setMultiRing(callMessage.isMultiRing());
+
+    if (callMessage.getDestinationDeviceId().isPresent()) {
+      builder.setDestinationDeviceId(callMessage.getDestinationDeviceId().get());
     }
 
     container.setCallMessage(builder);
