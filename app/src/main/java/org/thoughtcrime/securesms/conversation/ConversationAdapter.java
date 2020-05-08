@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.Conversions;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
@@ -171,8 +172,7 @@ public class ConversationAdapter<V extends View & BindableConversationItem>
       case MESSAGE_TYPE_UPDATE:
         long start = System.currentTimeMillis();
 
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        V              itemView = ViewUtil.inflate(inflater, parent, getLayoutForViewType(viewType));
+        V itemView = CachedInflater.from(parent.getContext()).inflate(getLayoutForViewType(viewType), parent, false);
 
         itemView.setOnClickListener(view -> {
           if (clickListener != null) {
@@ -197,7 +197,7 @@ public class ConversationAdapter<V extends View & BindableConversationItem>
         return new PlaceholderViewHolder(v);
       case MESSAGE_TYPE_HEADER:
       case MESSAGE_TYPE_FOOTER:
-        return new HeaderFooterViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.cursor_adapter_header_footer_view, parent, false));
+        return new HeaderFooterViewHolder(CachedInflater.from(parent.getContext()).inflate(R.layout.cursor_adapter_header_footer_view, parent, false));
       default:
         throw new IllegalStateException("Cannot create viewholder for type: " + viewType);
     }
@@ -417,7 +417,19 @@ public class ConversationAdapter<V extends View & BindableConversationItem>
     }
   }
 
+  /**
+   * Provided a pool, this will initialize it with view counts that make sense.
+   */
   @MainThread
+  static void initializePool(@NonNull RecyclerView.RecycledViewPool pool) {
+    pool.setMaxRecycledViews(MESSAGE_TYPE_INCOMING, 15);
+    pool.setMaxRecycledViews(MESSAGE_TYPE_OUTGOING, 15);
+    pool.setMaxRecycledViews(MESSAGE_TYPE_PLACEHOLDER, 15);
+    pool.setMaxRecycledViews(MESSAGE_TYPE_HEADER, 1);
+    pool.setMaxRecycledViews(MESSAGE_TYPE_FOOTER, 1);
+    pool.setMaxRecycledViews(MESSAGE_TYPE_UPDATE, 5);
+  }
+
   private void cleanFastRecords() {
     synchronized (releasedFastRecords) {
       Iterator<MessageRecord> recordIterator = fastRecords.iterator();

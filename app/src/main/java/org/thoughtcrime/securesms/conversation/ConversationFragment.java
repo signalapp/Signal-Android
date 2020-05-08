@@ -36,6 +36,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
@@ -105,6 +106,7 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity;
+import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.HtmlUtil;
@@ -160,6 +162,16 @@ public class ConversationFragment extends Fragment {
   private ConversationBannerView      emptyConversationBanner;
   private MessageRequestViewModel     messageRequestViewModel;
   private ConversationViewModel       conversationViewModel;
+
+  public static void prepare(@NonNull Context context) {
+    FrameLayout parent = new FrameLayout(context);
+    parent.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT));
+
+    CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_received, parent, 10);
+    CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_sent, parent, 10);
+    CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_update, parent, 5);
+    CachedInflater.from(context).cacheUntilLimit(R.layout.cursor_adapter_header_footer_view, parent, 2);
+  }
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -413,6 +425,7 @@ public class ConversationFragment extends Fragment {
       ConversationAdapter adapter = new ConversationAdapter(GlideApp.with(this), locale, selectionClickListener, this.recipient.get());
       list.setAdapter(adapter);
       list.addItemDecoration(new StickyHeaderDecoration(adapter, false, false));
+      ConversationAdapter.initializePool(list.getRecycledViewPool());
 
       setLastSeen(conversationViewModel.getLastSeen());
 

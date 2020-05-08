@@ -236,8 +236,6 @@ public class ConversationItem extends LinearLayout implements BindableConversati
 
     bodyText.setOnLongClickListener(passthroughClickListener);
     bodyText.setOnClickListener(passthroughClickListener);
-
-    bodyText.setMovementMethod(LongClickMovementMethod.getInstance(getContext()));
   }
 
   @Override
@@ -522,6 +520,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
     bodyText.setClickable(false);
     bodyText.setFocusable(false);
     bodyText.setTextSize(TypedValue.COMPLEX_UNIT_SP, TextSecurePreferences.getMessageBodyTextSize(context));
+    bodyText.setMovementMethod(LongClickMovementMethod.getInstance(getContext()));
 
     if (messageRecord.isRemoteDelete()) {
       String deletedMessage = context.getString(R.string.ConversationItem_this_message_was_deleted);
