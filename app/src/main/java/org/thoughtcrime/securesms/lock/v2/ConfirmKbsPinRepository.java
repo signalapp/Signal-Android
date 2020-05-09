@@ -31,6 +31,7 @@ final class ConfirmKbsPinRepository {
         return PinSetResult.SUCCESS;
       } catch (IOException | UnauthenticatedResponseException e) {
         Log.w(TAG, e);
+        PinState.onPinCreateFailure();
         return PinSetResult.FAILURE;
       }
     }, resultConsumer::accept);

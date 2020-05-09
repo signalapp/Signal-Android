@@ -22,6 +22,7 @@ public class LogSectionPin implements LogSection {
                               .append("ReglockV1: ").append(TextSecurePreferences.isV1RegistrationLockEnabled(context)).append("\n")
                               .append("ReglockV2: ").append(SignalStore.kbsValues().isV2RegistrationLockEnabled()).append("\n")
                               .append("Signal PIN: ").append(SignalStore.kbsValues().hasPin()).append("\n")
+                              .append("Last Creation Failed: ").append(SignalStore.kbsValues().lastPinCreateFailed()).append("\n")
                               .append("Needs Account Restore: ").append(SignalStore.storageServiceValues().needsAccountRestore()).append("\n")
                               .append("PIN Required at Registration: ").append(SignalStore.registrationValues().pinWasRequiredAtRegistration()).append("\n")
                               .append("Registration Complete: ").append(SignalStore.registrationValues().isRegistrationComplete());

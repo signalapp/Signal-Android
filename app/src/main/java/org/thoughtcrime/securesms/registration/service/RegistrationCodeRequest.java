@@ -33,7 +33,7 @@ public final class RegistrationCodeRequest {
    */
   @SuppressLint("StaticFieldLeak")
   static void requestSmsVerificationCode(@NonNull Context context, @NonNull Credentials credentials, @Nullable String captchaToken, @NonNull Mode mode, @NonNull SmsVerificationCodeCallback callback) {
-    Log.d(TAG, String.format("SMS Verification requested for %s captcha %s", credentials.getE164number(), captchaToken));
+    Log.d(TAG, "SMS Verification requested");
 
     new AsyncTask<Void, Void, VerificationRequestResult>() {
       @Override

@@ -180,8 +180,6 @@ public final class KeyBackupService {
             // if the number of tries has not fallen, the pin is correct we're just using an out of date token
             boolean canRetry = remainingTries == status.getTries();
             Log.i(TAG, String.format(Locale.US, "Token MISMATCH %d %d", remainingTries, status.getTries()));
-            Log.i(TAG, String.format("Last token %s", Hex.toStringCondensed(token.getToken())));
-            Log.i(TAG, String.format("Next token %s", Hex.toStringCondensed(nextToken.getToken())));
             throw new TokenException(nextToken, canRetry);
           case MISSING:
             Log.i(TAG, "Restore OK! No data though");

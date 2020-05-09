@@ -8,10 +8,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+import org.thoughtcrime.securesms.BaseUnitTest;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.KbsValues;
 import org.thoughtcrime.securesms.keyvalue.RegistrationValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -26,19 +28,22 @@ import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ApplicationDependencies.class, SignalStore.class, FeatureFlags.class, RegistrationValues.class, KbsValues.class, TextSecurePreferences.class})
-public class PinsForAllScheduleTest {
+@PrepareForTest({ApplicationDependencies.class, SignalStore.class, FeatureFlags.class, RegistrationValues.class, KbsValues.class, TextSecurePreferences.class })
+public class PinsForAllScheduleTest extends BaseUnitTest {
 
   private final PinsForAllSchedule testSubject        = new PinsForAllSchedule();
   private final RegistrationValues registrationValues = mock(RegistrationValues.class);
   private final KbsValues          kbsValues          = mock(KbsValues.class);
 
   @Before
-  public void setUp() {
+  public void setUp() throws Exception {
+    super.setUp();
+
     mockStatic(ApplicationDependencies.class);
     mockStatic(SignalStore.class);
     mockStatic(FeatureFlags.class);
     mockStatic(TextSecurePreferences.class);
+    mockStatic(Log.class);
     when(ApplicationDependencies.getApplication()).thenReturn(mock(Application.class));
     when(SignalStore.registrationValues()).thenReturn(registrationValues);
     when(SignalStore.kbsValues()).thenReturn(kbsValues);

@@ -27,6 +27,7 @@ import org.whispersystems.signalservice.api.kbs.HashedPin;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
 import org.whispersystems.signalservice.internal.contacts.crypto.UnauthenticatedResponseException;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
+import org.whispersystems.signalservice.internal.storage.protos.SignalStorage;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -173,6 +174,15 @@ public final class PinState {
     }
 
     updateState(buildInferredStateFromOtherFields());
+  }
+
+  /**
+   * Invoked when PIN creation fails.
+   */
+  public static synchronized void onPinCreateFailure() {
+    if (getState() == State.NO_REGISTRATION_LOCK) {
+      SignalStore.kbsValues().onPinCreateFailure();
+    }
   }
 
   /**

@@ -15,10 +15,11 @@ import java.security.SecureRandom;
 
 public final class KbsValues {
 
-  public  static final String V2_LOCK_ENABLED     = "kbs.v2_lock_enabled";
-  private static final String MASTER_KEY          = "kbs.registration_lock_master_key";
-  private static final String TOKEN_RESPONSE      = "kbs.token_response";
-  private static final String LOCK_LOCAL_PIN_HASH = "kbs.registration_lock_local_pin_hash";
+  public  static final String V2_LOCK_ENABLED              = "kbs.v2_lock_enabled";
+  private static final String MASTER_KEY                   = "kbs.registration_lock_master_key";
+  private static final String TOKEN_RESPONSE               = "kbs.token_response";
+  private static final String LOCK_LOCAL_PIN_HASH          = "kbs.registration_lock_local_pin_hash";
+  private static final String LAST_CREATE_FAILED_TIMESTAMP = "kbs.last_create_failed_timestamp";
 
   private final KeyValueStore store;
 
@@ -36,6 +37,7 @@ public final class KbsValues {
          .remove(V2_LOCK_ENABLED)
          .remove(TOKEN_RESPONSE)
          .remove(LOCK_LOCAL_PIN_HASH)
+         .remove(LAST_CREATE_FAILED_TIMESTAMP)
          .commit();
   }
 
@@ -53,6 +55,7 @@ public final class KbsValues {
          .putString(TOKEN_RESPONSE, tokenResponse)
          .putBlob(MASTER_KEY, masterKey.serialize())
          .putString(LOCK_LOCAL_PIN_HASH, localPinHash)
+         .putLong(LAST_CREATE_FAILED_TIMESTAMP, -1)
          .commit();
   }
 
@@ -61,8 +64,23 @@ public final class KbsValues {
     store.beginWrite().putBoolean(V2_LOCK_ENABLED, enabled).apply();
   }
 
+  /**
+   * Whether or not registration lock V2 is enabled.
+   */
   public synchronized boolean isV2RegistrationLockEnabled() {
     return store.getBoolean(V2_LOCK_ENABLED, false);
+  }
+
+  /** Should only be set by {@link org.thoughtcrime.securesms.pin.PinState}. */
+  public synchronized void onPinCreateFailure() {
+    store.beginWrite().putLong(LAST_CREATE_FAILED_TIMESTAMP, System.currentTimeMillis()).apply();
+  }
+
+  /**
+   * Whether or not the last time the user attempted to create a PIN, it failed.
+   */
+  public synchronized boolean lastPinCreateFailed() {
+    return store.getLong(LAST_CREATE_FAILED_TIMESTAMP, -1) > 0;
   }
 
   /**

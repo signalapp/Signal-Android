@@ -4,17 +4,21 @@ import androidx.annotation.VisibleForTesting;
 
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 class PinsForAllSchedule implements MegaphoneSchedule {
 
+  private static final String TAG = Log.tag(PinsForAllSchedule.class);
+
   @VisibleForTesting
   static final long DAYS_UNTIL_FULLSCREEN = 8L;
 
-  private final MegaphoneSchedule schedule = new RecurringSchedule(TimeUnit.DAYS.toMillis(2));
+  private final MegaphoneSchedule schedule = new RecurringSchedule(TimeUnit.HOURS.toMillis(2));
 
   static boolean shouldDisplayFullScreen(long firstVisible, long currentTime) {
     if (!FeatureFlags.pinsForAllMandatory()) {
@@ -37,7 +41,9 @@ class PinsForAllSchedule implements MegaphoneSchedule {
     if (shouldDisplayFullScreen(firstVisible, currentTime)) {
       return true;
     } else {
-      return schedule.shouldDisplay(seenCount, lastSeen, firstVisible, currentTime);
+      boolean shouldDisplay = schedule.shouldDisplay(seenCount, lastSeen, firstVisible, currentTime);
+      Log.i(TAG, String.format(Locale.ENGLISH, "seenCount: %d,  lastSeen: %d,  firstVisible: %d,  currentTime: %d, result: %b", seenCount, lastSeen, firstVisible, currentTime, shouldDisplay));
+      return shouldDisplay;
     }
   }
 
