@@ -504,6 +504,7 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s mengatur waktu penghilangan pesan menjadi %2$s</string>
   <!--GV2 specific-->
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_joined_the_group">Anda bergabung ke dalam grup.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s bergabung dengan grup</string>
   <!--GV2 member removals-->
   <!--GV2 role change-->

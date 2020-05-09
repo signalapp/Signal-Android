@@ -82,11 +82,16 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Blokirati i napustiti %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Blokirati %1$s?</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Nećete više primati poruke i obavijesti iz ove grupe, niti će Vas njeni članovi moći ponovo u grupu dodati.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Članovi grupe neće Vas moći ponovo uvrstiti u grupu.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Članovi grupe moći će Vas ponovo uvrstiti u grupu.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Moći ćete razmjenjivati poruke i pozive.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokirane osobe neće Vas više moći zvati niti Vam slati poruke.</string>
   <string name="BlockUnblockDialog_unblock_s">Deblokirati %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Deblokiraj</string>
   <string name="BlockUnblockDialog_block">Blokiraj</string>
+  <string name="BlockUnblockDialog_block_and_leave">Blokiraj i napusti</string>
+  <string name="BlockUnblockDialog_block_and_delete">Blokiraj i izbriši</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Danas</string>
   <string name="BucketedThreadMedia_Yesterday">Jučer</string>
@@ -168,6 +173,7 @@
   <string name="ConversationItem_read_more">  Saznaj više</string>
   <string name="ConversationItem_download_more">  Preuzmi više</string>
   <string name="ConversationItem_pending">  U obradi</string>
+  <string name="ConversationItem_this_message_was_deleted">Ova je poruka izbrisana.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Ponoviti zaštićenu sesiju?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ovo može biti korisno ukoliko imate problema sa šifriranjem konverzacija. Vaše će poruke ostati sačuvane.</string>
@@ -270,6 +276,8 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Brisanje</string>
   <string name="ConversationFragment_deleting_messages">Brišem poruke…</string>
+  <string name="ConversationFragment_delete_for_me">Izbriši za mene</string>
+  <string name="ConversationFragment_delete_for_everyone">Izbriši za svakoga</string>
   <string name="ConversationFragment_quoted_message_not_found">Originalna poruka nije pronađena</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Originalna poruka više nije dostupna</string>
   <string name="ConversationFragment_failed_to_open_message">Neuspjelo otvaranje poruke</string>
@@ -387,6 +395,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Ne mogu dodati %1$s jer ne koristi Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Učitavam detalje o grupi…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Već ste član ove grupe.</string>
+  <string name="GroupCreateActivity_remove_member_description">Ukloni člana</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Želite li da ime i fotografija s Vašeg profila budu prikazani u ovoj grupi?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Želite li ime i fotografiju Vašega profila učiniti dostupnim svim trenutnim i budućim članovima ove grupe?</string>
@@ -394,8 +403,40 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Vi</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">Svako</string>
+  <string name="GroupManagement_access_level_all_members">Svi članovi</string>
+  <string name="GroupManagement_access_level_only_admins">Samo administratori</string>
   <!--PendingMembersActivity-->
+  <string name="PendingMemberInvitesActivity_pending_group_invites">Aktivne pozivnice u grupu</string>
+  <string name="PendingMembersActivity_people_you_invited">Osobe koje ste pozvali</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">Nemate aktivnih pozivnica.</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">Pozivnice drugih članova grupe</string>
+  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Nema aktivnih pozivnica drugih članova grupe.</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">Detalji o osobama koje su drugi članovi grupe pozvali nisu prikazani. Ako pozvane osobe odluče pristupiti grupi, informacije o njima bit će dostupni članovima grupe tek tada. Sve dok joj ne pristupe, te osobe neće vidjeti poruke iz grupe.</string>
+  <string name="PendingMembersActivity_cancel_invite">Poništi pozivnicu</string>
+  <string name="PendingMembersActivity_cancel_invites">Poništi pozivnice</string>
+  <plurals name="PendingMembersActivity_cancel_d_invites">
+    <item quantity="one">Poništi pozivnicu</item>
+    <item quantity="few">Poništi %1$d pozivnice</item>
+    <item quantity="other">Poništi %1$d pozivnica</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_canceling_invite">
+    <item quantity="one">Greška prilikom poništavanja pozivnice</item>
+    <item quantity="few">Greška prilikom poništavanja pozivnica</item>
+    <item quantity="other">Greška prilikom poništavanja pozivnica</item>
+  </plurals>
+  <plurals name="GroupMemberList_invited">
+    <item quantity="one">%1$s je pozvao/la jednu osobu</item>
+    <item quantity="few">%1$s je pozvao/la %2$d osobe</item>
+    <item quantity="other">%1$s je pozvao/la %2$d osoba</item>
+  </plurals>
   <!--GV2 Invite cancellation confirmation-->
+  <string name="GroupManagement_cancel_own_single_invite">Želite li poništiti pozivnicu koju ste poslali %1$s?</string>
+  <plurals name="GroupManagement_cancel_others_invites">
+    <item quantity="one">Želite li poništiti pozivnicu koju je %1$s poslao/la?</item>
+    <item quantity="few">Želite li poništiti %2$d pozivnice koje je %1$s poslao/la?</item>
+    <item quantity="other">Želite li poništiti %2$d pozivnica koje je %1$s poslao/la?</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Slika grupe</string>
   <string name="CropImageActivity_profile_avatar">Slika profila</string>
@@ -545,8 +586,17 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s je postavio/la vrijeme za nestajanje poruka na %2$s.</string>
   <!--GV2 specific-->
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_added_s">Uvrstili ste %1$s.</string>
+  <string name="MessageRecord_s_added_s">%1$s je uvrstio/la %2$s.</string>
+  <string name="MessageRecord_s_added_you">%1$s Vas je uvrstio/la u grupu.</string>
+  <string name="MessageRecord_you_joined_the_group">Pridružili ste se grupi.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s se pridružila/lo grupi.</string>
   <!--GV2 member removals-->
+  <string name="MessageRecord_you_removed_s">Odstranili ste %1$s.</string>
+  <string name="MessageRecord_s_removed_s">%1$s je odstranio/la %2$s.</string>
+  <string name="MessageRecord_s_removed_you_from_the_group">%1$s Vas je odstranio/la iz grupe.</string>
+  <string name="MessageRecord_you_left_the_group">Napustili ste grupu.</string>
+  <string name="MessageRecord_s_left_the_group">%1$s je napustio grupu.</string>
   <!--GV2 role change-->
   <!--GV2 invitations-->
   <!--GV2 invitation revokes-->
@@ -800,6 +850,7 @@
   <string name="ThreadRecord_view_once_photo">Jednokratna fotografija</string>
   <string name="ThreadRecord_view_once_video">Jednokratni videozapis</string>
   <string name="ThreadRecord_view_once_media">Jednokratni medij</string>
+  <string name="ThreadRecord_this_message_was_deleted">Ova je poruka izbrisana.</string>
   <string name="ThreadRecord_s_is_on_signal">%s je na Signalu!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Onemogućene su nestajuće poruke</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Vrijeme za nestajanje poruka: %s</string>
@@ -909,6 +960,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagovao/la je sa %1$s na Vašu jednokratnu fotografiju.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagovao/la je sa %1$s na Vaš jednokratni videozapis.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagovao/la je sa %1$s na Vašu naljepnicu.</string>
+  <string name="MessageNotifier_this_message_was_deleted">Ova je poruka izbrisana.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Standardno</string>
   <string name="NotificationChannel_calls">Pozivi</string>

@@ -13,7 +13,7 @@
   <string name="ApplicationMigrationActivity__signal_is_updating">Signalit uuendatakse…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Hetkel: %s</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Sa pole veel salaväljendit määranud!</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Sa pole veel salasõna määranud!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
     <item quantity="one">%d sõnum vestluse kohta</item>
     <item quantity="other">%d sõnumit vestluse kohta</item>
@@ -24,8 +24,8 @@
     <item quantity="other">See piirab koheselt kõiki vestlusi, jättes alles ainult %d viimast sõnumit.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Kustuta</string>
-  <string name="ApplicationPreferencesActivity_disable_passphrase">Keelata salaväljend?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">See lukustab püsivalt lahti Signali ja sõnumiteated.</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Kas keelata salasõna?</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">See lukustab püsivalt lahti Signal-i ja märguanded.</string>
   <string name="ApplicationPreferencesActivity_disable">Keela</string>
   <string name="ApplicationPreferencesActivity_unregistering">Registreerimise tühistamine</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Tühistan Signali sõnumite ja kõnede registratsiooni…</string>
@@ -555,10 +555,10 @@
   <string name="MessageRecord_called_s">Helistasid kontaktile %s</string>
   <string name="MessageRecord_missed_call_from">Vastamata kõne kontaktilt %s</string>
   <string name="MessageRecord_s_joined_signal">%s on Signalis!</string>
-  <string name="MessageRecord_you_disabled_disappearing_messages">Sa keelasid haihtuvad sõnumid.</string>
-  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s keelas haihtuvad sõnumid.</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Sa määrasid haihtuva sõnumi taimeriks %1$s.</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s määras haihtuva sõnumi taimeriks %2$s.</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">Sa keelasid kaduvad sõnumid.</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s keelas kaduvad sõnumid.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Sa määrasid kaduvate sõnumite taimeriks %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s määras kaduvate sõnumite taimeriks %2$s.</string>
   <!--GV2 specific-->
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Sa lisasid %1$s.</string>
@@ -645,9 +645,9 @@
     <item quantity="other">%d teist </item>
   </plurals>
   <!--PassphraseChangeActivity-->
-  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Salaväljendid ei ole samad!</string>
-  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Sobimatu vana salaväljend!</string>
-  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Sisesta uus salaväljend!</string>
+  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Salasõnad ei ole samad!</string>
+  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Sobimatu vana salasõna!</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Sisesta uus salasõna!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">Lingid selle seadme?</string>
   <string name="DeviceProvisioningActivity_cancel">TÜHISTA</string>
@@ -670,14 +670,14 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal vajab kaamera luba, et skanneerida QR-koodi, ent see on püsivalt keelatud. Palun jätka rakenduse seadetes, vali \"Load\" ja luba \"Kaamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">QR-koodi ei saa skanneerida ilma kaamera loata</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Haihtuvad sõnumid</string>
+  <string name="ExpirationDialog_disappearing_messages">Kaduvad sõnumid</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Sinu sõnumid ei aegu.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Selles vestluses saadetud ja vastuvõetud sõnumid haihtuvad peale %s pärast nägemist.</string>
   <!--PassphrasePromptActivity-->
-  <string name="PassphrasePromptActivity_enter_passphrase">Sisesta salaväljend</string>
+  <string name="PassphrasePromptActivity_enter_passphrase">Sisesta salasõna</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signali ikoon</string>
-  <string name="PassphrasePromptActivity_ok_button_content_description">Saada salaväljend</string>
-  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Sobimatu salaväljend!</string>
+  <string name="PassphrasePromptActivity_ok_button_content_description">Saada salasõna</string>
+  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Sobimatu salasõna!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Lukusta Signal lahti</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Kaart</string>
@@ -877,8 +877,8 @@
   <string name="ThreadRecord_view_once_media">Korra vaatamise meedia</string>
   <string name="ThreadRecord_this_message_was_deleted">See sõnum kustutati.</string>
   <string name="ThreadRecord_s_is_on_signal">%s on Signalis!</string>
-  <string name="ThreadRecord_disappearing_messages_disabled">Haihtuvad sõnumid keelatud</string>
-  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Haihtuva sõnumi ajaks on seatud %s</string>
+  <string name="ThreadRecord_disappearing_messages_disabled">Kaduvad sõnumid keelatud</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Kaduva sõnumi ajaks on seatud %s</string>
   <string name="ThreadRecord_safety_number_changed">Turvanumber muudetud</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Sinu turvanumber kontaktiga %s on muutunud.</string>
   <string name="ThreadRecord_you_marked_verified">Sa märkisid kinnitatuks</string>
@@ -934,7 +934,7 @@
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Halb krüptitud MSS sõnum</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-sõnum krüptitud mitteeksisteeriva sessiooni jaoks</string>
   <!--MuteDialog-->
-  <string name="MuteDialog_mute_notifications">Vaigista teated</string>
+  <string name="MuteDialog_mute_notifications">Vaigista märguanded</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_no_web_browser_installed">Veebibrauser ei ole paigaldatud!</string>
   <!--ApplicationMigrationService-->
@@ -974,7 +974,7 @@
   <string name="MessageNotifier_signal_message">Signali sõnum</string>
   <string name="MessageNotifier_unsecured_sms">Turvamata SMS</string>
   <string name="MessageNotifier_you_may_have_new_messages">Sul võib olla uusi sõnumeid</string>
-  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Ava Signal et kontrollida viimaseid teateid.</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Ava Signal, et kontrollida viimaseid märguandeid.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <string name="MessageNotifier_reacted_s_to_s">Reageeris %1$s sõnumile: \"%2$s\".</string>
@@ -990,7 +990,7 @@
   <string name="NotificationChannel_messages">Vaikimisi</string>
   <string name="NotificationChannel_calls">Kõned</string>
   <string name="NotificationChannel_failures">Ebaõnnestumised</string>
-  <string name="NotificationChannel_backups">Varundused</string>
+  <string name="NotificationChannel_backups">Varukoopiad</string>
   <string name="NotificationChannel_locked_status">Luku olek</string>
   <string name="NotificationChannel_app_updates">Rakenduse uuendused</string>
   <string name="NotificationChannel_other">Muu</string>
@@ -1063,9 +1063,9 @@
   <string name="attachment_type_selector__file">Fail</string>
   <string name="attachment_type_selector__drawer_description">Lülita manusesahtlit</string>
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">Vana salaväljend</string>
-  <string name="change_passphrase_activity__new_passphrase">Uus salaväljend</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">Korda uut salaväljendit</string>
+  <string name="change_passphrase_activity__old_passphrase">Vana salasõna</string>
+  <string name="change_passphrase_activity__new_passphrase">Uus salasõna</string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">Korda uut salasõna</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Sisesta nimi või number</string>
   <string name="contact_selection_activity__invite_to_signal">Kutsu Signalisse</string>
@@ -1214,8 +1214,8 @@
   <string name="database_migration_activity__importing">IMPORTIMINE</string>
   <string name="import_fragment__import_system_sms_database">Impordi süsteemi SMS-andmebaas</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Impordi andmebaas vaikimisi süsteemi sõnumirakendusest</string>
-  <string name="import_fragment__import_plaintext_backup">Impordi lihtteksti varundus</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">Impordi lihtteksti varundusfail. Ühildub valikuga \"SMS-varundus ja taastamine\".</string>
+  <string name="import_fragment__import_plaintext_backup">Impordi lihttekstiline varukoopia</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">Impordi lihttekstiline varukoopia. Ühildub valikuga \"SMS-varundus ja taastamine\".</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Näe tervet vestlust</string>
   <string name="load_more_header__loading">Laadimine</string>
@@ -1248,9 +1248,9 @@
   <string name="recipient_preference_activity__shared_media">Jagatud meedia</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">Vaigista vestlus</string>
-  <string name="recipient_preferences__custom_notifications">Kohandatud teated</string>
-  <string name="recipient_preferences__custom_notifications_settings">Süsteemi teadete seaded</string>
-  <string name="recipient_preferences__notification_sound">Teadete heli</string>
+  <string name="recipient_preferences__custom_notifications">Kohandatud märguanded</string>
+  <string name="recipient_preferences__custom_notifications_settings">Süsteemi märguannete seaded</string>
+  <string name="recipient_preferences__notification_sound">Märguande heli</string>
   <string name="recipient_preferences__vibrate">Vibratsioon</string>
   <string name="recipient_preferences__block">Blokeeri</string>
   <string name="recipient_preferences__color">Värv</string>
@@ -1294,9 +1294,9 @@
   <string name="message_details_header__from">Saatja:</string>
   <string name="message_details_header__with">Koos:</string>
   <!--AndroidManifest.xml-->
-  <string name="AndroidManifest__create_passphrase">Loo salaväljend</string>
+  <string name="AndroidManifest__create_passphrase">Loo salasõna</string>
   <string name="AndroidManifest__select_contacts">Vali kontaktid</string>
-  <string name="AndroidManifest__change_passphrase">Muuda salaväljendit</string>
+  <string name="AndroidManifest__change_passphrase">Muuda salasõna</string>
   <string name="AndroidManifest__verify_safety_number">Kinnita turvanumbrit</string>
   <string name="AndroidManifest__log_submit">Saada silumislogi</string>
   <string name="AndroidManifest__media_preview">Meedia eelvaade</string>
@@ -1377,17 +1377,17 @@
   <string name="preferences__previews_are_supported_for">Eelvaated on toetatud Imgur, Instagram, Pinterest, Reddit ja YouTube linkide puhul</string>
   <string name="preferences__choose_identity">Vali identiteet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vali oma kontaktüksus kontaktnimekirjast.</string>
-  <string name="preferences__change_passphrase">Muuda salaväljendit</string>
-  <string name="preferences__change_your_passphrase">Muuda oma salaväljendit</string>
+  <string name="preferences__change_passphrase">Muuda salasõna</string>
+  <string name="preferences__change_your_passphrase">Muuda oma salasõna</string>
   <string name="preferences__enable_passphrase">Luba salaväljendiga ekraanilukk</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lukusta ekraan ja teated salaväljendiga</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lukusta ekraan ja märguanded salasõnaga</string>
   <string name="preferences__screen_security">Kuva turvamine</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokeeri kuvatõmmised viimatiste nimekirjas ja rakenduse sees</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lukusta Signal automaatselt pärast määratud ebaaktiivsuse ajaintervalli</string>
-  <string name="preferences__inactivity_timeout_passphrase">Salaväljend ebaaktiivsuse ajalõpus</string>
+  <string name="preferences__inactivity_timeout_passphrase">Mitteaktiivsuse aegumise salasõna</string>
   <string name="preferences__inactivity_timeout_interval">Ebaaktiivsuse ajalõpu pikkus</string>
-  <string name="preferences__notifications">Teated</string>
-  <string name="preferences__system_notification_settings">Süsteemi teadete seaded</string>
+  <string name="preferences__notifications">Märguanded</string>
+  <string name="preferences__system_notification_settings">Süsteemi märguannete seaded</string>
   <string name="preferences__led_color">LEDi värv</string>
   <string name="preferences__led_color_unknown">Tundmatu</string>
   <string name="preferences__pref_led_blink_title">LEDi välkumismuster</string>
@@ -1508,7 +1508,7 @@
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Salvesta manus</string>
   <!--conversation_expiring_off-->
-  <string name="conversation_expiring_off__disappearing_messages">Haihtuvad sõnumid</string>
+  <string name="conversation_expiring_off__disappearing_messages">Kaduvad sõnumid</string>
   <!--conversation_expiring_on-->
   <string name="menu_conversation_expiring_on__messages_expiring">Sõnumite aegumine</string>
   <!--conversation_insecure-->
@@ -1535,7 +1535,7 @@
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Keela vaigistus</string>
   <!--conversation_unmuted-->
-  <string name="conversation_unmuted__mute_notifications">Vaigista teated</string>
+  <string name="conversation_unmuted__mute_notifications">Vaigista märguanded</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Lisa manus</string>
   <string name="conversation__menu_edit_group">Muuda gruppi</string>
@@ -1639,6 +1639,7 @@
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">PIN-koodi saab muuta senikaua kuni see seade on registreeritud.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Loo enda PIN-kood</string>
   <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-koodid hoiavad Signal-is salvestatud teabe krüptituna, et ainult sinul on sellele juurdepääs. Kui paigaldad Signal-i uuesti, siis sinu profiil, sätted ja kontaktid taastatakse.</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">Vali tugevam PIN-kood</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-koodid pole samad. Proovi uuesti.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Kinnita enda PIN-kood.</string>
@@ -1727,42 +1728,42 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Migreerin Signali andmebaasi</string>
   <string name="PushDecryptJob_new_locked_message">Uus lukustatud sõnum</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Ava lukk ootel sõnumite vaatamiseks</string>
-  <string name="enter_backup_passphrase_dialog__backup_passphrase">Varunduse salaväljend</string>
-  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Varundused salvestatakse välismällu ja krüptitakse valitud salaväljendiga. Sul peab see salaväljend olemas olema, et taastada antud varundust.</string>
-  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ma olen salaväljendi üles kirjutanud. Ilma selleta ei saa ma varundust taastada.</string>
-  <string name="registration_activity__restore_backup">Taasta varundus</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Varukoopia salasõna</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Varukoopiad salvestatakse välisseadmele ja krüptitakse valitud salasõnaga. Varukoopiast taastamiseks peab sul see salasõna olemas olema.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ma olen salasõna üles kirjutanud. Ilma selleta ei saa ma varukoopiat taastada.</string>
+  <string name="registration_activity__restore_backup">Taasta varukoopia</string>
   <string name="registration_activity__skip">Jäta vahele</string>
   <string name="registration_activity__register">Registreeri</string>
-  <string name="preferences_chats__chat_backups">Vestluse varundused</string>
-  <string name="preferences_chats__backup_chats_to_external_storage">Varunda vestlused välismällu</string>
-  <string name="preferences_chats__create_backup">Loo varundus</string>
-  <string name="preferences_chats__verify_backup_passphrase">Kinnita varunduse salaväljend</string>
-  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Testi oma varukoopia salaväljendit ja kinnita, et see vastab.</string>
-  <string name="RegistrationActivity_enter_backup_passphrase">Sisesta varunduse salaväljend</string>
+  <string name="preferences_chats__chat_backups">Vestluste varukoopiad</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Varunda vestlused välisseadmele</string>
+  <string name="preferences_chats__create_backup">Loo varukoopia</string>
+  <string name="preferences_chats__verify_backup_passphrase">Kinnita varukoopia salasõna</string>
+  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Testi varukoopia salaväljendit ja kontrolli, et see vastaks.</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Sisesta varukoopia salasõna</string>
   <string name="RegistrationActivity_restore">Taasta</string>
-  <string name="RegistrationActivity_backup_failure_downgrade">Uuematest Signali versioonidest ei saa varundusi importida</string>
-  <string name="RegistrationActivity_incorrect_backup_passphrase">Vale varunduse salaväljend</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Uuematest Signali versioonidest ei saa varukoopiaid importida</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">Vale varukoopia salasõna</string>
   <string name="RegistrationActivity_checking">Kontrollimine…</string>
   <string name="RegistrationActivity_d_messages_so_far">Siiani leidsime %d sõnumit…</string>
-  <string name="RegistrationActivity_restore_from_backup">Taastad varundusest?</string>
-  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Taasta oma sõnumid ja meedia kohalikust varundusest. Kui sa kohe ei taasta, ei saa seda teha ka hiljem.</string>
-  <string name="RegistrationActivity_backup_size_s">Varunduse suurus: %s</string>
-  <string name="RegistrationActivity_backup_timestamp_s">Varunduse ajatempel: %s</string>
-  <string name="BackupDialog_enable_local_backups">Lubad kohalikud varundused?</string>
-  <string name="BackupDialog_enable_backups">Luba varundused</string>
+  <string name="RegistrationActivity_restore_from_backup">Kas taastada varukoopiast?</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Taasta oma sõnumid ja meedia kohalikust varukoopiast. Kui sa kohe ei taasta, ei saa seda teha ka hiljem.</string>
+  <string name="RegistrationActivity_backup_size_s">Varukoopia suurus: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Varukoopia ajatempel: %s</string>
+  <string name="BackupDialog_enable_local_backups">Kas lubada kohalik varundamine?</string>
+  <string name="BackupDialog_enable_backups">Luba varundamine</string>
   <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Palun kinnita oma arusaamist, märkides kinnituse märkeruudu.</string>
-  <string name="BackupDialog_delete_backups">Kustutad varundused?</string>
-  <string name="BackupDialog_disable_and_delete_all_local_backups">Kustuta ja keela kõik kohalikud varundused?</string>
-  <string name="BackupDialog_delete_backups_statement">Kustuta varundused</string>
+  <string name="BackupDialog_delete_backups">Kas kustutada varukoopiad?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Kas kustutada ja keelata kõik kohalikud varukoopiad?</string>
+  <string name="BackupDialog_delete_backups_statement">Kustuta varukoopiad</string>
   <string name="BackupDialog_copied_to_clipboard">Lõikelauale kopeeritud</string>
-  <string name="BackupDialog_enter_backup_passphrase_to_verify">Kinnitamiseks sisesta salaväljend</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">Kinnitamiseks sisesta varukoopia salasõna</string>
   <string name="BackupDialog_verify">Kinnita</string>
-  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Sisestasid varukoopia salaväljendi edukalt</string>
-  <string name="BackupDialog_passphrase_was_not_correct">Salaväljend ei olnud õige</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal vajab välismälu õigust, et luua varundusi, ent see on püsivalt keelatud. Palun jätka rakenduse seadetes, vali \"Load\" ning luba \"Mäluruum\".</string>
-  <string name="ChatsPreferenceFragment_last_backup_s">Viimane varundus: %s</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Sisestasid varukoopia salasõna edukalt</string>
+  <string name="BackupDialog_passphrase_was_not_correct">Salasõna ei olnud õige</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal vajab varukoopiate loomiseks välismälu õigust, ent see on püsivalt keelatud. Palun jätka rakenduse seadetes, vali \"Load\" ning luba \"Mäluruum\".</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Viimane varukoopia: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Töötamisel</string>
-  <string name="LocalBackupJob_creating_backup">Varunduse loomine…</string>
+  <string name="LocalBackupJob_creating_backup">Varukoopia loomine…</string>
   <string name="ProgressPreference_d_messages_so_far">Siiani leidsime %d sõnumit</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Palun sisesta kinnituskood, mille saatsime numbrile %s.</string>
   <string name="RegistrationActivity_wrong_number">Vale number</string>
@@ -1817,7 +1818,7 @@
   <string name="RegistrationLockDialog_disable">Keela</string>
   <string name="RegistrationActivity_pin_incorrect">Sobimatu PIN</string>
   <string name="RegistrationActivity_you_have_d_tries_remaining">Sul on %d katset jäänud</string>
-  <string name="preferences_chats__backups">Varundused</string>
+  <string name="preferences_chats__backups">Varukoopiad</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal on lukus</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">KOPUTA AVAMISEKS</string>
   <string name="RegistrationLockDialog_reminder">Meeldetuletus:</string>

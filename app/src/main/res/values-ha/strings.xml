@@ -74,6 +74,8 @@
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">Tosheshen lambobin sadarwa</string>
   <!--BlockUnblockDialog-->
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Membobin rukuni suna da damar dawowa da kai/ke rukunin. </string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Zaku samu damar aikawa juna sakonni da kiran juna. </string>
   <string name="BlockUnblockDialog_unblock">Bude</string>
   <string name="BlockUnblockDialog_block">Toshe</string>
   <!--BucketedThreadMedia-->
@@ -703,6 +705,8 @@
   <string name="StickerPackPreviewActivity_stickers">Sitika</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Lodin fakitin sitika ya gaza</string>
   <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_edit">Gyara</string>
+  <string name="SubmitDebugLogActivity_done">Angama</string>
   <string name="SubmitDebugLogActivity_submit">Aika</string>
   <string name="SubmitDebugLogActivity_success">Nasara!</string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">An kwafa zuwa allon rubutu</string>

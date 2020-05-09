@@ -1633,6 +1633,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Voit vaihtaa PIN-koodisi niin kauan kuin tämä laite on rekisteröity.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Luo PIN-koodisi</string>
   <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-koodit pitävät Signalin luona tallennetut tiedot salattuina, jotta vain sinä pääset niihin käsiksi. Profiilisi, asetuksesi ja yhteystietosi palautuvat kun asennat Signalin uudelleen.</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">Valitse vahvempi PIN-koodi</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-koodit eivät täsmää. Yritä uudelleen.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Vahvista PIN-koodisi.</string>

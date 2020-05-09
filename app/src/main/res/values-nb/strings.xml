@@ -79,6 +79,7 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Blokker og forlat %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Blokker %1$s?</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Du vil ikke lenger motta meldinger eller oppdateringer fra denne gruppen, og medlemmene vil ikke kunne legge deg til denne gruppen igjen.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Gruppemedlemmer kan legge deg til denne gruppen igjen.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Du kan sende meldinger og ringe hverandre.</string>
   <string name="BlockUnblockDialog_unblock_s">avblokker %1$s?</string>
@@ -166,6 +167,7 @@
   <string name="ConversationItem_read_more"> Les Mer</string>
   <string name="ConversationItem_download_more">  Last ned mer</string>
   <string name="ConversationItem_pending">  Venter</string>
+  <string name="ConversationItem_this_message_was_deleted">Denne meldingen ble slettet.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Vil du tilbakestille sikker økt?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Dette kan hjelpe hvis du har krypteringsproblemer med samtalen. Meldinger blir beholdt.</string>
@@ -382,6 +384,7 @@
   <string name="GroupMembersDialog_you">Deg</string>
   <!--GV2 access levels-->
   <!--PendingMembersActivity-->
+  <string name="PendingMembersActivity_cancel_invite">Avbryt invitasjonen</string>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Gruppe-avatar</string>
@@ -525,8 +528,12 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s satt utløpstiden for meldinger til %2$s.</string>
   <!--GV2 specific-->
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_joined_the_group">Du ble med i gruppen.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s ble med i gruppa.</string>
   <!--GV2 member removals-->
+  <string name="MessageRecord_you_removed_s">Du fjernet %1$s.</string>
+  <string name="MessageRecord_s_removed_you_from_the_group">%1$s fjernet deg fra gruppen. </string>
+  <string name="MessageRecord_you_left_the_group">Du forlot gruppen.</string>
   <!--GV2 role change-->
   <!--GV2 invitations-->
   <!--GV2 invitation revokes-->
@@ -601,6 +608,9 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Versjonen av Google Play Tjenester som er installert på denne enheten fungerer ikke skikkelig. Installer Google Play Tjenester på nytt og prøv igjen.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">Feil PIN-kode</string>
+  <string name="PinRestoreEntryFragment_need_help">Trenger hjelp?</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Hvis du ikke kan huske PIN-koden din, kan du opprette en ny. Du kan registrere og bruke kontoen din, men du vil miste noen lagrede innstillinger som profilinformasjonen din.</string>
+  <string name="PinRestoreEntryFragment_create_new_pin">Opprett ny PIN-kode</string>
   <string name="PinRestoreEntryFragment_contact_support">Kontakt support</string>
   <string name="PinRestoreEntryFragment_cancel">Avbryt</string>
   <string name="PinRestoreEntryFragment_skip">Hopp over</string>
@@ -679,6 +689,9 @@ skrev inn (%s) er ugyldig.</string>
   <string name="RegistrationActivity_country_code_description">Landskode</string>
   <string name="RegistrationActivity_call">Ring</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Hvis du glemmer din Signal PIN-kode når du registrerer deg igjen, blir du låst ute av kontoen din i 7 dager.</string>
+  <string name="RegistrationLockV2Dialog_turn_on">Slå på</string>
+  <string name="RegistrationLockV2Dialog_turn_off">Skru av</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Se bilde</string>
   <string name="RevealableMessageView_view_video">Se video</string>
@@ -763,6 +776,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ThreadRecord_view_once_photo">Vis en gang bilde</string>
   <string name="ThreadRecord_view_once_video">Vis en gang video</string>
   <string name="ThreadRecord_view_once_media">Vis en gang media</string>
+  <string name="ThreadRecord_this_message_was_deleted">Denne meldingen ble slettet.</string>
   <string name="ThreadRecord_s_is_on_signal"> %s er på Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Forsvinnende meldinger deaktivert</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Utløpstid for meldinger endret til %s</string>
@@ -867,6 +881,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MessageNotifier_reacted_s_to_s">Reagerte %1$s til \"%2$s\".</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Reagerte %1$s til videoen din.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Reagerte %1$s til bildet ditt. </string>
+  <string name="MessageNotifier_this_message_was_deleted">Denne meldingen ble slettet.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Forvalgt</string>
   <string name="NotificationChannel_calls">Samtaler</string>
@@ -1205,6 +1220,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="HelpFragment__android_version">Android versjon</string>
   <string name="HelpFragment__signal_version">Signal versjon:</string>
   <string name="HelpFragment__locale">Språk:</string>
+  <string name="HelpFragment__debug_log">Feilsøkingslogg:</string>
   <string name="HelpFragment__could_not_upload_logs">Kunne ikke laste opp logger</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vær så beskrivende som mulig for å hjelpe oss med å forstå problemet.</string>
   <string name="HelpFragment__no_email_app_found">Ingen e-postapp funnet.</string>
@@ -1501,15 +1517,20 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">Opprett numerisk PIN-kode</string>
   <!--CreateKbsPinFragment-->
   <string name="CreateKbsPinFragment__create_a_new_pin">Opprett en ny PIN-kode</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Du kan endre PIN-koden din så lenge denne enheten er registrert.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Opprett PIN-koden</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-koder holder informasjon lagret med Signal kryptert slik at bare du kan få tilgang til den. Profilen, innstillingene og kontaktene dine vil gjenopprette når du installerer Signal på nytt.</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">Velg en sterkere PIN-kode</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-koder stemmer ikke overens. Prøv igjen.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Bekreft din PIN.</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN-koden din ble ikke lagret. Vi ber deg om å opprette en PIN-kode senere.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN laget.</string>
+  <string name="ConfirmKbsPinFragment__re_enter_your_pin">Skriv inn PIN-koden din på nytt</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Oppretter PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Vi introduserer PIN-koder</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN-koder holder informasjon lagret med Signal kryptert slik at bare du kan få tilgang til den. Profilen, innstillingene og kontaktene dine vil gjenopprette når du installerer Signal på nytt.</string>
   <string name="KbsSplashFragment__learn_more">Lær mer</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registreringslås = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Din registreringskode kalles nå PIN, og den gjør mer. Oppdater den nå.</string>
@@ -1607,8 +1628,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_app_protection__screen_lock">Skjermlås</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lås Signal tilgang med Android-skjermlås eller fingeravtrykk</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Tidsavbrudd for skjermlås ved inaktivitet.</string>
+  <string name="preferences_app_protection__signal_pin">Signal-PIN</string>
   <string name="preferences_app_protection__create_a_pin">Lag en PIN</string>
   <string name="preferences_app_protection__change_your_pin">Endre PIN-koden</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-koder holder informasjon lagret med Signal kryptert slik at bare du kan få tilgang til den. Profilen, innstillingene og kontaktene dine vil gjenopprette når du installerer Signal på nytt.</string>
   <string name="AppProtectionPreferenceFragment_none">Ingen</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Registreringslås-PIN-koden er ikke den samme som SMS-bekreftelseskoden du nettopp har mottatt. Vennligst skriv inn PIN-koden du tidligere konfigurert i programmet.</string>
   <string name="registration_activity__registration_lock_pin">Registrerings-PIN</string>

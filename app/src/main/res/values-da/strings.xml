@@ -1639,6 +1639,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Du kan ændre din PIN-kode, så længe denne enheden er registreret</string>
   <string name="CreateKbsPinFragment__create_your_pin">Opret din PIN</string>
   <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-koder sikrer information lagret med Signal er krypteret, så kun du kan få adgang til den. Din profil, indstillinger og kontakter gendannes, når du installerer Signal igen</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">Vælg en stærkere pinkode</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN´s matcher ikke. Prøv igen</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Bekræft din PIN</string>

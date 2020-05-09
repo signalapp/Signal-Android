@@ -1731,6 +1731,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Gallwch newid eich PIN cyhyd â bod y ddyfais hon wedi\'i chofrestru.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Crëwch eich PIN</string>
   <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Mae PINs yn cadw gwybodaeth wedi\'i storio gyda Signal wedi\'i hamgryptio felly dim ond chi sy\'n cael mynediad ati. Bydd eich proffil, gosodiadau, a chysylltiadau yn cael eu hadfer pan fyddwch yn ailosod Signal.</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">Dewiswch PIN cryfach</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Nid yw\'r PIN yn cyfateb. Ceisiwch eto.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Cadarnhewch eich PIN.</string>

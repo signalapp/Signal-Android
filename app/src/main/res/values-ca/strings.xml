@@ -673,7 +673,7 @@
   <string name="ExpirationDialog_your_messages_will_not_expire">El missatges no expiraran.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Els missatges enviats i rebuts a aquesta conversa desapareixeran %s després que s\'hagin llegit.</string>
   <!--PassphrasePromptActivity-->
-  <string name="PassphrasePromptActivity_enter_passphrase">Introduïu la contrasenya</string>
+  <string name="PassphrasePromptActivity_enter_passphrase">Escriviu la contrasenya</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Icona del Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Envia la contrasenya</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Contrasenya incorrecta!</string>
@@ -773,9 +773,9 @@ especificat (%s) no és vàlid.</string>
   <string name="RegistrationActivity_continue_d_attempts_left">Continua (resten %d intents)</string>
   <string name="RegistrationActivity_continue_last_attempt">Continua (darrer intent!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Porteu a sobre la privadesa.\nSigueu vosaltres mateixos a cada missatge.</string>
-  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Per començar, introduïu el número de telèfon.</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Per començar, marqueu el número de telèfon.</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Rebreu un codi de verificació. La vostra operadora podria aplicar algun càrrec.</string>
-  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Introduïu el codi que hem enviat a %s</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Marqueu el codi que hem enviat a %s</string>
   <string name="RegistrationActivity_phone_number_description">Número de telèfon</string>
   <string name="RegistrationActivity_country_code_description">Codi de país</string>
   <string name="RegistrationActivity_call">Truca</string>
@@ -1061,10 +1061,10 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="change_passphrase_activity__new_passphrase">Contrasenya nova</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Repetiu la contrasenya nova</string>
   <!--contact_selection_activity-->
-  <string name="contact_selection_activity__enter_name_or_number">Introduïu un nom o número</string>
+  <string name="contact_selection_activity__enter_name_or_number">Escriviu un nom o un número</string>
   <string name="contact_selection_activity__invite_to_signal">Convida al Signal</string>
   <!--contact_filter_toolbar-->
-  <string name="contact_filter_toolbar__clear_entered_text_description">Neteja el text introduït</string>
+  <string name="contact_filter_toolbar__clear_entered_text_description">Neteja el text escrit</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Mostra el teclat</string>
   <string name="contact_filter_toolbar__show_dial_pad_description">Mostra el teclat numèric</string>
   <!--contact_selection_group_activity-->
@@ -1259,9 +1259,9 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="registration_activity__phone_number">NÚMERO DE TELÈFON</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">El Signal fa que comunicar-se sigui fàcil usant el vostre número de telèfon i el llibre d\'adreces. Les amistats i contactes que ja saben com contactar-vos pel número de telèfon us podran trobar fàcilment al Signal.\n\nEl registre tramet certa informació de contacte al servidor. No s\'emmagatzema.</string>
   <string name="registration_activity__verify_your_number">Verifiqueu el número de telèfon</string>
-  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Introduïu el vostre número de telèfon per a rebre un codi de verificació. És possible que s\'apliquin càrrecs de la operadora.</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Marqueu el vostre número de mòbil per rebre un codi de verificació. Pot ser que s\'apliquin càrrecs de l\'operadora.</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to"><small>Escriviu un nom o número</small></string>
+  <string name="recipients_panel__to"><small>Escriviu un nom o un número</small></string>
   <string name="recipients_panel__add_members">Afegiu-hi membres</string>
   <!--unknown_sender_view-->
   <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">El remitent no és a la llista de contactes</string>
@@ -1365,7 +1365,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__pref_all_mms_title">Rep tots els MMS</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Fes servir el Signal per a tots els missatges de text d\'entrada</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Fes servir el Signal per a tots els missatges multimèdia d\'entrada</string>
-  <string name="preferences__pref_enter_sends_title">Envia amb la tecla Retorn</string>
+  <string name="preferences__pref_enter_sends_title">S\'envia amb la tecla de Retorn</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">En prémer Retorn s\'envia el missatge de text</string>
   <string name="preferences__send_link_previews">Envia previsualitzacions d\'enllaços</string>
   <string name="preferences__previews_are_supported_for">Les vistes prèvies són compatibles amb els enllaços d\'Imgur, Instagram, Pinterest, Reddit i YouTube.</string>
@@ -1633,6 +1633,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Podeu canviar el PIN sempre que aquest dispositiu estigui registrat.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Creeu el PIN</string>
   <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Els PIN mantenen encriptada la informació desada amb el Signal de manera que no hi pugui accedir ningú més. El perfil, la configuració i els contactes es restauraran quan el reinstal·leu.</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">Trieu un PIN més segur.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Els codis no coincideixen. Torneu-ho a provar.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Confirmeu el vostre PIN.</string>
@@ -1664,7 +1665,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="AccountLockedFragment__learn_more">Més informació</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Marqueu el PIN</string>
-  <string name="RegistrationLockFragment__enter_the_pin_you_created">Introduïu el PIN que heu creat per al compte. Això és diferent del codi de verificació d\'SMS.</string>
+  <string name="RegistrationLockFragment__enter_the_pin_you_created">Marqueu el PIN que heu creat per al compte. Això és diferent del codi de verificació d\'SMS.</string>
   <string name="RegistrationLockFragment__enter_alphanumeric_pin">Escriviu un PIN alfanumèric</string>
   <string name="RegistrationLockFragment__enter_numeric_pin">Marqueu un PIN numèric</string>
   <string name="RegistrationLockFragment__next">Següent</string>
@@ -1792,7 +1793,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">El PIN té un mínim de %d dígits o caràcters.</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">PIN de bloqueig del registre incorrecte</string>
   <string name="RegistrationActivity_too_many_attempts">Massa intents</string>
-  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Heu introduït un PIN de bloqueig de registre incorrecte massa vegades. Si us plau, torneu-ho a provar d\'aquí a un dia.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Heu marcat un PIN de bloqueig de registre incorrecte massa vegades. Si us plau, torneu-ho a provar d\'aquí a un dia.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Error en connectar al servei</string>
   <string name="RegistrationActivity_oh_no">Oh, no!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">El registre d\'aquest número de telèfon serà possible sense el PIN de bloqueig del registre 7 dies després des de l\'últim cop que el número es va usar al Signal. Us manquen %d dies.</string>
@@ -1805,7 +1806,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="RegistrationLockDialog_registration_lock">Bloqueig del registre</string>
   <string name="RegistrationLockDialog_enable">Activa</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">El PIN de bloqueig del registre ha de tenir com a mínim %d dígits.</string>
-  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Els dos PIN que heu introduït no coincideixen.</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Els dos PIN que heu escrit no coincideixen.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Error en connectar al servei</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Voleu desactivar el PIN de bloqueig del registre?</string>
   <string name="RegistrationLockDialog_disable">Desactiva</string>

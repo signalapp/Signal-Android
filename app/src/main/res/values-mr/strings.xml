@@ -42,6 +42,7 @@
   <string name="ApplicationPreferencesActivity_Off">बंद</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">स्क्रीन लॉक %1$s, नोंदणी लॉक %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">स्क्रीन लॉक %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">थीम %1$s, भाषा %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -60,6 +61,8 @@
   <string name="AttachmentKeyboard_file">फाईल</string>
   <string name="AttachmentKeyboard_contact">संपर्क</string>
   <string name="AttachmentKeyboard_location">स्थान</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">आपले फोटो आणि व्हिडिओ दर्शविण्यासाठी Signal ला परवानगी आवश्यक आहे.</string>
+  <string name="AttachmentKeyboard_give_access">प्रवेश द्या</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">मिडिया निवडण्यासाठी अॅप सापडत नाही.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">फोटो, व्हिडिओ, किंवा ऑडिओ, संलग्न करण्यासाठी Signal ला संचयन परवानगीची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"संचयन\" सक्षम करा.</string>
@@ -74,8 +77,18 @@
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">अवरोधित संपर्क</string>
   <!--BlockUnblockDialog-->
+  <string name="BlockUnblockDialog_block_and_leave_s">%1$sअवरोधित करायचे आणि पडायचे?</string>
+  <string name="BlockUnblockDialog_block_s">%1$s अवरोधित करायचे?</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">आपणास यापुढे या गटाकडून संदेश किंवा अद्यतने प्राप्त होणार नाहीत आणि सदस्य आपल्याला या गटामध्ये पुन्हा जोडण्यास सक्षम राहणार नाहीत.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">गट सदस्य आपल्याला या गटामध्ये पुन्हा जोडू शकणार नाहीत.</string>
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">गट सदस्य आपल्याला पुन्हा या गटात जोडू शकतील.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">आपण एकमेकांना संदेश पाठवू आणि कॉल करू शकाल.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">अवरोधित लोक आपल्याला कॉल करण्यास किंवा संदेश पाठविण्यास सक्षम असणार नाहीत.</string>
+  <string name="BlockUnblockDialog_unblock_s">%1$sअनावरोधित करायचे?</string>
   <string name="BlockUnblockDialog_unblock">अनब्लॉक करा</string>
   <string name="BlockUnblockDialog_block">अवरोधित करा</string>
+  <string name="BlockUnblockDialog_block_and_leave">अवरोधित करा आणि पडा</string>
+  <string name="BlockUnblockDialog_block_and_delete">अवरोधित करा आणि हटवा</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">आज</string>
   <string name="BucketedThreadMedia_Yesterday">काल</string>
@@ -109,11 +122,14 @@
   <string name="ClearProfileActivity_remove_profile_photo">प्रोफाईल फोटो काढायचा?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">कुठलाही वेब ब्राऊझर सापडला नाही.</string>
+  <string name="CommunicationActions_no_email_app_found">कोणतेही ईमेल अ‍ॅप आढळले नाही</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">एक सेल्यूलर कॉल प्रगतीमध्ये आहे.</string>
   <string name="CommunicationActions_start_video_call">व्हिडिओ कॉल चालू करायचा?</string>
   <string name="CommunicationActions_start_voice_call">व्हॉईस कॉल चालू करायचा?</string>
   <string name="CommunicationActions_cancel">रद्द करा</string>
   <string name="CommunicationActions_call">कॉल करा</string>
+  <string name="CommunicationActions_insecure_call">असुरक्षित कॉल</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">वाहक शुल्क लागू शकते. आपण कॉल करीत असलेला नंबर सिग्नलसह नोंदणीकृत नाही. हा कॉल इंटरनेटवरून नव्हे तर आपल्या मोबाइल कॅरियरद्वारे दिला जाईल.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s सोबतचा आपला सुरक्षितता नंबर बदलला आहे. ह्याचा अर्थ कुणीतरी आपले परस्परसंवादामध्ये अटकाव करण्याचा प्रयत्न करतो आहे किंवा %2$s याने Signal पुनर्स्थापित केले आहे असा होऊ शकतो.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">या संपर्कासोबत आपल्याला आपला सुरक्षितता नंबर सत्यापित करावेसे वाटू शकते.</string>
@@ -154,6 +170,7 @@
   <string name="ConversationItem_read_more"> अधिक जाणा</string>
   <string name="ConversationItem_download_more">  अधिक डाऊनलोड करा</string>
   <string name="ConversationItem_pending">  प्रलंबित</string>
+  <string name="ConversationItem_this_message_was_deleted">हा संदेश हटविला गेला.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">सुरक्षित सत्र रीसेट करायचे?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">जर या संभाषणात आपल्याला एन्क्रिप्शन समस्या येत असतील तर हे मदत करू शकते. आपले संदेश ठेवले जातील.</string>
@@ -205,6 +222,7 @@
   <string name="ConversationActivity_sticker_pack_installed">स्टिकर पॅक स्थापन केले</string>
   <string name="ConversationActivity_new_say_it_with_stickers">नवीन! स्टिकर सोबत बोला</string>
   <string name="ConversationActivity_cancel">रद्द करा</string>
+  <string name="ConversationActivity_delete_conversation">संभाषण काढून टाकायचे?</string>
   <string name="ConversationActivity_delete">हटवा</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -723,6 +741,7 @@
   <string name="ThreadRecord_view_once_photo">एकदा-बघा फोटो</string>
   <string name="ThreadRecord_view_once_video">एकदा-बघा व्हिडिओ</string>
   <string name="ThreadRecord_view_once_media">एकदा-बघा मिडिया</string>
+  <string name="ThreadRecord_this_message_was_deleted">हा संदेश हटविला गेला.</string>
   <string name="ThreadRecord_s_is_on_signal">%s Signal वर आहे!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">हरवणारे संदेश अक्षम केले</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">हरवणारा संदेश वेळ %s वर सेट केली</string>
@@ -831,6 +850,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">आपल्या एकदा-बघा फोटोला %1$s प्रतिसाद दिला.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">आपल्या एकदा-बघा व्हिडिओला %1$s प्रतिसाद दिला.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">आपल्या स्टिकरला %1$s प्रतिसाद दिला.</string>
+  <string name="MessageNotifier_this_message_was_deleted">हा संदेश हटविला गेला.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">पूर्वनिर्धारित</string>
   <string name="NotificationChannel_calls">कॉल</string>
@@ -1155,6 +1175,7 @@
   <string name="HelpFragment__help">मदत</string>
   <string name="HelpFragment__next">पुढे</string>
   <string name="HelpFragment__signal_support">Signal समर्थन</string>
+  <string name="HelpFragment__no_email_app_found">कोणतेही ईमेल अ‍ॅप आढळले नाही</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">आयात</string>
   <string name="arrays__use_default">पूर्वनिर्धारित वापरा</string>

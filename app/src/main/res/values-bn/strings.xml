@@ -74,8 +74,11 @@
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">অবরূদ্ধ পরিচিতিসমূহ</string>
   <!--BlockUnblockDialog-->
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">গ্রুপের সদস্যরা আপনাকে আবার এই গ্রুপে যুক্ত করতে পারবে।</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">আপনি একে অপরকে বার্তা প্রেরণ এবং কল করতে সক্ষম হবেন।</string>
   <string name="BlockUnblockDialog_unblock">মূক্ত করুন</string>
   <string name="BlockUnblockDialog_block">অবরূদ্ধ</string>
+  <string name="BlockUnblockDialog_block_and_delete">অবরুদ্ধ করুন এবং মুছুন</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">আজ</string>
   <string name="BucketedThreadMedia_Yesterday">গতকাল</string>
@@ -205,6 +208,8 @@
   <string name="ConversationActivity_sticker_pack_installed">স্টিকার প্যাক ইনস্টল করা হয়েছে</string>
   <string name="ConversationActivity_new_say_it_with_stickers">নতুন! স্টিকার দিয়ে বলুন</string>
   <string name="ConversationActivity_cancel">বাতিল</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">এই কথোপকথনটি আপনার সমস্ত ডিভাইস থেকে মুছে ফেলা হবে।</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">আপনি এই গ্রুপ ছেড়ে চলে যাবেন এবং এটি আপনার সমস্ত ডিভাইস থেকে মুছে ফেলা হবে।</string>
   <string name="ConversationActivity_delete">মুছে দিন</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -274,6 +279,7 @@
     <item quantity="one"> টি আলাপন ইনবক্সে স্থানান্তরিত করা হয়েছে</item>
     <item quantity="other">%d টি কথোপকথন ইনবক্সে স্থানান্তরিত করা হয়েছে</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_saved">আপনার প্রোফাইলের নামটি সংরক্ষণ করা হয়েছে।</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Key বিনিময় বার্তা</string>
   <!--ConversationListItemAction-->
@@ -358,6 +364,9 @@
   <string name="GroupMembersDialog_you">আপনি</string>
   <!--GV2 access levels-->
   <!--PendingMembersActivity-->
+  <string name="PendingMembersActivity_people_you_invited">আপনার আমন্ত্রিত লোকেরা</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">গ্রুপের অন্যান্য সদস্যদের আমন্ত্রণ</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">গ্রুপের অন্যান্য সদস্যদের দ্বারা আমন্ত্রিত লোকদের বিবরণ দেখানো হয় না। আমন্ত্রিতরা যদি যোগদান করেন, তখন তাদের তথ্য গ্রুপের সাথে শেয়ার করা হবে। যোগদান না করা পর্যন্ত তারা গ্রুপের কোনও বার্তা দেখতে পাবেন না।</string>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">গ্রুপের ছবি</string>
@@ -444,6 +453,8 @@
   <string name="MediaOverviewActivity_sent_by_you_to_s">%1$sকে আপনার প্রেরিত </string>
   <!--Megaphones-->
   <string name="Megaphones_remind_me_later">আমাকে পরে মনে করিয়ে দিবেন</string>
+  <string name="Megaphones_verify_your_signal_pin">আপনার Signal পিন যাচাই করুন</string>
+  <string name="Megaphones_verify_pin">পিন যাচাই করুন</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal কল চলমান </string>
   <string name="NotificationBarManager__establishing_signal_call">Signal কল স্থাপন করা হচ্ছে</string>
@@ -496,6 +507,7 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s অদৃশ্য হয়ে যাওয়া বার্তার সময়কাল %2$s নির্ধারন করেছেন।</string>
   <!--GV2 specific-->
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_joined_the_group">আপনি গ্রুপে যোগ দিয়েছেন।</string>
   <string name="MessageRecord_s_joined_the_group">%1$s গ্রুপে যোগ দিয়েছেন।</string>
   <!--GV2 member removals-->
   <!--GV2 role change-->
@@ -567,6 +579,8 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">আপনার ইনস্টল করা গুগল প্লে পরিষেবাদির সংস্করণটি সঠিকভাবে কাজ করছে না। গুগল প্লে পরিষেবাগুলি পুনরায় ইনস্টল করুন এবং আবার চেষ্টা করুন।</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">ভুল পিন</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">আপনি যদি আপনার পিনটি মনে না করতে পারেন তবে আপনি একটি নতুন তৈরি করতে পারেন। আপনি নিজের অ্যাকাউন্টটি নিবন্ধভুক্ত করতে এবং ব্যবহার করতে পারেন তবে আপনি আপনার প্রোফাইল তথ্যের মতো কিছু সংরক্ষিত সেটিংস হারাবেন।</string>
+  <string name="PinRestoreEntryFragment_create_new_pin">নতুন পিন তৈরি করুন</string>
   <string name="PinRestoreEntryFragment_contact_support">সহায়তা কেন্দ্রে যোগাযোগ</string>
   <string name="PinRestoreEntryFragment_cancel">বাতিল</string>
   <string name="PinRestoreEntryFragment_skip">বাদ দিয়ে যান</string>
@@ -1444,15 +1458,20 @@
   <string name="BaseKbsPinFragment__create_numeric_pin">সংখ্যার পিন তৈরি করুন</string>
   <!--CreateKbsPinFragment-->
   <string name="CreateKbsPinFragment__create_a_new_pin">একটি নতুন পিন তৈরি করুন</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">এই ডিভাইসটি নিবন্ধিত থাকা অবধি আপনি আপনার পিন পরিবর্তন করতে পারবেন।</string>
   <string name="CreateKbsPinFragment__create_your_pin">আপনার পিন তৈরি করুন</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">পিনগুলি Signal-এ সঞ্চিত তথ্য এনক্রিপ্ট করে রাখে যাতে কেবল আপনি এটি অ্যাক্সেস করতে পারবেন। আপনি যখন Signal পুনরায় ইনস্টল করবেন তখন আপনার প্রোফাইল, সেটিংস এবং পরিচিতিগুলি পুনরুদ্ধার করবে।</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">একটি শক্তিশালী পিন চয়ন করুন</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">পিনগুলি মেলে না। আবার চেষ্টা করুন|</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">আপনার পিনটি নিশ্চিত করুন।</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">পিন তৈরি ব্যর্থ হয়েছে</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">আপনার পিন সংরক্ষণ করা হয়নি। আমরা আপনাকে পরে একটি পিন তৈরি করতে অনুরোধ করব।</string>
   <string name="ConfirmKbsPinFragment__pin_created">পিন তৈরি করা হয়েছে।</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">পিন তৈরি করা হচ্ছে …</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">পিনের সাথে পরিচিত হন</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">পিনগুলি Signal-এ সঞ্চিত তথ্য এনক্রিপ্ট করে রাখে যাতে কেবল আপনি এটি অ্যাক্সেস করতে পারবেন। আপনি যখন Signal পুনরায় ইনস্টল করবেন তখন আপনার প্রোফাইল, সেটিংস এবং পরিচিতিগুলি পুনরুদ্ধার করবে।</string>
   <string name="KbsSplashFragment__learn_more">আরও জানুন</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">রেজিস্ট্রেশন লক = পিন</string>
   <string name="KbsSplashFragment__read_more_about_pins">পিন সম্পর্কে আরও পড়ুন।</string>
@@ -1480,9 +1499,14 @@
   <string name="RegistrationLockFragment__incorrect_pin">ভুল পিন</string>
   <string name="RegistrationLockFragment__forgot_your_pin">পিন ভুলে গেছেন?</string>
   <!--KBS Megaphone-->
+  <string name="KbsMegaphone__create_a_pin">একটি পিন তৈরি করুন</string>
+  <string name="KbsMegaphone__create_pin">পিন তৈরি করুন</string>
   <string name="KbsMegaphone__introducing_pins">পিনের সাথে পরিচিত হন</string>
   <string name="KbsMegaphone__update_pin">পিন আপডেট করুন</string>
   <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">আপনি যখন কোনও নতুন কথোপকথন শুরু করবেন বা শেয়ার করবেন তখন এটি প্রদর্শিত হবে।</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">প্রোফাইল নাম যোগ করুন</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">আপনার প্রোফাইল এখন একটি ঐচ্ছিক শেষ নাম অন্তর্ভুক্ত করতে পারেন।</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">পরিবহন আইকন</string>
   <string name="ConversationListFragment_loading">লোড হচ্ছে…</string>
@@ -1539,7 +1563,9 @@
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">অ্যানড্রয়েড স্ক্রীন এর লক্ বা ফিঙ্গারপ্রিন্ট লক দিয়ে সিগন্যাল লক্ করুন </string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">স্ক্রীন এর লক্ নিষ্ক্রিয়তার সময়সীমা</string>
   <string name="preferences_app_protection__signal_pin">Signal পিন</string>
+  <string name="preferences_app_protection__create_a_pin">একটি পিন তৈরি করুন</string>
   <string name="preferences_app_protection__change_your_pin">আপনার পিন পরিবর্তন করুন</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">পিনগুলি Signal-এ সঞ্চিত তথ্য এনক্রিপ্ট করে রাখে যাতে কেবল আপনি এটি অ্যাক্সেস করতে পারবেন। আপনি যখন Signal পুনরায় ইনস্টল করবেন তখন আপনার প্রোফাইল, সেটিংস এবং পরিচিতিগুলি পুনরুদ্ধার করবে।</string>
   <string name="AppProtectionPreferenceFragment_none">কেউ না</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">রেজিস্ট্রেশন লক পিনটি আপনি সদ্য প্রাপ্ত এসএমএস যাচাইকরণ কোডের সাথে মিলছে না। আপনি পূর্বে অ্যাপ্লিকেশনটিতে কনফিগার করা পিনটি প্রবেশ করুন।</string>
   <string name="registration_activity__registration_lock_pin">রেজিস্ট্রেশন লক এর পিন কোড</string>

@@ -1728,6 +1728,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Můžete měnit váš PIN, dokud je toto zařízení registrováno.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Vytvořit váš PIN</string>
   <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN uchovává informace uložené u Signalu zašifrované, takže pouze vy se k nim můžete dostat. Váš profil, nastavení a kontakty budou při reinstalaci Signalu obnoveny.</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">Zvolte silnější PIN</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN se neshodují. Zkuste to znovu.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Potvrďte Váš PIN.</string>

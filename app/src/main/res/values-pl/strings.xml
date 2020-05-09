@@ -743,7 +743,7 @@
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Mapa</string>
   <string name="PlacePickerActivity_not_a_valid_address">Nieprawidłowy adres</string>
-  <string name="PlacePickerActivity_drop_pin">Upuść pinezkę</string>
+  <string name="PlacePickerActivity_drop_pin">Umieść znacznik</string>
   <string name="PlacePickerActivity_accept_address">Zaakceptuj adres</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Wersja Google Play Services którą masz zainstalowaną nie funkcjonuje poprawnie. Proszę przeinstaluj tę aplikację ponownie i spróbuj ponownie.</string>
@@ -835,7 +835,7 @@
   <string name="RegistrationActivity_failed_to_verify_the_captcha">Nie udało się zweryfikować CAPTCHA</string>
   <string name="RegistrationActivity_next">Dalej</string>
   <string name="RegistrationActivity_continue">Kontynuuj</string>
-  <string name="RegistrationActivity_continue_d_attempts_left">Kontynuuj (pozostało %d próby)</string>
+  <string name="RegistrationActivity_continue_d_attempts_left">Kontynuuj (pozostały %d próby)</string>
   <string name="RegistrationActivity_continue_last_attempt">Kontynuuj (ostatnia próba!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Weź prywatność w swoje ręce.\nBądź sobą w każdej wiadomości.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Aby rozpocząć, wprowadź swój numer telefonu</string>
@@ -969,7 +969,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="UsernameEditFragment_encountered_a_network_error">Wystąpił błąd sieci.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Nazwa użytkownika jest zajęta.</string>
   <string name="UsernameEditFragment_this_username_is_available">Nazwa użytkownika jest dostępna.</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">Nazwy użytkowników mogą zawierać wyłącznie a-Z, 0-9 i podkreślenia.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">Nazwy użytkowników mogą zawierać wyłącznie a-Z, 0-9 i podkreślenia (_).</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Nazwy użytkowników nie mogą zaczynać się od cyfry.</string>
   <string name="UsernameEditFragment_username_is_invalid">Nazwa użytkownika jest niepoprawna.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Nazwy użytkowników muszą mieć od %1$d do %2$d znaków.</string>
@@ -1104,7 +1104,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="WebRtcCallControls_mute_button_description">Wycisz</string>
   <string name="WebRtcCallControls_your_camera_button_description">Twój aparat</string>
   <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Przełącz na tylny aparat</string>
-  <string name="WebRtcCallControls_answer_call_description">Odbierz</string>
+  <string name="WebRtcCallControls_answer_call_description">Odbierz połączenie</string>
   <string name="WebRtcCallControls_reject_call_description">Odrzuć połączenie</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Audio</string>
@@ -1721,6 +1721,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Dopóki to urządzenie jest zarejestrowane, możesz zmienić swój PIN.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Utwórz swój PIN</string>
   <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Kody PIN gwarantują, że informacje przechowywane w Signal są zaszyfrowane i tylko Ty masz do nich dostęp. Twój profil, ustawienia i kontakty zostaną przywrócone, gdy ponownie zainstalujesz Signal.</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">Wybierz silniejszy PIN</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Kody PIN się różnią. Spróbuj ponownie.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Potwierdź swój PIN.</string>
@@ -1762,10 +1763,10 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Zapomniałeś(aś) swój PIN?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Pozostało niewiele prób!</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-    <item quantity="one">Dla Twojej prywatności i bezpieczeństwa, nie ma sposobu na odzyskanie Twojego numeru PIN. Jeśli nie możesz przypomnieć sobie PINu, możesz ponownie zweryfikować numer przez SMS, po %1$d dniu nieaktywności. W tym przypadku Twoje konto zostanie skasowane, a cała zawartość usunięta.</item>
-    <item quantity="few">Dla Twojej prywatności i bezpieczeństwa, nie ma sposobu na odzyskanie Twojego numeru PIN. Jeśli nie możesz przypomnieć sobie PINu, możesz ponownie zweryfikować numer przez SMS, po %1$d dniach nieaktywności. W tym przypadku Twoje konto zostanie skasowane, a cała zawartość usunięta.</item>
-    <item quantity="many">Dla Twojej prywatności i bezpieczeństwa, nie ma sposobu na odzyskanie Twojego numeru PIN. Jeśli nie możesz przypomnieć sobie PINu, możesz ponownie zweryfikować numer przez SMS, po %1$d dniach nieaktywności. W tym przypadku Twoje konto zostanie skasowane, a cała zawartość usunięta.</item>
-    <item quantity="other">Dla Twojej prywatności i bezpieczeństwa, nie ma sposobu na odzyskanie Twojego kodu PIN. Jeśli nie możesz przypomnieć sobie PINu, możesz ponownie zweryfikować numer przez SMS, po %1$d dni nieaktywności. W tym przypadku Twoje konto zostanie skasowane, a cała zawartość usunięta.</item>
+    <item quantity="one">Dla Twojej prywatności i bezpieczeństwa, nie ma sposobu na odzyskanie Twojego kodu PIN. Jeśli nie możesz przypomnieć sobie PINu, możesz ponownie zweryfikować numer przez SMS, po %1$d dniu nieaktywności. W tym przypadku Twoje konto zostanie skasowane, a cała zawartość usunięta.</item>
+    <item quantity="few">Dla Twojej prywatności i bezpieczeństwa, nie ma sposobu na odzyskanie Twojego kodu PIN. Jeśli nie możesz przypomnieć sobie PINu, możesz ponownie zweryfikować numer przez SMS, po %1$d dniach nieaktywności. W tym przypadku Twoje konto zostanie skasowane, a cała zawartość usunięta.</item>
+    <item quantity="many">Dla Twojej prywatności i bezpieczeństwa, nie ma sposobu na odzyskanie Twojego kodu PIN. Jeśli nie możesz przypomnieć sobie PINu, możesz ponownie zweryfikować numer przez SMS, po %1$d dniach nieaktywności. W tym przypadku Twoje konto zostanie skasowane, a cała zawartość usunięta.</item>
+    <item quantity="other">Dla Twojej prywatności i bezpieczeństwa, nie ma sposobu na odzyskanie Twojego kodu PIN. Jeśli nie możesz przypomnieć sobie PINu, możesz ponownie zweryfikować numer przez SMS, po %1$d dniach nieaktywności. W tym przypadku Twoje konto zostanie skasowane, a cała zawartość usunięta.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
     <item quantity="one">Nieprawidłowy kod PIN. Pozostała %1$d próba.</item>
@@ -1774,16 +1775,16 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
     <item quantity="other">Nieprawidłowy kod PIN. Pozostały %1$d próby.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-    <item quantity="one">Jeśli skończą Ci się próby, Twoje konto zostanie zablokowane na %1$ddzień. Po %1$d dniu nieaktywności możesz zarejestrować się ponownie, bez użycia numeru PIN. Twoje konto zostanie skasowane, a cała jego zawartość usunięta.</item>
-    <item quantity="few">Jeśli skończą Ci się próby, Twoje konto zostanie zablokowane na %1$d dni. Po %1$d dniach nieaktywności możesz zarejestrować się ponownie, bez użycia numeru PIN. Twoje konto zostanie skasowane, a cała jego zawartość usunięta.</item>
-    <item quantity="many">Jeśli skończą Ci się próby, Twoje konto zostanie zablokowane na %1$d dni. Po %1$d dniach nieaktywności możesz zarejestrować się ponownie, bez użycia numeru PIN. Twoje konto zostanie skasowane, a cała jego zawartość usunięta.</item>
+    <item quantity="one">Jeśli skończą Ci się próby, Twoje konto zostanie zablokowane na %1$ddzień. Po %1$d dniu nieaktywności możesz zarejestrować się ponownie, bez użycia kodu PIN. Twoje konto zostanie skasowane, a cała jego zawartość usunięta.</item>
+    <item quantity="few">Jeśli skończą Ci się próby, Twoje konto zostanie zablokowane na %1$d dni. Po %1$d dniach nieaktywności możesz zarejestrować się ponownie, bez użycia kodu PIN. Twoje konto zostanie skasowane, a cała jego zawartość usunięta.</item>
+    <item quantity="many">Jeśli skończą Ci się próby, Twoje konto zostanie zablokowane na %1$d dni. Po %1$d dniach nieaktywności możesz zarejestrować się ponownie, bez użycia kodu PIN. Twoje konto zostanie skasowane, a cała jego zawartość usunięta.</item>
     <item quantity="other">Jeśli skończą Ci się próby, Twoje konto zostanie zablokowane na %1$d dni. Po %1$d dniach nieaktywności możesz zarejestrować się ponownie, bez użycia kodu PIN. Twoje konto zostanie skasowane, a cała jego zawartość usunięta.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
-    <item quantity="one">Pozostała Ci %1$d próba</item>
-    <item quantity="few">Pozostały Ci %1$d próby</item>
-    <item quantity="many">Pozostało Ci %1$d prób</item>
-    <item quantity="other">Pozostało Ci %1$d prób</item>
+    <item quantity="one">Pozostała Ci %1$d próba.</item>
+    <item quantity="few">Pozostały Ci %1$d próby.</item>
+    <item quantity="many">Pozostało Ci %1$d prób.</item>
+    <item quantity="other">Pozostało Ci %1$d prób.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__d_attempts_remaining">
     <item quantity="one">Pozostała %1$dpróba.</item>
@@ -1850,7 +1851,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Wprowadź hasło kopii zapasowej, aby je zweryfikować</string>
   <string name="BackupDialog_verify">Zweryfikuj</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Podałeś(aś) poprawne hasło kopii zapasowej</string>
-  <string name="BackupDialog_passphrase_was_not_correct">Hasło było nieprawidłowe</string>
+  <string name="BackupDialog_passphrase_was_not_correct">Hasło jest nieprawidłowe</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal wymaga dostępu do pamięci urządzenia w celu utworzenia kopii zapasowych, ale uprawnienia zostały na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Pamięć\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Ostatnia kopia zapasowa: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">W trakcie</string>

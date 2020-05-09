@@ -1720,6 +1720,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">PIN lahko spreminjate dokler je naprava registrirana.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Ustvarite svoj PIN</string>
   <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Koda PIN zavaruje informacije shranjene na Signalu z uporabo enkripcije, tako da so dostopne le vam. Vaš profil, nastavitve in stiki bodo obnovljeni ob ponovni namestitvi aplikacije Signal.</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">Izberite močnejši PIN</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN se ne ujema. Poskusite znova.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Potrdite svoj PIN.</string>

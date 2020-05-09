@@ -1639,6 +1639,7 @@
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Puoi cambiare il tuo PIN finché questo dispositivo è registrato.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Crea il tuo PIN</string>
   <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">I PIN mantengono le informazioni memorizzate con Signal crittografate in modo che solo tu possa accedervi. Il profilo, le impostazioni e i contatti verranno ripristinati quando reinstalli Signal.</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">Scegli un PIN più complesso</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">I PIN non corrispondono. Riprova.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Conferma il tuo PIN</string>

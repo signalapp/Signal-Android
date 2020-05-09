@@ -29,7 +29,7 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Zmazať</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Vypnúť heslo?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Toto natrvalo odomkne Signal a upozornenia správ.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Toto natrvalo odomkne Signal a upozornenia na správy.</string>
   <string name="ApplicationPreferencesActivity_disable">Vypnúť</string>
   <string name="ApplicationPreferencesActivity_unregistering">Rušenie registrácie</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Rušenie registrácie Signal správ a hovorov…</string>
@@ -37,9 +37,9 @@
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Zakážte Signal správy a hovory zrušením registrácie zo serveru. Pre ich opätovné použitie budete musieť svoje telefónne číslo znovu zaregistrovať.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Chyba pripojenia na server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS povolené</string>
-  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotykom môžete zmeniť Vašu predvolenú SMS aplikáciu.</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotykom nastavte predvolenú aplikáciu pre SMS.</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS vypnuté</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Dotykom nastavte Signal ako predvolenú aplikáciu</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Dotykom nastavte Signal ako predvolenú aplikáciu pre SMS</string>
   <string name="ApplicationPreferencesActivity_on">zap.</string>
   <string name="ApplicationPreferencesActivity_On">Zapnuté</string>
   <string name="ApplicationPreferencesActivity_off">vyp.</string>
@@ -85,12 +85,16 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Zablokovať a opustiť %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Zablokovať %1$s?</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Od tejto skupiny už nebudete dostávať správy ani aktualizácie a členovia vás nebudú môcť znovu pridať.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Členovia skupiny vás nebudú môcť znovu do tejto skupiny pridať.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Členovia skupiny vás budú môcť do tejto skupiny znovu pridať.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Budete si môcť volať a písať.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Zablokované osoby vám nebudú môcť volať ani posielať správy.</string>
   <string name="BlockUnblockDialog_unblock_s">Odblokovať %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Odblokovať</string>
   <string name="BlockUnblockDialog_block">Blokovať</string>
-  <string name="BlockUnblockDialog_block_and_delete">Blokovať a vymazať</string>
+  <string name="BlockUnblockDialog_block_and_leave">Zablokovať a odísť</string>
+  <string name="BlockUnblockDialog_block_and_delete">Zablokovať a zmazať</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Dnes</string>
   <string name="BucketedThreadMedia_Yesterday">Včera</string>
@@ -100,7 +104,7 @@
   <string name="BucketedThreadMedia_Medium">Stredná</string>
   <string name="BucketedThreadMedia_Small">Malá</string>
   <!--CallScreen-->
-  <string name="CallScreen_Incoming_call">Prichádzajúce volanie</string>
+  <string name="CallScreen_Incoming_call">Prichádzajúci hovor</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Obrázok sa nepodarilo uložiť.</string>
   <!--CameraXFragment-->
@@ -172,6 +176,7 @@
   <string name="ConversationItem_read_more">  Čítať ďalej</string>
   <string name="ConversationItem_download_more">  Stiahnuť viac</string>
   <string name="ConversationItem_pending">  Čaká sa</string>
+  <string name="ConversationItem_this_message_was_deleted">Táto správa bola zmazaná.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Resetovať zabezpečenú reláciu?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Toto vám môže pomôcť pri problémoch so šifrovaním v tejto konverzácii. Vaše správy budú zachované.</string>
@@ -281,6 +286,8 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Mazanie</string>
   <string name="ConversationFragment_deleting_messages">Mažú sa správy…</string>
+  <string name="ConversationFragment_delete_for_me">Zmazať pre mňa</string>
+  <string name="ConversationFragment_delete_for_everyone">Zmazať pre všetkých</string>
   <string name="ConversationFragment_quoted_message_not_found">Pôvodná správa sa nenašla</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Pôvodná správa už nie je k dispozícii</string>
   <string name="ConversationFragment_failed_to_open_message">Nepodarilo sa otvoriť správu</string>
@@ -402,6 +409,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nepodarilo sa pridať %1$s, pretože nie je používateľom Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Načítavajú sa údaje o skupine…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Už ste v skupine.</string>
+  <string name="GroupCreateActivity_remove_member_description">Odobrať člena</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Zdieľať vaše meno a profilovú fotku s touto skupinou?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Chcete aby vaše meno a profilová fotka boli viditeľné všetkým súčasným a budúcim členom tejto skupiny?</string>
@@ -409,11 +417,44 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Vy</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">Ktokoľvek</string>
+  <string name="GroupManagement_access_level_all_members">Všetci členovia</string>
+  <string name="GroupManagement_access_level_only_admins">Iba správcovia</string>
   <!--PendingMembersActivity-->
+  <string name="PendingMemberInvitesActivity_pending_group_invites">Nevybavené pozvánky do skupín</string>
   <string name="PendingMembersActivity_people_you_invited">Ľudia, ktorých ste pozvali vy</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">Nemáte žiadne nevybavené pozvánky do skupín.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Pozvánky odoslané inými členmi skupiny</string>
+  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Žiadne nevybavené pozvánky od ostatných členov skupiny.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Podrobnosti o ľudoch pozvaných inými členmi skupiny sa nezobrazia. Pozvaní začnú svoje informácie so skupinou zdieľať až po tom, ako sa rozhodnú pridať sa. Kým sa nepridajú, neuvidia žiadne správy zo skupiny.</string>
+  <string name="PendingMembersActivity_cancel_invite">Zrušiť pozvánku</string>
+  <string name="PendingMembersActivity_cancel_invites">Zrušiť pozvánky</string>
+  <plurals name="PendingMembersActivity_cancel_d_invites">
+    <item quantity="one">Zrušiť pozvánku</item>
+    <item quantity="few">Zrušiť %1$d pozvánky </item>
+    <item quantity="many">Zrušiť %1$d pozvánok</item>
+    <item quantity="other">Zrušiť %1$d pozvánok</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_canceling_invite">
+    <item quantity="one">Chyba pri rušení pozvánky</item>
+    <item quantity="few">Chyba pri rušení pozvánok</item>
+    <item quantity="many">Chyba pri rušení pozvánok</item>
+    <item quantity="other">Chyba pri rušení pozvánok</item>
+  </plurals>
+  <plurals name="GroupMemberList_invited">
+    <item quantity="one">%1$s pozval 1 osobu</item>
+    <item quantity="few">%1$s pozval %2$d osoby</item>
+    <item quantity="many">%1$s pozval %2$d osôb</item>
+    <item quantity="other">%1$s pozval/a %2$d osôb</item>
+  </plurals>
   <!--GV2 Invite cancellation confirmation-->
+  <string name="GroupManagement_cancel_own_single_invite">Chcete zrušiť pozvánku, ktorú ste poslali %1$s?</string>
+  <plurals name="GroupManagement_cancel_others_invites">
+    <item quantity="one">Chcete zrušiť pozvánku, ktorú poslal %1$s? </item>
+    <item quantity="few">Chcete zrušiť %2$d pozvánky, ktoré poslal %1$s? </item>
+    <item quantity="many">Chcete zrušiť %2$d pozvánok, ktoré poslal %1$s? </item>
+    <item quantity="other">Chcete zrušiť %2$d pozvánok, ktoré poslal %1$s? </item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Obrázok skupiny</string>
   <string name="CropImageActivity_profile_avatar">Fotka</string>
@@ -570,17 +611,65 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nastavil/a časovač miznúcich správ na %2$s.</string>
   <!--GV2 specific-->
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_added_s">Pridali ste %1$s.</string>
+  <string name="MessageRecord_s_added_s">%1$s pridal/a %2$s.</string>
+  <string name="MessageRecord_s_added_you">%1$s vás pridal/a do skupiny.</string>
   <string name="MessageRecord_you_joined_the_group">Pridali ste sa do skupiny.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s sa pripojil/a do skupiny. </string>
   <!--GV2 member removals-->
+  <string name="MessageRecord_you_removed_s">Odobrali ste %1$s.</string>
+  <string name="MessageRecord_s_removed_s">%1$s odobral/a %2$s.</string>
+  <string name="MessageRecord_s_removed_you_from_the_group">%1$s vás odobral/a zo skupiny.</string>
+  <string name="MessageRecord_you_left_the_group">Opustili ste skupinu.</string>
+  <string name="MessageRecord_s_left_the_group">%1$s opustil/a skupinu.</string>
   <!--GV2 role change-->
+  <string name="MessageRecord_you_made_s_an_admin">Urobili ste %1$s správcom.</string>
+  <string name="MessageRecord_s_made_s_an_admin">%1$s urobil/a %2$s správcom.</string>
+  <string name="MessageRecord_s_made_you_an_admin">%1$s vás urobil/a správcom.</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">Odobrali ste správcovské práva %1$s.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s vám odobral/a správcovské práva.\"</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s odobral/a správcovské práva %2$s.</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_invited_s_to_the_group">Pozvali ste %1$s do skupiny.</string>
+  <string name="MessageRecord_s_invited_you_to_the_group">%1$s vás pozval/a do skupiny.</string>
+  <plurals name="MessageRecord_s_invited_members">
+    <item quantity="one">%1$s pozval/a jedného človeka do skupiny.</item>
+    <item quantity="few">%1$s pozval/a %2$d ľudí do skupiny.</item>
+    <item quantity="many">%1$s pozval/a %2$d ľudí do skupiny.</item>
+    <item quantity="other">%1$s pozval/a %2$d ľudí do skupiny.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
+  <plurals name="MessageRecord_you_revoked_invites">
+    <item quantity="one">Odvolali ste pozvánku do skupiny.</item>
+    <item quantity="few">Odvolali ste %1$d pozvánky do skupiny.</item>
+    <item quantity="many">Odvolali ste %1$d pozvánok do skupiny.</item>
+    <item quantity="other">Odvolali ste %1$d pozvánok do skupiny.</item>
+  </plurals>
+  <plurals name="MessageRecord_s_revoked_invites">
+    <item quantity="one">%1$s odvolal/a pozvánku do skupiny.</item>
+    <item quantity="few">%1$s odvolal/a %2$d pozvánky do skupiny.</item>
+    <item quantity="many">%1$s odvolal/a %2$d pozvánok do skupiny.</item>
+    <item quantity="other">%1$s odvolal/a %2$d pozvánok do skupiny.</item>
+  </plurals>
+  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Niekto odmietol pozvánku do skupiny.</string>
+  <string name="MessageRecord_you_declined_the_invitation_to_the_group">Odmietli ste pozvánku do skupiny.</string>
   <!--GV2 invitation acceptance-->
+  <string name="MessageRecord_you_accepted_invite">Prijali ste pozvánku do skupiny.</string>
+  <string name="MessageRecord_s_accepted_invite">%1$s prijal/a pozvánku do skupiny.</string>
+  <string name="MessageRecord_you_added_invited_member_s">Pridali ste pozvaného člena %1$s.</string>
+  <string name="MessageRecord_s_added_invited_member_s">%1$s pridal/a pozvaného člena %2$s.</string>
   <!--GV2 title change-->
+  <string name="MessageRecord_you_changed_the_group_name_to_s">Zmenili ste názov skupiny na \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s zmenil/a názov skupiny na \"%2$s\".</string>
   <!--GV2 avatar change-->
+  <string name="MessageRecord_you_changed_the_group_avatar">Zmenili ste profilový obrázok skupiny.</string>
+  <string name="MessageRecord_s_changed_the_group_avatar">%1$s zmenil/a profilový obrázok skupiny.</string>
   <!--GV2 attribute access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Zmenili ste, kto môže upravovať informácie o skupine na \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s zmenil/a, kto môže upravovať informácie o skupine na \"%2$s\".</string>
   <!--GV2 membership access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Zmenili ste, kto môže upravovať členstvo v skupine na \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s zmenil/a, kto môže upravovať členstvo v skupine na \"%2$s\".</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Vaše bezpečnostné číslo s %s sa zmenilo.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Bezpečnostné číslo s %s ste označili ako overené</string>
@@ -660,15 +749,28 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Verzia aplikácie Google Play Services ktorú máte nainštalovanú nefunguje správne. Prosím preinštalujte Google Play Services a skúste znova.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">Nesprávny PIN</string>
+  <string name="PinRestoreEntryFragment_skip_pin_entry">Preskočiť zadávanie PIN?</string>
+  <string name="PinRestoreEntryFragment_need_help">Potrebujete pomôcť?</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Váš PIN je %1$d+ číselný kód, ktorý ste si vytvorili a ktorý môže byť číselný alebo alfanumierkcý.\n\nAk si neviete na PIN spomenúť, môžete si vytvoriť nový. Môžete sa zaregistrovať a používať svoj účet naďalej, ale stratíte niektoré uložené nastavenia, ako napríklad profilové informácie.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Ak si na svoj PIN nedokážete spomenúť, môžete si vytvoriť nový. Môžete sa zaregistrovať a používať svoj účet, ale prídete o niektoré uložené nastavenia, ako sú informácie o vašom profile.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Vytvoriť nový PIN</string>
   <string name="PinRestoreEntryFragment_contact_support">Kontaktovať zákaznícku podporu</string>
   <string name="PinRestoreEntryFragment_cancel">Zrušiť</string>
   <string name="PinRestoreEntryFragment_skip">Preskočiť</string>
+  <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
+    <item quantity="one">Zostáva vám ešte %1$d pokus. Ak počet pokusov vyčerpáte, môžete si vytvoriť nový PIN. Môžete sa zaregistrovať a používať svoj účet naďalej, ale stratíte niektoré uložené nastavenia, ako napríklad profilové informácie.</item>
+    <item quantity="few">Zostávajú vám ešte %1$d pokusy. Ak počet pokusov vyčerpáte, môžete si vytvoriť nový PIN. Môžete sa zaregistrovať a používať svoj účet naďalej, ale stratíte niektoré uložené nastavenia, ako napríklad profilové informácie.</item>
+    <item quantity="many">Zostáva vám ešte %1$d pokusov. Ak počet pokusov vyčerpáte, môžete si vytvoriť nový PIN. Môžete sa zaregistrovať a používať svoj účet naďalej, ale stratíte niektoré uložené nastavenia, ako napríklad profilové informácie.</item>
+    <item quantity="other">Zostáva vám ešte %1$d pokusov. Ak počet pokusov vyčerpáte, môžete si vytvoriť nový PIN. Môžete sa zaregistrovať a používať svoj účet naďalej, ale stratíte niektoré uložené nastavenia, ako napríklad profilové informácie.</item>
+  </plurals>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal registrácia - potrebujem pomoct s PIN na Androide</string>
+  <string name="PinRestoreEntryFragment_subject_signal_registration">Predmet: Signal registrácia - potrebujem pomoct s PIN na Androide\nInformácie o zariadení: %1$s\nVerzia Androidu: %2$s\nSignal verzia: %3$s\nLokalizácia: %4$s</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Zadajte alfanumerický PIN kód</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Zadajte číselný PIN kód</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Vytvorte si PIN</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Vyčerpali ste všetky pokusy na zadanie PIN, ale stále sa môžete k svojmu Signal účtu dosať vytvorením nového PIN. Kvôli ochrane vašeho súkromia a vašej bezpečnosti bude váš účet obnovený bez uložených profilových informácií alebo nastavení.</string>
+  <string name="PinRestoreLockedFragment_create_new_pin">Vytvoriť nový PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Ohodnotiť túto aplikáciu</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Ak sa vám táto aplikácia páči, nájdite si chvíľu a pomôžte nám tým, že ju ohodnotíte.</string>
@@ -747,7 +849,11 @@ telefónne číslo
   <string name="RegistrationActivity_country_code_description">Kód krajiny</string>
   <string name="RegistrationActivity_call">Zavolať</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Zapnúť registračný zámok?</string>
+  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Vypnúť registračný zámok?</string>
   <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Ak svoj PIN pri opätovnej registrácii do Signalu zabudnete, váš účet sa na 7 dní uzamkne.</string>
+  <string name="RegistrationLockV2Dialog_turn_on">Zapnúť</string>
+  <string name="RegistrationLockV2Dialog_turn_off">Vypnúť</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Zobraziť fotku</string>
   <string name="RevealableMessageView_view_video">Zobraziť video</string>
@@ -834,6 +940,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ThreadRecord_view_once_photo">Fotka na jedno zobrazenie</string>
   <string name="ThreadRecord_view_once_video">Video na jedno zobrazenie</string>
   <string name="ThreadRecord_view_once_media">Médiá na jedno zobrazenie</string>
+  <string name="ThreadRecord_this_message_was_deleted">Táto správa bola zmazaná.</string>
   <string name="ThreadRecord_s_is_on_signal">%s je na Signale!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Miznúce správy vypnuté</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas miznúcich správ bol nastavený na %s</string>
@@ -943,6 +1050,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">reagoval/a na vašu fotku na jedno zobrazenie: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">reagoval/a na vaše video na jedno zobrazenie: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">reagoval/a na vašu nálepku: %1$s.</string>
+  <string name="MessageNotifier_this_message_was_deleted">Táto správa bola zmazaná.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Predvolené</string>
   <string name="NotificationChannel_calls">Volania</string>
@@ -1518,6 +1626,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="conversation__menu_view_all_media">Všetky médiá</string>
   <string name="conversation__menu_conversation_settings">Nastavenia konverzácií</string>
   <string name="conversation__menu_add_shortcut">Pridať na plochu</string>
+  <string name="conversation__menu_pending_members">Čakajúci členovia</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Rozbaliť okno</string>
   <!--conversation_callable_insecure-->
@@ -1619,12 +1728,14 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">PIN si môžete zmeniť, pokiaľ je toto zariadenie registrované.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Vytvorte si PIN</string>
   <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN kódy udržiavajú informácie uložené v Signale zašifrované, aby ste k nim mali prístup iba vy. Váš profil, vaše nastavenia a kontakty sa po opätovnej inštalácii Signalu obnovia.</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">Zvoľte si silnejší PIN</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN kódy sa nezhodujú. Skúste to znova.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Potvrďte svoj PIN.</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Pri tvorbe PIN kódu došlo k chybe</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Váš PIN kód sa neuložil. Vyzveme vás vytvoriť si PIN kód neskôr.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN kód sa vytvoril.</string>
+  <string name="ConfirmKbsPinFragment__re_enter_your_pin">Zadajte váš PIN znovu</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Vytvára sa PIN kód…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Predstavujeme PINy</string>
@@ -1690,6 +1801,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Vytvoriť PIN</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN kódy udržiavajú informácie uložené v Signale zašifrované.</string>
   <string name="KbsMegaphone__create_pin">Vytvoriť PIN</string>
   <string name="KbsMegaphone__introducing_pins">Predstavujeme PINy</string>
   <string name="KbsMegaphone__update_pin">Aktualizovať PIN kód</string>
@@ -1767,6 +1879,9 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_app_protection__create_a_pin">Vytvoriť si PIN</string>
   <string name="preferences_app_protection__change_your_pin">Zmente si PIN</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN kódy udržiavajú informácie uložené v Signale zašifrované, aby ste k nim mali prístup iba vy. Váš profil, vaše nastavenia a kontakty sa po opätovnej inštalácii Signalu obnovia.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Zvýšte svoje zabezpečenie tým, že pri opakovanej registrácii svojho telefónneho čísla v Signale budete vyžadovať PIN.</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">Aktivácia registračného zámku zlyhala.</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">Dektivácia registračného zámku zlyhala.</string>
   <string name="AppProtectionPreferenceFragment_none">Žiadny</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN registračného zámku sa nezhoduje s verifikačným kódom ktorý ste obdržali v SMS správe. Zadajte prosím PIN, ktorý ste si v aplikácii nastavili.</string>
   <string name="registration_activity__registration_lock_pin">PIN registračného zámku</string>

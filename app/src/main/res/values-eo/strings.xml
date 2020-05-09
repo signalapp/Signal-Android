@@ -1638,6 +1638,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Vi povas ŝanĝi vian PIN tiel longe, kiel tiu ĉi aparato estas registrita.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Krei vian PIN</string>
   <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN konservas informojn ĉifritajn ĉe Signal, tiel ke nur vi povas aliri ilin. Via profilo, viaj agordoj kaj kontaktoj revenos, kiam vi reinstalos Signal-on.</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">Elektu pli fortikan PIN-on</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">La du PIN-oj malsamas. Re-provu.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Konfirmu vian PIN.</string>

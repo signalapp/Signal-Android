@@ -167,7 +167,7 @@
   <string name="ConversationItem_copied_text">%s naar klembord gekopieerd</string>
   <string name="ConversationItem_from_s">van %s</string>
   <string name="ConversationItem_to_s">via %s</string>
-  <string name="ConversationItem_read_more">  Lees meer</string>
+  <string name="ConversationItem_read_more">  Meer lezen</string>
   <string name="ConversationItem_download_more">  Download meer</string>
   <string name="ConversationItem_pending">  In afwachting</string>
   <string name="ConversationItem_this_message_was_deleted">Dit bericht is gewist.</string>
@@ -344,8 +344,8 @@
   <string name="DeviceListActivity_network_failed">Netwerkfout!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Naamloos apparaat</string>
-  <string name="DeviceListItem_linked_s">Gekoppeld %s</string>
-  <string name="DeviceListItem_last_active_s">Laatst actief %s</string>
+  <string name="DeviceListItem_linked_s">Gekoppeld: %s</string>
+  <string name="DeviceListItem_last_active_s">Laatst actief: %s</string>
   <string name="DeviceListItem_today">Vandaag</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Onbenoemd bestand</string>
@@ -1642,7 +1642,8 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="CreateKbsPinFragment__create_a_new_pin">Nieuwe pincode aanmaken</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Zolang je telefoonnummer nog voor dit apparaat geregistreerd staat kun je je pincode nog wijzigen.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Pincode aanmaken</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Met een pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam en -foto, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Zelfs Signal\'s ontwikkelaars kunnen je informatie niet inzien.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Verzin een pincode die je nergens anders gebruikt. Met die pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam en -foto, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Zelfs Signal\'s ontwikkelaars kunnen je informatie niet inzien.</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">Verzin een sterkere pincode</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">De pincodes komen niet overeen, probeer het opnieuw.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Bevestig je pincode.</string>

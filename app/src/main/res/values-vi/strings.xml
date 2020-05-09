@@ -76,11 +76,16 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Chặn và rời khỏi %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Chặn %1$s?</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Bạn sẽ không còn nhận tin nhắn hay cập nhật từ nhóm này, và thành viên nhóm sẽ không thể thêm lại bạn vào nhóm.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Thành viên nhóm sẽ không thể thêm lại bạn vào nhóm.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Các thành viên trong nhóm có thể thêm lại bạn vào nhóm.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Các bạn sẽ có thể nhắn tin và gọi cho nhau.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Người dùng bị chặn sẽ không thể gọi hoặc gửi tin nhắn cho bạn.</string>
   <string name="BlockUnblockDialog_unblock_s">Bỏ chặn %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Bỏ chặn</string>
   <string name="BlockUnblockDialog_block">Chặn</string>
+  <string name="BlockUnblockDialog_block_and_leave">Chặn và rời</string>
+  <string name="BlockUnblockDialog_block_and_delete">Chặn và Xoá</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Hôm nay</string>
   <string name="BucketedThreadMedia_Yesterday">Hôm qua</string>
@@ -251,6 +256,8 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Đang xóa</string>
   <string name="ConversationFragment_deleting_messages">Đang xóa tin nhắn…</string>
+  <string name="ConversationFragment_delete_for_me">Xóa cho tôi</string>
+  <string name="ConversationFragment_delete_for_everyone">Xóa cho mọi người</string>
   <string name="ConversationFragment_quoted_message_not_found">Không tìm thấy tin nhắn ban đầu</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Tin nhắn ban đầu không khả dụng</string>
   <string name="ConversationFragment_failed_to_open_message">Không thể mở tin nhắn</string>
@@ -360,6 +367,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Không thể thêm %1$s vì họ không phải người dùng Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Đang tải chi tiết nhóm…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Bạn đã gia nhập nhóm này rồi.</string>
+  <string name="GroupCreateActivity_remove_member_description">Loại bỏ thành viên</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Chia sẻ ảnh đại diện và tên của bạn với nhóm này?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Bạn có muốn tất cả thành viên hiện có và trong tương lai của nhóm thấy ảnh đại diện và tên bạn?</string>
@@ -367,8 +375,32 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Bạn</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">Bất cứ ai</string>
+  <string name="GroupManagement_access_level_all_members">Tất cả thành viên</string>
+  <string name="GroupManagement_access_level_only_admins">Chỉ quản trị viên</string>
   <!--PendingMembersActivity-->
+  <string name="PendingMemberInvitesActivity_pending_group_invites">Lời mời vào nhóm đang chờ</string>
+  <string name="PendingMembersActivity_people_you_invited">Người dùng bạn đã mời</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">Bạn không có lời mời đang chờ nào.</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">Thư mời bởi các thành viên nhóm khác</string>
+  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Không có lời mời đang chờ nào từ các thành viên khác trong nhóm.</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">Thông tin của các người dùng được mời bởi các thành viên nhóm khác không được hiển thị. Nếu người được mời chấp nhận tham gia, thông tin của họ sẽ được chia sẻ với nhóm vào lúc đó. Họ sẽ không thấy tin nhắn trong nhóm cho đến khi họ tham gia. </string>
+  <string name="PendingMembersActivity_cancel_invite">Hủy lời mời</string>
+  <string name="PendingMembersActivity_cancel_invites">Hủy lời mời</string>
+  <plurals name="PendingMembersActivity_cancel_d_invites">
+    <item quantity="other">Hủy %1$d lời mời</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_canceling_invite">
+    <item quantity="other">Lỗi khi hủy lời mời</item>
+  </plurals>
+  <plurals name="GroupMemberList_invited">
+    <item quantity="other">%1$s đã mời %2$d người</item>
+  </plurals>
   <!--GV2 Invite cancellation confirmation-->
+  <string name="GroupManagement_cancel_own_single_invite">Bạn có muốn hủy lời mời bạn gửi tới %1$s?</string>
+  <plurals name="GroupManagement_cancel_others_invites">
+    <item quantity="other"> Bạn có muốn hủy %2$d lời mời gửi bởi %1$s?</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Ảnh đại diện của nhóm</string>
   <string name="CropImageActivity_profile_avatar">Ảnh đại diện</string>
@@ -504,16 +536,54 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s đã đặt tự hủy tin nhắn sau %2$s.</string>
   <!--GV2 specific-->
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_added_s">Bạn đã thêm %1$s</string>
+  <string name="MessageRecord_s_added_s">%1$s đã thêm %2$s.</string>
+  <string name="MessageRecord_s_added_you">%1$s đã thêm bạn vào nhóm.</string>
+  <string name="MessageRecord_you_joined_the_group">Bạn đã tham gia nhóm.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s đã tham gia nhóm.</string>
   <!--GV2 member removals-->
+  <string name="MessageRecord_you_removed_s">Bạn đã loại bỏ %1$s.</string>
+  <string name="MessageRecord_s_removed_s">%1$s đã loại bỏ %2$s.</string>
+  <string name="MessageRecord_s_removed_you_from_the_group">%1$s loại bỏ bạn khỏi nhóm.</string>
+  <string name="MessageRecord_you_left_the_group">Bạn đã rời nhóm.</string>
+  <string name="MessageRecord_s_left_the_group">%1$s đã rời nhóm.</string>
   <!--GV2 role change-->
+  <string name="MessageRecord_you_made_s_an_admin">Bạn đã chọn %1$s làm quản trị viên.</string>
+  <string name="MessageRecord_s_made_s_an_admin">%1$s đã chọn %2$s làm quản trị viên.</string>
+  <string name="MessageRecord_s_made_you_an_admin">%1$s đã chọn bạn làm quản trị viên.</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">Bạn đã thu hồi quyền quản trị của %1$s.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s đã thu hồi quyền quản trị của bạn.</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s đã thu hồi quyền quản trị của %2$s.</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_invited_s_to_the_group">Bạn đã mời %1$s vào nhóm.</string>
+  <string name="MessageRecord_s_invited_you_to_the_group">%1$s đã mời bạn vào nhóm.</string>
+  <plurals name="MessageRecord_s_invited_members">
+    <item quantity="other">%1$s đã mời %2$d người vào nhóm.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
+  <plurals name="MessageRecord_you_revoked_invites">
+    <item quantity="other">Bạn đã thu hồi %1$d lời mời vào nhóm.</item>
+  </plurals>
+  <plurals name="MessageRecord_s_revoked_invites">
+    <item quantity="other">%1$s đã thu hồi %2$d lời mời vào nhóm.</item>
+  </plurals>
+  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Ai đó đã từ chối lời mời vào nhóm.</string>
+  <string name="MessageRecord_you_declined_the_invitation_to_the_group">Bạn đã từ chối lời mời vào nhóm.</string>
   <!--GV2 invitation acceptance-->
+  <string name="MessageRecord_you_accepted_invite">Bạn đã chấp nhận lời mời vào nhóm.</string>
+  <string name="MessageRecord_s_accepted_invite">%1$s đã chấp nhận lời mời vào nhóm.</string>
   <!--GV2 title change-->
+  <string name="MessageRecord_you_changed_the_group_name_to_s">Bạn đã đổi tên nhóm thành \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s đã đổi tên nhóm thành \"%2$s\".</string>
   <!--GV2 avatar change-->
+  <string name="MessageRecord_you_changed_the_group_avatar">Bạn đã đổi ảnh nhóm.</string>
+  <string name="MessageRecord_s_changed_the_group_avatar">%1$s đã đổi ảnh nhóm.</string>
   <!--GV2 attribute access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Bạn đã đổi quyền sửa thông tin nhóm thành \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s đã đổi quyền sửa thông tin nhóm thành \"%2$s\".</string>
   <!--GV2 membership access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Bạn đã đổi quyển quản lí thành viên thành \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s đã đổi quyền quản lí thành viên thành \"%2$s\".</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Mã số an toàn của bạn với %s đã thay đổi.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Bạn đã xác minh mã số an toàn với %s</string>
@@ -587,6 +657,7 @@
   <string name="PinRestoreEntryFragment_incorrect_pin">Mã PIN không chính xác</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">Bỏ qua điền PIN?</string>
   <string name="PinRestoreEntryFragment_need_help">Cần hỗ trợ?</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">PIN của bạn là một mã gồm %1$d hoặc nhiều hơn chữ số hoặc số và chữ cái.\n\nNếu bạn không nhớ mã PIN, bạn có thể tạo một mã mới. Bạn có thể đăng kí và dùng tài khoản này nhưng bạn sẽ mất một số cài đặt ví dụ như thông tin hồ sơ.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Nếu bạn không nhớ mã PIN, bạn có thể tạo PIN mới. Bạn có thể đăng kí và dùng tài khoản của bạn nhưng sẽ mất một số dữ liệu như thông tin hồ sơ.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Tạo PIN mới</string>
   <string name="PinRestoreEntryFragment_contact_support">Liên lạc Hỗ trợ</string>
@@ -1422,6 +1493,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="conversation__menu_view_all_media">Tất cả tệp đa phương tiện</string>
   <string name="conversation__menu_conversation_settings">Cài đặt cuộc trò chuyện</string>
   <string name="conversation__menu_add_shortcut">Thêm vào màn hình chính</string>
+  <string name="conversation__menu_pending_members">Thành viên đang chờ</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Nới rộng khung popup</string>
   <!--conversation_callable_insecure-->
@@ -1511,16 +1583,21 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
     <item quantity="other">PIN phải có tối thiểu %1$d chữ số</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Tạo mã PIN mới</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Bạn có thể thay đổi mã PIN của bạn với điều kiện thiết bị được đăng ký.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Tạo mã PIN của bạn</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Mã PIN mã hoá các thông tin được lưu trữ với Signal để chỉ mình bạn có thể truy cập được. Thông tin người dùng, cài đặt, và các liên hệ sẽ được khôi phục khi bạn cài đặt lại Signal.</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">Chọn mã PIN mạnh hơn</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Mã PIN không khớp. Vui lòng thử lại.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Xác nhận mã PIN của bạn.</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Không thể tạo mã PIN</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Mã PIN của bạn chưa được lưu. Chúng tôi sẽ nhắc bạn tạo mã PIN sau.</string>
   <string name="ConfirmKbsPinFragment__pin_created">Mã PIN đã được tạo.</string>
+  <string name="ConfirmKbsPinFragment__re_enter_your_pin">Điền lại mã PIN của bạn</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Đang tạo mã PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Giới thiệu mã PIN</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Mã PIN mã hoá các thông tin được lưu trữ với Signal để chỉ mình bạn có thể truy cập được. Thông tin người dùng, cài đặt, và các liên hệ sẽ được khôi phục khi bạn cài đặt lại Signal.</string>
   <string name="KbsSplashFragment__learn_more">Tìm hiểu thêm</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Khóa Đăng ký = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Khóa đăng kí giờ trở thành mã PIN hữu dụng hơn. Cập nhật mã PIN ngay.</string>
@@ -1567,6 +1644,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Tạo mã PIN</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Mã PIN giúp dữ liệu lưu trữ với Signal được bảo mật.</string>
   <string name="KbsMegaphone__create_pin">Tạo mã PIN</string>
   <string name="KbsMegaphone__introducing_pins">Giới thiệu mã PIN</string>
   <string name="KbsMegaphone__update_pin">Cập nhật mã PIN</string>
@@ -1643,6 +1721,10 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences_app_protection__signal_pin">Mã PIN Signal</string>
   <string name="preferences_app_protection__create_a_pin">Tạo mã PIN</string>
   <string name="preferences_app_protection__change_your_pin">Thay đổi mã PIN của bạn.</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Mã PIN mã hoá các thông tin được lưu trữ với Signal để chỉ mình bạn có thể truy cập được. Thông tin người dùng, cài đặt, và các liên hệ sẽ được khôi phục khi bạn cài đặt lại Signal.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Thêm một lớp bảo mật bằng cách yêu cầu điền mã PIN Signal khi ai đó đăng kí lại số điện thoại của bạn với Signal.</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">Không thể bật khóa đăng kí.</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">Không thể tắt khóa đăng kí.</string>
   <string name="AppProtectionPreferenceFragment_none">Không</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Mã PIN Khóa Đăng ký khác hoàn toàn mã xác minh SMS bạn vừa nhận được. Vui lòng điền mã PIN mà bạn sử dụng trước đó.</string>
   <string name="registration_activity__registration_lock_pin">Mã PIN Khóa Đăng ký</string>

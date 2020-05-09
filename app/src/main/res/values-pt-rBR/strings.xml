@@ -527,6 +527,7 @@
   <!--GV2 member additions-->
   <string name="MessageRecord_s_joined_the_group">%1$s entraram no  grupo.</string>
   <!--GV2 member removals-->
+  <string name="MessageRecord_you_left_the_group">Você saiu do grupo.</string>
   <!--GV2 role change-->
   <!--GV2 invitations-->
   <!--GV2 invitation revokes-->

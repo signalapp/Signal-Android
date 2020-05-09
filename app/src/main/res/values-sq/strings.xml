@@ -681,6 +681,7 @@
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Hartë</string>
   <string name="PlacePickerActivity_not_a_valid_address">Adresë jo e vlefshme</string>
+  <string name="PlacePickerActivity_drop_pin">Lini pin</string>
   <string name="PlacePickerActivity_accept_address">Pranoje adresën</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Versioni i Google Play Services që keni instaluar nuk funksionon saktë. Ju lutemi. riinstaloni Google Play Services dhe riprovoni.</string>
@@ -1634,6 +1635,7 @@
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Mundeni ta ndryshoni PIN-in tuaj, sa kohë që kjo pajisje është e regjistruar.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Krijoni PIN-in tuaj</string>
   <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-et i mbajnë të fshehtëzuara të dhëna e depozituara me Signal, që kështu të mund t’i përdorni. Profili, rregullimet dhe kontaktet tuaja do të rikthehen, kur të riinstaloni Signal-in.</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">Zgjidhni një PIN më të fuqishëm</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-et s’përputhen. Riprovoni.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Ripohoni PIN-in tuaj.</string>

@@ -99,6 +99,7 @@
   <string name="BlockUnblockDialog_unblock_s">إلغاء حظر %1$s؟</string>
   <string name="BlockUnblockDialog_unblock">رفع الحظر</string>
   <string name="BlockUnblockDialog_block">حظر</string>
+  <string name="BlockUnblockDialog_block_and_leave">الحظر و المغادرة</string>
   <string name="BlockUnblockDialog_block_and_delete">حظر و حذف</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">اليوم</string>
@@ -140,6 +141,7 @@
   <string name="CommunicationActions_cancel">إلغاء</string>
   <string name="CommunicationActions_call">اتصال</string>
   <string name="CommunicationActions_insecure_call">مكالمة غير آمنة</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">قد يتم تطبيق رسوم شركة الاتصال. الرقم الذي تتصل به غير مسجل في Signal. سيتم إجراء هذه المكالمة من خلال مشغل شبكة الجوال، وليس عبر الإنترنت.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">تم تغيير رقم السلامة مع %1$s. وهذا يعني إما محاولة أحداً اعتراض المحادثة أو ببساطة قيام %2$s بإعادة تثبيت Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ربما ترغب بالتحقق من رقم السلامة مع جهة الاتصال هذه.</string>
@@ -304,6 +306,8 @@
   <string name="ConversationFragment_sms">رسالة SMS</string>
   <string name="ConversationFragment_deleting">جارٍ الحذف</string>
   <string name="ConversationFragment_deleting_messages">حذف الرسائل جارٍ…</string>
+  <string name="ConversationFragment_delete_for_me">إحذف بالنسبة لي</string>
+  <string name="ConversationFragment_delete_for_everyone">إحذف بالنسبة للجميع</string>
   <string name="ConversationFragment_quoted_message_not_found">لم يتم العثور على الرسالة الأصلية</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">الرسالة الأصلية لم تعد متوفرة</string>
   <string name="ConversationFragment_failed_to_open_message">فشل في فتح الرسالة</string>
@@ -441,12 +445,34 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">أنت</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">أي شخص</string>
   <string name="GroupManagement_access_level_all_members">كل الأعضاء</string>
   <string name="GroupManagement_access_level_only_admins">للمشرفين فقط</string>
   <!--PendingMembersActivity-->
+  <string name="PendingMemberInvitesActivity_pending_group_invites">دعوات معلّقة</string>
   <string name="PendingMembersActivity_people_you_invited">الأشخاص الذين دعوتهم</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">لا يوجد لديك دعوات معلقة.</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">دعوات من أعضاء المجموعة الآخرين</string>
+  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">لا يوجد دعوات معلقة من أعضاء المجموعة الآخرين.</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">لا تظهر تفاصيل الأشخاص المدعوين من قبل أعضاء المجموعة الآخرين. إذا اختار المدعوون الانضمام ،حينها سيتم مشاركة معلوماتهم مع المجموعة. لن يروا أي رسائل في المجموعة حتى ينضموا.</string>
   <string name="PendingMembersActivity_cancel_invite">إلغاء الدعوة</string>
   <string name="PendingMembersActivity_cancel_invites">إلغاء الدعوات</string>
+  <plurals name="PendingMembersActivity_cancel_d_invites">
+    <item quantity="zero">إلغاء%1$d دعوة</item>
+    <item quantity="one">إلغاء دعوة</item>
+    <item quantity="two">إلغاء%1$d دعوتين</item>
+    <item quantity="few">إلغاء %1$d دعوات</item>
+    <item quantity="many">إلغاء %1$d دعوات</item>
+    <item quantity="other">إلغاء %1$d دعوات</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_canceling_invite">
+    <item quantity="zero">خطأ في إلغاء الدعوة</item>
+    <item quantity="one">خطأ في إلغاء الدعوة</item>
+    <item quantity="two">خطأ في إلغاء الدعوات</item>
+    <item quantity="few">خطأ في إلغاء الدعوات</item>
+    <item quantity="many">خطأ في إلغاء الدعوات</item>
+    <item quantity="other">خطأ في إلغاء الدعوات</item>
+  </plurals>
   <!--GV2 Invite cancellation confirmation-->
   <string name="GroupManagement_cancel_own_single_invite">هل تريد إلغاء الدعوة التي أرسلتها إلى %1$s؟</string>
   <plurals name="GroupManagement_cancel_others_invites">
@@ -655,8 +681,14 @@
   <string name="MessageRecord_you_accepted_invite">لقد قبلت الدعوة إلى المجموعة.</string>
   <string name="MessageRecord_s_accepted_invite">قبل %1$s  دعوة إلى المجموعة.</string>
   <!--GV2 title change-->
+  <string name="MessageRecord_you_changed_the_group_name_to_s">لقد قمت بتغيير اسم المجموعة إلى \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_the_group_name_to_s">قام %1$s  بتغيير اسم المجموعة إلى \"%2$s \".</string>
   <!--GV2 avatar change-->
+  <string name="MessageRecord_you_changed_the_group_avatar">لقد قمت بتغيير الصورة الرمزية للمجموعة.</string>
+  <string name="MessageRecord_s_changed_the_group_avatar">قام %1$s  بتغيير الصورة الرمزية للمجموعة.</string>
   <!--GV2 attribute access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">لقد قمت بتغيير من يمكنه تحرير معلومات المجموعة إلى \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">لقد غير%1$s من يمكنه تحرير معلومات المجموعة إلى \"%2$s\".</string>
   <!--GV2 membership access level change-->
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">تم تغيير رقم السلامة الخاص بينك وبين %s.</string>
@@ -735,6 +767,9 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">نسخة خدمات Google Play  التي قمت بتثبيتها لا تعمل بشكل صحيح. الرجاء إعادة تثبيت خدمات Google Play والمحاولة مرة أخرى.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">الرقم التعريفي الشخصي غير صحيح</string>
+  <string name="PinRestoreEntryFragment_skip_pin_entry">تجاوز إدخال الرمز الشخصي؟</string>
+  <string name="PinRestoreEntryFragment_need_help">بحاجة الى مساعدة؟</string>
+  <string name="PinRestoreEntryFragment_create_new_pin">إنشاء رمز شخصي جديد</string>
   <string name="PinRestoreEntryFragment_contact_support">اتصل بالدعم</string>
   <string name="PinRestoreEntryFragment_cancel">إلغاء</string>
   <string name="PinRestoreEntryFragment_skip">تخطّي</string>
@@ -821,6 +856,8 @@
   <string name="RegistrationActivity_country_code_description">رمز البلد</string>
   <string name="RegistrationActivity_call">اتصال</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_turn_on">شغل</string>
+  <string name="RegistrationLockV2Dialog_turn_off">أطفيء</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">مشاهدة الصورة</string>
   <string name="RevealableMessageView_view_video">مشاهدة الفيديو</string>
@@ -1369,12 +1406,14 @@
   <string name="AndroidManifest_remove_photo">حذف الصورة</string>
   <!--Message Requests Megaphone-->
   <string name="MessageRequestsMegaphone__message_requests">طلبات مراسلة</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">يمكن للمستخدمين الآن اختيار قبول محادثة جديدة. تتيح أسماء الملفات الشخصية للأشخاص معرفة من يراسلهم.</string>
   <string name="MessageRequestsMegaphone__add_profile_name">إضافة اسم الملف الشخصي</string>
   <string name="MessageRequestsMegaphone__new_message_requests">حديث: طلبات مراسلة</string>
   <string name="MessageRequestsMegaphone__add_name">إضافة اسم</string>
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">بإمكانك اختيار قبول محادثة جديدة. سترى خيارًا للقبول أو الحذف أو الحظر.</string>
   <!--HelpFragment-->
   <string name="HelpFragment__help">مساعدة</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">هل قرأت الأسئلة الشائعة لدينا ؟</string>
   <string name="HelpFragment__next">التالي</string>
   <string name="HelpFragment__contact_us">تواصل معنا</string>
   <string name="HelpFragment__tell_us_whats_going_on">أخبرنا ماذا يجري</string>
@@ -1390,7 +1429,9 @@
   <string name="HelpFragment__locale">محلي :</string>
   <string name="HelpFragment__debug_log">سِجل الفحص :</string>
   <string name="HelpFragment__na">غير محدد</string>
+  <string name="HelpFragment__could_not_upload_logs">لا يمكن تحميل السجلات</string>
   <string name="HelpFragment__signal_support">دعم تطبيق Signal</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">يُرجى أن تكون وصفيًا قدر الإمكان لمساعدتنا على فهم المشكلة.</string>
   <string name="HelpFragment__no_email_app_found">لم يعثر على أي تطبيق للبريد الإلكتروني.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">استيراد</string>
@@ -1605,6 +1646,7 @@
   <string name="conversation__menu_view_all_media">جميع الوسائط</string>
   <string name="conversation__menu_conversation_settings">إعدادات المحادثة</string>
   <string name="conversation__menu_add_shortcut">إضافة إلى الشاشة الرئيسية</string>
+  <string name="conversation__menu_pending_members">الأعضاء المعلقون</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">توسيع الإشعار</string>
   <!--conversation_callable_insecure-->
@@ -1738,6 +1780,14 @@
     <item quantity="many">رمز خاطئ.%1$d  محاولات متبقية.</item>
     <item quantity="other">رمز خاطئ. %1$d محاولات متبقية.</item>
   </plurals>
+  <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
+    <item quantity="zero">لديك %1$d محاولة متبقية.</item>
+    <item quantity="one">لديك %1$d محاولة متبقية.</item>
+    <item quantity="two">لديك %1$d محاولات متبقية.</item>
+    <item quantity="few">لديك %1$d محاولات متبقية.</item>
+    <item quantity="many">لديك %1$d محاولات متبقية.</item>
+    <item quantity="other">لديك %1$d  محاولات متبقية.</item>
+  </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">إنشاء رقم تعريفي شخصي</string>
   <string name="KbsMegaphone__create_pin">إنشاء رقم تعريفي شخصي</string>
@@ -1817,6 +1867,7 @@
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">نفاذ مهلة قفل الشاشة</string>
   <string name="preferences_app_protection__signal_pin">الرقم التعريفي الشخصي ل Signal</string>
   <string name="preferences_app_protection__create_a_pin">إنشاء رقم تعريفي شخصي</string>
+  <string name="preferences_app_protection__change_your_pin">ر غيِّر رقم التعريف الشخصي الخاص بك</string>
   <string name="AppProtectionPreferenceFragment_none">لا شيء </string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">الرقم التعريفي الشخصي لحماية التسجيل مختلف عن رمز التحقق في رسالة SMS التي استقبلتها الآن. يُرجى إدخال الرقم التعريفي الشخصي الذي قمت بتحديده في إعدادات التطبيق من قبل.</string>
   <string name="registration_activity__registration_lock_pin">الرقم التعريفي الشخصي لحماية التسجيل</string>
