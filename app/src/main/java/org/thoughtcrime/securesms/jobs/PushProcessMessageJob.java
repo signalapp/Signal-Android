@@ -240,6 +240,17 @@ public final class PushProcessMessageJob extends BaseJob {
     if (messageState == MessageState.DECRYPTED_OK) {
       SignalServiceContent content = SignalServiceContent.deserialize(serializedPlaintextContent);
       handleMessage(content, optionalSmsMessageId);
+
+      Optional<List<SignalServiceContent>> earlyContent = ApplicationDependencies.getEarlyMessageCache()
+                                                                                 .retrieve(Recipient.externalPush(context, content.getSender()).getId(),
+                                                                                           content.getTimestamp());
+      if (earlyContent.isPresent()) {
+        Log.i(TAG, "Found " + earlyContent.get().size() + " dependent item(s) that were retrieved earlier. Processing.");
+
+        for (SignalServiceContent earlyItem : earlyContent.get()) {
+          handleMessage(earlyItem, Optional.absent());
+        }
+      }
     } else {
       //noinspection ConstantConditions
       handleExceptionMessage(exceptionMetadata, optionalSmsMessageId);
@@ -332,14 +343,6 @@ public final class PushProcessMessageJob extends BaseJob {
       }
 
       resetRecipientToPush(Recipient.externalPush(context, content.getSender()));
-
-      Optional<SignalServiceContent> earlyContent = ApplicationDependencies.getEarlyMessageCache()
-                                                                           .retrieve(Recipient.externalPush(context, content.getSender()).getId(),
-                                                                                     content.getTimestamp());
-      if (earlyContent.isPresent()) {
-        Log.i(TAG, "Found dependent content that was retrieved earlier. Processing.");
-        handleMessage(earlyContent.get(), Optional.absent());
-      }
     } catch (StorageFailedException e) {
       Log.w(TAG, e);
       handleCorruptMessage(e.getSender(), e.getSenderDevice(), timestamp, smsMessageId);
@@ -1363,6 +1366,7 @@ public final class PushProcessMessageJob extends BaseJob {
                                                .incrementReadReceiptCount(id, content.getTimestamp());
 
         if (!handled) {
+          Log.w(TAG, "[handleReadReceipt] Could not find matching message! timestamp: " + timestamp + "  author: " + sender.getId());
           ApplicationDependencies.getEarlyMessageCache().store(sender.getId(), timestamp, content);
         }
       }

@@ -6,6 +6,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -15,14 +17,23 @@ import java.util.Objects;
  */
 public final class EarlyMessageCache {
 
-  private final LRUCache<MessageId, SignalServiceContent> cache = new LRUCache<>(100);
+  private final LRUCache<MessageId, List<SignalServiceContent>> cache = new LRUCache<>(100);
 
   /**
    * @param targetSender        The sender of the message this message depends on.
    * @param targetSentTimestamp The sent timestamp of the message this message depends on.
    */
   public void store(@NonNull RecipientId targetSender, long targetSentTimestamp, @NonNull SignalServiceContent content) {
-    cache.put(new MessageId(targetSender, targetSentTimestamp), content);
+    MessageId                  messageId   = new MessageId(targetSender, targetSentTimestamp);
+    List<SignalServiceContent> contentList = cache.get(messageId);
+
+    if (contentList == null) {
+      contentList = new LinkedList<>();
+    }
+
+    contentList.add(content);
+
+    cache.put(messageId, contentList);
   }
 
   /**
@@ -30,7 +41,7 @@ public final class EarlyMessageCache {
    * @param sender        The sender of the message in question.
    * @param sentTimestamp The sent timestamp of the message in question.
    */
-  public Optional<SignalServiceContent> retrieve(@NonNull RecipientId sender, long sentTimestamp) {
+  public Optional<List<SignalServiceContent>> retrieve(@NonNull RecipientId sender, long sentTimestamp) {
     return Optional.fromNullable(cache.remove(new MessageId(sender, sentTimestamp)));
   }
 
