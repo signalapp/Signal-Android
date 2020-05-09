@@ -14,6 +14,7 @@ import com.intellij.psi.PsiMethod;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.uast.UCallExpression;
 import org.jetbrains.uast.UExpression;
+import org.jetbrains.uast.java.JavaUSimpleNameReferenceExpression;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,6 +30,22 @@ public final class SignalLogDetector extends Detector implements Detector.UastSc
                                                    Severity.ERROR,
                                                    new Implementation(SignalLogDetector.class, Scope.JAVA_FILE_SCOPE));
 
+  static final Issue LOG_NOT_APP = Issue.create("LogNotAppSignal",
+                                                "Logging call to Signal Service Log instead of App level Logger",
+                                                "Signal app layer has its own logger which must be used.",
+                                                Category.MESSAGES,
+                                                5,
+                                                Severity.ERROR,
+                                                new Implementation(SignalLogDetector.class, Scope.JAVA_FILE_SCOPE));
+
+  static final Issue INLINE_TAG = Issue.create("LogTagInlined",
+                                               "Use of an inline string in a TAG",
+                                               "Often a sign of left in temporary log statements, always use a tag constant.",
+                                               Category.MESSAGES,
+                                               5,
+                                               Severity.ERROR,
+                                               new Implementation(SignalLogDetector.class, Scope.JAVA_FILE_SCOPE));
+
   @Override
   public List<String> getApplicableMethodNames() {
     return Arrays.asList("v", "d", "i", "w", "e", "wtf");
@@ -41,6 +58,19 @@ public final class SignalLogDetector extends Detector implements Detector.UastSc
     if (evaluator.isMemberInClass(method, "android.util.Log")) {
       LintFix fix = quickFixIssueLog(call);
       context.report(LOG_NOT_SIGNAL, call, context.getLocation(call), "Using 'android.util.Log' instead of a Signal Logger", fix);
+    }
+
+    if (evaluator.isMemberInClass(method, "org.whispersystems.libsignal.logging.Log")) {
+      LintFix fix = quickFixIssueLog(call);
+      context.report(LOG_NOT_APP, call, context.getLocation(call), "Using Signal server logger instead of app level Logger", fix);
+    }
+
+    if (evaluator.isMemberInClass(method, "org.thoughtcrime.securesms.logging.Log")) {
+      List<UExpression> arguments  = call.getValueArguments();
+      UExpression       tag        = arguments.get(0);
+      if (!(tag instanceof JavaUSimpleNameReferenceExpression)) {
+        context.report(INLINE_TAG, call, context.getLocation(call), "Not using a tag constant");
+      }
     }
   }
 
@@ -64,7 +94,7 @@ public final class SignalLogDetector extends Detector implements Detector.UastSc
         break;
 
       default:
-        throw new IllegalStateException("android.util.Log overloads should have 2 or 3 arguments");
+        throw new IllegalStateException("Log overloads should have 2 or 3 arguments");
     }
 
     String logCallSource = logCall.asSourceString();

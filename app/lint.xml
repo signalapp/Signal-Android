@@ -19,6 +19,8 @@
 
     <!-- Custom lints -->
     <issue id="LogNotSignal" severity="error" />
+    <issue id="LogNotAppSignal" severity="warning" />
+    <issue id="LogTagInlined" severity="warning" />
 
     <issue id="RestrictedApi" severity="error">
         <ignore path="*/org/thoughtcrime/securesms/mediasend/camerax/VideoCapture.java" />

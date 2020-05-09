@@ -4,7 +4,7 @@ import com.android.tools.lint.client.api.IssueRegistry;
 import com.android.tools.lint.detector.api.ApiKt;
 import com.android.tools.lint.detector.api.Issue;
 
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 @SuppressWarnings("UnstableApiUsage")
@@ -12,7 +12,9 @@ public final class Registry extends IssueRegistry {
 
   @Override
   public List<Issue> getIssues() {
-    return Collections.singletonList(SignalLogDetector.LOG_NOT_SIGNAL);
+    return Arrays.asList(SignalLogDetector.LOG_NOT_SIGNAL,
+                         SignalLogDetector.LOG_NOT_APP,
+                         SignalLogDetector.INLINE_TAG);
   }
 
   @Override
