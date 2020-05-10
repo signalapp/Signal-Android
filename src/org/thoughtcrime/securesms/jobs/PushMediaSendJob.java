@@ -45,8 +45,8 @@ import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.loki.api.LokiAPI;
-import org.whispersystems.signalservice.loki.api.multidevice.LokiDeviceLinkUtilities;
-import org.whispersystems.signalservice.loki.messaging.LokiSyncMessage;
+import org.whispersystems.signalservice.loki.protocol.multidevice.LokiDeviceLinkUtilities;
+import org.whispersystems.signalservice.loki.protocol.syncmessages.LokiSyncMessage;
 import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
 import java.io.FileNotFoundException;

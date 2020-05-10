@@ -101,8 +101,8 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.loki.api.publicchats.LokiPublicChat;
-import org.whispersystems.signalservice.loki.api.publicchats.LokiPublicChatAPI;
+import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChat;
+import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChatAPI;
 
 import java.io.IOException;
 import java.io.InputStream;

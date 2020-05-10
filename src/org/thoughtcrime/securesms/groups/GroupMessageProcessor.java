@@ -36,7 +36,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup.Type;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.loki.api.multidevice.LokiDeviceLinkUtilities;
+import org.whispersystems.signalservice.loki.protocol.multidevice.LokiDeviceLinkUtilities;
 import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
 import java.util.Collections;

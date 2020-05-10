@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.signalservice.loki.api.multidevice.LokiDeviceLinkUtilities;
+import org.whispersystems.signalservice.loki.protocol.multidevice.LokiDeviceLinkUtilities;
 import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI;
 
 import java.util.HashMap;

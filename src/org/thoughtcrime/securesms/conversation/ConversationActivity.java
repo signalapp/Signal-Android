@@ -228,9 +228,9 @@ import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.loki.api.LokiAPI;
 import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChat;
 import org.whispersystems.signalservice.loki.protocol.mentions.Mention;
+import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager;
 import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLink;
 import org.whispersystems.signalservice.loki.protocol.multidevice.LokiDeviceLinkUtilities;
 import org.whispersystems.signalservice.loki.protocol.todo.LokiMessageFriendRequestStatus;
@@ -2905,7 +2905,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         LokiThreadDatabase threadDatabase = DatabaseFactory.getLokiThreadDatabase(ConversationActivity.this);
         LokiUserDatabase userDatabase = DatabaseFactory.getLokiUserDatabase(ConversationActivity.this);
         if (lastCharacter == '@' && Character.isWhitespace(secondToLastCharacter)) {
-          List<Mention> mentionCandidates = LokiAPI.Companion.getMentionCandidates("", threadId, userHexEncodedPublicKey, threadDatabase, userDatabase);
+          List<Mention> mentionCandidates = MentionsManager.INSTANCE.getMentionCandidates("", threadId, userHexEncodedPublicKey, threadDatabase, userDatabase);
           currentMentionStartIndex = lastCharacterIndex;
           mentionCandidateSelectionViewContainer.setVisibility(View.VISIBLE);
           mentionCandidateSelectionView.show(mentionCandidates, threadId);
@@ -2916,7 +2916,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         } else {
           if (currentMentionStartIndex != -1) {
             String query = text.substring(currentMentionStartIndex + 1); // + 1 to get rid of the @
-            List<Mention> mentionCandidates = LokiAPI.Companion.getMentionCandidates(query, threadId, userHexEncodedPublicKey, threadDatabase, userDatabase);
+            List<Mention> mentionCandidates = MentionsManager.INSTANCE.getMentionCandidates(query, threadId, userHexEncodedPublicKey, threadDatabase, userDatabase);
             mentionCandidateSelectionViewContainer.setVisibility(View.VISIBLE);
             mentionCandidateSelectionView.show(mentionCandidates, threadId);
           }
