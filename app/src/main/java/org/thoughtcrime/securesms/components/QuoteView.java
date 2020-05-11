@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -30,6 +31,7 @@ import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
 import java.util.List;
@@ -118,6 +120,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
 
       authorView.setTextColor(primaryColor);
       bodyView.setTextColor(primaryColor);
+      bodyView.setTextSize(TypedValue.COMPLEX_UNIT_SP, TextSecurePreferences.getMessageBodyTextSize(getContext()));
       attachmentNameView.setTextColor(primaryColor);
       mediaDescriptionText.setTextColor(secondaryColor);
       missingLinkText.setTextColor(primaryColor);
