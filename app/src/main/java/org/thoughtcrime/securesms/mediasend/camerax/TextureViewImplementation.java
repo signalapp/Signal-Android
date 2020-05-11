@@ -41,7 +41,7 @@ import androidx.core.util.Preconditions;
 
 import com.google.common.util.concurrent.ListenableFuture;
 
-import org.whispersystems.libsignal.logging.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 /**
  * The {@link TextureView} implementation for {@link PreviewView}

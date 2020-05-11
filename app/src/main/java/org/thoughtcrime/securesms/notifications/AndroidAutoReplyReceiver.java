@@ -27,11 +27,11 @@ import androidx.core.app.RemoteInput;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
-import org.whispersystems.libsignal.logging.Log;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -42,7 +42,7 @@ import java.util.List;
  */
 public class AndroidAutoReplyReceiver extends BroadcastReceiver {
 
-  public static final String TAG             = AndroidAutoReplyReceiver.class.getSimpleName();
+  public static final String TAG             = Log.tag(AndroidAutoReplyReceiver.class);
   public static final String REPLY_ACTION    = "org.thoughtcrime.securesms.notifications.ANDROID_AUTO_REPLY";
   public static final String RECIPIENT_EXTRA = "car_recipient";
   public static final String VOICE_REPLY_KEY = "car_voice_reply_key";
