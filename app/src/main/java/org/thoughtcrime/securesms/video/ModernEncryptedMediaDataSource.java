@@ -38,6 +38,10 @@ final class ModernEncryptedMediaDataSource extends MediaDataSource {
 
   @Override
   public int readAt(long position, byte[] bytes, int offset, int length) throws IOException {
+    if (position >= this.length) {
+      return -1;
+    }
+
     try (InputStream inputStream = createInputStream(position)) {
       int totalRead = 0;
 
