@@ -94,8 +94,7 @@ public class MultiDeviceReadUpdateJob extends BaseJob implements InjectableType 
       readMessages.add(new ReadMessage(messageId.sender, messageId.timestamp));
     }
 
-    // TODO: Message ID
-    messageSender.sendMessage(0, SignalServiceSyncMessage.forRead(readMessages), UnidentifiedAccessUtil.getAccessForSync(context));
+    messageSender.sendMessage(SignalServiceSyncMessage.forRead(readMessages), UnidentifiedAccessUtil.getAccessForSync(context));
   }
 
   @Override

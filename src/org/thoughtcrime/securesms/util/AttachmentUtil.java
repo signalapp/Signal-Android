@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.logging.Log;
-import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus;
 
 import java.util.Collections;
 import java.util.Set;
@@ -111,17 +110,9 @@ public class AttachmentUtil {
     try (Cursor messageCursor = DatabaseFactory.getMmsDatabase(context).getMessage(attachment.getMmsId())) {
       message = DatabaseFactory.getMmsDatabase(context).readerFor(messageCursor).getNext();
     }
-
     if (message == null) { return true; }
-
-    // TODO: Fix this so we can detect whether attachment is from a public group or not
+    // We don't allow attachments to be sent unless we're friends with someone or the attachment is sent
+    // in a group context. Auto-downloading attachments is therefore fine.
     return false;
-
-    /*
-    // check to see if we're friends with the person
-    long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(message.getRecipient());
-    boolean isFriend = threadId >= 0 && DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadId) == LokiThreadFriendRequestStatus.FRIENDS;
-    return (!isFriend && !message.isOutgoing() && !Util.isOwnNumber(context, message.getRecipient().getAddress()));
-    */
   }
 }

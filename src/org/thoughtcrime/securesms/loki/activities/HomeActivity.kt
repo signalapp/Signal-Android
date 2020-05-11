@@ -31,8 +31,9 @@ import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.model.ThreadRecord
-import org.thoughtcrime.securesms.loki.getColorWithID
 import org.thoughtcrime.securesms.loki.dialogs.PNModeBottomSheet
+import org.thoughtcrime.securesms.loki.getColorWithID
+import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
 import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.show
 import org.thoughtcrime.securesms.loki.views.ConversationView
@@ -41,7 +42,6 @@ import org.thoughtcrime.securesms.loki.views.SeedReminderViewDelegate
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.notifications.MessageNotifier
-import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import kotlin.math.abs
 
@@ -272,7 +272,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
                 val isClosedGroup = recipient.address.isClosedGroup
                 // Send a leave group message if this is an active closed group
                 if (isClosedGroup && DatabaseFactory.getGroupDatabase(activity).isActive(recipient.address.toGroupString())) {
-                    if (!GroupUtil.leaveGroup(activity, recipient)) {
+                    if (!ClosedGroupsProtocol.leaveGroup(activity, recipient)) {
                         Toast.makeText(activity, "Couldn't leave group", Toast.LENGTH_LONG).show()
                         clearView(activity.recyclerView, viewHolder)
                         return@setPositiveButton

@@ -76,7 +76,7 @@ public class MultiDeviceStickerPackSyncJob extends BaseJob implements Injectable
       }
     }
 
-    messageSender.sendMessage(0, SignalServiceSyncMessage.forStickerPackOperations(operations), // The message ID doesn't matter
+    messageSender.sendMessage(SignalServiceSyncMessage.forStickerPackOperations(operations),
                               UnidentifiedAccessUtil.getAccessForSync(context));
   }
 

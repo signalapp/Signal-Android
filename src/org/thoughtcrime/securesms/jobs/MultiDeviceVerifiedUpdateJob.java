@@ -104,8 +104,7 @@ public class MultiDeviceVerifiedUpdateJob extends BaseJob implements InjectableT
       VerifiedMessage.VerifiedState verifiedState        = getVerifiedState(verifiedStatus);
       VerifiedMessage               verifiedMessage      = new VerifiedMessage(canonicalDestination.toPhoneString(), new IdentityKey(identityKey, 0), verifiedState, timestamp);
 
-      // TODO: Message ID
-      messageSender.sendMessage(0, SignalServiceSyncMessage.forVerified(verifiedMessage),
+      messageSender.sendMessage(SignalServiceSyncMessage.forVerified(verifiedMessage),
                                 UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.fromSerialized(destination), false)));
     } catch (InvalidKeyException e) {
       throw new IOException(e);

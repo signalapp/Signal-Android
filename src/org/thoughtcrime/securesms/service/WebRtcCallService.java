@@ -384,7 +384,7 @@ public class WebRtcCallService extends Service implements InjectableType,
           if (Permissions.hasAny(WebRtcCallService.this, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)) {
             isSystemContact = ContactAccessor.getInstance().isSystemContact(WebRtcCallService.this, recipient.getAddress().serialize());
           }
-          */
+           */
 
           boolean isAlwaysTurn = TextSecurePreferences.isTurnOnly(WebRtcCallService.this);
 
@@ -1011,7 +1011,7 @@ public class WebRtcCallService extends Service implements InjectableType,
       @Override
       public Boolean call() throws Exception {
         // TODO: Message ID
-        messageSender.sendCallMessage(0, new SignalServiceAddress(recipient.getAddress().toPhoneString()),
+        messageSender.sendCallMessage(new SignalServiceAddress(recipient.getAddress().toPhoneString()),
                                       UnidentifiedAccessUtil.getAccessFor(WebRtcCallService.this, recipient),
                                       callMessage);
         return true;

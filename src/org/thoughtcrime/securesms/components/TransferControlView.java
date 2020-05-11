@@ -200,7 +200,6 @@ public class TransferControlView extends FrameLayout {
 
     if (view != null) {
       view.setVisibility(VISIBLE);
-      // setVisibility(VISIBLE);
     } else {
       setVisibility(GONE);
     }

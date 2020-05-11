@@ -332,7 +332,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   @Subscribe(threadMode = ThreadMode.MAIN)
   public void onAvatarModified(RecipientAvatarModifiedEvent event) {
     Recipient recipient = event.getRecipient();
-    if (recipient.isLocalNumber() || recipient.isOurMasterDevice()) {
+    if (recipient.isLocalNumber() || recipient.isUserMasterDevice()) {
       initializeProfileIcon(recipient);
     }
   }

@@ -205,7 +205,7 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
             }
             // If we got a message from our master device then make sure our mapping stays in sync
             val recipient = Recipient.from(context, Address.fromSerialized(message.hexEncodedPublicKey), false)
-            if (recipient.isOurMasterDevice && message.profilePicture != null) {
+            if (recipient.isUserMasterDevice && message.profilePicture != null) {
                 val profileKey = message.profilePicture!!.profileKey
                 val url = message.profilePicture!!.url
                 if (recipient.profileKey == null || !MessageDigest.isEqual(recipient.profileKey, profileKey)) {

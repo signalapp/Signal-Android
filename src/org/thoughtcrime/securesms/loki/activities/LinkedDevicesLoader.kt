@@ -6,8 +6,8 @@ import org.thoughtcrime.securesms.devicelist.Device
 import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
 import org.thoughtcrime.securesms.util.AsyncLoader
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.loki.protocol.multidevice.LokiDeviceLinkUtilities
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
+import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
 import java.io.File
 
 class LinkedDevicesLoader(context: Context) : AsyncLoader<List<Device>>(context) {
@@ -19,12 +19,12 @@ class LinkedDevicesLoader(context: Context) : AsyncLoader<List<Device>>(context)
 
     override fun loadInBackground(): List<Device>? {
         try {
-            val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
-            val slaveDeviceHexEncodedPublicKeys = LokiDeviceLinkUtilities.getSlaveHexEncodedPublicKeys(userHexEncodedPublicKey).get()
-            return slaveDeviceHexEncodedPublicKeys.map { hexEncodedPublicKey ->
-                val shortID = MnemonicUtilities.getFirst3Words(mnemonicCodec, hexEncodedPublicKey)
-                val name = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(hexEncodedPublicKey)
-                Device(hexEncodedPublicKey, shortID, name)
+            val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+            val slaveDevices = MultiDeviceProtocol.shared.getSlaveDevices(userPublicKey)
+            return slaveDevices.map { device ->
+                val shortID = MnemonicUtilities.getFirst3Words(mnemonicCodec, device)
+                val name = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(device)
+                Device(device, shortID, name)
             }.sortedBy { it.name }
         } catch (e: Exception) {
             return null

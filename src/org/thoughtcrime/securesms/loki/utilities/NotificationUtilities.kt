@@ -1,5 +1,5 @@
 @file:JvmName("NotificationUtilities")
-package org.thoughtcrime.securesms.notifications
+package org.thoughtcrime.securesms.loki.utilities
 
 import android.content.Context
 import org.thoughtcrime.securesms.database.DatabaseFactory

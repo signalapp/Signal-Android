@@ -33,6 +33,7 @@ public class WelcomeActivity extends BaseActionBarActivity {
       builder.setMessage(R.string.dialog_device_unlink_message);
       builder.setPositiveButton(R.string.ok, null);
       builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+
         @Override
         public void onDismiss(DialogInterface dialog) {
           TextSecurePreferences.setNeedDatabaseResetFromUnlink(getBaseContext(), false);
@@ -57,7 +58,7 @@ public class WelcomeActivity extends BaseActionBarActivity {
         .ifNecessary()
         .withRationaleDialog(getString(R.string.activity_landing_permission_dialog_message), R.drawable.ic_folder_white_48dp)
         .onAnyResult(() -> {
-          // TextSecurePreferences.setHasSeenWelcomeScreen(WelcomeActivity.this, true);
+//          TextSecurePreferences.setHasSeenWelcomeScreen(WelcomeActivity.this, true);
 
           Intent nextIntent = getIntent().getParcelableExtra("next_intent");
 

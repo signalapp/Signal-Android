@@ -90,7 +90,7 @@ public class KeyCachingService extends Service {
     if (masterSecret == null && (TextSecurePreferences.isPasswordDisabled(context) && !TextSecurePreferences.isScreenLockEnabled(context))) {
       try {
         // Loki - Cache the secret.
-        // Don't know if this will affect any other signal code :( but it makes it so we're not wasting time re-fetching the same secret from the database
+        // TODO: Don't know if this will affect any other Signal code but it makes it so we're not wasting time re-fetching the same secret from the database
         if (cachedSecret == null || cacheTime < System.currentTimeMillis()) {
           cachedSecret =  MasterSecretUtil.getMasterSecret(context, MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
           cacheTime = System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(5);

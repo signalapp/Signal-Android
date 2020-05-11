@@ -181,8 +181,8 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   @Override
   public void onConfigure(SQLiteDatabase db) {
     super.onConfigure(db);
-    // Loki: Enable Write Ahead Logging Mode, increase the cache size
-    // This should be disabled if we ever run into serious race condition bugs
+    // Loki - Enable write ahead logging mode and increase the cache size.
+    // This should be disabled if we ever run into serious race condition bugs.
     db.enableWriteAheadLogging();
     db.execSQL("PRAGMA cache_size = 10000");
   }
@@ -555,7 +555,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
           }
         }
 
-        // Migrate rss feeds from __textsecure_group__ to __loki_rss_feed_group__
+        // Migrate RSS feeds from __textsecure_group__ to __loki_rss_feed_group__
         String[] rssFeedIds = new String[] { "loki.network.feed", "loki.network.messenger-updates.feed" };
         for (String groupId : rssFeedIds) {
           String oldId = GroupUtil.getEncodedId(groupId.getBytes(), false);

@@ -277,9 +277,9 @@ public class Recipient implements RecipientModifiedListener {
     return isLocalNumber;
   }
 
-  public boolean isOurMasterDevice() {
-    String ourMasterDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
-    return ourMasterDevice != null && ourMasterDevice.equals(getAddress().serialize());
+  public boolean isUserMasterDevice() {
+    String userMasterDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+    return userMasterDevice != null && userMasterDevice.equals(getAddress().serialize());
   }
 
   public synchronized @Nullable Uri getContactUri() {
@@ -467,11 +467,11 @@ public class Recipient implements RecipientModifiedListener {
     if      (isResolving())            return new TransparentContactPhoto();
     else if (isGroupRecipient())       return new GeneratedContactPhoto(name, R.drawable.ic_profile_default);
     else {
-      String currentUser = TextSecurePreferences.getLocalNumber(context);
-      String recipientAddress = address.serialize();
-      String primaryAddress = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
-      String profileAddress = (recipientAddress.equalsIgnoreCase(currentUser) && primaryAddress != null) ? primaryAddress : recipientAddress;
-      return new JazzIdenticonContactPhoto(profileAddress);
+      String userPublicKey = TextSecurePreferences.getLocalNumber(context);
+      String publicKey = address.serialize();
+      String masterDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+      String publicKeyToUse = (publicKey.equalsIgnoreCase(userPublicKey) && masterDevice != null) ? masterDevice : publicKey;
+      return new JazzIdenticonContactPhoto(publicKeyToUse);
     }
   }
 

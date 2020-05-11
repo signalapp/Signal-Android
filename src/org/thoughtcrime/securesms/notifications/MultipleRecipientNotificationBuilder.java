@@ -10,6 +10,7 @@ import android.support.v4.app.NotificationCompat;
 import android.text.SpannableStringBuilder;
 
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
+import org.thoughtcrime.securesms.loki.utilities.NotificationUtilities;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -52,8 +53,7 @@ public class MultipleRecipientNotificationBuilder extends AbstractNotificationBu
       displayName = NotificationUtilities.getOpenGroupDisplayName(recipient, threadRecipient, context);
     }
     if (privacy.isDisplayContact()) {
-      setContentText(context.getString(R.string.MessageNotifier_most_recent_from_s,
-              displayName));
+      setContentText(context.getString(R.string.MessageNotifier_most_recent_from_s, displayName));
     }
 
     if (recipient.getNotificationChannel() != null) {

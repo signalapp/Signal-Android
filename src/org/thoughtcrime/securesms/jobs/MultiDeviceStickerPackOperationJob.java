@@ -94,7 +94,7 @@ public class MultiDeviceStickerPackOperationJob extends BaseJob implements Injec
 
     StickerPackOperationMessage stickerPackOperation = new StickerPackOperationMessage(packIdBytes, packKeyBytes, remoteType);
 
-    messageSender.sendMessage(0, SignalServiceSyncMessage.forStickerPackOperations(Collections.singletonList(stickerPackOperation)), // The message ID doesn't matter
+    messageSender.sendMessage(SignalServiceSyncMessage.forStickerPackOperations(Collections.singletonList(stickerPackOperation)),
                               UnidentifiedAccessUtil.getAccessForSync(context));
   }
 

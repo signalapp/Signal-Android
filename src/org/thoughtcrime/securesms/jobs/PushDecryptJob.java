@@ -1294,7 +1294,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(sender), false));
       LokiThreadFriendRequestStatus threadFriendRequestStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID);
       boolean isOurFriend = threadFriendRequestStatus == LokiThreadFriendRequestStatus.FRIENDS;
-      boolean isInOneOfOurGroups = DatabaseFactory.getGroupDatabase(context).signalGroupsHaveMember(sender);
+      boolean isInOneOfOurGroups = DatabaseFactory.getGroupDatabase(context).isClosedGroupMember(sender);
       boolean shouldAcceptSessionRequest = isOurFriend || isInOneOfOurGroups;
       if (shouldAcceptSessionRequest) {
         MessageSender.sendBackgroundMessage(context, content.getSender()); // Send a background message to acknowledge
@@ -1581,7 +1581,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       ApplicationContext.getInstance(context).getJobManager().add(new RetrieveProfileAvatarJob(recipient, url));
 
       // Loki - If the recipient is our master device then we need to go and update our avatar mappings on the public chats
-      if (recipient.isOurMasterDevice()) {
+      if (recipient.isUserMasterDevice()) {
         ApplicationContext.getInstance(context).updatePublicChatProfilePictureIfNeeded();
       }
     }

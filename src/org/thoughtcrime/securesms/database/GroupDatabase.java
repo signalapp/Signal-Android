@@ -160,10 +160,11 @@ public class GroupDatabase extends Database {
     return recipients;
   }
 
-  public boolean signalGroupsHaveMember(String hexEncodedPublicKey) {
+  public boolean isClosedGroupMember(String hexEncodedPublicKey) {
     try {
       Address address = Address.fromSerialized(hexEncodedPublicKey);
       Reader reader = DatabaseFactory.getGroupDatabase(context).getGroups();
+
       GroupRecord record;
       while ((record = reader.getNext()) != null) {
         if (record.isSignalGroup() && record.members.contains(address)) {

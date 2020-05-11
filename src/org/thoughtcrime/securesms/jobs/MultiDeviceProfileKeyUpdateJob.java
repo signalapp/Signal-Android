@@ -87,10 +87,9 @@ public class MultiDeviceProfileKeyUpdateJob extends BaseJob implements Injectabl
                                                                             .withLength(baos.toByteArray().length)
                                                                             .build();
 
-    SignalServiceSyncMessage      syncMessage      = SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream, false));
+    SignalServiceSyncMessage syncMessage = SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream, false));
 
-    // TODO: Message ID
-    messageSender.sendMessage(0, syncMessage, UnidentifiedAccessUtil.getAccessForSync(context));
+    messageSender.sendMessage(syncMessage, UnidentifiedAccessUtil.getAccessForSync(context));
   }
 
   @Override
