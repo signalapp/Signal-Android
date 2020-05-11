@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+  <string-array name="language_entries">
+<!-- zz --><item>@string/preferences__system_default</item>
+<!-- en --><item>English</item>
+<!-- ar --><item>Arabic العربية</item>
+<!-- az --><item>Azərbaycan</item>
+<!-- jv --><item>Basa Jawa</item>
+<!-- bn --><item>Bengali বাংলা</item>
+<!-- bs --><item>Bosanski</item>
+<!-- bg --><item>Bulgarian български</item>
+<!-- my --><item>Burmese ဗမာစကား</item>
+<!-- ca --><item>Català</item>
+<!-- cs --><item>Čeština</item>
+<!-- zh_CN --><item>Chinese (Simplified) 中文 (简体)</item>
+<!-- zh_TW --><item>Chinese (Traditional) 中文 (繁體)</item>
+<!-- cy --><item>Cymraeg</item>
+<!-- da --><item>Dansk</item>
+<!-- de --><item>Deutsch</item>
+<!-- et --><item>Eesti</item>
+<!-- es --><item>Español</item>
+<!-- eo --><item>Esperanto</item>
+<!-- eu --><item>Euskara</item>
+<!-- tl --><item>Filipino</item>
+<!-- fr --><item>Français</item>
+<!-- ga --><item>Gaeilge</item>
+<!-- gl --><item>Galego</item>
+<!-- el --><item>Greek ελληνικά</item>
+<!-- gu --><item>Gujarati ગુજરાતી</item>
+<!-- ha --><item>Hausa</item>
+<!-- he/iw --><item>Hebrew עברית</item>
+<!-- hi --><item>Hindi हिंदी</item>
+<!-- hr --><item>Hrvatski</item>
+<!-- id/in --><item>Indonesia</item>
+<!-- it --><item>Italiano</item>
+<!-- ja --><item>Japanese 日本語</item>
+<!-- kn --><item>Kannada ಕನ್ನಡ</item>
+<!-- km --><item>Khmer ភាសាខ្មែរ</item>
+<!-- sw --><item>Kiswahili</item>
+<!-- ko --><item>Korean 한국어</item>
+<!-- ku --><item>Kurdí</item>
+<!-- lv --><item>Latviešu</item>
+<!-- lt --><item>Lietuvių</item>
+<!-- lg --><item>Luganda</item>
+<!-- mk --><item>Macedonian македонски јазик</item>
+<!-- hu --><item>Magyar</item>
+<!-- ms --><item>Malay (Bahasa Melayu)</item>
+<!-- mr --><item>Marathi मराठी</item>
+<!-- nl --><item>Nederlands</item>
+<!-- nb --><item>Norsk (bokmål)</item>
+<!-- nn --><item>Norsk (nynorsk)</item>
+<!-- fa --><item>Persian فارسی</item>
+<!-- pl --><item>Polski</item>
+<!-- pt --><item>Português</item>
+<!-- pt_BR --><item>Português do Brasil</item>
+<!-- pa --><item>Punjabi ਪੰਜਾਬੀ / پنجابی</item>
+<!-- pa_PK --><item>Punjabi (Pakistan) ਪੰਜਾਬ (ਪਾਕਿਸਤਾਨ) / پنجابی</item>
+<!-- qu_EC --><item>Quechua</item>
+<!-- ro --><item>Română</item>
+<!-- ru --><item>Russian Pусский</item>
+<!-- sr --><item>Serbian српски</item>
+<!-- sq --><item>Shqip</item>
+<!-- sl --><item>Slovenščina</item>
+<!-- sk --><item>Slovenský</item>
+<!-- fi --><item>Suomi</item>
+<!-- sv --><item>Svenska</item>
+<!-- ta --><item>Tamil தமிழ்</item>
+<!-- te --><item>Telugu తెలుగు</item>
+<!-- th --><item>Thai ภาษาไทย</item>
+<!-- tr --><item>Türkçe</item>
+<!-- uk --><item>Ukrainian Українська</item>
+<!-- ur --><item>Urdu اردو‎</item>
+<!-- vi --><item>Vietnamese Tiếng Việt</item>
+  </string-array>
+
+  <string-array name="language_values">
+      <item>zz</item>
+      <item>en</item>
+      <item>ar</item>
+      <item>az</item>
+      <item>jv</item>
+      <item>bn</item>
+      <item>bs</item>
+      <item>bg</item>
+      <item>my</item>
+      <item>ca</item>
+      <item>cs</item>
+      <item>zh_CN</item>
+      <item>zh_TW</item>
+      <item>cy</item> 
+      <item>da</item>
+      <item>de</item>
+      <item>et</item>
+      <item>es</item>
+      <item>eo</item>
+      <item>eu</item>
+      <item>tl</item>
+      <item>fr</item>
+      <item>ga</item>
+      <item>gl</item>
+      <item>el</item>
+      <item>gu</item>
+      <item>ha</item>
+      <item>iw</item>
+      <item>hi</item>
+      <item>hr</item>
+      <item>in</item>
+      <item>it</item>
+      <item>ja</item>
+      <item>kn</item>
+      <item>km</item>
+      <item>sw</item>
+      <item>ko</item>
+      <item>ku</item>
+      <item>lv</item>
+      <item>lt</item>
+      <item>lg</item>
+      <item>mk</item>
+      <item>hu</item>
+      <item>ms</item>
+      <item>mr</item>
+      <item>nl</item>
+      <item>nb</item>
+      <item>nn</item>
+      <item>fa</item>
+      <item>pl</item>
+      <item>pt</item>
+      <item>pt_BR</item>
+      <item>pa</item>
+      <item>pa_PK</item>
+      <item>qu_EC</item>
+      <item>ro</item>
+      <item>ru</item>
+      <item>sr</item>
+      <item>sq</item>
+      <item>sl</item>
+      <item>sk</item>
+      <item>fi</item>
+      <item>sv</item>
+      <item>ta</item>
+      <item>te</item>
+      <item>th</item>
+      <item>tr</item>
+      <item>uk</item>
+      <item>ur</item>
+      <item>vi</item>
+  </string-array>
+
+  <string-array name="pref_theme_entries" tools:ignore="InconsistentArrays">
+      <item>@string/preferences__light_theme</item>
+      <item>@string/preferences__dark_theme</item>
+  </string-array>
+
+  <string-array name="pref_theme_values" translatable="false" tools:ignore="InconsistentArrays">
+      <item>light</item>
+      <item>dark</item>
+  </string-array>
+
+  <string-array name="pref_led_color_entries">
+    <item>@string/preferences__green</item>
+    <item>@string/preferences__red</item>
+    <item>@string/preferences__blue</item>
+    <item>@string/preferences__orange</item>
+    <item>@string/preferences__cyan</item>
+    <item>@string/preferences__magenta</item>
+    <item>@string/preferences__white</item>
+    <item>@string/preferences__none</item>
+  </string-array>
+
+
+  <string-array name="pref_led_color_values" translatable="false">
+    <item>green</item>
+    <item>red</item>
+    <item>blue</item>
+    <item>yellow</item>
+    <item>cyan</item>
+    <item>magenta</item>
+    <item>white</item>
+    <item>none</item>
+  </string-array>
+
+  <string-array name="pref_led_blink_pattern_entries">
+    <item>@string/preferences__fast</item>
+    <item>@string/preferences__normal</item>
+    <item>@string/preferences__slow</item>
+  </string-array>
+
+  <string-array name="pref_led_blink_pattern_values" translatable="false">
+    <item>300,300</item>
+    <item>500,2000</item>
+    <item>3000,3000</item>
+  </string-array>
+
+  <string-array name="pref_repeat_alerts_entries">
+      <item>@string/preferences__never</item>
+      <item>@string/preferences__one_time</item>
+      <item>@string/preferences__two_times</item>
+      <item>@string/preferences__three_times</item>
+      <item>@string/preferences__five_times</item>
+      <item>@string/preferences__ten_times</item>
+  </string-array>
+
+  <string-array name="pref_repeat_alerts_values" translatable="false">
+      <item>0</item>
+      <item>1</item>
+      <item>2</item>
+      <item>3</item>
+      <item>5</item>
+      <item>10</item>
+  </string-array>
+
+  <string-array name="default_or_custom_values" translatable="false">
+      <item>default</item>
+      <item>custom</item>
+  </string-array>
+
+  <string-array name="default_or_custom_entries">
+      <item>@string/arrays__use_default</item>
+      <item>@string/arrays__use_custom</item>
+  </string-array>
+
+  <string-array name="mute_durations">
+      <item>@string/arrays__mute_for_one_hour</item>
+      <item>@string/arrays__mute_for_two_hours</item>
+      <item>@string/arrays__mute_for_one_day</item>
+      <item>@string/arrays__mute_for_seven_days</item>
+      <item>@string/arrays__mute_for_one_year</item>
+  </string-array>
+
+  <string-array name="recipient_vibrate_entries">
+      <item>@string/arrays__settings_default</item>
+      <item>@string/arrays__enabled</item>
+      <item>@string/arrays__disabled</item>
+  </string-array>
+
+  <string-array name="recipient_vibrate_values">
+      <item>0</item>
+      <item>1</item>
+      <item>2</item>
+  </string-array>
+
+  <string-array name="pref_notification_privacy_entries">
+      <item>@string/arrays__name_and_message</item>
+      <item>@string/arrays__name_only</item>
+      <item>@string/arrays__no_name_or_message</item>
+  </string-array>
+
+  <string-array name="pref_notification_privacy_values">
+      <item>all</item>
+      <item>contact</item>
+      <item>none</item>
+  </string-array>
+
+  <!-- discrete MIME type (the part before the "/") -->
+  <string-array name="pref_media_download_entries">
+      <item>image</item>
+      <item>audio</item>
+      <item>video</item>
+      <item>documents</item>
+  </string-array>
+
+  <string-array name="pref_media_download_values">
+      <item>@string/arrays__images</item>
+      <item>@string/arrays__audio</item>
+      <item>@string/arrays__video</item>
+      <item>@string/arrays__documents</item>
+  </string-array>
+
+  <string-array name="pref_media_download_mobile_data_default">
+      <item>image</item>
+      <item>audio</item>
+  </string-array>
+
+  <string-array name="pref_media_download_wifi_default">
+      <item>image</item>
+      <item>audio</item>
+      <item>video</item>
+      <item>documents</item>
+  </string-array>
+
+  <string-array name="pref_media_download_roaming_default" />
+
+    <!-- RedPhone -->
+
+    <integer-array name="expiration_times">
+        <item>0</item>
+        <item>5</item>
+        <item>10</item>
+        <item>30</item>
+        <item>60</item>
+        <item>300</item>
+        <item>1800</item>
+        <item>3600</item>
+        <item>21600</item>
+        <item>43200</item>
+        <item>86400</item>
+        <item>604800</item>
+    </integer-array>
+
+    <array name="scribble_colors">
+        <item>#ffffff</item>
+        <item>#ff0000</item>
+        <item>#ff00ff</item>
+        <item>#0000ff</item>
+        <item>#00ffff</item>
+        <item>#00ff00</item>
+        <item>#ffff00</item>
+        <item>#ff5500</item>
+        <item>#000000</item>
+    </array>
+
+    <string-array name="pref_message_font_size_entries">
+        <item>@string/arrays__small</item>
+        <item>@string/arrays__normal</item>
+        <item>@string/arrays__large</item>
+        <item>@string/arrays__extra_large</item>
+    </string-array>
+
+    <string-array name="pref_message_font_size_values">
+        <item>13</item>
+        <item>16</item>
+        <item>20</item>
+        <item>30</item>
+    </string-array>
+
+    <string-array name="pref_notification_priority_entries">
+        <item>@string/arrays__default</item>
+        <item>@string/arrays__high</item>
+        <item>@string/arrays__max</item>
+    </string-array>
+
+    <string-array name="pref_notification_priority_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="MediaOverviewActivity_Sort_by">
+        <item>@string/MediaOverviewActivity_Newest</item>
+        <item>@string/MediaOverviewActivity_Oldest</item>
+        <item>@string/MediaOverviewActivity_Storage_used</item>
+    </string-array>
+
+</resources>

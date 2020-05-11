@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.conversation.ConversationTitleView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/conversation_title_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_vertical"
+    android:gravity="center_vertical"
+    tools:background="#007fff">
+
+    <org.thoughtcrime.securesms.components.AvatarImageView
+        android:id="@+id/contact_photo_image"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="10dp"
+        android:clickable="true"
+        android:contentDescription="@string/conversation_list_item_view__contact_photo_image"
+        android:cropToPadding="true"
+        android:foreground="@drawable/contact_photo_background"
+        android:transitionName="contact_photo"
+        app:inverted="true"
+        app:fallbackImageSize="small"
+        tools:src="@drawable/ic_contact_picture" />
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/contact_photo_image"
+        android:orientation="vertical">
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+            android:id="@+id/title"
+            style="@style/TextSecure.TitleTextStyle.Dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:drawablePadding="5dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:transitionName="recipient_name"
+            tools:ignore="UnusedAttribute"
+            tools:text="Contact name" />
+
+        <LinearLayout
+            android:id="@+id/subtitle_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <include layout="@layout/expiration_timer_badge" />
+
+            <ImageView
+                android:id="@+id/verified_indicator"
+                android:layout_width="12dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="3dp"
+                android:tint="?conversation_subtitle_color"
+                app:srcCompat="@drawable/ic_check_24"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/verified_subtitle"
+                style="@style/TextSecure.SubtitleTextStyle.Dark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|start"
+                android:layout_marginEnd="3dp"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:textColor="?conversation_subtitle_color"
+                android:text="@string/ConversationTitleView_verified"
+                android:textDirection="ltr" />
+
+            <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+                android:id="@+id/subtitle"
+                style="@style/TextSecure.SubtitleTextStyle.Dark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|start"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:textColor="?conversation_subtitle_color"
+                android:maxLines="1"
+                android:textDirection="ltr"
+                tools:text="(123) 123-1234" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</org.thoughtcrime.securesms.conversation.ConversationTitleView>

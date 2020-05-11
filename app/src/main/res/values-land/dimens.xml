@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="media_overview_cols">5</integer>
+
+    <dimen name="insights_modal_title_margin_top">12dp</dimen>
+    <dimen name="insights_modal_description_margin_top">10dp</dimen>
+    <dimen name="insights_modal_progress_margin_top">17dp</dimen>
+    <dimen name="insights_modal_progress_size">131dp</dimen>
+    <dimen name="insights_modal_avatar_size">94dp</dimen>
+    <dimen name="insights_modal_percent_margin_top">2dp</dimen>
+    <dimen name="insights_modal_percent_sign_margin_top">6dp</dimen>
+    <dimen name="insights_modal_view_insights_margin_top">31dp</dimen>
+    <dimen name="insights_modal_percent_text_size">20sp</dimen>
+    <dimen name="insights_modal_percent_sign_text_size">16sp</dimen>
+
+</resources>

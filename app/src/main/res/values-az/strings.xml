@@ -1,0 +1,1366 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="yes">Bəli</string>
+  <string name="no">Xeyr</string>
+  <string name="delete">Sil</string>
+  <string name="please_wait">Gözləyin…</string>
+  <string name="save">Yaddaşa yaz</string>
+  <string name="note_to_self">Nəzərində Saxla</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">Yeni mesaj</string>
+  <!--AlbumThumbnailView-->
+  <!--ApplicationMigrationActivity-->
+  <!--ApplicationPreferencesActivity-->
+  <string name="ApplicationPreferencesActivity_currently_s">Hal-hazırda: %s</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Açar sözü təyin etməmisən!</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="one">Hər söhbətə %d mesaj</item>
+    <item quantity="other">Hər söhbətə %d mesaj</item>
+  </plurals>
+  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Köhnə mesajların hamısını silirsən?</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="one">Bu avtomatik olaraq bütün söhbətləşmələri son yazışmalara qədər siləcək.</item>
+    <item quantity="other">Bu avtomatik olaraq bütün söhbətləşmələri %d yazışmalara qədər siləcək.</item>
+  </plurals>
+  <string name="ApplicationPreferencesActivity_delete">Sil</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Açar sözü deaktivə edirsən?</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Bu daimi olaraq Signal və mesaj xəbərdarlıqlarının kilidini açacaq.</string>
+  <string name="ApplicationPreferencesActivity_disable">Deaktivə et</string>
+  <string name="ApplicationPreferencesActivity_unregistering">Qeydiyyatdan çıxarma</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signal-a aid mesaj və zənglərin qeydiyyatından çıxmaq…</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal mesajlarını və zənglərini deaktivə edirsən?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Server qeydiyyatından çıxmaqla Signal mesajları və zənglərini deaktivə et. Gələcəkdə istifadə etmək üçün telefon nömrəni bir daha qeydiyyatdan keçirməli olacaqsan.</string>
+  <string name="ApplicationPreferencesActivity_error_connecting_to_server">Serverə qoşulmada xəta var!</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS Aktivləşdirildi</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Mövcud SMS aplikasiyanı dəyişmək üçün kliklə</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS Deaktivə edildi</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Signal-ı əsas SMS aplikasiyası etmək üçün kliklə</string>
+  <string name="ApplicationPreferencesActivity_on">aktiv</string>
+  <string name="ApplicationPreferencesActivity_On">Aktiv</string>
+  <string name="ApplicationPreferencesActivity_off">deaktiv</string>
+  <string name="ApplicationPreferencesActivity_Off">Deaktiv</string>
+  <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Ekranın kilidlənməsi %1$s, Qeydiyyatın kilidlənməsi %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Mövzu %1$s, Dil %2$s</string>
+  <!--AppProtectionPreferenceFragment-->
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="one">%d dəqiqə</item>
+    <item quantity="other">%d dəqiqə</item>
+  </plurals>
+  <!--DraftDatabase-->
+  <string name="DraftDatabase_Draft_image_snippet">(şəkil)</string>
+  <string name="DraftDatabase_Draft_audio_snippet">(səs)</string>
+  <string name="DraftDatabase_Draft_video_snippet">(video)</string>
+  <string name="DraftDatabase_Draft_location_snippet">(məkan)</string>
+  <string name="DraftDatabase_Draft_quote_snippet">(cavab)</string>
+  <!--AttachmentKeyboard-->
+  <string name="AttachmentKeyboard_gallery">Qalereya</string>
+  <string name="AttachmentKeyboard_gif">GIF</string>
+  <string name="AttachmentKeyboard_file">Fayl</string>
+  <string name="AttachmentKeyboard_contact">Əlaqə</string>
+  <string name="AttachmentKeyboard_location">Məkan</string>
+  <!--AttachmentManager-->
+  <string name="AttachmentManager_cant_open_media_selection">Seçilmiş media üçün aplikasiyanı tapa bilmirəm.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal-ın normal işləməsi üçün şəkil, video və ya səsləri saxlamağa yaddaş lazımdır ki, bu da hal hazırda qadağa edilib. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, orada isə \"İcazələr\" bölməsinə keçərək \"Yaddaş\" hissəsini aktivləşdir.</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Əlaqə məlumatlarını yükləyə bilməsi üçün Signal-ın Əlaqələr bölməsinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağan edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr\" bölməsinə keçərək \"Əlaqələr\" hissəsini aktivləşdir.</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Məkanı yükləyə bilməsi üçün Signal-ın məkan seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağan edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr\" bölməsinə keçərək \"Məkan\" hissəsini aktivləşdir.</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Şəkil çəkə bilməsi üçün Signal-ın Kamera seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Kamera\" hissəsini aktivləşdir.</string>
+  <!--AttachmentUploadJob-->
+  <!--AudioSlidePlayer-->
+  <string name="AudioSlidePlayer_error_playing_audio">Səsin dinlənməsində xəta!</string>
+  <!--BlockedContactsActivity-->
+  <string name="BlockedContactsActivity_blocked_contacts">Əlaqələr kilidlidir</string>
+  <!--BucketedThreadMedia-->
+  <string name="BucketedThreadMedia_Today">Bu gün</string>
+  <string name="BucketedThreadMedia_Yesterday">Dünən</string>
+  <string name="BucketedThreadMedia_This_week">Bu həftə</string>
+  <string name="BucketedThreadMedia_This_month">Bu ay</string>
+  <string name="BucketedThreadMedia_Large">Böyük</string>
+  <string name="BucketedThreadMedia_Small">Kiçik</string>
+  <!--CallScreen-->
+  <string name="CallScreen_Incoming_call">Gələn zəng</string>
+  <!--CameraActivity-->
+  <string name="CameraActivity_image_save_failure">Şəkli yaddaşa yazmaq mümkün olmadı.</string>
+  <!--CameraXFragment-->
+  <!--CameraContacts-->
+  <string name="CameraContacts__menu_search">Axtar</string>
+  <!--ClearProfileActivity-->
+  <string name="ClearProfileActivity_remove">Sil</string>
+  <string name="ClearProfileActivity_remove_profile_photo">Profil şəklini silirsən?</string>
+  <!--CommunicationActions-->
+  <string name="CommunicationActions_no_browser_found">Veb brauzer tapılmadı.</string>
+  <string name="CommunicationActions_cancel">Ləğv et</string>
+  <string name="CommunicationActions_call">Zəng</string>
+  <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Tərkibində %1$s olan təhlükəsizlik rəqəmin dəyişdi. Kimsə sənin ünsiyyətinə müdaxilə etmək istəyir, yaxud da %2$sSignal-ı yenidən quraşdırdı.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Bu əlaqə ilə təhlükəsizlik rəqəmini təsdiqləmək arzun ola bilər.</string>
+  <string name="ConfirmIdentityDialog_accept">Qəbul et</string>
+  <!--ContactsCursorLoader-->
+  <string name="ContactsCursorLoader_recent_chats">Ən son söhbətlər</string>
+  <string name="ContactsCursorLoader_contacts">Əlaqələr</string>
+  <string name="ContactsCursorLoader_groups">Qruplar</string>
+  <!--ContactsDatabase-->
+  <string name="ContactsDatabase_message_s">%s Mesaj</string>
+  <string name="ContactsDatabase_signal_call_s">%s Signal Zəng</string>
+  <!--ContactNameEditActivity-->
+  <string name="ContactNameEditActivity_given_name">Ad</string>
+  <string name="ContactNameEditActivity_family_name">Soyad</string>
+  <string name="ContactNameEditActivity_prefix">Prefiks</string>
+  <string name="ContactNameEditActivity_suffix">Sufiks</string>
+  <string name="ContactNameEditActivity_middle_name">Ata adı</string>
+  <!--ContactShareEditActivity-->
+  <string name="ContactShareEditActivity_type_home">Ev</string>
+  <string name="ContactShareEditActivity_type_mobile">Mobil</string>
+  <string name="ContactShareEditActivity_type_work">İş</string>
+  <string name="ContactShareEditActivity_type_missing">Digər</string>
+  <string name="ContactShareEditActivity_invalid_contact">Seçilmiş əlaqədə səhv var</string>
+  <!--ConversationItem-->
+  <string name="ConversationItem_error_not_delivered">Göndərə bilmədik, detallar üçün kliklə</string>
+  <string name="ConversationItem_received_key_exchange_message_tap_to_process">Açar mübadiləsi mesajı almısan, yerinə yetirmək üçün kliklə.</string>
+  <string name="ConversationItem_group_action_left">%1$s qrupdan çıxdı.</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Göndərə bilmədik, zəmanətsiz alternativ variant üçün kliklə</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Şifrələnməmiş SMS üçün alternativ variant?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Şifrələnməmiş MMS üçün alternativ variant?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Bu mesaj şifrələnə <b>bilməyəcək</b>, çünki qəbul edən tərəf artıq Signal istifadəçisi deyil.\n\nZəmanətsiz mesaj göndərirsən?</string>
+  <string name="ConversationItem_unable_to_open_media">Bu medianı aça bilən aplikasiya tapa bilmirəm.</string>
+  <string name="ConversationItem_copied_text">Köçürülən %s</string>
+  <string name="ConversationItem_from_s">haradan %s</string>
+  <string name="ConversationItem_to_s">haraya %s</string>
+  <string name="ConversationItem_read_more">  Daha Ətraflı</string>
+  <string name="ConversationItem_download_more">  Daha Çox Yüklə</string>
+  <string name="ConversationItem_pending">  Gözlənilən</string>
+  <!--ConversationActivity-->
+  <string name="ConversationActivity_reset_secure_session_question">Təhlükəsiz sessiyanı yeniləyirsən?</string>
+  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Bu söhbətləşmədə şifrələmə problemlərin varsa, bu sənə kömək ola bilər. Mesajların saxlanacaq.</string>
+  <string name="ConversationActivity_reset">Yenilə</string>
+  <string name="ConversationActivity_add_attachment">Fayl əlavə et</string>
+  <string name="ConversationActivity_select_contact_info">Əlaqə məlumatını seç</string>
+  <string name="ConversationActivity_compose_message">Mesaj yaz</string>
+  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Üzr istəyirik, faylın yüklənməsində xəta baş verdi.</string>
+  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Qəbul edən tərəfin SMS və ya email ünvanı düz deyil!</string>
+  <string name="ConversationActivity_message_is_empty_exclamation">Mesaj boşdur!</string>
+  <string name="ConversationActivity_group_members">Qrup üzvləri</string>
+  <string name="ConversationActivity_invalid_recipient">Səhv qəbul edən!</string>
+  <string name="ConversationActivity_added_to_home_screen">Baş səhifəyə əlavə edildi</string>
+  <string name="ConversationActivity_calls_not_supported">Zənglər dəstəklənmir</string>
+  <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Sanki bu cihaz zəng xidmətini dəstəkləmir.</string>
+  <string name="ConversationActivity_leave_group">Qrupdan çıxırsan?</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Bu qrupdan çıxmaq istədiyinə əminsən?</string>
+  <string name="ConversationActivity_transport_insecure_sms">Zəmanətsiz SMS</string>
+  <string name="ConversationActivity_transport_insecure_mms">Zəmanətsiz MMS</string>
+  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Gəl %1$s Signal-a keçək</string>
+  <string name="ConversationActivity_error_leaving_group">Qrupdan çıxarkən xəta</string>
+  <string name="ConversationActivity_specify_recipient">Zəgmət olmasa əlaqəni seç</string>
+  <string name="ConversationActivity_unblock_this_contact_question">Bi əlaqənin kilidini açırsan?</string>
+  <string name="ConversationActivity_unblock_this_group_question">Bu qrupun kilidini açırsan?</string>
+  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Bu əlaqədən yenə mesaj və zəng qəbul edəcəksən.</string>
+  <string name="ConversationActivity_unblock_this_group_description">Mövcud üzvlər səni yenə də qrupa əlavə edə biləcəklər.</string>
+  <string name="ConversationActivity_unblock">Kilidi aç</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">Göndərdiyin mesajın növünə görə faylın ölçüsü limiti aşır.</string>
+  <string name="ConversationActivity_quick_camera_unavailable">Kameranı aça bilmirik</string>
+  <string name="ConversationActivity_unable_to_record_audio">Səs yaza bilmirik!</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Cihazında bu linkin öhdəsindən gələ biləcək aplikasiya yoxdur.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Səsli mesaj göndərə bilmək üçün Signal-a icazə ver mikrofonunu istifadə edə bilsin.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Səsli mesaj göndərə bilməsi üçün Signal-ın Mikrofon seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Mikrofon\" hissəsini aktivləşdir.</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">%s əlaqəsinə zəng edə bilmək üçün Signal-ın sənin mikrofon və kamerana giriş icazəsi olmalıdır.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">%s əlaqəsinə zəng edə bilməsi üçün Signal-ın Mikrofon və Kamera seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Mikrofon\" və \"Kamera\" hissələrini aktivləşdir.</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Şəkil və video çəkə bilməsi üçün Signal-a Kamera seçimlərinə giriş icazəsi ver.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Şəkil və ya Video çəkə bilməsi üçün Signal-ın Kamera seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Kamera\" hissəsini aktivləşdir.</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Şəkil və ya video çəkə bilməsi üçün Signal-ın Kamera seçimlərinə giriş icazəsi olmalıdır</string>
+  <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal sənin əsas SMS aplikasiyan olmadığı üçün o SMS/MMS mesajları göndərə bilmir. Bu göstəricini Android parametrlərində dəyişmək istəyirsən?</string>
+  <string name="ConversationActivity_yes">Bəli</string>
+  <string name="ConversationActivity_no">Xeyr</string>
+  <string name="ConversationActivity_search_position">%2$d-dən%1$d</string>
+  <string name="ConversationActivity_no_results">Nəticə yoxdur</string>
+  <string name="ConversationActivity_sticker_pack_installed">Sticker pkaketi yükləndi</string>
+  <!--ConversationAdapter-->
+  <plurals name="ConversationAdapter_n_unread_messages">
+    <item quantity="one">%d oxunmamış mesaj</item>
+    <item quantity="other">%d oxunmamış mesaj</item>
+  </plurals>
+  <!--ConversationFragment-->
+  <plurals name="ConversationFragment_delete_selected_messages">
+    <item quantity="one">Seçilmiş mesajı silirsən?</item>
+    <item quantity="other">Seçilmiş mesajları silirsən?</item>
+  </plurals>
+  <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+    <item quantity="one">Bu addım seçilmiş mesajı həmişəlik siləcəkdir.</item>
+    <item quantity="other">Bu addım seçilmiş %1$d mesajı həmişəlik siləcəkdir.</item>
+  </plurals>
+  <string name="ConversationFragment_save_to_sd_card">Yaddaşa yazırsan?</string>
+  <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+    <item quantity="one">Yaddaşa yazılacaq bu media fayla cihazındakı digər aplikasiyaların da giriş icazəsi olacaq.\n\nDavam edək?</item>
+    <item quantity="other">Yaddaşa yazılacaq %1$d media fayla cihazındakı digər aplikasiyaların da giriş icazəsi olacaq.\n\nDavam edək?</item>
+  </plurals>
+  <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+    <item quantity="one">Faylı yaddaşa yazarkən xəta baş verdi!</item>
+    <item quantity="other">Faylları yaddaşa yazarkən xəta baş verdi!</item>
+  </plurals>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Yaddaşa yazıla bilmədi!</string>
+  <plurals name="ConversationFragment_saving_n_attachments">
+    <item quantity="one">Faylın yaddaşa yazılması</item>
+    <item quantity="other">%1$d faylın yaddaşa yazılması</item>
+  </plurals>
+  <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+    <item quantity="one">Faylın yaddaşa yazılması…</item>
+    <item quantity="other">%1$dfaylın yaddaşa yazılması…</item>
+  </plurals>
+  <string name="ConversationFragment_pending">Gözlənilir…</string>
+  <string name="ConversationFragment_push">Məlumat (Signal)</string>
+  <string name="ConversationFragment_mms">MMS</string>
+  <string name="ConversationFragment_sms">SMS</string>
+  <string name="ConversationFragment_deleting">Silinir</string>
+  <string name="ConversationFragment_deleting_messages">Mesajların silinməsi…</string>
+  <string name="ConversationFragment_quoted_message_not_found">Mesajın əsli tapılmadı</string>
+  <string name="ConversationFragment_quoted_message_no_longer_available">Mesajın əsli artıq mövcud deyil</string>
+  <!--ConversationListActivity-->
+  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Cihazında heç bir işlək brauzer yoxdur.</string>
+  <!--ConversationListFragment-->
+  <string name="ConversationListFragment_no_results_found_for_s_">\'%s\' üçün nəticə tapılmadı</string>
+  <plurals name="ConversationListFragment_delete_selected_conversations">
+    <item quantity="one">Seçilmiş söhbətləşməni silirsən?</item>
+    <item quantity="other">Seçilmiş söhbətləşmələri silirsən?</item>
+  </plurals>
+  <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
+    <item quantity="one">Bu addım seçilmiş söhbətləşməni həmişəlik siləcək.</item>
+    <item quantity="other">Bu addım seçilmiş %1$d söhbətləşməni həmişəlik siləcək.</item>
+  </plurals>
+  <string name="ConversationListFragment_deleting">Silinir</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Seçilmiş söhbətləşmələrin silinməsi…</string>
+  <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="one">Söhbət arxivləşdirildi</item>
+    <item quantity="other">%d söhbət arxivləşdirildi</item>
+  </plurals>
+  <string name="ConversationListFragment_undo">GERİ</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="one">Söhbət gələnlər qutusuna köçürüldü</item>
+    <item quantity="other">%d söhbət gələnlər qutusuna köçürüldü</item>
+  </plurals>
+  <!--ConversationListItem-->
+  <string name="ConversationListItem_key_exchange_message">Açar mübadilə mesajı</string>
+  <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">Arxivləşdirilmiş söhbətlər (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Təsdiq edildi</string>
+  <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Profil</string>
+  <string name="CreateProfileActivity_error_setting_profile_photo">Profil şəklinin təyini zamanı xəta</string>
+  <string name="CreateProfileActivity_problem_setting_profile">Profilin quraşdırılmasında problem</string>
+  <string name="CreateProfileActivity_profile_photo">Profil şəkli</string>
+  <string name="CreateProfileActivity_set_up_your_profile">Profilini quraşdır</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal profilləri son məqama qədər şifrəlidir və Signal-ın bu məlumatlara girişi mümkün deyil.</string>
+  <!--CustomDefaultPreference-->
+  <string name="CustomDefaultPreference_using_custom">Xüsusinin istifadəsi: %s</string>
+  <string name="CustomDefaultPreference_using_default">Mövcud olanın istifadəsi: %s</string>
+  <string name="CustomDefaultPreference_none">Heç biri</string>
+  <!--DateUtils-->
+  <string name="DateUtils_just_now">İndi</string>
+  <string name="DateUtils_minutes_ago">%dm</string>
+  <string name="DateUtils_today">Bu gün</string>
+  <string name="DateUtils_yesterday">Dünən</string>
+  <!--DeliveryStatus-->
+  <string name="DeliveryStatus_sending">Göndərilir</string>
+  <string name="DeliveryStatus_sent">Göndərildi</string>
+  <string name="DeliveryStatus_delivered">Çatdırıldı</string>
+  <string name="DeliveryStatus_read">Oxundu</string>
+  <!--DeviceListActivity-->
+  <string name="DeviceListActivity_unlink_s">\'%s\' cihazının bağlılığını ləğv et?</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Cihazın bağlılığını ləğv etsən, o daha mesaj göndərə və qəbul edə bilməyəcək.</string>
+  <string name="DeviceListActivity_network_connection_failed">Şəbəkə ilə əlaqə alınmadı</string>
+  <string name="DeviceListActivity_try_again">Yenidən cəhd et</string>
+  <string name="DeviceListActivity_unlinking_device">Cihazın bağlılığının ləğvi…</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">Cihazın bağlılığının ləğvi</string>
+  <string name="DeviceListActivity_network_failed">Şəbəkəyə qoşulma alınmadı!</string>
+  <!--DeviceListItem-->
+  <string name="DeviceListItem_unnamed_device">Adsız cihaz</string>
+  <string name="DeviceListItem_linked_s">%s ilə bağlıantı alındı</string>
+  <string name="DeviceListItem_last_active_s">Son aktiv olan - %s</string>
+  <string name="DeviceListItem_today">Bu gün</string>
+  <!--DocumentView-->
+  <!--DozeReminder-->
+  <string name="DozeReminder_optimize_for_missing_play_services">Çatışmayan Play Servisləri üçün optimallaşdır</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Bu cihaz Play Servisi dəstəkləmir. Qeyri aktiv vaxtlarda Signal-ın mesajları bərpa edə bilməsinin qarşısını almaq üçün sistem akkumulyator optimallaşdırılmasını deaktivə et.</string>
+  <!--ShareActivity-->
+  <string name="ShareActivity_share_with">Bölüş</string>
+  <!--ExperienceUpgradeActivity-->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Signal-a Xoş Gəldin.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure və RedPhone indi artiq birləşərək daha yararlı bir messencer halına gəlib: Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Signal-a Xoş Gəldin!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure indi Signal-dır.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">Text secure və RedPhone indi bir aplikasiyadır: Signal. Kəşf etmək üçün kliklə.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Təhlükəsiz video zəngləri salamlayın.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal indi təhlükəsiz video zəngləri dəstəkləyir. Signal zəng xidmətini həmişəki qaydada aç, video düyməsini kliklə və dostlarına gülümsə.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal indi təhlükəsiz video zəngləri dəstəkləyir.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal indi təhlükəsiz video zəngləri dəstəkləyir. Kəşf etmək üçün kliklə.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Ətraflı baxışa hazırsan?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">İndi Signal dostlarınla profil şəklini və adını paylaşa bilərsən.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profilləri buradadır</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Yazışma indikatorları ilə tanışlıq.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">İndi istəsən mesajlar yazılan zaman onu izləyə, yaxud bu məlumatı bölüşə bilərsən.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Bu funksionallığın elə indi aktivləşdirmək istəyirsən?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_typing_ui_title">Yazışma indikatorları buradadır</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_enable_typing_indicators">Yazışma indikatorlarını aktivləşdir</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Yazışma indikatorlarını aç</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Yox, təşəkkür edirəm</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_introducing_link_previews">Linkin ilkin baxışı ilə tanışlıq.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Bir çox ən populyar veb saytların ilkin baxışı funksiyası indi dəstəklənir.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Signal parametrlərində bu seçimi istədiyin zaman aktiv və ya deaktiv edə bilərsən (Məxfilik &gt; Linkin ilkin baxışını göndər)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Anladım</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Sticker olan yerdə sözə nə ehtiyac var? Klavyaturada bu işarəni sıxın:</string> -->
+  <!--GcmBroadcastReceiver-->
+  <string name="GcmBroadcastReceiver_retrieving_a_message">Mesajın bərpası…</string>
+  <!--GcmRefreshJob-->
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Həmişəlik Signal ünsiyyət xətası!</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Google Play Servisləri ilə qeydiyyatdan keçə bilmədi. Signal zəngləri və mesajları deaktivə edildi, lütfən Parametrlər &gt; Daha Geniş seçimlərində yenidən qeydiyyatdan keçməyə cəhd et.</string>
+  <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">GIF-in tam ölçüdə bərpası prosesində xəta</string>
+  <!--GiphyFragmentPageAdapter-->
+  <string name="GiphyFragmentPagerAdapter_gifs">GIFlər</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">Elanlar</string>
+  <!--GroupCreateActivity-->
+  <string name="GroupCreateActivity_actionbar_title">Yeni qrup</string>
+  <string name="GroupCreateActivity_actionbar_edit_title">Qrupa düzəliş et</string>
+  <string name="GroupCreateActivity_group_name_hint">Qrupun adı</string>
+  <string name="GroupCreateActivity_actionbar_mms_title">Yeni MMS qrupu</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Sən Signal qruplarını dəstəkləməyən əlaqəni seçdiyin üçün bu MMS qrupu olacaqdır.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Sən Signal mesajları və zəngləri üçün qeydiyyatdan keçmədiyin üçün Signal qruplari deaktiv edildi. Lütfən Parametrlər &gt; Daha Geniş seçimlərində qeydiyyatdan keçməyə cəhd et.</string>
+  <string name="GroupCreateActivity_contacts_no_members">Qrupunda ən azı bir nəfər olmalıdır!</string>
+  <string name="GroupCreateActivity_contacts_invalid_number">Qrupundakı üzvlərdən birinin nömrəsi tam oxuna bilmir. Lütfən, xətanı aradan qaldır, yaxud da onu qrupdan xaric et və yenidən sına.</string>
+  <string name="GroupCreateActivity_avatar_content_description">Qrupun şəkli</string>
+  <string name="GroupCreateActivity_menu_apply_button">Tətbiq et</string>
+  <string name="GroupCreateActivity_creating_group">%1$s hazırlanır…</string>
+  <string name="GroupCreateActivity_updating_group">%1$s yenilənir…</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s əlavə edilə bilmədi, çünki onlar Signal istifadəçisi deyil.</string>
+  <string name="GroupCreateActivity_loading_group_details">Qrup detalları yüklənir…</string>
+  <string name="GroupCreateActivity_youre_already_in_the_group">Sən artıq qrupdasan.</string>
+  <!--GroupShareProfileView-->
+  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Profil adını və şəklini qrupda paylaşmaq istəyirsən?</string>
+  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Hazırkı və gələcək qrup üzvlərinə profil adını və şəklini nümayiş etdirməyə razısan?</string>
+  <string name="GroupShareProfileView_make_visible">Nümayiş etdir</string>
+  <!--GroupMembersDialog-->
+  <!-- Removed by excludeNonTranslatables <string name="GroupMembersDialog_me">Mən</string> -->
+  <!--CropImageActivity-->
+  <string name="CropImageActivity_group_avatar">Qrupun şəkli</string>
+  <string name="CropImageActivity_profile_avatar">Şəkil</string>
+  <!--InputPanel-->
+  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Səsli mesaj yazmaq üçün düyməni sıx və saxla, göndərmək istəyəndə barmağını ekrandan ayır</string>
+  <!--InviteActivity-->
+  <string name="InviteActivity_share">Paylaş</string>
+  <string name="InviteActivity_choose_contacts">Əlaqələri seç</string>
+  <string name="InviteActivity_cancel">Ləğv et</string>
+  <string name="InviteActivity_sending">Göndərilir…</string>
+  <string name="InviteActivity_heart_content_description">Ürək</string>
+  <string name="InviteActivity_invitations_sent">Dəvətnamələr göndərildi!</string>
+  <string name="InviteActivity_invite_to_signal">Signal-a dəvət et</string>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="one">%d DOSTUNA SMS GÖNDƏR</item>
+    <item quantity="other">%d DOSTUNA SMS GÖNDƏR</item>
+  </plurals>
+  <plurals name="InviteActivity_send_sms_invites">
+    <item quantity="one">%d SMS dəvətnaməsi göndərirsən?</item>
+    <item quantity="other">%d SMS dəvətnaməsi göndərirsən?</item>
+  </plurals>
+  <string name="InviteActivity_lets_switch_to_signal">Gəl Signal-a keçid edək: %1$s</string>
+  <string name="InviteActivity_no_app_to_share_to">Elə görünür ki, paylaşa biləcəyin aplikasiya yoxdur.</string>
+  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Dostlar dostlara şifrələnməmiş yazışmaya icazə vermir.</string>
+  <!--Job-->
+  <string name="Job_working_in_the_background">Pərdə arxası iş gedir…</string>
+  <!--MessageDetailsRecipient-->
+  <string name="MessageDetailsRecipient_failed_to_send">Göndərə bilmədik</string>
+  <string name="MessageDetailsRecipient_new_safety_number">Yeni təhlükəsizlik rəqəmi</string>
+  <!--LongMessageActivity-->
+  <string name="LongMessageActivity_unable_to_find_message">Mesajı tapa bilmədik</string>
+  <string name="LongMessageActivity_message_from_s">%1$s tərəfindən mesaj</string>
+  <string name="LongMessageActivity_your_message">Sənin mesajın</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_background_connection_enabled">Pərdə arxası əlaqə aktivləşdirildi</string>
+  <!--MmsDownloader-->
+  <string name="MmsDownloader_error_reading_mms_settings">Telsiz provayder MMS parametrlərinin oxunmasında xəta</string>
+  <!--MediaOverviewActivity-->
+  <string name="MediaOverviewActivity_Media">Media</string>
+  <string name="MediaOverviewActivity_Audio">Səs</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Silinir</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Mesajların silinməsi…</string>
+  <string name="MediaOverviewActivity_Select_all">Hamısını seç</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Faylların toplanması…</string>
+  <string name="MediaOverviewActivity_file">Fayl</string>
+  <string name="MediaOverviewActivity_audio">Səs</string>
+  <string name="MediaOverviewActivity_video">Video</string>
+  <string name="MediaOverviewActivity_image">Şəkil</string>
+  <!--Megaphones-->
+  <!--NotificationBarManager-->
+  <string name="NotificationBarManager_signal_call_in_progress">Signal zəngi baş verməkdədir</string>
+  <string name="NotificationBarManager__establishing_signal_call">Signal zəngi hazırlanır</string>
+  <string name="NotificationBarManager__incoming_signal_call">Qəbul edilən Signal zəngi</string>
+  <string name="NotificationBarManager__deny_call">Zəngi rədd et</string>
+  <string name="NotificationBarManager__answer_call">Zəngə cavab ver</string>
+  <string name="NotificationBarManager__end_call">Zəngi bitir</string>
+  <string name="NotificationBarManager__cancel_call">Zəngi ləğv et</string>
+  <!--NotificationMmsMessageRecord-->
+  <string name="NotificationMmsMessageRecord_multimedia_message">Multimedia mesajı</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">MMS mesajın yüklənməsi</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">MMS mesajın yüklənməsində xəta, yenidən sınamaq üçün kliklə</string>
+  <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">%s istifadəçisinə göndər</string>
+  <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">Seçmək üçün kliklə</string>
+  <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">Başlıq əlavə et…</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Ölçüsü limiti aşdığı üçün fayl silindi</string>
+  <string name="MediaSendActivity_camera_unavailable">Kamera işə salına bimir</string>
+  <string name="MediaSendActivity_message_to_s">%s istifadəçisinə mesaj</string>
+  <string name="MediaSendActivity_message">Mesaj</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Nümayiş edə bilməsi üçün Signal-ın sənin əlaqələrinə giriş icazəsi olmalıdır.</string>
+  <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+    <item quantity="one">%d fayldan artığını paylaşa bilməzsən.</item>
+    <item quantity="other">%d fayldan artığını paylaşa bilməzsən.</item>
+  </plurals>
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">Bütün media</string>
+  <!--MessageRecord-->
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Artıq dəstəklənməyən Signal-ın əvvəlki versiyası ilə şifrələnmiş mesaj alındı. Zəhmət olmasa göndərən şəxsdən xahiş et ki, proqramı ən son versiyasına yeniləsin və yenidən göndərsin.</string>
+  <string name="MessageRecord_left_group">Sən qrupdan çıxdın.</string>
+  <string name="MessageRecord_you_updated_group">Qrupu yenilədin.</string>
+  <string name="MessageRecord_you_called">Sən zəng etmisən</string>
+  <string name="MessageRecord_called_you">Sənə zəng edən şəxs</string>
+  <string name="MessageRecord_missed_call">Cavab verilməmiş zəng</string>
+  <string name="MessageRecord_s_updated_group">%s qrupu yenilədi.</string>
+  <string name="MessageRecord_s_called_you">%s sənə zəng edib</string>
+  <string name="MessageRecord_called_s">%s istifadəçisinə zəng etmisən</string>
+  <string name="MessageRecord_missed_call_from">%s tərəfindən cavab verilməmiş zəng</string>
+  <string name="MessageRecord_s_joined_signal">%s artıq Signal-dadır!</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">Yox olan mesajları deaktivə etdin.</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s yox olan mesajları deaktivə etdi.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Yox olan mesajların taymerini %1$s təyin etmisən.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s yox olan mesajların taymerini %2$s təyin etmişdir.</string>
+  <string name="MessageRecord_your_safety_number_with_s_has_changed">%s ilə işarələnən təhlükəsizlik rəqəmin dəyişilmişdir.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">%s ilə işarələdiyin təhlükəsizlik rəqəmin təsdiq edildi</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">%s ilə işarələdiyin təhlükəsizlik rəqəmin başqa bir cihazda təsdiqləndi.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s ilə işarələdiyin təhlükəsizlik rəqəmin təsdiqlənmədi</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s ilə işarələdiyin təhlükəsizlik rəqəmin başqa bir cihazda təsdiqlənməmiş kimi qeyd edildi.</string>
+  <!--PassphraseChangeActivity-->
+  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Şifrə ifadələri uyğun gəlmədi!</string>
+  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Səhv köhnə şifrə ifadəsi!</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Yeni şifrə ifadəni daxil et!</string>
+  <!--DeviceProvisioningActivity-->
+  <string name="DeviceProvisioningActivity_link_this_device">Bu cihazla bağlantı qurulsun?</string>
+  <string name="DeviceProvisioningActivity_cancel">LƏĞV ET</string>
+  <string name="DeviceProvisioningActivity_continue">DAVAM ET</string>
+  <string name="DeviceProvisioningActivity_content_intro">Onun icazəsi olacaq ki,</string>
+  <string name="DeviceProvisioningActivity_content_bullets">
+        • Bütün mesajlarını oxusun
+        \n• Sənin adından mesaj göndərsin
+    </string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Cihazla bağlantının qurulması</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Yeni cihazla bağlantının qurulması…</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Cihaz təsdiq edildi!</string>
+  <string name="DeviceProvisioningActivity_content_progress_no_device">Cihaz tapılmadı.</string>
+  <string name="DeviceProvisioningActivity_content_progress_network_error">Şəbəkə xətası.</string>
+  <string name="DeviceProvisioningActivity_content_progress_key_error">Xətalı QR şifrə.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Üzr istəyirik, lakin sən bir neçə cihazla bağlantı qurmusan, bəzilərini silməyə çalış</string>
+  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Üzr istəyirik, bu cihazla bağlantı qurmaq üçün uyğun QR şifrə deyil.</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Signal cihazı ilə bağlantı qurulsun?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Belə görünür ki, 3-cü tərəfin skanerini istifadə edərək Signal-a cihaz bağlamaq istəyirsən. Təhlükəsizliyin üçün şifrəni Signal daxilində skan et.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">QR şifrəni skan edə bilməsi üçün Signal-ın Kamera seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Kamera\" hissəsini aktivləşdir.</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Kameraya giriş icazəsi olmadan QR şifrə skan olunmur</string>
+  <!--ExpirationDialog-->
+  <string name="ExpirationDialog_disappearing_messages">Yox olan mesajlar</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">Sənin mesajlarının vaxtı ötməyəcək.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Bu söhbətləşmədəki göndərilən və qəbul edilən mesajlara baxıldıqdan %s sonra silinəcəkdir.</string>
+  <!--PassphrasePromptActivity-->
+  <string name="PassphrasePromptActivity_enter_passphrase">Şifrə ifadəsini daxil et</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Signal ikonası</string>
+  <string name="PassphrasePromptActivity_ok_button_content_description">Şifrə ifadəsini təqdim et</string>
+  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Səhv şifrə ifadəsi!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Signal-ın Kilidini Aç</string>
+  <!--PlacePickerActivity-->
+  <!--PlayServicesProblemFragment-->
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Quraşdırdığın Google Play Servis versiyası düzgün işləmir. Zəhmət olmasa Google Play Servisini yenidən quraşdır və sına.</string>
+  <!--RatingManager-->
+  <string name="RatingManager_rate_this_app">Bu aplikasıyanı qiymətləndir</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Aplikasiyanı istifadə etməkdən zövq alırsansa, lütfən bizi qiymətləndirmək üçün bir neçə saniyəni istifadə et.</string>
+  <string name="RatingManager_rate_now">İndi qiymətləndir!</string>
+  <string name="RatingManager_no_thanks">Yox, təşəkkür edirəm</string>
+  <string name="RatingManager_later">Daha sonra</string>
+  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Bıy, belə görünür ki, cihazında Play Store aplikasıyası quraşdırılmamışdır.</string>
+  <!--ReactionsBottomSheetDialogFragment-->
+  <!--ReactionsConversationView-->
+  <!--RecipientPreferencesActivity-->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_block_this_contact_question">Bu əlaqəni kilidləyirsən?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Bu əlaqədən mesaj və zəng qəbul etməyəcəkdən.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_block_and_leave_group">Qrupu kilidləyib oradan çıxmaq istəyirsən?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_block_group">Qrupu bloklayırsan?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_block_and_leave_group_description">Bu qrupdan bir daha mesaj və yeniliklər almayacaqsan.</string> -->
+  <string name="RecipientPreferenceActivity_block">Kilidlə</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_unblock_this_contact_question">Bi əlaqənin kilidini açırsan?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Bu əlaqədən yenə mesaj və zəng qəbul edəcəksən.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_unblock_this_group_question">Bu qrupun kilidini açırsan?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_unblock_this_group_description">Mövcud üzvlər səni yenə də qrupa əlavə edə biləcəklər.</string> -->
+  <string name="RecipientPreferenceActivity_error_leaving_group">Qrupdan çıxarkən xəta</string>
+  <string name="RecipientPreferenceActivity_unblock">Kilidi aç</string>
+  <string name="RecipientPreferenceActivity_enabled">Aktiv et</string>
+  <string name="RecipientPreferenceActivity_disabled">Deaktiv et</string>
+  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Mesaj göndəriləndən, yaxud da qəbul ediləndən sonra mümkündür.</string>
+  <!--RecipientProvider-->
+  <string name="RecipientProvider_unnamed_group">Adsız qrup</string>
+  <!--RedPhone-->
+  <string name="RedPhone_answering">Cavab verilir</string>
+  <string name="RedPhone_ending_call">Zəng bitirilir</string>
+  <string name="RedPhone_dialing">Zəng üçün rəqəmlər yazılır</string>
+  <string name="RedPhone_ringing">Zəng edilir</string>
+  <string name="RedPhone_busy">Məşğul</string>
+  <string name="RedPhone_connected">Əlaqə yaradıldı</string>
+  <string name="RedPhone_recipient_unavailable">Qarşı tərəf cavab vermir</string>
+  <string name="RedPhone_network_failed">Şəbəkəyə qoşulma alınmadı!</string>
+  <string name="RedPhone_number_not_registered">Nömrə qeydiyyatdan keçirilməyib!</string>
+  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Daxil etdiyin nömrə təhlükəsiz səslənməni dəstəkləmir!</string>
+  <string name="RedPhone_got_it">Anladım</string>
+  <!--RegistrationActivity-->
+  <string name="RegistrationActivity_select_your_country">Ölkəni seç</string>
+  <string name="RegistrationActivity_you_must_specify_your_country_code">Daxil etməli olduğun məlumat
+        ölkə kodu
+    </string>
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">Daxil etməli olduğun məlumat
+        telefon nömrən
+    </string>
+  <string name="RegistrationActivity_invalid_number">Səhv nömrə</string>
+  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Daxil etdiyin
+        nömrə (%s) səhvdir.
+    </string>
+  <string name="RegistrationActivity_missing_google_play_services">Google Play Xidməti Çatışmır</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Bu cihazda Google Play Xidməti yoxdur. Sən yenə də Signal-ı istifadə edə bilərsən, amma o daha az etibarlı olacaq və aşağı performans nümayiş etdirəcək.\n\nƏgər sən qabaqcıl istifadəçi deyilsənsə, ikinci əl Android ROM istifadə etmirsənsə, yaxud da bu xətanı gördüyünü düşünürsənsə, lütfən bizi məlumatlandırmaq üçün support@signal.org ünvanına yaz. </string>
+  <string name="RegistrationActivity_i_understand">Anlayıram</string>
+  <string name="RegistrationActivity_play_services_error">Play Xidmət Xətası</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Xidməti yenilənir və ya müvəqqəti işləmir: Zəhmət olmasa bir daha sına.</string>
+  <string name="RegistrationActivity_terms_and_privacy">Şərtlər &amp; Məxfilik Polisi</string>
+  <string name="RegistrationActivity_no_browser">Bu linki aça bilmirik. Veb brauzer tapılmadı.</string>
+  <string name="RegistrationActivity_more_information">Daha ətraflı məlumat</string>
+  <string name="RegistrationActivity_less_information">Daha az məlumat</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Dostlarınla əlaqəyə girmək, mesajlaşmaq və təhlükəsiz zənglər edə bilməsi üçün Signal sənin əlaqələrinə və mediana giriş icazəsi əldə etməlidir.</string>
+  <string name="RegistrationActivity_unable_to_connect_to_service">Xidmətlə əlaqə yarada bilmədik. Zəhmət olmasa şəbəkə əlaqəni yoxla və bir daha sına.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Signal-ın sənin SMS mesajların giriş icazəsi olsa, o avtomatik olaraq sənin təsdiq şifrəni oxuyacaq və Signal sənin telefon nömrəni asanlıqla təsdiq edəcək.</string>
+  <plurals name="RegistrationActivity_debug_log_hint">
+    <item quantity="one">Xətanın aradan qaldırılması üçün sorğunu daxil etmək üçün %d cəmi addım qaldı.</item>
+    <item quantity="other">Xətanın aradan qaldırılması üçün sorğunu daxil etmək üçün cəmi %d addım qaldı.</item>
+  </plurals>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Bis təsdiqləməliyik ki, sən insansan.</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">CAPTCHA təsdiq edilə bilmədi</string>
+  <string name="RegistrationActivity_next">Növbəti</string>
+  <string name="RegistrationActivity_continue">Davam et</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Məxfiliyi özündə saxla.\nHər mesajda özün ol.</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Başlamaq üçün telefon nömrəni daxil et</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">Təsdiq şifrəsi alacaqsan. Bu sənə müəyyən məbləğə başa gələ bilər.</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%s nömrəsinə göndərdiyimiz şifrəni daxil et</string>
+  <string name="RegistrationActivity_call">Zəng et</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_media">Media</string>
+  <!--ScribbleActivity-->
+  <string name="ScribbleActivity_save_failure">Şəkilə olan dəyişiklikləri yadda saxlaya bilmədik</string>
+  <!--Search-->
+  <string name="SearchFragment_no_results">\'%s\' üçün nəticə tapılmadı</string>
+  <string name="SearchFragment_header_conversations">Söhbətlər</string>
+  <string name="SearchFragment_header_contacts">Kontaktlar</string>
+  <string name="SearchFragment_header_messages">Mesajlar</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_add_to_contacts">Əlaqələrə əlavə et</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Signala dəvət et</string>
+  <string name="SharedContactDetailsActivity_signal_message">Signal Mesajı</string>
+  <string name="SharedContactDetailsActivity_signal_call">Signal Zəngi</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_add_to_contacts">Əlaqələrə əlavə et</string>
+  <string name="SharedContactView_invite_to_signal">Signala dəvət et</string>
+  <string name="SharedContactView_message">Signal Mesajı</string>
+  <!--SignalPinReminders-->
+  <!--Slide-->
+  <string name="Slide_image">Şəkil</string>
+  <string name="Slide_sticker">Sticker</string>
+  <string name="Slide_audio">Səs</string>
+  <string name="Slide_video">Video</string>
+  <!--SmsMessageRecord-->
+  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Zədələnmiş açar əladə edildi
+        mesakı dəyiş!
+    </string>
+  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
+        Xətalı protokol versiyası üçün açar dəyişdirilməsi mesajı əldə edildi.
+    </string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Yeni təhlükəsizlik rəqəmi olan mesaj əldə edildi. Başlamaq və oxumaq üçün kliklə.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Təhlükəsiz sessiyanı yenidən başlatdın.</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">%s təhlükəsiz sessiyanı yenidən başlatdı.</string>
+  <string name="SmsMessageRecord_duplicate_message">Mesajın surətini çıxar.</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Elanlar</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Yüklənən Stickerlər</string>
+  <string name="StickerManagementAdapter_stickers_you_received">Sizə Gələn Stickerlər</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Signalın Arist Seriaları</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">Yüklü Sticket yoxdur</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Gələn mesajdan Sticker bubrada görünəcək</string>
+  <string name="StickerManagementAdapter_unknown">Naməlum</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">Naməlum</string>
+  <string name="StickerPackPreviewActivity_install">Yüklə</string>
+  <string name="StickerPackPreviewActivity_remove">Sil</string>
+  <string name="StickerPackPreviewActivity_stickers">Elanlar</string>
+  <!--ThreadRecord-->
+  <string name="ThreadRecord_group_updated">Qrup yeniləndi</string>
+  <string name="ThreadRecord_left_the_group">Qrupdan çıxdı</string>
+  <string name="ThreadRecord_secure_session_reset">Təhlükəsiz sessiyanın yenidən başladılması.</string>
+  <string name="ThreadRecord_draft">Qaralama:</string>
+  <string name="ThreadRecord_called">Sən zəng etmisən</string>
+  <string name="ThreadRecord_called_you">Zənə zəng edib</string>
+  <string name="ThreadRecord_missed_call">Cavab verilməmiş zəng</string>
+  <string name="ThreadRecord_media_message">Media mesajı</string>
+  <string name="ThreadRecord_sticker">Sticker</string>
+  <string name="ThreadRecord_s_is_on_signal">%s artıq Signal-dadır!</string>
+  <string name="ThreadRecord_disappearing_messages_disabled">Yox olan mesajlar deaktiv edildi</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Yox olan mesajlar üçün zaman intervalı %s tıəyin edildi</string>
+  <string name="ThreadRecord_safety_number_changed">Təhlükəsizlik rəqəmi dəyişdirildi</string>
+  <string name="ThreadRecord_your_safety_number_with_s_has_changed">%s ilə olan təhlükəsizlik rəqəmin dəyişilmişdir.</string>
+  <string name="ThreadRecord_you_marked_verified">Sən təsdiqlənmiş kimi işarələnmisən</string>
+  <string name="ThreadRecord_you_marked_unverified">Sən təsdiqlənməmiş kimi işarələnmisən.</string>
+  <!--UpdateApkReadyListener-->
+  <string name="UpdateApkReadyListener_Signal_update">Signal yenilənməsi</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal-ın yeni versiyası hazırdır, yeniləmək üçün kliklə</string>
+  <!--UnknownSenderView-->
+  <string name="UnknownSenderView_block_s">%səlaqəsini kilidləyirsən?</string>
+  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you"> Kilidlənmiş əlaqələr daha sənə mesaj göndərə və ya zəng edə bilməyəcək.</string>
+  <string name="UnknownSenderView_block">Kilidlə</string>
+  <string name="UnknownSenderView_share_profile_with_s">Profili %s ilə bölüşürsən?</string>
+  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Profil məlumatlarının ən asan paylaşım üsulu o şəxsin əlaqələrinə əlavə edilməsidir. Bunu etmək istəmirsənsə, profil məlumatlarını bu üsulla da paylaşa bilərsən.</string>
+  <string name="UnknownSenderView_share_profile">Profilini paylaş</string>
+  <!--UntrustedSendDialog-->
+  <string name="UntrustedSendDialog_send_message">Mesaj göndərirsən?</string>
+  <string name="UntrustedSendDialog_send">Göndər</string>
+  <!--UnverifiedSendDialog-->
+  <string name="UnverifiedSendDialog_send_message">Mesaj göndərirsən?</string>
+  <string name="UnverifiedSendDialog_send">Göndər</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_submit">Təqdim et</string>
+  <string name="UsernameEditFragment_delete">Sil</string>
+  <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Sənin əlaqən Signal-ın köhnə versiyasını istifadə edir. Sənin təhlükəsizlik rəqəmini təsdiq etməmişdən əvvəl proqramı yeniləməsini xahiş et.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Sənin əlaqən uyğun olmayan QR şifrə ilə Signal-ın yeni versiyasını istifadə edir. Müqayisə etmək üçün zəhmət olmasa yenilə.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Skan edilmiş QR şifrə təhlükəsizlik rəqəminin təsdiq şifrəsini düzgün formatlamadı. Zəhmət olmasa yenidən skan et.</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Təhlükəsizlik rəqəmini bu vasitə ilə paylaş…</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Bizim Signal təhlükəsizlik rəqəmimiz:</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Elə görünür ki, paylaşa biləcəyin aplikasiya yoxdur.</string>
+  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Mübadilə buferində müqayisə etmək üçün təhlükəsizlik rəqəmi tapılmadı</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">QR şifrəni skan edə bilməsi üçün Signal-ın Kamera seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Kamera\" hissəsini aktivləşdir.</string>
+  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Kameraya giriş icazəsi olmadan QR şifrəni skan etmək mümkün deyil</string>
+  <!--ViewOnceMessageActivity-->
+  <!--MessageDisplayHelper-->
+  <string name="MessageDisplayHelper_bad_encrypted_message">Pis şifrələnmiş mesaj</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mesaj mövcud olmayan sessiya üçün şifrələnib</string>
+  <!--MmsMessageRecord-->
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Pis şifrələnmiş MMS mesaj</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS mesaj mövcud olmayan sessiya üçün şifrələnib</string>
+  <!--MuteDialog-->
+  <string name="MuteDialog_mute_notifications">Xəbərdarlıqları səssiz et</string>
+  <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Veb brauzer quraşdırılmayıb!</string>
+  <!--ApplicationMigrationService-->
+  <string name="ApplicationMigrationService_import_in_progress">Daxil etmə baş verməkdədir</string>
+  <string name="ApplicationMigrationService_importing_text_messages">Mesaj mətnlərinin idxalı</string>
+  <string name="ApplicationMigrationService_import_complete">Daxil etmə tamamlandı</string>
+  <string name="ApplicationMigrationService_system_database_import_is_complete">Sistem məlumat bazasının daxil edilməsi tamamlandı.</string>
+  <!--KeyCachingService-->
+  <string name="KeyCachingService_signal_passphrase_cached">Açmaq üçün toxun.</string>
+  <string name="KeyCachingService_signal_passphrase_cached_with_lock">Açmaq üçün toxun, yaxud bağlamaq üçün kilidə toxun.</string>
+  <string name="KeyCachingService_passphrase_cached">Signal-ın kilidi açıldı</string>
+  <string name="KeyCachingService_lock">Signal-ı kilidlə</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Sən</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Dəstəklənməyən media növü</string>
+  <string name="MediaPreviewActivity_draft">Qaralama</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Xarici yaddaşa məlumat yaza bilməsi üçün Signal-ın Yaddaş seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Yaddaş\" hissəsini aktivləşdir.</string>
+  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">İcazəsiz xarici yaddaşa məlumat yaza bilmərik</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Mesajı silirsən?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Bu addım mesajı həmişəlik siləcək.</string>
+  <!--MessageNotifier-->
+  <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d söhbətləşmədə %1$d mesaj</string>
+  <string name="MessageNotifier_most_recent_from_s">Ən son göndərən: %1$s</string>
+  <string name="MessageNotifier_locked_message">Kilidlənmiş mesaj</string>
+  <string name="MessageNotifier_media_message_with_text">Media mesajı: %s</string>
+  <string name="MessageNotifier_message_delivery_failed">Mesajın çatdırılmasında problem var.</string>
+  <string name="MessageNotifier_failed_to_deliver_message">Mesajı çatdıra bilmədik.</string>
+  <string name="MessageNotifier_error_delivering_message">Mesajın çatdırılmasında xəta.</string>
+  <string name="MessageNotifier_mark_all_as_read">Hamısını oxunmuş kimi nişanla</string>
+  <string name="MessageNotifier_mark_read">Oxunmuş kimi nişanla</string>
+  <string name="MessageNotifier_media_message">Media mesajı</string>
+  <string name="MessageNotifier_sticker">Sticker</string>
+  <string name="MessageNotifier_reply">Cavab ver</string>
+  <string name="MessageNotifier_signal_message">Signal Mesajı</string>
+  <string name="MessageNotifier_unsecured_sms">Mühafizə edilməyən SMS</string>
+  <string name="MessageNotifier_contact_message">%1$s %2$s</string>
+  <string name="MessageNotifier_unknown_contact_message">Əlaqə</string>
+  <!--Notification Channels-->
+  <string name="NotificationChannel_messages">Başlanğıc</string>
+  <string name="NotificationChannel_calls">Zənglər</string>
+  <string name="NotificationChannel_failures">Xətalar</string>
+  <string name="NotificationChannel_backups">Ehtiyat nüsxələr</string>
+  <string name="NotificationChannel_locked_status">Kilid statusu</string>
+  <string name="NotificationChannel_app_updates">Aplikasiya yenilikləri</string>
+  <string name="NotificationChannel_other">Digər</string>
+  <string name="NotificationChannel_group_messages">Mesajlar</string>
+  <string name="NotificationChannel_missing_display_name">Naməlum</string>
+  <!--ProfileEditNameFragment-->
+  <!--QuickResponseService-->
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal kilidli olarkən sürətli cavamlar mümkün deyil!</string>
+  <string name="QuickResponseService_problem_sending_message">Mesajın göndərilməsində problem var!</string>
+  <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_saved_to">%s qovluğunda yadda saxlandı</string>
+  <string name="SaveAttachmentTask_saved">Saxlandı</string>
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">Axtar</string>
+  <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Söhbət, əlaqə və mesajları axtar</string>
+  <!--ShortcutLauncherActivity-->
+  <string name="ShortcutLauncherActivity_invalid_shortcut">Xətalı qısa yol</string>
+  <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Yeni ismarış</string>
+  <!--ThumbnailView-->
+  <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="one">%d Bənd</item>
+    <item quantity="other">%d Bənd</item>
+  </plurals>
+  <!--UnauthorizedReminder-->
+  <string name="UnauthorizedReminder_device_no_longer_registered">Cihaz daha qeydiyyatlı deyil</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Sən başqa cihazda Signal üçün telefon nömrəni qeydiyyatdan keçirdiyin üçün belə ola bilər. Yenidən qeydiyyatdan keçirəm üçün kliklə.</string>
+  <!--VideoPlayer-->
+  <string name="VideoPlayer_error_playing_video">Videonun oxunmasında xəta</string>
+  <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%s tərəfindən gələn zəngi cavablandırmaq üçün Signal üçün mikrofona giriş icazəsi ver.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Zəng qəbul edə bilməsi üçün Signal-ın Mikrofon və Kamera seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Mikrofon\" və \"Kamera\" hissələrini aktivləşdir.</string>
+  <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_new_safety_numbers">%1$s ilə söhbətin üçün təhlükəsizlik rəqəmin dəyişdi. Ola bilsin ki, kimsə sizin söhbətinizə müdaxilə etmək istəyir, ya da %2$s Signal-ı yenidən qeydiyyatdan keçirib.</string>
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Bu əlaqə ilə təhlükəsizlik rəqəmini təsdiqləmək arzun ola bilər.</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Yeni təhlükəsizlik rəqəmi</string>
+  <string name="WebRtcCallScreen_accept">Qəbul et</string>
+  <string name="WebRtcCallScreen_end_call">Zəngi bitir</string>
+  <!--WebRtcCallControls-->
+  <string name="WebRtcCallControls_tap_to_enable_your_video">Videonu aktiv etmək üçün kliklə</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Əlaqənin şəkli</string>
+  <string name="WebRtcCallControls_speaker_button_description">Səsucaldan</string>
+  <string name="WebRtcCallControls_mute_button_description">Səssiz</string>
+  <string name="WebRtcCallControls_answer_call_description">Zəngə cavab ver</string>
+  <!--attachment_type_selector-->
+  <string name="attachment_type_selector__audio">Səs</string>
+  <string name="attachment_type_selector__audio_description">Səs</string>
+  <string name="attachment_type_selector__contact">Əlaqə</string>
+  <string name="attachment_type_selector__contact_description">Əlaqə</string>
+  <string name="attachment_type_selector__camera">Kamera</string>
+  <string name="attachment_type_selector__camera_description">Kamera</string>
+  <string name="attachment_type_selector__location">Məkan</string>
+  <string name="attachment_type_selector__location_description">Məkan</string>
+  <string name="attachment_type_selector__gif">GIF</string>
+  <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__gallery_description">Şəkil və ya video</string>
+  <string name="attachment_type_selector__file_description">Fayl</string>
+  <string name="attachment_type_selector__gallery">Qalereya</string>
+  <string name="attachment_type_selector__file">Fayl</string>
+  <string name="attachment_type_selector__drawer_description">Əlavə fayl siyirməsini keçir</string>
+  <!--change_passphrase_activity-->
+  <string name="change_passphrase_activity__old_passphrase">Köhnə şifrə ifadəsi</string>
+  <string name="change_passphrase_activity__new_passphrase">Yeni şifrə ifadəsi</string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">Yeni şifrə ifadəsini təkrarla</string>
+  <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">Ad və ya nömrəni yaz</string>
+  <string name="contact_selection_activity__invite_to_signal">Signal-a dəvət et</string>
+  <!--contact_filter_toolbar-->
+  <!--contact_selection_group_activity-->
+  <string name="contact_selection_group_activity__no_contacts">Əlaqə yoxdur.</string>
+  <string name="contact_selection_group_activity__finding_contacts">Əlaqələr yüklənir…</string>
+  <!--single_contact_selection_activity-->
+  <string name="SingleContactSelectionActivity_contact_photo">Əlaqə Şəkli</string>
+  <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Ələqələrini göstərə bilməsi üçün Signal-ın Əlaqələr seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Əlaqələr\" hissəsini aktivləşdir.</string>
+  <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Əlaqələrin bərpası alınmadı, şəbəkə əlaqəni yoxla</string>
+  <!--blocked_contacts_fragment-->
+  <string name="blocked_contacts_fragment__no_blocked_contacts">Kilidlənmiş əlaqə yoxdur</string>
+  <!--contact_selection_list_fragment-->
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Nümayiş edə bilməsi üçün Signal-ın sənin əlaqələrinə giriş icazəsi olmalıdır.</string>
+  <string name="contact_selection_list_fragment__show_contacts">Əlaqələri Göstər</string>
+  <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">Signal mesajı</string>
+  <string name="conversation_activity__type_message_sms_insecure">Mühafizə edilməyən SMS</string>
+  <string name="conversation_activity__type_message_mms_insecure">Mühafizə edilməyən MMS</string>
+  <string name="conversation_activity__from_sim_name">%1$s tərəfindən</string>
+  <string name="conversation_activity__send">Göndər</string>
+  <string name="conversation_activity__compose_description">Mesajın daxil edilməsi</string>
+  <string name="conversation_activity__emoji_toggle_description">Smaylik klaviaturasını keçir</string>
+  <string name="conversation_activity__attachment_thumbnail">Əlavə Fayl İkonası</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Sürətli kamera əlavə faylının siyirməsini keçir</string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Səs yaz və audio fayl kimi göndər</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Səs yazma və göndərilməni kilidlə</string>
+  <string name="conversation_activity__enable_signal_for_sms">Signal-ı SMS üçün aktivləşdir</string>
+  <!--conversation_input_panel-->
+  <string name="conversation_input_panel__slide_to_cancel">Ləğv etmək üçün sürüşdür</string>
+  <string name="conversation_input_panel__cancel">Ləğv Et</string>
+  <!--conversation_item-->
+  <string name="conversation_item__mms_image_description">Media mesajı</string>
+  <string name="conversation_item__secure_message_description">Təhlükəsiz mesaj</string>
+  <!--conversation_item_sent-->
+  <string name="conversation_item_sent__send_failed_indicator_description">Göndərmə alınmadı</string>
+  <string name="conversation_item_sent__pending_approval_description">Təsdiq Gözlənilir</string>
+  <string name="conversation_item_sent__delivered_description">Çatdırıldı</string>
+  <string name="conversation_item_sent__message_read">Mesaj oxundu</string>
+  <!--conversation_item_received-->
+  <string name="conversation_item_received__contact_photo_description">Əlaqənin şəkli</string>
+  <!--audio_view-->
+  <string name="audio_view__download_accessibility_description">Yüklə</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Səs</string>
+  <string name="QuoteView_video">Video</string>
+  <string name="QuoteView_photo">Şəkil</string>
+  <string name="QuoteView_sticker">Sticker</string>
+  <string name="QuoteView_document">Sənəd</string>
+  <string name="QuoteView_you">Sən</string>
+  <string name="QuoteView_original_missing">Mesajın əsli tapılmadı</string>
+  <!--conversation_fragment-->
+  <string name="conversation_fragment__scroll_to_the_bottom_content_description">Aşağıya sürüşdür</string>
+  <!--country_selection_fragment-->
+  <string name="country_selection_fragment__loading_countries">Ölkələr yüklənir…</string>
+  <string name="country_selection_fragment__search">Axtar</string>
+  <!--device_add_fragment-->
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Cihazla bağlantı yaratmaq üçün nümayiş edilən QR şifrəni skan et</string>
+  <!--device_link_fragment-->
+  <string name="device_link_fragment__link_device">Cihazla bağlantı qur</string>
+  <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">Bağlantısı olan cihaz yoxdur</string>
+  <string name="device_list_fragment__link_new_device">Yeni cihazla bağlantı qur</string>
+  <!--experience_upgrade_activity-->
+  <string name="experience_upgrade_activity__continue">davam et</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Oxunmuşların hesabatları buradadır</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Mesajlar oxunduğu zaman bunu gör və paylaş</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Oxunmuşların hesabatlarını aktivləşdir</string>
+  <!--expiration-->
+  <string name="expiration_off">Deaktiv</string>
+  <plurals name="expiration_seconds">
+    <item quantity="one">%d saniyə</item>
+    <item quantity="other">%d saniyə</item>
+  </plurals>
+  <string name="expiration_seconds_abbreviated">%d san</string>
+  <plurals name="expiration_minutes">
+    <item quantity="one">%ddəqiqə</item>
+    <item quantity="other">%d dəqiqə</item>
+  </plurals>
+  <string name="expiration_minutes_abbreviated">%dm</string>
+  <plurals name="expiration_hours">
+    <item quantity="one">%d saat</item>
+    <item quantity="other">%d saat</item>
+  </plurals>
+  <string name="expiration_hours_abbreviated">%dh</string>
+  <plurals name="expiration_days">
+    <item quantity="one">%d gün</item>
+    <item quantity="other">%d gün</item>
+  </plurals>
+  <string name="expiration_days_abbreviated">%dd</string>
+  <plurals name="expiration_weeks">
+    <item quantity="one">%d həftə</item>
+    <item quantity="other">%d həftə</item>
+  </plurals>
+  <string name="expiration_weeks_abbreviated">%dw</string>
+  <!--unverified safety numbers-->
+  <string name="IdentityUtil_unverified_banner_one">Sənin %s ilə olan təhlükəsizlik rəqəmin dəyişildi və o təsdiq edilməyib</string>
+  <string name="IdentityUtil_unverified_banner_two">Sənin %1$s və %2$s ilə olan təhlükəsizlik rəqəmlərin təsdiq edilməyib</string>
+  <string name="IdentityUtil_unverified_banner_many">Sənin %1$s, %2$s və %3$s ilə olan təhlükəsizlik rəqəmlərin təsdiq edilməyib</string>
+  <string name="IdentityUtil_unverified_dialog_one">Sənin %1$s ilə olan təhlükəsizlik rəqəmin dəyişilmiş və təsdiqlənməmişdir. Kimsə sənin ünsiyyətinə müdaxilə etmək istəyir, yaxud da %1$s Signal-ı yenidən quraşdırdı.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Tərkibində %1$s və %2$s olan təhlükəsizlik rəqəmlərin təsdiqlənmədi. Belə görünür ki, kimsə sənin ünsiyyətinə müdaxilə etmək istəyir, yaxud da o Signal-ı yenidən quraşdırdı.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Tərkibində %1$s, %2$s və %3$s olan təhlükəsizlik rəqəmlərin təsdiqlənmədi. Belə görünür ki, kimsə sənin ünsiyyətinə müdaxilə etmək istəyir, yaxud da o Signal-ı yenidən quraşdırdı.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">Tərkibində %s olan təhlükəsizlik rəqəmin elə indi dəyişildi.</string>
+  <string name="IdentityUtil_untrusted_dialog_two">Tərkibində %1$s və %2$s olan təhlükəsizlik rəqəmin elə indi dəyişildi.</string>
+  <string name="IdentityUtil_untrusted_dialog_many">Tərkibində %1$s, %2$s və %3$solan təhlükəsizlik rəqəmin elə indi dəyişildi.</string>
+  <plurals name="identity_others">
+    <item quantity="one">%d başqa</item>
+    <item quantity="other">%d başqa</item>
+  </plurals>
+  <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">GIF və elan axtar</string>
+  <!--giphy_fragment-->
+  <string name="giphy_fragment__nothing_found">Heç nə tapılmadı</string>
+  <!--log_submit_activity-->
+  <string name="log_submit_activity__log_fetch_failed">Cihazındakı qeyd oxunmadı. Onun əvəzinə sən yenə də ADB-ni istifadə edərək xəta sorğusu göndərə bilərsən.</string>
+  <string name="log_submit_activity__thanks">Kömək etdiyin üçün təşəkkürlər!</string>
+  <string name="log_submit_activity__submitting">Təqdim edilir</string>
+  <string name="log_submit_activity__no_browser_installed">Brauzer quraşdırılmayıb</string>
+  <string name="log_submit_activity__button_dont_submit">Təqdim etmə</string>
+  <string name="log_submit_activity__button_submit">Təqdim et</string>
+  <string name="log_submit_activity__button_got_it">Anladım</string>
+  <string name="log_submit_activity__button_compose_email">Email yazmağa başla</string>
+  <string name="log_submit_activity__this_log_will_be_posted_online">Bu qeyd əməkdaşların baxışı üçün ictimai olaraq paylaşılacaqdır, təqdim etməzdən əvvəl sən ona müəyyən dəyişikliklər edə bilərsən.</string>
+  <string name="log_submit_activity__loading_logs">Girişlər yüklənir…</string>
+  <string name="log_submit_activity__uploading_logs">Girişlər əlavə edilir…</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__success">Müvəffəqiyyətlə bitdi!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">URL-i köçür və onu xəta hesabatına və ya dəstək emailinə əlavə et:\n\n<b>%1$s</b>\n</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__copied_to_clipboard">Mübadilə buferinə köçürüldü</string> -->
+  <string name="log_submit_activity__choose_email_app">Email aplikasiyasını seç</string>
+  <string name="log_submit_activity__please_review_this_log_from_my_app">Aplikasiyam tərəfindən bu girişi yoxla: %1$s</string>
+  <string name="log_submit_activity__network_failure">Şəbəkə xətası. Zəhmət olmasa yenidən cəhd et.</string>
+  <!--database_migration_activity-->
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Mövcud mesajlarını Signal-ın şifrələnmiş məlumat bazasına daxil etmək istəyirsən?</string>
+  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Mövcud sistem məlumat bazasına heç bir halda dəyişiklik edilə bilməz.</string>
+  <string name="database_migration_activity__skip">Ötür</string>
+  <string name="database_migration_activity__import">Daxil et</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Bu bir qədər zaman ala bilər. Lütfən səbrli ol, daxil etmə prosesi bitən kimi səni xəbərdar edəcəyik.</string>
+  <string name="database_migration_activity__importing">DAXİL EDİLİR</string>
+  <string name="import_fragment__import_system_sms_database">Sistem SMS məlumat bazasını daxil et</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Mövcud sistem mesencer aplikasiyasından məlumat bazasını daxil et</string>
+  <string name="import_fragment__import_plaintext_backup">Sadə mətn arxivini daxil et</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">Sadə mətn arxiv faylını daxil et. \'SMS Arxivləşməsi &amp; Sıfırla\' addımları ilə mümkündür.</string>
+  <!--load_more_header-->
+  <string name="load_more_header__see_full_conversation">Tam söhbətə bax</string>
+  <string name="load_more_header__loading">Yüklənir</string>
+  <!--media_overview_activity-->
+  <string name="media_overview_activity__no_media">Media yoxdur</string>
+  <!--message_recipients_list_item-->
+  <string name="message_recipients_list_item__view">BAX</string>
+  <string name="message_recipients_list_item__resend">YENİDƏN GÖNDƏR</string>
+  <string name="message_recipients_list_item__resending">Yenidən göndərilir…</string>
+  <!--GroupUtil-->
+  <plurals name="GroupUtil_joined_the_group">
+    <item quantity="one">%1$s qrupa qoşuldu.</item>
+    <item quantity="other">%1$s qrupa qoşuldu.</item>
+  </plurals>
+  <string name="GroupUtil_group_name_is_now">Qrupun adı indi belədir: \'%1$s\'.</string>
+  <!--profile_group_share_view-->
+  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Profil şəklin və adın bu qrupa nümayiş etdirilsin?</string>
+  <!--prompt_passphrase_activity-->
+  <string name="prompt_passphrase_activity__unlock">Kilidi aç</string>
+  <!--prompt_mms_activity-->
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Sənin simsiz daşıyıcın vasitəsilə media və qrup mesajlarını çatdırmaq üçün Signal MMS parametrlərini tələb edir. Cihazın bu məlumatı əlçatan etmir, hansı ki kilidli cihazlar və qadağa edilmiş konfiqurasiyalarda baş verir.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Media və qrup mesajı göndərmək üçün \'OK\'-i kliklə və tələb edilən parametrləri tamamla. MMS parametrlərin \'sənin daşıyıcı APN\'-ində axtarış etməklə əldə edilə bilər. Bunu cəmi bir dəfə etməli olacaqsan.</string>
+  <!--profile_create_activity-->
+  <string name="CreateProfileActivity_next">Növbəti</string>
+  <!--recipient_preferences_activity-->
+  <string name="recipient_preference_activity__shared_media">Paylaşılmış media</string>
+  <!--recipient_preferences-->
+  <string name="recipient_preferences__mute_conversation">Söhbəti səssiz et</string>
+  <string name="recipient_preferences__custom_notifications">Digər xəbərdarlıqlar</string>
+  <string name="recipient_preferences__custom_notifications_settings">Sistem xəbərdarlıq parametrləri</string>
+  <string name="recipient_preferences__notification_sound">Xəbərdarlıq səsi</string>
+  <string name="recipient_preferences__vibrate">Titrəyiş</string>
+  <string name="recipient_preferences__block">Kilidlə</string>
+  <string name="recipient_preferences__color">Rəng</string>
+  <string name="recipient_preferences__view_safety_number">Təhlükəsizlik rəqəminə bax</string>
+  <string name="recipient_preferences__chat_settings">Söhbətləşmə parametrləri</string>
+  <string name="recipient_preferences__privacy">Məxfilik</string>
+  <string name="recipient_preferences__call_settings">Zəng parametrləri</string>
+  <string name="recipient_preferences__ringtone">Zəng səsi</string>
+  <!--- redphone_call_controls-->
+  <string name="redphone_call_card__signal_call">Signal Zəngi</string>
+  <!--registration_activity-->
+  <string name="registration_activity__phone_number">TELEFON NÖMRƏ</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal sənin mövcud telefon nömrəni və əlaqələr kitabçanı istifadə edərək ünsiyyəti asanlaşdırır. Telefon ilə səninlə əlaqə qura bilən bütün dostların eyni zamanda Signal ilə də səninlə ünsiyyət yarada biləcək.\n\nQeydiyyat zamanı bəzi əlaqələr serverə köçürülür. Onlar yaddaşda saxlanmır.</string>
+  <string name="registration_activity__verify_your_number">Nömrəni Təsdiq Et</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Təsdiq şifrəsini əlaqə etmək üçün mobil nömrəni daxil et. Provayder tərəfindən ödəniş tətbiq oluna bilər.</string>
+  <!--recipients_panel-->
+  <string name="recipients_panel__to"><small>Ad və ya nömrə daxil et</small></string>
+  <string name="recipients_panel__add_members">Üzvləri əlavə et</string>
+  <!--unknown_sender_view-->
+  <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">Göndərən əlaqə siyahısında deyil</string>
+  <string name="unknown_sender_view__block">BLOKLA</string>
+  <string name="unknown_sender_view__add_to_contacts">ƏLAQƏLƏRƏ ƏLAVƏ ET</string>
+  <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">ƏLAVƏ ETMƏ, LAKİN PROFİLİMİ GÖSTƏR</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s ilə şifrələnmənin təhlükəsizliyini təsdiq etmək isyəyirsənsə, yuxarıdakı nömrə ilə onların cihazındakı nömrəni müqayisə et. Yaxud da, onların cihazındakı şifrəni skan edə bilərsən, ya da onlar sənin cihazındakı şifrəni skan edə bilərlər. <a href="https://signal.org/redirect/safety-numbers">Daha ətraflı.</a>]]></string>
+  <string name="verify_display_fragment__tap_to_scan">Skan üçün kliklə</string>
+  <string name="verify_display_fragment__loading">Yüklənir…</string>
+  <string name="verify_display_fragment__verified">Təsdiq edildi</string>
+  <!--verify_identity-->
+  <string name="verify_identity__share_safety_number">Təhlükəsizlik rəqəmini paylaş</string>
+  <!--webrtc_answer_decline_button-->
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Cavab vermək üçün yuxarı sürüşdür</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Rədd etmək üçün aşağı sürüşdür</string>
+  <!--message_details_header-->
+  <string name="message_details_header__issues_need_your_attention">Bəzi məsələlərin diqqətinə ehtiyacı var.</string>
+  <string name="message_details_header__sent">Göndərildi</string>
+  <string name="message_details_header__received">Qəbul edildi</string>
+  <string name="message_details_header__disappears">Yox olur</string>
+  <string name="message_details_header__via">Vasitəsilə</string>
+  <string name="message_details_header__to">Kimə:</string>
+  <string name="message_details_header__from">Kimdən:</string>
+  <string name="message_details_header__with">Kiminlə:</string>
+  <!--AndroidManifest.xml-->
+  <string name="AndroidManifest__create_passphrase">Şifrə ifadəsi yarat</string>
+  <string name="AndroidManifest__select_contacts">Əlaqələri seç</string>
+  <string name="AndroidManifest__change_passphrase">Şifrə ifadəsini dəyiş</string>
+  <string name="AndroidManifest__verify_safety_number">Təhlükəsizlik rəqəmini təsdiq et</string>
+  <string name="AndroidManifest__log_submit">Xəta sorğusu təqdim et</string>
+  <string name="AndroidManifest__media_preview">Mediaya ilkin baxış</string>
+  <string name="AndroidManifest__message_details">Mesajın detalları</string>
+  <string name="AndroidManifest__linked_devices">Bağlantısı olan cihazlar</string>
+  <string name="AndroidManifest__invite_friends">Dostlarını dəvət et</string>
+  <string name="AndroidManifest_archived_conversations">Arxivləşdirilmiş söhbətlər</string>
+  <string name="AndroidManifest_remove_photo">Şəkli sil</string>
+  <!--arrays.xml-->
+  <string name="arrays__import_export">Daxil et</string>
+  <string name="arrays__use_default">Mövcud olanı istifadə et</string>
+  <string name="arrays__use_custom">Seçilmişi istifadə et</string>
+  <string name="arrays__mute_for_one_hour">1 saat səssiz olsun</string>
+  <string name="arrays__mute_for_two_hours">2 saat səssiz olsun</string>
+  <string name="arrays__mute_for_one_day">1 gün səssiz olsun</string>
+  <string name="arrays__mute_for_seven_days">7 gün səssiz olsun</string>
+  <string name="arrays__mute_for_one_year">1 il səssiz olsun</string>
+  <string name="arrays__settings_default">Mövcud parametrlər</string>
+  <string name="arrays__enabled">Aktiv et</string>
+  <string name="arrays__disabled">Deaktiv et</string>
+  <string name="arrays__name_and_message">Ad və mesajlar</string>
+  <string name="arrays__name_only">Yalnız ad</string>
+  <string name="arrays__no_name_or_message">Ad və mesaj yoxdur</string>
+  <string name="arrays__images">Şəkillər</string>
+  <string name="arrays__audio">Səs</string>
+  <string name="arrays__video">Video</string>
+  <string name="arrays__documents">Sənədlər</string>
+  <string name="arrays__small">Kiçik</string>
+  <string name="arrays__normal">Normal</string>
+  <string name="arrays__large">Böyük</string>
+  <string name="arrays__extra_large">Çox böyük</string>
+  <string name="arrays__default">Başlanğıc</string>
+  <string name="arrays__high">Uca</string>
+  <string name="arrays__max">Maksimum</string>
+  <!--plurals.xml-->
+  <!--preferences.xml-->
+  <string name="preferences__sms_mms">SMS və MMS</string>
+  <string name="preferences__pref_all_sms_title">Bütün SMS-ləri al</string>
+  <string name="preferences__pref_all_mms_title">Bütün MMS-ləri al</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Daxil olan bütün mətnli mesajlar üçün Signal-ı istifadə et</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Daxil olan bütün multimedia mesajları üçün Signal-ı istifadə et</string>
+  <string name="preferences__pref_enter_sends_title">Daxil et düyməsi göndərir</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Daxil et düymasını kliklədikdə mesaj göndəriləcək</string>
+  <string name="preferences__send_link_previews">Link ilkin baxışlarını göndər</string>
+  <string name="preferences__choose_identity">Şəxsiliyi seç</string>
+  <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Əlaqəni əlaqələr siyahından seç.</string>
+  <string name="preferences__change_passphrase">Şifrə ifadəsini dəyiş</string>
+  <string name="preferences__change_your_passphrase">Şifrə ifadəni dəyiş</string>
+  <string name="preferences__enable_passphrase">Şifrə ifadəsi ekran kilidini aktiv et</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Ekran və xəbərdarlıqları şifrə ifadəsi ilə kilidlə</string>
+  <string name="preferences__screen_security">Ekran təhlükəsizliyi</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Son daxil olanlar siyahısında və aplikasiyanın içində ekranın şəkil kimi yadda saxlanmasını blokla</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Signal müəyyən müddət qeyri-aktiv olduqda onu avtomatik olaraq kilidlə</string>
+  <string name="preferences__inactivity_timeout_passphrase">Qeyri-aktivlik şifrə ifadəsi</string>
+  <string name="preferences__inactivity_timeout_interval">Qeyri-aktivlik intervalı</string>
+  <string name="preferences__notifications">Xəbərdarlıqlar</string>
+  <string name="preferences__system_notification_settings">Sistem xəbərdarlıq parametrləri</string>
+  <string name="preferences__led_color">LED rəng</string>
+  <string name="preferences__led_color_unknown">Naməlum</string>
+  <string name="preferences__pref_led_blink_title">LED işartılı nümunə</string>
+  <string name="preferences__sound">Səs</string>
+  <string name="preferences__silent">Səssiz</string>
+  <string name="preferences__repeat_alerts">Xəbərdarlıqları təkrarla</string>
+  <string name="preferences__never">Heç vaxt</string>
+  <string name="preferences__one_time">Bir dəfə</string>
+  <string name="preferences__two_times">İki dəfə</string>
+  <string name="preferences__three_times">Üç dəfə</string>
+  <string name="preferences__five_times">Beş dəfə</string>
+  <string name="preferences__ten_times">On dəfə</string>
+  <string name="preferences__vibrate">Titrəyiş</string>
+  <string name="preferences__green">Yaşıl</string>
+  <string name="preferences__red">Qırmızı</string>
+  <string name="preferences__blue">Göy</string>
+  <string name="preferences__orange">Narıncı</string>
+  <string name="preferences__cyan">Mavi</string>
+  <string name="preferences__magenta">Bənövşəyi</string>
+  <string name="preferences__white">Ağ</string>
+  <string name="preferences__none">Heç biri</string>
+  <string name="preferences__fast">Sürətli</string>
+  <string name="preferences__normal">Normal</string>
+  <string name="preferences__slow">Yavaş</string>
+  <string name="preferences__advanced">Daha geniş</string>
+  <string name="preferences__privacy">Məxfilik</string>
+  <string name="preferences__mms_user_agent">MMS İstifadəçi Agenti</string>
+  <string name="preferences__advanced_mms_access_point_names">Manual MMS parametrləri</string>
+  <string name="preferences__mmsc_url">MMSC URL</string>
+  <string name="preferences__mms_proxy_host">MMS Proksi Hostu</string>
+  <string name="preferences__mms_proxy_port">MMS Proksi Portu</string>
+  <string name="preferences__mmsc_username">MMSC İstifadəçi Adı</string>
+  <string name="preferences__mmsc_password">MMSC Şifrəsi</string>
+  <string name="preferences__sms_delivery_reports">SMS çatdırılma hesabatları</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Hər göndərdiyin SMS üçün çatdırılma hesabatı tələb et</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Müəyyən uzunluğu keçən köhnə mesajları avtomatik olaraq sil</string>
+  <string name="preferences__delete_old_messages">Köhnə mesajları sil</string>
+  <string name="preferences__chats">Söhbətlər və media</string>
+  <string name="preferences__conversation_length_limit">Söhbətləşmənin uzunluq limiti</string>
+  <string name="preferences__trim_all_conversations_now">Bütün söhbətləri indi təmizlə</string>
+  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Bütün söhbətləri yoxla və onları uzunluq limitlərinə görə idarə et</string>
+  <string name="preferences__linked_devices">Bağlantısı olan cihazlar</string>
+  <string name="preferences__light_theme">Açıq</string>
+  <string name="preferences__dark_theme">Tünd</string>
+  <string name="preferences__appearance">Görünüş</string>
+  <string name="preferences__theme">Mövzu</string>
+  <string name="preferences__default">Başlanğıc</string>
+  <string name="preferences__language">Dil</string>
+  <string name="preferences__signal_messages_and_calls">Signal mesajları və zəngləri</string>
+  <string name="preferences__free_private_messages_and_calls">Signal istifadəçilərinə ödənişsiz mesaj və zənglər</string>
+  <string name="preferences__submit_debug_log">Xəta sorğusu təqdim et</string>
+  <string name="preferences__support_wifi_calling">\'WiFi Zəng\' uyğunluq rejimi</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Sənin cihazın WiFi üzərindən SMS/MMS çatdırılmasını həyata keçirə bilirsə, aktivləşdir (yalnız cihazında \'WiFi Zəng\' aktiv edildikdə istifadə et)</string>
+  <string name="preferences__incognito_keyboard">Gözəgörünməz klaviatura</string>
+  <string name="preferences__read_receipts">Oxunmuşlar haqqında məlumat</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Oxunmuşlar haqqında məlumat xidməti deaktiv edilsə, başqa şəxs mesajı oxuduqda məlumat almayacaqsan.</string>
+  <string name="preferences__typing_indicators">Yazışma indikatoru</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Yazışma indikatorları deaktiv edilsə, başqa şəxs mesaj yazdığı zaman məlumat almayacaqsan.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Fərdiləşdirilmiş təlimin deaktiv edilməsini klaviaturadan istə</string>
+  <string name="preferences_app_protection__blocked_contacts">Əlaqələr kilidlidir</string>
+  <string name="preferences_chats__when_using_mobile_data">Mobil internet istifadə edərkən</string>
+  <string name="preferences_chats__when_using_wifi">Wi-Fi istifadə edərkən</string>
+  <string name="preferences_chats__when_roaming">Rominq zamanı</string>
+  <string name="preferences_chats__media_auto_download">Medianın avtomatik yüklənməsi</string>
+  <string name="preferences_chats__message_trimming">Mesajların təmizlənməsi</string>
+  <string name="preferences_storage__audio">Səs</string>
+  <string name="preferences_advanced__use_system_emoji">Sistem smaylikini istifadə et</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal-ın daxili smaylik dəstəyini deaktiv et</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Bütün zəngləri Signal serveri üzərindən yayımla ki, əlaqən IP ünvanının müəyyən edilməsinin qarşısı alınmış olsun. Aktiv etsən, zəngin keyfiyyəti aşağı düşəcək.</string>
+  <string name="preferences_advanced__always_relay_calls">Zəngləri hər zaman yayımla</string>
+  <string name="preferences_app_protection__app_access">Aplikasiyaya giriş icazəsi</string>
+  <string name="preferences_app_protection__communication">Ünsiyyət</string>
+  <string name="preferences_chats__chats">Söhbətlər</string>
+  <string name="preferences_notifications__messages">Mesajlar</string>
+  <string name="preferences_notifications__events">Tədbirlər</string>
+  <string name="preferences_notifications__in_chat_sounds">Söhbət daxili səslər</string>
+  <string name="preferences_notifications__show">Göstər</string>
+  <string name="preferences_notifications__calls">Zənglər</string>
+  <string name="preferences_notifications__ringtone">Zəng səsi</string>
+  <string name="preferences_chats__show_invitation_prompts">Dəvətnamələri göstər</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Signal-ı olmayan əlaqələr üçün dəvətnamələri nümayiş etdir</string>
+  <string name="preferences_chats__message_text_size">Mesajın yazı ölçüsü</string>
+  <string name="preferences_events__contact_joined_signal">Əlaqə Signal-a qoşuldu</string>
+  <string name="preferences_notifications__priority">Prioritet</string>
+  <string name="preferences_communication__category_sealed_sender">Möhürlənmiş Göndərən</string>
+  <string name="preferences_communication__sealed_sender_display_indicators">İndikatorları nümayiş etdir</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Möhürlənmiş istifadəçidən daxil olan mesajlardakı \"Əlavə Məlumat\" seçimini edərkən status ikonasını göstər.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone">İstənilən şəxsə icazə ver</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Əlaqəndə olmayan və profilini bölüşmədiyin istifadəçilərin mesajı sənə möhürlənmiş olaraq göndərməsinə icazə ver.</string>
+  <string name="preferences_communication__sealed_sender_learn_more">Daha ətraflı</string>
+  <!--****************************************-->
+  <!--menus-->
+  <!--****************************************-->
+  <!--contact_selection_list-->
+  <string name="contact_selection_list__unknown_contact">Bu şəxsə yeni mesaj…</string>
+  <!--conversation_callable_insecure-->
+  <string name="conversation_callable_insecure__menu_call">Zəng</string>
+  <!--conversation_callable_secure-->
+  <string name="conversation_callable_secure__menu_call">Signal zəngi</string>
+  <!--conversation_context-->
+  <string name="conversation_context__menu_message_details">Mesajın detalları</string>
+  <string name="conversation_context__menu_copy_text">Mətni köçür</string>
+  <string name="conversation_context__menu_delete_message">Mesajı sil</string>
+  <string name="conversation_context__menu_forward_message">Mesajı yönləndir</string>
+  <string name="conversation_context__menu_resend_message">Mesajı yenidən göndər</string>
+  <string name="conversation_context__menu_reply_to_message">Mesajı cavabla</string>
+  <!--conversation_context_reacction-->
+  <!--conversation_context_image-->
+  <string name="conversation_context_image__save_attachment">Faylı yadda saxla</string>
+  <!--conversation_expiring_off-->
+  <string name="conversation_expiring_off__disappearing_messages">Yox olan mesajlar</string>
+  <!--conversation_expiring_on-->
+  <string name="menu_conversation_expiring_on__messages_expiring">Vaxtı ötən mesajlar</string>
+  <!--conversation_insecure-->
+  <string name="conversation_insecure__invite">Dəvət et</string>
+  <!--conversation_list_batch-->
+  <string name="conversation_list_batch__menu_delete_selected">Seçilmişi sil</string>
+  <string name="conversation_list_batch__menu_select_all">Hamısını seç</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">Seçilmişi arxivləşdir</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Seçilmişi arxivdən çıxar</string>
+  <!--conversation_list-->
+  <string name="conversation_list_search_description">Axtar</string>
+  <!--conversation_list_item_view-->
+  <string name="conversation_list_item_view__contact_photo_image">Əlaqənin Şəkli</string>
+  <string name="conversation_list_item_view__archived">Arxivləşdirildi</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Gələnlər sııfffıır</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Bitdi. Heç nə. Sıfır. Qurtardı.\nHamınız tutuldunuz!</string>
+  <!--conversation_list_fragment-->
+  <string name="conversation_list_fragment__fab_content_description">Yeni söhbətləşmə</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Mesajlar qutuna şans yarat ki, bir şey yazsın. Dostuna yazmağa başla.</string>
+  <!--conversation_secure_verified-->
+  <string name="conversation_secure_verified__menu_reset_secure_session">Təhlükəsiz sessiyanı yenidən başlat</string>
+  <!--conversation_muted-->
+  <string name="conversation_muted__unmute">Səsini ver</string>
+  <!--conversation_unmuted-->
+  <string name="conversation_unmuted__mute_notifications">Xəbərdarlıqları səssiz et</string>
+  <!--conversation-->
+  <string name="conversation__menu_add_attachment">Fayl əlavə et</string>
+  <string name="conversation__menu_edit_group">Qrupa düzəliş et</string>
+  <string name="conversation__menu_leave_group">Qrupdan çıx</string>
+  <string name="conversation__menu_view_all_media">Bütün media</string>
+  <string name="conversation__menu_conversation_settings">Söhbətləşmə parametrləri</string>
+  <string name="conversation__menu_add_shortcut">Baş səhifəyə əlavə et</string>
+  <!--conversation_popup-->
+  <string name="conversation_popup__menu_expand_popup">Sırçayan pəncərəni böyüt</string>
+  <!--conversation_callable_insecure-->
+  <string name="conversation_add_to_contacts__menu_add_to_contacts">Əlaqələrinə əlavə et</string>
+  <!--conversation_group_options-->
+  <string name="convesation_group_options__recipients_list">Qəbul edənlərin siyahısı</string>
+  <string name="conversation_group_options__delivery">Çatdırılma</string>
+  <string name="conversation_group_options__conversation">Söhbət</string>
+  <string name="conversation_group_options__broadcast">Yayımlanma</string>
+  <!--text_secure_normal-->
+  <string name="text_secure_normal__menu_new_group">Yeni qrup</string>
+  <string name="text_secure_normal__menu_settings">Parametrlər</string>
+  <string name="text_secure_normal__menu_clear_passphrase">Kilidlə</string>
+  <string name="text_secure_normal__mark_all_as_read">Hamısını oxunmuş kimi nişanla</string>
+  <string name="text_secure_normal__invite_friends">Dostlarını dəvət et</string>
+  <string name="text_secure_normal__help">Kömək et</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Mübadilə buferinə köçür</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Mübadilə buferi ilə müqayisə et</string>
+  <!--reminder_header-->
+  <string name="reminder_header_outdated_build">Sənin Signal-ının vaxtı ötüb</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="one">Sənin Signal-ının %d gündən sonra vaxtı bitəcək. Ən son versiyaya yeniləmək üçün kliklə.</item>
+    <item quantity="other">Sənin Signal-ının %d gündən sonra vaxtı bitəcək. Ən son versiyaya yeniləmək üçün kliklə.</item>
+  </plurals>
+  <string name="reminder_header_outdated_build_details_today">Sənin Signal-ının vaxtı bugün bitir. Ən son versiyaya yeniləmək üçün kliklə.</string>
+  <string name="reminder_header_expired_build">Signal-ın versiyasının vaxtı bitib!</string>
+  <string name="reminder_header_expired_build_details">Mesajlar artıq göndərilə bilməyəcək. Ən sonr versiyaya yeniləmək üçün kliklə.</string>
+  <string name="reminder_header_sms_default_title">Əsas SMS aplikasiyası kimi istifadə et</string>
+  <string name="reminder_header_sms_default_text">Signal-ı əsas SMS aplikasiyası etmək üçün kliklə.</string>
+  <string name="reminder_header_sms_import_title">Sistem SMS-ni daxil et</string>
+  <string name="reminder_header_sms_import_text">Telefonunun SMS mesajlarını Signal-ın şifrələnmiş məlumat bazasına daxil etmək üçün kliklə.</string>
+  <string name="reminder_header_push_title">Signal mesajlarına və zənglərinə icazə ver</string>
+  <string name="reminder_header_push_text">Ünsiyyət təcrübəni daha yaxşı et.</string>
+  <string name="reminder_header_invite_title">Signala dəvət et</string>
+  <string name="reminder_header_invite_text">%1$s ilə söhbətləşməni daha üst səviyyəyə qaldır.</string>
+  <string name="reminder_header_share_title">Dostlarını dəvət et!</string>
+  <string name="reminder_header_share_text">Signal-ı nə qədər çox dostun istifadə etsə, o qədər də o sənə yararlı olacaq.</string>
+  <string name="reminder_header_service_outage_text">Signal hal hazırda müəyyən texniki çətinlikləri aradan qaldırır. Xidməti ən qısa zamanda bərpa etmək üçün fasiləsiz olaraq cəhdlər edirik.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">Android-in bu versiyasında Signal-ın ən son xüsusiyyətləri işləməyəcək. Cihazını yenilə ki, Signal-ın gələcək yeniliklərindən faydalana biləsən.</string>
+  <!--media_preview-->
+  <string name="media_preview__save_title">Yaddaşa yaz</string>
+  <string name="media_preview__forward_title">Yönləndir</string>
+  <string name="media_preview__all_media_title">Bütün media</string>
+  <!--media_preview_activity-->
+  <string name="media_preview_activity__media_content_description">Mediaya ilkin baxış</string>
+  <!--new_conversation_activity-->
+  <string name="new_conversation_activity__refresh">Yenilə</string>
+  <!--redphone_audio_popup_menu-->
+  <!--Trimmer-->
+  <string name="trimmer__deleting">Silinir</string>
+  <string name="trimmer__deleting_old_messages">Köhnə mesajların silinməsi…</string>
+  <string name="trimmer__old_messages_successfully_deleted">Köhnə mesajlar müvəffəqiyyətlə silindi</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">Ləğv et</string>
+  <string name="InsightsDashboardFragment__send">Göndər</string>
+  <string name="FirstInviteReminder__title">Signal-a dəvət et</string>
+  <string name="InsightsReminder__invite">Dəvət et</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Növbəti</string>
+  <!--CreateKbsPinFragment-->
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">PIN-i təsdiq et.</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__learn_more">Daha Ətraflı</string>
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__skip">Ötür</string>
+  <string name="KbsReminderDialog__submit">Təqdim et</string>
+  <string name="KbsReminderDialog__forgot_pin">PIN-i unutmusan?</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__next">Növbəti</string>
+  <string name="AccountLockedFragment__learn_more">Daha Ətraflı</string>
+  <!--KbsLockFragment-->
+  <string name="RegistrationLockFragment__next">Növbəti</string>
+  <string name="RegistrationLockFragment__forgot_pin">PIN-i unutmusan?</string>
+  <!--KBS Megaphone-->
+  <!--Profile Names Megaphone-->
+  <!--transport_selection_list_item-->
+  <string name="transport_selection_list_item__transport_icon">Ötürülmə ikonası</string>
+  <string name="ConversationListFragment_loading">Yüklənir…</string>
+  <string name="CallNotificationBuilder_connecting">Əlaqə yaradılır…</string>
+  <string name="Permissions_permission_required">İcazə tələb edilir</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">SMS göndərə bilməsi üçün Signal-ın SMS seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"SMS\" hissəsini aktivləşdir.</string>
+  <string name="Permissions_continue">Davam et</string>
+  <string name="Permissions_not_now">İndi yox</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Əlaqələrini axtara bilməsi üçün Signal-ın Əlaqələr seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Əlaqələr\" hissəsini aktivləşdir.</string>
+  <string name="conversation_activity__enable_signal_messages">SIGNAL MESAJLARINI AKTİVLƏŞDİR</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal-ın məlumat bazasının miqrasiyası</string>
+  <string name="PushDecryptJob_new_locked_message">Yeni kilidli mesaj</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Gözləmədə olan mesajları görmək üçün kilidi aç</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Yeniləməni tamamlamaq üçün kilidi aç</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Zəhmət olmasa yeniləməni tamamlamaq üçün Signal-ın kilidini aç</string> -->
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Arxivləşdirmə üçün şifrə ifadəsi</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Arxivləşmələr xarici yaddaşda saxlanacaq və aşağıdakı şifrə ifadəsi ilə şifrələnəcək. Arxivi bərpa etmək üçün bu şifrə ifadəsi unudulmamalıdır.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Mən bu şifrə ifadəsini yazmışam. Onsuz arxivi bərpa edə bilməyəcəm.</string>
+  <string name="registration_activity__restore_backup">Arxivi bərpa et</string>
+  <string name="registration_activity__skip">Ötür</string>
+  <string name="registration_activity__register">Qeydiyyatdan keç</string>
+  <string name="preferences_chats__chat_backups">Söhbət arxivləri</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Söhbətləşmələri xarici yaddaşa arxivləşdir</string>
+  <string name="preferences_chats__create_backup">Arxiv yarat</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Arxiv üçün şifrə ifadəsini daxil et</string>
+  <string name="RegistrationActivity_restore">Bərpa et</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Signal-ın yeni versiyalarından arxivləri daxil edə bilmirik</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">Arxiv üçün səhv şifrə ifadəsi</string>
+  <string name="RegistrationActivity_checking">Yoxlanılır…</string>
+  <string name="RegistrationActivity_d_messages_so_far">İndiyə qədər %d mesaj…</string>
+  <string name="RegistrationActivity_restore_from_backup">Arxivdən bərpa edirsən?</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Mesaj və medialarını yerli arxivdən bərpa et. Bərpanı indi etməsən, sonra bu şansın olmayacaq.</string>
+  <string name="RegistrationActivity_backup_size_s">Arxivləşdiriləcək ölçü: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Arxivləşdirilmənın zamanı: %s</string>
+  <string name="BackupDialog_enable_local_backups">Yerli arxivləri aktivləşdirirsən?</string>
+  <string name="BackupDialog_enable_backups">Arxivləri aktivləşdir</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Zəhmət olmasa təsdiq qutusunu işarələməklə anladığını bildir.</string>
+  <string name="BackupDialog_delete_backups">Arxivləri silirsən?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Bütün yerli arxivləri deaktiv edib silirsən?</string>
+  <string name="BackupDialog_delete_backups_statement">Arxivləri sil</string>
+  <string name="BackupDialog_copied_to_clipboard">Mübadilə buferinə köçürüldü</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Arxivə məlumat yerləşdirə bilməsi üçün Signal-ın xarici yaddaş seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Yaddaş\" hissəsini aktivləşdir.</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Son arxiv: %s</string>
+  <string name="ChatsPreferenceFragment_in_progress">Proses davam edir</string>
+  <string name="LocalBackupJob_creating_backup">Arxiv yaradılır…</string>
+  <string name="ProgressPreference_d_messages_so_far">İndiyə qədər %d mesaj</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Zəhmət olmasa %s ünvanına göndərilmiş təsdiq şifrəsini daxil et.</string>
+  <string name="RegistrationActivity_wrong_number">Səhv rəqəm</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Əvəzində mənə zəng edə bilərsən \n (Aktiv olacaq: %1$02d:%2$02d)</string>
+  <string name="BackupUtil_never">Heç vaxt</string>
+  <string name="BackupUtil_unknown">Naməlum</string>
+  <string name="preferences_app_protection__screen_lock">Ekranın kilidlənməsi</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Android-in ekran kilidi və barmaq izi ilə Signal-a girişi kilidlə</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Ekran kilidinin qeyri aktivliyinin zamanı bitdi</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__create">Yarat</string> -->
+  <string name="AppProtectionPreferenceFragment_none">Heç biri</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Qeydiyyat Kilid PIN-i elə indicə əldə etdiyin SMS təsdiq şifrəsi ilə eyni deyil. Zəhmət olmasa aplikasiyaya əvvəl daxil etdiyin PIN-i daxil et.</string>
+  <string name="registration_activity__registration_lock_pin">Qeydiyyat Kilid PIN-i</string>
+  <string name="registration_activity__forgot_pin">PIN-i unutmusan?</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN dörd və ya daha çox rəqəmdən ibarət ola bilər. PIN-i unutsan, hesabından yeddi günə qədər kənarda saxlanıla bilərsən.</string>
+  <string name="registration_lock_dialog_view__enter_pin">PIN-i daxil et</string>
+  <string name="registration_lock_dialog_view__confirm_pin">PIN-i təsdiq et</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Qeydiyyat Kilid PIN-ini daxil et</string>
+  <string name="registration_lock_reminder_view__enter_pin">PIN-i daxil et</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Bu telefon nömrəsini Signal-la yenidən qeydiyyatdan keçirmək üçün tələb ediləcək Qeydiyyat Kilid PIN-ini aktivləşdir.</string>
+  <string name="preferences_app_protection__registration_lock_pin">Qeydiyyat Kilid PIN-i</string>
+  <string name="preferences_app_protection__registration_lock">Qeydiyyat Kilidi</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Qeydiyyat Kilid PIN-ini daxil etməlisən</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">Xətalı Qeydiyyat Kilid PIN-i</string>
+  <string name="RegistrationActivity_too_many_attempts">Hədsiz çox cəhd</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Xətalı Qeydiyyat Kilid PIN-i ilə çox sayda giriş cəhdi etmisən. Lütfən bir gündən sonra yenidən sına.</string>
+  <string name="RegistrationActivity_error_connecting_to_service">Xidmətlə əlaqədə xəta</string>
+  <string name="RegistrationActivity_oh_no">Vay vay!</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Bu nömrənin Signal ilə son aktivliyindən 7 gün keçdikdən sonra bu telefon nömrəsi Qeydiyyat Kilid PIN-i olmadan qeydiyyatdan keçə biləcək. Hələ ki, növbədə %d günün var.</string>
+  <string name="RegistrationActivity_registration_lock_pin">Qeydiyyat kilid PIN-i</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Bu telefon nömrəsi Qeydiyyat Kilidini aktivləşdirdi. Lütfən, Qeydiyyat Kilid PIN-ini daxil et.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Qeydiyyat Kilidi sənin telefon nömrən üçün aktivləşdirildi. Qeydiyyat Kilid PIN-ini unutmayasan deyə Sİgnal mütəmadi olaraq onu təsdiq etməyini xahiş edəcək.</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">PIN-i unutmuşam.</string>
+  <string name="RegistrationLockDialog_forgotten_pin">PIN-i unutmusan?</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Qeydiyyat Kilidin telefon nömrəni icazəsiz qeydiyyat cəhdlərindən qoruyur. Bu xüsusiyyət istənilən vaxt Signal-ın məxfilik parametrlərində deaktivasiya edilə bilər</string>
+  <string name="RegistrationLockDialog_registration_lock">Qeydiyyat Kilidi</string>
+  <string name="RegistrationLockDialog_enable">Aktivləşdir</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Daxil etdiyin iki PIN bir-birinə uyğun gəlmir.</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">Xidmətlə əlaqədə xəta var</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">Qeydiyyat Kilid PIN-ini deaktiv edirsən?</string>
+  <string name="RegistrationLockDialog_disable">Söndür</string>
+  <string name="preferences_chats__backups">Ehtiyat nüsxələr</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal kilidlidir</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">Açmaq üçün toxun</string>
+  <string name="RegistrationLockDialog_reminder">Xatırlatma:</string>
+  <string name="recipient_preferences__about">Haqqında</string>
+  <string name="Recipient_unknown">Naməlum</string>
+  <string name="MessageRequestBottomView_accept">Qəbul et</string>
+  <string name="MessageRequestBottomView_delete">Sil</string>
+  <string name="MessageRequestBottomView_block">Kilidlə</string>
+  <!--EOF-->
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="crop_area_renderer_edge_size">32dp</dimen>
+    <dimen name="crop_area_renderer_edge_thickness">2dp</dimen>
+    <dimen name="oval_guide_stroke_width">1dp</dimen>
+
+    <color name="crop_area_renderer_edge_color">#ffffffff</color>
+    <color name="crop_area_renderer_outer_color">#7f000000</color>
+    <color name="crop_circle_guide_color">#66FFFFFF</color>
+
+</resources>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<View xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/selection_item_header_width"
+    android:layout_height="@dimen/selection_item_header_height"
+    android:gravity="center" />

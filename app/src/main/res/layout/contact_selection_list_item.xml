@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<org.thoughtcrime.securesms.contacts.ContactSelectionListItem
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/contact_selection_item_height"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:focusable="true"
+        android:background="@drawable/conversation_item_background"
+        android:paddingStart="@dimen/selection_item_header_width"
+        android:paddingEnd="24dp">
+
+    <org.thoughtcrime.securesms.components.AvatarImageView
+            android:id="@+id/contact_photo_image"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:foreground="@drawable/contact_photo_background"
+            android:cropToPadding="true"
+            android:contentDescription="@string/SingleContactSelectionActivity_contact_photo"
+            tools:src="@color/blue_600"
+            tools:ignore="UnusedAttribute" />
+
+    <LinearLayout android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:layout_marginStart="16dp"
+                  android:layout_marginEnd="16dp"
+                  android:orientation="vertical">
+
+        <org.thoughtcrime.securesms.components.FromTextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                style="@style/Signal.Text.Body"
+                android:fontFamily="sans-serif-medium"
+                tools:text="Ottttooooooooo Ocataaaaaaaavius" />
+
+        <LinearLayout android:id="@+id/number_container"
+                      android:orientation="horizontal"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content">
+
+            <TextView android:id="@+id/number"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textDirection="ltr"
+                      android:singleLine="true"
+                      android:ellipsize="marquee"
+                      android:textAppearance="?android:attr/textAppearanceSmall"
+                      android:textSize="14sp"
+                      android:fontFamily="sans-serif-light"
+                      tools:text="+1 (555) 555-5555" />
+
+            <TextView android:id="@+id/label"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:paddingStart="10dip"
+                      android:ellipsize="end"
+                      android:singleLine="true"
+                      android:textAppearance="?android:attr/textAppearanceSmall"
+                      android:fontFamily="sans-serif-light"
+                      tools:text="Mobile"
+                      tools:ignore="RtlSymmetry" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <CheckBox android:id="@+id/check_box"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_vertical"
+              android:focusable="false"
+              android:clickable="false" />
+
+</org.thoughtcrime.securesms.contacts.ContactSelectionListItem>

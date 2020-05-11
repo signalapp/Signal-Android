@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layoutDirection="ltr">
+
+    <FrameLayout
+        android:id="@+id/container_zero"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/labeled_edit_text_background_inactive"
+        app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/code_zero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/core_black"
+            android:textSize="28sp"
+            tools:text="0" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/container_one"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/labeled_edit_text_background_inactive"
+        app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/container_zero"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/code_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/core_black"
+            android:textSize="28sp"
+            tools:text="1" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/container_two"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/labeled_edit_text_background_inactive"
+        app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/container_one"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/code_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/core_black"
+            android:textSize="28sp"
+            tools:text="2" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/separator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="4dp"
+        android:text="-"
+        android:textColor="@color/core_black"
+        android:textSize="28sp"
+        app:layout_constraintStart_toEndOf="@+id/container_two"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
+
+    <FrameLayout
+        android:id="@+id/container_three"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/labeled_edit_text_background_inactive"
+        app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/separator"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/code_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/core_black"
+            android:textSize="28sp"
+            tools:text="3" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/container_four"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/labeled_edit_text_background_inactive"
+        app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/container_three"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/code_four"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/core_black"
+            android:textSize="28sp"
+            tools:text="4" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/container_five"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/labeled_edit_text_background_inactive"
+        app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/container_four"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/code_five"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/core_black"
+            android:textSize="28sp"
+            tools:text="5" />
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

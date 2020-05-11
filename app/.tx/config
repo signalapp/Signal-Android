@@ -1,0 +1,10 @@
+[main]
+host = https://www.transifex.com
+lang_map = da_DK:da-rDK,fil:tl,he:iw,id:in,kn_IN:kn-rIN,pa_PK:pa-rPK,pt_BR:pt-rBR,pt_PT:pt,qu_EC:qu-rEC,sv_SE:sv-rSE,zh_CN:zh-rCN,zh_HK:zh-rHK,zh_TW:zh-rTW
+
+[signal-android.master]
+file_filter = src/main/res/values-<lang>/strings.xml
+source_file = src/main/res/values/strings.xml
+source_lang = en
+type = ANDROID
+

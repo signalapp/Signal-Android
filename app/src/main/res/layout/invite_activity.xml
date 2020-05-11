@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.Toolbar
+        style="?actionBarStyle"
+        android:theme="?actionBarStyle"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:titleTextAppearance="@style/TextSecure.TitleTextStyle"
+        app:subtitleTextAppearance="@style/TextSecure.SubtitleTextStyle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:fillViewport="true"
+                android:clickable="false"
+                app:layout_constraintTop_toBottomOf="@id/toolbar"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout android:layout_gravity="center"
+                      android:layout_height="wrap_content"
+                      android:layout_width="match_parent"
+                      android:orientation="vertical"
+                      android:paddingTop="14dp"
+                      android:paddingStart="28dp"
+                      android:paddingEnd="28dp">
+
+            <TextView android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:textAppearance="@style/TextAppearance.Signal.Title2"
+                      android:text="@string/InviteActivity_friends_dont_let_friends_text_unencrypted"
+                      android:textColor="?title_text_color_primary"
+                      android:gravity="center_horizontal"
+                      android:layout_marginBottom="30dp"
+                      android:layout_marginTop="18dp"
+                      android:paddingStart="10dp"/>
+
+            <EditText android:id="@+id/invite_text"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:minLines="2"
+                      tools:text="Let's switch to Signal: https://sgnl.link/asdfdfsa"
+                      android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                      android:background="?attr/invite_edit_text_background"
+                      android:paddingTop="10dp"
+                      android:paddingBottom="10dp"
+                      android:textColor="?title_text_color_primary"
+                      android:paddingStart="10dp"
+                      android:paddingEnd="20dp"
+                      android:minHeight="@dimen/invite_edit_text_min_height"
+                      android:gravity="top"
+                      android:inputType="textShortMessage|textMultiLine"/>
+
+            <Button android:id="@+id/sms_button"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/InviteActivity_share_with_contacts"
+                android:layout_marginTop="16dp"
+                android:textColor="?conversation_title_color"
+                android:background="@drawable/cta_button_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/share_button"
+                style="@style/Button.Borderless"
+                app:drawableStartCompat="?invite_share_icon"
+                android:drawablePadding="4dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/InviteActivity_choose_how_to_share"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout android:id="@+id/sms_send_frame"
+                  android:layout_width="match_parent"
+                  android:layout_height="0dp"
+                  android:background="?android:windowBackground"
+                  android:orientation="vertical"
+                  android:visibility="gone"
+                  app:layout_constraintBottom_toBottomOf="parent"
+                  app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <org.thoughtcrime.securesms.components.ContactFilterToolbar
+            android:id="@+id/contact_filter"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:minHeight="?attr/actionBarSize"
+            android:background="@color/core_ultramarine"
+            android:elevation="4dp"
+            app:searchTextStyle="@style/TextSecure.TitleTextStyle.Light" />
+
+        <fragment android:id="@+id/contact_selection_list_fragment"
+                  android:layout_width="match_parent"
+                  android:layout_height="0dp"
+                  android:layout_weight="1"
+                  android:name="org.thoughtcrime.securesms.ContactSelectionListFragment"
+                  tools:layout="@layout/contact_selection_list_fragment"/>
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:gravity="end"
+                      android:padding="10dp"
+                      android:orientation="horizontal">
+
+            <Button android:id="@+id/cancel_sms_button"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/InviteActivity_cancel" />
+
+            <Button android:id="@+id/send_sms_button"
+                    style="@style/Button.Borderless"
+                    android:enabled="false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Send to 0 friends"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

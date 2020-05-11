@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/help_fragment_scroller"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fadingEdge="vertical"
+        android:fillViewport="true"
+        android:requiresFadingEdge="vertical"
+        app:layout_constraintBottom_toTopOf="@id/help_fragment_faq"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/help_fragment_contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/HelpFragment__contact_us"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="?title_text_color_secondary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/help_fragment_problem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:background="?attr/help_problem_background"
+                android:gravity="top"
+                android:hint="@string/HelpFragment__tell_us_whats_going_on"
+                android:inputType="textMultiLine"
+                android:minHeight="144dp"
+                android:padding="16dp"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/help_fragment_contact" />
+
+            <CheckBox
+                android:id="@+id/help_fragment_debug"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:checked="true"
+                android:text="@string/HelpFragment__include_debug_log"
+                android:textColor="?title_text_color_secondary"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/help_fragment_debug_info"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/help_fragment_debug_info" />
+
+            <Button
+                android:id="@+id/help_fragment_debug_info"
+                style="@style/Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:background="@android:color/transparent"
+                android:text="@string/HelpFragment__whats_this"
+                android:textAllCaps="false"
+                android:textAppearance="@style/Signal.Text.Body"
+                android:textColor="@color/core_ultramarine"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toEndOf="@id/help_fragment_debug"
+                app:layout_constraintTop_toBottomOf="@id/help_fragment_problem" />
+
+            <TextView
+                android:id="@+id/help_fragment_feelings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/HelpFragment__how_do_you_feel"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="?title_text_color_secondary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/help_fragment_debug_info" />
+
+            <org.thoughtcrime.securesms.components.emoji.EmojiImageView
+                android:id="@+id/help_fragment_emoji_5"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="8dp"
+                android:background="?attr/help_emoji_radio_background"
+                android:button="@null"
+                android:gravity="center"
+                android:scaleType="centerInside"
+                app:layout_constraintEnd_toStartOf="@id/help_fragment_emoji_4"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/help_fragment_feelings" />
+
+            <org.thoughtcrime.securesms.components.emoji.EmojiImageView
+                android:id="@+id/help_fragment_emoji_4"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="8dp"
+                android:background="?attr/help_emoji_radio_background"
+                android:button="@null"
+                android:gravity="center"
+                android:scaleType="centerInside"
+                app:layout_constraintBottom_toBottomOf="@id/help_fragment_emoji_5"
+                app:layout_constraintEnd_toEndOf="@id/help_fragment_emoji_3"
+                app:layout_constraintStart_toEndOf="@id/help_fragment_emoji_5"
+                app:layout_constraintTop_toTopOf="@id/help_fragment_emoji_5" />
+
+            <org.thoughtcrime.securesms.components.emoji.EmojiImageView
+                android:id="@+id/help_fragment_emoji_3"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="8dp"
+                android:background="?attr/help_emoji_radio_background"
+                android:button="@null"
+                android:gravity="center"
+                android:scaleType="centerInside"
+                app:layout_constraintBottom_toBottomOf="@id/help_fragment_emoji_4"
+                app:layout_constraintEnd_toStartOf="@id/help_fragment_emoji_2"
+                app:layout_constraintStart_toEndOf="@id/help_fragment_emoji_4"
+                app:layout_constraintTop_toTopOf="@id/help_fragment_emoji_4" />
+
+            <org.thoughtcrime.securesms.components.emoji.EmojiImageView
+                android:id="@+id/help_fragment_emoji_2"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="8dp"
+                android:background="?attr/help_emoji_radio_background"
+                android:button="@null"
+                android:gravity="center"
+                android:scaleType="centerInside"
+                app:layout_constraintBottom_toBottomOf="@id/help_fragment_emoji_3"
+                app:layout_constraintEnd_toStartOf="@id/help_fragment_emoji_1"
+                app:layout_constraintStart_toEndOf="@id/help_fragment_emoji_3"
+                app:layout_constraintTop_toTopOf="@id/help_fragment_emoji_3" />
+
+            <org.thoughtcrime.securesms.components.emoji.EmojiImageView
+                android:id="@+id/help_fragment_emoji_1"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="16dp"
+                android:background="?attr/help_emoji_radio_background"
+                android:button="@null"
+                android:gravity="center"
+                android:scaleType="centerInside"
+                app:layout_constraintBottom_toBottomOf="@id/help_fragment_emoji_2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/help_fragment_emoji_2"
+                app:layout_constraintTop_toTopOf="@id/help_fragment_emoji_2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/help_fragment_faq"
+        style="@style/Button.Borderless"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:gravity="start|center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="@string/HelpFragment__have_you_read_our_faq_yet"
+        android:textAllCaps="false"
+        android:textAppearance="@style/Signal.Text.Body"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/help_fragment_next"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.dd.CircularProgressButton
+        android:id="@+id/help_fragment_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:enabled="false"
+        android:textColor="@color/white"
+        app:cpb_colorIndicator="@color/white"
+        app:cpb_colorProgress="@color/core_ultramarine"
+        app:cpb_cornerRadius="4dp"
+        app:cpb_selectorIdle="?attr/help_next_background"
+        app:cpb_textIdle="@string/HelpFragment__next"
+        app:layout_constraintBottom_toBottomOf="@id/help_fragment_faq"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/help_fragment_faq"
+        app:layout_constraintTop_toTopOf="@id/help_fragment_faq" />
+
+    <View
+        android:id="@+id/help_fragment_next_toaster"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:enabled="true"
+        app:layout_constraintBottom_toBottomOf="@id/help_fragment_faq"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/help_fragment_faq"
+        app:layout_constraintTop_toTopOf="@id/help_fragment_faq" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

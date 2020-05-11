@@ -1,0 +1,108 @@
+import groovy.io.FileType
+import groovy.transform.stc.ClosureParams
+import groovy.transform.stc.SimpleType
+
+ext {
+    autoResConfig = this.&autoResConfig
+}
+
+def allStringsResourceFiles(@ClosureParams(value = SimpleType.class, options = ['java.io.File']) Closure c) {
+    file('src/main/res').eachFileRecurse(FileType.FILES) { f ->
+        if (f.name == 'strings.xml') {
+            c(f)
+        }
+    }
+}
+
+/**
+ * Discovers supported languages listed as under the res/values- directory.
+ */
+def autoResConfig() {
+    def files = []
+    allStringsResourceFiles { f ->
+        files.add(f.parentFile.name)
+    }
+    ['en'] + files.collect { f -> f =~ /^values-([a-z]{2}(-r[A-Z]{2})?)$/ }
+            .findAll { matcher -> matcher.find() }
+            .collect { matcher -> matcher.group(1) }
+            .sort()
+}
+
+task pullTranslations(type: Exec) {
+    group 'Translate'
+    description 'Pull translations, requires transifex client and api key.'
+    commandLine 'tx', 'pull', '-a', '--minimum-perc=80', '--force'
+}
+
+task replaceEllipsis {
+    group 'Translate'
+    description 'Process strings for ellipsis characters.'
+    doLast {
+        allStringsResourceFiles { f ->
+            def before = f.text
+            def after = f.text.replace('...', '…')
+            if (before != after) {
+                f.text = after
+                logger.info("$f.parentFile.name/$f.name...updated")
+            }
+        }
+    }
+    mustRunAfter pullTranslations
+}
+
+task cleanApostropheErrors {
+    group 'Translate'
+    description 'Fix transifex apostrophe string errors.'
+    doLast {
+        allStringsResourceFiles { f ->
+            def before = f.text
+            def after = before.replaceAll(/([^\\=08])(')/, '$1\\\\\'')
+            if (before != after) {
+                f.text = after
+                logger.info("$f.parentFile.name/$f.name...updated")
+            }
+        }
+    }
+    mustRunAfter replaceEllipsis
+}
+
+task excludeNonTranslatables {
+    group 'Translate'
+    description 'Remove strings that are marked "translatable"="false" or are ExtraTranslations.'
+    doLast {
+        def englishFile = file('src/main/res/values/strings.xml')
+
+        def english = new XmlParser().parse(englishFile)
+        def nonTranslatable = english
+                .findAll { it['@translatable'] == 'false' }
+                .collect { it['@name'] }
+                .toSet()
+        def all = english.collect { it['@name'] }.toSet()
+        def translatable = all - nonTranslatable
+
+        allStringsResourceFiles { f ->
+            if (f != englishFile) {
+                def newLines = f.readLines()
+                        .collect { line ->
+                            def matcher = line =~ /name="([^"]*)".*<\//
+                            if (matcher.find()) {
+                                def name = matcher.group(1)
+                                if (!line.contains('excludeNonTranslatables') && !translatable.contains(name)) {
+                                    return "  <!-- Removed by excludeNonTranslatables ${line.trim()} -->"
+                                }
+                            }
+                            return line
+                        }
+
+                f.write(newLines.join("\n") + "\n")
+            }
+        }
+    }
+    mustRunAfter cleanApostropheErrors
+}
+
+task translate {
+    group 'Translate'
+    description 'Pull translations and post-process for ellipsis, apostrophes and non-translatables.'
+    dependsOn pullTranslations, replaceEllipsis, cleanApostropheErrors, excludeNonTranslatables
+}

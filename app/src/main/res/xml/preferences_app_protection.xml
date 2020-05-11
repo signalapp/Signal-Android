@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+  <PreferenceCategory android:title="@string/preferences_app_protection__app_access">
+
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="pref_android_screen_lock"
+        android:summary="@string/preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint"
+        android:title="@string/preferences_app_protection__screen_lock" />
+
+    <Preference
+        android:dependency="pref_android_screen_lock"
+        android:key="pref_android_screen_lock_timeout"
+        android:title="@string/preferences_app_protection__screen_lock_inactivity_timeout" />
+
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:key="pref_enable_passphrase_temporary"
+        android:summary="@string/preferences__lock_signal_and_message_notifications_with_a_passphrase"
+        android:title="@string/preferences__enable_passphrase" />
+
+    <Preference
+        android:dependency="pref_enable_passphrase_temporary"
+        android:key="pref_change_passphrase"
+        android:summary="@string/preferences__change_your_passphrase"
+        android:title="@string/preferences__change_passphrase" />
+
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:dependency="pref_enable_passphrase_temporary"
+        android:key="pref_timeout_passphrase"
+        android:summary="@string/preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity"
+        android:title="@string/preferences__inactivity_timeout_passphrase" />
+
+    <Preference
+        android:dependency="pref_timeout_passphrase"
+        android:key="pref_timeout_interval"
+        android:title="@string/preferences__inactivity_timeout_interval" />
+
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="pref_screen_security"
+        android:summary="@string/preferences__disable_screen_security_to_allow_screen_shots"
+        android:title="@string/preferences__screen_security" />
+
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="pref_incognito_keyboard"
+        android:summary="@string/preferences__request_keyboard_to_disable_personalized_learning"
+        android:title="@string/preferences__incognito_keyboard" />
+  </PreferenceCategory>
+
+  <PreferenceCategory android:layout="@layout/preference_divider" />
+
+  <PreferenceCategory android:title="@string/preferences_app_protection__communication">
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="pref_turn_only"
+        android:summary="@string/preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address"
+        android:title="@string/preferences_advanced__always_relay_calls" />
+
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="pref_read_receipts"
+        android:summary="@string/preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts"
+        android:title="@string/preferences__read_receipts" />
+
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:key="pref_typing_indicators"
+        android:summary="@string/preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators"
+        android:title="@string/preferences__typing_indicators" />
+
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:key="pref_link_previews"
+        android:summary="@string/preferences__previews_are_supported_for"
+        android:title="@string/preferences__send_link_previews" />
+
+    <Preference
+        android:key="preference_category_blocked"
+        android:title="@string/preferences_app_protection__blocked_contacts" />
+  </PreferenceCategory>
+
+  <PreferenceCategory android:layout="@layout/preference_divider" />
+
+  <PreferenceCategory android:title="@string/preferences_communication__category_sealed_sender">
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="pref_show_unidentifed_delivery_indicators"
+        android:summary="@string/preferences_communication__sealed_sender_display_indicators_description"
+        android:title="@string/preferences_communication__sealed_sender_display_indicators" />
+
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="pref_universal_unidentified_access"
+        android:summary="@string/preferences_communication__sealed_sender_allow_from_anyone_description"
+        android:title="@string/preferences_communication__sealed_sender_allow_from_anyone" />
+
+    <Preference
+        android:key="pref_unidentified_learn_more"
+        android:layout="@layout/unidentified_delivery_learn_more" />
+
+  </PreferenceCategory>
+
+  <PreferenceCategory android:layout="@layout/preference_divider" />
+
+  <PreferenceCategory
+      android:key="prefs_signal_pin"
+      android:title="@string/preferences_app_protection__signal_pin">
+
+    <Preference
+        android:key="pref_kbs_change"
+        android:summary="@string/preferences_app_protection__pins_keep_information_stored_with_signal_encrypted"
+        android:title="@string/preferences_app_protection__change_your_pin" />
+
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:enabled="false"
+        android:key="kbs.v2_lock_enabled"
+        android:summary="@string/preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register"
+        android:title="@string/preferences_app_protection__registration_lock" />
+
+  </PreferenceCategory>
+
+  <PreferenceCategory
+      android:key="prefs_lock_v1"
+      android:title="@string/preferences_app_protection__registration_lock">
+    <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="pref_registration_lock"
+        android:summary="@string/preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required"
+        android:title="@string/preferences_app_protection__registration_lock_pin" />
+  </PreferenceCategory>
+
+
+</PreferenceScreen>

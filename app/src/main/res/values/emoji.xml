@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="emoji_heart" translatable="false">\u2764\ufe0f</string>
+    <string name="emoji_thumbs_up" translatable="false">\ud83d\udc4d</string>
+    <string name="emoji_thumbs_down" translatable="false">\ud83d\udc4e</string>
+    <string name="emoji_laugh" translatable="false">\ud83d\ude02</string>
+    <string name="emoji_surprise" translatable="false">\ud83d\ude2e</string>
+    <string name="emoji_sad" translatable="false">\ud83d\ude22</string>
+    <string name="emoji_angry" translatable="false">\ud83d\ude21</string>
+</resources>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="org.thoughtcrime.securesms.components.AudioView">
+
+    <LinearLayout
+        android:id="@+id/audio_widget_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:background="#ff00ff">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
+
+            <include layout="@layout/audio_view_circle" />
+
+            <SeekBar
+                android:id="@+id/seek"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/timestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="76dip"
+            android:autoLink="none"
+            android:fontFamily="sans-serif-light"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?conversation_item_sent_text_secondary_color"
+            android:textSize="@dimen/conversation_item_date_text_size"
+            android:visibility="gone"
+            tools:text="00:15"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
+</merge>

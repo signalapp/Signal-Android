@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <org.thoughtcrime.securesms.preferences.widgets.ProfilePreference
+            android:key="preference_category_profile"/>
+
+    <Preference android:key="preference_category_sms_mms"
+                android:title="@string/preferences__sms_mms"
+                android:icon="?attr/message_icon"/>
+
+    <Preference android:key="preference_category_notifications"
+                android:title="@string/preferences__notifications"
+                android:icon="?attr/notifications_icon"/>
+
+    <Preference android:key="preference_category_app_protection"
+                android:title="@string/preferences__privacy"
+                android:icon="?attr/privacy_icon"/>
+
+    <Preference android:key="preference_category_appearance"
+                android:title="@string/preferences__appearance"
+                android:icon="?attr/appearance_icon"/>
+
+    <Preference android:key="preference_category_chats"
+                android:title="@string/preferences__chats"
+                android:icon="?attr/chats_and_media_icon"/>
+
+    <Preference android:key="preference_category_storage"
+                android:title="@string/preferences__storage"
+                android:icon="?attr/data_and_storage_icon"/>
+
+    <Preference android:key="preference_category_devices"
+                android:title="@string/preferences__linked_devices"
+                android:icon="?attr/linked_devices_icon"/>
+
+    <Preference android:key="preference_category_help"
+                android:title="@string/preferences__help"
+                android:icon="?attr/help_icon" />
+
+    <Preference android:key="preference_category_advanced"
+                android:title="@string/preferences__advanced"
+                android:icon="?attr/advanced_icon"/>
+
+</PreferenceScreen>

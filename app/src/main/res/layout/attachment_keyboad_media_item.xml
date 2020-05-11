@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<org.thoughtcrime.securesms.components.SquareFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_marginEnd="8dp"
+    app:square_height="true">
+
+    <org.thoughtcrime.securesms.components.ThumbnailView
+        android:id="@+id/attachment_keyboard_item_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/attachment_keyboard_item_video_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="6dp"
+        android:layout_gravity="bottom|end"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:background="@drawable/transparent_black_pill"
+        android:textColor="@color/core_white"
+        android:textSize="13sp"
+        android:fontFamily="sans-serif-medium"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/attachment_keyboard_item_video_icon"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="6dp"
+        android:paddingStart="9dp"
+        android:paddingEnd="5dp"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:background="@drawable/transparent_black_pill"
+        app:srcCompat="@drawable/triangle_right"
+        android:visibility="gone" />
+
+</org.thoughtcrime.securesms.components.SquareFrameLayout>

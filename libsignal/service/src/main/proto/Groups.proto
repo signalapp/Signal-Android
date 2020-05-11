@@ -1,0 +1,148 @@
+/**
+ * Copyright (C) 2019 Open Whisper Systems
+ *
+ * Licensed according to the LICENSE file in this repository.
+ */
+syntax = "proto3";
+
+option java_package        = "org.signal.storageservice.protos.groups";
+option java_multiple_files = true;
+
+message AvatarUploadAttributes {
+  string key        = 1;
+  string credential = 2;
+  string acl        = 3;
+  string algorithm  = 4;
+  string date       = 5;
+  string policy     = 6;
+  string signature  = 7;
+}
+
+message Member {
+  enum Role {
+    UNKNOWN       = 0;
+    DEFAULT       = 1;
+    ADMINISTRATOR = 2;
+  }
+
+  bytes  userId          = 1;
+  Role   role            = 2;
+  bytes  profileKey      = 3;
+  bytes  presentation    = 4;
+  uint32 joinedAtVersion = 5;
+}
+
+message PendingMember {
+  Member member        = 1;
+  bytes  addedByUserId = 2;
+  uint64 timestamp     = 3;
+}
+
+message AccessControl {
+  enum AccessRequired {
+    UNKNOWN       = 0;
+    ANY           = 1;
+    MEMBER        = 2;
+    ADMINISTRATOR = 3;
+  }
+
+  AccessRequired attributes = 1;
+  AccessRequired members    = 2;
+}
+
+message Group {
+           bytes         publicKey                 = 1;
+           bytes         title                     = 2;
+           string        avatar                    = 3;
+           bytes         disappearingMessagesTimer = 4;
+           AccessControl accessControl             = 5;
+           uint32        version                   = 6;
+  repeated Member        members                   = 7;
+  repeated PendingMember pendingMembers            = 8;
+}
+
+message GroupChange {
+
+  message Actions {
+
+    message AddMemberAction {
+      Member added = 1;
+    }
+
+    message DeleteMemberAction {
+      bytes deletedUserId = 1;
+    }
+
+    message ModifyMemberRoleAction {
+      bytes       userId = 1;
+      Member.Role role   = 2;
+    }
+
+    message ModifyMemberProfileKeyAction {
+      bytes presentation = 1;
+    }
+
+    message AddPendingMemberAction {
+      PendingMember added = 1;
+    }
+
+    message DeletePendingMemberAction {
+      bytes deletedUserId = 1;
+    }
+
+    message PromotePendingMemberAction {
+      bytes presentation = 1;
+    }
+
+    message ModifyTitleAction {
+      bytes title = 1;
+    }
+
+    message ModifyAvatarAction {
+      string avatar = 1;
+    }
+
+    message ModifyDisappearingMessagesTimerAction {
+      bytes timer = 1;
+    }
+
+    message ModifyAttributesAccessControlAction {
+      AccessControl.AccessRequired attributesAccess = 1;
+    }
+
+    message ModifyMembersAccessControlAction {
+      AccessControl.AccessRequired membersAccess = 1;
+    }
+
+             bytes                                 sourceUuid                      = 1;
+             uint32                                version                         = 2;
+    repeated AddMemberAction                       addMembers                      = 3;
+    repeated DeleteMemberAction                    deleteMembers                   = 4;
+    repeated ModifyMemberRoleAction                modifyMemberRoles               = 5;
+    repeated ModifyMemberProfileKeyAction          modifyMemberProfileKeys         = 6;
+    repeated AddPendingMemberAction                addPendingMembers               = 7;
+    repeated DeletePendingMemberAction             deletePendingMembers            = 8;
+    repeated PromotePendingMemberAction            promotePendingMembers           = 9;
+             ModifyTitleAction                     modifyTitle                     = 10;
+             ModifyAvatarAction                    modifyAvatar                    = 11;
+             ModifyDisappearingMessagesTimerAction modifyDisappearingMessagesTimer = 12;
+             ModifyAttributesAccessControlAction   modifyAttributesAccess          = 13;
+             ModifyMembersAccessControlAction      modifyMemberAccess              = 14;
+  }
+
+  bytes actions         = 1;
+  bytes serverSignature = 2;
+}
+
+message GroupChanges {
+  message GroupChangeState {
+    GroupChange groupChange = 1;
+    Group       groupState  = 2;
+  }
+
+  repeated GroupChangeState groupChanges = 1;
+}
+
+message DisappearingMessagesTimer {
+  uint32 duration = 1;
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="registration_headline_text">28sp</dimen>
+    <dimen name="registration_body_text">16sp</dimen>
+    <dimen name="registration_button_bottom_margin">54dp</dimen>
+
+</resources>

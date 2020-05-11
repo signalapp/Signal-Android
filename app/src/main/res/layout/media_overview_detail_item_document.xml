@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:id="@+id/image_container"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:id="@+id/document_icon_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="false"
+            android:focusable="false"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="38dp"
+                android:layout_height="50dp"
+                android:importantForAccessibility="no"
+                android:src="?attachment_document_icon_large" />
+
+            <TextView
+                android:id="@+id/document_extension"
+                style="@style/Signal.Text.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:clickable="false"
+                android:gravity="center"
+                android:scaleType="centerInside"
+                android:textAlignment="center"
+                android:textColor="@color/core_black"
+                android:textSize="10sp"
+                android:visibility="visible"
+                tools:text="PDF"
+                tools:visibility="visible" />
+        </FrameLayout>
+
+        <include layout="@layout/media_overview_selected_overlay" />
+
+    </FrameLayout>
+
+    <include layout="@layout/media_overview_detail_text" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

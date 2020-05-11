@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/incall_screen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <org.thoughtcrime.securesms.components.webrtc.PercentFrameLayout
+        android:id="@+id/remote_render_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:visibility="invisible" />
+
+    <org.thoughtcrime.securesms.components.webrtc.PercentFrameLayout
+        android:id="@+id/local_large_render_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:visibility="invisible" />
+
+    <!-- "Call info" block #1, for the foreground call. -->
+    <RelativeLayout
+        android:id="@+id/call_info_1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true">
+
+        <!-- Contact photo for call_info_1 -->
+        <FrameLayout
+            android:id="@+id/image_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/call_banner_1"
+            android:gravity="top|center_horizontal">
+
+            <ImageView
+                android:id="@+id/photo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/WebRtcCallControls_contact_photo_description"
+                android:scaleType="centerCrop"
+                android:visibility="visible"
+                tools:src="@drawable/ic_person_large" />
+
+            <LinearLayout
+                android:id="@+id/untrusted_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/grey_400"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/untrusted_explanation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:lineSpacingExtra="2sp"
+                    android:maxWidth="270dp"
+                    android:textSize="16sp"
+                    tools:text="The safety numbers for your conversation with Masha have changed. This could either mean that someone is trying to intercept your communication, or that Masha simply re-installed Signal. You may wish to verify safety numbers for this contact." />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:maxWidth="250dp">
+
+                    <Button
+                        android:id="@+id/cancel_safety_numbers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:text="@android:string/cancel" />
+
+                    <Button
+                        android:id="@+id/accept_safety_numbers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/WebRtcCallScreen_accept" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </FrameLayout>
+
+        <!-- "Call Banner" for call #1, the foregound or ringing call.
+             The "call banner" is a block of info about a single call,
+             including the contact name, phone number, call time counter,
+             and other status info.  This info is shown as a "banner"
+             overlaid across the top of contact photo. -->
+        <LinearLayout
+            android:id="@+id/call_banner_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:minHeight="80dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/expanded_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/core_ultramarine"
+                android:paddingStart="24dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="24dp">
+
+                <!-- Name (or the phone number, if we don't have a name to display). -->
+                <TextView
+                    android:id="@+id/name"
+                    style="@style/WebRtcCallScreenTextWhite.ExtraLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textAlignment="viewStart"
+                    tools:text="Ali Connors" />
+
+                <!-- Label (like "Mobile" or "Work", if present) and phone number, side by side -->
+                <LinearLayout
+                    android:id="@+id/labelAndNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/name"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/label"
+                        style="@style/WebRtcCallScreenTextWhite.Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:singleLine="true"
+                        android:text="@string/redphone_call_card__signal_call" />
+
+                    <TextView
+                        android:id="@+id/phoneNumber"
+                        style="@style/WebRtcCallScreenTextWhite.Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        tools:text="+14152222222" />
+
+                </LinearLayout>
+
+                <!-- Elapsed time indication for a call in progress. -->
+                <TextView
+                    android:id="@+id/elapsedTime"
+                    style="@style/WebRtcCallScreenTextWhite.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:singleLine="true" />
+
+            </RelativeLayout>
+
+            <org.thoughtcrime.securesms.components.webrtc.WebRtcCallControls
+                android:id="@+id/inCallControls"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/core_ultramarine"
+                android:paddingStart="24dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="24dp"
+                android:paddingBottom="20dp" />
+
+            <TextView
+                android:id="@+id/callStateLabel"
+                style="@style/WebRtcCallScreenTextWhite.Small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#8033b5e5"
+                android:gravity="end"
+                android:paddingStart="24dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="24dp"
+                android:paddingBottom="8dp"
+                android:textAllCaps="true"
+                tools:text="connected" />
+
+        </LinearLayout>  <!-- End of call_banner for call_info #1. -->
+
+        <!-- The "call state label": In some states, this shows a special
+             indication like "Dialing" or "Incoming call" or "Call ended".
+             It's unused for the normal case of an active ongoing call. -->
+        <!-- This is visually part of the call banner, but it's not actually
+             part of the "call_banner_1" RelativeLayout since it needs a
+             different background color. -->
+
+    </RelativeLayout>
+
+    <org.thoughtcrime.securesms.components.webrtc.PercentFrameLayout
+        android:id="@+id/local_render_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:visibility="invisible" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/hangup_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="40dp"
+        android:contentDescription="@string/WebRtcCallScreen_end_call"
+        android:focusable="true"
+        android:src="@drawable/ic_call_end_white_48dp"
+        app:backgroundTint="@color/red_500" />
+
+    <org.thoughtcrime.securesms.components.webrtc.WebRtcAnswerDeclineButton
+        android:id="@+id/answer_decline_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="16dp" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/recipients_panel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <org.thoughtcrime.securesms.contacts.RecipientsEditor android:id="@+id/recipients_text"
+           android:layout_height="wrap_content"
+            android:capitalize="sentences"
+            android:autoText="true"
+            android:singleLine="true"
+            android:hint="@string/recipients_panel__to"
+            android:paddingEnd="45dp"
+            android:textColor="?conversation_editor_text_color"
+            android:layout_width="fill_parent"/>
+
+        <ImageButton android:id="@+id/contacts_button"
+                     android:background="?actionBarItemBackground"
+                     android:tint="?icon_tint"
+                     android:layout_width="40dp"
+                     android:layout_height="35dp"
+                     android:layout_marginEnd="5dp"
+                     android:layout_marginTop="4dp"
+                     android:src="@drawable/ic_menu_add_field_holo_light"
+                     android:layout_alignEnd="@id/recipients_text"
+                     android:maxWidth="32dip"
+                     android:maxHeight="32dip" />
+
+    </RelativeLayout>

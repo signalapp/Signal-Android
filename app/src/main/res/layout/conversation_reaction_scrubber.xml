@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.conversation.ConversationReactionOverlay xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/conversation_reaction_scrubber"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="1000dp"
+    android:visibility="gone"
+    tools:visibility="visible">
+
+    <org.thoughtcrime.securesms.components.MaskView
+        android:id="@+id/conversation_reaction_mask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"
+        android:background="?reactions_screen_shade_color" />
+
+    <include
+        android:id="@+id/conversation_reaction_toolbar"
+        layout="@layout/conversation_reaction_long_press_toolbar" />
+
+    <View
+        android:id="@+id/conversation_reaction_scrubber_background"
+        android:layout_width="@dimen/reaction_scrubber_width"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"
+        android:alpha="0"
+        tools:alpha="1"
+        android:background="?reactions_overlay_scrubber_background"
+        android:elevation="4dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/conversation_reaction_scrubber_foreground"
+        android:layout_width="@dimen/reaction_scrubber_width"
+        android:layout_height="@dimen/conversation_reaction_scrubber_height"
+        android:clipToPadding="false"
+        android:elevation="4dp">
+
+        <View
+            android:id="@+id/conversation_reaction_current_selection_indicator"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:alpha="0"
+            android:background="?attr/reactions_overlay_old_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/reaction_3"
+            app:layout_constraintRight_toRightOf="@id/reaction_3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/reaction_1"
+            android:layout_width="32dp"
+            android:layout_height="48dp"
+            android:alpha="0"
+            android:src="@drawable/reaction_scrubber_love_48"
+            android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/reaction_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:alpha="1"
+            tools:translationY="0dp" />
+
+        <ImageView
+            android:id="@+id/reaction_2"
+            android:layout_width="32dp"
+            android:layout_height="48dp"
+            android:alpha="0"
+            android:src="@drawable/reaction_scrubber_like_48"
+            android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/reaction_3"
+            app:layout_constraintStart_toEndOf="@id/reaction_1"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:alpha="1"
+            tools:translationY="0dp" />
+
+        <ImageView
+            android:id="@+id/reaction_3"
+            android:layout_width="32dp"
+            android:layout_height="48dp"
+            android:alpha="0"
+            android:src="@drawable/reaction_scrubber_dislike_48"
+            android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/reaction_4"
+            app:layout_constraintStart_toEndOf="@id/reaction_2"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:alpha="1"
+            tools:translationY="0dp" />
+
+        <ImageView
+            android:id="@+id/reaction_4"
+            android:layout_width="32dp"
+            android:layout_height="48dp"
+            android:alpha="0"
+            android:src="@drawable/reaction_scrubber_haha_48"
+            android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/reaction_5"
+            app:layout_constraintStart_toEndOf="@id/reaction_3"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:alpha="1"
+            tools:translationY="0dp" />
+
+        <ImageView
+            android:id="@+id/reaction_5"
+            android:layout_width="32dp"
+            android:layout_height="48dp"
+            android:alpha="0"
+            android:src="@drawable/reaction_scrubber_wow_48"
+            android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/reaction_6"
+            app:layout_constraintStart_toEndOf="@id/reaction_4"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:alpha="1"
+            tools:translationY="0dp" />
+
+        <ImageView
+            android:id="@+id/reaction_6"
+            android:layout_width="32dp"
+            android:layout_height="48dp"
+            android:alpha="0"
+            android:src="@drawable/reaction_scrubber_sad_48"
+            android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/reaction_7"
+            app:layout_constraintStart_toEndOf="@id/reaction_5"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:alpha="1"
+            tools:translationY="0dp" />
+
+        <ImageView
+            android:id="@+id/reaction_7"
+            android:layout_width="32dp"
+            android:layout_height="48dp"
+            android:alpha="0"
+            android:src="@drawable/reaction_scrubber_angry_48"
+            android:translationY="@dimen/reaction_scrubber_anim_start_translation_y"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/reaction_6"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:alpha="1"
+            tools:translationY="0dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</org.thoughtcrime.securesms.conversation.ConversationReactionOverlay>

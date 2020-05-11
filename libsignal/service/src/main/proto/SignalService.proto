@@ -1,0 +1,475 @@
+/**
+ * Copyright (C) 2014-2016 Open Whisper Systems
+ *
+ * Licensed according to the LICENSE file in this repository.
+ */
+syntax = "proto2";
+
+package signalservice;
+
+option java_package         = "org.whispersystems.signalservice.internal.push";
+option java_outer_classname = "SignalServiceProtos";
+
+message Envelope {
+  enum Type {
+    UNKNOWN             = 0;
+    CIPHERTEXT          = 1;
+    KEY_EXCHANGE        = 2;
+    PREKEY_BUNDLE       = 3;
+    RECEIPT             = 5;
+    UNIDENTIFIED_SENDER = 6;
+  }
+
+  optional Type   type            = 1;
+  optional string sourceE164      = 2;
+  optional string sourceUuid      = 11;
+  optional uint32 sourceDevice    = 7;
+  optional string relay           = 3;
+  optional uint64 timestamp       = 5;
+  optional bytes  legacyMessage   = 6; // Contains an encrypted DataMessage
+  optional bytes  content         = 8; // Contains an encrypted Content
+  optional string serverGuid      = 9;
+  optional uint64 serverTimestamp = 10;
+}
+
+message Content {
+  optional DataMessage    dataMessage    = 1;
+  optional SyncMessage    syncMessage    = 2;
+  optional CallMessage    callMessage    = 3;
+  optional NullMessage    nullMessage    = 4;
+  optional ReceiptMessage receiptMessage = 5;
+  optional TypingMessage  typingMessage  = 6;
+}
+
+message CallMessage {
+  message Offer {
+    optional uint64 id          = 1;
+    optional string description = 2;
+  }
+
+  message Answer {
+    optional uint64 id          = 1;
+    optional string description = 2;
+  }
+
+  message IceUpdate {
+    optional uint64 id            = 1;
+    optional string sdpMid        = 2;
+    optional uint32 sdpMLineIndex = 3;
+    optional string sdp           = 4;
+  }
+
+  message Busy {
+    optional uint64 id = 1;
+  }
+
+  message Hangup {
+    optional uint64 id = 1;
+  }
+
+
+  optional Offer     offer     = 1;
+  optional Answer    answer    = 2;
+  repeated IceUpdate iceUpdate = 3;
+  optional Hangup    hangup    = 4;
+  optional Busy      busy      = 5;
+}
+
+message DataMessage {
+  enum Flags {
+    END_SESSION             = 1;
+    EXPIRATION_TIMER_UPDATE = 2;
+    PROFILE_KEY_UPDATE      = 4;
+  }
+
+  message Quote {
+    message QuotedAttachment {
+      optional string            contentType = 1;
+      optional string            fileName    = 2;
+      optional AttachmentPointer thumbnail   = 3;
+    }
+
+    optional uint64           id          = 1;
+    optional string           authorE164  = 2;
+    optional string           authorUuid  = 5;
+    optional string           text        = 3;
+    repeated QuotedAttachment attachments = 4;
+  }
+
+  message Contact {
+    message Name {
+      optional string givenName   = 1;
+      optional string familyName  = 2;
+      optional string prefix      = 3;
+      optional string suffix      = 4;
+      optional string middleName  = 5;
+      optional string displayName = 6;
+    }
+
+    message Phone {
+      enum Type {
+        HOME   = 1;
+        MOBILE = 2;
+        WORK   = 3;
+        CUSTOM = 4;
+      }
+
+      optional string value = 1;
+      optional Type   type  = 2;
+      optional string label = 3;
+    }
+
+    message Email {
+      enum Type {
+        HOME   = 1;
+        MOBILE = 2;
+        WORK   = 3;
+        CUSTOM = 4;
+      }
+
+      optional string value = 1;
+      optional Type   type  = 2;
+      optional string label = 3;
+    }
+
+    message PostalAddress {
+      enum Type {
+        HOME   = 1;
+        WORK   = 2;
+        CUSTOM = 3;
+      }
+
+      optional Type   type         = 1;
+      optional string label        = 2;
+      optional string street       = 3;
+      optional string pobox        = 4;
+      optional string neighborhood = 5;
+      optional string city         = 6;
+      optional string region       = 7;
+      optional string postcode     = 8;
+      optional string country      = 9;
+    }
+
+    message Avatar {
+      optional AttachmentPointer avatar    = 1;
+      optional bool              isProfile = 2;
+    }
+
+    optional Name              name            = 1;
+    repeated Phone             number          = 3;
+    repeated Email             email           = 4;
+    repeated PostalAddress     address         = 5;
+    optional Avatar            avatar          = 6;
+    optional string            organization    = 7;
+  }
+
+  message Preview {
+    optional string            url   = 1;
+    optional string            title = 2;
+    optional AttachmentPointer image = 3;
+  }
+
+  message Sticker {
+    optional bytes             packId    = 1;
+    optional bytes             packKey   = 2;
+    optional uint32            stickerId = 3;
+    optional AttachmentPointer data      = 4;
+  }
+
+  message Reaction {
+    optional string emoji               = 1;
+    optional bool   remove              = 2;
+    optional string targetAuthorE164    = 3;
+    optional string targetAuthorUuid    = 4;
+    optional uint64 targetSentTimestamp = 5;
+  }
+
+  message Delete {
+    optional uint64 targetSentTimestamp = 1;
+  }
+
+  enum ProtocolVersion {
+    option allow_alias = true;
+
+    INITIAL                  = 0;
+    MESSAGE_TIMERS           = 1;
+    VIEW_ONCE                = 2;
+    VIEW_ONCE_VIDEO          = 3;
+    REACTIONS                = 4;
+    CDN_SELECTOR_ATTACHMENTS = 5;
+    CURRENT                  = 5;
+  }
+
+  optional string             body                    = 1;
+  repeated AttachmentPointer  attachments             = 2;
+  optional GroupContext       group                   = 3;
+  optional GroupContextV2     groupV2                 = 15;
+  optional uint32             flags                   = 4;
+  optional uint32             expireTimer             = 5;
+  optional bytes              profileKey              = 6;
+  optional uint64             timestamp               = 7;
+  optional Quote              quote                   = 8;
+  repeated Contact            contact                 = 9;
+  repeated Preview            preview                 = 10;
+  optional Sticker            sticker                 = 11;
+  optional uint32             requiredProtocolVersion = 12;
+  optional bool               isViewOnce              = 14;
+  optional Reaction           reaction                = 16;
+  optional Delete             delete                  = 17;
+}
+
+message NullMessage {
+  optional bytes padding = 1;
+}
+
+message ReceiptMessage {
+  enum Type {
+    DELIVERY = 0;
+    READ     = 1;
+  }
+
+  optional Type   type      = 1;
+  repeated uint64 timestamp = 2;
+}
+
+message TypingMessage {
+    enum Action {
+        STARTED = 0;
+        STOPPED = 1;
+    }
+
+    optional uint64 timestamp = 1;
+    optional Action action    = 2;
+    optional bytes  groupId   = 3;
+}
+
+message Verified {
+  enum State {
+    DEFAULT    = 0;
+    VERIFIED   = 1;
+    UNVERIFIED = 2;
+  }
+
+  optional string destinationE164 = 1;
+  optional string destinationUuid = 5;
+  optional bytes  identityKey     = 2;
+  optional State  state           = 3;
+  optional bytes  nullMessage     = 4;
+}
+
+message SyncMessage {
+  message Sent {
+    message UnidentifiedDeliveryStatus {
+      optional string destinationE164 = 1;
+      optional string destinationUuid = 3;
+      optional bool   unidentified    = 2;
+    }
+
+    optional string                     destinationE164          = 1;
+    optional string                     destinationUuid          = 7;
+    optional uint64                     timestamp                = 2;
+    optional DataMessage                message                  = 3;
+    optional uint64                     expirationStartTimestamp = 4;
+    repeated UnidentifiedDeliveryStatus unidentifiedStatus       = 5;
+    optional bool                       isRecipientUpdate        = 6 [default = false];
+  }
+
+  message Contacts {
+    optional AttachmentPointer blob     = 1;
+    optional bool              complete = 2 [default = false];
+  }
+
+  message Groups {
+    optional AttachmentPointer blob = 1;
+  }
+
+  message Blocked {
+    repeated string numbers  = 1;
+    repeated string uuids    = 3;
+    repeated bytes  groupIds = 2;
+  }
+
+  message Request {
+    enum Type {
+      UNKNOWN       = 0;
+      CONTACTS      = 1;
+      GROUPS        = 2;
+      BLOCKED       = 3;
+      CONFIGURATION = 4;
+      KEYS          = 5;
+    }
+
+    optional Type type = 1;
+  }
+
+  message Read {
+    optional string senderE164 = 1;
+    optional string senderUuid = 3;
+    optional uint64 timestamp  = 2;
+  }
+
+  message Configuration {
+    optional bool   readReceipts                   = 1;
+    optional bool   unidentifiedDeliveryIndicators = 2;
+    optional bool   typingIndicators               = 3;
+    optional bool   linkPreviews                   = 4;
+    optional uint32 provisioningVersion            = 5;
+  }
+
+  message StickerPackOperation {
+    enum Type {
+      INSTALL = 0;
+      REMOVE  = 1;
+    }
+
+    optional bytes packId  = 1;
+    optional bytes packKey = 2;
+    optional Type  type    = 3;
+  }
+
+  message ViewOnceOpen {
+    optional string senderE164 = 1;
+    optional string senderUuid = 3;
+    optional uint64 timestamp  = 2;
+  }
+
+  message FetchLatest {
+    enum Type {
+      UNKNOWN          = 0;
+      LOCAL_PROFILE    = 1;
+      STORAGE_MANIFEST = 2;
+    }
+
+    optional Type type = 1;
+  }
+
+  message Keys {
+    optional bytes storageService = 1;
+  }
+
+  message MessageRequestResponse {
+    enum Type {
+      UNKNOWN          = 0;
+      ACCEPT           = 1;
+      DELETE           = 2;
+      BLOCK            = 3;
+      BLOCK_AND_DELETE = 4;
+    }
+
+    optional string threadE164 = 1;
+    optional string threadUuid = 2;
+    optional bytes  groupId    = 3;
+    optional Type   type       = 4;
+  }
+
+  optional Sent                   sent                   = 1;
+  optional Contacts               contacts               = 2;
+  optional Groups                 groups                 = 3;
+  optional Request                request                = 4;
+  repeated Read                   read                   = 5;
+  optional Blocked                blocked                = 6;
+  optional Verified               verified               = 7;
+  optional Configuration          configuration          = 9;
+  optional bytes                  padding                = 8;
+  repeated StickerPackOperation   stickerPackOperation   = 10;
+  optional ViewOnceOpen           viewOnceOpen           = 11;
+  optional FetchLatest            fetchLatest            = 12;
+  optional Keys                   keys                   = 13;
+  optional MessageRequestResponse messageRequestResponse = 14;
+}
+
+message AttachmentPointer {
+  enum Flags {
+    VOICE_MESSAGE = 1;
+  }
+
+  oneof attachment_identifier {
+    fixed64        cdnId           = 1;
+    string         cdnKey          = 15;
+  }
+  optional string  contentType     = 2;
+  optional bytes   key             = 3;
+  optional uint32  size            = 4;
+  optional bytes   thumbnail       = 5;
+  optional bytes   digest          = 6;
+  optional string  fileName        = 7;
+  optional uint32  flags           = 8;
+  optional uint32  width           = 9;
+  optional uint32  height          = 10;
+  optional string  caption         = 11;
+  optional string  blurHash        = 12;
+  optional uint64  uploadTimestamp = 13;
+  optional uint32  cdnNumber       = 14;
+  // Next ID: 16
+}
+
+message GroupContext {
+  enum Type {
+    UNKNOWN      = 0;
+    UPDATE       = 1;
+    DELIVER      = 2;
+    QUIT         = 3;
+    REQUEST_INFO = 4;
+  }
+
+  message Member {
+    optional string uuid = 1;
+    optional string e164 = 2;
+  }
+
+  optional bytes             id          = 1;
+  optional Type              type        = 2;
+  optional string            name        = 3;
+  repeated string            membersE164 = 4;
+  repeated Member            members     = 6;
+  optional AttachmentPointer avatar      = 5;
+}
+
+message GroupContextV2 {
+  optional bytes  masterKey   = 1;
+  optional uint32 revision    = 2;
+  optional bytes  groupChange = 3;
+}
+
+message ContactDetails {
+  message Avatar {
+    optional string contentType = 1;
+    optional uint32 length      = 2;
+  }
+
+  optional string   number        = 1;
+  optional string   uuid          = 9;
+  optional string   name          = 2;
+  optional Avatar   avatar        = 3;
+  optional string   color         = 4;
+  optional Verified verified      = 5;
+  optional bytes    profileKey    = 6;
+  optional bool     blocked       = 7;
+  optional uint32   expireTimer   = 8;
+  optional uint32   inboxPosition = 10;
+  optional bool     archived      = 11;
+}
+
+message GroupDetails {
+  message Avatar {
+    optional string contentType = 1;
+    optional uint32 length      = 2;
+  }
+
+  message Member {
+    optional string uuid = 1;
+    optional string e164 = 2;
+  }
+
+  optional bytes  id            = 1;
+  optional string name          = 2;
+  repeated string membersE164   = 3;
+  repeated Member members       = 9;
+  optional Avatar avatar        = 4;
+  optional bool   active        = 5 [default = true];
+  optional uint32 expireTimer   = 6;
+  optional string color         = 7;
+  optional bool   blocked       = 8;
+  optional uint32 inboxPosition = 10;
+  optional bool   archived      = 11;
+}

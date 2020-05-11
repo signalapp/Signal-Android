@@ -1,0 +1,42 @@
+// Auto-generated, use ./gradlew calculateChecksums to regenerate
+
+dependencyVerification {
+    verify = [
+
+        ['com.fasterxml.jackson.core:jackson-annotations:2.9.0',
+         '45d32ac61ef8a744b464c54c2b3414be571016dd46bfc2bec226761cf7ae457a'],
+
+        ['com.fasterxml.jackson.core:jackson-core:2.9.9',
+         '3083079be6088db2ed0a0c6ff92204e0aa48fa1de9db5b59c468f35acf882c2c'],
+
+        ['com.fasterxml.jackson.core:jackson-databind:2.9.9.2',
+         'fb262d42ea2de98044b62d393950a5aa050435fec38bbcadf2325cf7dc41b848'],
+
+        ['com.google.protobuf:protobuf-javalite:3.10.0',
+         '215a94dbe100130295906b531bb72a26965c7ac8fcd9a75bf8054a8ac2abf4b4'],
+
+        ['com.googlecode.libphonenumber:libphonenumber:8.11.0',
+         '833ec343e55a6910daca392af76f8e09caaab9c4e3f41ded83f4746e7ef389c7'],
+
+        ['com.squareup.okhttp3:okhttp:3.12.10',
+         '3cb8e21cd3ab10d390448f5a475c960732efab583a09c39f06f866a7ed819ebc'],
+
+        ['com.squareup.okio:okio:1.15.0',
+         '693fa319a7e8843300602b204023b7674f106ebcb577f2dd5807212b66118bd2'],
+
+        ['org.signal:signal-metadata-java:0.1.0',
+         'f3faa23b7d9b5096d12979c35679d1e3b5e007522d8bef167a28e456f2a7c7d9'],
+
+        ['org.signal:zkgroup-java:0.4.1',
+         '12ea7e18c58aaefdbb8eccb748deff4f7c8fbd950eeb9c426dc894de50a83b77'],
+
+        ['org.threeten:threetenbp:1.3.6',
+         'f4c23ffaaed717c3b99c003e0ee02d6d66377fd47d866fec7d971bd8644fc1a7'],
+
+        ['org.whispersystems:curve25519-java:0.5.0',
+         '0aadd43cf01d11e9b58f867b3c4f25c3194e8b0623d1953d32dfbfbee009e38d'],
+
+        ['org.whispersystems:signal-protocol-java:2.8.1',
+         'b19db36839ab008fdccefc7f8c005f2ea43dc7c7298a209bc424e6f9b6d5617b'],
+    ]
+}

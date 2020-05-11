@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/conversation_expiring_off__disappearing_messages"
+          android:id="@+id/menu_expiring_messages_off"
+          android:icon="@drawable/ic_timer_disabled_24"/>
+
+</menu>

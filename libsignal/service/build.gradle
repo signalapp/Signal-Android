@@ -1,0 +1,160 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.10'
+    }
+}
+
+apply plugin: 'java-library'
+apply plugin: 'com.google.protobuf'
+apply plugin: 'maven'
+apply plugin: 'signing'
+apply plugin: 'witness'
+apply plugin: 'idea'
+apply from: 'witness-verifications.gradle'
+
+sourceCompatibility = 1.8
+archivesBaseName    = "signal-service-java"
+version             = lib_signal_service_version_number
+group               = lib_signal_service_group_info
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation 'com.google.protobuf:protobuf-javalite:3.10.0'
+    api 'com.googlecode.libphonenumber:libphonenumber:8.11.0'
+    api 'com.fasterxml.jackson.core:jackson-databind:2.9.9.2'
+
+    api "org.signal:signal-metadata-java:${lib_signal_metadata_version}"
+    api 'com.squareup.okhttp3:okhttp:3.12.10'
+    implementation 'org.threeten:threetenbp:1.3.6'
+
+    api 'org.signal:zkgroup-java:0.4.1'
+
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.assertj:assertj-core:1.7.1'
+    testImplementation 'org.conscrypt:conscrypt-openjdk-uber:2.0.0'
+}
+
+dependencyVerification {
+    configuration = '(runtime|compile)Classpath'
+}
+
+tasks.whenTaskAdded { task ->
+    if (task.name.equals("lint")) {
+        task.enabled = false
+    }
+}
+
+protobuf {
+    protoc {
+        artifact = 'com.google.protobuf:protoc:3.10.0'
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                java {
+                    option "lite"
+                }
+            }
+        }
+    }
+}
+
+idea {
+    module {
+        generatedSourceDirs += file("${protobuf.generatedFilesBaseDir}/main/java")
+    }
+}
+
+def isReleaseBuild() {
+    return version.contains("SNAPSHOT") == false
+}
+
+def getReleaseRepositoryUrl() {
+    return hasProperty('sonatypeRepo') ? sonatypeRepo
+            : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+}
+
+def getRepositoryUsername() {
+    return hasProperty('whisperSonatypeUsername') ? whisperSonatypeUsername : ""
+}
+
+def getRepositoryPassword() {
+    return hasProperty('whisperSonatypePassword') ? whisperSonatypePassword : ""
+}
+
+signing {
+    required { isReleaseBuild() && gradle.taskGraph.hasTask("uploadArchives") }
+    sign configurations.archives
+}
+
+uploadArchives {
+    configuration = configurations.archives
+    repositories.mavenDeployer {
+        beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+        repository(url: getReleaseRepositoryUrl()) {
+            authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+        }
+
+        pom.project {
+            name 'signal-service-java'
+            packaging 'jar'
+            description 'Signal Service communication library for Java'
+            url 'https://github.com/WhisperSystems/libsignal-service-java'
+
+            scm {
+                url 'scm:git@github.com:WhisperSystems/libsignal-service-java.git'
+                connection 'scm:git@github.com:WhisperSystems/libsignal-service-java.git'
+                developerConnection 'scm:git@github.com:WhisperSystems/libsignal-service-java.git'
+            }
+
+            licenses {
+                license {
+                    name 'GPLv3'
+                    url 'https://www.gnu.org/licenses/gpl-3.0.txt'
+                    distribution 'repo'
+                }
+            }
+
+            developers {
+                developer {
+                    name 'Moxie Marlinspike'
+                }
+            }
+        }
+    }
+}
+
+task installArchives(type: Upload) {
+    description "Installs the artifacts to the local Maven repository."
+    configuration = configurations['archives']
+    repositories {
+        mavenDeployer {
+            repository url: "file://${System.properties['user.home']}/.m2/repository"
+        }
+    }
+}
+
+task packageJavadoc(type: Jar, dependsOn: 'javadoc') {
+    from javadoc.destinationDir
+    classifier = 'javadoc'
+}
+
+task packageSources(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+artifacts {
+    archives packageJavadoc
+    archives packageSources
+}

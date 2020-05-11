@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="1dp"
+    android:layout_marginEnd="1dp"
+    android:paddingStart="7dp"
+    android:paddingEnd="7dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:gravity="center">
+
+  <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+      android:id="@+id/reactions_pill_emoji"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textSize="16dp"
+      android:includeFontPadding="false"
+      app:emoji_forceCustom="true"
+      tools:ignore="SpUsage" />
+
+  <Space
+      android:id="@+id/reactions_pill_spacer"
+      android:layout_width="3dp"
+      android:layout_height="wrap_content" />
+
+  <TextView
+      android:id="@+id/reactions_pill_count"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textSize="14dp"
+      android:fontFamily="sans-serif-medium"
+      android:textColor="?reactions_pill_text_color"
+      tools:text="23"
+      tools:ignore="SpUsage" />
+
+</LinearLayout>

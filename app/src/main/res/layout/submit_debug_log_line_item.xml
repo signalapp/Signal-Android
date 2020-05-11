@@ -1,0 +1,15 @@
+<org.thoughtcrime.securesms.components.ListenableHorizontalScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/log_item_scroll"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:scrollbars="none">
+
+  <TextView
+      android:id="@+id/log_item_text"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:fontFamily="monospace"
+      android:textSize="@dimen/debug_log_text_size"/>
+
+</org.thoughtcrime.securesms.components.ListenableHorizontalScrollView>

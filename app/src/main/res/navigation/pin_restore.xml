@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/signup"
+    app:startDestination="@id/pinEntryFragment">
+
+    <fragment
+        android:id="@+id/pinEntryFragment"
+        android:name="org.thoughtcrime.securesms.pin.PinRestoreEntryFragment"
+        android:label="fragment_pin_entry"
+        tools:layout="@layout/pin_restore_entry_fragment">
+
+        <action
+            android:id="@+id/action_accountLocked"
+            app:destination="@id/pinLockedFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/pinLockedFragment"
+        android:name="org.thoughtcrime.securesms.pin.PinRestoreLockedFragment"
+        android:label="fragment_pin_locked"
+        tools:layout="@layout/account_locked_fragment"/>
+
+</navigation>

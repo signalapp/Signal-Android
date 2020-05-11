@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Signal.Text.Headline" parent="Base.TextAppearance.AppCompat.Headline">
+        <item name="android:textSize">28sp</item>
+        <item name="android:lineSpacingExtra">3sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:letterSpacing" tools:ignore="NewApi">0</item>
+    </style>
+
+    <style name="Signal.Text.Body" parent="Base.TextAppearance.AppCompat.Body1">
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:letterSpacing" tools:ignore="NewApi">0.01</item>
+    </style>
+
+    <style name="Signal.Text.Preview" parent="Base.TextAppearance.AppCompat.Body2">
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineSpacingExtra">3sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:letterSpacing" tools:ignore="NewApi">0.01</item>
+    </style>
+
+    <style name="Signal.Text.Caption" parent="Base.TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">12sp</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:letterSpacing" tools:ignore="NewApi">0.03</item>
+    </style>
+
+
+    <style name="Signal.Text.Caption.MessageSent">
+        <item name="android:textColor">?conversation_item_sent_text_secondary_color</item>
+        <item name="android:shadowRadius">0</item>
+    </style>
+
+    <style name="Signal.Text.Caption.MessageReceived">
+        <item name="android:textColor">?conversation_item_received_text_secondary_color</item>
+        <item name="android:shadowRadius">0</item>
+        <item name="android:alpha">0.7</item>
+    </style>
+
+    <style name="Signal.Text.Caption.MessageImageOverlay">
+        <item name="android:textColor">@color/core_white</item>
+    </style>
+
+    <style name="TextAppearance.Signal.Title1" parent="@style/TextAppearance.AppCompat.Title">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:color">?attr/title_text_color_primary</item>
+    </style>
+
+    <style name="TextAppearance.Signal.Title2" parent="@style/TextAppearance.AppCompat.Title">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.Signal.Headline.Insights" parent="">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">?title_text_color_primary</item>
+    </style>
+
+    <style name="TextAppearance.Signal.SubHead.Insights" parent="">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">?title_text_color_primary</item>
+    </style>
+
+    <style name="TextAppearance.Signal.Headline.Insights.Modal.Percent" parent="TextAppearance.Signal.Headline.Insights">
+        <item name="android:textSize">@dimen/insights_modal_percent_text_size</item>
+    </style>
+
+    <style name="TextAppearance.Signal.SubHead.Insights.Modal.Percent" parent="TextAppearance.Signal.SubHead.Insights">
+        <item name="android:textSize">@dimen/insights_modal_percent_sign_text_size</item>
+    </style>
+
+    <style name="TextAppearance.Signal.Title.Insights" parent="">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">?insight_title</item>
+    </style>
+
+    <style name="TextAppearance.Signal.Body.Insights" parent="">
+        <item name="android:textColor">?title_text_color_secondary</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextAppearance.Signal.Body2.Insights" parent="">
+        <item name="android:textColor">?insight_body_2</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="TextAppearance.Signal.Caption.Insights" parent="">
+        <item name="android:textColor">@color/core_white</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.Signal.Body2" parent="@style/TextAppearance.MaterialComponents.Body2">
+    </style>
+
+    <style name="TextAppearance.Signal.Caption" parent="@style/TextAppearance.MaterialComponents.Caption">
+    </style>
+
+    <style name="TextAppearance.Signal.Subtitle2" parent="@style/TextAppearance.MaterialComponents.Subtitle2">
+    </style>
+
+    <style name="Signal.Text.MessageRequest.Title" parent="Base.TextAppearance.AppCompat.Title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">?message_request_text_color_primary</item>
+    </style>
+
+    <style name="Signal.Text.MessageRequest.Subtitle" parent="Base.TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?message_request_text_color_secondary</item>
+    </style>
+
+    <style name="Signal.Text.MessageRequest.Description" parent="Base.TextAppearance.AppCompat.Subhead">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?message_request_text_color_secondary</item>
+    </style>
+
+</resources>

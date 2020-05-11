@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:paddingStart="@dimen/sticker_management_horizontal_margin"
+    android:paddingEnd="@dimen/sticker_management_horizontal_margin"
+    android:background="?sticker_management_item_background">
+
+    <ImageView
+        android:id="@+id/sticker_management_cover"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/sticker_management_divider"
+        tools:src="@drawable/ic_person_white_24dp"
+        tools:tint="@color/core_blue"/>
+
+    <LinearLayout
+        android:id="@+id/sticker_management_title_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="4dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/sticker_management_divider"
+        app:layout_constraintStart_toEndOf="@id/sticker_management_cover"
+        app:layout_constraintEnd_toStartOf="@id/sticker_management_button_barrier">
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+            android:id="@+id/sticker_management_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Signal.Text.Body"
+            android:ellipsize="end"
+            app:emoji_maxLength="45"
+            tools:text="Spider-Man"/>
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+            android:id="@+id/sticker_management_author"
+            style="@style/Signal.Text.Body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/core_grey_60"
+            tools:text="Peter Parker" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/sticker_management_button_barrier"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:barrierDirection="start"
+        app:constraint_referenced_ids="sticker_management_action_button,sticker_management_share_button"/>
+
+    <View
+        android:id="@+id/sticker_management_share_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="4dp"
+        android:background="?sticker_management_icon"
+        app:layout_constraintEnd_toStartOf="@id/sticker_management_action_button"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <ImageView
+        android:id="@+id/sticker_management_share_button_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:tint="?sticker_management_action_button_color"
+        app:srcCompat="@drawable/ic_forward_outline_24"
+        app:layout_constraintTop_toTopOf="@id/sticker_management_share_button"
+        app:layout_constraintBottom_toBottomOf="@id/sticker_management_share_button"
+        app:layout_constraintStart_toStartOf="@id/sticker_management_share_button"
+        app:layout_constraintEnd_toEndOf="@id/sticker_management_share_button"/>
+
+    <View
+        android:id="@+id/sticker_management_action_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="?sticker_management_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <ImageView
+        android:id="@+id/sticker_management_action_button_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:tint="?sticker_management_action_button_color"
+        tools:src="@drawable/ic_arrow_down"
+        app:layout_constraintTop_toTopOf="@id/sticker_management_action_button"
+        app:layout_constraintBottom_toBottomOf="@id/sticker_management_action_button"
+        app:layout_constraintStart_toStartOf="@id/sticker_management_action_button"
+        app:layout_constraintEnd_toEndOf="@id/sticker_management_action_button"/>
+
+    <View
+        android:id="@+id/sticker_management_divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="?sticker_management_divider_color"
+        app:layout_constraintStart_toStartOf="@id/sticker_management_title_container"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

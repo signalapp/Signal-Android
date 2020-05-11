@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:windowBackground">
+
+  <androidx.appcompat.widget.Toolbar
+      android:id="@+id/toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="?attr/actionBarSize"
+      android:background="?attr/conversation_list_toolbar_background"
+      android:minHeight="?attr/actionBarSize"
+      android:theme="?attr/actionBarStyle"
+      android:visibility="gone"
+      app:layout_constraintTop_toTopOf="parent"
+      tools:visibility="visible">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+      <org.thoughtcrime.securesms.components.AvatarImageView
+          android:id="@+id/toolbar_icon"
+          android:layout_width="58dp"
+          android:layout_height="48dp"
+          android:layout_alignParentStart="true"
+          android:contentDescription="@string/conversation_list_settings_shortcut"
+          android:paddingStart="12dp"
+          android:paddingTop="10dp"
+          android:paddingEnd="18dp"
+          android:paddingBottom="10dp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          tools:src="@drawable/ic_contact_picture" />
+
+      <TextView
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="6dp"
+          android:text="@string/app_name"
+          android:textAlignment="viewStart"
+          android:textColor="?attr/title_text_color_primary"
+          android:textSize="20sp"
+          android:textStyle="bold"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toStartOf="@id/search_action"
+          app:layout_constraintStart_toEndOf="@id/toolbar_icon"
+          app:layout_constraintTop_toTopOf="parent" />
+
+      <ImageView
+          android:id="@+id/search_action"
+          android:layout_width="48dp"
+          android:layout_height="48dp"
+          android:background="?actionBarItemBackground"
+          android:contentDescription="@string/conversation_list_search_description"
+          android:padding="12dp"
+          android:tint="?icon_tint"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:srcCompat="@drawable/ic_search_24" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+  </androidx.appcompat.widget.Toolbar>
+
+  <androidx.appcompat.widget.Toolbar
+      android:id="@+id/toolbar_basic"
+      android:layout_width="match_parent"
+      android:layout_height="?attr/actionBarSize"
+      android:background="?attr/conversation_list_toolbar_background"
+      android:minHeight="?attr/actionBarSize"
+      android:theme="?attr/actionBarStyle"
+      android:visibility="gone"
+      app:layout_constraintTop_toTopOf="parent"
+      app:titleTextAppearance="@style/TextSecure.TitleTextStyle" />
+
+  <org.thoughtcrime.securesms.components.SearchToolbar
+      android:id="@+id/search_toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="?attr/conversation_list_toolbar_background"
+      android:elevation="4dp"
+      android:visibility="invisible"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <androidx.constraintlayout.widget.Barrier
+      android:id="@+id/toolbar_barrier"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:barrierDirection="bottom"
+      app:constraint_referenced_ids="toolbar,toolbar_basic" />
+
+  <View
+      android:id="@+id/conversation_list_toolbar_shadow"
+      android:layout_width="match_parent"
+      android:layout_height="4dp"
+      android:background="@drawable/toolbar_shadow"
+      android:visibility="gone"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/toolbar_barrier"
+      tools:visibility="visible" />
+
+  <TextView
+      android:id="@+id/search_no_results"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      android:background="?attr/search_background"
+      android:gravity="center"
+      android:visibility="gone"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/toolbar_barrier"
+      tools:text="@string/SearchFragment_no_results" />
+
+  <LinearLayout
+      android:id="@+id/empty_state"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="32dp"
+      android:orientation="vertical"
+      android:visibility="gone"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/toolbar_barrier"
+      tools:visibility="visible">
+
+    <ImageView
+        android:id="@+id/empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        tools:src="@drawable/conversation_list_empty_state" />
+
+    <TextView
+        style="@style/Signal.Text.Body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="@string/conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend" />
+
+  </LinearLayout>
+
+  <org.thoughtcrime.securesms.components.reminder.ReminderView
+      android:id="@+id/reminder"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:layout_constraintTop_toBottomOf="@id/toolbar_barrier"
+      tools:visibility="gone" />
+
+  <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/list"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:clipToPadding="false"
+      android:nextFocusDown="@+id/fab"
+      android:nextFocusForward="@+id/fab"
+      android:paddingBottom="150dp"
+      android:scrollbars="vertical"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/reminder"
+      tools:listitem="@layout/conversation_list_item_view"
+      tools:visibility="gone" />
+
+  <androidx.coordinatorlayout.widget.CoordinatorLayout
+      android:id="@+id/coordinator"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      android:layout_width="0dp"
+      android:layout_height="500dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior=".util.views.SlideUpWithSnackbarBehavior">
+
+      <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
+          android:id="@+id/camera_fab"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="20dp"
+          android:contentDescription="@string/conversation_list_fragment__open_camera_description"
+          android:focusable="true"
+          android:tint="?conversation_list_camera_icon_tint"
+          app:backgroundTint="?conversation_list_camera_button_background"
+          app:layout_constraintBottom_toTopOf="@id/fab"
+          app:layout_constraintEnd_toEndOf="@id/fab"
+          app:srcCompat="@drawable/ic_camera_solid_24" />
+
+      <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
+          android:id="@+id/fab"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_margin="16dp"
+          android:contentDescription="@string/conversation_list_fragment__fab_content_description"
+          android:focusable="true"
+          android:tint="?conversation_list_compose_icon_tint"
+          app:layout_constraintBottom_toTopOf="@id/megaphone_container"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:srcCompat="@drawable/ic_compose_solid_24"
+          app:backgroundTint="@color/core_ultramarine"/>
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/megaphone_container"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="8dp"
+          android:clipChildren="false"
+          android:clipToPadding="false"
+          android:visibility="gone"
+          app:cardBackgroundColor="?megaphone_background"
+          app:cardCornerRadius="8dp"
+          app:cardElevation="4dp"
+          app:cardPreventCornerOverlap="false"
+          app:cardUseCompatPadding="true"
+          app:contentPadding="0dp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+  </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

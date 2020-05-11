@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/save"
+        android:title="@string/save"
+        android:icon="@drawable/ic_download_filled_white_24"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/delete"
+        android:title="@string/delete"
+        android:icon="?menu_trash_icon"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/select_all"
+        android:title="@string/MediaOverviewActivity_Select_all"
+        android:icon="?menu_selectall_icon"
+        app:showAsAction="always"/>
+</menu>

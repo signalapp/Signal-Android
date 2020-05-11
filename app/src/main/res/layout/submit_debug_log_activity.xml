@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+  <TextView
+      android:id="@+id/debug_log_warning_banner"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:padding="8dp"
+      android:text="@string/log_submit_activity__this_log_will_be_posted_online"
+      android:textColor="@color/core_black"
+      android:background="@color/core_yellow"
+      android:visibility="gone"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      tools:visibility="visible"/>
+
+  <TextView
+      android:id="@+id/debug_log_edit_banner"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      android:padding="8dp"
+      android:gravity="center"
+      android:text="@string/SubmitDebugLogActivity_tap_a_line_to_delete_it"
+      android:textColor="@color/core_white"
+      android:fontFamily="sans-serif-medium"
+      android:background="@color/core_ultramarine"
+      android:visibility="gone"
+      app:layout_constraintTop_toTopOf="@id/debug_log_warning_banner"
+      app:layout_constraintBottom_toBottomOf="@id/debug_log_warning_banner"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent" />
+
+  <androidx.constraintlayout.widget.Barrier
+      android:id="@+id/debug_log_header_barrier"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:barrierDirection="bottom"
+      app:constraint_referenced_ids="debug_log_warning_banner,debug_log_edit_banner" />
+
+  <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/debug_log_lines"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginEnd="8dp"
+      android:layout_marginBottom="8dp"
+      app:layout_constraintTop_toBottomOf="@id/debug_log_header_barrier"
+      app:layout_constraintBottom_toTopOf="@id/debug_log_submit_button"/>
+
+  <ImageButton
+      android:id="@+id/debug_log_scroll_to_top"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="8dp"
+      android:layout_marginTop="16dp"
+      android:padding="5dp"
+      android:background="@drawable/circle_tintable"
+      android:tint="@color/grey_600"
+      android:elevation="1dp"
+      android:src="@drawable/ic_scroll_down"
+      android:scaleY="-1"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/debug_log_warning_banner"/>
+
+  <ImageButton
+      android:id="@+id/debug_log_scroll_to_bottom"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="8dp"
+      android:layout_marginBottom="16dp"
+      android:padding="5dp"
+      android:background="@drawable/circle_tintable"
+      android:tint="@color/grey_600"
+      android:elevation="1dp"
+      android:src="@drawable/ic_scroll_down"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintBottom_toTopOf="@id/debug_log_submit_button"/>
+
+  <com.dd.CircularProgressButton
+      android:id="@+id/debug_log_submit_button"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_margin="8dp"
+      android:background="@color/core_ultramarine"
+      android:textAllCaps="true"
+      android:textColor="@color/white"
+      android:visibility="gone"
+      app:cpb_colorIndicator="@color/white"
+      app:cpb_colorProgress="@color/core_ultramarine"
+      app:cpb_cornerRadius="4dp"
+      app:cpb_selectorIdle="@drawable/progress_button_state"
+      app:cpb_textIdle="@string/SubmitDebugLogActivity_submit"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintBottom_toBottomOf="parent"
+      tools:visibility="visible"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

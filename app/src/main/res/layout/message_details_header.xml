@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <FrameLayout android:id="@+id/item_container"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:paddingTop="15dp"
+                 android:paddingBottom="15dp"
+                 android:elevation="2dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/error_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="gone"
+                android:textSize="16sp"
+                android:padding="5dp"
+                tools:visibility="visible"
+                android:text="@string/message_details_header__issues_need_your_attention"
+                android:drawablePadding="4dp"
+                app:drawableStartCompat="@drawable/ic_info_outline_message_details_24"
+                android:gravity="center_vertical" />
+
+            <Button
+                android:id="@+id/resend_button"
+                android:layout_width="wrap_content"
+                android:layout_height="38sp"
+                style="@style/InfoButton"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_gravity="center_vertical"
+                android:drawableStart="@drawable/ic_refresh_white_18dp"
+                android:text="@string/message_recipients_list_item__resend"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+        <TableLayout android:id="@+id/metadata_container"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:shrinkColumns="1">
+
+            <TableRow android:id="@+id/sent_container"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:padding="@dimen/message_details_table_row_pad">
+
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="@string/message_details_header__sent"
+                          android:gravity="end"
+                          android:textStyle="bold" />
+
+                <TextView android:id="@+id/sent_time"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginStart="@dimen/message_details_table_row_pad"
+                          tools:text="Jan 18, 2015, 12:29:37 AM GMT-08:00" />
+
+            </TableRow>
+
+            <TableRow android:id="@+id/received_container"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:padding="@dimen/message_details_table_row_pad">
+
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="@string/message_details_header__received"
+                          android:gravity="end"
+                          android:textStyle="bold" />
+
+                <TextView android:id="@+id/received_time"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginStart="@dimen/message_details_table_row_pad"
+                          tools:text="Jan 18, 2015, 12:31:15 AM GMT-08:00" />
+
+            </TableRow>
+
+            <TableRow android:id="@+id/expires_container"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:padding="@dimen/message_details_table_row_pad"
+                      android:visibility="gone"
+                      tools:visibility="visible">
+
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="@string/message_details_header__disappears"
+                          android:gravity="end"
+                          android:textStyle="bold"/>
+
+                <TextView android:id="@+id/expires_in"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginStart="@dimen/message_details_table_row_pad"
+                          tools:text="1 week"/>
+
+            </TableRow>
+
+            <TableRow android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:padding="@dimen/message_details_table_row_pad">
+
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="@string/message_details_header__via"
+                          android:gravity="end"
+                          android:textStyle="bold" />
+
+                <TextView android:id="@+id/transport"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_marginStart="@dimen/message_details_table_row_pad"
+                          tools:text="Push (TextSecure)" />
+
+            </TableRow>
+
+            <TableRow android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:padding="@dimen/message_details_table_row_pad">
+
+                <TextView android:id="@+id/tofrom"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          tools:text="@string/message_details_header__to"
+                          android:textStyle="bold" />
+
+            </TableRow>
+
+        </TableLayout>
+    </LinearLayout>
+</LinearLayout>

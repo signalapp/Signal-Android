@@ -1,0 +1,1739 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="yes">Jā</string>
+  <string name="no">Nē</string>
+  <string name="delete">Dzēst</string>
+  <string name="please_wait">Lūdzu uzgaidiet…</string>
+  <string name="save">Saglabāt</string>
+  <string name="note_to_self">Piezīme sev</string>
+  <!--AbstractNotificationBuilder-->
+  <string name="AbstractNotificationBuilder_new_message">Jauna ziņa</string>
+  <!--AlbumThumbnailView-->
+  <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signāls tiek aktualizēts…</string>
+  <!--ApplicationPreferencesActivity-->
+  <string name="ApplicationPreferencesActivity_currently_s">Pašlaik: %s</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Jūs vēl neesat iestatījuši paroli!</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="zero">%d ziņu sarakstē</item>
+    <item quantity="one">%d ziņa sarakstē</item>
+    <item quantity="other">%d ziņas sarakstē</item>
+  </plurals>
+  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Dzēst tagad visas vecās ziņas?</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="zero">Šis nekavējoties saīsinās visas sarakstes, atstājot %d ziņu sarakstē.</item>
+    <item quantity="one">Šis nekavējoties saīsinās visas sarakstes uz visjaunāko ziņu.</item>
+    <item quantity="other">Šis nekavējoties saīsinās sarakstu ar visām sarakstēm, atstājot vien %d jaunākās ziņas.</item>
+  </plurals>
+  <string name="ApplicationPreferencesActivity_delete">Dzēst</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Atspējot paroli?</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Šī opcija permanenti atslēgs Signal aplikāciju un paziņojumus par jaunām ziņām.</string>
+  <string name="ApplicationPreferencesActivity_disable">Atspējot</string>
+  <string name="ApplicationPreferencesActivity_unregistering">Atreģistrēties</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Atreģistrējos no Signal ziņām un zvaniem…</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Atspējot Signal ziņas un zvanus?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Atreģistrējoties no servera, atspējot Signal ziņas un zvanus. Lai šīs opcijas atsāktu lietot, Jums nākotnē būs atkārtoti jāreģistrē savs tālruņa numurs.</string>
+  <string name="ApplicationPreferencesActivity_error_connecting_to_server">Nebija iespējams savienoties ar serveri!</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS iespējots</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Pieskarieties lai izvēlētos savu noklusējuma SMS aplikāciju</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS atspējots</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Pieskarieties, lai iestatītu Signal kā savu noklusējuma SMS aplikāciju</string>
+  <string name="ApplicationPreferencesActivity_on">ieslēgts</string>
+  <string name="ApplicationPreferencesActivity_On">Ieslēgts</string>
+  <string name="ApplicationPreferencesActivity_off">izslēgts</string>
+  <string name="ApplicationPreferencesActivity_Off">Izslēgts</string>
+  <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Ekrāna bloķēšana %1$s, Reģistrācijas bloķēšana %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Ekrāna bloķēšana %1$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Ādiņa %1$s, valoda %2$s</string>
+  <!--AppProtectionPreferenceFragment-->
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="zero">%d minūšu</item>
+    <item quantity="one">%d minūte</item>
+    <item quantity="other">%d minūtes</item>
+  </plurals>
+  <!--DraftDatabase-->
+  <string name="DraftDatabase_Draft_image_snippet">(attēls)</string>
+  <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
+  <string name="DraftDatabase_Draft_video_snippet">(video)</string>
+  <string name="DraftDatabase_Draft_location_snippet">(atrašanās vieta)</string>
+  <string name="DraftDatabase_Draft_quote_snippet">(atbilde)</string>
+  <!--AttachmentKeyboard-->
+  <string name="AttachmentKeyboard_gallery">Galerija</string>
+  <string name="AttachmentKeyboard_gif">GIF</string>
+  <string name="AttachmentKeyboard_file">Fails</string>
+  <string name="AttachmentKeyboard_contact">Kontakts</string>
+  <string name="AttachmentKeyboard_location">Atrašanās vieta</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal ir nepieciešama atļauja rādīt jūsu fotoattēlus un videoklipus.</string>
+  <string name="AttachmentKeyboard_give_access">Piešķirt piekļuvi</string>
+  <!--AttachmentManager-->
+  <string name="AttachmentManager_cant_open_media_selection">Nevar atrast aplikāciju, ar kuru iespējams izvēlēties pievienojamo multimediju failu.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Lai pievienoto fotogrāfijas, videoierakstus un audioierakstus, Signal nepieciešama atļauja pieejai pie Glabātuves, bet tā ir liegta. Dodieties uz lietotnes iestatījumu izvēlni, izvēlieties \"Atļaujas\" un iespējojiet opciju \"Glabātuve\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal nepieciešama atļauja pieejai pie Kontaktiem, bet tā ir liegta. Dodieties uz lietotnes iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"Kontakti\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal nepieciešama atļauja pieejai pie atrašanās vietas pakalpojumiem, bet tā ir liegta. Dodieties uz lietotnes iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"Atrašanās vieta\".</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Lai uzņemtu fotogrāfijas, Signal nepieciešama atļauja pieejai pie kameras, bet tā ir liegta. Dodieties uz lietotnes iestatījumiem, izvēlieties \"Atļaujas\" un ieslēdziet \"Kamera\".</string>
+  <!--AttachmentUploadJob-->
+  <string name="AttachmentUploadJob_uploading_media">Notiek multimediju faila augšupielāde…</string>
+  <string name="AttachmentUploadJob_compressing_video_start">Notiek video saspiešana…</string>
+  <!--AudioSlidePlayer-->
+  <string name="AudioSlidePlayer_error_playing_audio">Kļūme, cenšoties atskaņot audio!</string>
+  <!--BlockedContactsActivity-->
+  <string name="BlockedContactsActivity_blocked_contacts">Bloķētie kontakti</string>
+  <!--BlockUnblockDialog-->
+  <string name="BlockUnblockDialog_block_and_leave_s">Bloķēt un pamest %1$s?</string>
+  <string name="BlockUnblockDialog_block_s">Bloķēt %1$s?</string>
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Grupas dalībnieki varēs jūs atkal pievienot šai grupai.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Jūs varēsiet nosūtīt ziņas un piezvanīt viens otram.</string>
+  <string name="BlockUnblockDialog_unblock_s">Atbloķēt %1$s?</string>
+  <string name="BlockUnblockDialog_unblock">Atbloķēt</string>
+  <string name="BlockUnblockDialog_block">Bloķēt</string>
+  <!--BucketedThreadMedia-->
+  <string name="BucketedThreadMedia_Today">Šodien</string>
+  <string name="BucketedThreadMedia_Yesterday">Vakar</string>
+  <string name="BucketedThreadMedia_This_week">Šonedēļ</string>
+  <string name="BucketedThreadMedia_This_month">Šomēnes</string>
+  <string name="BucketedThreadMedia_Large">Liels</string>
+  <string name="BucketedThreadMedia_Medium">Datu nesējs</string>
+  <string name="BucketedThreadMedia_Small">Mazs</string>
+  <!--CallScreen-->
+  <string name="CallScreen_Incoming_call">Ienākošs zvans</string>
+  <!--CameraActivity-->
+  <string name="CameraActivity_image_save_failure">Neizdevās saglabāt attēlu.</string>
+  <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Pieskarieties, lai skatītu fotoattēlu, turiet, lai skatītu videoklipu</string>
+  <string name="CameraXFragment_capture_description">Uzņemt</string>
+  <string name="CameraXFragment_change_camera_description">Mainīt kameru</string>
+  <string name="CameraXFragment_open_gallery_description">Atvērt galeriju</string>
+  <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Pēdējie kontakti</string>
+  <string name="CameraContacts_signal_contacts">Signal kontakti</string>
+  <string name="CameraContacts_signal_groups">Signal grupas</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Jūs variet dalīties ar maksimums %dsarunām. </string>
+  <string name="CameraContacts_select_signal_recipients">Izvēlēties Signal adresātus</string>
+  <string name="CameraContacts_no_signal_contacts">Nav Signal kontaktu</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Jūs variet izmantot kameru tikai, lai sūtītu attēlus Signal kontaktiem.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Neatradāt, ko Jūs meklējāt?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Uzaicināt kontaktu pievienoties Signal</string>
+  <string name="CameraContacts__menu_search">Meklēt</string>
+  <!--ClearProfileActivity-->
+  <string name="ClearProfileActivity_remove">Noņemt</string>
+  <string name="ClearProfileActivity_remove_profile_photo">Vai noņemt profila attēlu?</string>
+  <!--CommunicationActions-->
+  <string name="CommunicationActions_no_browser_found">Neizdevās atrast interneta pārlūku.</string>
+  <string name="CommunicationActions_no_email_app_found">Netika atrasta instalēta e-pasta lietotne.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Mobilais zvans jau tiek veikts.</string>
+  <string name="CommunicationActions_start_video_call">Sākt videozvanu?</string>
+  <string name="CommunicationActions_start_voice_call">Sākt audiozvanu?</string>
+  <string name="CommunicationActions_cancel">Atcelt</string>
+  <string name="CommunicationActions_call">Zvanīt</string>
+  <string name="CommunicationActions_insecure_call">Nedrošs zvans</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Var tikt piemēroti mobilā tīkla operatora maksas. Numuram, uz kuru zvanāt, nav instalēta Signal aplikācija. Tādēļ šis zvans tiks veikts izmantojot jūsu mobilo sakaru operatoru, nevis internetu.</string>
+  <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Jūsu drošības numurs ar %1$s ir mainījies. Tas nozīmē, ka kāds mēģina noklausīties jūsu saziņu vai ka %2$s ir pārinstalējis Signal aplikāciju.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Iespējams, Jūs vēlaties salīdzināt savu drošības numuru ar šo kontaktu.</string>
+  <string name="ConfirmIdentityDialog_accept">Apstiprināt</string>
+  <!--ContactsCursorLoader-->
+  <string name="ContactsCursorLoader_recent_chats">Nesenās sarunas</string>
+  <string name="ContactsCursorLoader_contacts">Kontakti</string>
+  <string name="ContactsCursorLoader_groups">Grupas</string>
+  <string name="ContactsCursorLoader_phone_number_search">Tālruņa numura meklēšana</string>
+  <string name="ContactsCursorLoader_username_search">Lietotājvārda meklēšana</string>
+  <!--ContactsDatabase-->
+  <string name="ContactsDatabase_message_s">Ziņa %s</string>
+  <string name="ContactsDatabase_signal_call_s">Signal zvans %s</string>
+  <!--ContactNameEditActivity-->
+  <string name="ContactNameEditActivity_given_name">Vārds</string>
+  <string name="ContactNameEditActivity_family_name">Uzvārds</string>
+  <string name="ContactNameEditActivity_prefix">Tituls</string>
+  <string name="ContactNameEditActivity_suffix">Sufikss</string>
+  <string name="ContactNameEditActivity_middle_name">Vidējais vārds</string>
+  <!--ContactShareEditActivity-->
+  <string name="ContactShareEditActivity_type_home">Mājas</string>
+  <string name="ContactShareEditActivity_type_mobile">Mobilais</string>
+  <string name="ContactShareEditActivity_type_work">Darba</string>
+  <string name="ContactShareEditActivity_type_missing">Cits</string>
+  <string name="ContactShareEditActivity_invalid_contact">Izvēlētais kontakts nav derīgs</string>
+  <!--ConversationItem-->
+  <string name="ConversationItem_error_not_delivered">Sūtīšana neizdevās, pieskarieties, lai saņemtu detalizētāku informāciju</string>
+  <string name="ConversationItem_received_key_exchange_message_tap_to_process">Tika saņemta atslēgu apmaiņas ziņu, pieskarieties lai to apstrādātu.</string>
+  <string name="ConversationItem_group_action_left">%1$s ir pametis grupu.</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Sūtīšana neizdevās, pieskarieties, lai veiktu nedrošu sūtījumu, izmantojot rezerves kanālu</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Pāriet uz nedrošu saziņu, lietojot nešifrētu SMS?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Pāriet uz nedrošu saziņu, lietojot nešifrētu MMS?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Šī ziņa <b>netiks</b> šifrēta, jo saņēmējs vairs nav Signal lietotājs.\n\nSūtīt nedrošu ziņu?</string>
+  <string name="ConversationItem_unable_to_open_media">Nevarēja atrast aplikāciju, ar kuru iespējams atvērt šo saturu/failu.</string>
+  <string name="ConversationItem_copied_text">Nokopēts %s</string>
+  <string name="ConversationItem_from_s">no %s</string>
+  <string name="ConversationItem_to_s">uz %s</string>
+  <string name="ConversationItem_read_more"> Lasīt vairāk.</string>
+  <string name="ConversationItem_download_more"> Lejupielādēt vēl</string>
+  <string name="ConversationItem_pending"> Gaida</string>
+  <!--ConversationActivity-->
+  <string name="ConversationActivity_reset_secure_session_question">Atstatīt šifrēto sarakstes sesiju?</string>
+  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tas var palīdzēt, ja sarakstē saskaraties ar šifrēšanas problēmām. Jūsu ziņas tiks saglabātas.</string>
+  <string name="ConversationActivity_reset">Atstatīt</string>
+  <string name="ConversationActivity_add_attachment">Pievienot pielikumu</string>
+  <string name="ConversationActivity_select_contact_info">Izvēlēties kontaktinformāciju</string>
+  <string name="ConversationActivity_compose_message">Rakstīt ziņu</string>
+  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Diemžēl pielikuma pievienošanas procesā gadījās kļūme</string>
+  <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Adresātam nav derīga SMS vai e-pasta adrese!</string>
+  <string name="ConversationActivity_message_is_empty_exclamation">Ziņas lauks ir tukšs!</string>
+  <string name="ConversationActivity_group_members">Grupas dalībnieki</string>
+  <string name="ConversationActivity_invalid_recipient">Nederīgs saņēmējs!</string>
+  <string name="ConversationActivity_added_to_home_screen">Pievienots sākuma ekrānam/skatam</string>
+  <string name="ConversationActivity_calls_not_supported">Zvani netiek atbalstīti</string>
+  <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Izskatās, ka šī ierīce neatbalsta zvanu veikšanu.</string>
+  <string name="ConversationActivity_leave_group">Pamest grupu?</string>
+  <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Vai tiešām vēlaties pamest šo grupu?</string>
+  <string name="ConversationActivity_transport_insecure_sms">Nedrošs SMS</string>
+  <string name="ConversationActivity_transport_insecure_mms">Nedrošs MMS</string>
+  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Pārslēdzamies uz Signal messenger %1$s!</string>
+  <string name="ConversationActivity_error_leaving_group">Kļūda, pametot grupu</string>
+  <string name="ConversationActivity_specify_recipient">Lūdzu, izvēlaties kontaktu!</string>
+  <string name="ConversationActivity_unblock_this_contact_question">Atbloķēt šo kontaktu?</string>
+  <string name="ConversationActivity_unblock_this_group_question">Atbloķēt grupu?</string>
+  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Atkal varēsiet saņemt ziņas un zvanus no šī kontakta.</string>
+  <string name="ConversationActivity_unblock_this_group_description">Esošie dalībnieki varēs Jūs atkal pievienot šai grupai.</string>
+  <string name="ConversationActivity_unblock">Atbloķēt</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">Pielikuma izmērs pārsniedz ierobežojumu šāda veida ziņai, kuru sūtāt.</string>
+  <string name="ConversationActivity_quick_camera_unavailable">Kamera nav pieejama</string>
+  <string name="ConversationActivity_unable_to_record_audio">Neizdodas ierakstīt audio!</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Jūsu ierīcē nav uzstādītas lietotnes, kas ļautu atvērt šo saiti.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Lai nosūtītu audio ziņu, ļaujiet Signal piekļūt ierīces mikrofonam.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Lai nosūtītu audio ziņas, Signal nepieciešama atļauja pieejai mikrofonam, bet tā ir liegta. Dodieties uz lietotnes iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"Mikrofons\".</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Lai zvanītu %s, Signal nepieciešama pieeja ierīces mikrofonam un kamerai.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Lai zvanītu %s, Signal nepieciešama atļauja piekļuvei mikrofonam un kamerai, bet tā ir liegta. Dodieties uz lietotnes iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"Mikrofons\" un \"Kamera\".</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Lai uzņemtu fotogrāfijas un video, ļaujiet Signal piekļūt kamerai.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Lai uzņemtu fotogrāfijas vai video, Signal nepieciešama atļauja piekļūt kamerai, bet tā ir liegta. Dodieties uz lietotnes iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"Kamera\".</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Lai uzņemtu fotogrāfijas vai video, Signal nepieciešama atļauja piekļūt kamerai</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Dodiet mikrofona atļauju, lai video tiktu uzņemts ar skaņu.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal ir vajadzīgas mikrofona atļaujas video ierakstīšanai, taču tās tika liegtas. Lūdzu, dodieties uz lietotnes iestatījumiem, izvēlieties “Atļaujas” un iespējojiet “Mikrofons” un “Kamera”.</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal nepieciešamas mikrofona atļaujas, lai ierakstītu video.</string>
+  <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal nevar sūtīt SMS/MMS ziņas, jo tas nav iestatīts kā Jūsu noklusējuma SMS lietotne. Vai vēlaties to izdarīt Android iestatījumos?</string>
+  <string name="ConversationActivity_yes">Jā</string>
+  <string name="ConversationActivity_no">Nē</string>
+  <string name="ConversationActivity_search_position">%1$d no %2$d</string>
+  <string name="ConversationActivity_no_results">Nav rezultātu</string>
+  <string name="ConversationActivity_sticker_pack_installed">Uzlīmju paka instalēta.</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">Jaunums! Izpaud to ar uzlīmēm</string>
+  <string name="ConversationActivity_cancel">Atcelt</string>
+  <string name="ConversationActivity_delete_conversation">Dzēst sarunu?</string>
+  <string name="ConversationActivity_delete_and_leave_group">Dzēst un pamest grupu?</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Šī saruna tiks izdzēsta no visām jūsu ierīcēm.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Jūs pametīsiet šo grupu, un tā tiks izdzēsta no visām jūsu ierīcēm.</string>
+  <string name="ConversationActivity_delete">Dzēst</string>
+  <string name="ConversationActivity_delete_and_leave">Dzēst un pamest</string>
+  <!--ConversationAdapter-->
+  <plurals name="ConversationAdapter_n_unread_messages">
+    <item quantity="zero">%d nelasītu ziņu</item>
+    <item quantity="one">%d nelasīta ziņa</item>
+    <item quantity="other">%d nelasītas ziņas</item>
+  </plurals>
+  <!--ConversationFragment-->
+  <plurals name="ConversationFragment_delete_selected_messages">
+    <item quantity="zero">Vai izdzēst izvēlētās ziņas?</item>
+    <item quantity="one">Vai izdzēst izvēlēto ziņu?</item>
+    <item quantity="other">Vai dzēst izvēlētās ziņas?</item>
+  </plurals>
+  <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+    <item quantity="zero">Šis neatgriezeniski dzēsīs %1$d izvēlēto ziņu.</item>
+    <item quantity="one">Šis neatgriezeniski dzēsīs izvēlēto ziņu.</item>
+    <item quantity="other">Tiks neatgriezeniski dzēstas visas %1$d izvēlētās ziņas.</item>
+  </plurals>
+  <string name="ConversationFragment_save_to_sd_card">Saglabāt glabātuvē?</string>
+  <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
+    <item quantity="zero">Saglabājot %1$d krātuvē atļaus citām aplikācijām tāltunī tam piekļūt. \n\nTurpināt?</item>
+    <item quantity="one">Saglabājot šo krātuvē atļaus citām aplikācijām tāltunī tam piekļūt. \n\nTurpināt?</item>
+    <item quantity="other">Saglabājot failus %1$d glabātuvē, tiks nodrošināta iespēja citām ierīces aplikācijām tiem piekļūt. \n\nTurpināt?</item>
+  </plurals>
+  <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
+    <item quantity="zero">Neizdevās saglabāt pielikumus krātuvē.</item>
+    <item quantity="one">Neizdevās saglabāt pielikumu krātuvē.</item>
+    <item quantity="other">Neizdevās saglabāt pielikumus glabātuvē.</item>
+  </plurals>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Neizdevās ierakstīt glabātuvē!</string>
+  <plurals name="ConversationFragment_saving_n_attachments">
+    <item quantity="zero">Saglabā %1$d pielikumus</item>
+    <item quantity="one">Saglabāt pielikumu</item>
+    <item quantity="other">Saglabā %1$d pielikumus</item>
+  </plurals>
+  <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
+    <item quantity="zero">Saglabā %1$d pielikumus krātuvē…</item>
+    <item quantity="one">Saglabā pielikumu krātuvē…</item>
+    <item quantity="other">Saglabā %1$d pielikumus glabātuvē…</item>
+  </plurals>
+  <string name="ConversationFragment_pending">Tiek gaidīts…</string>
+  <string name="ConversationFragment_push">Interneta dati (Signal)</string>
+  <string name="ConversationFragment_mms">MMS</string>
+  <string name="ConversationFragment_sms">SMS</string>
+  <string name="ConversationFragment_deleting">Tiek dzēsts</string>
+  <string name="ConversationFragment_deleting_messages">Tiek dzēstas ziņas…</string>
+  <string name="ConversationFragment_quoted_message_not_found">Oriģinālā ziņa netika atrasta</string>
+  <string name="ConversationFragment_quoted_message_no_longer_available">Oriģinālā ziņa vairs nav pieejama</string>
+  <string name="ConversationFragment_failed_to_open_message">Neizdevās atvērt ziņu</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Variet vilkt pa labi, lai ātri atbildētu uz jebkuru ziņu</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Variet vilkt pa kreisi, lai ātri atbildētu uz jebkuru ziņu</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Izejošie vienreiz-skatāmie multivides faili pēc nosūtīšanas tiek automātiski dzēsti</string>
+  <string name="ConversationFragment_you_already_viewed_this_message">Jūs jau skatījāt šo ziņu</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Šajā sarunā varat pievienot piezīmes priekš sevis. Ja jūsu kontam ir saistītās ierīces, jaunās piezīmes tiks sinhronizētas.</string>
+  <!--ConversationListActivity-->
+  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Jūsu ierīcē nav uzstādīts pārlūks.</string>
+  <!--ConversationListFragment-->
+  <string name="ConversationListFragment_no_results_found_for_s_">\"%s\" netika atrasts</string>
+  <plurals name="ConversationListFragment_delete_selected_conversations">
+    <item quantity="zero">Vai izdzēst izvēlētās sarunas?</item>
+    <item quantity="one">Vai izdzēst izvēlētās sarunu?</item>
+    <item quantity="other">Vai izdzēst izvēlētās sarunas?</item>
+  </plurals>
+  <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
+    <item quantity="zero">Šis neatgriezeniski dzēsīs visas %1$d izvēlētās sarunas.</item>
+    <item quantity="one">Šis neatgriezeniski dzēsīs izvēlēto sarunu.</item>
+    <item quantity="other">Šis neatgriezeniski dzēsīs visas %1$d izvēlētās sarunas.</item>
+  </plurals>
+  <string name="ConversationListFragment_deleting">Tiek dzēstas</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Tiek dzēstas izvēlētās sarunas…</string>
+  <plurals name="ConversationListFragment_conversations_archived">
+    <item quantity="zero">%d Saruna arhivēta</item>
+    <item quantity="one">Saruna arhivēta</item>
+    <item quantity="other">%d sarunas arhivētas</item>
+  </plurals>
+  <string name="ConversationListFragment_undo">ATSAUKT</string>
+  <plurals name="ConversationListFragment_moved_conversations_to_inbox">
+    <item quantity="zero">Pārvietoja %d sarunu uz iesūtni</item>
+    <item quantity="one">Pārvietoja sarunu uz iesūtni </item>
+    <item quantity="other">Pārvietoja %d sarunas uz iesūtni</item>
+  </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_created">Jūsu profila vārds ir izveidots.</string>
+  <string name="ConversationListFragment__your_profile_name_has_been_saved">Jūsu profila vārds ir saglabāts.</string>
+  <!--ConversationListItem-->
+  <string name="ConversationListItem_key_exchange_message">Atslēgapmaiņas ziņa</string>
+  <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">Arhivētas sarunas (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Pārbaudīts(verificēts)</string>
+  <!--CreateProfileActivity-->
+  <string name="CreateProfileActivity__profile">Profils</string>
+  <string name="CreateProfileActivity_error_setting_profile_photo">Kļūda iestatot profila attēlu</string>
+  <string name="CreateProfileActivity_problem_setting_profile">Problēma iestatot profilu</string>
+  <string name="CreateProfileActivity_profile_photo">Profila attēls</string>
+  <string name="CreateProfileActivity_set_up_your_profile">Iestatiet savu profilu</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal profili ir šifrēti (end-to-end) tā, ka Signal servisam nav pieejas šai informācijai. </string>
+  <string name="CreateProfileActivity_set_avatar_description">Iestatīt ikonu/avataru</string>
+  <!--CustomDefaultPreference-->
+  <string name="CustomDefaultPreference_using_custom">Lieto pielāgojamu: %s</string>
+  <string name="CustomDefaultPreference_using_default">Lieto noklusējuma: %s</string>
+  <string name="CustomDefaultPreference_none">Nekas</string>
+  <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Izvēlieties fotogrāfiju</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Uzņemt fotogrāfiju</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Izvēlēties no galerijas</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Noņemt attēlu</string>
+  <!--DateUtils-->
+  <string name="DateUtils_just_now">Tagad</string>
+  <string name="DateUtils_minutes_ago">%d min</string>
+  <string name="DateUtils_today">Šodien</string>
+  <string name="DateUtils_yesterday">Vakar</string>
+  <!--DeliveryStatus-->
+  <string name="DeliveryStatus_sending">Tiek sūtīts</string>
+  <string name="DeliveryStatus_sent">Nosūtīts</string>
+  <string name="DeliveryStatus_delivered">Piegādāts</string>
+  <string name="DeliveryStatus_read">Lasīts</string>
+  <!--DeviceListActivity-->
+  <string name="DeviceListActivity_unlink_s">Atvienot \"%s\"</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Atvienojot šo ierīci, no tās vairs nevarēs sūtīt vai saņemt ziņas.</string>
+  <string name="DeviceListActivity_network_connection_failed">Tīkla savienojums neizdevās</string>
+  <string name="DeviceListActivity_try_again">Mēģiniet vēlreiz</string>
+  <string name="DeviceListActivity_unlinking_device">Atvieno ierīci…</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">Atvieno ierīci</string>
+  <string name="DeviceListActivity_network_failed">Tīkla kļūme!</string>
+  <!--DeviceListItem-->
+  <string name="DeviceListItem_unnamed_device">Bezvārda/nenosaukta ierīce</string>
+  <string name="DeviceListItem_linked_s">Savienots %s</string>
+  <string name="DeviceListItem_last_active_s">Pēdējo reizi aktīvs %s</string>
+  <string name="DeviceListItem_today">Šodien</string>
+  <!--DocumentView-->
+  <string name="DocumentView_unnamed_file">Bezvārda fails</string>
+  <!--DozeReminder-->
+  <string name="DozeReminder_optimize_for_missing_play_services">Optimizē iztrūkstošajiem proprietārajiem Google Play Services</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Par laimi šajā ierīcē nav Google Play Services. Pieskaries, lai atspējotu sistēmas baterijas optimizāciju, kas traucē Signal saņemt ziņas, kamēr tas ir neaktīvs (darbojas fonā).</string>
+  <!--ShareActivity-->
+  <string name="ShareActivity_share_with">Dalīties ar</string>
+  <string name="ShareActivity_multiple_attachments_are_only_supported">Vairāku pielikumu sūtīšana ir atbalstīta tikai attēliem un video</string>
+  <!--GcmBroadcastReceiver-->
+  <string name="GcmBroadcastReceiver_retrieving_a_message">Notiek ziņas ielāde…</string>
+  <!--GcmRefreshJob-->
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal sakaru permanenta kļūme!</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal neizdevās reģistrēties Google Play pakalpojumos. Signal ziņas un zvani ir atspējoti. Lūdzu, mēģiniet vēlreiz piereģistrēties sadaļā Iestatījumi -&gt; Papildu.</string>
+  <!--GiphyActivity-->
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Kļūme iegūstot pilnas izšķirtspējas GIF</string>
+  <!--GiphyFragmentPageAdapter-->
+  <string name="GiphyFragmentPagerAdapter_gifs">GIF-i</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">Uzlīmes</string>
+  <!--GroupCreateActivity-->
+  <string name="GroupCreateActivity_actionbar_title">Jauna grupa</string>
+  <string name="GroupCreateActivity_actionbar_edit_title">Labot grupu</string>
+  <string name="GroupCreateActivity_group_name_hint">Grupas nosaukums</string>
+  <string name="GroupCreateActivity_actionbar_mms_title">Jauna MMS grupa</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Jūs esiet izvēlējies kontaktu, kas neatbalsta Signal grupas, tāpēc šī grupa būs MMS.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Jūs neesiet reģistrēti Signal ziņām un zvaniem, tādēļ Signal grupas būs atspējotas. Lūdzu, mēģiniet reģistrēties sadaļā Iestatījumi -&gt; Papildu.</string>
+  <string name="GroupCreateActivity_contacts_no_members">Jums vajag vismaz vienu personu Jūsu grupā!</string>
+  <string name="GroupCreateActivity_contacts_invalid_number">Vienam Jūsu grupas dalībniekam ir numurs, kuru nevar pareizi nolasīt. Lūdzu labojiet vai dzēsiet šo kontaktu un mēģiniet vēlreiz.</string>
+  <string name="GroupCreateActivity_avatar_content_description">Grupas ikona</string>
+  <string name="GroupCreateActivity_menu_apply_button">Pielietot</string>
+  <string name="GroupCreateActivity_creating_group">Izveido %1$s…</string>
+  <string name="GroupCreateActivity_updating_group">Aktualizē %1$s…</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nevarēja pievienot %1$s, jo tie nav Signal lietotāji.</string>
+  <string name="GroupCreateActivity_loading_group_details">Notiek grupas datu ielāde…</string>
+  <string name="GroupCreateActivity_youre_already_in_the_group">Jūs jau esiet šajā grupā.</string>
+  <!--GroupShareProfileView-->
+  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Dalīties ar Jūsu profila attēlu un vārdu šajā grupā?</string>
+  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Vai vēlieties padarīt Jūsu profila attēlu un vārdu redzamu visiem grupas pašreizējiem un nākotnes dalībniekiem?</string>
+  <string name="GroupShareProfileView_make_visible">Padarīt redzamu</string>
+  <!--GroupMembersDialog-->
+  <string name="GroupMembersDialog_you">Jūs</string>
+  <!--GV2 access levels-->
+  <!--PendingMembersActivity-->
+  <!--GV2 Invite cancellation confirmation-->
+  <!--CropImageActivity-->
+  <string name="CropImageActivity_group_avatar">Grupas ikona</string>
+  <string name="CropImageActivity_profile_avatar">ikona</string>
+  <!--InputPanel-->
+  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Turēt, lai ierakstītu, atlaist, lai sūtītu</string>
+  <!--InviteActivity-->
+  <string name="InviteActivity_share">Dalīties</string>
+  <string name="InviteActivity_choose_contacts">Izvēlēties kontaktus</string>
+  <string name="InviteActivity_share_with_contacts">Dalīties ar kontaktpersonām</string>
+  <string name="InviteActivity_choose_how_to_share">Izvēlieties, kā koplietot</string>
+  <string name="InviteActivity_cancel">Atcelt</string>
+  <string name="InviteActivity_sending">Tiek sūtīts…</string>
+  <string name="InviteActivity_heart_content_description">Sirds</string>
+  <string name="InviteActivity_invitations_sent">Uzaicinājums nosutīts</string>
+  <string name="InviteActivity_invite_to_signal">Uzaicināt uz Signal</string>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="zero">SŪTĪT SMS %d DRAUGIEM</item>
+    <item quantity="one">SŪTĪT SMS %d DRAUGAM</item>
+    <item quantity="other">SŪTĪT SMS %d DRAUGIEM</item>
+  </plurals>
+  <plurals name="InviteActivity_send_sms_invites">
+    <item quantity="zero">Sūtīt %dSMS ielūgumus?</item>
+    <item quantity="one">Sūtīt %d SMS Ielūgumu?</item>
+    <item quantity="other">Sūtīt %d SMS uzaicinājumus?</item>
+  </plurals>
+  <string name="InviteActivity_lets_switch_to_signal">Pārejam uz drošu saziņu, pārejam uz Signal: %1$s</string>
+  <string name="InviteActivity_no_app_to_share_to">Izskatās, ka Tev nav nevienas aplikācijas, caur kuru dalīties.</string>
+  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Draugi neļauj draugiem sazināties nedroši (nešifrēti).</string>
+  <!--Job-->
+  <string name="Job_working_in_the_background">Darbojas fonā…</string>
+  <!--LearnMoreTextView-->
+  <string name="LearnMoreTextView_learn_more">Lasīt vairāk</string>
+  <!--MessageDetailsRecipient-->
+  <string name="MessageDetailsRecipient_failed_to_send">Neizdevās nosūtīt</string>
+  <string name="MessageDetailsRecipient_new_safety_number">Jauns drošības numurs</string>
+  <!--LongMessageActivity-->
+  <string name="LongMessageActivity_unable_to_find_message">Neizdevās atrast ziņu</string>
+  <string name="LongMessageActivity_message_from_s">Ziņa no %1$s </string>
+  <string name="LongMessageActivity_your_message">Jūsu ziņa</string>
+  <!--MessageRetrievalService-->
+  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_background_connection_enabled">Fona savienojums iespējots</string>
+  <!--MmsDownloader-->
+  <string name="MmsDownloader_error_reading_mms_settings">Neizdevās nolasīt mobilo pakalpojumu sniedzēja MMS uzstādījumus</string>
+  <!--MediaOverviewActivity-->
+  <string name="MediaOverviewActivity_Media">Multivide/multimediji</string>
+  <string name="MediaOverviewActivity_Files">Faili</string>
+  <string name="MediaOverviewActivity_Audio">Audio</string>
+  <string name="MediaOverviewActivity_All">Visi</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="zero">Vai izdzēst atlasīto?</item>
+    <item quantity="one">Vai izdzēst atlasīto?</item>
+    <item quantity="other">Izdzēst atlasītos?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="zero"> Atlasītais fails %1$d tiks neatgriezeniski izdzēsts. Tiks izdzēsts arī ar šo vienumu saistītais ziņojuma teksts.</item>
+    <item quantity="one">Atlasītais fails tiks neatgriezeniski izdzēsts. Tiks izdzēsts arī ar šo vienumu saistītais ziņojuma teksts.</item>
+    <item quantity="other">Tiks neatgriezeniski izdzēsti visi atlasītie %1$d faili. Tiks izdzēsts arī ar šiem failiem saistītās ziņas.</item>
+  </plurals>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Tiek dzēsti</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Dzēš ziņas…</string>
+  <string name="MediaOverviewActivity_Select_all">Izvēlēties visu</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Apkopo pielikumus…</string>
+  <string name="MediaOverviewActivity_Sort_by">Kārtot pēc</string>
+  <string name="MediaOverviewActivity_Newest">jaunākais</string>
+  <string name="MediaOverviewActivity_Oldest">vecākais</string>
+  <string name="MediaOverviewActivity_Storage_used">Izmantotā glabātuve</string>
+  <string name="MediaOverviewActivity_All_storage_use">Visi glabātuves lietojumi</string>
+  <string name="MediaOverviewActivity_Grid_view_description">Režģa skats</string>
+  <string name="MediaOverviewActivity_List_view_description">Saraksta skats</string>
+  <string name="MediaOverviewActivity_Selected_description">Izvēlētais</string>
+  <plurals name="MediaOverviewActivity_d_items_s">
+    <item quantity="zero">%1$d vienums %2$s</item>
+    <item quantity="one">%1$d vienums%2$s</item>
+    <item quantity="other">%1$d vienumi %2$s</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_items">
+    <item quantity="zero">%1$d vienums</item>
+    <item quantity="one">%1$d vienums</item>
+    <item quantity="other">%1$d vienumi</item>
+  </plurals>
+  <string name="MediaOverviewActivity_file">Fails</string>
+  <string name="MediaOverviewActivity_audio">Audio</string>
+  <string name="MediaOverviewActivity_video">Video</string>
+  <string name="MediaOverviewActivity_image">Atēls</string>
+  <string name="MediaOverviewActivity_sent_by_s">Nosūtīja %1$s</string>
+  <string name="MediaOverviewActivity_sent_by_you">Jūs nosūtījāt</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s nosūtīja %2$s</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s">Jūs nosūtījāt %1$s </string>
+  <!--Megaphones-->
+  <string name="Megaphones_introducing_reactions">Iepazīstinām ar reakcijām</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Pieskarieties un turiet jebkuru ziņojumu, lai ātri kopīgotu savas domas.</string>
+  <string name="Megaphones_remind_me_later">Atgādināt vēlāk</string>
+  <string name="Megaphones_verify_your_signal_pin">Signal PIN verificēšana</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Dažreiz mēs Jums pieprasīsim pārbaudīt jūsu PIN, lai Jūs to atcerētos.</string>
+  <string name="Megaphones_verify_pin">Pārbaudīt PIN</string>
+  <!--NotificationBarManager-->
+  <string name="NotificationBarManager_signal_call_in_progress">Notiek Signal zvans </string>
+  <string name="NotificationBarManager__establishing_signal_call">Signal zvana savienojuma izveide</string>
+  <string name="NotificationBarManager__incoming_signal_call">Ienākošs Signal zvans</string>
+  <string name="NotificationBarManager__deny_call">Noraidīt</string>
+  <string name="NotificationBarManager__answer_call">Atbildēt</string>
+  <string name="NotificationBarManager__end_call">Beigt zvanu</string>
+  <string name="NotificationBarManager__cancel_call">Atcelt zvanu</string>
+  <!--NotificationMmsMessageRecord-->
+  <string name="NotificationMmsMessageRecord_multimedia_message">Multimēdiju ziņa</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">Lejuplādē MMS ziņu</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Kļūme lejuplādējot MMS ziņu, pieskarieties, lai mēģinātu vēlreiz</string>
+  <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">Sūtīt %s</string>
+  <string name="MediaPickerActivity__menu_open_camera">Atvērt kameru</string>
+  <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">Pieskarieties, lai izvēlētos</string>
+  <!--MediaSendActivity-->
+  <string name="MediaSendActivity_add_a_caption">Pievienot komentāru/parakstu…</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Vienums tika noņemts, jo tas pārsniedza izmēra ierobežojumu</string>
+  <string name="MediaSendActivity_camera_unavailable">Kamera nav pieejama</string>
+  <string name="MediaSendActivity_message_to_s">Ziņa %s</string>
+  <string name="MediaSendActivity_message">Sūtīt/ziņa</string>
+  <string name="MediaSendActivity_select_recipients">Izvēlēties adresātus</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal ir nepieciešama piekļuve Jūsu kontaktiem, lai tos parādītu.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal ir nepieciešama piekļuve kontaktiem, lai parādītu Jūsu kontaktpersonas, bet tā ir neatgriezeniski noraidīta.  Lūdzu, dodieties uz aplikāciju iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"Kontakti\"</string>
+  <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+    <item quantity="zero">Jūs Nevariet dalīties ar vairāk kā %d elementus.</item>
+    <item quantity="one">Jūs Nevariet dalīties ar vairāk %d elementu.</item>
+    <item quantity="other">Jūs nevariet dalīties ar vairāk nekā %d elementiem.</item>
+  </plurals>
+  <string name="MediaSendActivity_select_recipients_description">Izvēlēties adresātus</string>
+  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Pieskarieties šeit, lai šis ziņojums pēc tā izlasīšanas izgaistu.</string>
+  <!--MediaRepository-->
+  <string name="MediaRepository_all_media">Visi multimediju faili</string>
+  <!--MessageRecord-->
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Saņemta ziņa, kas šifrēta, izmantojot vecāku Signal versiju, kura vairs netiek atbalstīta. Palūdziet sūtītājam aktualizēt Signal uz jaunāko versiju un nosūtīt ziņu vēlreiz.</string>
+  <string name="MessageRecord_left_group">Jūs pametāt grupu.</string>
+  <string name="MessageRecord_you_updated_group">Jūs aktualizējāt grupu.</string>
+  <string name="MessageRecord_you_called">Jūs zvanījāt</string>
+  <string name="MessageRecord_called_you">Kontakts zvanīja</string>
+  <string name="MessageRecord_missed_call">Neatbildēts zvans</string>
+  <string name="MessageRecord_s_updated_group">%s aktualizēja grupu.</string>
+  <string name="MessageRecord_s_called_you">Jums zvanīja %s</string>
+  <string name="MessageRecord_called_s">Zvanīja %s</string>
+  <string name="MessageRecord_missed_call_from">Neatbildēts zvans no %s</string>
+  <string name="MessageRecord_s_joined_signal">%s lieto Signālu</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">Jūs atspējojāt gaistošās ziņas.</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s atspējoja gaistošās ziņas.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Jūs iestatījāt gaistošo ziņu \"dzīves\" ilgumu uz %1$s. </string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s iestatīja gaistošo ziņu \"dzīves\" ilgumu uz %2$s</string>
+  <!--GV2 specific-->
+  <!--GV2 member additions-->
+  <string name="MessageRecord_s_joined_the_group">%1$s pievienojās grupai.</string>
+  <!--GV2 member removals-->
+  <!--GV2 role change-->
+  <!--GV2 invitations-->
+  <!--GV2 invitation revokes-->
+  <!--GV2 invitation acceptance-->
+  <!--GV2 title change-->
+  <!--GV2 avatar change-->
+  <!--GV2 attribute access level change-->
+  <!--GV2 membership access level change-->
+  <!--End of GV2 specific update messages-->
+  <string name="MessageRecord_your_safety_number_with_s_has_changed">Jūsu drošības kods ar %s ir mainījies. </string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Jūs atzīmējāt savu drošības kodu ar %s kā pārbaudītu.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Jūs atzīmējāt savu drošības kodu ar %s kā pārbaudītu no citas ierīces</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Jūs atzīmējāt savu drošības kodu ar %s kā nepārbaudītu.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Jūs atzīmējāt savu drošības kodu ar %s kā nepārbaudītu no citas ierīces</string>
+  <!--MessageRequestBottomView-->
+  <string name="MessageRequestBottomView_accept">Apstiprināt</string>
+  <string name="MessageRequestBottomView_delete">Dzēst</string>
+  <string name="MessageRequestBottomView_block">Bloķēt</string>
+  <string name="MessageRequestBottomView_unblock">Atbloķēt</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Vai vēlaties ļaut %1$s Jums nosūtīt ziņu? Viņi nezinās, ka esat redzējis viņu ziņas, kamēr Jūs nebūsiet apstiprinājuši.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Vai vēlaties pievienoties grupai %1$s? Viņi nezinās, ka esat redzējis viņu ziņas, kamēr Jūs nebūsiet apstiprinājuši.</string>
+  <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Atbloķējiet %1$s, lai sūtītu ziņas un zvanītu viens otram. </string>
+  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Atbloķējiet, lai ļautu grupas dalībniekiem Jūs atkal pievienot šai grupai.</string>
+  <string name="MessageRequestProfileView_member_of_one_group">%1$s dalībnieks</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">%1$s un %2$s dalībnieks</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s un %3$s dalībnieks </string>
+  <plurals name="MessageRequestProfileView_members">
+    <item quantity="zero">%1$d dalībnieks</item>
+    <item quantity="one">%1$d dalībnieks</item>
+    <item quantity="other">%1$d dalībnieki</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="zero">%d cits</item>
+    <item quantity="one">%d cits</item>
+    <item quantity="other">%d citi</item>
+  </plurals>
+  <!--PassphraseChangeActivity-->
+  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Paroles nesakrīt! </string>
+  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Nepareiza vecā parole!</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Ievadiet jaunu paroli!</string>
+  <!--DeviceProvisioningActivity-->
+  <string name="DeviceProvisioningActivity_link_this_device">Vai piesaistīt šo ierīci?</string>
+  <string name="DeviceProvisioningActivity_cancel">ATCELT</string>
+  <string name="DeviceProvisioningActivity_continue">TURPINĀT</string>
+  <string name="DeviceProvisioningActivity_content_intro">Tā varēs</string>
+  <string name="DeviceProvisioningActivity_content_bullets">
+        • Lasīt visas Jūsu ziņas
+        \n• Sūtīt ziņas Jūsu vārdā
+    </string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Piesaista ierīci</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Piesaista jaunu ierīci…</string>
+  <string name="DeviceProvisioningActivity_content_progress_success">Ierīce apstiprināta!</string>
+  <string name="DeviceProvisioningActivity_content_progress_no_device">Neviena ierīce netika atrasta.</string>
+  <string name="DeviceProvisioningActivity_content_progress_network_error">Tīkla kļūda.</string>
+  <string name="DeviceProvisioningActivity_content_progress_key_error">Nederīgs QR kods.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Piedodiet, bet Jums piesaistītas pārāk daudz ierīces , lūdzu kādu atsaistiet</string>
+  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Piedodiet, bet šis nav derīgs ierīces QR kods.</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Piesaistīt Signal ierīci?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Izskatās, ka Jūs mēģināt piesaistīt Signal ierīci, izmantojot svešas aplikācijas skeneri. Jūsu drošībai, lūdzu, skenējiet kodu vēlreiz, izmantojot Signal.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal ir nepieciešama piekļuve kamerai, lai skenētu QR kodu, bet tai nav dotas šādas atļaujas. Dodieties uz lietotnes iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"Kamera\". </string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Nav iespējams skenēt QR kodu bez kameras lietošanas atļaujas</string>
+  <!--ExpirationDialog-->
+  <string name="ExpirationDialog_disappearing_messages">Gaistošās ziņas</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">Jūsu ziņas neizgaisīs.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Ziņas, kuras nosūtītas un saņemtas šajā sarunā,  pazudīs %s pēc to apskatīšanas. </string>
+  <!--PassphrasePromptActivity-->
+  <string name="PassphrasePromptActivity_enter_passphrase">Ievadiet paroli</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Signal ikona</string>
+  <string name="PassphrasePromptActivity_ok_button_content_description">Iesniegt paroli</string>
+  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nepareiza parole</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Atbloķēt Signal</string>
+  <!--PlacePickerActivity-->
+  <string name="PlacePickerActivity_title">Karte</string>
+  <string name="PlacePickerActivity_not_a_valid_address">Nederīga adrese</string>
+  <string name="PlacePickerActivity_drop_pin">Nomest atzīmi/piespraudi</string>
+  <string name="PlacePickerActivity_accept_address">Adresi atzīt par labu esam</string>
+  <!--PlayServicesProblemFragment-->
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Jūsu ierīcē instalētā Google Play Services versija nedarbojas pareizi. Lūdzu, pārinstalējiet Google Play Services un mēģiniet vēlreiz.</string>
+  <!--PinRestoreEntryFragment-->
+  <string name="PinRestoreEntryFragment_incorrect_pin">Nepareizs PIN</string>
+  <string name="PinRestoreEntryFragment_cancel">Atcelt</string>
+  <string name="PinRestoreEntryFragment_skip">Izlaist</string>
+  <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Ievadiet no burtiem un cipariem sastāvošu PIN</string>
+  <string name="PinRestoreEntryFragment_enter_numeric_pin">Izveido ciparisku PIN</string>
+  <!--PinRestoreLockedFragment-->
+  <string name="PinRestoreLockedFragment_create_your_pin">Izveido savu PIN </string>
+  <!--RatingManager-->
+  <string name="RatingManager_rate_this_app">Novērtējiet šo lietotni</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Ja ar gandarījumu lietojat šo lietotni, lūdzu atbalstiet mūs, veltot brīdi, lai to novērtētu.</string>
+  <string name="RatingManager_rate_now">Novērtēsiet tagad!</string>
+  <string name="RatingManager_no_thanks">Nē, paldies</string>
+  <string name="RatingManager_later">Vēlāk</string>
+  <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Forši! Šķiet, ka Jums nav ierīcē instalēta spiegojošā Goolge Play Store lietotne.</string>
+  <!--ReactionsBottomSheetDialogFragment-->
+  <string name="ReactionsBottomSheetDialogFragment_all">Visi %1$d</string>
+  <!--ReactionsConversationView-->
+  <string name="ReactionsConversationView_plus">+%1$d</string>
+  <!--ReactionsRecipientAdapter-->
+  <string name="ReactionsRecipientAdapter_you">Jūs</string>
+  <!--RecipientPreferencesActivity-->
+  <string name="RecipientPreferenceActivity_block">Bloķēt</string>
+  <string name="RecipientPreferenceActivity_error_leaving_group">Kļūme, cenšoties pamest grupu</string>
+  <string name="RecipientPreferenceActivity_unblock">Atbloķēt</string>
+  <string name="RecipientPreferenceActivity_enabled">Iespējots</string>
+  <string name="RecipientPreferenceActivity_disabled">Atspējots</string>
+  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Pieejams, tiklīdz kā ziņa ir nosūtīta vai saņemta.</string>
+  <!--RecipientProvider-->
+  <string name="RecipientProvider_unnamed_group">Bezvārda/Nenosaukta grupa</string>
+  <!--RedPhone-->
+  <string name="RedPhone_answering">Tiek atbildēts/atbild</string>
+  <string name="RedPhone_ending_call">Beidz zvanu</string>
+  <string name="RedPhone_dialing">Tiek zvanīts/zvana</string>
+  <string name="RedPhone_ringing">Zvana</string>
+  <string name="RedPhone_busy">Aizņemts</string>
+  <string name="RedPhone_connected">Savienots</string>
+  <string name="RedPhone_recipient_unavailable">Adresāts nav pieejams</string>
+  <string name="RedPhone_network_failed">Tīkla kļūme!</string>
+  <string name="RedPhone_number_not_registered">Numurs nav reģistrēts!</string>
+  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Numurs, uz kuru zvanījāt, neatbalsta drošu zvanu!</string>
+  <string name="RedPhone_got_it">Skaidrīte</string>
+  <!--RegistrationActivity-->
+  <string name="RegistrationActivity_select_your_country">Izvēlieties savu valsti</string>
+  <string name="RegistrationActivity_you_must_specify_your_country_code">Jums jānorāda savs
+valsts kods
+</string>
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">Jums jāievada savs
+tālruņa numurs
+</string>
+  <string name="RegistrationActivity_invalid_number">Nederīgs numurs</string>
+  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numurs, kuru jūs norādījāt (%s) ir nederīgs</string>
+  <string name="RegistrationActivity_missing_google_play_services">Jocīgi, trūkst izspiegojošo Google Play pakalpojumu</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Šai ierīcei trūkst izspiegojošo Google Play pakalpojumu. Jūs varat izmantot Signal, taču šī ierīces konfigurācija, iespējams, var rezultēties samazinātā sasniedzamībā.\n\nJa, Jūs neesiet zinošs un advancēts lietotājs, ierīcē neizmantojiet drošāku \"pēctirgus\" Android operētājsistēmu vai arī uzskatiet, ka šo paziņojumu redziet kļūdas pēc, lūdzu, sazinieties ar support@signal.org, lai saņemtu palīdzību.</string>
+  <string name="RegistrationActivity_i_understand">Skaidrīte</string>
+  <string name="RegistrationActivity_play_services_error">Google Play pakalpojumu kļūme</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play pakalpojumi tiek aktualizēti vai īslaicīgi nav pieejami. Lūdzu, mēģiniet vēlreiz.</string>
+  <string name="RegistrationActivity_terms_and_privacy">Noteikumi &amp; privātuma politika</string>
+  <string name="RegistrationActivity_no_browser">Nevar atvērt saiti. Netika atrasts tīmekļa pārlūks. </string>
+  <string name="RegistrationActivity_more_information">Vairāk informācijas</string>
+  <string name="RegistrationActivity_less_information">Mazāk informācijas</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal ir nepieciešama piekļuve Jūsu kontaktpersonām un multividei, lai sazinātos ar draugiem, apmainītos ar ziņām un veiktu drošus zvanus</string>
+  <string name="RegistrationActivity_unable_to_connect_to_service">Nevar izveidot savienojumu ar pakalpojumu. Lūdzu, pārbaudiet tīkla savienojumu un mēģiniet vēlreiz.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Lai varētu viegli verificēt tālruņa numuru, Signal var automātiski nolasīt Jūsu verifikācijas kodu, ja ļaujiet Signal lasīt SMS.</string>
+  <plurals name="RegistrationActivity_debug_log_hint">
+    <item quantity="zero">Jūs tagad esiet %d soļus no atkļūdošanas žurnāla iesniegšanas</item>
+    <item quantity="one">Jūs tagad esiet %d soli no atkļūdošanas žurnāla iesniegšanas</item>
+    <item quantity="other">Jūs tagad esiet %d soļus no atkļūdošanas žurnāla iesniegšanas</item>
+  </plurals>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Nepieciešams pārbaudīt, vai esiet cilvēks.</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">Neizdevās CAPTCHA verifikācija</string>
+  <string name="RegistrationActivity_next">Tālāk</string>
+  <string name="RegistrationActivity_continue">Turpināt</string>
+  <string name="RegistrationActivity_continue_d_attempts_left">Turpināt (atlikuši %d mēģinājumi)</string>
+  <string name="RegistrationActivity_continue_last_attempt">Turpināt (pēdējais mēģinājums)</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ņem privātumu savās rokās.\nKatrā rakstītajā ziņā esi tu pats!</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Lai sāktu, ievadiet savu numuru</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">Jūs saņemsiet verifikācijas kodu. Var tikt piemēroti mobilā operatora tarifi.</string>
+  <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Ievadiet kodu, kuru nosūtījām uz %s</string>
+  <string name="RegistrationActivity_phone_number_description">Tālruņa numurs</string>
+  <string name="RegistrationActivity_country_code_description">Valsts kods</string>
+  <string name="RegistrationActivity_call">Zvanīt</string>
+  <!--RegistrationLockV2Dialog-->
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_view_photo">Skatīt attēlu</string>
+  <string name="RevealableMessageView_view_video">Skatīt video</string>
+  <string name="RevealableMessageView_viewed">Skatīts</string>
+  <string name="RevealableMessageView_media">Multimediju fails/ Multivide</string>
+  <!--ScribbleActivity-->
+  <string name="ScribbleActivity_save_failure">Neizdevās saglabāt attēla izmaiņas</string>
+  <!--Search-->
+  <string name="SearchFragment_no_results">\"%s\" netika atrasts</string>
+  <string name="SearchFragment_header_conversations">Sarunas</string>
+  <string name="SearchFragment_header_contacts">Kontakti</string>
+  <string name="SearchFragment_header_messages">Ziņas</string>
+  <!--SharedContactDetailsActivity-->
+  <string name="SharedContactDetailsActivity_add_to_contacts">Pievienot kontaktiem</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Uzaicināt uz Signal</string>
+  <string name="SharedContactDetailsActivity_signal_message">Signal ziņa</string>
+  <string name="SharedContactDetailsActivity_signal_call">Signal zvans</string>
+  <!--SharedContactView-->
+  <string name="SharedContactView_add_to_contacts">Pievienot kontaktiem</string>
+  <string name="SharedContactView_invite_to_signal">Uzaicināt uz Signal</string>
+  <string name="SharedContactView_message">Signal ziņa</string>
+  <!--SignalPinReminders-->
+  <string name="SignalPinReminders_well_remind_you_again_later">Vēlāk atgādināsim vēlreiz.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Atkārtoti atgādināsim rīt.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Atkārtoti atgādināsim pēc dažām dienām.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Atkārtoti atgādināsim pēc nedēļas</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Atkārtoti atgādināsim pēc pāris nedēļām.</string>
+  <!--Slide-->
+  <string name="Slide_image">Attēls</string>
+  <string name="Slide_sticker">Uzlīme</string>
+  <string name="Slide_audio">Audio</string>
+  <string name="Slide_video">Video</string>
+  <!--SmsMessageRecord-->
+  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">Saņemta bojāta atslēga
+apmaiņas ziņa!
+</string>
+  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
+Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
+</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Saņemta ziņa ar jaunu drošības kodu. Pieskarieties, lai apstrādātu un parādītu.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Jūs atstatāt drošo sesiju.</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">%s atstatīja drošo sesiju.</string>
+  <string name="SmsMessageRecord_duplicate_message">Duplicēta (dubulta) ziņa.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Šī ziņa nevarēja tikt apstrādāta, jo tā tika nosūtīta no jaunākas Signal versijas. Aktualizējiet savu Signal lietotni un palūdziet sūtītājam, lai atsūta šo ziņu atkārtoti.</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Uzlīmes</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Instalētās uzlīmes</string>
+  <string name="StickerManagementAdapter_stickers_you_received">Jūsu saņemtās uzlīmes</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Signal mākslinieku sērijas uzlīmes</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">Nav instalētu uzlīmju</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Šeit parādīsies uzlīmes no ienākošajām ziņām</string>
+  <string name="StickerManagementAdapter_untitled">Nenosaukts</string>
+  <string name="StickerManagementAdapter_unknown">Nezināms</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_untitled">Nenosaukts</string>
+  <string name="StickerPackPreviewActivity_unknown">Nezināms</string>
+  <string name="StickerPackPreviewActivity_install">Instalēt</string>
+  <string name="StickerPackPreviewActivity_remove">Noņemt/Izņemt</string>
+  <string name="StickerPackPreviewActivity_stickers">Uzlīmes</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Neizdevās ielādēt uzlīmju paku</string>
+  <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_edit">Rediģēt</string>
+  <string name="SubmitDebugLogActivity_done">Darīts</string>
+  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Pieskarieties līnijai, lai to izdzēstu</string>
+  <string name="SubmitDebugLogActivity_submit">Iesniegt</string>
+  <string name="SubmitDebugLogActivity_failed_to_submit_logs">Neizdevās iesniegt žurnālu</string>
+  <string name="SubmitDebugLogActivity_success">Izdevās!</string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Nokopējiet šo URL un pievienojiet to problēmas ziņojumam vai atbalsta e-pastam:\n\n<b>%1$s</b></string>
+  <string name="SubmitDebugLogActivity_copied_to_clipboard">Iekopēts starpenē</string>
+  <string name="SubmitDebugLogActivity_ok">Ok</string>
+  <string name="SubmitDebugLogActivity_share">Dalīties</string>
+  <!--ThreadRecord-->
+  <string name="ThreadRecord_group_updated">Grupa aktualizēta</string>
+  <string name="ThreadRecord_left_the_group">Pameta grupu</string>
+  <string name="ThreadRecord_secure_session_reset">Droša sesija atstatīta. </string>
+  <string name="ThreadRecord_draft">Melnraksts:</string>
+  <string name="ThreadRecord_called">Jūs zvanijāt</string>
+  <string name="ThreadRecord_called_you">Jums zvanīja</string>
+  <string name="ThreadRecord_missed_call">Neatbildēts zvans</string>
+  <string name="ThreadRecord_media_message">Multivides ziņa</string>
+  <string name="ThreadRecord_sticker">Uzlīme</string>
+  <string name="ThreadRecord_view_once_photo">Vienreiz skatāms attēls</string>
+  <string name="ThreadRecord_view_once_video">Vienreiz skatāms video</string>
+  <string name="ThreadRecord_view_once_media">Vienreiz skatāmā multivide/multimediju fails</string>
+  <string name="ThreadRecord_s_is_on_signal">%s lieto Signālu!</string>
+  <string name="ThreadRecord_disappearing_messages_disabled">Gaistošās ziņas atspējotas</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Gaistošo ziņu laiks iestatīts uz %s</string>
+  <string name="ThreadRecord_safety_number_changed">Drošības kods mainījies</string>
+  <string name="ThreadRecord_your_safety_number_with_s_has_changed">Jūsu drošības kods ar %s ir mainījies. </string>
+  <string name="ThreadRecord_you_marked_verified">Jūs atzīmējāt kā verificētu</string>
+  <string name="ThreadRecord_you_marked_unverified">Jūs atzīmējāt kā neverificētu</string>
+  <string name="ThreadRecord_message_could_not_be_processed">Ziņu nevarēja apstrādāt</string>
+  <string name="ThreadRecord_message_request">Ziņas pieprasījums</string>
+  <string name="ThreadRecord_s_added_you_to_the_group">%1$s pievienoja Jūs grupai</string>
+  <!--UpdateApkReadyListener-->
+  <string name="UpdateApkReadyListener_Signal_update">Signal aktualizējums</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Ir pieejama jauna Signal versija, pieskarieties, lai atjauninātu</string>
+  <!--UnknownSenderView-->
+  <string name="UnknownSenderView_block_s">Bloķēt %s?</string>
+  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Bloķētais kontakts vairs nevarēs Jums Signālā sūtīt ziņas vai zvanīt.</string>
+  <string name="UnknownSenderView_block">Bloķēt</string>
+  <string name="UnknownSenderView_share_profile_with_s">Dalīties ar profilu ar %s?</string>
+  <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Vienkāršākais veids, kā dalīties ar savu informāciju, ir sūtītāja pievienošana saviem kontaktiem. Ja Jūs to nevēlieties, Jūs variet joprojām dalīties ar savu informāciju šadā veidā.</string>
+  <string name="UnknownSenderView_share_profile">Dalīties ar profilu</string>
+  <!--UntrustedSendDialog-->
+  <string name="UntrustedSendDialog_send_message">Sūtīt ziņu?</string>
+  <string name="UntrustedSendDialog_send">Sūtīt</string>
+  <!--UnverifiedSendDialog-->
+  <string name="UnverifiedSendDialog_send_message">Sūtīt ziņu?</string>
+  <string name="UnverifiedSendDialog_send">Sūtīt</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_username">Lietotājvārds</string>
+  <string name="UsernameEditFragment_submit">Iesniegt</string>
+  <string name="UsernameEditFragment_delete">Dzēst</string>
+  <string name="UsernameEditFragment_successfully_set_username">Lietotājvārds ir sekmīgi iestatīts.</string>
+  <string name="UsernameEditFragment_successfully_removed_username">Lietotājvārds ir sekmīgi noņemts.</string>
+  <string name="UsernameEditFragment_encountered_a_network_error">Tīkla kļūda.</string>
+  <string name="UsernameEditFragment_this_username_is_taken">Šis lietotājvārds ir aizņemts.</string>
+  <string name="UsernameEditFragment_this_username_is_available">Šis lietotājvārds ir pieejams.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">Lietotājvārdi var ietvert tikai-Z, 0-9 un pasvītrojuma zīmes.</string>
+  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Lietotājvārdi nevar sākties ar skaitli.</string>
+  <string name="UsernameEditFragment_username_is_invalid">Lietotājvārds nav derīgs.</string>
+  <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Lietotājvārdiem jābūt starp %1$d un %2$d rakstzīmēm.</string>
+  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Citi Signal lietotāji var nosūtīt ziņu pieprasījumus Jūsu unikālajam lietotājvārdam, nezinot Jūsu tālruņa numuru. Lietotājvārda izvēle nav obligāta.</string>
+  <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Jūsu kontaktpersona izmanto novecojušu Signal versiju. Pirms apstipriniet drošības kodu,  palūdziet, lai to aktualizē.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Jūsu kontaktpersona izmanto jaunāku Signal versiju, ar nesaderīgu QR koda formātu. Lūdzu atjaunojiet Signal lietotni savā ierīcē, lai turpinātu.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Noskanētais QR kods nav pareizi formatēts drošības numura apstiprināšanas kods. Lūdzu, mēģiniet vēlreiz.</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Dalīties ar drošības numuru izmantojot…</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Mūsu Signal drošības numurs:</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Izskatās, ka Tev nav nevienas aplikācijas, caur kurām dalīties.</string>
+  <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Starpenē netika atrasts drošības kods</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal ir nepieciešama piekļuve kamerai, lai skenētu QR kodu, bet tā nav dota. Dodieties uz lietotnes iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"Kamera\". </string>
+  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Nebija iespējams noskenēt QR kodu bez kameras lietošanas atļaujas</string>
+  <!--ViewOnceMessageActivity-->
+  <!--MessageDisplayHelper-->
+  <string name="MessageDisplayHelper_bad_encrypted_message">Slikta šifrētā ziņa</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Ziņa šifrēta neeksistējošai sesijai</string>
+  <!--MmsMessageRecord-->
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Slikti šifrēta MMS ziņa</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS ziņa šifrēta neeksistējošai sesijai</string>
+  <!--MuteDialog-->
+  <string name="MuteDialog_mute_notifications">Noklusināt paziņojumus</string>
+  <!--OutdatedBuildReminder-->
+  <string name="OutdatedBuildReminder_no_web_browser_installed">Nav instalēts tīmekļa pārlūks!</string>
+  <!--ApplicationMigrationService-->
+  <string name="ApplicationMigrationService_import_in_progress">Notiek importēšana</string>
+  <string name="ApplicationMigrationService_importing_text_messages">Teksta ziņu importēšana</string>
+  <string name="ApplicationMigrationService_import_complete">Importēšana pabeigta</string>
+  <string name="ApplicationMigrationService_system_database_import_is_complete">Sistēmas datubāzes importēšana ir pabeigta.</string>
+  <!--KeyCachingService-->
+  <string name="KeyCachingService_signal_passphrase_cached">Pieskarieties, lai atvērtu.</string>
+  <string name="KeyCachingService_signal_passphrase_cached_with_lock">Pieskarieties, lai atvērtu, vai pieskarieties slēdzenei, lai aizvērtu.</string>
+  <string name="KeyCachingService_passphrase_cached">Signal ir atslēgts</string>
+  <string name="KeyCachingService_lock">Noslēgt Signal</string>
+  <!--MediaPreviewActivity-->
+  <string name="MediaPreviewActivity_you">Jūs</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">Neatbalstīts multimediju faila tips</string>
+  <string name="MediaPreviewActivity_draft">Melnraksts</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal ir nepieciešama pieeja glabātuvei, lai saglabātu ārējā glabātuvē, bet pieeja nav dota. Dodieties uz lietotņu iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"Krātuve\".</string>
+  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Nav iespējams saglabāt ārējā glabātuvē bez atļaujas.</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_title">Izdzēst ziņu?</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Šis neatgriezeniski izdzēsīs ziņu.</string>
+  <string name="MediaPreviewActivity_s_to_s">%1$s %2$s</string>
+  <!--MessageNotifier-->
+  <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d jaunas ziņas %2$dsarunās</string>
+  <string name="MessageNotifier_most_recent_from_s">Pēdējā no: %1$s</string>
+  <string name="MessageNotifier_locked_message">Slēgta ziņa</string>
+  <string name="MessageNotifier_media_message_with_text">Multivides ziņa: %s</string>
+  <string name="MessageNotifier_message_delivery_failed">Ziņas piegāde neizdevās.</string>
+  <string name="MessageNotifier_failed_to_deliver_message">Neizdevās piegādāt ziņu.</string>
+  <string name="MessageNotifier_error_delivering_message">Kļūda piegādājot ziņu.</string>
+  <string name="MessageNotifier_mark_all_as_read">Atzīmēt visas kā lasītas</string>
+  <string name="MessageNotifier_mark_read">Atzīmēt kā lasītu</string>
+  <string name="MessageNotifier_media_message">Multivides ziņa</string>
+  <string name="MessageNotifier_sticker">Uzlīme</string>
+  <string name="MessageNotifier_view_once_photo">Vienreiz skatāms attēls</string>
+  <string name="MessageNotifier_view_once_video">Vienreiz skatāms video</string>
+  <string name="MessageNotifier_reply">Atbildēt</string>
+  <string name="MessageNotifier_signal_message">Signāla ziņa</string>
+  <string name="MessageNotifier_unsecured_sms">Nedroša SMS</string>
+  <string name="MessageNotifier_you_may_have_new_messages">Jums varētu būt jaunas ziņas</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Atveriet Signālu, lai pārbaudītu, vai nav nesenu nelasītu paziņojumu.</string>
+  <string name="MessageNotifier_contact_message">%1$s %2$s</string>
+  <string name="MessageNotifier_unknown_contact_message">Kontakts</string>
+  <string name="MessageNotifier_reacted_s_to_s">Reaģēja %1$s uz %2$s</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">Reaģēja %1$s  uz Jūsu video.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">Reaģēja %1$s uz Jūsu attēlu</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">Reaģēja %1$s uz Jūsu failu. </string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">Reaģēja %1$s uz Jūsu audio</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reaģēja %1$s uz  Jūsu vienreiz skatāmo attēlu.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reaģēja %1$s uz Jūsu vienreiz skatāmo video. </string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">Reaģēja %1$s uz Jūsu uzlīmi. </string>
+  <!--Notification Channels-->
+  <string name="NotificationChannel_messages">Noklusējuma</string>
+  <string name="NotificationChannel_calls">Zvani</string>
+  <string name="NotificationChannel_failures">Kļūmes</string>
+  <string name="NotificationChannel_backups">Rezerves kopijas (Backups)</string>
+  <string name="NotificationChannel_locked_status">Bloķēšanas (noslēgšanas) statuss</string>
+  <string name="NotificationChannel_app_updates">Lietotnes aktualizējumi</string>
+  <string name="NotificationChannel_other">Cits</string>
+  <string name="NotificationChannel_group_messages">Ziņas</string>
+  <string name="NotificationChannel_missing_display_name">Nezināms</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_successfully_set_profile_name">Sekmīgi iestatījāt profila attēlu</string>
+  <string name="ProfileEditNameFragment_encountered_a_network_error">Tīkla kļūda.</string>
+  <!--QuickResponseService-->
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Ātrās atbildes nav pieejamas, kad Signāls ir noslēgts (bloķēts)!</string>
+  <string name="QuickResponseService_problem_sending_message">Problēma sūtot ziņu!</string>
+  <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_saved_to">Saglabāja %s</string>
+  <string name="SaveAttachmentTask_saved">Saglabāts</string>
+  <!--SearchToolbar-->
+  <string name="SearchToolbar_search">Meklēt</string>
+  <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Meklēt sarunas, kontaktus un ziņas</string>
+  <!--ShortcutLauncherActivity-->
+  <string name="ShortcutLauncherActivity_invalid_shortcut">Nepareiza saīsne</string>
+  <!--SingleRecipientNotificationBuilder-->
+  <string name="SingleRecipientNotificationBuilder_signal">Signāls</string>
+  <string name="SingleRecipientNotificationBuilder_new_message">Jauna ziņa</string>
+  <!--ThumbnailView-->
+  <string name="ThumbnailView_Play_video_description">Atskaņot video</string>
+  <string name="ThumbnailView_Has_a_caption_description">Ir parakstīta</string>
+  <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="zero"> %d priekšmeti</item>
+    <item quantity="one"> %d priekšmets</item>
+    <item quantity="other">%d vienumi/gabali</item>
+  </plurals>
+  <!--UnauthorizedReminder-->
+  <string name="UnauthorizedReminder_device_no_longer_registered">Ierīce vairs nav reģistrēta</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Iespējams, ka tālruņa numurs ir Signālā reģistrēts citā ierīcē. Pieskarieties, lai pārreģistrētu.</string>
+  <!--VideoPlayer-->
+  <string name="VideoPlayer_error_playing_video">Kļūme, atskaņojot video</string>
+  <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Lai atbildētu zvanam no %s, Signālam nepieciešama pieeja mikrofonam.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signālam nepieciešama atļauja piekļuvei mikrofonam un kamerai, lai zvanītu un saņemtu zvanus, bet tā nav dota. Dodieties uz lietotnes iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"Mikrofons\" un \"Kamera\".</string>
+  <!--WebRtcCallScreen-->
+  <string name="WebRtcCallScreen_new_safety_numbers">Jūsu drošības numurs sarunai ar %1$s ir mainījies. Tas nozīmē, ka kāds mēģina noklausīties Jūsu saziņu vai %2$s vienkārši savā ierīcē pārinstalējis Signālu.</string>
+  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Iespējams, Jūs vēlaties salīdzināt savu drošības numuru ar šo kontaktu.</string>
+  <string name="WebRtcCallScreen_new_safety_number_title">Jauns drošības numurs</string>
+  <string name="WebRtcCallScreen_accept">Akceptēt</string>
+  <string name="WebRtcCallScreen_end_call">Beigt zvanu</string>
+  <!--WebRtcCallControls-->
+  <string name="WebRtcCallControls_tap_to_enable_your_video">Pieskarieties, lai iespējotu video</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Kontakta attēls</string>
+  <string name="WebRtcCallControls_speaker_button_description">Skaļrunis</string>
+  <string name="WebRtcCallControls_bluetooth_button_description">Bluetooth</string>
+  <string name="WebRtcCallControls_mute_button_description">Apklusināt</string>
+  <string name="WebRtcCallControls_your_camera_button_description">Jūsu kamera</string>
+  <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Pārslēgties uz aizmugures kameru</string>
+  <string name="WebRtcCallControls_answer_call_description">Atbildēt</string>
+  <string name="WebRtcCallControls_reject_call_description">Atteikt zvanu</string>
+  <!--attachment_type_selector-->
+  <string name="attachment_type_selector__audio">Audio</string>
+  <string name="attachment_type_selector__audio_description">Audio</string>
+  <string name="attachment_type_selector__contact">Kontakts</string>
+  <string name="attachment_type_selector__contact_description">Kontakts</string>
+  <string name="attachment_type_selector__camera">Kamera</string>
+  <string name="attachment_type_selector__camera_description">Kamera</string>
+  <string name="attachment_type_selector__location">Atrašanās vieta</string>
+  <string name="attachment_type_selector__location_description">Atrašanās vieta</string>
+  <string name="attachment_type_selector__gif">GIF</string>
+  <string name="attachment_type_selector__gif_description">Gif</string>
+  <string name="attachment_type_selector__gallery_description">Attēls vai video</string>
+  <string name="attachment_type_selector__file_description">Fails</string>
+  <string name="attachment_type_selector__gallery">Galerija</string>
+  <string name="attachment_type_selector__file">Fails</string>
+  <string name="attachment_type_selector__drawer_description">Pārslēgt pielikumu atvilkni</string>
+  <!--change_passphrase_activity-->
+  <string name="change_passphrase_activity__old_passphrase">Vecā parole</string>
+  <string name="change_passphrase_activity__new_passphrase">Jaunā parole</string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">Atkārtot jauno paroli</string>
+  <!--contact_selection_activity-->
+  <string name="contact_selection_activity__enter_name_or_number">Ievadiet vārdu vai numuru</string>
+  <string name="contact_selection_activity__invite_to_signal">Uzaicināt Signālā</string>
+  <!--contact_filter_toolbar-->
+  <string name="contact_filter_toolbar__clear_entered_text_description">Dzēst ierakstīto tekstu</string>
+  <string name="contact_filter_toolbar__show_keyboard_description">Parādīt tastatūru</string>
+  <string name="contact_filter_toolbar__show_dial_pad_description">Parādīt cipartastatūru</string>
+  <!--contact_selection_group_activity-->
+  <string name="contact_selection_group_activity__no_contacts">Nav kontaktu.</string>
+  <string name="contact_selection_group_activity__finding_contacts">Ielādē kontaktus…</string>
+  <!--single_contact_selection_activity-->
+  <string name="SingleContactSelectionActivity_contact_photo">Kontakta attēls</string>
+  <!--ContactSelectionListFragment-->
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Lai parādītu Jūsu kontaktus, Signālam ir nepieciešama piekļuve kontaktiem, bet tā nav dota. Dodieties uz lietotnes iestatījumiem, izvēlieties \"Atļaujas“ un iespējojiet \"Kontakti\". </string>
+  <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Kļūda, ielādējot kontaktus, pārbaudiet ierīces interneta savienojumu.</string>
+  <string name="ContactSelectionListFragment_username_not_found">Lietotājvārds netika atrasts</string>
+  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" nav Signāla lietotājs. Lūdzu, pārbaudiet, vai lietotājvārds uzrakstīts pareizi.</string>
+  <string name="ContactSelectionListFragment_okay">Labi</string>
+  <!--blocked_contacts_fragment-->
+  <string name="blocked_contacts_fragment__no_blocked_contacts">Nav bloķētu kontaktu</string>
+  <!--contact_selection_list_fragment-->
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Lai Signāls rādītu Jūsu kontaktpersonas,nepieciešams dot attiecīgu piekļuvi.</string>
+  <string name="contact_selection_list_fragment__show_contacts">Rādīt kontaktpersonas</string>
+  <!--conversation_activity-->
+  <string name="conversation_activity__type_message_push">Signāla ziņa</string>
+  <string name="conversation_activity__type_message_sms_insecure">Nedroša SMS</string>
+  <string name="conversation_activity__type_message_mms_insecure">Nedroša MMS</string>
+  <string name="conversation_activity__from_sim_name">No %1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
+  <string name="conversation_activity__send">Sūtīt</string>
+  <string name="conversation_activity__compose_description">Ziņas rakstīšana/sastāvs</string>
+  <string name="conversation_activity__emoji_toggle_description">Pārslēgt uz emoji tastatūru</string>
+  <string name="conversation_activity__attachment_thumbnail">Pielikuma sīkattēls</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Pārslēgt uz ātro kameras pievienošanas atvilktni</string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Ierakstīt un sūtīt audio pielikumus</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Noslēgt/bloķēt audio pielikuma ierakstīšanu</string>
+  <string name="conversation_activity__enable_signal_for_sms">Iespējot Signālu SMS lietošanai</string>
+  <!--conversation_input_panel-->
+  <string name="conversation_input_panel__slide_to_cancel">Vilkt, lai atceltu</string>
+  <string name="conversation_input_panel__cancel">Atcelt</string>
+  <!--conversation_item-->
+  <string name="conversation_item__mms_image_description">Multivides ziņa</string>
+  <string name="conversation_item__secure_message_description">Droša ziņa</string>
+  <!--conversation_item_sent-->
+  <string name="conversation_item_sent__send_failed_indicator_description">Sūtīšana neizdevās</string>
+  <string name="conversation_item_sent__pending_approval_description">Tiek gaidīts apstiprinājums</string>
+  <string name="conversation_item_sent__delivered_description">Piegādāts</string>
+  <string name="conversation_item_sent__message_read">Ziņa izlasīta</string>
+  <!--conversation_item_received-->
+  <string name="conversation_item_received__contact_photo_description">Kontakta attēls</string>
+  <!--audio_view-->
+  <string name="audio_view__play_pause_accessibility_description">Atskaņot … Pauzēt</string>
+  <string name="audio_view__download_accessibility_description">Lejupielādēt</string>
+  <!--QuoteView-->
+  <string name="QuoteView_audio">Audio</string>
+  <string name="QuoteView_video">Video</string>
+  <string name="QuoteView_photo">Attēls</string>
+  <string name="QuoteView_view_once_media">Vienreiz skatāms multivides fauks</string>
+  <string name="QuoteView_sticker">Uzlīme</string>
+  <string name="QuoteView_document">Dokuments </string>
+  <string name="QuoteView_you">Jūs</string>
+  <string name="QuoteView_original_missing">Oriģinālā ziņa netika atrasta</string>
+  <!--conversation_fragment-->
+  <string name="conversation_fragment__scroll_to_the_bottom_content_description">Ritināt līdz apakšai </string>
+  <!--country_selection_fragment-->
+  <string name="country_selection_fragment__loading_countries">Ielādē valstis…</string>
+  <string name="country_selection_fragment__search">Meklēt</string>
+  <!--device_add_fragment-->
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Lai piesaistītu citu ierīci, noskenējiet QR kodu, ko tā rāda. </string>
+  <!--device_link_fragment-->
+  <string name="device_link_fragment__link_device">Piesaistīt ierīci</string>
+  <!--device_list_fragment-->
+  <string name="device_list_fragment__no_devices_linked">Neviena ierīce nav piesaistīta</string>
+  <string name="device_list_fragment__link_new_device">Piesaistīt jaunu ierīci</string>
+  <!--experience_upgrade_activity-->
+  <string name="experience_upgrade_activity__continue">turpināt</string>
+  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Lasīšanas apstiprinājumi ir šeit</string>
+  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Pēc izvēles redzi un dalies ar to, vai ziņas ir lasītas</string>
+  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Iespējot lasīšanas apstiprinājumus</string>
+  <!--expiration-->
+  <string name="expiration_off">Izslēgts</string>
+  <plurals name="expiration_seconds">
+    <item quantity="zero">%dsekundes</item>
+    <item quantity="one">%dsekunde</item>
+    <item quantity="other">%d sekundes</item>
+  </plurals>
+  <string name="expiration_seconds_abbreviated">%ds</string>
+  <plurals name="expiration_minutes">
+    <item quantity="zero">%d minūtes</item>
+    <item quantity="one">%d minūte</item>
+    <item quantity="other">%d minūtes</item>
+  </plurals>
+  <string name="expiration_minutes_abbreviated">%d min</string>
+  <plurals name="expiration_hours">
+    <item quantity="zero">%d stundas</item>
+    <item quantity="one">%d stunda</item>
+    <item quantity="other">%d stundas</item>
+  </plurals>
+  <string name="expiration_hours_abbreviated">%dh</string>
+  <plurals name="expiration_days">
+    <item quantity="zero">%d dienas</item>
+    <item quantity="one">%d diena</item>
+    <item quantity="other">%d dienas</item>
+  </plurals>
+  <string name="expiration_days_abbreviated">%dd</string>
+  <plurals name="expiration_weeks">
+    <item quantity="zero">%dnedēļas</item>
+    <item quantity="one">%dnedēļa</item>
+    <item quantity="other">%d nedēļas</item>
+  </plurals>
+  <string name="expiration_weeks_abbreviated">%d ned</string>
+  <!--unverified safety numbers-->
+  <string name="IdentityUtil_unverified_banner_one">Jūsu drošības numurs ar %s ir mainījies un vairāk nav verificēts</string>
+  <string name="IdentityUtil_unverified_banner_two">Jūsu drošības numuri ar %1$s un %2$s vairāk nav verificēti</string>
+  <string name="IdentityUtil_unverified_banner_many">Jūsu drošības numurs ar %1$s, %2$s un %3$s ir mainījies un vairāk nav verificēts</string>
+  <string name="IdentityUtil_unverified_dialog_one">Jūsu drošības numurs ar %1$s ir mainījies un vairāk nav verificēts. Tas nozīmē ka kāds mēģina pārtvert (noklausīties) jūsu saziņu, vai arī  %1$s vienkārši savā ierīcē pārinstalēja Signālu.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Jūsu drošības numurs ar %1$s un %2$s nav vairs verificēts. Tas nozīmē, ka kāds mēģina pārtvert (noklausīties) Jūsu saziņu vai viņi vienkārši pārinstalēja Signālu.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Jūsu drošības numurs ar %1$s,%2$s un %3$s nav vairs verificēts. Tas nozīmē, ka kāds mēģina pārtvert (noklausīties) Jūsu saziņu vai viņi vienkārši pārinstalēja Signālu.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">Jūsu drošības numurs ar %s tikko mainījās.</string>
+  <string name="IdentityUtil_untrusted_dialog_two">Jūsu drošības numuri ar%1$sun %2$s tikko mainījās. </string>
+  <string name="IdentityUtil_untrusted_dialog_many">Jūsu drošības numuri ar %1$s, %2$sun %3$s tikko mainījās. </string>
+  <plurals name="identity_others">
+    <item quantity="zero">%d citi</item>
+    <item quantity="one">%d cits</item>
+    <item quantity="other">%d citi</item>
+  </plurals>
+  <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Meklēt GIF un uzlīmes</string>
+  <!--giphy_fragment-->
+  <string name="giphy_fragment__nothing_found">Nekas netika atrasts</string>
+  <!--log_submit_activity-->
+  <string name="log_submit_activity__log_fetch_failed">Neizdevās nolasīt Jūsu ierīces žurnālus. Jūs variet mēģināt izmantot ADB, lai iegūtu atkļūdošanas žurnālus/ierakstus.</string>
+  <string name="log_submit_activity__thanks">Paldies par jūsu palīdzību!</string>
+  <string name="log_submit_activity__submitting">Tiek iesniegts</string>
+  <string name="log_submit_activity__no_browser_installed">Nav instalēts pārlūks!</string>
+  <string name="log_submit_activity__button_dont_submit">Neiesniegt</string>
+  <string name="log_submit_activity__button_submit">Iesniegt</string>
+  <string name="log_submit_activity__button_got_it">Pieleca</string>
+  <string name="log_submit_activity__button_compose_email">Rakstīt e-pastu</string>
+  <string name="log_submit_activity__this_log_will_be_posted_online">Šis žurnāls tiks publiskots internetā, lai lietotnes palīgi varētu to apskatīt. Jūs to variet pārskatīt un rediģēt pirms iesniegšanas.</string>
+  <string name="log_submit_activity__loading_logs">Ielādē žurnālus…</string>
+  <string name="log_submit_activity__uploading_logs">Augšupielādē žurnālus…</string>
+  <string name="log_submit_activity__choose_email_app">Izvēlieties e-pasta lietotni</string>
+  <string name="log_submit_activity__please_review_this_log_from_my_app">Lūdzu, pārskatiet šo žurnālu no manas lietotnes: %1$s</string>
+  <string name="log_submit_activity__network_failure">Savienojuma kļūda. Lūdzu, mēģiniet vēlreiz.</string>
+  <!--database_migration_activity-->
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vai Jūs vēlaties importēt savas eksistējošās teksta ziņas Signal šifrētajā datubāzē?</string>
+  <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Noklusējuma sistēmas datubāze nekādā veidā netiks modificēta.</string>
+  <string name="database_migration_activity__skip">Izlaist</string>
+  <string name="database_migration_activity__import">Importēt</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Šis varētu aizņemt kādu laiku. Lūdzu, esiet pacietīgs, mēs Jūs informēsim, kad importēšana būs pabeigta.</string>
+  <string name="database_migration_activity__importing">IMPORTĒ</string>
+  <string name="import_fragment__import_system_sms_database">Importēt sistēmas SMS datubāzi</string>
+  <string name="import_fragment__import_the_database_from_the_default_system">Importēt datubāzi no noklusējuma sistēmas īsziņu lietotnes</string>
+  <string name="import_fragment__import_plaintext_backup">Importēt teksta dublēšanu</string>
+  <string name="import_fragment__import_a_plaintext_backup_file">Importēt dublējuma failu. Saderīgu ar \"SMS Dublējumu &amp; Atjaunošanu\".</string>
+  <!--load_more_header-->
+  <string name="load_more_header__see_full_conversation">Skatīt pilnu sarunu</string>
+  <string name="load_more_header__loading">Ielādē</string>
+  <!--media_overview_activity-->
+  <string name="media_overview_activity__no_media">Nav multivides</string>
+  <!--message_recipients_list_item-->
+  <string name="message_recipients_list_item__view">SKATĪT</string>
+  <string name="message_recipients_list_item__resend">PĀRSŪTĪT</string>
+  <string name="message_recipients_list_item__resending">Pārsūta…</string>
+  <!--GroupUtil-->
+  <plurals name="GroupUtil_joined_the_group">
+    <item quantity="zero">%1$s pievienojās grupai.</item>
+    <item quantity="one">%1$s pievienojās grupai.</item>
+    <item quantity="other">%1$s pievienojās grupai.</item>
+  </plurals>
+  <string name="GroupUtil_group_name_is_now">Grupa tagad ir \"%1$s\".</string>
+  <!--profile_group_share_view-->
+  <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Padarīt Jūsu profila nosaukumu un attēlu redzamu šai grupai?</string>
+  <!--prompt_passphrase_activity-->
+  <string name="prompt_passphrase_activity__unlock">Atbloķēt</string>
+  <!--prompt_mms_activity-->
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal ir nepieciešami MMS iestatījumi, lai nogādātu mediju failus un grupu ziņas caur operatora tīklu. Jūsu ierīce nesniedz šādu informāciju, kas dažreiz notiek operatoru slēgtām ierīcēm un citām liedzošām konfigurācijām.  </string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Lai nosūtītu multivides un grupas ziņas, spiediet \'OK\' un izpildiet pieprasītos uzstādījumus. Jūsu mobilo sakaru operatora MMS iestatījumus parasti var atrast, meklējot “Jūsu pakalpojumu sniedzēja APN”. Jums tas būs jādara tikai vienreiz.</string>
+  <!--profile_create_activity-->
+  <string name="CreateProfileActivity_first_name_required">Vārds (obligāts)</string>
+  <string name="CreateProfileActivity_last_name_optional">Uzvārds (nav obligāts)</string>
+  <string name="CreateProfileActivity_next">Tālāk</string>
+  <string name="CreateProfileActivity__username">Lietotājvārds</string>
+  <string name="CreateProfileActivity__create_a_username">Izveidot lietotājvārdu</string>
+  <!--recipient_preferences_activity-->
+  <string name="recipient_preference_activity__shared_media">Koplietota multivide</string>
+  <!--recipient_preferences-->
+  <string name="recipient_preferences__mute_conversation">Apklusināt sarunu</string>
+  <string name="recipient_preferences__custom_notifications">Pielāgoti paziņojumi</string>
+  <string name="recipient_preferences__custom_notifications_settings">Sistēmas paziņojumu iestatījumi</string>
+  <string name="recipient_preferences__notification_sound">Paziņojuma skaņa</string>
+  <string name="recipient_preferences__vibrate">Vibrācija</string>
+  <string name="recipient_preferences__block">Bloķēt</string>
+  <string name="recipient_preferences__color">Krāsa</string>
+  <string name="recipient_preferences__view_safety_number">Skatīt drošības numuru</string>
+  <string name="recipient_preferences__chat_settings">Sarunas Iestatījumi</string>
+  <string name="recipient_preferences__privacy">Privātums</string>
+  <string name="recipient_preferences__call_settings">Zvanu iestatījumi</string>
+  <string name="recipient_preferences__ringtone">Zvana signāls</string>
+  <!--- redphone_call_controls-->
+  <string name="redphone_call_card__signal_call">Signal zvans</string>
+  <!--registration_activity-->
+  <string name="registration_activity__phone_number">TĀLRUŅA NUMURS</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal atvieglo saziņu, izmantojot esošo tālruņa numuru un adrešu grāmatu. Draugi un kontaktpersonas, kas jau zina, kā sazināties ar jums pa tālruni, varēs viegli sazināties, izmantojot Signal.\n\nReģistrācija pārsūta kontaktinformāciju uz serveri. Šī informācija netiek saglabāta.</string>
+  <string name="registration_activity__verify_your_number">Pārbaudīt Jūsu Numuru</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Lūdzu, ievadiet savu mobilā tālruņa numuru, lai saņemtu verifikācijas kodu. Var tikt piemēroti operatora tarifi.</string>
+  <!--recipients_panel-->
+  <string name="recipients_panel__to"><small>Ievadiet vārdu vai numuru</small></string>
+  <string name="recipients_panel__add_members">Pievienot dalībniekus</string>
+  <!--unknown_sender_view-->
+  <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">Sūtītājs nav iekļauts jūsu kontaktpersonu sarakstā</string>
+  <string name="unknown_sender_view__block">BLOĶĒT</string>
+  <string name="unknown_sender_view__add_to_contacts">PIEVIENOT KONTAKTIEM</string>
+  <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NEPIEVIENOT, BET PADARĪT MANU PROFILU REDZEMU</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ja vēlaties pārbaudīt šifrēšanas drošību ar %s, salīdziniet iepriekš norādīto numuru ar numuru ierīcē. Variet noskenēt kodu viņu tālrunī vai palūgt, lai noskenē Jūsu kodu.<a href="https://signal.org/redirect/safety-numbers">Lasīt vairāk.</a>]]></string>
+  <string name="verify_display_fragment__tap_to_scan">Pieskarieties, lai skenētu</string>
+  <string name="verify_display_fragment__loading">Lādē…</string>
+  <string name="verify_display_fragment__verified">Pārbaudīts</string>
+  <!--verify_identity-->
+  <string name="verify_identity__share_safety_number">Dalīties ar drošības numuru</string>
+  <!--webrtc_answer_decline_button-->
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Vilkt uz augšu, lai atbildētu</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Vilkt uz leju, lai noraidītu</string>
+  <!--message_details_header-->
+  <string name="message_details_header__issues_need_your_attention">Daži jautājumi prasa jūsu uzmanību.</string>
+  <string name="message_details_header__sent">Nosūtīts</string>
+  <string name="message_details_header__received">Saņemts</string>
+  <string name="message_details_header__disappears">Pazūd</string>
+  <string name="message_details_header__via">Ar</string>
+  <string name="message_details_header__to">Kam:</string>
+  <string name="message_details_header__from">No:</string>
+  <string name="message_details_header__with">Ar:</string>
+  <!--AndroidManifest.xml-->
+  <string name="AndroidManifest__create_passphrase">Izveidot paroli</string>
+  <string name="AndroidManifest__select_contacts">Izvēlēties kontaktus</string>
+  <string name="AndroidManifest__change_passphrase">Nomainīt paroli</string>
+  <string name="AndroidManifest__verify_safety_number">Apstiprināt drošības nummuru </string>
+  <string name="AndroidManifest__log_submit">Iesniegt kļūdas labošanas ierakstu.</string>
+  <string name="AndroidManifest__media_preview">Multivides priekšskatījums</string>
+  <string name="AndroidManifest__message_details">Ziņas detaļas</string>
+  <string name="AndroidManifest__linked_devices">Piesaistās ierīces</string>
+  <string name="AndroidManifest__invite_friends">Uzaicināt draugus</string>
+  <string name="AndroidManifest_archived_conversations">Arhivētās sarunas</string>
+  <string name="AndroidManifest_remove_photo">Noņemt attēlu</string>
+  <!--Message Requests Megaphone-->
+  <string name="MessageRequestsMegaphone__message_requests">Ziņas pieprasījumi</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Tagad lietotāji var izvēlēties vai atbildēt uz jaunas sarunas pieprasījumu. Profilu vārdi ļauj cilvēkiem saprast, kas ar viņiem sazinās.</string>
+  <string name="MessageRequestsMegaphone__add_profile_name">Pievienot profila vārdu</string>
+  <string name="MessageRequestsMegaphone__new_message_requests">Jauns: Ziņas pieprasījumi</string>
+  <string name="MessageRequestsMegaphone__add_name">Pievienot vārdu</string>
+  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Tagad jūs varat izvēlēties, vai pieņemt jaunas sarunas piedāvājumu. Jūs redzēsit opcijas “Piekrist”, “Dzēst” vai “Bloķēt”.</string>
+  <!--HelpFragment-->
+  <string name="HelpFragment__help">Palīdzība</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">Vai esiet jau izlasījuši BUJ?</string>
+  <string name="HelpFragment__next">Tālāk</string>
+  <string name="HelpFragment__contact_us">Sazināties ar mums</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Pastāstiet, kas notiek</string>
+  <string name="HelpFragment__include_debug_log">Pievienojiet atkļūdošanas žurnālu</string>
+  <string name="HelpFragment__whats_this">Kas tas ir?</string>
+  <string name="HelpFragment__how_do_you_feel">Kā jūtaties? (fakultatīvs)</string>
+  <string name="HelpFragment__support_info">Atbalsta info</string>
+  <string name="HelpFragment__subject">Temats</string>
+  <string name="HelpFragment__signal_android_support_request">Signal Android atbalsta pieprasījums</string>
+  <string name="HelpFragment__device_info">Iekārtas informācija:</string>
+  <string name="HelpFragment__android_version">Androīda versija:</string>
+  <string name="HelpFragment__signal_version">Signāla versija:</string>
+  <string name="HelpFragment__locale">Lokāle (valoda):</string>
+  <string name="HelpFragment__debug_log">Atkļūdošanas žurnāls:</string>
+  <string name="HelpFragment__na">nav pieejams</string>
+  <string name="HelpFragment__could_not_upload_logs">Nebija iespējams augšuplādēt žurnālus</string>
+  <string name="HelpFragment__signal_support">Signālas atbalsts</string>
+  <string name="HelpFragment__please_be_as_descriptive_as_possible">Lūdzu, esiet pēc iespējas aprakstošāks, lai palīdzētu mums izprast problēmu.</string>
+  <string name="HelpFragment__no_email_app_found">Netika atrasta instalēta e-pasta lietotne.</string>
+  <!--arrays.xml-->
+  <string name="arrays__import_export">Importēt</string>
+  <string name="arrays__use_default">Izmantot noklusējumu</string>
+  <string name="arrays__use_custom">Izmantot pielāgotu</string>
+  <string name="arrays__mute_for_one_hour">Apklusināt 1 stundu</string>
+  <string name="arrays__mute_for_two_hours">Apklusināt 2 stundas</string>
+  <string name="arrays__mute_for_one_day">Apklusināt 1 dienu</string>
+  <string name="arrays__mute_for_seven_days">Apklusināt 7 dienas</string>
+  <string name="arrays__mute_for_one_year">Apklusināt 1 gadu</string>
+  <string name="arrays__settings_default">Sistēmas noklusējums</string>
+  <string name="arrays__enabled">Iespējots</string>
+  <string name="arrays__disabled">Atspējots</string>
+  <string name="arrays__name_and_message">Vārds un ziņa</string>
+  <string name="arrays__name_only">Tikai vārds</string>
+  <string name="arrays__no_name_or_message">Bez vārda vai ziņas</string>
+  <string name="arrays__images">Attēli</string>
+  <string name="arrays__audio">Audio</string>
+  <string name="arrays__video">Video</string>
+  <string name="arrays__documents">Dokumenti</string>
+  <string name="arrays__small">Mazs</string>
+  <string name="arrays__normal">Normāls</string>
+  <string name="arrays__large">Liels</string>
+  <string name="arrays__extra_large">Ļoti liels</string>
+  <string name="arrays__default">Noklusējuma</string>
+  <string name="arrays__high">Augsta</string>
+  <string name="arrays__max">Maksimāla</string>
+  <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="zero">%d</item>
+    <item quantity="one">%dh</item>
+    <item quantity="other">%dh</item>
+  </plurals>
+  <!--preferences.xml-->
+  <string name="preferences__sms_mms">SMS un MMS</string>
+  <string name="preferences__pref_all_sms_title">Saņemt visus SMS</string>
+  <string name="preferences__pref_all_mms_title">Saņemt visus MMS</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Izmantot Signal visām ienākošajām teksta ziņām.</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Izmantot Signal visiām ienākošajām multimedija ziņām.</string>
+  <string name="preferences__pref_enter_sends_title">Enter poga sūta</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Jaunas rindas pogas piespiešana sūtīs ziņu</string>
+  <string name="preferences__send_link_previews">Sūtīt saišu priekšskatījumus</string>
+  <string name="preferences__previews_are_supported_for">Priekšskati tiek atbalstīti saitēm no Imgur, Instagram, Pinterest, Reddit un YouTube</string>
+  <string name="preferences__choose_identity">Izvēlēties identitāti</string>
+  <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kontaktu sarakstā izvēlieties kontaktpersonas ierakstu.</string>
+  <string name="preferences__change_passphrase">Nomainīt paroli</string>
+  <string name="preferences__change_your_passphrase">Mainīt savu paroli</string>
+  <string name="preferences__enable_passphrase">Iespējot ekrāna bloķēšanu ar paroli</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Aizslēgt ekrānu un paziņojumus ar ieejas frāzi</string>
+  <string name="preferences__screen_security">Ekrāna aizsardzība</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Bloķēt ekrānuzņēmumus pēdējo sarakstā un programmā</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Automātiski slēgt Signal pēc noteikta neaktivitātes intervāla</string>
+  <string name="preferences__inactivity_timeout_passphrase">Neaktivitātes taimauta parole.</string>
+  <string name="preferences__inactivity_timeout_interval">Neaktivitātes taimauta intervāls</string>
+  <string name="preferences__notifications">Paziņojumi</string>
+  <string name="preferences__system_notification_settings">Sistēmas paziņojumu iestatījumi</string>
+  <string name="preferences__led_color">LED krāsa</string>
+  <string name="preferences__led_color_unknown">Nezināms</string>
+  <string name="preferences__pref_led_blink_title">LED mirgošanas biežums</string>
+  <string name="preferences__sound">Skaņa</string>
+  <string name="preferences__silent">Klusums</string>
+  <string name="preferences__repeat_alerts">Atkārtoti brīdinājumi</string>
+  <string name="preferences__never">Nekad</string>
+  <string name="preferences__one_time">Vienreiz</string>
+  <string name="preferences__two_times">Divreiz</string>
+  <string name="preferences__three_times">Trīsreiz</string>
+  <string name="preferences__five_times">Piecreiz</string>
+  <string name="preferences__ten_times">Desmit reizes</string>
+  <string name="preferences__vibrate">Vibrācija</string>
+  <string name="preferences__green">Zaļš</string>
+  <string name="preferences__red">Sarkans</string>
+  <string name="preferences__blue">Zils</string>
+  <string name="preferences__orange">Oranžs</string>
+  <string name="preferences__cyan">Ciāns</string>
+  <string name="preferences__magenta">Fuksīns</string>
+  <string name="preferences__white">Balts</string>
+  <string name="preferences__none">Nekas</string>
+  <string name="preferences__fast">Ātrs</string>
+  <string name="preferences__normal">Normāls</string>
+  <string name="preferences__slow">Lēns</string>
+  <string name="preferences__help">Palīdzība</string>
+  <string name="preferences__advanced">Papildu</string>
+  <string name="preferences__privacy">Privātums</string>
+  <string name="preferences__mms_user_agent">MMS lietotāja aģents</string>
+  <string name="preferences__advanced_mms_access_point_names">Manuālie MMS uzstādījumi</string>
+  <string name="preferences__mmsc_url">MMSC URL</string>
+  <string name="preferences__mms_proxy_host">MMS Proxy Host</string>
+  <string name="preferences__mms_proxy_port">MMS Proxy Port</string>
+  <string name="preferences__mmsc_username">MMSC Lietotājvārds</string>
+  <string name="preferences__mmsc_password">MMSC Parole</string>
+  <string name="preferences__sms_delivery_reports">SMS piegādes atskaites</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Pieprasīt piegādes atskaiti par katru nosūtīto īsziņu</string>
+  <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Automātiski dzēst vecas ziņas, kad saruna pārsniedz konkrētu garumu </string>
+  <string name="preferences__delete_old_messages">Dzēst vecas ziņas</string>
+  <string name="preferences__chats">Tērzēšana un multivide</string>
+  <string name="preferences__storage">Krātuve</string>
+  <string name="preferences__conversation_length_limit">Sarunu garuma limits</string>
+  <string name="preferences__trim_all_conversations_now">Saīsināt visas sarunas tagad </string>
+  <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Skatīt visas sarunas un uzspiest sarunu garumu limitus tagad </string>
+  <string name="preferences__linked_devices">Piesaistās ierīces</string>
+  <string name="preferences__light_theme">Gaišs</string>
+  <string name="preferences__dark_theme">Tumšs</string>
+  <string name="preferences__appearance">Izskats</string>
+  <string name="preferences__theme">Motīvs</string>
+  <string name="preferences__system_default">Sistēmas noklusējums</string>
+  <string name="preferences__default">Noklusējuma</string>
+  <string name="preferences__language">Valoda</string>
+  <string name="preferences__signal_messages_and_calls">Signal ziņas un zvani</string>
+  <string name="preferences__free_private_messages_and_calls">Bezmaksas privātās ziņas un zvani Signal lietotājiem</string>
+  <string name="preferences__submit_debug_log">Iesniegt kļūdas labošanas ierakstu.</string>
+  <string name="preferences__support_wifi_calling">\"WiFi zvanīšana\" saderības režīms</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Iespējot, ja ierīce izmanto SMS/MMS piegādi, izmantojot WiFi (iespējo tikai tad, ja ierīcē ir aktivizēta funkcija “WiFi Calling”)</string>
+  <string name="preferences__incognito_keyboard">Privātais režīms tastatūrai</string>
+  <string name="preferences__read_receipts">Lasīšanas apliecinājumi</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ja lasīšanas apliecinājumi ir atspējoti, Jūs nevarēsiet redzēt lasīšanas apliecinājumus no citiem.</string>
+  <string name="preferences__typing_indicators">rakstīšanas indikatori</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ja rakstīšanas indikatori ir atspējoti, Jūs nevarēsiet redzēt rakstīšanas indikatorus no citiem.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Pieprasīt tastatūru, lai atspējotu personalizētu mācīšanos</string>
+  <string name="preferences_app_protection__blocked_contacts">Bloķētie kontakti</string>
+  <string name="preferences_chats__when_using_mobile_data">Izmantojot mobilos datus</string>
+  <string name="preferences_chats__when_using_wifi">Izmantojot WiFi</string>
+  <string name="preferences_chats__when_roaming">Izmantojot viesabonēšanau</string>
+  <string name="preferences_chats__media_auto_download">Multivides automātiskā lejupielāde</string>
+  <string name="preferences_chats__message_trimming">Ziņu apgriešana</string>
+  <string name="preferences_storage__storage_usage">Krātuves lietojums</string>
+  <string name="preferences_storage__photos">Attēli</string>
+  <string name="preferences_storage__videos">Video</string>
+  <string name="preferences_storage__files">Faili</string>
+  <string name="preferences_storage__audio">Audio</string>
+  <string name="preferences_storage__review_storage">Apskatīt krātuvi</string>
+  <string name="preferences_advanced__use_system_emoji">Lietot sistēmas emoji</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Izslēgt Signal emoji</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Pārraidiet visus zvanus caur Signal serveri, lai izvairītos no IP adreses atklāšanas kontaktpersonai. Aktivizēšana samazinās zvanu kvalitāti.</string>
+  <string name="preferences_advanced__always_relay_calls">Vienmēr pārslēgt zvanus</string>
+  <string name="preferences_app_protection__app_access">Programmas piekļuve</string>
+  <string name="preferences_app_protection__communication">Komunikācija</string>
+  <string name="preferences_chats__chats">Sarunas</string>
+  <string name="preferences_notifications__messages">Ziņas</string>
+  <string name="preferences_notifications__events">Notikumi</string>
+  <string name="preferences_notifications__in_chat_sounds">Skaņas sarunā</string>
+  <string name="preferences_notifications__show">Rādīt</string>
+  <string name="preferences_notifications__calls">Zvani</string>
+  <string name="preferences_notifications__ringtone">Zvana signāls</string>
+  <string name="preferences_chats__show_invitation_prompts">Rādīt uzaicinājuma pamudinājumu</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Parādīt logu, kas ļauj uzaicināt citus lietot Signal</string>
+  <string name="preferences_chats__message_text_size">Ziņu fonta lielums</string>
+  <string name="preferences_events__contact_joined_signal">Kontakts pievienojās Signal</string>
+  <string name="preferences_notifications__priority">Prioritāte</string>
+  <string name="preferences_communication__category_sealed_sender">Aizzīmogots sūtītājs</string>
+  <string name="preferences_communication__sealed_sender_display_indicators">Parādīt indikatorus</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Kad izvēlaties “Ziņas info”  ziņām, kuras tika piegādātas, izmantojot aizzīmogotu sūtītāju, parādīt statusa ikonu.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone">Atļaut no visiem</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Iespējot aizzīmogoto sūtītāju ienākošajām ziņām no ne-kontaktiem un cilvēkiem, ar kuriem Jūs neesiet dalījies ar savu profilu.</string>
+  <string name="preferences_communication__sealed_sender_learn_more">Lasīt vairāk</string>
+  <!--****************************************-->
+  <!--menus-->
+  <!--****************************************-->
+  <!--contact_selection_list-->
+  <string name="contact_selection_list__unknown_contact">Jauna ziņa…</string>
+  <!--conversation_callable_insecure-->
+  <string name="conversation_callable_insecure__menu_call">Zvanīt</string>
+  <!--conversation_callable_secure-->
+  <string name="conversation_callable_secure__menu_call">Signāla audiozvans</string>
+  <string name="conversation_callable_secure__menu_video">Signāla videozvans</string>
+  <!--conversation_context-->
+  <string name="conversation_context__menu_message_details">Ziņas info</string>
+  <string name="conversation_context__menu_copy_text">Kopēt tekstu</string>
+  <string name="conversation_context__menu_delete_message">Izdzēst ziņu</string>
+  <string name="conversation_context__menu_forward_message">Pārsūtīt ziņu</string>
+  <string name="conversation_context__menu_resend_message">Atkārtoti sūtīt ziņu</string>
+  <string name="conversation_context__menu_reply_to_message">Atbildēt uz ziņu</string>
+  <!--conversation_context_reacction-->
+  <string name="conversation_context__reaction_multi_select">Atzīmējiet vairākus</string>
+  <!--conversation_context_image-->
+  <string name="conversation_context_image__save_attachment">Saglabāt pielikumu</string>
+  <!--conversation_expiring_off-->
+  <string name="conversation_expiring_off__disappearing_messages">Gaistošās ziņas</string>
+  <!--conversation_expiring_on-->
+  <string name="menu_conversation_expiring_on__messages_expiring">Ziņu termiņš tuvojas beigām</string>
+  <!--conversation_insecure-->
+  <string name="conversation_insecure__invite">Uzacināt</string>
+  <!--conversation_list_batch-->
+  <string name="conversation_list_batch__menu_delete_selected">Izdzēst atzīmētos</string>
+  <string name="conversation_list_batch__menu_select_all">Atzīmēt visus</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">Arhivēt atzīmētos</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Atarhivēt atzīmētos</string>
+  <!--conversation_list-->
+  <string name="conversation_list_settings_shortcut">Iestatījumu saīsne</string>
+  <string name="conversation_list_search_description">Meklēt</string>
+  <!--conversation_list_item_view-->
+  <string name="conversation_list_item_view__contact_photo_image">Kontaktpersonas foto</string>
+  <string name="conversation_list_item_view__archived">Arhivēts</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Tūūūkššss</string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Neko nenokavējāt!\nTe nekā nav!</string>
+  <!--conversation_list_fragment-->
+  <string name="conversation_list_fragment__fab_content_description">Jauna saruna</string>
+  <string name="conversation_list_fragment__open_camera_description">Atvērt kameru</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Sāc saraksti ar draugu.</string>
+  <!--conversation_secure_verified-->
+  <string name="conversation_secure_verified__menu_reset_secure_session">Atstatīt šifrēto saraksti (sesiju)</string>
+  <!--conversation_muted-->
+  <string name="conversation_muted__unmute">Apskaņot paziņojumus </string>
+  <!--conversation_unmuted-->
+  <string name="conversation_unmuted__mute_notifications">Noklusināt paziņojumus</string>
+  <!--conversation-->
+  <string name="conversation__menu_add_attachment">Pievienot pielikumu</string>
+  <string name="conversation__menu_edit_group">Rediģēt grupu</string>
+  <string name="conversation__menu_leave_group">Pamest grupu</string>
+  <string name="conversation__menu_view_all_media">Visi multimediji</string>
+  <string name="conversation__menu_conversation_settings">Sarunas iestatījumi</string>
+  <string name="conversation__menu_add_shortcut">Pievienot sākuma ekrānam</string>
+  <!--conversation_popup-->
+  <string name="conversation_popup__menu_expand_popup">Izvērst uznirstošo logu</string>
+  <!--conversation_callable_insecure-->
+  <string name="conversation_add_to_contacts__menu_add_to_contacts">Pievienot kontaktiem</string>
+  <!--conversation_group_options-->
+  <string name="convesation_group_options__recipients_list">Adresātu saraksts</string>
+  <string name="conversation_group_options__delivery">Piegāde</string>
+  <string name="conversation_group_options__conversation">Saruna</string>
+  <string name="conversation_group_options__broadcast">Plašsaziņa/Pārraide</string>
+  <!--text_secure_normal-->
+  <string name="text_secure_normal__menu_new_group">Jauna grupa</string>
+  <string name="text_secure_normal__menu_settings">Iestatījumi</string>
+  <string name="text_secure_normal__menu_clear_passphrase">Bloķēt</string>
+  <string name="text_secure_normal__mark_all_as_read">Atzīmēt visus kā lasītus</string>
+  <string name="text_secure_normal__invite_friends">Uzaicināt draugus</string>
+  <string name="text_secure_normal__help">Palīdzība</string>
+  <!--verify_display_fragment-->
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopēt starpenē</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">Salīdzināt ar starpeni</string>
+  <!--reminder_header-->
+  <string name="reminder_header_outdated_build">Jūsu Signal versija ir novecojusi/norakstāma</string>
+  <plurals name="reminder_header_outdated_build_details">
+    <item quantity="zero">Jūsu Signal versija nestrādās pēc %d dienas. Pieskarieties, lai atjauninātu uz jaunāko versiju.</item>
+    <item quantity="one">Jūsu Signal versija nestrādās pēc %d dienas. Pieskarieties, lai atjauninātu uz jaunāko versiju.</item>
+    <item quantity="other">Šī Jūsu Signāla versija nestrādās pēc %d dienām. Pieskarieties, lai iegūtu lietotnes jaunāko versiju.</item>
+  </plurals>
+  <string name="reminder_header_outdated_build_details_today">Jūsu Signāla versija šodien pārstās darboties. Pieskarieties, lai iegūtu lietotnes jaunāko versiju.</string>
+  <string name="reminder_header_expired_build">Jūsu Signāla versija ir norakstīta/novecojusi!</string>
+  <string name="reminder_header_expired_build_details">Ziņas vairs netiks veiksmīgi nosūtītas. Pieskarieties, lai iegūtu lietotnes jaunāko versiju.</string>
+  <string name="reminder_header_sms_default_title">Izmantot kā noklusējuma SMS lietotni</string>
+  <string name="reminder_header_sms_default_text">Pieskaries, lai padarītu Signāla par noklusēto SMS lietotni</string>
+  <string name="reminder_header_sms_import_title">Importēt sistēmas SMS</string>
+  <string name="reminder_header_sms_import_text">Pieskaries, lai kopētu tālruņa SMS ziņas Signāla šifrētajā datubāzē. </string>
+  <string name="reminder_header_push_title">Iespējot Signāla ziņas un zvanus</string>
+  <string name="reminder_header_push_text">Paceliet savu saziņas pieredzi citā līmenī.</string>
+  <string name="reminder_header_invite_title">Uzaicināt uz Signālu</string>
+  <string name="reminder_header_invite_text">Pārslēdziet savu sarunu ar %1$s uz nākamo līmeni.</string>
+  <string name="reminder_header_share_title">Uzaiciniet savus draugus!</string>
+  <string name="reminder_header_share_text">Jo vairāk draugu izmanto Signālu, jo labāks tas kļūst.</string>
+  <string name="reminder_header_service_outage_text">Signālam ir tehniskas grūtības. Tiek cītīgi strādāts, lai pēc iespējas ātrāk atgūtu pakalpojumu.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">Jaunākās Signāla iespējas šajā Android versijā nedarbosies.  Lai turpmāk saņemtu Signāla aktualizējumus. Lūdzu, šajā ierīcē instalējiet jaunāku lietotnes versiju šajā ierīcē ,.</string>
+  <string name="reminder_header_progress">%1$d %%</string>
+  <!--media_preview-->
+  <string name="media_preview__save_title">Saglabāt</string>
+  <string name="media_preview__forward_title">Uz priekšu</string>
+  <string name="media_preview__all_media_title">Visus multimedijus</string>
+  <!--media_preview_activity-->
+  <string name="media_preview_activity__media_content_description">Multimediju priekšskats</string>
+  <!--new_conversation_activity-->
+  <string name="new_conversation_activity__refresh">Atsvaidzināt</string>
+  <!--redphone_audio_popup_menu-->
+  <!--Trimmer-->
+  <string name="trimmer__deleting">Tiek dzēsts</string>
+  <string name="trimmer__deleting_old_messages">Dzēst vecās ziņas</string>
+  <string name="trimmer__old_messages_successfully_deleted">Vecās ziņas sekmīgi izdzēstas</string>
+  <!--Insights-->
+  <string name="Insights__percent">%</string>
+  <string name="Insights__title">Ieskati</string>
+  <string name="InsightsDashboardFragment__title">Ieskati</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signāla protokols automātiski pasargājis %1$dno %% no tavām izejošajām ziņām pēdējo %2$d dienu laikā. Sarunas starp Signāla lietotājiem vienmēr tiek šifrētas no viena gala līdz otram (end-to-end).</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Uzlabot (boost) Signālu</string>
+  <string name="InsightsDashboardFragment__not_enough_data">Nav pietiekami datu</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Jūsu Ieskatu procenti tiek aprēķināti balstoties uz izejošo ziņu skaita pēdējās %1$d dienās, kuras nav pagaisušas vai izdzēstas.</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">Sākt sarunu</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Sāciet droši sazināties un iedzīviniet jaunas iespējas, kas pārsniedz nedrošo/nešifrēto SMS ziņu pielietojuma robežas, uzaicinot Signālam pievienoties vairāk kontaktus.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Šī statistika tika ģenerēta lokāli uz jūsu ierīces, un tikai Jūs varat to redzēt. Šie dati nekur netiek sūtīti.</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">Šifrētas ziņas</string>
+  <string name="InsightsDashboardFragment__cancel">Atcelt</string>
+  <string name="InsightsDashboardFragment__send">Sūtīt</string>
+  <string name="InsightsModalFragment__title">Iepazīstinām ar ieskatu</string>
+  <string name="InsightsModalFragment__description">Uzzini, cik no Tavām izejošajām ziņām tika nosūtītas droši, tad ātri uzaicini jaunus kontaktus, lai uzlabotu Signāla procentualitāti.</string>
+  <string name="InsightsModalFragment__view_insights">Skatīt ieskatus</string>
+  <string name="FirstInviteReminder__title">Uzaicināt uz Signālu</string>
+  <string name="FirstInviteReminder__description">Varat palielināt nosūtīto šifrēto ziņojumu skaitu par %1$d%%</string>
+  <string name="SecondInviteReminder__title">Spēcini Signālu (padari sarunas drošākas)</string>
+  <string name="SecondInviteReminder__description">Uzaicināt %1$s</string>
+  <string name="InsightsReminder__view_insights">Skatīt ieskatus</string>
+  <string name="InsightsReminder__invite">Uzaicināt</string>
+  <!--Edit KBS Pin-->
+  <!--BaseKbsPinFragment-->
+  <string name="BaseKbsPinFragment__next">Nākošais/Tālāk</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">Izveido burtu/ciparu PIN</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">Izveido ciparisko PIN</string>
+  <!--CreateKbsPinFragment-->
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
+    <item quantity="zero">PIN jābūt vismaz %1$d rakstzīmju</item>
+    <item quantity="one">PIN jābūt vismaz %1$d rakstzīmei</item>
+    <item quantity="other">PINā jābūt vismaz %1$d rakstzīmēm</item>
+  </plurals>
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
+    <item quantity="zero">PIN jābūt vismaz %1$d cipariem</item>
+    <item quantity="one">Pin jābūt vismaz %1$d ciparam</item>
+    <item quantity="other">PINam jāsastāv vismaz no %1$d cipariem</item>
+  </plurals>
+  <string name="CreateKbsPinFragment__create_a_new_pin">Izveidot jaunu PIN</string>
+  <string name="CreateKbsPinFragment__create_your_pin">Izveido savu PIN </string>
+  <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__pins_dont_match">PINi nesakrīt. Mēģiniet vēlreiz.</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">Apstiprināt PIN.</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN izveide neizdevās</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Jūsu PIN netika saglabāts. Mēs aicināsim jūs izveidot PIN vēlāk.</string>
+  <string name="ConfirmKbsPinFragment__pin_created">PIN izveidots.</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">Tiek veidots jauns PIN…</string>
+  <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">Iepazīstinām ar PINiem</string>
+  <string name="KbsSplashFragment__learn_more">Uzziniet vairāk.</string>
+  <string name="KbsSplashFragment__registration_lock_equals_pin">Reģistrācijas atslēga (Registration Lock) = PIN</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Jūsu Reģistrācijas atslēga tagad tiek saukta par PIN, un tā kļuvusi funkcionālāka. Aktualizējiet to tūlīt.</string>
+  <string name="KbsSplashFragment__read_more_about_pins">Lasīt vairāk par PINiem.</string>
+  <string name="KbsSplashFragment__update_pin">Aktualizēt PIN</string>
+  <string name="KbsSplashFragment__create_your_pin">Izveido savu PIN </string>
+  <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">Ievadiet jūsu Signāla PIN</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Lai palīdzētu jums iegaumēt PIN, mēs Jums lūgsim to ievadīt periodiski. Sākumā biežāk, bet ar laiku - retāk.</string>
+  <string name="KbsReminderDialog__skip">Izlaist</string>
+  <string name="KbsReminderDialog__submit">Iesniegt</string>
+  <string name="KbsReminderDialog__forgot_pin">Aizmirsāt PIN?</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">Nepareizs PIN. Mēģiniet vēlreiz.</string>
+  <!--AccountLockedFragment-->
+  <string name="AccountLockedFragment__account_locked">Konts bloķēts</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Lai aizsargātu jūsu privātumu un drošību, Jūsu konts tika bloķēts.  Pēc %1$d dienu ilga jūsu konta iesaldēšanas perioda varēsiet pārreģistrēt šo tālruņa numuru, neievadot PIN. Tomēr viss tā saturs tiks dzēsts.</string>
+  <string name="AccountLockedFragment__next">Nākošais/Tālāk</string>
+  <string name="AccountLockedFragment__learn_more">Uzzināt vairāk.</string>
+  <!--KbsLockFragment-->
+  <string name="RegistrationLockFragment__enter_your_pin">Ievadiet Jūsu PIN</string>
+  <string name="RegistrationLockFragment__enter_the_pin_you_created">Ievadiet sava konta PIN kodu. Tas atšķiras no jūsu SMS verifikācijas koda.</string>
+  <string name="RegistrationLockFragment__enter_alphanumeric_pin">Ievadiet no burtiem un cipariem sastāvošu PIN</string>
+  <string name="RegistrationLockFragment__enter_numeric_pin">Izveido ciparisku PIN</string>
+  <string name="RegistrationLockFragment__next">Nākošais/Tālāk</string>
+  <string name="RegistrationLockFragment__incorrect_pin_try_again">Nepareizs PIN. Mēģiniet vēlreiz.</string>
+  <string name="RegistrationLockFragment__forgot_pin">Aizmirsāt PIN?</string>
+  <string name="RegistrationLockFragment__incorrect_pin">Nepareizs PIN</string>
+  <string name="RegistrationLockFragment__forgot_your_pin">Aizmirsāt jūsu PIN?</string>
+  <string name="RegistrationLockFragment__not_many_tries_left">Vairs nav daudz mēģinājumu atlicis!</string>
+  <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
+    <item quantity="zero">Nepareizs PIN. Atlicis %1$d mēģinājums.</item>
+    <item quantity="one">Nepareizs PIN. Atlicis %1$d mēģinājums.</item>
+    <item quantity="other">Nepareizs PIN. Atlikuši %1$d mēģinājumi.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
+    <item quantity="zero">Jums ir atlicis %1$d mēģinājums.</item>
+    <item quantity="one">Jums ir atlicis %1$d mēģinājums.</item>
+    <item quantity="other">Jums atlikuši %1$d mēģinājumi.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__d_attempts_remaining">
+    <item quantity="zero">Atlicis %1$d mēģinājums.</item>
+    <item quantity="one">Atlicis %1$d mēģinājums.</item>
+    <item quantity="other">Atlikuši %1$d mēģinājumi.</item>
+  </plurals>
+  <!--KBS Megaphone-->
+  <string name="KbsMegaphone__create_a_pin">Izveidot PINu</string>
+  <string name="KbsMegaphone__create_pin">Izveidot PINu</string>
+  <string name="KbsMegaphone__introducing_pins">Iepazīstinām ar PINiem</string>
+  <string name="KbsMegaphone__update_pin">Aktualizēt PIN</string>
+  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Tas tiks atgādināts vēlāk. PIN izveide kļūs obligāta pēc %1$d dienām.</string>
+  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Jums tiks atgādināts vēlāk. PIN apstiprināšana kļūs obligāta pēc %1$d dienām.</string>
+  <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__add_a_profile_name">Pievienojiet profila nosaukumu</string>
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">Tas tiks parādīts, kad sāksiet jaunu sarunu vai kopīgosiet to.</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">Pievienojiet profila nosaukumu</string>
+  <string name="ProfileNamesMegaphone__confirm_your_profile_name">Apstipriniet jūsu profila nosaukumu</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Jūsu profilā tagad fakultatīvi var tikt ietverts arī uzvārds.</string>
+  <string name="ProfileNamesMegaphone__confirm_name">Apstipriniet vārdu/nosaukumu</string>
+  <!--transport_selection_list_item-->
+  <string name="transport_selection_list_item__transport_icon">Transporta ikona</string>
+  <string name="ConversationListFragment_loading">Notiek ielāde…</string>
+  <string name="CallNotificationBuilder_connecting">Savienojos…</string>
+  <string name="Permissions_permission_required">Nepieciešama atļauja</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Lai sūtītu SMS, Signālam ir nepieciešama SMS atļauja, bet tā ir pastāvīgi liegta. Dodieties uz lietotnes iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"SMS\".</string>
+  <string name="Permissions_continue">Turpināt</string>
+  <string name="Permissions_not_now">Ne tagad</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Lai varētu meklēt kontaktpersonas, Signālam nepieciešama piekļuve kontaktiem, bet tā ir pastāvīgi liegta.  Lūdzu dodieties uz lietotnes iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"Kontakti\"</string>
+  <string name="conversation_activity__enable_signal_messages">IESPĒJOT SIGNĀLA ZIŅAS</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Tiek migrēta/pārcelta Signāla datubāze</string>
+  <string name="PushDecryptJob_new_locked_message">Jauna bloķēta ziņa</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Atbloķējiet, lai redzētu gaidošās ziņas </string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Dublikāta (rezerves kopijas) paroles frāze</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Dublikāti tiks saglabāti ārējā noliktavā un šifrēti, izmantojot tālāk esošo paroles frāzi. Lai atgrieztu/restaurētu no dublikāta (rezerves kopijas), būs nepieciešama šī paroles frāze.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Esmu sev pierakstījis šo paroles frāzi. Bez tās nebūs iespējams atgriezt/restaurēt dublikātu (rezerves kopiju).</string>
+  <string name="registration_activity__restore_backup">Atgriezt no dublikāta (rezerves kopijas)</string>
+  <string name="registration_activity__skip">Izlaist</string>
+  <string name="registration_activity__register">Reģistrēties</string>
+  <string name="preferences_chats__chat_backups">Tērziņu dublēšana (rezerves kopēšana)</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Dublēt tērziņus (veidot tērziņu rezerves kopiju) ārējā noliktavā</string>
+  <string name="preferences_chats__create_backup">Izveidot dublikātu (rezerves kopiju)</string>
+  <string name="preferences_chats__verify_backup_passphrase">Pārbaudiet dublikāta paroles frāzi</string>
+  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Pārbaudiet dublikāta (rezerves kopijas) paroles frāzi, un pārliecinieties, ka tā sakrīt</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Ievadīt dublikāta (rezerves kopijas) piekļuves paroles frāzi</string>
+  <string name="RegistrationActivity_restore">Atgriezt</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Nav iespējams importēt dublikātus (rezerves kopijas) no jaunākām Signāla versijām</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">Nepareiza dublikāta (rezerves kopijas) piekļuves paroles frāze</string>
+  <string name="RegistrationActivity_checking">Tiek pārbaudīts…</string>
+  <string name="RegistrationActivity_d_messages_so_far">pagaidām %dziņas…</string>
+  <string name="RegistrationActivity_restore_from_backup">Vai atjaunot no dublikāta (rezerves kopijas)?</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Ielasiet ziņas un multimedijus no lokāli atrodošās dublikāta (rezerves kopijas). Ja datus neatgriezīsiet tagad, vēlāk tas nebūs izdarāms.</string>
+  <string name="RegistrationActivity_backup_size_s">Dublikāta (rezerves kopijas) izmērs: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Pēdējais dublikāts (rezerves kopija): %s</string>
+  <string name="BackupDialog_enable_local_backups">Iespējot lokālo dublēšanu (rezerves kopiju veidošanu)?</string>
+  <string name="BackupDialog_enable_backups">Iespējot dublēšanu (rezerves kopēšanu)</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Lūdzu, apstipriniet, ka saprotat, atzīmējot apstiprinājuma izvēles rūtiņu.</string>
+  <string name="BackupDialog_delete_backups">Dzēst dublikātus?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Atspējot un dzēst visus dublikātus?</string>
+  <string name="BackupDialog_delete_backups_statement">Dzēst dublikātus (rezerves kopijas)</string>
+  <string name="BackupDialog_copied_to_clipboard">Iekopēts starpenē</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">Lai verificētu, ievadiet rezerves ieejas paroli</string>
+  <string name="BackupDialog_verify">Verificēt</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Jūs sekmīgi ievadījāt rezerves ieejas paroli</string>
+  <string name="BackupDialog_passphrase_was_not_correct">Parole nav pareiza</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Lai izveidotu dublikātus (rezerves kopijas), Signālam nepieciešama pieeja ārējai datu noliktavai,  bet tā tiek pastāvīgi liegta. Lūdzu, dodieties uz lietotnes iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"Noiktava\".</string>
+  <string name="ChatsPreferenceFragment_last_backup_s">Pēdējā rezerves kopija: %s</string>
+  <string name="ChatsPreferenceFragment_in_progress">Darbībā</string>
+  <string name="LocalBackupJob_creating_backup">Tiek veidota rezerves kopija…</string>
+  <string name="ProgressPreference_d_messages_so_far">pagaidām %d ziņas</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Lūdzu, ievadiet verifikācijas kodu, kurš nosūtīts uz %s.</string>
+  <string name="RegistrationActivity_wrong_number">Nepareizs numurs</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Tā vietā piezvaniet man \n (Pieejams pēc %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">Sazināties ar Signāla atbalstu</string>
+  <string name="RegistrationActivity_code_support_subject">Signāla reģistrācija - Android ierīces verifikācijas kods </string>
+  <string name="RegistrationActivity_code_support_body">Temats: Signal reģistrācija - Verifikācijas kods Android\nIerīces info: %1$s\nAndroid versija: %2$s\nSignal versija: %3$s\nLokāle: %4$s </string>
+  <string name="BackupUtil_never">Nekad</string>
+  <string name="BackupUtil_unknown">Nezināms</string>
+  <string name="preferences_app_protection__screen_lock">Ekrāna bloķēšana</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Liegt Signālam piekļuvi, izmantojot Android ekrāna bloķētāju vai pirkstu nospiedumu</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Neaktivitātes termiņš, kuram paejot tie bloķēts ekrāns </string>
+  <string name="preferences_app_protection__signal_pin">Signāla PIN</string>
+  <string name="preferences_app_protection__create_a_pin">Izveidot PINu</string>
+  <string name="AppProtectionPreferenceFragment_none">Nekas</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Reģistrācijas bloķēšanas PIN nav tas pats, kas tikko saņemtais SMS verifikācijas kods. Lūdzu, ievadiet programmā iepriekš konfigurēto PIN.</string>
+  <string name="registration_activity__registration_lock_pin">Reģistrācijas bloķēšanas PIN</string>
+  <string name="registration_activity__forgot_pin">Aizmirsāt PIN?</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN var sastāvēt no četriem vai vairāk cipariem. Ja aizmirsīsiet savu PIN kodu, Jūsu konts varētu tikt bloķēts uz laiku līdz 7 dienām.</string>
+  <string name="registration_lock_dialog_view__enter_pin">Ievadiet PIN</string>
+  <string name="registration_lock_dialog_view__confirm_pin">Apstiprināt PIN</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Ievadiet savu reģistrācijas bloķēšanas PIN</string>
+  <string name="registration_lock_reminder_view__enter_pin">Ievadiet PIN</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Iespējojiet reģistrācijas bloķēšanas PIN, kas būs nepieciešams nākamreiz, lai piereģistrētu šo tālruņa numuru Signālā.</string>
+  <string name="preferences_app_protection__registration_lock_pin">Reģistrācijas bloķēšanas PIN</string>
+  <string name="preferences_app_protection__registration_lock">Reģistrācijas bloķēšana</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Jums ir jāievada savs reģistrācijas bloķēšanas PIN</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Jūsu PIN ir ne īsāks par %d cipariem vai rakstzīmēm</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">Nepareizs reģistrācijas bloķēšanas PIN</string>
+  <string name="RegistrationActivity_too_many_attempts">Par daudz mēģinājumu</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Pārāk daudz nepareizu Reģistrācijas PIN mēģinājumu. Lūdzu, vēlreiz mēģiniet pēc 1 dienas.</string>
+  <string name="RegistrationActivity_error_connecting_to_service">Nebija iespējams savienoties ar pakalpojumu!</string>
+  <string name="RegistrationActivity_oh_no">Ak nē!</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Paejot 7 dienām kopš šī tālruņa numura pēdējās aktivizēšanas Signālā, kļūs iespējams šo tālruņa numuru reģistrēt bez Jūsu reģistrācijas bloķēšanas PIN. Atlikušas %d dienas.</string>
+  <string name="RegistrationActivity_registration_lock_pin">Reģistrācijas bloķēšanas PIN</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Šim tālruņa numuram ir aktivizēta reģistrācijas bloķēšana. Lūdzu, ievadiet reģistrācijas bloķēšanas PIN.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Tālruņa numuram ir aktivizēta reģistrācijas bloķēšana. Lai palīdzētu iegaumēt reģistrācijas bloķēšanas PIN, Signāls periodiski lūgs jums to apstiprināt.</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">Aizmirsu savu PIN.</string>
+  <string name="RegistrationLockDialog_forgotten_pin">Aizmirsāt PIN?</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Reģistrācijas bloķēšana palīdz aizsargāt tālruņa numuru pret nesankcionētiem reģistrācijas mēģinājumiem. Šo līdzekli Signāla privātuma iestatījumos var atspējot jebkurā laikā</string>
+  <string name="RegistrationLockDialog_registration_lock">Reģistrācijas bloķēšana</string>
+  <string name="RegistrationLockDialog_enable">Iespējot</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">Reģistrēšanas bloķēšanas PIN ir jābūt vismaz %d cipariem.b</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Divi ievadītie PIN nesakrīt.</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">Savienojošanās ar pakalpojumu laikā radās kļūme</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">Vai atspējot reģistrācijas bloķēšanas PIN?</string>
+  <string name="RegistrationLockDialog_disable">Atspējot</string>
+  <string name="RegistrationActivity_pin_incorrect">nepareizs PIN </string>
+  <string name="RegistrationActivity_you_have_d_tries_remaining">Jums atlikuši %d mēģinājumi.</string>
+  <string name="preferences_chats__backups">Rezerves kopijas</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signāls ir slēgts</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">PIESKARIETIES, LAI ATBLOĶĒTU</string>
+  <string name="RegistrationLockDialog_reminder">Atgādinājums:</string>
+  <string name="recipient_preferences__about">Par</string>
+  <string name="Recipient_unknown">Nezināms</string>
+  <!--EOF-->
+</resources>
