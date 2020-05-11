@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.media.MediaInput;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -66,7 +67,7 @@ final class VideoTrackConverter {
 
     @RequiresApi(23)
     static @Nullable VideoTrackConverter create(
-            final @NonNull VideoInput input,
+            final @NonNull MediaInput input,
             final long timeFrom,
             final long timeTo,
             final int videoResolution,

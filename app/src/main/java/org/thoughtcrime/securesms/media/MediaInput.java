@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.video.videoconverter;
+package org.thoughtcrime.securesms.media;
 
 import android.content.Context;
 import android.media.MediaDataSource;
@@ -12,16 +12,16 @@ import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
 
-public abstract class VideoInput implements Closeable {
+public abstract class MediaInput implements Closeable {
 
   @NonNull
-  abstract MediaExtractor createExtractor() throws IOException;
+  public abstract MediaExtractor createExtractor() throws IOException;
 
-  public static class FileVideoInput extends VideoInput {
+  public static class FileMediaInput extends MediaInput {
 
-    final File file;
+    private final File file;
 
-    public FileVideoInput(final @NonNull File file) {
+    public FileMediaInput(@NonNull File file) {
       this.file = file;
     }
 
@@ -37,13 +37,13 @@ public abstract class VideoInput implements Closeable {
     }
   }
 
-  public static class UriVideoInput extends VideoInput {
+  public static class UriMediaInput extends MediaInput {
 
-    final Uri uri;
-    final Context context;
+    private final Uri     uri;
+    private final Context context;
 
-    public UriVideoInput(final @NonNull Context context, final @NonNull Uri uri) {
-      this.uri = uri;
+    public UriMediaInput(@NonNull Context context, @NonNull Uri uri) {
+      this.uri     = uri;
       this.context = context;
     }
 
@@ -60,11 +60,11 @@ public abstract class VideoInput implements Closeable {
   }
 
   @RequiresApi(23)
-  public static class MediaDataSourceVideoInput extends VideoInput {
+  public static class MediaDataSourceMediaInput extends MediaInput {
 
     private final MediaDataSource mediaDataSource;
 
-    public MediaDataSourceVideoInput(final @NonNull MediaDataSource mediaDataSource) {
+    public MediaDataSourceMediaInput(@NonNull MediaDataSource mediaDataSource) {
       this.mediaDataSource = mediaDataSource;
     }
 

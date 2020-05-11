@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.video;
+package org.thoughtcrime.securesms.media;
 
 import android.content.Context;
 import android.media.MediaDataSource;
@@ -12,30 +12,30 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.PartUriParser;
 import org.thoughtcrime.securesms.providers.BlobProvider;
-import org.thoughtcrime.securesms.video.videoconverter.VideoInput;
+import org.thoughtcrime.securesms.media.MediaInput;
 
 import java.io.IOException;
 
 @RequiresApi(api = 23)
-public final class DecryptableUriVideoInput {
+public final class DecryptableUriMediaInput {
 
-  private DecryptableUriVideoInput() {
+  private DecryptableUriMediaInput() {
   }
 
-  public static VideoInput createForUri(@NonNull Context context, @NonNull Uri uri) throws IOException {
+  public static @NonNull MediaInput createForUri(@NonNull Context context, @NonNull Uri uri) throws IOException {
 
     if (BlobProvider.isAuthority(uri)) {
-      return new VideoInput.MediaDataSourceVideoInput(BlobProvider.getInstance().getMediaDataSource(context, uri));
+      return new MediaInput.MediaDataSourceMediaInput(BlobProvider.getInstance().getMediaDataSource(context, uri));
     }
 
     if (PartAuthority.isLocalUri(uri)) {
       return createForAttachmentUri(context, uri);
     }
 
-    return new VideoInput.UriVideoInput(context, uri);
+    return new MediaInput.UriMediaInput(context, uri);
   }
 
-  private static VideoInput createForAttachmentUri(@NonNull Context context, @NonNull Uri uri) {
+  private static @NonNull MediaInput createForAttachmentUri(@NonNull Context context, @NonNull Uri uri) {
     AttachmentId partId = new PartUriParser(uri).getPartId();
 
     if (!partId.isValid()) {
@@ -49,6 +49,6 @@ public final class DecryptableUriVideoInput {
       throw new AssertionError();
     }
 
-    return new VideoInput.MediaDataSourceVideoInput(mediaDataSource);
+    return new MediaInput.MediaDataSourceMediaInput(mediaDataSource);
   }
 }
