@@ -17,12 +17,12 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.OutgoingGroupUpdateMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupContext;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.io.IOException;
@@ -129,11 +129,11 @@ public final class GroupUtil {
 
   public static class GroupDescription {
 
-    @NonNull  private final Context         context;
-    @Nullable private final GroupContext    groupContext;
-    @Nullable private final List<Recipient> members;
+    @NonNull  private final Context           context;
+    @Nullable private final GroupContext      groupContext;
+    @Nullable private final List<RecipientId> members;
 
-    public GroupDescription(@NonNull Context context, @Nullable GroupContext groupContext) {
+    GroupDescription(@NonNull Context context, @Nullable GroupContext groupContext) {
       this.context      = context.getApplicationContext();
       this.groupContext = groupContext;
 
@@ -143,9 +143,9 @@ public final class GroupUtil {
         this.members = new LinkedList<>();
 
         for (GroupContext.Member member : groupContext.getMembersList()) {
-          Recipient recipient = Recipient.externalPush(context, new SignalServiceAddress(UuidUtil.parseOrNull(member.getUuid()), member.getE164()));
-          if (!recipient.isLocalNumber()) {
-            this.members.add(recipient);
+          RecipientId recipientId = RecipientId.from(UuidUtil.parseOrNull(member.getUuid()), member.getE164());
+          if (!recipientId.equals(Recipient.self().getId())) {
+            this.members.add(recipientId);
           }
         }
       }
@@ -178,31 +178,31 @@ public final class GroupUtil {
 
     public void addObserver(RecipientForeverObserver listener) {
       if (this.members != null) {
-        for (Recipient member : this.members) {
-          member.live().observeForever(listener);
+        for (RecipientId member : this.members) {
+          Recipient.live(member).observeForever(listener);
         }
       }
     }
 
     public void removeObserver(RecipientForeverObserver listener) {
       if (this.members != null) {
-        for (Recipient member : this.members) {
-          member.live().removeForeverObserver(listener);
+        for (RecipientId member : this.members) {
+          Recipient.live(member).removeForeverObserver(listener);
         }
       }
     }
 
-    private String toString(List<Recipient> recipients) {
-      String result = "";
+    private String toString(List<RecipientId> recipients) {
+      StringBuilder result = new StringBuilder();
 
-      for (int i=0;i<recipients.size();i++) {
-        result += recipients.get(i).toShortString(context);
+      for (int i = 0; i < recipients.size(); i++) {
+        result.append(Recipient.live(recipients.get(i)).get().toShortString(context));
 
       if (i != recipients.size() -1 )
-        result += ", ";
+        result.append(", ");
     }
 
-    return result;
+    return result.toString();
     }
   }
 }

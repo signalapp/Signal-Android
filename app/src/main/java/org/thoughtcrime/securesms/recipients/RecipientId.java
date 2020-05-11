@@ -1,17 +1,24 @@
 package org.thoughtcrime.securesms.recipients;
 
+import android.annotation.SuppressLint;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.DelimiterUtil;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 public class RecipientId implements Parcelable, Comparable<RecipientId> {
@@ -37,6 +44,21 @@ public class RecipientId implements Parcelable, Comparable<RecipientId> {
     } catch (NumberFormatException e) {
       throw new InvalidStringRecipientIdError();
     }
+  }
+
+  /**
+   * Always supply both {@param uuid} and {@param e164} if you have both.
+   */
+  @AnyThread
+  @SuppressLint("WrongThread")
+  public static @NonNull RecipientId from(@Nullable UUID uuid, @Nullable String e164) {
+    RecipientId recipientId = RecipientIdCache.INSTANCE.get(uuid, e164);
+
+    if (recipientId == null) {
+      recipientId = Recipient.externalPush(ApplicationDependencies.getApplication(), uuid, e164).getId();
+    }
+
+    return recipientId;
   }
 
   private RecipientId(long id) {
