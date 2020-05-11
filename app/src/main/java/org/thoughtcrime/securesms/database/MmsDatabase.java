@@ -1360,7 +1360,7 @@ public class MmsDatabase extends MessagingDatabase {
       cursor = db.query(TABLE_NAME, new String[] {ID}, where, new String[] {threadId+""}, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
-        Log.i("MmsDatabase", "Trimming: " + cursor.getLong(0));
+        Log.i(TAG, "Trimming: " + cursor.getLong(0));
         delete(cursor.getLong(0));
       }
 

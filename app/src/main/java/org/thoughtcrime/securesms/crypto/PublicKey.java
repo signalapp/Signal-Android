@@ -88,7 +88,7 @@ public class PublicKey {
       MessageDigest md = MessageDigest.getInstance("SHA-1");
       return md.digest(serialize());
     } catch (NoSuchAlgorithmException nsae) {
-      Log.w("LocalKeyPair", nsae);
+      Log.w(TAG, "LocalKeyPair", nsae);
       throw new IllegalArgumentException("SHA-1 isn't supported!");
     }
   }

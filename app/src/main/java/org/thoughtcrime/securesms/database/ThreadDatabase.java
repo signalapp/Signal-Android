@@ -248,19 +248,19 @@ public class ThreadDatabase extends Database {
   }
 
   public void trimThread(long threadId, int length) {
-    Log.i("ThreadDatabase", "Trimming thread: " + threadId + " to: " + length);
+    Log.i(TAG, "Trimming thread: " + threadId + " to: " + length);
     Cursor cursor = null;
 
     try {
       cursor = DatabaseFactory.getMmsSmsDatabase(context).getConversation(threadId);
 
       if (cursor != null && length > 0 && cursor.getCount() > length) {
-        Log.w("ThreadDatabase", "Cursor count is greater than length!");
+        Log.w(TAG, "Cursor count is greater than length!");
         cursor.moveToPosition(length - 1);
 
         long lastTweetDate = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.NORMALIZED_DATE_RECEIVED));
 
-        Log.i("ThreadDatabase", "Cut off tweet date: " + lastTweetDate);
+        Log.i(TAG, "Cut off tweet date: " + lastTweetDate);
 
         DatabaseFactory.getSmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, lastTweetDate);
         DatabaseFactory.getMmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, lastTweetDate);

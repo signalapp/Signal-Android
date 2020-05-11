@@ -153,7 +153,7 @@ public class SmsDatabase extends MessagingDatabase {
   }
 
   private void updateTypeBitmask(long id, long maskOff, long maskOn) {
-    Log.i("MessageDatabase", "Updating ID: " + id + " to base type: " + maskOn);
+    Log.i(TAG, "Updating ID: " + id + " to base type: " + maskOn);
 
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.execSQL("UPDATE " + TABLE_NAME +
@@ -368,7 +368,7 @@ public class SmsDatabase extends MessagingDatabase {
   }
 
   public void markStatus(long id, int status) {
-    Log.i("MessageDatabase", "Updating ID: " + id + " to status: " + status);
+    Log.i(TAG, "Updating ID: " + id + " to status: " + status);
     ContentValues contentValues = new ContentValues();
     contentValues.put(STATUS, status);
 
@@ -793,7 +793,7 @@ public class SmsDatabase extends MessagingDatabase {
   }
 
   public boolean deleteMessage(long messageId) {
-    Log.i("MessageDatabase", "Deleting: " + messageId);
+    Log.i(TAG, "Deleting: " + messageId);
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     long threadId     = getThreadIdForMessage(messageId);
     db.delete(TABLE_NAME, ID_WHERE, new String[] {messageId+""});

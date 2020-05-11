@@ -504,7 +504,7 @@ public class MessageSender {
         expirationManager.scheduleDeletion(messageId, true, message.getExpiresIn());
       }
     } catch (NoSuchMessageException | MmsException e) {
-      Log.w("Failed to update self-sent message.", e);
+      Log.w(TAG, "Failed to update self-sent message.", e);
     }
   }
 
@@ -527,7 +527,7 @@ public class MessageSender {
         expirationManager.scheduleDeletion(message.getId(), message.isMms(), message.getExpiresIn());
       }
     } catch (NoSuchMessageException e) {
-      Log.w("Failed to update self-sent message.", e);
+      Log.w(TAG, "Failed to update self-sent message.", e);
     }
   }
 

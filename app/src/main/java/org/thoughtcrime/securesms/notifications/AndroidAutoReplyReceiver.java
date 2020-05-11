@@ -73,11 +73,11 @@ public class AndroidAutoReplyReceiver extends BroadcastReceiver {
           long expiresIn      = recipient.getExpireMessages() * 1000L;
 
           if (recipient.resolve().isGroup()) {
-            Log.w("AndroidAutoReplyReceiver", "GroupRecipient, Sending media message");
+            Log.w(TAG, "GroupRecipient, Sending media message");
             OutgoingMediaMessage reply = new OutgoingMediaMessage(recipient, responseText.toString(), new LinkedList<>(), System.currentTimeMillis(), subscriptionId, expiresIn, false, 0, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
             replyThreadId = MessageSender.send(context, reply, threadId, false, null);
           } else {
-            Log.w("AndroidAutoReplyReceiver", "Sending regular message ");
+            Log.w(TAG, "Sending regular message ");
             OutgoingTextMessage reply = new OutgoingTextMessage(recipient, responseText.toString(), expiresIn, subscriptionId);
             replyThreadId = MessageSender.send(context, reply, threadId, false, null);
           }
