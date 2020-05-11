@@ -73,11 +73,11 @@ import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.LokiSessionResetImplementation;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
-import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
-import org.thoughtcrime.securesms.loki.redesign.messaging.LokiAPIUtilities;
-import org.thoughtcrime.securesms.loki.redesign.messaging.LokiPreKeyBundleDatabase;
-import org.thoughtcrime.securesms.loki.redesign.utilities.Broadcaster;
-import org.thoughtcrime.securesms.loki.redesign.utilities.OpenGroupUtilities;
+import org.thoughtcrime.securesms.loki.activities.HomeActivity;
+import org.thoughtcrime.securesms.loki.api.MentionManagerUtilities;
+import org.thoughtcrime.securesms.loki.database.LokiPreKeyBundleDatabase;
+import org.thoughtcrime.securesms.loki.utilities.Broadcaster;
+import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
@@ -137,7 +137,6 @@ import org.whispersystems.signalservice.api.messages.multidevice.StickerPackOper
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.loki.api.LokiAPI;
 import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI;
 import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChat;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
@@ -343,7 +342,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           // Make sure we got the request from our master device
           String ourMasterDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
           if (ourMasterDevice != null && ourMasterDevice.equals(content.getSender())) {
-            TextSecurePreferences.setDatabaseResetFromUnpair(context, true);
+            TextSecurePreferences.setNeedDatabaseResetFromUnlink(context, true);
             MultiDeviceUtilities.checkIsRevokedSlaveDevice(context);
           }
         } else {
@@ -1147,7 +1146,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         if (insertResult.isPresent()) {
           InsertResult result = insertResult.get();
           // Loki - Cache the user hex encoded public key (for mentions)
-          LokiAPIUtilities.INSTANCE.populateUserHexEncodedPublicKeyCacheIfNeeded(result.getThreadId(), context);
+          MentionManagerUtilities.INSTANCE.populateUserHexEncodedPublicKeyCacheIfNeeded(result.getThreadId(), context);
           MentionsManager.INSTANCE.cache(textMessage.getSender().serialize(), result.getThreadId());
 
           // Loki - Store message server ID
@@ -1896,7 +1895,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         boolean isGroupActive    = groupId.isPresent() && groupDatabase.isActive(groupId.get());
         boolean isLeaveMessage   = message.getGroupInfo().isPresent() && message.getGroupInfo().get().getType() == SignalServiceGroup.Type.QUIT;
 
-        boolean isClosedGroup = conversation.getAddress().isSignalGroup();
+        boolean isClosedGroup = conversation.getAddress().isClosedGroup();
         boolean isGroupMember = true;
 
         // Only allow messages from group members

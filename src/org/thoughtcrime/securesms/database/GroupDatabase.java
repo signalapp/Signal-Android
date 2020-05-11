@@ -489,11 +489,11 @@ public class GroupDatabase extends Database {
       return mms;
     }
 
-    public boolean isPublicChat() { return Address.fromSerialized(id).isPublicChat(); }
+    public boolean isPublicChat() { return Address.fromSerialized(id).isOpenGroup(); }
 
     public boolean isRSSFeed() { return Address.fromSerialized(id).isRSSFeed(); }
 
-    public boolean isSignalGroup() { return Address.fromSerialized(id).isSignalGroup(); }
+    public boolean isSignalGroup() { return Address.fromSerialized(id).isClosedGroup(); }
 
     public String getUrl() { return url; }
 

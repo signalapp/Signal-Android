@@ -27,7 +27,7 @@ public class WelcomeActivity extends BaseActionBarActivity {
   @Override
   protected void onResume() {
     super.onResume();
-    if (TextSecurePreferences.databaseResetFromUnpair(this)) {
+    if (TextSecurePreferences.setNeedsDatabaseResetFromUnlink(this)) {
       AlertDialog.Builder builder = new AlertDialog.Builder(this);
       builder.setTitle(R.string.dialog_device_unlink_title);
       builder.setMessage(R.string.dialog_device_unlink_message);
@@ -35,7 +35,7 @@ public class WelcomeActivity extends BaseActionBarActivity {
       builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
         @Override
         public void onDismiss(DialogInterface dialog) {
-          TextSecurePreferences.setDatabaseResetFromUnpair(getBaseContext(), false);
+          TextSecurePreferences.setNeedDatabaseResetFromUnlink(getBaseContext(), false);
         }
       });
       builder.show();

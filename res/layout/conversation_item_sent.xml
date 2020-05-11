@@ -161,7 +161,7 @@
 
             </LinearLayout>
 
-            <org.thoughtcrime.securesms.loki.redesign.views.FriendRequestView
+            <org.thoughtcrime.securesms.loki.views.FriendRequestView
                 android:id="@+id/friend_request_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

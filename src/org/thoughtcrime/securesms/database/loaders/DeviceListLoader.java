@@ -8,7 +8,7 @@ import com.annimon.stream.Stream;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.devicelist.Device;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.redesign.utilities.MnemonicUtilities;
+import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities;
 import org.thoughtcrime.securesms.util.AsyncLoader;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.loki.protocol.multidevice.LokiDeviceLinkUtilities;

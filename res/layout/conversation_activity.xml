@@ -104,7 +104,7 @@
                 android:indeterminate="false"
                 android:progress="0" />
 
-            <org.thoughtcrime.securesms.loki.redesign.views.SessionRestoreBannerView
+            <org.thoughtcrime.securesms.loki.views.SessionRestoreBannerView
                 android:id="@+id/sessionRestoreBannerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

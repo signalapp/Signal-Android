@@ -6,10 +6,10 @@ import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
-import org.thoughtcrime.securesms.loki.redesign.utilities.get
-import org.thoughtcrime.securesms.loki.redesign.utilities.getInt
-import org.thoughtcrime.securesms.loki.redesign.utilities.getString
-import org.thoughtcrime.securesms.loki.redesign.utilities.insertOrUpdate
+import org.thoughtcrime.securesms.loki.utilities.get
+import org.thoughtcrime.securesms.loki.utilities.getInt
+import org.thoughtcrime.securesms.loki.utilities.getString
+import org.thoughtcrime.securesms.loki.utilities.insertOrUpdate
 import org.whispersystems.signalservice.loki.database.LokiMessageDatabaseProtocol
 import org.whispersystems.signalservice.loki.protocol.todo.LokiMessageFriendRequestStatus
 

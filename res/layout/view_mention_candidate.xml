@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.thoughtcrime.securesms.loki.redesign.views.MentionCandidateView
+<org.thoughtcrime.securesms.loki.views.MentionCandidateView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="44dp"
@@ -13,7 +13,7 @@
         android:layout_width="26dp"
         android:layout_height="32dp">
 
-        <org.thoughtcrime.securesms.loki.redesign.views.ProfilePictureView
+        <org.thoughtcrime.securesms.loki.views.ProfilePictureView
             android:id="@+id/profilePictureView"
             android:layout_width="@dimen/very_small_profile_picture_size"
             android:layout_height="@dimen/very_small_profile_picture_size"
@@ -39,4 +39,4 @@
         android:maxLines="1"
         android:ellipsize="end" />
 
-</org.thoughtcrime.securesms.loki.redesign.views.MentionCandidateView>
+</org.thoughtcrime.securesms.loki.views.MentionCandidateView>

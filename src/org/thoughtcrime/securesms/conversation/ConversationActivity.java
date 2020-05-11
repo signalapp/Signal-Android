@@ -159,12 +159,12 @@ import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabaseDelegate;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
-import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
-import org.thoughtcrime.securesms.loki.redesign.messaging.LokiAPIUtilities;
-import org.thoughtcrime.securesms.loki.redesign.messaging.LokiUserDatabase;
-import org.thoughtcrime.securesms.loki.redesign.views.FriendRequestViewDelegate;
-import org.thoughtcrime.securesms.loki.redesign.views.MentionCandidateSelectionView;
-import org.thoughtcrime.securesms.loki.redesign.views.SessionRestoreBannerView;
+import org.thoughtcrime.securesms.loki.activities.HomeActivity;
+import org.thoughtcrime.securesms.loki.api.MentionManagerUtilities;
+import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
+import org.thoughtcrime.securesms.loki.views.FriendRequestViewDelegate;
+import org.thoughtcrime.securesms.loki.views.MentionCandidateSelectionView;
+import org.thoughtcrime.securesms.loki.views.SessionRestoreBannerView;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
@@ -468,7 +468,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       return Unit.INSTANCE;
     });
 
-    LokiAPIUtilities.INSTANCE.populateUserHexEncodedPublicKeyCacheIfNeeded(threadId, this);
+    MentionManagerUtilities.INSTANCE.populateUserHexEncodedPublicKeyCacheIfNeeded(threadId, this);
 
     LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadId);
     if (publicChat != null) {
@@ -747,7 +747,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     MenuInflater inflater = this.getMenuInflater();
     menu.clear();
 
-    boolean isOpenGroupOrRSSFeed = recipient.getAddress().isPublicChat() || recipient.getAddress().isRSSFeed();
+    boolean isOpenGroupOrRSSFeed = recipient.getAddress().isOpenGroup() || recipient.getAddress().isRSSFeed();
 
     if (isSecureText && !isOpenGroupOrRSSFeed) {
       if (recipient.getExpireMessages() > 0) {
@@ -2073,7 +2073,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void setGroupShareProfileReminder(@NonNull Recipient recipient) {
-    if (recipient.isPushGroupRecipient() && !recipient.isProfileSharing() && !recipient.getAddress().isPublicChat() && !recipient.getAddress().isRSSFeed()) {
+    if (recipient.isPushGroupRecipient() && !recipient.isProfileSharing() && !recipient.getAddress().isOpenGroup() && !recipient.getAddress().isRSSFeed()) {
       groupShareProfileView.get().setRecipient(recipient);
       groupShareProfileView.get().setVisibility(View.GONE); // Loki - Always hide for now
     } else if (groupShareProfileView.resolved()) {

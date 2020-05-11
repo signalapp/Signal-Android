@@ -21,7 +21,7 @@
         android:textColor="@color/text"
         android:text="Your Session begins here..." />
     
-    <org.thoughtcrime.securesms.loki.redesign.views.FakeChatView
+    <org.thoughtcrime.securesms.loki.views.FakeChatView
         android:id="@+id/fakeChatView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/fake_chat_view_height"

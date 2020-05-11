@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.thoughtcrime.securesms.loki.redesign.views.MentionCandidateSelectionView
+<org.thoughtcrime.securesms.loki.views.MentionCandidateSelectionView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/userSelectionView"
     android:layout_width="match_parent"

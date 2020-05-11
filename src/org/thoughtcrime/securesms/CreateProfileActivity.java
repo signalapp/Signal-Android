@@ -415,9 +415,9 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
                 return Unit.INSTANCE;
               });
               Log.d("Loki", "Profile photo uploaded, the url is " + result.getUrl());
-              TextSecurePreferences.setProfileAvatarUrl(context, result.getUrl());
+              TextSecurePreferences.setProfilePictureURL(context, result.getUrl());
             } else {
-              TextSecurePreferences.setProfileAvatarUrl(context, null);
+              TextSecurePreferences.setProfilePictureURL(context, null);
             }
 
             AvatarHelper.setAvatar(context, Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)), avatarBytes);

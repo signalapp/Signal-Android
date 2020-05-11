@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <org.thoughtcrime.securesms.loki.redesign.views.ProfilePictureView
+            <org.thoughtcrime.securesms.loki.views.ProfilePictureView
                 android:id="@+id/profileButton"
                 android:layout_width="@dimen/small_profile_picture_size"
                 android:layout_height="@dimen/small_profile_picture_size"
@@ -44,7 +44,7 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <org.thoughtcrime.securesms.loki.redesign.views.SeedReminderView
+    <org.thoughtcrime.securesms.loki.views.SeedReminderView
         android:id="@+id/seedReminderView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -66,7 +66,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/home_activity_gradient" />
 
-        <org.thoughtcrime.securesms.loki.redesign.views.NewConversationButtonSetView
+        <org.thoughtcrime.securesms.loki.views.NewConversationButtonSetView
             android:id="@+id/newConversationButtonSet"
             android:layout_width="252dp"
             android:layout_height="212dp"

@@ -32,10 +32,10 @@ import org.thoughtcrime.securesms.database.helpers.ClassicOpenHelper;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherMigrationHelper;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.loki.*;
-import org.thoughtcrime.securesms.loki.redesign.messaging.LokiAPIDatabase;
-import org.thoughtcrime.securesms.loki.redesign.messaging.LokiPreKeyBundleDatabase;
-import org.thoughtcrime.securesms.loki.redesign.messaging.LokiPreKeyRecordDatabase;
-import org.thoughtcrime.securesms.loki.redesign.messaging.LokiUserDatabase;
+import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
+import org.thoughtcrime.securesms.loki.database.LokiPreKeyBundleDatabase;
+import org.thoughtcrime.securesms.loki.database.LokiPreKeyRecordDatabase;
+import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class DatabaseFactory {

@@ -50,7 +50,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.lock.RegistrationLockDialog;
 import org.thoughtcrime.securesms.loki.RecipientAvatarModifiedEvent;
-import org.thoughtcrime.securesms.loki.redesign.activities.JoinPublicChatActivity;
+import org.thoughtcrime.securesms.loki.activities.JoinPublicChatActivity;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;

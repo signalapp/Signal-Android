@@ -169,7 +169,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
       // Only send messages to the contacts we have sessions with
       List<Address> validTargets = Stream.of(target).filter(member -> {
-        if (member.isPublicChat()) { return true; }
+        if (member.isOpenGroup()) { return true; }
 
         // Our device is always valid
         if (member.serialize().equalsIgnoreCase(localNumber)) { return true; }
@@ -287,11 +287,11 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
                                                                       .toList();
 
     SignalServiceGroup.GroupType groupType = SignalServiceGroup.GroupType.SIGNAL;
-    if (groupAddress.isPublicChat()) {
+    if (groupAddress.isOpenGroup()) {
       groupType = SignalServiceGroup.GroupType.PUBLIC_CHAT;
     }
 
-    if (message.isGroup() && groupAddress.isSignalGroup()) {
+    if (message.isGroup() && groupAddress.isClosedGroup()) {
       // Loki - Only send GroupUpdate or GroupQuit to signal groups
       OutgoingGroupMediaMessage groupMessage     = (OutgoingGroupMediaMessage) message;
       GroupContext              groupContext     = groupMessage.getGroupContext();
@@ -327,10 +327,10 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
   }
 
   private @NonNull List<Address> getGroupMessageRecipients(String groupId, long messageId) {
-    if (GroupUtil.isRssFeed(groupId)) { return new ArrayList<>(); }
+    if (GroupUtil.isRSSFeed(groupId)) { return new ArrayList<>(); }
 
     // Loki - All public chat group messages should be directed to their respective servers
-    if (GroupUtil.isPublicChat(groupId)) {
+    if (GroupUtil.isOpenGroup(groupId)) {
       ArrayList<Address> result = new ArrayList<>();
       long threadID = GroupManager.getThreadIdFromGroupId(groupId, context);
       LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID);

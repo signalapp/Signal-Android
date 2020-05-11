@@ -20,8 +20,8 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 
 import org.thoughtcrime.securesms.components.ContactFilterToolbar;
-import org.thoughtcrime.securesms.loki.redesign.fragments.contactselection.ContactSelectionListFragment;
-import org.thoughtcrime.securesms.loki.redesign.fragments.contactselection.ContactSelectionListLoader.DisplayMode;
+import org.thoughtcrime.securesms.loki.fragments.ContactSelectionListFragment;
+import org.thoughtcrime.securesms.loki.fragments.ContactSelectionListLoader.DisplayMode;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;

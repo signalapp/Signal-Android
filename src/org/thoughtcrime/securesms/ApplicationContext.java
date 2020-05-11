@@ -65,13 +65,13 @@ import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
 import org.thoughtcrime.securesms.loki.LokiPublicChatManager;
 import org.thoughtcrime.securesms.loki.LokiPushNotificationManager;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
-import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
-import org.thoughtcrime.securesms.loki.redesign.messaging.BackgroundOpenGroupPollWorker;
-import org.thoughtcrime.securesms.loki.redesign.messaging.BackgroundPollWorker;
-import org.thoughtcrime.securesms.loki.redesign.messaging.LokiAPIDatabase;
-import org.thoughtcrime.securesms.loki.redesign.messaging.LokiUserDatabase;
-import org.thoughtcrime.securesms.loki.redesign.shelved.LokiRSSFeedPoller;
-import org.thoughtcrime.securesms.loki.redesign.utilities.Broadcaster;
+import org.thoughtcrime.securesms.loki.activities.HomeActivity;
+import org.thoughtcrime.securesms.loki.api.BackgroundOpenGroupPollWorker;
+import org.thoughtcrime.securesms.loki.api.BackgroundPollWorker;
+import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
+import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
+import org.thoughtcrime.securesms.loki.shelved.LokiRSSFeedPoller;
+import org.thoughtcrime.securesms.loki.utilities.Broadcaster;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
@@ -633,7 +633,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       }
       if (publicChatAPI != null) {
         byte[] profileKey = ProfileKeyUtil.getProfileKey(this);
-        String url = TextSecurePreferences.getProfileAvatarUrl(this);
+        String url = TextSecurePreferences.getProfilePictureURL(this);
         String ourMasterDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(this);
         if (ourMasterDevice != null) {
           Recipient masterDevice = Recipient.from(this, Address.fromSerialized(ourMasterDevice), false).resolve();
@@ -651,10 +651,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   public void checkNeedsDatabaseReset() {
-    if (TextSecurePreferences.resetDatabase(this)) {
-      boolean wasUnlinked = TextSecurePreferences.databaseResetFromUnpair(this);
+    if (TextSecurePreferences.getNeedsDatabaseReset(this)) {
+      boolean wasUnlinked = TextSecurePreferences.setNeedsDatabaseResetFromUnlink(this);
       TextSecurePreferences.clearAll(this);
-      TextSecurePreferences.setDatabaseResetFromUnpair(this, wasUnlinked); // Loki - Re-set the preference so we can use it in the starting screen to determine whether device was unlinked or not
+      TextSecurePreferences.setNeedDatabaseResetFromUnlink(this, wasUnlinked); // Loki - Re-set the preference so we can use it in the starting screen to determine whether device was unlinked or not
       MasterSecretUtil.clear(this);
       if (this.deleteDatabase("signal.db")) {
         Log.d("Loki", "Deleted database");
@@ -663,7 +663,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   public void clearData() {
-    TextSecurePreferences.setResetDatabase(this, true);
+    TextSecurePreferences.setNeedsDatabaseReset(this, true);
     new Handler().postDelayed(this::restartApplication, 200);
   }
 

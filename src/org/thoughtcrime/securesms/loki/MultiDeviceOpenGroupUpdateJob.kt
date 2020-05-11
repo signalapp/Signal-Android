@@ -58,7 +58,7 @@ class MultiDeviceOpenGroupUpdateJob private constructor(parameters: Parameters) 
     }
 
     if (openGroups.size > 0) {
-      messageSender.sendMessage(0, SignalServiceSyncMessage.forOpenGroups(openGroups),
+      messageSender.sendMessage(SignalServiceSyncMessage.forOpenGroups(openGroups),
               UnidentifiedAccessUtil.getAccessForSync(context))
     } else {
       Log.d("Loki", "No open groups to sync.")
