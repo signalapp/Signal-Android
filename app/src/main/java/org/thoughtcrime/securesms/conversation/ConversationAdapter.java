@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import androidx.annotation.AnyThread;
 import androidx.annotation.LayoutRes;
+import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.paging.PagedList;
@@ -241,16 +242,17 @@ public class ConversationAdapter<V extends View & BindableConversationItem>
   @Override
   public void submitList(@Nullable PagedList<MessageRecord> pagedList) {
     cleanFastRecords();
-    super.submitList(pagedList);
-    notifyDataSetChanged();
+    super.submitList(pagedList, this::notifyDataSetChanged);
   }
 
   @Override
   protected @Nullable MessageRecord getItem(int position) {
+    position = hasHeader() ? position - 1 : position;
+
     if (position < fastRecords.size()) {
       return fastRecords.get(position);
     } else {
-      int correctedPosition = position - fastRecords.size() - (hasHeader() ? 1 : 0);
+      int correctedPosition = position - fastRecords.size();
       return super.getItem(correctedPosition);
     }
   }
@@ -302,31 +304,19 @@ public class ConversationAdapter<V extends View & BindableConversationItem>
   }
 
   /**
-   * Given a timestamp, this will return the position in the adapter of the message with the
-   * nearest received timestamp, or -1 if none is found.
+   * The presence of a header may throw off the position you'd like to jump to. This will return
+   * an adjusted message position based on adapter state.
    */
-  int findLastSeenPosition(long lastSeen) {
-    if (lastSeen <= 0) {
-      return -1;
-    }
-
-    int count = getItemCount() - (hasFooter() ? 1 : 0);
-
-    for (int i = (hasHeader() ? 1 : 0); i < count; i++) {
-      MessageRecord messageRecord = getItem(i);
-
-      if (messageRecord == null || messageRecord.isOutgoing() || messageRecord.getDateReceived() <= lastSeen) {
-        return i;
-      }
-    }
-
-    return -1;
+  @MainThread
+  int getAdapterPositionForMessagePosition(int messagePosition) {
+    return hasHeader() ? messagePosition + 1 : messagePosition;
   }
 
   /**
    * Finds the received timestamp for the item at the requested adapter position. Will return 0 if
    * the position doesn't refer to an incoming message.
    */
+  @MainThread
   long getReceivedTimestamp(int position) {
     if (isHeaderPosition(position)) return 0;
     if (isFooterPosition(position)) return 0;
@@ -385,8 +375,9 @@ public class ConversationAdapter<V extends View & BindableConversationItem>
    * Adds a record to a memory cache to allow it to be rendered immediately, as opposed to waiting
    * for a database change.
    */
+  @MainThread
   void addFastRecord(MessageRecord record) {
-    fastRecords.add(record);
+    fastRecords.add(0, record);
     notifyDataSetChanged();
   }
 
@@ -426,6 +417,7 @@ public class ConversationAdapter<V extends View & BindableConversationItem>
     }
   }
 
+  @MainThread
   private void cleanFastRecords() {
     synchronized (releasedFastRecords) {
       Iterator<MessageRecord> recordIterator = fastRecords.iterator();

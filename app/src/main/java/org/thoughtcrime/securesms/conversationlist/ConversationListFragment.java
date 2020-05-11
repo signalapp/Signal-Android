@@ -347,7 +347,6 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
     getNavigator().goToConversation(threadRecord.getRecipient().getId(),
                                     threadRecord.getThreadId(),
                                     threadRecord.getDistributionType(),
-                                    threadRecord.getLastSeen(),
                                     -1);
   }
 
@@ -360,7 +359,6 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
       getNavigator().goToConversation(contact.getId(),
                                       threadId,
                                       ThreadDatabase.DistributionTypes.DEFAULT,
-                                      -1,
                                       -1);
     });
   }
@@ -375,7 +373,6 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
       getNavigator().goToConversation(message.conversationRecipient.getId(),
                                       message.threadId,
                                       ThreadDatabase.DistributionTypes.DEFAULT,
-                                      -1,
                                       startingPosition);
     });
   }
@@ -691,8 +688,8 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
     actionMode.setTitle(String.valueOf(defaultAdapter.getBatchSelections().size()));
   }
 
-  private void handleCreateConversation(long threadId, Recipient recipient, int distributionType, long lastSeen) {
-    getNavigator().goToConversation(recipient.getId(), threadId, distributionType, lastSeen, -1);
+  private void handleCreateConversation(long threadId, Recipient recipient, int distributionType) {
+    getNavigator().goToConversation(recipient.getId(), threadId, distributionType, -1);
   }
 
   @Override
@@ -726,8 +723,7 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
   @Override
   public void onItemClick(ConversationListItem item) {
     if (actionMode == null) {
-      handleCreateConversation(item.getThreadId(), item.getRecipient(),
-                               item.getDistributionType(), item.getLastSeen());
+      handleCreateConversation(item.getThreadId(), item.getRecipient(), item.getDistributionType());
     } else {
       ConversationListAdapter adapter = (ConversationListAdapter)list.getAdapter();
       adapter.toggleThreadInBatchSet(item.getThreadId());

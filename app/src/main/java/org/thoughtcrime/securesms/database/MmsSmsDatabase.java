@@ -125,6 +125,18 @@ public class MmsSmsDatabase extends Database {
     return new Pair<>(id, latestQuit);
   }
 
+  public int getMessagePositionForLastSeen(long threadId, long lastSeen) {
+    String[] projection = new String[] { "COUNT(*)" };
+    String   selection  = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " > " + lastSeen;
+
+    try (Cursor cursor = queryTables(projection, selection, null, null)) {
+      if (cursor != null && cursor.moveToNext()) {
+        return cursor.getInt(0);
+      }
+    }
+    return 0;
+  }
+
   public @Nullable MessageRecord getMessageFor(long timestamp, RecipientId author) {
     MmsSmsDatabase db = DatabaseFactory.getMmsSmsDatabase(context);
 

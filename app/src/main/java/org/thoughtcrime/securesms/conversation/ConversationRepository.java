@@ -24,28 +24,34 @@ class ConversationRepository {
     this.executor = SignalExecutors.BOUNDED;
   }
 
-  LiveData<ConversationData> getConversationData(long threadId, long lastSeen, int jumpToPosition) {
+  LiveData<ConversationData> getConversationData(long threadId, int jumpToPosition) {
     MutableLiveData<ConversationData> liveData = new MutableLiveData<>();
 
     executor.execute(() -> {
-      liveData.postValue(getConversationDataInternal(threadId, lastSeen, jumpToPosition));
+      liveData.postValue(getConversationDataInternal(threadId, jumpToPosition));
     });
 
     return liveData;
   }
 
-  private @NonNull ConversationData getConversationDataInternal(long threadId, long lastSeen, int jumpToPosition) {
+  private @NonNull ConversationData getConversationDataInternal(long threadId, int jumpToPosition) {
     Pair<Long, Boolean> lastSeenAndHasSent = DatabaseFactory.getThreadDatabase(context).getLastSeenAndHasSent(threadId);
 
-    boolean hasSent = lastSeenAndHasSent.second();
-
-    if (lastSeen == -1) {
-      lastSeen = lastSeenAndHasSent.first();
-    }
+    long    lastSeen         = lastSeenAndHasSent.first();
+    boolean hasSent          = lastSeenAndHasSent.second();
+    int     lastSeenPosition = 0;
 
     boolean isMessageRequestAccepted     = RecipientUtil.isMessageRequestAccepted(context, threadId);
     boolean hasPreMessageRequestMessages = RecipientUtil.isPreMessageRequestThread(context, threadId);
 
-    return new ConversationData(lastSeen, hasSent, isMessageRequestAccepted, hasPreMessageRequestMessages, jumpToPosition);
+    if (lastSeen > 0) {
+      lastSeenPosition = DatabaseFactory.getMmsSmsDatabase(context).getMessagePositionForLastSeen(threadId, lastSeen);
+    }
+
+    if (lastSeenPosition <= 0) {
+      lastSeen = 0;
+    }
+
+    return new ConversationData(lastSeen, lastSeenPosition, hasSent, isMessageRequestAccepted, hasPreMessageRequestMessages, jumpToPosition);
   }
 }

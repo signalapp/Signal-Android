@@ -31,10 +31,9 @@ class ConversationViewModel extends ViewModel {
   private final MutableLiveData<List<Media>>       recentMedia;
   private final MutableLiveData<Long>              threadId;
   private final LiveData<PagedList<MessageRecord>> messages;
-  private final LiveData<ConversationData>        conversationMetadata;
+  private final LiveData<ConversationData>         conversationMetadata;
 
   private int  jumpToPosition;
-  private long lastSeen;
 
   private ConversationViewModel() {
     this.context                = ApplicationDependencies.getApplication();
@@ -56,7 +55,7 @@ class ConversationViewModel extends ViewModel {
     });
 
     conversationMetadata = Transformations.switchMap(threadId, thread -> {
-      LiveData<ConversationData> data = conversationRepository.getConversationData(thread, lastSeen, jumpToPosition);
+      LiveData<ConversationData> data = conversationRepository.getConversationData(thread, jumpToPosition);
       jumpToPosition = -1;
       return data;
     });
@@ -66,15 +65,11 @@ class ConversationViewModel extends ViewModel {
     mediaRepository.getMediaInBucket(context, Media.ALL_MEDIA_BUCKET_ID, recentMedia::postValue);
   }
 
-  void onConversationDataAvailable(long threadId, long lastSeen, int startingPosition) {
-    this.lastSeen       = lastSeen;
+  void onConversationDataAvailable(long threadId, int startingPosition) {
+    Log.d(TAG, "[onConversationDataAvailable] threadId: " + threadId + ", startingPosition: " + startingPosition);
     this.jumpToPosition = startingPosition;
 
     this.threadId.setValue(threadId);
-  }
-
-  void onLastSeenChanged(long lastSeen) {
-    this.lastSeen = lastSeen;
   }
 
   @NonNull LiveData<List<Media>> getRecentMedia() {
@@ -90,7 +85,11 @@ class ConversationViewModel extends ViewModel {
   }
 
   long getLastSeen() {
-    return lastSeen;
+    return conversationMetadata.getValue() != null ? conversationMetadata.getValue().getLastSeen() : 0;
+  }
+
+  int getLastSeenPosition() {
+    return conversationMetadata.getValue() != null ? conversationMetadata.getValue().getLastSeenPosition() : 0;
   }
 
   static class Factory extends ViewModelProvider.NewInstanceFactory {

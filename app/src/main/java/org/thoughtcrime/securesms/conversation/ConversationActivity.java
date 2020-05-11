@@ -281,12 +281,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   public static final String RECIPIENT_EXTRA         = "recipient_id";
   public static final String THREAD_ID_EXTRA         = "thread_id";
-  public static final String IS_ARCHIVED_EXTRA       = "is_archived";
   public static final String TEXT_EXTRA              = "draft_text";
   public static final String MEDIA_EXTRA             = "media_list";
   public static final String STICKER_EXTRA           = "sticker_extra";
   public static final String DISTRIBUTION_TYPE_EXTRA = "distribution_type";
-  public static final String LAST_SEEN_EXTRA         = "last_seen";
   public static final String STARTING_POSITION_EXTRA = "starting_position";
 
   private static final int PICK_GALLERY        = 1;
@@ -342,12 +340,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private LiveRecipient recipient;
   private long          threadId;
   private int           distributionType;
-  private boolean       archived;
   private boolean       isSecureText;
   private boolean       isDefaultSms                  = true;
   private boolean       isMmsEnabled                  = true;
   private boolean       isSecurityInitialized         = false;
-  private boolean       shouldDisplayMessageRequestUi = true;
 
   private final IdentityRecordList identityRecords = new IdentityRecordList();
   private final DynamicTheme       dynamicTheme    = new DynamicDarkToolbarTheme();
@@ -357,14 +353,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                                             @NonNull RecipientId recipientId,
                                             long threadId,
                                             int distributionType,
-                                            long lastSeen,
                                             int startingPosition)
   {
     Intent intent = new Intent(context, ConversationActivity.class);
     intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, recipientId);
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
     intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, distributionType);
-    intent.putExtra(ConversationActivity.LAST_SEEN_EXTRA, lastSeen);
     intent.putExtra(ConversationActivity.STARTING_POSITION_EXTRA, startingPosition);
 
     return intent;
@@ -1739,7 +1733,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     recipient        = Recipient.live(getIntent().getParcelableExtra(RECIPIENT_EXTRA));
     threadId         = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
-    archived         = getIntent().getBooleanExtra(IS_ARCHIVED_EXTRA, false);
     distributionType = getIntent().getIntExtra(DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
     glideRequests    = GlideApp.with(this);
 

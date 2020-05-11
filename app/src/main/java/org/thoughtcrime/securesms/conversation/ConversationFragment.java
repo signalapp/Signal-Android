@@ -292,7 +292,7 @@ public class ConversationFragment extends Fragment {
   }
 
   public void moveToLastSeen() {
-    if (conversationViewModel.getLastSeen() <= 0) {
+    if (conversationViewModel.getLastSeenPosition() <= 0) {
       Log.i(TAG, "No need to move to last seen.");
       return;
     }
@@ -302,7 +302,7 @@ public class ConversationFragment extends Fragment {
       return;
     }
 
-    int position = getListAdapter().findLastSeenPosition(conversationViewModel.getLastSeen());
+    int position = getListAdapter().getAdapterPositionForMessagePosition(conversationViewModel.getLastSeenPosition());
     scrollToLastSeenPosition(position);
   }
 
@@ -391,14 +391,13 @@ public class ConversationFragment extends Fragment {
   private void initializeResources() {
     long oldThreadId = threadId;
 
-    long lastSeen          = this.getActivity().getIntent().getLongExtra(ConversationActivity.LAST_SEEN_EXTRA, -1);
-    int  startingPosition  = this.getActivity().getIntent().getIntExtra(ConversationActivity.STARTING_POSITION_EXTRA, -1);
+    int startingPosition  = this.getActivity().getIntent().getIntExtra(ConversationActivity.STARTING_POSITION_EXTRA, -1);
 
     this.recipient         = Recipient.live(getActivity().getIntent().getParcelableExtra(ConversationActivity.RECIPIENT_EXTRA));
     this.threadId          = this.getActivity().getIntent().getLongExtra(ConversationActivity.THREAD_ID_EXTRA, -1);
     this.unknownSenderView = new UnknownSenderView(getActivity(), recipient.get(), threadId);
 
-    conversationViewModel.onConversationDataAvailable(threadId, lastSeen, startingPosition);
+    conversationViewModel.onConversationDataAvailable(threadId, startingPosition);
 
     OnScrollListener scrollListener = new ConversationScrollListener(getActivity());
     list.addOnScrollListener(scrollListener);
@@ -538,6 +537,7 @@ public class ConversationFragment extends Fragment {
     if (this.threadId != threadId) {
       this.threadId = threadId;
       messageRequestViewModel.setConversationInfo(recipient.getId(), threadId);
+      conversationViewModel.onConversationDataAvailable(threadId, -1);
       initializeListAdapter();
     }
   }
@@ -551,8 +551,6 @@ public class ConversationFragment extends Fragment {
   }
 
   public void setLastSeen(long lastSeen) {
-    conversationViewModel.onLastSeenChanged(lastSeen);
-
     if (lastSeenDecoration != null) {
       list.removeItemDecoration(lastSeenDecoration);
     }
@@ -864,9 +862,7 @@ public class ConversationFragment extends Fragment {
       adapter.setFooterView(null);
     }
 
-    if (conversationViewModel.getLastSeen() == -1) {
-      setLastSeen(conversation.getLastSeen());
-    }
+    setLastSeen(conversation.getLastSeen());
 
     if (FeatureFlags.messageRequests() && !conversation.hasPreMessageRequestMessages()) {
       clearHeaderIfNotTyping(adapter);
@@ -880,34 +876,25 @@ public class ConversationFragment extends Fragment {
 
     listener.onCursorChanged();
 
-    list.post(() -> {
+    int lastSeenPosition = adapter.getAdapterPositionForMessagePosition(conversation.getLastSeenPosition());
 
-      int lastSeenPosition = adapter.findLastSeenPosition(conversationViewModel.getLastSeen());
-
-      if (isTypingIndicatorShowing()) {
-        lastSeenPosition = Math.max(lastSeenPosition - 1, 0);
-      }
-
-      if (conversation.shouldJumpToMessage()) {
-        scrollToStartingPosition(conversation.getJumpToPosition());
-      } else if (conversation.isMessageRequestAccepted()) {
-        scrollToLastSeenPosition(lastSeenPosition);
-      }
-
-      if (lastSeenPosition <= 0) {
-        setLastSeen(0);
-      }
-    });
+    if (conversation.shouldJumpToMessage()) {
+      scrollToStartingPosition(conversation.getJumpToPosition());
+    } else if (conversation.isMessageRequestAccepted()) {
+      scrollToLastSeenPosition(lastSeenPosition);
+    } else if (FeatureFlags.messageRequests()) {
+      list.post(() -> getListLayoutManager().scrollToPosition(adapter.getItemCount() - 1));
+    }
   }
 
-  private void scrollToStartingPosition(final int startingPosition) {
+  private void scrollToStartingPosition(int startingPosition) {
     list.post(() -> {
       list.getLayoutManager().scrollToPosition(startingPosition);
       getListAdapter().pulseHighlightItem(startingPosition);
     });
   }
 
-  private void scrollToLastSeenPosition(final int lastSeenPosition) {
+  private void scrollToLastSeenPosition(int lastSeenPosition) {
     if (lastSeenPosition > 0) {
       list.post(() -> getListLayoutManager().scrollToPositionWithOffset(lastSeenPosition, list.getHeight()));
     }
