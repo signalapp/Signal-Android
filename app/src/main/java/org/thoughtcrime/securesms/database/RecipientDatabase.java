@@ -1532,7 +1532,7 @@ public class RecipientDatabase extends Database {
   }
 
   void markDirty(@NonNull RecipientId recipientId, @NonNull DirtyState dirtyState) {
-    Log.d(TAG, "Attempting to mark " + recipientId + " with dirty state " + dirtyState, new Throwable());
+    Log.d(TAG, "Attempting to mark " + recipientId + " with dirty state " + dirtyState);
 
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(DIRTY, dirtyState.getId());
