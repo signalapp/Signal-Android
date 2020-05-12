@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import com.google.protobuf.ByteString;
 
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -18,34 +17,29 @@ import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.jobs.AvatarDownloadJob;
 import org.thoughtcrime.securesms.jobs.PushGroupUpdateJob;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
-import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup.Type;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.loki.protocol.multidevice.LokiDeviceLinkUtilities;
-import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
+import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-
-import kotlin.Unit;
 
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import static org.whispersystems.signalservice.internal.push.SignalServiceProtos.AttachmentPointer;
@@ -104,13 +98,12 @@ public class GroupMessageProcessor {
       }
     }
 
-    // We should only create the group if we are part of the member list
-    String hexEncodedPublicKey = getMasterHexEncodedPublicKey(context, TextSecurePreferences.getLocalNumber(context));
-    if (members == null || !members.contains(Address.fromSerialized(hexEncodedPublicKey))) {
-      Log.d("Loki - Group Message", "Received a group create message which doesn't include us in the member list. Ignoring.");
+    // Loki - Ignore message if needed
+    if (ClosedGroupsProtocol.shouldIgnoreMessage(context, group)) {
       return null;
     }
 
+    // Loki - Parse admins
     if (group.getAdmins().isPresent()) {
       for (String admin : group.getAdmins().get()) {
         admins.add(Address.fromExternal(context, admin));
@@ -121,7 +114,7 @@ public class GroupMessageProcessor {
                     avatar != null && avatar.isPointer() ? avatar.asPointer() : null, null, admins);
 
     if (group.getMembers().isPresent()) {
-      establishSessionsWithMembersIfNeeded(context, group.getMembers().get());
+      ClosedGroupsProtocol.establishSessionsWithMembersIfNeeded(context, group.getMembers().get());
     }
 
     return storeMessage(context, content, group, builder.build(), outgoing);
@@ -137,21 +130,21 @@ public class GroupMessageProcessor {
     GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
     String        id       = GroupUtil.getEncodedId(group);
 
-    String ourHexEncodedPublicKey = getMasterHexEncodedPublicKey(context, TextSecurePreferences.getLocalNumber(context));
+    String userMasterDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
 
     if (group.getGroupType() == SignalServiceGroup.GroupType.SIGNAL) {
-      // Only update group if the group admin sent the message
-      String hexEncodedPublicKey = getMasterHexEncodedPublicKey(context, content.getSender());
-      if (!groupRecord.getAdmins().contains(Address.fromSerialized(hexEncodedPublicKey))) {
-        Log.d("Loki - Group Message", "Received a group update message from a non-admin user for " + id +". Ignoring.");
+      // Loki - Only update the group if the group admin sent the message
+      String masterDevice = MultiDeviceProtocol.shared.getMasterDevice(content.getSender());
+      if (!groupRecord.getAdmins().contains(Address.fromSerialized(masterDevice))) {
+        Log.d("Loki", "Received a group update message from a non-admin user for: " + id +"; ignoring.");
         return null;
       }
 
-      // We should only process update messages if we're in the group
-      Address ourAddress = Address.fromSerialized(ourHexEncodedPublicKey);
-      if (!groupRecord.getMembers().contains(ourAddress) &&
-              !group.getMembers().or(Collections.emptyList()).contains(ourHexEncodedPublicKey)) {
-        Log.d("Loki - Group Message", "Received a group update message from a group we are not a member of:  " + id + "; ignoring.");
+      // Loki - Only process update messages if we're part of the group
+      Address userMasterDeviceAddress = Address.fromSerialized(userMasterDevice);
+      if (!groupRecord.getMembers().contains(userMasterDeviceAddress) &&
+              !group.getMembers().or(Collections.emptyList()).contains(userMasterDevice)) {
+        Log.d("Loki", "Received a group update message from a group we're not a member of:  " + id + "; ignoring.");
         database.setActive(id, false);
         return null;
       }
@@ -180,8 +173,8 @@ public class GroupMessageProcessor {
       database.updateMembers(id, new LinkedList<>(newMembers));
     }
 
-    // We add any new or removed members to the group context
-    // This will allow us later to iterate over them to check if they left or were added for UI purposes
+    // Add any new or removed members to the group context.
+    // This will allow us later to iterate over them to check if they left or were added for UI purposes.
     for (Address addedMember : addedMembers) {
       builder.addNewMembers(addedMember.serialize());
     }
@@ -200,13 +193,13 @@ public class GroupMessageProcessor {
     }
 
     // If we were removed then we need to disable the chat
-    if (removedMembers.contains(Address.fromSerialized(ourHexEncodedPublicKey))) {
+    if (removedMembers.contains(Address.fromSerialized(userMasterDevice))) {
       database.setActive(id, false);
     } else {
       if (!groupRecord.isActive()) database.setActive(id, true);
 
       if (group.getMembers().isPresent()) {
-        establishSessionsWithMembersIfNeeded(context, group.getMembers().get());
+        ClosedGroupsProtocol.establishSessionsWithMembersIfNeeded(context, group.getMembers().get());
       }
     }
 
@@ -218,8 +211,8 @@ public class GroupMessageProcessor {
                                              @NonNull SignalServiceGroup group,
                                              @NonNull GroupRecord record)
   {
-    String hexEncodedPublicKey = getMasterHexEncodedPublicKey(context, content.getSender());
-    if (record.getMembers().contains(Address.fromSerialized(hexEncodedPublicKey))) {
+    String masterDevice = MultiDeviceProtocol.shared.getMasterDevice(content.getSender());
+    if (record.getMembers().contains(Address.fromSerialized(masterDevice))) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
                         .add(new PushGroupUpdateJob(content.getSender(), group.getGroupId()));
@@ -240,9 +233,9 @@ public class GroupMessageProcessor {
     GroupContext.Builder builder = createGroupContext(group);
     builder.setType(GroupContext.Type.QUIT);
 
-    String hexEncodedPublicKey = getMasterHexEncodedPublicKey(context, content.getSender());
-    if (members.contains(Address.fromExternal(context, hexEncodedPublicKey))) {
-      database.remove(id, Address.fromExternal(context, hexEncodedPublicKey));
+    String masterDevice = MultiDeviceProtocol.shared.getMasterDevice(content.getSender());
+    if (members.contains(Address.fromExternal(context, masterDevice))) {
+      database.remove(id, Address.fromExternal(context, masterDevice));
       if (outgoing) database.setActive(id, false);
 
       return storeMessage(context, content, group, builder.build(), outgoing);
@@ -321,33 +314,5 @@ public class GroupMessageProcessor {
     }
 
     return builder;
-  }
-
-  private static String getMasterHexEncodedPublicKey(Context context, String hexEncodedPublicKey) {
-    String ourPublicKey = TextSecurePreferences.getLocalNumber(context);
-    try {
-      String masterHexEncodedPublicKey = hexEncodedPublicKey.equalsIgnoreCase(ourPublicKey)
-              ? TextSecurePreferences.getMasterHexEncodedPublicKey(context)
-              : PromiseUtil.timeout(LokiDeviceLinkUtilities.INSTANCE.getMasterHexEncodedPublicKey(hexEncodedPublicKey), 5000).get();
-      return masterHexEncodedPublicKey != null ? masterHexEncodedPublicKey : hexEncodedPublicKey;
-    } catch (Exception e) {
-      return hexEncodedPublicKey;
-    }
-  }
-
-  private static void establishSessionsWithMembersIfNeeded(Context context, List<String> members) {
-    String ourNumber = TextSecurePreferences.getLocalNumber(context);
-    for (String member : members) {
-      // Make sure we have session with all of the members secondary devices
-      LokiDeviceLinkUtilities.INSTANCE.getAllLinkedDeviceHexEncodedPublicKeys(member).success(devices -> {
-        if (devices.contains(ourNumber)) { return Unit.INSTANCE; }
-        for (String device : devices) {
-          SignalProtocolAddress protocolAddress = new SignalProtocolAddress(device, SignalServiceAddress.DEFAULT_DEVICE_ID);
-          boolean haveSession = new TextSecureSessionStore(context).containsSession(protocolAddress);
-          if (!haveSession) { MessageSender.sendBackgroundSessionRequest(context, device); }
-        }
-        return Unit.INSTANCE;
-      });
-    }
   }
 }

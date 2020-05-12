@@ -42,7 +42,7 @@ public abstract class PushReceivedJob extends BaseJob {
           Log.w(TAG, "Received envelope of unknown type: " + envelope.getType());
         }
       } catch (Exception e) {
-        Log.d("Loki", "Failed to process envelope: " + e);
+        Log.d("Loki", "Failed to process envelope due to error: " + e);
       }
     }
   }
