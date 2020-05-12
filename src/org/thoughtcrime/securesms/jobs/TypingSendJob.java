@@ -21,9 +21,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage.
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
@@ -86,11 +84,11 @@ public class TypingSendJob extends BaseJob implements InjectableType {
       throw new IllegalStateException("Tried to send a typing indicator to a non-existent thread.");
     }
 
-    Set<Recipient> recipients = new HashSet<>(Collections.singletonList(recipient));
+    List<Recipient> recipients = Collections.singletonList(recipient);
     Optional<byte[]> groupId  = Optional.absent();
 
     if (recipient.isGroupRecipient()) {
-      recipients = new HashSet<>(DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.getAddress().toGroupString(), false));
+      recipients = DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.getAddress().toGroupString(), false);
       groupId    = Optional.of(GroupUtil.getDecodedId(recipient.getAddress().toGroupString()));
     }
 
