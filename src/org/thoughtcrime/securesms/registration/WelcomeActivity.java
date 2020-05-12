@@ -58,8 +58,6 @@ public class WelcomeActivity extends BaseActionBarActivity {
         .ifNecessary()
         .withRationaleDialog(getString(R.string.activity_landing_permission_dialog_message), R.drawable.ic_folder_white_48dp)
         .onAnyResult(() -> {
-//          TextSecurePreferences.setHasSeenWelcomeScreen(WelcomeActivity.this, true);
-
           Intent nextIntent = getIntent().getParcelableExtra("next_intent");
 
           if (nextIntent == null) {

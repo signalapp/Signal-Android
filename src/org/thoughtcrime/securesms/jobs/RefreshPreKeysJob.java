@@ -64,7 +64,7 @@ public class RefreshPreKeysJob extends BaseJob implements InjectableType {
       return;
     }
 
-    List<PreKeyRecord> preKeyRecords       = PreKeyUtil.generatePreKeys(context);
+    List<PreKeyRecord> preKeyRecords       = PreKeyUtil.generatePreKeyRecords(context);
     IdentityKeyPair    identityKey         = IdentityKeyUtil.getIdentityKeyPair(context);
     SignedPreKeyRecord signedPreKeyRecord  = PreKeyUtil.generateSignedPreKey(context, identityKey, false);
 

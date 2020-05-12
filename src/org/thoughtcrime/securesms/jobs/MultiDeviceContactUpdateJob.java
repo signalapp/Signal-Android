@@ -122,7 +122,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
     }
 
     if (address == null) generateFullContactUpdate();
-    else if (!SyncMessagesProtocol.shouldSyncContact(context, Address.fromSerialized(address))) generateSingleContactUpdate(Address.fromSerialized(address));
+    else if (SyncMessagesProtocol.shouldSyncContact(context, Address.fromSerialized(address))) generateSingleContactUpdate(Address.fromSerialized(address));
   }
 
   private void generateSingleContactUpdate(@NonNull Address address)

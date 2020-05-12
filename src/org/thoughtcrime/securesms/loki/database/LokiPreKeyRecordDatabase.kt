@@ -38,7 +38,7 @@ class LokiPreKeyRecordDatabase(context: Context, helper: SQLCipherOpenHelper) : 
     }
 
     private fun generateAndStorePreKeyRecord(hexEncodedPublicKey: String): PreKeyRecord {
-        val records = PreKeyUtil.generatePreKeys(context, 1)
+        val records = PreKeyUtil.generatePreKeyRecords(context, 1)
         PreKeyUtil.storePreKeyRecords(context, records)
         val record = records.first()
         val database = databaseHelper.writableDatabase

@@ -43,7 +43,7 @@ public class PreKeyUtil {
 
   private static final int BATCH_SIZE = 100;
 
-  public synchronized static List<PreKeyRecord> generatePreKeys(Context context) {
+  public synchronized static List<PreKeyRecord> generatePreKeyRecords(Context context) {
     PreKeyStore        preKeyStore    = new TextSecurePreKeyStore(context);
     List<PreKeyRecord> records        = new LinkedList<>();
     int                preKeyIdOffset = TextSecurePreferences.getNextPreKeyId(context);
@@ -101,7 +101,7 @@ public class PreKeyUtil {
     }
   }
 
-  public synchronized static List<PreKeyRecord> generatePreKeys(Context context, int amount) {
+  public synchronized static List<PreKeyRecord> generatePreKeyRecords(Context context, int amount) {
     List<PreKeyRecord> records = new LinkedList<>();
     int preKeyIDOffset = TextSecurePreferences.getNextPreKeyId(context);
     for (int i = 0; i < amount; i++) {

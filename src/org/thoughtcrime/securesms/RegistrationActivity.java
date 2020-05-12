@@ -618,7 +618,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
                                          unidentifiedAccessKey, universalUnidentifiedAccess);
 
     IdentityKeyPair    identityKey  = IdentityKeyUtil.getIdentityKeyPair(RegistrationActivity.this);
-    List<PreKeyRecord> records      = PreKeyUtil.generatePreKeys(RegistrationActivity.this);
+    List<PreKeyRecord> records      = PreKeyUtil.generatePreKeyRecords(RegistrationActivity.this);
     SignedPreKeyRecord signedPreKey = PreKeyUtil.generateSignedPreKey(RegistrationActivity.this, identityKey, true);
 
     accountManager.setPreKeys(identityKey.getPublicKey(), signedPreKey, records);

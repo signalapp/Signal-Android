@@ -84,7 +84,7 @@ public class MultiDeviceGroupUpdateJob extends BaseJob implements InjectableType
       reader = DatabaseFactory.getGroupDatabase(context).getGroups();
 
       while ((record = reader.getNext()) != null) {
-        if (record.isSignalGroup()) {
+        if (record.isClosedGroup()) {
           List<String> members = new LinkedList<>();
           List<String> admins  = new LinkedList<>();
 

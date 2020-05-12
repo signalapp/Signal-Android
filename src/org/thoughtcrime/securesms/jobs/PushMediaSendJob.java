@@ -63,9 +63,8 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
   private static final String KEY_TEMPLATE_MESSAGE_ID = "template_message_id";
   private static final String KEY_MESSAGE_ID = "message_id";
   private static final String KEY_DESTINATION = "destination";
-  private static final String KEY_IS_FRIEND_REQUEST = "is_friend_request";
+  private static final String KEY_IS_LOKI_PRE_KEY_BUNDLE_MESSAGE = "is_friend_request";
   private static final String KEY_CUSTOM_FR_MESSAGE = "custom_friend_request_message";
-  private static final String KEY_SHOULD_SEND_SYNC_MESSAGE = "should_send_sync_message";
 
   @Inject SignalServiceMessageSender messageSender;
 
@@ -148,7 +147,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
             .putLong(KEY_TEMPLATE_MESSAGE_ID, templateMessageId)
             .putLong(KEY_MESSAGE_ID, messageId)
             .putString(KEY_DESTINATION, destination.serialize())
-            .putBoolean(KEY_IS_FRIEND_REQUEST, isLokiPreKeyBundleMessage);
+            .putBoolean(KEY_IS_LOKI_PRE_KEY_BUNDLE_MESSAGE, isLokiPreKeyBundleMessage);
 
     if (customFriendRequestMessage != null) { builder.putString(KEY_CUSTOM_FR_MESSAGE, customFriendRequestMessage); }
     return builder.build();
@@ -326,7 +325,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       long templateMessageID = data.getLong(KEY_TEMPLATE_MESSAGE_ID);
       long messageID = data.getLong(KEY_MESSAGE_ID);
       Address destination = Address.fromSerialized(data.getString(KEY_DESTINATION));
-      boolean isLokiPreKeyBundleMessage = data.getBoolean(KEY_IS_FRIEND_REQUEST);
+      boolean isLokiPreKeyBundleMessage = data.getBoolean(KEY_IS_LOKI_PRE_KEY_BUNDLE_MESSAGE);
       String customFRMessage = data.hasString(KEY_CUSTOM_FR_MESSAGE) ? data.getString(KEY_CUSTOM_FR_MESSAGE) : null;
       return new PushMediaSendJob(parameters, templateMessageID, messageID, destination, isLokiPreKeyBundleMessage, customFRMessage);
     }

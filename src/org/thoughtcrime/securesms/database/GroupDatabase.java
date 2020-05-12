@@ -167,7 +167,7 @@ public class GroupDatabase extends Database {
 
       GroupRecord record;
       while ((record = reader.getNext()) != null) {
-        if (record.isSignalGroup() && record.members.contains(address)) {
+        if (record.isClosedGroup() && record.members.contains(address)) {
             return true;
         }
       }
@@ -490,11 +490,11 @@ public class GroupDatabase extends Database {
       return mms;
     }
 
-    public boolean isPublicChat() { return Address.fromSerialized(id).isOpenGroup(); }
+    public boolean isOpenGroup() { return Address.fromSerialized(id).isOpenGroup(); }
 
     public boolean isRSSFeed() { return Address.fromSerialized(id).isRSSFeed(); }
 
-    public boolean isSignalGroup() { return Address.fromSerialized(id).isClosedGroup(); }
+    public boolean isClosedGroup() { return Address.fromSerialized(id).isClosedGroup(); }
 
     public String getUrl() { return url; }
 

@@ -80,16 +80,16 @@ public class ProfilePreference extends Preference {
     if (profileNumberView == null) return;
 
     Context context = getContext();
-    String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context);
-    String primaryDevicePublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
-    String publicKey = primaryDevicePublicKey != null ? primaryDevicePublicKey : userHexEncodedPublicKey;
-    final Address localAddress = Address.fromSerialized(publicKey);
-    final Recipient recipient = Recipient.from(context, localAddress, false);
-    final String  profileName  = TextSecurePreferences.getProfileName(context);
+    String userPublicKey = TextSecurePreferences.getLocalNumber(context);
+    String masterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+    String publicKeyToUse = masterPublicKey != null ? masterPublicKey : userPublicKey;
+    final Address address = Address.fromSerialized(publicKeyToUse);
+    final Recipient recipient = Recipient.from(context, address, false);
+    final String displayName  = TextSecurePreferences.getProfileName(context);
 
     containerView.setOnLongClickListener(v -> {
       ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-      ClipData clip = ClipData.newPlainText("Public Key", publicKey);
+      ClipData clip = ClipData.newPlainText("Public Key", publicKeyToUse);
       clipboard.setPrimaryClip(clip);
       Toast.makeText(context, R.string.activity_settings_public_key_copied_message, Toast.LENGTH_SHORT).show();
       return true;
@@ -114,17 +114,17 @@ public class ProfilePreference extends Preference {
             .into(avatarView);
 
 
-    if (!TextUtils.isEmpty(profileName)) {
-      profileNameView.setText(profileName);
+    if (!TextUtils.isEmpty(displayName)) {
+      profileNameView.setText(displayName);
     }
 
-    profileNameView.setVisibility(TextUtils.isEmpty(profileName) ? View.GONE : View.VISIBLE);
-    profileNumberView.setText(localAddress.toPhoneString());
+    profileNameView.setVisibility(TextUtils.isEmpty(displayName) ? View.GONE : View.VISIBLE);
+    profileNumberView.setText(address.toPhoneString());
 
-    profileTagView.setVisibility(primaryDevicePublicKey == null ? View.GONE : View.VISIBLE);
-    if (primaryDevicePublicKey != null && ourDeviceWords == null) {
+    profileTagView.setVisibility(masterPublicKey == null ? View.GONE : View.VISIBLE);
+    if (masterPublicKey != null && ourDeviceWords == null) {
       MnemonicCodec codec = new MnemonicCodec(MnemonicUtilities.getLanguageFileDirectory(context));
-      ourDeviceWords = MnemonicUtilities.getFirst3Words(codec, userHexEncodedPublicKey);
+      ourDeviceWords = MnemonicUtilities.getFirst3Words(codec, userPublicKey);
     }
 
     String tag = context.getResources().getString(R.string.activity_settings_linked_device_tag);

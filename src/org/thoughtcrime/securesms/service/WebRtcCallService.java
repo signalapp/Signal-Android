@@ -1010,7 +1010,6 @@ public class WebRtcCallService extends Service implements InjectableType,
     Callable<Boolean> callable = new Callable<Boolean>() {
       @Override
       public Boolean call() throws Exception {
-        // TODO: Message ID
         messageSender.sendCallMessage(new SignalServiceAddress(recipient.getAddress().toPhoneString()),
                                       UnidentifiedAccessUtil.getAccessFor(WebRtcCallService.this, recipient),
                                       callMessage);

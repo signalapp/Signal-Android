@@ -55,6 +55,7 @@ public class RotateSignedPreKeyJob extends BaseJob implements InjectableType {
     IdentityKeyPair    identityKey        = IdentityKeyUtil.getIdentityKeyPair(context);
     SignedPreKeyRecord signedPreKeyRecord = PreKeyUtil.generateSignedPreKey(context, identityKey, false);
 
+    // Loki - Don't upload the new signed pre key
     // accountManager.setSignedPreKey(signedPreKeyRecord);
 
     PreKeyUtil.setActiveSignedPreKeyId(context, signedPreKeyRecord.getId());

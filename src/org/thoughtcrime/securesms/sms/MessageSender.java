@@ -47,7 +47,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.BackgroundMessage;
 import org.thoughtcrime.securesms.loki.FriendRequestHandler;
-import org.thoughtcrime.securesms.loki.MultiDeviceOpenGroupUpdateJob;
+import org.thoughtcrime.securesms.loki.protocol.MultiDeviceOpenGroupUpdateJob;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.loki.PushBackgroundMessageSendJob;
 import org.thoughtcrime.securesms.loki.PushMessageSyncSendJob;

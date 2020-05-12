@@ -3270,7 +3270,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     for (String device : devices) { MessageSender.sendRestoreSessionMessage(this, device); }
     long messageID = smsDatabase.insertMessageOutbox(threadId, new OutgoingTextMessage(recipient,"", 0, 0), false, System.currentTimeMillis(), null);
     if (messageID > -1) {
-      smsDatabase.markAsLokiSessionRestoreSent(messageID);
+      smsDatabase.markAsSentLokiSessionRestorationRequest(messageID);
     }
     lokiThreadDatabase.removeAllSessionRestoreDevices(threadId);
     updateSessionRestoreBanner();
