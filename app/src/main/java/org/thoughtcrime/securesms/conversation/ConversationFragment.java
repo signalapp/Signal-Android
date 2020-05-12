@@ -864,6 +864,8 @@ public class ConversationFragment extends Fragment {
   }
 
   private void presentConversationMetadata(@NonNull ConversationData conversation) {
+    Log.d(TAG, "presentConversationMetadata()");
+
     ConversationAdapter adapter = getListAdapter();
     if (adapter == null) {
       return;
@@ -946,9 +948,18 @@ public class ConversationFragment extends Fragment {
   private void moveToMessagePosition(int position, @Nullable Runnable onMessageNotFound) {
     if (position >= 0) {
       list.scrollToPosition(position);
-      getListAdapter().pulseHighlightItem(position);
+
+      if (getListAdapter() == null || getListAdapter().getItem(position) == null) {
+        Log.i(TAG, "[moveToMessagePosition] Position " + position + " not currently populated. Scheduling a jump.");
+        conversationViewModel.scheduleForNextMessageUpdate(() -> {
+          list.scrollToPosition(position);
+          getListAdapter().pulseHighlightItem(position);
+        });
+      } else {
+        getListAdapter().pulseHighlightItem(position);
+      }
     } else {
-      Log.w(TAG, "Tried to navigate to message, but it wasn't found.");
+      Log.w(TAG, "[moveToMessagePosition] Tried to navigate to message, but it wasn't found.");
       if (onMessageNotFound != null) {
         onMessageNotFound.run();
       }

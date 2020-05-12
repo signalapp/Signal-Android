@@ -3,8 +3,11 @@ package org.thoughtcrime.securesms.conversation;
 import android.app.Application;
 
 import androidx.annotation.NonNull;
+import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
@@ -17,9 +20,13 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaRepository;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
+import org.whispersystems.libsignal.util.Pair;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 class ConversationViewModel extends ViewModel {
 
@@ -32,8 +39,9 @@ class ConversationViewModel extends ViewModel {
   private final MutableLiveData<Long>              threadId;
   private final LiveData<PagedList<MessageRecord>> messages;
   private final LiveData<ConversationData>         conversationMetadata;
+  private final List<Runnable>                     onNextMessageLoad;
 
-  private int  jumpToPosition;
+  private int jumpToPosition;
 
   private ConversationViewModel() {
     this.context                = ApplicationDependencies.getApplication();
@@ -41,21 +49,27 @@ class ConversationViewModel extends ViewModel {
     this.conversationRepository = new ConversationRepository();
     this.recentMedia            = new MutableLiveData<>();
     this.threadId               = new MutableLiveData<>();
+    this.onNextMessageLoad      = new CopyOnWriteArrayList<>();
 
-    messages = Transformations.switchMap(threadId, thread -> {
-      DataSource.Factory<Integer, MessageRecord> factory = new ConversationDataSource.Factory(context, thread);
+    LiveData<Pair<Long, PagedList<MessageRecord>>> messagesForThreadId = Transformations.switchMap(threadId, thread -> {
+      DataSource.Factory<Integer, MessageRecord> factory = new ConversationDataSource.Factory(context, thread, this::onMessagesUpdated);
       PagedList.Config                           config  = new PagedList.Config.Builder()
                                                                                .setPageSize(25)
                                                                                .setInitialLoadSizeHint(25)
                                                                                .build();
 
-      return new LivePagedListBuilder<>(factory, config).setFetchExecutor(SignalExecutors.BOUNDED)
-                                                        .setInitialLoadKey(Math.max(jumpToPosition, 0))
-                                                        .build();
+      return Transformations.map(new LivePagedListBuilder<>(factory, config).setFetchExecutor(SignalExecutors.BOUNDED)
+                                                                            .setInitialLoadKey(Math.max(jumpToPosition, 0))
+                                                                            .build(),
+                                 input -> new Pair<>(thread, input));
     });
 
-    conversationMetadata = Transformations.switchMap(threadId, thread -> {
-      LiveData<ConversationData> data = conversationRepository.getConversationData(thread, jumpToPosition);
+    this.messages = Transformations.map(messagesForThreadId, Pair::second);
+
+    LiveData<Long> threadIdForLoadedMessages = Transformations.distinctUntilChanged(Transformations.map(messagesForThreadId, Pair::first));
+
+    conversationMetadata = Transformations.switchMap(threadIdForLoadedMessages, m -> {
+      LiveData<ConversationData> data = conversationRepository.getConversationData(m, jumpToPosition);
       jumpToPosition = -1;
       return data;
     });
@@ -92,6 +106,18 @@ class ConversationViewModel extends ViewModel {
     return conversationMetadata.getValue() != null ? conversationMetadata.getValue().getLastSeenPosition() : 0;
   }
 
+  void scheduleForNextMessageUpdate(@NonNull Runnable runnable) {
+    onNextMessageLoad.add(runnable);
+  }
+
+  private void onMessagesUpdated() {
+    for (Runnable runnable : onNextMessageLoad) {
+      runnable.run();
+    }
+
+    onNextMessageLoad.clear();
+  }
+
   static class Factory extends ViewModelProvider.NewInstanceFactory {
     @Override
     public @NonNull<T extends ViewModel> T create(@NonNull Class<T> modelClass) {
@@ -99,6 +125,4 @@ class ConversationViewModel extends ViewModel {
       return modelClass.cast(new ConversationViewModel());
     }
   }
-
-
 }
