@@ -20,19 +20,15 @@ import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SyncMessagesProtocol;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import kotlin.Unit;
 
 public class MarkReadReceiver extends BroadcastReceiver {
 
@@ -81,9 +77,8 @@ public class MarkReadReceiver extends BroadcastReceiver {
     for (MarkedMessageInfo messageInfo : markedReadMessages) {
       scheduleDeletion(context, messageInfo.getExpirationInfo());
 
-      if (SyncMessagesProtocol.shouldSyncReadReceipt(messageInfo.getSyncMessageId().getAddress())) {
-        syncMessageIds.add(messageInfo.getSyncMessageId());
-      }
+      if (!SyncMessagesProtocol.shouldSyncReadReceipt(messageInfo.getSyncMessageId().getAddress())) { continue; }
+      syncMessageIds.add(messageInfo.getSyncMessageId());
     }
 
     ApplicationContext.getInstance(context)
@@ -96,12 +91,15 @@ public class MarkReadReceiver extends BroadcastReceiver {
 
     for (Address address : addressMap.keySet()) {
       List<Long> timestamps = Stream.of(addressMap.get(address)).map(SyncMessageId::getTimetamp).toList();
+      // Loki - Check whether we want to send a read receipt to this user
+      if (!SessionMetaProtocol.shouldSendReadReceipt(address, context)) { continue; }
+      // Loki - Take into account multi device
       Set<String> linkedDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(address.serialize());
       for (String device : linkedDevices) {
-        if (!SessionMetaProtocol.shouldSendReadReceipt(device, context)) { continue; }
+        Address deviceAsAddress = Address.fromExternal(context, device);
         ApplicationContext.getInstance(context)
                 .getJobManager()
-                .add(new SendReadReceiptJob(address, timestamps));
+                .add(new SendReadReceiptJob(deviceAsAddress, timestamps));
       }
     }
   }

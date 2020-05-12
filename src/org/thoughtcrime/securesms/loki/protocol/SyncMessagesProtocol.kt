@@ -6,6 +6,6 @@ object SyncMessagesProtocol {
 
     @JvmStatic
     fun shouldSyncReadReceipt(address: Address): Boolean {
-        return !address.isOpenGroup
+        return !address.isGroup
     }
 }

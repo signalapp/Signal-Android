@@ -10,7 +10,6 @@ import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -22,7 +21,9 @@ import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage.
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
@@ -85,11 +86,11 @@ public class TypingSendJob extends BaseJob implements InjectableType {
       throw new IllegalStateException("Tried to send a typing indicator to a non-existent thread.");
     }
 
-    List<Recipient>  recipients = Collections.singletonList(recipient);
-    Optional<byte[]> groupId    = Optional.absent();
+    Set<Recipient> recipients = new HashSet<>(Collections.singletonList(recipient));
+    Optional<byte[]> groupId  = Optional.absent();
 
     if (recipient.isGroupRecipient()) {
-      recipients = DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.getAddress().toGroupString(), false);
+      recipients = new HashSet<>(DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.getAddress().toGroupString(), false));
       groupId    = Optional.of(GroupUtil.getDecodedId(recipient.getAddress().toGroupString()));
     }
 
@@ -97,9 +98,7 @@ public class TypingSendJob extends BaseJob implements InjectableType {
     List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = Stream.of(recipients).map(r -> UnidentifiedAccessUtil.getAccessFor(context, r)).toList();
     SignalServiceTypingMessage             typingMessage      = new SignalServiceTypingMessage(typing ? Action.STARTED : Action.STOPPED, System.currentTimeMillis(), groupId);
 
-    if (SessionMetaProtocol.shouldSendTypingIndicator(recipient, context)) {
-      messageSender.sendTyping(addresses, unidentifiedAccess, typingMessage);
-    }
+    messageSender.sendTyping(addresses, unidentifiedAccess, typingMessage);
   }
 
   @Override
