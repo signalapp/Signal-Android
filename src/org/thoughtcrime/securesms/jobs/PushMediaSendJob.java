@@ -45,9 +45,6 @@ import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.loki.api.LokiAPI;
-import org.whispersystems.signalservice.loki.protocol.multidevice.LokiDeviceLinkUtilities;
-import org.whispersystems.signalservice.loki.protocol.syncmessages.LokiSyncMessage;
-import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -76,33 +73,37 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
   private long templateMessageId; // The message ID of the message to template this send job from
 
   // Loki - Multi device
-  private Address destination; // Destination to check whether this is another device we're sending to
-  private boolean isFriendRequest; // Whether this is a friend request message
+  private Address destination; // Used to check whether this is another device we're sending to
+  private boolean isLokiPreKeyBundleMessage; // Whether this is a friend request / session request / device link message
   private String customFriendRequestMessage; // If this isn't set then we use the message body
-  private boolean shouldSendSyncMessage;
 
-  public PushMediaSendJob(long messageId, Address destination) { this(messageId, messageId, destination); }
-  public PushMediaSendJob(long templateMessageId, long messageId, Address destination) { this(templateMessageId, messageId, destination, false, null, false); }
-  public PushMediaSendJob(long templateMessageId, long messageId, Address destination, boolean isFriendRequest, String customFriendRequestMessage, boolean shouldSendSyncMessage) {
-    this(constructParameters(destination), templateMessageId, messageId, destination, isFriendRequest, customFriendRequestMessage, shouldSendSyncMessage);
+  public PushMediaSendJob(long messageId, Address destination) {
+    this(messageId, messageId, destination);
   }
 
-  private PushMediaSendJob(@NonNull Job.Parameters parameters, long templateMessageId, long messageId, Address destination, boolean isFriendRequest, String customFriendRequestMessage, boolean shouldSendSyncMessage) {
+  public PushMediaSendJob(long templateMessageId, long messageId, Address destination) {
+    this(templateMessageId, messageId, destination, false, null);
+  }
+
+  public PushMediaSendJob(long templateMessageId, long messageId, Address destination, boolean isLokiPreKeyBundleMessage, String customFriendRequestMessage) {
+    this(constructParameters(destination), templateMessageId, messageId, destination, isLokiPreKeyBundleMessage, customFriendRequestMessage);
+  }
+
+  private PushMediaSendJob(@NonNull Job.Parameters parameters, long templateMessageId, long messageId, Address destination, boolean isLokiPreKeyBundleMessage, String customFriendRequestMessage) {
     super(parameters);
     this.templateMessageId = templateMessageId;
     this.messageId = messageId;
     this.destination = destination;
-    this.isFriendRequest = isFriendRequest;
+    this.isLokiPreKeyBundleMessage = isLokiPreKeyBundleMessage;
     this.customFriendRequestMessage = customFriendRequestMessage;
-    this.shouldSendSyncMessage = shouldSendSyncMessage;
   }
 
-  public static void enqueue(@NonNull Context context, @NonNull JobManager jobManager, long messageId, @NonNull Address destination, boolean shouldSendSyncMessage) {
-    enqueue(context, jobManager, messageId, messageId, destination, false, null, shouldSendSyncMessage);
+  public static void enqueue(@NonNull Context context, @NonNull JobManager jobManager, long messageId, @NonNull Address destination) {
+    enqueue(context, jobManager, messageId, messageId, destination, false, null);
   }
 
-  public static void enqueue(@NonNull Context context, @NonNull JobManager jobManager, long templateMessageId, long messageId, @NonNull Address destination, Boolean isFriendRequest, @Nullable String customFriendRequestMessage, boolean shouldSendSyncMessage) {
-    enqueue(context, jobManager, Collections.singletonList(new PushMediaSendJob(templateMessageId, messageId, destination, isFriendRequest, customFriendRequestMessage, shouldSendSyncMessage)));
+  public static void enqueue(@NonNull Context context, @NonNull JobManager jobManager, long templateMessageId, long messageId, @NonNull Address destination, Boolean isFriendRequest, @Nullable String customFriendRequestMessage) {
+    enqueue(context, jobManager, Collections.singletonList(new PushMediaSendJob(templateMessageId, messageId, destination, isFriendRequest, customFriendRequestMessage)));
   }
 
   @WorkerThread
@@ -147,8 +148,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
             .putLong(KEY_TEMPLATE_MESSAGE_ID, templateMessageId)
             .putLong(KEY_MESSAGE_ID, messageId)
             .putString(KEY_DESTINATION, destination.serialize())
-            .putBoolean(KEY_IS_FRIEND_REQUEST, isFriendRequest)
-            .putBoolean(KEY_SHOULD_SEND_SYNC_MESSAGE, shouldSendSyncMessage);
+            .putBoolean(KEY_IS_FRIEND_REQUEST, isLokiPreKeyBundleMessage);
 
     if (customFriendRequestMessage != null) { builder.putString(KEY_CUSTOM_FR_MESSAGE, customFriendRequestMessage); }
     return builder.build();
@@ -233,15 +233,17 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       }
     } catch (LokiAPI.Error e) {
       Log.d("Loki", "Couldn't send message due to error: " + e.getDescription());
-      if (messageId < 0) { return; }
-      LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
-      lokiMessageDatabase.setErrorMessage(messageId, e.getDescription());
-      database.markAsSentFailed(messageId);
+      if (messageId >= 0) {
+        LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
+        lokiMessageDatabase.setErrorMessage(messageId, e.getDescription());
+        database.markAsSentFailed(messageId);
+      }
     }
   }
 
   @Override
   public boolean onShouldRetry(@NonNull Exception exception) {
+    // Loki - Disable since we have our own retrying
     return false;
   }
 
@@ -268,9 +270,15 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       List<SharedContact>                        sharedContacts     = getSharedContactsFor(message);
       List<Preview>                              previews           = getPreviewsFor(message);
 
-      // Loki - Include a pre key bundle if the message is a friend request or an end session message
-      PreKeyBundle preKeyBundle = isFriendRequest ? DatabaseFactory.getLokiPreKeyBundleDatabase(context).generatePreKeyBundle(address.getNumber()) : null;
-      String body = (isFriendRequest && customFriendRequestMessage != null) ? customFriendRequestMessage : message.getBody();
+      // Loki - Include a pre key bundle if needed
+      PreKeyBundle preKeyBundle;
+      if (isLokiPreKeyBundleMessage) {
+        preKeyBundle = DatabaseFactory.getLokiPreKeyBundleDatabase(context).generatePreKeyBundle(address.getNumber());
+      } else {
+        preKeyBundle = null;
+      }
+
+      String body = (isLokiPreKeyBundleMessage && customFriendRequestMessage != null) ? customFriendRequestMessage : message.getBody();
       SignalServiceDataMessage mediaMessage = SignalServiceDataMessage.newBuilder()
                                                                       .withBody(body)
                                                                       .withAttachments(serviceAttachments)
@@ -283,25 +291,17 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
                                                                       .withPreviews(previews)
                                                                       .asExpirationUpdate(message.isExpirationUpdate())
                                                                       .withPreKeyBundle(preKeyBundle)
-                                                                      .asFriendRequest(isFriendRequest)
+                                                                      .asFriendRequest(isLokiPreKeyBundleMessage)
                                                                       .build();
 
       if (address.getNumber().equals(TextSecurePreferences.getLocalNumber(context))) {
         Optional<UnidentifiedAccessPair> syncAccess  = UnidentifiedAccessUtil.getAccessForSync(context);
         SignalServiceSyncMessage         syncMessage = buildSelfSendSyncMessage(context, mediaMessage, syncAccess);
 
-        messageSender.sendMessage(templateMessageId, syncMessage, syncAccess);
+        messageSender.sendMessage(syncMessage, syncAccess);
         return syncAccess.isPresent();
       } else {
-        LokiSyncMessage syncMessage = null;
-        if (shouldSendSyncMessage) {
-          // Set the sync message destination to the master device, this way it will show that we sent a message to the master device and not the slave device
-          String masterDevice = PromiseUtil.get(LokiDeviceLinkUtilities.INSTANCE.getMasterHexEncodedPublicKey(address.getNumber()), null);
-          SignalServiceAddress masterAddress = masterDevice == null ? address : new SignalServiceAddress(masterDevice);
-          // We also need to use the original message ID and not -1
-          syncMessage = new LokiSyncMessage(masterAddress, templateMessageId);
-        }
-        SendMessageResult result = messageSender.sendMessage(messageId, address, UnidentifiedAccessUtil.getAccessFor(context, recipient), mediaMessage, Optional.fromNullable(syncMessage));
+        SendMessageResult result = messageSender.sendMessage(messageId, address, UnidentifiedAccessUtil.getAccessFor(context, recipient), mediaMessage);
         if (result.getLokiAPIError() != null) {
           throw result.getLokiAPIError();
         } else {
@@ -326,10 +326,9 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       long templateMessageID = data.getLong(KEY_TEMPLATE_MESSAGE_ID);
       long messageID = data.getLong(KEY_MESSAGE_ID);
       Address destination = Address.fromSerialized(data.getString(KEY_DESTINATION));
-      boolean isFriendRequest = data.getBoolean(KEY_IS_FRIEND_REQUEST);
-      boolean shouldSendSyncMessage = data.getBoolean(KEY_SHOULD_SEND_SYNC_MESSAGE);
-      String frMessage = data.hasString(KEY_CUSTOM_FR_MESSAGE) ? data.getString(KEY_CUSTOM_FR_MESSAGE) : null;
-      return new PushMediaSendJob(parameters, templateMessageID, messageID, destination, isFriendRequest, frMessage, shouldSendSyncMessage);
+      boolean isLokiPreKeyBundleMessage = data.getBoolean(KEY_IS_FRIEND_REQUEST);
+      String customFRMessage = data.hasString(KEY_CUSTOM_FR_MESSAGE) ? data.getString(KEY_CUSTOM_FR_MESSAGE) : null;
+      return new PushMediaSendJob(parameters, templateMessageID, messageID, destination, isLokiPreKeyBundleMessage, customFRMessage);
     }
   }
 }

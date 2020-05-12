@@ -33,7 +33,6 @@ import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSy
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.loki.api.LokiAPI;
-import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
 import java.io.IOException;
 
@@ -59,7 +58,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
 
   // Loki - Multi device
   private Address destination; // Used to check whether this is another device we're sending to
-  private boolean isLokiPreKeyBundleMessage; // Whether this is a friend request message
+  private boolean isLokiPreKeyBundleMessage; // Whether this is a friend request / session request / device link message
   private String customFriendRequestMessage; // If this isn't set then we use the message body
 
   public PushTextSendJob(long messageId, Address destination) {
@@ -89,8 +88,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
             .putLong(KEY_TEMPLATE_MESSAGE_ID, templateMessageId)
             .putLong(KEY_MESSAGE_ID, messageId)
             .putString(KEY_DESTINATION, destination.serialize())
-            .putBoolean(KEY_IS_FRIEND_REQUEST, isLokiPreKeyBundleMessage)
-            .putBoolean(KEY_SHOULD_SEND_SYNC_MESSAGE, shouldSendSyncMessage);
+            .putBoolean(KEY_IS_FRIEND_REQUEST, isLokiPreKeyBundleMessage);
 
     if (customFriendRequestMessage != null) { builder.putString(KEY_CUSTOM_FR_MESSAGE, customFriendRequestMessage); }
     return builder.build();
@@ -216,7 +214,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
 
       log(TAG, "Have access key to use: " + unidentifiedAccess.isPresent());
 
-      // Loki - Include a pre key bundle if the message is a friend request or an end session message
+      // Loki - Include a pre key bundle if needed
       PreKeyBundle preKeyBundle;
       if (isLokiPreKeyBundleMessage || message.isEndSession()) {
         preKeyBundle = DatabaseFactory.getLokiPreKeyBundleDatabase(context).generatePreKeyBundle(address.getNumber());
