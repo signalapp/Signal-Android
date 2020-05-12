@@ -759,7 +759,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private void handleOpenGroupSyncMessage(@NonNull List<LokiPublicChat> openGroups) {
     try {
       for (LokiPublicChat openGroup : openGroups) {
-        long threadID = GroupManager.getPublicChatThreadId(openGroup.getId(), context);
+        long threadID = GroupManager.getOpenGroupThreadID(openGroup.getId(), context);
         if (threadID > -1) continue;
 
         String url = openGroup.getServer();

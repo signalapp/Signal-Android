@@ -15,7 +15,7 @@ object OpenGroupUtilities {
   @JvmStatic fun addGroup(context: Context, url: String, channel: Long): Promise<LokiPublicChat, Exception> {
     // Check for an existing group
     val groupID = LokiPublicChat.getId(channel, url)
-    val threadID = GroupManager.getPublicChatThreadId(groupID, context)
+    val threadID = GroupManager.getOpenGroupThreadID(groupID, context)
     val openGroup = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID)
     if (openGroup != null) { return Promise.of(openGroup) }
     // Add the new group

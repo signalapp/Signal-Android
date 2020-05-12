@@ -49,7 +49,7 @@ class MultiDeviceOpenGroupUpdateJob private constructor(parameters: Parameters) 
         val record = reader.next ?: return@use
         if (!record.isPublicChat) { continue; }
 
-        val threadID = GroupManager.getThreadIdFromGroupId(record.encodedId, context)
+        val threadID = GroupManager.getThreadIDFromGroupID(record.encodedId, context)
         val openGroup = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID)
         if (openGroup != null) {
           openGroups.add(openGroup)

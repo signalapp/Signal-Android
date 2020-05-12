@@ -52,7 +52,7 @@ class UserView : LinearLayout {
                 profilePictureView.additionalHexEncodedPublicKey = null
                 profilePictureView.isRSSFeed = true
             } else {
-                val threadID = GroupManager.getThreadIdFromGroupId(address, context)
+                val threadID = GroupManager.getThreadIDFromGroupID(address, context)
                 val users = MentionsManager.shared.userHexEncodedPublicKeyCache[threadID]?.toList() ?: listOf()
                 val randomUsers = users.sorted() // Sort to provide a level of stability
                 profilePictureView.hexEncodedPublicKey = randomUsers.getOrNull(0) ?: ""
