@@ -1072,16 +1072,10 @@ public class SignalServiceMessageSender {
   }
 
   private static GroupContextV2 createGroupContent(SignalServiceGroupV2 group) {
-    GroupContextV2.Builder builder = GroupContextV2.newBuilder()
-                                                   .setMasterKey(ByteString.copyFrom(group.getMasterKey().serialize()))
-                                                   .setRevision(group.getRevision());
-
-    byte[] signedGroupChange = group.getSignedGroupChange();
-    if (signedGroupChange != null) {
-      builder.setGroupChange(ByteString.copyFrom(signedGroupChange));
-    }
-
-    return builder.build();
+    return GroupContextV2.newBuilder()
+                         .setMasterKey(ByteString.copyFrom(group.getMasterKey().serialize()))
+                         .setRevision(group.getRevision())
+                         .build();
   }
 
   private List<DataMessage.Contact> createSharedContactContent(List<SharedContact> contacts) throws IOException {
