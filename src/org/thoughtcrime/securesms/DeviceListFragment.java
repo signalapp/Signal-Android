@@ -39,7 +39,7 @@ import kotlin.Pair;
 import kotlin.Unit;
 import network.loki.messenger.R;
 
-import static org.thoughtcrime.securesms.loki.GeneralUtilitiesKt.toPx;
+import static org.thoughtcrime.securesms.loki.utilities.GeneralUtilitiesKt.toPx;
 
 public class DeviceListFragment extends ListFragment
     implements LoaderManager.LoaderCallbacks<List<Device>>,

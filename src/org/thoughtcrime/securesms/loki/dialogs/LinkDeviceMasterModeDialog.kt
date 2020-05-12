@@ -12,7 +12,7 @@ import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.dialog_link_device_master_mode.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.loki.toPx
+import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
 import org.thoughtcrime.securesms.loki.utilities.QRCodeUtilities
 import org.thoughtcrime.securesms.util.TextSecurePreferences

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki
+package org.thoughtcrime.securesms.loki.todo
 
 class RNG(hash: Long) {
   private var seed: Long

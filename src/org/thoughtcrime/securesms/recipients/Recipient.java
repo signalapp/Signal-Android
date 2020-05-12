@@ -43,7 +43,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.JazzIdenticonContactPhoto;
+import org.thoughtcrime.securesms.loki.todo.JazzIdenticonContactPhoto;
 import org.thoughtcrime.securesms.loki.RecipientAvatarModifiedEvent;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.RecipientProvider.RecipientDetails;

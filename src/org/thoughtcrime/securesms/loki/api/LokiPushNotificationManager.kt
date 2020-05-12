@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki
+package org.thoughtcrime.securesms.loki.api
 
 import android.content.Context
 import okhttp3.*
@@ -20,7 +20,7 @@ object LokiPushNotificationManager {
     @JvmStatic
     fun unregister(token: String, context: Context?) {
         val parameters = mapOf( "token" to token )
-        val url = "${server}/register"
+        val url = "$server/register"
         val body = RequestBody.create(MediaType.get("application/json"), JsonUtil.toJson(parameters))
         val request = Request.Builder().url(url).post(body).build()
         connection.newCall(request).enqueue(object : Callback {
@@ -52,7 +52,7 @@ object LokiPushNotificationManager {
         val lastUploadDate = TextSecurePreferences.getLastFCMUploadTime(context)
         if (!force && token == oldToken && System.currentTimeMillis() - lastUploadDate < tokenExpirationInterval) { return }
         val parameters = mapOf( "token" to token, "pubKey" to hexEncodedPublicKey )
-        val url = "${server}/register"
+        val url = "$server/register"
         val body = RequestBody.create(MediaType.get("application/json"), JsonUtil.toJson(parameters))
         val request = Request.Builder().url(url).post(body).build()
         connection.newCall(request).enqueue(object : Callback {

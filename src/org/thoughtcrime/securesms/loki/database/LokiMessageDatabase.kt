@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki
+package org.thoughtcrime.securesms.loki.database
 
 import android.content.ContentValues
 import android.content.Context
@@ -37,7 +37,7 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
     fun getServerID(messageID: Long): Long? {
         val database = databaseHelper.readableDatabase
         return database.get(messageFriendRequestTableName, "${Companion.messageID} = ?", arrayOf( messageID.toString() )) { cursor ->
-            cursor.getInt(Companion.serverID)
+            cursor.getInt(serverID)
         }?.toLong()
     }
 
@@ -59,7 +59,7 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
     fun getOriginalThreadID(messageID: Long): Long {
         val database = databaseHelper.readableDatabase
         return database.get(messageThreadMappingTableName, "${Companion.messageID} = ?", arrayOf( messageID.toString() )) { cursor ->
-            cursor.getInt(Companion.threadID)
+            cursor.getInt(threadID)
         }?.toLong() ?: -1L
     }
 

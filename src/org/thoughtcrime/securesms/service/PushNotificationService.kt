@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.service
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob
-import org.thoughtcrime.securesms.loki.LokiPushNotificationManager
+import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.libsignal.logging.Log
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope

@@ -7,7 +7,7 @@ import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_device.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.devicelist.Device
-import org.thoughtcrime.securesms.loki.toPx
+import org.thoughtcrime.securesms.loki.utilities.toPx
 
 class DeviceView : LinearLayout {
     var device: Device? = null

@@ -21,8 +21,8 @@ import android.view.MotionEvent
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.loki.getColorWithID
-import org.thoughtcrime.securesms.loki.toPx
+import org.thoughtcrime.securesms.loki.utilities.getColorWithID
+import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.loki.utilities.*
 
 class NewConversationButtonSetView : RelativeLayout {

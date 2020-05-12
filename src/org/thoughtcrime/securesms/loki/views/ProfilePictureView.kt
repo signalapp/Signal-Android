@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.view_profile_picture.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto
 import org.thoughtcrime.securesms.database.Address
-import org.thoughtcrime.securesms.loki.JazzIdenticonDrawable
+import org.thoughtcrime.securesms.loki.todo.JazzIdenticonDrawable
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences

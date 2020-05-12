@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki
+package org.thoughtcrime.securesms.loki.database
 
 import android.content.ContentValues
 import android.content.Context
@@ -45,11 +45,8 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
 
     fun getFriendRequestStatus(threadID: Long): LokiThreadFriendRequestStatus {
         if (threadID < 0) { return LokiThreadFriendRequestStatus.NONE }
-
-        // Loki - Friend request logic doesn't apply to group chats, always treat them as friends
         val recipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadID)
         if (recipient != null && recipient.isGroupRecipient) { return LokiThreadFriendRequestStatus.FRIENDS; }
-
         val database = databaseHelper.readableDatabase
         val result = database.get(friendRequestTableName, "${Companion.threadID} = ?", arrayOf( threadID.toString() )) { cursor ->
             cursor.getInt(friendRequestStatus)

@@ -15,8 +15,8 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
-import org.thoughtcrime.securesms.loki.getColorWithID
-import org.thoughtcrime.securesms.loki.toPx
+import org.thoughtcrime.securesms.loki.utilities.getColorWithID
+import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.whispersystems.signalservice.loki.protocol.todo.LokiMessageFriendRequestStatus
 
 class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : LinearLayout(context, attrs, defStyleAttr) {

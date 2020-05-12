@@ -10,7 +10,6 @@ import android.util.Range
 import network.loki.messenger.R
 import nl.komponents.kovenant.combine.Tuple2
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.loki.getColorWithID
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import java.util.regex.Pattern
 
