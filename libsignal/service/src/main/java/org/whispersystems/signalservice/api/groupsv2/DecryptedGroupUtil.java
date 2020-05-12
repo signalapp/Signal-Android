@@ -252,6 +252,12 @@ public final class DecryptedGroupUtil {
     return -1;
   }
 
+  public static Optional<UUID> findInviter(List<DecryptedPendingMember> pendingMembersList, UUID uuid) {
+    return Optional.fromNullable(findPendingByUuid(pendingMembersList, uuid).transform(DecryptedPendingMember::getAddedByUuid)
+                                                                            .transform(UuidUtil::fromByteStringOrNull)
+                                                                            .orNull());
+  }
+
   public static class NotAbleToApplyChangeException extends Throwable {
   }
 }

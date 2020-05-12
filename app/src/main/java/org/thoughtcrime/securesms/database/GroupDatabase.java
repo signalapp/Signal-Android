@@ -496,6 +496,11 @@ public final class GroupDatabase extends Database {
     }
   }
 
+  @WorkerThread
+  public boolean isPendingMember(@NonNull GroupId.Push groupId, @NonNull Recipient recipient) {
+    return getGroup(groupId).transform(g -> g.isPendingMember(recipient)).or(false);
+  }
+
   private static String serializeV2GroupMembers(@NonNull Context context, @NonNull DecryptedGroup decryptedGroup) {
     List<RecipientId> groupMembers  = new ArrayList<>(decryptedGroup.getMembersCount());
 
@@ -706,6 +711,17 @@ public final class GroupDatabase extends Database {
       } else {
         return id.isV1() ? GroupAccessControl.ALL_MEMBERS : GroupAccessControl.ONLY_ADMINS;
       }
+    }
+
+    boolean isPendingMember(@NonNull Recipient recipient) {
+      if (isV2Group()) {
+        Optional<UUID> uuid = recipient.getUuid();
+        if (uuid.isPresent()) {
+          return DecryptedGroupUtil.findPendingByUuid(requireV2GroupProperties().getDecryptedGroup().getPendingMembersList(), uuid.get())
+                                   .isPresent();
+        }
+      }
+      return false;
     }
   }
 

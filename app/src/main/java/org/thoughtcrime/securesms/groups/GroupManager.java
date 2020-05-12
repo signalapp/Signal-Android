@@ -183,6 +183,8 @@ public final class GroupManager {
   {
     try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
       editor.acceptInvite();
+      DatabaseFactory.getGroupDatabase(context)
+                     .setActive(groupId, true);
     }
   }
 

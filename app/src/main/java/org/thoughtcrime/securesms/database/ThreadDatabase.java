@@ -31,6 +31,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
+import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
@@ -51,6 +52,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -61,6 +63,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 public class ThreadDatabase extends Database {
 
@@ -761,12 +764,21 @@ public class ThreadDatabase extends Database {
     RecipientId threadRecipientId      = getRecipientIdForThreadId(record.getThreadId());
 
     if (!messageRequestAccepted && threadRecipientId != null) {
-      boolean isPushGroup = Recipient.resolved(threadRecipientId).isPushGroup();
-      if (isPushGroup) {
-        RecipientId recipientId = DatabaseFactory.getMmsSmsDatabase(context).getGroupAddedBy(record.getThreadId());
+      Recipient resolved = Recipient.resolved(threadRecipientId);
+      if (resolved.isPushGroup()) {
+        if (resolved.isPushV2Group()) {
+          DecryptedGroup decryptedGroup = DatabaseFactory.getGroupDatabase(context).requireGroup(resolved.requireGroupId().requireV2()).requireV2GroupProperties().getDecryptedGroup();
+          Optional<UUID> inviter        = DecryptedGroupUtil.findInviter(decryptedGroup.getPendingMembersList(), Recipient.self().getUuid().get());
 
-        if (recipientId != null) {
-          return Extra.forGroupMessageRequest(recipientId);
+          RecipientId recipientId = inviter.isPresent() ? RecipientId.from(inviter.get(), null) : RecipientId.UNKNOWN;
+
+          return Extra.forGroupV2invite(recipientId);
+        } else {
+          RecipientId recipientId = DatabaseFactory.getMmsSmsDatabase(context).getGroupAddedBy(record.getThreadId());
+
+          if (recipientId != null) {
+            return Extra.forGroupMessageRequest(recipientId);
+          }
         }
       }
 
@@ -903,6 +915,7 @@ public class ThreadDatabase extends Database {
     @JsonProperty private final boolean isAlbum;
     @JsonProperty private final boolean isRemoteDelete;
     @JsonProperty private final boolean isMessageRequestAccepted;
+    @JsonProperty private final boolean isGv2Invite;
     @JsonProperty private final String  groupAddedBy;
 
     public Extra(@JsonProperty("isRevealable") boolean isRevealable,
@@ -910,6 +923,7 @@ public class ThreadDatabase extends Database {
                  @JsonProperty("isAlbum") boolean isAlbum,
                  @JsonProperty("isRemoteDelete") boolean isRemoteDelete,
                  @JsonProperty("isMessageRequestAccepted") boolean isMessageRequestAccepted,
+                 @JsonProperty("isGv2Invite") boolean isGv2Invite,
                  @JsonProperty("groupAddedBy") String groupAddedBy)
     {
       this.isRevealable             = isRevealable;
@@ -917,31 +931,36 @@ public class ThreadDatabase extends Database {
       this.isAlbum                  = isAlbum;
       this.isRemoteDelete           = isRemoteDelete;
       this.isMessageRequestAccepted = isMessageRequestAccepted;
+      this.isGv2Invite              = isGv2Invite;
       this.groupAddedBy             = groupAddedBy;
     }
 
     public static @NonNull Extra forViewOnce() {
-      return new Extra(true, false, false, false, true, null);
+      return new Extra(true, false, false, false, true, false, null);
     }
 
     public static @NonNull Extra forSticker() {
-      return new Extra(false, true, false, false, true, null);
+      return new Extra(false, true, false, false, true, false, null);
     }
 
     public static @NonNull Extra forAlbum() {
-      return new Extra(false, false, true, false, true, null);
+      return new Extra(false, false, true, false, true, false, null);
     }
 
     public static @NonNull Extra forRemoteDelete() {
-      return new Extra(false, false, false, true, true, null);
+      return new Extra(false, false, false, true, true, false, null);
     }
 
     public static @NonNull Extra forMessageRequest() {
-      return new Extra(false, false, false, false, false, null);
+      return new Extra(false, false, false, false, false, false, null);
     }
 
     public static @NonNull Extra forGroupMessageRequest(RecipientId recipientId) {
-      return new Extra(false, false, false, false, false, recipientId.serialize());
+      return new Extra(false, false, false, false, false, false, recipientId.serialize());
+    }
+
+    public static @NonNull Extra forGroupV2invite(RecipientId recipientId) {
+      return new Extra(false, false, false, false, false, true, recipientId.serialize());
     }
 
     public boolean isViewOnce() {
@@ -962,6 +981,10 @@ public class ThreadDatabase extends Database {
 
     public boolean isMessageRequestAccepted() {
       return isMessageRequestAccepted;
+    }
+
+    public boolean isGv2Invite() {
+      return isGv2Invite;
     }
 
     public @Nullable String getGroupAddedBy() {

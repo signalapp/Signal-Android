@@ -603,6 +603,11 @@ public class Recipient {
     return groupId != null && groupId.isPush();
   }
 
+  public boolean isPushV1Group() {
+    GroupId groupId = resolve().groupId;
+    return groupId != null && groupId.isV1();
+  }
+
   public boolean isPushV2Group() {
     GroupId groupId = resolve().groupId;
     return groupId != null && groupId.isV2();

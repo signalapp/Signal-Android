@@ -19,12 +19,13 @@ package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
 import android.net.Uri;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
@@ -79,7 +80,9 @@ public class ThreadRecord extends DisplayRecord {
   @Override
   public SpannableString getDisplayBody(@NonNull Context context) {
     if (getGroupAddedBy() != null) {
-      return emphasisAdded(context.getString(R.string.ThreadRecord_s_added_you_to_the_group, Recipient.live(getGroupAddedBy()).get().getDisplayName(context)));
+      return emphasisAdded(context.getString(isGv2Invite() ? R.string.ThreadRecord_s_invited_you_to_the_group
+                                                           : R.string.ThreadRecord_s_added_you_to_the_group,
+                           Recipient.live(getGroupAddedBy()).get().getDisplayName(context)));
     } else if (!isMessageRequestAccepted()) {
       return emphasisAdded(context.getString(R.string.ThreadRecord_message_request));
     } else if (isGroupUpdate()) {
@@ -192,6 +195,10 @@ public class ThreadRecord extends DisplayRecord {
   public @Nullable RecipientId getGroupAddedBy() {
     if (extra != null && extra.getGroupAddedBy() != null) return RecipientId.from(extra.getGroupAddedBy());
     else                                                  return null;
+  }
+
+  public boolean isGv2Invite() {
+    return extra != null && extra.isGv2Invite();
   }
 
   public boolean isMessageRequestAccepted() {

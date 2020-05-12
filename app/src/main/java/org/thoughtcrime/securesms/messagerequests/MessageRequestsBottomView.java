@@ -65,7 +65,11 @@ public class MessageRequestsBottomView extends ConstraintLayout {
       blockedButtons.setVisibility(VISIBLE);
     } else {
       if (recipient.isGroup()) {
-        question.setText(HtmlCompat.fromHtml(getContext().getString(R.string.MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept, HtmlUtil.bold(recipient.getDisplayName(getContext()))), 0));
+        if (recipient.isPushV2Group()) {
+          question.setText(HtmlCompat.fromHtml(getContext().getString(R.string.MessageRequestBottomView_you_were_invited_to_join_the_group_s, HtmlUtil.bold(recipient.getDisplayName(getContext()))), 0));
+        } else {
+          question.setText(HtmlCompat.fromHtml(getContext().getString(R.string.MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept, HtmlUtil.bold(recipient.getDisplayName(getContext()))), 0));
+        }
       } else {
         question.setText(HtmlCompat.fromHtml(getContext().getString(R.string.MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept, HtmlUtil.bold(recipient.getDisplayName(getContext()))), 0));
       }

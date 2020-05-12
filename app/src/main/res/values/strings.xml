@@ -774,6 +774,7 @@
     <string name="MessageRequestBottomView_unblock">Unblock</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Do you want to let %1$s message you? They won\'t know you\'ve seen their messages until you accept.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Do you want to join the group %1$s? They won\'t know you\'ve seen their messages until you accept.</string>
+    <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">You were invited to join the group %1$s. Do you want to let members of this group message you?</string>
     <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Unblock %1$s to message and call each other.</string>
     <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Unblock to allow group members to add you to this group again.</string>
     <string name="MessageRequestProfileView_member_of_one_group">Member of %1$s</string>
@@ -1087,6 +1088,7 @@
     <string name="ThreadRecord_message_could_not_be_processed">Message could not be processed</string>
     <string name="ThreadRecord_message_request">Message Request</string>
     <string name="ThreadRecord_s_added_you_to_the_group">%1$s added you to the group</string>
+    <string name="ThreadRecord_s_invited_you_to_the_group">%1$s invited you to the group</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signal update</string>
