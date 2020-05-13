@@ -85,11 +85,15 @@ public class ContactRepository {
 
   @WorkerThread
   public Cursor querySignalContacts(@NonNull String query) {
-    Cursor cursor = TextUtils.isEmpty(query) ? recipientDatabase.getSignalContacts()
-                                             : recipientDatabase.querySignalContacts(query);
+    return querySignalContacts(query, true);
+  }
 
+  @WorkerThread
+  public Cursor querySignalContacts(@NonNull String query, boolean includeSelf) {
+    Cursor cursor =  TextUtils.isEmpty(query) ? recipientDatabase.getSignalContacts(includeSelf)
+                                              : recipientDatabase.querySignalContacts(query, includeSelf);
 
-    if (noteToSelfTitle.toLowerCase().contains(query.toLowerCase())) {
+    if (includeSelf && noteToSelfTitle.toLowerCase().contains(query.toLowerCase())) {
       Recipient self        = Recipient.self();
       boolean   nameMatch   = self.getDisplayName(context).toLowerCase().contains(query.toLowerCase());
       boolean   numberMatch = self.getE164().isPresent() && self.requireE164().contains(query);

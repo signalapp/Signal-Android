@@ -250,6 +250,10 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
     return selectedContacts.getContacts();
   }
 
+  public int getSelectedContactsCount() {
+    return selectedContacts.size();
+  }
+
   private CharSequence getSpannedHeaderString(int position) {
     final String headerString = getHeaderString(position);
     if (isPush(position)) {

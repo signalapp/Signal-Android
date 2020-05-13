@@ -59,7 +59,8 @@ public class ContactsCursorLoader extends CursorLoader {
     public static final int FLAG_SMS             = 1 << 1;
     public static final int FLAG_ACTIVE_GROUPS   = 1 << 2;
     public static final int FLAG_INACTIVE_GROUPS = 1 << 3;
-    public static final int FLAG_ALL             = FLAG_PUSH |  FLAG_SMS | FLAG_ACTIVE_GROUPS | FLAG_INACTIVE_GROUPS;
+    public static final int FLAG_SELF            = 1 << 4;
+    public static final int FLAG_ALL             = FLAG_PUSH |  FLAG_SMS | FLAG_ACTIVE_GROUPS | FLAG_INACTIVE_GROUPS | FLAG_SELF;
   }
 
   private static final String[] CONTACT_PROJECTION = new String[]{ContactRepository.ID_COLUMN,
@@ -248,7 +249,7 @@ public class ContactsCursorLoader extends CursorLoader {
     }
 
     if (pushEnabled(mode)) {
-      cursorList.add(contactRepository.querySignalContacts(filter));
+      cursorList.add(contactRepository.querySignalContacts(filter, selfEnabled(mode)));
     }
 
     if (pushEnabled(mode) && smsEnabled(mode)) {
@@ -327,6 +328,10 @@ public class ContactsCursorLoader extends CursorLoader {
       sum += cursor.getCount();
     }
     return sum == 0;
+  }
+
+  private static boolean selfEnabled(int mode) {
+    return flagSet(mode, DisplayMode.FLAG_SELF);
   }
 
   private static boolean pushEnabled(int mode) {

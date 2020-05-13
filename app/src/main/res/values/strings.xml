@@ -487,6 +487,19 @@
         <item quantity="other">Error canceling invites</item>
     </plurals>
 
+    <!-- AddGroupDetailsFragment -->
+    <string name="AddGroupDetailsFragment__name_this_group">Name this group</string>
+    <string name="AddGroupDetailsFragment__create">Create</string>
+    <string name="AddGroupDetailsFragment__members">Members</string>
+    <string name="AddGroupDetailsFragment__group_name_required">Group name (required)</string>
+    <string name="AddGroupDetailsFragment__this_field_is_required">This field is required.</string>
+    <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Groups require at least two members.</string>
+    <string name="AddGroupDetailsFragment__group_creation_failed">Group creation failed.</string>
+    <string name="AddGroupDetailsFragment__try_again_later">Try again later.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">You\'ve selected a contact that doesn\'t support Signal groups, so this group will be MMS.</string>
+    <string name="AddGroupDetailsFragment__remove">Remove</string>
+    <string name="AddGroupDetailsFragment__sms_contact">SMS contact</string>
+
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_disappearing_messages">Disappearing messages</string>
     <string name="ManageGroupActivity_pending_group_invites">Pending group invites</string>

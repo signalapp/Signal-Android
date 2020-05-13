@@ -1357,17 +1357,29 @@ public class RecipientDatabase extends Database {
     }
   }
   public @Nullable Cursor getSignalContacts() {
+    return getSignalContacts(true);
+  }
+
+  public @Nullable Cursor getSignalContacts(boolean includeSelf) {
     String   selection = BLOCKED         + " = ? AND " +
                          REGISTERED      + " = ? AND " +
                          GROUP_ID        + " IS NULL AND " +
                          "(" + SORT_NAME + " NOT NULL OR " + USERNAME + " NOT NULL)";
-    String[] args      = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()) };
+    String[] args;
+
+    if (includeSelf) {
+      args = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()) };
+    } else {
+      selection += " AND " + ID + " != ?";
+      args       = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), String.valueOf(Recipient.self().getId().toLong()) };
+    }
+
     String   orderBy   = SORT_NAME + ", " + SYSTEM_DISPLAY_NAME + ", " + SEARCH_PROFILE_NAME + ", " + USERNAME + ", " + PHONE;
 
     return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy);
   }
 
-  public @Nullable Cursor querySignalContacts(@NonNull String query) {
+  public @Nullable Cursor querySignalContacts(@NonNull String query, boolean includeSelf) {
     query = TextUtils.isEmpty(query) ? "*" : query;
     query = "%" + query + "%";
 
@@ -1379,7 +1391,15 @@ public class RecipientDatabase extends Database {
                            SORT_NAME + " LIKE ? OR " +
                            USERNAME  + " LIKE ?" +
                          ")";
-    String[] args      = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), query, query, query };
+    String[] args;
+
+    if (includeSelf) {
+      args = new String[]{"0", String.valueOf(RegisteredState.REGISTERED.getId()), query, query, query};
+    } else {
+      selection += " AND " + ID + " != ?";
+      args       = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), query, query, query, String.valueOf(Recipient.self().getId().toLong()) };
+    }
+
     String   orderBy   = SORT_NAME + ", " + SYSTEM_DISPLAY_NAME + ", " + SEARCH_PROFILE_NAME + ", " + PHONE;
 
     return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy);

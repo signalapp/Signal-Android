@@ -483,8 +483,13 @@
               android:theme="@style/TextSecure.LightNoActionBar"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize" />
 
+    <activity android:name=".groups.ui.creategroup.CreateGroupActivity"
+              android:theme="@style/TextSecure.LightNoActionBar" />
 
-        <service android:enabled="true" android:name="org.thoughtcrime.securesms.service.WebRtcCallService"/>
+    <activity android:name=".groups.ui.creategroup.details.AddGroupDetailsActivity"
+              android:theme="@style/TextSecure.LightNoActionBar" />
+
+    <service android:enabled="true" android:name="org.thoughtcrime.securesms.service.WebRtcCallService"/>
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
     <service android:enabled="true" android:exported="false" android:name=".service.KeyCachingService"/>
     <service android:enabled="true" android:name=".service.IncomingMessageObserver$ForegroundService"/>

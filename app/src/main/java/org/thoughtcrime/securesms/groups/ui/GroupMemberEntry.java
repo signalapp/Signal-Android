@@ -31,7 +31,49 @@ public abstract class GroupMemberEntry {
   @Override
   public abstract int hashCode();
 
-  abstract boolean sameId(GroupMemberEntry newItem);
+  abstract boolean sameId(@NonNull GroupMemberEntry newItem);
+
+  public final static class NewGroupCandidate extends GroupMemberEntry {
+
+    private final DefaultValueLiveData<Boolean> isSelected = new DefaultValueLiveData<>(false);
+    private final Recipient                     member;
+
+    public NewGroupCandidate(@NonNull Recipient member) {
+      this.member = member;
+    }
+
+    public @NonNull Recipient getMember() {
+      return member;
+    }
+
+    public @NonNull LiveData<Boolean> isSelected() {
+      return isSelected;
+    }
+
+    public void setSelected(boolean isSelected) {
+      this.isSelected.postValue(isSelected);
+    }
+
+    @Override
+    boolean sameId(@NonNull GroupMemberEntry newItem) {
+      if (getClass() != newItem.getClass()) return false;
+
+      return member.getId().equals(((NewGroupCandidate) newItem).member.getId());
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+      if (!(obj instanceof NewGroupCandidate)) return false;
+
+      NewGroupCandidate other = (NewGroupCandidate) obj;
+      return other.member.equals(member);
+    }
+
+    @Override
+    public int hashCode() {
+      return member.hashCode();
+    }
+  }
 
   public final static class FullMember extends GroupMemberEntry {
 
@@ -52,7 +94,7 @@ public abstract class GroupMemberEntry {
     }
 
     @Override
-    boolean sameId(GroupMemberEntry newItem) {
+    boolean sameId(@NonNull GroupMemberEntry newItem) {
       if (getClass() != newItem.getClass()) return false;
 
       return member.getId().equals(((GroupMemberEntry.FullMember) newItem).member.getId());
@@ -97,7 +139,7 @@ public abstract class GroupMemberEntry {
     }
 
     @Override
-    boolean sameId(GroupMemberEntry newItem) {
+    boolean sameId(@NonNull GroupMemberEntry newItem) {
       if (getClass() != newItem.getClass()) return false;
 
       return invitee.getId().equals(((GroupMemberEntry.PendingMember) newItem).invitee.getId());
@@ -153,7 +195,7 @@ public abstract class GroupMemberEntry {
     }
 
     @Override
-    boolean sameId(GroupMemberEntry newItem) {
+    boolean sameId(@NonNull GroupMemberEntry newItem) {
       if (getClass() != newItem.getClass()) return false;
 
       return inviter.getId().equals(((GroupMemberEntry.UnknownPendingMemberCount) newItem).inviter.getId());

@@ -158,13 +158,12 @@ public final class AvatarImageView extends AppCompatImageView {
   }
 
   private void setAvatarClickHandler(final Recipient recipient, boolean quickContactEnabled) {
-    super.setOnClickListener(v -> {
-      if (quickContactEnabled) {
-        getContext().startActivity(RecipientPreferenceActivity.getLaunchIntent(getContext(), recipient.getId()));
-      } else if (listener != null) {
-        listener.onClick(v);
-      }
-    });
+    if (quickContactEnabled) {
+      super.setOnClickListener(v -> getContext().startActivity(RecipientPreferenceActivity.getLaunchIntent(getContext(), recipient.getId())));
+    } else {
+      super.setOnClickListener(listener);
+      setClickable(listener != null);
+    }
   }
 
   private static class RecipientContactPhoto {

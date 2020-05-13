@@ -32,7 +32,7 @@ public class AvatarSelectionBottomSheetDialogFragment extends BottomSheetDialogF
   private static final String ARG_REQUEST_CODE = "request_code";
   private static final String ARG_IS_GROUP     = "is_group";
 
-  public static DialogFragment create(boolean includeClear, boolean includeCamera, short resultCode, boolean isGroup) {
+  public static DialogFragment create(boolean includeClear, boolean includeCamera, short requestCode, boolean isGroup) {
     DialogFragment        fragment         = new AvatarSelectionBottomSheetDialogFragment();
     List<SelectionOption> selectionOptions = new ArrayList<>(3);
     Bundle                args             = new Bundle();
@@ -52,7 +52,7 @@ public class AvatarSelectionBottomSheetDialogFragment extends BottomSheetDialogF
                              .toArray(String[]::new);
 
     args.putStringArray(ARG_OPTIONS, options);
-    args.putShort(ARG_REQUEST_CODE, resultCode);
+    args.putShort(ARG_REQUEST_CODE, requestCode);
     args.putBoolean(ARG_IS_GROUP, isGroup);
     fragment.setArguments(args);
 

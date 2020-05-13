@@ -37,6 +37,10 @@ public final class SelectedContactSet {
     return new ArrayList<>(contacts);
   }
 
+  public int size() {
+    return contacts.size();
+  }
+
   public void clear() {
     contacts.clear();
   }

@@ -26,6 +26,7 @@ import android.view.View;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -97,7 +98,7 @@ public class NewConversationActivity extends ContactSelectionActivity
   }
 
   private void handleCreateGroup() {
-    startActivity(new Intent(this, GroupCreateActivity.class));
+    startActivity(CreateGroupActivity.newIntent(this));
   }
 
   private void handleInvite() {
@@ -105,10 +106,10 @@ public class NewConversationActivity extends ContactSelectionActivity
   }
 
   @Override
-  protected boolean onPrepareOptionsPanel(View view, Menu menu) {
-    MenuInflater inflater = this.getMenuInflater();
+  public boolean onPrepareOptionsMenu(Menu menu) {
     menu.clear();
-    inflater.inflate(R.menu.new_conversation_activity, menu);
+    getMenuInflater().inflate(R.menu.new_conversation_activity, menu);
+
     super.onPrepareOptionsMenu(menu);
     return true;
   }

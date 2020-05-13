@@ -187,8 +187,12 @@ public final class ContactSelectionListFragment extends    Fragment
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
   }
 
-  @NonNull List<SelectedContact> getSelectedContacts() {
+  public @NonNull List<SelectedContact> getSelectedContacts() {
     return cursorRecyclerViewAdapter.getSelectedContacts();
+  }
+
+  public int getSelectedContactsCount() {
+    return cursorRecyclerViewAdapter.getSelectedContactsCount();
   }
 
   private boolean isMulti() {
