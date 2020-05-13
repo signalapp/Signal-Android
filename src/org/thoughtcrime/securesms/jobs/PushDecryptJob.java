@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -38,7 +37,6 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -59,7 +57,6 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.GroupMessageProcessor;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -70,17 +67,15 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
-import org.thoughtcrime.securesms.loki.database.LokiPreKeyBundleDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
 import org.thoughtcrime.securesms.loki.protocol.FriendRequestProtocol;
 import org.thoughtcrime.securesms.loki.protocol.LokiSessionResetImplementation;
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol;
+import org.thoughtcrime.securesms.loki.protocol.SessionManagementProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SyncMessagesProtocol;
-import org.thoughtcrime.securesms.loki.utilities.Broadcaster;
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities;
-import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
@@ -96,7 +91,6 @@ import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
-import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
@@ -106,14 +100,10 @@ import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.loki.LokiSessionResetProtocol;
-import org.whispersystems.libsignal.loki.LokiSessionResetStatus;
-import org.whispersystems.libsignal.state.PreKeyBundle;
 import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
-import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Preview;
@@ -127,11 +117,6 @@ import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import org.whispersystems.signalservice.api.messages.calls.IceUpdateMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
-import org.whispersystems.signalservice.api.messages.multidevice.ContactsMessage;
-import org.whispersystems.signalservice.api.messages.multidevice.DeviceContact;
-import org.whispersystems.signalservice.api.messages.multidevice.DeviceContactsInputStream;
-import org.whispersystems.signalservice.api.messages.multidevice.DeviceGroup;
-import org.whispersystems.signalservice.api.messages.multidevice.DeviceGroupsInputStream;
 import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.RequestMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SentTranscriptMessage;
@@ -140,19 +125,10 @@ import org.whispersystems.signalservice.api.messages.multidevice.StickerPackOper
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI;
-import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChat;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager;
 import org.whispersystems.signalservice.loki.protocol.meta.LokiServiceMessage;
-import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLink;
-import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLinkingSession;
-import org.whispersystems.signalservice.loki.protocol.sessionmanagement.SessionManagementProtocol;
-import org.whispersystems.signalservice.loki.protocol.todo.LokiMessageFriendRequestStatus;
-import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus;
-import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
-import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -162,9 +138,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import kotlin.Unit;
 import network.loki.messenger.R;
-import nl.komponents.kovenant.Promise;
 
 public class PushDecryptJob extends BaseJob implements InjectableType {
 
@@ -289,7 +263,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       SignalServiceContent content = cipher.decrypt(envelope);
 
       // Loki - Ignore any friend requests from before restoration
-      if (FriendRequestProtocol.isFriendRequestFromBeforeRestoration(content)) {
+      if (FriendRequestProtocol.isFriendRequestFromBeforeRestoration(context, content)) {
         Log.d("Loki", "Ignoring friend request from before restoration.");
         return;
       }
@@ -300,13 +274,13 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       }
 
       // Loki - Handle friend request acceptance if needed
-      FriendRequestProtocol.handleFriendRequestAcceptanceIfNeeded(content);
+      FriendRequestProtocol.handleFriendRequestAcceptanceIfNeeded(context, content.getSender(), content);
 
       // Loki - Handle pre key bundle message if needed
-      SessionManagementProtocol.handlePreKeyBundleMessageIfNeeded(content);
+      SessionManagementProtocol.handlePreKeyBundleMessageIfNeeded(context, content);
 
       // Loki - Handle session request if needed
-      SessionManagementProtocol.handleSessionRequestIfNeeded(content);
+      SessionManagementProtocol.handleSessionRequestIfNeeded(context, content);
 
       // Loki - Handle address message if needed
       if (content.lokiServiceMessage.isPresent()) {
@@ -317,17 +291,17 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       }
 
       // Loki - Handle profile update if needed
-      SessionMetaProtocol.handleProfileUpdateIfNeeded(content);
+      SessionMetaProtocol.handleProfileUpdateIfNeeded(context, content);
 
       if (content.getDeviceLink().isPresent()) {
-        MultiDeviceProtocol.handleDeviceLinkMessageIfNeeded(content);
+        MultiDeviceProtocol.handleDeviceLinkMessageIfNeeded(context, content.getDeviceLink().get(), content);
       } else if (content.getDataMessage().isPresent()) {
         SignalServiceDataMessage message        = content.getDataMessage().get();
         boolean                  isMediaMessage = message.getAttachments().isPresent() || message.getQuote().isPresent() || message.getSharedContacts().isPresent() || message.getPreviews().isPresent() || message.getSticker().isPresent();
 
         // Loki - Handle unlinking request if needed
         if (message.isUnlinkingRequest()) {
-          MultiDeviceProtocol.handleUnlinkingRequest(message);
+          MultiDeviceProtocol.handleUnlinkingRequestIfNeeded(context, content);
         } else {
           // Loki - Don't process session restoration requests or session requests any further
           if (message.isSessionRestorationRequest() || message.isSessionRequest()) { return; }
@@ -369,9 +343,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         else if (syncMessage.getRead().isPresent())                  handleSynchronizeReadMessage(syncMessage.getRead().get(), content.getTimestamp());
         else if (syncMessage.getVerified().isPresent())              handleSynchronizeVerifiedMessage(syncMessage.getVerified().get());
         else if (syncMessage.getStickerPackOperations().isPresent()) handleSynchronizeStickerPackOperation(syncMessage.getStickerPackOperations().get());
-        else if (syncMessage.getContacts().isPresent())              handleContactSyncMessage(syncMessage.getContacts().get());
-        else if (syncMessage.getGroups().isPresent())                handleGroupSyncMessage(content, syncMessage.getGroups().get());
-        else if (syncMessage.getOpenGroups().isPresent())            handleOpenGroupSyncMessage(syncMessage.getOpenGroups().get());
+        else if (syncMessage.getContacts().isPresent())              SyncMessagesProtocol.handleContactSyncMessage(context, content, syncMessage.getContacts().get());
+        else if (syncMessage.getGroups().isPresent())                SyncMessagesProtocol.handleGroupSyncMessage(context, content, syncMessage.getGroups().get());
+        else if (syncMessage.getOpenGroups().isPresent())            SyncMessagesProtocol.handleOpenGroupSyncMessage(context, content, syncMessage.getOpenGroups().get());
         else                                                         Log.w(TAG, "Contains no known sync types...");
       } else if (content.getCallMessage().isPresent()) {
         Log.i(TAG, "Got call message...");
@@ -530,7 +504,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
 
     if (threadId != null) {
-      SessionManagementProtocol.handleEndSessionMessage(content);
+      SessionManagementProtocol.handleEndSessionMessage(context, content);
       MessageNotifier.updateNotification(context, threadId);
     }
   }
@@ -688,7 +662,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       }
 
       // Loki - Update profile if needed
-      SessionMetaProtocol.handleProfileUpdateIfNeeded(content);
+      SessionMetaProtocol.handleProfileUpdateIfNeeded(context, content);
 
       if (threadId != null) {
         DatabaseFactory.getThreadDatabase(context).setRead(threadId, true);
