@@ -22,4 +22,10 @@ object SessionManagementProtocol {
             ApplicationContext.getInstance(context).jobManager.add(CleanPreKeysJob())
         }
     }
+
+    @JvmStatic
+    fun sendSessionRestorationRequest(context: Context, publicKey: String) {
+        val sessionRestorationRequest = EphemeralMessage.createSessionRestorationRequest(publicKey)
+        ApplicationContext.getInstance(context).jobManager.add(PushEphemeralMessageSendJob(sessionRestorationRequest))
+    }
 }

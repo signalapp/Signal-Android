@@ -18,61 +18,59 @@ import javax.inject.Inject
 
 class MultiDeviceOpenGroupUpdateJob private constructor(parameters: Parameters) : BaseJob(parameters), InjectableType {
 
-  companion object {
-    const val KEY = "MultiDeviceOpenGroupUpdateJob"
-  }
-
-  @Inject
-  lateinit var messageSender: SignalServiceMessageSender
-
-  constructor() : this(Parameters.Builder()
-          .addConstraint(NetworkConstraint.KEY)
-          .setQueue("MultiDeviceOpenGroupUpdateJob")
-          .setLifespan(TimeUnit.DAYS.toMillis(1))
-          .setMaxAttempts(Parameters.UNLIMITED)
-          .build())
-
-  override fun getFactoryKey(): String { return KEY
-  }
-
-  override fun serialize(): Data { return Data.EMPTY }
-
-  @Throws(Exception::class)
-  public override fun onRun() {
-    if (!TextSecurePreferences.isMultiDevice(context)) {
-      Log.d("Loki", "Not multi device; aborting...")
-      return
+    companion object {
+        const val KEY = "MultiDeviceOpenGroupUpdateJob"
     }
 
-    val openGroups = mutableListOf<LokiPublicChat>()
-    DatabaseFactory.getGroupDatabase(context).groups.use { reader ->
-      while (true) {
-        val record = reader.next ?: return@use
-        if (!record.isOpenGroup) { continue; }
+    @Inject
+    lateinit var messageSender: SignalServiceMessageSender
 
-        val threadID = GroupManager.getThreadIDFromGroupID(record.encodedId, context)
-        val openGroup = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID)
-        if (openGroup != null) { openGroups.add(openGroup) }
-      }
+    constructor() : this(Parameters.Builder()
+        .addConstraint(NetworkConstraint.KEY)
+        .setQueue("MultiDeviceOpenGroupUpdateJob")
+        .setLifespan(TimeUnit.DAYS.toMillis(1))
+        .setMaxAttempts(Parameters.UNLIMITED)
+        .build())
+
+    override fun getFactoryKey(): String { return KEY }
+
+    override fun serialize(): Data { return Data.EMPTY }
+
+    @Throws(Exception::class)
+    public override fun onRun() {
+        if (!TextSecurePreferences.isMultiDevice(context)) {
+            Log.d("Loki", "Not multi device; aborting...")
+            return
+        }
+        // Gather open groups
+        val openGroups = mutableListOf<LokiPublicChat>()
+        DatabaseFactory.getGroupDatabase(context).groups.use { reader ->
+            while (true) {
+                val record = reader.next ?: return@use
+                if (!record.isOpenGroup) { continue; }
+                val threadID = GroupManager.getThreadIDFromGroupID(record.encodedId, context)
+                val openGroup = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID)
+                if (openGroup != null) { openGroups.add(openGroup) }
+            }
+        }
+        // Send the message
+        if (openGroups.size > 0) {
+            messageSender.sendMessage(SignalServiceSyncMessage.forOpenGroups(openGroups), UnidentifiedAccessUtil.getAccessForSync(context))
+        } else {
+            Log.d("Loki", "No open groups to sync.")
+        }
     }
 
-    if (openGroups.size > 0) {
-      messageSender.sendMessage(SignalServiceSyncMessage.forOpenGroups(openGroups), UnidentifiedAccessUtil.getAccessForSync(context))
-    } else {
-      Log.d("Loki", "No open groups to sync.")
+    public override fun onShouldRetry(exception: Exception): Boolean {
+        return false
     }
-  }
 
-  public override fun onShouldRetry(exception: Exception): Boolean {
-    return false
-  }
+    override fun onCanceled() { }
 
-  override fun onCanceled() { }
+    class Factory : Job.Factory<MultiDeviceOpenGroupUpdateJob> {
 
-  class Factory : Job.Factory<MultiDeviceOpenGroupUpdateJob> {
-
-    override fun create(parameters: Parameters, data: Data): MultiDeviceOpenGroupUpdateJob {
-      return MultiDeviceOpenGroupUpdateJob(parameters)
+        override fun create(parameters: Parameters, data: Data): MultiDeviceOpenGroupUpdateJob {
+            return MultiDeviceOpenGroupUpdateJob(parameters)
+        }
     }
-  }
 }

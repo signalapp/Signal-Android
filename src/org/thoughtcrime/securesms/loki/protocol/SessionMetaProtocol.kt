@@ -1,12 +1,19 @@
 package org.thoughtcrime.securesms.loki.protocol
 
 import android.content.Context
+import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus
 
 object SessionMetaProtocol {
+
+    @JvmStatic
+    fun sendEphemeralMessage(context: Context, publicKey: String) {
+        val ephemeralMessage = EphemeralMessage.create(publicKey)
+        ApplicationContext.getInstance(context).jobManager.add(PushEphemeralMessageSendJob(ephemeralMessage))
+    }
 
     /**
      * Should be invoked for the recipient's master device.

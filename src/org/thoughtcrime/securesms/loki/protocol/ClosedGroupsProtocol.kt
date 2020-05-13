@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.loki.protocol
 
 import android.content.Context
+import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -79,9 +80,13 @@ object ClosedGroupsProtocol {
         for (device in allDevices) {
             val address = SignalProtocolAddress(device, SignalServiceAddress.DEFAULT_DEVICE_ID)
             val hasSession = TextSecureSessionStore(context).containsSession(address)
-            if (!hasSession) {
-                MessageSender.sendBackgroundSessionRequest(context, device)
-            }
+            if (!hasSession) { sendSessionRequest(context, device) }
         }
+    }
+
+    @JvmStatic
+    fun sendSessionRequest(context: Context, publicKey: String) {
+        val sessionRequest = EphemeralMessage.createSessionRequest(publicKey)
+        ApplicationContext.getInstance(context).jobManager.add(PushEphemeralMessageSendJob(sessionRequest))
     }
 }
