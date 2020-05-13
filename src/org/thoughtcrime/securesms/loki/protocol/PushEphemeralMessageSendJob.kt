@@ -15,16 +15,12 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
-class PushEphemeralMessageSendJob private constructor(
-    parameters: Parameters,
-    private val message: EphemeralMessage
-) : BaseJob(parameters) {
+class PushEphemeralMessageSendJob private constructor(parameters: Parameters, private val message: EphemeralMessage) : BaseJob(parameters) {
 
     companion object {
+        private val KEY_MESSAGE = "message"
 
         const val KEY = "PushBackgroundMessageSendJob"
-
-        private val KEY_MESSAGE = "message"
     }
 
     constructor(message: EphemeralMessage) : this(Parameters.Builder()

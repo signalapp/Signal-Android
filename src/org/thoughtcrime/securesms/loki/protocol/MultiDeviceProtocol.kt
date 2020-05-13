@@ -2,7 +2,17 @@ package org.thoughtcrime.securesms.loki.protocol
 
 import android.content.Context
 import org.thoughtcrime.securesms.ApplicationContext
+import org.thoughtcrime.securesms.database.Address
+import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.jobs.PushMediaSendJob
+import org.thoughtcrime.securesms.jobs.PushSendJob
+import org.thoughtcrime.securesms.jobs.PushTextSendJob
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI
+import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol
+import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
+import org.whispersystems.signalservice.loki.protocol.todo.LokiMessageFriendRequestStatus
+import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus
 
 object MultiDeviceProtocol {
 
@@ -11,6 +21,8 @@ object MultiDeviceProtocol {
         val unlinkingRequest = EphemeralMessage.createUnlinkingRequest(publicKey)
         ApplicationContext.getInstance(context).jobManager.add(PushEphemeralMessageSendJob(unlinkingRequest))
     }
+
+    enum class MessageType { Text, Media }
 
     @JvmStatic
     fun sendTextPush(context: Context, recipient: Recipient, messageID: Long) {
@@ -22,65 +34,61 @@ object MultiDeviceProtocol {
 
     }
 
-//    private static void sendMessagePush(Context context, MessageType type, Recipient recipient, long messageId) {
-//        JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
-//
-//        // Just send the message normally if it's a group message or we're sending to one of our devices
-//        String recipientHexEncodedPublicKey = recipient.getAddress().serialize();
-//        if (GeneralUtilitiesKt.isPublicChat(context, recipientHexEncodedPublicKey) || PromiseUtil.get(MultiDeviceUtilities.isOneOfOurDevices(context, recipient.getAddress()), false)) {
-//            if (type == MessageType.MEDIA) {
-//                PushMediaSendJob.enqueue(context, jobManager, messageId, recipient.getAddress(), false);
-//            } else {
-//                jobManager.add(new PushTextSendJob(messageId, recipient.getAddress()));
-//            }
-//            return;
-//        }
-//
-//        // If we get here then we are sending a message to a device that is not ours
-//        boolean[] hasSentSyncMessage = { false };
-//        MultiDeviceUtilities.getAllDevicePublicKeysWithFriendStatus(context, recipientHexEncodedPublicKey).success(devices -> {
-//            int friendCount = MultiDeviceUtilities.getFriendCount(context, devices.keySet());
-//            Util.runOnMain(() -> {
-//            ArrayList<Job> jobs = new ArrayList<>();
-//            for (Map.Entry<String, Boolean> entry : devices.entrySet()) {
-//            String deviceHexEncodedPublicKey = entry.getKey();
-//            boolean isFriend = entry.getValue();
-//
-//            Address address = Address.fromSerialized(deviceHexEncodedPublicKey);
-//            long messageIDToUse = recipientHexEncodedPublicKey.equals(deviceHexEncodedPublicKey) ? messageId : -1L;
-//
-//            if (isFriend) {
-//                // Send a normal message if the user is friends with the recipient
-//                // We should also send a sync message if we haven't already sent one
-//                boolean shouldSendSyncMessage = !hasSentSyncMessage[0] && address.isPhone();
-//                if (type == MessageType.MEDIA) {
-//                    jobs.add(new PushMediaSendJob(messageId, messageIDToUse, address, false, null, shouldSendSyncMessage));
-//                } else {
-//                    jobs.add(new PushTextSendJob(messageId, messageIDToUse, address, shouldSendSyncMessage));
-//                }
-//                if (shouldSendSyncMessage) { hasSentSyncMessage[0] = true; }
-//            } else {
-//                // Send friend requests to non-friends. If the user is friends with any
-//                // of the devices then send out a default friend request message.
-//                boolean isFriendsWithAny = (friendCount > 0);
-//                String defaultFriendRequestMessage = isFriendsWithAny ? "Please accept to enable messages to be synced across devices" : null;
-//                if (type == MessageType.MEDIA) {
-//                    jobs.add(new PushMediaSendJob(messageId, messageIDToUse, address, true, defaultFriendRequestMessage, false));
-//                } else {
-//                    jobs.add(new PushTextSendJob(messageId, messageIDToUse, address, true, defaultFriendRequestMessage, false));
-//                }
-//            }
-//        }
-//
-//            // Start the send
-//            if (type == MessageType.MEDIA) {
-//                PushMediaSendJob.enqueue(context, jobManager, (List<PushMediaSendJob>)(List)jobs);
-//            } else {
-//                // Schedule text send jobs
-//                jobManager.startChain(jobs).enqueue();
-//            }
-//        });
-//            return Unit.INSTANCE;
-//        });
-//    }
+    private fun sendMessagePushToDevice(context: Context, recipient: Recipient, messageID: Long, messageType: MessageType): PushSendJob {
+        val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient)
+        val threadFRStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID)
+        val isContactFriend = (threadFRStatus == LokiThreadFriendRequestStatus.FRIENDS)
+        val messageFRStatus = DatabaseFactory.getLokiMessageDatabase(context).getFriendRequestStatus(messageID)
+        val isFRMessage = (messageFRStatus != LokiMessageFriendRequestStatus.NONE)
+        val hasVisibleContent = when (messageType) {
+            MessageType.Text -> DatabaseFactory.getSmsDatabase(context).getMessage(messageID).body.isNotBlank()
+            MessageType.Media -> {
+                val outgoingMediaMessage = DatabaseFactory.getMmsDatabase(context).getOutgoingMessage(messageID)
+                outgoingMediaMessage.body.isNotBlank() || outgoingMediaMessage.attachments.isNotEmpty()
+            }
+        }
+        val shouldSendAutoGeneratedFR = !isContactFriend && !isFRMessage
+            && !SessionMetaProtocol.shared.isNoteToSelf(recipient.address.serialize()) && !recipient.address.isGroup // Group threads work through session requests
+            && hasVisibleContent
+        if (!shouldSendAutoGeneratedFR) {
+            when (messageType) {
+                MessageType.Text -> return PushTextSendJob(messageID, recipient.address)
+                MessageType.Media -> return PushMediaSendJob(messageID, recipient.address)
+            }
+        } else {
+            val autoGeneratedFRMessage = "Please accept to enable messages to be synced across devices"
+            when (messageType) {
+                MessageType.Text -> return PushTextSendJob(messageID, messageID, recipient.address, true, autoGeneratedFRMessage)
+                MessageType.Media -> return PushMediaSendJob(messageID, messageID, recipient.address, true, autoGeneratedFRMessage)
+            }
+        }
+    }
+
+    private fun sendMessagePush(context: Context, recipient: Recipient, messageID: Long, messageType: MessageType) {
+        val jobManager = ApplicationContext.getInstance(context).jobManager
+        val isMultiDeviceRequired = !recipient.address.isOpenGroup
+        if (!isMultiDeviceRequired) {
+            when (messageType) {
+                MessageType.Text -> jobManager.add(PushTextSendJob(messageID, recipient.address))
+                MessageType.Media -> PushMediaSendJob.enqueue(context, jobManager, messageID, recipient.address)
+            }
+        }
+        val publicKey = recipient.address.serialize()
+        LokiFileServerAPI.shared.getDeviceLinks(publicKey).success {
+            val devices = MultiDeviceProtocol.shared.getAllLinkedDevices(publicKey)
+            val jobs = devices.map { sendMessagePushToDevice(context, Recipient.from(context, Address.fromSerialized(it), false), messageID, messageType) }
+            @Suppress("UNCHECKED_CAST")
+            when (messageType) {
+                MessageType.Text -> jobManager.startChain(jobs).enqueue()
+                MessageType.Media -> PushMediaSendJob.enqueue(context, jobManager, jobs as List<PushMediaSendJob>)
+            }
+        }.fail { exception ->
+            // Proceed even if updating the recipient's device links failed, so that message sending
+            // is independent of whether the file server is online
+            when (messageType) {
+                MessageType.Text -> jobManager.add(PushTextSendJob(messageID, recipient.address))
+                MessageType.Media -> PushMediaSendJob.enqueue(context, jobManager, messageID, recipient.address)
+            }
+        }
+    }
 }

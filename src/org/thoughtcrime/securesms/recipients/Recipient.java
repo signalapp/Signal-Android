@@ -44,7 +44,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessM
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.todo.JazzIdenticonContactPhoto;
-import org.thoughtcrime.securesms.loki.RecipientAvatarModifiedEvent;
+import org.thoughtcrime.securesms.loki.utilities.ProfilePictureModifiedEvent;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.RecipientProvider.RecipientDetails;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
@@ -399,7 +399,7 @@ public class Recipient implements RecipientModifiedListener {
     }
 
     notifyListeners();
-    EventBus.getDefault().post(new RecipientAvatarModifiedEvent(this));
+    EventBus.getDefault().post(new ProfilePictureModifiedEvent(this));
   }
 
   public synchronized boolean isProfileSharing() {

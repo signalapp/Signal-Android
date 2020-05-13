@@ -40,6 +40,7 @@ object SyncMessagesProtocol {
     fun shouldSyncContact(context: Context, address: Address): Boolean {
         if (!PublicKeyValidation.isValid(address.serialize())) { return false }
         if (address.serialize() == TextSecurePreferences.getMasterHexEncodedPublicKey(context)) { return false }
+        if (address.serialize() == TextSecurePreferences.getLocalNumber(context)) { return false }
         val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, address, false))
         val isFriend = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID) == LokiThreadFriendRequestStatus.FRIENDS
         return isFriend

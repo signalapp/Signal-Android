@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.loki.protocol
 
 import org.whispersystems.signalservice.internal.util.JsonUtil
 
-data class EphemeralMessage private constructor(val data: Map<*, *>) {
+class EphemeralMessage private constructor(val data: Map<*, *>) {
 
     companion object {
 
