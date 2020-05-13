@@ -1,26 +1,28 @@
 package org.thoughtcrime.securesms.loki.protocol
 
 import android.content.Context
+import android.util.Log
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob
 import org.thoughtcrime.securesms.jobs.PushSendJob
 import org.thoughtcrime.securesms.jobs.PushTextSendJob
+import org.thoughtcrime.securesms.loki.utilities.Broadcaster
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.whispersystems.signalservice.api.messages.SignalServiceContent
 import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI
 import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol
+import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLink
+import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLinkingSession
 import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
 import org.whispersystems.signalservice.loki.protocol.todo.LokiMessageFriendRequestStatus
 import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus
 
 object MultiDeviceProtocol {
 
-    @JvmStatic
-    fun sendUnlinkingRequest(context: Context, publicKey: String) {
-        val unlinkingRequest = EphemeralMessage.createUnlinkingRequest(publicKey)
-        ApplicationContext.getInstance(context).jobManager.add(PushEphemeralMessageSendJob(unlinkingRequest))
-    }
+    // TODO: Closed groups
 
     enum class MessageType { Text, Media }
 
@@ -34,7 +36,6 @@ object MultiDeviceProtocol {
         sendMessagePush(context, recipient, messageID, MessageType.Media)
     }
 
-    // TODO: Closed groups
     private fun sendMessagePushToDevice(context: Context, recipient: Recipient, messageID: Long, messageType: MessageType): PushSendJob {
         val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient)
         val threadFRStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID)
@@ -89,6 +90,95 @@ object MultiDeviceProtocol {
             when (messageType) {
                 MessageType.Text -> jobManager.add(PushTextSendJob(messageID, recipient.address))
                 MessageType.Media -> PushMediaSendJob.enqueue(context, jobManager, messageID, recipient.address)
+            }
+        }
+    }
+
+    @JvmStatic
+    fun handleDeviceLinkMessageIfNeeded(context: Context, deviceLink: DeviceLink, content: SignalServiceContent) {
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+        if (deviceLink.type == DeviceLink.Type.REQUEST) {
+            handleDeviceLinkRequestMessage(context, deviceLink, content)
+        } else if (deviceLink.slaveHexEncodedPublicKey == userPublicKey) {
+            handleDeviceLinkAuthorizedMessage(context, deviceLink, content)
+        }
+    }
+
+    private fun isValidDeviceLinkMessage(context: Context, deviceLink: DeviceLink): Boolean {
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+        val isRequest = (deviceLink.type == DeviceLink.Type.REQUEST)
+        if (deviceLink.requestSignature == null) {
+            Log.d("Loki", "Ignoring device link without a request signature.")
+            return false
+        } else if (isRequest && TextSecurePreferences.getMasterHexEncodedPublicKey(context) != null) {
+            Log.d("Loki", "Ignoring unexpected device link message (the device is a slave device).")
+            return false
+        } else if (isRequest && deviceLink.masterHexEncodedPublicKey != userPublicKey) {
+            Log.d("Loki", "Ignoring device linking message addressed to another user.")
+            return false
+        } else if (isRequest && deviceLink.slaveHexEncodedPublicKey == userPublicKey) {
+            Log.d("Loki", "Ignoring device linking request message from self.")
+            return false
+        }
+        return deviceLink.verify()
+    }
+
+    private fun handleDeviceLinkRequestMessage(context: Context, deviceLink: DeviceLink, content: SignalServiceContent) {
+        val linkingSession = DeviceLinkingSession.shared
+        if (!linkingSession.isListeningForLinkingRequests) {
+            return Broadcaster(context).broadcast("unexpectedDeviceLinkRequestReceived")
+        }
+        val isValid = isValidDeviceLinkMessage(context, deviceLink)
+        if (!isValid) { return }
+        SessionManagementProtocol.handlePreKeyBundleMessageIfNeeded(context, content)
+        linkingSession.processLinkingRequest(deviceLink)
+    }
+
+    private fun handleDeviceLinkAuthorizedMessage(context: Context, deviceLink: DeviceLink, content: SignalServiceContent) {
+        val linkingSession = DeviceLinkingSession.shared
+        if (!linkingSession.isListeningForLinkingRequests) {
+            return
+        }
+        val isValid = isValidDeviceLinkMessage(context, deviceLink)
+        if (!isValid) { return }
+        SessionManagementProtocol.handlePreKeyBundleMessageIfNeeded(context, content)
+        linkingSession.processLinkingAuthorization(deviceLink)
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+        DatabaseFactory.getLokiAPIDatabase(context).clearDeviceLinks(userPublicKey)
+        DatabaseFactory.getLokiAPIDatabase(context).addDeviceLink(deviceLink)
+        TextSecurePreferences.setMasterHexEncodedPublicKey(context, deviceLink.masterHexEncodedPublicKey)
+        TextSecurePreferences.setMultiDevice(context, true)
+        LokiFileServerAPI.shared.addDeviceLink(deviceLink)
+        org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol.handleProfileUpdateIfNeeded(context, content)
+        org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol.handleProfileKeyUpdateIfNeeded(context, content)
+    }
+
+    @JvmStatic
+    fun handleUnlinkingRequestIfNeeded(context: Context, content: SignalServiceContent) {
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+        // Check that the request was sent by the user's master device
+        val masterDevicePublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context) ?: return
+        val wasSentByMasterDevice = (content.sender == masterDevicePublicKey)
+        if (!wasSentByMasterDevice) { return }
+        // Ignore the request if we don't know about the device link in question
+        val masterDeviceLinks = DatabaseFactory.getLokiAPIDatabase(context).getDeviceLinks(masterDevicePublicKey)
+        if (masterDeviceLinks.none {
+            it.masterHexEncodedPublicKey == masterDevicePublicKey && it.slaveHexEncodedPublicKey == userPublicKey
+        }) {
+            return
+        }
+        LokiFileServerAPI.shared.getDeviceLinks(userPublicKey, true).success { slaveDeviceLinks ->
+            // Check that the device link IS present on the file server.
+            // Note that the device link as seen from the master device's perspective has been deleted at this point, but the
+            // device link as seen from the slave perspective hasn't.
+            if (slaveDeviceLinks.any {
+                it.masterHexEncodedPublicKey == masterDevicePublicKey && it.slaveHexEncodedPublicKey == userPublicKey
+            }) {
+                for (slaveDeviceLink in slaveDeviceLinks) { // In theory there should only be one
+                    LokiFileServerAPI.shared.removeDeviceLink(slaveDeviceLink) // Attempt to clean up on the file server
+                }
+                TextSecurePreferences.setWasUnlinked(context, true)
+                ApplicationContext.getInstance(context).clearData()
             }
         }
     }

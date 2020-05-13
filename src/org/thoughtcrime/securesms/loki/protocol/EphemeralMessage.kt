@@ -16,7 +16,7 @@ class EphemeralMessage private constructor(val data: Map<*, *>) {
         fun createSessionRestorationRequest(publicKey: String) = EphemeralMessage(mapOf( "recipient" to publicKey, "friendRequest" to true, "sessionRestore" to true ))
 
         @JvmStatic
-        fun createSessionRequest(publicKey: String) = EphemeralMessage(mapOf("recipient" to publicKey, "friendRequest" to true, "sessionRequest" to true))
+        fun createSessionRequest(publicKey: String) = EphemeralMessage(mapOf( "recipient" to publicKey, "friendRequest" to true, "sessionRequest" to true ))
 
         internal fun parse(serialized: String): EphemeralMessage {
             val data = JsonUtil.fromJson(serialized, Map::class.java) ?: throw IllegalArgumentException("Couldn't parse string to JSON")

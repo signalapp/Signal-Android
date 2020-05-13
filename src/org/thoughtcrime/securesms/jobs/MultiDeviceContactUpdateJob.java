@@ -80,7 +80,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
     this(context, address, true);
   }
 
-  private MultiDeviceContactUpdateJob(@NonNull Context context, @Nullable Address address, boolean forceSync) {
+  public MultiDeviceContactUpdateJob(@NonNull Context context, @Nullable Address address, boolean forceSync) {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
                            .setQueue("MultiDeviceContactUpdateJob")

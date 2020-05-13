@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.loki.protocol
 
 import android.content.Context
+import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.whispersystems.libsignal.loki.LokiSessionResetProtocol
 import org.whispersystems.libsignal.loki.LokiSessionResetStatus
@@ -18,7 +19,8 @@ class LokiSessionResetImplementation(private val context: Context) : LokiSession
 
     override fun onNewSessionAdopted(hexEncodedPublicKey: String, oldSessionResetStatus: LokiSessionResetStatus) {
         if (oldSessionResetStatus == LokiSessionResetStatus.IN_PROGRESS) {
-            SessionMetaProtocol.sendEphemeralMessage(context, hexEncodedPublicKey)
+            val ephemeralMessage = EphemeralMessage.create(hexEncodedPublicKey)
+            ApplicationContext.getInstance(context).jobManager.add(PushEphemeralMessageSendJob(ephemeralMessage))
         }
         // TODO: Show session reset succeed message
     }

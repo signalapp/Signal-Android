@@ -18,8 +18,7 @@ import java.util.concurrent.TimeUnit
 class PushEphemeralMessageSendJob private constructor(parameters: Parameters, private val message: EphemeralMessage) : BaseJob(parameters) {
 
     companion object {
-        private val KEY_MESSAGE = "message"
-
+        private const val KEY_MESSAGE = "message"
         const val KEY = "PushBackgroundMessageSendJob"
     }
 
@@ -32,14 +31,13 @@ class PushEphemeralMessageSendJob private constructor(parameters: Parameters, pr
         message)
 
     override fun serialize(): Data {
+        // TODO: Is this correct?
         return Data.Builder()
             .putString(KEY_MESSAGE, message.serialize())
             .build()
     }
 
-    override fun getFactoryKey(): String {
-        return KEY
-    }
+    override fun getFactoryKey(): String { return KEY }
 
     public override fun onRun() {
         val recipient = message.get<String?>("recipient", null) ?: throw IllegalStateException()

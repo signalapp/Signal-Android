@@ -5,14 +5,38 @@ import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.whispersystems.signalservice.api.messages.SignalServiceContent
+import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
 import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus
 
 object SessionMetaProtocol {
 
     @JvmStatic
-    fun sendEphemeralMessage(context: Context, publicKey: String) {
-        val ephemeralMessage = EphemeralMessage.create(publicKey)
-        ApplicationContext.getInstance(context).jobManager.add(PushEphemeralMessageSendJob(ephemeralMessage))
+    fun handleProfileUpdateIfNeeded(context: Context, content: SignalServiceContent) {
+        val rawDisplayName = content.senderDisplayName.orNull() ?: return
+        if (rawDisplayName.isBlank()) { return }
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+        val userMasterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
+        val sender = content.sender.toLowerCase()
+        if (userMasterPublicKey == sender) {
+            // Update the user's local name if the message came from their master device
+            TextSecurePreferences.setProfileName(context, rawDisplayName)
+        }
+        // Don't overwrite if the message came from a linked device; the device name is
+        // stored as a user name
+        val allUserDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey)
+        if (!allUserDevices.contains(sender)) {
+            val displayName = rawDisplayName + " (..." + sender.substring(sender.length - 8) + ")"
+            DatabaseFactory.getLokiUserDatabase(context).setDisplayName(sender, displayName)
+        }
+    }
+
+    @JvmStatic
+    fun handleProfileKeyUpdateIfNeeded(context: Context, content: SignalServiceContent) {
+        val userMasterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
+        if (userMasterPublicKey != content.sender) { return }
+        ApplicationContext.getInstance(context).updatePublicChatProfilePictureIfNeeded()
     }
 
     /**

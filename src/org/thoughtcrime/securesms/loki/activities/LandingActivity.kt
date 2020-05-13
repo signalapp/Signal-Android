@@ -40,7 +40,7 @@ class LandingActivity : BaseActionBarActivity(), LinkDeviceSlaveModeDialogDelega
         registerButton.setOnClickListener { register() }
         restoreButton.setOnClickListener { restore() }
         linkButton.setOnClickListener { linkDevice() }
-        if (TextSecurePreferences.setNeedsDatabaseResetFromUnlink(this)) {
+        if (TextSecurePreferences.getWasUnlinked(this)) {
             Toast.makeText(this, "Your device was unlinked successfully", Toast.LENGTH_LONG).show()
         }
     }

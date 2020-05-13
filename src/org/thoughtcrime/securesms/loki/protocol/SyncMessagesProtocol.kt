@@ -10,11 +10,23 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceGroupUpdateJob
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
 import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus
 import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation
 import java.util.*
 
 object SyncMessagesProtocol {
+
+    @JvmStatic
+    fun shouldIgnoreSyncMessage(context: Context, sender: Recipient): Boolean {
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+        return MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey).contains(sender.address.serialize())
+    }
+
+    @JvmStatic
+    fun syncContact(context: Context, address: Address) {
+        ApplicationContext.getInstance(context).jobManager.add(MultiDeviceContactUpdateJob(context, address, true))
+    }
 
     @JvmStatic
     fun syncAllContacts(context: Context) {

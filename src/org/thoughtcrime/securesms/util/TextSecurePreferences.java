@@ -1264,12 +1264,12 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, "database_reset", false);
   }
 
-  public static void setNeedDatabaseResetFromUnlink(Context context, boolean value) {
+  public static void setWasUnlinked(Context context, boolean value) {
     // We do it this way so that it gets persisted in storage straight away
     PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean("database_reset_unpair", value).commit();
   }
 
-  public static boolean setNeedsDatabaseResetFromUnlink(Context context) {
+  public static boolean getWasUnlinked(Context context) {
     return getBooleanPreference(context, "database_reset_unpair", false);
   }
 

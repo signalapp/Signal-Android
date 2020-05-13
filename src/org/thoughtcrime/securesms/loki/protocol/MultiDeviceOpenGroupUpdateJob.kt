@@ -19,7 +19,6 @@ import javax.inject.Inject
 class MultiDeviceOpenGroupUpdateJob private constructor(parameters: Parameters) : BaseJob(parameters), InjectableType {
 
     companion object {
-
         const val KEY = "MultiDeviceOpenGroupUpdateJob"
     }
 
@@ -35,7 +34,7 @@ class MultiDeviceOpenGroupUpdateJob private constructor(parameters: Parameters) 
 
     override fun getFactoryKey(): String { return KEY }
 
-    override fun serialize(): Data { return Data.EMPTY }
+    override fun serialize(): Data { return Data.EMPTY } // TODO: Should we implement this?
 
     @Throws(Exception::class)
     public override fun onRun() {

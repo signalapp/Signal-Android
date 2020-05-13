@@ -99,7 +99,7 @@ public class GroupMessageProcessor {
     }
 
     // Loki - Ignore message if needed
-    if (ClosedGroupsProtocol.shouldIgnoreMessage(context, group)) {
+    if (ClosedGroupsProtocol.shouldIgnoreGroupCreatedMessage(context, group)) {
       return null;
     }
 

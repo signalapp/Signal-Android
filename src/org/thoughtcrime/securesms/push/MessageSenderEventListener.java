@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.push;
 import android.content.Context;
 
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
-import org.thoughtcrime.securesms.loki.FriendRequestHandler;
+import org.thoughtcrime.securesms.loki.protocol.FriendRequestProtocol;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
@@ -23,14 +23,14 @@ public class MessageSenderEventListener implements SignalServiceMessageSender.Ev
   }
 
   @Override public void onFriendRequestSending(long messageID, long threadID) {
-    FriendRequestHandler.updateFriendRequestState(context, FriendRequestHandler.ActionType.Sending, messageID, threadID);
+    FriendRequestProtocol.setFriendRequestStatusToSendingIfNeeded(context, messageID, threadID);
   }
 
   @Override public void onFriendRequestSent(long messageID, long threadID) {
-    FriendRequestHandler.updateFriendRequestState(context, FriendRequestHandler.ActionType.Sent, messageID, threadID);
+    FriendRequestProtocol.setFriendRequestStatusToSentIfNeeded(context, messageID, threadID);
   }
 
   @Override public void onFriendRequestSendingFailed(long messageID, long threadID) {
-    FriendRequestHandler.updateFriendRequestState(context, FriendRequestHandler.ActionType.Failed, messageID, threadID);
+    FriendRequestProtocol.setFriendRequestStatusToFailedIfNeeded(context, messageID, threadID);
   }
 }
