@@ -74,6 +74,8 @@
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">અવરોધિત સંપર્કો</string>
   <!--BlockUnblockDialog-->
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">ગ્રુપના સભ્યો તમને આ ગ્રુપમાં ફરીથી ઉમેરવામાં સમર્થ હશે.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">તમે એકબીજાને મેસેજ અને કૉલ કરી શકશો.</string>
   <string name="BlockUnblockDialog_unblock">અનાવરોધિત કરો</string>
   <string name="BlockUnblockDialog_block">અવરોધિત કરો</string>
   <!--BucketedThreadMedia-->
@@ -205,6 +207,8 @@
   <string name="ConversationActivity_sticker_pack_installed">સ્ટીકર પૅક ઇન્સ્ટોલ કરેલું છે</string>
   <string name="ConversationActivity_new_say_it_with_stickers">નવું! સ્ટીકરોથી બોલો</string>
   <string name="ConversationActivity_cancel">રદ કરો</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">આ વાતચીત તમારા બધા ડિવાઇસમાંથી કાઢી નાખવામાં આવશે.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">તમે આ ગ્રુપને છોડી દો, અને તે તમારા બધા ડિવાઇસમાંથી કાઢી નાખવામાં આવશે.</string>
   <string name="ConversationActivity_delete">કાઢી નાખો </string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -274,6 +278,7 @@
     <item quantity="one">સંવાદને ઇનબોક્સમાં ખસેડયો</item>
     <item quantity="other">સંવાદને %d ઇનબોક્સમાં ખસેડયા</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_saved">તમારું પ્રોફાઇલ નામ સેવ કરવામાં આવ્યું છે.</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">કી વિનિમય મેસેજ</string>
   <!--ConversationListItemAction-->
@@ -496,6 +501,7 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s અદૃશ્ય થઈ રહેલા મેસેજ ટાઈમરને સેટ કરો %2$s. </string>
   <!--GV2 specific-->
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_joined_the_group">તમે ગ્રુપમાં જોડાયા.</string>
   <string name="MessageRecord_s_joined_the_group">%1$sગ્રુપ માં જોડાયા.</string>
   <!--GV2 member removals-->
   <!--GV2 role change-->
@@ -567,6 +573,9 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">તમે ઇન્સ્ટોલ કરેલી Google Play Servicesનું વર્ઝન યોગ્ય રીતે કાર્ય કરી રહ્યું નથી. કૃપા કરીને Google Play Services ફરીથી ઇન્સ્ટોલ કરો અને ફરીથી પ્રયાસ કરો.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">ખોટો PIN</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">જો તમને તમારો PIN યાદ ન આવે તો તમે એક નવો બનાવી શકો છો. તમે તમારા એકાઉન્ટને રજીસ્ટર અને ઉપયોગ કરી શકો છો પરંતુ તમે તમારી પ્રોફાઇલ માહિતી જેવી કેટલીક સાચવેલી સેટિંગ્સ ગુમાવશો.</string>
+  <string name="PinRestoreEntryFragment_create_new_pin">નવો PIN બનાવો</string>
+  <string name="PinRestoreEntryFragment_contact_support">સંપર્ક સપોર્ટ</string>
   <string name="PinRestoreEntryFragment_cancel">રદ કરો</string>
   <string name="PinRestoreEntryFragment_skip">અવગણો</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">આલ્ફાન્યુમેરિક PIN દાખલ કરો</string>
@@ -699,6 +708,8 @@
   <string name="StickerPackPreviewActivity_stickers">સ્ટીકરો</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">સ્ટીકર પેક લોડ કરવામાં નિષ્ફળ</string>
   <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_edit">ફેરફાર કરો</string>
+  <string name="SubmitDebugLogActivity_done">થઈ ગયું</string>
   <string name="SubmitDebugLogActivity_submit">સબમિટ કરો</string>
   <string name="SubmitDebugLogActivity_success">સફળતા!</string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">ક્લિપબોર્ડ પર કૉપી કરેલું</string>
@@ -724,6 +735,7 @@
   <string name="ThreadRecord_you_marked_verified">તમે ચકાસેલું ચિહ્નિત માર્ક કર્યું છે</string>
   <string name="ThreadRecord_you_marked_unverified">તમે વણચકાસેલ માર્ક કર્યું છે</string>
   <string name="ThreadRecord_message_could_not_be_processed">મેસેજ પર પ્રક્રિયા કરી શકાઈ નથી</string>
+  <string name="ThreadRecord_message_request">મેસેજ રિક્વેસ્ટ</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal અપડેટ</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signalનું નવું વર્ઝન ઉપલબ્ધ છે, અપડેટ કરવા માટે ટેપ કરો</string>
@@ -1477,6 +1489,7 @@
   <string name="KbsMegaphone__introducing_pins">PIN રજૂ કરી રહ્યા છીએ</string>
   <string name="KbsMegaphone__update_pin">PIN અપડેટ કરો</string>
   <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__add_profile_name">પ્રોફાઇલ નામ ઉમેરો</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">પરિવહન ચિહ્ન</string>
   <string name="ConversationListFragment_loading">લોડ કરી રહ્યું છે </string>

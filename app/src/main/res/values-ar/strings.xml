@@ -769,6 +769,7 @@
   <string name="PinRestoreEntryFragment_incorrect_pin">الرقم التعريفي الشخصي غير صحيح</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">تجاوز إدخال الرمز الشخصي؟</string>
   <string name="PinRestoreEntryFragment_need_help">بحاجة الى مساعدة؟</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">إذا كنت لا تتذكر رقمك التعريفي الشخصي، يمكنك إنشاء واحد جديد. يمكنك التسجيل واستخدام حسابك لكن سوف تفقد بعض الإعدادات المحفوظة، مثل معلومات حسابك.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">إنشاء رمز شخصي جديد</string>
   <string name="PinRestoreEntryFragment_contact_support">اتصل بالدعم</string>
   <string name="PinRestoreEntryFragment_cancel">إلغاء</string>
@@ -777,6 +778,7 @@
   <string name="PinRestoreEntryFragment_enter_numeric_pin">أدخل الرقم التعريفي الشخصي بالأرقام</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">إنشاء الرقم التعريفي الشخصي الخاص بك</string>
+  <string name="PinRestoreLockedFragment_create_new_pin">إنشاء رقم تعريف شخصي جديد</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">تقييم التطبيق</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">إذا كنت مستمتع باستخدام التطبيق رجاء مساعدتنا بتقييمه</string>
@@ -856,6 +858,9 @@
   <string name="RegistrationActivity_country_code_description">رمز البلد</string>
   <string name="RegistrationActivity_call">اتصال</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">هل تريد تشغيل قفل الانخراط ؟</string>
+  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">هل تريد إيقاف قفل الانخراط ؟</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">إدا نسيت الرقم التعريفي الشخصي إذا قمت بالتسجيل مرة أخرى في Signal، سوف يُقفَل حسابك لسبعة أيام.</string>
   <string name="RegistrationLockV2Dialog_turn_on">شغل</string>
   <string name="RegistrationLockV2Dialog_turn_off">أطفيء</string>
   <!--RevealableMessageView-->
@@ -1735,7 +1740,10 @@
   <string name="BaseKbsPinFragment__create_numeric_pin">إنشاء الرقم التعريفي الشخصي بالأرقام</string>
   <!--CreateKbsPinFragment-->
   <string name="CreateKbsPinFragment__create_a_new_pin">إنشاء رقم تعريفي شخصي جديد</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">يمكنك تغيير الرقم التعريفي الشخصي في أي وقت طالما بقي هذا الجهاز مسجلا.</string>
   <string name="CreateKbsPinFragment__create_your_pin">إنشاء الرقم التعريفي الشخصي الخاص بك</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">يمكنك الرقم التعريفي الشخصي من حفظ معلوماتك بشكل مُعمَّى في Signal بحيث يمكنك الوصول إليها وحدك. سوف تتم استعادة حسابك وإعداداتك و جهات اتصالك عند إعادة تثبيت Signal.</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">اختر رقما تعريفيا شخصيا أمتن.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">الأرقام التعريفية الشخصية غير متطابقة. يرجى المحاولة ثانية.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">يرجى تأكيد الرقم التعريفي الشخصي.</string>
@@ -1745,6 +1753,7 @@
   <string name="ConfirmKbsPinFragment__creating_pin">جاري إنشاء الرقم التعريفي الشخصي</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">نقدم لكم الأرقام التعريفية الشخصية أو PINs</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">يمكنك الرقم التعريفي الشخصي من حفظ معلوماتك بشكل مُعمَّى في Signal بحيث يمكنك الوصول إليها وحدك. سوف تتم استعادة حسابك وإعداداتك و جهات اتصالك عند إعادة تثبيت Signal.</string>
   <string name="KbsSplashFragment__learn_more">أعرف أكثر</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">قفل التسجيل = الرقم التعريفي الشخصي</string>
   <string name="KbsSplashFragment__read_more_about_pins">اقرأ المزيد عن الأرقام التعريفية الشخصية.</string>
@@ -1795,6 +1804,7 @@
   <string name="KbsMegaphone__update_pin">تحديث الرقم التعريفي الشخصي</string>
   <!--Profile Names Megaphone-->
   <string name="ProfileNamesMegaphone__add_a_profile_name">إضافة اسم للملف الشخصي</string>
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">سوف يظهر هذا حينما تبدأ محادثة جديدة أو تقوم بمشاركتها.</string>
   <string name="ProfileNamesMegaphone__add_profile_name">إضافة اسم للملف الشخصي</string>
   <string name="ProfileNamesMegaphone__confirm_your_profile_name">أكد اسم ملفك الشخصي</string>
   <string name="ProfileNamesMegaphone__your_profile_can_now_include">يمكن أن يحوي حسابك لقبك اختياريا.</string>
@@ -1868,6 +1878,7 @@
   <string name="preferences_app_protection__signal_pin">الرقم التعريفي الشخصي ل Signal</string>
   <string name="preferences_app_protection__create_a_pin">إنشاء رقم تعريفي شخصي</string>
   <string name="preferences_app_protection__change_your_pin">ر غيِّر رقم التعريف الشخصي الخاص بك</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">يمكنك الرقم التعريفي الشخصي من حفظ معلوماتك بشكل مُعمَّى في Signal بحيث يمكنك الوصول إليها وحدك. سوف تتم استعادة حسابك وإعداداتك و جهات اتصالك عند إعادة تثبيت Signal.</string>
   <string name="AppProtectionPreferenceFragment_none">لا شيء </string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">الرقم التعريفي الشخصي لحماية التسجيل مختلف عن رمز التحقق في رسالة SMS التي استقبلتها الآن. يُرجى إدخال الرقم التعريفي الشخصي الذي قمت بتحديده في إعدادات التطبيق من قبل.</string>
   <string name="registration_activity__registration_lock_pin">الرقم التعريفي الشخصي لحماية التسجيل</string>

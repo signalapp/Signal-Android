@@ -77,6 +77,8 @@
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts"> بلاک کیتے گئے رابطے</string>
   <!--BlockUnblockDialog-->
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">گروپ اراکین تساں نوں ایس گروپ اچ دوبارہ شامل کرن دے اہل ہون گے۔</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">تساں اک دوجے نوں سنیہا گھلن تے کال کرن دے اہل ہوو گے۔</string>
   <string name="BlockUnblockDialog_unblock">ان بلاک کرو</string>
   <string name="BlockUnblockDialog_block">بلاک کرو</string>
   <!--BucketedThreadMedia-->
@@ -708,6 +710,7 @@
   <string name="StickerPackPreviewActivity_stickers">اسٹیکرز</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">اسٹیکر پیک لوڈ کرن اچ ناکام ہویا</string>
   <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_done">ہو گیا</string>
   <string name="SubmitDebugLogActivity_submit">جمع کراؤ</string>
   <string name="SubmitDebugLogActivity_success">کامیابی!</string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">کلپ بورڈ تے کاپی کیتا</string>

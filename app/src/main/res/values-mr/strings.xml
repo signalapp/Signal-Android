@@ -223,6 +223,8 @@
   <string name="ConversationActivity_new_say_it_with_stickers">नवीन! स्टिकर सोबत बोला</string>
   <string name="ConversationActivity_cancel">रद्द करा</string>
   <string name="ConversationActivity_delete_conversation">संभाषण काढून टाकायचे?</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">हे संभाषण आपल्या सर्व डिव्हाईस यांवरून हटविले जाईल.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">आपण हे गट सोडाल, आणि ते आपल्या सर्व डिव्हाईस वरून हटविले जाईल.</string>
   <string name="ConversationActivity_delete">हटवा</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -292,6 +294,7 @@
     <item quantity="one">संभाषण इनबॉक्स मध्ये हलवले</item>
     <item quantity="other">%d संभाषण इनबॉक्स मध्ये हलवली</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_saved">आपले प्रोफाईल नाव जतन केले गेले आहे.</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">की विनिमय संदेश</string>
   <!--ConversationListItemAction-->
@@ -376,6 +379,9 @@
   <string name="GroupMembersDialog_you">आपण</string>
   <!--GV2 access levels-->
   <!--PendingMembersActivity-->
+  <string name="PendingMembersActivity_people_you_invited">आपण आमंत्रित केलेल्या व्यक्ती</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">इतर गट सदस्यांद्वारा आमंत्रण</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">इतर गट सदस्यांद्वारा आमंत्रित व्यक्तींचे तपशील दाखविलेले नाही. जर आमंत्रितांनी सामील होण्यास निवडले, तर त्यांची माहिती गटासोबत त्यावेळी सामायिक केली जाईल. ते सामील होईपर्यंत ते कुठलेही संदेश पाहू शकणार नाही.</string>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">गट अवतार</string>
@@ -461,7 +467,10 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s द्वारा %2$s यास पाठवले</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">%1$s यास आपल्याद्वारे पाठवले</string>
   <!--Megaphones-->
+  <string name="Megaphones_introducing_reactions">सादर करत आहे प्रतिक्रिया</string>
   <string name="Megaphones_remind_me_later">मला नंतर आठवण करून द्या</string>
+  <string name="Megaphones_verify_your_signal_pin">आपला Signal PIN सत्यापित करा.</string>
+  <string name="Megaphones_verify_pin">PIN सत्यापित करा</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal कॉल प्रगती मध्ये</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal कॉल प्रस्थापित करत आहे</string>
@@ -514,6 +523,7 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ने हरवणारे संदेश टायमर %2$s वर सेट केले.</string>
   <!--GV2 specific-->
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_joined_the_group">आपण गटात सामील झालात.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s गटात सामील झाले</string>
   <!--GV2 member removals-->
   <!--GV2 role change-->
@@ -586,6 +596,8 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">आपण स्थापन केलेली Google प्ले सेवेची आवृत्ती व्यवस्थित कार्य करत नाही. कृपया Google प्ले सेवा पुन्हा स्थापन करा आणि पुन्हा प्रयत्न करा.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">चुकीचा PIN</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">जर आपल्याला आपला PIN आठवत नसेल, तर आपण एक नवीन तयार करू शकता. आपण नोंदणी करू शकता आणि आपले खाते वापरू शकता पण काही जतन केलेल्या सेटिंग आपण गमवाल जसे की आपली प्रोफाईल माहिती.</string>
+  <string name="PinRestoreEntryFragment_create_new_pin">नवीन PIN तयार करा</string>
   <string name="PinRestoreEntryFragment_contact_support">समर्थन सोबत संपर्क साधा</string>
   <string name="PinRestoreEntryFragment_cancel">रद्द करा</string>
   <string name="PinRestoreEntryFragment_skip">वगळा</string>
@@ -1468,15 +1480,20 @@
   <string name="BaseKbsPinFragment__create_numeric_pin">न्यूमेरिक PIN तयार करा</string>
   <!--CreateKbsPinFragment-->
   <string name="CreateKbsPinFragment__create_a_new_pin">एक नवीन PIN तयार करा</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">जोपर्यंत हा डिव्हाईस नोंदणीकृत आहे आपण आपला PIN बदलू शकता.</string>
   <string name="CreateKbsPinFragment__create_your_pin">आपला PIN तयार करा</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Signal सोबत संचयित केलेली माहिती PIN एन्क्रिप्टेड ठेवतात जेणेकरून ती फक्त आपण अॅक्सेस करू शकता. आपण Signal पुन्हा स्थापन केल्यावर आपली प्रोफाईल, सेटिंग, आणि संपर्क पुनर्स्थित होईल.</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">एक शक्तिशाली PIN निवडा</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN जुळत नाहीत. पुन्हा प्रयत्न करा.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">आपल्या PIN ची पुष्टी करा.</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN तयार करणे अयशस्वी</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">आपला PIN जतन केला गेला नाही. आम्ही नंतर आपल्याला PIN तयार करण्यासाठी सूचित करू.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN तयार केले</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">PIN तयार करत आहे…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">PIN ची ओळख करून देत आहे</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Signal सोबत संचयित केलेली माहिती PIN एन्क्रिप्टेड ठेवतात जेणेकरून ती फक्त आपण अॅक्सेस करू शकता. आपण Signal पुन्हा स्थापन केल्यावर आपली प्रोफाईल, सेटिंग, आणि संपर्क पुनर्स्थित होईल.</string>
   <string name="KbsSplashFragment__learn_more">अधिक जाणा</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">नोंदणी लॉक = PIN</string>
   <string name="KbsSplashFragment__read_more_about_pins">PIN बद्दल अधिक येथे वाचा.</string>
@@ -1504,9 +1521,14 @@
   <string name="RegistrationLockFragment__incorrect_pin">चुकीचा PIN</string>
   <string name="RegistrationLockFragment__forgot_your_pin">आपला PIN विसरलात?</string>
   <!--KBS Megaphone-->
+  <string name="KbsMegaphone__create_a_pin">PIN तयार करा.</string>
+  <string name="KbsMegaphone__create_pin">PIN तयार करा</string>
   <string name="KbsMegaphone__introducing_pins">PIN ची ओळख करून देत आहे</string>
   <string name="KbsMegaphone__update_pin">PIN अद्यतनित करा</string>
   <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">हे दाखविले जाईल जेव्हा आपण नवीन संभाषण चालू करता किंवा त्यास सामायिक करता.</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">प्रोफाईल नाव जोडा</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">आपल्या प्रोफाईल मध्ये आता पर्यायी अडनाव समाविष्ट करता येऊ शकते.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">वाहतूक चिन्ह</string>
   <string name="ConversationListFragment_loading">लोड होत आहे…</string>
@@ -1563,7 +1585,9 @@
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Android स्क्रीन लॉक किंवा फिंगरप्रिंटने Signal अॅक्सेस लॉक करा</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">स्क्रीन लॉक निष्क्रियता टाईमआऊट</string>
   <string name="preferences_app_protection__signal_pin">Signal PIN</string>
+  <string name="preferences_app_protection__create_a_pin">PIN तयार करा.</string>
   <string name="preferences_app_protection__change_your_pin">आपला PIN बदला</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Signal सोबत संचयित केलेली माहिती PIN एन्क्रिप्टेड ठेवतात जेणेकरून ती फक्त आपण अॅक्सेस करू शकता. आपण Signal पुन्हा स्थापन केल्यावर आपली प्रोफाईल, सेटिंग, आणि संपर्क पुनर्स्थित होईल.</string>
   <string name="AppProtectionPreferenceFragment_none">कुठलेही नाही</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">आपल्याला आता प्राप्त झालेल्या SMS सत्यापन कोड आणि नोंदणी लॉक PIN सारखे नाहीत. कृपया आपण अॅपलिकेशनमध्ये पूर्वी कॉन्फिगर केलेले PIN प्रविष्ट करा.</string>
   <string name="registration_activity__registration_lock_pin">नोंदणी लॉक PIN</string>

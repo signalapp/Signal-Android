@@ -507,7 +507,7 @@
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Je kunt vanaf nu een bericht aantikken en vasthouden om snel en gemakkelijk te laten weten hoe je je er over voelt.</string>
   <string name="Megaphones_remind_me_later">Herinner me later</string>
   <string name="Megaphones_verify_your_signal_pin">Verifieer je Signal-pincode</string>
-  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Signal zal je af te toe vragen om je pincode opnieuw in te voeren, om te controleren of je hem goed onthouden hebt.</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Signal zal je af te toe vragen om je pincode opnieuw in te voeren, zodat je je pincode goed onthoudt.</string>
   <string name="Megaphones_verify_pin">Pincode verifiëren </string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-oproep aan de gang</string>

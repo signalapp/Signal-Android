@@ -166,6 +166,7 @@
   <string name="ConversationItem_read_more">  Leia mais</string>
   <string name="ConversationItem_download_more">  Baixe mais</string>
   <string name="ConversationItem_pending">  Pendente</string>
+  <string name="ConversationItem_this_message_was_deleted">Essa mensagem foi suprimida.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Reiniciar sessão segura?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Isto pode ajudar se você está tendo problemas de criptografia nesta conversa. Suas mensagens serão mantidas.</string>
@@ -525,6 +526,7 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s definiu o tempo de duração das mensagens efêmeras como %2$s.</string>
   <!--GV2 specific-->
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_joined_the_group">Você entrou no grupo.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s entraram no  grupo.</string>
   <!--GV2 member removals-->
   <string name="MessageRecord_you_left_the_group">Você saiu do grupo.</string>
@@ -606,6 +608,8 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">A versão instalada do Google Play Services não está funcionando corretamente. Favor reinstalar o Google Play Services e tentar novamente.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">PIN incorreto</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Se não conseguir se lembrar do seu PIN, você pode criar um outro. Nesse caso, você pode se registrar e usar sua conta, mas perderá algumas configurações salvas, como as informações do seu perfil.</string>
+  <string name="PinRestoreEntryFragment_create_new_pin">Criar novo PIN</string>
   <string name="PinRestoreEntryFragment_contact_support">Entre em contato com o Suporte do Signal</string>
   <string name="PinRestoreEntryFragment_cancel">Cancelar</string>
   <string name="PinRestoreEntryFragment_skip">Pular</string>
@@ -689,6 +693,7 @@
   <string name="RegistrationActivity_country_code_description">Código do país</string>
   <string name="RegistrationActivity_call">Ligar</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Se você esquecer seu PIN SIGNAL ao se registrar novamente no Signal, ficará sem acesso à sua conta por sete dias.</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Ver foto</string>
   <string name="RevealableMessageView_view_video">Assistir vídeo</string>
@@ -775,6 +780,7 @@
   <string name="ThreadRecord_view_once_photo">Imagem efêmera</string>
   <string name="ThreadRecord_view_once_video">Vídeo efêmero</string>
   <string name="ThreadRecord_view_once_media">Mídia efêmera</string>
+  <string name="ThreadRecord_this_message_was_deleted">Essa mensagem foi suprimida.</string>
   <string name="ThreadRecord_s_is_on_signal">%s está no Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Mensagens efêmeras desabilitadas</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tempo de duração da mensagem efêmera definido para %s</string>
@@ -884,6 +890,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reagiu com %1$s à sua imagem efêmera.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reagiu com %1$s ao seu vídeo efêmero.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagiu com %1$s à sua figurinha.</string>
+  <string name="MessageNotifier_this_message_was_deleted">Essa mensagem foi suprimida.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Padrão</string>
   <string name="NotificationChannel_calls">Ligações</string>
@@ -1533,6 +1540,7 @@
     <item quantity="other">O PIN deve conter pelo menos %1$d dígitos</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Criar um novo PIN</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Você pode modificar seu PIN enquanto este aparelho estiver registrado.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Criar seu PIN</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Os PINs não correspondem. Tente outra vez.</string>

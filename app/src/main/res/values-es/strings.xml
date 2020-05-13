@@ -265,9 +265,9 @@
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Eliminar</string>
-  <string name="ConversationFragment_deleting_messages">Borrando mensajes …</string>
-  <string name="ConversationFragment_delete_for_me">Eliminar en mis dispositivos</string>
-  <string name="ConversationFragment_delete_for_everyone">Eliminar para todos</string>
+  <string name="ConversationFragment_deleting_messages">Eliminando mensajes …</string>
+  <string name="ConversationFragment_delete_for_me">Eliminar para mi</string>
+  <string name="ConversationFragment_delete_for_everyone">Eliminar para tod@s</string>
   <string name="ConversationFragment_quoted_message_not_found">No se encuentra el mensaje original </string>
   <string name="ConversationFragment_quoted_message_no_longer_available">El mensaje original ya no está disponible</string>
   <string name="ConversationFragment_failed_to_open_message">Fallo al abrir mensaje</string>
@@ -475,7 +475,7 @@
     <item quantity="other">Se eliminarán permanentemente los %1$d archivos seleccionados. Todos los mensajes asociados con esos elementos también se eliminarán.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Eliminar</string>
-  <string name="MediaOverviewActivity_Media_delete_progress_message">Borrando mensajes …</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Eliminando mensajes …</string>
   <string name="MediaOverviewActivity_Select_all">Seleccionar todo</string>
   <string name="MediaOverviewActivity_collecting_attachments">Recopilando adjuntos …</string>
   <string name="MediaOverviewActivity_Sort_by">Ordenar por</string>
@@ -875,7 +875,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ThreadRecord_view_once_photo">Foto para ver solo una vez</string>
   <string name="ThreadRecord_view_once_video">Vídeo para ver solo una vez</string>
   <string name="ThreadRecord_view_once_media">Multimedia para ver solo una vez</string>
-  <string name="ThreadRecord_this_message_was_deleted">Este mensaje ha sido borrado.</string>
+  <string name="ThreadRecord_this_message_was_deleted">Este mensaje ha sido eliminado.</string>
   <string name="ThreadRecord_s_is_on_signal">¡%s usa Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Desaparición de mensajes desactivada.</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">El tiempo de desaparición de mensajes se ha fijado en %s</string>
@@ -985,7 +985,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Reacción a tu foto para ver solo una vez: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">Reacción a tu video para ver solo una vez: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reacción a tu cromo: %1$s.</string>
-  <string name="MessageNotifier_this_message_was_deleted">Mensaje borrado.</string>
+  <string name="MessageNotifier_this_message_was_deleted">Mensaje eliminado.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Por defecto</string>
   <string name="NotificationChannel_calls">Llamadas</string>

@@ -384,6 +384,9 @@
   <string name="GroupMembersDialog_you">Deg</string>
   <!--GV2 access levels-->
   <!--PendingMembersActivity-->
+  <string name="PendingMembersActivity_people_you_invited">Personer du har invitert</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">Invitert av andre medlemmer</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">Detaljer om personer invitert av andre gruppemedlemmer vises ikke. Om inviterte velger å bli med i gruppen vil dette ble delt med gruppen. De vil ikke se meldinger i gruppen, før de eventuelt blir med.</string>
   <string name="PendingMembersActivity_cancel_invite">Avbryt invitasjonen</string>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->

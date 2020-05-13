@@ -384,6 +384,7 @@
   <string name="PendingMembersActivity_you_have_no_pending_invites">保留中の招待はありません。</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">グループの他のメンバーからの招待</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">グループの他のメンバーからの招待はありません。</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">他のグループメンバーから招待を受けたユーザーの詳細は表示されません。招待を受けたユーザーの情報は、そのユーザーがグループに参加する時点でグループと共有されます。それまでの間、そのユーザーにグループのメッセージは表示されません。</string>
   <string name="PendingMembersActivity_cancel_invite">招待をキャンセル</string>
   <string name="PendingMembersActivity_cancel_invites">招待をキャンセル</string>
   <plurals name="PendingMembersActivity_cancel_d_invites">
@@ -538,7 +539,7 @@
   <string name="MessageRecord_you_added_s">%1$s を追加しました。</string>
   <string name="MessageRecord_s_added_s">%1$s は %2$s を追加しました。</string>
   <string name="MessageRecord_s_added_you">%1$s はあなたをこのグループに追加しました。</string>
-  <string name="MessageRecord_you_joined_the_group">あなたがグループに入りました。</string>
+  <string name="MessageRecord_you_joined_the_group">グループに加わりました。</string>
   <string name="MessageRecord_s_joined_the_group">%1$s がグループに加わりました。</string>
   <!--GV2 member removals-->
   <string name="MessageRecord_you_removed_s">%1$s を削除しました。</string>
@@ -571,9 +572,11 @@
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">このグループの招待を承認しました。</string>
   <string name="MessageRecord_s_accepted_invite">%1$s はグループの招待を承認しました。</string>
+  <string name="MessageRecord_you_added_invited_member_s">招待されたメンバー %1$s を追加しました。 </string>
+  <string name="MessageRecord_s_added_invited_member_s">%1$s は招待されたメンバー %2$sを追加しました。</string>
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">このグループ名を \"%1$s\" に変更しました。</string>
-  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s はグループ名を \"%2$s\" に変更しました。</string>
+  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s はグループ名を「%2$s」に変更しました。</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">グループアバターを更新しました。</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s はグループアバターを更新しました。</string>
@@ -591,14 +594,15 @@
   <string name="MessageRequestBottomView_block">ブロック</string>
   <string name="MessageRequestBottomView_unblock">ブロックを解除</string>
   <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">%1$s をブロック解除することでお互いにメッセージと通話ができます。　</string>
+  <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">ブロックを解除することによって、グループのメンバーは再度グループにあなたを追加できるようになります。</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s のメンバー</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s と %2$s のメンバー</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s、%2$s および %3$s のメンバー</string>
   <plurals name="MessageRequestProfileView_members">
-    <item quantity="other">%1$d メンバー</item>
+    <item quantity="other">%1$d人のメンバー</item>
   </plurals>
   <plurals name="MessageRequestProfileView_members_and_invited">
-    <item quantity="other">%1$d メンバー (+%2$d 件の招待)</item>
+    <item quantity="other">%1$d人のメンバー (+ %2$d件の招待)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="other">他 %d 人</item>
@@ -1257,7 +1261,7 @@
   <string name="HelpFragment__tell_us_whats_going_on">お問い合わせ内容</string>
   <string name="HelpFragment__include_debug_log">デバッグログを添付</string>
   <string name="HelpFragment__whats_this">詳細情報</string>
-  <string name="HelpFragment__how_do_you_feel">今の状況は？ (任意)</string>
+  <string name="HelpFragment__how_do_you_feel">どんな感じですか? (任意)</string>
   <string name="HelpFragment__support_info">Support Info</string>
   <string name="HelpFragment__subject">Subject:</string>
   <string name="HelpFragment__signal_android_support_request">Signal Android Support Request</string>
@@ -1268,7 +1272,7 @@
   <string name="HelpFragment__debug_log">Debug Log:</string>
   <string name="HelpFragment__na">n/a</string>
   <string name="HelpFragment__could_not_upload_logs">ログをアップロードできませんでした</string>
-  <string name="HelpFragment__signal_support">Signalサポート</string>
+  <string name="HelpFragment__signal_support">Signal サポート</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">どのような問題が発生しているのか、詳細に記述してください。</string>
   <string name="HelpFragment__no_email_app_found">メールアプリがありません。</string>
   <!--arrays.xml-->
@@ -1571,6 +1575,7 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">新しい PIN を作成</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">このデバイスが登録されている間はPINを変更することができます。</string>
   <string name="CreateKbsPinFragment__create_your_pin">PIN を作成</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN はあなたの情報を暗号化された状態で保管され、あなただけがアクセスすることができます。Signal を再インストールした時、あなたのプロフィール、設定、連絡先は復元されます。</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">強いPINを選択</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN が一致しません。再度試してください。</string>
@@ -1582,6 +1587,7 @@
   <string name="ConfirmKbsPinFragment__creating_pin">PIN を作成しています…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">PIN のご紹介</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN はあなたの情報を暗号化された状態で保管され、あなただけがアクセスすることができます。Signal を再インストールした時、あなたのプロフィール、設定、連絡先は復元されます。</string>
   <string name="KbsSplashFragment__learn_more">詳細を見る</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">登録ロック = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">登録ロックは今後 PIN と呼ばれ、より多機能になります。今すぐアップデートしてください。</string>
@@ -1628,6 +1634,7 @@
   </plurals>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">PIN を作成</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PINによってSignalで保管される情報が暗号化されます</string>
   <string name="KbsMegaphone__create_pin">PIN を作成</string>
   <string name="KbsMegaphone__introducing_pins">PIN のご紹介</string>
   <string name="KbsMegaphone__update_pin">PIN をアップデート</string>
@@ -1704,6 +1711,8 @@
   <string name="preferences_app_protection__signal_pin">Signal PIN</string>
   <string name="preferences_app_protection__create_a_pin">PIN を作成</string>
   <string name="preferences_app_protection__change_your_pin">PIN を変更</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN はあなたの情報を暗号化された状態で保管され、あなただけがアクセスすることができます。Signal を再インストールした時、あなたのプロフィール、設定、連絡先は復元されます。</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">更なるセキュリティのため、登録ロックを有効にしてください。これにより、Signalに再度登録するとき、Signal PINが要求されます。</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">登録ロックを有効にすることに失敗しました。</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">登録ロックを無効にすることに失敗しました</string>
   <string name="AppProtectionPreferenceFragment_none">なし</string>

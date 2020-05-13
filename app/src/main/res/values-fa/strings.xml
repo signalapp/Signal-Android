@@ -308,12 +308,12 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">تأیید شده</string>
   <!--CreateProfileActivity-->
-  <string name="CreateProfileActivity__profile">نمایه</string>
-  <string name="CreateProfileActivity_error_setting_profile_photo">خطا در تنظیم تصویر نمایه</string>
-  <string name="CreateProfileActivity_problem_setting_profile">مشکل در تنظیم نمایه</string>
-  <string name="CreateProfileActivity_profile_photo">تصویر نمایه</string>
-  <string name="CreateProfileActivity_set_up_your_profile">نمایه خود را برپا کنید</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">نمایه های Signal به صورت سرتاسر رمزگذاری شده‌اند و سرویس Signal قادر به دستیابی به این اطلاعات نخواهد بود.</string>
+  <string name="CreateProfileActivity__profile">پروفایل</string>
+  <string name="CreateProfileActivity_error_setting_profile_photo">خطا در تنظیم تصویر پروفایل</string>
+  <string name="CreateProfileActivity_problem_setting_profile">مشکل در تنظیم پروفایل</string>
+  <string name="CreateProfileActivity_profile_photo">تصویر پروفایل</string>
+  <string name="CreateProfileActivity_set_up_your_profile">پروفایل خود را برپا کنید</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">پروفایل‌های Signal به صورت سرتاسر رمزگذاری می‌شوند و سرویس Signal هیچگاه به این اطلاعات دسترسی ندارد.</string>
   <string name="CreateProfileActivity_set_avatar_description">تنظیم چهرک</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">استفاده از سفارشی: %s</string>
@@ -383,8 +383,8 @@
   <string name="GroupCreateActivity_youre_already_in_the_group">شما در حال حاضر در این گروه هستید.</string>
   <string name="GroupCreateActivity_remove_member_description">حذف عضو گروه</string>
   <!--GroupShareProfileView-->
-  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">اشتراک گذاری نام و تصویر پروفایل خود با این گروه؟</string>
-  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">آیا می‌خواهید نام و تصویر نمایه شما برای همه اعضا فعلی و کسانی که در آینده عضو می شوند آشکار شود؟</string>
+  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">اشتراک گذاری نام و عکس پروفایل خود با این گروه؟</string>
+  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">آیا می‌خواهید نام و عکس پروفایل شما برای همهٔ اعضای فعلی و کسانی که در آینده عضو این گروه می‌شوند آشکار شود؟</string>
   <string name="GroupShareProfileView_make_visible">آشکار کن</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">شما</string>
@@ -691,7 +691,7 @@
   <string name="PinRestoreEntryFragment_skip_pin_entry">رد ورود پین؟</string>
   <string name="PinRestoreEntryFragment_need_help">به راهنمایی نیاز دارید؟</string>
   <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">پین شما یک کد %1$d+ رقمی است که می‌تواند شامل اعداد یا حروف باشد.\n\n اگر نمی‌توانید پین را به یاد بیاورید، می‌توانید یک پین جدید ایجاد کنید. می‌توانید دوباره ثبت‌نام و از حساب‌تان استفاده کنید اما تنظیمات ذخیره شده مانند اطلاعات پروفایل‌‌تان را از دست می‌دهید.</string>
-  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">اگر نمی‌توانید پین را به یاد بیاورید، یک پین جدید ایجاد کنید. شما می‌توانید ثبت‌نام و از حساب‌تان استفاده کنید اما تنظیمات ذخیره‌ شده مانند اطلاعت پروفایل‌تان را از دست می‌دهید.</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">اگر نمی‌توانید پین را به یاد بیاورید، یک پین جدید ایجاد کنید. شما می‌توانید ثبت‌نام و از حساب‌تان استفاده کنید اما تنظیمات ذخیره‌ شده مانند اطلاعات پروفایل‌تان را از دست می‌دهید.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">ایجاد پین جدید</string>
   <string name="PinRestoreEntryFragment_contact_support">ارتباط با پشتیبانی</string>
   <string name="PinRestoreEntryFragment_cancel">لغو</string>
@@ -994,7 +994,7 @@
   <string name="NotificationChannel_group_messages">پیام ها</string>
   <string name="NotificationChannel_missing_display_name">ناشناخته</string>
   <!--ProfileEditNameFragment-->
-  <string name="ProfileEditNameFragment_successfully_set_profile_name">نام نمایه با موفقیت تنظیم شد.</string>
+  <string name="ProfileEditNameFragment_successfully_set_profile_name">نام پروفایل با موفقیت تنظیم شد.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">خطای شبکه رخ داد.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">پاسخ سریع هنگام قفل بودن Signal در دسترس نیست!</string>
@@ -1268,9 +1268,9 @@
   <string name="recipients_panel__add_members">افزودن اعضا</string>
   <!--unknown_sender_view-->
   <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">فرستنده در فهرست مخاطب های شما قرار ندارد</string>
-  <string name="unknown_sender_view__block">مسدود سازی</string>
+  <string name="unknown_sender_view__block">مسدودسازی</string>
   <string name="unknown_sender_view__add_to_contacts">افزودن به مخاطبان</string>
-  <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">اضافه نکن، اما نمایه ام را قابل مشاهده قرار بده</string>
+  <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">اضافه نکن، اما پروفایل من را قابل مشاهده قرار بده</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ اگر مایل هستید تا امنیت رمزگذاری خود را با %s تایید کنید، عدد آمده در بالا را با عدد روی دستگاه آن ها مقایسه کنید. در غیر این صورت، میتوانید کد روی گوشی آن ها را اسکن کرده یا از آن ها بخواهید تا کد شما را اسکن کنند. <a href="https://signal.org/redirect/safety-numbers">بیشتر یاد بگیرید.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">برای اسکن کردن ضربه بزنید</string>
@@ -1481,7 +1481,7 @@
   <string name="preferences_communication__sealed_sender_display_indicators">نمایش نشانگرها</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">نمایش نگارک وضعیت در حالتی که شما «جزئیات پیام» را بر روی پیام‌‌هایی که با استفاده از فرستندهٔ ناشناس تحویل داده شده بودند انتخاب می‌کنید.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">اجازه به همه</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">فعال‌سازی فرستندهٔ ناشناس برای پیام‌های دریافتی از غیر-مخاطبان و کسانی که نمایهٔ خود را با آن‌ها به اشتراک نگذاشته‌اید.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">فعال‌سازی فرستندهٔ ناشناس برای پیام‌های دریافتی از غیر-مخاطبان و کسانی که پروفایل خود را با آن‌ها به اشتراک نگذاشته‌اید.</string>
   <string name="preferences_communication__sealed_sender_learn_more">بیشتر یاد بگیرید</string>
   <!--****************************************-->
   <!--menus-->

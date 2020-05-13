@@ -175,10 +175,10 @@
   <string name="ConversationActivity_reset_secure_session_question">Réinitialiser la session sécurisée ?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Cela peut aider si vous éprouvez des problèmes de chiffrement dans cette conversation. Vos messages seront conservés.</string>
   <string name="ConversationActivity_reset">Réinitialiser</string>
-  <string name="ConversationActivity_add_attachment">Ajouter une pièce jointe</string>
+  <string name="ConversationActivity_add_attachment">Ajouter un fichier joint</string>
   <string name="ConversationActivity_select_contact_info">Sélectionner les renseignements du contact</string>
   <string name="ConversationActivity_compose_message">Rédiger un message</string>
-  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Désolé, une erreur de mise en place de votre pièce jointe est survenue.</string>
+  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Désolé, une erreur de mise en place de votre fichier joint est survenue.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Le destinataire n’est pas une adresse texto ou courriel valide.</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Le message est vide.</string>
   <string name="ConversationActivity_group_members">Membres du groupe</string>
@@ -199,7 +199,7 @@
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Vous pourrez de nouveau recevoir des messages et appels de ce contact.</string>
   <string name="ConversationActivity_unblock_this_group_description">Les membres actuels pourront vous rajouter au groupe.</string>
   <string name="ConversationActivity_unblock">Débloquer</string>
-  <string name="ConversationActivity_attachment_exceeds_size_limits">La pièce jointe dépasse la limite de taille pour le type de message que vous envoyé.</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">Le fichier joint dépasse la limite de taille pour le type de message que vous envoyé.</string>
   <string name="ConversationActivity_quick_camera_unavailable">L’appareil photo n’est pas disponible</string>
   <string name="ConversationActivity_unable_to_record_audio">Impossible d’enregistrer le son.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Il n’y a aucune appli pour gérer ce lien sur votre appareil.</string>
@@ -248,17 +248,17 @@
     <item quantity="other">L’enregistrement des %1$d médias dans la mémoire permettra à n’importe quelle autre appli de votre appareil d’y accéder.\n\nPoursuivre ?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
-    <item quantity="one">Erreur d’enregistrement de la pièce jointe dans la mémoire.</item>
-    <item quantity="other">Erreur d’enregistrement des pièces jointes dans la mémoire.</item>
+    <item quantity="one">Erreur d’enregistrement du fichier joint dans la mémoire.</item>
+    <item quantity="other">Erreur d’enregistrement des fichiers joints dans la mémoire.</item>
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Impossible d’écrire dans la mémoire.</string>
   <plurals name="ConversationFragment_saving_n_attachments">
-    <item quantity="one">Enregistrement de la pièce jointe</item>
-    <item quantity="other">Enregistrement de %1$d pièces jointes</item>
+    <item quantity="one">Enregistrement du fichier joint</item>
+    <item quantity="other">Enregistrement de %1$d fichiers joints</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="one">Enregistrement de la pièce jointe dans la mémoire…</item>
-    <item quantity="other">Enregistrement de %1$d pièces jointes dans la mémoire…</item>
+    <item quantity="one">Enregistrement du fichier joint dans la mémoire…</item>
+    <item quantity="other">Enregistrement de %1$d fichiers joints dans la mémoire…</item>
   </plurals>
   <string name="ConversationFragment_pending">En attente…</string>
   <string name="ConversationFragment_push">Données (Signal)</string>
@@ -477,9 +477,9 @@
   <string name="MediaOverviewActivity_Media_delete_progress_title">Suppression</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Suppression des messages…</string>
   <string name="MediaOverviewActivity_Select_all">Tout sélectionner</string>
-  <string name="MediaOverviewActivity_collecting_attachments">Récupération des pièces jointes…</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Récupération des fichiers joints…</string>
   <string name="MediaOverviewActivity_Sort_by">Trier par</string>
-  <string name="MediaOverviewActivity_Newest">Le pPlus récent</string>
+  <string name="MediaOverviewActivity_Newest">Le plus récent</string>
   <string name="MediaOverviewActivity_Oldest">Le plus ancien</string>
   <string name="MediaOverviewActivity_Storage_used">Mémoire utilisée</string>
   <string name="MediaOverviewActivity_All_storage_use">Utilisation totale de la mémoire</string>
@@ -1052,7 +1052,7 @@
   <string name="attachment_type_selector__file_description">Fichier</string>
   <string name="attachment_type_selector__gallery">Galerie</string>
   <string name="attachment_type_selector__file">Fichier</string>
-  <string name="attachment_type_selector__drawer_description">Afficher, masquer le tiroir des pièces jointes</string>
+  <string name="attachment_type_selector__drawer_description">Afficher, masquer le tiroir des fichiers joints</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Ancienne phrase de passe</string>
   <string name="change_passphrase_activity__new_passphrase">Nouvelle phrase de passe</string>
@@ -1089,10 +1089,10 @@
   <string name="conversation_activity__send">Envoyer</string>
   <string name="conversation_activity__compose_description">Rédaction d’un message</string>
   <string name="conversation_activity__emoji_toggle_description">Afficher, masquer le clavier des émojis</string>
-  <string name="conversation_activity__attachment_thumbnail">Imagette de pièces jointes</string>
+  <string name="conversation_activity__attachment_thumbnail">Imagette de fichiers joints</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Afficher, masquer le tiroir de l’appareil photo à basse résolution</string>
-  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Enregistrer et envoyer une pièce jointe son</string>
-  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Verrouiller l’enregistrement de pièces jointes son</string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Enregistrer et envoyer une fichier son joint</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Verrouiller l’enregistrement de fichiers son joints</string>
   <string name="conversation_activity__enable_signal_for_sms">Gérer les textos avec Signal</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Faire glisser pour annuler</string>
@@ -1497,7 +1497,7 @@
   <!--conversation_context_reacction-->
   <string name="conversation_context__reaction_multi_select">Sélection multiple</string>
   <!--conversation_context_image-->
-  <string name="conversation_context_image__save_attachment">Enregistrer la pièce jointe</string>
+  <string name="conversation_context_image__save_attachment">Enregistrer le fichier joint</string>
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Messages éphémères</string>
   <!--conversation_expiring_on-->
@@ -1528,7 +1528,7 @@
   <!--conversation_unmuted-->
   <string name="conversation_unmuted__mute_notifications">Notifications en sourdine</string>
   <!--conversation-->
-  <string name="conversation__menu_add_attachment">Ajouter une pièce jointe</string>
+  <string name="conversation__menu_add_attachment">Ajouter un fichier joint</string>
   <string name="conversation__menu_edit_group">Modifier le groupe</string>
   <string name="conversation__menu_leave_group">Quitter le groupe</string>
   <string name="conversation__menu_view_all_media">Tous les médias</string>

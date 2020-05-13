@@ -81,6 +81,8 @@
   <string name="BlockUnblockDialog_unblock_s">Desbloquear a %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Desbloquear</string>
   <string name="BlockUnblockDialog_block">Bloquear</string>
+  <string name="BlockUnblockDialog_block_and_leave">Bloquear e saír</string>
+  <string name="BlockUnblockDialog_block_and_delete">Bloquear e eliminar</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Hoxe</string>
   <string name="BucketedThreadMedia_Yesterday">Onte</string>
@@ -114,12 +116,14 @@
   <string name="ClearProfileActivity_remove_profile_photo">Eliminar a foto do perfil?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Non se atopou ningún navegador web.</string>
+  <string name="CommunicationActions_no_email_app_found">Non se atopou app para email.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Xa está en curso unha chamada.</string>
   <string name="CommunicationActions_start_video_call">Iniciar videochamada?</string>
   <string name="CommunicationActions_start_voice_call">Iniciar chamada de voz?</string>
   <string name="CommunicationActions_cancel">Cancelar</string>
   <string name="CommunicationActions_call">Chamar</string>
   <string name="CommunicationActions_insecure_call">Chamada insegura</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Posibles custos da operadora. O número ao que chamas non está rexistrado en Signal. Esta chamada farase a través da rede móbil, non por internet.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">O teu número de seguranza con %1$s foi modificado. Isto pode significar que alguén está a tentar interceptar a vosa comunicación ou simplemente que %2$s reinstalou Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Convén verificar o teu número de seguranza con este contacto.</string>
@@ -128,6 +132,8 @@
   <string name="ContactsCursorLoader_recent_chats">Conversas recentes</string>
   <string name="ContactsCursorLoader_contacts">Contactos</string>
   <string name="ContactsCursorLoader_groups">Grupos</string>
+  <string name="ContactsCursorLoader_phone_number_search">Buscar número de teléfono</string>
+  <string name="ContactsCursorLoader_username_search">Buscar nome de usuario</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mensaxe %s</string>
   <string name="ContactsDatabase_signal_call_s">Chamada Signal %s</string>
@@ -158,6 +164,7 @@
   <string name="ConversationItem_read_more">Ler máis</string>
   <string name="ConversationItem_download_more">Descargar máis</string>
   <string name="ConversationItem_pending">Pendente</string>
+  <string name="ConversationItem_this_message_was_deleted">Eliminouse a mensaxe.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Restablecer sesión segura?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Isto pode resultar de axuda en caso de haber problemas de cifraxe nesta conversa. As mensaxes manteranse.</string>
@@ -210,9 +217,11 @@
   <string name="ConversationActivity_new_say_it_with_stickers">Novo! Dille ola aos adhesivos ou stickers</string>
   <string name="ConversationActivity_cancel">Cancelar</string>
   <string name="ConversationActivity_delete_conversation">Borrar conversa?</string>
+  <string name="ConversationActivity_delete_and_leave_group">Eliminar e deixar o grupo?</string>
   <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Esta conversa eliminarase de todos os teus dispositivos.</string>
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Abandonarás este grupo e será eliminado de todos os teus dispositivos.</string>
   <string name="ConversationActivity_delete">Eliminar</string>
+  <string name="ConversationActivity_delete_and_leave">Eliminar e saír</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensaxe sen ler</item>
@@ -251,12 +260,16 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Borrando</string>
   <string name="ConversationFragment_deleting_messages">Borrando mensaxes…</string>
+  <string name="ConversationFragment_delete_for_me">Eliminar para min</string>
+  <string name="ConversationFragment_delete_for_everyone">Eliminar para todos</string>
   <string name="ConversationFragment_quoted_message_not_found">Non se atopou a mensaxe orixinal</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">A mensaxe orixinal xa non está máis dispoñible</string>
   <string name="ConversationFragment_failed_to_open_message">Erro ao abrir a mensaxe</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Podes pasar o dedo cara á dereita sobre calquera mensaxe para responder rapidamente</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Podes pasar o dedo cara á esquerda sobre calquera mensaxe para responder rapidamente</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Os ficheiros multimedia de un só visionado elimínanse automáticamente tras o envío</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Xa viches esta mensaxe</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Podes engadir notas para ti mesmo nesta conversa. Se a conta ten dispositivos ligados, as notas tamén se sincronizan.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Non hai ningún navegador instalado no teu dispositivo.</string>
   <!--ConversationListFragment-->
@@ -280,6 +293,8 @@
     <item quantity="one">Conversa movida á caixa de entrada</item>
     <item quantity="other">%d conversas movidas á caixa de entrada</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_created">Creouse o teu nome de perfil.</string>
+  <string name="ConversationListFragment__your_profile_name_has_been_saved">Gardouse o teu nome de perfil.</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Mensaxe de intercambio de chaves</string>
   <!--ConversationListItemAction-->
@@ -299,6 +314,9 @@
   <string name="CustomDefaultPreference_using_default">Uso predefinido: %s</string>
   <string name="CustomDefaultPreference_none">Ningunha</string>
   <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Escolle fotografía</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Fai unha foto</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Escolle na galería</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Eliminar fotografía</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Agora</string>
@@ -414,6 +432,8 @@
   <string name="MediaOverviewActivity_Select_all">Seleccionar todo</string>
   <string name="MediaOverviewActivity_collecting_attachments">Recompilando anexos…</string>
   <string name="MediaOverviewActivity_Sort_by">Ordenar por</string>
+  <string name="MediaOverviewActivity_Storage_used">Almacenamento utilizado</string>
+  <string name="MediaOverviewActivity_All_storage_use">Uso total do almacenamento</string>
   <string name="MediaOverviewActivity_file">Ficheiro</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Vídeo</string>
@@ -476,7 +496,19 @@
   <!--GV2 role change-->
   <!--GV2 invitations-->
   <!--GV2 invitation revokes-->
+  <plurals name="MessageRecord_you_revoked_invites">
+    <item quantity="one">Revogaches un convite para o grupo.</item>
+    <item quantity="other">Revogaches %1$d convites para o grupo. </item>
+  </plurals>
+  <plurals name="MessageRecord_s_revoked_invites">
+    <item quantity="one">%1$s revogou un convite para o grupo.</item>
+    <item quantity="other">%1$s revogou %2$d convites para o grupo.</item>
+  </plurals>
+  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Alguén rexeitou o convite para o grupo.</string>
+  <string name="MessageRecord_you_declined_the_invitation_to_the_group">Rexeitaches o convite para o grupo.</string>
   <!--GV2 invitation acceptance-->
+  <string name="MessageRecord_you_accepted_invite">Aceptaches o convite para o grupo.</string>
+  <string name="MessageRecord_s_accepted_invite">%1$s aceptou o convite para o grupo.</string>
   <!--GV2 title change-->
   <!--GV2 avatar change-->
   <!--GV2 attribute access level change-->
@@ -691,6 +723,7 @@
   <string name="ThreadRecord_missed_call">Chamada perdida</string>
   <string name="ThreadRecord_media_message">Mensaxe multimedia</string>
   <string name="ThreadRecord_sticker">Adhesivo</string>
+  <string name="ThreadRecord_this_message_was_deleted">Eliminouse a mensaxe.</string>
   <string name="ThreadRecord_s_is_on_signal">%s está en Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Desaparición das mensaxes desactivada</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Desaparición das mensaxes establecida en%s</string>
@@ -782,6 +815,7 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Abre Signal para comprobar as notificacións recentes.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contacto</string>
+  <string name="MessageNotifier_this_message_was_deleted">Eliminouse a mensaxe.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Por defecto</string>
   <string name="NotificationChannel_calls">Chamadas</string>
@@ -1029,6 +1063,7 @@
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal require configurar as MMS para enviar mensaxes a grupos e multimedia a través dos datos do teu provedor. O teu dispositivo non proporciona esta información, o cal en ocasións acontece con dispositivos bloqueados ou con configuracións moi restritivas.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Para enviar ficheiros multimedia e mensaxes a grupos, toca Aceptar e completa a configuración solicitada. Os axustes das MMS do teu provedor xeralmente pódense atopar buscando polo seu APN. Só necesitas facelo unha vez.</string>
   <!--profile_create_activity-->
+  <string name="CreateProfileActivity_last_name_optional">Apelido (optativo)</string>
   <string name="CreateProfileActivity_next">Seguinte</string>
   <string name="CreateProfileActivity__username">Nome de usuario</string>
   <string name="CreateProfileActivity__create_a_username">Crear nome de usuario</string>
@@ -1096,7 +1131,13 @@
   <!--Message Requests Megaphone-->
   <!--HelpFragment-->
   <string name="HelpFragment__help">Axuda</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">Xa comprobaches as PMF?</string>
   <string name="HelpFragment__next">Seguinte</string>
+  <string name="HelpFragment__contact_us">Contacto</string>
+  <string name="HelpFragment__tell_us_whats_going_on">Envíanos o teu problema ou consulta</string>
+  <string name="HelpFragment__include_debug_log">Incluír rexistro de depuración.</string>
+  <string name="HelpFragment__how_do_you_feel">Como te sintes? (Optativo)</string>
+  <string name="HelpFragment__no_email_app_found">Non se atopou app para email.</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar</string>
   <string name="arrays__use_default">Utilizar o predeterminado</string>
@@ -1190,6 +1231,7 @@
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Borra automaticamente as mensaxes máis antigas unha vez que a conversa supera unha determinada lonxitude</string>
   <string name="preferences__delete_old_messages">Borrar as mensaxes antigas</string>
   <string name="preferences__chats">Conversas e multimedia</string>
+  <string name="preferences__storage">Almacenamento</string>
   <string name="preferences__conversation_length_limit">Lonxitude máxima das conversas</string>
   <string name="preferences__trim_all_conversations_now">Recortar as mensaxes agora</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Escanea todas as conversas e axusta o seu tamaño</string>
@@ -1198,6 +1240,7 @@
   <string name="preferences__dark_theme">Escuro</string>
   <string name="preferences__appearance">Aparencia</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__system_default">Por omsión no sistema</string>
   <string name="preferences__default">Por defecto</string>
   <string name="preferences__language">Idioma</string>
   <string name="preferences__signal_messages_and_calls">Mensaxes e chamadas Signal</string>
@@ -1217,10 +1260,12 @@
   <string name="preferences_chats__when_roaming">En itinerancia</string>
   <string name="preferences_chats__media_auto_download">Descarga automática multimedia</string>
   <string name="preferences_chats__message_trimming">Recorte das mensaxes</string>
+  <string name="preferences_storage__storage_usage">Uso do almacenamento</string>
   <string name="preferences_storage__photos">Fotografías</string>
   <string name="preferences_storage__videos">Vídeos</string>
   <string name="preferences_storage__files">Ficheiros</string>
   <string name="preferences_storage__audio">Audio</string>
+  <string name="preferences_storage__review_storage">Revisar o almacenamento</string>
   <string name="preferences_advanced__use_system_emoji">Utilizar sistema emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Desactiva o soporte emoji integrado en Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Redirecciona todas as chamadas a través do servidor de Signal para evitar revelar o teu enderezo IP aos teus contactos. Ao activar esta opción, reducirase a calidade da chamada.</string>
@@ -1234,8 +1279,8 @@
   <string name="preferences_notifications__show">Mostrar</string>
   <string name="preferences_notifications__calls">Chamadas</string>
   <string name="preferences_notifications__ringtone">Ton de chamada</string>
-  <string name="preferences_chats__show_invitation_prompts">Mostrar avisos de invitacións</string>
-  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Mostra os avisos das invitacións para os contactos sen Signal</string>
+  <string name="preferences_chats__show_invitation_prompts">Mostrar avisos dos convites</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Mostra os avisos dos convites para os contactos sen Signal</string>
   <string name="preferences_chats__message_text_size">Tamaño da fonte</string>
   <string name="preferences_events__contact_joined_signal">Un contacto únese a Signal</string>
   <string name="preferences_notifications__priority">Prioridade</string>
@@ -1356,8 +1401,10 @@
   <string name="trimmer__old_messages_successfully_deleted">Mensaxes antigas borradas satisfactoriamente</string>
   <!--Insights-->
   <string name="Insights__percent">%</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">O Protocolo Signal protexeu de xeito automático o %1$d%% das túas mensaxes enviadas nos últimos %2$d días. As conversas entre usuarios Signal están sempre cifradas de extremo-a-extremo.</string>
   <string name="InsightsDashboardFragment__not_enough_data">Non hai suficientes datos</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Iniciar unha conversa</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Estas estatísticas créanse localmente no teu dispositivo e só as ves ti. Non son transmitidas a ningún lugar.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Mensaxes cifradas</string>
   <string name="InsightsDashboardFragment__cancel">Cancelar</string>
   <string name="InsightsDashboardFragment__send">Enviar</string>
@@ -1390,6 +1437,7 @@
   <string name="KbsMegaphone__create_pin">Crear PIN</string>
   <string name="KbsMegaphone__update_pin">Actualizar PIN</string>
   <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">Agora, como opción, tamén podes engadir o apelido.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona do tráfico</string>
   <string name="ConversationListFragment_loading">Cargando…</string>
@@ -1412,6 +1460,8 @@
   <string name="preferences_chats__chat_backups">Copias de seguranza das conversas</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Copia de seguranza das conversas no almacenamento externo</string>
   <string name="preferences_chats__create_backup">Crear copia de seguranza</string>
+  <string name="preferences_chats__verify_backup_passphrase">Verificar frase de paso da copia</string>
+  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Comproba a frase da paso da copia e verifica que concorda</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Inserir frase de acceso para a copia de seguranza</string>
   <string name="RegistrationActivity_restore">Restaurar</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Non se pode importar copias de seguranza a partir de versións de Signal máis recentes</string>
@@ -1429,6 +1479,7 @@
   <string name="BackupDialog_disable_and_delete_all_local_backups">Desactivar e borrar todas as copias de seguranza locais?</string>
   <string name="BackupDialog_delete_backups_statement">Borrar copias de seguranza</string>
   <string name="BackupDialog_copied_to_clipboard">Copiado ao portapapeis</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">Escribe a frase de paso da copia para verificala</string>
   <string name="BackupDialog_verify">Comprobar</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal require permiso de almacenamento para poder crear copias de seguranza, pero este foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Almacenamento\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Última copia de seguranza: %s</string>

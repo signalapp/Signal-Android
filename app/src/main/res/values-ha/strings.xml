@@ -78,6 +78,7 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Zaku samu damar aikawa juna sakonni da kiran juna. </string>
   <string name="BlockUnblockDialog_unblock">Bude</string>
   <string name="BlockUnblockDialog_block">Toshe</string>
+  <string name="BlockUnblockDialog_block_and_delete">Toshe ka/ki goge</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Yau</string>
   <string name="BucketedThreadMedia_Yesterday">Jiya</string>
@@ -207,6 +208,8 @@
   <string name="ConversationActivity_sticker_pack_installed">Ansa pakitin sitika</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Sabo! Fada da sitika</string>
   <string name="ConversationActivity_cancel">Katse</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Za\'a goge wannan hira daga ko wannen na\'urarka/ki. </string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Zaka/ki fita daga wannan rukunin kuma za\'a goge shi daga dukkan na\'urorinka/ki. </string>
   <string name="ConversationActivity_delete">Goge</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -276,6 +279,7 @@
     <item quantity="one">Moved conversation to inbox</item>
     <item quantity="other">An mayar da hira %d cikin akwatin hira</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_saved">An yi ajiyar sunan furofayil dinka/ki. </string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Sakon musaya na musamman</string>
   <!--ConversationListItemAction-->
@@ -498,6 +502,7 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s saita lokacin bacewar sako zuwa %2$s.</string>
   <!--GV2 specific-->
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_joined_the_group">Ka/kin shiga rukunin. </string>
   <string name="MessageRecord_s_joined_the_group">%1$s ya/ta shiga rukuni.</string>
   <!--GV2 member removals-->
   <!--GV2 role change-->
@@ -570,6 +575,9 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Irin Google Play Services da ka/kika sa a na\'uraka/ki ba daidai yake aiki ba. Sake saka Google Play Services sannan ka/ki kara gwadawa.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">Lambobin sirrin ba daidai bane</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Idan ka/kin manta da lambobin sirrinka/ki, zaka/ki iya kirkiran Sabo. Zaka/ki iya yin rijista kuma ka/ki yi amfani da asusunka/ki amma zaka/ki rasa wasu saitin ka/ki da ka/kika ajiye kamar su bayanan furofayil dinka/ki. </string>
+  <string name="PinRestoreEntryFragment_create_new_pin">Kirkiri sabon lambobin sirri </string>
+  <string name="PinRestoreEntryFragment_contact_support">Tuntubi masu taimako</string>
   <string name="PinRestoreEntryFragment_cancel">Katse</string>
   <string name="PinRestoreEntryFragment_skip">Tsallake</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Shigar da lambobin sirri mai haruffa.</string>
@@ -732,6 +740,7 @@
   <string name="ThreadRecord_you_marked_verified">Ka/kin shaida a matsayin tabbatattce</string>
   <string name="ThreadRecord_you_marked_unverified">Ka/kin shaida cewar ba ingantattce ba</string>
   <string name="ThreadRecord_message_could_not_be_processed">An kasa sarrafa sako</string>
+  <string name="ThreadRecord_message_request">Neman izinin sako</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Sabuntuwar Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">An samu sabon Signal, taba domin sabuntarwa</string>
@@ -1485,6 +1494,7 @@
   <string name="KbsMegaphone__introducing_pins">Gabatar da lambobin sirri</string>
   <string name="KbsMegaphone__update_pin">Sabunta lambobin sirri</string>
   <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__add_profile_name">Sa sunan furofayil </string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Gusar da alamar hoto</string>
   <string name="ConversationListFragment_loading">Yana lodi</string>

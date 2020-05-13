@@ -77,8 +77,11 @@
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">முடக்கப்பட்ட தொடர்புகள்</string>
   <!--BlockUnblockDialog-->
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">குழு உறுப்பினர்கள் சேர்க்க முடியும் நீங்கள் இந்த குழுவிற்கு மீண்டும்.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">நீங்கள் செய்தி அனுப்ப முடியும் மற்றும் ஒவ்வொன்றையும் அழைக்கவும் மற்றவை.</string>
   <string name="BlockUnblockDialog_unblock">தடைநீக்கு </string>
   <string name="BlockUnblockDialog_block">தடு </string>
+  <string name="BlockUnblockDialog_block_and_delete">தடுமற்றும் அழி</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">இன்று</string>
   <string name="BucketedThreadMedia_Yesterday">நேற்று</string>
@@ -209,6 +212,8 @@
   <string name="ConversationActivity_new_say_it_with_stickers">புதிய! அதை ஸ்டிக்கர்களால் சொல்லுங்கள்</string>
   <string name="ConversationActivity_cancel">ரத்து</string>
   <string name="ConversationActivity_delete_conversation">உரையாடலை நீக்கவா?</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">இந்த உரையாடல் எல்லாவற்றிலிருந்தும் நீக்கப்படும் உங்கள் சாதனங்கள்.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">நீங்கள் இந்த குழுவை விட்டு வெளியேறும், மற்றும் இது எல்லாவற்றிலிருந்தும் நீக்கப்படும் உங்கள் சாதனங்கள்.</string>
   <string name="ConversationActivity_delete">அழி</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -255,6 +260,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">விரைவாக பதிலளிக்க, எந்த செய்தியிலும் இடதுபுறமாக ஸ்வைப் செய்யலாம்</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">வெளிச்செல்லும் காண்க-ஒருமுறை கோப்புகள் அனுப்பப்பட்ட பின் தானாகவே அகற்றப்படும்</string>
   <string name="ConversationFragment_you_already_viewed_this_message">நீங்கள் ஏற்கனவே இந்த செய்தியைப் பார்த்தீர்கள்</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">நீங்கள் இந்த உரையாடலில் உங்களுக்காக குறிப்புகளைச் சேர்க்கலாம். என்றால் உங்கள் கணக்கு ஏதேனும் உள்ளது இணைக்கப்பட்டுள்ளது சாதனங்கள், புதிய குறிப்புகள் ஒத்திசைக்கப்படும்.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">உங்கள் சாதனத்தில் எந்த உலாவியும் நிறுவப்படவில்லை.</string>
   <!--ConversationListFragment-->
@@ -278,6 +284,7 @@
     <item quantity="one">உரையாடல் அகப்பெட்டிக்கு நகர்த்தப்பட்டது.</item>
     <item quantity="other">%d உரையாடலைகள் அகப்பெட்டிக்கு நகர்த்தப்பட்டது.</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_saved">உங்கள் சுயவிவரப் பெயர் சேமிக்கப்பட்டது.</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">முக்கிய பரிமாற்ற செய்தி</string>
   <!--ConversationListItemAction-->
@@ -362,6 +369,9 @@
   <string name="GroupMembersDialog_you">நீங்கள்</string>
   <!--GV2 access levels-->
   <!--PendingMembersActivity-->
+  <string name="PendingMembersActivity_people_you_invited">மக்கள் நீங்கள் அழைக்கப்பட்டார்</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">மூலம் அழைக்கிறது மற்றவை குழு உறுப்பினர்கள்</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">விவரங்கள் அழைக்கப்பட்ட நபர்களின் மற்றவை குழு உறுப்பினர்கள் காட்டப்படவில்லை. என்றால் அழைப்பாளர்கள் தேர்வு சேர, அவர்களது தகவல்அந்த நேரத்தில் குழுவுடன் பகிரப்படும். அவர்கள் குழுவில் எந்த செய்திகளையும் அவர்கள் பார்க்க மாட்டார்கள்சேர.</string>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">குழு சின்னம்</string>
@@ -505,6 +515,7 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s காணாமல் போகும் செய்திகளின் நேரத்தை %2$s ஆக அமைத்தார்.</string>
   <!--GV2 specific-->
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_joined_the_group">நீங்கள் குழுவில் சேர்ந்தார்.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s குழுவில் சேர்ந்தார்.</string>
   <!--GV2 member removals-->
   <!--GV2 role change-->
@@ -577,6 +588,8 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">நீங்கள் நிறுவிய Google Play சேவைகளின் பதிப்பு சரியாக செயல்படவில்லை. Google Play சேவைகளை மீண்டும் நிறுவி மீண்டும் முயற்சிக்கவும்.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">தவறான பின்</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">என்றால் நீங்கள் நினைவில் இல்லை உங்கள் பின், நீங்கள் முடியும் உருவாக்கு புதியது. நீங்கள் பதிவு செய்யலாம் மற்றும் பயன்பாடு உங்கள் கணக்கு ஆனால் நீங்கள்சேமித்த சிலவற்றை இழப்பேன் அமைப்புகள் போன்ற உங்கள் சுயவிவரம் தகவல்.</string>
+  <string name="PinRestoreEntryFragment_create_new_pin">உருவாக்கு புதியது பின்</string>
   <string name="PinRestoreEntryFragment_contact_support">தொடர்பு ஆதரவு</string>
   <string name="PinRestoreEntryFragment_cancel">ரத்து</string>
   <string name="PinRestoreEntryFragment_skip">தவிர்க்க </string>
@@ -659,6 +672,7 @@
   <string name="RegistrationActivity_country_code_description">நாட்டின் குறியீடு</string>
   <string name="RegistrationActivity_call">அழை</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">என்றால் நீங்கள் மறந்து விடுங்கள் உங்கள் Signal பின் பதிவு செய்யும் போது சிக்னல் மீண்டும், நீங்கள்வெளியே பூட்டப்படும் உங்கள் கணக்கு 7 நாட்களுக்கு.</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">புகைப்படத்தைக் காண்க</string>
   <string name="RevealableMessageView_view_video">காணொளியை காண்க</string>
@@ -1465,7 +1479,10 @@
   <string name="BaseKbsPinFragment__create_numeric_pin">எண் பின்னை உருவாக்கவும் </string>
   <!--CreateKbsPinFragment-->
   <string name="CreateKbsPinFragment__create_a_new_pin">புதிய பின்னை உருவாக்கவும்</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">நீங்கள் முடியும் மாற்றம் உங்கள் பின் இந்த வரை சாதனம் பதிவு செய்யப்பட்டுள்ளது.</string>
   <string name="CreateKbsPinFragment__create_your_pin">உங்கள் பின்னை உருவாக்கவும்</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">பின்ஸ் வைத்திருக்கின்றன தகவல் உடன் சேமிக்கப்படுகிறது Signal மறைகுறியாக்கப்பட்டது எனவே மட்டுமே நீங்கள் முடியும் அணுகல் அது. உங்கள் சுயவிவரம், அமைப்புகள், மற்றும் தொடர்புகள் இருக்கும் மீட்டமை எப்பொழுது நீங்கள் மீண்டும் நிறுவவும் Signal.</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">வலுவானதைத் தேர்வுசெய்க பின்</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">பின்ஸ் பொருந்தவில்லை. மீண்டும் முயற்சி செய்.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">உங்கள் பின்னை உறுதிப்படுத்தவும்.</string>
@@ -1475,6 +1492,7 @@
   <string name="ConfirmKbsPinFragment__creating_pin">பின் உருவாக்குகிறது…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">பின்களை  அறிமுகப்படுத்துகிறது</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">பின்ஸ் வைத்திருக்கின்றன தகவல் உடன் சேமிக்கப்படுகிறது Signal மறைகுறியாக்கப்பட்டது எனவே மட்டுமே நீங்கள் முடியும் அணுகல் அது. உங்கள் சுயவிவரம், அமைப்புகள், மற்றும் தொடர்புகள் இருக்கும் மீட்டமை எப்பொழுது நீங்கள் மீண்டும் நிறுவவும் Signal.</string>
   <string name="KbsSplashFragment__learn_more">மேலும் அறிக</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">பதிவு பூட்டு = பின்</string>
   <string name="KbsSplashFragment__read_more_about_pins">பின்ஸைப் பற்றி மேலும் வாசிக்க.</string>
@@ -1508,6 +1526,9 @@
   <string name="KbsMegaphone__introducing_pins">பின்களை  அறிமுகப்படுத்துகிறது</string>
   <string name="KbsMegaphone__update_pin">பின்னைப் புதுப்பிக்கவும்</string>
   <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">இது எப்போது காட்டப்படும் நீங்கள் புதிய உரையாடலைத் தொடங்கவும் அல்லது பகிரவும்.</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">சுயவிவரப் பெயரைச் சேர்க்கவும்</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">உங்கள் சுயவிவரம் இப்போது ஒரு விருப்பத்தை சேர்க்கலாம் கடந்த பெயர்.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">போக்குவரத்து குறும்படம்</string>
   <string name="ConversationListFragment_loading">ஏற்றுதல் …</string>
@@ -1572,6 +1593,7 @@
   <string name="preferences_app_protection__signal_pin">Signal பின்</string>
   <string name="preferences_app_protection__create_a_pin">பின்னை உருவாக்கவும்</string>
   <string name="preferences_app_protection__change_your_pin">உங்கள் பின்னை மாற்றவும்</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">பின்ஸ் வைத்திருக்கின்றன தகவல் உடன் சேமிக்கப்படுகிறது Signal மறைகுறியாக்கப்பட்டது எனவே மட்டுமே நீங்கள் முடியும் அணுகல் அது. உங்கள் சுயவிவரம், அமைப்புகள், மற்றும் தொடர்புகள் இருக்கும் மீட்டமை எப்பொழுது நீங்கள் மீண்டும் நிறுவவும் Signal.</string>
   <string name="AppProtectionPreferenceFragment_none">எதுவும் இல்லை</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">பதிவு பூட்டு பின் நீங்கள் பெற்ற எஸ்எம்எஸ் சரிபார்ப்புக் குறியீட்டைப் போன்றது அல்ல. பயன்பாட்டில் நீங்கள் முன்பு கட்டமைத்த பின்னை உள்ளிடவும்.</string>
   <string name="registration_activity__registration_lock_pin">பதிவு பூட்டு பின்</string>

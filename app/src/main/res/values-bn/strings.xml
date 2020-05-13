@@ -256,6 +256,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">দ্রুত উত্তর দেওয়ার জন্য আপনি কোনও বার্তায় বাম দিকে সোয়াইপ করতে পারেন</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">একবার দেখার যোগ্য বহির্গামী মিডিয়া ফাইলগুলি প্রেরণের পরে সেগুলি স্বয়ংক্রিয়ভাবে মুছে ফেলা হবে</string>
   <string name="ConversationFragment_you_already_viewed_this_message">আপনি ইতিমধ্যে এই বার্তাটি দেখেছেন</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">আপনি এই কথোপকথনে নিজের জন্য নোট যুক্ত করতে পারেন। যদি আপনার অ্যাকাউন্টে কোনও ডিভাইস যুক্ত থাকলে তবে নতুন নোটগুলি সিঙ্ক হবে।</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">আপনার ডিভাইসে কোন ব্রাউজার ইন্সটল করা নেই।</string>
   <!--ConversationListFragment-->
@@ -452,6 +453,7 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s দ্বারা %2$s কে প্রেরিত</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">%1$sকে আপনার প্রেরিত </string>
   <!--Megaphones-->
+  <string name="Megaphones_introducing_reactions">প্রতিক্রিয়া\'র সাথে পরিচিত হন</string>
   <string name="Megaphones_remind_me_later">আমাকে পরে মনে করিয়ে দিবেন</string>
   <string name="Megaphones_verify_your_signal_pin">আপনার Signal পিন যাচাই করুন</string>
   <string name="Megaphones_verify_pin">পিন যাচাই করুন</string>
@@ -659,6 +661,7 @@
   <string name="RegistrationActivity_country_code_description">দেশ কোড</string>
   <string name="RegistrationActivity_call">কল করুন</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">আবার Signal নিবন্ধকরণ করার সময় আপনি যদি নিজের Signal পিনটি ভুলে যান তবে আপনাকে ৭ দিনের জন্য আপনার অ্যাকাউন্ট থেকে লক আউট করা হবে।</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">ছবি দেখুন</string>
   <string name="RevealableMessageView_view_video">ভিডিও দেখুন</string>

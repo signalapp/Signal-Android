@@ -694,9 +694,24 @@
   <string name="PinRestoreEntryFragment_incorrect_pin">తప్పయిన పిన్</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">పిన్ నమోదుని దాటవేయమంటారా?</string>
   <string name="PinRestoreEntryFragment_need_help">సాయం అవసరమా?</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">మీ పిన్ను %1$d కన్నా ఎక్కువ అక్షరాలు లేదా అంకెలు కలిగి ఉంటుంది.
+
+మీకు మీ పిన్ గుర్తు లేకపోతే క్రొత్తది సృష్టించవచ్చు. ఈ విధముగా మీరు ఖాతా నమోదు చేసి వాడవచ్చు కాని, మీ పూర్వ సరళికలను కోల్పోతారు.</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">మీకు మీ పిన్ గుర్తు లేకపోతే క్రొత్తది సృష్టించవచ్చు. ఈ విధముగా మీరు ఖాతా నమోదు చేసి వాడవచ్చు కాని, మీ పూర్వ సరళికలను కోల్పోతారు.</string>
+  <string name="PinRestoreEntryFragment_create_new_pin">క్రొత్త పిన్ సృష్టించండి</string>
   <string name="PinRestoreEntryFragment_contact_support">మద్దతును సంప్రదించండి</string>
   <string name="PinRestoreEntryFragment_cancel">రద్దు</string>
   <string name="PinRestoreEntryFragment_skip">దాటవేయి</string>
+  <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
+    <item quantity="one">మీకు %1$d ప్రయత్నం మిగిలి ఉంది. అన్ని ప్రయత్నాలు కోల్పోతే, క్రొత్త పిన్ సృష్టించుకోవచ్చు. ఈ విధముగా మీరు ఖాతా నమోదు చేసి వాడవచ్చు కాని, మీ పూర్వ సరళికలను కోల్పోతారు.</item>
+    <item quantity="other">మీకు %1$d ప్రయత్నాలు మిగిలివున్నాయి. అన్ని ప్రయత్నాలు కోల్పోతే, క్రొత్త పిన్ సృష్టించుకోవచ్చు. ఈ విధముగా మీరు ఖాతా నమోదు చేసి వాడవచ్చు కాని, మీ పూర్వ సరళికలను కోల్పోతారు.</item>
+  </plurals>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal నమోదీకరణ - ఆండ్రోయిడ్ కొరకు పిన్ తొ సహాయం కావలెను</string>
+  <string name="PinRestoreEntryFragment_subject_signal_registration">విషయం: Signal నమోదీకరణ - ఆండ్రోయిడ్ కొరకు పిన్ తొ సహాయం కావలెను
+పరికర సమాచారం: %1$s
+ఆండ్రోయిడ్ వెర్షన్: %2$s
+Signal వెర్షన్: %3$s
+లొకేల్: %4$s</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">ఆల్ఫాన్యూమరిక్ పిన్ను నమోదు చేయండి</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">సంఖ్యా పిన్ను నమోదు చేయండి</string>
   <!--PinRestoreLockedFragment-->

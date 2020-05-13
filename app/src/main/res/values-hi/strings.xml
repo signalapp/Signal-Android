@@ -75,6 +75,7 @@
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">ब्लॉक किये हुए संपर्क</string>
   <!--BlockUnblockDialog-->
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">आप एक दूसरे को मेसेज और काॅल कर पाएंगे|</string>
   <string name="BlockUnblockDialog_unblock">अनब्लॉक करें</string>
   <string name="BlockUnblockDialog_block">ब्लॉक</string>
   <!--BucketedThreadMedia-->
@@ -498,6 +499,7 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ने गायब मेसेज टाइमर को %2$s तक सेट कर दिया है।</string>
   <!--GV2 specific-->
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_joined_the_group">आप ग्रुप में शामिल हो गए हैं।</string>
   <string name="MessageRecord_s_joined_the_group">%1$s समूह में शामिल हो गए</string>
   <!--GV2 member removals-->
   <!--GV2 role change-->
