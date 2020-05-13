@@ -183,7 +183,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
                 AvatarHelper.setAvatar(this, Address.fromSerialized(TextSecurePreferences.getLocalNumber(this)), profilePicture)
                 TextSecurePreferences.setProfileAvatarId(this, SecureRandom().nextInt())
                 ProfileKeyUtil.setEncodedProfileKey(this, encodedProfileKey)
-                ApplicationContext.getInstance(this).updatePublicChatProfilePictureIfNeeded()
+                ApplicationContext.getInstance(this).updateOpenGroupProfilePicturesIfNeeded()
                 profilePictureView.update()
             }
             profilePictureToBeUploaded = null

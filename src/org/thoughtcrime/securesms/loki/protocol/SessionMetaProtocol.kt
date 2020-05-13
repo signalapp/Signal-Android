@@ -36,7 +36,7 @@ object SessionMetaProtocol {
     fun handleProfileKeyUpdateIfNeeded(context: Context, content: SignalServiceContent) {
         val userMasterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
         if (userMasterPublicKey != content.sender) { return }
-        ApplicationContext.getInstance(context).updatePublicChatProfilePictureIfNeeded()
+        ApplicationContext.getInstance(context).updateOpenGroupProfilePicturesIfNeeded()
     }
 
     /**

@@ -100,7 +100,7 @@ class LandingActivity : BaseActionBarActivity(), LinkDeviceSlaveModeDialogDelega
         }
         val application = ApplicationContext.getInstance(this)
         application.startPollingIfNeeded()
-        application.setUpP2PAPI()
+        application.setUpP2PAPIIfNeeded()
         application.setUpStorageAPIIfNeeded()
         val linkDeviceDialog = LinkDeviceSlaveModeDialog()
         linkDeviceDialog.delegate = this

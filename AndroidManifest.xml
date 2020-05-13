@@ -514,7 +514,7 @@
             android:exported="true"
             android:theme="@style/TextSecure.LightNoActionBar" />
         <service
-            android:name="org.thoughtcrime.securesms.service.PushNotificationService"
+            android:name="org.thoughtcrime.securesms.loki.api.PushNotificationService"
             android:enabled="true"
             android:exported="true">
             <intent-filter>

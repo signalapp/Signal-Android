@@ -91,7 +91,7 @@ class PNModeActivity : BaseActionBarActivity() {
         TextSecurePreferences.setHasSeenPNModeSheet(this, true) // Shouldn't be shown to users who've done the new onboarding
         val application = ApplicationContext.getInstance(this)
         application.setUpStorageAPIIfNeeded()
-        application.setUpP2PAPI()
+        application.setUpP2PAPIIfNeeded()
         val publicChatAPI = ApplicationContext.getInstance(this).lokiPublicChatAPI
         if (publicChatAPI != null) {
             // TODO: This won't be necessary anymore when we don't auto-join the Loki Public Chat anymore
