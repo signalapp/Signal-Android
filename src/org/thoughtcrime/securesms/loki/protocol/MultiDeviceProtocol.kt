@@ -26,14 +26,15 @@ object MultiDeviceProtocol {
 
     @JvmStatic
     fun sendTextPush(context: Context, recipient: Recipient, messageID: Long) {
-
+        sendMessagePush(context, recipient, messageID, MessageType.Text)
     }
 
     @JvmStatic
     fun sendMediaPush(context: Context, recipient: Recipient, messageID: Long) {
-
+        sendMessagePush(context, recipient, messageID, MessageType.Media)
     }
 
+    // TODO: Closed groups
     private fun sendMessagePushToDevice(context: Context, recipient: Recipient, messageID: Long, messageType: MessageType): PushSendJob {
         val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient)
         val threadFRStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID)
