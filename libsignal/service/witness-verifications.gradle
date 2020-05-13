@@ -24,8 +24,8 @@ dependencyVerification {
         ['com.squareup.okio:okio:1.15.0',
          '693fa319a7e8843300602b204023b7674f106ebcb577f2dd5807212b66118bd2'],
 
-        ['org.signal:signal-metadata-java:0.1.0',
-         'f3faa23b7d9b5096d12979c35679d1e3b5e007522d8bef167a28e456f2a7c7d9'],
+        ['org.signal:signal-metadata-java:0.1.2',
+         '6aaeb6a33bf3161a3e6ac9db7678277f7a4cf5a2c96b84342e4007ee49bab1bd'],
 
         ['org.signal:zkgroup-java:0.4.1',
          '12ea7e18c58aaefdbb8eccb748deff4f7c8fbd950eeb9c426dc894de50a83b77'],

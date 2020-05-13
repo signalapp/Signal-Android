@@ -5,7 +5,7 @@ wrapper {
 subprojects {
     ext.lib_signal_service_version_number   = "2.15.3"
     ext.lib_signal_service_group_info       = "org.whispersystems"
-    ext.lib_signal_metadata_version         = "0.1.0"
+    ext.lib_signal_metadata_version         = "0.1.2"
 
     if (JavaVersion.current().isJava8Compatible()) {
         allprojects {
