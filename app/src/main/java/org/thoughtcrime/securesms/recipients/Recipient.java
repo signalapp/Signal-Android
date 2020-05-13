@@ -151,6 +151,10 @@ public class Recipient {
    */
   @WorkerThread
   public static @NonNull Recipient externalPush(@NonNull Context context, @Nullable UUID uuid, @Nullable String e164) {
+    if (UuidUtil.UNKNOWN_UUID.equals(uuid)) {
+      throw new AssertionError();
+    }
+
     RecipientDatabase     db       = DatabaseFactory.getRecipientDatabase(context);
     Optional<RecipientId> uuidUser = uuid != null ? db.getByUuid(uuid) : Optional.absent();
     Optional<RecipientId> e164User = e164 != null ? db.getByE164(e164) : Optional.absent();
