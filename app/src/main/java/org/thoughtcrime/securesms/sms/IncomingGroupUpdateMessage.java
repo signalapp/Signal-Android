@@ -1,13 +1,24 @@
 package org.thoughtcrime.securesms.sms;
 
+import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
+import org.thoughtcrime.securesms.mms.MessageGroupContext;
+
 import static org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 
 public final class IncomingGroupUpdateMessage extends IncomingTextMessage {
 
-  private final GroupContext groupContext;
+  private final MessageGroupContext groupContext;
 
   public IncomingGroupUpdateMessage(IncomingTextMessage base, GroupContext groupContext, String body) {
-    super(base, body);
+    this(base, new MessageGroupContext(groupContext));
+  }
+
+  public IncomingGroupUpdateMessage(IncomingTextMessage base, DecryptedGroupV2Context groupV2Context) {
+    this(base, new MessageGroupContext(groupV2Context));
+  }
+
+  public IncomingGroupUpdateMessage(IncomingTextMessage base, MessageGroupContext groupContext) {
+    super(base, groupContext.getEncodedGroupContext());
     this.groupContext = groupContext;
   }
 
@@ -17,11 +28,15 @@ public final class IncomingGroupUpdateMessage extends IncomingTextMessage {
   }
 
   public boolean isUpdate() {
-    return groupContext.getType().getNumber() == GroupContext.Type.UPDATE_VALUE;
+    return groupContext.isV2Group() || groupContext.requireGroupV1Properties().isUpdate();
+  }
+
+  public boolean isGroupV2() {
+    return groupContext.isV2Group();
   }
 
   public boolean isQuit() {
-    return groupContext.getType().getNumber() == GroupContext.Type.QUIT_VALUE;
+    return !groupContext.isV2Group() && groupContext.requireGroupV1Properties().isQuit();
   }
 
 }

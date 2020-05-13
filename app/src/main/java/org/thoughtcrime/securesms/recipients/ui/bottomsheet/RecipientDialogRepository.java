@@ -42,13 +42,11 @@ final class RecipientDialogRepository {
     this.groupId     = groupId;
   }
 
-  @NonNull
-  RecipientId getRecipientId() {
+  @NonNull RecipientId getRecipientId() {
     return recipientId;
   }
 
-  @Nullable
-  GroupId getGroupId() {
+  @Nullable GroupId getGroupId() {
     return groupId;
   }
 

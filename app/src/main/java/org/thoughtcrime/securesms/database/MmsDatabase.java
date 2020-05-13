@@ -1137,7 +1137,11 @@ public class MmsDatabase extends MessagingDatabase {
         MessageGroupContext.GroupV2Properties groupV2Properties = outgoingGroupUpdateMessage.requireGroupV2Properties();
         members.addAll(Stream.of(groupV2Properties.getActiveMembers()).map(recipientDatabase::getOrInsertFromUuid).toList());
         if (groupV2Properties.isUpdate()) {
-          members.addAll(Stream.of(groupV2Properties.getPendingMembers()).map(recipientDatabase::getOrInsertFromUuid).toList());
+          members.addAll(Stream.concat(Stream.of(groupV2Properties.getPendingMembers()),
+                                       Stream.of(groupV2Properties.getRemovedMembers()))
+                               .distinct()
+                               .map(recipientDatabase::getOrInsertFromUuid)
+                               .toList());
         }
         members.remove(Recipient.self().getId());
       } else {

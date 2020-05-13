@@ -63,12 +63,26 @@ public final class DecryptedGroupUtil {
     return uuidList;
   }
 
+  public static ArrayList<UUID> removedMembersUuidList(DecryptedGroupChange groupChange) {
+    ArrayList<UUID> uuidList = new ArrayList<>(groupChange.getDeleteMembersCount());
+
+    for (ByteString member : groupChange.getDeleteMembersList()) {
+      uuidList.add(toUuid(member));
+    }
+
+    return uuidList;
+  }
+
   public static UUID toUuid(DecryptedMember member) {
-    return UUIDUtil.deserialize(member.getUuid().toByteArray());
+    return toUuid(member.getUuid());
   }
 
   public static UUID toUuid(DecryptedPendingMember member) {
-    return UUIDUtil.deserialize(member.getUuid().toByteArray());
+    return toUuid(member.getUuid());
+  }
+
+  private static UUID toUuid(ByteString member) {
+    return UUIDUtil.deserialize(member.toByteArray());
   }
 
   /**
@@ -88,6 +102,16 @@ public final class DecryptedGroupUtil {
     }
 
     return Optional.absent();
+  }
+
+  public static Optional<DecryptedMember> firstMember(Collection<DecryptedMember> members) {
+    Iterator<DecryptedMember> iterator = members.iterator();
+
+    if (iterator.hasNext()) {
+      return Optional.of(iterator.next());
+    } else {
+      return Optional.absent();
+    }
   }
 
   public static Optional<DecryptedPendingMember> findPendingByUuid(Collection<DecryptedPendingMember> members, UUID uuid) {

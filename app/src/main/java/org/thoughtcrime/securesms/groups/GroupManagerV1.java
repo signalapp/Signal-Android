@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.groups;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
@@ -30,8 +29,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
@@ -154,7 +151,7 @@ final class GroupManagerV1 {
   static boolean leaveGroup(@NonNull Context context, @NonNull GroupId.V1 groupId) {
     Recipient                            groupRecipient = Recipient.externalGroup(context, groupId);
     long                                 threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
-    Optional<OutgoingGroupUpdateMessage> leaveMessage   = GroupUtil.createGroupLeaveMessage(context, groupRecipient);
+    Optional<OutgoingGroupUpdateMessage> leaveMessage   = createGroupLeaveMessage(context, groupId, groupRecipient);
 
     if (threadId != -1 && leaveMessage.isPresent()) {
       try {
@@ -180,7 +177,7 @@ final class GroupManagerV1 {
     if (DatabaseFactory.getGroupDatabase(context).isActive(groupId)) {
       Recipient                            groupRecipient = Recipient.externalGroup(context, groupId);
       long                                 threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
-      Optional<OutgoingGroupUpdateMessage> leaveMessage   = GroupUtil.createGroupLeaveMessage(context, groupRecipient);
+      Optional<OutgoingGroupUpdateMessage> leaveMessage   = createGroupLeaveMessage(context, groupId, groupRecipient);
 
       if (threadId != -1 && leaveMessage.isPresent()) {
         ApplicationDependencies.getJobManager().add(LeaveGroupJob.create(groupRecipient));
@@ -209,5 +206,33 @@ final class GroupManagerV1 {
     recipientDatabase.setExpireMessages(recipient.getId(), expirationTime);
     OutgoingExpirationUpdateMessage outgoingMessage = new OutgoingExpirationUpdateMessage(recipient, System.currentTimeMillis(), expirationTime * 1000L);
     MessageSender.send(context, outgoingMessage, threadId, false, null);
+  }
+
+  @WorkerThread
+  private static Optional<OutgoingGroupUpdateMessage> createGroupLeaveMessage(@NonNull Context context,
+                                                                              @NonNull GroupId.V1 groupId,
+                                                                              @NonNull Recipient groupRecipient)
+  {
+    GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
+
+    if (!groupDatabase.isActive(groupId)) {
+      Log.w(TAG, "Group has already been left.");
+      return Optional.absent();
+    }
+
+    GroupContext groupContext = GroupContext.newBuilder()
+                                            .setId(ByteString.copyFrom(groupId.getDecodedId()))
+                                            .setType(GroupContext.Type.QUIT)
+                                            .build();
+
+    return Optional.of(new OutgoingGroupUpdateMessage(groupRecipient,
+                                                      groupContext,
+                                                      null,
+                                                      System.currentTimeMillis(),
+                                                      0,
+                                                      false,
+                                                      null,
+                                                      Collections.emptyList(),
+                                                      Collections.emptyList()));
   }
 }

@@ -616,9 +616,14 @@ public class SmsDatabase extends MessagingDatabase {
     } else if (message.isSecureMessage()) {
       type |= Types.SECURE_MESSAGE_BIT;
     } else if (message.isGroup()) {
+      IncomingGroupUpdateMessage incomingGroupUpdateMessage = (IncomingGroupUpdateMessage) message;
+
       type |= Types.SECURE_MESSAGE_BIT;
-      if      (((IncomingGroupUpdateMessage)message).isUpdate()) type |= Types.GROUP_UPDATE_BIT;
-      else if (((IncomingGroupUpdateMessage)message).isQuit())   type |= Types.GROUP_QUIT_BIT;
+
+      if      (incomingGroupUpdateMessage.isGroupV2()) type |= Types.GROUP_V2_BIT | Types.GROUP_UPDATE_BIT;
+      else if (incomingGroupUpdateMessage.isUpdate())  type |= Types.GROUP_UPDATE_BIT;
+      else if (incomingGroupUpdateMessage.isQuit())    type |= Types.GROUP_QUIT_BIT;
+
     } else if (message.isEndSession()) {
       type |= Types.SECURE_MESSAGE_BIT;
       type |= Types.END_SESSION_BIT;

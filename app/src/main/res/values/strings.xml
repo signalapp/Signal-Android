@@ -678,6 +678,7 @@
     <string name="MediaRepository_all_media">All media</string>
 
     <!-- MessageRecord -->
+    <string name="MessageRecord_unknown">Unknown</string>
     <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Received a message encrypted using an old version of Signal that is no longer supported. Please ask the sender to update to the most recent version and resend the message.</string>
     <string name="MessageRecord_left_group">You have left the group.</string>
     <string name="MessageRecord_you_updated_group">You updated the group.</string>
@@ -695,6 +696,9 @@
     <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s set the disappearing message timer to %2$s.</string>
 
     <!-- GV2 specific -->
+    <string name="MessageRecord_you_created_the_group">You created the group.</string>
+    <string name="MessageRecord_group_updated">Group updated.</string>
+
     <!-- GV2 member additions -->
     <string name="MessageRecord_you_added_s">You added %1$s.</string>
     <string name="MessageRecord_s_added_s">%1$s added %2$s.</string>

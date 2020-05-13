@@ -7,13 +7,16 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
+import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.signal.zkgroup.groups.GroupSecretParams;
+import org.signal.zkgroup.util.UUIDUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -29,10 +32,14 @@ import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingGroupUpdateMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.sms.IncomingGroupUpdateMessage;
+import org.thoughtcrime.securesms.sms.IncomingTextMessage;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupHistoryEntry;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api;
 import org.whispersystems.signalservice.api.groupsv2.InvalidGroupStateException;
+import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.push.exceptions.NotInGroupException;
 
 import java.io.IOException;
@@ -132,7 +139,14 @@ public final class GroupsV2StateProcessor {
         return new GroupUpdateResult(GroupState.GROUP_CONSISTENT_OR_AHEAD, null);
       }
 
-      GlobalGroupState        inputGroupState         = queryServer();
+      GlobalGroupState inputGroupState;
+      try {
+        inputGroupState = queryServer();
+      } catch (GroupNotAMemberException e) {
+        Log.w(TAG, "Unable to query server for group " + groupId + " server says we're not in group, inserting leave message");
+        insertGroupLeave();
+        throw e;
+      }
       AdvanceGroupStateResult advanceGroupStateResult = GroupStateMapper.partiallyAdvanceGroupState(inputGroupState, revision);
       DecryptedGroup          newLocalState           = advanceGroupStateResult.getNewGlobalGroupState().getLocalState();
 
@@ -150,6 +164,49 @@ public final class GroupsV2StateProcessor {
       }
 
       return new GroupUpdateResult(GroupState.GROUP_UPDATED, newLocalState);
+    }
+
+    private void insertGroupLeave() {
+      if (!groupDatabase.isActive(groupId)) {
+        Log.w(TAG, "Group has already been left.");
+        return;
+      }
+
+      Recipient      groupRecipient = Recipient.externalGroup(context, groupId);
+      UUID           selfUuid       = Recipient.self().getUuid().get();
+      DecryptedGroup decryptedGroup = groupDatabase.requireGroup(groupId)
+                                                   .requireV2GroupProperties()
+                                                   .getDecryptedGroup();
+
+      DecryptedGroup       simulatedGroupState  = DecryptedGroupUtil.removeMember(decryptedGroup, selfUuid, decryptedGroup.getVersion() + 1);
+      DecryptedGroupChange simulatedGroupChange = DecryptedGroupChange.newBuilder()
+                                                                      .setEditor(UuidUtil.toByteString(UuidUtil.UNKNOWN_UUID))
+                                                                      .setVersion(simulatedGroupState.getVersion())
+                                                                      .addDeleteMembers(UuidUtil.toByteString(selfUuid))
+                                                                      .build();
+
+      DecryptedGroupV2Context    decryptedGroupV2Context = GroupProtoUtil.createDecryptedGroupV2Context(masterKey, simulatedGroupState, simulatedGroupChange);
+      OutgoingGroupUpdateMessage leaveMessage            = new OutgoingGroupUpdateMessage(groupRecipient,
+                                                                                          decryptedGroupV2Context,
+                                                                                          null,
+                                                                                          System.currentTimeMillis(),
+                                                                                          0,
+                                                                                          false,
+                                                                                          null,
+                                                                                          Collections.emptyList(),
+                                                                                          Collections.emptyList());
+
+      try {
+        MmsDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(context);
+        long        threadId    = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
+        long        id          = mmsDatabase.insertMessageOutbox(leaveMessage, threadId, false, null);
+        mmsDatabase.markAsSent(id, true);
+      } catch (MmsException e) {
+        Log.w(TAG, "Failed to insert leave message.", e);
+      }
+
+      groupDatabase.setActive(groupId, false);
+      groupDatabase.remove(groupId, Recipient.self().getId());
     }
 
     /**
@@ -252,17 +309,29 @@ public final class GroupsV2StateProcessor {
     }
 
     private void storeMessage(@NonNull DecryptedGroupV2Context decryptedGroupV2Context, long timestamp) {
-      try {
-        MmsDatabase                mmsDatabase     = DatabaseFactory.getMmsDatabase(context);
-        RecipientId                recipientId     = recipientDatabase.getOrInsertFromGroupId(groupId);
-        Recipient                  recipient       = Recipient.resolved(recipientId);
-        OutgoingGroupUpdateMessage outgoingMessage = new OutgoingGroupUpdateMessage(recipient, decryptedGroupV2Context, null, timestamp, 0, false, null, Collections.emptyList(), Collections.emptyList());
-        long                       threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
-        long                       messageId       = mmsDatabase.insertMessageOutbox(outgoingMessage, threadId, false, null);
+      UUID editor = DecryptedGroupUtil.editorUuid(decryptedGroupV2Context.getChange());
+      boolean outgoing = Recipient.self().getUuid().get().equals(editor);
 
-        mmsDatabase.markAsSent(messageId, true);
-      } catch (MmsException e) {
-        Log.w(TAG, e);
+      if (outgoing) {
+        try {
+          MmsDatabase                mmsDatabase     = DatabaseFactory.getMmsDatabase(context);
+          RecipientId                recipientId     = recipientDatabase.getOrInsertFromGroupId(groupId);
+          Recipient                  recipient       = Recipient.resolved(recipientId);
+          OutgoingGroupUpdateMessage outgoingMessage = new OutgoingGroupUpdateMessage(recipient, decryptedGroupV2Context, null, timestamp, 0, false, null, Collections.emptyList(), Collections.emptyList());
+          long                       threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+          long                       messageId       = mmsDatabase.insertMessageOutbox(outgoingMessage, threadId, false, null);
+
+          mmsDatabase.markAsSent(messageId, true);
+        } catch (MmsException e) {
+          Log.w(TAG, e);
+        }
+      } else {
+        SmsDatabase                smsDatabase  = DatabaseFactory.getSmsDatabase(context);
+        RecipientId                sender       = Recipient.externalPush(context, editor, null).getId();
+        IncomingTextMessage        incoming     = new IncomingTextMessage(sender, -1, timestamp, timestamp, "", Optional.of(groupId), 0, false);
+        IncomingGroupUpdateMessage groupMessage = new IncomingGroupUpdateMessage(incoming, decryptedGroupV2Context);
+
+        smsDatabase.insertMessageInbox(groupMessage);
       }
     }
   }

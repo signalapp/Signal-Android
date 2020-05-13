@@ -58,7 +58,6 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 public class PushGroupSendJob extends PushSendJob {
@@ -167,10 +166,9 @@ public class PushGroupSendJob extends PushSendJob {
 
       List<RecipientId> target;
 
-      if      (filterRecipient != null)                                                        target = Collections.singletonList(Recipient.resolved(filterRecipient).getId());
-      else if (!existingNetworkFailures.isEmpty())                                             target = Stream.of(existingNetworkFailures).map(nf -> nf.getRecipientId(context)).toList();
-      else if (groupRecipient.isPushV2Group() && message instanceof OutgoingGroupUpdateMessage) target = getGroupMessageV2Recipients((OutgoingGroupUpdateMessage) message);
-      else                                                                                     target = getGroupMessageRecipients(groupRecipient.requireGroupId(), messageId);
+      if      (filterRecipient != null)            target = Collections.singletonList(Recipient.resolved(filterRecipient).getId());
+      else if (!existingNetworkFailures.isEmpty()) target = Stream.of(existingNetworkFailures).map(nf -> nf.getRecipientId(context)).toList();
+      else                                         target = getGroupMessageRecipients(groupRecipient.requireGroupId(), messageId);
 
       List<SendMessageResult>   results                  = deliver(message, groupRecipient, target);
       List<NetworkFailure>      networkFailures          = Stream.of(results).filter(SendMessageResult::isNetworkFailure).map(result -> new NetworkFailure(Recipient.externalPush(context, result.getAddress()).getId())).toList();
@@ -330,24 +328,20 @@ public class PushGroupSendJob extends PushSendJob {
   private @NonNull List<RecipientId> getGroupMessageRecipients(@NonNull GroupId groupId, long messageId) {
     List<GroupReceiptInfo> destinations = DatabaseFactory.getGroupReceiptDatabase(context).getGroupReceiptInfo(messageId);
 
-    if (!destinations.isEmpty()) return Stream.of(destinations).map(GroupReceiptInfo::getRecipientId).toList();
+    if (!destinations.isEmpty()) {
+      return Stream.of(destinations).map(GroupReceiptInfo::getRecipientId).toList();
+    }
 
-    List<Recipient> members = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
-    return Stream.of(members).map(Recipient::getId).toList();
-  }
+    List<RecipientId> members = Stream.of(DatabaseFactory.getGroupDatabase(context)
+                                                         .getGroupMembers(groupId, GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF))
+                                      .map(Recipient::getId)
+                                      .toList();
 
-  private @NonNull List<RecipientId> getGroupMessageV2Recipients(@NonNull OutgoingGroupUpdateMessage message) {
-    UUID                                  selfUUId          = Recipient.self().getUuid().get();
-    MessageGroupContext.GroupV2Properties groupV2Properties = message.requireGroupV2Properties();
-    boolean                               includePending    = groupV2Properties.isUpdate();
-
-    return Stream.concat(Stream.of(groupV2Properties.getActiveMembers()),
-                         includePending ? Stream.of(groupV2Properties.getPendingMembers()) : Stream.empty())
-                 .filterNot(selfUUId::equals)
-                 .distinct()
-                 .map(uuid -> Recipient.externalPush(context, uuid, null))
-                 .map(Recipient::getId)
-                 .toList();
+    if (members.size() > 0) {
+      Log.w(TAG, "No destinations found for group message " + groupId + " using current group membership");
+    }
+    
+    return members;
   }
 
   public static class Factory implements Job.Factory<PushGroupSendJob> {
