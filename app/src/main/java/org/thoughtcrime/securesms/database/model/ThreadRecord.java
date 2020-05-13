@@ -17,151 +17,83 @@
  */
 package org.thoughtcrime.securesms.database.model;
 
-import android.content.Context;
 import android.net.Uri;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.TextUtils;
-import android.text.style.StyleSpan;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase.Extra;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.ExpirationUtil;
-import org.thoughtcrime.securesms.util.MediaUtil;
+import org.whispersystems.libsignal.util.guava.Preconditions;
 
 /**
- * The message record model which represents thread heading messages.
- *
- * @author Moxie Marlinspike
- *
+ * Represents an entry in the {@link org.thoughtcrime.securesms.database.ThreadDatabase}.
  */
-public class ThreadRecord extends DisplayRecord {
+public final class ThreadRecord {
 
-  private @Nullable final Uri     snippetUri;
-  private @Nullable final String  contentType;
-  private @Nullable final Extra   extra;
-  private           final long    count;
-  private           final int     unreadCount;
-  private           final int     distributionType;
-  private           final boolean archived;
-  private           final long    expiresIn;
-  private           final long    lastSeen;
+  private final long      threadId;
+  private final String    body;
+  private final Recipient recipient;
+  private final long      type;
+  private final long      date;
+  private final long      deliveryStatus;
+  private final int       deliveryReceiptCount;
+  private final int       readReceiptCount;
+  private final Uri       snippetUri;
+  private final String    contentType;
+  private final Extra     extra;
+  private final long      count;
+  private final int       unreadCount;
+  private final int       distributionType;
+  private final boolean   archived;
+  private final long      expiresIn;
+  private final long      lastSeen;
 
-  public ThreadRecord(@NonNull String body, @Nullable Uri snippetUri,
-                      @Nullable String contentType, @Nullable Extra extra,
-                      @NonNull Recipient recipient, long date, long count, int unreadCount,
-                      long threadId, int deliveryReceiptCount, int status, long snippetType,
-                      int distributionType, boolean archived, long expiresIn, long lastSeen,
-                      int readReceiptCount)
-  {
-    super(body, recipient, date, date, threadId, status, deliveryReceiptCount, snippetType, readReceiptCount);
-    this.snippetUri       = snippetUri;
-    this.contentType      = contentType;
-    this.extra            = extra;
-    this.count            = count;
-    this.unreadCount      = unreadCount;
-    this.distributionType = distributionType;
-    this.archived         = archived;
-    this.expiresIn        = expiresIn;
-    this.lastSeen         = lastSeen;
+  private ThreadRecord(@NonNull Builder builder) {
+    this.threadId             = builder.threadId;
+    this.body                 = builder.body;
+    this.recipient            = builder.recipient;
+    this.date                 = builder.date;
+    this.type                 = builder.type;
+    this.deliveryStatus       = builder.deliveryStatus;
+    this.deliveryReceiptCount = builder.deliveryReceiptCount;
+    this.readReceiptCount     = builder.readReceiptCount;
+    this.snippetUri           = builder.snippetUri;
+    this.contentType          = builder.contentType;
+    this.extra                = builder.extra;
+    this.count                = builder.count;
+    this.unreadCount          = builder.unreadCount;
+    this.distributionType     = builder.distributionType;
+    this.archived             = builder.archived;
+    this.expiresIn            = builder.expiresIn;
+    this.lastSeen             = builder.lastSeen;
+  }
+
+  public long getThreadId() {
+    return threadId;
+  }
+
+  public @NonNull Recipient getRecipient() {
+    return recipient;
   }
 
   public @Nullable Uri getSnippetUri() {
     return snippetUri;
   }
 
-  @Override
-  public SpannableString getDisplayBody(@NonNull Context context) {
-    if (getGroupAddedBy() != null) {
-      return emphasisAdded(context.getString(isGv2Invite() ? R.string.ThreadRecord_s_invited_you_to_the_group
-                                                           : R.string.ThreadRecord_s_added_you_to_the_group,
-                           Recipient.live(getGroupAddedBy()).get().getDisplayName(context)));
-    } else if (!isMessageRequestAccepted()) {
-      return emphasisAdded(context.getString(R.string.ThreadRecord_message_request));
-    } else if (isGroupUpdate()) {
-      return emphasisAdded(context.getString(R.string.ThreadRecord_group_updated));
-    } else if (isGroupQuit()) {
-      return emphasisAdded(context.getString(R.string.ThreadRecord_left_the_group));
-    } else if (isKeyExchange()) {
-      return emphasisAdded(context.getString(R.string.ConversationListItem_key_exchange_message));
-    } else if (SmsDatabase.Types.isFailedDecryptType(type)) {
-      return emphasisAdded(context.getString(R.string.MessageDisplayHelper_bad_encrypted_message));
-    } else if (SmsDatabase.Types.isNoRemoteSessionType(type)) {
-      return emphasisAdded(context.getString(R.string.MessageDisplayHelper_message_encrypted_for_non_existing_session));
-    } else if (SmsDatabase.Types.isEndSessionType(type)) {
-      return emphasisAdded(context.getString(R.string.ThreadRecord_secure_session_reset));
-    } else if (MmsSmsColumns.Types.isLegacyType(type)) {
-      return emphasisAdded(context.getString(R.string.MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported));
-    } else if (MmsSmsColumns.Types.isDraftMessageType(type)) {
-      String draftText = context.getString(R.string.ThreadRecord_draft);
-      return emphasisAdded(draftText + " " + getBody(), 0, draftText.length());
-    } else if (SmsDatabase.Types.isOutgoingCall(type)) {
-      return emphasisAdded(context.getString(org.thoughtcrime.securesms.R.string.ThreadRecord_called));
-    } else if (SmsDatabase.Types.isIncomingCall(type)) {
-      return emphasisAdded(context.getString(org.thoughtcrime.securesms.R.string.ThreadRecord_called_you));
-    } else if (SmsDatabase.Types.isMissedCall(type)) {
-      return emphasisAdded(context.getString(org.thoughtcrime.securesms.R.string.ThreadRecord_missed_call));
-    } else if (SmsDatabase.Types.isJoinedType(type)) {
-      return emphasisAdded(context.getString(R.string.ThreadRecord_s_is_on_signal, getRecipient().toShortString(context)));
-    } else if (SmsDatabase.Types.isExpirationTimerUpdate(type)) {
-      int seconds = (int)(getExpiresIn() / 1000);
-      if (seconds <= 0) {
-        return emphasisAdded(context.getString(R.string.ThreadRecord_disappearing_messages_disabled));
-      }
-      String time = ExpirationUtil.getExpirationDisplayValue(context, seconds);
-      return emphasisAdded(context.getString(R.string.ThreadRecord_disappearing_message_time_updated_to_s, time));
-    } else if (SmsDatabase.Types.isIdentityUpdate(type)) {
-      if (getRecipient().isGroup()) return emphasisAdded(context.getString(R.string.ThreadRecord_safety_number_changed));
-      else                          return emphasisAdded(context.getString(R.string.ThreadRecord_your_safety_number_with_s_has_changed, getRecipient().toShortString(context)));
-    } else if (SmsDatabase.Types.isIdentityVerified(type)) {
-      return emphasisAdded(context.getString(R.string.ThreadRecord_you_marked_verified));
-    } else if (SmsDatabase.Types.isIdentityDefault(type)) {
-      return emphasisAdded(context.getString(R.string.ThreadRecord_you_marked_unverified));
-    } else if (SmsDatabase.Types.isUnsupportedMessageType(type)) {
-      return emphasisAdded(context.getString(R.string.ThreadRecord_message_could_not_be_processed));
-    } else {
-      if (TextUtils.isEmpty(getBody())) {
-        if (extra != null && extra.isSticker()) {
-          return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_sticker)));
-        } else if (extra != null && extra.isViewOnce()) {
-          return new SpannableString(emphasisAdded(getViewOnceDescription(context, contentType)));
-        } else if (extra != null && extra.isRemoteDelete()) {
-          return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_this_message_was_deleted)));
-        } else {
-          return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_media_message)));
-        }
-      } else {
-        return new SpannableString(getBody());
-      }
-    }
+  public @NonNull String getBody() {
+    return body;
   }
 
-  private SpannableString emphasisAdded(String sequence) {
-    return emphasisAdded(sequence, 0, sequence.length());
+  public @Nullable Extra getExtra() {
+    return extra;
   }
 
-  private SpannableString emphasisAdded(String sequence, int start, int end) {
-    SpannableString spannable = new SpannableString(sequence);
-    spannable.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC),
-                      start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-    return spannable;
-  }
-
-  private String getViewOnceDescription(@NonNull Context context, @Nullable String contentType) {
-    if (MediaUtil.isViewOnceType(contentType)) {
-      return context.getString(R.string.ThreadRecord_view_once_media);
-    } else if (MediaUtil.isVideoType(contentType)) {
-      return context.getString(R.string.ThreadRecord_view_once_video);
-    } else {
-      return context.getString(R.string.ThreadRecord_view_once_photo);
-    }
+  public @Nullable String getContentType() {
+    return contentType;
   }
 
   public long getCount() {
@@ -173,11 +105,15 @@ public class ThreadRecord extends DisplayRecord {
   }
 
   public long getDate() {
-    return getDateReceived();
+    return date;
   }
 
   public boolean isArchived() {
     return archived;
+  }
+
+  public long getType() {
+    return type;
   }
 
   public int getDistributionType() {
@@ -192,6 +128,38 @@ public class ThreadRecord extends DisplayRecord {
     return lastSeen;
   }
 
+  public boolean isOutgoing() {
+    return MmsSmsColumns.Types.isOutgoingMessageType(type);
+  }
+
+  public boolean isOutgoingCall() {
+    return SmsDatabase.Types.isOutgoingCall(type);
+  }
+
+  public boolean isVerificationStatusChange() {
+    return StatusUtil.isVerificationStatusChange(type);
+  }
+
+  public boolean isPending() {
+    return StatusUtil.isPending(type);
+  }
+
+  public boolean isFailed() {
+    return StatusUtil.isFailed(type, deliveryStatus);
+  }
+
+  public boolean isRemoteRead() {
+    return readReceiptCount > 0;
+  }
+
+  public boolean isPendingInsecureSmsFallback() {
+    return SmsDatabase.Types.isPendingInsecureSmsFallbackType(type);
+  }
+
+  public boolean isDelivered() {
+    return StatusUtil.isDelivered(deliveryStatus, deliveryReceiptCount);
+  }
+
   public @Nullable RecipientId getGroupAddedBy() {
     if (extra != null && extra.getGroupAddedBy() != null) return RecipientId.from(extra.getGroupAddedBy());
     else                                                  return null;
@@ -204,5 +172,122 @@ public class ThreadRecord extends DisplayRecord {
   public boolean isMessageRequestAccepted() {
     if (extra != null) return extra.isMessageRequestAccepted();
     else               return true;
+  }
+
+  public static class Builder {
+    private long      threadId;
+    private String    body;
+    private Recipient recipient;
+    private long      type;
+    private long      date;
+    private long      deliveryStatus;
+    private int       deliveryReceiptCount;
+    private int       readReceiptCount;
+    private Uri       snippetUri;
+    private String    contentType;
+    private Extra     extra;
+    private long      count;
+    private int       unreadCount;
+    private int       distributionType;
+    private boolean   archived;
+    private long      expiresIn;
+    private long      lastSeen;
+
+    public Builder(long threadId) {
+      this.threadId = threadId;
+    }
+
+    public Builder setBody(@NonNull String body) {
+      this.body = body;
+      return this;
+    }
+
+    public Builder setRecipient(@NonNull Recipient recipient) {
+      this.recipient = recipient;
+      return this;
+    }
+
+    public Builder setType(long type) {
+      this.type = type;
+      return this;
+    }
+
+    public Builder setThreadId(long threadId) {
+      this.threadId = threadId;
+      return this;
+    }
+
+    public Builder setDate(long date) {
+      this.date = date;
+      return this;
+    }
+
+    public Builder setDeliveryStatus(long deliveryStatus) {
+      this.deliveryStatus = deliveryStatus;
+      return this;
+    }
+
+    public Builder setDeliveryReceiptCount(int deliveryReceiptCount) {
+      this.deliveryReceiptCount = deliveryReceiptCount;
+      return this;
+    }
+
+    public Builder setReadReceiptCount(int readReceiptCount) {
+      this.readReceiptCount = readReceiptCount;
+      return this;
+    }
+
+    public Builder setSnippetUri(@Nullable Uri snippetUri) {
+      this.snippetUri = snippetUri;
+      return this;
+    }
+
+    public Builder setContentType(@Nullable String contentType) {
+      this.contentType = contentType;
+      return this;
+    }
+
+    public Builder setExtra(@Nullable Extra extra) {
+      this.extra = extra;
+      return this;
+    }
+
+    public Builder setCount(long count) {
+      this.count = count;
+      return this;
+    }
+
+    public Builder setUnreadCount(int unreadCount) {
+      this.unreadCount = unreadCount;
+      return this;
+    }
+
+    public Builder setDistributionType(int distributionType) {
+      this.distributionType = distributionType;
+      return this;
+    }
+
+    public Builder setArchived(boolean archived) {
+      this.archived = archived;
+      return this;
+    }
+
+    public Builder setExpiresIn(long expiresIn) {
+      this.expiresIn = expiresIn;
+      return this;
+    }
+
+    public Builder setLastSeen(long lastSeen) {
+      this.lastSeen = lastSeen;
+      return this;
+    }
+
+    public ThreadRecord build() {
+      Preconditions.checkArgument(threadId > 0);
+      Preconditions.checkArgument(date > 0);
+      Preconditions.checkNotNull(body);
+      Preconditions.checkNotNull(recipient);
+      return new ThreadRecord(this);
+    }
   }
 }
