@@ -19,6 +19,11 @@ import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendReque
 object SessionManagementProtocol {
 
     @JvmStatic
+    fun startSessionReset(context: Context, contactPublicKey: String) {
+        
+    }
+
+    @JvmStatic
     fun refreshSignedPreKey(context: Context) {
         if (TextSecurePreferences.isSignedPreKeyRegistered(context)) {
             Log.d("Loki", "Skipping signed pre key refresh; using existing signed pre key.")

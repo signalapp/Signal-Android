@@ -15,6 +15,16 @@ import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendReque
 
 object FriendRequestProtocol {
 
+    @JvmStatic
+    fun acceptFriendRequest(context: Context, contactPublicKey: String) {
+
+    }
+
+    @JvmStatic
+    fun rejectFriendRequest(context: Context, contactPublicKey: String) {
+
+    }
+
     fun getLastMessageID(context: Context, threadID: Long): Long? {
         val db = DatabaseFactory.getSmsDatabase(context)
         val messageCount = db.getMessageCountForThread(threadID)

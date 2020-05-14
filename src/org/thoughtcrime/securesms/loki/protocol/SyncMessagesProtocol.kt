@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.groups.GroupMessageProcessor
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceGroupUpdateJob
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
-import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities.addGroup
 import org.thoughtcrime.securesms.loki.utilities.recipient
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -152,9 +151,10 @@ object SyncMessagesProtocol {
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)
         val allUserDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey)
         if (!allUserDevices.contains(content.sender)) { return }
+        Log.d("Loki", "Received an open group sync message.")
         for (openGroup in openGroups) {
             val threadID: Long = GroupManager.getOpenGroupThreadID(openGroup.id, context)
-            if (threadID > -1) { continue } // The group exists already
+            if (threadID > -1) { continue } // Skip existing open groups
             val url = openGroup.server
             val channel = openGroup.channel
             OpenGroupUtilities.addGroup(context, url, channel)

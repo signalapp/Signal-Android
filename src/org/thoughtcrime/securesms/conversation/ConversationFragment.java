@@ -375,9 +375,9 @@ public class ConversationFragment extends Fragment
     }
 
     if (messageRecords.size() > 1) {
-      // menu.findItem(R.id.menu_context_forward).setVisible(false);
+//      menu.findItem(R.id.menu_context_forward).setVisible(false);
       menu.findItem(R.id.menu_context_reply).setVisible(false);
-      // menu.findItem(R.id.menu_context_details).setVisible(false);
+//      menu.findItem(R.id.menu_context_details).setVisible(false);
       menu.findItem(R.id.menu_context_save_attachment).setVisible(false);
       menu.findItem(R.id.menu_context_resend).setVisible(false);
     } else {
@@ -726,7 +726,7 @@ public class ConversationFragment extends Fragment
     }
 
     if (!loader.hasSent() && !recipient.isSystemContact() && !recipient.isGroupRecipient() && recipient.getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
-      // adapter.setHeaderView(unknownSenderView);
+//      adapter.setHeaderView(unknownSenderView);
     } else {
       clearHeaderIfNotTyping(adapter);
     }
