@@ -20,8 +20,8 @@ import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
+import org.thoughtcrime.securesms.loki.protocol.SyncMessagesProtocol
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
-import org.thoughtcrime.securesms.sms.MessageSender
 
 class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperFragmentDelegate {
     private val adapter = JoinPublicChatActivityAdapter(this)
@@ -66,10 +66,9 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
             return Toast.makeText(this, "Invalid URL", Toast.LENGTH_SHORT).show()
         }
         showLoader()
-
         val channel: Long = 1
         OpenGroupUtilities.addGroup(this, url, channel).success {
-            MessageSender.syncAllOpenGroups(this)
+            SyncMessagesProtocol.syncAllOpenGroups(this@JoinPublicChatActivity)
         }.successUi {
             finish()
         }.failUi {

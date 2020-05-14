@@ -2,16 +2,23 @@ package org.thoughtcrime.securesms.loki.protocol
 
 import android.content.Context
 import android.util.Log
+import nl.komponents.kovenant.Promise
 import org.thoughtcrime.securesms.ApplicationContext
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
+import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
+import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob
 import org.thoughtcrime.securesms.jobs.PushSendJob
 import org.thoughtcrime.securesms.jobs.PushTextSendJob
 import org.thoughtcrime.securesms.loki.utilities.Broadcaster
+import org.thoughtcrime.securesms.loki.utilities.recipient
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.messages.SignalServiceContent
+import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
+import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI
 import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol
 import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLink
@@ -19,6 +26,7 @@ import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLinkingS
 import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
 import org.whispersystems.signalservice.loki.protocol.todo.LokiMessageFriendRequestStatus
 import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus
+import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
 
 object MultiDeviceProtocol {
 
@@ -91,6 +99,47 @@ object MultiDeviceProtocol {
                 MessageType.Text -> jobManager.add(PushTextSendJob(messageID, recipient.address))
                 MessageType.Media -> PushMediaSendJob.enqueue(context, jobManager, messageID, recipient.address)
             }
+        }
+    }
+
+    fun sendDeviceLinkMessage(context: Context, publicKey: String, deviceLink: DeviceLink): Promise<Unit, Exception> {
+        val messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender()
+        val address = SignalServiceAddress(publicKey)
+        val message = SignalServiceDataMessage.newBuilder().withDeviceLink(deviceLink)
+        // A request should include a pre key bundle. An authorization should be a normal message.
+        if (deviceLink.type == DeviceLink.Type.REQUEST) {
+            val preKeyBundle = DatabaseFactory.getLokiPreKeyBundleDatabase(context).generatePreKeyBundle(address.number)
+            message.asFriendRequest(true).withPreKeyBundle(preKeyBundle)
+        } else {
+            // Include the user's profile key so that the slave device can get the user's profile picture
+            message.withProfileKey(ProfileKeyUtil.getProfileKey(context))
+        }
+        return try {
+            Log.d("Loki", "Sending device link message to: $publicKey.")
+            val udAccess = UnidentifiedAccessUtil.getAccessFor(context, recipient(context, publicKey))
+            val result = messageSender.sendMessage(0, address, udAccess, message.build())
+            if (result.success == null) {
+                val exception = when {
+                    result.isNetworkFailure -> "Failed to send device link message due to a network error."
+                    else -> "Failed to send device link message."
+                }
+                throw Exception(exception)
+            }
+            Promise.ofSuccess(Unit)
+        } catch (e: Exception) {
+            Log.d("Loki", "Failed to send device link message to: $publicKey due to error: $e.")
+            Promise.ofFail(e)
+        }
+    }
+
+    fun signAndSendDeviceLinkMessage(context: Context, deviceLink: DeviceLink): Promise<Unit, Exception> {
+        val userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(context).privateKey.serialize()
+        val signedDeviceLink = deviceLink.sign(DeviceLink.Type.AUTHORIZATION, userPrivateKey)
+        if (signedDeviceLink == null || signedDeviceLink.type != DeviceLink.Type.AUTHORIZATION) {
+            return Promise.ofFail(Exception("Failed to sign device link."))
+        }
+        return retryIfNeeded(8) {
+            sendDeviceLinkMessage(context, deviceLink.slaveHexEncodedPublicKey, signedDeviceLink)
         }
     }
 

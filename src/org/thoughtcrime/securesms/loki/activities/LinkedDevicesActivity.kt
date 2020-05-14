@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.loki.activities
 
-import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v4.app.LoaderManager
 import android.support.v4.content.Loader
@@ -15,17 +14,20 @@ import network.loki.messenger.R
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.ui.failUi
 import nl.komponents.kovenant.ui.successUi
+import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
-import org.thoughtcrime.securesms.database.Address
+import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.devicelist.Device
 import org.thoughtcrime.securesms.loki.dialogs.*
-import org.thoughtcrime.securesms.loki.signAndSendDeviceLinkMessage
-import org.thoughtcrime.securesms.sms.MessageSender
+import org.thoughtcrime.securesms.loki.protocol.EphemeralMessage
+import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
+import org.thoughtcrime.securesms.loki.protocol.PushEphemeralMessageSendJob
+import org.thoughtcrime.securesms.loki.protocol.SyncMessagesProtocol
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLink
 import org.whispersystems.signalservice.loki.api.LokiAPI
 import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI
+import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLink
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -121,41 +123,42 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity, LoaderManager
         bottomSheet.show(supportFragmentManager, bottomSheet.tag)
     }
 
-    private fun unlinkDevice(slaveDeviceHexEncodedPublicKey: String) {
-        val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)
-        val database = DatabaseFactory.getLokiAPIDatabase(this)
-        val deviceLinks = database.getDeviceLinks(userHexEncodedPublicKey)
-        val deviceLink = deviceLinks.find { it.masterHexEncodedPublicKey == userHexEncodedPublicKey && it.slaveHexEncodedPublicKey == slaveDeviceHexEncodedPublicKey }
+    private fun unlinkDevice(slaveDevicePublicKey: String) {
+        val userPublicKey = TextSecurePreferences.getLocalNumber(this)
+        val apiDB = DatabaseFactory.getLokiAPIDatabase(this)
+        val deviceLinks = apiDB.getDeviceLinks(userPublicKey)
+        val deviceLink = deviceLinks.find { it.masterHexEncodedPublicKey == userPublicKey && it.slaveHexEncodedPublicKey == slaveDevicePublicKey }
         if (deviceLink == null) {
             return Toast.makeText(this, "Couldn't unlink device.", Toast.LENGTH_LONG).show()
         }
         LokiFileServerAPI.shared.setDeviceLinks(setOf()).successUi {
-            AsyncTask.execute {
-                DatabaseFactory.getLokiAPIDatabase(this).clearDeviceLinks(userHexEncodedPublicKey)
-                deviceLinks.forEach { deviceLink ->
-                    DatabaseFactory.getLokiPreKeyBundleDatabase(this).removePreKeyBundle(deviceLink.slaveHexEncodedPublicKey)
-                }
-                MessageSender.sendUnpairRequest(this, slaveDeviceHexEncodedPublicKey)
+            DatabaseFactory.getLokiAPIDatabase(this).clearDeviceLinks(userPublicKey)
+            deviceLinks.forEach { deviceLink ->
+                DatabaseFactory.getLokiPreKeyBundleDatabase(this).removePreKeyBundle(deviceLink.slaveHexEncodedPublicKey)
+                val sessionStore = TextSecureSessionStore(this@LinkedDevicesActivity)
+                sessionStore.deleteAllSessions(deviceLink.slaveHexEncodedPublicKey)
             }
+            val unlinkingRequest = EphemeralMessage.createUnlinkingRequest(slaveDevicePublicKey)
+            ApplicationContext.getInstance(this@LinkedDevicesActivity).jobManager.add(PushEphemeralMessageSendJob(unlinkingRequest))
             LoaderManager.getInstance(this).restartLoader(0, null, this)
             Toast.makeText(this, "Your device was unlinked successfully", Toast.LENGTH_LONG).show()
-        }.fail {
+        }.failUi {
             Toast.makeText(this, "Couldn't unlink device.", Toast.LENGTH_LONG).show()
         }
     }
 
     override fun onDeviceLinkRequestAuthorized(deviceLink: DeviceLink) {
         LokiFileServerAPI.shared.addDeviceLink(deviceLink).bind(LokiAPI.sharedContext) {
-            signAndSendDeviceLinkMessage(this, deviceLink)
-        }.successUi {
-            LoaderManager.getInstance(this).restartLoader(0, null, this)
+            MultiDeviceProtocol.signAndSendDeviceLinkMessage(this, deviceLink)
         }.success {
             TextSecurePreferences.setMultiDevice(this, true)
-            Timer().schedule(4000) {
-                MessageSender.syncAllGroups(this@LinkedDevicesActivity)
-                MessageSender.syncAllContacts(this@LinkedDevicesActivity, Address.fromSerialized(deviceLink.slaveHexEncodedPublicKey))
-                MessageSender.syncAllOpenGroups(this@LinkedDevicesActivity)
+            SyncMessagesProtocol.syncAllClosedGroups(this@LinkedDevicesActivity)
+            SyncMessagesProtocol.syncAllOpenGroups(this@LinkedDevicesActivity)
+            Timer().schedule(4000) { // Not the best way to do this but the idea is to wait for the closed groups sync to go through first
+                SyncMessagesProtocol.syncAllContacts(this@LinkedDevicesActivity)
             }
+        }.successUi {
+            LoaderManager.getInstance(this).restartLoader(0, null, this)
         }.fail {
             LokiFileServerAPI.shared.removeDeviceLink(deviceLink) // If this fails we have a problem
             DatabaseFactory.getLokiPreKeyBundleDatabase(this).removePreKeyBundle(deviceLink.slaveHexEncodedPublicKey)

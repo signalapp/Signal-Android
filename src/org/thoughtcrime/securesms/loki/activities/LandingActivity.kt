@@ -15,7 +15,8 @@ import org.thoughtcrime.securesms.database.IdentityDatabase
 import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.loki.dialogs.LinkDeviceSlaveModeDialog
 import org.thoughtcrime.securesms.loki.dialogs.LinkDeviceSlaveModeDialogDelegate
-import org.thoughtcrime.securesms.loki.sendDeviceLinkMessage
+import org.thoughtcrime.securesms.loki.protocol.LokiSessionResetImplementation
+import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
 import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
 import org.thoughtcrime.securesms.loki.utilities.show
@@ -26,7 +27,12 @@ import org.whispersystems.curve25519.Curve25519
 import org.whispersystems.libsignal.ecc.Curve
 import org.whispersystems.libsignal.ecc.ECKeyPair
 import org.whispersystems.libsignal.util.KeyHelper
+import org.whispersystems.signalservice.loki.protocol.friendrequests.FriendRequestProtocol
+import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager
+import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol
 import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLink
+import org.whispersystems.signalservice.loki.protocol.sessionmanagement.SessionManagementProtocol
+import org.whispersystems.signalservice.loki.protocol.syncmessages.SyncMessagesProtocol
 import org.whispersystems.signalservice.loki.utilities.hexEncodedPublicKey
 import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
 
@@ -100,6 +106,17 @@ class LandingActivity : BaseActionBarActivity(), LinkDeviceSlaveModeDialogDelega
         }
         val application = ApplicationContext.getInstance(this)
         application.startPollingIfNeeded()
+        val apiDB = DatabaseFactory.getLokiAPIDatabase(this)
+        val threadDB = DatabaseFactory.getLokiThreadDatabase(this)
+        val userDB = DatabaseFactory.getLokiUserDatabase(this)
+        val userPublicKey = TextSecurePreferences.getLocalNumber(this)
+        val sessionResetImpl = LokiSessionResetImplementation(this)
+        FriendRequestProtocol.configureIfNeeded(apiDB, userPublicKey)
+        MentionsManager.configureIfNeeded(userPublicKey, threadDB, userDB)
+        SessionMetaProtocol.configureIfNeeded(apiDB, userPublicKey)
+        org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol.configureIfNeeded(apiDB)
+        SessionManagementProtocol.configureIfNeeded(sessionResetImpl, threadDB, application)
+        SyncMessagesProtocol.configureIfNeeded(apiDB, userPublicKey)
         application.setUpP2PAPIIfNeeded()
         application.setUpStorageAPIIfNeeded()
         val linkDeviceDialog = LinkDeviceSlaveModeDialog()
@@ -107,7 +124,7 @@ class LandingActivity : BaseActionBarActivity(), LinkDeviceSlaveModeDialogDelega
         linkDeviceDialog.show(supportFragmentManager, "Link Device Dialog")
         AsyncTask.execute {
             retryIfNeeded(8) {
-                sendDeviceLinkMessage(this@LandingActivity, deviceLink.masterHexEncodedPublicKey, deviceLink)
+                MultiDeviceProtocol.sendDeviceLinkMessage(this@LandingActivity, deviceLink.masterHexEncodedPublicKey, deviceLink)
             }
         }
     }
