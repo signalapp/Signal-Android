@@ -75,13 +75,15 @@ object SessionManagementProtocol {
 
     @JvmStatic
     fun handleSessionRequestIfNeeded(context: Context, content: SignalServiceContent) {
+        if (!content.dataMessage.isPresent || !content.dataMessage.get().isSessionRequest) { return }
         // Auto-accept all session requests
         val ephemeralMessage = EphemeralMessage.create(content.sender)
         ApplicationContext.getInstance(context).jobManager.add(PushEphemeralMessageSendJob(ephemeralMessage))
     }
 
     @JvmStatic
-    fun handleEndSessionMessage(context: Context, content: SignalServiceContent) {
+    fun handleEndSessionMessageIfNeeded(context: Context, content: SignalServiceContent) {
+        if (!content.dataMessage.isPresent || !content.dataMessage.get().isEndSession) { return }
         // TODO: Notify the user
         val sessionStore = TextSecureSessionStore(context)
         val lokiThreadDB = DatabaseFactory.getLokiThreadDatabase(context)

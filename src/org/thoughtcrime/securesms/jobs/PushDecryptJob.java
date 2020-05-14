@@ -505,7 +505,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
 
     if (threadId != null) {
-      SessionManagementProtocol.handleEndSessionMessage(context, content);
+      SessionManagementProtocol.handleEndSessionMessageIfNeeded(context, content);
       MessageNotifier.updateNotification(context, threadId);
     }
   }
