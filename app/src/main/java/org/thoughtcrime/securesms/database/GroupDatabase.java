@@ -133,6 +133,22 @@ public final class GroupDatabase extends Database {
     return Optional.fromNullable(reader.getCurrent());
   }
 
+  /**
+   * @return local db group revision or -1 if not present.
+   */
+  public int getGroupV2Revision(@NonNull GroupId.V2 groupId) {
+    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, GROUP_ID + " = ?",
+                                                                    new String[] {groupId.toString()},
+                                                                    null, null, null))
+    {
+      if (cursor != null && cursor.moveToNext()) {
+        return cursor.getInt(cursor.getColumnIndexOrThrow(V2_REVISION));
+      }
+
+      return -1;
+    }
+  }
+
    /**
    * Call if you are sure this group should exist.
    * <p>

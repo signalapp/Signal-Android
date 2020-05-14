@@ -56,6 +56,7 @@ import org.thoughtcrime.securesms.groups.GroupV1MessageProcessor;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.linkpreview.Link;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
@@ -132,6 +133,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 public final class PushProcessMessageJob extends BaseJob {
 
@@ -193,11 +195,7 @@ public final class PushProcessMessageJob extends BaseJob {
                                 long smsMessageId,
                                 long timestamp)
   {
-    this(new Parameters.Builder()
-                       .setQueue(buildQueue(content, exceptionMetadata))
-                       .setMaxAttempts(Parameters.UNLIMITED)
-                       // TODO [Alan] GV2 add network constraint and split queues.
-                       .build(),
+    this(createParameters(content, exceptionMetadata),
          messageState,
          content,
          exceptionMetadata,
@@ -225,30 +223,45 @@ public final class PushProcessMessageJob extends BaseJob {
   }
 
   @WorkerThread
-  private static @NonNull String buildQueue(@Nullable SignalServiceContent content, @Nullable ExceptionMetadata exceptionMetadata) {
-    Context context = ApplicationDependencies.getApplication();
-    String  suffix  = "";
+  private static @NonNull Parameters createParameters(@Nullable SignalServiceContent content, @Nullable ExceptionMetadata exceptionMetadata) {
+    Context            context     = ApplicationDependencies.getApplication();
+    String             queueSuffix = "";
+    Parameters.Builder builder     = new Parameters.Builder()
+                                                   .setMaxAttempts(Parameters.UNLIMITED);
 
     if (content != null) {
       if (content.getDataMessage().isPresent() && content.getDataMessage().get().getGroupContext().isPresent()) {
         try {
-          GroupId   groupId   = GroupUtil.idFromGroupContext(content.getDataMessage().get().getGroupContext().get());
-          Recipient recipient = Recipient.externalGroup(context, groupId);
+          SignalServiceGroupContext signalServiceGroupContext = content.getDataMessage().get().getGroupContext().get();
+          GroupId                   groupId                   = GroupUtil.idFromGroupContext(signalServiceGroupContext);
+          Recipient                 recipient                 = Recipient.externalGroup(context, groupId);
 
-          suffix = recipient.getId().toQueueKey();
+          queueSuffix = recipient.getId().toQueueKey();
+
+          if (groupId.isV2()) {
+            int localRevision = DatabaseFactory.getGroupDatabase(context)
+                                               .getGroupV2Revision(groupId.requireV2());
+
+            if (signalServiceGroupContext.getGroupV2().get().getRevision() > localRevision) {
+              builder.addConstraint(NetworkConstraint.KEY)
+                     .setLifespan(TimeUnit.DAYS.toMillis(30));
+            }
+          }
         } catch (BadGroupIdException e) {
           Log.w(TAG, "Bad groupId! Using default queue.");
         }
       } else {
-        suffix = RecipientId.from(content.getSender()).toQueueKey();
+        queueSuffix = RecipientId.from(content.getSender()).toQueueKey();
       }
     } else if (exceptionMetadata != null) {
       Recipient recipient = exceptionMetadata.groupId != null ? Recipient.externalGroup(context, exceptionMetadata.groupId)
                                                               : Recipient.external(context, exceptionMetadata.sender);
-      suffix = recipient.getId().toQueueKey();
+      queueSuffix = recipient.getId().toQueueKey();
     }
 
-    return QUEUE_PREFIX + suffix;
+    builder.setQueue(QUEUE_PREFIX + queueSuffix);
+
+    return builder.build();
   }
 
   @Override
