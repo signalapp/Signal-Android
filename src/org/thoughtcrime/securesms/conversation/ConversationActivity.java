@@ -139,7 +139,6 @@ import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
-import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -155,13 +154,13 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
-import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabaseDelegate;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
+import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
 import org.thoughtcrime.securesms.loki.protocol.FriendRequestProtocol;
+import org.thoughtcrime.securesms.loki.protocol.SessionManagementProtocol;
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities;
 import org.thoughtcrime.securesms.loki.views.FriendRequestViewDelegate;
 import org.thoughtcrime.securesms.loki.views.MentionCandidateSelectionView;
@@ -215,7 +214,6 @@ import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -232,9 +230,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChat;
 import org.whispersystems.signalservice.loki.protocol.mentions.Mention;
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager;
-import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLink;
 import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol;
-import org.whispersystems.signalservice.loki.protocol.todo.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus;
 import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation;
 
@@ -243,7 +239,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -456,7 +451,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     });
 
     sessionRestoreBannerView.setOnRestore(() -> {
-      this.restoreSession();
+      SessionManagementProtocol.startSessionReset(this, recipient, threadId);
+      updateSessionRestoreBanner();
       return Unit.INSTANCE;
     });
     sessionRestoreBannerView.setOnDismiss(() -> {
@@ -1153,7 +1149,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     builder.setMessage(getString(R.string.ConversationActivity_are_you_sure_you_want_to_leave_this_group));
     builder.setPositiveButton(R.string.yes, (dialog, which) -> {
       Recipient                           groupRecipient = getRecipient();
-      if (GroupUtil.leaveGroup(this, groupRecipient)) {
+      if (ClosedGroupsProtocol.leaveGroup(this, groupRecipient)) {
         initializeEnabledCheck();
       } else {
         Toast.makeText(this, R.string.ConversationActivity_error_leaving_group, Toast.LENGTH_LONG).show();
@@ -2276,7 +2272,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void updateInputPanel() {
-    boolean shouldInputPanelBeEnabled = FriendRequestProtocol.shouldInputPanelBeEnabled(threadId);
+    boolean shouldInputPanelBeEnabled = FriendRequestProtocol.shouldInputPanelBeEnabled(this, threadId);
     Util.runOnMain(() -> {
       updateToggleButtonState();
       String hint = shouldInputPanelBeEnabled ? "Message" : "Pending session request";
@@ -2476,7 +2472,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void updateToggleButtonState() {
-    if (!FriendRequestProtocol.shouldAttachmentsButtonBeEnabled(threadId)) {
+    if (!FriendRequestProtocol.shouldAttachmentButtonBeEnabled(this, threadId)) {
       buttonToggle.display(sendButton);
       quickAttachmentToggle.hide();
       inlineAttachmentToggle.hide();
@@ -2872,7 +2868,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         LokiThreadDatabase threadDatabase = DatabaseFactory.getLokiThreadDatabase(ConversationActivity.this);
         LokiUserDatabase userDatabase = DatabaseFactory.getLokiUserDatabase(ConversationActivity.this);
         if (lastCharacter == '@' && Character.isWhitespace(secondToLastCharacter)) {
-          List<Mention> mentionCandidates = MentionsManager.INSTANCE.getMentionCandidates("", threadId, userHexEncodedPublicKey, threadDatabase, userDatabase);
+          List<Mention> mentionCandidates = MentionsManager.shared.getMentionCandidates("", threadId);
           currentMentionStartIndex = lastCharacterIndex;
           mentionCandidateSelectionViewContainer.setVisibility(View.VISIBLE);
           mentionCandidateSelectionView.show(mentionCandidates, threadId);
@@ -2883,7 +2879,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         } else {
           if (currentMentionStartIndex != -1) {
             String query = text.substring(currentMentionStartIndex + 1); // + 1 to get rid of the @
-            List<Mention> mentionCandidates = MentionsManager.INSTANCE.getMentionCandidates(query, threadId, userHexEncodedPublicKey, threadDatabase, userDatabase);
+            List<Mention> mentionCandidates = MentionsManager.shared.getMentionCandidates(query, threadId);
             mentionCandidateSelectionViewContainer.setVisibility(View.VISIBLE);
             mentionCandidateSelectionView.show(mentionCandidates, threadId);
           }
@@ -3190,5 +3186,20 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     updateSubtitleTextView();
     updateMessageStatusProgressBar();
   }
+
+  @Override
+  public void acceptFriendRequest(@NotNull MessageRecord friendRequest) {
+    if (recipient.isGroupRecipient()) { return; }
+    FriendRequestProtocol.acceptFriendRequest(this, recipient);
+    updateInputPanel();
+  }
+
+  @Override
+  public void rejectFriendRequest(@NotNull MessageRecord friendRequest) {
+    if (recipient.isGroupRecipient()) { return; }
+    FriendRequestProtocol.rejectFriendRequest(this, recipient);
+    updateInputPanel();
+  }
+
   // endregion
 }

@@ -6,6 +6,7 @@ import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.utilities.recipient
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.messages.SignalServiceContent
@@ -16,12 +17,72 @@ import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendReque
 object FriendRequestProtocol {
 
     @JvmStatic
-    fun acceptFriendRequest(context: Context, contactPublicKey: String) {
+    fun acceptFriendRequest(context: Context, recipient: Recipient) {
+        if (recipient.isGroupRecipient) { return; }
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+        val allUserDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey)
+        // Accept all outstanding friend requests associated with this user and try to establish sessions with the
+        // subset of their devices that haven't sent a friend request.
+        val linkedDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(recipient.address.serialize())
+        val threadDB = DatabaseFactory.getThreadDatabase(context)
+        val lokiThreadDB = DatabaseFactory.getLokiThreadDatabase(context)
+        for (device in linkedDevices) {
+            val deviceAsRecipient = recipient(context, device)
+            val deviceThreadID = threadDB.getThreadIdFor(deviceAsRecipient)
+            val deviceFRStatus = lokiThreadDB.getFriendRequestStatus(deviceThreadID)
+            if (deviceFRStatus == LokiThreadFriendRequestStatus.REQUEST_RECEIVED) {
+                lokiThreadDB.setFriendRequestStatus(deviceThreadID, LokiThreadFriendRequestStatus.FRIENDS)
+                val lastMessageID = getLastMessageID(context, deviceThreadID)
+                if (lastMessageID != null) {
+                    DatabaseFactory.getLokiMessageDatabase(context).setFriendRequestStatus(lastMessageID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED)
+                }
+                DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient(context, device), true)
+                val ephemeralMessage = EphemeralMessage.create(device)
+                ApplicationContext.getInstance(context).jobManager.add(PushEphemeralMessageSendJob(ephemeralMessage))
+                // Sync contact if needed
+                if (allUserDevices.contains(device)) { return }
+                val deviceToSync = MultiDeviceProtocol.shared.getMasterDevice(device) ?: device
+                SyncMessagesProtocol.syncContact(context, Address.fromSerialized(deviceToSync))
+            } else if (deviceFRStatus == LokiThreadFriendRequestStatus.REQUEST_SENT) {
+                // Do nothing
+            } else if (!allUserDevices.contains(device)
+                && (deviceFRStatus == LokiThreadFriendRequestStatus.NONE || deviceFRStatus == LokiThreadFriendRequestStatus.REQUEST_EXPIRED)) {
+                // TODO: Send AFR to contact (NOT their linked devices)
+            }
+        }
+    }
+
+    @JvmStatic
+    fun rejectFriendRequest(context: Context, recipient: Recipient) {
+        if (recipient.isGroupRecipient) { return; }
+        val linkedDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(recipient.address.serialize())
+        val threadDB = DatabaseFactory.getThreadDatabase(context)
+        val lokiThreadDB = DatabaseFactory.getLokiThreadDatabase(context)
+        for (device in linkedDevices) {
+            val deviceAsRecipient = recipient(context, device)
+            val deviceThreadID = threadDB.getThreadIdFor(deviceAsRecipient)
+            val deviceFRStatus = lokiThreadDB.getFriendRequestStatus(deviceThreadID)
+            // We only want to decline incoming requests
+            if (deviceFRStatus == LokiThreadFriendRequestStatus.REQUEST_RECEIVED) {
+                // Delete the pre key bundle for the given contact. This ensures that if we send a
+                // new message after this, it restarts the friend request process from scratch.
+                DatabaseFactory.getLokiPreKeyBundleDatabase(context).removePreKeyBundle(device)
+                lokiThreadDB.setFriendRequestStatus(deviceThreadID, LokiThreadFriendRequestStatus.NONE)
+                val lastMessageID = getLastMessageID(context, deviceThreadID)
+                if (lastMessageID != null) {
+                    DatabaseFactory.getLokiMessageDatabase(context).setFriendRequestStatus(lastMessageID, LokiMessageFriendRequestStatus.REQUEST_REJECTED)
+                }
+            }
+        }
+    }
+
+    @JvmStatic
+    fun shouldInputPanelBeEnabled(context: Context, threadID: Long): Boolean {
 
     }
 
     @JvmStatic
-    fun rejectFriendRequest(context: Context, contactPublicKey: String) {
+    fun shouldAttachmentButtonBeEnabled(context: Context, threadID: Long): Boolean {
 
     }
 
@@ -51,6 +112,7 @@ object FriendRequestProtocol {
         if (lastMessageID != null) {
             DatabaseFactory.getLokiMessageDatabase(context).setFriendRequestStatus(lastMessageID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED)
         }
+        DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true)
         // Send a contact sync message if needed
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)
         val allUserDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey)
@@ -107,6 +169,7 @@ object FriendRequestProtocol {
             if (lastMessageID != null) {
                 DatabaseFactory.getLokiMessageDatabase(context).setFriendRequestStatus(lastMessageID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED)
             }
+            DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true)
             val ephemeralMessage = EphemeralMessage.create(publicKey)
             ApplicationContext.getInstance(context).jobManager.add(PushEphemeralMessageSendJob(ephemeralMessage))
         } else if (threadFRStatus != LokiThreadFriendRequestStatus.FRIENDS) {

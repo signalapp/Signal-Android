@@ -104,15 +104,16 @@ object SyncMessagesProtocol {
             val threadFRStatus = lokiThreadDB.getFriendRequestStatus(threadID)
             when (threadFRStatus) {
                 LokiThreadFriendRequestStatus.NONE, LokiThreadFriendRequestStatus.REQUEST_EXPIRED -> {
-                    // TODO: Send AFR to contact and their linked devices
+                    // TODO: Send AFR to contact AND THEIR LINKED DEVICES
                 }
                 LokiThreadFriendRequestStatus.REQUEST_RECEIVED -> {
-                    FriendRequestProtocol.acceptFriendRequest(contactPublicKey) // Takes into account multi device internally
+                    FriendRequestProtocol.acceptFriendRequest(context, recipient(context, contactPublicKey)) // Takes into account multi device internally
                     lokiThreadDB.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS)
                     val lastMessageID = FriendRequestProtocol.getLastMessageID(context, threadID)
                     if (lastMessageID != null) {
                         DatabaseFactory.getLokiMessageDatabase(context).setFriendRequestStatus(lastMessageID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED)
                     }
+                    DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient(context, contactPublicKey), true)
                 }
                 else -> {
                     // Do nothing

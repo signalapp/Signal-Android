@@ -10,17 +10,31 @@ import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobs.CleanPreKeysJob
 import org.thoughtcrime.securesms.loki.utilities.recipient
+import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.sms.OutgoingTextMessage
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.libsignal.loki.LokiSessionResetStatus
 import org.whispersystems.signalservice.api.messages.SignalServiceContent
 import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus
 
-
 object SessionManagementProtocol {
 
     @JvmStatic
-    fun startSessionReset(context: Context, contactPublicKey: String) {
-        
+    fun startSessionReset(context: Context, recipient: Recipient, threadID: Long) {
+        if (recipient.isGroupRecipient) { return }
+        val lokiThreadDB = DatabaseFactory.getLokiThreadDatabase(context)
+        val smsDB = DatabaseFactory.getSmsDatabase(context)
+        val devices = lokiThreadDB.getSessionRestoreDevices(threadID)
+        for (device in devices) {
+            val sessionRestorationRequest = EphemeralMessage.createSessionRestorationRequest(recipient.address.serialize())
+            ApplicationContext.getInstance(context).jobManager.add(PushEphemeralMessageSendJob(sessionRestorationRequest))
+        }
+        val infoMessage = OutgoingTextMessage(recipient, "", 0, 0)
+        val infoMessageID = smsDB.insertMessageOutbox(threadID, infoMessage, false, System.currentTimeMillis(), null)
+        if (infoMessageID > -1) {
+            smsDB.markAsSentLokiSessionRestorationRequest(infoMessageID)
+        }
+        lokiThreadDB.removeAllSessionRestoreDevices(threadID)
     }
 
     @JvmStatic
