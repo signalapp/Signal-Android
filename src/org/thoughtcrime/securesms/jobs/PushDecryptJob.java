@@ -344,7 +344,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         else if (syncMessage.getVerified().isPresent())              handleSynchronizeVerifiedMessage(syncMessage.getVerified().get());
         else if (syncMessage.getStickerPackOperations().isPresent()) handleSynchronizeStickerPackOperation(syncMessage.getStickerPackOperations().get());
         else if (syncMessage.getContacts().isPresent())              SyncMessagesProtocol.handleContactSyncMessage(context, content, syncMessage.getContacts().get());
-        else if (syncMessage.getGroups().isPresent())                SyncMessagesProtocol.handleGroupSyncMessage(context, content, syncMessage.getGroups().get());
+        else if (syncMessage.getGroups().isPresent())                SyncMessagesProtocol.handleClosedGroupSyncMessage(context, content, syncMessage.getGroups().get());
         else if (syncMessage.getOpenGroups().isPresent())            SyncMessagesProtocol.handleOpenGroupSyncMessage(context, content, syncMessage.getOpenGroups().get());
         else                                                         Log.w(TAG, "Contains no known sync types...");
       } else if (content.getCallMessage().isPresent()) {

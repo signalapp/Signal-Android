@@ -1,16 +1,31 @@
 package org.thoughtcrime.securesms.loki.protocol
 
 import android.content.Context
+import android.util.Log
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData
 import org.thoughtcrime.securesms.contacts.ContactAccessor.NumberData
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.groups.GroupManager
+import org.thoughtcrime.securesms.groups.GroupMessageProcessor
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceGroupUpdateJob
+import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
+import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities.addGroup
+import org.thoughtcrime.securesms.loki.utilities.recipient
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
+import org.whispersystems.signalservice.api.messages.SignalServiceContent
+import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
+import org.whispersystems.signalservice.api.messages.SignalServiceGroup
+import org.whispersystems.signalservice.api.messages.multidevice.ContactsMessage
+import org.whispersystems.signalservice.api.messages.multidevice.DeviceContactsInputStream
+import org.whispersystems.signalservice.api.messages.multidevice.DeviceGroupsInputStream
+import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChat
 import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
+import org.whispersystems.signalservice.loki.protocol.todo.LokiMessageFriendRequestStatus
 import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus
 import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation
 import java.util.*
@@ -71,5 +86,78 @@ object SyncMessagesProtocol {
     @JvmStatic
     fun shouldSyncReadReceipt(address: Address): Boolean {
         return !address.isGroup
+    }
+
+    @JvmStatic
+    fun handleContactSyncMessage(context: Context, content: SignalServiceContent, message: ContactsMessage) {
+        if (!message.contactsStream.isStream) { return }
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+        val allUserDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey)
+        if (!allUserDevices.contains(content.sender)) { return }
+        Log.d("Loki", "Received a contact sync message.")
+        val contactsInputStream = DeviceContactsInputStream(message.contactsStream.asStream().inputStream)
+        val contactPublicKeys = contactsInputStream.readAll().map { it.number }
+        for (contactPublicKey in contactPublicKeys) {
+            if (contactPublicKey == userPublicKey || !PublicKeyValidation.isValid(contactPublicKey)) { return }
+            val recipient = recipient(context, contactPublicKey)
+            val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient)
+            val lokiThreadDB = DatabaseFactory.getLokiThreadDatabase(context)
+            val threadFRStatus = lokiThreadDB.getFriendRequestStatus(threadID)
+            when (threadFRStatus) {
+                LokiThreadFriendRequestStatus.NONE, LokiThreadFriendRequestStatus.REQUEST_EXPIRED -> {
+                    // TODO: Send AFR to contact and their linked devices
+                }
+                LokiThreadFriendRequestStatus.REQUEST_RECEIVED -> {
+                    FriendRequestProtocol.acceptFriendRequest(contactPublicKey) // Takes into account multi device internally
+                    lokiThreadDB.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS)
+                    val lastMessageID = FriendRequestProtocol.getLastMessageID(context, threadID)
+                    if (lastMessageID != null) {
+                        DatabaseFactory.getLokiMessageDatabase(context).setFriendRequestStatus(lastMessageID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED)
+                    }
+                }
+                else -> {
+                    // Do nothing
+                }
+            }
+        }
+    }
+
+    @JvmStatic
+    fun handleClosedGroupSyncMessage(context: Context, content: SignalServiceContent, message: SignalServiceAttachment) {
+        if (!message.isStream) { return }
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+        val allUserDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey)
+        if (!allUserDevices.contains(content.sender)) { return }
+        Log.d("Loki", "Received a closed group sync message.")
+        val closedGroupsInputStream = DeviceGroupsInputStream(message.asStream().inputStream)
+        val closedGroups = closedGroupsInputStream.readAll()
+        for (closedGroup in closedGroups) {
+            val signalServiceGroup = SignalServiceGroup(
+                    SignalServiceGroup.Type.UPDATE,
+                    closedGroup.id,
+                    SignalServiceGroup.GroupType.SIGNAL,
+                    closedGroup.name.orNull(),
+                    closedGroup.members,
+                    closedGroup.avatar.orNull(),
+                    closedGroup.admins
+            )
+            val signalServiceDataMessage = SignalServiceDataMessage(content.timestamp, signalServiceGroup, null, null)
+            // This establishes sessions internally
+            GroupMessageProcessor.process(context, content, signalServiceDataMessage, false)
+        }
+    }
+
+    @JvmStatic
+    fun handleOpenGroupSyncMessage(context: Context, content: SignalServiceContent, openGroups: List<LokiPublicChat>) {
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+        val allUserDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey)
+        if (!allUserDevices.contains(content.sender)) { return }
+        for (openGroup in openGroups) {
+            val threadID: Long = GroupManager.getOpenGroupThreadID(openGroup.id, context)
+            if (threadID > -1) { continue } // The group exists already
+            val url = openGroup.server
+            val channel = openGroup.channel
+            OpenGroupUtilities.addGroup(context, url, channel)
+        }
     }
 }
