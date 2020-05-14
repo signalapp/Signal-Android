@@ -125,6 +125,7 @@ object FriendRequestProtocol {
         return false
     }
 
+    @JvmStatic
     fun getLastMessageID(context: Context, threadID: Long): Long? {
         val db = DatabaseFactory.getSmsDatabase(context)
         val messageCount = db.getMessageCountForThread(threadID)

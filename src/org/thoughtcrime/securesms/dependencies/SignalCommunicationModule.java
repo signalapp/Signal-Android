@@ -47,7 +47,6 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.protocol.LokiSessionResetImplementation;
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceOpenGroupUpdateJob;
-import org.thoughtcrime.securesms.loki.PushMessageSyncSendJob;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
 import org.thoughtcrime.securesms.push.MessageSenderEventListener;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
@@ -112,7 +111,6 @@ import network.loki.messenger.BuildConfig;
                                      MultiDeviceStickerPackOperationJob.class,
                                      MultiDeviceStickerPackSyncJob.class,
                                      LinkPreviewRepository.class,
-                                     PushMessageSyncSendJob.class,
                                      MultiDeviceOpenGroupUpdateJob.class})
 
 public class SignalCommunicationModule {
@@ -154,6 +152,7 @@ public class SignalCommunicationModule {
                                                           Optional.fromNullable(IncomingMessageObserver.getUnidentifiedPipe()),
                                                           Optional.of(new MessageSenderEventListener(context)),
                                                           TextSecurePreferences.getLocalNumber(context),
+                                                          TextSecurePreferences.getMasterHexEncodedPublicKey(context),
                                                           DatabaseFactory.getLokiAPIDatabase(context),
                                                           DatabaseFactory.getLokiThreadDatabase(context),
                                                           DatabaseFactory.getLokiMessageDatabase(context),

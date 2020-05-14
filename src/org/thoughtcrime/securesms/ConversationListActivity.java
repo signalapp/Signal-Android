@@ -86,13 +86,6 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   protected void onPreCreate() {
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
-    if (TextSecurePreferences.getLocalNumber(this) != null) {
-      ApplicationContext application = ApplicationContext.getInstance(this);
-      application.createDefaultPublicChatsIfNeeded();
-      application.createRSSFeedsIfNeeded();
-      application.getLokiPublicChatManager().startPollersIfNeeded();
-      application.startRSSFeedPollersIfNeeded();
-    }
   }
 
   @Override

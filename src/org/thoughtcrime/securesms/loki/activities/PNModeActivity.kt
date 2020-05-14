@@ -12,7 +12,6 @@ import kotlinx.android.synthetic.main.activity_pn_mode.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
-import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
 import org.thoughtcrime.securesms.loki.utilities.show
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -92,13 +91,6 @@ class PNModeActivity : BaseActionBarActivity() {
         val application = ApplicationContext.getInstance(this)
         application.setUpStorageAPIIfNeeded()
         application.setUpP2PAPIIfNeeded()
-        val publicChatAPI = ApplicationContext.getInstance(this).lokiPublicChatAPI
-        if (publicChatAPI != null) {
-            // TODO: This won't be necessary anymore when we don't auto-join the Loki Public Chat anymore
-            application.createDefaultPublicChatsIfNeeded()
-            val servers = DatabaseFactory.getLokiThreadDatabase(this).getAllPublicChatServers()
-            servers.forEach { publicChatAPI.setDisplayName(displayName, it) }
-        }
         application.registerForFCMIfNeeded(true)
         val intent = Intent(this, HomeActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

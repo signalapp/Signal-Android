@@ -2272,7 +2272,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void updateInputPanel() {
-    boolean shouldInputPanelBeEnabled = FriendRequestProtocol.shouldInputPanelBeEnabled(this, threadId);
+    boolean shouldInputPanelBeEnabled = FriendRequestProtocol.shouldInputPanelBeEnabled(this, recipient);
     Util.runOnMain(() -> {
       updateToggleButtonState();
       String hint = shouldInputPanelBeEnabled ? "Message" : "Pending session request";
@@ -2472,7 +2472,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void updateToggleButtonState() {
-    if (!FriendRequestProtocol.shouldAttachmentButtonBeEnabled(this, threadId)) {
+    if (!FriendRequestProtocol.shouldAttachmentButtonBeEnabled(this, recipient)) {
       buttonToggle.display(sendButton);
       quickAttachmentToggle.hide();
       inlineAttachmentToggle.hide();

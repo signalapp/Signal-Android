@@ -49,7 +49,6 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -60,8 +59,6 @@ import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
 import org.whispersystems.signalservice.internal.util.Util;
-import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus;
-import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
 import java.util.HashSet;
 import java.util.List;
@@ -74,7 +71,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import me.leolin.shortcutbadger.ShortcutBadger;
 import network.loki.messenger.R;
-import nl.komponents.kovenant.Promise;
 
 /**
  * Handles posting system notifications for new messages.

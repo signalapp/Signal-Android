@@ -19,7 +19,6 @@ package org.thoughtcrime.securesms;
 import android.arch.lifecycle.DefaultLifecycleObserver;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.ProcessLifecycleOwner;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -106,6 +105,7 @@ import org.whispersystems.signalservice.loki.database.LokiAPIDatabaseProtocol;
 import org.whispersystems.signalservice.loki.protocol.friendrequests.FriendRequestProtocol;
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager;
 import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol;
+import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLink;
 import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol;
 import org.whispersystems.signalservice.loki.protocol.sessionmanagement.SessionManagementProtocol;
 import org.whispersystems.signalservice.loki.protocol.sessionmanagement.SessionManagementProtocolDelegate;
@@ -201,7 +201,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     LokiPushNotificationAcknowledgement.Companion.configureIfNeeded(BuildConfig.DEBUG);
     if (setUpStorageAPIIfNeeded()) {
       if (userPublicKey != null) {
-        MultiDeviceUtilities.updateDeviceLinksOnServer(this);
+        Set<DeviceLink> deviceLinks = DatabaseFactory.getLokiAPIDatabase(this).getDeviceLinks(userPublicKey);
+        LokiFileServerAPI.shared.setDeviceLinks(deviceLinks);
       }
     }
     resubmitProfilePictureIfNeeded();

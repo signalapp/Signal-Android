@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Handler
 import android.util.Log
 import nl.komponents.kovenant.Promise
+import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.then
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
@@ -11,6 +12,7 @@ import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobs.PushDecryptJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
+import org.thoughtcrime.securesms.loki.utilities.successBackground
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.libsignal.util.guava.Optional
@@ -21,12 +23,11 @@ import org.whispersystems.signalservice.api.messages.SignalServiceGroup
 import org.whispersystems.signalservice.api.messages.multidevice.SentTranscriptMessage
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI
-import org.whispersystems.signalservice.loki.protocol.multidevice.LokiDeviceLinkUtilities
 import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChat
 import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChatAPI
 import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChatMessage
+import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
 import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus
-import org.whispersystems.signalservice.loki.utilities.successBackground
 import java.security.MessageDigest
 import java.util.*
 
@@ -157,7 +158,7 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
     fun pollForNewMessages() {
         fun processIncomingMessage(message: LokiPublicChatMessage) {
             // If the sender of the current message is not a slave device, set the display name in the database
-            val masterHexEncodedPublicKey = LokiDeviceLinkUtilities.getMasterHexEncodedPublicKey(message.hexEncodedPublicKey).get()
+            val masterHexEncodedPublicKey = MultiDeviceProtocol.shared.getMasterDevice(message.hexEncodedPublicKey)
             if (masterHexEncodedPublicKey == null) {
                 val senderDisplayName = "${message.displayName} (...${message.hexEncodedPublicKey.takeLast(8)})"
                 DatabaseFactory.getLokiUserDatabase(context).setServerDisplayName(group.id, message.hexEncodedPublicKey, senderDisplayName)
@@ -216,16 +217,13 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
                 }
             }
         }
-        var userDevices = setOf<String>()
+        val userDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(userHexEncodedPublicKey)
         var uniqueDevices = setOf<String>()
         val userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(context).privateKey.serialize()
-        val database = DatabaseFactory.getLokiAPIDatabase(context)
-        LokiFileServerAPI.configure(false, userHexEncodedPublicKey, userPrivateKey, database)
+        val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
+        LokiFileServerAPI.configure(false, userHexEncodedPublicKey, userPrivateKey, apiDB)
         // Kovenant propagates a context to chained promises, so LokiPublicChatAPI.sharedContext should be used for all of the below
-        LokiDeviceLinkUtilities.getAllLinkedDeviceHexEncodedPublicKeys(userHexEncodedPublicKey).bind(LokiPublicChatAPI.sharedContext) { devices ->
-            userDevices = devices
-            api.getMessages(group.channel, group.server)
-        }.bind(LokiPublicChatAPI.sharedContext) { messages ->
+        api.getMessages(group.channel, group.server).bind(LokiPublicChatAPI.sharedContext) { messages ->
             if (messages.isNotEmpty()) {
                 if (messages.count() == 1) {
                     Log.d("Loki", "Fetched 1 new message.")
@@ -243,7 +241,7 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
         }.successBackground {
             val newDisplayNameUpdatees = uniqueDevices.mapNotNull {
                 // This will return null if the current device is a master device
-                LokiDeviceLinkUtilities.getMasterHexEncodedPublicKey(it).get()
+                MultiDeviceProtocol.shared.getMasterDevice(it)
             }.toSet()
             // Fetch the display names of the master devices
             displayNameUpdatees = displayNameUpdatees.union(newDisplayNameUpdatees)

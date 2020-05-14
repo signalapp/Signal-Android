@@ -32,8 +32,9 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.loki.dialogs.PNModeBottomSheet
-import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
+import org.thoughtcrime.securesms.loki.protocol.LokiSessionResetImplementation
+import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.show
 import org.thoughtcrime.securesms.loki.views.ConversationView
@@ -43,6 +44,11 @@ import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.notifications.MessageNotifier
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.whispersystems.signalservice.loki.protocol.friendrequests.FriendRequestProtocol
+import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager
+import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol
+import org.whispersystems.signalservice.loki.protocol.sessionmanagement.SessionManagementProtocol
+import org.whispersystems.signalservice.loki.protocol.syncmessages.SyncMessagesProtocol
 import kotlin.math.abs
 
 class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListener, SeedReminderViewDelegate, NewConversationButtonSetViewDelegate {
@@ -143,13 +149,21 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             val adapter = recyclerView.adapter as HomeAdapter
             adapter.typingThreadIDs = threadIDs ?: setOf()
         })
-        // Set up public chats and RSS feeds if needed
-        if (TextSecurePreferences.getLocalNumber(this) != null) {
+        // Set up remaining components if needed
+        val userPublicKey = TextSecurePreferences.getLocalNumber(this)
+        if (userPublicKey != null) {
             val application = ApplicationContext.getInstance(this)
-            application.createDefaultPublicChatsIfNeeded()
-            application.createRSSFeedsIfNeeded()
+            val apiDB = DatabaseFactory.getLokiAPIDatabase(this)
+            val threadDB = DatabaseFactory.getLokiThreadDatabase(this)
+            val userDB = DatabaseFactory.getLokiUserDatabase(this)
+            val sessionResetImpl = LokiSessionResetImplementation(this)
+            FriendRequestProtocol.configureIfNeeded(apiDB, userPublicKey)
+            MentionsManager.configureIfNeeded(userPublicKey, threadDB, userDB)
+            SessionMetaProtocol.configureIfNeeded(apiDB, userPublicKey)
+            org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol.configureIfNeeded(apiDB)
+            SessionManagementProtocol.configureIfNeeded(sessionResetImpl, threadDB, application)
+            SyncMessagesProtocol.configureIfNeeded(apiDB, userPublicKey)
             application.lokiPublicChatManager.startPollersIfNeeded()
-            application.startRSSFeedPollersIfNeeded()
         }
     }
 

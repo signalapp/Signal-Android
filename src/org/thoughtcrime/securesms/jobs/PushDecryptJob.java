@@ -331,7 +331,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           }
 
           // Loki - Handle friend request message if needed
-          FriendRequestProtocol.handleFriendRequestMessageIfNeeded(content);
+          FriendRequestProtocol.handleFriendRequestMessageIfNeeded(context, content.getSender(), content);
         }
       } else if (content.getSyncMessage().isPresent()) {
         TextSecurePreferences.setMultiDevice(context, true);
@@ -803,8 +803,13 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
     }
 
-    // Loki - Store message server ID if needed
-    updateGroupChatMessageServerID(messageServerIDOrNull, insertResult);
+    // Loki - Store message open group server ID if needed
+    if (insertResult.isPresent() && messageServerIDOrNull.isPresent()) {
+      long messageID = insertResult.get().getMessageId();
+      long messageServerID = messageServerIDOrNull.get();
+      LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
+      lokiMessageDatabase.setServerID(messageID, messageServerID);
+    }
 
     // Loki - Update mapping of message ID to original thread ID
     if (insertResult.isPresent()) {
@@ -978,7 +983,12 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         MentionsManager.shared.cache(textMessage.getSender().serialize(), result.getThreadId());
 
         // Loki - Store message server ID
-        updateGroupChatMessageServerID(messageServerIDOrNull, insertResult);
+        if (insertResult.isPresent() && messageServerIDOrNull.isPresent()) {
+          long messageID = insertResult.get().getMessageId();
+          long messageServerID = messageServerIDOrNull.get();
+          LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
+          lokiMessageDatabase.setServerID(messageID, messageServerID);
+        }
 
         // Loki - Update mapping of message to original thread ID
         if (result.getMessageId() > -1) {
@@ -1073,19 +1083,16 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
 
     if (!smsMessageId.isPresent()) {
-      SmsMessageRecord lastMessage = getLastMessage(sender);
-      if (lastMessage == null || !SmsDatabase.Types.isFailedDecryptType(lastMessage.getType())) {
-        Optional<InsertResult> insertResult = insertPlaceholder(sender, senderDevice, timestamp);
+      Optional<InsertResult> insertResult = insertPlaceholder(sender, senderDevice, timestamp);
 
-        if (insertResult.isPresent()) {
-          smsDatabase.markAsDecryptFailed(insertResult.get().getMessageId());
-          MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
-        }
+      if (insertResult.isPresent()) {
+        smsDatabase.markAsDecryptFailed(insertResult.get().getMessageId());
+        MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
       }
     } else {
       smsDatabase.markAsDecryptFailed(smsMessageId.get());
     }
-    triggerSessionRestorePrompt(sender);
+    SessionManagementProtocol.triggerSessionRestorationUI(context, sender);
   }
 
   private void handleNoSessionMessage(@NonNull String sender, int senderDevice, long timestamp,
@@ -1094,19 +1101,16 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
 
     if (!smsMessageId.isPresent()) {
-      SmsMessageRecord lastMessage = getLastMessage(sender);
-      if (lastMessage == null || !SmsDatabase.Types.isNoRemoteSessionType(lastMessage.getType())) {
-        Optional<InsertResult> insertResult = insertPlaceholder(sender, senderDevice, timestamp);
+      Optional<InsertResult> insertResult = insertPlaceholder(sender, senderDevice, timestamp);
 
-        if (insertResult.isPresent()) {
-          smsDatabase.markAsNoSession(insertResult.get().getMessageId());
-          MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
-        }
+      if (insertResult.isPresent()) {
+        smsDatabase.markAsNoSession(insertResult.get().getMessageId());
+        MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
       }
     } else {
       smsDatabase.markAsNoSession(smsMessageId.get());
     }
-    triggerSessionRestorePrompt(sender);
+    SessionManagementProtocol.triggerSessionRestorationUI(context, sender);
   }
 
   private void handleLegacyMessage(@NonNull String sender, int senderDevice, long timestamp,
@@ -1160,7 +1164,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       String url = content.senderProfilePictureURL.or("");
       ApplicationContext.getInstance(context).getJobManager().add(new RetrieveProfileAvatarJob(recipient, url));
 
-      SessionMetaProtocol.handleProfileKeyUpdateIfNeeded(content, message);
+      SessionMetaProtocol.handleProfileKeyUpdateIfNeeded(context, content);
     }
   }
 

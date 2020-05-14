@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.sms.OutgoingTextMessage
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.libsignal.loki.LokiSessionResetStatus
 import org.whispersystems.signalservice.api.messages.SignalServiceContent
+import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
 import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus
 
 object SessionManagementProtocol {
@@ -94,7 +95,11 @@ object SessionManagementProtocol {
     }
 
     @JvmStatic
-    private fun isSessionRequest(content: SignalServiceContent): Boolean {
-        return content.dataMessage.isPresent && content.dataMessage.get().isSessionRequest
+    fun triggerSessionRestorationUI(context: Context, publicKey: String) {
+        val masterDevicePublicKey = MultiDeviceProtocol.shared.getMasterDevice(publicKey) ?: publicKey
+        val masterDeviceAsRecipient = recipient(context, masterDevicePublicKey)
+        if (masterDeviceAsRecipient.isGroupRecipient) { return }
+        val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(masterDeviceAsRecipient)
+        DatabaseFactory.getLokiThreadDatabase(context).addSessionRestoreDevice(threadID, publicKey)
     }
 }
