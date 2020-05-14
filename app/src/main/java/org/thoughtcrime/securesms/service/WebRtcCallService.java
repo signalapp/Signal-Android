@@ -972,6 +972,15 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
 
     if (activePeer.getState() != CallState.CONNECTED) {
       enableVideoOnCreate = enable;
+
+      if (enableVideoOnCreate              &&
+          !audioManager.isSpeakerphoneOn() &&
+          !audioManager.isBluetoothScoOn() &&
+          !audioManager.isWiredHeadsetOn())
+      {
+        audioManager.setSpeakerphoneOn(true);
+      }
+
       return;
     }
 
