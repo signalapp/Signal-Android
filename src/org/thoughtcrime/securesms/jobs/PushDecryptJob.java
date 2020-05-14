@@ -54,7 +54,6 @@ import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
-import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.groups.GroupMessageProcessor;
@@ -76,6 +75,7 @@ import org.thoughtcrime.securesms.loki.protocol.SessionManagementProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SyncMessagesProtocol;
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities;
+import org.thoughtcrime.securesms.loki.utilities.PromiseUtilities;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
@@ -125,6 +125,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.StickerPackOper
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager;
 import org.whispersystems.signalservice.loki.protocol.meta.LokiServiceMessage;
@@ -543,7 +544,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   {
     GroupMessageProcessor.process(context, content, message, false);
 
-    if (message.getExpiresInSeconds() != 0 && message.getExpiresInSeconds() != getRecipientForMessage(content, message).getExpireMessages()) {
+    if (message.getExpiresInSeconds() != 0 && message.getExpiresInSeconds() != getMessageDestination(content, message).getExpireMessages()) {
       handleExpirationUpdate(content, message, Optional.absent());
     }
 
@@ -569,7 +570,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   {
     try {
       MmsDatabase          database     = DatabaseFactory.getMmsDatabase(context);
-      Recipient            recipient    = getRecipientForMessage(content, message);
+      Recipient            recipient    = getMessageDestination(content, message);
       IncomingMediaMessage mediaMessage = new IncomingMediaMessage(Address.fromSerialized(content.getSender()),
                                                                    message.getTimestamp(), -1,
                                                                    message.getExpiresInSeconds() * 1000L, true,
@@ -743,8 +744,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
                                  @NonNull Optional<Long> messageServerIDOrNull)
       throws StorageFailedException
   {
-    Recipient originalRecipient = getRecipientForMessage(content, message);
-    Recipient masterRecipient = getMasterRecipientForMessage(content, message);
+    Recipient originalRecipient = getMessageDestination(content, message);
+    Recipient masterRecipient = getMessageMasterDestination(content.getSender());
 
     notifyTypingStoppedFromIncomingMessage(masterRecipient, content.getSender(), content.getSenderDevice());
 
@@ -756,7 +757,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     Address masterAddress = masterRecipient.getAddress();
 
     if (message.isGroupMessage()) {
-      masterAddress = getMasterRecipient(content.getSender()).getAddress();
+      masterAddress = getMessageMasterDestination(content.getSender()).getAddress();
     }
 
     IncomingMediaMessage mediaMessage = new IncomingMediaMessage(masterAddress, message.getTimestamp(), -1,
@@ -822,7 +823,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
   private long handleSynchronizeSentExpirationUpdate(@NonNull SentTranscriptMessage message) throws MmsException {
     MmsDatabase database  = DatabaseFactory.getMmsDatabase(context);
-    Recipient   recipient = getSyncMessagePrimaryDestination(message);
+    Recipient   recipient = getSyncMessageMasterDestination(message.getDestination().get());
 
     OutgoingExpirationUpdateMessage expirationUpdateMessage = new OutgoingExpirationUpdateMessage(recipient,
                                                                                                   message.getTimestamp(),
@@ -842,7 +843,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       throws MmsException
   {
     MmsDatabase                 database        = DatabaseFactory.getMmsDatabase(context);
-    Recipient                   recipients      = getSyncMessagePrimaryDestination(message);
+    Recipient                   recipients      = getSyncMessageMasterDestination(message.getDestination().get());
     Optional<QuoteModel>        quote           = getValidatedQuote(message.getMessage().getQuote());
     Optional<Attachment>        sticker         = getStickerAttachment(message.getMessage().getSticker());
     Optional<List<Contact>>     sharedContacts  = getContacts(message.getMessage().getSharedContacts());
@@ -930,8 +931,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   {
     SmsDatabase database          = DatabaseFactory.getSmsDatabase(context);
     String      body              = message.getBody().isPresent() ? message.getBody().get() : "";
-    Recipient   originalRecipient = getRecipientForMessage(content, message);
-    Recipient   masterRecipient   = getMasterRecipientForMessage(content, message);
+    Recipient   originalRecipient = getMessageDestination(content, message);
+    Recipient   masterRecipient   = getMessageMasterDestination(content.getSender());
 
     if (message.getExpiresInSeconds() != originalRecipient.getExpireMessages()) {
       handleExpirationUpdate(content, message, Optional.absent());
@@ -947,7 +948,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       Address sender = masterRecipient.getAddress();
 
       if (message.isGroupMessage()) {
-        sender = getMasterRecipient(content.getSender()).getAddress();
+        sender = getMessageMasterDestination(content.getSender()).getAddress();
       }
 
       IncomingTextMessage tm = new IncomingTextMessage(sender,
@@ -1005,7 +1006,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       throws MmsException
   {
 
-    Recipient recipient       = getSyncMessagePrimaryDestination(message);
+    Recipient recipient       = getSyncMessageMasterDestination(message.getDestination().get());
     String    body            = message.getMessage().getBody().or("");
     long      expiresInMillis = message.getMessage().getExpiresInSeconds() * 1000L;
 
@@ -1183,7 +1184,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     // Redirect message to master device conversation
     Address sender = Address.fromSerialized(content.getSender());
     if (sender.isPhone()) {
-      Recipient masterDevice = getMasterRecipient(content.getSender());
+      Recipient masterDevice = getMessageMasterDestination(content.getSender());
       sender = masterDevice.getAddress();
     }
 
@@ -1203,7 +1204,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       // Redirect message to master device conversation
       Address sender = Address.fromSerialized(content.getSender());
       if (sender.isPhone()) {
-        Recipient masterDevice = getMasterRecipient(content.getSender());
+        Recipient masterDevice = getMessageMasterDestination(content.getSender());
         sender = masterDevice.getAddress();
       }
 
@@ -1235,7 +1236,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(groupRecipient);
     } else {
       // See if we need to redirect the message
-      author = getMasterRecipient(content.getSender());
+      author = getMessageMasterDestination(content.getSender());
       threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(author);
     }
 
@@ -1369,7 +1370,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private Optional<InsertResult> insertPlaceholder(@NonNull String sender, int senderDevice, long timestamp) {
-    Recipient           masterDevice = getMasterRecipient(sender);
+    Recipient           masterDevice = getMessageMasterDestination(sender);
     SmsDatabase         database     = DatabaseFactory.getSmsDatabase(context);
     IncomingTextMessage textMessage  = new IncomingTextMessage(masterDevice.getAddress(),
                                                               senderDevice, timestamp, "",
@@ -1387,11 +1388,49 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
   }
 
-  private Recipient getSyncMessagePrimaryDestination(SentTranscriptMessage message) {
-    if (message.getMessage().isGroupMessage()) {
-      return getSyncMessageDestination(message);
+  private Recipient getSyncMessageMasterDestination(String publicKey) {
+    Recipient recipient = Recipient.from(context, Address.fromSerialized(publicKey), false);
+    if (recipient.isGroupRecipient()) {
+      return recipient;
     } else {
-      return getMasterRecipient(message.getDestination().get());
+      try {
+        // TODO: Burn this with fire when we can
+        PromiseUtilities.timeout(LokiFileServerAPI.shared.getDeviceLinks(publicKey, false), 4000).get();
+        String masterPublicKey = org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol.shared.getMasterDevice(publicKey);
+        if (masterPublicKey == null) {
+          masterPublicKey = publicKey;
+        }
+        return Recipient.from(context, Address.fromSerialized(masterPublicKey), false);
+      } catch (Exception e) {
+        return recipient;
+      }
+    }
+  }
+
+  private Recipient getMessageDestination(SignalServiceContent content, SignalServiceDataMessage message) {
+    if (message.getGroupInfo().isPresent()) {
+      return Recipient.from(context, Address.fromExternal(context, GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false)), false);
+    } else {
+      return Recipient.from(context, Address.fromExternal(context, content.getSender()), false);
+    }
+  }
+
+  private Recipient getMessageMasterDestination(String publicKey) {
+    Recipient recipient = Recipient.from(context, Address.fromSerialized(publicKey), false);
+    if (recipient.isGroupRecipient()) {
+      return recipient;
+    } else {
+      try {
+        // TODO: Burn this with fire when we can
+        PromiseUtilities.timeout(LokiFileServerAPI.shared.getDeviceLinks(publicKey, false), 4000).get();
+        String masterPublicKey = org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol.shared.getMasterDevice(publicKey);
+        if (masterPublicKey == null) {
+          masterPublicKey = publicKey;
+        }
+        return Recipient.from(context, Address.fromSerialized(masterPublicKey), false);
+      } catch (Exception e) {
+        return recipient;
+      }
     }
   }
 
@@ -1417,7 +1456,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       return false;
     } else if (content.getDataMessage().isPresent()) {
       SignalServiceDataMessage message      = content.getDataMessage().get();
-      Recipient                conversation = getRecipientForMessage(content, message);
+      Recipient                conversation = getMessageDestination(content, message);
 
       if (conversation.isGroupRecipient() && conversation.isBlocked()) {
         return true;
