@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.messages.SignalServiceContent
+import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol
 import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
 import org.whispersystems.signalservice.loki.protocol.todo.LokiMessageFriendRequestStatus
 import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus
@@ -77,13 +78,51 @@ object FriendRequestProtocol {
     }
 
     @JvmStatic
-    fun shouldInputPanelBeEnabled(context: Context, threadID: Long): Boolean {
-
+    fun shouldInputPanelBeEnabled(context: Context, recipient: Recipient): Boolean {
+        // Friend requests have nothing to do with groups, so if this is a group thread the input panel should be enabled
+        if (recipient.isGroupRecipient) { return true }
+        // If this is a note to self the input panel should be enabled
+        if (SessionMetaProtocol.shared.isNoteToSelf(recipient.address.serialize())) { return true }
+        // Gather friend request statuses
+        val linkedDeviceFRStatuses = mutableSetOf<LokiThreadFriendRequestStatus>()
+        val linkedDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(recipient.address.serialize())
+        val threadDB = DatabaseFactory.getThreadDatabase(context)
+        val lokiThreadDB = DatabaseFactory.getLokiThreadDatabase(context)
+        for (device in linkedDevices) {
+            val deviceAsRecipient = recipient(context, device)
+            val deviceThreadID = threadDB.getThreadIdFor(deviceAsRecipient)
+            val deviceFRStatus = lokiThreadDB.getFriendRequestStatus(deviceThreadID)
+            linkedDeviceFRStatuses.add(deviceFRStatus)
+        }
+        // If the user is friends with any of the other user's devices the input panel should be enabled
+        if (linkedDeviceFRStatuses.contains(LokiThreadFriendRequestStatus.FRIENDS)) { return true }
+        // If no friend request has been sent the input panel should be enabled
+        if (linkedDeviceFRStatuses.all { it == LokiThreadFriendRequestStatus.NONE || it == LokiThreadFriendRequestStatus.REQUEST_EXPIRED }) { return true }
+        // There must be a pending friend request
+        return false
     }
 
     @JvmStatic
-    fun shouldAttachmentButtonBeEnabled(context: Context, threadID: Long): Boolean {
-
+    fun shouldAttachmentButtonBeEnabled(context: Context, recipient: Recipient): Boolean {
+        // Friend requests have nothing to do with groups, so if this is a group thread the attachment button should be enabled
+        if (recipient.isGroupRecipient) { return true }
+        // If this is a note to self the attachment button should be enabled
+        if (SessionMetaProtocol.shared.isNoteToSelf(recipient.address.serialize())) { return true }
+        // Gather friend request statuses
+        val linkedDeviceFRStatuses = mutableSetOf<LokiThreadFriendRequestStatus>()
+        val linkedDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(recipient.address.serialize())
+        val threadDB = DatabaseFactory.getThreadDatabase(context)
+        val lokiThreadDB = DatabaseFactory.getLokiThreadDatabase(context)
+        for (device in linkedDevices) {
+            val deviceAsRecipient = recipient(context, device)
+            val deviceThreadID = threadDB.getThreadIdFor(deviceAsRecipient)
+            val deviceFRStatus = lokiThreadDB.getFriendRequestStatus(deviceThreadID)
+            linkedDeviceFRStatuses.add(deviceFRStatus)
+        }
+        // If the user is friends with any of the other user's devices the attachment button should be enabled
+        if (linkedDeviceFRStatuses.contains(LokiThreadFriendRequestStatus.FRIENDS)) { return true }
+        // Otherwise don't allow attachments
+        return false
     }
 
     fun getLastMessageID(context: Context, threadID: Long): Long? {
