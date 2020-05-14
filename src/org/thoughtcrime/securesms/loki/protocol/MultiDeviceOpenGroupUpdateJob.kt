@@ -34,7 +34,7 @@ class MultiDeviceOpenGroupUpdateJob private constructor(parameters: Parameters) 
 
     override fun getFactoryKey(): String { return KEY }
 
-    override fun serialize(): Data { return Data.EMPTY } // TODO: Should we implement this?
+    override fun serialize(): Data { return Data.EMPTY }
 
     @Throws(Exception::class)
     public override fun onRun() {

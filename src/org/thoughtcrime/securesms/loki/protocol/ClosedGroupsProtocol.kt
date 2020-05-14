@@ -21,6 +21,7 @@ object ClosedGroupsProtocol {
     @JvmStatic
     fun shouldIgnoreContentMessage(context: Context, conversation: Recipient, groupID: String?, content: SignalServiceContent): Boolean {
         if (!conversation.address.isClosedGroup || groupID == null) { return false }
+        // A closed group's members should never include slave devices
         val senderPublicKey = content.sender
         val senderMasterPublicKey = MultiDeviceProtocol.shared.getMasterDevice(senderPublicKey)
         val publicKeyToCheckFor = senderMasterPublicKey ?: senderPublicKey

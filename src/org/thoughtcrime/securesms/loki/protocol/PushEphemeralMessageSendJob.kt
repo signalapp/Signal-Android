@@ -31,7 +31,6 @@ class PushEphemeralMessageSendJob private constructor(parameters: Parameters, pr
         message)
 
     override fun serialize(): Data {
-        // TODO: Is this correct?
         return Data.Builder()
             .putString(KEY_MESSAGE, message.serialize())
             .build()
@@ -41,23 +40,17 @@ class PushEphemeralMessageSendJob private constructor(parameters: Parameters, pr
 
     public override fun onRun() {
         val recipient = message.get<String?>("recipient", null) ?: throw IllegalStateException()
-        val dataMessage = SignalServiceDataMessage.newBuilder()
-            .withTimestamp(System.currentTimeMillis())
-            .withBody(message.get<String?>("body", null))
+        val dataMessage = SignalServiceDataMessage.newBuilder().withTimestamp(System.currentTimeMillis())
         // Attach a pre key bundle if needed
         if (message.get("friendRequest", false)) {
             val bundle = DatabaseFactory.getLokiPreKeyBundleDatabase(context).generatePreKeyBundle(recipient)
             dataMessage.withPreKeyBundle(bundle).asFriendRequest(true)
         }
-        // Set flags if needed
-        if (message.get("unpairingRequest", false)) {
-            dataMessage.asUnlinkingRequest(true)
-        }
-        if (message.get("sessionRestore", false)) {
-            dataMessage.asSessionRestorationRequest(true)
-        }
-        if (message.get("sessionRequest", false)) {
-            dataMessage.asSessionRequest(true)
+        // Set flags if needed (these are mutually exclusive)
+        when {
+            message.get("unpairingRequest", false) -> dataMessage.asUnlinkingRequest(true)
+            message.get("sessionRestore", false) -> dataMessage.asSessionRestorationRequest(true)
+            message.get("sessionRequest", false) -> dataMessage.asSessionRequest(true)
         }
         // Send the message
         val messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender()
