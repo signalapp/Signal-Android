@@ -73,7 +73,7 @@ public final class GroupManager {
   {
     if (groupId.isV2()) {
       try (GroupManagerV2.GroupEditor edit = new GroupManagerV2(context).edit(groupId.requireV2())) {
-        return edit.updateGroupTitleAndAvatar(name, avatarChanged ? avatar : null);
+        return edit.updateGroupTitleAndAvatar(name, avatar, avatarChanged);
       }
     } else {
       List<Recipient> members = DatabaseFactory.getGroupDatabase(context)

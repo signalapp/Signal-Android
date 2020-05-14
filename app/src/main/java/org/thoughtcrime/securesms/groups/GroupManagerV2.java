@@ -209,23 +209,24 @@ final class GroupManagerV2 {
     }
 
     @WorkerThread
-    @NonNull GroupManager.GroupActionResult updateGroupTitleAndAvatar(@Nullable String title, @Nullable byte[] avatarBytes)
+    @NonNull GroupManager.GroupActionResult updateGroupTitleAndAvatar(@Nullable String title, @Nullable byte[] avatarBytes, boolean avatarChanged)
       throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
     {
       try {
         GroupChange.Actions.Builder change = groupOperations.createModifyGroupTitleAndMembershipChange(Optional.fromNullable(title), Collections.emptySet(), Collections.emptySet());
 
-        if (avatarBytes != null) {
-          String cdnKey = groupsV2Api.uploadAvatar(avatarBytes, groupSecretParams, authorization.getAuthorizationForToday(selfUuid, groupSecretParams));
+        if (avatarChanged) {
+          String cdnKey = avatarBytes != null ? groupsV2Api.uploadAvatar(avatarBytes, groupSecretParams, authorization.getAuthorizationForToday(selfUuid, groupSecretParams))
+                                              : "";
           change.setModifyAvatar(GroupChange.Actions.ModifyAvatarAction.newBuilder()
-                                                                       .setAvatar(cdnKey));
+                                                    .setAvatar(cdnKey));
         }
 
         GroupManager.GroupActionResult groupActionResult = commitChangeWithConflictResolution(change);
 
-        if (avatarBytes != null) {
-          AvatarHelper.setAvatar(context, Recipient.externalGroup(context, groupId).getId(), new ByteArrayInputStream(avatarBytes));
-          groupDatabase.onAvatarUpdated(groupId, true);
+        if (avatarChanged) {
+          AvatarHelper.setAvatar(context, Recipient.externalGroup(context, groupId).getId(), avatarBytes != null ? new ByteArrayInputStream(avatarBytes) : null);
+          groupDatabase.onAvatarUpdated(groupId, avatarBytes != null);
         }
 
         return groupActionResult;

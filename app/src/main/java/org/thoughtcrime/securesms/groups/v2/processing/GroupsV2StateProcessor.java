@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.groups.v2.processing;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,7 +12,6 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.signal.zkgroup.groups.GroupSecretParams;
-import org.signal.zkgroup.util.UUIDUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -223,15 +223,18 @@ public final class GroupsV2StateProcessor {
     private void updateLocalDatabaseGroupState(@NonNull GlobalGroupState inputGroupState,
                                                @NonNull DecryptedGroup newLocalState)
     {
+      boolean needsAvatarFetch;
+
       if (inputGroupState.getLocalState() == null) {
         groupDatabase.create(masterKey, newLocalState);
+        needsAvatarFetch = !TextUtils.isEmpty(newLocalState.getAvatar());
       } else {
         groupDatabase.update(masterKey, newLocalState);
+        needsAvatarFetch = !newLocalState.getAvatar().equals(inputGroupState.getLocalState().getAvatar());
       }
 
-      String avatar = newLocalState.getAvatar();
-      if (!avatar.isEmpty()) {
-        jobManager.add(new AvatarGroupsV2DownloadJob(groupId, avatar));
+      if (needsAvatarFetch) {
+        jobManager.add(new AvatarGroupsV2DownloadJob(groupId, newLocalState.getAvatar()));
       }
 
       final boolean fullMemberPostUpdate = GroupProtoUtil.isMember(Recipient.self().getUuid().get(), newLocalState.getMembersList());

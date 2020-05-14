@@ -46,14 +46,7 @@ public final class AvatarGroupsV2DownloadJob extends BaseJob {
                        .setMaxAttempts(10)
                        .build(),
          groupId,
-         requireNonEmpty(cdnKey));
-  }
-
-  private static String requireNonEmpty(@NonNull String string) {
-    if (string.isEmpty()) {
-      throw new AssertionError();
-    }
-    return string;
+         cdnKey);
   }
 
   private AvatarGroupsV2DownloadJob(@NonNull Parameters parameters, @NonNull GroupId.V2 groupId, @NonNull String cdnKey) {
@@ -86,6 +79,15 @@ public final class AvatarGroupsV2DownloadJob extends BaseJob {
         Log.w(TAG, "Cannot download avatar for unknown group");
         return;
       }
+
+      if (cdnKey.length() == 0) {
+        Log.w(TAG, "Removing avatar for group " + groupId);
+        AvatarHelper.setAvatar(context, record.get().getRecipientId(), null);
+        database.onAvatarUpdated(groupId, false);
+        return;
+      }
+
+      Log.i(TAG, "Downloading new avatar for group " + groupId);
 
       attachment = File.createTempFile("avatar", "gv2", context.getCacheDir());
       attachment.deleteOnExit();
