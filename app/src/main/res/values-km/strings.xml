@@ -361,7 +361,7 @@
   <string name="InviteActivity_share_with_contacts">ចែករំលែកជាមួយបញ្ជីទំនាក់ទំនង</string>
   <string name="InviteActivity_choose_how_to_share">ជ្រើសរើសរបៀបចែករំលែក</string>
   <string name="InviteActivity_cancel">បោះបង់</string>
-  <string name="InviteActivity_sending">កំពុងផ្ញើ…</string>
+  <string name="InviteActivity_sending">កំពុងផ្ញើ...</string>
   <string name="InviteActivity_heart_content_description">បេះដូង</string>
   <string name="InviteActivity_invitations_sent">លិខិតអញ្ជើញបានផ្ញើ!</string>
   <string name="InviteActivity_invite_to_signal">អញ្ជើញចូលប្រើSignal</string>
@@ -452,7 +452,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">ចុចដើម្បីជ្រើសរើស</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">ដាក់ចំណងជើងមួយ…</string>
+  <string name="MediaSendActivity_add_a_caption">ដាក់ចំណងជើងមួយ...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">ចំណុចមួយត្រូវបានលុបចេញព្រោះវាលើសពីទំហំកំណត់</string>
   <string name="MediaSendActivity_camera_unavailable">កាមេរ៉ាមិនដំណើរការ</string>
   <string name="MediaSendActivity_message_to_s">សារទៅកាន់ %s</string>
@@ -909,7 +909,7 @@
   <string name="contact_filter_toolbar__show_dial_pad_description">បង្ហាញក្តារចុចលេខ</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">គ្មានបញ្ជីលេខទំនាក់ទំនង។</string>
-  <string name="contact_selection_group_activity__finding_contacts">កំពុងផ្ទុកបញ្ជីទំនាក់ទំនង…</string>
+  <string name="contact_selection_group_activity__finding_contacts">កំពុងផ្ទុកបញ្ជីទំនាក់ទំនង...</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">រូបភាពទំនាក់ទំនង</string>
   <!--ContactSelectionListFragment-->
@@ -1028,8 +1028,8 @@
   <string name="log_submit_activity__button_got_it">ទទួលបាន</string>
   <string name="log_submit_activity__button_compose_email">បង្កើតសារថ្មី</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">កំណត់ត្រានេះនឹងត្រូវបិតផ្សាយជាសាធារណៈតាមអនឡាញ សម្រាប់អ្នកចូលរួម ដើម្បីបង្ហើញ អ្នកអាចត្រួតពិនិត្យ និងកែប្រែ មុនពេលដាក់បញ្ជូន។</string>
-  <string name="log_submit_activity__loading_logs">កំពុងផ្ទុកកំណត់ត្រា…</string>
-  <string name="log_submit_activity__uploading_logs">កំពុងបញ្ជូនកំណត់ត្រា…</string>
+  <string name="log_submit_activity__loading_logs">កំពុងផ្ទុកកំណត់ត្រា...</string>
+  <string name="log_submit_activity__uploading_logs">កំពុងបញ្ជូនកំណត់ត្រា...</string>
   <string name="log_submit_activity__choose_email_app">ជ្រើសរើសកម្មវិធីអ៊ីមែល</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">សូមពិនិត្យកំណត់ត្រានេះពីកម្មវិធីរបស់ខ្ញុំ៖ %1$s</string>
   <string name="log_submit_activity__network_failure">បញ្ហាបណ្តាញ។ សូមសាកល្បងម្តងទៀត។</string>
@@ -1104,7 +1104,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[បើអ្នកចង់ផ្ទៀងផ្ទាត់សុវត្ថិភាពកូដនីយកម្មរបស់អ្នកជាមួយ %s ប្រៀបធៀបលេខខាងលើជាមួយលេខនៅលើឧបករណ៍របស់ពួកគេ។ ផ្សេងពីនេះទៀត អ្នកអាចស្កេនកូដលើទូរស័ព្ទរបស់ពួកគេ ឬសុំពួកគេឲ្យស្កេនកូដលើទូរស័ព្ទរបស់អ្នក។ <a href="https://signal.org/redirect/safety-numbers">ស្វែងយល់បន្ថែម</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">ចុច ដើម្បីស្កែន</string>
-  <string name="verify_display_fragment__loading">កំពុងផ្ទុក…</string>
+  <string name="verify_display_fragment__loading">កំពុងផ្ទុក...</string>
   <string name="verify_display_fragment__verified">បានផ្ទៀងផ្ទាត់</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">ចែករំលែកលេខសុវត្ថិភាព</string>
@@ -1498,8 +1498,8 @@
   <string name="ProfileNamesMegaphone__your_profile_can_now_include">ពត៌មានផ្ទាល់ខ្លួនរបស់អ្នកឥឡូវអាចរួមបញ្ចូលត្រកូលស្រេចចិត្ត។</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">រូបសញ្ញាជញ្ជូន</string>
-  <string name="ConversationListFragment_loading">កំពុងផ្ទុក…</string>
-  <string name="CallNotificationBuilder_connecting">កំពុងតភ្ជាប់…</string>
+  <string name="ConversationListFragment_loading">កំពុងផ្ទុក...</string>
+  <string name="CallNotificationBuilder_connecting">កំពុងតភ្ជាប់...</string>
   <string name="Permissions_permission_required">ទាមទារការអនុញ្ញាត</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signalត្រូវការសិទ្ធិប្រើប្រាស់សារ SMS ដើម្បីផ្ញើសារ SMS ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់ ជ្រើសរើស \"ការអនុញ្ញាត\" និងបើក \"សារ SMS\"។</string>
   <string name="Permissions_continue">បន្ត</string>

@@ -75,9 +75,11 @@
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">ब्लॉक किये हुए संपर्क</string>
   <!--BlockUnblockDialog-->
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">ग्रूप के सदस्य आपको इस ग्रूप में फ़िर शामिल कर पाएँगे।</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">आप एक दूसरे को मेसेज और काॅल कर पाएंगे|</string>
   <string name="BlockUnblockDialog_unblock">अनब्लॉक करें</string>
   <string name="BlockUnblockDialog_block">ब्लॉक</string>
+  <string name="BlockUnblockDialog_block_and_delete">ब्लाॅक करें अथवा हटा दें</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">आज</string>
   <string name="BucketedThreadMedia_Yesterday">कल</string>
@@ -208,6 +210,8 @@
   <string name="ConversationActivity_sticker_pack_installed">स्टीकर पैक इंस्टॉल</string>
   <string name="ConversationActivity_new_say_it_with_stickers">नया! स्टीकर के साथ कहें</string>
   <string name="ConversationActivity_cancel">रद्द करें</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">यह संवाद आपके सभी डिवाइस से हटा दिया जाएगा।</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">आप इस ग्रूप को छोङ देंगे और यह ग्रूप आपके सभी डिवाइस से हटा दिया जाएगा।</string>
   <string name="ConversationActivity_delete">हटाए </string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -277,6 +281,7 @@
     <item quantity="one">बातचीत को इनबॉक्स में ले जाया गया</item>
     <item quantity="other">%d बातचीत को इनबॉक्स में ले जाया गया</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_saved">आपका प्रोफ़ाइल नाम सहेज लिया गया है।</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">की विनिमय मेसेज</string>
   <!--ConversationListItemAction-->
@@ -348,7 +353,7 @@
   <string name="GroupCreateActivity_contacts_invalid_number">आपके समूह के सदस्यों में से एक में एक संपर्क नंबर है जिसे सही ढंग से पढ़ा नहीं जा सकता है। कृपया उस संपर्क को ठीक करें या हटाएं और पुनः प्रयास करें।</string>
   <string name="GroupCreateActivity_avatar_content_description">समूह अवतार</string>
   <string name="GroupCreateActivity_menu_apply_button">लागू करें</string>
-  <string name="GroupCreateActivity_creating_group">%1$sबनाया जा रहा है… </string>
+  <string name="GroupCreateActivity_creating_group">%1$sबनाया जा रहा है... </string>
   <string name="GroupCreateActivity_updating_group">%1$s अद्यतन किया जा रहा है…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s नहीं जोड़ सका क्योंकि वे Signal उपयोगकर्ता नहीं हैं।</string>
   <string name="GroupCreateActivity_loading_group_details">समूह माहिती लोड किया जा रहा है</string>
@@ -361,6 +366,8 @@
   <string name="GroupMembersDialog_you">आप</string>
   <!--GV2 access levels-->
   <!--PendingMembersActivity-->
+  <string name="PendingMembersActivity_people_you_invited">आपके द्वारा आमंत्रित लोग</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">ग्रूप के बाकी सदस्यों के आमंत्रण</string>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">समूह अवतार</string>
@@ -373,7 +380,7 @@
   <string name="InviteActivity_share_with_contacts">संपर्कों के साथ शेयर करें</string>
   <string name="InviteActivity_choose_how_to_share">शेयर करने का तरीका चुनें</string>
   <string name="InviteActivity_cancel">रद्द करें</string>
-  <string name="InviteActivity_sending">भेजा जा रहा है…</string>
+  <string name="InviteActivity_sending">भेजा जा रहा है...</string>
   <string name="InviteActivity_heart_content_description">दिल</string>
   <string name="InviteActivity_invitations_sent">आमंत्रण भेजा गया</string>
   <string name="InviteActivity_invite_to_signal">Signal को आमंत्रित करें</string>
@@ -446,7 +453,10 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s द्वारा %2$s को भेजा गया</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">आपके द्वारा %1$s को भेजा गया</string>
   <!--Megaphones-->
+  <string name="Megaphones_introducing_reactions">पेश है प्रतिक्रियाएँ</string>
   <string name="Megaphones_remind_me_later">मुझे बाद में याद दिलाना</string>
+  <string name="Megaphones_verify_your_signal_pin">अपना Signal पिन सत्यापित करें</string>
+  <string name="Megaphones_verify_pin">पिन सत्यापित करें</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal कॉल प्रगति पर है</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal कॉल की स्थापना की जा रही है</string>
@@ -465,7 +475,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">चयन के लिए टैप करें</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">शीर्षक लिखें…</string>
+  <string name="MediaSendActivity_add_a_caption">शीर्षक लिखें...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">इस चीज़ का आकार उसकी सीमा से ज़्यादा है, जिस वजह से इसे हटा दिया गया है</string>
   <string name="MediaSendActivity_camera_unavailable">कैमरा अनुपलब्ध।</string>
   <string name="MediaSendActivity_message_to_s">%s को मेसेज</string>
@@ -571,6 +581,7 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">आपके द्वारा इंस्टॉल की गई Google Play सेवाओं का वर्ज़न सही ढंग से कार्य नहीं कर रहा है। कृपया Google Play सेवाओं को पुनर्स्थापित करें और पुनः प्रयास करें।</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">ग़लत पिन</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">अगर आपको अपना पिन याद नहीं है तो आप नया पिन बना सकते हैं। आप पंजीकरण करके अपना खाता इस्तेमाल कर सकते हैं पर आप कुछ सेटिंग्स खो देंगे जैसे प्रोफ़ाइल की जानकारी।</string>
   <string name="PinRestoreEntryFragment_contact_support">समर्थन से संपर्क करें</string>
   <string name="PinRestoreEntryFragment_cancel">रद्द करें</string>
   <string name="PinRestoreEntryFragment_skip">छोड़ दे </string>
@@ -618,7 +629,7 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">आपके द्वारा निर्दिष्ट नंबर (%s) अमान्य है।</string>
   <string name="RegistrationActivity_missing_google_play_services">लापता Google Play Services</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">इस डिवाइस में Google Play सेवाएं अनुपलब्ध हैं। आप अभी भी Signal का उपयोग कर सकते हैं, लेकिन इस कॉन्फ़िगरेशन के परिणामस्वरूप कम विश्वसनीयता या प्रदर्शन हो सकता है। \n\n अगर आप एक उन्नत उपयोगकर्ता नहीं हैं, बाद वाले Android ROM नहीं चला रहे हैं, या मानते हैं कि आप इसे गलती से देख रहे हैं, तो कृपया support@signal.org पर निवारण कीजिए </string>
-  <string name="RegistrationActivity_i_understand">मै समझता हुँ…</string>
+  <string name="RegistrationActivity_i_understand">मै समझता हुँ...</string>
   <string name="RegistrationActivity_play_services_error">Play Services त्रुटि</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play सेवाएं अपडेट हो रही है या अस्थायी रूप से अनुपलब्ध है। कृपया पुन: प्रयास करें।</string>
   <string name="RegistrationActivity_terms_and_privacy">नियम और गोपनीयता नीति</string>
@@ -1044,7 +1055,7 @@
   <string name="log_submit_activity__button_got_it">समझ गया </string>
   <string name="log_submit_activity__button_compose_email">ईमेल लिखें</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">यह लॉग योगदानकर्ताओं के देखने के लिए सार्वजनिक रूप से ऑनलाइन पोस्ट किया जाएगा, आप सबमिट करने से पहले इसकी जांच और संपादन कर सकते हैं।</string>
-  <string name="log_submit_activity__loading_logs">लॉग लोड हो रहा है …</string>
+  <string name="log_submit_activity__loading_logs">लॉग लोड हो रहा है ...</string>
   <string name="log_submit_activity__uploading_logs">लॉग अपलोड किए जा रहे हैं</string>
   <string name="log_submit_activity__choose_email_app">ईमेल ऐप चुनें</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">कृपया मेरे ऐप %1$s से इस लॉग की समीक्षा करें</string>
@@ -1186,7 +1197,7 @@
     <item quantity="other">%dघंटे </item>
   </plurals>
   <!--preferences.xml-->
-  <string name="preferences__sms_mms">SMS और MMS…</string>
+  <string name="preferences__sms_mms">SMS और MMS...</string>
   <string name="preferences__pref_all_sms_title">सभी SMS प्राप्त करें</string>
   <string name="preferences__pref_all_mms_title">सभी MMS प्राप्त करें</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">सभी आने वाले पाठ मेसेज के लिए Signal का उपयोग करें</string>
@@ -1446,13 +1457,16 @@
   <string name="BaseKbsPinFragment__create_numeric_pin">न्यूमेरिक पिन बनाएं</string>
   <!--CreateKbsPinFragment-->
   <string name="CreateKbsPinFragment__create_a_new_pin">नया पिेन बनाएँ</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">जब तक आपका डिवाइस पंजीकृत है, आप अपना पिन कभी भी बदल सकते हैं।</string>
   <string name="CreateKbsPinFragment__create_your_pin">अपना पिन बनाएँ</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">औेर कठिन पिन चुनें</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">पिन मेल नहीं खाते। पुनः प्रयास करें।</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">अपने पिन की पुष्टि करें।</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">पिन निर्माण विफल रहा</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">आपका पिन सहेजा नहीं गया था| हम आपको बाद में एक पिन बनाने के लिए संकेत देंगे।</string>
   <string name="ConfirmKbsPinFragment__pin_created">पिन बनाया गया।</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">नया पिन बन रहा है़...</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">पेश है, पिन</string>
   <string name="KbsSplashFragment__learn_more">और जानें</string>
@@ -1482,13 +1496,18 @@
   <string name="RegistrationLockFragment__incorrect_pin">ग़लत पिन</string>
   <string name="RegistrationLockFragment__forgot_your_pin">क्या आप अपना पिन भूल गये हैं?</string>
   <!--KBS Megaphone-->
+  <string name="KbsMegaphone__create_a_pin">पिेन बनाएँ</string>
+  <string name="KbsMegaphone__create_pin">पिेन बनाएँ</string>
   <string name="KbsMegaphone__introducing_pins">पेश है, पिन</string>
   <string name="KbsMegaphone__update_pin">पिन अपडेट करें</string>
   <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">जब आप कोई संवाद चालु करेंगे या शेयर करेंगे तो यह दिखाया जाएगा।</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">प्रोफ़ाइल का नाम भरें</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">अब आपके प्रोफ़ाइल में एक वैकल्पिक उपनाम जुङ सकता है।</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">परिवहन चिह्न</string>
   <string name="ConversationListFragment_loading">लोड हो रहा है</string>
-  <string name="CallNotificationBuilder_connecting">जोङ रहे हैं…</string>
+  <string name="CallNotificationBuilder_connecting">जोङ रहे हैं...</string>
   <string name="Permissions_permission_required">अनुमति की आवश्यकता</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">SMS भेजने के लिए Signal को एसएमएस की अनुमति की आवश्यकता है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स जारी रखें, \"अनुमतियां\" चुनें और \"एसएमएस\" सक्षम करें।</string>
   <string name="Permissions_continue">आगे </string>
@@ -1545,6 +1564,7 @@ Locale: %4$s</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Android स्क्रीन लॉक या फिंगरप्रिंट के साथ Signal एक्सेस लॉक करें</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">स्क्रीन लॉक निष्क्रियता टाइमआउट</string>
   <string name="preferences_app_protection__signal_pin">Signal पिन</string>
+  <string name="preferences_app_protection__create_a_pin">पिेन बनाएँ</string>
   <string name="preferences_app_protection__change_your_pin">अपना पिन बदलें</string>
   <string name="AppProtectionPreferenceFragment_none">कुछ नहीं</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">पंजीकरण लॉक पिन आपके द्वारा प्राप्त किए गए एसएमएस सत्यापन कोड जैसा नहीं है। कृपया उस पिन को दर्ज करें जिसे आपने पहले एप्लिकेशन में कॉन्फ़िगर किया था।</string>

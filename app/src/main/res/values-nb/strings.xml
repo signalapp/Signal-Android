@@ -1099,8 +1099,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="log_submit_activity__button_got_it">Ålreit</string>
   <string name="log_submit_activity__button_compose_email">Skriv epost</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Denne loggen blir publisert på nett for bruk blant bidragsytere. Du kan undersøke og redigere den før du sender den inn.</string>
-  <string name="log_submit_activity__loading_logs">Laster inn logger…</string>
-  <string name="log_submit_activity__uploading_logs">Laster opp logger…</string>
+  <string name="log_submit_activity__loading_logs">Laster inn logger...</string>
+  <string name="log_submit_activity__uploading_logs">Laster opp logger...</string>
   <string name="log_submit_activity__choose_email_app">Velg e-postprogram</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Vennligst prøv denne loggen fra appen min: %1$s</string>
   <string name="log_submit_activity__network_failure">Nettverksfeil. Vær så snill, prøv på nytt.</string>
@@ -1530,7 +1530,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN-koden din ble ikke lagret. Vi ber deg om å opprette en PIN-kode senere.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN laget.</string>
   <string name="ConfirmKbsPinFragment__re_enter_your_pin">Skriv inn PIN-koden din på nytt</string>
-  <string name="ConfirmKbsPinFragment__creating_pin">Oppretter PIN…</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">Oppretter PIN...</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Vi introduserer PIN-koder</string>
   <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN-koder holder informasjon lagret med Signal kryptert slik at bare du kan få tilgang til den. Profilen, innstillingene og kontaktene dine vil gjenopprette når du installerer Signal på nytt.</string>

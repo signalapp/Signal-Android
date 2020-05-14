@@ -575,7 +575,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Označte ťuknutím</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Pridať popis…</string>
+  <string name="MediaSendActivity_add_a_caption">Pridať popis...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Položka bola odstránená, lebo prekračovala limit na veľkosť</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera je nedostupná.</string>
   <string name="MediaSendActivity_message_to_s">Správa pre %s</string>
@@ -1184,7 +1184,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Fotka kontaktu</string>
   <!--audio_view-->
-  <string name="audio_view__play_pause_accessibility_description">Prehrať … Pozastaviť</string>
+  <string name="audio_view__play_pause_accessibility_description">Prehrať ... Pozastaviť</string>
   <string name="audio_view__download_accessibility_description">Stiahnuť</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Zvuk</string>
@@ -1736,7 +1736,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Váš PIN kód sa neuložil. Vyzveme vás vytvoriť si PIN kód neskôr.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN kód sa vytvoril.</string>
   <string name="ConfirmKbsPinFragment__re_enter_your_pin">Zadajte váš PIN znovu</string>
-  <string name="ConfirmKbsPinFragment__creating_pin">Vytvára sa PIN kód…</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">Vytvára sa PIN kód...</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Predstavujeme PINy</string>
   <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN kódy udržiavajú informácie uložené v Signale zašifrované, aby ste k nim mali prístup iba vy. Váš profil, vaše nastavenia a kontakty sa po opätovnej inštalácii Signalu obnovia.</string>

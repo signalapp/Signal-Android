@@ -491,7 +491,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Seçmek için dokunun</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Bir başlık ekleyin…</string>
+  <string name="MediaSendActivity_add_a_caption">Bir başlık ekleyin...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Boyut sınırını aştığı için bir öğe kaldırıldı.</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera kullanılamıyor.</string>
   <string name="MediaSendActivity_message_to_s">%s kişisine ileti</string>
@@ -976,7 +976,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="contact_filter_toolbar__show_dial_pad_description">Arama tuşlarını göster</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Kişi yok.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Kişiler yükleniyor…</string>
+  <string name="contact_selection_group_activity__finding_contacts">Kişiler yükleniyor...</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Kişi Fotoğrafı</string>
   <!--ContactSelectionListFragment-->
@@ -1101,8 +1101,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="log_submit_activity__button_got_it">Anladım</string>
   <string name="log_submit_activity__button_compose_email">Eposta oluştur</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Bu günlük katkıda bulunanların görebilmeleri için herkese açık bir şekilde gönderilecektir. Göndermeden önce inceleyip düzenleyebilirsiniz.</string>
-  <string name="log_submit_activity__loading_logs">Günlükler yükleniyor…</string>
-  <string name="log_submit_activity__uploading_logs">Günlükler gönderiliyor…</string>
+  <string name="log_submit_activity__loading_logs">Günlükler yükleniyor...</string>
+  <string name="log_submit_activity__uploading_logs">Günlükler gönderiliyor...</string>
   <string name="log_submit_activity__choose_email_app">Eposta uygulaması seçin</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Lütfen uygulamamdan çıkan bu günlüğü inceleyin: %1$s</string>
   <string name="log_submit_activity__network_failure">Ağ hatası. Lütfen tekrar deneyin.</string>
@@ -1543,7 +1543,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN oluşturma başarısız oldu</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN\'iniz kaydedilmedi. PIN oluşturmanız için daha sonra hatırlatacağız.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN oluşturuldu.</string>
-  <string name="ConfirmKbsPinFragment__creating_pin">PIN oluşturuluyor…</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">PIN oluşturuluyor...</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Karşınızda PIN\'ler</string>
   <string name="KbsSplashFragment__learn_more">Dahasını Öğrenin</string>
@@ -1612,7 +1612,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ulaştırma simgesi</string>
   <string name="ConversationListFragment_loading">Yükleniyor…</string>
-  <string name="CallNotificationBuilder_connecting">Bağlanıyor…</string>
+  <string name="CallNotificationBuilder_connecting">Bağlanıyor...</string>
   <string name="Permissions_permission_required">İzin gerekli</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal, SMS göndermek için SMS iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"SMS\"i etkinleştirin.</string>
   <string name="Permissions_continue">Devam Et</string>

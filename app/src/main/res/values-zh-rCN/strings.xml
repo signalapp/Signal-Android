@@ -302,7 +302,7 @@
   <!--AvatarSelectionBottomSheetDialogFragment-->
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">选择照片</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">拍照</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">从相册中选择…</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">从相册中选择...</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">删除图片</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">刚刚</string>

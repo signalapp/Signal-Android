@@ -430,7 +430,7 @@
   <string name="InviteActivity_share_with_contacts">Jaa yhteystietojen kanssa</string>
   <string name="InviteActivity_choose_how_to_share">Valitse miten jaat</string>
   <string name="InviteActivity_cancel">Peruuta</string>
-  <string name="InviteActivity_sending">Lähetetään…</string>
+  <string name="InviteActivity_sending">Lähetetään...</string>
   <string name="InviteActivity_heart_content_description">Sydän</string>
   <string name="InviteActivity_invitations_sent">Kutsut lähetetty!</string>
   <string name="InviteActivity_invite_to_signal">Kutsu Signaliin</string>
@@ -527,7 +527,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Valitse napauttamalla</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Lisää kuvateksti…</string>
+  <string name="MediaSendActivity_add_a_caption">Lisää kuvateksti...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Kohde poistettiin, koska se ylitti kokorajan</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera ei käytettävissä</string>
   <string name="MediaSendActivity_message_to_s">Vastaanottaja: %s</string>
@@ -1194,8 +1194,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="log_submit_activity__button_got_it">Ymmärrän</string>
   <string name="log_submit_activity__button_compose_email">Uusi sähköposti</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Tämä loki lähetetään Internetiin, jossa se on julkisesti kehittäjien nähtävillä. Voit tutkia ja muokata sitä ennen kuin lähetät sen.</string>
-  <string name="log_submit_activity__loading_logs">Ladataan lokeja…</string>
-  <string name="log_submit_activity__uploading_logs">Lähetetään lokeja…</string>
+  <string name="log_submit_activity__loading_logs">Ladataan lokeja...</string>
+  <string name="log_submit_activity__uploading_logs">Lähetetään lokeja...</string>
   <string name="log_submit_activity__choose_email_app">Valitse sähköpostiohjelma</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Please review this log from my app: %1$s</string>
   <string name="log_submit_activity__network_failure">Verkkovirhe. Yritä uudelleen.</string>
@@ -1271,7 +1271,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jos haluat varmentaa sinun ja yhteystiedon %s välisen salauksen tietoturvan, vertaa ylläolevia numeroita hänen laitteessaan näkyviin vastaaviin numeroihin. Vaihtoehtoisesti voit skannata koodin hänen puhelimestaan, tai pyytä häntä skannaamaan sinun koodisi. <a href="https://signal.org/redirect/safety-numbers">Lue lisää.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Skannaa napauttamalla</string>
-  <string name="verify_display_fragment__loading">Ladataan…</string>
+  <string name="verify_display_fragment__loading">Ladataan...</string>
   <string name="verify_display_fragment__verified">Varmennettu</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Jaa turvanumero</string>
@@ -1711,8 +1711,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ProfileNamesMegaphone__confirm_name">Vahvista nimi</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Tyypin kuvake</string>
-  <string name="ConversationListFragment_loading">Ladataan…</string>
-  <string name="CallNotificationBuilder_connecting">Yhdistetään…</string>
+  <string name="ConversationListFragment_loading">Ladataan...</string>
+  <string name="CallNotificationBuilder_connecting">Yhdistetään...</string>
   <string name="Permissions_permission_required">Tarvitaan käyttöoikeus</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal tarvitsee tekstiviestien käyttöoikeutta niiden lähettämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tekstiviestit\".</string>
   <string name="Permissions_continue">Jatka</string>

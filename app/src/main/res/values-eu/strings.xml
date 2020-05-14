@@ -369,7 +369,7 @@
   <string name="GroupCreateActivity_contacts_invalid_number">Zure taldeko partaide batek ondo irakurri ezin daitekeen zenbaki bat dauka. Konpondu edo ezabatu kontaktua eta saiatu berriro mesedez.</string>
   <string name="GroupCreateActivity_avatar_content_description">Taldearen abatarra</string>
   <string name="GroupCreateActivity_menu_apply_button">Aplikatu</string>
-  <string name="GroupCreateActivity_creating_group">Sortzen %1$s…</string>
+  <string name="GroupCreateActivity_creating_group">Sortzen %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Eguneratzen: %1$s…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Ezin izan da %1$s gehitu Signal erabiltzailea ez delako.</string>
   <string name="GroupCreateActivity_loading_group_details">Taldearen detaileak kargatzen…</string>
@@ -394,7 +394,7 @@
   <string name="InviteActivity_share_with_contacts">Partekatu kontaktuekin</string>
   <string name="InviteActivity_choose_how_to_share">Aukeratu nola partekatu</string>
   <string name="InviteActivity_cancel">Utzi</string>
-  <string name="InviteActivity_sending">Bidaltzen…</string>
+  <string name="InviteActivity_sending">Bidaltzen...</string>
   <string name="InviteActivity_heart_content_description">Bihotza</string>
   <string name="InviteActivity_invitations_sent">Gonbidapenak bidali dira!</string>
   <string name="InviteActivity_invite_to_signal">Gonbidatu Signal erabiltzera</string>
@@ -491,7 +491,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Ukitu aukeratzeko</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Gehitu goiburua…</string>
+  <string name="MediaSendActivity_add_a_caption">Gehitu goiburua...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Elementu bat ezabatu egin da tamaina muga gainditu duelako</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera ez dago eskuragarri</string>
   <string name="MediaSendActivity_message_to_s">Honentzako mezua: %s</string>
@@ -832,7 +832,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="MessageDisplayHelper_bad_encrypted_message">Gaizki enkriptatuko mezua</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Existitzen ez den bertsio baterako enkriptatutako mezua</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Gaizki enkriptatutako MMS mezua…</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Gaizki enkriptatutako MMS mezua...</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS mezua enkriptatuta esistitzen ez den saio baterako</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Desaktibatu jakinarazpenak</string>
@@ -975,7 +975,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="contact_filter_toolbar__show_dial_pad_description">Erakutsi markagailua</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Kontakturik ez.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Kontaktuak kargatzen…</string>
+  <string name="contact_selection_group_activity__finding_contacts">Kontaktuak kargatzen...</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Kontaktuaren Argazkia</string>
   <!--ContactSelectionListFragment-->
@@ -985,7 +985,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" ez da Signal erabiltzaile bat. Mesedez, egiaztatu erabiltzaile izena eta saia zaitez berriro.</string>
   <string name="ContactSelectionListFragment_okay">Ados</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">Blokeatutako kontaturik ez…</string>
+  <string name="blocked_contacts_fragment__no_blocked_contacts">Blokeatutako kontaturik ez...</string>
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Singalek zure kontaktuak lortzeko baimena behar du erakutsi ahal izateko.</string>
   <string name="contact_selection_list_fragment__show_contacts">Kontaktuak erakutsi</string>
@@ -1100,8 +1100,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="log_submit_activity__button_got_it">Jasota</string>
   <string name="log_submit_activity__button_compose_email">Idatzi e-maila</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Egunkari hau publikoki argitaratuko da ekarleek ikus dezaten, bidali aurretik aztertu eta aldatu dezakezu.</string>
-  <string name="log_submit_activity__loading_logs">Egunkariak kargatzen…</string>
-  <string name="log_submit_activity__uploading_logs">Egunkariak igotzen…</string>
+  <string name="log_submit_activity__loading_logs">Egunkariak kargatzen...</string>
+  <string name="log_submit_activity__uploading_logs">Egunkariak igotzen...</string>
   <string name="log_submit_activity__choose_email_app">Hautatu e-mail aplikazioa</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Egiaztatu mesedez nire aplikazioaren egunkari hau: %1$s</string>
   <string name="log_submit_activity__network_failure">Sare hutsegitea. Saiatu beriro</string>
@@ -1543,7 +1543,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN-a sortzeak huts egin du</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Zure PIN-a ez da gorde. Beranduago PIN bat sortzea eskatuko dizugu.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN-a sortua.</string>
-  <string name="ConfirmKbsPinFragment__creating_pin">PINa sortzen…</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">PINa sortzen...</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">PIN-ak sartzen</string>
   <string name="KbsSplashFragment__learn_more">Gehiago jakin</string>
@@ -1612,7 +1612,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Garraio ikonoa</string>
   <string name="ConversationListFragment_loading">Kargatzen…</string>
-  <string name="CallNotificationBuilder_connecting">Konektatzen…</string>
+  <string name="CallNotificationBuilder_connecting">Konektatzen...</string>
   <string name="Permissions_permission_required">Baimena behar da</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signalek SMS baimena behar du SMS mezuak bidaltzeko baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"SMS\".</string>
   <string name="Permissions_continue">Jarraitu</string>

@@ -334,7 +334,7 @@
   <string name="GroupCreateActivity_contacts_invalid_number">Salah satu ahli kumpulan anda mempunyai nombor yang tidak boleh dibaca dengan betul. Sila betulkan atau alih keluar kenalan tersebut dan cuba lagi.</string>
   <string name="GroupCreateActivity_avatar_content_description">Avatar kumpulan</string>
   <string name="GroupCreateActivity_menu_apply_button">Guna</string>
-  <string name="GroupCreateActivity_creating_group">Mencipta %1$s…</string>
+  <string name="GroupCreateActivity_creating_group">Mencipta %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Mengemas kini %1$s…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Tidak dapat menambah %1$skerana mereka bukan pengguna Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Memuatkan butiran kumpulan …</string>
@@ -360,7 +360,7 @@
   <string name="InviteActivity_share">Kongsi</string>
   <string name="InviteActivity_choose_contacts">Pilih kenalan</string>
   <string name="InviteActivity_cancel">Batal</string>
-  <string name="InviteActivity_sending">Menghantar…</string>
+  <string name="InviteActivity_sending">Menghantar...</string>
   <string name="InviteActivity_heart_content_description">Hati</string>
   <string name="InviteActivity_invitations_sent">Jemputan dihantar!</string>
   <string name="InviteActivity_invite_to_signal">Jemput ke Signal</string>
@@ -423,7 +423,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Ketik untuk dipilih</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Tambah kapsyen…</string>
+  <string name="MediaSendActivity_add_a_caption">Tambah kapsyen...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Item telah dialih keluar kerana melebihi had saiz </string>
   <string name="MediaSendActivity_camera_unavailable">Kamera tidak tersedia.</string>
   <string name="MediaSendActivity_message_to_s">Mesej kepada %s</string>
@@ -843,7 +843,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="contact_filter_toolbar__show_dial_pad_description">Tunjukkan pad dial</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Tiada kenalan.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Memuatkan kenalan…</string>
+  <string name="contact_selection_group_activity__finding_contacts">Memuatkan kenalan...</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Foto Kenalan</string>
   <!--ContactSelectionListFragment-->
@@ -960,8 +960,8 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="log_submit_activity__button_got_it">Faham</string>
   <string name="log_submit_activity__button_compose_email">Mengarang e-mel</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Log ini akan dihantarskan secara terbuka dalam talian untuk penyumbang lihat, anda boleh memeriksa dan mengeditnya sebelum menghantar.</string>
-  <string name="log_submit_activity__loading_logs">Memuatkan log…</string>
-  <string name="log_submit_activity__uploading_logs">Memuat naik log-log…</string>
+  <string name="log_submit_activity__loading_logs">Memuatkan log...</string>
+  <string name="log_submit_activity__uploading_logs">Memuat naik log-log...</string>
   <string name="log_submit_activity__choose_email_app">Memilih aplikasi e-mel</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Sila menyemak semula log ini daripada aplikasi saya: %1$s</string>
   <string name="log_submit_activity__network_failure">Kegagalan rangkaian. Sila cuba lagi.</string>
@@ -1033,7 +1033,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jika anda ingin mengesah keselamatan penyulitan anda dengan %s, bandingkan nombor di atas dengan nombor pada peranti mereka. Secara alternatif, anda boleh mengimbas kod di telefon mereka, atau meminta mereka untuk mengimbas kod anda. <a href="https://signal.org/redirect/safety-numbers">Ketahui lebih lanjut.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Ketik untuk mengimbas</string>
-  <string name="verify_display_fragment__loading">Memuatkan…</string>
+  <string name="verify_display_fragment__loading">Memuatkan...</string>
   <string name="verify_display_fragment__verified">Disahkan</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Kongsikan nombor keselamatan</string>
@@ -1335,7 +1335,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Pilih PIN yang lebih kuat</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Sahkan PIN anda.</string>
-  <string name="ConfirmKbsPinFragment__creating_pin">Mencipta PIN…</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">Mencipta PIN...</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Memperkenalkan PIN</string>
   <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN mengekalkan maklumat yang disimpan dengan Signal disulitkan jadi hanya anda boleh mengaksesnya. Profil, tetapan dan kenalan anda dipulihkan apabila anda memasang semula Signal.</string>
@@ -1367,8 +1367,8 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="ProfileNamesMegaphone__your_profile_can_now_include">Sekarang profil anda boleh menyertakan nama terakhir pilihan.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pindah ikon</string>
-  <string name="ConversationListFragment_loading">Memuatkan…</string>
-  <string name="CallNotificationBuilder_connecting">Menyambung…</string>
+  <string name="ConversationListFragment_loading">Memuatkan...</string>
+  <string name="CallNotificationBuilder_connecting">Menyambung...</string>
   <string name="Permissions_permission_required">Kebenaran diperlukan</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal memerlukan kebenaran SMS untuk menghantar SMS, tetapi telah ditolak secara kekal. Sila terus ke tetapan aplikasi, pilih \"Kebenaran\", dan dayakan \"SMS\".</string>
   <string name="Permissions_continue">Teruskan</string>

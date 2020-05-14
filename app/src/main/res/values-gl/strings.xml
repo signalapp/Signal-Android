@@ -381,7 +381,11 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Ti</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_all_members">Todos os membros</string>
+  <string name="GroupManagement_access_level_only_admins">Só administradores</string>
   <!--PendingMembersActivity-->
+  <string name="PendingMembersActivity_people_you_invited">Persoas que convidaches</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">Non tes convites pendentes.</string>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar do grupo</string>
@@ -575,6 +579,7 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">A versión de Servizos de Google Play que tes instalada non funciona correctamente. Volve instalala e proba de novo.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">PIN incorrecto</string>
+  <string name="PinRestoreEntryFragment_skip_pin_entry">Omitir o PIN?</string>
   <string name="PinRestoreEntryFragment_cancel">Cancelar</string>
   <string name="PinRestoreEntryFragment_skip">Omitir</string>
   <!--PinRestoreLockedFragment-->
@@ -710,6 +715,7 @@
   <string name="SubmitDebugLogActivity_edit">Editar</string>
   <string name="SubmitDebugLogActivity_done">Feito</string>
   <string name="SubmitDebugLogActivity_submit">Enviar</string>
+  <string name="SubmitDebugLogActivity_failed_to_submit_logs">Fallo ao enviar o rexistro</string>
   <string name="SubmitDebugLogActivity_success">Correcto!</string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Copiado ao portapapeis</string>
   <string name="SubmitDebugLogActivity_share">Compartir</string>
@@ -902,7 +908,7 @@
   <string name="contact_filter_toolbar__show_dial_pad_description">Mostrar teclado de marcación</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Sen contactos.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Cargando contactos…</string>
+  <string name="contact_selection_group_activity__finding_contacts">Cargando contactos...</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Foto do contacto</string>
   <!--ContactSelectionListFragment-->
@@ -1024,8 +1030,8 @@
   <string name="log_submit_activity__button_got_it">Entendo</string>
   <string name="log_submit_activity__button_compose_email">Redactar correo</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Este rexistro publicarase en liña para que os colaboradores poidan velo; podes examinalo e editalo antes de o enviar.</string>
-  <string name="log_submit_activity__loading_logs">Cargando rexistros…</string>
-  <string name="log_submit_activity__uploading_logs">Cargando rexistros…</string>
+  <string name="log_submit_activity__loading_logs">Cargando rexistros...</string>
+  <string name="log_submit_activity__uploading_logs">Cargando rexistros...</string>
   <string name="log_submit_activity__choose_email_app">Elixe a aplicación de correo</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Revisa este rexistro desde a miña aplicación: %1$s</string>
   <string name="log_submit_activity__network_failure">Erro de rede. Téntao de novo.</string>
@@ -1422,6 +1428,8 @@
   <string name="KbsSplashFragment__learn_more">Saber máis</string>
   <string name="KbsSplashFragment__update_pin">Actualizar PIN</string>
   <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">Escribe o teu PIN de Signal</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Para axudarche a lembrar o PIN, cada certo tempo pedirémosche que o escribas, cada vez con menos frecuencia.</string>
   <string name="KbsReminderDialog__skip">Omitir</string>
   <string name="KbsReminderDialog__submit">Enviar</string>
   <string name="KbsReminderDialog__forgot_pin">Esqueciches o PIN?</string>
@@ -1433,6 +1441,7 @@
   <string name="RegistrationLockFragment__next">Seguinte</string>
   <string name="RegistrationLockFragment__forgot_pin">Esqueciches o PIN?</string>
   <string name="RegistrationLockFragment__incorrect_pin">PIN incorrecto</string>
+  <string name="RegistrationLockFragment__forgot_your_pin">Esqueciches o PIN?</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_pin">Crear PIN</string>
   <string name="KbsMegaphone__update_pin">Actualizar PIN</string>
@@ -1441,7 +1450,7 @@
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona do tráfico</string>
   <string name="ConversationListFragment_loading">Cargando…</string>
-  <string name="CallNotificationBuilder_connecting">Conectando…</string>
+  <string name="CallNotificationBuilder_connecting">Conectando...</string>
   <string name="Permissions_permission_required">Permiso obrigatorio</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal necesita permiso para acceder ás mensaxes SMS e poder enviar unha, pero foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"SMS\".</string>
   <string name="Permissions_continue">Continuar</string>

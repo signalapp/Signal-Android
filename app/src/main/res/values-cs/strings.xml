@@ -10,7 +10,7 @@
   <string name="AbstractNotificationBuilder_new_message">Nová zpráva</string>
   <!--AlbumThumbnailView-->
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Signal se aktualizuje…</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal se aktualizuje...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Aktuálně: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Dosud nemáte nastavené heslo!</string>
@@ -278,7 +278,7 @@
     <item quantity="one">Příloha uložena do úložiště</item>
     <item quantity="few">Uloženo %1$d přílohy do úložiště</item>
     <item quantity="many">Uloženo %1$d příloh do úložiště</item>
-    <item quantity="other">Ukládání %1$d příloh do úložiště…</item>
+    <item quantity="other">Ukládání %1$d příloh do úložiště...</item>
   </plurals>
   <string name="ConversationFragment_pending">Probíhající:</string>
   <string name="ConversationFragment_push">Data (Signal)</string>
@@ -466,7 +466,7 @@
   <string name="InviteActivity_share_with_contacts">Sdílet s kontakty</string>
   <string name="InviteActivity_choose_how_to_share">Vybrat způsob sdílení</string>
   <string name="InviteActivity_cancel">Storno</string>
-  <string name="InviteActivity_sending">Odesílaní…</string>
+  <string name="InviteActivity_sending">Odesílaní...</string>
   <string name="InviteActivity_heart_content_description">Srdíčko</string>
   <string name="InviteActivity_invitations_sent">Pozvánka odeslána!</string>
   <string name="InviteActivity_invite_to_signal">Pozvat do Signalu</string>
@@ -575,7 +575,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Klepněte pro výběr</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Přidat titulek…</string>
+  <string name="MediaSendActivity_add_a_caption">Přidat titulek...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Položka byla odebrána, protože překročila povolenou velikost.</string>
   <string name="MediaSendActivity_camera_unavailable">Fotoaparát není dostupný.</string>
   <string name="MediaSendActivity_message_to_s">Zpráva pro %s</string>
@@ -1142,7 +1142,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="contact_filter_toolbar__show_dial_pad_description">Zobrazit číselník</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Žádné kontakty.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Načítám kontakty…</string>
+  <string name="contact_selection_group_activity__finding_contacts">Načítám kontakty...</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Fotografie kontaktu</string>
   <!--ContactSelectionListFragment-->
@@ -1279,8 +1279,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="log_submit_activity__button_got_it">Rozumím</string>
   <string name="log_submit_activity__button_compose_email">Vytvořit email</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Tento log bude odeslán a zveřejněn online pro vývojáře. Před odesláním si můžete log prohlédnout či editovat.</string>
-  <string name="log_submit_activity__loading_logs">Načítám logy…</string>
-  <string name="log_submit_activity__uploading_logs">Odesílám logy…</string>
+  <string name="log_submit_activity__loading_logs">Načítám logy...</string>
+  <string name="log_submit_activity__uploading_logs">Odesílám logy...</string>
   <string name="log_submit_activity__choose_email_app">Zvolte e-mailovou aplikaci</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Prosím zkontrolujte tento log z mé aplikace: %1$s</string>
   <string name="log_submit_activity__network_failure">Chyba síťové komunikace. Prosím zkuste to znovu.</string>
@@ -1358,7 +1358,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Pokud chcete zkontrolovat bezpečnost šifrované komunikace s %s, porovnejte čísla nahoře na vašem zařízení s čísly na zařízení vašeho kontaktu. Můžete také oskenovat kód na jeho telefonu, nebo jej požádat, aby oskenoval kód na vašem zařízení. <a href="https://signal.org/redirect/safety-numbers">Zjistěte více o kontrolních kódech.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Klepnutím skenovat</string>
-  <string name="verify_display_fragment__loading">Načítání…</string>
+  <string name="verify_display_fragment__loading">Načítání...</string>
   <string name="verify_display_fragment__verified">Ověřeno</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Sdílet bezpečnostní kód</string>
@@ -1736,7 +1736,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Váš PIN nebyl uložen. Vyzveme vás k vytvoření PIN později.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN vytvořen.</string>
   <string name="ConfirmKbsPinFragment__re_enter_your_pin">Zadejte znovu váš PIN </string>
-  <string name="ConfirmKbsPinFragment__creating_pin">Vytvářím PIN…</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">Vytvářím PIN...</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Představujeme PIN</string>
   <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN uchovává informace uložené u Signalu zašifrované, takže pouze vy se k nim můžete dostat. Váš profil, nastavení a kontakty budou při reinstalaci Signalu obnoveny.</string>
@@ -1816,7 +1816,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ProfileNamesMegaphone__confirm_name">Potvrdit jméno</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona přenosu</string>
-  <string name="ConversationListFragment_loading">Načítání…</string>
+  <string name="ConversationListFragment_loading">Načítání...</string>
   <string name="CallNotificationBuilder_connecting">Připojování…</string>
   <string name="Permissions_permission_required">Vyžadovaná oprávnění</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal potřebuje oprávnění pro přístup k SMS, aby mohl posílat SMS zprávy, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"SMS\".</string>

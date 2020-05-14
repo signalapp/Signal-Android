@@ -395,7 +395,7 @@
   <string name="InviteActivity_share_with_contacts">Compartilhar com contatos</string>
   <string name="InviteActivity_choose_how_to_share">Escolher como compartilhar</string>
   <string name="InviteActivity_cancel">Cancelar</string>
-  <string name="InviteActivity_sending">Enviando…</string>
+  <string name="InviteActivity_sending">Enviando...</string>
   <string name="InviteActivity_heart_content_description">Coração</string>
   <string name="InviteActivity_invitations_sent">Convites enviados!</string>
   <string name="InviteActivity_invite_to_signal">Convidar para o Signal</string>
@@ -492,7 +492,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Toque para selecionar</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Adicionar legenda…</string>
+  <string name="MediaSendActivity_add_a_caption">Adicionar legenda...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Um item foi removido porque excedeu o limite de tamanho</string>
   <string name="MediaSendActivity_camera_unavailable">Câmera indisponível.</string>
   <string name="MediaSendActivity_message_to_s">Mensagem para %s</string>
@@ -980,7 +980,7 @@
   <string name="contact_filter_toolbar__show_dial_pad_description">Mostrar discador</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Nenhum contato.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Carregando contatos…</string>
+  <string name="contact_selection_group_activity__finding_contacts">Carregando contatos...</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Foto do contato</string>
   <!--ContactSelectionListFragment-->
@@ -1105,8 +1105,8 @@
   <string name="log_submit_activity__button_got_it">Entendi</string>
   <string name="log_submit_activity__button_compose_email">Escrever e-mail</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Este registro será postado publicamente on-line para que os contribuidores possam vê-lo. Você pode analisá-lo e editá-lo antes de enviar.</string>
-  <string name="log_submit_activity__loading_logs">Carregando registros…</string>
-  <string name="log_submit_activity__uploading_logs">Atualizando registros…</string>
+  <string name="log_submit_activity__loading_logs">Carregando registros...</string>
+  <string name="log_submit_activity__uploading_logs">Atualizando registros...</string>
   <string name="log_submit_activity__choose_email_app">Escolher aplicativo de e-mail</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Por favor, examine este registro enviado do meu aplicativo: %1$s</string>
   <string name="log_submit_activity__network_failure">Falha de rede. Tente novamente.</string>
@@ -1182,7 +1182,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Se você quiser verificar a segurança da sua criptografia ponta a ponta com %s, compare os números acima com os números no dispositivo dessa pessoa. Outra opção é escanear o código QR no telefone dela, ou pedir que ela escaneie o código no seu dispositivo. <a href="https://signal.org/redirect/safety-numbers">Saiba mais.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Toque para escanear</string>
-  <string name="verify_display_fragment__loading">Carregando…</string>
+  <string name="verify_display_fragment__loading">Carregando...</string>
   <string name="verify_display_fragment__verified">Verificado</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Compartilhar número de segurança</string>
@@ -1616,8 +1616,8 @@
   <string name="ProfileNamesMegaphone__confirm_name">Confirmar Nome</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ícone do transporte</string>
-  <string name="ConversationListFragment_loading">Carregando…</string>
-  <string name="CallNotificationBuilder_connecting">Conectando…</string>
+  <string name="ConversationListFragment_loading">Carregando...</string>
+  <string name="CallNotificationBuilder_connecting">Conectando...</string>
   <string name="Permissions_permission_required">Permissão necessária</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">O Signal precisa da permissão SMS para enviar mensagens SMS, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"SMS\".</string>
   <string name="Permissions_continue">Continuar</string>

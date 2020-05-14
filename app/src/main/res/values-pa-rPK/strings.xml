@@ -3,7 +3,7 @@
   <string name="yes">آہو</string>
   <string name="no">نئیں</string>
   <string name="delete"> مٹا دیو</string>
-  <string name="please_wait">مہربانی کر کے انتظار کرو…</string>
+  <string name="please_wait">مہربانی کر کے انتظار کرو...</string>
   <string name="save">محفوظ کرو</string>
   <string name="note_to_self">اپنے لئی نوٹ کرو</string>
   <!--AbstractNotificationBuilder-->
@@ -81,6 +81,7 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">تساں اک دوجے نوں سنیہا گھلن تے کال کرن دے اہل ہوو گے۔</string>
   <string name="BlockUnblockDialog_unblock">ان بلاک کرو</string>
   <string name="BlockUnblockDialog_block">بلاک کرو</string>
+  <string name="BlockUnblockDialog_block_and_delete">بلاک تے حذف کرو</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">اج</string>
   <string name="BucketedThreadMedia_Yesterday">کل</string>
@@ -159,6 +160,7 @@
   <string name="ConversationItem_read_more">  ہور پڑھو</string>
   <string name="ConversationItem_download_more">  ہور ڈاؤن لوڈ کرو</string>
   <string name="ConversationItem_pending">  التواء اچ</string>
+  <string name="ConversationItem_this_message_was_deleted">ایہہ سنیہا حذف کر دتا گیا سی۔</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">محفوظ سیشن نوں ری سیٹ کردئی اے ؟</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">جے ایس گل بات اچ تہانوں خفیہ کاری دا مسئلہ اے تاں ایہہ تہاڈی مدد کر سکدا اے۔ تہاڈے سنیہے رکھے جان گے۔</string>
@@ -210,6 +212,8 @@
   <string name="ConversationActivity_sticker_pack_installed">اسٹیکر پیک انسٹال ہوگیا اے</string>
   <string name="ConversationActivity_new_say_it_with_stickers">نواں! اینوں اسٹیکرز دے نال کہوو</string>
   <string name="ConversationActivity_cancel">منسوخ کرو</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">ایہہ گل وات تساں دے سارے آلے توں حذف کر دتی جاوے گی۔</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">تساں ایس گروپ نوں چھڈ دیو گے، تے ایہہ تساں دے سارے آلے توں حذف ہو جاوے گا۔</string>
   <string name="ConversationActivity_delete">مٹا دیو</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -256,6 +260,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">فوری جواب دین لئی تسیں کسے وی سنیہے تے کھبے پاسے سوائپ کرسکدے او</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">باہر جان آلیاں اک واری ویکھیاں جان آلیاں میڈیا فائلاں گھلن توں بعد آپوں آپ مٹ جاندیاں نیں</string>
   <string name="ConversationFragment_you_already_viewed_this_message">تسیں ایہہ سنیہا پہلاں ای ویکھ چکے او</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">تساں ایس گل وات اچ اپنے لئے نوٹس شامل کر سکدے او۔ جے تساں دے اکاؤنٹ اچ کوئی لنک کیتے آلے ہون، تے نویں نوٹس نوں ہم آہنگ کیا جاوے گا۔</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">تہاڈے آلے تے کوئی براؤزر نصب نئیں اے۔</string>
   <!--ConversationListFragment-->
@@ -279,6 +284,7 @@
     <item quantity="one">گل بات ان باکس اچ منتقل کر دتی اے </item>
     <item quantity="other">%d گل باتاں ان باکس اچ منتقل کر دتیاں نیں </item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_saved">تساں دا پروفائل نام محفوظ کر دتا گیا اے۔</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">کلیدی تبادلہ سنیہا</string>
   <!--ConversationListItemAction-->
@@ -363,6 +369,9 @@
   <string name="GroupMembersDialog_you">تسیں</string>
   <!--GV2 access levels-->
   <!--PendingMembersActivity-->
+  <string name="PendingMembersActivity_people_you_invited">لوکی جیہڑے تساں نے مدعو کیتے</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">دوجے گروپ دے رکناں دے ولوں دعوت نامے</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">دوجے گروپ رکناں دے ولوں مدعو کیتے لوکاں دی تفصیلاں نئیں وکھائی جاندی ہین۔ جے مدعو ہوئے لوک شمولیت کرن دا انتخاب کر دے ہین، تے ایس ویلے ایناں دی جانکاری دے گروپ دے نال سانجھا کیتا جاوے گا۔ جدوں تائیں اوہ گروپ اچ شمولیت نئیں کر دے اوہ کوئی سنیہے نئیں ویکھن گے۔</string>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">گروپ اوتار</string>
@@ -451,6 +460,8 @@
   <string name="Megaphones_introducing_reactions">ری ایکشنز متعارف کرا رئیا اے</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">فورن دسن لئی کہ تسیں کیہہ محسوس کر رئے او، کسے سنیہے نوں ٹیپ کرو تے پھڑ کے رکھو</string>
   <string name="Megaphones_remind_me_later">مینوں بعد اچ چیتا کراؤ</string>
+  <string name="Megaphones_verify_your_signal_pin">اپنی Signal پن دی توثیق کرو</string>
+  <string name="Megaphones_verify_pin">پن دی توثیق کرو</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal کال جاری اے</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal کال ملاؤنا</string>
@@ -503,6 +514,7 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s نے غائب ہون الے سنیہیاں دا ویلا %2$s تے سیٹ کیتا اے۔</string>
   <!--GV2 specific-->
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_joined_the_group">تساں نے گروپ اچ شمولیت کیتی۔</string>
   <string name="MessageRecord_s_joined_the_group">%1$s گروپ اچ شامل ہویا اے۔</string>
   <!--GV2 member removals-->
   <!--GV2 role change-->
@@ -575,6 +587,9 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">تہاڈا انسٹال کیتا ہویا گوگل پلے سروسز دا ورژن صحیح طریقے نال کم نئیں کر رئیا اے۔ مہربانی کر کے گوگل پلے سروسز نوں فیر انسٹال کرو تے فیر کوشش کرو۔</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">غلط پن۔</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">جے تساں نوں اپنی پن یاد نئیں آ رئی، تے تساں اک نواں تخلیق کر سکدے او۔ تساں رجسٹر کر سکدے تے اپنا اکاؤنٹ ورت سکدے او پر تساں اپنی پروفائل دی جانکاری ورگی کجھ محفوظ کیتی ترتیباں کھو دیو گے۔</string>
+  <string name="PinRestoreEntryFragment_create_new_pin">نویں پن بناؤ</string>
+  <string name="PinRestoreEntryFragment_contact_support">معاونت نال رابطہ کرو</string>
   <string name="PinRestoreEntryFragment_cancel">منسوخ کرو</string>
   <string name="PinRestoreEntryFragment_skip">چھڈو</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">نمبراں تے ہندسیاں تے مشتمل پن درج کرو</string>
@@ -654,6 +669,7 @@
   <string name="RegistrationActivity_country_code_description">ملک دا کوڈ</string>
   <string name="RegistrationActivity_call">کال کرو</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">جے تساں Signal دے نال دوبارہ رجسٹر کر دے ویلے اپنی Signal پن بھل جاندے او، تے تساں نوں 7 دناں دے لئی اپنے اکاؤنٹ توں لاک کر دتا جاوے گا۔</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">تصویر ویکھو</string>
   <string name="RevealableMessageView_view_video">ویڈیو ویکھو</string>
@@ -710,6 +726,7 @@
   <string name="StickerPackPreviewActivity_stickers">اسٹیکرز</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">اسٹیکر پیک لوڈ کرن اچ ناکام ہویا</string>
   <!--SubmitDebugLogActivity-->
+  <string name="SubmitDebugLogActivity_edit">تدوین کرو</string>
   <string name="SubmitDebugLogActivity_done">ہو گیا</string>
   <string name="SubmitDebugLogActivity_submit">جمع کراؤ</string>
   <string name="SubmitDebugLogActivity_success">کامیابی!</string>
@@ -728,6 +745,7 @@
   <string name="ThreadRecord_view_once_photo">اک واری نظر آن آلی فوٹو</string>
   <string name="ThreadRecord_view_once_video">اک واری نظر آن آلی ویڈیو</string>
   <string name="ThreadRecord_view_once_media">اک واری نظر آن آلا میڈیا</string>
+  <string name="ThreadRecord_this_message_was_deleted">ایہہ سنیہا حذف کر دتا گیا سی۔</string>
   <string name="ThreadRecord_s_is_on_signal">%s Signal تے اے!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">سنیہے غائب ہونا غیر فعال کیتا اے</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">سنیہا غائب ہون دا ویلا %s تے مقرر کیتا اے</string>
@@ -736,6 +754,7 @@
   <string name="ThreadRecord_you_marked_verified">تسیں تصدیق شدہ دے طور تے نشان زد کیتا اے</string>
   <string name="ThreadRecord_you_marked_unverified">تسیں غیر تصدیق شدہ دے طور تے نشان زد کیتا اے</string>
   <string name="ThreadRecord_message_could_not_be_processed"> سنیہے تے کارروائی نئیں ہو سکی</string>
+  <string name="ThreadRecord_message_request">سنیہا دی درخواست</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal اپ ڈیٹ</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal دا اک نواں ورژن دستیاب اے، اپ ڈیٹ کرن لئی بٹن دبو </string>
@@ -835,6 +854,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">%1$s نے تہاڈی اک وار ویکھی جان آلی تصویر تے ری ایکٹ کیتا اے۔</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">%1$s نے تہاڈی اک وار ویکھی جان آلی ویڈویو تے ری ایکٹ کیتا اے۔</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s نے تہاڈے اسٹیکر تے ری ایکٹ کیتا اے۔</string>
+  <string name="MessageNotifier_this_message_was_deleted">ایہہ سنیہا حذف کر دتا گیا سی۔</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">طے شدہ</string>
   <string name="NotificationChannel_calls"> کالاں</string>
@@ -1459,7 +1479,10 @@
     <item quantity="other">پن گھٹ توں گھٹ %1$d  ہندسیاں دا ہوناں چاہیدا اے</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">اک نواں پن بناؤ</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">جدوں تائیں ایہہ آلہ رجسٹرڈ اے تساں اپنی پن تبدیل کر سکدے او۔</string>
   <string name="CreateKbsPinFragment__create_your_pin">آپناں پن بناوو</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">پن Signal دے نال ذخیرہ کیتی جانکاری نوں خفیہ کاری توں محفوظ رکھدا اے ایس لئی صرف تساں ایس تائیں رسائی حاصل کر سکدے او۔ جدوں تساں Signal نوں دوبارہ انسٹال کر دے او تے تساں دی پروفائل، ترتیباں تے رابطے بحال ہو جان گے۔</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">اک مضبوط پن منتخب کرو</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">پناں میچ نئیں کر دیاں۔ فیر کوشش کرو</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">آپنے پن دی تصدیق کرو</string>
@@ -1469,6 +1492,7 @@
   <string name="ConfirmKbsPinFragment__creating_pin">پن بنا رئیا اے۔۔۔</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">پناں متعارف کرا رئیا اے</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">پن Signal دے نال ذخیرہ کیتی جانکاری نوں خفیہ کاری توں محفوظ رکھدا اے ایس لئی صرف تساں ایس تائیں رسائی حاصل کر سکدے او۔ جدوں تساں Signal نوں دوبارہ انسٹال کر دے او تے تساں دی پروفائل، ترتیباں تے رابطے بحال ہو جان گے۔</string>
   <string name="KbsSplashFragment__learn_more">ہور جانو</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">رجسٹریشن لاک = پن</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">تہاڈے رجسٹریشن لاک نوں ہن پن آکھیا جاندا اے، اور ایہہ ہور وی بوہت کجھ کردا اے۔ ایہنوں ہنڑی اپ ڈیٹ کرو۔</string>
@@ -1526,6 +1550,9 @@
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">اسیں تہانوں بعد اچ چیتا کرا دئیاں گے۔ %1$d دناں مگروں پن بناناں لازمی ہو جاوے گا۔</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">اسیں تہانوں بعد اچ چیتا کرا دئیاں گے۔ آپنے پن دی تصدیق %1$d دناں مگروں لازمی ہو جاوے گی۔</string>
   <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">جدوں تساں نویں گل وات شروع کر دے او یا ایس دا سانجھا کر دے او تے ایہہ ظاہر ہووے گا۔</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">پروفائل نام نال رلاؤ</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">تساں دی پروفائل اچ ہونڑ اک اختیاری اخیری ناں شامل ہوسکدا اے۔</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">ٹرانسپورٹ آئکن</string>
   <string name="ConversationListFragment_loading">لوڈ کر رئیا اے…</string>
@@ -1589,6 +1616,8 @@
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">اسکرین لاک دی غیر فعالیت دا ویلا مک گیا اے </string>
   <string name="preferences_app_protection__signal_pin">Signal  پن</string>
   <string name="preferences_app_protection__create_a_pin">اک پن بناوو</string>
+  <string name="preferences_app_protection__change_your_pin">اپنی پن تبدیل کرو</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">پن Signal دے نال ذخیرہ کیتی جانکاری نوں خفیہ کاری توں محفوظ رکھدا اے ایس لئی صرف تساں ایس تائیں رسائی حاصل کر سکدے او۔ جدوں تساں Signal نوں دوبارہ انسٹال کر دے او تے تساں دی پروفائل، ترتیباں تے رابطے بحال ہو جان گے۔</string>
   <string name="AppProtectionPreferenceFragment_none">کوئی نئیں</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">رجسٹریشن لاک پن تے تہانوں ہنی موصول ہویا SMS تصدیقی کوڈ اک ورگا نئیں اے۔ مہربانی کر کے درخاست اچ اپناں پہلاں تشکیل دتا ہویا پن درج کرو۔</string>
   <string name="registration_activity__registration_lock_pin">رجسٹریشن لاک پن</string>

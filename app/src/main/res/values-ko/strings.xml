@@ -1065,8 +1065,8 @@
   <string name="log_submit_activity__button_got_it">확인</string>
   <string name="log_submit_activity__button_compose_email">이메일 작성</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">로그를 다른 사용자들이 읽을 수 있도록 온라인에 게시됩니다. 제출하기 전 로그를 보고 수정할 수 있습니다.</string>
-  <string name="log_submit_activity__loading_logs">로그 로드 중…</string>
-  <string name="log_submit_activity__uploading_logs">로그 업로드 중…</string>
+  <string name="log_submit_activity__loading_logs">로그 로드 중...</string>
+  <string name="log_submit_activity__uploading_logs">로그 업로드 중...</string>
   <string name="log_submit_activity__choose_email_app">이메일 앱 선택</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">앱 로그를 리뷰해 주세요. %1$s</string>
   <string name="log_submit_activity__network_failure">네트워크 오류 발생, 다시 시도해 주세요.</string>
@@ -1141,7 +1141,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s 님과의 암호화 보안을 확인하고 싶다면 위에 표시되는 번호를 확인하세요. 또는, QR 코드를 스캔할 수도 있습니다. 더알아보기.]]></string>
   <string name="verify_display_fragment__tap_to_scan">탭하여 스캔</string>
-  <string name="verify_display_fragment__loading">로드 중…</string>
+  <string name="verify_display_fragment__loading">로드 중...</string>
   <string name="verify_display_fragment__verified">인증됨</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">안전 번호 공유</string>
@@ -1484,7 +1484,7 @@
   <string name="ConfirmKbsPinFragment__pin_creation_failed">번호 생성 실패</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">번호가 저장되지 않았습니다. 번호를 생성할 수 있을 때 다시 알려드리겠습니다.</string>
   <string name="ConfirmKbsPinFragment__pin_created">번호가 생성되었습니다.</string>
-  <string name="ConfirmKbsPinFragment__creating_pin">번호 생성 중…</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">번호 생성 중...</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">번호를 소개합니다.</string>
   <string name="KbsSplashFragment__learn_more">더 알아보기</string>
@@ -1547,7 +1547,7 @@
   <string name="ProfileNamesMegaphone__confirm_name">이름 확인</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">아이콘 전송</string>
-  <string name="ConversationListFragment_loading">로드 중…</string>
+  <string name="ConversationListFragment_loading">로드 중...</string>
   <string name="CallNotificationBuilder_connecting">연결 중…</string>
   <string name="Permissions_permission_required">권한 필요</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal에서 SMS를 보내려면 SMS 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'SMS\' 항목을 허용해 주세요.</string>

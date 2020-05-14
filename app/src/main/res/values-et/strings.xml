@@ -430,7 +430,7 @@
   <string name="InviteActivity_share_with_contacts">Jaga kontaktidega</string>
   <string name="InviteActivity_choose_how_to_share">Vali, kuidas jagada</string>
   <string name="InviteActivity_cancel">Tühista</string>
-  <string name="InviteActivity_sending">Saatmine…</string>
+  <string name="InviteActivity_sending">Saatmine...</string>
   <string name="InviteActivity_heart_content_description">Süda</string>
   <string name="InviteActivity_invitations_sent">Kutsed saadetud!</string>
   <string name="InviteActivity_invite_to_signal">Kutsu Signalisse</string>
@@ -527,7 +527,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Koputa valimiseks</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Lisa pealkiri…</string>
+  <string name="MediaSendActivity_add_a_caption">Lisa pealkiri...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Üksus eemaldati, sest see ületas suuruspiirangut.</string>
   <string name="MediaSendActivity_camera_unavailable">Kaamera pole saadaval.</string>
   <string name="MediaSendActivity_message_to_s">Sõnum kasutajale %s</string>
@@ -1075,7 +1075,7 @@
   <string name="contact_filter_toolbar__show_dial_pad_description">Kuva klahvistikku</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Kontakte pole.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Laadin kontakte…</string>
+  <string name="contact_selection_group_activity__finding_contacts">Laadin kontakte...</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Kontakti pilt</string>
   <!--ContactSelectionListFragment-->
@@ -1200,8 +1200,8 @@
   <string name="log_submit_activity__button_got_it">Selge</string>
   <string name="log_submit_activity__button_compose_email">Koosta e-kiri</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">See logi postitatakse Internetti avalikult, et kaastöötajad saaksid seda näha, sa võid seda enne postitamist vaadata ja muuta. </string>
-  <string name="log_submit_activity__loading_logs">Logide laadimine…</string>
-  <string name="log_submit_activity__uploading_logs">Logide üleslaadimine…</string>
+  <string name="log_submit_activity__loading_logs">Logide laadimine...</string>
+  <string name="log_submit_activity__uploading_logs">Logide üleslaadimine...</string>
   <string name="log_submit_activity__choose_email_app">Vali e-posti rakendus</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Palun vaata see logi üle minu rakendusest: %1$s</string>
   <string name="log_submit_activity__network_failure">Võrgu viga. Palun proovi uuesti.</string>
@@ -1277,7 +1277,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Kui soovid kinnitada oma krüpteeringut kasutajaga %s, võrdle ülalolevat numbrit nende seadmes oleva numbriga. Võid ka skaneerida nende telefonis olevat koodi või paluda tal skaneerida sinu oma. <a href="https://signal.org/redirect/safety-numbers">Lisateave.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Koputa skäneerimiseks</string>
-  <string name="verify_display_fragment__loading">Laadimine…</string>
+  <string name="verify_display_fragment__loading">Laadimine...</string>
   <string name="verify_display_fragment__verified">Kinnitatud</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Jaga turvanumbrit</string>
@@ -1647,7 +1647,7 @@
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN-koodi ei salvestatud. Pakume sulle PIN-koodi loomist hiljem uuesti.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN loodud.</string>
   <string name="ConfirmKbsPinFragment__re_enter_your_pin">Sisesta PIN-kood uuesti</string>
-  <string name="ConfirmKbsPinFragment__creating_pin">PINi loomine…</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">PINi loomine...</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Tutvustame PIN-koode</string>
   <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN-koodid hoiavad Signal-is salvestatud teabe krüptituna, et ainult sinul on sellele juurdepääs. Kui paigaldad Signal-i uuesti, siis sinu profiil, sätted ja kontaktid taastatakse.</string>
@@ -1717,8 +1717,8 @@
   <string name="ProfileNamesMegaphone__confirm_name">Kinnita nimi</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transpordi ikoon</string>
-  <string name="ConversationListFragment_loading">Laadimine…</string>
-  <string name="CallNotificationBuilder_connecting">Ühendumine…</string>
+  <string name="ConversationListFragment_loading">Laadimine...</string>
+  <string name="CallNotificationBuilder_connecting">Ühendumine...</string>
   <string name="Permissions_permission_required">Luba on vajalik</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal vajab SMS-uba, et saata SMSi, ent see on püsivalt keelatud. Palun jätka rakenduse seadetes, vali \"Load\" ja luba \"SMS\".</string>
   <string name="Permissions_continue">Jätka</string>

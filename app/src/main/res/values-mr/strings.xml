@@ -271,6 +271,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">जलद प्रतिसाद देण्यासाठी आपण कुठल्याही संदेशावर डावीकडे स्वाइप करू शकता</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">पाठविल्यानंतर बाहेर जाणाऱ्या एकदा-बघा मिडिया फाईल स्वयंचलितपणे काढल्या जातील</string>
   <string name="ConversationFragment_you_already_viewed_this_message">आपण आधीच हा संदेश पाहिला आहे</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">या संभाषणामध्ये आपण स्वतःसाठी टिपा जोडू शकता. जर आपल्या खात्यामध्ये लिंक केलेले डिव्हाईस असतील, तर नवीन टिपा संकलित केल्या जातील. </string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">आपल्या डिव्हाईसवर कुठलेही ब्राऊझर स्थापन केलेले नाही.</string>
   <!--ConversationListFragment-->
@@ -489,7 +490,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">निवडण्यासाठी टॅप करा</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">एक कॅप्शन जोडा…</string>
+  <string name="MediaSendActivity_add_a_caption">एक कॅप्शन जोडा...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">एक आयटम काढला गेला कारण त्याने आकार मर्यादा ओलांडली होती</string>
   <string name="MediaSendActivity_camera_unavailable">कॅमेरा अनुपलब्ध.</string>
   <string name="MediaSendActivity_message_to_s">%s ला संदेश</string>
@@ -677,6 +678,7 @@
   <string name="RegistrationActivity_country_code_description">देश कोड</string>
   <string name="RegistrationActivity_call">कॉल करा</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Signal सोबत पुन्हा नोंदणी करताना जर आपण आपला PIN विसरलात, तर आपण आपल्या खात्यापासून 7 दिवसांसाठी बाहेर रहाल.</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">फोटो बघा</string>
   <string name="RevealableMessageView_view_video">व्हिडिओ बघा</string>

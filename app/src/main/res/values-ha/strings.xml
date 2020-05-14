@@ -3,7 +3,7 @@
   <string name="yes">Eh</string>
   <string name="no">A\'a</string>
   <string name="delete">Goge</string>
-  <string name="please_wait">Jira…</string>
+  <string name="please_wait">Jira...</string>
   <string name="save">Ajiye</string>
   <string name="note_to_self">Wasikar ajiya</string>
   <!--AbstractNotificationBuilder-->
@@ -67,8 +67,8 @@
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal na bukatan bada izinin wurin da ake domin asamu a hada wuri amma an hana wannan damar dindindin. Cigaba ka/ki shiga mazabar saitin aikace-aikacen sannan ka/ki zabi \"permissins\", sai kuma ka/ki bada damar \"location\". </string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal na bukatar izinin kyamara domin daukar hotuna amma anhana wannan damar dindindin. Cigaba ka/ki shiga mazabar saitin aikace-aikacen Signal ka/ki da damar \"Kyamara\".</string>
   <!--AttachmentUploadJob-->
-  <string name="AttachmentUploadJob_uploading_media">Midiya na sabuntuwa…</string>
-  <string name="AttachmentUploadJob_compressing_video_start">Bidiyo na matsewa……</string>
+  <string name="AttachmentUploadJob_uploading_media">Midiya na sabuntuwa...</string>
+  <string name="AttachmentUploadJob_compressing_video_start">Bidiyo na matsewa......</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Kuskuren wasan bidiyo</string>
   <!--BlockedContactsActivity-->
@@ -241,14 +241,14 @@
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
     <item quantity="one">A</item>
-    <item quantity="other">Ajiyewar kari %1$d cikin ajiya…</item>
+    <item quantity="other">Ajiyewar kari %1$d cikin ajiya...</item>
   </plurals>
-  <string name="ConversationFragment_pending">Yana tafiya…</string>
+  <string name="ConversationFragment_pending">Yana tafiya...</string>
   <string name="ConversationFragment_push">Data (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Gogewa</string>
-  <string name="ConversationFragment_deleting_messages">Gogewar sakwanni…</string>
+  <string name="ConversationFragment_deleting_messages">Gogewar sakwanni...</string>
   <string name="ConversationFragment_quoted_message_not_found">Babu ainihin sako</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Ainihin sako ya bace.</string>
   <string name="ConversationFragment_failed_to_open_message">Budewar sako ya gaza</string>
@@ -269,7 +269,7 @@
     <item quantity="other">Wannan zai sa goge duk %1$d zabbben hira dindindin.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Gogewa</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">Ana goge hira…</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Ana goge hira...</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">Conversation archived</item>
     <item quantity="other">%d an adana hira</item>
@@ -315,8 +315,8 @@
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Cire hadin gizon wannan na\'urar zai sa ka/ki daina samun sakwanni kuma zai hanaka/ki daman tura sakwanni.</string>
   <string name="DeviceListActivity_network_connection_failed">Hadin hanyar sadarwa ya gaza</string>
   <string name="DeviceListActivity_try_again">Sake gwadawa.</string>
-  <string name="DeviceListActivity_unlinking_device">Cire hadin yanar gizon na\'ura…</string>
-  <string name="DeviceListActivity_unlinking_device_no_ellipsis">Cire hadin yanar gizon na\'ura…</string>
+  <string name="DeviceListActivity_unlinking_device">Cire hadin yanar gizon na\'ura...</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">Cire hadin yanar gizon na\'ura...</string>
   <string name="DeviceListActivity_network_failed">Babu Hanyar Sadarwa</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Na\'ura marar suna</string>
@@ -376,7 +376,7 @@
   <string name="InviteActivity_share_with_contacts">Ka/ki turawa lambobin sadarwarka/ki.</string>
   <string name="InviteActivity_choose_how_to_share">Zabi yadda zaka/ki tura.</string>
   <string name="InviteActivity_cancel">Katse</string>
-  <string name="InviteActivity_sending">Ana turawa……</string>
+  <string name="InviteActivity_sending">Ana turawa......</string>
   <string name="InviteActivity_heart_content_description">Zuciya</string>
   <string name="InviteActivity_invitations_sent">An tura gayyata!</string>
   <string name="InviteActivity_invite_to_signal">Gayyace shi/ta Signal.</string>
@@ -392,7 +392,7 @@
   <string name="InviteActivity_no_app_to_share_to">Kamar babu manhajar da zaka/ki tura zuwa</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Abokai basu barin abokai suyi hira ba tsaro.</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">Ana karasa aiki a bango…</string>
+  <string name="Job_working_in_the_background">Ana karasa aiki a bango...</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Karin bayani</string>
   <!--MessageDetailsRecipient-->
@@ -423,7 +423,7 @@
   <string name="MediaOverviewActivity_Media_delete_progress_title">Gogewa</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Gogewar sakwanni</string>
   <string name="MediaOverviewActivity_Select_all">Zabi Duka</string>
-  <string name="MediaOverviewActivity_collecting_attachments">Karbar kari…</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Karbar kari...</string>
   <string name="MediaOverviewActivity_Sort_by">Warware da</string>
   <string name="MediaOverviewActivity_Newest">Sabo</string>
   <string name="MediaOverviewActivity_Oldest">Tsoho</string>
@@ -545,7 +545,7 @@
         \n• tura sakwanni da sunaka/ki
     </string>
   <string name="DeviceProvisioningActivity_content_progress_title">Ana hada na\'ura</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Ana hada sabon na\'ura…</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Ana hada sabon na\'ura...</string>
   <string name="DeviceProvisioningActivity_content_progress_success">An karba na\'ura!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Ba a samu wata na\'ura ba.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Matsalar yanar gizo</string>
@@ -775,7 +775,7 @@
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Wannan lambar na amfani da tsohon Signal, gaya masa/mata cewar ya/ta sabunta Signal dinsa/ta kafin ka/ki tabbatar da lambar tsarinka/ki.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Mai wannan lambar na amfani da sabon Signal mai lambar sirrin QR da baizauna daidai ba.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Lambar sirrin QR da akayi sikanin ba daidai bane. Yi kokari a/ki sake sikanin.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">Tura lambar tsari ta…</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Tura lambar tsari ta...</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Lambar tsarinmu na Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Kamar ba manhajar da zaka/ki tura zuwa</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Ba\'a samu lambar tsari da za\'a hada a wannan allon haruffa ba.</string>
@@ -1054,8 +1054,8 @@
   <string name="log_submit_activity__button_got_it">Yayi!</string>
   <string name="log_submit_activity__button_compose_email">Hada imel</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Za\'a sa wannan logun a duniyar gizo domun masu bada gudummuwa su gani, kara bincika shi kuma ka/kiyi gyara kafin aikawa. </string>
-  <string name="log_submit_activity__loading_logs">Logu yana lodi…</string>
-  <string name="log_submit_activity__uploading_logs">Ana dora logogi…</string>
+  <string name="log_submit_activity__loading_logs">Logu yana lodi...</string>
+  <string name="log_submit_activity__uploading_logs">Ana dora logogi...</string>
   <string name="log_submit_activity__choose_email_app">Zabi manhajar imel</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Dan kara bincika wannan logun daga manhaja dina: %1$s</string>
   <string name="log_submit_activity__network_failure">Gazawar sadarwar gizo. Kara gwadawa.</string>
@@ -1078,7 +1078,7 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">Kalli</string>
   <string name="message_recipients_list_item__resend">Kara turawa</string>
-  <string name="message_recipients_list_item__resending">Ana kara turawa…</string>
+  <string name="message_recipients_list_item__resending">Ana kara turawa...</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s ya/ta shiga rukuni</item>
@@ -1318,7 +1318,7 @@
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__unknown_contact">Sabon sako zuwa ga…</string>
+  <string name="contact_selection_list__unknown_contact">Sabon sako zuwa ga...</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Kira</string>
   <!--conversation_callable_secure-->
@@ -1423,7 +1423,7 @@
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">Gogewa</string>
-  <string name="trimmer__deleting_old_messages">Gogewar tsofaffin sakonni…</string>
+  <string name="trimmer__deleting_old_messages">Gogewar tsofaffin sakonni...</string>
   <string name="trimmer__old_messages_successfully_deleted">An samu nasarar goge tsofaffin sakonni</string>
   <!--Insights-->
   <string name="Insights__percent">%</string>
@@ -1498,7 +1498,7 @@
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Gusar da alamar hoto</string>
   <string name="ConversationListFragment_loading">Yana lodi</string>
-  <string name="CallNotificationBuilder_connecting">Sadarwa…</string>
+  <string name="CallNotificationBuilder_connecting">Sadarwa...</string>
   <string name="Permissions_permission_required">Ana bukatar izini</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal na bukatar izinin SMS domin aikawa da SMS, amma an hana wannan damar dindindin. Dan karasa zuwa mazabar saiti manhajar, zabi Izini sannan karfafe SMS.</string>
   <string name="Permissions_continue">Cigaba</string>
@@ -1521,8 +1521,8 @@
   <string name="RegistrationActivity_restore">Maida tsarin asali</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Baza\'a iya shigar da tsimi daga sababbin sigar Signal ba.</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Kalmomin sirrin tsiminnan ba daidai bane</string>
-  <string name="RegistrationActivity_checking">Dubawa…</string>
-  <string name="RegistrationActivity_d_messages_so_far">%d sakonni a yanzu…</string>
+  <string name="RegistrationActivity_checking">Dubawa...</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d sakonni a yanzu...</string>
   <string name="RegistrationActivity_restore_from_backup">Maida daga tsimi?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Dawo da sakonninka/ki da midiya daga takaitaccen tsimi. Idan baka/ki dawo dasu yanzu ba, ba zaka/ki iya dawowa dasu anjima ba.</string>
   <string name="RegistrationActivity_backup_size_s">Girman tsimi: %s</string>

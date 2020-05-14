@@ -26,7 +26,7 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Signal とメッセージ通知のロックが完全に解除されます。</string>
   <string name="ApplicationPreferencesActivity_disable">無効</string>
   <string name="ApplicationPreferencesActivity_unregistering">登録を削除中</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signal でのメッセージ・通話を登録解除しています…</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signal でのメッセージ・通話を登録解除しています...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal でのメッセージ・通話を無効にしますか？</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">サーバから登録を削除することで、Signal のメッセージ・通話を無効にします。再び Signal を使用するには、電話番号を再登録する必要があります。</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">サーバー接続中にエラーが発生しました！</string>
@@ -362,7 +362,7 @@
   <string name="GroupCreateActivity_contacts_invalid_number">グループの中に正しく読み取れない電話番号を持つメンバーがいます。番号を修正するか、そのメンバーを削除してからもう一度お試しください。</string>
   <string name="GroupCreateActivity_avatar_content_description">グループアバター</string>
   <string name="GroupCreateActivity_menu_apply_button">適用</string>
-  <string name="GroupCreateActivity_creating_group">%1$s を作成しています…</string>
+  <string name="GroupCreateActivity_creating_group">%1$s を作成しています...</string>
   <string name="GroupCreateActivity_updating_group">%1$s をアップデートしています…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s は Signal ユーザではないので追加できませんでした。</string>
   <string name="GroupCreateActivity_loading_group_details">グループの詳細を読み込んでいます…</string>
@@ -412,7 +412,7 @@
   <string name="InviteActivity_share_with_contacts">連絡先と共有</string>
   <string name="InviteActivity_choose_how_to_share">共有方法を選択</string>
   <string name="InviteActivity_cancel">キャンセル</string>
-  <string name="InviteActivity_sending">送信しています…</string>
+  <string name="InviteActivity_sending">送信しています...</string>
   <string name="InviteActivity_heart_content_description">ハート</string>
   <string name="InviteActivity_invitations_sent">招待状を送りました！</string>
   <string name="InviteActivity_invite_to_signal">Signal に招待する</string>
@@ -503,7 +503,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">タップして選択</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">キャプションを追加…</string>
+  <string name="MediaSendActivity_add_a_caption">キャプションを追加...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">アイテムはサイズの上限を超えたため削除されました。</string>
   <string name="MediaSendActivity_camera_unavailable">カメラは利用できません。</string>
   <string name="MediaSendActivity_message_to_s">%s へのメッセージ</string>
@@ -1218,7 +1218,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s に対する暗号化を検証したい場合は、上記の番号が相手デバイスの番号と一致するか確認してください。代わりに、相手のデバイスの QR コードを読み取るか、こちらの QR コードを相手に読み取ってもらうこともできます。<a href="https://signal.org/redirect/safety-numbers">詳細を見る。</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">タップしてスキャンする</string>
-  <string name="verify_display_fragment__loading">読み込んでいます…</string>
+  <string name="verify_display_fragment__loading">読み込んでいます...</string>
   <string name="verify_display_fragment__verified">この連絡先は確認済みです</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">安全番号を共有する</string>
@@ -1584,7 +1584,7 @@
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN は保存されませんでした。後ほど PIN の作成ダイアログが表示されます。</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN を作成しました。</string>
   <string name="ConfirmKbsPinFragment__re_enter_your_pin">PIN を再入力</string>
-  <string name="ConfirmKbsPinFragment__creating_pin">PIN を作成しています…</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">PIN を作成しています...</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">PIN のご紹介</string>
   <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN はあなたの情報を暗号化された状態で保管され、あなただけがアクセスすることができます。Signal を再インストールした時、あなたのプロフィール、設定、連絡先は復元されます。</string>
@@ -1649,8 +1649,8 @@
   <string name="ProfileNamesMegaphone__confirm_name">名前の確認</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">転送アイコン</string>
-  <string name="ConversationListFragment_loading">読み込んでいます…</string>
-  <string name="CallNotificationBuilder_connecting">接続しています…</string>
+  <string name="ConversationListFragment_loading">読み込んでいます...</string>
+  <string name="CallNotificationBuilder_connecting">接続しています...</string>
   <string name="Permissions_permission_required">アクセス許可が必要です</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">SMS を送信するには、Signal に SMS へのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューの「アクセス許可」で「SMS」を有効にしてください。</string>
   <string name="Permissions_continue">続行</string>

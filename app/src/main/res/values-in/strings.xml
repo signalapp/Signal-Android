@@ -3,14 +3,14 @@
   <string name="yes">Ya</string>
   <string name="no">Tidak</string>
   <string name="delete">Hapus</string>
-  <string name="please_wait">Harap menunggu….</string>
+  <string name="please_wait">Harap menunggu....</string>
   <string name="save">Simpan</string>
   <string name="note_to_self">Catatan Pribadi</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Pesan baru</string>
   <!--AlbumThumbnailView-->
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Signal sedang diperbarui…</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal sedang diperbarui...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Sekarang: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Anda belum mengatur frasa sandi!</string>
@@ -26,7 +26,7 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Aksi ini akan membuka kunci Signal dan notifikasi pesan secara permanen.</string>
   <string name="ApplicationPreferencesActivity_disable">Nonaktifkan</string>
   <string name="ApplicationPreferencesActivity_unregistering">Berhenti mendaftar</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Berhenti mendaftar layanan pesan dan panggilan Signal…</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Berhenti mendaftar layanan pesan dan panggilan Signal...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Nonaktifkan pesan dan panggilan Signal?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Menonaktifkan pesan dan panggilan Signal dengan berhenti mendaftar dari peladen. Anda perlu mendaftarkan ulang nomor telepon Anda untuk menggunakannya lagi di kemudian hari.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Gagal menyambung ke peladen!</string>
@@ -67,8 +67,8 @@
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal memerlukan izin Lokasi untuk melampirkan lokasi, tetapi saat ini izin ditolak secara permanen. Harap melanjutkan ke menu pengaturan aplikasi, Pilih \"Izin\", dan aktifkan \"Lokasi\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal memerlukan izin Kamera untuk mengambil foto, tetapi saat ini izin ditolak secara permanen. Harap melanjutkan ke menu pengaturan aplikasi, Pilih \"Izin\", dan aktifkan \"Kamera\".</string>
   <!--AttachmentUploadJob-->
-  <string name="AttachmentUploadJob_uploading_media">Mengunggah media…</string>
-  <string name="AttachmentUploadJob_compressing_video_start">Mengompresi video…</string>
+  <string name="AttachmentUploadJob_uploading_media">Mengunggah media...</string>
+  <string name="AttachmentUploadJob_compressing_video_start">Mengompresi video...</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Gagal memutar audio!</string>
   <!--BlockedContactsActivity-->
@@ -163,6 +163,7 @@
   <string name="ConversationItem_read_more">  Baca Lebih Lanjut</string>
   <string name="ConversationItem_download_more">  Unduh Lebih Banyak</string>
   <string name="ConversationItem_pending">  Tertunda</string>
+  <string name="ConversationItem_this_message_was_deleted">Pesan ini telah dihapus.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Atur kembali sesi aman?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Hal ini dapat membantu jika Anda mengalami masalah enkripsi dalam percakapan ini. Pesan Anda akan disimpan.</string>
@@ -243,14 +244,14 @@
     <item quantity="other">Menyimpan %1$d lampiran</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="other">Menyimpan %1$d lampiran ke penyimpanan…</item>
+    <item quantity="other">Menyimpan %1$d lampiran ke penyimpanan...</item>
   </plurals>
-  <string name="ConversationFragment_pending">Tertunda …</string>
+  <string name="ConversationFragment_pending">Tertunda ...</string>
   <string name="ConversationFragment_push">Data (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Menghapus</string>
-  <string name="ConversationFragment_deleting_messages">Menghapus pesan-pesan …</string>
+  <string name="ConversationFragment_deleting_messages">Menghapus pesan-pesan ...</string>
   <string name="ConversationFragment_quoted_message_not_found">Pesan asli tidak ditemukan</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Pesan asli tidak lagi tersedia</string>
   <string name="ConversationFragment_failed_to_open_message">Gagal membuka pesan</string>
@@ -270,7 +271,7 @@
     <item quantity="other">Ini akan secara permanen menghapus semua %1$d percakapan terpilih.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Menghapus</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">Menghapus percakapan yang dipilih …</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Menghapus percakapan yang dipilih ...</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="other">%d percakapan diarsipkan</item>
   </plurals>
@@ -335,7 +336,7 @@
   <string name="ShareActivity_share_with">Berbagi dengan</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Lampiran jamak hanya berupa gambar dan video</string>
   <!--GcmBroadcastReceiver-->
-  <string name="GcmBroadcastReceiver_retrieving_a_message">Mengambil pesan…</string>
+  <string name="GcmBroadcastReceiver_retrieving_a_message">Mengambil pesan...</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Kegagalan komunikasi Signal permanen!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal tidak dapat melakukan registrasi melalui Google Play Services. Fitur Signal seperti pesan dan panggilan dinonaktifkan, mohon registrasi ulang melalui Pengaturan &gt; Lanjutan.</string>
@@ -356,9 +357,9 @@
   <string name="GroupCreateActivity_avatar_content_description">Avatar grup</string>
   <string name="GroupCreateActivity_menu_apply_button">Terapkan</string>
   <string name="GroupCreateActivity_creating_group">Membuat %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">Memperbarui %1$s…</string>
+  <string name="GroupCreateActivity_updating_group">Memperbarui %1$s...</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Tidak bisa menambahkan %1$s karena mereka bukan pengguna Signal.</string>
-  <string name="GroupCreateActivity_loading_group_details">Memuat detail grup…</string>
+  <string name="GroupCreateActivity_loading_group_details">Memuat detail grup...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Anda sudah berada di grup.</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Bagi nama profil dan foto anda di grup ini?</string>
@@ -383,7 +384,7 @@
   <string name="InviteActivity_share_with_contacts">Bagikan dengan kontak</string>
   <string name="InviteActivity_choose_how_to_share">Berbagi melalui</string>
   <string name="InviteActivity_cancel">Batal</string>
-  <string name="InviteActivity_sending">Mengirimkan…</string>
+  <string name="InviteActivity_sending">Mengirimkan...</string>
   <string name="InviteActivity_heart_content_description">Hati</string>
   <string name="InviteActivity_invitations_sent">Undangan terkirim!</string>
   <string name="InviteActivity_invite_to_signal">Undang ke Signal!</string>
@@ -397,7 +398,7 @@
   <string name="InviteActivity_no_app_to_share_to">Sepertinya Anda tidak memiliki aplikasi untuk berbagi.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Teman tidak membiarkan temannya mengobrol tanpa enkripsi.</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">Bekerja di belakang layar…</string>
+  <string name="Job_working_in_the_background">Bekerja di belakang layar...</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Pelajari lebih lanjut</string>
   <!--MessageDetailsRecipient-->
@@ -424,9 +425,9 @@
     <item quantity="other">Semua %1$d bekas terpilih akan dihapus secara permanen. Semua pesan berkaitan dengan berkas tersebut juga akan dihapus.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Menghapus</string>
-  <string name="MediaOverviewActivity_Media_delete_progress_message">Menghapus pesan-pesan …</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Menghapus pesan-pesan ...</string>
   <string name="MediaOverviewActivity_Select_all">Pilih semua</string>
-  <string name="MediaOverviewActivity_collecting_attachments">Mengumpulkan lampiran…</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Mengumpulkan lampiran...</string>
   <string name="MediaOverviewActivity_Sort_by">Urutkan berdasarkan</string>
   <string name="MediaOverviewActivity_Newest">Terbaru</string>
   <string name="MediaOverviewActivity_Oldest">Terlama</string>
@@ -474,7 +475,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Ketuk untuk memilih </string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Tambahkan keterangan teks…</string>
+  <string name="MediaSendActivity_add_a_caption">Tambahkan keterangan teks...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Tidak bisa menambah lampiran karena melebihi batas ukuran berkas</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera tidak tersedia.</string>
   <string name="MediaSendActivity_message_to_s">Kirim pesan ke %s</string>
@@ -559,7 +560,7 @@
 \n• Mengirim pesan atas nama Anda
 </string>
   <string name="DeviceProvisioningActivity_content_progress_title">Menghubungkan perangkat</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Menghubungkan perangkat baru…</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Menghubungkan perangkat baru...</string>
   <string name="DeviceProvisioningActivity_content_progress_success">Perangkat disetujui!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Perangkat tidak ditemukan.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Jaringan gagal.</string>
@@ -760,6 +761,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ThreadRecord_view_once_photo">Foto satu-tayangan</string>
   <string name="ThreadRecord_view_once_video">Video satu-tayangan</string>
   <string name="ThreadRecord_view_once_media">Media satu-tayangan</string>
+  <string name="ThreadRecord_this_message_was_deleted">Pesan ini telah dihapus.</string>
   <string name="ThreadRecord_s_is_on_signal">%s ada di Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Pesan menghilang dinonaktifkan</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Waktu penghilangan pesan diatur menjadi %s</string>
@@ -804,7 +806,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontak Anda menjalankan versi lama Signal. Mintalah mereka untuk memperbarui sebelum memverifikasi nomor keamanan Anda.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontak Anda menjalankan versi Signal yang lebih baru dengan format kode QR yang tidak kompatibel. Silahkan perbarui untuk membandingkan.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Kode QR yang dipindai bukan kode verifikasi nomor keamanan dengan format yang benar. Coba pindai lagi.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">Bagikan nomor keamanan melalui…</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Bagikan nomor keamanan melalui...</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Nomor keamanan Signal kami:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Sepertinya Anda tidak memiliki aplikasi untuk berbagi.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Tidak ada nomor keamanan untuk dibandingkan yang ditemukan di papan klip</string>
@@ -869,6 +871,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Bereaksi %1$s terhadap foto satu-tayangan Anda.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">Bereaksi %1$s terhadap video satu-tayangan Anda.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Bereaksi %1$s terhadap stiker Anda.</string>
+  <string name="MessageNotifier_this_message_was_deleted">Pesan ini telah dihapus.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Standar</string>
   <string name="NotificationChannel_calls">Panggilan</string>
@@ -957,7 +960,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="contact_filter_toolbar__show_dial_pad_description">Munculkan papan tombol</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Tidak ada kontak</string>
-  <string name="contact_selection_group_activity__finding_contacts">Memuat kontak…</string>
+  <string name="contact_selection_group_activity__finding_contacts">Memuat kontak...</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Foto Kontak</string>
   <!--ContactSelectionListFragment-->
@@ -999,7 +1002,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Foto kontak</string>
   <!--audio_view-->
-  <string name="audio_view__play_pause_accessibility_description">Putar … Jeda</string>
+  <string name="audio_view__play_pause_accessibility_description">Putar ... Jeda</string>
   <string name="audio_view__download_accessibility_description">Unduh</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Audio</string>
@@ -1013,7 +1016,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Gulir ke bawah</string>
   <!--country_selection_fragment-->
-  <string name="country_selection_fragment__loading_countries">Memuat daftar negara…</string>
+  <string name="country_selection_fragment__loading_countries">Memuat daftar negara...</string>
   <string name="country_selection_fragment__search">Cari</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Pindai kode QR yang tertera pada perangkat untuk menghubungkan</string>
@@ -1076,8 +1079,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="log_submit_activity__button_got_it">Paham</string>
   <string name="log_submit_activity__button_compose_email">Tulis surel</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Catatan ini akan diunggah secara publik agar para kontributor dapat melihat, Anda dapat memeriksa kembali dan menyunting sebelum mengunggahnya.</string>
-  <string name="log_submit_activity__loading_logs">Memuat catatan…</string>
-  <string name="log_submit_activity__uploading_logs">Mengunggah catatan…</string>
+  <string name="log_submit_activity__loading_logs">Memuat catatan...</string>
+  <string name="log_submit_activity__uploading_logs">Mengunggah catatan...</string>
   <string name="log_submit_activity__choose_email_app">Pilih aplikasi email</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Mohon periksa catatan ini dari aplikasi saya: %1$s</string>
   <string name="log_submit_activity__network_failure">Kesalahan jaringan. Silakan coba lagi.</string>
@@ -1100,7 +1103,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">LIHAT</string>
   <string name="message_recipients_list_item__resend">KIRIM ULANG</string>
-  <string name="message_recipients_list_item__resending">Mengirim ulang…</string>
+  <string name="message_recipients_list_item__resending">Mengirim ulang...</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$s bergabung dengan grup</item>
@@ -1152,7 +1155,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jika Anda ingin verifikasi keamanan enkripsi Anda dengan %s, bandingkan nomor di atas dengan nomor di perangkat mereka. Alternatifnya, Anda bisa memindai kode di telepon mereka, atau minta mereka untuk memindai kode Anda. <a href="https://signal.org/redirect/safety-numbers">Pelajari lebih lanjut.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Ketuk untuk memindai</string>
-  <string name="verify_display_fragment__loading">Memuat…</string>
+  <string name="verify_display_fragment__loading">Memuat...</string>
   <string name="verify_display_fragment__verified">Terverifikasi</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Bagikan nomor keamanan</string>
@@ -1364,7 +1367,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__unknown_contact">Pesan baru untuk…</string>
+  <string name="contact_selection_list__unknown_contact">Pesan baru untuk...</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Panggil</string>
   <!--conversation_callable_secure-->
@@ -1468,7 +1471,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">Menghapus</string>
-  <string name="trimmer__deleting_old_messages">Menghapus pesan-pesan lama…</string>
+  <string name="trimmer__deleting_old_messages">Menghapus pesan-pesan lama...</string>
   <string name="trimmer__old_messages_successfully_deleted">Pesan lama berhasil dihapus</string>
   <!--Insights-->
   <string name="Insights__percent">%</string>
@@ -1516,7 +1519,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Pembuatan PIN gagal</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN Anda tidak disimpan. Signal akan meminta Anda membuat PIN lagi nanti.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN dibuat.</string>
-  <string name="ConfirmKbsPinFragment__creating_pin">Membuat PIN…</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">Membuat PIN...</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Memperkenalkan PIN</string>
   <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN menjaga informasi yang disimpan di Signal terenkripsi sehingga hanya Anda yang dapat mengaksesnya. Profil, pengaturan, dan kontak akan dipulihkan saat Anda memasang ulang Signal.</string>
@@ -1580,8 +1583,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ProfileNamesMegaphone__confirm_name">Setujui Nama</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pindahkan ikon</string>
-  <string name="ConversationListFragment_loading">Memuat…</string>
-  <string name="CallNotificationBuilder_connecting">Menyambungkan…</string>
+  <string name="ConversationListFragment_loading">Memuat...</string>
+  <string name="CallNotificationBuilder_connecting">Menyambungkan...</string>
   <string name="Permissions_permission_required">Izin diperlukan</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal memerlukan izin SMS untuk mengirim pesan SMS, namun saat ini izin ditolak secara permanen. Mohon lanjutkan ke pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"SMS\".</string>
   <string name="Permissions_continue">Lanjutkan</string>
@@ -1606,8 +1609,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="RegistrationActivity_restore">Pulihkan</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Tidak bisa mengimpor cadangan dari versi Signal yang lebih baru</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Frasa sandi cadangan tidak benar</string>
-  <string name="RegistrationActivity_checking">Memeriksa…</string>
-  <string name="RegistrationActivity_d_messages_so_far">%d pesan sejauh ini…</string>
+  <string name="RegistrationActivity_checking">Memeriksa...</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d pesan sejauh ini...</string>
   <string name="RegistrationActivity_restore_from_backup">Pulihkan dari cadangan?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Memulihkan pesan dan media Anda dari cadangan lokal. Jika tidak dipulihkan sekarang, Anda tidak akan bisa memulihkannya nanti.</string>
   <string name="RegistrationActivity_backup_size_s">Ukuran cadangan: %s</string>
@@ -1626,8 +1629,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal memerlukan izin penyimpanan eksternal untuk membuat cadangan, tetapi saat ini izin ditolak secara permanen. Harap lanjutkan ke menu pengaturan aplikasi, pilih \"Izin\", dan aktifkan \"Penyimpanan\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Terakhir melakukan cadangan: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Sedang berjalan</string>
-  <string name="LocalBackupJob_creating_backup">Membuat cadangan…</string>
-  <string name="ProgressPreference_d_messages_so_far">%d pesan sejauh ini…</string>
+  <string name="LocalBackupJob_creating_backup">Membuat cadangan...</string>
+  <string name="ProgressPreference_d_messages_so_far">%d pesan sejauh ini...</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Silakan masukkan kode verifikasi yang telah dikirim ke %s.</string>
   <string name="RegistrationActivity_wrong_number">Nomor salah</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Panggil saya \n (Tersedia di %1$02d:%2$02d)</string>

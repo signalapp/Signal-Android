@@ -430,7 +430,7 @@
   <string name="InviteActivity_share_with_contacts">Condividi con i contatti</string>
   <string name="InviteActivity_choose_how_to_share">Scegli come condividere</string>
   <string name="InviteActivity_cancel">Annulla</string>
-  <string name="InviteActivity_sending">Invio in corso…</string>
+  <string name="InviteActivity_sending">Invio in corso...</string>
   <string name="InviteActivity_heart_content_description">Cuore</string>
   <string name="InviteActivity_invitations_sent">Inviti mandati!</string>
   <string name="InviteActivity_invite_to_signal">Invita su Signal</string>
@@ -527,7 +527,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Tocca per selezionare</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Aggiungi una didascalia…</string>
+  <string name="MediaSendActivity_add_a_caption">Aggiungi una didascalia...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Un elemento è stato rimosso perchè supera la dimensione massima</string>
   <string name="MediaSendActivity_camera_unavailable">Fotocamera non disponibile.</string>
   <string name="MediaSendActivity_message_to_s">Messaggio a %s</string>
@@ -1075,7 +1075,7 @@
   <string name="contact_filter_toolbar__show_dial_pad_description">Mostra tastierino numerico</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Nessun contatto.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Caricamento contatti…</string>
+  <string name="contact_selection_group_activity__finding_contacts">Caricamento contatti...</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Foto del contatto</string>
   <!--ContactSelectionListFragment-->
@@ -1277,7 +1277,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Se desideri verificare la sicurezza della tua crittografia con %s, confronta il numero sopra con il numero sul suo dispositivo. Altrimenti, puoi scansionare il codice sul suo telefono o chiedergli di scansionare il tuo codice. <a href="https://signal.org/redirect/safety-numbers">Maggiori informazioni.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tocca per la scansione</string>
-  <string name="verify_display_fragment__loading">Caricamento…</string>
+  <string name="verify_display_fragment__loading">Caricamento...</string>
   <string name="verify_display_fragment__verified">Verificato</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Condivi numero sicuro</string>
@@ -1717,8 +1717,8 @@
   <string name="ProfileNamesMegaphone__confirm_name">Conferma nome</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona trasporto</string>
-  <string name="ConversationListFragment_loading">Caricamento…</string>
-  <string name="CallNotificationBuilder_connecting">Connessione…</string>
+  <string name="ConversationListFragment_loading">Caricamento...</string>
+  <string name="CallNotificationBuilder_connecting">Connessione...</string>
   <string name="Permissions_permission_required">Autorizzazione necessaria</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal necessita l\'accesso agli SMS per poterli inviare, ma è stato negato in modo permanente. Si prega di continuare con le impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"SMS\".</string>
   <string name="Permissions_continue">Continua</string>

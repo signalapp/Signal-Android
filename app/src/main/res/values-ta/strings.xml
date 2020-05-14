@@ -160,6 +160,7 @@
   <string name="ConversationItem_read_more">மேலும் படிக்க</string>
   <string name="ConversationItem_download_more">மேலும் பதிவிறக்க</string>
   <string name="ConversationItem_pending">நிலுவையில்</string>
+  <string name="ConversationItem_this_message_was_deleted">இந்த செய்தி இருந்தது நீக்கப்பட்டது</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">பாதுகாப்பான அமர்வை மீட்டமைக்க?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">இந்த உரையாடலில் குறியாக்க சிக்கல்கள் இருந்தால் இது உதவக்கூடும். உங்கள் செய்திகள் வைக்கப்படும்.</string>
@@ -322,7 +323,7 @@
   <string name="DeviceListActivity_try_again">மீண்டும் முயற்சிக்கவும்</string>
   <string name="DeviceListActivity_unlinking_device">கருவி துண்டிக்கப்படுகிறது …</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">கருவி துண்டிக்கப்படுகிறது</string>
-  <string name="DeviceListActivity_network_failed">பிணையம் தோல்வி …</string>
+  <string name="DeviceListActivity_network_failed">பிணையம் தோல்வி ...</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">பெயரில்லாத கருவி</string>
   <string name="DeviceListItem_linked_s">%s இணைக்கப்பட்டது.</string>
@@ -384,7 +385,7 @@
   <string name="InviteActivity_share_with_contacts">தொடர்புகளுடன் பகிரவும்</string>
   <string name="InviteActivity_choose_how_to_share">பகிர்வது எப்படி என்பதைத் தேர்வுசெய்க</string>
   <string name="InviteActivity_cancel">ரத்து செய் </string>
-  <string name="InviteActivity_sending">அனுப்புகிறது …</string>
+  <string name="InviteActivity_sending">அனுப்புகிறது ...</string>
   <string name="InviteActivity_heart_content_description">இதயம்</string>
   <string name="InviteActivity_invitations_sent">அழைப்புகள் அனுப்பட்டது!</string>
   <string name="InviteActivity_invite_to_signal">Signalக்கு அழை</string>
@@ -563,7 +564,7 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">எந்த சாதனமும் காணப்படவில்லை.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">இணையத்தில் பிழை.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">QR குறியீடு செல்லாது.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">மன்னிக்கவும், ஏற்கனவே பல சாதனங்கள் இணைக்கப்பட்டுள்ளது, சிலவற்றை வெளியேற்றவும்  …</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">மன்னிக்கவும், ஏற்கனவே பல சாதனங்கள் இணைக்கப்பட்டுள்ளது, சிலவற்றை வெளியேற்றவும்  ...</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">மன்னிக்கவும், இது சரியான சாதன இணைப்பு QR குறியீடு அல்ல.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Signal சாதனத்தை இணைக்கவா?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">3 வது தரப்பு ஸ்கேனரைப் பயன்படுத்தி Signal சாதனத்தை இணைக்க முயற்சிக்கிறீர்கள் என்று தெரிகிறது. உங்கள் பாதுகாப்பிற்காக, Signal இருந்து குறியீட்டை மீண்டும் ஸ்கேன் செய்யுங்கள்.</string>
@@ -753,6 +754,7 @@
   <string name="ThreadRecord_view_once_photo">காண்க-ஒருமுறை புகைப்படம் </string>
   <string name="ThreadRecord_view_once_video">காண்க-ஒருமுறை காணொளி</string>
   <string name="ThreadRecord_view_once_media">காண்க-ஒருமுறை ஊடகம் </string>
+  <string name="ThreadRecord_this_message_was_deleted">இந்த செய்தி இருந்தது நீக்கப்பட்டது</string>
   <string name="ThreadRecord_s_is_on_signal">%s Signal உள்ளது!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">காணாமல் போகும் செய்திகள் முடக்கப்பட்டது</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">காணாமல் போகும் செய்திகளின் நேரம் %s ஆக அமைக்கப்பட்டுள்ளது</string>
@@ -861,6 +863,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">உங்கள் காண்க-ஒருமுறை புகைப்படத்திற்கு %1$s என வினைபுரிந்தார்.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">உங்கள் காண்க-ஒருமுறை காணொளிக்கு %1$s வினைபுரிந்தார்.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">உங்கள் ஒட்டிக்கு %1$s என வினைபுரிந்தார்.</string>
+  <string name="MessageNotifier_this_message_was_deleted">இந்த செய்தி இருந்தது நீக்கப்பட்டது</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">இயல்புநிலை</string>
   <string name="NotificationChannel_calls">அழைப்புகள்</string>
@@ -950,7 +953,7 @@
   <string name="contact_filter_toolbar__show_dial_pad_description">டயல்பேட்டைக் காட்டு</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">தொடர்புகள் இல்லை.</string>
-  <string name="contact_selection_group_activity__finding_contacts">தொடர்புகள் ஏற்றுப்படுகிறது…</string>
+  <string name="contact_selection_group_activity__finding_contacts">தொடர்புகள் ஏற்றுப்படுகிறது...</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">தொடர்பின் புகைப்படம்</string>
   <!--ContactSelectionListFragment-->
@@ -1153,7 +1156,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[உங்கள் குறியாக்கத்தின் பாதுகாப்பை %s உடன் சரிபார்க்க விரும்பினால், மேலே உள்ள எண்ணை அவர்களின் சாதனத்தில் உள்ள எண்ணுடன் ஒப்பிடுக. மாற்றாக, நீங்கள் அவர்களின் தொலைபேசியில் குறியீட்டை ஸ்கேன் செய்யலாம் அல்லது உங்கள் குறியீட்டை ஸ்கேன் செய்யுமாறு அவர்களிடம் கேட்கலாம்.<a href="https://signal.org/redirect/safety-numbers">மேலும் அறிக .</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">ஸ்கேன் செய்ய தட்டவும்</string>
-  <string name="verify_display_fragment__loading">ஏற்றுதல் …</string>
+  <string name="verify_display_fragment__loading">ஏற்றுதல் ...</string>
   <string name="verify_display_fragment__verified">சரிபார்க்கப்பட்ட</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">பாதுகாப்பு எண்ணைப் பகிரவும்</string>
@@ -1531,8 +1534,8 @@
   <string name="ProfileNamesMegaphone__your_profile_can_now_include">உங்கள் சுயவிவரம் இப்போது ஒரு விருப்பத்தை சேர்க்கலாம் கடந்த பெயர்.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">போக்குவரத்து குறும்படம்</string>
-  <string name="ConversationListFragment_loading">ஏற்றுதல் …</string>
-  <string name="CallNotificationBuilder_connecting">இணைக்கிறது …</string>
+  <string name="ConversationListFragment_loading">ஏற்றுதல் ...</string>
+  <string name="CallNotificationBuilder_connecting">இணைக்கிறது ...</string>
   <string name="Permissions_permission_required">அனுமதி தேவை</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">எஸ்எம்எஸ் அனுப்ப Signal க்கு எஸ்எம்எஸ் அனுமதி தேவை, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகளைத் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து \"எஸ்எம்எஸ்\" ஐ இயக்கவும்.</string>
   <string name="Permissions_continue">தொடர்</string>

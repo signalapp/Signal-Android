@@ -257,7 +257,7 @@
     <item quantity="other">در حال ذخیره‌ %1$d پیوست</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="one">در حال ذخیره پیوست در حافظهٔ…</item>
+    <item quantity="one">در حال ذخیره پیوست در حافظهٔ...</item>
     <item quantity="other">در حال ذخیره‌ %1$d پیوست در حافظهٔ…</item>
   </plurals>
   <string name="ConversationFragment_pending">در انتظار…</string>
@@ -289,7 +289,7 @@
     <item quantity="other">این باعث پاک شدن دائمی %1$d مکالمه انتخاب شده خواهد شد.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">در حال حذف</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">حذف مکالمه‌های انتخاب شده…</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">حذف مکالمه‌های انتخاب شده...</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">مکالمه بایگانی شد</item>
     <item quantity="other">%d مکالمه بایگانی شد</item>
@@ -430,7 +430,7 @@
   <string name="InviteActivity_share_with_contacts">اشتراک‌ گذاری با مخاطبان</string>
   <string name="InviteActivity_choose_how_to_share">انتخاب نحوهٔ اشتراک گذاری</string>
   <string name="InviteActivity_cancel">لغو</string>
-  <string name="InviteActivity_sending">در حال ارسال…</string>
+  <string name="InviteActivity_sending">در حال ارسال...</string>
   <string name="InviteActivity_heart_content_description">قلب</string>
   <string name="InviteActivity_invitations_sent">دعوت‌نامه‌ها ارسال شدند!</string>
   <string name="InviteActivity_invite_to_signal">دعوت به Signal</string>
@@ -519,7 +519,7 @@
   <string name="NotificationBarManager__cancel_call">لغو تماس</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">پیام چندرسانه‌ای</string>
-  <string name="NotificationMmsMessageRecord_downloading_mms_message">دریافت پیام چند‌رسانه‌ای…</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">دریافت پیام چند‌رسانه‌ای...</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">خطا در دریافت پیام چندرسانه‌ای، برای تلاش مجدد ضربه بزنید</string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">ارسال به %s</string>
@@ -527,7 +527,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">برای انتخاب ضربه بزنید</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">افزودن یک زیرنویس…</string>
+  <string name="MediaSendActivity_add_a_caption">افزودن یک زیرنویس...</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">یک مورد به دلیل تجاوز از محدودیت اندازه حذف شد</string>
   <string name="MediaSendActivity_camera_unavailable">دوربین در دسترس نیست.</string>
   <string name="MediaSendActivity_message_to_s">پیام به %s </string>
@@ -1072,7 +1072,7 @@
   <string name="contact_filter_toolbar__show_dial_pad_description">نمایش شماره‌ گیر</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">مخاطبی یافت نشد.</string>
-  <string name="contact_selection_group_activity__finding_contacts">در حال بارگذاری مخاطب ها…</string>
+  <string name="contact_selection_group_activity__finding_contacts">در حال بارگذاری مخاطب ها...</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">تصویر مخاطب</string>
   <!--ContactSelectionListFragment-->
@@ -1197,8 +1197,8 @@
   <string name="log_submit_activity__button_got_it">فهمیدم</string>
   <string name="log_submit_activity__button_compose_email">نوشتن ایمیل</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">این گزارش به صورت آنلاین برای بازنگری مشارکت کنندگان منتشر خواهد شد، می‌توانید آن را قبل از ارسال بررسی کرده و ویرایش کنید.</string>
-  <string name="log_submit_activity__loading_logs">بارگذاری گزارش ها…</string>
-  <string name="log_submit_activity__uploading_logs">آپلود گزارش ها…</string>
+  <string name="log_submit_activity__loading_logs">بارگذاری گزارش ها...</string>
+  <string name="log_submit_activity__uploading_logs">آپلود گزارش ها...</string>
   <string name="log_submit_activity__choose_email_app">انتخاب برنامه ایمیل</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">لطفاً این گزارش از برنامه من را بازبینی کنید: %1$s</string>
   <string name="log_submit_activity__network_failure">خطای شبکه. لطفاً دوباره تلاش کنید.</string>
@@ -1274,7 +1274,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ اگر مایل هستید تا امنیت رمزگذاری خود را با %s تایید کنید، عدد آمده در بالا را با عدد روی دستگاه آن ها مقایسه کنید. در غیر این صورت، میتوانید کد روی گوشی آن ها را اسکن کرده یا از آن ها بخواهید تا کد شما را اسکن کنند. <a href="https://signal.org/redirect/safety-numbers">بیشتر یاد بگیرید.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">برای اسکن کردن ضربه بزنید</string>
-  <string name="verify_display_fragment__loading">در حال بارگذاری…</string>
+  <string name="verify_display_fragment__loading">در حال بارگذاری...</string>
   <string name="verify_display_fragment__verified">تایید شده</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">اشتراک گذاری شمارهٔ امنیتی</string>
@@ -1644,7 +1644,7 @@
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">پین شما ذخیره نشد. ما بعداً از شما خواهیم خواست تا یک پین دیگر ایجاد کنید.</string>
   <string name="ConfirmKbsPinFragment__pin_created">پین ایجاد شد.</string>
   <string name="ConfirmKbsPinFragment__re_enter_your_pin">پین خود را دوباره وارد نمایید</string>
-  <string name="ConfirmKbsPinFragment__creating_pin">ایجاد پین…</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">ایجاد پین...</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">تعریف پین‌ها</string>
   <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">پین‌ها اطلاعات ذخیره شده در Signal را رمز‌گذاری می‌کنند تا فقط شما قادر به دسترسی به آن‌ها باشید. پروفایل، تنظیمات و مخاطبین شما هنگام نصب دوبارهٔ سیگنال بازنشانی می‌شوند.</string>
@@ -1714,7 +1714,7 @@
   <string name="ProfileNamesMegaphone__confirm_name">تأیید اسم</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">نگارک انتقال</string>
-  <string name="ConversationListFragment_loading">در حال بارگذاری…</string>
+  <string name="ConversationListFragment_loading">در حال بارگذاری...</string>
   <string name="CallNotificationBuilder_connecting">در حال اتصال…</string>
   <string name="Permissions_permission_required">مجوز لازم است</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal برای ارسال پیامک نیاز به مجوز پیامک دارد اما این دسترسی به‌ داده نشده است. لطفاً به تنظیمات برنامه‌ رفته، \"مجوزها\" را انتخاب کنید و \"پیامک\" را فعال کنید.</string>
