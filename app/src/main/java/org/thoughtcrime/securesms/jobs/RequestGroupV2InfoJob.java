@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.groupsv2.NoCredentialForRedemptionTimeException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
@@ -72,6 +73,11 @@ public final class RequestGroupV2InfoJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException, GroupNotAMemberException, GroupChangeBusyException {
+    if (!FeatureFlags.groupsV2()) {
+      Log.w(TAG, "Group update skipped due to feature flag " + groupId);
+      return;
+    }
+
     Log.i(TAG, "Updating group to revision " + toRevision);
 
     Optional<GroupDatabase.GroupRecord> group = DatabaseFactory.getGroupDatabase(context).getGroup(groupId);

@@ -92,7 +92,6 @@ import org.thoughtcrime.securesms.util.RemoteDeleteUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.state.SessionStore;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.libsignal.util.guava.Preconditions;
 import org.whispersystems.signalservice.api.groupsv2.InvalidGroupStateException;
 import org.whispersystems.signalservice.api.groupsv2.NoCredentialForRedemptionTimeException;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
@@ -413,7 +412,11 @@ public final class PushProcessMessageJob extends BaseJob {
       Log.w(TAG, e);
       handleCorruptMessage(e.getSender(), e.getSenderDevice(), timestamp, smsMessageId);
     } catch (BadGroupIdException e) {
-      Log.w(TAG, "Ignoring message with bad group id", e);
+      if (!FeatureFlags.ZK_GROUPS) {
+        Log.w(TAG, "Ignoring message with GV2 - no ZK_GROUP library", e);
+      } else {
+        Log.w(TAG, "Ignoring message with bad group id", e);
+      }
     }
   }
 
