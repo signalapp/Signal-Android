@@ -14,9 +14,7 @@ import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
-import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
-import org.thoughtcrime.securesms.util.livedata.LiveDataPair;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 public class WebRtcCallViewModel extends ViewModel {
@@ -134,11 +132,11 @@ public class WebRtcCallViewModel extends ViewModel {
     updateWebRtcControls(webRtcViewModel.getState(), webRtcViewModel.isRemoteVideoOffer());
 
     if (webRtcViewModel.getState() == WebRtcViewModel.State.CALL_CONNECTED && callConnectedTime == -1) {
-      callConnectedTime = System.currentTimeMillis();
+      callConnectedTime = webRtcViewModel.getCallConnectedTime();
       startTimer();
     } else if (webRtcViewModel.getState() != WebRtcViewModel.State.CALL_CONNECTED) {
-      callConnectedTime = -1;
       cancelTimer();
+      callConnectedTime = -1;
     }
 
     if (webRtcViewModel.getLocalCameraState().isEnabled()) {

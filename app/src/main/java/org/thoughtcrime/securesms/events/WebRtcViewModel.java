@@ -46,6 +46,8 @@ public class WebRtcViewModel {
   private final SurfaceViewRenderer localRenderer;
   private final SurfaceViewRenderer remoteRenderer;
 
+  private final long callConnectedTime;
+
   public WebRtcViewModel(@NonNull State               state,
                          @NonNull Recipient           recipient,
                          @NonNull CameraState         localCameraState,
@@ -54,7 +56,8 @@ public class WebRtcViewModel {
                                   boolean             remoteVideoEnabled,
                                   boolean             isBluetoothAvailable,
                                   boolean             isMicrophoneEnabled,
-                                  boolean             isRemoteVideoOffer)
+                                  boolean             isRemoteVideoOffer,
+                                  long                callConnectedTime)
   {
     this(state,
          recipient,
@@ -65,7 +68,8 @@ public class WebRtcViewModel {
          remoteVideoEnabled,
          isBluetoothAvailable,
          isMicrophoneEnabled,
-         isRemoteVideoOffer);
+         isRemoteVideoOffer,
+         callConnectedTime);
   }
 
   public WebRtcViewModel(@NonNull  State               state,
@@ -77,7 +81,8 @@ public class WebRtcViewModel {
                                    boolean             remoteVideoEnabled,
                                    boolean             isBluetoothAvailable,
                                    boolean             isMicrophoneEnabled,
-                                   boolean             isRemoteVideoOffer)
+                                   boolean             isRemoteVideoOffer,
+                                   long                callConnectedTime)
   {
     this.state                = state;
     this.recipient            = recipient;
@@ -89,6 +94,7 @@ public class WebRtcViewModel {
     this.isBluetoothAvailable = isBluetoothAvailable;
     this.isMicrophoneEnabled  = isMicrophoneEnabled;
     this.isRemoteVideoOffer   = isRemoteVideoOffer;
+    this.callConnectedTime    = callConnectedTime;
   }
 
   public @NonNull State getState() {
@@ -131,7 +137,18 @@ public class WebRtcViewModel {
     return remoteRenderer;
   }
 
+  public long getCallConnectedTime() {
+    return callConnectedTime;
+  }
+
   public @NonNull String toString() {
-    return "[State: " + state + ", recipient: " + recipient.getId().serialize() + ", identity: " + identityKey + ", remoteVideo: " + remoteVideoEnabled + ", localVideo: " + localCameraState.isEnabled() + ", isRemoteVideoOffer: " + isRemoteVideoOffer + "]";
+    return "[State: "               + state +
+           ", recipient: "          + recipient.getId().serialize() +
+           ", identity: "           + identityKey +
+           ", remoteVideo: "        + remoteVideoEnabled +
+           ", localVideo: "         + localCameraState.isEnabled() +
+           ", isRemoteVideoOffer: " + isRemoteVideoOffer +
+           ", callConnectedTime: "  + callConnectedTime +
+           "]";
   }
 }

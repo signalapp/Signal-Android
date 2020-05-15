@@ -167,6 +167,8 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   private boolean     isRemoteVideoOffer  = false;
   private boolean     acceptWithVideo     = false;
 
+  private long callConnectedTime = -1;
+
   private SignalServiceMessageSender      messageSender;
   private SignalServiceAccountManager     accountManager;
   private SignalAudioManager              audioManager;
@@ -925,6 +927,8 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       lockManager.updatePhoneState(getInCallPhoneState());
     }
 
+    callConnectedTime = System.currentTimeMillis();
+
     sendMessage(WebRtcViewModel.State.CALL_CONNECTED, activePeer, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled, isRemoteVideoOffer);
 
     unregisterPowerButtonReceiver();
@@ -1277,7 +1281,8 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
                                                          remoteVideoEnabled,
                                                          bluetoothAvailable,
                                                          microphoneEnabled,
-                                                         isRemoteVideoOffer));
+                                                         isRemoteVideoOffer,
+                                                         callConnectedTime));
   }
 
   private void sendMessage(@NonNull WebRtcViewModel.State state,
@@ -1298,7 +1303,8 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
                                                          remoteVideoEnabled,
                                                          bluetoothAvailable,
                                                          microphoneEnabled,
-                                                         isRemoteVideoOffer));
+                                                         isRemoteVideoOffer,
+                                                         callConnectedTime));
   }
 
   private ListenableFutureTask<Boolean> sendMessage(@NonNull final RemotePeer remotePeer,
