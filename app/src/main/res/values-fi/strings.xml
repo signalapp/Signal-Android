@@ -205,7 +205,6 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Laitteessasi ei ole sovellusta, joka osaa avata tämän linkin.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Jotta voit lähettää ääniviestejä, Signal tarvitsee lupaa käyttää mikrofonia.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal tarvitsee lupaa käyttää mikrofonia äänitiedostojen lähettämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Mikrofoni\".</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Jotta voit soittaa yhteystiedolle %s, Signal tarvitsee lupaa käyttää mikrofonia ja kameraa.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal tarvitsee lupaa käyttää laitteesi mikrofonia ja kameraa yhteystiedolle %s soittamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Mikrofoni\" ja \"Kamera\".</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Jotta voit ottaa kuvia ja videoita, anna Signalille lupaa käyttää kameraa.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal tarvitsee lupaa käyttää laitteesi kameraa kuvien ja videoiden ottamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Kamera\".</string>
@@ -409,10 +408,30 @@
     <item quantity="one">Kutsun peruminen epäonnistui</item>
     <item quantity="other">Kutsujen peruminen epäonnistui</item>
   </plurals>
+  <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__create">Luo</string>
+  <string name="AddGroupDetailsFragment__members">Jäsenet</string>
+  <string name="AddGroupDetailsFragment__group_name_required">Ryhmän nimi (vaaditaan)</string>
+  <string name="AddGroupDetailsFragment__remove">Poista</string>
+  <!--ManageGroupActivity-->
+  <string name="ManageGroupActivity_disappearing_messages">Katoavat viestit</string>
+  <string name="ManageGroupActivity_pending_group_invites">Odottavat ryhmäkutsut</string>
+  <string name="ManageGroupActivity_leave_group">Poistu ryhmästä</string>
+  <string name="ManageGroupActivity_mute_notifications">Mykistä ilmoitukset</string>
+  <string name="ManageGroupActivity_custom_notifications">Mukautetut ilmoitukset</string>
+  <string name="ManageGroupActivity_off">pois päältä</string>
+  <string name="ManageGroupActivity_on">Päällä</string>
+  <string name="ManageGroupActivity_add_members">Lisää jäseniä</string>
+  <string name="ManageGroupActivity_view_all_members">Näytä kaikki jäsenet</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s kutsui 1 henkilön</item>
     <item quantity="other">%1$s kutsui %2$d henkilöä</item>
   </plurals>
+  <!--CustomNotificationsDialogFragment-->
+  <string name="CustomNotificationsDialogFragment__custom_notifications">Mukautetut ilmoitukset</string>
+  <string name="CustomNotificationsDialogFragment__messages">Viestit</string>
+  <string name="CustomNotificationsDialogFragment__notification_sound">Ilmoitusääni</string>
+  <string name="CustomNotificationsDialogFragment__vibrate">Värinä</string>
   <!--GV2 Invite cancellation confirmation-->
   <string name="GroupManagement_cancel_own_single_invite">Haluatko peruuttaa henkilölle %1$s lähettämäsi ryhmäkutsun?</string>
   <plurals name="GroupManagement_cancel_others_invites">
@@ -430,7 +449,7 @@
   <string name="InviteActivity_share_with_contacts">Jaa yhteystietojen kanssa</string>
   <string name="InviteActivity_choose_how_to_share">Valitse miten jaat</string>
   <string name="InviteActivity_cancel">Peruuta</string>
-  <string name="InviteActivity_sending">Lähetetään...</string>
+  <string name="InviteActivity_sending">Lähetetään…</string>
   <string name="InviteActivity_heart_content_description">Sydän</string>
   <string name="InviteActivity_invitations_sent">Kutsut lähetetty!</string>
   <string name="InviteActivity_invite_to_signal">Kutsu Signaliin</string>
@@ -527,7 +546,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Valitse napauttamalla</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Lisää kuvateksti...</string>
+  <string name="MediaSendActivity_add_a_caption">Lisää kuvateksti…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Kohde poistettiin, koska se ylitti kokorajan</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera ei käytettävissä</string>
   <string name="MediaSendActivity_message_to_s">Vastaanottaja: %s</string>
@@ -544,6 +563,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Kaikki media</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_unknown">Tuntematon</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Vastaanotettiin viesti, joka on salattu Signalin vanhalla versiolla, jota ei enää tueta. Pyydä lähettäjää päivittämään uusimpaan versioon ja lähettämään viesti uudelleen.</string>
   <string name="MessageRecord_left_group">Olet poistunut ryhmästä.</string>
   <string name="MessageRecord_you_updated_group">Sinä päivitit ryhmää.</string>
@@ -560,6 +580,8 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Sinä asetit viestien katoamisajan: %1$s</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s asetti viestien katoamisajan: %2$s</string>
   <!--GV2 specific-->
+  <string name="MessageRecord_you_created_the_group">Sinä loit ryhmän.</string>
+  <string name="MessageRecord_group_updated">Ryhmä päivitetty.</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Lisäsit käyttäjän %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s lisäsi käyttäjän %2$s.</string>
@@ -700,7 +722,6 @@
     <item quantity="other">Sinulla on %1$d yritystä jäljellä. Jos yritykset loppuvat, voit luoda uuden PIN-koodin. Voit rekisteröidä ja käyttää tiliäsi, mutta menetät tallennetut asetukset, kuten profiilitietosi.</item>
   </plurals>
   <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signalin rekisteröinti - Tarvitsen apua PIN-koodilla Androidille</string>
-  <string name="PinRestoreEntryFragment_subject_signal_registration">Aihe: Signalin rekisteröinti - Tarvitsen apua PIN-koodilla Androidille\nLaitteen tiedot: %1$s\nAndroid versio: %2$s\nSignal versio: %3$s\nMaa: %4$s</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Syötä aakkosnumeerinen PIN</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Syötä numeerinen PIN</string>
   <!--PinRestoreLockedFragment-->
@@ -715,7 +736,6 @@
   <string name="RatingManager_later">Myöhemmin</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ups, vaikuttaa siltä, että Play Store -sovellus ei ole asennettuna laitteeseesi.</string>
   <!--ReactionsBottomSheetDialogFragment-->
-  <string name="ReactionsBottomSheetDialogFragment_all">Kaikki %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
@@ -741,6 +761,9 @@
   <string name="RedPhone_number_not_registered">Numeroa ei rekisteröity!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Numero, johon yritit soittaa, ei tue salattuja puheluita!</string>
   <string name="RedPhone_got_it">Ymmärrän</string>
+  <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Ota video käyttöön napauttamalla tästä</string>
+  <!--WebRtcCallView-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Valitse maasi</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Suuntanumero täytyy
@@ -856,6 +879,13 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Kopioitu leikepöydälle</string>
   <string name="SubmitDebugLogActivity_ok">Selvä</string>
   <string name="SubmitDebugLogActivity_share">Jaa</string>
+  <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_subject">Aihe:</string>
+  <string name="SupportEmailUtil_signal_android_support_request">Signal Android-tukipyyntö</string>
+  <string name="SupportEmailUtil_device_info">Laitetiedot:</string>
+  <string name="SupportEmailUtil_android_version">Android-versio:</string>
+  <string name="SupportEmailUtil_signal_version">Signal-versio:</string>
+  <string name="SupportEmailUtil_locale">Sijainti:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Ryhmä päivitetty</string>
   <string name="ThreadRecord_left_the_group">Poistui ryhmästä</string>
@@ -1029,6 +1059,12 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="WebRtcCallScreen_new_safety_number_title">Uusi turvanumero</string>
   <string name="WebRtcCallScreen_accept">Hyväksy</string>
   <string name="WebRtcCallScreen_end_call">Lopeta puhelu</string>
+  <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__answer">Vastaa</string>
+  <!--WebRtcAudioOutputToggle-->
+  <string name="WebRtcAudioOutputToggle__phone">Puhelin</string>
+  <string name="WebRtcAudioOutputToggle__speaker">Kaiutin</string>
+  <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Käytä video-tilaa napauttamalla</string>
   <!--WebRtcCallControls Content Descriptions-->
@@ -1063,6 +1099,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Syötä nimi tai numero</string>
   <string name="contact_selection_activity__invite_to_signal">Kutsu Signaliin</string>
+  <string name="contact_selection_activity__new_group">Uusi ryhmä</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Tyhjennä syötetty teksti</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Näytä näppäimistö</string>
@@ -1194,8 +1231,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="log_submit_activity__button_got_it">Ymmärrän</string>
   <string name="log_submit_activity__button_compose_email">Uusi sähköposti</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Tämä loki lähetetään Internetiin, jossa se on julkisesti kehittäjien nähtävillä. Voit tutkia ja muokata sitä ennen kuin lähetät sen.</string>
-  <string name="log_submit_activity__loading_logs">Ladataan lokeja...</string>
-  <string name="log_submit_activity__uploading_logs">Lähetetään lokeja...</string>
+  <string name="log_submit_activity__loading_logs">Ladataan lokeja…</string>
+  <string name="log_submit_activity__uploading_logs">Lähetetään lokeja…</string>
   <string name="log_submit_activity__choose_email_app">Valitse sähköpostiohjelma</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Please review this log from my app: %1$s</string>
   <string name="log_submit_activity__network_failure">Verkkovirhe. Yritä uudelleen.</string>
@@ -1238,6 +1275,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="CreateProfileActivity_next">Seuraava</string>
   <string name="CreateProfileActivity__username">Käyttäjätunnus</string>
   <string name="CreateProfileActivity__create_a_username">Luo käyttäjätunnus</string>
+  <!--EditProfileFragment-->
+  <string name="EditProfileFragment__group_name">Ryhmän nimi</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Jaettu media</string>
   <!--recipient_preferences-->
@@ -1271,7 +1310,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jos haluat varmentaa sinun ja yhteystiedon %s välisen salauksen tietoturvan, vertaa ylläolevia numeroita hänen laitteessaan näkyviin vastaaviin numeroihin. Vaihtoehtoisesti voit skannata koodin hänen puhelimestaan, tai pyytä häntä skannaamaan sinun koodisi. <a href="https://signal.org/redirect/safety-numbers">Lue lisää.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Skannaa napauttamalla</string>
-  <string name="verify_display_fragment__loading">Ladataan...</string>
+  <string name="verify_display_fragment__loading">Ladataan…</string>
   <string name="verify_display_fragment__verified">Varmennettu</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Jaa turvanumero</string>
@@ -1316,18 +1355,14 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="HelpFragment__whats_this">Mikä tämä on?</string>
   <string name="HelpFragment__how_do_you_feel">Miltä sinusta tuntuu? (valinnainen)</string>
   <string name="HelpFragment__support_info">Tukitiedot</string>
-  <string name="HelpFragment__subject">Aihe:</string>
   <string name="HelpFragment__signal_android_support_request">Signal Android-tukipyyntö</string>
-  <string name="HelpFragment__device_info">Laitetiedot:</string>
-  <string name="HelpFragment__android_version">Android-versio:</string>
-  <string name="HelpFragment__signal_version">Signal-versio:</string>
-  <string name="HelpFragment__locale">Sijainti:</string>
   <string name="HelpFragment__debug_log">Virheenkorjausloki:</string>
   <string name="HelpFragment__na">ei sovellettavissa</string>
   <string name="HelpFragment__could_not_upload_logs">Lokien lähettäminen ei onnistunut</string>
   <string name="HelpFragment__signal_support">Signal-tuki</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Auta meitä ymmärtämään asiaa olemalla mahdollisimman kuvaileva.</string>
   <string name="HelpFragment__no_email_app_found">Sähköpostiohjelmaa ei löytynyt.</string>
+  <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <!--arrays.xml-->
   <string name="arrays__import_export">Tuo</string>
   <string name="arrays__use_default">Käytä oletusta</string>
@@ -1694,6 +1729,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
     <item quantity="one">%1$d yritys jäljellä.</item>
     <item quantity="other">%1$d yritystä jäljellä.</item>
   </plurals>
+  <!--CalleeMustAcceptMessageRequestDialogFragment-->
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">Selvä</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Luo PIN-koodi</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN-koodit pitävät Signalin luona tallennetut tiedot salattuina.</string>
@@ -1711,8 +1748,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ProfileNamesMegaphone__confirm_name">Vahvista nimi</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Tyypin kuvake</string>
-  <string name="ConversationListFragment_loading">Ladataan...</string>
-  <string name="CallNotificationBuilder_connecting">Yhdistetään...</string>
+  <string name="ConversationListFragment_loading">Ladataan…</string>
+  <string name="CallNotificationBuilder_connecting">Yhdistetään…</string>
   <string name="Permissions_permission_required">Tarvitaan käyttöoikeus</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal tarvitsee tekstiviestien käyttöoikeutta niiden lähettämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tekstiviestit\".</string>
   <string name="Permissions_continue">Jatka</string>
@@ -1764,7 +1801,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="RegistrationActivity_call_me_instead_available_in">Soita minulle sen sijaan \n (Saatavilla ajassa %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Ota yhteyttä Signalin tukeen</string>
   <string name="RegistrationActivity_code_support_subject">Signalin rekisteröinti - vahvistuskoodi Androidille</string>
-  <string name="RegistrationActivity_code_support_body">Aihe: Signalin rekisteröinti - vahvistuskoodi Androidille\nLaitteen tiedot: %1$s\nAndroid versio: %2$s\nSignal versio: %3$s\nMaa: %4$s</string>
   <string name="BackupUtil_never">ei koskaan</string>
   <string name="BackupUtil_unknown">Tuntematon</string>
   <string name="preferences_app_protection__screen_lock">Näytön lukitus</string>
@@ -1818,5 +1854,13 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="RegistrationLockDialog_reminder">Muistutus:</string>
   <string name="recipient_preferences__about">Tiedot</string>
   <string name="Recipient_unknown">Tuntematon</string>
+  <!--RecipientBottomSheet-->
+  <string name="RecipientBottomSheet_message">Viesti</string>
+  <string name="RecipientBottomSheet_call">Soita</string>
+  <string name="RecipientBottomSheet_block">Estä</string>
+  <string name="RecipientBottomSheet_unblock">Poista esto</string>
+  <string name="RecipientBottomSheet_view_safety_number">Näytä turvanumero</string>
+  <string name="RecipientBottomSheet_remove">Poista</string>
+  <string name="GroupRecipientListItem_admin">Ylläpitäjä</string>
   <!--EOF-->
 </resources>

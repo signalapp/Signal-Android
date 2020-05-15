@@ -27,7 +27,7 @@
   <string name="ApplicationPreferencesActivity_disable">禁用</string>
   <string name="ApplicationPreferencesActivity_unregistering">注销</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">注销 Signal 消息和呼叫…</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">禁用 Signal 信息和呼叫？</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">禁用 Signal 消息和呼叫？</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">从服务器注销将禁用 Signal 消息和呼叫。如果以后想要使用这些功能，那么需使用手机号码重新注册。</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">连接服务器错误！</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">已启用短信</string>
@@ -198,7 +198,6 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">你的设备上没有处理该链接的应用。</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">如需发送语音，请允许 Signal 使用麦克风。</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal 需“麦克风”权限，来发送音频，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“麦克风”。</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">为了呼叫 %s，Signal 需访问麦克风和相机。</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal 需“麦克风”和“相机”权限，来呼叫 %s，但这些权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“麦克风”和“相机”。</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">要拍照或录像，请允许 Signal 访问相机。</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal 需“相机”权限，来拍摄图片或视频，但该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“相机”。</string>
@@ -302,7 +301,7 @@
   <!--AvatarSelectionBottomSheetDialogFragment-->
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">选择照片</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">拍照</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">从相册中选择...</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">从相册中选择…</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">删除图片</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">刚刚</string>
@@ -372,6 +371,25 @@
   <string name="PendingMembersActivity_people_you_invited">你邀请的人</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">其他群组成员的邀请</string>
   <string name="PendingMembersActivity_missing_detail_explanation">未显示其他群组成员邀请的人员详情。当受邀者选择加入时，他们的信息将分享至群组。在加入之前，他们不会看到任何消息。</string>
+  <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__create">创建</string>
+  <string name="AddGroupDetailsFragment__members">成员</string>
+  <string name="AddGroupDetailsFragment__group_name_required">群名称（必填）</string>
+  <string name="AddGroupDetailsFragment__remove">删除</string>
+  <!--ManageGroupActivity-->
+  <string name="ManageGroupActivity_disappearing_messages">阅后即焚</string>
+  <string name="ManageGroupActivity_leave_group">离开群组</string>
+  <string name="ManageGroupActivity_mute_notifications">静音通知</string>
+  <string name="ManageGroupActivity_custom_notifications">自定义通知</string>
+  <string name="ManageGroupActivity_off">关</string>
+  <string name="ManageGroupActivity_on">开</string>
+  <string name="ManageGroupActivity_add_members">添加成员</string>
+  <string name="ManageGroupActivity_view_all_members">查看全体群成员</string>
+  <!--CustomNotificationsDialogFragment-->
+  <string name="CustomNotificationsDialogFragment__custom_notifications">自定义通知</string>
+  <string name="CustomNotificationsDialogFragment__messages">消息</string>
+  <string name="CustomNotificationsDialogFragment__notification_sound">通知声音</string>
+  <string name="CustomNotificationsDialogFragment__vibrate">振动</string>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">群组头像</string>
@@ -491,6 +509,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">全部媒体</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_unknown">未知</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">收到来自旧版本 Signal 的加密消息，该版本已不再支持。请提醒发送人升级至最新版本并重发该消息。</string>
   <string name="MessageRecord_left_group">您已经退出该群组。</string>
   <string name="MessageRecord_you_updated_group">您已更新该群组</string>
@@ -507,6 +526,8 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">设置阅后即焚消失时间为 %1$s。</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s 设置阅后即焚消失时间为 %2$s。</string>
   <!--GV2 specific-->
+  <string name="MessageRecord_you_created_the_group">您创建了群组</string>
+  <string name="MessageRecord_group_updated">群组更新完成。</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_joined_the_group">你已加入该群组。</string>
   <string name="MessageRecord_s_joined_the_group">%1$s 加入群组。</string>
@@ -607,7 +628,6 @@
   <string name="RatingManager_later">稍后</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">糟糕, 你的设备上未安装 Google Play 商店。</string>
   <!--ReactionsBottomSheetDialogFragment-->
-  <string name="ReactionsBottomSheetDialogFragment_all">全部 %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
@@ -633,6 +653,9 @@
   <string name="RedPhone_number_not_registered">号码未注册！</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">您输入的号码不支持加密语音！</string>
   <string name="RedPhone_got_it">知道了</string>
+  <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">点击这里以启用视频</string>
+  <!--WebRtcCallView-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">选择国家</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">必须指定
@@ -749,6 +772,13 @@
   <string name="SubmitDebugLogActivity_copied_to_clipboard">已复制到剪切板</string>
   <string name="SubmitDebugLogActivity_ok">好</string>
   <string name="SubmitDebugLogActivity_share">分享</string>
+  <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_subject">主题 :</string>
+  <string name="SupportEmailUtil_signal_android_support_request">Signal Android支持请求</string>
+  <string name="SupportEmailUtil_device_info">设备信息：</string>
+  <string name="SupportEmailUtil_android_version">Android版本：</string>
+  <string name="SupportEmailUtil_signal_version">Signal版本:</string>
+  <string name="SupportEmailUtil_locale">语言环境：</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">群组已更新</string>
   <string name="ThreadRecord_left_the_group">已退出该群组</string>
@@ -921,6 +951,12 @@
   <string name="WebRtcCallScreen_new_safety_number_title">新的安全码</string>
   <string name="WebRtcCallScreen_accept">接受</string>
   <string name="WebRtcCallScreen_end_call">结束呼叫</string>
+  <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__answer">接听</string>
+  <!--WebRtcAudioOutputToggle-->
+  <string name="WebRtcAudioOutputToggle__phone">电话</string>
+  <string name="WebRtcAudioOutputToggle__speaker">扬声器</string>
+  <string name="WebRtcAudioOutputToggle__bluetooth">蓝牙</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">点击启用视频</string>
   <!--WebRtcCallControls Content Descriptions-->
@@ -955,6 +991,7 @@
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">请输入名称或号码</string>
   <string name="contact_selection_activity__invite_to_signal">邀请使用 Signal</string>
+  <string name="contact_selection_activity__new_group">新群组</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">清除已输入文字</string>
   <string name="contact_filter_toolbar__show_keyboard_description">显示键盘</string>
@@ -1123,6 +1160,8 @@
   <string name="CreateProfileActivity_next">下一步</string>
   <string name="CreateProfileActivity__username">用户名</string>
   <string name="CreateProfileActivity__create_a_username">创建用户名</string>
+  <!--EditProfileFragment-->
+  <string name="EditProfileFragment__group_name">群组名称</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">分享媒体</string>
   <!--recipient_preferences-->
@@ -1201,18 +1240,14 @@
   <string name="HelpFragment__whats_this">这是什么?</string>
   <string name="HelpFragment__how_do_you_feel">你觉得怎么样？ （可选的）</string>
   <string name="HelpFragment__support_info">支持信息</string>
-  <string name="HelpFragment__subject">主题 :</string>
   <string name="HelpFragment__signal_android_support_request">Signal Android支持请求</string>
-  <string name="HelpFragment__device_info">设备信息：</string>
-  <string name="HelpFragment__android_version">Android版本：</string>
-  <string name="HelpFragment__signal_version">Signal版本:</string>
-  <string name="HelpFragment__locale">语言环境：</string>
   <string name="HelpFragment__debug_log">调试日志：</string>
   <string name="HelpFragment__na">n/a</string>
   <string name="HelpFragment__could_not_upload_logs">无法上传日志</string>
   <string name="HelpFragment__signal_support">Signal 支持</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">请尽可能描述一下，以帮助我们理解该问题。</string>
   <string name="HelpFragment__no_email_app_found">找不到电子邮件应用程序。</string>
+  <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <!--arrays.xml-->
   <string name="arrays__import_export">导入</string>
   <string name="arrays__use_default">使用默认</string>
@@ -1568,6 +1603,8 @@
   <plurals name="RegistrationLockFragment__d_attempts_remaining">
     <item quantity="other">还能尝试%1$d次。</item>
   </plurals>
+  <!--CalleeMustAcceptMessageRequestDialogFragment-->
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">好的</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">创建你的密码</string>
   <string name="KbsMegaphone__create_pin">创建密码</string>
@@ -1637,7 +1674,6 @@
   <string name="RegistrationActivity_call_me_instead_available_in">电话验证\n（%1$02d:%2$02d 后可用）</string>
   <string name="RegistrationActivity_contact_signal_support">联系 Signal 支持</string>
   <string name="RegistrationActivity_code_support_subject">Signal 注册 - 安卓验证码</string>
-  <string name="RegistrationActivity_code_support_body">主题：Signal 注册 - 安卓验证码\n设备信息：%1$s\n安卓版本：%2$s\nSignal 版本：%3$s\n地区：%4$s</string>
   <string name="BackupUtil_never">永不</string>
   <string name="BackupUtil_unknown">未知</string>
   <string name="preferences_app_protection__screen_lock">锁屏</string>
@@ -1688,5 +1724,13 @@
   <string name="RegistrationLockDialog_reminder">提醒：</string>
   <string name="recipient_preferences__about">关于</string>
   <string name="Recipient_unknown">未知</string>
+  <!--RecipientBottomSheet-->
+  <string name="RecipientBottomSheet_message">消息</string>
+  <string name="RecipientBottomSheet_call">呼叫</string>
+  <string name="RecipientBottomSheet_block">屏蔽</string>
+  <string name="RecipientBottomSheet_unblock">取消屏蔽</string>
+  <string name="RecipientBottomSheet_view_safety_number">查看安全码</string>
+  <string name="RecipientBottomSheet_remove">删除</string>
+  <string name="GroupRecipientListItem_admin">管理员</string>
   <!--EOF-->
 </resources>

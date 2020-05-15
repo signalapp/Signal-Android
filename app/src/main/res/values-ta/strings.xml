@@ -195,7 +195,6 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">உஙகள் சாதனத்தில் இந்த இணைப்பை பெறக்கூடிய  செயலி கிடைப்பில்  இல்லை  .</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">ஆடியோ செய்திகளை அனுப்ப, உங்கள் மைக்ரோஃபோனுக்கு Signal அணுகலை அனுமதிக்கவும்.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">ஆடியோ செய்திகளை அனுப்ப Signal க்கு மைக்ரோஃபோன் அனுமதி தேவைப்படுகிறது, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகளைத் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து, \"மைக்ரோஃபோனை\" இயக்கவும்.</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">%s ஐ அழைக்க, Signal க்கு உங்கள் மைக்ரோஃபோன் மற்றும் கேமராவை அணுக வேண்டும்.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal லை அழைக்க மைக்ரோஃபோன் மற்றும் கேமரா அனுமதிகள் தேவை%s, ஆனால் அவை நிரந்தரமாக மறுக்கப்பட்டுள்ளன. பயன்பாடு அமைப்புகளைத் தொடரவும், \"அனுமதி\" என்பதைத் தேர்ந்தெடுத்து, \"மைக்ரோஃபோன்\" மற்றும் \"கேமரா\" ஐ இயக்கவும்.</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">புகைப்படங்கள் மற்றும் காணொளி பிடிக்க, Signal-ஐ கேமராவை அணுக அனுமதிக்கவும்.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">புகைப்படங்கள் அல்லது வீடியோ எடுக்க Signal-க்கு கேமரா அனுமதி தேவை, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. செயலியின் அமைப்புகளுக்கு சென்று, \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து \"கேமரா\"-ஐ இயலச் செய்யவும்.</string>
@@ -323,7 +322,7 @@
   <string name="DeviceListActivity_try_again">மீண்டும் முயற்சிக்கவும்</string>
   <string name="DeviceListActivity_unlinking_device">கருவி துண்டிக்கப்படுகிறது …</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">கருவி துண்டிக்கப்படுகிறது</string>
-  <string name="DeviceListActivity_network_failed">பிணையம் தோல்வி ...</string>
+  <string name="DeviceListActivity_network_failed">பிணையம் தோல்வி …</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">பெயரில்லாத கருவி</string>
   <string name="DeviceListItem_linked_s">%s இணைக்கப்பட்டது.</string>
@@ -373,6 +372,25 @@
   <string name="PendingMembersActivity_people_you_invited">மக்கள் நீங்கள் அழைக்கப்பட்டார்</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">மூலம் அழைக்கிறது மற்றவை குழு உறுப்பினர்கள்</string>
   <string name="PendingMembersActivity_missing_detail_explanation">விவரங்கள் அழைக்கப்பட்ட நபர்களின் மற்றவை குழு உறுப்பினர்கள் காட்டப்படவில்லை. என்றால் அழைப்பாளர்கள் தேர்வு சேர, அவர்களது தகவல்அந்த நேரத்தில் குழுவுடன் பகிரப்படும். அவர்கள் குழுவில் எந்த செய்திகளையும் அவர்கள் பார்க்க மாட்டார்கள்சேர.</string>
+  <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__create">உருவாக்கவும்</string>
+  <string name="AddGroupDetailsFragment__members">உறுப்பினர்கள்</string>
+  <string name="AddGroupDetailsFragment__group_name_required">குழு பெயர் (தேவை)</string>
+  <string name="AddGroupDetailsFragment__remove">நீக்கு</string>
+  <!--ManageGroupActivity-->
+  <string name="ManageGroupActivity_disappearing_messages">காணாமல் போகும் செய்திகள்</string>
+  <string name="ManageGroupActivity_leave_group">குழுவிலுருந்து விலகு</string>
+  <string name="ManageGroupActivity_mute_notifications">அறிவிப்பை ஊமையாக்கு </string>
+  <string name="ManageGroupActivity_custom_notifications">தனிப்பயன் அறிவிப்புகள்</string>
+  <string name="ManageGroupActivity_off">அணை</string>
+  <string name="ManageGroupActivity_on">இயக்க</string>
+  <string name="ManageGroupActivity_add_members">உறுப்பினர்களைச் சேர்க்கவும்</string>
+  <string name="ManageGroupActivity_view_all_members">காண்க அனைத்து உறுப்பினர்கள்</string>
+  <!--CustomNotificationsDialogFragment-->
+  <string name="CustomNotificationsDialogFragment__custom_notifications">தனிப்பயன் அறிவிப்புகள்</string>
+  <string name="CustomNotificationsDialogFragment__messages">செய்திகள்</string>
+  <string name="CustomNotificationsDialogFragment__notification_sound">அறிவிப்பு ஒலி</string>
+  <string name="CustomNotificationsDialogFragment__vibrate">அதிர்வு</string>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">குழு சின்னம்</string>
@@ -385,7 +403,7 @@
   <string name="InviteActivity_share_with_contacts">தொடர்புகளுடன் பகிரவும்</string>
   <string name="InviteActivity_choose_how_to_share">பகிர்வது எப்படி என்பதைத் தேர்வுசெய்க</string>
   <string name="InviteActivity_cancel">ரத்து செய் </string>
-  <string name="InviteActivity_sending">அனுப்புகிறது ...</string>
+  <string name="InviteActivity_sending">அனுப்புகிறது …</string>
   <string name="InviteActivity_heart_content_description">இதயம்</string>
   <string name="InviteActivity_invitations_sent">அழைப்புகள் அனுப்பட்டது!</string>
   <string name="InviteActivity_invite_to_signal">Signalக்கு அழை</string>
@@ -499,6 +517,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">அனைத்து ஊடகங்களும்</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_unknown">தெரியாத</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Signal பழைய பதிப்பைப் பயன்படுத்தி மறைகுறியாக்கப்பட்ட செய்தியைப் பெறவில்லை, அது இனி ஆதரிக்கப்படாது. தயவுசெய்து அனுப்புநரிடம் மிகச் சமீபத்திய பதிப்பைப் புதுப்பித்து செய்தியை மீண்டும் அனுப்பச் சொல்லுங்கள்.</string>
   <string name="MessageRecord_left_group">நீங்கள் குழுவை விட்டு விலகினீர்கள்.</string>
   <string name="MessageRecord_you_updated_group">நீங்கள் குழுவைப் புதுப்பித்தீர்கள்.</string>
@@ -515,6 +534,8 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">காணாமல் போகும் செய்திகளின் நேரத்தை %1$s ஆக அமைத்துள்ளீர்கள்.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s காணாமல் போகும் செய்திகளின் நேரத்தை %2$s ஆக அமைத்தார்.</string>
   <!--GV2 specific-->
+  <string name="MessageRecord_you_created_the_group">நீங்கள் குழுவை உருவாக்கியது.</string>
+  <string name="MessageRecord_group_updated">குழு புதுப்பிக்கப்பட்டது.</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_joined_the_group">நீங்கள் குழுவில் சேர்ந்தார்.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s குழுவில் சேர்ந்தார்.</string>
@@ -564,7 +585,7 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">எந்த சாதனமும் காணப்படவில்லை.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">இணையத்தில் பிழை.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">QR குறியீடு செல்லாது.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">மன்னிக்கவும், ஏற்கனவே பல சாதனங்கள் இணைக்கப்பட்டுள்ளது, சிலவற்றை வெளியேற்றவும்  ...</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">மன்னிக்கவும், ஏற்கனவே பல சாதனங்கள் இணைக்கப்பட்டுள்ளது, சிலவற்றை வெளியேற்றவும்  …</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">மன்னிக்கவும், இது சரியான சாதன இணைப்பு QR குறியீடு அல்ல.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Signal சாதனத்தை இணைக்கவா?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">3 வது தரப்பு ஸ்கேனரைப் பயன்படுத்தி Signal சாதனத்தை இணைக்க முயற்சிக்கிறீர்கள் என்று தெரிகிறது. உங்கள் பாதுகாப்பிற்காக, Signal இருந்து குறியீட்டை மீண்டும் ஸ்கேன் செய்யுங்கள்.</string>
@@ -606,7 +627,6 @@
   <string name="RatingManager_later">பிறகு</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">அச்சச்சோ, உங்கள் சாதனத்தில் Play Store பயன்பாடு நிறுவப்பட்டதாகத் தெரியவில்லை.</string>
   <!--ReactionsBottomSheetDialogFragment-->
-  <string name="ReactionsBottomSheetDialogFragment_all">எல்லா%1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
@@ -632,6 +652,9 @@
   <string name="RedPhone_number_not_registered">எண் பதிவிலில்லை.</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">நீங்கள் டயல் செய்த எண் பாதுகாப்பான குரலை ஆதரிக்காது!</string>
   <string name="RedPhone_got_it">அறிந்துகொண்டேன் .</string>
+  <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">உங்கள் வீடியோவை இயக்க இங்கே தட்டவும்</string>
+  <!--WebRtcCallView-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">உங்கள் நாட்டை தேர்ந்தெடுக்கவும்</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">நீங்கள் கண்டிப்பாக  குறிப்பிடவேண்டியது உங்கள்:
@@ -741,6 +764,7 @@
   <string name="SubmitDebugLogActivity_success">வெற்றி!</string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
   <string name="SubmitDebugLogActivity_share">பகிர்</string>
+  <!--SupportEmailUtil-->
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">குழு புதுப்பிக்கப்பட்டது</string>
   <string name="ThreadRecord_left_the_group">குழுவிலிருந்து வெளியேறினார்</string>
@@ -913,6 +937,12 @@
   <string name="WebRtcCallScreen_new_safety_number_title">புதிய பாதுகாப்பு எண்</string>
   <string name="WebRtcCallScreen_accept">ஏற்க</string>
   <string name="WebRtcCallScreen_end_call">அழைப்பைத் துண்டி</string>
+  <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__answer">பதில்</string>
+  <!--WebRtcAudioOutputToggle-->
+  <string name="WebRtcAudioOutputToggle__phone">தொலைபேசி</string>
+  <string name="WebRtcAudioOutputToggle__speaker">சபாநாயகர்</string>
+  <string name="WebRtcAudioOutputToggle__bluetooth">ப்ளூடூத்</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">உங்கள் காணொளியை இயக்க தட்டவும்</string>
   <!--WebRtcCallControls Content Descriptions-->
@@ -947,13 +977,14 @@
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">பெயர் அல்லது எண்ணை உள்ளிடவும்</string>
   <string name="contact_selection_activity__invite_to_signal">Signalக்கு அழை</string>
+  <string name="contact_selection_activity__new_group">புதிய குழு</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">உள்ளிட்ட உரையை அழிக்கவும்</string>
   <string name="contact_filter_toolbar__show_keyboard_description">விசைப்பலகை காட்டு</string>
   <string name="contact_filter_toolbar__show_dial_pad_description">டயல்பேட்டைக் காட்டு</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">தொடர்புகள் இல்லை.</string>
-  <string name="contact_selection_group_activity__finding_contacts">தொடர்புகள் ஏற்றுப்படுகிறது...</string>
+  <string name="contact_selection_group_activity__finding_contacts">தொடர்புகள் ஏற்றுப்படுகிறது…</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">தொடர்பின் புகைப்படம்</string>
   <!--ContactSelectionListFragment-->
@@ -1123,6 +1154,8 @@
   <string name="CreateProfileActivity_next">அடுத்தது</string>
   <string name="CreateProfileActivity__username">பயனர்பெயர்</string>
   <string name="CreateProfileActivity__create_a_username">பயனர்பெயரை உருவாக்கவும்</string>
+  <!--EditProfileFragment-->
+  <string name="EditProfileFragment__group_name">குழுவின் பெயர்</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">பகிரப்பட்ட மீடியா</string>
   <!--recipient_preferences-->
@@ -1156,7 +1189,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[உங்கள் குறியாக்கத்தின் பாதுகாப்பை %s உடன் சரிபார்க்க விரும்பினால், மேலே உள்ள எண்ணை அவர்களின் சாதனத்தில் உள்ள எண்ணுடன் ஒப்பிடுக. மாற்றாக, நீங்கள் அவர்களின் தொலைபேசியில் குறியீட்டை ஸ்கேன் செய்யலாம் அல்லது உங்கள் குறியீட்டை ஸ்கேன் செய்யுமாறு அவர்களிடம் கேட்கலாம்.<a href="https://signal.org/redirect/safety-numbers">மேலும் அறிக .</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">ஸ்கேன் செய்ய தட்டவும்</string>
-  <string name="verify_display_fragment__loading">ஏற்றுதல் ...</string>
+  <string name="verify_display_fragment__loading">ஏற்றுதல் …</string>
   <string name="verify_display_fragment__verified">சரிபார்க்கப்பட்ட</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">பாதுகாப்பு எண்ணைப் பகிரவும்</string>
@@ -1189,6 +1222,7 @@
   <string name="HelpFragment__help">உதவி</string>
   <string name="HelpFragment__next">அடுத்தது</string>
   <string name="HelpFragment__signal_support">Signal ஆதரவு</string>
+  <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <!--arrays.xml-->
   <string name="arrays__import_export">இறக்குமதி செய்</string>
   <string name="arrays__use_default">இயல்புநிலை பயன்படுத்தவும்</string>
@@ -1523,6 +1557,8 @@
   <string name="RegistrationLockFragment__incorrect_pin">தவறான பின்</string>
   <string name="RegistrationLockFragment__forgot_your_pin">உங்கள் பின்னை மறந்துவிட்டீர்களா?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">பல முயற்சிகள் மீதமில்லை!</string>
+  <!--CalleeMustAcceptMessageRequestDialogFragment-->
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">சரி</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">பின்னை உருவாக்கவும்</string>
   <string name="KbsMegaphone__create_pin">பின் உருவாக்கவும்</string>
@@ -1534,8 +1570,8 @@
   <string name="ProfileNamesMegaphone__your_profile_can_now_include">உங்கள் சுயவிவரம் இப்போது ஒரு விருப்பத்தை சேர்க்கலாம் கடந்த பெயர்.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">போக்குவரத்து குறும்படம்</string>
-  <string name="ConversationListFragment_loading">ஏற்றுதல் ...</string>
-  <string name="CallNotificationBuilder_connecting">இணைக்கிறது ...</string>
+  <string name="ConversationListFragment_loading">ஏற்றுதல் …</string>
+  <string name="CallNotificationBuilder_connecting">இணைக்கிறது …</string>
   <string name="Permissions_permission_required">அனுமதி தேவை</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">எஸ்எம்எஸ் அனுப்ப Signal க்கு எஸ்எம்எஸ் அனுமதி தேவை, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகளைத் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து \"எஸ்எம்எஸ்\" ஐ இயக்கவும்.</string>
   <string name="Permissions_continue">தொடர்</string>
@@ -1587,7 +1623,6 @@
   <string name="RegistrationActivity_call_me_instead_available_in">அதற்கு பதிலாக என்னை அழைக்கவும் \ n ( %1$02d :%2$02d இல் கிடைக்கும்)</string>
   <string name="RegistrationActivity_contact_signal_support">Signal ஆதரவைத் தொடர்பு கொள்ளுங்கள்</string>
   <string name="RegistrationActivity_code_support_subject">Signal பதிவு - அண்ட்ராய்டு க்கான சரிபார்ப்புக் குறியீடு</string>
-  <string name="RegistrationActivity_code_support_body">பொருள்: Signalபதிவு - அண்ட்ராய்டு க்கான சரிபார்ப்புக் குறியீடு தகவல் தகவல்:%1$s \nஆண்ட்ராய்டு Signal:%2$s\nSignal பதிப்பு:%3$s\nஇடம்:%4$s</string>
   <string name="BackupUtil_never">ஒருபோதுமில்லை</string>
   <string name="BackupUtil_unknown">முன் தெரிந்திராத</string>
   <string name="preferences_app_protection__screen_lock">திரை பூட்டி</string>
@@ -1637,5 +1672,13 @@
   <string name="RegistrationLockDialog_reminder">நினைவூட்டல்:</string>
   <string name="recipient_preferences__about">அறிமுகம்</string>
   <string name="Recipient_unknown">தெரியாத</string>
+  <!--RecipientBottomSheet-->
+  <string name="RecipientBottomSheet_message">செய்தி</string>
+  <string name="RecipientBottomSheet_call">அழைப்பு</string>
+  <string name="RecipientBottomSheet_block">தடு </string>
+  <string name="RecipientBottomSheet_unblock">தடைநீக்கு </string>
+  <string name="RecipientBottomSheet_view_safety_number">பாதுகாப்பு எண்ணைக் காண்பி</string>
+  <string name="RecipientBottomSheet_remove">நீக்கு</string>
+  <string name="GroupRecipientListItem_admin">நிர்வாகம்</string>
   <!--EOF-->
 </resources>

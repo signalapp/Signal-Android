@@ -193,7 +193,6 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">ایسی کوئی ایپ موجود نہیں ہے جو آپ کی اس ڈیوائس پر اس لنک کو استعمال کر سکے۔</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">آڈیو پیغامات بھیجنے کے لیے Signal کو مائکروفون تک رسائی کی اجازت دیں۔</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal کو آڈیو پیغامات بھیجنے کے لیے مائکروفون کی اجازت کی ضرورت ہے، لیکن اس کی مستقل طور پر نفی کردی گئی ہے ۔ برائے مہربانی ایپ کی ترتیبات میں جائیں، \"منظوری\"، منتخب کریں، اور \"مائکروفون\" فعال کریں۔</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">%s کال کیلئے Signal کو مائکروفون اور کیمرہ تک رسائی کی ضرورت ہے۔</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">%s کال کیلئے Signal کو مائکروفون اور کیمرہ کی منظوری کی ضرورت ہوتی ہے، لیکن ان کی مستقل طور پر نفی کر دی گئی ہے ۔ برائے مہربانی ایپ کی ترتیبات میں جائیں، \"منظوری\" منتخب کریں، اور \"مائکروفون\" اور \"کیمرہ\"کو فعال کریں۔</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">تصویریں اور ویڈیو بنانے کے لیے ، Signal کو کیمرہ تک رسائی کی ضرورت ہے</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal کو ویڈیو اور تصویریں بنانے کے لیے کیمرہ کی اجازت کی ضرورت ہے، لیکن یہ مستقل طور پر تسلیم نہیں ہوں گے۔ برائے مہربانی ایپ کی ترتیبات میں جائیں، \"منظوری\" منتخب کریں۔ اور \"کیمرہ\" فعال کریں۔</string>
@@ -371,6 +370,25 @@
   <string name="PendingMembersActivity_people_you_invited">جن لوگوں کو آپ نے مدعو کیا</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">گروپ کے دوسرے ممبروں کے ذریعہ دعوت نامے</string>
   <string name="PendingMembersActivity_missing_detail_explanation">گروپ کے دوسرے ممبروں کے ذریعہ مدعو کیے گئے لوگوں کی تفصیلات نہیں دکھائی گئیں۔ اگر مدعو شامل ہونے کا انتخاب کرتے ہیں تو ، اس وقت ان کی معلومات گروپ کے ساتھ شیئر کی جائیں گی۔ وہ اس گروپ میں شامل ہونے تک کوئی پیغامات نہیں دیکھیں گے۔</string>
+  <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__create">بنائیں</string>
+  <string name="AddGroupDetailsFragment__members">ممبران</string>
+  <string name="AddGroupDetailsFragment__group_name_required">گروپ کا نام (ضروری)</string>
+  <string name="AddGroupDetailsFragment__remove">ہٹا دیں</string>
+  <!--ManageGroupActivity-->
+  <string name="ManageGroupActivity_disappearing_messages">پیغامات غائب ہو رہے ہیں</string>
+  <string name="ManageGroupActivity_leave_group">گروپ چھوڑ دیں</string>
+  <string name="ManageGroupActivity_mute_notifications">خاموش اطلاعات</string>
+  <string name="ManageGroupActivity_custom_notifications">اپنی مرضی کے مطابق اطلاعات</string>
+  <string name="ManageGroupActivity_off">بند کریں</string>
+  <string name="ManageGroupActivity_on">چلائیں</string>
+  <string name="ManageGroupActivity_add_members">اراکین شامل کریں</string>
+  <string name="ManageGroupActivity_view_all_members">تمام ممبروں کو دیکھیں</string>
+  <!--CustomNotificationsDialogFragment-->
+  <string name="CustomNotificationsDialogFragment__custom_notifications">اپنی مرضی کے مطابق اطلاعات</string>
+  <string name="CustomNotificationsDialogFragment__messages">پیغامات</string>
+  <string name="CustomNotificationsDialogFragment__notification_sound">اطلاع کی آواز</string>
+  <string name="CustomNotificationsDialogFragment__vibrate">وائبریٹ</string>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">اوتار گروپ</string>
@@ -495,6 +513,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">تمام میڈیا</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_unknown">نامعلوم</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Signal کے پرانے ورژن کا استعمال کرتے ہوئے خفیہ کردہ ایک پیغام موصول ہوا جو اب تعاون یافتہ نہیں ہے۔ براہ کرم بھیجنے والے کو حالیہ ورژن میں اپ گریڈ کرنے کو کہے اور پیغام کو دوبارہ بھیجیں۔</string>
   <string name="MessageRecord_left_group">آپ نے گروپ چھوڑدیا ہے۔</string>
   <string name="MessageRecord_you_updated_group">آپ نے گروپ کی تجدید کی۔</string>
@@ -511,6 +530,8 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">آپ غائب پیغام ٹائمر کو %1$sمیں ترتیب دے رہے ہیں۔</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$sغائب پیغام ٹائمر کو %2$sمیں ترتیب دے رہے ہیں۔</string>
   <!--GV2 specific-->
+  <string name="MessageRecord_you_created_the_group">آپ نے گروپ بنایا ہے۔</string>
+  <string name="MessageRecord_group_updated">گروپ کی تجدید ہوئی۔</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_joined_the_group">آپ گروپ میں شامل ہوئے۔</string>
   <string name="MessageRecord_s_joined_the_group">%1$sگروپ میں شامل ہوئے۔</string>
@@ -625,6 +646,9 @@
   <string name="RedPhone_number_not_registered">نمبر رجسٹر نہیں ہے!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">جو نمبر آپ نے ڈائل کیا ہے محفوظ آواز سپورٹ نہیں کر رہا!</string>
   <string name="RedPhone_got_it">یہ مل گیا</string>
+  <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">آپ کی ویڈیو کو ٹرن کرنے کیلئے یہاں کلک کریں</string>
+  <!--WebRtcCallView-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">اپنے ملک کا انتخاب کریں</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">آپ لازمی ملک کا کوڈ واضع کریں</string>
@@ -723,6 +747,7 @@
   <string name="SubmitDebugLogActivity_success">کامیابی</string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">کلپ بورڈ کو کاپی کریں</string>
   <string name="SubmitDebugLogActivity_share">اشتراک کریں</string>
+  <!--SupportEmailUtil-->
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">گروپ کی تجدید ہوئی</string>
   <string name="ThreadRecord_left_the_group">گروپ چھوڑ دیا</string>
@@ -895,6 +920,12 @@
   <string name="WebRtcCallScreen_new_safety_number_title">نیا حفاظتی نمبر</string>
   <string name="WebRtcCallScreen_accept">قبول کریں</string>
   <string name="WebRtcCallScreen_end_call">کال ختم کریں</string>
+  <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__answer">جواب دیں</string>
+  <!--WebRtcAudioOutputToggle-->
+  <string name="WebRtcAudioOutputToggle__phone">فون</string>
+  <string name="WebRtcAudioOutputToggle__speaker">سپیکر</string>
+  <string name="WebRtcAudioOutputToggle__bluetooth">بلوٹوتھ</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">ویڈیو فعال کرنے کے لیے ٹیپ کریں</string>
   <!--WebRtcCallControls Content Descriptions-->
@@ -929,6 +960,7 @@
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">نمبر یا نام داخل کریں</string>
   <string name="contact_selection_activity__invite_to_signal">Signal میں مدعو کریں</string>
+  <string name="contact_selection_activity__new_group">نیا گروپ</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">داخل کیا گیا ٹیکسٹ صاف کریں</string>
   <string name="contact_filter_toolbar__show_keyboard_description">کی بورڈ دکھائیں</string>
@@ -1104,6 +1136,8 @@
   <string name="CreateProfileActivity_next">اگلا</string>
   <string name="CreateProfileActivity__username">صارف کا نام</string>
   <string name="CreateProfileActivity__create_a_username">صارف نام بنائیں</string>
+  <!--EditProfileFragment-->
+  <string name="EditProfileFragment__group_name">گروپ کا نام</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">میڈیا اشتراک کریں</string>
   <!--recipient_preferences-->
@@ -1170,6 +1204,7 @@
   <string name="HelpFragment__help">مدد کریں</string>
   <string name="HelpFragment__next">اگلا</string>
   <string name="HelpFragment__signal_support">Signal سپورٹ</string>
+  <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <!--arrays.xml-->
   <string name="arrays__import_export">درآمد کرنا</string>
   <string name="arrays__use_default">پہلے سے طے شدہ استعمال کریں</string>
@@ -1502,6 +1537,8 @@
   <string name="RegistrationLockFragment__forgot_pin">پن بھول گیا؟</string>
   <string name="RegistrationLockFragment__incorrect_pin">غلط پن</string>
   <string name="RegistrationLockFragment__forgot_your_pin">آپ کا پن بھول گیا؟</string>
+  <!--CalleeMustAcceptMessageRequestDialogFragment-->
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">ٹھیک ہے</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">ایک پن بنائیں</string>
   <string name="KbsMegaphone__create_pin">پن بنائیں</string>
@@ -1560,7 +1597,6 @@
   <string name="RegistrationActivity_call_me_instead_available_in">اس کی بجائے مجھے کال کریں/n ( %1$02d: %2$02d میں دستیاب ہے)</string>
   <string name="RegistrationActivity_contact_signal_support">Signal رابطہ سپورٹ کریں</string>
   <string name="RegistrationActivity_code_support_subject">Signal رجسٹریشن- Android کے لیے تصدیقی کوڈ درج کریں</string>
-  <string name="RegistrationActivity_code_support_body">مضمون: Signal رجسٹریشن- انڈروئڈ /ڈیوائس معلومات کیلئے تصدیقی کوڈ:%1$s/n انڈروئڈ ورژن:%2$s/nSignal ورژن :%3$s/nمقامی:%4$s</string>
   <string name="BackupUtil_never">کبھی نہیں</string>
   <string name="BackupUtil_unknown">نامعلوم</string>
   <string name="preferences_app_protection__screen_lock">سکرین لاک</string>
@@ -1610,5 +1646,13 @@
   <string name="RegistrationLockDialog_reminder">یاد دہانی کرانا:</string>
   <string name="recipient_preferences__about">متعلق</string>
   <string name="Recipient_unknown">نامعلوم</string>
+  <!--RecipientBottomSheet-->
+  <string name="RecipientBottomSheet_message">پیغام</string>
+  <string name="RecipientBottomSheet_call">کال</string>
+  <string name="RecipientBottomSheet_block">بلاک</string>
+  <string name="RecipientBottomSheet_unblock">ان بلاک</string>
+  <string name="RecipientBottomSheet_view_safety_number">حفاظتی نمبر دیکھیں</string>
+  <string name="RecipientBottomSheet_remove">ہٹا دیں</string>
+  <string name="GroupRecipientListItem_admin">ایڈمن</string>
   <!--EOF-->
 </resources>

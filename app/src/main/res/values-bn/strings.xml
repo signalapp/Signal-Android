@@ -67,7 +67,7 @@
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">স্থান সংযুক্ত করার জন্য Signal এর স্থান ব্যাবহারের অনুমতির প্রয়োজন কিন্তু এর উপর স্থায়ী নিষেধাজ্ঞা জারি করা হয়েছে। দয়া করে আ্যপ সেটিংসে যান, \"অনুমতি\" নির্বাচন করুন এবং \"স্থান\" সক্ষম করুন।</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">ছবি তোলার করার জন্য Signal এর ক্যামেরা ব্যাবহারের অনুমতির প্রয়োজন কিন্তু এর উপর স্থায়ী নিষেধাজ্ঞা জারি করা হয়েছে। দয়া করে আ্যপ সেটিংসে যান, \"অনুমতি\" নির্বাচন করুন এবং \"ক্যামেরা\" সক্ষম করুন।</string>
   <!--AttachmentUploadJob-->
-  <string name="AttachmentUploadJob_uploading_media">মিডিয়া আপলোড হচ্ছে...</string>
+  <string name="AttachmentUploadJob_uploading_media">মিডিয়া আপলোড হচ্ছে…</string>
   <string name="AttachmentUploadJob_compressing_video_start">ভিডিও সংকুচিত হচ্ছে…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">অডিও চালাতে ব্যর্থ!</string>
@@ -191,7 +191,6 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">আপনার ডিভাইসে এই লিঙ্কটি পরিচালনা করার মত কোনও অ্যাপ পাওয়া যাচ্ছে না।</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">অডিও বার্তা পাঠাতে Signal কে আপনার মাইক্রোফোন ব্যাবহারের অনুমতি দিন।</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">অডিও বার্তাগুলি প্রেরণের জন্য Signal এর মাইক্রোফোনের অনুমতি প্রয়োজন, কিন্তু এর উপর স্থায়ীভাবে নিষেধাজ্ঞা আরোপ করা হয়েছে। দয়া করে অ্যাপ্লিকেশন সেটিংসে যান, \"অনুমতিগুলি\" নির্বাচন করুন এবং \"মাইক্রোফোন\" সক্ষম করুন|</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">%s কে ফোন করতে Signal কে আপনার মাইক্রোফোন এবং ক্যামেরা ব্যাবহার করতে হবে।</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">%s  কে ফোন করতে Signal এর মাইক্রোফোন এবং ক্যামেরা ব্যাবহারের অনুমতির প্রয়োজন, কিন্তু এর উপর স্থায়ীভাবে নিষেধাজ্ঞা আরোপ করা হয়েছে। দয়া করে এপ সেটিংসে যান, \"অনুমতি\" নির্বাচন করুন এবং \"মাইক্রোফোন\" ও \"ক্যামেরা\" এর অনুমতি সক্ষম করুন।</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">ছবি ও ভিডিও তুলতে Signal কে ক্যামেরা ব্যাবহারের অনুমতি দিন।</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">ছবি অথবা ভিডিও তুলতে Signal এর ক্যামেরা ব্যাবহারের অনুমতির প্রয়োজন, কিন্তু এর উপর স্থায়ীভাবে নিষেধাজ্ঞা আরোপ করা হয়েছে। দয়া করে অ্যাপ সেটিংসে যান, \"অনুমতি\" নির্বাচন করুন এবং \"ক্যামেরা\" এর অনুমতি সক্ষম করুন।</string>
@@ -243,7 +242,7 @@
     <item quantity="one">সংযুক্তি স্টোরেজে সংরক্ষন করা হচ্ছে…</item>
     <item quantity="other">%1$dসংযুক্তি সমুহ স্টোরেজে সংক্ষরন করা হচ্ছে…</item>
   </plurals>
-  <string name="ConversationFragment_pending">অমীমাংসিত...</string>
+  <string name="ConversationFragment_pending">অমীমাংসিত…</string>
   <string name="ConversationFragment_push">ডাটা (Signal)</string>
   <string name="ConversationFragment_mms">এমএমএস</string>
   <string name="ConversationFragment_sms">এসএমএস</string>
@@ -269,7 +268,7 @@
     <item quantity="one">ইহা নির্বাচিত  টি আলাপনের সবকয়টি চিরতরে মুছে ফেলবে</item>
     <item quantity="other">ইহা নির্বাচিত %1$d টি কথোপকথনের সবকয়টি চিরতরে মুছে ফেলবে।</item>
   </plurals>
-  <string name="ConversationListFragment_deleting">মোছা হচ্ছে...</string>
+  <string name="ConversationListFragment_deleting">মোছা হচ্ছে…</string>
   <string name="ConversationListFragment_deleting_selected_conversations">নির্বাচিত আলাপগুলো মোছা হচ্ছে…</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one"> টি কথোপকথন সংরক্ষণ করা হয়েছে</item>
@@ -352,7 +351,7 @@
   <string name="GroupCreateActivity_contacts_invalid_number">আপনার গ্রুপের একজন সদস্যের একটি নাম্বার রয়েছে যা সঠিকভাবে পড়া যায় না। দয়া করে সেই পরিচিতিটি ঠিক করুন বা অপসারণ করুন এবং আবার চেষ্টা করুন।</string>
   <string name="GroupCreateActivity_avatar_content_description">গ্রুপ প্রোফাইলের ছবি</string>
   <string name="GroupCreateActivity_menu_apply_button">আরোপ করুন</string>
-  <string name="GroupCreateActivity_creating_group">%1$s তৈরী হচ্ছে...</string>
+  <string name="GroupCreateActivity_creating_group">%1$s তৈরী হচ্ছে…</string>
   <string name="GroupCreateActivity_updating_group">%1$s আপডেট করা হচ্ছে…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s জনকে যুক্ত করা যাচ্ছে না কারণ তারা Signal ব্যাবহারকারী নন।</string>
   <string name="GroupCreateActivity_loading_group_details">গ্রুপের বিবরন লোড করা হচ্ছে…</string>
@@ -368,6 +367,25 @@
   <string name="PendingMembersActivity_people_you_invited">আপনার আমন্ত্রিত লোকেরা</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">গ্রুপের অন্যান্য সদস্যদের আমন্ত্রণ</string>
   <string name="PendingMembersActivity_missing_detail_explanation">গ্রুপের অন্যান্য সদস্যদের দ্বারা আমন্ত্রিত লোকদের বিবরণ দেখানো হয় না। আমন্ত্রিতরা যদি যোগদান করেন, তখন তাদের তথ্য গ্রুপের সাথে শেয়ার করা হবে। যোগদান না করা পর্যন্ত তারা গ্রুপের কোনও বার্তা দেখতে পাবেন না।</string>
+  <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__create">তৈরি</string>
+  <string name="AddGroupDetailsFragment__members">সদস্যগণ</string>
+  <string name="AddGroupDetailsFragment__group_name_required">গ্রুপের নাম (প্রয়োজনীয়)</string>
+  <string name="AddGroupDetailsFragment__remove">সরান</string>
+  <!--ManageGroupActivity-->
+  <string name="ManageGroupActivity_disappearing_messages">অদৃশ্য বার্তা</string>
+  <string name="ManageGroupActivity_leave_group">গ্রুপ ত্যাগ করুন</string>
+  <string name="ManageGroupActivity_mute_notifications">বিজ্ঞপ্তি নিঃশব্দ করুন</string>
+  <string name="ManageGroupActivity_custom_notifications">কাস্টম বিজ্ঞপ্তি</string>
+  <string name="ManageGroupActivity_off">বন্ধ</string>
+  <string name="ManageGroupActivity_on">চালু</string>
+  <string name="ManageGroupActivity_add_members">সদস্য যোগ করুন</string>
+  <string name="ManageGroupActivity_view_all_members">সব সদস্যদের দেখুন</string>
+  <!--CustomNotificationsDialogFragment-->
+  <string name="CustomNotificationsDialogFragment__custom_notifications">কাস্টম বিজ্ঞপ্তি</string>
+  <string name="CustomNotificationsDialogFragment__messages">বার্তাসমূহ</string>
+  <string name="CustomNotificationsDialogFragment__notification_sound">বিজ্ঞপ্তি শব্দ</string>
+  <string name="CustomNotificationsDialogFragment__vibrate">কম্পন</string>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">গ্রুপের ছবি</string>
@@ -424,7 +442,7 @@
     <item quantity="one">এটি স্থায়ীভাবে নির্বাচিত সমস্ত ফাইল মুছবে। এই আইটেমগুলির সাথে সম্পর্কিত কোনও বার্তা পাঠ্যও মুছে ফেলা হবে।</item>
     <item quantity="other">এটি স্থায়ীভাবে নির্বাচিত সমস্ত %1$d ফাইল মুছবে। এই আইটেমগুলির সাথে সম্পর্কিত অন্য বার্তা পাঠ্যও মুছে ফেলা হবে।</item>
   </plurals>
-  <string name="MediaOverviewActivity_Media_delete_progress_title">মোছা হচ্ছে...</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">মোছা হচ্ছে…</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">বার্তা সমূহ মোছা হচ্ছে…</string>
   <string name="MediaOverviewActivity_Select_all">সবগুলো নির্বাচন করুন</string>
   <string name="MediaOverviewActivity_collecting_attachments">সংযুক্তি সমুহ সংগ্রহ করা হচ্ছে…</string>
@@ -475,7 +493,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">নির্বাচন করতে চাপুন</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">ক্যাপশন যোগ করুন...</string>
+  <string name="MediaSendActivity_add_a_caption">ক্যাপশন যোগ করুন…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">একটি বস্তু সরানো হয়েছে কারণ এটি আকার সীমা অতিক্রম করেছে</string>
   <string name="MediaSendActivity_camera_unavailable">ক্যামেরা পাওয়া যাচ্ছে না।</string>
   <string name="MediaSendActivity_message_to_s">%s এর জন্য বার্তা</string>
@@ -492,6 +510,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">সমস্ত মিডিয়া</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_unknown">অজানা</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Signal এর একটি পুরানো সংস্করণ ব্যবহার করে এনক্রিপ্ট করা একটি বার্তা পেয়েছেন যা আর সমর্থিত নয়। দয়া করে প্রেরককে অতি সাম্প্রতিক সংস্করণে আপডেট করতে এবং বার্তাটি পুনরায় পাঠাতে বলুন।</string>
   <string name="MessageRecord_left_group">আপনি গ্রুপ ত্যাগ করেছেন।</string>
   <string name="MessageRecord_you_updated_group">আপনি গ্রুপ আপডেট করেছেন।</string>
@@ -508,6 +527,8 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">আপনি অদৃশ্য হয়ে যাওয়া বার্তার সময়কাল %1$s নির্ধারন করেছেন।</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s অদৃশ্য হয়ে যাওয়া বার্তার সময়কাল %2$s নির্ধারন করেছেন।</string>
   <!--GV2 specific-->
+  <string name="MessageRecord_you_created_the_group">আপনি গ্রুপ তৈরি করেছেন।</string>
+  <string name="MessageRecord_group_updated">গ্রুপ আপডেট হয়েছে।</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_joined_the_group">আপনি গ্রুপে যোগ দিয়েছেন।</string>
   <string name="MessageRecord_s_joined_the_group">%1$s গ্রুপে যোগ দিয়েছেন।</string>
@@ -622,6 +643,9 @@
   <string name="RedPhone_number_not_registered">নাম্বারটি নিবন্ধিত নয়!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">আপনার ডায়াল করা নাম্বার সুরক্ষিত ভয়েস সমর্থন করে না!</string>
   <string name="RedPhone_got_it">বুঝতে পেরেছি</string>
+  <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">আপনার ভিডিও চালু করতে এখানে আলতো চাপুন</string>
+  <!--WebRtcCallView-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">আপনার দেশ নির্বাচন করুন</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">আপনাকে অবশ্যই নির্দিষ্ট করতে হবে
@@ -724,6 +748,7 @@
   <string name="SubmitDebugLogActivity_success">সফল!</string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">ক্লিপবোর্ডে অনুলিপি করা হয়েছে</string>
   <string name="SubmitDebugLogActivity_share">শেয়ার করুন</string>
+  <!--SupportEmailUtil-->
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">গ্রুপ অাপডেট হয়েছে</string>
   <string name="ThreadRecord_left_the_group">গ্রুপ ত্যাগ করেছে</string>
@@ -894,6 +919,12 @@
   <string name="WebRtcCallScreen_new_safety_number_title">নতুন নিরাপত্তা নাম্বার</string>
   <string name="WebRtcCallScreen_accept">গ্রহণ করুন</string>
   <string name="WebRtcCallScreen_end_call">কল শেষ করুন</string>
+  <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__answer">উত্তর</string>
+  <!--WebRtcAudioOutputToggle-->
+  <string name="WebRtcAudioOutputToggle__phone">ফোন</string>
+  <string name="WebRtcAudioOutputToggle__speaker">স্পিকার</string>
+  <string name="WebRtcAudioOutputToggle__bluetooth">ব্লুটুথ</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">আপনার ভিডিও সক্ষম করতে আলতো চাপুন</string>
   <!--WebRtcCallControls Content Descriptions-->
@@ -928,13 +959,14 @@
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">নাম বা নাম্বার লিখুন</string>
   <string name="contact_selection_activity__invite_to_signal">Signal এ নিমন্ত্রণ করুন</string>
+  <string name="contact_selection_activity__new_group">নতুন গ্রুপ</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">প্রবেশ করা লেখা মুছুন</string>
   <string name="contact_filter_toolbar__show_keyboard_description">কীবোর্ড প্রদর্শন করুন</string>
   <string name="contact_filter_toolbar__show_dial_pad_description">ডায়ালপ্যাড দেখান</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">পরিচিতি নেই</string>
-  <string name="contact_selection_group_activity__finding_contacts">পরিচিতিসমূহ লোড হচ্ছে...</string>
+  <string name="contact_selection_group_activity__finding_contacts">পরিচিতিসমূহ লোড হচ্ছে…</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">পরিচিতির ছবি</string>
   <!--ContactSelectionListFragment-->
@@ -1059,8 +1091,8 @@
   <string name="log_submit_activity__button_got_it">বুঝতে পেরেছি</string>
   <string name="log_submit_activity__button_compose_email">ইমেইল লিখুন</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">এই লগটি অবদানকারীদের দেখার জন্য অনলাইনে প্রকাশ্যে পোস্ট করা হবে, আপনি সাবমিট করার আগে এটি পরীক্ষা এবং সম্পাদনা করতে পারেন।</string>
-  <string name="log_submit_activity__loading_logs">লগগুলি লোড হচ্ছে ...</string>
-  <string name="log_submit_activity__uploading_logs">লগগুলি আপলোড হচ্ছে ...</string>
+  <string name="log_submit_activity__loading_logs">লগগুলি লোড হচ্ছে …</string>
+  <string name="log_submit_activity__uploading_logs">লগগুলি আপলোড হচ্ছে …</string>
   <string name="log_submit_activity__choose_email_app">ইমেইল অ্যাপ বাছুন</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">আমার অ্যাপ থেকে এই লগ পর্যালোচনা করুন: %1$s</string>
   <string name="log_submit_activity__network_failure">নেটওয়ার্ক ব্যর্থতা। অনুগ্রহপূর্বক আবার চেষ্টা করুন।</string>
@@ -1103,6 +1135,8 @@
   <string name="CreateProfileActivity_next">পরবর্তী</string>
   <string name="CreateProfileActivity__username">ব্যবহারকারীর নাম</string>
   <string name="CreateProfileActivity__create_a_username">একটি ব্যবহারকারীর নাম তৈরি করুন</string>
+  <!--EditProfileFragment-->
+  <string name="EditProfileFragment__group_name">গ্রুপের নাম</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">শেয়ার করা মিডিয়া</string>
   <!--recipient_preferences-->
@@ -1136,7 +1170,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[যদি আপনি %sএর সাথে আপনার এনক্রিপশনের সুরক্ষা যাচাই করতে চান তবে উপরের নাম্বার তাদের ডিভাইস এ দেখানো নাম্বার এর সাথে তুলনা করুন। বিকল্পভাবে, আপনি তাদের ফোনে কোডটি স্ক্যান করতে পারেন বা তাদের আপনার কোডটি স্ক্যান করতে বলতে পারেন। <a href="https://signal.org/redirect/safety-numbers">আরও জানুন</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">স্ক্যান করতে আলতো চাপুন</string>
-  <string name="verify_display_fragment__loading">লোড হচ্ছে...</string>
+  <string name="verify_display_fragment__loading">লোড হচ্ছে…</string>
   <string name="verify_display_fragment__verified">যাচাইকৃত</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">নিরাপত্তা নাম্বার শেয়ার করুন</string>
@@ -1169,6 +1203,7 @@
   <string name="HelpFragment__help">সাহায্য</string>
   <string name="HelpFragment__next">পরবর্তী</string>
   <string name="HelpFragment__signal_support">Signal সহায়তা</string>
+  <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <!--arrays.xml-->
   <string name="arrays__import_export">আমদানী</string>
   <string name="arrays__use_default">ডিফল্ট ব্যবহার করুন</string>
@@ -1428,7 +1463,7 @@
   <string name="new_conversation_activity__refresh">সতেজ করন</string>
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
-  <string name="trimmer__deleting">মোছা হচ্ছে...</string>
+  <string name="trimmer__deleting">মোছা হচ্ছে…</string>
   <string name="trimmer__deleting_old_messages">পুরানো বার্তাগুলি মোছা হচ্ছে …‌</string>
   <string name="trimmer__old_messages_successfully_deleted">পুরানো বার্তা সফলভাবে মোছা হয়েছে</string>
   <!--Insights-->
@@ -1471,7 +1506,7 @@
   <string name="ConfirmKbsPinFragment__pin_creation_failed">পিন তৈরি ব্যর্থ হয়েছে</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">আপনার পিন সংরক্ষণ করা হয়নি। আমরা আপনাকে পরে একটি পিন তৈরি করতে অনুরোধ করব।</string>
   <string name="ConfirmKbsPinFragment__pin_created">পিন তৈরি করা হয়েছে।</string>
-  <string name="ConfirmKbsPinFragment__creating_pin">পিন তৈরি করা হচ্ছে ...</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">পিন তৈরি করা হচ্ছে …</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">পিনের সাথে পরিচিত হন</string>
   <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">পিনগুলি Signal-এ সঞ্চিত তথ্য এনক্রিপ্ট করে রাখে যাতে কেবল আপনি এটি অ্যাক্সেস করতে পারবেন। আপনি যখন Signal পুনরায় ইনস্টল করবেন তখন আপনার প্রোফাইল, সেটিংস এবং পরিচিতিগুলি পুনরুদ্ধার করবে।</string>
@@ -1501,6 +1536,8 @@
   <string name="RegistrationLockFragment__forgot_pin">পিন ভুলে গেছেন?</string>
   <string name="RegistrationLockFragment__incorrect_pin">ভুল পিন</string>
   <string name="RegistrationLockFragment__forgot_your_pin">পিন ভুলে গেছেন?</string>
+  <!--CalleeMustAcceptMessageRequestDialogFragment-->
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">ঠিক আছে</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">একটি পিন তৈরি করুন</string>
   <string name="KbsMegaphone__create_pin">পিন তৈরি করুন</string>
@@ -1512,8 +1549,8 @@
   <string name="ProfileNamesMegaphone__your_profile_can_now_include">আপনার প্রোফাইল এখন একটি ঐচ্ছিক শেষ নাম অন্তর্ভুক্ত করতে পারেন।</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">পরিবহন আইকন</string>
-  <string name="ConversationListFragment_loading">লোড হচ্ছে...</string>
-  <string name="CallNotificationBuilder_connecting">সংযুক্ত হচ্ছে ...</string>
+  <string name="ConversationListFragment_loading">লোড হচ্ছে…</string>
+  <string name="CallNotificationBuilder_connecting">সংযুক্ত হচ্ছে …</string>
   <string name="Permissions_permission_required">অনুমতি প্রয়োজন</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">এসএমএস প্রেরণের জন্য Signal এর এসএমএসের অনুমতি প্রয়োজন তবে এটি স্থায়ীভাবে অস্বীকার করা হয়েছে। অ্যাপ্লিকেশন সেটিংসে যান এবং \"অনুমতি\" নির্বাচন করুন এবং \"এসএমএস\" সক্ষম করুন।</string>
   <string name="Permissions_continue">চলুন</string>
@@ -1559,7 +1596,6 @@
   <string name="RegistrationActivity_call_me_instead_available_in">পরিবর্তে আমাকে কল করুন \n (%1$02d:%2$02d পাওয়া যাচ্ছে)</string>
   <string name="RegistrationActivity_contact_signal_support">Signal সহায়তায় যোগাযোগ করুন</string>
   <string name="RegistrationActivity_code_support_subject">Signal নিবন্ধন - অ্যানড্রয়েড এর জন্য যাচাইকরণ কোড</string>
-  <string name="RegistrationActivity_code_support_body">বিষয়: Signal নিবন্ধন- অ্যানড্রয়েড এর জন্য যাচাইকরন কোড\nডিভাইসের তথ্য: %1$s\nঅ্যানড্রয়েড সংস্করন: %2$s\nSignal সংস্করন: %3$s\nস্থানীয়করন: %4$s</string>
   <string name="BackupUtil_never">কখনোই না</string>
   <string name="BackupUtil_unknown">অজানা</string>
   <string name="preferences_app_protection__screen_lock">স্ক্রীন এর লক্</string>
@@ -1609,5 +1645,13 @@
   <string name="RegistrationLockDialog_reminder">অনুস্মারক:</string>
   <string name="recipient_preferences__about">সম্বন্ধে</string>
   <string name="Recipient_unknown">অজানা</string>
+  <!--RecipientBottomSheet-->
+  <string name="RecipientBottomSheet_message">বার্তা</string>
+  <string name="RecipientBottomSheet_call">কল করুন</string>
+  <string name="RecipientBottomSheet_block">অবরূদ্ধ</string>
+  <string name="RecipientBottomSheet_unblock">মূক্ত করুন</string>
+  <string name="RecipientBottomSheet_view_safety_number">নিরাপত্তা নাম্বার দেখুন</string>
+  <string name="RecipientBottomSheet_remove">সরান</string>
+  <string name="GroupRecipientListItem_admin">প্রশাসক</string>
   <!--EOF-->
 </resources>
