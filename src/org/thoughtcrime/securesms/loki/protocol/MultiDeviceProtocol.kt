@@ -24,7 +24,6 @@ import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol
 import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLink
 import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLinkingSession
 import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
-import org.whispersystems.signalservice.loki.protocol.todo.LokiMessageFriendRequestStatus
 import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus
 import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
 
@@ -48,8 +47,7 @@ object MultiDeviceProtocol {
         val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient)
         val threadFRStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID)
         val isContactFriend = (threadFRStatus == LokiThreadFriendRequestStatus.FRIENDS)
-        val messageFRStatus = DatabaseFactory.getLokiMessageDatabase(context).getFriendRequestStatus(messageID)
-        val isFRMessage = (messageFRStatus != LokiMessageFriendRequestStatus.NONE)
+        val isFRMessage = (threadFRStatus != LokiThreadFriendRequestStatus.FRIENDS) // Holds true assuming this method isn't invoked for control messages
         val hasVisibleContent = when (messageType) {
             MessageType.Text -> DatabaseFactory.getSmsDatabase(context).getMessage(messageID).body.isNotBlank()
             MessageType.Media -> {
