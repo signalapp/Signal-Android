@@ -13,10 +13,12 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.ContactSelectionActivity;
 import org.thoughtcrime.securesms.ContactSelectionListFragment;
+import org.thoughtcrime.securesms.GroupCreateActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
 import org.thoughtcrime.securesms.groups.ui.creategroup.details.AddGroupDetailsActivity;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -28,6 +30,10 @@ public class CreateGroupActivity extends ContactSelectionActivity {
   private View next;
 
   public static Intent newIntent(@NonNull Context context) {
+    if (!FeatureFlags.newGroupUI()) {
+      return new Intent(context, GroupCreateActivity.class);
+    }
+
     Intent intent = new Intent(context, CreateGroupActivity.class);
 
     intent.putExtra(ContactSelectionListFragment.MULTI_SELECT, true);

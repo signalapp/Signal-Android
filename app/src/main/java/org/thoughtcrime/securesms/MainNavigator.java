@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.conversationlist.ConversationListArchiveFragment;
 import org.thoughtcrime.securesms.conversationlist.ConversationListFragment;
+import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity;
 import org.thoughtcrime.securesms.insights.InsightsLauncher;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
@@ -77,8 +78,7 @@ public class MainNavigator {
   }
 
   public void goToGroupCreation() {
-    Intent intent = new Intent(activity, GroupCreateActivity.class);
-    activity.startActivity(intent);
+    activity.startActivity(CreateGroupActivity.newIntent(activity));
   }
 
   public void goToInvite() {
