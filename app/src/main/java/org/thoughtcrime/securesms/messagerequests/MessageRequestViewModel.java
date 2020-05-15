@@ -39,9 +39,9 @@ public class MessageRequestViewModel extends ViewModel {
   private LiveRecipient liveRecipient;
   private long          threadId;
 
-  @SuppressWarnings("CodeBlock2Expr")
   private final RecipientForeverObserver recipientObserver = recipient -> {
     loadMessageRequestAccepted(recipient);
+    loadMemberCount();
     this.recipient.setValue(recipient);
   };
 
