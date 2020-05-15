@@ -74,6 +74,7 @@ import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -188,10 +189,18 @@ public final class ContactSelectionListFragment extends    Fragment
   }
 
   public @NonNull List<SelectedContact> getSelectedContacts() {
+    if (cursorRecyclerViewAdapter == null) {
+      return Collections.emptyList();
+    }
+
     return cursorRecyclerViewAdapter.getSelectedContacts();
   }
 
   public int getSelectedContactsCount() {
+    if (cursorRecyclerViewAdapter == null) {
+      return 0;
+    }
+
     return cursorRecyclerViewAdapter.getSelectedContactsCount();
   }
 
