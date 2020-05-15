@@ -36,7 +36,6 @@ import org.thoughtcrime.securesms.ringrtc.CameraState;
 import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.webrtc.RendererCommon;
-import org.webrtc.SurfaceViewRenderer;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 
 public class WebRtcCallView extends FrameLayout {
@@ -46,7 +45,7 @@ public class WebRtcCallView extends FrameLayout {
 
   public static final int FADE_OUT_DELAY = 5000;
 
-  private SurfaceViewRenderer           localRenderer;
+  private TextureViewRenderer           localRenderer;
   private Group                         ongoingCallButtons;
   private Group                         incomingCallButtons;
   private Group                         answerWithVoiceGroup;
@@ -202,7 +201,7 @@ public class WebRtcCallView extends FrameLayout {
     }
   }
 
-  public void setLocalRenderer(@Nullable SurfaceViewRenderer surfaceViewRenderer) {
+  public void setLocalRenderer(@Nullable TextureViewRenderer surfaceViewRenderer) {
     if (localRenderer == surfaceViewRenderer) {
       return;
     }
@@ -218,12 +217,11 @@ public class WebRtcCallView extends FrameLayout {
     }
   }
 
-  public void setRemoteRenderer(@Nullable SurfaceViewRenderer surfaceViewRenderer) {
-    setRenderer(remoteRenderContainer, surfaceViewRenderer);
+  public void setRemoteRenderer(@Nullable TextureViewRenderer remoteRenderer) {
+    setRenderer(remoteRenderContainer, remoteRenderer);
   }
 
   public void setLocalRenderState(WebRtcLocalRenderState localRenderState) {
-    boolean enableZOverlay = localRenderState == WebRtcLocalRenderState.SMALL;
 
     videoToggle.setChecked(localRenderState != WebRtcLocalRenderState.GONE, false);
 
@@ -253,10 +251,6 @@ public class WebRtcCallView extends FrameLayout {
         if (smallLocalRenderContainer.getChildCount() == 0) {
           setRenderer(smallLocalRenderContainer, localRenderer);
         }
-    }
-
-    if (localRenderer != null) {
-      localRenderer.setZOrderMediaOverlay(enableZOverlay);
     }
   }
 
