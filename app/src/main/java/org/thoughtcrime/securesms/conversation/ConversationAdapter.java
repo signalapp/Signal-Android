@@ -357,7 +357,7 @@ public class ConversationAdapter<V extends View & BindableConversationItem>
    * Momentarily highlights a row at the requested position.
    */
   void pulseHighlightItem(int position) {
-    if (position < getItemCount()) {
+    if (position >= 0 && position < getItemCount()) {
       recordToPulseHighlight = getItem(position);
       notifyItemChanged(position);
     }
@@ -430,7 +430,10 @@ public class ConversationAdapter<V extends View & BindableConversationItem>
     pool.setMaxRecycledViews(MESSAGE_TYPE_UPDATE, 5);
   }
 
+  @MainThread
   private void cleanFastRecords() {
+    Util.assertMainThread();
+
     synchronized (releasedFastRecords) {
       Iterator<MessageRecord> recordIterator = fastRecords.iterator();
       while (recordIterator.hasNext()) {

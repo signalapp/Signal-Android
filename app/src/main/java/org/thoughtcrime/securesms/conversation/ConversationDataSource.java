@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Core data source for loading an individual conversation.
@@ -58,7 +59,20 @@ class ConversationDataSource extends PositionalDataSource<MessageRecord> {
       }
     }
 
-    callback.onResult(records, params.requestedStartPosition, db.getConversationCount(threadId));
+    int effectiveCount = records.size() + params.requestedStartPosition;
+    int totalCount     = db.getConversationCount(threadId);
+
+    if (effectiveCount > totalCount) {
+      Log.w(TAG, String.format(Locale.ENGLISH, "Miscalculation! Records: %d, Start Position: %d, Total: %d. Adjusting total.",
+                                               records.size(),
+                                               params.requestedStartPosition,
+                                               totalCount));
+      totalCount = effectiveCount;
+    }
+
+    records = ensureMultipleOfPageSize(records, params.pageSize, totalCount);
+
+    callback.onResult(records, params.requestedStartPosition, totalCount);
     Util.runOnMain(dataUpdateCallback::onDataUpdated);
 
     Log.d(TAG, "[Initial Load] " + (System.currentTimeMillis() - start) + " ms" + (isInvalid() ? " -- invalidated" : ""));
@@ -82,6 +96,15 @@ class ConversationDataSource extends PositionalDataSource<MessageRecord> {
     Util.runOnMain(dataUpdateCallback::onDataUpdated);
 
     Log.d(TAG, "[Update] " + (System.currentTimeMillis() - start) + " ms" + (isInvalid() ? " -- invalidated" : ""));
+  }
+
+  private static @NonNull List<MessageRecord> ensureMultipleOfPageSize(@NonNull List<MessageRecord> records, int pageSize, int total) {
+    if (records.size() != total && records.size() % pageSize != 0) {
+      int overflow = records.size() % pageSize;
+      return records.subList(0, records.size() - overflow);
+    } else {
+      return records;
+    }
   }
 
   interface DataUpdatedCallback {
