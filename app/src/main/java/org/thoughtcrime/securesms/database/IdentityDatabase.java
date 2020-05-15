@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -145,14 +146,31 @@ public class IdentityDatabase extends Database {
   }
 
   public void updateIdentityAfterSync(@NonNull RecipientId id, IdentityKey identityKey, VerifiedStatus verifiedStatus) {
-    if (!hasMatchingKey(id, identityKey, verifiedStatus)) {
+    boolean keyMatches    = hasMatchingKey(id, identityKey);
+    boolean statusMatches = keyMatches && hasMatchingStatus(id, identityKey, verifiedStatus);
+
+    if (!keyMatches || !statusMatches) {
       saveIdentityInternal(id, identityKey, verifiedStatus, false, System.currentTimeMillis(), true);
       Optional<IdentityRecord> record = getIdentity(id);
       if (record.isPresent()) EventBus.getDefault().post(record.get());
     }
+
+    if (!keyMatches) {
+      IdentityUtil.markIdentityUpdate(context, id);
+    }
   }
 
-  private boolean hasMatchingKey(@NonNull RecipientId id, IdentityKey identityKey, VerifiedStatus verifiedStatus) {
+  private boolean hasMatchingKey(@NonNull RecipientId id, IdentityKey identityKey) {
+    SQLiteDatabase db    = databaseHelper.getReadableDatabase();
+    String         query = RECIPIENT_ID + " = ? AND " + IDENTITY_KEY + " = ?";
+    String[]       args  = new String[]{id.serialize(), Base64.encodeBytes(identityKey.serialize())};
+
+    try (Cursor cursor = db.query(TABLE_NAME, null, query, args, null, null, null)) {
+      return cursor != null && cursor.moveToFirst();
+    }
+  }
+
+  private boolean hasMatchingStatus(@NonNull RecipientId id, IdentityKey identityKey, VerifiedStatus verifiedStatus) {
     SQLiteDatabase db    = databaseHelper.getReadableDatabase();
     String         query = RECIPIENT_ID + " = ? AND " + IDENTITY_KEY + " = ? AND " + VERIFIED + " = ?";
     String[]       args  = new String[]{id.serialize(), Base64.encodeBytes(identityKey.serialize()), String.valueOf(verifiedStatus.toInt())};
