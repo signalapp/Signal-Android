@@ -194,10 +194,10 @@ public class WebRtcCallView extends FrameLayout {
       remoteRenderContainer.setVisibility(View.GONE);
     }
 
-    if (shouldFadeControls && !wasRemoteVideoEnabled) {
+    if (isRemoteVideoEnabled && !wasRemoteVideoEnabled) {
       fadeInControls();
-    } else if (!shouldFadeControls && wasRemoteVideoEnabled) {
-      fadeOutControls();
+    } else if (!isRemoteVideoEnabled && wasRemoteVideoEnabled) {
+      fadeInControls();
       cancelFadeOut();
     }
   }
