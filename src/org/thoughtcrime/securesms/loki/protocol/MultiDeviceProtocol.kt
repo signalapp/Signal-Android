@@ -7,7 +7,6 @@ import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil
-import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob
 import org.thoughtcrime.securesms.jobs.PushSendJob
@@ -84,13 +83,13 @@ object MultiDeviceProtocol {
         val publicKey = recipient.address.serialize()
         LokiFileServerAPI.shared.getDeviceLinks(publicKey).success {
             val devices = MultiDeviceProtocol.shared.getAllLinkedDevices(publicKey)
-            val jobs = devices.map { sendMessagePushToDevice(context, Recipient.from(context, Address.fromSerialized(it), false), messageID, messageType) }
+            val jobs = devices.map { sendMessagePushToDevice(context, recipient(context, it), messageID, messageType) }
             @Suppress("UNCHECKED_CAST")
             when (messageType) {
                 MessageType.Text -> jobManager.startChain(jobs).enqueue()
                 MessageType.Media -> PushMediaSendJob.enqueue(context, jobManager, jobs as List<PushMediaSendJob>)
             }
-        }.fail { exception ->
+        }.fail {
             // Proceed even if updating the recipient's device links failed, so that message sending
             // is independent of whether the file server is online
             when (messageType) {

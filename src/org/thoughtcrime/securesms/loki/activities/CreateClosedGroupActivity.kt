@@ -47,7 +47,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
         setContentView(R.layout.activity_create_closed_group)
-        supportActionBar!!.title = "New Closed Group (Beta)"
+        supportActionBar!!.title = "New Closed Group"
         recyclerView.adapter = createClosedGroupAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         createNewPrivateChatButton.setOnClickListener { createNewPrivateChat() }

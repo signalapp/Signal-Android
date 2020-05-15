@@ -122,7 +122,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
     try {
       log(TAG, "Sending message: " + templateMessageId + (hasSameDestination ? "" : "to a linked device."));
 
-      Recipient              recipient = Recipient.from(context, destination, false);
+      Recipient              recipient  = Recipient.from(context, destination, false);
       byte[]                 profileKey = recipient.getProfileKey();
       UnidentifiedAccessMode accessMode = recipient.getUnidentifiedAccessMode();
 

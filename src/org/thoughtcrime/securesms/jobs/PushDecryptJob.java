@@ -66,7 +66,6 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
-import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
 import org.thoughtcrime.securesms.loki.protocol.FriendRequestProtocol;
 import org.thoughtcrime.securesms.loki.protocol.LokiSessionResetImplementation;
@@ -256,7 +255,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     try {
       GroupDatabase            groupDatabase            = DatabaseFactory.getGroupDatabase(context);
       SignalProtocolStore      axolotlStore             = new SignalProtocolStoreImpl(context);
-      LokiThreadDatabase       lokiThreadDatabase       = DatabaseFactory.getLokiThreadDatabase(context);
       LokiSessionResetProtocol lokiSessionResetProtocol = new LokiSessionResetImplementation(context);
       SignalServiceAddress     localAddress             = new SignalServiceAddress(TextSecurePreferences.getLocalNumber(context));
       LokiServiceCipher        cipher                   = new LokiServiceCipher(localAddress, axolotlStore, lokiSessionResetProtocol, UnidentifiedAccessUtil.getCertificateValidator());
