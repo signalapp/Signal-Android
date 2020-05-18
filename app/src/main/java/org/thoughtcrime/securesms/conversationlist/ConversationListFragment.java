@@ -269,7 +269,8 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
   @Override
   public void onStart() {
     super.onStart();
-    ConversationFragment.prepare(requireContext());
+    // TODO [greyson] Re-enable when we figure out how to invalidate the cache after a system theme change
+//    ConversationFragment.prepare(requireContext());
   }
 
   @Override
