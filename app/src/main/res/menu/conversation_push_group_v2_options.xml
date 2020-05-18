@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO GV2 Remove old one when GV2 can replace all functions -->
-    <item android:id="@+id/menu_edit_group"
-          android:title="@string/conversation__menu_edit_group"
-          app:showAsAction="collapseActionView" />
-
     <item android:id="@+id/menu_manage_group"
           android:title="@string/conversation__menu_manage_group"
           app:showAsAction="collapseActionView" />
