@@ -15,13 +15,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.constraintlayout.widget.Group;
 import androidx.core.util.Consumer;
 import androidx.transition.AutoTransition;
 import androidx.transition.Transition;
 import androidx.transition.TransitionManager;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.android.collect.Sets;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AccessibleToggleButton;
@@ -29,28 +29,29 @@ import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
 import org.thoughtcrime.securesms.util.AvatarUtil;
+import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.webrtc.RendererCommon;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 
+import java.util.Collections;
+import java.util.Set;
+
 public class WebRtcCallView extends FrameLayout {
 
+  private static final String                TAG                        = Log.tag(WebRtcCallView.class);
   private static final long                  TRANSITION_DURATION_MILLIS = 250;
   private static final FallbackPhotoProvider FALLBACK_PHOTO_PROVIDER    = new FallbackPhotoProvider();
 
   public static final int FADE_OUT_DELAY = 5000;
 
   private TextureViewRenderer           localRenderer;
-  private Group                         ongoingCallButtons;
-  private Group                         incomingCallButtons;
-  private Group                         answerWithVoiceGroup;
-  private Group                         topViews;
-  private View                          topGradient;
   private WebRtcAudioOutputToggleButton speakerToggle;
   private AccessibleToggleButton        videoToggle;
   private AccessibleToggleButton        micToggle;
@@ -66,12 +67,19 @@ public class WebRtcCallView extends FrameLayout {
   private ControlsListener              controlsListener;
   private RecipientId                   recipientId;
   private CameraState.Direction         cameraDirection;
-  private boolean                       shouldFadeControls;
-  private ImageView                     accept;
+  private ImageView                     answer;
   private View                          cameraDirectionToggle;
   private PictureInPictureGestureHelper pictureInPictureGestureHelper;
 
-  private final Runnable fadeOutRunnable = () -> { if (isAttachedToWindow()) fadeOutControls(); };
+  private Set<View> ongoingAudioCallViews;
+  private Set<View> ongoingVideoCallViews;
+  private Set<View> incomingAudioCallViews;
+  private Set<View> incomingVideoCallViews;
+
+  private Set<View> currentVisibleViewSet = Collections.emptySet();
+
+  private       WebRtcControls controls        = WebRtcControls.NONE;
+  private final Runnable       fadeOutRunnable = () -> { if (isAttachedToWindow() && shouldFadeControls(controls)) fadeOutControls(); };
 
   public WebRtcCallView(@NonNull Context context) {
     this(context, null);
@@ -88,11 +96,6 @@ public class WebRtcCallView extends FrameLayout {
   protected void onFinishInflate() {
     super.onFinishInflate();
 
-    ongoingCallButtons        = findViewById(R.id.call_screen_in_call_buttons);
-    incomingCallButtons       = findViewById(R.id.call_screen_incoming_call_buttons);
-    answerWithVoiceGroup      = findViewById(R.id.call_screen_answer_with_audio_button);
-    topViews                  = findViewById(R.id.call_screen_top_views);
-    topGradient               = findViewById(R.id.call_screen_header_gradient);
     speakerToggle             = findViewById(R.id.call_screen_speaker_toggle);
     videoToggle               = findViewById(R.id.call_screen_video_toggle);
     micToggle                 = findViewById(R.id.call_screen_mic_toggle);
@@ -105,13 +108,31 @@ public class WebRtcCallView extends FrameLayout {
     parent                    = findViewById(R.id.call_screen);
     avatar                    = findViewById(R.id.call_screen_recipient_avatar);
     avatarCard                = findViewById(R.id.call_screen_recipient_avatar_call_card);
-    accept                    = findViewById(R.id.call_screen_answer_call);
+    answer                    = findViewById(R.id.call_screen_answer_call);
     cameraDirectionToggle     = findViewById(R.id.call_screen_camera_direction_toggle);
 
-    View      hangup                = findViewById(R.id.call_screen_end_call);
-    View      downCaret             = findViewById(R.id.call_screen_down_arrow);
-    View      decline               = findViewById(R.id.call_screen_decline_call);
-    View      answerWithAudio       = findViewById(R.id.call_screen_answer_with_audio);
+    View topGradient          = findViewById(R.id.call_screen_header_gradient);
+    View hangup               = findViewById(R.id.call_screen_end_call);
+    View downCaret            = findViewById(R.id.call_screen_down_arrow);
+    View decline              = findViewById(R.id.call_screen_decline_call);
+    View answerWithAudio      = findViewById(R.id.call_screen_answer_with_audio);
+    View answerWithAudioLabel = findViewById(R.id.call_screen_answer_with_audio_label);
+    View answerLabel          = findViewById(R.id.call_screen_answer_call_label);
+    View declineLabel         = findViewById(R.id.call_screen_decline_call_label);
+
+    Set<View> topAreaViews = Sets.newHashSet(status, topGradient, recipientName);
+
+    incomingAudioCallViews = Sets.newHashSet(decline, declineLabel, answer, answerLabel);
+    incomingAudioCallViews.addAll(topAreaViews);
+
+    incomingVideoCallViews = Sets.newHashSet(decline, declineLabel, answer, answerLabel, answerWithAudio, answerWithAudioLabel);
+    incomingVideoCallViews.addAll(topAreaViews);
+
+    ongoingAudioCallViews = Sets.newHashSet(micToggle, speakerToggle, videoToggle, hangup);
+    ongoingAudioCallViews.addAll(topAreaViews);
+
+    ongoingVideoCallViews = Sets.newHashSet();
+    ongoingVideoCallViews.addAll(ongoingAudioCallViews);
 
     speakerToggle.setOnAudioOutputChangedListener(outputMode -> {
       runIfNonNull(controlsListener, listener -> listener.onAudioOutputChanged(outputMode));
@@ -132,7 +153,7 @@ public class WebRtcCallView extends FrameLayout {
 
     downCaret.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onDownCaretPressed));
 
-    accept.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onAcceptCallPressed));
+    answer.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onAcceptCallPressed));
     answerWithAudio.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onAcceptCallWithVoiceOnlyPressed));
 
     setOnClickListener(v -> toggleControls());
@@ -151,7 +172,7 @@ public class WebRtcCallView extends FrameLayout {
   protected void onAttachedToWindow() {
     super.onAttachedToWindow();
 
-    if (shouldFadeControls) {
+    if (shouldFadeControls(controls)) {
       scheduleFadeOut();
     }
   }
@@ -183,21 +204,10 @@ public class WebRtcCallView extends FrameLayout {
   }
 
   public void setRemoteVideoEnabled(boolean isRemoteVideoEnabled) {
-    boolean wasRemoteVideoEnabled = remoteRenderContainer.getVisibility() == View.VISIBLE;
-
-    shouldFadeControls = isRemoteVideoEnabled;
-
     if (isRemoteVideoEnabled) {
       remoteRenderContainer.setVisibility(View.VISIBLE);
     } else {
       remoteRenderContainer.setVisibility(View.GONE);
-    }
-
-    if (isRemoteVideoEnabled && !wasRemoteVideoEnabled) {
-      fadeInControls();
-    } else if (!isRemoteVideoEnabled && wasRemoteVideoEnabled) {
-      fadeInControls();
-      cancelFadeOut();
     }
   }
 
@@ -305,48 +315,55 @@ public class WebRtcCallView extends FrameLayout {
   }
 
   public void setWebRtcControls(WebRtcControls webRtcControls) {
-    answerWithVoiceGroup.setVisibility(View.GONE);
+    Set<View> lastVisibleSet = currentVisibleViewSet;
+
+    Log.d(TAG, "Setting Controls: " + controls.name() + " -> " + webRtcControls.name());
 
     switch (webRtcControls) {
       case NONE:
-        ongoingCallButtons.setVisibility(View.GONE);
-        incomingCallButtons.setVisibility(View.GONE);
-        setTopViewsVisibility(View.GONE);
+        currentVisibleViewSet = Collections.emptySet();
+        cancelFadeOut();
         break;
       case INCOMING_VIDEO:
-        answerWithVoiceGroup.setVisibility(View.VISIBLE);
-        setTopViewsVisibility(View.VISIBLE);
-        ongoingCallButtons.setVisibility(View.GONE);
-        incomingCallButtons.setVisibility(View.VISIBLE);
+        currentVisibleViewSet = incomingVideoCallViews;
         status.setText(R.string.WebRtcCallView__signal_video_call);
-        accept.setImageDrawable(AppCompatResources.getDrawable(getContext(), R.drawable.webrtc_call_screen_answer_with_video));
+        answer.setImageDrawable(AppCompatResources.getDrawable(getContext(), R.drawable.webrtc_call_screen_answer_with_video));
+        cancelFadeOut();
         break;
       case INCOMING_AUDIO:
-        setTopViewsVisibility(View.VISIBLE);
-        ongoingCallButtons.setVisibility(View.GONE);
-        incomingCallButtons.setVisibility(View.VISIBLE);
+        currentVisibleViewSet = incomingAudioCallViews;
         status.setText(R.string.WebRtcCallView__signal_voice_call);
-        accept.setImageDrawable(AppCompatResources.getDrawable(getContext(), R.drawable.webrtc_call_screen_answer));
+        answer.setImageDrawable(AppCompatResources.getDrawable(getContext(), R.drawable.webrtc_call_screen_answer));
+        cancelFadeOut();
         break;
-      case RINGING:
-        setTopViewsVisibility(View.VISIBLE);
-        incomingCallButtons.setVisibility(View.GONE);
-        ongoingCallButtons.setVisibility(View.VISIBLE);
+      case ONGOING_LOCAL_AUDIO_REMOTE_AUDIO:
+        currentVisibleViewSet = ongoingAudioCallViews;
+        cancelFadeOut();
         break;
-      case CONNECTED:
-        setTopViewsVisibility(View.VISIBLE);
-        incomingCallButtons.setVisibility(View.GONE);
-        ongoingCallButtons.setVisibility(View.VISIBLE);
-
-        post(() -> {
-          pictureInPictureGestureHelper.setVerticalBoundaries(status.getBottom(), speakerToggle.getTop());
-        });
+      case ONGOING_LOCAL_AUDIO_REMOTE_VIDEO:
+        currentVisibleViewSet = ongoingAudioCallViews;
+        if (!shouldFadeControls(controls)) {
+          scheduleFadeOut();
+        }
+        break;
+      case ONGOING_LOCAL_VIDEO_REMOTE_AUDIO:
+        currentVisibleViewSet = ongoingVideoCallViews;
+        cancelFadeOut();
+        break;
+      case ONGOING_LOCAL_VIDEO_REMOTE_VIDEO:
+        currentVisibleViewSet = ongoingVideoCallViews;
+        if (!shouldFadeControls(controls)) {
+          scheduleFadeOut();
+        }
+        break;
     }
-  }
 
-  private void setTopViewsVisibility(int visibility) {
-    topViews.setVisibility(visibility);
-    topGradient.setVisibility(visibility);
+    controls = webRtcControls;
+
+    if (!currentVisibleViewSet.equals(lastVisibleSet)) {
+      fadeInNewUiState(lastVisibleSet);
+      post(() -> pictureInPictureGestureHelper.setVerticalBoundaries(status.getBottom(), speakerToggle.getTop()));
+    }
   }
 
   public @NonNull View getVideoTooltipTarget() {
@@ -354,12 +371,10 @@ public class WebRtcCallView extends FrameLayout {
   }
 
   private void toggleControls() {
-    if (shouldFadeControls) {
-      if (status.getVisibility() == VISIBLE) {
-        fadeOutControls();
-      } else {
-        fadeInControls();
-      }
+    if (shouldFadeControls(controls) && status.getVisibility() == VISIBLE) {
+      fadeOutControls();
+    } else {
+      fadeInControls();
     }
   }
 
@@ -384,28 +399,40 @@ public class WebRtcCallView extends FrameLayout {
     ConstraintSet constraintSet = new ConstraintSet();
     constraintSet.clone(parent);
 
-    constraintSet.setVisibility(R.id.call_screen_in_call_buttons, visibility);
-    constraintSet.setVisibility(R.id.call_screen_top_views, visibility);
+    for (View view : currentVisibleViewSet) {
+      constraintSet.setVisibility(view.getId(), visibility);
+    }
 
     constraintSet.applyTo(parent);
+  }
 
-    topGradient.animate()
-               .alpha(visibility == ConstraintSet.VISIBLE ? 1f : 0f)
-               .setDuration(TRANSITION_DURATION_MILLIS)
-               .start();
+  private void fadeInNewUiState(@NonNull Set<View> previouslyVisibleViewSet) {
+    Transition transition = new AutoTransition().setDuration(TRANSITION_DURATION_MILLIS);
+
+    TransitionManager.beginDelayedTransition(parent, transition);
+
+    ConstraintSet constraintSet = new ConstraintSet();
+    constraintSet.clone(parent);
+
+    for (View view : SetUtil.difference(previouslyVisibleViewSet, currentVisibleViewSet)) {
+      constraintSet.setVisibility(view.getId(), ConstraintSet.GONE);
+    }
+
+    for (View view : currentVisibleViewSet) {
+      constraintSet.setVisibility(view.getId(), ConstraintSet.VISIBLE);
+    }
+
+    constraintSet.applyTo(parent);
   }
 
   private void scheduleFadeOut() {
     cancelFadeOut();
-    shouldFadeControls = true;
 
     if (getHandler() == null) return;
     getHandler().postDelayed(fadeOutRunnable, FADE_OUT_DELAY);
   }
 
   private void cancelFadeOut() {
-    shouldFadeControls = false;
-
     if (getHandler() == null) return;
     getHandler().removeCallbacks(fadeOutRunnable);
   }
@@ -448,6 +475,10 @@ public class WebRtcCallView extends FrameLayout {
     else                      this.avatarCard.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
     this.avatarCard.setBackgroundColor(recipient.getColor().toActionBarColor(getContext()));
+  }
+
+  private static boolean shouldFadeControls(@NonNull WebRtcControls controls) {
+    return controls == WebRtcControls.ONGOING_LOCAL_AUDIO_REMOTE_VIDEO || controls == WebRtcControls.ONGOING_LOCAL_VIDEO_REMOTE_VIDEO;
   }
 
   private static final class FallbackPhotoProvider extends Recipient.FallbackPhotoProvider {

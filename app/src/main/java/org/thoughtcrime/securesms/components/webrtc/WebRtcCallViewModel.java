@@ -129,7 +129,10 @@ public class WebRtcCallViewModel extends ViewModel {
     hasMultipleCameras.setValue(webRtcViewModel.getLocalCameraState().getCameraCount() > 0);
     localVideoEnabled.setValue(webRtcViewModel.getLocalCameraState().isEnabled());
     updateLocalRenderState(webRtcViewModel.getState());
-    updateWebRtcControls(webRtcViewModel.getState(), webRtcViewModel.isRemoteVideoOffer());
+    updateWebRtcControls(webRtcViewModel.getState(),
+                         webRtcViewModel.getLocalCameraState().isEnabled(),
+                         webRtcViewModel.isRemoteVideoEnabled(),
+                         webRtcViewModel.isRemoteVideoOffer());
 
     if (webRtcViewModel.getState() == WebRtcViewModel.State.CALL_CONNECTED && callConnectedTime == -1) {
       callConnectedTime = webRtcViewModel.getCallConnectedTime();
@@ -164,20 +167,22 @@ public class WebRtcCallViewModel extends ViewModel {
     }
   }
 
-  private void updateWebRtcControls(WebRtcViewModel.State state, boolean isRemoteVideoOffer) {
+  private void updateWebRtcControls(WebRtcViewModel.State state, boolean isLocalVideoEnabled, boolean isRemoteVideoEnabled, boolean isRemoteVideoOffer) {
     switch (state) {
       case CALL_INCOMING:
         webRtcControls.setValue(isRemoteVideoOffer ? WebRtcControls.INCOMING_VIDEO : WebRtcControls.INCOMING_AUDIO);
         answerWithVideoAvailable = isRemoteVideoOffer;
         break;
-      case CALL_CONNECTED:
-        webRtcControls.setValue(WebRtcControls.CONNECTED);
-        break;
-      case CALL_OUTGOING:
-        webRtcControls.setValue(WebRtcControls.RINGING);
-        break;
       default:
-        webRtcControls.setValue(WebRtcControls.ONGOING);
+        if (isLocalVideoEnabled && isRemoteVideoEnabled) {
+          webRtcControls.setValue(WebRtcControls.ONGOING_LOCAL_VIDEO_REMOTE_VIDEO);
+        } else if (isLocalVideoEnabled) {
+          webRtcControls.setValue(WebRtcControls.ONGOING_LOCAL_VIDEO_REMOTE_AUDIO);
+        } else if (isRemoteVideoEnabled) {
+          webRtcControls.setValue(WebRtcControls.ONGOING_LOCAL_AUDIO_REMOTE_VIDEO);
+        } else {
+          webRtcControls.setValue(WebRtcControls.ONGOING_LOCAL_AUDIO_REMOTE_AUDIO);
+        }
     }
   }
 

@@ -177,6 +177,7 @@ public class WebRtcCallActivity extends AppCompatActivity {
 
   private void processIntent(@NonNull Intent intent) {
     if (ANSWER_ACTION.equals(intent.getAction())) {
+      viewModel.setRecipient(EventBus.getDefault().getStickyEvent(WebRtcViewModel.class).getRecipient());
       handleAnswerWithAudio();
     } else if (DENY_ACTION.equals(intent.getAction())) {
       handleDenyCall();
