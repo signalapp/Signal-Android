@@ -13,10 +13,12 @@ import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.Executor;
 
 /**
  * Core data source for loading an individual conversation.
@@ -25,11 +27,17 @@ class ConversationDataSource extends PositionalDataSource<MessageRecord> {
 
   private static final String TAG = Log.tag(ConversationDataSource.class);
 
+  public static final Executor EXECUTOR = SignalExecutors.newFixedLifoThreadExecutor("signal-conversation", 1, 1);
+
   private final Context             context;
   private final long                threadId;
   private final DataUpdatedCallback dataUpdateCallback;
 
-  private ConversationDataSource(@NonNull Context context, long threadId, @NonNull DataUpdatedCallback dataUpdateCallback) {
+  private ConversationDataSource(@NonNull Context context,
+                                 long threadId,
+                                 @NonNull Invalidator invalidator,
+                                 @NonNull DataUpdatedCallback dataUpdateCallback)
+  {
     this.context            = context;
     this.threadId           = threadId;
     this.dataUpdateCallback = dataUpdateCallback;
@@ -42,6 +50,8 @@ class ConversationDataSource extends PositionalDataSource<MessageRecord> {
       }
     };
 
+    invalidator.observe(this::invalidate);
+
     context.getContentResolver().registerContentObserver(DatabaseContentProviders.Conversation.getUriForThread(threadId), true, contentObserver);
   }
 
@@ -52,11 +62,15 @@ class ConversationDataSource extends PositionalDataSource<MessageRecord> {
     MmsSmsDatabase      db      = DatabaseFactory.getMmsSmsDatabase(context);
     List<MessageRecord> records = new ArrayList<>(params.requestedLoadSize);
 
-    try (MmsSmsDatabase.Reader reader = db.readerFor(db.getConversation(threadId, params.requestedStartPosition, params.requestedLoadSize))) {
-      MessageRecord record;
-      while ((record = reader.getNext()) != null && !isInvalid()) {
-        records.add(record);
+    if (!isInvalid()) {
+      try (MmsSmsDatabase.Reader reader = db.readerFor(db.getConversation(threadId, params.requestedStartPosition, params.requestedLoadSize))) {
+        MessageRecord record;
+        while ((record = reader.getNext()) != null && !isInvalid()) {
+          records.add(record);
+        }
       }
+    } else {
+      Log.i(TAG, "[Initial Load] Invalidated before we could even query!");
     }
 
     int effectiveCount = records.size() + params.requestedStartPosition;
@@ -85,11 +99,15 @@ class ConversationDataSource extends PositionalDataSource<MessageRecord> {
     MmsSmsDatabase      db      = DatabaseFactory.getMmsSmsDatabase(context);
     List<MessageRecord> records = new ArrayList<>(params.loadSize);
 
-    try (MmsSmsDatabase.Reader reader = db.readerFor(db.getConversation(threadId, params.startPosition, params.loadSize))) {
-      MessageRecord record;
-      while ((record = reader.getNext()) != null && !isInvalid()) {
-        records.add(record);
+    if (!isInvalid()) {
+      try (MmsSmsDatabase.Reader reader = db.readerFor(db.getConversation(threadId, params.startPosition, params.loadSize))) {
+        MessageRecord record;
+        while ((record = reader.getNext()) != null && !isInvalid()) {
+          records.add(record);
+        }
       }
+    } else {
+      Log.i(TAG, "[Update] Invalidated before we could even query!");
     }
 
     callback.onResult(records);
@@ -111,21 +129,44 @@ class ConversationDataSource extends PositionalDataSource<MessageRecord> {
     void onDataUpdated();
   }
 
+  static class Invalidator {
+    private boolean  invalidated;
+    private Runnable callback;
+
+    synchronized void invalidate() {
+      invalidated = true;
+
+      if (callback != null) {
+        callback.run();
+      }
+    }
+
+    private synchronized void observe(@NonNull Runnable callback) {
+      if (invalidated) {
+        callback.run();
+      } else {
+        this.callback = callback;
+      }
+    }
+  }
+
   static class Factory extends DataSource.Factory<Integer, MessageRecord> {
 
     private final Context             context;
     private final long                threadId;
+    private final Invalidator         invalidator;
     private final DataUpdatedCallback callback;
 
-    Factory(Context context, long threadId, @NonNull DataUpdatedCallback callback) {
-      this.context  = context;
-      this.threadId = threadId;
-      this.callback = callback;
+    Factory(Context context, long threadId, @NonNull Invalidator invalidator, @NonNull DataUpdatedCallback callback) {
+      this.context     = context;
+      this.threadId    = threadId;
+      this.invalidator = invalidator;
+      this.callback    = callback;
     }
 
     @Override
     public @NonNull DataSource<Integer, MessageRecord> create() {
-      return new ConversationDataSource(context, threadId, callback);
+      return new ConversationDataSource(context, threadId, invalidator, callback);
     }
   }
 }

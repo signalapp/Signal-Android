@@ -15,6 +15,7 @@ import androidx.paging.DataSource;
 import androidx.paging.LivePagedListBuilder;
 import androidx.paging.PagedList;
 
+import org.thoughtcrime.securesms.conversation.ConversationDataSource.Invalidator;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
@@ -40,6 +41,7 @@ class ConversationViewModel extends ViewModel {
   private final LiveData<PagedList<MessageRecord>> messages;
   private final LiveData<ConversationData>         conversationMetadata;
   private final List<Runnable>                     onNextMessageLoad;
+  private final Invalidator                        invalidator;
 
   private int jumpToPosition;
 
@@ -50,15 +52,16 @@ class ConversationViewModel extends ViewModel {
     this.recentMedia            = new MutableLiveData<>();
     this.threadId               = new MutableLiveData<>();
     this.onNextMessageLoad      = new CopyOnWriteArrayList<>();
+    this.invalidator            = new Invalidator();
 
     LiveData<Pair<Long, PagedList<MessageRecord>>> messagesForThreadId = Transformations.switchMap(threadId, thread -> {
-      DataSource.Factory<Integer, MessageRecord> factory = new ConversationDataSource.Factory(context, thread, this::onMessagesUpdated);
+      DataSource.Factory<Integer, MessageRecord> factory = new ConversationDataSource.Factory(context, thread, invalidator, this::onMessagesUpdated);
       PagedList.Config                           config  = new PagedList.Config.Builder()
                                                                                .setPageSize(25)
                                                                                .setInitialLoadSizeHint(25)
                                                                                .build();
 
-      return Transformations.map(new LivePagedListBuilder<>(factory, config).setFetchExecutor(SignalExecutors.BOUNDED)
+      return Transformations.map(new LivePagedListBuilder<>(factory, config).setFetchExecutor(ConversationDataSource.EXECUTOR)
                                                                             .setInitialLoadKey(Math.max(jumpToPosition, 0))
                                                                             .build(),
                                  input -> new Pair<>(thread, input));
@@ -108,6 +111,12 @@ class ConversationViewModel extends ViewModel {
 
   void scheduleForNextMessageUpdate(@NonNull Runnable runnable) {
     onNextMessageLoad.add(runnable);
+  }
+
+  @Override
+  protected void onCleared() {
+    super.onCleared();
+    invalidator.invalidate();
   }
 
   private void onMessagesUpdated() {
