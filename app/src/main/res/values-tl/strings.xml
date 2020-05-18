@@ -664,6 +664,7 @@
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Hindi suportado ng numerong nai-dial mo ang secure na voice!</string>
   <string name="RedPhone_got_it">OK</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">I-tap dito upang buksan ang iyong video</string>
   <!--WebRtcCallView-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Piliin ang iyong bansa</string>

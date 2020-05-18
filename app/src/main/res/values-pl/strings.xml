@@ -980,7 +980,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="SupportEmailUtil_android_version">Wersja Androida:</string>
   <string name="SupportEmailUtil_signal_version">Wersja Signal:</string>
   <string name="SupportEmailUtil_signal_package">Pakiet Signal:</string>
-  <string name="SupportEmailUtil_locale">Lokalizacja:</string>
+  <string name="SupportEmailUtil_locale">Język:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupa zaktualizowana</string>
   <string name="ThreadRecord_left_the_group">Opuścił(a) grupę</string>
@@ -1162,7 +1162,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="WebRtcCallScreen_end_call">Zakończ rozmowę</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">Odrzuć</string>
-  <string name="WebRtcCallScreen__answer">Odpowiedz</string>
+  <string name="WebRtcCallScreen__answer">Odbierz</string>
   <string name="WebRtcCallScreen__answer_without_video">Odbierz bez wideo</string>
   <!--WebRtcAudioOutputToggle-->
   <string name="WebRtcAudioOutputToggle__phone">Numer telefonu</string>

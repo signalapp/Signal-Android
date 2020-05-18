@@ -2005,7 +2005,7 @@
   <string name="recipient_preferences__about">О собеседнике</string>
   <string name="Recipient_unknown">Неизвестный</string>
   <!--RecipientBottomSheet-->
-  <string name="RecipientBottomSheet_message">Сообщение</string>
+  <string name="RecipientBottomSheet_message">Написать сообщение</string>
   <string name="RecipientBottomSheet_call">Позвонить</string>
   <string name="RecipientBottomSheet_block">Заблокировать</string>
   <string name="RecipientBottomSheet_unblock">Разблокировать</string>

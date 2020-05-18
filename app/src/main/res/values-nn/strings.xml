@@ -646,10 +646,19 @@
   <string name="MessageRecord_you_accepted_invite">Du godtok invitasjonen til gruppa.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s godtok ein invitasjon til gruppa.</string>
   <string name="MessageRecord_you_added_invited_member_s">Du la til medlem %1$s.</string>
+  <string name="MessageRecord_s_added_invited_member_s">%1$s la til invitert medlem %2$s.</string>
   <!--GV2 title change-->
+  <string name="MessageRecord_you_changed_the_group_name_to_s">Du endra gruppenamnet til «%1$s».</string>
+  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s endra gruppenamnet til «%2$s».</string>
   <!--GV2 avatar change-->
+  <string name="MessageRecord_you_changed_the_group_avatar">Du endra gruppebildet.</string>
+  <string name="MessageRecord_s_changed_the_group_avatar">%1$s endra gruppebildet.</string>
   <!--GV2 attribute access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Du endra kven som kan redigera gruppeinfo til «%1$s».</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s endra kven som kan redigera gruppeinfo til «%2$s».</string>
   <!--GV2 membership access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Du endra kven som kan redigera gruppemedlemskap til «%1$s».</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s endra kven som kan redigera gruppemedlemskap til «%2$s».</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Tryggleiksnummeret ditt med %s har endra seg.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Du markerte at tryggleiksnummeret ditt med %s er stadfesta.</string>
@@ -663,6 +672,7 @@
   <string name="MessageRequestBottomView_unblock">Fjern blokkering</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Vil du la %1$s senda deg meldingar? Dei vil ikkje vita at du har sett meldingane deira før du godtar.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Vil du bli med i gruppa %1$s? Dei vil ikkje vita at du har sett meldingane deira før du godtar.</string>
+  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Du er invitert til gruppa %1$s. Vil du la andre medlem i denne gruppa senda meldingar til deg?</string>
   <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Avblokker %1$s for å senda meldingar til og ringa kvarandre.</string>
   <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Avblokker for å tillata gruppemedlem å legga deg til i gruppa igjen.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Medlem av %1$s</string>
@@ -725,14 +735,25 @@
   <string name="PinRestoreEntryFragment_incorrect_pin">Feil PIN</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">Hopp over PIN-inntasting?</string>
   <string name="PinRestoreEntryFragment_need_help">Treng du hjelp?</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">PIN-en din er ein kode %1$d+ teikn lang som du lagar sjølv. Den kan vera numerisk eller alfanumerisk.
+
+Viss du ikkje klarer å hugsa PIN-en, kan du oppretta ein ny ein. Du kan registrera og bruka kontoen din, men du mistar visse lagra innstillingar, som profilinformasjonen. </string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Viss du ikkje klarer å hugsa PIN-en, kan du oppretta ein ny ein. Du kan registrera og bruka kontoen din, men du mistar visse lagra innstillingar, som profilinformasjonen. </string>
   <string name="PinRestoreEntryFragment_create_new_pin">Lag ny PIN</string>
   <string name="PinRestoreEntryFragment_contact_support">Kontakt brukarstøtte</string>
   <string name="PinRestoreEntryFragment_cancel">Avbryt</string>
   <string name="PinRestoreEntryFragment_skip">Hopp over</string>
+  <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
+    <item quantity="one">Du har %1$d forsøk igjen. Viss du bruker opp forsøka, kan du laga ein ny PIN. Du kan registrera og bruka kontoen din, men du mistar visse lagra innstillingar, som profilinformasjonen. </item>
+    <item quantity="other">Du har %1$d forsøk igjen. Viss du bruker opp forsøka, kan du laga ein ny PIN. Du kan registrera og bruka kontoen din, men du mistar visse lagra innstillingar, som profilinformasjonen. </item>
+  </plurals>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal-registrering – treng hjelp med PIN for Android</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Skriv inn alfanumerisk PIN</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Skriv inn numerisk PIN</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Lag din PIN</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Du har brukt opp PIN-forsøka, men du kan få tilgang til Signal-kontoen din ved å laga ein ny PIN. For din tryggleik og sikkerheit vil kontoen din bli gjenoppretta utan lagra profilinformasjon eller innstillingar.</string>
+  <string name="PinRestoreLockedFragment_create_new_pin">Lag ny PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Vurder dette programmet</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Viss du liker dette programmet, vil vi gjerne at du hjelper oss ved å gje vurderinga di.</string>
@@ -741,6 +762,7 @@
   <string name="RatingManager_later">Seinare</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Uff då. Programmet Play Store ser ikkje ut til å vera installert på denne eininga.</string>
   <!--ReactionsBottomSheetDialogFragment-->
+  <string name="ReactionsBottomSheetDialogFragment_all">Alle · %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
@@ -767,7 +789,13 @@
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Nummeret du ringte støttar ikkje sikker stemme!</string>
   <string name="RedPhone_got_it">Ålreit</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Trykk her for å skru på videoen din</string>
+  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Signal treng tilgang til kameraet ditt for å ringa %1$s</string>
+  <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
+  <string name="WebRtcCallActivity__calling">Ringer …</string>
   <!--WebRtcCallView-->
+  <string name="WebRtcCallView__signal_voice_call">Signal-samtale …</string>
+  <string name="WebRtcCallView__signal_video_call">Signal-videosamtale …</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Vel land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Du må oppgje
@@ -810,6 +838,10 @@ Ver deg sjølv i kvar einaste melding.</string>
   <string name="RegistrationActivity_country_code_description">Landkode</string>
   <string name="RegistrationActivity_call">Ring</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Skru på registreringslås?</string>
+  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Skru av registreringslås?</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Viss du gløymer Signal PIN-en din når du registrerer med Signal igjen, blir du låst ute av kontoen din i 7 dagar.</string>
+  <string name="RegistrationLockV2Dialog_turn_on">Skru på</string>
   <string name="RegistrationLockV2Dialog_turn_off">Skru av</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Vis bilde</string>
@@ -888,6 +920,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="SupportEmailUtil_device_info">Einingsinfo:</string>
   <string name="SupportEmailUtil_android_version">Android-utgåve:</string>
   <string name="SupportEmailUtil_signal_version">Signal-utgåve:</string>
+  <string name="SupportEmailUtil_signal_package">Signal-pakke:</string>
   <string name="SupportEmailUtil_locale">Lokalitet:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupper oppdatert</string>
@@ -913,6 +946,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="ThreadRecord_message_could_not_be_processed">Kunne ikkje behandla meldinga</string>
   <string name="ThreadRecord_message_request">Meldingsspørsmål</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s la deg til i gruppa</string>
+  <string name="ThreadRecord_s_invited_you_to_the_group">%1$s inviterte deg inn i gruppa.</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal-oppdatering</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Det finst ei ny utgåve av Signal; trykk for å oppdatera</string>
@@ -1056,6 +1090,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Gi Signal tilgang til mikrofonen for å ta imot oppringinga frå %s.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal treng tilgang til mikrofon og kamera for å ringa eller ta imot samtalar, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Mikrofon» og «Kamera».</string>
+  <string name="WebRtcCallActivity__answered_on_a_linked_device">Svarte på ei tilkopla eining.</string>
+  <string name="WebRtcCallActivity__declined_on_a_linked_device">Avslo frå ei tilkopla eining.</string>
+  <string name="WebRtcCallActivity__busy_on_a_linked_device">Oppteken på ei tilkopla eining.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Tryggleiksnummeret for samtalen din med %1$s har endra seg. Dette kan tyda på at nokon prøver å overvaka kommunikasjonen, eller at %2$s berre har installert Signal på nytt.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Du ynskjer kanskje å stadfesta tryggleiksnummeret ditt med denne kontakten.</string>
@@ -1063,7 +1100,11 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="WebRtcCallScreen_accept">Godta</string>
   <string name="WebRtcCallScreen_end_call">Avslutt samtale</string>
   <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__decline">Avslå</string>
+  <string name="WebRtcCallScreen__answer">Svar</string>
+  <string name="WebRtcCallScreen__answer_without_video">Svar utan video</string>
   <!--WebRtcAudioOutputToggle-->
+  <string name="WebRtcAudioOutputToggle__phone">Telefon</string>
   <string name="WebRtcAudioOutputToggle__speaker">Høgtalar</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Blåtann</string>
   <!--WebRtcCallControls-->
@@ -1165,6 +1206,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Lastar inn land …</string>
   <string name="country_selection_fragment__search">Søk</string>
+  <string name="country_selection_fragment__no_matching_countries">Ingen passande land</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Skann QR-koden på eininga for å kopla han til</string>
   <!--device_link_fragment-->
@@ -1277,6 +1319,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="CreateProfileActivity__username">Brukarnamn</string>
   <string name="CreateProfileActivity__create_a_username">Lag eit brukarnamn</string>
   <!--EditProfileFragment-->
+  <string name="EditProfileFragment__edit_group_name_and_photo">Rediger gruppenamn og bilde</string>
   <string name="EditProfileFragment__group_name">Gruppenamn</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Delt media</string>
@@ -1366,6 +1409,8 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Beskriv problemet så utfyllande som mogleg slik at me kan forstå kva som skjer.</string>
   <string name="HelpFragment__no_email_app_found">Fann ingen e-postapp.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nyleg brukt</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smil &amp; folk</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natur</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Mat</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Aktivitetar</string>
@@ -1680,6 +1725,7 @@ Du er à jour!</string>
   <string name="CreateKbsPinFragment__create_a_new_pin">Lag ny PIN</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Du kan endra PIN-en så lenge denne eininga er registrert.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Lag din PIN</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-en held informasjonen som signal Signal lagrar kryptert, slik at berre du kan få tilgang til han. Profilen, innstillingane og kontaktane dine blir gjenoppretta når du installerer Signal på nytt.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Vel ein sterkare PIN</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-kodane er ulike. Prøv igjen.</string>
@@ -1691,6 +1737,7 @@ Du er à jour!</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Opprettar PIN …</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Her kjem PIN-kodar</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN-en held informasjonen som signal Signal lagrar kryptert, slik at berre du kan få tilgang til han. Profilen, innstillingane og kontaktane dine blir gjenoppretta når du installerer Signal på nytt.</string>
   <string name="KbsSplashFragment__learn_more">Lær meir</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registreringslås = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Registreringslåsen er no kalla PIN-kode, og gjer meir enn før. Oppdater no.</string>
@@ -1742,8 +1789,10 @@ Du er à jour!</string>
   </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
   <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">Greitt</string>
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s får ei meldingsførespurnad frå deg. Du kan ringa når førespurnaden er godteken.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Opprett PIN</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN-ar held informasjonen som signal Signal lagrar kryptert.</string>
   <string name="KbsMegaphone__create_pin">Opprett PIN</string>
   <string name="KbsMegaphone__introducing_pins">Her kjem PIN-kodar</string>
   <string name="KbsMegaphone__update_pin">Oppdater PIN</string>
@@ -1820,6 +1869,8 @@ Du er à jour!</string>
   <string name="preferences_app_protection__signal_pin">Signal-PIN</string>
   <string name="preferences_app_protection__create_a_pin">Opprett PIN</string>
   <string name="preferences_app_protection__change_your_pin">Endra PIN?</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-en held informasjonen som signal Signal lagrar kryptert, slik at berre du kan få tilgang til han. Profilen, innstillingane og kontaktane dine blir gjenoppretta når du installerer Signal på nytt.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Få ekstra tryggleik ved å krevja din Signal-PIN for å registrera telefonnummeret ditt med Signal igjen.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Klarte ikkje skru på registreringslås.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Klarte ikkje skru av registreringslås.</string>
   <string name="AppProtectionPreferenceFragment_none">Inga</string>
@@ -1873,6 +1924,8 @@ Du er à jour!</string>
   <string name="RecipientBottomSheet_remove_as_admin">Fjern som administrator</string>
   <string name="RecipientBottomSheet_remove_from_group">Fjern frå gruppa</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Fjern %1$s som gruppeadministrator?</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s vil kunna endra denne gruppa og medlemmane i ho</string>
+  <string name="RecipientBottomSheet_remove_s_from_s">Fjern %1$s frå «%2$s»?</string>
   <string name="RecipientBottomSheet_remove">Fjern</string>
   <string name="GroupRecipientListItem_admin">Administrator</string>
   <!--EOF-->

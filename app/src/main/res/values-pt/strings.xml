@@ -1022,7 +1022,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="MessageNotifier_message_delivery_failed">Falha na entrega de mensagem.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Falha na entrega da mensagem.</string>
   <string name="MessageNotifier_error_delivering_message">Erro ao entregar a mensagem.</string>
-  <string name="MessageNotifier_mark_all_as_read">Marcar todas como lidas</string>
+  <string name="MessageNotifier_mark_all_as_read">Marcar tudo como lido</string>
   <string name="MessageNotifier_mark_read">Marcar como lida</string>
   <string name="MessageNotifier_media_message">Mensagem multimédia</string>
   <string name="MessageNotifier_sticker">Autocolante</string>
@@ -1638,7 +1638,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="text_secure_normal__menu_new_group">Grupo novo</string>
   <string name="text_secure_normal__menu_settings">Definições</string>
   <string name="text_secure_normal__menu_clear_passphrase">Desbloquear</string>
-  <string name="text_secure_normal__mark_all_as_read">Marcar todas como lidas</string>
+  <string name="text_secure_normal__mark_all_as_read">Marcar tudo como lido</string>
   <string name="text_secure_normal__invite_friends">Convidar amigos</string>
   <string name="text_secure_normal__help">Ajuda</string>
   <!--verify_display_fragment-->

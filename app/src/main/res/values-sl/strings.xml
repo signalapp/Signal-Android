@@ -422,7 +422,7 @@
   <!--GV2 access levels-->
   <string name="GroupManagement_access_level_anyone">Kdorkoli</string>
   <string name="GroupManagement_access_level_all_members">Vsi člani</string>
-  <string name="GroupManagement_access_level_only_admins">Samo administratorji</string>
+  <string name="GroupManagement_access_level_only_admins">Samo skrbniki</string>
   <!--PendingMembersActivity-->
   <string name="PendingMemberInvitesActivity_pending_group_invites">Čakajoča povabila v skupine</string>
   <string name="PendingMembersActivity_people_you_invited">Ljudje, ki ste jih povabili</string>
@@ -510,7 +510,7 @@
   <string name="InviteActivity_cancel">Prekliči</string>
   <string name="InviteActivity_sending">Pošiljanje …</string>
   <string name="InviteActivity_heart_content_description">Srce</string>
-  <string name="InviteActivity_invitations_sent">Vabilo je bilo poslano!</string>
+  <string name="InviteActivity_invitations_sent">Vabila so bila poslana!</string>
   <string name="InviteActivity_invite_to_signal">Povabi k uporabi</string>
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">POŠLJI SMS %d PRIJATELJU</item>
@@ -668,12 +668,12 @@
   <string name="MessageRecord_you_left_the_group">Zapustili ste skupino.</string>
   <string name="MessageRecord_s_left_the_group">Oseba %1$s je zapustila skupino.</string>
   <!--GV2 role change-->
-  <string name="MessageRecord_you_made_s_an_admin">Osebo %1$s ste določili za administratorja.</string>
-  <string name="MessageRecord_s_made_s_an_admin">Osdeba %1$s je določila uporabnika %2$s za administratorja.</string>
-  <string name="MessageRecord_s_made_you_an_admin">Oseba %1$s vas je določila za administratorja.</string>
-  <string name="MessageRecord_you_revoked_admin_privileges_from_s">Uporabniku %1$s ste odvzeli administratorska pooblastila.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">Oseba %1$s vam je odvzela administratorska pooblastila.</string>
-  <string name="MessageRecord_s_revoked_admin_privileges_from_s">Oseba %1$s je odvzela administratorska pooblastila uporabniku %2$s.</string>
+  <string name="MessageRecord_you_made_s_an_admin">Osebo %1$s ste določili za skrbnika.</string>
+  <string name="MessageRecord_s_made_s_an_admin">Osdeba %1$s je določila uporabnika %2$s za skrbnika.</string>
+  <string name="MessageRecord_s_made_you_an_admin">Oseba %1$s vas je določila za skrbnika.</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">Uporabniku %1$s ste odvzeli skrbniška pooblastila.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">Oseba %1$s vam je odvzela skrbniška pooblastila.</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">Oseba %1$s je odvzela skrbniška pooblastila uporabniku %2$s.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Uporabnika %1$s ste povabili v skupino.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">Oseba %1$s vas je povabila v skupino.</string>
@@ -688,19 +688,19 @@
     <item quantity="one">Preklicali ste povabilo v skupino.</item>
     <item quantity="two">Preklicali ste %1$d povabili v skupino.</item>
     <item quantity="few">Preklicali ste %1$d povabila v skupino.</item>
-    <item quantity="other">Preklicali ste %1$d povabil v skupino.</item>
+    <item quantity="other">Preklicali ste %1$d vabil v skupino.</item>
   </plurals>
   <plurals name="MessageRecord_s_revoked_invites">
-    <item quantity="one">Oseba %1$s je preklicala povabilo v skupino.</item>
-    <item quantity="two">Oseba %1$s je preklicala %2$d povabili v skupino.</item>
-    <item quantity="few">Oseba %1$s je preklicala %2$dpovabila v skupino.</item>
-    <item quantity="other">Oseba %1$s je preklicala %2$d povabil v skupino.</item>
+    <item quantity="one">Oseba %1$s je preklicala vabilo v skupino.</item>
+    <item quantity="two">Oseba %1$s je preklicala %2$d vabili v skupino.</item>
+    <item quantity="few">Oseba %1$s je preklicala %2$dvabila v skupino.</item>
+    <item quantity="other">Oseba %1$s je preklicala %2$d vabil v skupino.</item>
   </plurals>
-  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Nekdo je zavrnil povabilo v skupino.</string>
-  <string name="MessageRecord_you_declined_the_invitation_to_the_group">Zavrnili ste povabilo v skupino.</string>
+  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Nekdo je zavrnil vabilo v skupino.</string>
+  <string name="MessageRecord_you_declined_the_invitation_to_the_group">Zavrnili ste vabilo v skupino.</string>
   <!--GV2 invitation acceptance-->
-  <string name="MessageRecord_you_accepted_invite">Sprejeli ste povabilo v skupino.</string>
-  <string name="MessageRecord_s_accepted_invite">Uporabnik %1$s je sprejel povabilo v skupino.</string>
+  <string name="MessageRecord_you_accepted_invite">Sprejeli ste vabilo v skupino.</string>
+  <string name="MessageRecord_s_accepted_invite">Uporabnik %1$s je sprejel vabilo v skupino.</string>
   <string name="MessageRecord_you_added_invited_member_s">Dodali ste povabljenega uporabnika %1$s.</string>
   <string name="MessageRecord_s_added_invited_member_s">Oseba %1$s je dodala povabljenega uporabnika %2$s.</string>
   <!--GV2 title change-->
@@ -1634,8 +1634,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_notifications__show">Prikaži</string>
   <string name="preferences_notifications__calls">Klici</string>
   <string name="preferences_notifications__ringtone">Zvonjenje</string>
-  <string name="preferences_chats__show_invitation_prompts">Prikazuj obvestila o povabilih</string>
-  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Prikazovanje obvestil o povabilih za stike, ki nimajo nameščene aplikacije Signal.</string>
+  <string name="preferences_chats__show_invitation_prompts">Prikazuj obvestila o vabilih</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Prikazovanje obvestil o vabilih za stike, ki nimajo nameščene aplikacije Signal.</string>
   <string name="preferences_chats__message_text_size">Velikost črk v sporočilu</string>
   <string name="preferences_events__contact_joined_signal">Oseba iz imenika se je pridružila Signalu</string>
   <string name="preferences_notifications__priority">Pomembnost</string>
@@ -2008,13 +2008,13 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="RecipientBottomSheet_block">Blokiraj</string>
   <string name="RecipientBottomSheet_unblock">Odblokiraj</string>
   <string name="RecipientBottomSheet_view_safety_number">Preglej varnostno število</string>
-  <string name="RecipientBottomSheet_make_group_admin">Določi administratorja skupine</string>
-  <string name="RecipientBottomSheet_remove_as_admin">Odstrani kot administratorja</string>
+  <string name="RecipientBottomSheet_make_group_admin">Določi za skrbnika skupine</string>
+  <string name="RecipientBottomSheet_remove_as_admin">Odstrani kot skrbnika</string>
   <string name="RecipientBottomSheet_remove_from_group">Odstrani iz skupine</string>
-  <string name="RecipientBottomSheet_remove_s_as_group_admin">Odstranim uporabnika %1$s kot administratorja skupine?</string>
+  <string name="RecipientBottomSheet_remove_s_as_group_admin">Odstranim uporabnika %1$s kot skrbnika skupine?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">Uporabnik %1$s bo lahko urejal skupino in njeno članstvo</string>
   <string name="RecipientBottomSheet_remove_s_from_s">Odtsranim uporabnika %1$s iz skupine \"%2$s\"?</string>
   <string name="RecipientBottomSheet_remove">Odstrani</string>
-  <string name="GroupRecipientListItem_admin">Admin</string>
+  <string name="GroupRecipientListItem_admin">Skrbnik</string>
   <!--EOF-->
 </resources>

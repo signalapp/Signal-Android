@@ -433,6 +433,7 @@
   <string name="ManageGroupActivity_leave_group">Forlasi la grupon</string>
   <string name="ManageGroupActivity_mute_notifications">Silentigi sciigojn</string>
   <string name="ManageGroupActivity_custom_notifications">Propraj sciigoj</string>
+  <string name="ManageGroupActivity_until_s">Ĝis %1$s</string>
   <string name="ManageGroupActivity_off">Malŝaltita</string>
   <string name="ManageGroupActivity_on">Ŝaltita</string>
   <string name="ManageGroupActivity_add_members">Aldoni anojn</string>
@@ -671,6 +672,7 @@
   <string name="MessageRequestBottomView_unblock">Malbloki</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ĉu vi volas, ke %1$s mesaĝu al vi? Ili ne scios, ke vi vidas iliajn mesaĝojn, se vi ne akceptas.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Ĉu vi volas anigi al la grupo %1$s? Ili ne scios, ke vi vidas iliajn mesaĝojn, se vi ne akceptas.</string>
+  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Oni invitis vin aniĝi al la grupo „%1$s“. Ĉu vi volas ricevi mesaĝojn el anoj de tiu grupo?</string>
   <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Malbloki %1$s por povi mesaĝi kaj alvoki unu al la alia.</string>
   <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Malbloki por permesi al grupanoj aldoni vin al tiu grupo denove.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Ano de %1$s</string>
@@ -759,6 +761,7 @@
   <string name="RatingManager_later">Poste</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Nu, la aplikaĵo „Play Store“ ŝajne ne estas instalita sur via aparato.</string>
   <!--ReactionsBottomSheetDialogFragment-->
+  <string name="ReactionsBottomSheetDialogFragment_all">Ĉiuj · %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
@@ -785,7 +788,13 @@
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">La numero, kiun vi alvokis, ne subtenas sekurigan komunikon!</string>
   <string name="RedPhone_got_it">Bone</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Tuŝetu ĉi tie por ebligi vian videon</string>
+  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Por telefoni %1$s, Signal bezonas aliron al via fotilo</string>
+  <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
+  <string name="WebRtcCallActivity__calling">Konektado…</string>
   <!--WebRtcCallView-->
+  <string name="WebRtcCallView__signal_voice_call">Signal-voĉalvoko…</string>
+  <string name="WebRtcCallView__signal_video_call">Signal-vidalvoko…</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Elektu vian landon</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Vi devas specifi vian
@@ -911,6 +920,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="SupportEmailUtil_device_info">Aparatinformo:</string>
   <string name="SupportEmailUtil_android_version">Android-versio:</string>
   <string name="SupportEmailUtil_signal_version">Signal-versio:</string>
+  <string name="SupportEmailUtil_signal_package">Signal-pakaĵo:</string>
   <string name="SupportEmailUtil_locale">Lokaĵaro:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupo ĝisdatigita</string>
@@ -936,6 +946,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ThreadRecord_message_could_not_be_processed">Mesaĝo ne montreblas</string>
   <string name="ThreadRecord_message_request">Mesaĝopeto</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s aldonis vin al la grupo</string>
+  <string name="ThreadRecord_s_invited_you_to_the_group">%1$s invitis vin al la grupo</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Ĝisdatigo de Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Nova versio de Signal disponeblas, tuŝetu por ĝisdatigi</string>
@@ -1079,6 +1090,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Por respondi al la alvoko el %s, donu al Signal aliron al via mikrofono.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal bezonas permesojn uzi la mikrofonon kaj fotilon por fari aŭ ricevi alvokojn, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Mikrofono“ kaj „Fotilo“.</string>
+  <string name="WebRtcCallActivity__answered_on_a_linked_device">Respondita per ligita aparato.</string>
+  <string name="WebRtcCallActivity__declined_on_a_linked_device">Malakceptita per ligita aparato.</string>
+  <string name="WebRtcCallActivity__busy_on_a_linked_device">Okupita ĉe ligita aparato.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Via sekuriga numero pro via interparolo kun %1$s ŝanĝiĝis. Tio povas aŭ signifi, ke iu provas interkapti viajn komunikojn, aŭ ke %2$s simple reinstalis Signal-on.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Vi certe volos kontroli vian sekurigan numeron kun ĉi tiu kontakto.</string>
@@ -1086,7 +1100,11 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="WebRtcCallScreen_accept">Akcepti</string>
   <string name="WebRtcCallScreen_end_call">Fini alvokon</string>
   <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__decline">Malakcepti</string>
+  <string name="WebRtcCallScreen__answer">Respondi</string>
+  <string name="WebRtcCallScreen__answer_without_video">Respondi sen video</string>
   <!--WebRtcAudioOutputToggle-->
+  <string name="WebRtcAudioOutputToggle__phone">Telefono</string>
   <string name="WebRtcAudioOutputToggle__speaker">Laŭtparolilo</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bludento</string>
   <!--WebRtcCallControls-->
@@ -1188,6 +1206,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Ŝargo de landlisto…</string>
   <string name="country_selection_fragment__search">Serĉi</string>
+  <string name="country_selection_fragment__no_matching_countries">Neniu kongrua lando</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Skani la rapidrespondan (QR) kodon montritan en la aparato por ligi ĝin</string>
   <!--device_link_fragment-->
@@ -1300,6 +1319,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="CreateProfileActivity__username">Uzantnomo</string>
   <string name="CreateProfileActivity__create_a_username">Krei uzantnomon</string>
   <!--EditProfileFragment-->
+  <string name="EditProfileFragment__edit_group_name_and_photo">Modifi nomon kaj bildon de la grupo</string>
   <string name="EditProfileFragment__group_name">Nomo de la grupo</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Aŭdvidaĵoj kunhavigitaj</string>
@@ -1387,6 +1407,16 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Priskribu laŭeble precize por helpi al ni kompreni la problemon.</string>
   <string name="HelpFragment__no_email_app_found">Neniu retpoŝtilo trovita.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Lastatempe uzitaj</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Miensimboloj kaj homoj</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Naturo</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Manĝo</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Faroj</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Lokoj</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Aĵoj</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Simboloj</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Flagoj</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoĝioj</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importi</string>
   <string name="arrays__use_default">Uzi defaŭltan</string>
@@ -1756,6 +1786,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
   <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">Bone</string>
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s vidos mesaĝopeton el vi. Vi povos alvoki, tuj post la akcepto de via peto.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Krei  PIN-on</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">La informoj konservitaj ĉe Signal estas  ĉifritaj danke al PIN.</string>
@@ -1885,6 +1916,13 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="RecipientBottomSheet_block">Bloki</string>
   <string name="RecipientBottomSheet_unblock">Malbloki</string>
   <string name="RecipientBottomSheet_view_safety_number">Montri sekurigan numeron</string>
+  <string name="RecipientBottomSheet_make_group_admin">Estigi grupadministranton</string>
+  <string name="RecipientBottomSheet_remove_as_admin">Forigi kiel administranton</string>
+  <string name="RecipientBottomSheet_remove_from_group">Forigi el la grupo</string>
+  <string name="RecipientBottomSheet_remove_s_as_group_admin">Forigi %1$s kiel grupadministranton?</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s povos modifi tiun grupon kaj ties anojn</string>
+  <string name="RecipientBottomSheet_remove_s_from_s">Ĉu forigi %1$s el „%2$s“?</string>
   <string name="RecipientBottomSheet_remove">Forviŝi</string>
+  <string name="GroupRecipientListItem_admin">Administranto</string>
   <!--EOF-->
 </resources>

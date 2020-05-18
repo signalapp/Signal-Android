@@ -225,6 +225,8 @@
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">このグループから退出し、すべての端末から削除します。</string>
   <string name="ConversationActivity_delete">削除</string>
   <string name="ConversationActivity_delete_and_leave">退出して削除</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$sと通話するには、Signalにマイクへのアクセスを許可してください。</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">%1$sと通話するには、Signal にマイクとカメラへのアクセスを許可してください。</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d 件の未読メッセージ</item>
@@ -395,16 +397,21 @@
     <item quantity="other">招待をキャンセルする時にエラーが発生しました</item>
   </plurals>
   <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__name_this_group">このグループの名前</string>
   <string name="AddGroupDetailsFragment__create">作成</string>
   <string name="AddGroupDetailsFragment__members">メンバー</string>
   <string name="AddGroupDetailsFragment__group_name_required">グループ名 (必須)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">この項目の入力は必須です。</string>
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">グループには少なくとも2人のメンバーが必要です。</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">グループの作成に失敗しました</string>
+  <string name="AddGroupDetailsFragment__try_again_later">再度試してください。</string>
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Signal グループに対応していない連絡先が選択されたため、このグループは MMS となります。</string>
   <string name="AddGroupDetailsFragment__remove">削除</string>
+  <string name="AddGroupDetailsFragment__sms_contact">SMS コンタクト</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">消えるメッセージ</string>
   <string name="ManageGroupActivity_pending_group_invites">保留中のグループ招待</string>
+  <string name="ManageGroupActivity_who_can_edit_group_membership">グループメンバーシップを変更できるメンバーを選択します</string>
   <string name="ManageGroupActivity_who_can_edit_group_info">グループ情報を編集できるユーザー</string>
   <string name="ManageGroupActivity_block_group">グループをブロック</string>
   <string name="ManageGroupActivity_leave_group">グループを抜ける</string>
@@ -414,15 +421,19 @@
   <string name="ManageGroupActivity_on">オン</string>
   <string name="ManageGroupActivity_add_members">メンバーを追加</string>
   <string name="ManageGroupActivity_view_all_members">全てのメンバーを表示</string>
+  <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">これを実行する権限がありません</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">グループの更新に失敗しました</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">あなたはこのグループのメンバーではありません</string>
   <string name="ManageGroupActivity_edit_name_and_picture">名前と写真の編集</string>
+  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">追加または招待する新しいメンバーを選択します</string>
+  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">グループ名と写真を変更できるメンバーを選択します</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="other">%1$s は%2$d人招待しました</item>
   </plurals>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">カスタム通知</string>
   <string name="CustomNotificationsDialogFragment__messages">メッセージ</string>
+  <string name="CustomNotificationsDialogFragment__use_custom_notifications">カスタム通知を使用</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">通知音</string>
   <string name="CustomNotificationsDialogFragment__vibrate">サイレントモード</string>
   <!--GV2 Invite cancellation confirmation-->
@@ -684,6 +695,7 @@
   <string name="PinRestoreEntryFragment_incorrect_pin">PIN が違います</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">PIN の入力を飛ばしますか?</string>
   <string name="PinRestoreEntryFragment_need_help">ヘルプが必要ですか?</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">PINは%1$d文字の数字もしくは文字です。 \n\nPINを忘れてしまっても、新しく作成できます。あなたのアカウントが登録する事や使用する事もできますが、プロファイル情報のような保存された設定が失ってしまいます。</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">もし PIN を思い出せない場合、新規に作成することができます。登録してアカウントを使用することはできますが、保存されたプロフィール設定などは失われます。</string>
   <string name="PinRestoreEntryFragment_create_new_pin">新しい PIN を作成</string>
   <string name="PinRestoreEntryFragment_contact_support">サポートに問い合わせる</string>
@@ -735,6 +747,9 @@
   <string name="RedPhone_got_it">分かりました</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">タップして動画を有効にする</string>
+  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$sと通話するには、Signalにカメラへのアクセスを許可してください。</string>
+  <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
+  <string name="WebRtcCallActivity__calling">通話中…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Signal 音声通話…</string>
   <string name="WebRtcCallView__signal_video_call">Signal ビデオ通話…</string>
@@ -853,6 +868,7 @@
   <string name="SupportEmailUtil_device_info">Device info:</string>
   <string name="SupportEmailUtil_android_version">Android version:</string>
   <string name="SupportEmailUtil_signal_version">Signal version:</string>
+  <string name="SupportEmailUtil_signal_package">Signal パッケージ:</string>
   <string name="SupportEmailUtil_locale">Locale:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">グループが更新されました</string>
@@ -878,6 +894,7 @@
   <string name="ThreadRecord_message_could_not_be_processed">メッセージを処理できませんでした</string>
   <string name="ThreadRecord_message_request">メッセージリクエスト</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s はあなたをこのグループに追加しました。</string>
+  <string name="ThreadRecord_s_invited_you_to_the_group">%1$s はあなたをグループに招待しました</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal アップデート</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal の最新版をご利用いただけます。タップしてアップデートしてください。</string>
@@ -1020,6 +1037,9 @@
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%s からの着信に出るには、Signal にマイクへのアクセスを許可してください。</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">通話をするには、Signal にマイクとカメラへのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューの「アクセス許可」で「マイク」と「カメラ」を有効にしてください。</string>
+  <string name="WebRtcCallActivity__answered_on_a_linked_device">他のデバイスから応答がありました。</string>
+  <string name="WebRtcCallActivity__declined_on_a_linked_device">他のデバイスから応答がありました。</string>
+  <string name="WebRtcCallActivity__busy_on_a_linked_device">リンクされたデバイスで会話中です。</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">%1$s との会話に対する安全番号が変更されました。誰かが通話を傍受しようと試みているか、%2$s が Signal を再インストールした可能性があります。</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">この連絡先に対する安全番号を確認することをお勧めします。</string>
@@ -1027,7 +1047,9 @@
   <string name="WebRtcCallScreen_accept">承認</string>
   <string name="WebRtcCallScreen_end_call">通話を終了</string>
   <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__decline">拒否</string>
   <string name="WebRtcCallScreen__answer">応答</string>
+  <string name="WebRtcCallScreen__answer_without_video">ビデオなしで応答</string>
   <!--WebRtcAudioOutputToggle-->
   <string name="WebRtcAudioOutputToggle__phone">電話番号</string>
   <string name="WebRtcAudioOutputToggle__speaker">スピーカー</string>
@@ -1131,6 +1153,7 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">国名を読み込んでいます…</string>
   <string name="country_selection_fragment__search">検索</string>
+  <string name="country_selection_fragment__no_matching_countries">国がありません</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">リンクするデバイスに表示されている QR コードをスキャンしてください</string>
   <!--device_link_fragment-->
@@ -1324,7 +1347,16 @@
   <string name="HelpFragment__please_be_as_descriptive_as_possible">どのような問題が発生しているのか、詳細に記述してください。</string>
   <string name="HelpFragment__no_email_app_found">メールアプリがありません。</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使った</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">スマイリーと人々</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">自然</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">食品</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">活動</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">場所</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">物体</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">象徴</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">旗</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">絵文字</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">インポート</string>
   <string name="arrays__use_default">既定を使う</string>

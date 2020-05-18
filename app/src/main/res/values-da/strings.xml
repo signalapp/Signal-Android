@@ -229,8 +229,8 @@
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Du forlader gruppen og den vil blive slettet fra alle dine enheder</string>
   <string name="ConversationActivity_delete">Slet</string>
   <string name="ConversationActivity_delete_and_leave">Slet og forlad</string>
-  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">For at ringe til %1$s kræver Signal tilladelse til at tilgå din mikrofon.</string>
-  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">For at ringe til %1$s Signal, kræver Signal tilladelse til at tilgå din mikrofon og dit kamera.</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">For at ringe til %1$s kræver Signal tilladelse til at tilgå din mikrofon</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">For at ringe til %1$s, kræver Signal tilladelse til at tilgå din mikrofon og dit kamera</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ulæst besked</item>
@@ -414,7 +414,7 @@
     <item quantity="other">Fejl ved annullering af invitationer</item>
   </plurals>
   <!--AddGroupDetailsFragment-->
-  <string name="AddGroupDetailsFragment__name_this_group">Navngiv denne gruppe</string>
+  <string name="AddGroupDetailsFragment__name_this_group">Navngiv gruppen</string>
   <string name="AddGroupDetailsFragment__create">Opret</string>
   <string name="AddGroupDetailsFragment__members">Medlemmer</string>
   <string name="AddGroupDetailsFragment__group_name_required">Gruppenavn (påkrævet)</string>

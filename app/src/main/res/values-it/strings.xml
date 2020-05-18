@@ -229,7 +229,7 @@
   <string name="ConversationActivity_delete">Elimina</string>
   <string name="ConversationActivity_delete_and_leave">Elimina e abbandona</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Per chiamare %1$s, Signal necessita dell\'accesso al tuo microfono</string>
-  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Per chiamare %1$s, Signal necessita dell\'accesso al tuo microfono e alla tua fotocamera. </string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Per chiamare %1$s, Signal necessita dell\'accesso al tuo microfono e alla tua fotocamera.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d messaggio non letto</item>
@@ -921,7 +921,7 @@
   <string name="SupportEmailUtil_device_info">Informazioni sul dispositivo:</string>
   <string name="SupportEmailUtil_android_version">Versione di Android:</string>
   <string name="SupportEmailUtil_signal_version">Versione di Signal:</string>
-  <string name="SupportEmailUtil_signal_package">Pacchetto Signal:</string>
+  <string name="SupportEmailUtil_signal_package">Pacchetto di Signal:</string>
   <string name="SupportEmailUtil_locale">Lingua:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Gruppo aggiornato</string>

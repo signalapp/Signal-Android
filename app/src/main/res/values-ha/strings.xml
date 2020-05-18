@@ -157,6 +157,7 @@
   <string name="ConversationItem_read_more">  Kara karatu</string>
   <string name="ConversationItem_download_more">  Sauke kari</string>
   <string name="ConversationItem_pending">  Yana tafiya</string>
+  <string name="ConversationItem_this_message_was_deleted">An goge sakon</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Kara saitin mahajin bayanai masu tsaro?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Wannan zai iya taimakawa idan akasamu matsala da tsaro a wannan hiran. Ba zaka/ki rasa sakwanninka ba.</string>
@@ -255,6 +256,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Zaka/ki iya doke ta gefen hagu domin amsa ko wanne sako da wuri.</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Idan midiya na ciki saitin view-once da zaran anturasu za\'a cire.</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Ka/kin riga ka/kin karanta wannan sakon.</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Zak/ki iya rubutawa kanka/Kanji Karin bayani a wannan hirar. Idan asusunka/ki a hade yake da wani na\'ura, za\'a tantance sabbobin rkarin bayani. </string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Ba burauza a wannan na\'urar</string>
   <!--ConversationListFragment-->
@@ -686,6 +688,7 @@
   <string name="RegistrationActivity_country_code_description">Lambar kasa</string>
   <string name="RegistrationActivity_call">Kira</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Idan ka/kika manta da lambobin sirrin Signal dinka/ki duk sanda zaka/ki yi rijistar Signal nan gaba, za\'a kulle asusunka/ki har tsawon kwana 7. </string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Kalli hoto</string>
   <string name="RevealableMessageView_view_video">Kalli bidiyo</string>
@@ -763,6 +766,7 @@
   <string name="ThreadRecord_view_once_photo">Photo mai kallo daya</string>
   <string name="ThreadRecord_view_once_video">Bidiyo mai kallo daya</string>
   <string name="ThreadRecord_view_once_media">Midiya mai kallo daya</string>
+  <string name="ThreadRecord_this_message_was_deleted">An goge sakon</string>
   <string name="ThreadRecord_s_is_on_signal">%s ya/tana Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">An kashe bacewar sako</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">An saita bacewar sako zuwa %s</string>
@@ -871,6 +875,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Ya/ta yi martanin %1$s akan hotonka/ki mai kallo daya.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">Ya/ta yi martanin %1$s akan bidiyonka/ki mai kallo daya.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Ya/ta yi martanin%1$s akan sitikarka/ki.</string>
+  <string name="MessageNotifier_this_message_was_deleted">An goge sakon</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Tanadadde</string>
   <string name="NotificationChannel_calls">Kira</string>
@@ -1498,6 +1503,7 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">Kirkiri sabon lambobin sirri</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Zaka/ki iya canza lambobin sirrinka/ki idan da rijista akan wannan na\'ura. </string>
   <string name="CreateKbsPinFragment__create_your_pin">Kirkiri lambobin sirrinka/ki</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Ka/ki tsare bayanai da ka/kika ajiye da Signal domin ya Zaman to kai/ke kadai ne/ceke damar isonshi. Furofayil, saiti, da lambobin sadarwarka/ki za su dawo saitin ainihi idan ka/kika sake girka Signal. </string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Zabi lambobin sirri masu karfi</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">An samu kuskuren lambobin sirri. Kara gwadawa.</string>
@@ -1508,6 +1514,7 @@
   <string name="ConfirmKbsPinFragment__creating_pin">Ana kirkirar lambobin sirri</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Gabatar da lambobin sirri</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Ka/ki tsare bayanai da ka/kika ajiye da Signal domin ya Zaman to kai/ke kadai ne/ceke damar isonshi. Furofayil, saiti, da lambobin sadarwarka/ki za su dawo saitin ainihi idan ka/kika sake girka Signal. </string>
   <string name="KbsSplashFragment__learn_more">Karin bayani</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Makullin rijista = Lambobin sirri</string>
   <string name="KbsSplashFragment__read_more_about_pins">Karanta karin bayanin akan ambobin sirri.</string>
@@ -1602,6 +1609,7 @@
   <string name="preferences_app_protection__signal_pin">Lambobin sirrin Signal</string>
   <string name="preferences_app_protection__create_a_pin">Kirkira lambobin sirri</string>
   <string name="preferences_app_protection__change_your_pin">Canza lambobin sirri</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Ka/ki tsare bayanai da ka/kika ajiye da Signal domin ya Zaman to kai/ke kadai ne/ceke damar isonshi. Furofayil, saiti, da lambobin sadarwarka/ki za su dawo saitin ainihi idan ka/kika sake girka Signal. </string>
   <string name="AppProtectionPreferenceFragment_none">Babu.</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Lambar sirrin rijista ba daya bane da lambar sirrin tabbatarwar SMS da ka/kika samu. Dan shigar da lambar sirrin that ka/kika fara sakawa a manhajar.</string>
   <string name="registration_activity__registration_lock_pin">Lambar sirrin rijista</string>
