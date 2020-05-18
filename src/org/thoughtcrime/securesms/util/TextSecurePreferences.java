@@ -1305,6 +1305,14 @@ public class TextSecurePreferences {
     setLongPreference(context, "last_profile_picture_upload", newValue);
   }
 
+  public static boolean hasSeenGIFMetaDataWarning(Context context) {
+    return getBooleanPreference(context, "has_seen_gif_metadata_warning", false);
+  }
+
+  public static void setHasSeenGIFMetaDataWarning(Context context) {
+    setBooleanPreference(context, "has_seen_gif_metadata_warning", true);
+  }
+
   public static void clearAll(Context context) {
     PreferenceManager.getDefaultSharedPreferences(context).edit().clear().commit();
   }

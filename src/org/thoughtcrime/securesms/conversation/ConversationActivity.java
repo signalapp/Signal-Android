@@ -1894,15 +1894,21 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case AttachmentTypeSelector.TAKE_PHOTO:
       attachmentManager.capturePhoto(this, TAKE_PHOTO); break;
     case AttachmentTypeSelector.ADD_GIF:
-      AlertDialog.Builder builder = new AlertDialog.Builder(this);
-      builder.setTitle("Search GIFs?");
-      builder.setMessage("You will not have full metadata protection when sending GIFs.");
-      builder.setPositiveButton("OK", (dialog, which) -> {
+      boolean hasSeenGIFMetaDataWarning = TextSecurePreferences.hasSeenGIFMetaDataWarning(this);
+      if (!hasSeenGIFMetaDataWarning) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Search GIFs?");
+        builder.setMessage("You will not have full metadata protection when sending GIFs.");
+        builder.setPositiveButton("OK", (dialog, which) -> {
+          AttachmentManager.selectGif(this, PICK_GIF, !isSecureText);
+          dialog.dismiss();
+        });
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+        builder.create().show();
+        TextSecurePreferences.setHasSeenGIFMetaDataWarning(this);
+      } else {
         AttachmentManager.selectGif(this, PICK_GIF, !isSecureText);
-        dialog.dismiss();
-      });
-      builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss() );
-      builder.create().show();
+      }
       break;
     }
   }
