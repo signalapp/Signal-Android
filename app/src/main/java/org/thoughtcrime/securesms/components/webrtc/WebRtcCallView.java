@@ -360,7 +360,7 @@ public class WebRtcCallView extends FrameLayout {
 
     controls = webRtcControls;
 
-    if (!currentVisibleViewSet.equals(lastVisibleSet)) {
+    if (!currentVisibleViewSet.equals(lastVisibleSet) || !shouldFadeControls(controls)) {
       fadeInNewUiState(lastVisibleSet);
       post(() -> pictureInPictureGestureHelper.setVerticalBoundaries(status.getBottom(), speakerToggle.getTop()));
     }
