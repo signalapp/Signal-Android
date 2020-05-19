@@ -8,6 +8,7 @@ import androidx.annotation.WorkerThread;
 
 import com.google.protobuf.ByteString;
 
+import org.signal.storageservice.protos.groups.GroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
@@ -48,16 +49,20 @@ public final class GroupProtoUtil {
 
   public static DecryptedGroupV2Context createDecryptedGroupV2Context(@NonNull GroupMasterKey masterKey,
                                                                       @NonNull DecryptedGroup decryptedGroup,
-                                                                      @Nullable DecryptedGroupChange plainGroupChange)
+                                                                      @Nullable DecryptedGroupChange plainGroupChange,
+                                                                      @Nullable GroupChange signedServerChange)
   {
     int version = plainGroupChange != null ? plainGroupChange.getVersion() : decryptedGroup.getVersion();
-    SignalServiceProtos.GroupContextV2 groupContext = SignalServiceProtos.GroupContextV2.newBuilder()
-                                                                         .setMasterKey(ByteString.copyFrom(masterKey.serialize()))
-                                                                         .setRevision(version)
-                                                                         .build();
+    SignalServiceProtos.GroupContextV2.Builder contextBuilder = SignalServiceProtos.GroupContextV2.newBuilder()
+                                                                                                  .setMasterKey(ByteString.copyFrom(masterKey.serialize()))
+                                                                                                  .setRevision(version);
+
+    if (signedServerChange != null) {
+      contextBuilder.setGroupChange(signedServerChange.toByteString());
+    }
 
     DecryptedGroupV2Context.Builder builder = DecryptedGroupV2Context.newBuilder()
-                                                                     .setContext(groupContext)
+                                                                     .setContext(contextBuilder.build())
                                                                      .setGroupState(decryptedGroup);
 
     if (plainGroupChange != null) {

@@ -445,7 +445,7 @@ public final class PushProcessMessageJob extends BaseJob {
       throws IOException, GroupChangeBusyException
   {
     try {
-      GroupManager.updateGroupFromServer(context, groupMasterKey, groupV2.getRevision(), content.getTimestamp());
+      GroupManager.updateGroupFromServer(context, groupMasterKey, groupV2.getRevision(), content.getTimestamp(), groupV2.getSignedGroupChange());
       return true;
     } catch (GroupNotAMemberException e) {
       Log.w(TAG, "Ignoring message for a group we're not in");

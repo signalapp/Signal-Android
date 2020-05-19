@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import com.google.protobuf.InvalidProtocolBufferException;
+
 import org.signal.storageservice.protos.groups.AccessControl;
 import org.signal.storageservice.protos.groups.GroupChange;
 import org.signal.storageservice.protos.groups.Member;
@@ -144,7 +146,7 @@ final class GroupManagerV2 {
         groupDatabase.onAvatarUpdated(groupId, avatar != null);
         DatabaseFactory.getRecipientDatabase(context).setProfileSharing(groupRecipient.getId(), true);
 
-        return sendGroupUpdate(masterKey, decryptedGroup, null);
+        return sendGroupUpdate(masterKey, decryptedGroup, null, null);
       } catch (VerificationFailedException | InvalidGroupStateException e) {
         throw new GroupChangeFailedException(e);
       }
@@ -354,7 +356,7 @@ final class GroupManagerV2 {
           throws IOException, GroupNotAMemberException, GroupChangeFailedException
     {
       GroupsV2StateProcessor.GroupUpdateResult groupUpdateResult = groupsV2StateProcessor.forGroup(groupMasterKey)
-                                                                                         .updateLocalGroupToRevision(GroupsV2StateProcessor.LATEST, System.currentTimeMillis());
+                                                                                         .updateLocalGroupToRevision(GroupsV2StateProcessor.LATEST, System.currentTimeMillis(), null);
 
       if (groupUpdateResult.getGroupState() != GroupsV2StateProcessor.GroupState.GROUP_UPDATED || groupUpdateResult.getLatestServer() == null) {
         throw new GroupChangeFailedException();
@@ -390,24 +392,24 @@ final class GroupManagerV2 {
         throw new IOException(e);
       }
 
-      commitToServer(changeActions);
+      GroupChange signedGroupChange = commitToServer(changeActions);
       groupDatabase.update(groupId, decryptedGroupState);
 
-      return sendGroupUpdate(groupMasterKey, decryptedGroupState, decryptedChange);
+      return sendGroupUpdate(groupMasterKey, decryptedGroupState, decryptedChange, signedGroupChange);
     }
 
-    private void commitToServer(GroupChange.Actions change)
+    private GroupChange commitToServer(GroupChange.Actions change)
         throws GroupNotAMemberException, GroupChangeFailedException, IOException, GroupInsufficientRightsException
     {
       try {
-        groupsV2Api.patchGroup(change, groupSecretParams, authorization.getAuthorizationForToday(selfUuid, groupSecretParams));
+        return groupsV2Api.patchGroup(change, authorization.getAuthorizationForToday(selfUuid, groupSecretParams));
       } catch (NotInGroupException e) {
         Log.w(TAG, e);
         throw new GroupNotAMemberException(e);
       } catch (AuthorizationFailedException e) {
         Log.w(TAG, e);
         throw new GroupInsufficientRightsException(e);
-      } catch (VerificationFailedException | InvalidGroupStateException e) {
+      } catch (VerificationFailedException e) {
         Log.w(TAG, e);
         throw new GroupChangeFailedException(e);
       }
@@ -430,11 +432,25 @@ final class GroupManagerV2 {
     }
 
     @WorkerThread
-    void updateLocalToServerVersion(int version, long timestamp)
+    void updateLocalToServerVersion(int version, long timestamp, @Nullable byte[] signedGroupChange)
         throws IOException, GroupNotAMemberException
     {
-        new GroupsV2StateProcessor(context).forGroup(groupMasterKey)
-                                           .updateLocalGroupToRevision(version, timestamp);
+      new GroupsV2StateProcessor(context).forGroup(groupMasterKey)
+                                         .updateLocalGroupToRevision(version, timestamp, getDecryptedGroupChange(signedGroupChange));
+    }
+
+    private DecryptedGroupChange getDecryptedGroupChange(@Nullable byte[] signedGroupChange) {
+      if (signedGroupChange != null) {
+        GroupsV2Operations.GroupOperations groupOperations = groupsV2Operations.forGroup(GroupSecretParams.deriveFromMasterKey(groupMasterKey));
+
+        try {
+          return groupOperations.decryptChange(GroupChange.parseFrom(signedGroupChange), true);
+        } catch (VerificationFailedException | InvalidGroupStateException | InvalidProtocolBufferException e) {
+          Log.w(TAG, "Unable to verify supplied group change", e);
+        }
+      }
+
+      return null;
     }
 
     @Override
@@ -445,11 +461,12 @@ final class GroupManagerV2 {
 
   private @NonNull GroupManager.GroupActionResult sendGroupUpdate(@NonNull GroupMasterKey masterKey,
                                                                   @NonNull DecryptedGroup decryptedGroup,
-                                                                  @Nullable DecryptedGroupChange plainGroupChange)
+                                                                  @Nullable DecryptedGroupChange plainGroupChange,
+                                                                  @Nullable GroupChange signedGroupChange)
   {
     GroupId.V2                groupId                 = GroupId.v2(masterKey);
     Recipient                 groupRecipient          = Recipient.externalGroup(context, groupId);
-    DecryptedGroupV2Context   decryptedGroupV2Context = GroupProtoUtil.createDecryptedGroupV2Context(masterKey, decryptedGroup, plainGroupChange);
+    DecryptedGroupV2Context   decryptedGroupV2Context = GroupProtoUtil.createDecryptedGroupV2Context(masterKey, decryptedGroup, plainGroupChange, signedGroupChange);
     OutgoingGroupUpdateMessage outgoingMessage        = new OutgoingGroupUpdateMessage(groupRecipient,
                                                                                        decryptedGroupV2Context,
                                                                                        null,

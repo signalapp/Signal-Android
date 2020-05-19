@@ -132,21 +132,47 @@ public final class GroupsV2StateProcessor {
      */
     @WorkerThread
     public GroupUpdateResult updateLocalGroupToRevision(final int revision,
-                                                        final long timestamp)
+                                                        final long timestamp,
+                                                        @Nullable DecryptedGroupChange signedGroupChange)
         throws IOException, GroupNotAMemberException
     {
       if (localIsAtLeast(revision)) {
         return new GroupUpdateResult(GroupState.GROUP_CONSISTENT_OR_AHEAD, null);
       }
 
-      GlobalGroupState inputGroupState;
-      try {
-        inputGroupState = queryServer();
-      } catch (GroupNotAMemberException e) {
-        Log.w(TAG, "Unable to query server for group " + groupId + " server says we're not in group, inserting leave message");
-        insertGroupLeave();
-        throw e;
+      GlobalGroupState inputGroupState = null;
+
+      DecryptedGroup localState = groupDatabase.getGroup(groupId)
+                                               .transform(g -> g.requireV2GroupProperties().getDecryptedGroup())
+                                               .orNull();
+
+      if (signedGroupChange != null &&
+          localState != null &&
+          localState.getVersion() + 1 == signedGroupChange.getVersion() &&
+          revision == signedGroupChange.getVersion())
+      {
+        try {
+          Log.i(TAG, "Applying P2P group change");
+          DecryptedGroup newState = DecryptedGroupUtil.apply(localState, signedGroupChange);
+
+          inputGroupState = new GlobalGroupState(localState, Collections.singletonList(new GroupLogEntry(newState, signedGroupChange)));
+        } catch (DecryptedGroupUtil.NotAbleToApplyChangeException e) {
+          Log.w(TAG, "Unable to apply P2P group change", e);
+        }
       }
+
+      if (inputGroupState == null) {
+        try {
+          inputGroupState = queryServer(localState);
+        } catch (GroupNotAMemberException e) {
+          Log.w(TAG, "Unable to query server for group " + groupId + " server says we're not in group, inserting leave message");
+          insertGroupLeave();
+          throw e;
+        }
+      } else {
+        Log.i(TAG, "Saved server query for group change");
+      }
+
       AdvanceGroupStateResult advanceGroupStateResult = GroupStateMapper.partiallyAdvanceGroupState(inputGroupState, revision);
       DecryptedGroup          newLocalState           = advanceGroupStateResult.getNewGlobalGroupState().getLocalState();
 
@@ -185,7 +211,7 @@ public final class GroupsV2StateProcessor {
                                                                       .addDeleteMembers(UuidUtil.toByteString(selfUuid))
                                                                       .build();
 
-      DecryptedGroupV2Context    decryptedGroupV2Context = GroupProtoUtil.createDecryptedGroupV2Context(masterKey, simulatedGroupState, simulatedGroupChange);
+      DecryptedGroupV2Context    decryptedGroupV2Context = GroupProtoUtil.createDecryptedGroupV2Context(masterKey, simulatedGroupState, simulatedGroupChange, null);
       OutgoingGroupUpdateMessage leaveMessage            = new OutgoingGroupUpdateMessage(groupRecipient,
                                                                                           decryptedGroupV2Context,
                                                                                           null,
@@ -245,7 +271,7 @@ public final class GroupsV2StateProcessor {
 
     private void insertUpdateMessages(long timestamp, Collection<GroupLogEntry> processedLogEntries) {
       for (GroupLogEntry entry : processedLogEntries) {
-        storeMessage(GroupProtoUtil.createDecryptedGroupV2Context(masterKey, entry.getGroup(), entry.getChange()), timestamp);
+        storeMessage(GroupProtoUtil.createDecryptedGroupV2Context(masterKey, entry.getGroup(), entry.getChange(), null), timestamp);
       }
     }
 
@@ -266,15 +292,12 @@ public final class GroupsV2StateProcessor {
       }
     }
 
-    private GlobalGroupState queryServer()
+    private @NonNull GlobalGroupState queryServer(@Nullable DecryptedGroup localState)
         throws IOException, GroupNotAMemberException
     {
       DecryptedGroup      latestServerGroup;
       List<GroupLogEntry> history;
-      UUID                selfUuid   = Recipient.self().getUuid().get();
-      DecryptedGroup      localState = groupDatabase.getGroup(groupId)
-                                                    .transform(g -> g.requireV2GroupProperties().getDecryptedGroup())
-                                                    .orNull();
+      UUID                selfUuid          = Recipient.self().getUuid().get();
 
       try {
         latestServerGroup = groupsV2Api.getGroup(groupSecretParams, groupsV2Authorization.getAuthorizationForToday(selfUuid, groupSecretParams));

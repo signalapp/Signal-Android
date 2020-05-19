@@ -87,7 +87,7 @@ public final class RequestGroupV2InfoJob extends BaseJob {
       return;
     }
 
-    GroupManager.updateGroupFromServer(context, group.get().requireV2GroupProperties().getGroupMasterKey(), toRevision, System.currentTimeMillis());
+    GroupManager.updateGroupFromServer(context, group.get().requireV2GroupProperties().getGroupMasterKey(), toRevision, System.currentTimeMillis(), null);
   }
 
   @Override
