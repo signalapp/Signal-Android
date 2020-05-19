@@ -130,23 +130,16 @@ class ConversationDataSource extends PositionalDataSource<MessageRecord> {
   }
 
   static class Invalidator {
-    private boolean  invalidated;
     private Runnable callback;
 
     synchronized void invalidate() {
-      invalidated = true;
-
       if (callback != null) {
         callback.run();
       }
     }
 
     private synchronized void observe(@NonNull Runnable callback) {
-      if (invalidated) {
-        callback.run();
-      } else {
-        this.callback = callback;
-      }
+      this.callback = callback;
     }
   }
 
