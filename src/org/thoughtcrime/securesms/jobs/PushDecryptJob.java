@@ -1451,6 +1451,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
 
     if (SessionMetaProtocol.shouldIgnoreMessage(content)) {
+      Log.d("Loki", "Ignoring duplicate message.");
       return true;
     }
 
