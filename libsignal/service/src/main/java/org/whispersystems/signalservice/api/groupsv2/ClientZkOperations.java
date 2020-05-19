@@ -3,7 +3,6 @@ package org.whispersystems.signalservice.api.groupsv2;
 import org.signal.zkgroup.ServerPublicParams;
 import org.signal.zkgroup.auth.ClientZkAuthOperations;
 import org.signal.zkgroup.profiles.ClientZkProfileOperations;
-import org.whispersystems.signalservice.FeatureFlags;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 
 /**
@@ -24,8 +23,7 @@ public final class ClientZkOperations {
   }
 
   public static ClientZkOperations create(SignalServiceConfiguration configuration) {
-    return FeatureFlags.ZK_GROUPS ? new ClientZkOperations(new ServerPublicParams(configuration.getZkGroupServerPublicParams()))
-                                  : new ClientZkOperations(null);
+    return new ClientZkOperations(new ServerPublicParams(configuration.getZkGroupServerPublicParams()));
   }
 
   public ClientZkAuthOperations getAuthOperations() {

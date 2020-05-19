@@ -425,11 +425,7 @@ public final class PushProcessMessageJob extends BaseJob {
       Log.w(TAG, e);
       handleCorruptMessage(e.getSender(), e.getSenderDevice(), timestamp, smsMessageId);
     } catch (BadGroupIdException e) {
-      if (!FeatureFlags.ZK_GROUPS) {
-        Log.w(TAG, "Ignoring message with GV2 - no ZK_GROUP library", e);
-      } else {
-        Log.w(TAG, "Ignoring message with bad group id", e);
-      }
+      Log.w(TAG, "Ignoring message with bad group id", e);
     }
   }
 

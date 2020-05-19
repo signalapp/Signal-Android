@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 
 public final class BadGroupIdException extends Exception {
 
-  public BadGroupIdException() {
+  BadGroupIdException() {
     super();
   }
 

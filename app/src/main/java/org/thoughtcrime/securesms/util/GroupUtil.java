@@ -41,9 +41,6 @@ public final class GroupUtil {
     if (groupContext.getGroupV1().isPresent()) {
       return GroupId.v1(groupContext.getGroupV1().get().getGroupId());
     } else if (groupContext.getGroupV2().isPresent()) {
-      if (!FeatureFlags.ZK_GROUPS) {
-        throw new BadGroupIdException();
-      }
       return GroupId.v2(groupContext.getGroupV2().get().getMasterKey());
     } else {
       throw new AssertionError();

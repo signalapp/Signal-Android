@@ -262,7 +262,7 @@ public final class FeatureFlags {
 
   /** Groups v2 send and receive. */
   public static boolean groupsV2() {
-    return org.whispersystems.signalservice.FeatureFlags.ZK_GROUPS && getBoolean(GROUPS_V2, false);
+    return getBoolean(GROUPS_V2, false);
   }
 
   /** Groups v2 send and receive. */
@@ -507,7 +507,4 @@ public final class FeatureFlags {
 
   /** Read and write versioned profile information. */
   public static final boolean VERSIONED_PROFILES = org.whispersystems.signalservice.FeatureFlags.VERSIONED_PROFILES;
-
-  /** Enabled ZKGroups library. */
-  public static final boolean ZK_GROUPS = org.whispersystems.signalservice.FeatureFlags.ZK_GROUPS;
 }
