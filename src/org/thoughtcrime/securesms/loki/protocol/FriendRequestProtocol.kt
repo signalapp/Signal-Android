@@ -151,6 +151,7 @@ object FriendRequestProtocol {
         // Guard against invalid state transitions
         if (threadFRStatus != LokiThreadFriendRequestStatus.REQUEST_SENDING && threadFRStatus != LokiThreadFriendRequestStatus.REQUEST_SENT
             && threadFRStatus != LokiThreadFriendRequestStatus.REQUEST_RECEIVED) { return }
+        Log.d("Loki", "Accepting friend request from $publicKey.")
         lokiThreadDB.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS)
         val lastMessageID = getLastMessageID(context, threadID)
         if (lastMessageID != null) {
@@ -208,6 +209,7 @@ object FriendRequestProtocol {
         val lokiThreadDB = DatabaseFactory.getLokiThreadDatabase(context)
         val threadFRStatus = lokiThreadDB.getFriendRequestStatus(threadID)
         if (canFriendRequestBeAutoAccepted(context, publicKey)) {
+            Log.d("Loki", "Auto-accepting friend request from $publicKey.")
             lokiThreadDB.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS)
             val lastMessageID = getLastMessageID(context, threadID)
             if (lastMessageID != null) {
@@ -217,6 +219,7 @@ object FriendRequestProtocol {
             val ephemeralMessage = EphemeralMessage.create(publicKey)
             ApplicationContext.getInstance(context).jobManager.add(PushEphemeralMessageSendJob(ephemeralMessage))
         } else if (threadFRStatus != LokiThreadFriendRequestStatus.FRIENDS) {
+            Log.d("Loki", "Handling friend request from $publicKey.")
             // Checking that the sender of the message isn't already a friend is necessary because otherwise
             // the following situation can occur: Alice and Bob are friends. Bob loses his database and his
             // friend request status is reset to NONE. Bob now sends Alice a friend request. Alice's thread's
