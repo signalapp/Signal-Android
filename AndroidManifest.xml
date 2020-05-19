@@ -16,12 +16,6 @@
     <uses-feature
         android:name="android.hardware.bluetooth"
         android:required="false" />
-    <!--
- Loki - Enable again once we have location sharing
-    <uses-feature android:name="android.hardware.location" android:required="false"/>
-    <uses-feature android:name="android.hardware.location.network" android:required="false"/>
-    <uses-feature android:name="android.hardware.location.gps" android:required="false"/>
-    -->
     <uses-feature
         android:name="android.hardware.microphone"
         android:required="false" />
