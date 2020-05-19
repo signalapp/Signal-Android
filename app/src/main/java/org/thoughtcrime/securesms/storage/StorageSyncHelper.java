@@ -16,7 +16,6 @@ import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
 import org.thoughtcrime.securesms.jobs.StorageSyncJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.SetUtil;
@@ -26,6 +25,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
+import org.whispersystems.signalservice.api.storage.SignalGroupV2Record;
 import org.whispersystems.signalservice.api.storage.SignalRecord;
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
@@ -45,8 +45,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
-
-import javax.crypto.KeyGenerator;
 
 public final class StorageSyncHelper {
 
@@ -116,6 +114,11 @@ public final class StorageSyncHelper {
     Map<RecipientId, byte[]> storageKeyUpdates = new HashMap<>();
 
     for (RecipientSettings insert : inserts) {
+      if (insert.getGroupType() == RecipientDatabase.GroupType.SIGNAL_V2 && insert.getGroupMasterKey() == null) {
+        Log.w(TAG, "Missing master key on gv2 recipient");
+        continue;
+      }
+
       storageInserts.add(StorageSyncModels.localToRemoteRecord(insert, archivedRecipients));
 
       switch (insert.getGroupType()) {
@@ -124,6 +127,9 @@ public final class StorageSyncHelper {
           break;
         case SIGNAL_V1:
           completeIds.add(StorageId.forGroupV1(insert.getStorageId()));
+          break;
+        case SIGNAL_V2:
+          completeIds.add(StorageId.forGroupV2(insert.getStorageId()));
           break;
         default:
           throw new AssertionError("Unsupported type!");
@@ -153,6 +159,10 @@ public final class StorageSyncHelper {
         case SIGNAL_V1:
           oldId = StorageId.forGroupV1(update.getStorageId());
           newId = StorageId.forGroupV1(generateKey());
+          break;
+        case SIGNAL_V2:
+          oldId = StorageId.forGroupV2(update.getStorageId());
+          newId = StorageId.forGroupV2(generateKey());
           break;
         default:
           throw new AssertionError("Unsupported type!");
@@ -226,10 +236,12 @@ public final class StorageSyncHelper {
 
     List<SignalGroupV1Record> remoteOnlyGroupV1 = Stream.of(remoteOnlyRecords).filter(r -> r.getGroupV1().isPresent()).map(r -> r.getGroupV1().get()).toList();
     List<SignalGroupV1Record> localOnlyGroupV1  = Stream.of(localOnlyRecords).filter(r -> r.getGroupV1().isPresent()).map(r -> r.getGroupV1().get()).toList();
+    
+    List<SignalGroupV2Record> remoteOnlyGroupV2 = Stream.of(remoteOnlyRecords).filter(r -> r.getGroupV2().isPresent()).map(r -> r.getGroupV2().get()).toList();
+    List<SignalGroupV2Record> localOnlyGroupV2  = Stream.of(localOnlyRecords).filter(r -> r.getGroupV2().isPresent()).map(r -> r.getGroupV2().get()).toList();
 
-    // TODO [storage] Handle groupV2 when appropriate
-    List<SignalStorageRecord> remoteOnlyUnknowns = Stream.of(remoteOnlyRecords).filter(r -> r.isUnknown() || r.getGroupV2().isPresent()).toList();
-    List<SignalStorageRecord> localOnlyUnknowns  = Stream.of(localOnlyRecords).filter(r -> r.isUnknown()  || r.getGroupV2().isPresent()).toList();
+    List<SignalStorageRecord> remoteOnlyUnknowns = Stream.of(remoteOnlyRecords).filter(SignalStorageRecord::isUnknown).toList();
+    List<SignalStorageRecord> localOnlyUnknowns  = Stream.of(localOnlyRecords).filter(SignalStorageRecord::isUnknown).toList();
 
     List<SignalAccountRecord> remoteOnlyAccount = Stream.of(remoteOnlyRecords).filter(r -> r.getAccount().isPresent()).map(r -> r.getAccount().get()).toList();
     List<SignalAccountRecord> localOnlyAccount  = Stream.of(localOnlyRecords).filter(r -> r.getAccount().isPresent()).map(r -> r.getAccount().get()).toList();
@@ -242,11 +254,13 @@ public final class StorageSyncHelper {
 
     RecordMergeResult<SignalContactRecord> contactMergeResult = resolveRecordConflict(remoteOnlyContacts, localOnlyContacts, new ContactConflictMerger(localOnlyContacts, Recipient.self()));
     RecordMergeResult<SignalGroupV1Record> groupV1MergeResult = resolveRecordConflict(remoteOnlyGroupV1, localOnlyGroupV1, new GroupV1ConflictMerger(localOnlyGroupV1));
+    RecordMergeResult<SignalGroupV2Record> groupV2MergeResult = resolveRecordConflict(remoteOnlyGroupV2, localOnlyGroupV2, new GroupV2ConflictMerger(localOnlyGroupV2));
     RecordMergeResult<SignalAccountRecord> accountMergeResult = resolveRecordConflict(remoteOnlyAccount, localOnlyAccount, new AccountConflictMerger(localOnlyAccount.isEmpty() ? Optional.absent() : Optional.of(localOnlyAccount.get(0))));
 
     Set<SignalStorageRecord> remoteInserts = new HashSet<>();
     remoteInserts.addAll(Stream.of(contactMergeResult.remoteInserts).map(SignalStorageRecord::forContact).toList());
     remoteInserts.addAll(Stream.of(groupV1MergeResult.remoteInserts).map(SignalStorageRecord::forGroupV1).toList());
+    remoteInserts.addAll(Stream.of(groupV2MergeResult.remoteInserts).map(SignalStorageRecord::forGroupV2).toList());
     remoteInserts.addAll(Stream.of(accountMergeResult.remoteInserts).map(SignalStorageRecord::forAccount).toList());
 
     Set<RecordUpdate<SignalStorageRecord>> remoteUpdates = new HashSet<>();
@@ -255,6 +269,9 @@ public final class StorageSyncHelper {
                                .toList());
     remoteUpdates.addAll(Stream.of(groupV1MergeResult.remoteUpdates)
                                .map(c -> new RecordUpdate<>(SignalStorageRecord.forGroupV1(c.getOld()), SignalStorageRecord.forGroupV1(c.getNew())))
+                               .toList());
+    remoteUpdates.addAll(Stream.of(groupV2MergeResult.remoteUpdates)
+                               .map(c -> new RecordUpdate<>(SignalStorageRecord.forGroupV2(c.getOld()), SignalStorageRecord.forGroupV2(c.getNew())))
                                .toList());
     remoteUpdates.addAll(Stream.of(accountMergeResult.remoteUpdates)
                                .map(c -> new RecordUpdate<>(SignalStorageRecord.forAccount(c.getOld()), SignalStorageRecord.forAccount(c.getNew())))
@@ -269,6 +286,8 @@ public final class StorageSyncHelper {
                            contactMergeResult.localUpdates,
                            groupV1MergeResult.localInserts,
                            groupV1MergeResult.localUpdates,
+                           groupV2MergeResult.localInserts,
+                           groupV2MergeResult.localUpdates,
                            new LinkedHashSet<>(remoteOnlyUnknowns),
                            new LinkedHashSet<>(localOnlyUnknowns),
                            accountMergeResult.localUpdates.isEmpty() ? Optional.absent() : Optional.of(accountMergeResult.localUpdates.iterator().next()),
@@ -449,6 +468,8 @@ public final class StorageSyncHelper {
     private final Set<RecordUpdate<SignalContactRecord>>      localContactUpdates;
     private final Set<SignalGroupV1Record>                    localGroupV1Inserts;
     private final Set<RecordUpdate<SignalGroupV1Record>>      localGroupV1Updates;
+    private final Set<SignalGroupV2Record>                    localGroupV2Inserts;
+    private final Set<RecordUpdate<SignalGroupV2Record>>      localGroupV2Updates;
     private final Set<SignalStorageRecord>                    localUnknownInserts;
     private final Set<SignalStorageRecord>                    localUnknownDeletes;
     private final Optional<RecordUpdate<SignalAccountRecord>> localAccountUpdate;
@@ -461,6 +482,8 @@ public final class StorageSyncHelper {
                 @NonNull Set<RecordUpdate<SignalContactRecord>>      localContactUpdates,
                 @NonNull Set<SignalGroupV1Record>                    localGroupV1Inserts,
                 @NonNull Set<RecordUpdate<SignalGroupV1Record>>      localGroupV1Updates,
+                @NonNull Set<SignalGroupV2Record>                    localGroupV2Inserts,
+                @NonNull Set<RecordUpdate<SignalGroupV2Record>>      localGroupV2Updates,
                 @NonNull Set<SignalStorageRecord>                    localUnknownInserts,
                 @NonNull Set<SignalStorageRecord>                    localUnknownDeletes,
                 @NonNull Optional<RecordUpdate<SignalAccountRecord>> localAccountUpdate,
@@ -472,6 +495,8 @@ public final class StorageSyncHelper {
       this.localContactUpdates  = localContactUpdates;
       this.localGroupV1Inserts  = localGroupV1Inserts;
       this.localGroupV1Updates  = localGroupV1Updates;
+      this.localGroupV2Inserts  = localGroupV2Inserts;
+      this.localGroupV2Updates  = localGroupV2Updates;
       this.localUnknownInserts  = localUnknownInserts;
       this.localUnknownDeletes  = localUnknownDeletes;
       this.localAccountUpdate   = localAccountUpdate;
@@ -494,6 +519,14 @@ public final class StorageSyncHelper {
 
     public @NonNull Set<RecordUpdate<SignalGroupV1Record>> getLocalGroupV1Updates() {
       return localGroupV1Updates;
+    }
+    
+    public @NonNull Set<SignalGroupV2Record> getLocalGroupV2Inserts() {
+      return localGroupV2Inserts;
+    }
+
+    public @NonNull Set<RecordUpdate<SignalGroupV2Record>> getLocalGroupV2Updates() {
+      return localGroupV2Updates;
     }
 
     public @NonNull Set<SignalStorageRecord> getLocalUnknownInserts() {
@@ -525,10 +558,12 @@ public final class StorageSyncHelper {
 
       records.addAll(localContactInserts);
       records.addAll(localGroupV1Inserts);
+      records.addAll(localGroupV2Inserts);
       records.addAll(remoteInserts);
       records.addAll(localUnknownInserts);
       records.addAll(Stream.of(localContactUpdates).map(RecordUpdate::getNew).toList());
       records.addAll(Stream.of(localGroupV1Updates).map(RecordUpdate::getNew).toList());
+      records.addAll(Stream.of(localGroupV2Updates).map(RecordUpdate::getNew).toList());
       records.addAll(Stream.of(remoteUpdates).map(RecordUpdate::getNew).toList());
       if (localAccountUpdate.isPresent()) records.add(localAccountUpdate.get().getNew());
 
@@ -541,6 +576,7 @@ public final class StorageSyncHelper {
       records.addAll(localUnknownDeletes);
       records.addAll(Stream.of(localContactUpdates).map(RecordUpdate::getOld).toList());
       records.addAll(Stream.of(localGroupV1Updates).map(RecordUpdate::getOld).toList());
+      records.addAll(Stream.of(localGroupV2Updates).map(RecordUpdate::getOld).toList());
       records.addAll(Stream.of(remoteUpdates).map(RecordUpdate::getOld).toList());
       records.addAll(remoteDeletes);
       if (localAccountUpdate.isPresent()) records.add(localAccountUpdate.get().getOld());
@@ -551,8 +587,8 @@ public final class StorageSyncHelper {
     @Override
     public @NonNull String toString() {
       return String.format(Locale.ENGLISH,
-                           "localContactInserts: %d, localContactUpdates: %d, localGroupV1Inserts: %d, localGroupV1Updates: %d, localUnknownInserts: %d, localUnknownDeletes: %d, localAccountUpdate: %b, remoteInserts: %d, remoteUpdates: %d",
-                           localContactInserts.size(), localContactUpdates.size(), localGroupV1Inserts.size(), localGroupV1Updates.size(), localUnknownInserts.size(), localUnknownDeletes.size(), localAccountUpdate.isPresent(), remoteInserts.size(), remoteUpdates.size());
+                           "localContactInserts: %d, localContactUpdates: %d, localGroupV1Inserts: %d, localGroupV1Updates: %d, localGroupV2Inserts: %d, localGroupV2Updates: %d, localUnknownInserts: %d, localUnknownDeletes: %d, localAccountUpdate: %b, remoteInserts: %d, remoteUpdates: %d",
+                           localContactInserts.size(), localContactUpdates.size(), localGroupV1Inserts.size(), localGroupV1Updates.size(), localGroupV2Inserts.size(), localGroupV2Updates.size(), localUnknownInserts.size(), localUnknownDeletes.size(), localAccountUpdate.isPresent(), remoteInserts.size(), remoteUpdates.size());
     }
   }
 

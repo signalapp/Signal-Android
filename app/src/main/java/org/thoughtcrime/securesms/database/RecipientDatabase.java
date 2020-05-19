@@ -14,6 +14,8 @@ import com.google.android.gms.common.util.ArrayUtils;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
+import org.signal.zkgroup.InvalidInputException;
+import org.signal.zkgroup.groups.GroupMasterKey;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.thoughtcrime.securesms.color.MaterialColor;
@@ -23,6 +25,7 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.v2.ProfileKeySet;
+import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileName;
@@ -44,6 +47,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
+import org.whispersystems.signalservice.api.storage.SignalGroupV2Record;
 import org.whispersystems.signalservice.api.storage.StorageId;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
@@ -125,26 +129,25 @@ public class RecipientDatabase extends Database {
       STORAGE_SERVICE_ID, DIRTY
   };
 
+  private static final String[] ID_PROJECTION              = new String[]{ID};
+  private static final String[] SEARCH_PROJECTION          = new String[]{ID, SYSTEM_DISPLAY_NAME, PHONE, EMAIL, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, REGISTERED, "COALESCE(" + nullIfEmpty(PROFILE_JOINED_NAME) + ", " + nullIfEmpty(PROFILE_GIVEN_NAME) + ") AS " + SEARCH_PROFILE_NAME, "COALESCE(" + nullIfEmpty(SYSTEM_DISPLAY_NAME) + ", " + nullIfEmpty(PROFILE_JOINED_NAME) + ", " + nullIfEmpty(PROFILE_GIVEN_NAME) + ", " + nullIfEmpty(USERNAME) + ") AS " + SORT_NAME};
+  public  static final String[] SEARCH_PROJECTION_NAMES    = new String[]{ID, SYSTEM_DISPLAY_NAME, PHONE, EMAIL, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, REGISTERED, SEARCH_PROFILE_NAME, SORT_NAME};
+          static final String[] TYPED_RECIPIENT_PROJECTION = Stream.of(RECIPIENT_PROJECTION)
+                                                                   .map(columnName -> TABLE_NAME + "." + columnName)
+                                                                   .toList().toArray(new String[0]);
+
   private static final String[] RECIPIENT_FULL_PROJECTION = ArrayUtils.concat(
       new String[] { TABLE_NAME + "." + ID },
-      RECIPIENT_PROJECTION,
+      TYPED_RECIPIENT_PROJECTION,
       new String[] {
         IdentityDatabase.TABLE_NAME + "." + IdentityDatabase.VERIFIED + " AS " + IDENTITY_STATUS,
         IdentityDatabase.TABLE_NAME + "." + IdentityDatabase.IDENTITY_KEY + " AS " + IDENTITY_KEY
       });
 
-
   public static final String[] CREATE_INDEXS = new String[] {
       "CREATE INDEX IF NOT EXISTS recipient_dirty_index ON " + TABLE_NAME + " (" + DIRTY + ");",
       "CREATE INDEX IF NOT EXISTS recipient_group_type_index ON " + TABLE_NAME + " (" + GROUP_TYPE + ");",
   };
-
-  private static final String[]     ID_PROJECTION              = new String[]{ID};
-  private static final String[]     SEARCH_PROJECTION          = new String[]{ID, SYSTEM_DISPLAY_NAME, PHONE, EMAIL, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, REGISTERED, "COALESCE(" + nullIfEmpty(PROFILE_JOINED_NAME) + ", " + nullIfEmpty(PROFILE_GIVEN_NAME) + ") AS " + SEARCH_PROFILE_NAME, "COALESCE(" + nullIfEmpty(SYSTEM_DISPLAY_NAME) + ", " + nullIfEmpty(PROFILE_JOINED_NAME) + ", " + nullIfEmpty(PROFILE_GIVEN_NAME) + ", " + nullIfEmpty(USERNAME) + ") AS " + SORT_NAME};
-  public  static final String[]     SEARCH_PROJECTION_NAMES    = new String[]{ID, SYSTEM_DISPLAY_NAME, PHONE, EMAIL, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, REGISTERED, SEARCH_PROFILE_NAME, SORT_NAME};
-          static final List<String> TYPED_RECIPIENT_PROJECTION = Stream.of(RECIPIENT_PROJECTION)
-                                                                       .map(columnName -> TABLE_NAME + "." + columnName)
-                                                                       .toList();
 
   public enum VibrateState {
     DEFAULT(0), ENABLED(1), DISABLED(2);
@@ -241,7 +244,7 @@ public class RecipientDatabase extends Database {
   }
 
   public enum GroupType {
-    NONE(0), MMS(1), SIGNAL_V1(2);
+    NONE(0), MMS(1), SIGNAL_V1(2), SIGNAL_V2(3);
 
     private final int id;
 
@@ -366,7 +369,11 @@ public class RecipientDatabase extends Database {
       if (groupId.isMms()) {
         values.put(GROUP_TYPE, GroupType.MMS.getId());
       } else {
-        values.put(GROUP_TYPE, GroupType.SIGNAL_V1.getId());
+        if (groupId.isV2()) {
+          values.put(GROUP_TYPE, GroupType.SIGNAL_V2.getId());
+        } else {
+          values.put(GROUP_TYPE, GroupType.SIGNAL_V1.getId());
+        }
         values.put(DIRTY, DirtyState.INSERT.getId());
         values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(StorageSyncHelper.generateKey()));
       }
@@ -423,29 +430,46 @@ public class RecipientDatabase extends Database {
     return DirtyState.CLEAN;
   }
 
+  public @Nullable RecipientSettings getRecipientSettingsForSync(@NonNull RecipientId id) {
+    String   query = TABLE_NAME + "." + ID + " = ?";
+    String[] args  = new String[]{id.serialize()};
+
+    List<RecipientSettings> recipientSettingsForSync = getRecipientSettingsForSync(query, args);
+
+    if (recipientSettingsForSync.isEmpty()) {
+      return null;
+    }
+
+    if (recipientSettingsForSync.size() > 1) {
+      throw new AssertionError();
+    }
+
+    return recipientSettingsForSync.get(0);
+  }
+
   public @NonNull List<RecipientSettings> getPendingRecipientSyncUpdates() {
-    String   query = DIRTY + " = ? AND " + STORAGE_SERVICE_ID + " NOT NULL AND " + TABLE_NAME + "." + ID + " != ?";
+    String   query = TABLE_NAME + "." + DIRTY + " = ? AND " + TABLE_NAME + "." + STORAGE_SERVICE_ID + " NOT NULL AND " + TABLE_NAME + "." + ID + " != ?";
     String[] args  = new String[] { String.valueOf(DirtyState.UPDATE.getId()), Recipient.self().getId().serialize() };
 
-    return getRecipientSettings(query, args);
+    return getRecipientSettingsForSync(query, args);
   }
 
   public @NonNull List<RecipientSettings> getPendingRecipientSyncInsertions() {
-    String   query = DIRTY + " = ? AND " + STORAGE_SERVICE_ID + " NOT NULL AND " + TABLE_NAME + "." + ID + " != ?";
+    String   query = TABLE_NAME + "." + DIRTY + " = ? AND " + TABLE_NAME + "." + STORAGE_SERVICE_ID + " NOT NULL AND " + TABLE_NAME + "." + ID + " != ?";
     String[] args  = new String[] { String.valueOf(DirtyState.INSERT.getId()), Recipient.self().getId().serialize() };
 
-    return getRecipientSettings(query, args);
+    return getRecipientSettingsForSync(query, args);
   }
 
   public @NonNull List<RecipientSettings> getPendingRecipientSyncDeletions() {
-    String   query = DIRTY + " = ? AND " + STORAGE_SERVICE_ID + " NOT NULL AND " + TABLE_NAME + "." + ID + " != ?";
+    String   query = TABLE_NAME + "." + DIRTY + " = ? AND " + TABLE_NAME + "." + STORAGE_SERVICE_ID + " NOT NULL AND " + TABLE_NAME + "." + ID + " != ?";
     String[] args  = new String[] { String.valueOf(DirtyState.DELETE.getId()), Recipient.self().getId().serialize() };
 
-    return getRecipientSettings(query, args);
+    return getRecipientSettingsForSync(query, args);
   }
 
   public @Nullable RecipientSettings getByStorageId(@NonNull byte[] storageId) {
-    List<RecipientSettings> result = getRecipientSettings(STORAGE_SERVICE_ID + " = ?", new String[] { Base64.encodeBytes(storageId) });
+    List<RecipientSettings> result = getRecipientSettingsForSync(TABLE_NAME + "." + STORAGE_SERVICE_ID + " = ?", new String[] { Base64.encodeBytes(storageId) });
 
     if (result.size() > 0) {
       return result.get(0);
@@ -481,7 +505,9 @@ public class RecipientDatabase extends Database {
   public void applyStorageSyncUpdates(@NonNull Collection<SignalContactRecord>               contactInserts,
                                       @NonNull Collection<RecordUpdate<SignalContactRecord>> contactUpdates,
                                       @NonNull Collection<SignalGroupV1Record>               groupV1Inserts,
-                                      @NonNull Collection<RecordUpdate<SignalGroupV1Record>> groupV1Updates)
+                                      @NonNull Collection<RecordUpdate<SignalGroupV1Record>> groupV1Updates,
+                                      @NonNull Collection<SignalGroupV2Record>               groupV2Inserts,
+                                      @NonNull Collection<RecordUpdate<SignalGroupV2Record>> groupV2Updates)
   {
     SQLiteDatabase   db               = databaseHelper.getWritableDatabase();
     IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(context);
@@ -586,6 +612,32 @@ public class RecipientDatabase extends Database {
         threadDatabase.setArchived(recipient.getId(), update.getNew().isArchived());
         recipient.live().refresh();
       }
+      
+      for (SignalGroupV2Record insert : groupV2Inserts) {
+        db.insertOrThrow(TABLE_NAME, null, getValuesForStorageGroupV2(insert));
+
+        GroupId.V2 groupId   = GroupId.v2(insert.getMasterKey());
+        Recipient  recipient = Recipient.externalGroup(context, groupId);
+
+        ApplicationDependencies.getJobManager().add(new RequestGroupV2InfoJob(groupId));
+
+        threadDatabase.setArchived(recipient.getId(), insert.isArchived());
+        recipient.live().refresh();
+      }
+
+      for (RecordUpdate<SignalGroupV2Record> update : groupV2Updates) {
+        ContentValues values      = getValuesForStorageGroupV2(update.getNew());
+        int           updateCount = db.update(TABLE_NAME, values, STORAGE_SERVICE_ID + " = ?", new String[]{Base64.encodeBytes(update.getOld().getId().getRaw())});
+
+        if (updateCount < 1) {
+          throw new AssertionError("Had an update, but it didn't match any rows!");
+        }
+
+        Recipient recipient = Recipient.externalGroup(context, GroupId.v2(update.getOld().getMasterKey()));
+
+        threadDatabase.setArchived(recipient.getId(), update.getNew().isArchived());
+        recipient.live().refresh();
+      }
 
       db.setTransactionSuccessful();
     } finally {
@@ -684,13 +736,29 @@ public class RecipientDatabase extends Database {
     values.put(DIRTY, DirtyState.CLEAN.getId());
     return values;
   }
+  
+  private static @NonNull ContentValues getValuesForStorageGroupV2(@NonNull SignalGroupV2Record groupV2) {
+    ContentValues values = new ContentValues();
+    values.put(GROUP_ID, GroupId.v2(groupV2.getMasterKey()).toString());
+    values.put(GROUP_TYPE, GroupType.SIGNAL_V2.getId());
+    values.put(PROFILE_SHARING, groupV2.isProfileSharingEnabled() ? "1" : "0");
+    values.put(BLOCKED, groupV2.isBlocked() ? "1" : "0");
+    values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(groupV2.getId().getRaw()));
+    values.put(DIRTY, DirtyState.CLEAN.getId());
+    return values;
+  }
 
-  private List<RecipientSettings> getRecipientSettings(@Nullable String query, @Nullable String[] args) {
+  private List<RecipientSettings> getRecipientSettingsForSync(@Nullable String query, @Nullable String[] args) {
     SQLiteDatabase          db    = databaseHelper.getReadableDatabase();
-    String                  table = TABLE_NAME + " LEFT OUTER JOIN " + IdentityDatabase.TABLE_NAME + " ON " + TABLE_NAME + "." + ID + " = " + IdentityDatabase.TABLE_NAME + "." + IdentityDatabase.RECIPIENT_ID;
+    String                  table = TABLE_NAME + " LEFT OUTER JOIN " + IdentityDatabase.TABLE_NAME + " ON " + TABLE_NAME + "." + ID + " = " + IdentityDatabase.TABLE_NAME + "." + IdentityDatabase.RECIPIENT_ID
+                                               + " LEFT OUTER JOIN " + GroupDatabase.TABLE_NAME + " ON " + TABLE_NAME + "." + GROUP_ID + " = " + GroupDatabase.TABLE_NAME + "." + GroupDatabase.GROUP_ID;
     List<RecipientSettings> out   = new ArrayList<>();
 
-    try (Cursor cursor = db.query(table, RECIPIENT_FULL_PROJECTION, query, args, null, null, null)) {
+    String[] columns = ArrayUtils.concat(RECIPIENT_FULL_PROJECTION,
+      new String[]{ GroupDatabase.TABLE_NAME + "." + GroupDatabase.GROUP_ID,
+                    GroupDatabase.TABLE_NAME + "." + GroupDatabase.V2_MASTER_KEY });
+
+    try (Cursor cursor = db.query(table, columns, query, args, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
         out.add(getRecipientSettings(context, cursor));
       }
@@ -722,10 +790,11 @@ public class RecipientDatabase extends Database {
         GroupType   groupType  = GroupType.fromId(cursor.getInt(cursor.getColumnIndexOrThrow(GROUP_TYPE)));
         byte[]      key        = Base64.decodeOrThrow(encodedKey);
 
-        if (groupType == GroupType.NONE) {
-          out.put(id, StorageId.forContact(key));
-        } else {
-          out.put(id, StorageId.forGroupV1(key));
+        switch (groupType) {
+          case NONE      : out.put(id, StorageId.forContact(key)); break;
+          case SIGNAL_V1 : out.put(id, StorageId.forGroupV1(key)); break;
+          case SIGNAL_V2 : out.put(id, StorageId.forGroupV2(key)); break;
+          default        : throw new AssertionError();
         }
       }
     }
@@ -771,6 +840,19 @@ public class RecipientDatabase extends Database {
     String  identityKeyRaw             = cursor.getString(cursor.getColumnIndexOrThrow(IDENTITY_KEY));
     int     identityStatusRaw          = cursor.getInt(cursor.getColumnIndexOrThrow(IDENTITY_STATUS));
 
+    int masterKeyIndex = cursor.getColumnIndex(GroupDatabase.V2_MASTER_KEY);
+    GroupMasterKey groupMasterKey = null;
+    try {
+      if (masterKeyIndex != -1) {
+        byte[] blob = cursor.getBlob(masterKeyIndex);
+        if (blob != null) {
+          groupMasterKey = new GroupMasterKey(blob);
+        }
+      }
+    } catch (InvalidInputException e) {
+      throw new AssertionError(e);
+    }
+
     MaterialColor color;
     byte[]        profileKey           = null;
     byte[]        profileKeyCredential = null;
@@ -805,7 +887,7 @@ public class RecipientDatabase extends Database {
 
     IdentityDatabase.VerifiedStatus identityStatus = IdentityDatabase.VerifiedStatus.forState(identityStatusRaw);
 
-    return new RecipientSettings(RecipientId.from(id), uuid, username, e164, email, groupId, GroupType.fromId(groupType), blocked, muteUntil,
+    return new RecipientSettings(RecipientId.from(id), uuid, username, e164, email, groupId, groupMasterKey, GroupType.fromId(groupType), blocked, muteUntil,
                                  VibrateState.fromId(messageVibrateState),
                                  VibrateState.fromId(callVibrateState),
                                  Util.uri(messageRingtone), Util.uri(callRingtone),
@@ -1745,6 +1827,7 @@ public class RecipientDatabase extends Database {
     private final String                          e164;
     private final String                          email;
     private final GroupId                         groupId;
+    private final GroupMasterKey                  groupMasterKey;
     private final GroupType                       groupType;
     private final boolean                         blocked;
     private final long                            muteUntil;
@@ -1782,6 +1865,7 @@ public class RecipientDatabase extends Database {
                       @Nullable String e164,
                       @Nullable String email,
                       @Nullable GroupId groupId,
+                      @Nullable GroupMasterKey groupMasterKey,
                       @NonNull GroupType groupType,
                       boolean blocked,
                       long muteUntil,
@@ -1819,6 +1903,7 @@ public class RecipientDatabase extends Database {
       this.e164                   = e164;
       this.email                  = email;
       this.groupId                = groupId;
+      this.groupMasterKey         = groupMasterKey;
       this.groupType              = groupType;
       this.blocked                = blocked;
       this.muteUntil              = muteUntil;
@@ -1873,6 +1958,13 @@ public class RecipientDatabase extends Database {
 
     public @Nullable GroupId getGroupId() {
       return groupId;
+    }
+
+    /**
+     * Only read populated for sync.
+     */
+    public @Nullable GroupMasterKey getGroupMasterKey() {
+      return groupMasterKey;
     }
 
     public @NonNull GroupType getGroupType() {

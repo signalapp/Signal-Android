@@ -64,7 +64,7 @@ public final class GroupDatabase extends Database {
 
   /* V2 Group columns */
   /** 32 bytes serialized {@link GroupMasterKey} */
-  private static final String V2_MASTER_KEY       = "master_key";
+  public  static final String V2_MASTER_KEY       = "master_key";
   /** Increments with every change to the group */
   private static final String V2_REVISION         = "revision";
   /** Serialized {@link DecryptedGroup} protobuf */

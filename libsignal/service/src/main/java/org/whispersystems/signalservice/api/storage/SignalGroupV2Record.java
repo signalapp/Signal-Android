@@ -69,7 +69,7 @@ public final class SignalGroupV2Record implements SignalRecord {
     private final GroupV2Record.Builder builder;
 
     public Builder(byte[] rawId, GroupMasterKey masterKey) {
-      this.id      = StorageId.forGroupV1(rawId);
+      this.id      = StorageId.forGroupV2(rawId);
       this.builder = GroupV2Record.newBuilder();
 
       builder.setMasterKey(ByteString.copyFrom(masterKey.serialize()));
