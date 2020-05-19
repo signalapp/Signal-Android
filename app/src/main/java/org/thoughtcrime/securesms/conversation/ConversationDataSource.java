@@ -59,29 +59,17 @@ class ConversationDataSource extends PositionalDataSource<MessageRecord> {
   public void loadInitial(@NonNull LoadInitialParams params, @NonNull LoadInitialCallback<MessageRecord> callback) {
     long start = System.currentTimeMillis();
 
-    MmsSmsDatabase      db      = DatabaseFactory.getMmsSmsDatabase(context);
-    List<MessageRecord> records = new ArrayList<>(params.requestedLoadSize);
+    MmsSmsDatabase      db             = DatabaseFactory.getMmsSmsDatabase(context);
+    List<MessageRecord> records        = new ArrayList<>(params.requestedLoadSize);
+    int                 totalCount     = db.getConversationCount(threadId);
+    int                 effectiveCount = params.requestedStartPosition;
 
-    if (!isInvalid()) {
-      try (MmsSmsDatabase.Reader reader = db.readerFor(db.getConversation(threadId, params.requestedStartPosition, params.requestedLoadSize))) {
-        MessageRecord record;
-        while ((record = reader.getNext()) != null && !isInvalid()) {
-          records.add(record);
-        }
+    try (MmsSmsDatabase.Reader reader = db.readerFor(db.getConversation(threadId, params.requestedStartPosition, params.requestedLoadSize))) {
+      MessageRecord record;
+      while ((record = reader.getNext()) != null && effectiveCount < totalCount && !isInvalid()) {
+        records.add(record);
+        effectiveCount++;
       }
-    } else {
-      Log.i(TAG, "[Initial Load] Invalidated before we could even query!");
-    }
-
-    int effectiveCount = records.size() + params.requestedStartPosition;
-    int totalCount     = db.getConversationCount(threadId);
-
-    if (effectiveCount > totalCount) {
-      Log.w(TAG, String.format(Locale.ENGLISH, "Miscalculation! Records: %d, Start Position: %d, Total: %d. Adjusting total.",
-                                               records.size(),
-                                               params.requestedStartPosition,
-                                               totalCount));
-      totalCount = effectiveCount;
     }
 
     records = ensureMultipleOfPageSize(records, params.pageSize, totalCount);
@@ -99,15 +87,11 @@ class ConversationDataSource extends PositionalDataSource<MessageRecord> {
     MmsSmsDatabase      db      = DatabaseFactory.getMmsSmsDatabase(context);
     List<MessageRecord> records = new ArrayList<>(params.loadSize);
 
-    if (!isInvalid()) {
-      try (MmsSmsDatabase.Reader reader = db.readerFor(db.getConversation(threadId, params.startPosition, params.loadSize))) {
-        MessageRecord record;
-        while ((record = reader.getNext()) != null && !isInvalid()) {
-          records.add(record);
-        }
+    try (MmsSmsDatabase.Reader reader = db.readerFor(db.getConversation(threadId, params.startPosition, params.loadSize))) {
+      MessageRecord record;
+      while ((record = reader.getNext()) != null && !isInvalid()) {
+        records.add(record);
       }
-    } else {
-      Log.i(TAG, "[Update] Invalidated before we could even query!");
     }
 
     callback.onResult(records);
@@ -117,7 +101,7 @@ class ConversationDataSource extends PositionalDataSource<MessageRecord> {
   }
 
   private static @NonNull List<MessageRecord> ensureMultipleOfPageSize(@NonNull List<MessageRecord> records, int pageSize, int total) {
-    if (records.size() != total && records.size() % pageSize != 0) {
+    if (records.size() != total && records.size() > pageSize && records.size() % pageSize != 0) {
       int overflow = records.size() % pageSize;
       return records.subList(0, records.size() - overflow);
     } else {
