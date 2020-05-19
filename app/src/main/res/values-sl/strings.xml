@@ -704,17 +704,17 @@
   <string name="MessageRecord_you_added_invited_member_s">Dodali ste povabljenega uporabnika %1$s.</string>
   <string name="MessageRecord_s_added_invited_member_s">Oseba %1$s je dodala povabljenega uporabnika %2$s.</string>
   <!--GV2 title change-->
-  <string name="MessageRecord_you_changed_the_group_name_to_s">Spremenili ste ime skupine v \"%1$s\".</string>
-  <string name="MessageRecord_s_changed_the_group_name_to_s">Oseba %1$s je spremenila ime skupine v \"%2$s\".</string>
+  <string name="MessageRecord_you_changed_the_group_name_to_s">Ime skupine ste spremenili v \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_the_group_name_to_s">Uporabnik %1$s je spremenil ime skupine v \"%2$s\".</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Spremenili ste skupinin avatar.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">Oseba %1$s je spremenila skupinin avatar.</string>
   <!--GV2 attribute access level change-->
-  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Spremenili ste, kdo lahko upravlja informacije o skupini: \"%1$s\".</string>
-  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">Oseba %1$s je spremenila, kdo lahko upravlja informacije o skupini: \"%2$s\".</string>
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Spremenili ste, kdo lahko ureja informacije o skupini: \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">Oseba %1$s je spremenila, kdo lahko ureja informacije o skupini: \"%2$s\".</string>
   <!--GV2 membership access level change-->
-  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Spremenili ste, kdo lahko upravlja članstvo v skupini: \"%1$s\".</string>
-  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">Oseba %1$s je spremenila, kdo lahko upravlja članstvo v skupini: \"%2$s\".</string>
+  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Spremenili ste, kdo lahko ureja članstvo v skupini: \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">Oseba %1$s je spremenila, kdo lahko ureja članstvo v skupini: \"%2$s\".</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Varnostno število z uporabnikom %s je bilo spremenjeno.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Varnostno število z uporabnikom %s ste označili kot potrjeno</string>
@@ -1378,7 +1378,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
     <item quantity="few">%1$s stiki so se priključili skupini.</item>
     <item quantity="other">%1$s stikov se je priključilo skupini.</item>
   </plurals>
-  <string name="GroupUtil_group_name_is_now">Ime skupine je zdaj \'%1$s\'.</string>
+  <string name="GroupUtil_group_name_is_now">Novo ime skupine je \'%1$s\'.</string>
   <!--profile_group_share_view-->
   <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Želte, da sta ime vašega profila in predstavitvena fotografija vidni tej skupini?</string>
   <!--prompt_passphrase_activity-->

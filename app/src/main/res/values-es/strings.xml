@@ -1530,9 +1530,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Actívalo si tu dispositivo utiliza entrega de SMS/MMS vía WiFi (actívalo sólo cuando «Llamada por WiFi» esté activada en el dispositivo)</string>
   <string name="preferences__incognito_keyboard">Teclado incógnito</string>
   <string name="preferences__read_receipts">Notificaciones de lectura</string>
-  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si las notificaciones de lectura están desactivadas, no podrás ver cuando otros contactos lean tus mensajes.</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si las notificaciones de lectura están desactivadas, no podrás comprobar cuándo se han leído tus mensajes.</string>
   <string name="preferences__typing_indicators">Indicadores de tecleo</string>
-  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si desactivas los indicadores de tecleo, no podrás ver cuándo tus contactos están tecleando. </string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si desactivas los indicadores de tecleo, no podrás ver cuándo otros participantes están tecleando. </string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Solicitar al teclado desactivar el aprendizaje personalizado</string>
   <string name="preferences_app_protection__blocked_contacts">Contactos bloqueados</string>
   <string name="preferences_chats__when_using_mobile_data">Al usar datos móviles</string>

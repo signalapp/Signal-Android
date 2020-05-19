@@ -382,6 +382,7 @@
   <!--PendingMembersActivity-->
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__create">Lumikha</string>
+  <string name="AddGroupDetailsFragment__members">Mga Kasapi</string>
   <string name="AddGroupDetailsFragment__remove">Tanggalin</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Mga naglalahong mensahe</string>
@@ -391,6 +392,7 @@
   <string name="ManageGroupActivity_off">Off</string>
   <string name="ManageGroupActivity_on">On</string>
   <string name="ManageGroupActivity_add_members">Magdagdag ng mga kasapi</string>
+  <string name="ManageGroupActivity_view_all_members">Tignan ang lahat ng mga kasapi</string>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Custom na mga notipikasyon</string>
   <string name="CustomNotificationsDialogFragment__messages">Mga Mensahe</string>
@@ -624,6 +626,7 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Ang bersyon ng Google Play Services na iyong na-install ay hindi gumagana ng tama. Paki-reinstall ang Google Play Services at subukang muli.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">Hindi tama ang PIN</string>
+  <string name="PinRestoreEntryFragment_contact_support">Makipag-ugnayan sa Suporta</string>
   <string name="PinRestoreEntryFragment_cancel">Kanselahin</string>
   <string name="PinRestoreEntryFragment_skip">Laktawan</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Ilagay ang alphanumeric na PIN</string>
@@ -961,6 +964,7 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">Sagutin</string>
   <!--WebRtcAudioOutputToggle-->
+  <string name="WebRtcAudioOutputToggle__phone">Telepono</string>
   <string name="WebRtcAudioOutputToggle__speaker">Speaker</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->

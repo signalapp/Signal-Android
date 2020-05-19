@@ -21,7 +21,7 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Ta bort alla gamla meddelanden nu?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">Detta kommer omedelbart trimma alla konversationer till det senaste meddelandet.</item>
-    <item quantity="other">Detta kommer omedelbart att trimma alla konversationer till de %d senaste meddelandena.</item>
+    <item quantity="other">Detta kommer omedelbart att korta av alla konversationer till de %d senaste meddelandena.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Ta bort</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Inaktivera lösenord?</string>
@@ -604,7 +604,7 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ställde in tidsgränsen för försvinnande meddelanden till %2$s. </string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Du skapade gruppen.</string>
-  <string name="MessageRecord_group_updated">Grupp uppdaterad.</string>
+  <string name="MessageRecord_group_updated">Gruppen uppdaterad.</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Du lade till %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s lade till %2$s.</string>
@@ -789,7 +789,7 @@
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Tryck här för att aktivera din video</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">För att ringa %1$s behöver Signal åtkomst till din kamera</string>
-  <string name="WebRtcCallActivity__signal_s">Signal-%1$s</string>
+  <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Ringer…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Signal-röstsamtal…</string>
@@ -918,7 +918,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SupportEmailUtil_signal_package">Signal-paket:</string>
   <string name="SupportEmailUtil_locale">Språk:</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_group_updated">Grupp uppdaterad</string>
+  <string name="ThreadRecord_group_updated">Gruppen uppdaterad</string>
   <string name="ThreadRecord_left_the_group">Lämnade gruppen</string>
   <string name="ThreadRecord_secure_session_reset">Säker session nollställd.</string>
   <string name="ThreadRecord_draft">Utkast:</string>
@@ -973,8 +973,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Användarnamn måste vara mellan %1$d och %2$d tecken.</string>
   <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Andra Signal-användare kan skicka meddelandeförfrågningar till ditt unika användarnamn utan att veta ditt telefonnummer. Att välja ett användarnamn är valfritt.</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt använder en gammal version av Signal. Vänligen be dem uppdatera innan du verifierar ditt säkerhetsnummer.</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Din kontakt använder en nyare version av Signal med ett inkompatibelt QR-kodformat. Var god uppdatera för att jämföra dem.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt använder en gammal version av Signal. Vänligen be dem uppdatera innan de verifierar ditt säkerhetsnummer.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Din kontakt använder en nyare version av Signal med ett inkompatibelt QR-kodformat. Vänligen uppdatera för att jämföra dem.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Den skannade QR-koden är inte en korrekt formaterad verifieringskod för säkerhetsnummer. Vänligen försök att skanna den igen.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Dela säkerhetsnummer via…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Vårt säkerhetsnummer för Signal:</string>
@@ -1335,7 +1335,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="redphone_call_card__signal_call">Signal-samtal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal gör det lätt att kommunicera genom att använda ditt mobilnummer och din adressbok. Vänner och kontakter som vet hur de ska kontakta dig via telefon kan enkelt komma i kontakt med Signal.\n\nRegistrering överför viss kontaktinformation till servern. Den lagras inte.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal gör det lätt att kommunicera genom att använda ditt mobilnummer och din adressbok. Vänner och kontakter som redan vet hur de ska kontakta dig via telefon kommer enkelt att kunna kontakta dig på Signal.\n\nRegistreringen överför viss kontaktinformation till servern. Den lagras inte.</string>
   <string name="registration_activity__verify_your_number">Verifiera ditt nummer</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Vänligen ange ditt mobilnummer för att få en verifieringskod. Din operatör kan ta betalt för det.</string>
   <!--recipients_panel-->
@@ -1450,7 +1450,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Använd Signal för alla inkommande SMS-meddelanden</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Använd Signal för alla inkommande multimediameddelanden</string>
   <string name="preferences__pref_enter_sends_title">Returtangenten skickar</string>
-  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Om du trycker på Retur-knappen skickas textmeddelanden</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Om du trycker på returtangenten skickas textmeddelanden</string>
   <string name="preferences__send_link_previews">Skicka länkförhandsvisning</string>
   <string name="preferences__previews_are_supported_for">Förhandsvisningar stöds för Imgur-, Instagram-, Pinterest-, Reddit- och YouTube-länkar.</string>
   <string name="preferences__choose_identity">Välj identitet</string>
@@ -1507,7 +1507,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__chats">Konversationer och media</string>
   <string name="preferences__storage">Lagring</string>
   <string name="preferences__conversation_length_limit">Gräns för konversationslängd</string>
-  <string name="preferences__trim_all_conversations_now">Trimma alla konversationer nu</string>
+  <string name="preferences__trim_all_conversations_now">Korta av alla konversationer nu</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Skanna alla konversationer och tvinga längdbegränsningar på konversationer</string>
   <string name="preferences__linked_devices">Länkade enheter</string>
   <string name="preferences__light_theme">Ljust</string>
