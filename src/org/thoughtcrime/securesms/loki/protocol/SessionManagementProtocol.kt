@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.libsignal.loki.LokiSessionResetStatus
 import org.whispersystems.signalservice.api.messages.SignalServiceContent
 import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
+import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus
 
 object SessionManagementProtocol {
 
@@ -64,13 +65,12 @@ object SessionManagementProtocol {
         val lokiThreadDB = DatabaseFactory.getLokiThreadDatabase(context)
         val threadFRStatus = lokiThreadDB.getFriendRequestStatus(threadID)
         // If we received a friend request (i.e. also a new pre key bundle), but we were already friends with the other user, reset the session.
-        // FIXME: Temporarily disabled to avoid a session out of sync issue
-//        if (content.isFriendRequest && threadFRStatus == LokiThreadFriendRequestStatus.FRIENDS) {
-//            val sessionStore = TextSecureSessionStore(context)
-//            sessionStore.archiveAllSessions(content.sender)
-//            val ephemeralMessage = EphemeralMessage.create(content.sender)
-//            ApplicationContext.getInstance(context).jobManager.add(PushEphemeralMessageSendJob(ephemeralMessage))
-//        }
+        if (content.isFriendRequest && threadFRStatus == LokiThreadFriendRequestStatus.FRIENDS) {
+            val sessionStore = TextSecureSessionStore(context)
+            sessionStore.archiveAllSessions(content.sender)
+            val ephemeralMessage = EphemeralMessage.create(content.sender)
+            ApplicationContext.getInstance(context).jobManager.add(PushEphemeralMessageSendJob(ephemeralMessage))
+        }
     }
 
     @JvmStatic
