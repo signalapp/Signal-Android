@@ -1083,9 +1083,7 @@ public class MmsDatabase extends MessagingDatabase {
     if (message.isGroup()) {
       OutgoingGroupUpdateMessage outgoingGroupUpdateMessage = (OutgoingGroupUpdateMessage) message;
       if (outgoingGroupUpdateMessage.isV2Group()) {
-        MessageGroupContext.GroupV2Properties groupV2Properties = outgoingGroupUpdateMessage.requireGroupV2Properties();
-        type |= Types.GROUP_V2_BIT;
-        if (groupV2Properties.isUpdate()) type |= Types.GROUP_UPDATE_BIT;
+        type |= Types.GROUP_V2_BIT | Types.GROUP_UPDATE_BIT;
       } else {
         MessageGroupContext.GroupV1Properties properties = outgoingGroupUpdateMessage.requireGroupV1Properties();
         if      (properties.isUpdate()) type |= Types.GROUP_UPDATE_BIT;
@@ -1129,20 +1127,15 @@ public class MmsDatabase extends MessagingDatabase {
     if (message.getRecipient().isGroup()) {
       OutgoingGroupUpdateMessage outgoingGroupUpdateMessage = (message instanceof OutgoingGroupUpdateMessage) ? (OutgoingGroupUpdateMessage) message : null;
 
-      GroupReceiptDatabase receiptDatabase   = DatabaseFactory.getGroupReceiptDatabase(context);
-      RecipientDatabase    recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
-      Set<RecipientId>     members           = new HashSet<>();
+      GroupReceiptDatabase receiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
+      Set<RecipientId>     members         = new HashSet<>();
 
       if (outgoingGroupUpdateMessage != null && outgoingGroupUpdateMessage.isV2Group()) {
         MessageGroupContext.GroupV2Properties groupV2Properties = outgoingGroupUpdateMessage.requireGroupV2Properties();
-        members.addAll(Stream.of(groupV2Properties.getActiveMembers()).map(recipientDatabase::getOrInsertFromUuid).toList());
-        if (groupV2Properties.isUpdate()) {
-          members.addAll(Stream.concat(Stream.of(groupV2Properties.getPendingMembers()),
-                                       Stream.of(groupV2Properties.getRemovedMembers()))
-                               .distinct()
-                               .map(recipientDatabase::getOrInsertFromUuid)
-                               .toList());
-        }
+        members.addAll(Stream.of(groupV2Properties.getAllActivePendingAndRemovedMembers())
+                             .distinct()
+                             .map(uuid -> RecipientId.from(uuid, null))
+                             .toList());
         members.remove(Recipient.self().getId());
       } else {
         members.addAll(Stream.of(DatabaseFactory.getGroupDatabase(context).getGroupMembers(message.getRecipient().requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF)).map(Recipient::getId).toList());

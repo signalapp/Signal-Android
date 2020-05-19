@@ -30,7 +30,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.io.Closeable;
@@ -41,6 +40,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 public final class GroupDatabase extends Database {
@@ -252,7 +252,7 @@ public final class GroupDatabase extends Database {
   @WorkerThread
   public @NonNull List<Recipient> getGroupMembers(@NonNull GroupId groupId, @NonNull MemberSet memberSet) {
     if (groupId.isV2()) {
-      return getGroup(groupId).transform(g -> g.requireV2GroupProperties().getMembers(context, memberSet))
+      return getGroup(groupId).transform(g -> g.requireV2GroupProperties().getMemberRecipients(memberSet))
                               .or(Collections.emptyList());
     } else {
       List<RecipientId> currentMembers = getCurrentMembers(groupId);
@@ -338,7 +338,7 @@ public final class GroupDatabase extends Database {
       contentValues.put(V2_MASTER_KEY, groupMasterKey.serialize());
       contentValues.put(V2_REVISION, groupState.getVersion());
       contentValues.put(V2_DECRYPTED_GROUP, groupState.toByteArray());
-      contentValues.put(MEMBERS, serializeV2GroupMembers(context, groupState));
+      contentValues.put(MEMBERS, serializeV2GroupMembers(groupState));
     } else {
       if (groupId.isV2()) {
         throw new AssertionError("V2 group id but no master key");
@@ -395,7 +395,7 @@ public final class GroupDatabase extends Database {
     contentValues.put(TITLE, title);
     contentValues.put(V2_REVISION, decryptedGroup.getVersion());
     contentValues.put(V2_DECRYPTED_GROUP, decryptedGroup.toByteArray());
-    contentValues.put(MEMBERS, serializeV2GroupMembers(context, decryptedGroup));
+    contentValues.put(MEMBERS, serializeV2GroupMembers(decryptedGroup));
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues,
                                                 GROUP_ID + " = ?",
@@ -517,13 +517,16 @@ public final class GroupDatabase extends Database {
     return getGroup(groupId).transform(g -> g.isPendingMember(recipient)).or(false);
   }
 
-  private static String serializeV2GroupMembers(@NonNull Context context, @NonNull DecryptedGroup decryptedGroup) {
+  private static String serializeV2GroupMembers(@NonNull DecryptedGroup decryptedGroup) {
     List<RecipientId> groupMembers  = new ArrayList<>(decryptedGroup.getMembersCount());
 
     for (DecryptedMember member : decryptedGroup.getMembersList()) {
-      Recipient recipient = Recipient.externalPush(context, new SignalServiceAddress(UuidUtil.fromByteString(member.getUuid()), null));
-
-      groupMembers.add(recipient.getId());
+      UUID uuid = UuidUtil.fromByteString(member.getUuid());
+      if (UuidUtil.UNKNOWN_UUID.equals(uuid)) {
+        Log.w(TAG, "Seen unknown UUID in members list");
+      } else {
+        groupMembers.add(RecipientId.from(uuid, null));
+      }
     }
 
     Collections.sort(groupMembers);
@@ -779,23 +782,39 @@ public final class GroupDatabase extends Database {
                                .or(false);
     }
 
-    public List<Recipient> getMembers(@NonNull Context context, @NonNull MemberSet memberSet) {
-      boolean         includeSelf = memberSet.includeSelf;
-      DecryptedGroup  groupV2     = getDecryptedGroup();
-      UUID            selfUuid    = Recipient.self().getUuid().get();
-      List<Recipient> recipients  = new ArrayList<>(groupV2.getMembersCount() + groupV2.getPendingMembersCount());
+    public List<Recipient> getMemberRecipients(@NonNull MemberSet memberSet) {
+      return Stream.of(getMemberRecipientIds(memberSet))
+                   .map(Recipient::resolved)
+                   .toList();
+    }
+
+    public List<RecipientId> getMemberRecipientIds(@NonNull MemberSet memberSet) {
+      boolean           includeSelf    = memberSet.includeSelf;
+      DecryptedGroup    groupV2        = getDecryptedGroup();
+      UUID              selfUuid       = Recipient.self().getUuid().get();
+      List<RecipientId> recipients     = new ArrayList<>(groupV2.getMembersCount() + groupV2.getPendingMembersCount());
+      int               unknownMembers = 0;
+      int               unknownPending = 0;
 
       for (UUID uuid : DecryptedGroupUtil.toUuidList(groupV2.getMembersList())) {
-        if (includeSelf || !selfUuid.equals(uuid)) {
-          recipients.add(Recipient.externalPush(context, uuid, null));
+        if (UuidUtil.UNKNOWN_UUID.equals(uuid)) {
+          unknownMembers++;
+        } else if (includeSelf || !selfUuid.equals(uuid)) {
+          recipients.add(RecipientId.from(uuid, null));
         }
       }
       if (memberSet.includePending) {
         for (UUID uuid : DecryptedGroupUtil.pendingToUuidList(groupV2.getPendingMembersList())) {
-          if (includeSelf || !selfUuid.equals(uuid)) {
-            recipients.add(Recipient.externalPush(context, uuid, null));
+          if (UuidUtil.UNKNOWN_UUID.equals(uuid)) {
+            unknownPending++;
+          } else if (includeSelf || !selfUuid.equals(uuid)) {
+            recipients.add(RecipientId.from(uuid, null));
           }
         }
+      }
+
+      if ((unknownMembers + unknownPending) > 0) {
+        Log.w(TAG, String.format(Locale.US, "Group contains %d + %d unknown pending and full members", unknownPending, unknownMembers));
       }
 
       return recipients;

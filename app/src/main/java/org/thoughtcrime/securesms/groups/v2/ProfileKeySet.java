@@ -36,7 +36,13 @@ public final class ProfileKeySet {
                                     @Nullable UUID changeSource)
   {
     for (DecryptedMember member : group.getMembersList()) {
-      UUID       memberUuid  = UuidUtil.fromByteString(member.getUuid());
+      UUID memberUuid = UuidUtil.fromByteString(member.getUuid());
+
+      if (UuidUtil.UNKNOWN_UUID.equals(memberUuid)) {
+        Log.w(TAG, "Seen unknown member UUID");
+        continue;
+      }
+
       ProfileKey profileKey;
       try {
         profileKey = new ProfileKey(member.getProfileKey().toByteArray());

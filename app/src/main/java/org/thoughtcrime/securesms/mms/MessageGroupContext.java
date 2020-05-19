@@ -164,21 +164,14 @@ public final class MessageGroupContext {
       return groupMasterKey;
     }
 
-    public @NonNull List<UUID> getActiveMembers() {
-      return DecryptedGroupUtil.membersToUuidList(decryptedGroupV2Context.getGroupState().getMembersList());
-    }
+    public @NonNull List<UUID> getAllActivePendingAndRemovedMembers() {
+      LinkedList<UUID> memberUuids = new LinkedList<>();
 
-    public @NonNull List<UUID> getPendingMembers() {
-      return DecryptedGroupUtil.pendingToUuidList(decryptedGroupV2Context.getGroupState().getPendingMembersList());
-    }
+      memberUuids.addAll(DecryptedGroupUtil.membersToUuidList(decryptedGroupV2Context.getGroupState().getMembersList()));
+      memberUuids.addAll(DecryptedGroupUtil.pendingToUuidList(decryptedGroupV2Context.getGroupState().getPendingMembersList()));
+      memberUuids.addAll(DecryptedGroupUtil.removedMembersUuidList(decryptedGroupV2Context.getChange()));
 
-    public @NonNull List<UUID> getRemovedMembers() {
-      return DecryptedGroupUtil.removedMembersUuidList(decryptedGroupV2Context.getChange());
-    }
-
-    public boolean isUpdate() {
-      // The group context is only stored on update messages.
-      return true;
+      return UuidUtil.filterKnown(memberUuids);
     }
 
     @Override
