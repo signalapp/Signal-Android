@@ -358,8 +358,10 @@ public class ConversationAdapter<V extends View & BindableConversationItem>
    */
   void pulseHighlightItem(int position) {
     if (position >= 0 && position < getItemCount()) {
-      recordToPulseHighlight = getItem(position);
-      notifyItemChanged(position);
+      int correctedPosition = isHeaderPosition(position) ? position + 1 : position;
+
+      recordToPulseHighlight = getItem(correctedPosition);
+      notifyItemChanged(correctedPosition);
     }
   }
 
