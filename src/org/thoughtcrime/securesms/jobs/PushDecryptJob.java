@@ -943,13 +943,13 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     } else {
       notifyTypingStoppedFromIncomingMessage(masterRecipient, content.getSender(), content.getSenderDevice());
 
-      Address sender = masterRecipient.getAddress();
+      Address masterAddress = masterRecipient.getAddress();
 
       if (message.isGroupMessage()) {
-        sender = getMessageMasterDestination(content.getSender()).getAddress();
+        masterAddress = getMessageMasterDestination(content.getSender()).getAddress();
       }
 
-      IncomingTextMessage tm = new IncomingTextMessage(sender,
+      IncomingTextMessage tm = new IncomingTextMessage(masterAddress,
                                                        content.getSenderDevice(),
                                                        message.getTimestamp(), body,
                                                        message.getGroupInfo(),
@@ -1180,16 +1180,17 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
                                      @NonNull SignalServiceReceiptMessage message)
   {
     // Redirect message to master device conversation
-    Address sender = Address.fromSerialized(content.getSender());
-    if (sender.isPhone()) {
-      Recipient masterDevice = getMessageMasterDestination(content.getSender());
-      sender = masterDevice.getAddress();
+    Address masterAddress = Address.fromSerialized(content.getSender());
+
+    if (masterAddress.isPhone()) {
+      Recipient masterRecipient = getMessageMasterDestination(content.getSender());
+      masterAddress = masterRecipient.getAddress();
     }
 
     for (long timestamp : message.getTimestamps()) {
       Log.i(TAG, String.format("Received encrypted delivery receipt: (XXXXX, %d)", timestamp));
       DatabaseFactory.getMmsSmsDatabase(context)
-                     .incrementDeliveryReceiptCount(new SyncMessageId(sender, timestamp), System.currentTimeMillis());
+                     .incrementDeliveryReceiptCount(new SyncMessageId(masterAddress, timestamp), System.currentTimeMillis());
     }
   }
 
@@ -1200,17 +1201,18 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     if (TextSecurePreferences.isReadReceiptsEnabled(context)) {
 
       // Redirect message to master device conversation
-      Address sender = Address.fromSerialized(content.getSender());
-      if (sender.isPhone()) {
-        Recipient masterDevice = getMessageMasterDestination(content.getSender());
-        sender = masterDevice.getAddress();
+      Address masterAddress = Address.fromSerialized(content.getSender());
+
+      if (masterAddress.isPhone()) {
+        Recipient masterRecipient = getMessageMasterDestination(content.getSender());
+        masterAddress = masterRecipient.getAddress();
       }
 
       for (long timestamp : message.getTimestamps()) {
         Log.i(TAG, String.format("Received encrypted read receipt: (XXXXX, %d)", timestamp));
 
         DatabaseFactory.getMmsSmsDatabase(context)
-                       .incrementReadReceiptCount(new SyncMessageId(sender, timestamp), content.getTimestamp());
+                       .incrementReadReceiptCount(new SyncMessageId(masterAddress, timestamp), content.getTimestamp());
       }
     }
   }
@@ -1368,11 +1370,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private Optional<InsertResult> insertPlaceholder(@NonNull String sender, int senderDevice, long timestamp) {
-    Recipient           masterDevice = getMessageMasterDestination(sender);
-    SmsDatabase         database     = DatabaseFactory.getSmsDatabase(context);
-    IncomingTextMessage textMessage  = new IncomingTextMessage(masterDevice.getAddress(),
-                                                              senderDevice, timestamp, "",
-                                                              Optional.absent(), 0, false);
+    Recipient           masterRecipient = getMessageMasterDestination(sender);
+    SmsDatabase         database        = DatabaseFactory.getSmsDatabase(context);
+    IncomingTextMessage textMessage     = new IncomingTextMessage(masterRecipient.getAddress(),
+                                                                 senderDevice, timestamp, "",
+                                                                 Optional.absent(), 0, false);
 
     textMessage = new IncomingEncryptedMessage(textMessage, "");
     return database.insertMessageInbox(textMessage);
@@ -1445,6 +1447,10 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private boolean shouldIgnore(@Nullable SignalServiceContent content) {
     if (content == null) {
       Log.w(TAG, "Got a message with null content.");
+      return true;
+    }
+
+    if (SessionMetaProtocol.shouldIgnoreMessage(content)) {
       return true;
     }
 

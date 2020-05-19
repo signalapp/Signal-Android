@@ -12,6 +12,14 @@ import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendReque
 
 object SessionMetaProtocol {
 
+    private val timestamps = mutableSetOf<Long>()
+
+    @JvmStatic
+    fun shouldIgnoreMessage(content: SignalServiceContent): Boolean {
+        val timestamp = content.timestamp
+        return timestamps.contains(timestamp)
+    }
+
     @JvmStatic
     fun handleProfileUpdateIfNeeded(context: Context, content: SignalServiceContent) {
         val rawDisplayName = content.senderDisplayName.orNull() ?: return

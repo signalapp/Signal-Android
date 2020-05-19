@@ -40,7 +40,7 @@ public class CleanPreKeysJob extends BaseJob implements InjectableType {
   public CleanPreKeysJob() {
     this(new Job.Parameters.Builder()
                            .setQueue("CleanPreKeysJob")
-                           .setMaxAttempts(5)
+                           .setMaxAttempts(3)
                            .build());
   }
 

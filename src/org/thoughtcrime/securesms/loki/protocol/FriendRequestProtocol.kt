@@ -28,10 +28,10 @@ object FriendRequestProtocol {
         val allUserDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey)
         // Accept all outstanding friend requests associated with this user and try to establish sessions with the
         // subset of their devices that haven't sent a friend request.
-        val linkedDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(recipient.address.serialize())
+        val allContactDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(recipient.address.serialize())
         val threadDB = DatabaseFactory.getThreadDatabase(context)
         val lokiThreadDB = DatabaseFactory.getLokiThreadDatabase(context)
-        for (device in linkedDevices) {
+        for (device in allContactDevices) {
             val deviceAsRecipient = recipient(context, device)
             val deviceThreadID = threadDB.getThreadIdFor(deviceAsRecipient)
             val deviceFRStatus = lokiThreadDB.getFriendRequestStatus(deviceThreadID)

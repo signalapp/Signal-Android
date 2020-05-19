@@ -29,7 +29,7 @@ public class RefreshPreKeysJob extends BaseJob implements InjectableType {
     this(new Job.Parameters.Builder()
                            .setQueue("RefreshPreKeysJob")
                            .addConstraint(NetworkConstraint.KEY)
-                           .setMaxAttempts(5)
+                           .setMaxAttempts(3)
                            .build());
   }
 

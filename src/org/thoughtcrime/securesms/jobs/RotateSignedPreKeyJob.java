@@ -30,7 +30,7 @@ public class RotateSignedPreKeyJob extends BaseJob implements InjectableType {
   public RotateSignedPreKeyJob() {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
-                           .setMaxAttempts(5)
+                           .setMaxAttempts(3)
                            .build());
   }
 

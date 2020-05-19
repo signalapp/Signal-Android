@@ -9,8 +9,6 @@ import android.text.TextUtils;
 import com.annimon.stream.Stream;
 
 import org.greenrobot.eventbus.EventBus;
-import org.signal.libsignal.metadata.certificate.InvalidCertificateException;
-import org.signal.libsignal.metadata.certificate.SenderCertificate;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.TextSecureExpiredException;
 import org.thoughtcrime.securesms.attachments.Attachment;
@@ -68,7 +66,7 @@ public abstract class PushSendJob extends SendJob {
                          .setQueue(destination.serialize())
                          .addConstraint(NetworkConstraint.KEY)
                          .setLifespan(TimeUnit.DAYS.toMillis(1))
-                         .setMaxAttempts(3)
+                         .setMaxAttempts(1)
                          .build();
   }
 
