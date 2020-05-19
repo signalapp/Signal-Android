@@ -407,7 +407,7 @@ public class ConversationFragment extends Fragment {
 
     this.recipient         = Recipient.live(getActivity().getIntent().getParcelableExtra(ConversationActivity.RECIPIENT_EXTRA));
     this.threadId          = this.getActivity().getIntent().getLongExtra(ConversationActivity.THREAD_ID_EXTRA, -1);
-    this.unknownSenderView = new UnknownSenderView(getActivity(), recipient.get(), threadId);
+    this.unknownSenderView = new UnknownSenderView(getActivity(), recipient.get(), threadId, () -> clearHeaderIfNotTyping(getListAdapter()));
 
     conversationViewModel.onConversationDataAvailable(threadId, startingPosition);
 
