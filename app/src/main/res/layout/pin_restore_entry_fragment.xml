@@ -84,7 +84,9 @@
             app:layout_constraintBottom_toTopOf="@id/pin_restore_pin_confirm"
             app:layout_constraintTop_toBottomOf="@id/pin_restore_forgot_pin"
             app:layout_constraintVertical_bias="1.0"
-            tools:text="Create Alphanumeric Pin" />
+            tools:text="Create Alphanumeric Pin"
+            android:textColor="@color/core_ultramarine"
+            />
 
         <com.dd.CircularProgressButton
             android:id="@+id/pin_restore_pin_confirm"
