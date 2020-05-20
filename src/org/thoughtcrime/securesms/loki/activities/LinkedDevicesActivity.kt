@@ -11,7 +11,6 @@ import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_linked_devices.*
 import network.loki.messenger.R
-import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.ui.failUi
 import nl.komponents.kovenant.ui.successUi
 import org.thoughtcrime.securesms.ApplicationContext
@@ -21,13 +20,10 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.devicelist.Device
 import org.thoughtcrime.securesms.loki.dialogs.*
 import org.thoughtcrime.securesms.loki.protocol.EphemeralMessage
-import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
 import org.thoughtcrime.securesms.loki.protocol.PushEphemeralMessageSendJob
 import org.thoughtcrime.securesms.loki.protocol.SyncMessagesProtocol
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.loki.api.LokiAPI
 import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI
-import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLink
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -147,24 +143,17 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity, LoaderManager
         }
     }
 
-    override fun onDeviceLinkRequestAuthorized(deviceLink: DeviceLink) {
-        LokiFileServerAPI.shared.addDeviceLink(deviceLink).bind(LokiAPI.sharedContext) {
-            MultiDeviceProtocol.signAndSendDeviceLinkMessage(this, deviceLink)
-        }.success {
-            TextSecurePreferences.setMultiDevice(this, true)
-            SyncMessagesProtocol.syncAllClosedGroups(this@LinkedDevicesActivity)
-            SyncMessagesProtocol.syncAllOpenGroups(this@LinkedDevicesActivity)
-            Timer().schedule(4000) { // Not the best way to do this but the idea is to wait for the closed groups sync to go through first
-                SyncMessagesProtocol.syncAllContacts(this@LinkedDevicesActivity)
-            }
-        }.successUi {
-            LoaderManager.getInstance(this).restartLoader(0, null, this)
-        }.fail {
-            LokiFileServerAPI.shared.removeDeviceLink(deviceLink) // If this fails we have a problem
-            DatabaseFactory.getLokiPreKeyBundleDatabase(this).removePreKeyBundle(deviceLink.slaveHexEncodedPublicKey)
-        }.failUi {
-            Toast.makeText(this, "Couldn't link device", Toast.LENGTH_LONG).show()
+    override fun onDeviceLinkRequestAuthorized() {
+        SyncMessagesProtocol.syncAllClosedGroups(this)
+        SyncMessagesProtocol.syncAllOpenGroups(this)
+        Timer().schedule(4000) { // Not the best way to do this but the idea is to wait for the closed groups sync to go through first
+            SyncMessagesProtocol.syncAllContacts(this@LinkedDevicesActivity)
         }
+        LoaderManager.getInstance(this).restartLoader(0, null, this)
+    }
+
+    override fun onDeviceLinkAuthorizationFailed() {
+        Toast.makeText(this, "Couldn't link device", Toast.LENGTH_LONG).show()
     }
 
     override fun onDeviceLinkCanceled() {

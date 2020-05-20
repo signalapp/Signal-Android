@@ -11,12 +11,18 @@ import android.view.View
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.dialog_link_device_master_mode.view.*
 import network.loki.messenger.R
+import nl.komponents.kovenant.functional.bind
+import nl.komponents.kovenant.ui.failUi
+import nl.komponents.kovenant.ui.successUi
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.loki.utilities.toPx
+import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
 import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
 import org.thoughtcrime.securesms.loki.utilities.QRCodeUtilities
+import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
+import org.whispersystems.signalservice.loki.api.LokiAPI
+import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
 import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLink
 import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLinkingSession
@@ -62,11 +68,36 @@ class LinkDeviceMasterModeDialog : DialogFragment(), DeviceLinkingSessionListene
     }
 
     private fun authorizeDeviceLink() {
-        val authorization = this.deviceLink ?: return
-        delegate?.onDeviceLinkRequestAuthorized(authorization)
+        val deviceLink = this.deviceLink ?: return
         DeviceLinkingSession.shared.stopListeningForLinkingRequests()
         DeviceLinkingSession.shared.removeListener(this)
-        dismiss()
+        Util.runOnMain {
+            contentView.qrCodeImageViewContainer.visibility = View.GONE
+            contentView.spinner.visibility = View.VISIBLE
+            val titleTextViewLayoutParams = contentView.titleTextView.layoutParams as LinearLayout.LayoutParams
+            titleTextViewLayoutParams.topMargin = toPx(24, resources)
+            contentView.titleTextView.layoutParams = titleTextViewLayoutParams
+            contentView.titleTextView.text = "Authorizing Device Link"
+            contentView.explanationTextView.text = "Please wait while the device link is created. This can take up to a minute."
+            contentView.mnemonicTextView.visibility = View.GONE
+            contentView.buttonContainer.visibility = View.GONE
+            contentView.cancelButton.visibility = View.GONE
+            contentView.authorizeButton.visibility = View.GONE
+        }
+        LokiFileServerAPI.shared.addDeviceLink(deviceLink).bind(LokiAPI.sharedContext) {
+            MultiDeviceProtocol.signAndSendDeviceLinkMessage(context!!, deviceLink)
+        }.success {
+            TextSecurePreferences.setMultiDevice(context!!, true)
+        }.successUi {
+            delegate?.onDeviceLinkRequestAuthorized()
+            dismiss()
+        }.fail {
+            LokiFileServerAPI.shared.removeDeviceLink(deviceLink) // If this fails we have a problem
+            DatabaseFactory.getLokiPreKeyBundleDatabase(context!!).removePreKeyBundle(deviceLink.slaveHexEncodedPublicKey)
+        }.failUi {
+            delegate?.onDeviceLinkAuthorizationFailed()
+            dismiss()
+        }
     }
 
     private fun onDeviceLinkCanceled() {
@@ -82,6 +113,7 @@ class LinkDeviceMasterModeDialog : DialogFragment(), DeviceLinkingSessionListene
 
 interface LinkDeviceMasterModeDialogDelegate {
 
-    fun onDeviceLinkRequestAuthorized(authorization: DeviceLink)
+    fun onDeviceLinkRequestAuthorized()
+    fun onDeviceLinkAuthorizationFailed()
     fun onDeviceLinkCanceled()
 }
