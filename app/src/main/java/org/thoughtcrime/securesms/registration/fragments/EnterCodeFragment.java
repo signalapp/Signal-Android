@@ -160,7 +160,7 @@ public final class EnterCodeFragment extends BaseRegistrationFragment {
               public void onSuccess(Boolean r) {
                 new AlertDialog.Builder(requireContext())
                                .setTitle(R.string.RegistrationActivity_too_many_attempts)
-                               .setMessage(R.string.RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day)
+                               .setMessage(R.string.RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later)
                                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
                                  callMeCountDown.setVisibility(View.VISIBLE);
                                  wrongNumber.setVisibility(View.VISIBLE);
