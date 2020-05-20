@@ -146,6 +146,7 @@ public class IdentityDatabase extends Database {
   }
 
   public void updateIdentityAfterSync(@NonNull RecipientId id, IdentityKey identityKey, VerifiedStatus verifiedStatus) {
+    boolean hadEntry      = getIdentity(id).isPresent();
     boolean keyMatches    = hasMatchingKey(id, identityKey);
     boolean statusMatches = keyMatches && hasMatchingStatus(id, identityKey, verifiedStatus);
 
@@ -155,7 +156,7 @@ public class IdentityDatabase extends Database {
       if (record.isPresent()) EventBus.getDefault().post(record.get());
     }
 
-    if (!keyMatches) {
+    if (hadEntry && !keyMatches) {
       IdentityUtil.markIdentityUpdate(context, id);
     }
   }
