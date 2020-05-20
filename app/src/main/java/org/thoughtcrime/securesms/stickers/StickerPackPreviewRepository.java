@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
-import com.google.android.gms.common.util.Hex;
+import org.thoughtcrime.securesms.util.Hex;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.StickerDatabase;
@@ -77,8 +77,8 @@ public final class StickerPackPreviewRepository {
   @WorkerThread
   private Optional<StickerManifestResult> getManifestRemote(@NonNull String packId, @NonNull String packKey) {
     try {
-      byte[]                       packIdBytes    = Hex.stringToBytes(packId);
-      byte[]                       packKeyBytes   = Hex.stringToBytes(packKey);
+      byte[]                       packIdBytes    = Hex.fromStringCondensed(packId);
+      byte[]                       packKeyBytes   = Hex.fromStringCondensed(packKey);
       SignalServiceStickerManifest remoteManifest = receiver.retrieveStickerManifest(packIdBytes, packKeyBytes);
       StickerManifest              localManifest  = new StickerManifest(packId,
                                                                         packKey,

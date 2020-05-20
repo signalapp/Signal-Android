@@ -4,8 +4,6 @@ import android.os.HandlerThread;
 
 import androidx.annotation.NonNull;
 
-import com.google.android.gms.common.util.concurrent.NumberedThreadFactory;
-
 import org.thoughtcrime.securesms.util.LinkedBlockingLifoQueue;
 
 import java.util.Queue;
