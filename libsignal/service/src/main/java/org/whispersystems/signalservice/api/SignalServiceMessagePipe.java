@@ -109,6 +109,26 @@ public class SignalServiceMessagePipe {
   public SignalServiceEnvelope read(long timeout, TimeUnit unit, MessagePipeCallback callback)
       throws TimeoutException, IOException, InvalidVersionException
   {
+    while (true) {
+      Optional<SignalServiceEnvelope> envelope = readOrEmpty(timeout, unit, callback);
+
+      if (envelope.isPresent()) {
+        return envelope.get();
+      }
+    }
+  }
+
+  /**
+   * Similar to {@link #read(long, TimeUnit, MessagePipeCallback)}, except this will return
+   * {@link Optional#absent()} when an empty response is hit, which indicates the websocket is
+   * empty.
+   *
+   * Important: The empty response will only be hit once for each instance of {@link SignalServiceMessagePipe}.
+   * That means subsequent calls will block until an envelope is available.
+   */
+  public Optional<SignalServiceEnvelope> readOrEmpty(long timeout, TimeUnit unit, MessagePipeCallback callback)
+      throws TimeoutException, IOException, InvalidVersionException
+  {
     if (!credentialsProvider.isPresent()) {
       throw new IllegalArgumentException("You can't read messages if you haven't specified credentials");
     }
@@ -125,7 +145,9 @@ public class SignalServiceMessagePipe {
                                                                      signalKeyEncrypted);
 
           callback.onMessage(envelope);
-          return envelope;
+          return Optional.of(envelope);
+        } else if (isSocketEmptyRequest(request)) {
+          return Optional.absent();
         }
       } finally {
         websocket.sendResponse(response);
@@ -275,6 +297,10 @@ public class SignalServiceMessagePipe {
     return "PUT".equals(message.getVerb()) && "/api/v1/message".equals(message.getPath());
   }
 
+  private boolean isSocketEmptyRequest(WebSocketRequestMessage message) {
+    return "PUT".equals(message.getVerb()) && "/api/v1/queue/empty".equals(message.getPath());
+  }
+
   private boolean isSignalKeyEncrypted(WebSocketRequestMessage message) {
     List<String> headers = message.getHeadersList();
 
@@ -315,8 +341,8 @@ public class SignalServiceMessagePipe {
    * For receiving a callback when a new message has been
    * received.
    */
-  public static interface MessagePipeCallback {
-    public void onMessage(SignalServiceEnvelope envelope);
+  public interface MessagePipeCallback {
+    void onMessage(SignalServiceEnvelope envelope);
   }
 
   private static class NullMessagePipeCallback implements MessagePipeCallback {

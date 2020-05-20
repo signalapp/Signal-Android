@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.gcm;
+package org.thoughtcrime.securesms.messages;
 
 import android.content.Context;
 import android.os.PowerManager;
@@ -19,21 +19,24 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Facilitates the retrieval of messages via provided {@link Strategy}'s.
+ * Retrieves messages while the app is in the background via provided {@link MessageRetrievalStrategy}'s.
  */
-public class MessageRetriever {
+public class BackgroundMessageRetriever {
 
-  private static final String TAG = Log.tag(MessageRetriever.class);
+  private static final String TAG = Log.tag(BackgroundMessageRetriever.class);
 
   private static final String WAKE_LOCK_TAG  = "MessageRetriever";
 
   private static final Semaphore ACTIVE_LOCK = new Semaphore(2);
 
+  private static final long CATCHUP_TIMEOUT = TimeUnit.SECONDS.toMillis(60);
+  private static final long NORMAL_TIMEOUT  = TimeUnit.SECONDS.toMillis(10);
+
   /**
    * @return False if the retrieval failed and should be rescheduled, otherwise true.
    */
   @WorkerThread
-  public boolean retrieveMessages(@NonNull Context context, Strategy... strategies) {
+  public boolean retrieveMessages(@NonNull Context context, MessageRetrievalStrategy... strategies) {
     if (shouldIgnoreFetch(context)) {
       Log.i(TAG, "Skipping retrieval -- app is in the foreground.");
       return true;
@@ -61,38 +64,56 @@ public class MessageRetriever {
           Log.w(TAG, "We may be operating in a constrained environment. Doze: " + doze + " Network: " + network);
         }
 
-        boolean success = false;
-
-        for (Strategy strategy : strategies) {
-          if (shouldIgnoreFetch(context)) {
-            Log.i(TAG, "Stopping further strategy attempts -- app is in the foreground." + logSuffix(startTime));
-            success = true;
-            break;
-          }
-
-          Log.i(TAG, "Attempting strategy: " + strategy.toString() + logSuffix(startTime));
-
-          if (strategy.run()) {
-            Log.i(TAG, "Strategy succeeded: " + strategy.toString() + logSuffix(startTime));
-            success = true;
-            break;
-          } else {
-            Log.w(TAG, "Strategy failed: " + strategy.toString() + logSuffix(startTime));
-          }
-        }
-
-        if (success) {
-          TextSecurePreferences.setNeedsMessagePull(context, false);
+        if (ApplicationDependencies.getInitialMessageRetriever().isCaughtUp()) {
+          Log.i(TAG, "Performing normal message fetch.");
+          return executeBackgroundRetrieval(context, startTime, strategies);
         } else {
-          Log.w(TAG, "All strategies failed!" + logSuffix(startTime));
+          Log.i(TAG, "Performing initial message fetch.");
+          InitialMessageRetriever.Result result = ApplicationDependencies.getInitialMessageRetriever().begin(CATCHUP_TIMEOUT);
+          if (result == InitialMessageRetriever.Result.SUCCESS) {
+            Log.i(TAG, "Initial message request was completed successfully. " + logSuffix(startTime));
+            TextSecurePreferences.setNeedsMessagePull(context, false);
+            return true;
+          } else {
+            Log.w(TAG, "Initial message fetch returned result " + result + ", so doing a normal message fetch.");
+            return executeBackgroundRetrieval(context, System.currentTimeMillis(), strategies);
+          }
         }
-
-        return success;
       } finally {
         WakeLockUtil.release(wakeLock, WAKE_LOCK_TAG);
         ACTIVE_LOCK.release();
       }
     }
+  }
+
+  private boolean executeBackgroundRetrieval(@NonNull Context context, long startTime, @NonNull MessageRetrievalStrategy[] strategies) {
+    boolean success = false;
+
+    for (MessageRetrievalStrategy strategy : strategies) {
+      if (shouldIgnoreFetch(context)) {
+        Log.i(TAG, "Stopping further strategy attempts -- app is in the foreground." + logSuffix(startTime));
+        success = true;
+        break;
+      }
+
+      Log.i(TAG, "Attempting strategy: " + strategy.toString() + logSuffix(startTime));
+
+      if (strategy.execute(NORMAL_TIMEOUT)) {
+        Log.i(TAG, "Strategy succeeded: " + strategy.toString() + logSuffix(startTime));
+        success = true;
+        break;
+      } else {
+        Log.w(TAG, "Strategy failed: " + strategy.toString() + logSuffix(startTime));
+      }
+    }
+
+    if (success) {
+      TextSecurePreferences.setNeedsMessagePull(context, false);
+    } else {
+      Log.w(TAG, "All strategies failed!" + logSuffix(startTime));
+    }
+
+    return success;
   }
 
   /**
@@ -106,16 +127,5 @@ public class MessageRetriever {
 
   private static String logSuffix(long startTime) {
     return " (" + (System.currentTimeMillis() - startTime) + " ms elapsed)";
-  }
-
-  /**
-   * A method of retrieving messages.
-   */
-  public interface Strategy {
-    /**
-     * @return False if the message retrieval failed and should be retried, otherwise true.
-     */
-    @WorkerThread
-    boolean run();
   }
 }

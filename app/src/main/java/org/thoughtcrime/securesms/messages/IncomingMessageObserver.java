@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.service;
+package org.thoughtcrime.securesms.messages;
 
 import android.app.Service;
 import androidx.lifecycle.DefaultLifecycleObserver;
@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
-import org.thoughtcrime.securesms.IncomingMessageProcessor.Processor;
+import org.thoughtcrime.securesms.messages.IncomingMessageProcessor.Processor;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.ConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -71,6 +71,8 @@ public class IncomingMessageObserver implements ConstraintObserver.Notifier {
         onAppBackgrounded();
       }
     });
+
+    ApplicationDependencies.getInitialMessageRetriever().addListener(this::onInitialRetrievalComplete);
   }
 
   @Override
@@ -90,16 +92,21 @@ public class IncomingMessageObserver implements ConstraintObserver.Notifier {
     notifyAll();
   }
 
+  private synchronized void onInitialRetrievalComplete() {
+    notifyAll();
+  }
+
   private synchronized boolean isConnectionNecessary() {
     boolean isGcmDisabled = TextSecurePreferences.isFcmDisabled(context);
 
     Log.d(TAG, String.format("Network requirement: %s, app visible: %s, gcm disabled: %b",
                              networkConstraint.isMet(), appVisible, isGcmDisabled));
 
-    return TextSecurePreferences.isPushRegistered(context)      &&
-           TextSecurePreferences.isWebsocketRegistered(context) &&
-           (appVisible || isGcmDisabled)                        &&
-           networkConstraint.isMet()                       &&
+    return TextSecurePreferences.isPushRegistered(context)                   &&
+           TextSecurePreferences.isWebsocketRegistered(context)              &&
+           (appVisible || isGcmDisabled)                                     &&
+           networkConstraint.isMet()                                         &&
+           ApplicationDependencies.getInitialMessageRetriever().isCaughtUp() &&
            !networkAccess.isCensored(context);
   }
 
@@ -156,7 +163,7 @@ public class IncomingMessageObserver implements ConstraintObserver.Notifier {
               Log.i(TAG, "Reading message...");
               localPipe.read(REQUEST_TIMEOUT_MINUTES, TimeUnit.MINUTES,
                              envelope -> {
-                               Log.i(TAG, "Retrieved envelope! " + envelope.getSourceIdentifier());
+                               Log.i(TAG, "Retrieved envelope! " + envelope.getTimestamp());
                                try (Processor processor = ApplicationDependencies.getIncomingMessageProcessor().acquire()) {
                                  processor.processEnvelope(envelope);
                                }

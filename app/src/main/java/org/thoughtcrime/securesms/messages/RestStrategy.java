@@ -1,12 +1,9 @@
-package org.thoughtcrime.securesms.gcm;
+package org.thoughtcrime.securesms.messages;
 
-import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
-import org.thoughtcrime.securesms.IncomingMessageProcessor;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.JobTracker;
 import org.thoughtcrime.securesms.jobs.MarkerJob;
@@ -17,32 +14,27 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Retrieves messages over the REST endpoint.
  */
-public class RestStrategy implements MessageRetriever.Strategy {
+public class RestStrategy extends MessageRetrievalStrategy {
 
   private static final String TAG = Log.tag(RestStrategy.class);
 
-  private static final long SOCKET_TIMEOUT = TimeUnit.SECONDS.toMillis(10);
-
   @WorkerThread
   @Override
-  public boolean run() {
+  public boolean execute(long timeout) {
     long                    startTime     = System.currentTimeMillis();
     JobManager              jobManager    = ApplicationDependencies.getJobManager();
     QueueFindingJobListener queueListener = new QueueFindingJobListener();
 
     try (IncomingMessageProcessor.Processor processor = ApplicationDependencies.getIncomingMessageProcessor().acquire()) {
-      int jobCount = enqueuePushDecryptJobs(processor, startTime);
+      int jobCount = enqueuePushDecryptJobs(processor, startTime, timeout);
 
       if (jobCount == 0) {
         Log.d(TAG, "No PushDecryptMessageJobs were enqueued.");
@@ -82,13 +74,13 @@ public class RestStrategy implements MessageRetriever.Strategy {
     }
   }
 
-  private static int enqueuePushDecryptJobs(IncomingMessageProcessor.Processor processor, long startTime)
+  private static int enqueuePushDecryptJobs(IncomingMessageProcessor.Processor processor, long startTime, long timeout)
       throws IOException
   {
     SignalServiceMessageReceiver receiver = ApplicationDependencies.getSignalServiceMessageReceiver();
     AtomicInteger                jobCount = new AtomicInteger(0);
 
-    receiver.setSoTimeoutMillis(SOCKET_TIMEOUT);
+    receiver.setSoTimeoutMillis(timeout);
 
     receiver.retrieveMessages(envelope -> {
       Log.i(TAG, "Retrieved an envelope." + timeSuffix(startTime));
@@ -102,7 +94,6 @@ public class RestStrategy implements MessageRetriever.Strategy {
 
     return jobCount.get();
   }
-
 
   private static long blockUntilQueueDrained(@NonNull String queue, long timeoutMs) {
     long             startTime  = System.currentTimeMillis();
@@ -122,30 +113,8 @@ public class RestStrategy implements MessageRetriever.Strategy {
     return timeoutMs - duration;
   }
 
-  private static String timeSuffix(long startTime) {
-    return " (" + (System.currentTimeMillis() - startTime) + " ms elapsed)";
-  }
-
   @Override
   public @NonNull String toString() {
     return RestStrategy.class.getSimpleName();
-  }
-
-  private static class QueueFindingJobListener implements JobTracker.JobListener {
-    private final Set<String> queues = new HashSet<>();
-
-    @Override
-    @AnyThread
-    public void onStateChanged(@NonNull Job job, @NonNull JobTracker.JobState jobState) {
-      synchronized (queues) {
-        queues.add(job.getParameters().getQueue());
-      }
-    }
-
-    @NonNull Set<String> getQueues() {
-      synchronized (queues) {
-        return new HashSet<>(queues);
-      }
-    }
   }
 }

@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.SignalUncaughtExceptionHandler;
+import org.thoughtcrime.securesms.messages.InitialMessageRetriever;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
@@ -60,7 +61,7 @@ import org.thoughtcrime.securesms.revealable.ViewOnceMessageManager;
 import org.thoughtcrime.securesms.ringrtc.RingRtcLogger;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
-import org.thoughtcrime.securesms.service.IncomingMessageObserver;
+import org.thoughtcrime.securesms.messages.IncomingMessageObserver;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.service.RotateSenderCertificateListener;
@@ -153,6 +154,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     KeyCachingService.onAppForegrounded(this);
     ApplicationDependencies.getFrameRateTracker().begin();
     ApplicationDependencies.getMegaphoneRepository().onAppForegrounded();
+    catchUpOnMessages();
   }
 
   @Override
@@ -374,6 +376,36 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     SignalExecutors.BOUNDED.execute(() -> {
       int deleted = DatabaseFactory.getAttachmentDatabase(this).deleteAbandonedPreuploadedAttachments();
       Log.i(TAG, "Deleted " + deleted + " abandoned attachments.");
+    });
+  }
+
+  private void catchUpOnMessages() {
+    InitialMessageRetriever retriever = ApplicationDependencies.getInitialMessageRetriever();
+
+    if (retriever.isCaughtUp()) {
+      return;
+    }
+
+    SignalExecutors.UNBOUNDED.execute(() -> {
+      long startTime = System.currentTimeMillis();
+
+      switch (retriever.begin(TimeUnit.SECONDS.toMillis(60))) {
+        case SUCCESS:
+          Log.i(TAG, "Successfully caught up on messages. " + (System.currentTimeMillis() - startTime) + " ms");
+          break;
+        case FAILURE_TIMEOUT:
+          Log.w(TAG, "Did not finish catching up due to a timeout. " + (System.currentTimeMillis() - startTime) + " ms");
+          break;
+        case FAILURE_ERROR:
+          Log.w(TAG, "Did not finish catching up due to an error. " + (System.currentTimeMillis() - startTime) + " ms");
+          break;
+        case SKIPPED_ALREADY_CAUGHT_UP:
+          Log.i(TAG, "Already caught up. " + (System.currentTimeMillis() - startTime) + " ms");
+          break;
+        case SKIPPED_ALREADY_RUNNING:
+          Log.i(TAG, "Already in the process of catching up. " + (System.currentTimeMillis() - startTime) + " ms");
+          break;
+      }
     });
   }
 

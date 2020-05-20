@@ -4,8 +4,8 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.gcm.MessageRetriever;
-import org.thoughtcrime.securesms.gcm.RestStrategy;
+import org.thoughtcrime.securesms.messages.BackgroundMessageRetriever;
+import org.thoughtcrime.securesms.messages.RestStrategy;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -46,8 +46,8 @@ public class PushNotificationReceiveJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException {
-    MessageRetriever retriever = ApplicationDependencies.getMessageRetriever();
-    boolean          result    = retriever.retrieveMessages(context, new RestStrategy());
+    BackgroundMessageRetriever retriever = ApplicationDependencies.getBackgroundMessageRetriever();
+    boolean                    result    = retriever.retrieveMessages(context, new RestStrategy());
 
     if (result) {
       Log.i(TAG, "Successfully pulled messages.");

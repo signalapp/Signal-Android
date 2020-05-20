@@ -11,6 +11,8 @@ import androidx.annotation.RequiresApi;
 
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.messages.BackgroundMessageRetriever;
+import org.thoughtcrime.securesms.messages.RestStrategy;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
@@ -39,15 +41,15 @@ public class FcmJobService extends JobService {
   public boolean onStartJob(JobParameters params) {
     Log.d(TAG, "onStartJob()");
 
-    if (MessageRetriever.shouldIgnoreFetch(this)) {
+    if (BackgroundMessageRetriever.shouldIgnoreFetch(this)) {
       Log.i(TAG, "App is foregrounded. No need to run.");
       return false;
     }
 
     SignalExecutors.UNBOUNDED.execute(() -> {
-      Context          context   = getApplicationContext();
-      MessageRetriever retriever = ApplicationDependencies.getMessageRetriever();
-      boolean          success   = retriever.retrieveMessages(context, new RestStrategy(), new RestStrategy());
+      Context                    context   = getApplicationContext();
+      BackgroundMessageRetriever retriever = ApplicationDependencies.getBackgroundMessageRetriever();
+      boolean                    success   = retriever.retrieveMessages(context, new RestStrategy(), new RestStrategy());
 
       if (success) {
         Log.i(TAG, "Successfully retrieved messages.");

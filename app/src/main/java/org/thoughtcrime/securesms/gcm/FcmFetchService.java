@@ -12,6 +12,8 @@ import com.google.firebase.messaging.RemoteMessage;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.messages.BackgroundMessageRetriever;
+import org.thoughtcrime.securesms.messages.RestStrategy;
 import org.thoughtcrime.securesms.util.concurrent.SerialMonoLifoExecutor;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
@@ -68,8 +70,8 @@ public class FcmFetchService extends Service {
   }
 
   private void fetch() {
-    MessageRetriever retriever = ApplicationDependencies.getMessageRetriever();
-    boolean          success   = retriever.retrieveMessages(this, new RestStrategy(), new RestStrategy());
+    BackgroundMessageRetriever retriever = ApplicationDependencies.getBackgroundMessageRetriever();
+    boolean                    success   = retriever.retrieveMessages(this, new RestStrategy(), new RestStrategy());
 
     if (success) {
       Log.i(TAG, "Successfully retrieved messages.");
