@@ -1844,7 +1844,6 @@ public class PushServiceSocket {
   };
   private static final ResponseCodeHandler GROUPS_V2_PATCH_RESPONSE_HANDLER = responseCode -> {
     if (responseCode == 400) throw new GroupPatchNotAcceptedException();
-    if (responseCode == 403) throw new NotInGroupException();
   };
 
   public void putNewGroupsV2Group(Group group, GroupsV2AuthorizationString authorization)
