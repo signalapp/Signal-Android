@@ -25,9 +25,10 @@ import androidx.navigation.Navigation;
 
 import com.dd.CircularProgressButton;
 
-import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
 import org.thoughtcrime.securesms.lock.v2.KbsConstants;
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType;
 import org.thoughtcrime.securesms.logging.Log;
@@ -39,8 +40,6 @@ import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SupportEmailUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
-
-import java.util.Locale;
 
 public class PinRestoreEntryFragment extends Fragment {
   private static final String TAG = Log.tag(PinRestoreActivity.class);
@@ -238,6 +237,7 @@ public class PinRestoreEntryFragment extends Fragment {
       startActivity(profile);
     } else {
       RegistrationUtil.markRegistrationPossiblyComplete();
+      ApplicationDependencies.getJobManager().add(new ProfileUploadJob());
       startActivity(new Intent(activity, MainActivity.class));
     }
 
