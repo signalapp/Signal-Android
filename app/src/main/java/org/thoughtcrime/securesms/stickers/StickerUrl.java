@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.text.TextUtils;
 
-import com.google.android.gms.common.util.Hex;
+import org.thoughtcrime.securesms.util.Hex;
 
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -70,7 +70,7 @@ public class StickerUrl {
 
   private static boolean isValidHex(String value) {
     try {
-      Hex.stringToBytes(value);
+      Hex.fromStringCondensed(value);
       return true;
     } catch (Exception e) {
       return false;

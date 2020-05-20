@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
-import com.google.android.gms.common.util.ArrayUtils;
 
 import net.sqlcipher.database.SQLiteConstraintException;
 import net.sqlcipher.database.SQLiteDatabase;
@@ -150,14 +149,14 @@ public class RecipientDatabase extends Database {
 
   private static final String[] MENTION_SEARCH_PROJECTION  = new String[]{ID, removeWhitespace("COALESCE(" + nullIfEmpty(SYSTEM_DISPLAY_NAME) + ", " + nullIfEmpty(PROFILE_JOINED_NAME) + ", " + nullIfEmpty(PROFILE_GIVEN_NAME) + ", " + nullIfEmpty(USERNAME) + ", " + nullIfEmpty(PHONE) + ")") + " AS " + SORT_NAME};
 
-  private static final String[] RECIPIENT_FULL_PROJECTION = ArrayUtils.concat(
+  private static final String[] RECIPIENT_FULL_PROJECTION = Stream.of(
       new String[] { TABLE_NAME + "." + ID,
                      TABLE_NAME + "." + STORAGE_PROTO },
       TYPED_RECIPIENT_PROJECTION,
       new String[] {
         IdentityDatabase.TABLE_NAME + "." + IdentityDatabase.VERIFIED + " AS " + IDENTITY_STATUS,
         IdentityDatabase.TABLE_NAME + "." + IdentityDatabase.IDENTITY_KEY + " AS " + IDENTITY_KEY
-      });
+      }).flatMap(Stream::of).toArray(String[]::new);
 
   public static final String[] CREATE_INDEXS = new String[] {
       "CREATE INDEX IF NOT EXISTS recipient_dirty_index ON " + TABLE_NAME + " (" + DIRTY + ");",
@@ -1041,8 +1040,8 @@ public class RecipientDatabase extends Database {
                                                + " LEFT OUTER JOIN " + GroupDatabase.TABLE_NAME + " ON " + TABLE_NAME + "." + GROUP_ID + " = " + GroupDatabase.TABLE_NAME + "." + GroupDatabase.GROUP_ID;
     List<RecipientSettings> out   = new ArrayList<>();
 
-    String[] columns = ArrayUtils.concat(RECIPIENT_FULL_PROJECTION,
-      new String[]{GroupDatabase.TABLE_NAME + "." + GroupDatabase.V2_MASTER_KEY });
+    String[] columns = Stream.of(RECIPIENT_FULL_PROJECTION,
+      new String[]{GroupDatabase.TABLE_NAME + "." + GroupDatabase.V2_MASTER_KEY }).flatMap(Stream::of).toArray(String[]::new);
 
     try (Cursor cursor = db.query(table, columns, query, args, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
