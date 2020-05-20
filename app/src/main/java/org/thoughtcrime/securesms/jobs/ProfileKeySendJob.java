@@ -127,6 +127,7 @@ public class ProfileKeySendJob extends BaseJob {
     List<SignalServiceAddress>             addresses          = Stream.of(destinations).map(t -> RecipientUtil.toSignalServiceAddress(context, t)).toList();
     List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = Stream.of(destinations).map(recipient -> UnidentifiedAccessUtil.getAccessFor(context, recipient)).toList();
     SignalServiceDataMessage.Builder       dataMessage        = SignalServiceDataMessage.newBuilder()
+                                                                                        .asProfileKeyUpdate(true)
                                                                                         .withTimestamp(System.currentTimeMillis())
                                                                                         .withProfileKey(Recipient.self().resolve().getProfileKey());
 
