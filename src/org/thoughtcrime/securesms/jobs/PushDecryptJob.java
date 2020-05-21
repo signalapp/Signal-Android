@@ -569,8 +569,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   {
     try {
       MmsDatabase          database     = DatabaseFactory.getMmsDatabase(context);
-      Recipient            recipient    = getMessageDestination(content, message);
-      IncomingMediaMessage mediaMessage = new IncomingMediaMessage(Address.fromSerialized(content.getSender()),
+      Recipient            recipient    = getMessageMasterDestination(content.getSender());
+      IncomingMediaMessage mediaMessage = new IncomingMediaMessage(getMessageMasterDestination(content.getSender()).getAddress(),
                                                                    message.getTimestamp(), -1,
                                                                    message.getExpiresInSeconds() * 1000L, true,
                                                                    content.isNeedsReceipt(),
@@ -641,6 +641,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       } else {
         threadId = handleSynchronizeSentTextMessage(message);
       }
+
+      if (threadId == -1L) { threadId = null; }
 
       if (message.getMessage().getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get()))) {
         handleUnknownGroupMessage(content, message.getMessage().getGroupInfo().get());
@@ -766,8 +768,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
     database.beginTransaction();
 
-    // Ignore message if it has no body and no attachments or anything
-    if (mediaMessage.getBody().isEmpty() && mediaMessage.getAttachments().isEmpty() && mediaMessage.getSharedContacts().isEmpty() && mediaMessage.getLinkPreviews().isEmpty()) {
+    // Loki - Ignore message if it has no body and no attachments
+    if (mediaMessage.getBody().isEmpty() && mediaMessage.getAttachments().isEmpty() && mediaMessage.getLinkPreviews().isEmpty()) {
       return;
     }
 
@@ -959,7 +961,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
       IncomingEncryptedMessage textMessage = new IncomingEncryptedMessage(tm, body);
 
-      // Ignore the message if the body is empty
+      // Ignore the message if it has no body
       if (textMessage.getMessageBody().length() == 0) { return; }
 
       // Insert the message into the database
@@ -1008,6 +1010,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     Recipient recipient       = getSyncMessageMasterDestination(message.getDestination().get());
     String    body            = message.getMessage().getBody().or("");
     long      expiresInMillis = message.getMessage().getExpiresInSeconds() * 1000L;
+
+    // Ignore the message if it has no body
+    if (body.isEmpty()) { return -1; }
 
     if (recipient.getExpireMessages() != message.getMessage().getExpiresInSeconds()) {
       handleSynchronizeSentExpirationUpdate(message);
