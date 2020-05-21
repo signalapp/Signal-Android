@@ -2341,7 +2341,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       Log.w(TAG, ex);
     }
 
-    if (messageStatus == null && !isGroupConversation()) {
+    if (messageStatus == null && !isGroupConversation() && !SessionMetaProtocol.shared.isNoteToSelf(recipient.getAddress().serialize())) {
       messageStatus = "calculatingPoW";
       updateSubtitleTextView();
       updateMessageStatusProgressBar();
@@ -3158,7 +3158,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleMessageStatusChanged(String newMessageStatus, long timestamp) {
-    if (timestamp == 0) { return; }
+    if (timestamp == 0 || SessionMetaProtocol.shared.isNoteToSelf(recipient.getAddress().serialize()) ) { return; }
     updateForNewMessageStatusIfNeeded(newMessageStatus, timestamp);
     if (newMessageStatus.equals("messageFailed") || newMessageStatus.equals("messageSent")) {
       new Handler().postDelayed(() -> clearMessageStatusIfNeeded(timestamp), 1000);
