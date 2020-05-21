@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.loki.database
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
+import android.util.Log
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -60,6 +61,7 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
 
     override fun setFriendRequestStatus(threadID: Long, friendRequestStatus: LokiThreadFriendRequestStatus) {
         if (threadID < 0) { return }
+        Log.d("Loki", "Setting FR status for thread with ID $threadID to $friendRequestStatus.")
         val database = databaseHelper.writableDatabase
         val contentValues = ContentValues(2)
         contentValues.put(Companion.threadID, threadID)

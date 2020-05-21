@@ -151,7 +151,7 @@ object FriendRequestProtocol {
         // Guard against invalid state transitions
         if (threadFRStatus != LokiThreadFriendRequestStatus.REQUEST_SENDING && threadFRStatus != LokiThreadFriendRequestStatus.REQUEST_SENT
             && threadFRStatus != LokiThreadFriendRequestStatus.REQUEST_RECEIVED) { return }
-        Log.d("Loki", "Accepting friend request from $publicKey.")
+        Log.d("Loki", "Received a friend request accepted message from $publicKey.")
         lokiThreadDB.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS)
         val lastMessageID = getLastMessageID(context, threadID)
         if (lastMessageID != null) {
@@ -242,7 +242,7 @@ object FriendRequestProtocol {
         // The order of these checks matters
         if (message.recipient.isGroupRecipient) { return false }
         if (message.recipient.address.serialize() == TextSecurePreferences.getLocalNumber(context)) { return false }
-        // TODO: Return false if the message is a device linking request
+        // TODO: Return true if the message is a device linking request
         // TODO: Return false if the message is a session request
         return message.isFriendRequest
     }
@@ -252,7 +252,7 @@ object FriendRequestProtocol {
         // The order of these checks matters
         if (message.recipient.isGroupRecipient) { return false }
         if (message.recipient.address.serialize() == TextSecurePreferences.getLocalNumber(context)) { return false }
-        // TODO: Return false if the message is a device linking request
+        // TODO: Return true if the message is a device linking request
         // TODO: Return false if the message is a session request
         return message.isFriendRequest
     }

@@ -230,6 +230,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChat;
 import org.whispersystems.signalservice.loki.protocol.mentions.Mention;
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager;
+import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol;
 import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol;
 import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus;
 import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation;
@@ -2447,7 +2448,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     // Loki - Send a friend request if we're not yet friends with the user in question
     LokiThreadFriendRequestStatus friendRequestStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadId);
-    message.isFriendRequest = !isGroupConversation() && friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS; // Needed for stageOutgoingMessage(...)
+    message.isFriendRequest = !isGroupConversation() && friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS
+      && !SessionMetaProtocol.shared.isNoteToSelf(recipient.getAddress().serialize()); // Needed for stageOutgoingMessage(...)
 
     silentlySetComposeText("");
     final long id = fragment.stageOutgoingMessage(message);
