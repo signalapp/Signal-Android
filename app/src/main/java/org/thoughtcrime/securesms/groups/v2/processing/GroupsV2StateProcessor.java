@@ -9,9 +9,11 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
+import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.signal.zkgroup.groups.GroupSecretParams;
+import org.signal.zkgroup.util.UUIDUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -279,7 +281,10 @@ public final class GroupsV2StateProcessor {
       final ProfileKeySet profileKeys = new ProfileKeySet();
 
       for (GroupLogEntry entry : globalGroupState.getHistory()) {
-        profileKeys.addKeysFromGroupState(entry.getGroup(), DecryptedGroupUtil.editorUuid(entry.getChange()));
+        Optional<UUID> editor = DecryptedGroupUtil.editorUuid(entry.getChange());
+        if (editor.isPresent()) {
+          profileKeys.addKeysFromGroupState(entry.getGroup(), editor.get());
+        }
       }
 
       Collection<RecipientId> updated = recipientDatabase.persistProfileKeySet(profileKeys);
@@ -335,8 +340,14 @@ public final class GroupsV2StateProcessor {
     }
 
     private void storeMessage(@NonNull DecryptedGroupV2Context decryptedGroupV2Context, long timestamp) {
-      UUID editor = DecryptedGroupUtil.editorUuid(decryptedGroupV2Context.getChange());
-      boolean outgoing = Recipient.self().getUuid().get().equals(editor);
+      Optional<UUID> editor = getEditor(decryptedGroupV2Context);
+
+      if (!editor.isPresent() || UuidUtil.UNKNOWN_UUID.equals(editor.get())) {
+        Log.w(TAG, "Cannot determine editor of change, can't insert message");
+        return;
+      }
+
+      boolean outgoing = Recipient.self().requireUuid().equals(editor.get());
 
       if (outgoing) {
         try {
@@ -353,12 +364,26 @@ public final class GroupsV2StateProcessor {
         }
       } else {
         SmsDatabase                smsDatabase  = DatabaseFactory.getSmsDatabase(context);
-        RecipientId                sender       = Recipient.externalPush(context, editor, null).getId();
+        RecipientId                sender       = RecipientId.from(editor.get(), null);
         IncomingTextMessage        incoming     = new IncomingTextMessage(sender, -1, timestamp, timestamp, "", Optional.of(groupId), 0, false);
         IncomingGroupUpdateMessage groupMessage = new IncomingGroupUpdateMessage(incoming, decryptedGroupV2Context);
 
         smsDatabase.insertMessageInbox(groupMessage);
       }
+    }
+
+    private Optional<UUID> getEditor(@NonNull DecryptedGroupV2Context decryptedGroupV2Context) {
+      DecryptedGroupChange change       = decryptedGroupV2Context.getChange();
+      Optional<UUID>       changeEditor = DecryptedGroupUtil.editorUuid(change);
+      if (changeEditor.isPresent()) {
+        return changeEditor;
+      } else {
+        Optional<DecryptedPendingMember> pendingByUuid = DecryptedGroupUtil.findPendingByUuid(decryptedGroupV2Context.getGroupState().getPendingMembersList(), Recipient.self().requireUuid());
+        if (pendingByUuid.isPresent()) {
+          return Optional.fromNullable(UuidUtil.fromByteStringOrNull(pendingByUuid.get().getAddedByUuid()));
+        }
+      }
+      return Optional.absent();
     }
   }
 }
