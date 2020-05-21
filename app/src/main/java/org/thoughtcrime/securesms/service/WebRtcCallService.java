@@ -482,12 +482,11 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     boolean      isSpeaker    = intent.getBooleanExtra(EXTRA_SPEAKER, false);
     AudioManager audioManager = ServiceUtil.getAudioManager(this);
 
+    audioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
+    audioManager.stopBluetoothSco();
+    audioManager.setBluetoothScoOn(false);
+    audioManager.setSpeakerphoneOn(true);
     audioManager.setSpeakerphoneOn(isSpeaker);
-
-    if (isSpeaker && audioManager.isBluetoothScoOn()) {
-      audioManager.stopBluetoothSco();
-      audioManager.setBluetoothScoOn(false);
-    }
 
     if (!localCameraState.isEnabled()) {
       lockManager.updatePhoneState(getInCallPhoneState());

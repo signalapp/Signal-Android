@@ -1294,7 +1294,8 @@
     <string name="WebRtcCallScreen__answer_without_video">Answer without video</string>
 
     <!-- WebRtcAudioOutputToggle -->
-    <string name="WebRtcAudioOutputToggle__phone">Phone</string>
+    <string name="WebRtcAudioOutputToggle__audio_output">Audio output</string>
+    <string name="WebRtcAudioOutputToggle__phone_earpiece">Phone earpiece</string>
     <string name="WebRtcAudioOutputToggle__speaker">Speaker</string>
     <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
 

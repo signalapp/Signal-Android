@@ -1,10 +1,16 @@
 package org.thoughtcrime.securesms.components.webrtc;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.RadioButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
+import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.util.Consumer;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,26 +18,35 @@ import org.thoughtcrime.securesms.R;
 
 import java.util.List;
 
-final class AudioOutputAdapter extends RecyclerView.Adapter<AudioOutputAdapter.AudioOutputViewHolder> {
+final class AudioOutputAdapter extends RecyclerView.Adapter<AudioOutputAdapter.ViewHolder> {
 
-  private final Consumer<WebRtcAudioOutput> consumer;
-  private final List<WebRtcAudioOutput>     audioOutputs;
+  private final OnAudioOutputChangedListener onAudioOutputChangedListener;
+  private final List<WebRtcAudioOutput> audioOutputs;
 
-  AudioOutputAdapter(@NonNull Consumer<WebRtcAudioOutput> consumer, @NonNull List<WebRtcAudioOutput> audioOutputs) {
-    this.audioOutputs = audioOutputs;
-    this.consumer     = consumer;
+  private WebRtcAudioOutput selected;
+
+  AudioOutputAdapter(@NonNull OnAudioOutputChangedListener onAudioOutputChangedListener,
+                     @NonNull List<WebRtcAudioOutput> audioOutputs) {
+    this.audioOutputs                 = audioOutputs;
+    this.onAudioOutputChangedListener = onAudioOutputChangedListener;
+  }
+
+  public void setSelectedOutput(@NonNull WebRtcAudioOutput selected) {
+    this.selected = selected;
+
+    notifyDataSetChanged();
   }
 
   @Override
-  public @NonNull AudioOutputViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    return new AudioOutputViewHolder((TextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.audio_output_adapter_item, parent, false), consumer);
+  public @NonNull ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.audio_output_adapter_radio_item, parent, false);
+
+    return new ViewHolder(view, this::handlePositionSelected);
   }
 
   @Override
-  public void onBindViewHolder(@NonNull AudioOutputViewHolder holder, int position) {
-    WebRtcAudioOutput audioOutput = audioOutputs.get(position);
-    holder.view.setText(audioOutput.getLabelRes());
-    holder.view.setCompoundDrawablesRelativeWithIntrinsicBounds(audioOutput.getIconRes(), 0, 0, 0);
+  public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    holder.bind(audioOutputs.get(position), selected);
   }
 
   @Override
@@ -39,21 +54,46 @@ final class AudioOutputAdapter extends RecyclerView.Adapter<AudioOutputAdapter.A
     return audioOutputs.size();
   }
 
-  final static class AudioOutputViewHolder extends RecyclerView.ViewHolder {
+  private void handlePositionSelected(int position) {
+    WebRtcAudioOutput mode = audioOutputs.get(position);
 
-    private final TextView view;
-
-    AudioOutputViewHolder(@NonNull TextView itemView, @NonNull Consumer<WebRtcAudioOutput> consumer) {
-      super(itemView);
-
-      view = itemView;
-
-      itemView.setOnClickListener(v -> {
-        if (getAdapterPosition() != RecyclerView.NO_POSITION) {
-          consumer.accept(WebRtcAudioOutput.values()[getAdapterPosition()]);
-        }
-      });
+    if (mode != selected) {
+      setSelectedOutput(mode);
+      onAudioOutputChangedListener.audioOutputChanged(selected);
     }
   }
 
+  static class ViewHolder extends RecyclerView.ViewHolder implements CompoundButton.OnCheckedChangeListener {
+
+    private final TextView          textView;
+    private final RadioButton       radioButton;
+    private final Consumer<Integer> onPressed;
+
+
+    public ViewHolder(@NonNull View itemView, @NonNull Consumer<Integer> onPressed) {
+      super(itemView);
+
+      this.textView    = itemView.findViewById(R.id.text);
+      this.radioButton = itemView.findViewById(R.id.radio);
+      this.onPressed   = onPressed;
+    }
+
+    @CallSuper
+    void bind(@NonNull WebRtcAudioOutput audioOutput, @Nullable WebRtcAudioOutput selected) {
+      textView.setText(audioOutput.getLabelRes());
+      textView.setCompoundDrawablesRelativeWithIntrinsicBounds(audioOutput.getIconRes(), 0, 0, 0);
+
+      radioButton.setOnCheckedChangeListener(null);
+      radioButton.setChecked(audioOutput == selected);
+      radioButton.setOnCheckedChangeListener(this);
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+      int adapterPosition = getAdapterPosition();
+      if (adapterPosition != RecyclerView.NO_POSITION) {
+        onPressed.accept(adapterPosition);
+      }
+    }
+  }
 }

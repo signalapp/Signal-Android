@@ -203,8 +203,6 @@ public class WebRtcCallActivity extends AppCompatActivity {
     viewModel = ViewModelProviders.of(this).get(WebRtcCallViewModel.class);
     viewModel.setIsInPipMode(isInPipMode());
     viewModel.getRemoteVideoEnabled().observe(this,callScreen::setRemoteVideoEnabled);
-    viewModel.getBluetoothEnabled().observe(this, callScreen::setBluetoothEnabled);
-    viewModel.getAudioOutput().observe(this, callScreen::setAudioOutput);
     viewModel.getMicrophoneEnabled().observe(this, callScreen::setMicEnabled);
     viewModel.getCameraDirection().observe(this, callScreen::setCameraDirection);
     viewModel.getLocalRenderState().observe(this, callScreen::setLocalRenderState);
@@ -212,7 +210,6 @@ public class WebRtcCallActivity extends AppCompatActivity {
     viewModel.getEvents().observe(this, this::handleViewModelEvent);
     viewModel.getCallTime().observe(this, this::handleCallTime);
     viewModel.displaySquareCallCard().observe(this, callScreen::showCallCard);
-    viewModel.isMoreThanOneCameraAvailable().observe(this, callScreen::showCameraToggleButton);
   }
 
   private void handleViewModelEvent(@NonNull WebRtcCallViewModel.Event event) {
@@ -253,17 +250,23 @@ public class WebRtcCallActivity extends AppCompatActivity {
     callScreen.setStatus(getString(R.string.WebRtcCallActivity__signal_s, ellapsedTimeFormatter.toString()));
   }
 
-  private void handleSetAudioSpeaker(boolean enabled) {
+  private void handleSetAudioHandset() {
     Intent intent = new Intent(this, WebRtcCallService.class);
     intent.setAction(WebRtcCallService.ACTION_SET_AUDIO_SPEAKER);
-    intent.putExtra(WebRtcCallService.EXTRA_SPEAKER, enabled);
     startService(intent);
   }
 
-  private void handleSetAudioBluetooth(boolean enabled) {
+  private void handleSetAudioSpeaker() {
+    Intent intent = new Intent(this, WebRtcCallService.class);
+    intent.setAction(WebRtcCallService.ACTION_SET_AUDIO_SPEAKER);
+    intent.putExtra(WebRtcCallService.EXTRA_SPEAKER, true);
+    startService(intent);
+  }
+
+  private void handleSetAudioBluetooth() {
     Intent intent = new Intent(this, WebRtcCallService.class);
     intent.setAction(WebRtcCallService.ACTION_SET_AUDIO_BLUETOOTH);
-    intent.putExtra(WebRtcCallService.EXTRA_BLUETOOTH, enabled);
+    intent.putExtra(WebRtcCallService.EXTRA_BLUETOOTH, true);
     startService(intent);
   }
 
@@ -546,13 +549,13 @@ public class WebRtcCallActivity extends AppCompatActivity {
     public void onAudioOutputChanged(@NonNull WebRtcAudioOutput audioOutput) {
       switch (audioOutput) {
         case HANDSET:
-          handleSetAudioSpeaker(false);
+          handleSetAudioHandset();
           break;
         case HEADSET:
-          handleSetAudioBluetooth(true);
+          handleSetAudioBluetooth();
           break;
         case SPEAKER:
-          handleSetAudioSpeaker(true);
+          handleSetAudioSpeaker();
           break;
         default:
           throw new IllegalStateException("Unknown output: " + audioOutput);

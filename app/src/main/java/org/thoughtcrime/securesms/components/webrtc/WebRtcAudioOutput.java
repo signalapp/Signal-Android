@@ -6,9 +6,9 @@ import androidx.annotation.StringRes;
 import org.thoughtcrime.securesms.R;
 
 public enum WebRtcAudioOutput {
-  HANDSET(R.string.WebRtcAudioOutputToggle__phone, R.drawable.ic_phone_right_black_28),
-  SPEAKER(R.string.WebRtcAudioOutputToggle__speaker, R.drawable.ic_speaker_solid_black_28),
-  HEADSET(R.string.WebRtcAudioOutputToggle__bluetooth, R.drawable.ic_speaker_bt_solid_black_28);
+  HANDSET(R.string.WebRtcAudioOutputToggle__phone_earpiece, R.drawable.ic_handset_solid_24),
+  SPEAKER(R.string.WebRtcAudioOutputToggle__speaker, R.drawable.ic_speaker_solid_24),
+  HEADSET(R.string.WebRtcAudioOutputToggle__bluetooth, R.drawable.ic_speaker_bt_solid_24);
 
   private final @StringRes int labelRes;
   private final @DrawableRes int iconRes;
