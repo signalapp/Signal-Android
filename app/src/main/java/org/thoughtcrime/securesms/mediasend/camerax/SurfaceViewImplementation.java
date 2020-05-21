@@ -16,7 +16,6 @@
 
 package org.thoughtcrime.securesms.mediasend.camerax;
 
-import android.util.Log;
 import android.util.Size;
 import android.view.Surface;
 import android.view.SurfaceHolder;
@@ -29,6 +28,8 @@ import androidx.annotation.UiThread;
 import androidx.camera.core.Preview;
 import androidx.camera.core.SurfaceRequest;
 import androidx.core.content.ContextCompat;
+
+import org.thoughtcrime.securesms.logging.Log;
 
 /**
  * The SurfaceView implementation for {@link PreviewView}.

@@ -12,22 +12,18 @@ import com.annimon.stream.Stream;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
-import org.thoughtcrime.securesms.jobs.LeaveGroupJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceMessageRequestResponseJob;
 import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.FeatureFlags;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
@@ -116,23 +112,9 @@ public class RecipientUtil {
       throw new AssertionError("Not a group!");
     }
 
-    if (DatabaseFactory.getGroupDatabase(context).isActive(resolved.requireGroupId())) {
-      long                                threadId     = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(resolved);
-      Optional<OutgoingGroupMediaMessage> leaveMessage = GroupUtil.createGroupLeaveMessage(context, resolved);
-
-      if (threadId != -1 && leaveMessage.isPresent()) {
-        ApplicationDependencies.getJobManager().add(LeaveGroupJob.create(recipient));
-
-        GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
-        GroupId       groupId       = resolved.requireGroupId();
-        groupDatabase.setActive(groupId, false);
-        groupDatabase.remove(groupId, Recipient.self().getId());
-      } else {
-        Log.w(TAG, "Failed to leave group.");
-        Toast.makeText(context, R.string.RecipientPreferenceActivity_error_leaving_group, Toast.LENGTH_LONG).show();
-      }
-    } else {
-      Log.i(TAG, "Group was already inactive. Skipping.");
+    if (!GroupManager.silentLeaveGroup(context, resolved.requireGroupId().requirePush())) {
+      Log.w(TAG, "Failed to leave group.");
+      Toast.makeText(context, R.string.RecipientPreferenceActivity_error_leaving_group, Toast.LENGTH_LONG).show();
     }
   }
 

@@ -27,11 +27,11 @@ import androidx.core.app.RemoteInput;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
-import org.whispersystems.libsignal.logging.Log;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -42,7 +42,7 @@ import java.util.List;
  */
 public class AndroidAutoReplyReceiver extends BroadcastReceiver {
 
-  public static final String TAG             = AndroidAutoReplyReceiver.class.getSimpleName();
+  public static final String TAG             = Log.tag(AndroidAutoReplyReceiver.class);
   public static final String REPLY_ACTION    = "org.thoughtcrime.securesms.notifications.ANDROID_AUTO_REPLY";
   public static final String RECIPIENT_EXTRA = "car_recipient";
   public static final String VOICE_REPLY_KEY = "car_voice_reply_key";
@@ -73,11 +73,11 @@ public class AndroidAutoReplyReceiver extends BroadcastReceiver {
           long expiresIn      = recipient.getExpireMessages() * 1000L;
 
           if (recipient.resolve().isGroup()) {
-            Log.w("AndroidAutoReplyReceiver", "GroupRecipient, Sending media message");
+            Log.w(TAG, "GroupRecipient, Sending media message");
             OutgoingMediaMessage reply = new OutgoingMediaMessage(recipient, responseText.toString(), new LinkedList<>(), System.currentTimeMillis(), subscriptionId, expiresIn, false, 0, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
             replyThreadId = MessageSender.send(context, reply, threadId, false, null);
           } else {
-            Log.w("AndroidAutoReplyReceiver", "Sending regular message ");
+            Log.w(TAG, "Sending regular message ");
             OutgoingTextMessage reply = new OutgoingTextMessage(recipient, responseText.toString(), expiresIn, subscriptionId);
             replyThreadId = MessageSender.send(context, reply, threadId, false, null);
           }

@@ -97,10 +97,21 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="TextAppearance.Signal.Body2" parent="@style/TextAppearance.MaterialComponents.Body2">
+    <style name="TextAppearance.Signal.Body1" parent="@style/TextAppearance.AppCompat.Body1">
+        <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="TextAppearance.Signal.Caption" parent="@style/TextAppearance.MaterialComponents.Caption">
+    <style name="TextAppearance.Signal.Body2" parent="@style/TextAppearance.AppCompat.Body2">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="fontFamily">sans-serif</item>
+    </style>
+
+    <style name="TextAppearance.Signal.Body1.Bold">
+        <item name="fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TextAppearance.Signal.Caption" parent="@style/TextAppearance.AppCompat.Caption">
     </style>
 
     <style name="TextAppearance.Signal.Subtitle2" parent="@style/TextAppearance.MaterialComponents.Subtitle2">

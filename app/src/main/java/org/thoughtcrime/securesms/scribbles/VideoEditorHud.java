@@ -15,7 +15,7 @@ import androidx.annotation.RequiresApi;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.VideoSlide;
-import org.thoughtcrime.securesms.video.DecryptableUriVideoInput;
+import org.thoughtcrime.securesms.media.DecryptableUriMediaInput;
 import org.thoughtcrime.securesms.video.videoconverter.VideoThumbnailsRangeSelectorView;
 
 import java.io.IOException;
@@ -69,7 +69,7 @@ public final class VideoEditorHud extends LinearLayout {
       return;
     }
 
-    videoTimeLine.setInput(DecryptableUriVideoInput.createForUri(getContext(), uri));
+    videoTimeLine.setInput(DecryptableUriMediaInput.createForUri(getContext(), uri));
 
     videoTimeLine.setOnRangeChangeListener(new VideoThumbnailsRangeSelectorView.OnRangeChangeListener() {
 

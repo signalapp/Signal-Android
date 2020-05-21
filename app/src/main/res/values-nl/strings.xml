@@ -120,6 +120,7 @@
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Verwijderen</string>
   <string name="ClearProfileActivity_remove_profile_photo">Profielfoto verwijderen?</string>
+  <string name="ClearProfileActivity_remove_group_photo">Groepsafbeelding verwijderen?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Geen webbrowser gevonden.</string>
   <string name="CommunicationActions_no_email_app_found">Geen e-mail-app gevonden op je apparaat.</string>
@@ -205,7 +206,6 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Er is geen app beschikbaar op je apparaat om deze koppeling te openen.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Om audioberichten op te nemen, moet je Signal toegang geven tot je microfoon.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal heeft toegang nodig tot de microfoon om audioberichten te kunnen opnemen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Microfoon’ in.</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Signal heeft toegang nodig tot je microfoon en camera om %s te bellen.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal heeft toegang nodig tot de microfoon en de camera om %s te kunnen bellen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Microfoon’ en ‘Camera’ in.</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Geef Signal toegang tot de camera om foto\'s en video\'s te maken.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal heeft toegang nodig tot de camera om foto’s en video’s te kunnen opnemen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Camera’ in.</string>
@@ -228,6 +228,8 @@
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Je zult deze groep verlaten en het gesprek zal van al je apparaten worden gewist.</string>
   <string name="ConversationActivity_delete">Verwijderen</string>
   <string name="ConversationActivity_delete_and_leave">Verwijderen en verlaten</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Signal heeft toegang nodig tot je microfoon om %1$s te bellen.</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Signal heeft toegang nodig tot je microfoon en camera om %1$s te bellen.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ongelezen bericht</item>
@@ -368,6 +370,7 @@
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nieuwe groep</string>
   <string name="GroupCreateActivity_actionbar_edit_title">Groep aanpassen</string>
+  <string name="GroupCreateActivity_actionbar_manage_title">Groepsgesprek beheren</string>
   <string name="GroupCreateActivity_group_name_hint">Groepsnaam</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nieuwe mms-groep</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Je hebt een contactpersoon geselecteerd die geen Signal-groepen ondersteunt, dus deze groep zal gebruik maken van mms.</string>
@@ -409,10 +412,49 @@
     <item quantity="one">Fout bij het annuleren van de uitnodiging</item>
     <item quantity="other">Fout bij het annuleren van de uitnodigingen</item>
   </plurals>
+  <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__name_this_group">Geef dit groepsgesprek een naam </string>
+  <string name="AddGroupDetailsFragment__create">Aanmaken</string>
+  <string name="AddGroupDetailsFragment__members">Leden</string>
+  <string name="AddGroupDetailsFragment__group_name_required">Groepsnaam (vereist)</string>
+  <string name="AddGroupDetailsFragment__this_field_is_required">Dit veld is vereist.</string>
+  <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Groepsgesprekken moeten tenminste twee deelnemers hebben.</string>
+  <string name="AddGroupDetailsFragment__group_creation_failed">Nieuw groepsgesprek aanmaken is mislukt</string>
+  <string name="AddGroupDetailsFragment__try_again_later">Probeer het later opnieuw.</string>
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Je hebt een contactpersoon geselecteerd die geen Signal-groepen ondersteunt, dus deze groep zal gebruik maken van mms.</string>
+  <string name="AddGroupDetailsFragment__remove">Verwijderen</string>
+  <string name="AddGroupDetailsFragment__sms_contact">Sms-contactpersoon</string>
+  <!--ManageGroupActivity-->
+  <string name="ManageGroupActivity_disappearing_messages">Zelfwissende berichten</string>
+  <string name="ManageGroupActivity_pending_group_invites">Groepsuitnodigingen in afwachting</string>
+  <string name="ManageGroupActivity_who_can_edit_group_membership">Wie de groepslidmaatschap kan aanpassen</string>
+  <string name="ManageGroupActivity_who_can_edit_group_info">Wie de groepsinformatie kan aanpassen</string>
+  <string name="ManageGroupActivity_block_group">Groepsgesprek blokkeren</string>
+  <string name="ManageGroupActivity_leave_group">Groep verlaten</string>
+  <string name="ManageGroupActivity_mute_notifications">Demp meldingen</string>
+  <string name="ManageGroupActivity_custom_notifications">Aangepaste meldingen</string>
+  <string name="ManageGroupActivity_until_s">Tot %1$s</string>
+  <string name="ManageGroupActivity_off">Uit</string>
+  <string name="ManageGroupActivity_on">Aan</string>
+  <string name="ManageGroupActivity_add_members">Leden toevoegen</string>
+  <string name="ManageGroupActivity_view_all_members">Alle leden weergeven</string>
+  <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Je hebt geen recht om dit te doen</string>
+  <string name="ManageGroupActivity_not_capable">Één of meer van de door jou toegevoegde personen ondersteunen de nieuwe groepsgesprekken nog niet. Zij moeten Signal bijwerken.</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group">Bijwerken van de groep is mislukt</string>
+  <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Je bent niet lid van deze groep</string>
+  <string name="ManageGroupActivity_edit_name_and_picture">Naam en afbeelding aanpassen</string>
+  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Kies wie nieuwe leden kan toevoegen of uitnodigen</string>
+  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Kies wie de naam en afbeelding van het groepsgesprek kan aanpassen</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s heeft 1 persoon uitgenodigd voor de groep</item>
     <item quantity="other">%1$s heeft %2$d personen uitgenodigd voor de groep</item>
   </plurals>
+  <!--CustomNotificationsDialogFragment-->
+  <string name="CustomNotificationsDialogFragment__custom_notifications">Aangepaste meldingen</string>
+  <string name="CustomNotificationsDialogFragment__messages">Berichten</string>
+  <string name="CustomNotificationsDialogFragment__use_custom_notifications">Aangepaste meldingen gebruiken</string>
+  <string name="CustomNotificationsDialogFragment__notification_sound">Meldingsgeluid</string>
+  <string name="CustomNotificationsDialogFragment__vibrate">Trillen</string>
   <!--GV2 Invite cancellation confirmation-->
   <string name="GroupManagement_cancel_own_single_invite">Wil je de uitnodiging aan %1$s intrekken?</string>
   <plurals name="GroupManagement_cancel_others_invites">
@@ -544,6 +586,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Alle media</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_unknown">Gebruiker niet bekend</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Dit bericht gebruikt verouderde versleuteling van een Signal-versie die niet langer ondersteund wordt. Vraag de afzender om bij te werken naar de meest recente versie en het bericht opnieuw te verzenden.</string>
   <string name="MessageRecord_left_group">Je hebt de groep verlaten.</string>
   <string name="MessageRecord_you_updated_group">Je hebt de groep aangepast.</string>
@@ -560,6 +603,8 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Je hebt de timer voor zelfwissende berichten op %1$s ingesteld.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s heeft de timer voor zelfwissende berichten op %2$s ingesteld.</string>
   <!--GV2 specific-->
+  <string name="MessageRecord_you_created_the_group">Je hebt de groep aangemaakt.</string>
+  <string name="MessageRecord_group_updated">Groep aangepast.</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Je hebt %1$s aan de groep toegevoegd.</string>
   <string name="MessageRecord_s_added_s">%1$s heeft %2$s toegevoegd aan de groep.</string>
@@ -627,6 +672,7 @@
   <string name="MessageRequestBottomView_unblock">Deblokkeren</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je %1$s toestaan om je berichten te sturen? Hij of zij zal niet weten dat je zijn of haar berichten hebt gelezen tenzij je toestemming geeft.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je lid worden van de groep “%1$s”? Ze zullen pas weten of je hun berichten hebt als je toestemming geeft.</string>
+  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Je bent uitgenodigd om lid te worden van de groep “%1$s”. Wil je de leden van die groep toestaan om berichten naar jou te verzenden?</string>
   <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Deblokkeer %1$s om elkaar weer berichten te kunnen sturen en om elkaar te kunnen bellen.</string>
   <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Deblokkeer om groepsleden toe te staan om je opnieuw aan de groep toe te voegen.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Lid van %1$s</string>
@@ -671,7 +717,7 @@
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Kan geen QR-code scannen zonder toegang tot camera</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Zelfwissende berichten</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Nieuwe berichten die in dit gesprek verzonden of ontvangen worden zullen zichzelf niet wissen.</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">Nieuwe berichten die in dit gesprek verzonden of ontvangen worden zullen zichzelf niet wissen. – Gebruik zelfwissende berichten niet ter beveiliging, want Signal kan niet garanderen dat een bericht op het apparaat van een ander daadwerkelijk wordt gewist.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Elk nieuwe bericht dat in dit gesprek verzonden of ontvangen wordt zal zichzelf na %s wissen. Voor iedere deelnemer aan het gesprek begint de tijd pas te lopen als hij het bericht heeft gezien. – Gebruik zelfwissende berichten niet ter beveiliging, want Signal kan niet garanderen dat een bericht op het apparaat van een ander daadwerkelijk wordt gewist.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Voer wachtwoord in</string>
@@ -701,7 +747,6 @@
     <item quantity="other">Je hebt nog %1$d pogingen resterend. Als je geen pogingen meer over hebt, dan kun je nog wel een nieuwe pincode aanmaken. Je kunt Signal dan wel weer registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam en -foto zullen dan verloren gaan.</item>
   </plurals>
   <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal-registratratie - Ik heb hulp nodig bij de Signal-pincode op Android apparaten</string>
-  <string name="PinRestoreEntryFragment_subject_signal_registration">Betreffende Signal registratie - Ik zoek hulp bij de Signal-pincode voor Android\nApparaatinformatie: %1$s\nAndoid-versie: %2$s\nSignal-versie: %3$s\nLocale: %4$s</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Voer alfanumerieke pincode in.</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Voer numerieke pincode in.</string>
   <!--PinRestoreLockedFragment-->
@@ -716,7 +761,7 @@
   <string name="RatingManager_later">Later</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Oeps, het lijkt er op dat de Play Store-app niet geïnstalleerd is op dit apparaat.</string>
   <!--ReactionsBottomSheetDialogFragment-->
-  <string name="ReactionsBottomSheetDialogFragment_all">Alle %1$d</string>
+  <string name="ReactionsBottomSheetDialogFragment_all">Alle · %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
@@ -742,6 +787,14 @@
   <string name="RedPhone_number_not_registered">Telefoonnummer niet geregistreerd!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Het ingetoetste nummer ondersteunt geen beveiligd bellen!</string>
   <string name="RedPhone_got_it">Begrepen</string>
+  <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Tik hier om je camera aan te zetten</string>
+  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Signal heeft toegang nodig tot je camera om %1$s te bellen</string>
+  <string name="WebRtcCallActivity__signal_s">Signal-oproep %1$s</string>
+  <string name="WebRtcCallActivity__calling">Aan het bellen …</string>
+  <!--WebRtcCallView-->
+  <string name="WebRtcCallView__signal_voice_call">Signal audio-oproep …</string>
+  <string name="WebRtcCallView__signal_video_call">Signal video-oproep …</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Selecteer je land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Je moet jouw
@@ -815,9 +868,9 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Signal zal je er  opnieuw aan herinneren dat je je pincode nog moet verifiëren.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Signal zal je er morgen opnieuw aan herinneren dat je je pincode nog moet verifiëren.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Signal zal je er binnen een aantal dagen opnieuw aan herinneren dat je je pincode nog moet verifiëren.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Signal zal je binnen een aantal dagen opnieuw vragen je pincode in te voeren.</string>
   <string name="SignalPinReminders_well_remind_you_again_in_a_week">Signal zal je er na een week opnieuw aan herinneren dat je je pincode nog moet verifiëren.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Signal zal je er binnen een aantal weken opnieuw aan herinneren dat je je pincode nog moet verifiëren.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Signal zal je binnen een aantal weken opnieuw vragen je pincode in te voeren.</string>
   <!--Slide-->
   <string name="Slide_image">Afbeelding</string>
   <string name="Slide_sticker">Sticker</string>
@@ -864,6 +917,14 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Gekopieerd naar klembord</string>
   <string name="SubmitDebugLogActivity_ok">Ok</string>
   <string name="SubmitDebugLogActivity_share">Doorsturen via andere app</string>
+  <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_subject">Onderwerp:</string>
+  <string name="SupportEmailUtil_signal_android_support_request">Signal-Android ondersteuningsverzoek</string>
+  <string name="SupportEmailUtil_device_info">Apparaatinformatie:</string>
+  <string name="SupportEmailUtil_android_version">Android-versie:</string>
+  <string name="SupportEmailUtil_signal_version">Signal-versie:</string>
+  <string name="SupportEmailUtil_signal_package">Signal-pakket:</string>
+  <string name="SupportEmailUtil_locale">Taalgebied:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Groep aangepast</string>
   <string name="ThreadRecord_left_the_group">Iemand heeft de groep verlaten</string>
@@ -888,6 +949,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ThreadRecord_message_could_not_be_processed">Bericht kon niet worden verwerkt</string>
   <string name="ThreadRecord_message_request">Gespreksverzoeken</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s heeft je aan de groep toegevoegd</string>
+  <string name="ThreadRecord_s_invited_you_to_the_group">%1$s heeft je uitgenodigd voor dit groepsgesprek</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Nieuwe versie van Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Er is een nieuwe versie van Signal beschikbaar. Tik hier om bij te werken</string>
@@ -1031,12 +1093,23 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Geef Signal toegang tot je microfoon om de oproep van %s te beantwoorden.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal heeft toegang nodig tot de microfoon en de camera om oproepen te maken of te ontvangen, maar deze toegang is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Microfoon’ en ‘Camera’ in.</string>
+  <string name="WebRtcCallActivity__answered_on_a_linked_device">Beantwoord vanaf een gekoppeld apparaat.</string>
+  <string name="WebRtcCallActivity__declined_on_a_linked_device">Geweigerd vanaf een gekoppeld apparaat.</string>
+  <string name="WebRtcCallActivity__busy_on_a_linked_device">Bezet omdat je al een gesprek voerde via een van je gekoppelde apparaten.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Je veiligheidsnummer met %1$s is veranderd. Dit kan betekenen dat iemand je communicatie probeert te onderscheppen, of gewoon dat %2$s Signal opnieuw geïnstalleerd heeft.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Het wordt aanbevolen de veiligheidsnummers met deze contactpersoon te verifiëren.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Nieuw veiligheidsnummer</string>
   <string name="WebRtcCallScreen_accept">Aanvaarden</string>
   <string name="WebRtcCallScreen_end_call">Oproep beëindigen</string>
+  <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__decline">Weigeren</string>
+  <string name="WebRtcCallScreen__answer">Beantwoorden</string>
+  <string name="WebRtcCallScreen__answer_without_video">Beantwoorden zonder video</string>
+  <!--WebRtcAudioOutputToggle-->
+  <string name="WebRtcAudioOutputToggle__phone">Telefoon</string>
+  <string name="WebRtcAudioOutputToggle__speaker">Luidspreker</string>
+  <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Tik om je video in te schakelen</string>
   <!--WebRtcCallControls Content Descriptions-->
@@ -1071,6 +1144,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Typ naam of nummer</string>
   <string name="contact_selection_activity__invite_to_signal">Uitnodigen voor Signal</string>
+  <string name="contact_selection_activity__new_group">Nieuwe groep</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Ingevoerde tekst wissen</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Toetsenbord weergeven</string>
@@ -1135,6 +1209,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Landen aan het laden …</string>
   <string name="country_selection_fragment__search">Zoeken</string>
+  <string name="country_selection_fragment__no_matching_countries">Geen overeenkomstige landen</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scan de QR-code die wordt weergegeven op het te koppelen apparaat</string>
   <!--device_link_fragment-->
@@ -1246,6 +1321,9 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="CreateProfileActivity_next">Volgende</string>
   <string name="CreateProfileActivity__username">Gebruikersnaam</string>
   <string name="CreateProfileActivity__create_a_username">Gebruikersnaam aanmaken</string>
+  <!--EditProfileFragment-->
+  <string name="EditProfileFragment__edit_group_name_and_photo">Naam en afbeelding van het groepsgesprek aanpassen</string>
+  <string name="EditProfileFragment__group_name">Groepsnaam</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Gedeelde media</string>
   <!--recipient_preferences-->
@@ -1326,18 +1404,24 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="HelpFragment__whats_this">Waar dient deze optie voor?</string>
   <string name="HelpFragment__how_do_you_feel">Hoe voel je je? (Optioneel)</string>
   <string name="HelpFragment__support_info">Ondersteuningsinformatie</string>
-  <string name="HelpFragment__subject">Onderwerp:</string>
   <string name="HelpFragment__signal_android_support_request">Signal-Android ondersteuningsverzoek</string>
-  <string name="HelpFragment__device_info">Apparaatinformatie:</string>
-  <string name="HelpFragment__android_version">Android-versie:</string>
-  <string name="HelpFragment__signal_version">Signal-versie:</string>
-  <string name="HelpFragment__locale">Taalgebied:</string>
   <string name="HelpFragment__debug_log">Foutopsporingslog:</string>
   <string name="HelpFragment__na">Niet van toepassing</string>
   <string name="HelpFragment__could_not_upload_logs">Logs uploaden is mislukt</string>
   <string name="HelpFragment__signal_support">Signal-ondersteuning</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Probeer zo beschrijvend mogelijk te zijn om ons te helpen het probleem te begrijpen.</string>
   <string name="HelpFragment__no_email_app_found">Geen e-mail-app gevonden op je apparaat.</string>
+  <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Recentelijk gebruikt</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Gezichtjes &amp; mensen</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natuur</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Voedsel</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Activiteiten</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Plaatsen</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objecten</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symbolen</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Vlaggen</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticons</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importeren</string>
   <string name="arrays__use_default">Gebruik systeemstandaard</string>
@@ -1543,6 +1627,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Bijlage toevoegen</string>
   <string name="conversation__menu_edit_group">Groep aanpassen</string>
+  <string name="conversation__menu_manage_group">Groep beheren</string>
   <string name="conversation__menu_leave_group">Groep verlaten</string>
   <string name="conversation__menu_view_all_media">Alle media</string>
   <string name="conversation__menu_conversation_settings">Gespreksinstellingen</string>
@@ -1704,6 +1789,9 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
     <item quantity="one">%1$d poging resterend.</item>
     <item quantity="other">%1$d pogingen resterend.</item>
   </plurals>
+  <!--CalleeMustAcceptMessageRequestDialogFragment-->
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">Oké</string>
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s zal van jou een gespreksverzoek ontvangen. Je kunt bellen vanaf het moment dat je gespreksverzoek is geaccepteerd.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Een pincode aanmaken</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Met een pincode wordt informatie versleuteld voor die wordt opgeslagen op Signal\'s servers. Zelfs Signal\'s ontwikkelaars kunnen je informatie niet inzien.</string>
@@ -1774,7 +1862,6 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="RegistrationActivity_call_me_instead_available_in">Bel me \n (beschikbaar over %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Contact opnemen met Signal-ondersteuning</string>
   <string name="RegistrationActivity_code_support_subject">Signal-registratie - Verificatiecode voor Android</string>
-  <string name="RegistrationActivity_code_support_body">Onderwerp: Signal-registration - Verificatiecode voor Android\nApparaat-informatie: %1$s\nAndroid-versie: %2$s\nSignal-versie: %3$s\nLocale: %4$s</string>
   <string name="BackupUtil_never">Nooit</string>
   <string name="BackupUtil_unknown">Onbekend</string>
   <string name="preferences_app_protection__screen_lock">Schermvergrendeling</string>
@@ -1828,5 +1915,19 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="RegistrationLockDialog_reminder">Herinnering:</string>
   <string name="recipient_preferences__about">Over</string>
   <string name="Recipient_unknown">Onbekend</string>
+  <!--RecipientBottomSheet-->
+  <string name="RecipientBottomSheet_message">Bericht</string>
+  <string name="RecipientBottomSheet_call">Bellen</string>
+  <string name="RecipientBottomSheet_block">Blokkeren</string>
+  <string name="RecipientBottomSheet_unblock">Deblokkeren</string>
+  <string name="RecipientBottomSheet_view_safety_number">Veiligheidsnummer bekijken</string>
+  <string name="RecipientBottomSheet_make_group_admin">Groepsbeheerder maken</string>
+  <string name="RecipientBottomSheet_remove_as_admin">Beheerdersbevoegdheden intrekken</string>
+  <string name="RecipientBottomSheet_remove_from_group">Van de groep verwijderen</string>
+  <string name="RecipientBottomSheet_remove_s_as_group_admin">De beheerdersbevoegdheden van %1$s intrekken?</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s zal dit groepsgesprek en de deelnemers kunnen aanpassen</string>
+  <string name="RecipientBottomSheet_remove_s_from_s">%1$s verwijderen van “%2$s”?</string>
+  <string name="RecipientBottomSheet_remove">Verwijderen</string>
+  <string name="GroupRecipientListItem_admin">Beheerder</string>
   <!--EOF-->
 </resources>

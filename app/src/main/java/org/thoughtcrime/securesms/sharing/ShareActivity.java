@@ -94,12 +94,12 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   @Override
   protected void onCreate(Bundle icicle, boolean ready) {
     if (!getIntent().hasExtra(ContactSelectionListFragment.DISPLAY_MODE)) {
-      int mode = DisplayMode.FLAG_PUSH | DisplayMode.FLAG_ACTIVE_GROUPS;
+      int mode = DisplayMode.FLAG_PUSH | DisplayMode.FLAG_ACTIVE_GROUPS | DisplayMode.FLAG_SELF;
 
       if (TextSecurePreferences.isSmsEnabled(this))  {
         mode |= DisplayMode.FLAG_SMS;
-
       }
+
       getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE, mode);
     }
 

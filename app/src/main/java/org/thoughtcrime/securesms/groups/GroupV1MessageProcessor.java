@@ -19,12 +19,12 @@ import org.thoughtcrime.securesms.jobs.AvatarGroupsV1DownloadJob;
 import org.thoughtcrime.securesms.jobs.PushGroupUpdateJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MmsException;
-import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingGroupUpdateMessage;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
-import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
+import org.thoughtcrime.securesms.sms.IncomingGroupUpdateMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.FeatureFlags;
@@ -233,12 +233,12 @@ public final class GroupV1MessageProcessor {
 
     try {
       if (outgoing) {
-        MmsDatabase               mmsDatabase     = DatabaseFactory.getMmsDatabase(context);
-        RecipientId               recipientId     = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(GroupId.v1orThrow(group.getGroupId()));
-        Recipient                 recipient       = Recipient.resolved(recipientId);
-        OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(recipient, storage, null, content.getTimestamp(), 0, false, null, Collections.emptyList(), Collections.emptyList());
-        long                      threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
-        long                      messageId       = mmsDatabase.insertMessageOutbox(outgoingMessage, threadId, false, null);
+        MmsDatabase                mmsDatabase     = DatabaseFactory.getMmsDatabase(context);
+        RecipientId                recipientId     = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(GroupId.v1orThrow(group.getGroupId()));
+        Recipient                  recipient       = Recipient.resolved(recipientId);
+        OutgoingGroupUpdateMessage outgoingMessage = new OutgoingGroupUpdateMessage(recipient, storage, null, content.getTimestamp(), 0, false, null, Collections.emptyList(), Collections.emptyList());
+        long                       threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+        long                       messageId       = mmsDatabase.insertMessageOutbox(outgoingMessage, threadId, false, null);
 
         mmsDatabase.markAsSent(messageId, true);
 
@@ -247,7 +247,7 @@ public final class GroupV1MessageProcessor {
         SmsDatabase          smsDatabase  = DatabaseFactory.getSmsDatabase(context);
         String               body         = Base64.encodeBytes(storage.toByteArray());
         IncomingTextMessage  incoming     = new IncomingTextMessage(Recipient.externalPush(context, content.getSender()).getId(), content.getSenderDevice(), content.getTimestamp(), content.getServerTimestamp(), body, Optional.of(GroupId.v1orThrow(group.getGroupId())), 0, content.isNeedsReceipt());
-        IncomingGroupMessage groupMessage = new IncomingGroupMessage(incoming, storage, body);
+        IncomingGroupUpdateMessage groupMessage = new IncomingGroupUpdateMessage(incoming, storage, body);
 
         Optional<InsertResult> insertResult = smsDatabase.insertMessageInbox(groupMessage);
 

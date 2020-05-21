@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:theme="@style/Theme.Signal.RecipientBottomSheet.Light">
+
+    <org.thoughtcrime.securesms.components.AvatarImageView
+        android:id="@+id/recipient_avatar"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/admin_action_busy"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/recipient_avatar"
+        app:layout_constraintEnd_toEndOf="@+id/recipient_avatar"
+        app:layout_constraintStart_toStartOf="@+id/recipient_avatar"
+        app:layout_constraintTop_toTopOf="@+id/recipient_avatar"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/full_name"
+        style="@style/TextAppearance.Signal.Body1.Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="?attr/title_text_color_primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recipient_avatar"
+        tools:text="Miyuki Shibata" />
+
+    <TextView
+        android:id="@+id/username_number"
+        style="@style/TextAppearance.Signal.Body2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="?attr/title_text_color_secondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/full_name"
+        tools:text="\@shibatabread  +1 555-654-6657" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username_number">
+
+        <Button
+            android:id="@+id/message_button"
+            style="@style/Widget.Signal.Button.TextButton.Drawable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="22dp"
+            android:paddingEnd="22dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/RecipientBottomSheet_message"
+            app:drawableStartCompat="?attr/recipient_message_icon" />
+
+        <Button
+            android:id="@+id/secure_call_button"
+            style="@style/Widget.Signal.Button.TextButton.Drawable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="22dp"
+            android:paddingEnd="22dp"
+            android:text="@string/RecipientBottomSheet_call"
+            app:drawableStartCompat="?attr/recipient_call_icon" />
+
+        <Button
+            android:id="@+id/block_button"
+            style="@style/Widget.Signal.Button.TextButton.Drawable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="22dp"
+            android:paddingEnd="22dp"
+            android:text="@string/RecipientBottomSheet_block"
+            android:visibility="gone"
+            app:drawableStartCompat="?attr/recipient_block_icon"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/unblock_button"
+            style="@style/Widget.Signal.Button.TextButton.Drawable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="22dp"
+            android:paddingEnd="22dp"
+            android:text="@string/RecipientBottomSheet_unblock"
+            android:visibility="gone"
+            app:drawableStartCompat="?attr/recipient_block_icon"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/view_safety_number_button"
+            style="@style/Widget.Signal.Button.TextButton.Drawable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="22dp"
+            android:paddingEnd="22dp"
+            android:text="@string/RecipientBottomSheet_view_safety_number"
+            app:drawableStartCompat="?attr/recipient_view_safety_icon" />
+
+        <Button
+            android:id="@+id/make_group_admin_button"
+            style="@style/Widget.Signal.Button.TextButton.Drawable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="22dp"
+            android:paddingEnd="22dp"
+            android:text="@string/RecipientBottomSheet_make_group_admin"
+            android:visibility="gone"
+            app:drawableStartCompat="?attr/recipient_make_admin_icon"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/remove_group_admin_button"
+            style="@style/Widget.Signal.Button.TextButton.Drawable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="22dp"
+            android:paddingEnd="22dp"
+            android:text="@string/RecipientBottomSheet_remove_as_admin"
+            android:visibility="gone"
+            app:drawableStartCompat="?attr/recipient_make_admin_icon"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/remove_from_group_button"
+            style="@style/Widget.Signal.Button.TextButton.Drawable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="22dp"
+            android:paddingEnd="22dp"
+            android:text="@string/RecipientBottomSheet_remove_from_group"
+            android:visibility="gone"
+            app:drawableStartCompat="?attr/recipient_remove_icon"
+            tools:visibility="visible" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

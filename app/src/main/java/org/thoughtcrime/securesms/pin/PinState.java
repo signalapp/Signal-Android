@@ -335,6 +335,8 @@ public final class PinState {
 
       kbsValues.setKbsMasterKey(newData, PinHashing.localPinHash(pin));
       TextSecurePreferences.clearRegistrationLockV1(context);
+
+      Log.i(TAG, "Pin set/attempts reset on KBS");
     } catch (IOException e) {
       Log.w(TAG, "May have failed to reset pin attempts!", e);
     } catch (UnauthenticatedResponseException e) {

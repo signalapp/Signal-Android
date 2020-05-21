@@ -40,6 +40,10 @@ public final class SignalStore {
     return new StorageServiceValues(getStore());
   }
 
+  public static @NonNull GroupsV2AuthorizationSignalStoreCache groupsV2AuthorizationCache() {
+    return new GroupsV2AuthorizationSignalStoreCache(getStore());
+  }
+
   public static long getLastPrekeyRefreshTime() {
     return getStore().getLong(LAST_PREKEY_REFRESH_TIME, 0);
   }

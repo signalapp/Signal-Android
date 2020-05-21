@@ -87,7 +87,7 @@ public class KeyCachingService extends Service {
       try {
         return MasterSecretUtil.getMasterSecret(context, MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
       } catch (InvalidPassphraseException e) {
-        Log.w("KeyCachingService", e);
+        Log.w(TAG, e);
       }
     }
 
@@ -151,7 +151,7 @@ public class KeyCachingService extends Service {
         MasterSecret masterSecret = MasterSecretUtil.getMasterSecret(this, MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
         setMasterSecret(masterSecret);
       } catch (InvalidPassphraseException e) {
-        Log.w("KeyCachingService", e);
+        Log.w(TAG, e);
       }
     }
   }

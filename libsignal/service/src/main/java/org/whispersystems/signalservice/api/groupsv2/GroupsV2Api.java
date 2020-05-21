@@ -1,19 +1,30 @@
 package org.whispersystems.signalservice.api.groupsv2;
 
+import com.google.protobuf.ByteString;
+
 import org.signal.storageservice.protos.groups.AvatarUploadAttributes;
 import org.signal.storageservice.protos.groups.Group;
+import org.signal.storageservice.protos.groups.GroupAttributeBlob;
 import org.signal.storageservice.protos.groups.GroupChange;
 import org.signal.storageservice.protos.groups.GroupChanges;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
+import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.VerificationFailedException;
+import org.signal.zkgroup.auth.AuthCredential;
+import org.signal.zkgroup.auth.AuthCredentialPresentation;
+import org.signal.zkgroup.auth.AuthCredentialResponse;
+import org.signal.zkgroup.auth.ClientZkAuthOperations;
 import org.signal.zkgroup.groups.ClientZkGroupCipher;
 import org.signal.zkgroup.groups.GroupSecretParams;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 public final class GroupsV2Api {
 
@@ -25,9 +36,34 @@ public final class GroupsV2Api {
     this.groupsOperations = groupsOperations;
   }
 
+  /**
+   * Provides 7 days of credentials, which you should cache.
+   */
+  public HashMap<Integer, AuthCredentialResponse> getCredentials(int today)
+      throws IOException
+  {
+    return parseCredentialResponse(socket.retrieveGroupsV2Credentials(today));
+  }
+
+  /**
+   * Create an auth token from a credential response.
+   */
+  public GroupsV2AuthorizationString getGroupsV2AuthorizationString(UUID self,
+                                                                    int today,
+                                                                    GroupSecretParams groupSecretParams,
+                                                                    AuthCredentialResponse authCredentialResponse)
+      throws VerificationFailedException
+  {
+    ClientZkAuthOperations     authOperations             = groupsOperations.getAuthOperations();
+    AuthCredential             authCredential             = authOperations.receiveAuthCredential(self, today, authCredentialResponse);
+    AuthCredentialPresentation authCredentialPresentation = authOperations.createAuthCredentialPresentation(new SecureRandom(), groupSecretParams, authCredential);
+
+    return new GroupsV2AuthorizationString(groupSecretParams, authCredentialPresentation);
+  }
+
   public void putNewGroup(GroupsV2Operations.NewGroup newGroup,
-                          GroupsV2Authorization authorization)
-    throws IOException, VerificationFailedException
+                          GroupsV2AuthorizationString authorization)
+      throws IOException
   {
     Group group = newGroup.getNewGroupMessage();
 
@@ -39,14 +75,14 @@ public final class GroupsV2Api {
                     .build();
     }
 
-    socket.putNewGroupsV2Group(group, authorization.getAuthorizationForToday(newGroup.getGroupSecretParams()));
+    socket.putNewGroupsV2Group(group, authorization);
   }
 
   public DecryptedGroup getGroup(GroupSecretParams groupSecretParams,
-                                 GroupsV2Authorization authorization)
+                                 GroupsV2AuthorizationString authorization)
       throws IOException, InvalidGroupStateException, VerificationFailedException
   {
-    Group group = socket.getGroupsV2Group(authorization.getAuthorizationForToday(groupSecretParams));
+    Group group = socket.getGroupsV2Group(authorization);
 
     return groupsOperations.forGroup(groupSecretParams)
                            .decryptGroup(group);
@@ -54,10 +90,10 @@ public final class GroupsV2Api {
 
   public List<DecryptedGroupHistoryEntry> getGroupHistory(GroupSecretParams groupSecretParams,
                                                           int fromRevision,
-                                                          GroupsV2Authorization authorization)
+                                                          GroupsV2AuthorizationString authorization)
       throws IOException, InvalidGroupStateException, VerificationFailedException
   {
-    GroupChanges group = socket.getGroupsV2GroupHistory(fromRevision, authorization.getAuthorizationForToday(groupSecretParams));
+    GroupChanges group = socket.getGroupsV2GroupHistory(fromRevision, authorization);
 
     List<GroupChanges.GroupChangeState>   changesList     = group.getGroupChangesList();
     ArrayList<DecryptedGroupHistoryEntry> result          = new ArrayList<>(changesList.size());
@@ -79,14 +115,14 @@ public final class GroupsV2Api {
 
   public String uploadAvatar(byte[] avatar,
                              GroupSecretParams groupSecretParams,
-                             GroupsV2Authorization authorization)
-      throws IOException, VerificationFailedException
+                             GroupsV2AuthorizationString authorization)
+      throws IOException
   {
-    AvatarUploadAttributes form = socket.getGroupsV2AvatarUploadForm(authorization.getAuthorizationForToday(groupSecretParams));
+    AvatarUploadAttributes form = socket.getGroupsV2AvatarUploadForm(authorization.toString());
 
     byte[] cipherText;
     try {
-      cipherText = new ClientZkGroupCipher(groupSecretParams).encryptBlob(avatar);
+      cipherText = new ClientZkGroupCipher(groupSecretParams).encryptBlob(GroupAttributeBlob.newBuilder().setAvatar(ByteString.copyFrom(avatar)).build().toByteArray());
     } catch (VerificationFailedException e) {
       throw new AssertionError(e);
     }
@@ -98,13 +134,31 @@ public final class GroupsV2Api {
 
   public DecryptedGroupChange patchGroup(GroupChange.Actions groupChange,
                                          GroupSecretParams groupSecretParams,
-                                         GroupsV2Authorization authorization)
+                                         GroupsV2AuthorizationString authorization)
       throws IOException, VerificationFailedException, InvalidGroupStateException
   {
-    String      authorizationBasic = authorization.getAuthorizationForToday(groupSecretParams);
-    GroupChange groupChanges       = socket.patchGroupsV2Group(groupChange, authorizationBasic);
+    GroupChange groupChanges = socket.patchGroupsV2Group(groupChange, authorization.toString());
 
     return groupsOperations.forGroup(groupSecretParams)
                            .decryptChange(groupChanges, true);
+  }
+
+  private static HashMap<Integer, AuthCredentialResponse> parseCredentialResponse(CredentialResponse credentialResponse)
+      throws IOException
+  {
+    HashMap<Integer, AuthCredentialResponse> credentials = new HashMap<>();
+
+    for (TemporalCredential credential : credentialResponse.getCredentials()) {
+      AuthCredentialResponse authCredentialResponse;
+      try {
+        authCredentialResponse = new AuthCredentialResponse(credential.getCredential());
+      } catch (InvalidInputException e) {
+        throw new IOException(e);
+      }
+
+      credentials.put(credential.getRedemptionTime(), authCredentialResponse);
+    }
+
+    return credentials;
   }
 }

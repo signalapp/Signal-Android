@@ -135,7 +135,7 @@ public class SmsMigrator {
         return null;
       }
     } catch (IllegalStateException iae) {
-      Log.w("SmsMigrator", iae);
+      Log.w(TAG, iae);
       return null;
     } finally {
       if (cursor != null)

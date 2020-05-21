@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.media.MediaInput;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -26,7 +27,7 @@ public class VideoThumbnailsView extends View {
 
   private static final String TAG = Log.tag(VideoThumbnailsView.class);
 
-  private VideoInput                    input;
+  private MediaInput                    input;
   private ArrayList<Bitmap>             thumbnails;
   private AsyncTask<Void, Bitmap, Void> thumbnailsTask;
   private OnDurationListener            durationListener;
@@ -49,9 +50,9 @@ public class VideoThumbnailsView extends View {
     super(context, attrs, defStyleAttr);
   }
 
-  public void setInput(VideoInput input) {
-    this.input = input;
-    thumbnails = null;
+  public void setInput(@NonNull MediaInput input) {
+    this.input      = input;
+    this.thumbnails = null;
     if (thumbnailsTask != null) {
       thumbnailsTask.cancel(true);
       thumbnailsTask = null;
@@ -164,14 +165,14 @@ public class VideoThumbnailsView extends View {
   private static class ThumbnailsTask extends AsyncTask<Void, Bitmap, Void> {
 
     final WeakReference<VideoThumbnailsView> viewReference;
-    final VideoInput                         input;
+    final MediaInput                         input;
     final float                              thumbnailWidth;
     final float                              thumbnailHeight;
     final int                                thumbnailCount;
           long                               duration;
 
-    ThumbnailsTask(final @NonNull VideoThumbnailsView view, final @NonNull VideoInput input, final float thumbnailWidth, final float thumbnailHeight, final int thumbnailCount) {
-      viewReference        = new WeakReference<>(view);
+    ThumbnailsTask(final @NonNull VideoThumbnailsView view, final @NonNull MediaInput input, final float thumbnailWidth, final float thumbnailHeight, final int thumbnailCount) {
+      this.viewReference   = new WeakReference<>(view);
       this.input           = input;
       this.thumbnailWidth  = thumbnailWidth;
       this.thumbnailHeight = thumbnailHeight;

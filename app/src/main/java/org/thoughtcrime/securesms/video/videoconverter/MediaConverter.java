@@ -29,6 +29,7 @@ import androidx.annotation.StringDef;
 import androidx.annotation.WorkerThread;
 
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.media.MediaInput;
 
 import java.io.File;
 import java.io.FileDescriptor;
@@ -49,7 +50,7 @@ public final class MediaConverter {
     public static final String VIDEO_CODEC_H264 = "video/avc";
     public static final String VIDEO_CODEC_H265 = "video/hevc";
 
-    private VideoInput mInput;
+    private MediaInput mInput;
     private Output mOutput;
 
     private long mTimeFrom;
@@ -69,7 +70,7 @@ public final class MediaConverter {
     public MediaConverter() {
     }
 
-    public void setInput(final @NonNull VideoInput videoInput) {
+    public void setInput(final @NonNull MediaInput videoInput) {
         mInput = videoInput;
     }
 

@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.mediasend;
 import android.Manifest;
 import android.content.Context;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.Size;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
@@ -19,6 +18,7 @@ import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.ValueAnimator;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXView;
 import org.thoughtcrime.securesms.mediasend.camerax.VideoCapture;
 import org.thoughtcrime.securesms.permissions.Permissions;

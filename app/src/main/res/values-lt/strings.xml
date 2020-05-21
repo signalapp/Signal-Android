@@ -210,7 +210,6 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nėra prieinamos programėlės, kuri galėtų apdoroti šią nuorodą jūsų įrenginyje.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Norėdami siųsti garso žinutes, leiskite Signal prieigą prie mikrofono.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Norint siųsti garso žinutes, Signal reikia mikrofono leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"Mikrofoną\".</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Norint skambinti %s, Signal yra reikalinga prieiga prie jūsų mikrofono ir kameros.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Norint skambinti %s, programai Signal reikia mikrofono ir kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"Mikrofoną\" ir \"Kamerą\".</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Norėdami fotografuoti ir filmuoti vaizdo įrašus, leiskite Signal prieigą prie kameros.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Norint fotografuoti, Signal reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Kamerą\".</string>
@@ -417,6 +416,25 @@
   <!--GV2 access levels-->
   <!--PendingMembersActivity-->
   <string name="PendingMembersActivity_people_you_invited">Jūsų pakviesti žmonės</string>
+  <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__create">Kurti</string>
+  <string name="AddGroupDetailsFragment__members">Dalyviai</string>
+  <string name="AddGroupDetailsFragment__group_name_required">Grupės pavadinimas (būtina)</string>
+  <string name="AddGroupDetailsFragment__remove">Šalinti</string>
+  <!--ManageGroupActivity-->
+  <string name="ManageGroupActivity_disappearing_messages">Išnykstančios žinutės</string>
+  <string name="ManageGroupActivity_leave_group">Išeiti iš grupės</string>
+  <string name="ManageGroupActivity_mute_notifications">Nutildyti pranešimus</string>
+  <string name="ManageGroupActivity_custom_notifications">Tinkinti pranešimai</string>
+  <string name="ManageGroupActivity_off">Išjungta</string>
+  <string name="ManageGroupActivity_on">Įjungta</string>
+  <string name="ManageGroupActivity_add_members">Pridėti narių</string>
+  <string name="ManageGroupActivity_view_all_members">Rodyti visus dalyvius</string>
+  <!--CustomNotificationsDialogFragment-->
+  <string name="CustomNotificationsDialogFragment__custom_notifications">Tinkinti pranešimai</string>
+  <string name="CustomNotificationsDialogFragment__messages">Žinutės</string>
+  <string name="CustomNotificationsDialogFragment__notification_sound">Pranešimų garsas</string>
+  <string name="CustomNotificationsDialogFragment__vibrate">Vibruoti</string>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grupės avataras</string>
@@ -557,6 +575,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Visa medija</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_unknown">Nežinoma</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Gauta žinutė buvo užšifruota, naudojant seną Signal versiją, kuri daugiau nebepalaikoma. Paprašykite siuntėjo atnaujinti savo programėlę į naujausią versiją ir iš naujo išsiųsti žinutę.</string>
   <string name="MessageRecord_left_group">Jūs išėjote iš grupės.</string>
   <string name="MessageRecord_you_updated_group">Jūs atnaujinote grupę.</string>
@@ -573,6 +592,8 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Jūs nustatėte išnykstančių žinučių laikmatį į %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nustatė išnykstančių žinučių laikmatį į %2$s.</string>
   <!--GV2 specific-->
+  <string name="MessageRecord_you_created_the_group">Jūs sukūrėte grupę.</string>
+  <string name="MessageRecord_group_updated">Grupė atnaujinta.</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_s_added_you">%1$s pridėjo jus į grupę.</string>
   <string name="MessageRecord_you_joined_the_group">Jūs prisijungėte prie grupės.</string>
@@ -696,7 +717,6 @@
   <string name="RatingManager_later">Vėliau</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Oi, atrodo, kad Play Store programėlė nėra įdiegta jūsų įrenginyje.</string>
   <!--ReactionsBottomSheetDialogFragment-->
-  <string name="ReactionsBottomSheetDialogFragment_all">Visi %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
@@ -722,6 +742,9 @@
   <string name="RedPhone_number_not_registered">Numeris nėra registruotas!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Numeris, kurį rinkote nepalaiko saugaus balso funkcijos!</string>
   <string name="RedPhone_got_it">Supratau</string>
+  <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Bakstelėkite čia, norėdami įjungti savo vaizdą</string>
+  <!--WebRtcCallView-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Pasirinkite savo šalį</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Jūs privalote nurodyti savo
@@ -843,6 +866,13 @@
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Nukopijuota į iškarpinę</string>
   <string name="SubmitDebugLogActivity_ok">Gerai</string>
   <string name="SubmitDebugLogActivity_share">Bendrinti</string>
+  <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_subject">Tema:</string>
+  <string name="SupportEmailUtil_signal_android_support_request">Signal Android palaikymo užklausa</string>
+  <string name="SupportEmailUtil_device_info">Įrenginio informacija:</string>
+  <string name="SupportEmailUtil_android_version">Android versija:</string>
+  <string name="SupportEmailUtil_signal_version">Signal versija:</string>
+  <string name="SupportEmailUtil_locale">Lokalė:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupė atnaujinta</string>
   <string name="ThreadRecord_left_the_group">išėjo iš grupės</string>
@@ -1018,6 +1048,12 @@
   <string name="WebRtcCallScreen_new_safety_number_title">Naujas saugumo numeris</string>
   <string name="WebRtcCallScreen_accept">Priimti</string>
   <string name="WebRtcCallScreen_end_call">Baigti skambutį</string>
+  <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__answer">Atsakyti</string>
+  <!--WebRtcAudioOutputToggle-->
+  <string name="WebRtcAudioOutputToggle__phone">Telefonas</string>
+  <string name="WebRtcAudioOutputToggle__speaker">Garsiakalbis</string>
+  <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Bakstelėkite, norėdami įjungti savo vaizdą</string>
   <!--WebRtcCallControls Content Descriptions-->
@@ -1052,6 +1088,7 @@
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Įveskite vardą ar numerį</string>
   <string name="contact_selection_activity__invite_to_signal">Pakviesti į Signal</string>
+  <string name="contact_selection_activity__new_group">Nauja grupė</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Išvalyti įvestą tekstą</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Rodyti klaviatūrą</string>
@@ -1241,6 +1278,8 @@
   <string name="CreateProfileActivity_next">Kitas</string>
   <string name="CreateProfileActivity__username">Naudotojo vardas</string>
   <string name="CreateProfileActivity__create_a_username">Sukurti naudotojo vardą</string>
+  <!--EditProfileFragment-->
+  <string name="EditProfileFragment__group_name">Grupės pavadinimas</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Bendrinama medija</string>
   <!--recipient_preferences-->
@@ -1319,18 +1358,14 @@
   <string name="HelpFragment__whats_this">Kas tai?</string>
   <string name="HelpFragment__how_do_you_feel">Kaip jaučiatės? (Nebūtina)</string>
   <string name="HelpFragment__support_info">Palaikymo informacija</string>
-  <string name="HelpFragment__subject">Tema:</string>
   <string name="HelpFragment__signal_android_support_request">Signal Android palaikymo užklausa</string>
-  <string name="HelpFragment__device_info">Įrenginio informacija:</string>
-  <string name="HelpFragment__android_version">Android versija:</string>
-  <string name="HelpFragment__signal_version">Signal versija:</string>
-  <string name="HelpFragment__locale">Lokalė:</string>
   <string name="HelpFragment__debug_log">Derinimo žurnalas:</string>
   <string name="HelpFragment__na">nėra</string>
   <string name="HelpFragment__could_not_upload_logs">Nepavyko atnaujinti žurnalų</string>
   <string name="HelpFragment__signal_support">Signal palaikymas</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Kaip įmanoma išsamiau aprašykite problemą, kad lengviau ją suprastume.</string>
   <string name="HelpFragment__no_email_app_found">Nerasta jokios el. pašto programėlės.</string>
+  <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <!--arrays.xml-->
   <string name="arrays__import_export">Importuoti</string>
   <string name="arrays__use_default">Naudoti numatytąjį</string>
@@ -1709,6 +1744,8 @@
     <item quantity="many">Liko %1$d bandymų.</item>
     <item quantity="other">Liko %1$d bandymas.</item>
   </plurals>
+  <!--CalleeMustAcceptMessageRequestDialogFragment-->
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">Gerai</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Sukurti PIN kodą</string>
   <string name="KbsMegaphone__create_pin">Susikurkite PIN kodą</string>
@@ -1778,7 +1815,6 @@
   <string name="RegistrationActivity_call_me_instead_available_in">Vietoj to, man paskambinkite \n (Prieinama po %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Susisiekti su Signal palaikymu</string>
   <string name="RegistrationActivity_code_support_subject">Signal registracija - Patvirtinimo kodas, skirtas Android</string>
-  <string name="RegistrationActivity_code_support_body">Tema: Signal registracija - Patvirtinimo kodas, skirtas Android\nĮrenginio informacija: %1$s\nAndroid versija: %2$s\nSignal versija: %3$s\nLokalė: %4$s</string>
   <string name="BackupUtil_never">Niekada</string>
   <string name="BackupUtil_unknown">Nežinoma</string>
   <string name="preferences_app_protection__screen_lock">Ekrano užraktas</string>
@@ -1830,5 +1866,13 @@
   <string name="RegistrationLockDialog_reminder">Priminimas:</string>
   <string name="recipient_preferences__about">Apie</string>
   <string name="Recipient_unknown">Nežinoma</string>
+  <!--RecipientBottomSheet-->
+  <string name="RecipientBottomSheet_message">Žinutė</string>
+  <string name="RecipientBottomSheet_call">Skambinti</string>
+  <string name="RecipientBottomSheet_block">Užblokuoti</string>
+  <string name="RecipientBottomSheet_unblock">Atblokuoti</string>
+  <string name="RecipientBottomSheet_view_safety_number">Rodyti saugumo numerį</string>
+  <string name="RecipientBottomSheet_remove">Šalinti</string>
+  <string name="GroupRecipientListItem_admin">Administratorius</string>
   <!--EOF-->
 </resources>

@@ -39,8 +39,8 @@ public final class GroupCandidate {
     return profileKeyCredential.isPresent();
   }
 
-  public GroupCandidate withProfileKeyCredential(Optional<ProfileKeyCredential> profileKeyCredential) {
-    return new GroupCandidate(uuid, profileKeyCredential);
+  public GroupCandidate withProfileKeyCredential(ProfileKeyCredential profileKeyCredential) {
+    return new GroupCandidate(uuid, Optional.of(profileKeyCredential));
   }
 
   public static List<UUID> toUuidList(Collection<GroupCandidate> candidates) {

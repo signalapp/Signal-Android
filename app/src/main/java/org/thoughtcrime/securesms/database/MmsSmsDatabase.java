@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.libsignal.util.Pair;
 
+import java.io.Closeable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -122,6 +123,18 @@ public class MmsSmsDatabase extends Database {
     RecipientId id          = smsDatabase.getOldestGroupUpdateSender(threadId, latestQuit);
 
     return new Pair<>(id, latestQuit);
+  }
+
+  public int getMessagePositionForLastSeen(long threadId, long lastSeen) {
+    String[] projection = new String[] { "COUNT(*)" };
+    String   selection  = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " > " + lastSeen;
+
+    try (Cursor cursor = queryTables(projection, selection, null, null)) {
+      if (cursor != null && cursor.moveToNext()) {
+        return cursor.getInt(0);
+      }
+    }
+    return 0;
   }
 
   public @Nullable MessageRecord getMessageFor(long timestamp, RecipientId author) {
@@ -536,7 +549,7 @@ public class MmsSmsDatabase extends Database {
     return new Reader(cursor);
   }
 
-  public class Reader {
+  public class Reader implements Closeable {
 
     private final Cursor                 cursor;
     private       SmsDatabase.Reader     smsReader;
@@ -577,6 +590,7 @@ public class MmsSmsDatabase extends Database {
       else                                                throw new AssertionError("Bad type: " + type);
     }
 
+    @Override
     public void close() {
       cursor.close();
     }

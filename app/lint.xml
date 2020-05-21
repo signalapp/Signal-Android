@@ -17,9 +17,17 @@
     <issue id="ButtonOrder" severity="error" />
     <issue id="ExtraTranslation" severity="warning" />
 
+    <!-- Custom lints -->
+    <issue id="LogNotSignal" severity="error" />
+    <issue id="LogNotAppSignal" severity="error" />
+    <issue id="LogTagInlined" severity="error" />
+
     <issue id="RestrictedApi" severity="error">
         <ignore path="*/org/thoughtcrime/securesms/mediasend/camerax/VideoCapture.java" />
         <ignore path="*/org/thoughtcrime/securesms/mediasend/camerax/CameraXModule.java" />
+        <ignore path="*/org/thoughtcrime/securesms/conversation/*.java" />
+        <ignore path="*/org/thoughtcrime/securesms/lock/v2/CreateKbsPinViewModel.java" />
+        <ignore path="*/org/thoughtcrime/securesms/jobs/StickerPackDownloadJob.java" />
     </issue>
 
 </lint>

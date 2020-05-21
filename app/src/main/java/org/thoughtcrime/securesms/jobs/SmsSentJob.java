@@ -103,7 +103,7 @@ public class SmsSentJob extends BaseJob {
         case SmsManager.RESULT_ERROR_NO_SERVICE:
         case SmsManager.RESULT_ERROR_RADIO_OFF:
           Log.w(TAG, "Service connectivity problem, requeuing...");
-          ApplicationDependencies.getJobManager().add(new SmsSendJob(context, messageId, record.getIndividualRecipient(), runAttempt + 1));
+          ApplicationDependencies.getJobManager().add(new SmsSendJob(messageId, record.getIndividualRecipient(), runAttempt + 1));
           break;
         default:
           database.markAsSentFailed(messageId);

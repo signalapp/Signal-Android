@@ -7,11 +7,6 @@ public class IncomingEncryptedMessage extends IncomingTextMessage {
   }
 
   @Override
-  public IncomingTextMessage withMessageBody(String body) {
-    return new IncomingEncryptedMessage(this, body);
-  }
-
-  @Override
   public boolean isSecureMessage() {
     return true;
   }

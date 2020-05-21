@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/create_group"
+    app:startDestination="@id/addGroupDetailsFragment">
+
+    <fragment
+        android:id="@+id/addGroupDetailsFragment"
+        android:name="org.thoughtcrime.securesms.groups.ui.creategroup.details.AddGroupDetailsFragment"
+        android:label="add_group_details_fragment"
+        tools:layout="@layout/add_group_details_fragment">
+
+        <argument
+            android:name="recipient_ids"
+            app:argType="org.thoughtcrime.securesms.recipients.RecipientId[]"
+            app:nullable="false" />
+
+    </fragment>
+
+</navigation>

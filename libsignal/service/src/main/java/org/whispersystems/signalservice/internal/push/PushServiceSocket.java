@@ -34,6 +34,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.FeatureFlags;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.groupsv2.CredentialResponse;
+import org.whispersystems.signalservice.api.groupsv2.GroupsV2AuthorizationString;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId;
 import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo;
@@ -72,7 +73,9 @@ import org.whispersystems.signalservice.internal.contacts.entities.DiscoveryResp
 import org.whispersystems.signalservice.internal.contacts.entities.KeyBackupRequest;
 import org.whispersystems.signalservice.internal.contacts.entities.KeyBackupResponse;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
+import org.whispersystems.signalservice.internal.push.exceptions.GroupPatchNotAcceptedException;
 import org.whispersystems.signalservice.internal.push.exceptions.MismatchedDevicesException;
+import org.whispersystems.signalservice.internal.push.exceptions.NotInGroupException;
 import org.whispersystems.signalservice.internal.push.exceptions.StaleDevicesException;
 import org.whispersystems.signalservice.internal.push.http.CancelationSignal;
 import org.whispersystems.signalservice.internal.push.http.DigestingRequestBody;
@@ -1552,6 +1555,12 @@ public class PushServiceSocket {
   private ResponseBody makeStorageRequest(String authorization, String path, String method, RequestBody body)
       throws PushNetworkException, NonSuccessfulResponseCodeException
   {
+    return makeStorageRequest(authorization, path, method, body, NO_HANDLER);
+  }
+
+  private ResponseBody makeStorageRequest(String authorization, String path, String method, RequestBody body, ResponseCodeHandler responseCodeHandler)
+      throws PushNetworkException, NonSuccessfulResponseCodeException
+  {
     ConnectionHolder connectionHolder = getRandom(storageClients, random);
     OkHttpClient     okHttpClient     = connectionHolder.getClient()
                                                         .newBuilder()
@@ -1593,6 +1602,8 @@ public class PushServiceSocket {
         connections.remove(call);
       }
     }
+
+    responseCodeHandler.handle(response.code());
 
     switch (response.code()) {
       case 204:
@@ -1826,73 +1837,72 @@ public class PushServiceSocket {
     return JsonUtil.fromJson(response, CredentialResponse.class);
   }
 
-  public void putNewGroupsV2Group(Group group, String authorization)
+  private static final ResponseCodeHandler GROUPS_V2_PUT_RESPONSE_HANDLER   = NO_HANDLER;
+  private static final ResponseCodeHandler GROUPS_V2_GET_LOGS_HANDLER       = NO_HANDLER;
+  private static final ResponseCodeHandler GROUPS_V2_GET_CURRENT_HANDLER    = responseCode -> {
+    if (responseCode == 403) throw new NotInGroupException();
+  };
+  private static final ResponseCodeHandler GROUPS_V2_PATCH_RESPONSE_HANDLER = responseCode -> {
+    if (responseCode == 400) throw new GroupPatchNotAcceptedException();
+    if (responseCode == 403) throw new NotInGroupException();
+  };
+
+  public void putNewGroupsV2Group(Group group, GroupsV2AuthorizationString authorization)
       throws NonSuccessfulResponseCodeException, PushNetworkException
   {
-      makeStorageRequest(authorization,
+      makeStorageRequest(authorization.toString(),
                          GROUPSV2_GROUP,
                          "PUT",
-                         protobufRequestBody(group));
+                         protobufRequestBody(group),
+                         GROUPS_V2_PUT_RESPONSE_HANDLER);
   }
 
-  public Group getGroupsV2Group(String authorization)
-      throws IOException
+  public Group getGroupsV2Group(GroupsV2AuthorizationString authorization)
+      throws NonSuccessfulResponseCodeException, PushNetworkException, InvalidProtocolBufferException
   {
-      ResponseBody response = makeStorageRequest(authorization,
+      ResponseBody response = makeStorageRequest(authorization.toString(),
                                                  GROUPSV2_GROUP,
                                                  "GET",
-                                                 null);
+                                                 null,
+                                                 GROUPS_V2_GET_CURRENT_HANDLER);
 
-    try {
-      return Group.parseFrom(readBodyBytes(response));
-    } catch (InvalidProtocolBufferException e) {
-      throw new IOException("Cannot read protobuf", e);
-    }
+    return Group.parseFrom(readBodyBytes(response));
   }
 
   public AvatarUploadAttributes getGroupsV2AvatarUploadForm(String authorization)
-      throws IOException
+      throws NonSuccessfulResponseCodeException, PushNetworkException, InvalidProtocolBufferException
   {
       ResponseBody response = makeStorageRequest(authorization,
                                                  GROUPSV2_AVATAR_REQUEST,
                                                  "GET",
-                                                 null);
+                                                 null,
+                                                 NO_HANDLER);
 
-    try {
-      return AvatarUploadAttributes.parseFrom(readBodyBytes(response));
-    } catch (InvalidProtocolBufferException e) {
-      throw new IOException("Cannot read protobuf", e);
-    }
+    return AvatarUploadAttributes.parseFrom(readBodyBytes(response));
   }
 
   public GroupChange patchGroupsV2Group(GroupChange.Actions groupChange, String authorization)
-      throws IOException
+      throws NonSuccessfulResponseCodeException, PushNetworkException, InvalidProtocolBufferException
   {
     ResponseBody response = makeStorageRequest(authorization,
                                                GROUPSV2_GROUP,
                                                "PATCH",
-                                               protobufRequestBody(groupChange));
+                                               protobufRequestBody(groupChange),
+                                               GROUPS_V2_PATCH_RESPONSE_HANDLER);
 
-    try {
-      return GroupChange.parseFrom(readBodyBytes(response));
-    } catch (InvalidProtocolBufferException e) {
-      throw new IOException("Cannot read protobuf", e);
-    }
+    return GroupChange.parseFrom(readBodyBytes(response));
   }
 
-  public GroupChanges getGroupsV2GroupHistory(int fromVersion, String authorization)
-      throws IOException
+  public GroupChanges getGroupsV2GroupHistory(int fromVersion, GroupsV2AuthorizationString authorization)
+    throws NonSuccessfulResponseCodeException, PushNetworkException, InvalidProtocolBufferException
   {
-    ResponseBody response = makeStorageRequest(authorization,
+    ResponseBody response = makeStorageRequest(authorization.toString(),
                                                String.format(Locale.US, GROUPSV2_GROUP_CHANGES, fromVersion),
                                                "GET",
-                                               null);
+                                               null,
+                                               GROUPS_V2_GET_LOGS_HANDLER);
 
-    try {
-      return GroupChanges.parseFrom(readBodyBytes(response));
-    } catch (InvalidProtocolBufferException e) {
-      throw new IOException("Cannot read protobuf", e);
-    }
+    return GroupChanges.parseFrom(readBodyBytes(response));
   }
 
   private final class ResumeInfo {

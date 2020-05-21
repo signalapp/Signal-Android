@@ -8,10 +8,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.SystemClock;
-import android.util.Log;
 
 import java.util.concurrent.ConcurrentSkipListSet;
 
+import org.thoughtcrime.securesms.logging.Log;
 import org.whispersystems.signalservice.api.util.SleepTimer;
 
 /**

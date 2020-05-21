@@ -17,8 +17,9 @@
 package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 import android.text.SpannableString;
+
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
@@ -109,6 +110,10 @@ public abstract class DisplayRecord {
 
   public boolean isGroupUpdate() {
     return SmsDatabase.Types.isGroupUpdate(type);
+  }
+
+  public boolean isGroupV2() {
+    return SmsDatabase.Types.isGroupV2(type);
   }
 
   public boolean isGroupQuit() {

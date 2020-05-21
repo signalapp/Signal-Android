@@ -12,78 +12,98 @@ public class SignalServiceCallMessage {
   private final Optional<HangupMessage>          hangupMessage;
   private final Optional<BusyMessage>            busyMessage;
   private final Optional<List<IceUpdateMessage>> iceUpdateMessages;
+  private final Optional<Integer>                destinationDeviceId;
+  private final boolean                          isMultiRing;
 
   private SignalServiceCallMessage(Optional<OfferMessage> offerMessage,
                                    Optional<AnswerMessage> answerMessage,
                                    Optional<List<IceUpdateMessage>> iceUpdateMessages,
                                    Optional<HangupMessage> hangupMessage,
-                                   Optional<BusyMessage> busyMessage)
+                                   Optional<BusyMessage> busyMessage,
+                                   boolean isMultiRing,
+                                   Optional<Integer> destinationDeviceId)
   {
-    this.offerMessage      = offerMessage;
-    this.answerMessage     = answerMessage;
-    this.iceUpdateMessages = iceUpdateMessages;
-    this.hangupMessage     = hangupMessage;
-    this.busyMessage       = busyMessage;
+    this.offerMessage        = offerMessage;
+    this.answerMessage       = answerMessage;
+    this.iceUpdateMessages   = iceUpdateMessages;
+    this.hangupMessage       = hangupMessage;
+    this.busyMessage         = busyMessage;
+    this.isMultiRing         = isMultiRing;
+    this.destinationDeviceId = destinationDeviceId;
   }
 
-  public static SignalServiceCallMessage forOffer(OfferMessage offerMessage) {
+  public static SignalServiceCallMessage forOffer(OfferMessage offerMessage, boolean isMultiRing, Integer destinationDeviceId) {
     return new SignalServiceCallMessage(Optional.of(offerMessage),
-                                        Optional.<AnswerMessage>absent(),
-                                        Optional.<List<IceUpdateMessage>>absent(),
-                                        Optional.<HangupMessage>absent(),
-                                        Optional.<BusyMessage>absent());
+                                        Optional.absent(),
+                                        Optional.absent(),
+                                        Optional.absent(),
+                                        Optional.absent(),
+                                        isMultiRing,
+                                        Optional.fromNullable(destinationDeviceId));
   }
 
-  public static SignalServiceCallMessage forAnswer(AnswerMessage answerMessage) {
-    return new SignalServiceCallMessage(Optional.<OfferMessage>absent(),
+  public static SignalServiceCallMessage forAnswer(AnswerMessage answerMessage, boolean isMultiRing, Integer destinationDeviceId) {
+    return new SignalServiceCallMessage(Optional.absent(),
                                         Optional.of(answerMessage),
-                                        Optional.<List<IceUpdateMessage>>absent(),
-                                        Optional.<HangupMessage>absent(),
-                                        Optional.<BusyMessage>absent());
+                                        Optional.absent(),
+                                        Optional.absent(),
+                                        Optional.absent(),
+                                        isMultiRing,
+                                        Optional.fromNullable(destinationDeviceId));
   }
 
-  public static SignalServiceCallMessage forIceUpdates(List<IceUpdateMessage> iceUpdateMessages) {
-    return new SignalServiceCallMessage(Optional.<OfferMessage>absent(),
-                                        Optional.<AnswerMessage>absent(),
+  public static SignalServiceCallMessage forIceUpdates(List<IceUpdateMessage> iceUpdateMessages, boolean isMultiRing, Integer destinationDeviceId) {
+    return new SignalServiceCallMessage(Optional.absent(),
+                                        Optional.absent(),
                                         Optional.of(iceUpdateMessages),
-                                        Optional.<HangupMessage>absent(),
-                                        Optional.<BusyMessage>absent());
+                                        Optional.absent(),
+                                        Optional.absent(),
+                                        isMultiRing,
+                                        Optional.fromNullable(destinationDeviceId));
   }
 
-  public static SignalServiceCallMessage forIceUpdate(final IceUpdateMessage iceUpdateMessage) {
+  public static SignalServiceCallMessage forIceUpdate(final IceUpdateMessage iceUpdateMessage, boolean isMultiRing, Integer destinationDeviceId) {
     List<IceUpdateMessage> iceUpdateMessages = new LinkedList<>();
     iceUpdateMessages.add(iceUpdateMessage);
 
-    return new SignalServiceCallMessage(Optional.<OfferMessage>absent(),
-                                        Optional.<AnswerMessage>absent(),
+    return new SignalServiceCallMessage(Optional.absent(),
+                                        Optional.absent(),
                                         Optional.of(iceUpdateMessages),
-                                        Optional.<HangupMessage>absent(),
-                                        Optional.<BusyMessage>absent());
+                                        Optional.absent(),
+                                        Optional.absent(),
+                                        isMultiRing,
+                                        Optional.fromNullable(destinationDeviceId));
   }
 
-  public static SignalServiceCallMessage forHangup(HangupMessage hangupMessage) {
-    return new SignalServiceCallMessage(Optional.<OfferMessage>absent(),
-                                        Optional.<AnswerMessage>absent(),
-                                        Optional.<List<IceUpdateMessage>>absent(),
+  public static SignalServiceCallMessage forHangup(HangupMessage hangupMessage, boolean isMultiRing, Integer destinationDeviceId) {
+    return new SignalServiceCallMessage(Optional.absent(),
+                                        Optional.absent(),
+                                        Optional.absent(),
                                         Optional.of(hangupMessage),
-                                        Optional.<BusyMessage>absent());
+                                        Optional.absent(),
+                                        isMultiRing,
+                                        Optional.fromNullable(destinationDeviceId));
   }
 
-  public static SignalServiceCallMessage forBusy(BusyMessage busyMessage) {
-    return new SignalServiceCallMessage(Optional.<OfferMessage>absent(),
-                                        Optional.<AnswerMessage>absent(),
-                                        Optional.<List<IceUpdateMessage>>absent(),
-                                        Optional.<HangupMessage>absent(),
-                                        Optional.of(busyMessage));
+  public static SignalServiceCallMessage forBusy(BusyMessage busyMessage, boolean isMultiRing, Integer destinationDeviceId) {
+    return new SignalServiceCallMessage(Optional.absent(),
+                                        Optional.absent(),
+                                        Optional.absent(),
+                                        Optional.absent(),
+                                        Optional.of(busyMessage),
+                                        isMultiRing,
+                                        Optional.fromNullable(destinationDeviceId));
   }
 
 
   public static SignalServiceCallMessage empty() {
-    return new SignalServiceCallMessage(Optional.<OfferMessage>absent(),
-                                        Optional.<AnswerMessage>absent(),
-                                        Optional.<List<IceUpdateMessage>>absent(),
-                                        Optional.<HangupMessage>absent(),
-                                        Optional.<BusyMessage>absent());
+    return new SignalServiceCallMessage(Optional.absent(),
+                                        Optional.absent(),
+                                        Optional.absent(),
+                                        Optional.absent(),
+                                        Optional.absent(),
+                                        false,
+                                        Optional.absent());
   }
 
   public Optional<List<IceUpdateMessage>> getIceUpdateMessages() {
@@ -104,5 +124,13 @@ public class SignalServiceCallMessage {
 
   public Optional<BusyMessage> getBusyMessage() {
     return busyMessage;
+  }
+
+  public boolean isMultiRing() {
+    return isMultiRing;
+  }
+
+  public Optional<Integer> getDestinationDeviceId() {
+    return destinationDeviceId;
   }
 }

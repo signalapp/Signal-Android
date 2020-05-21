@@ -79,12 +79,10 @@ public class UuidMigrationJob extends MigrationJob {
   }
 
   private static void rotateSealedSenderCerts(@NonNull Context context) throws IOException {
-    SignalServiceAccountManager accountManager    = ApplicationDependencies.getSignalServiceAccountManager();
-    byte[]                      certificate       = accountManager.getSenderCertificate();
-    byte[]                      legacyCertificate = accountManager.getSenderCertificateLegacy();
+    SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
+    byte[]                      certificate    = accountManager.getSenderCertificate();
 
     TextSecurePreferences.setUnidentifiedAccessCertificate(context, certificate);
-    TextSecurePreferences.setUnidentifiedAccessCertificateLegacy(context, legacyCertificate);
   }
 
 

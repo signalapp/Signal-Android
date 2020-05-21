@@ -151,6 +151,10 @@ public class Recipient {
    */
   @WorkerThread
   public static @NonNull Recipient externalPush(@NonNull Context context, @Nullable UUID uuid, @Nullable String e164) {
+    if (UuidUtil.UNKNOWN_UUID.equals(uuid)) {
+      throw new AssertionError();
+    }
+
     RecipientDatabase     db       = DatabaseFactory.getRecipientDatabase(context);
     Optional<RecipientId> uuidUser = uuid != null ? db.getByUuid(uuid) : Optional.absent();
     Optional<RecipientId> e164User = e164 != null ? db.getByE164(e164) : Optional.absent();
@@ -415,6 +419,12 @@ public class Recipient {
                                  context.getString(R.string.Recipient_unknown));
   }
 
+  public @NonNull String getShortDisplayName(@NonNull Context context) {
+    return Util.getFirstNonEmpty(getName(context),
+                                 getProfileName().getGivenName(),
+                                 getDisplayName(context));
+  }
+
   public @NonNull MaterialColor getColor() {
     if (isGroupInternal()) {
       return MaterialColor.GROUP;
@@ -597,6 +607,11 @@ public class Recipient {
     return groupId != null && groupId.isPush();
   }
 
+  public boolean isPushV1Group() {
+    GroupId groupId = resolve().groupId;
+    return groupId != null && groupId.isV1();
+  }
+
   public boolean isPushV2Group() {
     GroupId groupId = resolve().groupId;
     return groupId != null && groupId.isV2();
@@ -608,6 +623,10 @@ public class Recipient {
 
   public @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted) {
     return getFallbackContactPhotoDrawable(context, inverted, DEFAULT_FALLBACK_PHOTO_PROVIDER);
+  }
+
+  public @NonNull Drawable getSmallFallbackContactPhotoDrawable(Context context, boolean inverted) {
+    return getSmallFallbackContactPhotoDrawable(context, inverted, DEFAULT_FALLBACK_PHOTO_PROVIDER);
   }
 
   public @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted, @Nullable FallbackPhotoProvider fallbackPhotoProvider) {
@@ -657,6 +676,10 @@ public class Recipient {
 
   public boolean isMuted() {
     return System.currentTimeMillis() <= muteUntil;
+  }
+
+  public long getMuteUntil() {
+    return muteUntil;
   }
 
   public boolean isBlocked() {
@@ -715,6 +738,10 @@ public class Recipient {
 
   public Capability getGroupsV2Capability() {
     return groupsV2Capability;
+  }
+
+  public Capability getUuidCapability() {
+    return uuidCapability;
   }
 
   public @Nullable byte[] getProfileKey() {

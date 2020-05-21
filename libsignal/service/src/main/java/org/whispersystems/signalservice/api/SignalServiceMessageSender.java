@@ -666,7 +666,8 @@ public class SignalServiceMessageSender {
       OfferMessage offer = callMessage.getOfferMessage().get();
       builder.setOffer(CallMessage.Offer.newBuilder()
                                         .setId(offer.getId())
-                                        .setDescription(offer.getDescription()));
+                                        .setDescription(offer.getDescription())
+                                        .setType(offer.getType().getProtoType()));
     } else if (callMessage.getAnswerMessage().isPresent()) {
       AnswerMessage answer = callMessage.getAnswerMessage().get();
       builder.setAnswer(CallMessage.Answer.newBuilder()
@@ -683,9 +684,28 @@ public class SignalServiceMessageSender {
                                                   .setSdpMLineIndex(update.getSdpMLineIndex()));
       }
     } else if (callMessage.getHangupMessage().isPresent()) {
-      builder.setHangup(CallMessage.Hangup.newBuilder().setId(callMessage.getHangupMessage().get().getId()));
+      CallMessage.Hangup.Type    protoType        = callMessage.getHangupMessage().get().getType().getProtoType();
+      CallMessage.Hangup.Builder builderForHangup = CallMessage.Hangup.newBuilder()
+                                                                      .setType(protoType)
+                                                                      .setId(callMessage.getHangupMessage().get().getId());
+
+      if (protoType != CallMessage.Hangup.Type.HANGUP_NORMAL) {
+        builderForHangup.setDeviceId(callMessage.getHangupMessage().get().getDeviceId());
+      }
+
+      if (callMessage.getHangupMessage().get().isLegacy()) {
+        builder.setLegacyHangup(builderForHangup);
+      } else {
+        builder.setHangup(builderForHangup);
+      }
     } else if (callMessage.getBusyMessage().isPresent()) {
       builder.setBusy(CallMessage.Busy.newBuilder().setId(callMessage.getBusyMessage().get().getId()));
+    }
+
+    builder.setMultiRing(callMessage.isMultiRing());
+
+    if (callMessage.getDestinationDeviceId().isPresent()) {
+      builder.setDestinationDeviceId(callMessage.getDestinationDeviceId().get());
     }
 
     container.setCallMessage(builder);
@@ -1052,16 +1072,10 @@ public class SignalServiceMessageSender {
   }
 
   private static GroupContextV2 createGroupContent(SignalServiceGroupV2 group) {
-    GroupContextV2.Builder builder = GroupContextV2.newBuilder()
-                                                   .setMasterKey(ByteString.copyFrom(group.getMasterKey().serialize()))
-                                                   .setRevision(group.getRevision());
-
-    byte[] signedGroupChange = group.getSignedGroupChange();
-    if (signedGroupChange != null) {
-      builder.setGroupChange(ByteString.copyFrom(signedGroupChange));
-    }
-
-    return builder.build();
+    return GroupContextV2.newBuilder()
+                         .setMasterKey(ByteString.copyFrom(group.getMasterKey().serialize()))
+                         .setRevision(group.getRevision())
+                         .build();
   }
 
   private List<DataMessage.Contact> createSharedContactContent(List<SharedContact> contacts) throws IOException {

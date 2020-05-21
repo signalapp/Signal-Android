@@ -18,6 +18,7 @@
 package org.thoughtcrime.securesms;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -65,18 +66,17 @@ import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
+import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.SelectedRecipientsAdapter;
 import org.thoughtcrime.securesms.util.SelectedRecipientsAdapter.OnRecipientDeletedListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -86,7 +86,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Activity to create and update groups
+ * Activity to create and update {@link GroupId.V1} groups
  *
  * @author Jake McGinty
  */
@@ -97,27 +97,31 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
 
   private final static String TAG = GroupCreateActivity.class.getSimpleName();
 
-  public static final String GROUP_ID_EXTRA      = "group_id";
-  public static final String GROUP_THREAD_EXTRA  = "group_thread";
+  private static final String GROUP_ID_EXTRA     = "group_id";
+  private static final String GROUP_THREAD_EXTRA = "group_thread";
 
-  private final DynamicTheme    dynamicTheme    = new DynamicTheme();
-  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
+  private final DynamicTheme dynamicTheme = new DynamicTheme();
 
   private static final short REQUEST_CODE_SELECT_AVATAR = 26165;
   private static final int   PICK_CONTACT               = 1;
 
-  private EditText     groupName;
-  private ListView     lv;
-  private ImageView    avatar;
-  private TextView     creatingText;
-  private Bitmap       avatarBmp;
+  private EditText  groupName;
+  private ListView  listView;
+  private ImageView avatar;
+  private TextView  creatingText;
+  private Bitmap    avatarBmp;
 
   @NonNull private Optional<GroupData> groupToUpdate = Optional.absent();
+
+  public static Intent newEditGroupIntent(@NonNull Context context, @NonNull GroupId.V1 groupId) {
+    Intent intent = new Intent(context, GroupCreateActivity.class);
+    intent.putExtra(GroupCreateActivity.GROUP_ID_EXTRA, groupId.toString());
+    return intent;
+  }
 
   @Override
   protected void onPreCreate() {
     dynamicTheme.onCreate(this);
-    dynamicLanguage.onCreate(this);
   }
 
   @Override
@@ -133,7 +137,6 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   public void onResume() {
     super.onResume();
     dynamicTheme.onResume(this);
-    dynamicLanguage.onResume(this);
     updateViewState();
   }
 
@@ -190,20 +193,25 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeResources() {
-    RecipientsEditor    recipientsEditor = ViewUtil.findById(this, R.id.recipients_text);
-    PushRecipientsPanel recipientsPanel  = ViewUtil.findById(this, R.id.recipients);
-    lv           = ViewUtil.findById(this, R.id.selected_contacts_list);
-    avatar       = ViewUtil.findById(this, R.id.avatar);
-    groupName    = ViewUtil.findById(this, R.id.group_name);
-    creatingText = ViewUtil.findById(this, R.id.creating_group_text);
+    RecipientsEditor    recipientsEditor = findViewById(R.id.recipients_text);
+    PushRecipientsPanel recipientsPanel  = findViewById(R.id.recipients);
+
+    listView     = findViewById(R.id.selected_contacts_list);
+    avatar       = findViewById(R.id.avatar);
+    groupName    = findViewById(R.id.group_name);
+    creatingText = findViewById(R.id.creating_group_text);
+
     SelectedRecipientsAdapter adapter = new SelectedRecipientsAdapter(this);
     adapter.setOnRecipientDeletedListener(this);
-    lv.setAdapter(adapter);
+    listView.setAdapter(adapter);
+
     recipientsEditor.setHint(R.string.recipients_panel__add_members);
     recipientsPanel.setPanelChangeListener(this);
+
     findViewById(R.id.contacts_button).setOnClickListener(new AddRecipientButtonListener());
+
     avatar.setImageDrawable(getDefaultGroupAvatar());
-    avatar.setOnClickListener(view -> AvatarSelectionBottomSheetDialogFragment.create(avatarBmp != null, false, REQUEST_CODE_SELECT_AVATAR).show(getSupportFragmentManager(), null));
+    avatar.setOnClickListener(view -> AvatarSelectionBottomSheetDialogFragment.create(avatarBmp != null, false, REQUEST_CODE_SELECT_AVATAR, true).show(getSupportFragmentManager(), null));
   }
 
   private Drawable getDefaultGroupAvatar() {
@@ -214,7 +222,13 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     final GroupId groupId = GroupId.parseNullableOrThrow(getIntent().getStringExtra(GROUP_ID_EXTRA));
 
     if (groupId != null) {
-      new FillExistingGroupInfoAsyncTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, groupId);
+      GroupId.V1 groupIdV1 = groupId.requireV1();
+
+      new FillExistingGroupInfoAsyncTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, groupIdV1);
+
+      if (FeatureFlags.newGroupUI()) {
+        avatar.setOnClickListener(v -> startActivity(EditProfileActivity.getIntentForGroupProfile(this, groupIdV1)));
+      }
     }
   }
 
@@ -269,8 +283,8 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleGroupUpdate() {
-    new UpdateSignalGroupTask(this, groupToUpdate.get().id, avatarBmp,
-                              getGroupName(), getAdapter().getRecipients()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    new UpdateSignalGroupV1Task(this, groupToUpdate.get().id, avatarBmp,
+                                getGroupName(), getAdapter().getRecipients()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   private void handleOpenConversation(long threadId, Recipient recipient) {
@@ -283,7 +297,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   }
 
   private SelectedRecipientsAdapter getAdapter() {
-    return (SelectedRecipientsAdapter)lv.getAdapter();
+    return (SelectedRecipientsAdapter) listView.getAdapter();
   }
 
   private @Nullable String getGroupName() {
@@ -428,7 +442,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     protected Optional<GroupActionResult> doInBackground(Void... aVoid) {
-      return Optional.of(GroupManager.createGroup(activity, members, avatar, name, false));
+      return Optional.of(GroupManager.createGroupV1(activity, members, BitmapUtil.toByteArray(avatar), name, false));
     }
 
     @Override
@@ -445,11 +459,11 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-  private static class UpdateSignalGroupTask extends SignalGroupTask {
-    private final GroupId groupId;
+  private static class UpdateSignalGroupV1Task extends SignalGroupTask {
+    private final GroupId.V1 groupId;
 
-    public UpdateSignalGroupTask(GroupCreateActivity activity, GroupId groupId,
-                                 Bitmap avatar, String name, Set<Recipient> members)
+    UpdateSignalGroupV1Task(GroupCreateActivity activity, GroupId.V1 groupId,
+                            Bitmap avatar, String name, Set<Recipient> members)
     {
       super(activity, avatar, name, members);
       this.groupId = groupId;
@@ -457,11 +471,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     protected Optional<GroupActionResult> doInBackground(Void... aVoid) {
-      try {
-        return Optional.of(GroupManager.updateGroup(activity, groupId, members, avatar, name));
-      } catch (InvalidNumberException e) {
-        return Optional.absent();
-      }
+      return Optional.fromNullable(GroupManager.updateGroup(activity, groupId, members, BitmapUtil.toByteArray(avatar), name));
     }
 
     @Override
@@ -537,7 +547,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-  private static class FillExistingGroupInfoAsyncTask extends ProgressDialogAsyncTask<GroupId, Void, Optional<GroupData>> {
+  private static class FillExistingGroupInfoAsyncTask extends ProgressDialogAsyncTask<GroupId.V1, Void, Optional<GroupData>> {
     private GroupCreateActivity activity;
 
     public FillExistingGroupInfoAsyncTask(GroupCreateActivity activity) {
@@ -548,7 +558,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     }
 
     @Override
-    protected Optional<GroupData> doInBackground(GroupId... groupIds) {
+    protected Optional<GroupData> doInBackground(GroupId.V1... groupIds) {
       final GroupDatabase         db               = DatabaseFactory.getGroupDatabase(activity);
       final List<Recipient>       recipients       = db.getGroupMembers(groupIds[0], GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
       final Optional<GroupRecord> group            = db.getGroup(groupIds[0]);
@@ -585,7 +595,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
         }
         SelectedRecipientsAdapter adapter = new SelectedRecipientsAdapter(activity, group.get().recipients);
         adapter.setOnRecipientDeletedListener(activity);
-        activity.lv.setAdapter(adapter);
+        activity.listView.setAdapter(adapter);
         activity.updateViewState();
       }
     }
@@ -602,13 +612,13 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   }
 
   private static class GroupData {
-    GroupId        id;
+    GroupId.V1     id;
     Set<Recipient> recipients;
     Bitmap         avatarBmp;
     byte[]         avatarBytes;
     String         name;
 
-    GroupData(GroupId id, Set<Recipient> recipients, Bitmap avatarBmp, byte[] avatarBytes, String name) {
+    GroupData(GroupId.V1 id, Set<Recipient> recipients, Bitmap avatarBmp, byte[] avatarBytes, String name) {
       this.id          = id;
       this.recipients  = recipients;
       this.avatarBmp   = avatarBmp;

@@ -50,7 +50,7 @@ public class RemoteConfigRefreshJob extends BaseJob {
       return;
     }
 
-    Map<String, Boolean> config = ApplicationDependencies.getSignalServiceAccountManager().getRemoteConfig();
+    Map<String, Object> config = ApplicationDependencies.getSignalServiceAccountManager().getRemoteConfig();
     FeatureFlags.update(config);
   }
 

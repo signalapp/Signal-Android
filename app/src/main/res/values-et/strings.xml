@@ -205,7 +205,6 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Sinu seadmes pole rakendust, mis oleks võimeline seda linki käsitlema.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Audiosõnumite saatmiseks luba Signalile juurdepääs seadme mikrofonile.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal vajab audiosõnumite saatmiseks ligipääsu seadme mikrofonile, kuid see on püsivalt keelatud. Palun ava rakenduse sätete menüü, vali \"Õigused\" ja luba \"Mikrofon\".</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Signal vajab kasutajale %s helistamiseks ligipääsu seadme kaamerale ja mikrofonile.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal vajab kasutajale %s helistamiseks ligipääsu kaamerale ja mikrofonile, kuid need on püsivalt keelatud. Palun ava rakenduse sätete menüü, vali \"Õigused\" ja luba \"Mikrofon\" ning \"Kaamera\".</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Luba Signalile ligipääs kaamerale fotode ja videote salvestamiseks.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal vajab ligipääsu kaamerale, et salvestada fotosid ja videosid, kuid see on püsivalt keelatud. Palun ava rakenduse sätete menüü, vali \"Õigused\" ja luba \"Kaamera\".</string>
@@ -409,10 +408,30 @@
     <item quantity="one">Kutsest loobumisel tekkis tõrge</item>
     <item quantity="other">Kutsetest loobumisel tekkis tõrge</item>
   </plurals>
+  <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__create">Loo</string>
+  <string name="AddGroupDetailsFragment__members">Liikmed</string>
+  <string name="AddGroupDetailsFragment__group_name_required">Grupi nimi (kohustuslik)</string>
+  <string name="AddGroupDetailsFragment__remove">Eemalda</string>
+  <!--ManageGroupActivity-->
+  <string name="ManageGroupActivity_disappearing_messages">Kaduvad sõnumid</string>
+  <string name="ManageGroupActivity_pending_group_invites">Ootel grupikutsed</string>
+  <string name="ManageGroupActivity_leave_group">Lahku grupist</string>
+  <string name="ManageGroupActivity_mute_notifications">Vaigista märguanded</string>
+  <string name="ManageGroupActivity_custom_notifications">Kohandatud märguanded</string>
+  <string name="ManageGroupActivity_off">Väljas</string>
+  <string name="ManageGroupActivity_on">Sees</string>
+  <string name="ManageGroupActivity_add_members">Lisa liikmeid</string>
+  <string name="ManageGroupActivity_view_all_members">Näita kõiki liikmeid</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s kutsus 1 isiku</item>
     <item quantity="other">%1$s kutsus %2$d isikut</item>
   </plurals>
+  <!--CustomNotificationsDialogFragment-->
+  <string name="CustomNotificationsDialogFragment__custom_notifications">Kohandatud märguanded</string>
+  <string name="CustomNotificationsDialogFragment__messages">Sõnumid</string>
+  <string name="CustomNotificationsDialogFragment__notification_sound">Märguande heli</string>
+  <string name="CustomNotificationsDialogFragment__vibrate">Vibratsioon</string>
   <!--GV2 Invite cancellation confirmation-->
   <string name="GroupManagement_cancel_own_single_invite">Kas sa soovid loobuda kutsest, mille saatsid kasutajale %1$s?</string>
   <plurals name="GroupManagement_cancel_others_invites">
@@ -544,6 +563,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Kogu meedia</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_unknown">Tundmatu</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Vastuvõetud sõnum, mis on krüptitud kasutades vana, mittetoetatud Signali versiooni. Palun palu saatjal uuendada uusimale versioonile ja siis sõnum uuesti saata.</string>
   <string name="MessageRecord_left_group">Sa lahkusid grupist.</string>
   <string name="MessageRecord_you_updated_group">Sa uuendasid gruppi.</string>
@@ -560,6 +580,8 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Sa määrasid kaduvate sõnumite taimeriks %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s määras kaduvate sõnumite taimeriks %2$s.</string>
   <!--GV2 specific-->
+  <string name="MessageRecord_you_created_the_group">Sa lõid uue grupi.</string>
+  <string name="MessageRecord_group_updated">Grupp uuendatud.</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Sa lisasid %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s lisas %2$s.</string>
@@ -701,7 +723,6 @@
     <item quantity="other">Sul on jäänud %1$d katsetust. Kui katsed otsa saavad, saad luua uue PIN-koodi. Saad oma kontot registreerida ja kasutada, kuid kaotad mõned salvestatud seaded, näiteks oma profiiliteabe.</item>
   </plurals>
   <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal-i registreerimine - vajad abi Androidi PIN-koodiga</string>
-  <string name="PinRestoreEntryFragment_subject_signal_registration">Teema: Signal-i registreerimine - vajan abi Androidi PIN-koodiga\nSeadme info: %1$s\nAndroidi versioon: %2$s\nSignal-i versioon: %3$s\Olemus: %4$s</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Sisesta tähtnumbriline PIN</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Sisesta numbriline PIN</string>
   <!--PinRestoreLockedFragment-->
@@ -716,7 +737,6 @@
   <string name="RatingManager_later">Hiljem</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ups, tundub et Play poe rakendus puudub sinu seadmest.</string>
   <!--ReactionsBottomSheetDialogFragment-->
-  <string name="ReactionsBottomSheetDialogFragment_all">Kõik %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
@@ -742,6 +762,9 @@
   <string name="RedPhone_number_not_registered">Number pole registreeritud!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Number, kuhu helistasid ei toeta turvalist kõnet!</string>
   <string name="RedPhone_got_it">Selge</string>
+  <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Klõpsa siia enda video käivitamiseks</string>
+  <!--WebRtcCallView-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Vali oma riik</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Sa pead määrama
@@ -862,6 +885,13 @@
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Lõikelauale kopeeritud</string>
   <string name="SubmitDebugLogActivity_ok">OK</string>
   <string name="SubmitDebugLogActivity_share">Jaga</string>
+  <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_subject">Teema:</string>
+  <string name="SupportEmailUtil_signal_android_support_request">Signal-i Androidi versiooni kasutajatoesoov</string>
+  <string name="SupportEmailUtil_device_info">Seadme info:</string>
+  <string name="SupportEmailUtil_android_version">Androidi versioon:</string>
+  <string name="SupportEmailUtil_signal_version">Signal-i versioon:</string>
+  <string name="SupportEmailUtil_locale">Olemus:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupp uuendatud</string>
   <string name="ThreadRecord_left_the_group">Lahkus grupist</string>
@@ -1035,6 +1065,12 @@
   <string name="WebRtcCallScreen_new_safety_number_title">Uus turvanumber</string>
   <string name="WebRtcCallScreen_accept">Nõustu</string>
   <string name="WebRtcCallScreen_end_call">Lõpeta kõne</string>
+  <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__answer">Vasta</string>
+  <!--WebRtcAudioOutputToggle-->
+  <string name="WebRtcAudioOutputToggle__phone">Telefon</string>
+  <string name="WebRtcAudioOutputToggle__speaker">Valjuhääldi</string>
+  <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Koputa, et lubada oma video</string>
   <!--WebRtcCallControls Content Descriptions-->
@@ -1069,6 +1105,7 @@
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Sisesta nimi või number</string>
   <string name="contact_selection_activity__invite_to_signal">Kutsu Signalisse</string>
+  <string name="contact_selection_activity__new_group">Uus grupp</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Tühjenda sisestatud tekst</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Kuva klaviatuuri</string>
@@ -1244,6 +1281,8 @@
   <string name="CreateProfileActivity_next">Edasi</string>
   <string name="CreateProfileActivity__username">Kasutajanimi</string>
   <string name="CreateProfileActivity__create_a_username">Loo kasutajanimi</string>
+  <!--EditProfileFragment-->
+  <string name="EditProfileFragment__group_name">Grupi nimi</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Jagatud meedia</string>
   <!--recipient_preferences-->
@@ -1322,18 +1361,14 @@
   <string name="HelpFragment__whats_this">Mis see on?</string>
   <string name="HelpFragment__how_do_you_feel">Kuidas sa end tunned? (valikuline)</string>
   <string name="HelpFragment__support_info">Kasutajatoe info</string>
-  <string name="HelpFragment__subject">Teema:</string>
   <string name="HelpFragment__signal_android_support_request">Signal-i Androidi versiooni kasutajatoesoov</string>
-  <string name="HelpFragment__device_info">Seadme info:</string>
-  <string name="HelpFragment__android_version">Androidi versioon:</string>
-  <string name="HelpFragment__signal_version">Signal-i versioon:</string>
-  <string name="HelpFragment__locale">Olemus:</string>
   <string name="HelpFragment__debug_log">Silumisinfo:</string>
   <string name="HelpFragment__na">puudub</string>
   <string name="HelpFragment__could_not_upload_logs">Logide üleslaadimine ei õnnestunud</string>
   <string name="HelpFragment__signal_support">Signal-i kasutajatugi</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Palun ole võimalikult kirjeldav, et aidata meil probleemist aru saada.</string>
   <string name="HelpFragment__no_email_app_found">E-posti rakendust ei leitud.</string>
+  <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <!--arrays.xml-->
   <string name="arrays__import_export">Impordi</string>
   <string name="arrays__use_default">Kasuta vaikeväärtust</string>
@@ -1700,6 +1735,8 @@
     <item quantity="one">%1$d katse jäänud.</item>
     <item quantity="other">%1$d katset jäänud.</item>
   </plurals>
+  <!--CalleeMustAcceptMessageRequestDialogFragment-->
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">Sobib</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Loo PIN</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN-koodid hoiavad Signal-is salvestatud teabe krüptituna</string>
@@ -1770,7 +1807,6 @@
   <string name="RegistrationActivity_call_me_instead_available_in">Helista mulle selle asemel \n (Saadaval vahemikus %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Võta ühendust Signal-i kasutajatoega</string>
   <string name="RegistrationActivity_code_support_subject">Signali registreerimine - kinnituskood Androidile</string>
-  <string name="RegistrationActivity_code_support_body">Pealkiri: Signali registreerimine - kinnituskood Androidile\nSeadme teave: %1$s\nAndroidi versioon: %2$s\nSignali versioon: %3$s\nLokaal: %4$s</string>
   <string name="BackupUtil_never">Mitte kunagi</string>
   <string name="BackupUtil_unknown">Tundmatu</string>
   <string name="preferences_app_protection__screen_lock">Ekraanilukk</string>
@@ -1824,5 +1860,13 @@
   <string name="RegistrationLockDialog_reminder">Meeldetuletus:</string>
   <string name="recipient_preferences__about">Teave</string>
   <string name="Recipient_unknown">Tundmatu</string>
+  <!--RecipientBottomSheet-->
+  <string name="RecipientBottomSheet_message">Sõnum</string>
+  <string name="RecipientBottomSheet_call">Helista</string>
+  <string name="RecipientBottomSheet_block">Blokeeri</string>
+  <string name="RecipientBottomSheet_unblock">Eemalda blokeering</string>
+  <string name="RecipientBottomSheet_view_safety_number">Näita turvanumbrit</string>
+  <string name="RecipientBottomSheet_remove">Eemalda</string>
+  <string name="GroupRecipientListItem_admin">Administraator</string>
   <!--EOF-->
 </resources>

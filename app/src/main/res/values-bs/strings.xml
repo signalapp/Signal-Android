@@ -208,7 +208,6 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Na Vašem uređaju nema aplikacije koja bi mogla otvoriti ovaj link.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Da biste mogli slati zvučne poruke, dozvolite Signalu pristup Vašem mikrofonu.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signalu je potrebno dopuštenje da pristupi mikrofonu kako bi mogao slati zvučne poruke, ali je ono trajno uskraćeno. Molimo nastavite do postavki aplikacije, odaberite \"Dozvole\" i aktivirajte stavku \"Mikrofon\". </string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Da biste nazvali %s, Signalu je potreban pristup Vašem mikrofonu i kameri.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signalu je potrebno dopuštenje da pristupi mikrofonu i kameri kako bi mogao nazvati %s, ali je ono trajno uskraćeno. Molimo nastavite do postavki aplikacije, odaberite \"Dozvole\" i aktivirajte stavke \"Mikrofon\" i \"Kamera\". </string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Da biste slikali i snimali, dozvolite Signalu da pristupi kameri.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signalu je potrebno dopuštenje da pristupi kameri kako bi mogao slikati i snimati, ali je ono trajno uskraćeno. Molimo nastavite do postavki aplikacije, odaberite \"Dozvole\" i aktivirajte stavku \"Kamera\". </string>
@@ -425,11 +424,29 @@
     <item quantity="few">Greška prilikom poništavanja pozivnica</item>
     <item quantity="other">Greška prilikom poništavanja pozivnica</item>
   </plurals>
+  <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__create">Kreiraj</string>
+  <string name="AddGroupDetailsFragment__members">Članovi</string>
+  <string name="AddGroupDetailsFragment__remove">Ukloni</string>
+  <!--ManageGroupActivity-->
+  <string name="ManageGroupActivity_disappearing_messages">Nestajuće poruke</string>
+  <string name="ManageGroupActivity_pending_group_invites">Aktivne pozivnice u grupu</string>
+  <string name="ManageGroupActivity_leave_group">Napusti grupu</string>
+  <string name="ManageGroupActivity_mute_notifications">Stišaj obavještenja</string>
+  <string name="ManageGroupActivity_custom_notifications">Korisničke obavijesti</string>
+  <string name="ManageGroupActivity_off">Isključeno</string>
+  <string name="ManageGroupActivity_on">Uključeno</string>
+  <string name="ManageGroupActivity_add_members">Dodajte članove</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s je pozvao/la jednu osobu</item>
     <item quantity="few">%1$s je pozvao/la %2$d osobe</item>
     <item quantity="other">%1$s je pozvao/la %2$d osoba</item>
   </plurals>
+  <!--CustomNotificationsDialogFragment-->
+  <string name="CustomNotificationsDialogFragment__custom_notifications">Korisničke obavijesti</string>
+  <string name="CustomNotificationsDialogFragment__messages">Poruke</string>
+  <string name="CustomNotificationsDialogFragment__notification_sound">Zvuk obavještenja</string>
+  <string name="CustomNotificationsDialogFragment__vibrate">Vibracija</string>
   <!--GV2 Invite cancellation confirmation-->
   <string name="GroupManagement_cancel_own_single_invite">Želite li poništiti pozivnicu koju ste poslali %1$s?</string>
   <plurals name="GroupManagement_cancel_others_invites">
@@ -569,6 +586,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Svi prilozi</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_unknown">Nepoznato</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Primljena je poruka koja je šifrirana u starijoj verziji Signala koja više nije podržana. Molimo zatražite od pošiljaoca da instalira najnoviju verziju i ponovo pošalje poruku.</string>
   <string name="MessageRecord_left_group">Napustili ste grupu.</string>
   <string name="MessageRecord_you_updated_group">Ažurirali ste grupu.</string>
@@ -585,6 +603,7 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Vrijeme za nestajanje poruka postavili ste na %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s je postavio/la vrijeme za nestajanje poruka na %2$s.</string>
   <!--GV2 specific-->
+  <string name="MessageRecord_group_updated">Grupa je ažurirana.</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Uvrstili ste %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s je uvrstio/la %2$s.</string>
@@ -696,7 +715,6 @@
   <string name="RatingManager_later">Kasnije</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Uh, izgleda da Play Store nije instaliran na Vašem uređaju.</string>
   <!--ReactionsBottomSheetDialogFragment-->
-  <string name="ReactionsBottomSheetDialogFragment_all">Sve %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
@@ -722,6 +740,8 @@
   <string name="RedPhone_number_not_registered">Broj nije registrovan!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Broj koji ste birali ne podržava sigurne pozive!</string>
   <string name="RedPhone_got_it">Primljeno na znanje</string>
+  <!--WebRtcCallActivity-->
+  <!--WebRtcCallView-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Odaberite svoju zemlju</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Morate precizirati
@@ -837,6 +857,13 @@
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Kopirano u međuspremnik</string>
   <string name="SubmitDebugLogActivity_ok">Uredu</string>
   <string name="SubmitDebugLogActivity_share">Dijeli</string>
+  <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_subject">Tema:</string>
+  <string name="SupportEmailUtil_signal_android_support_request">Zahtjev za pomoć (Signal Android)</string>
+  <string name="SupportEmailUtil_device_info">Podaci o uređaju:</string>
+  <string name="SupportEmailUtil_android_version">Verzija Androida:</string>
+  <string name="SupportEmailUtil_signal_version">Verzija Signala:</string>
+  <string name="SupportEmailUtil_locale">Region:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupa ažurirana</string>
   <string name="ThreadRecord_left_the_group">Napustio/la grupu</string>
@@ -1011,6 +1038,11 @@
   <string name="WebRtcCallScreen_new_safety_number_title">Novi sigurnosni broj</string>
   <string name="WebRtcCallScreen_accept">Prihvati</string>
   <string name="WebRtcCallScreen_end_call">Završi razgovor</string>
+  <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__answer">Odgovori</string>
+  <!--WebRtcAudioOutputToggle-->
+  <string name="WebRtcAudioOutputToggle__speaker">Zvučnik</string>
+  <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Pritisnite da omogućite videoprikaz</string>
   <!--WebRtcCallControls Content Descriptions-->
@@ -1045,6 +1077,7 @@
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Unesite ime ili broj</string>
   <string name="contact_selection_activity__invite_to_signal">Pozovite u Signal</string>
+  <string name="contact_selection_activity__new_group">Nova grupa</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Ukloni uneseni tekst</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Prikaži tastaturu</string>
@@ -1227,6 +1260,8 @@
   <string name="CreateProfileActivity_next">Dalje</string>
   <string name="CreateProfileActivity__username">Korisničko ime</string>
   <string name="CreateProfileActivity__create_a_username">Kreirajte korisničko ime</string>
+  <!--EditProfileFragment-->
+  <string name="EditProfileFragment__group_name">Naziv grupe</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Razmijenjene datoteke</string>
   <!--recipient_preferences-->
@@ -1305,18 +1340,14 @@
   <string name="HelpFragment__whats_this">Šta je ovo?</string>
   <string name="HelpFragment__how_do_you_feel">Kako se osjećate u vezi s ovim? (neobavezno)</string>
   <string name="HelpFragment__support_info">Informacije o podršci</string>
-  <string name="HelpFragment__subject">Tema:</string>
   <string name="HelpFragment__signal_android_support_request">Zahtjev za pomoć (Signal Android)</string>
-  <string name="HelpFragment__device_info">Podaci o uređaju:</string>
-  <string name="HelpFragment__android_version">Verzija Androida:</string>
-  <string name="HelpFragment__signal_version">Verzija Signala:</string>
-  <string name="HelpFragment__locale">Region:</string>
   <string name="HelpFragment__debug_log">Zapis za ispravljanje grešaka:</string>
   <string name="HelpFragment__na">nema</string>
   <string name="HelpFragment__could_not_upload_logs">Neuspješan prenos zapisa</string>
   <string name="HelpFragment__signal_support">Signal podrška</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Molimo budite što detaljniji kako biste nam pomogli u razumijevanju problema.</string>
   <string name="HelpFragment__no_email_app_found">Nije pronađena aplikacija za email.</string>
+  <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <!--arrays.xml-->
   <string name="arrays__import_export">Unesi</string>
   <string name="arrays__use_default">Koristi standardno</string>
@@ -1686,6 +1717,8 @@
     <item quantity="few">Preostala %1$d pokušaja.</item>
     <item quantity="other">Preostalo %1$d pokušaja.</item>
   </plurals>
+  <!--CalleeMustAcceptMessageRequestDialogFragment-->
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">Uredu</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Kreiraj PIN</string>
   <string name="KbsMegaphone__create_pin">Kreiraj PIN</string>
@@ -1755,7 +1788,6 @@
   <string name="RegistrationActivity_call_me_instead_available_in">Radije me pozovite \n (Dostupni u %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Kontaktirajte Signalovu podršku</string>
   <string name="RegistrationActivity_code_support_subject">Signal registracija – potvrda kōda za Android</string>
-  <string name="RegistrationActivity_code_support_body">Subject: Signal registracija - Verification Code for Android\nDevice info: %1$s\nAndroid version: %2$s\nSignal version: %3$s\nLocale: %4$s</string>
   <string name="BackupUtil_never">Nikad</string>
   <string name="BackupUtil_unknown">Nepoznato</string>
   <string name="preferences_app_protection__screen_lock">Zaključavanje ekrana</string>
@@ -1804,5 +1836,12 @@
   <string name="RegistrationLockDialog_reminder">Podsjetnik:</string>
   <string name="recipient_preferences__about">O kontaktu</string>
   <string name="Recipient_unknown">Nepoznato</string>
+  <!--RecipientBottomSheet-->
+  <string name="RecipientBottomSheet_message">Poruka</string>
+  <string name="RecipientBottomSheet_call">Nazovi</string>
+  <string name="RecipientBottomSheet_block">Blokiraj</string>
+  <string name="RecipientBottomSheet_unblock">Deblokiraj</string>
+  <string name="RecipientBottomSheet_view_safety_number">Vidi sigurnosni broj</string>
+  <string name="RecipientBottomSheet_remove">Ukloni</string>
   <!--EOF-->
 </resources>

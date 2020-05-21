@@ -50,6 +50,8 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
 {
   private static final String TAG = ContactSelectionActivity.class.getSimpleName();
 
+  public static final String EXTRA_LAYOUT_RES_ID = "layout_res_id";
+
   private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
@@ -67,11 +69,11 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
   protected void onCreate(Bundle icicle, boolean ready) {
     if (!getIntent().hasExtra(ContactSelectionListFragment.DISPLAY_MODE)) {
       int displayMode = TextSecurePreferences.isSmsEnabled(this) ? DisplayMode.FLAG_ALL
-                                                                 : DisplayMode.FLAG_PUSH | DisplayMode.FLAG_ACTIVE_GROUPS | DisplayMode.FLAG_INACTIVE_GROUPS;
+                                                                 : DisplayMode.FLAG_PUSH | DisplayMode.FLAG_ACTIVE_GROUPS | DisplayMode.FLAG_INACTIVE_GROUPS | DisplayMode.FLAG_SELF;
       getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE, displayMode);
     }
 
-    setContentView(R.layout.contact_selection_activity);
+    setContentView(getIntent().getIntExtra(EXTRA_LAYOUT_RES_ID, R.layout.contact_selection_activity));
 
     initializeToolbar();
     initializeResources();
@@ -90,7 +92,7 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
   }
 
   private void initializeToolbar() {
-    this.toolbar = ViewUtil.findById(this, R.id.toolbar);
+    this.toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 
     assert  getSupportActionBar() != null;

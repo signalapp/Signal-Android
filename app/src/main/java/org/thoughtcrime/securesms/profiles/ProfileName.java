@@ -9,16 +9,14 @@ import androidx.annotation.VisibleForTesting;
 
 import com.annimon.stream.Stream;
 
+import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.cjkv.CJKVUtil;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 
-import java.nio.charset.StandardCharsets;
-
 public final class ProfileName implements Parcelable {
 
-  public static final ProfileName EMPTY = new ProfileName("", "");
-
-  private static final int MAX_PART_LENGTH = (ProfileCipher.NAME_PADDED_LENGTH - 1) / 2;
+  public static final ProfileName EMPTY           = new ProfileName("", "");
+  public static final int         MAX_PART_LENGTH = (ProfileCipher.NAME_PADDED_LENGTH - 1) / 2;
 
   private final String givenName;
   private final String familyName;
@@ -94,29 +92,10 @@ public final class ProfileName implements Parcelable {
     givenName  = givenName  == null ? "" : givenName;
     familyName = familyName == null ? "" : familyName;
 
-    givenName  = trimToFit(givenName .trim());
-    familyName = trimToFit(familyName.trim());
+    givenName  = StringUtil.trimToFit(givenName.trim(), ProfileName.MAX_PART_LENGTH);
+    familyName = StringUtil.trimToFit(familyName.trim(), ProfileName.MAX_PART_LENGTH);
 
     return new ProfileName(givenName, familyName);
-  }
-
-  /**
-   * Trims a name string to fit into the byte length requirement.
-   */
-  public static @NonNull String trimToFit(@Nullable String name) {
-    if (name == null) return "";
-
-    // At least one byte per char, so shorten string to reduce loop
-    if (name.length() > ProfileName.MAX_PART_LENGTH) {
-      name = name.substring(0, ProfileName.MAX_PART_LENGTH);
-    }
-
-    // Remove one char at a time until fits in byte allowance
-    while (name.getBytes(StandardCharsets.UTF_8).length > ProfileName.MAX_PART_LENGTH) {
-      name = name.substring(0, name.length() - 1);
-    }
-
-    return name;
   }
 
   private static @NonNull String getJoinedName(@NonNull String givenName, @NonNull String familyName) {

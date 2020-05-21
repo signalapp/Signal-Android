@@ -109,7 +109,10 @@ public class AttachmentUtil {
     try (Cursor messageCursor = DatabaseFactory.getMmsDatabase(context).getMessage(attachment.getMmsId())) {
       final MessageRecord message = DatabaseFactory.getMmsDatabase(context).readerFor(messageCursor).getNext();
 
-      if (message == null || (!message.getRecipient().isSystemContact() && !message.isOutgoing() && !message.getRecipient().isLocalNumber())) {
+      if (message == null || (!message.getRecipient().isSystemContact()  &&
+                              !message.getRecipient().isProfileSharing() &&
+                              !message.isOutgoing()                      &&
+                              !message.getRecipient().isLocalNumber())) {
         return true;
       }
     }

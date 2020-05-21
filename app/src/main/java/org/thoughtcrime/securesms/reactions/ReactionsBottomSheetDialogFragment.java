@@ -46,9 +46,9 @@ public final class ReactionsBottomSheetDialogFragment extends BottomSheetDialogF
   public void onCreate(@Nullable Bundle savedInstanceState) {
 
     if (ThemeUtil.isDarkTheme(requireContext())) {
-      setStyle(DialogFragment.STYLE_NORMAL, R.style.Theme_Design_BottomSheetDialog_Fixed);
+      setStyle(DialogFragment.STYLE_NORMAL, R.style.Theme_Signal_BottomSheetDialog_Fixed);
     } else {
-      setStyle(DialogFragment.STYLE_NORMAL, R.style.Theme_Design_Light_BottomSheetDialog_Fixed);
+      setStyle(DialogFragment.STYLE_NORMAL, R.style.Theme_Signal_Light_BottomSheetDialog_Fixed);
     }
 
     super.onCreate(savedInstanceState);

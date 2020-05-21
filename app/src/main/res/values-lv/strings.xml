@@ -202,7 +202,6 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Jūsu ierīcē nav uzstādītas lietotnes, kas ļautu atvērt šo saiti.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Lai nosūtītu audio ziņu, ļaujiet Signal piekļūt ierīces mikrofonam.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Lai nosūtītu audio ziņas, Signal nepieciešama atļauja pieejai mikrofonam, bet tā ir liegta. Dodieties uz lietotnes iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"Mikrofons\".</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Lai zvanītu %s, Signal nepieciešama pieeja ierīces mikrofonam un kamerai.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Lai zvanītu %s, Signal nepieciešama atļauja piekļuvei mikrofonam un kamerai, bet tā ir liegta. Dodieties uz lietotnes iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"Mikrofons\" un \"Kamera\".</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Lai uzņemtu fotogrāfijas un video, ļaujiet Signal piekļūt kamerai.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Lai uzņemtu fotogrāfijas vai video, Signal nepieciešama atļauja piekļūt kamerai, bet tā ir liegta. Dodieties uz lietotnes iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"Kamera\".</string>
@@ -395,6 +394,23 @@
   <string name="GroupMembersDialog_you">Jūs</string>
   <!--GV2 access levels-->
   <!--PendingMembersActivity-->
+  <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__create">Izveidot</string>
+  <string name="AddGroupDetailsFragment__members">Dalībnieki</string>
+  <string name="AddGroupDetailsFragment__remove">Noņemt/Izņemt</string>
+  <!--ManageGroupActivity-->
+  <string name="ManageGroupActivity_disappearing_messages">Gaistošās ziņas</string>
+  <string name="ManageGroupActivity_leave_group">Pamest grupu</string>
+  <string name="ManageGroupActivity_mute_notifications">Noklusināt paziņojumus</string>
+  <string name="ManageGroupActivity_custom_notifications">Pielāgoti paziņojumi</string>
+  <string name="ManageGroupActivity_off">Izslēgts</string>
+  <string name="ManageGroupActivity_on">Ieslēgts</string>
+  <string name="ManageGroupActivity_add_members">Pievienot dalībniekus</string>
+  <!--CustomNotificationsDialogFragment-->
+  <string name="CustomNotificationsDialogFragment__custom_notifications">Pielāgoti paziņojumi</string>
+  <string name="CustomNotificationsDialogFragment__messages">Ziņas</string>
+  <string name="CustomNotificationsDialogFragment__notification_sound">Paziņojuma skaņa</string>
+  <string name="CustomNotificationsDialogFragment__vibrate">Vibrācija</string>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grupas ikona</string>
@@ -528,6 +544,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Visi multimediju faili</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_unknown">Nezināms</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Saņemta ziņa, kas šifrēta, izmantojot vecāku Signal versiju, kura vairs netiek atbalstīta. Palūdziet sūtītājam aktualizēt Signal uz jaunāko versiju un nosūtīt ziņu vēlreiz.</string>
   <string name="MessageRecord_left_group">Jūs pametāt grupu.</string>
   <string name="MessageRecord_you_updated_group">Jūs aktualizējāt grupu.</string>
@@ -544,6 +561,7 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Jūs iestatījāt gaistošo ziņu \"dzīves\" ilgumu uz %1$s. </string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s iestatīja gaistošo ziņu \"dzīves\" ilgumu uz %2$s</string>
   <!--GV2 specific-->
+  <string name="MessageRecord_group_updated">Grupa atjaunināta.</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_s_joined_the_group">%1$s pievienojās grupai.</string>
   <!--GV2 member removals-->
@@ -641,7 +659,6 @@
   <string name="RatingManager_later">Vēlāk</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Forši! Šķiet, ka Jums nav ierīcē instalēta spiegojošā Goolge Play Store lietotne.</string>
   <!--ReactionsBottomSheetDialogFragment-->
-  <string name="ReactionsBottomSheetDialogFragment_all">Visi %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
@@ -667,6 +684,8 @@
   <string name="RedPhone_number_not_registered">Numurs nav reģistrēts!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Numurs, uz kuru zvanījāt, neatbalsta drošu zvanu!</string>
   <string name="RedPhone_got_it">Skaidrīte</string>
+  <!--WebRtcCallActivity-->
+  <!--WebRtcCallView-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Izvēlieties savu valsti</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Jums jānorāda savs
@@ -780,6 +799,13 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Iekopēts starpenē</string>
   <string name="SubmitDebugLogActivity_ok">Ok</string>
   <string name="SubmitDebugLogActivity_share">Dalīties</string>
+  <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_subject">Temats</string>
+  <string name="SupportEmailUtil_signal_android_support_request">Signal Android atbalsta pieprasījums</string>
+  <string name="SupportEmailUtil_device_info">Iekārtas informācija:</string>
+  <string name="SupportEmailUtil_android_version">Androīda versija:</string>
+  <string name="SupportEmailUtil_signal_version">Signāla versija:</string>
+  <string name="SupportEmailUtil_locale">Lokāle (valoda):</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupa aktualizēta</string>
   <string name="ThreadRecord_left_the_group">Pameta grupu</string>
@@ -952,6 +978,11 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="WebRtcCallScreen_new_safety_number_title">Jauns drošības numurs</string>
   <string name="WebRtcCallScreen_accept">Akceptēt</string>
   <string name="WebRtcCallScreen_end_call">Beigt zvanu</string>
+  <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__answer">Atbildēt</string>
+  <!--WebRtcAudioOutputToggle-->
+  <string name="WebRtcAudioOutputToggle__speaker">Skaļrunis</string>
+  <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Pieskarieties, lai iespējotu video</string>
   <!--WebRtcCallControls Content Descriptions-->
@@ -986,6 +1017,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Ievadiet vārdu vai numuru</string>
   <string name="contact_selection_activity__invite_to_signal">Uzaicināt Signālā</string>
+  <string name="contact_selection_activity__new_group">Jauna grupa</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Dzēst ierakstīto tekstu</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Parādīt tastatūru</string>
@@ -1168,6 +1200,8 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="CreateProfileActivity_next">Tālāk</string>
   <string name="CreateProfileActivity__username">Lietotājvārds</string>
   <string name="CreateProfileActivity__create_a_username">Izveidot lietotājvārdu</string>
+  <!--EditProfileFragment-->
+  <string name="EditProfileFragment__group_name">Grupas nosaukums</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Koplietota multivide</string>
   <!--recipient_preferences-->
@@ -1246,18 +1280,14 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="HelpFragment__whats_this">Kas tas ir?</string>
   <string name="HelpFragment__how_do_you_feel">Kā jūtaties? (fakultatīvs)</string>
   <string name="HelpFragment__support_info">Atbalsta info</string>
-  <string name="HelpFragment__subject">Temats</string>
   <string name="HelpFragment__signal_android_support_request">Signal Android atbalsta pieprasījums</string>
-  <string name="HelpFragment__device_info">Iekārtas informācija:</string>
-  <string name="HelpFragment__android_version">Androīda versija:</string>
-  <string name="HelpFragment__signal_version">Signāla versija:</string>
-  <string name="HelpFragment__locale">Lokāle (valoda):</string>
   <string name="HelpFragment__debug_log">Atkļūdošanas žurnāls:</string>
   <string name="HelpFragment__na">nav pieejams</string>
   <string name="HelpFragment__could_not_upload_logs">Nebija iespējams augšuplādēt žurnālus</string>
   <string name="HelpFragment__signal_support">Signālas atbalsts</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Lūdzu, esiet pēc iespējas aprakstošāks, lai palīdzētu mums izprast problēmu.</string>
   <string name="HelpFragment__no_email_app_found">Netika atrasta instalēta e-pasta lietotne.</string>
+  <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <!--arrays.xml-->
   <string name="arrays__import_export">Importēt</string>
   <string name="arrays__use_default">Izmantot noklusējumu</string>
@@ -1617,6 +1647,8 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
     <item quantity="one">Atlicis %1$d mēģinājums.</item>
     <item quantity="other">Atlikuši %1$d mēģinājumi.</item>
   </plurals>
+  <!--CalleeMustAcceptMessageRequestDialogFragment-->
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">Labi</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Izveidot PINu</string>
   <string name="KbsMegaphone__create_pin">Izveidot PINu</string>
@@ -1686,7 +1718,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="RegistrationActivity_call_me_instead_available_in">Tā vietā piezvaniet man \n (Pieejams pēc %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Sazināties ar Signāla atbalstu</string>
   <string name="RegistrationActivity_code_support_subject">Signāla reģistrācija - Android ierīces verifikācijas kods </string>
-  <string name="RegistrationActivity_code_support_body">Temats: Signal reģistrācija - Verifikācijas kods Android\nIerīces info: %1$s\nAndroid versija: %2$s\nSignal versija: %3$s\nLokāle: %4$s </string>
   <string name="BackupUtil_never">Nekad</string>
   <string name="BackupUtil_unknown">Nezināms</string>
   <string name="preferences_app_protection__screen_lock">Ekrāna bloķēšana</string>
@@ -1735,5 +1766,12 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="RegistrationLockDialog_reminder">Atgādinājums:</string>
   <string name="recipient_preferences__about">Par</string>
   <string name="Recipient_unknown">Nezināms</string>
+  <!--RecipientBottomSheet-->
+  <string name="RecipientBottomSheet_message">Sūtīt/ziņa</string>
+  <string name="RecipientBottomSheet_call">Zvanīt</string>
+  <string name="RecipientBottomSheet_block">Bloķēt</string>
+  <string name="RecipientBottomSheet_unblock">Atbloķēt</string>
+  <string name="RecipientBottomSheet_view_safety_number">Skatīt drošības numuru</string>
+  <string name="RecipientBottomSheet_remove">Noņemt/Izņemt</string>
   <!--EOF-->
 </resources>

@@ -3,14 +3,20 @@ package org.thoughtcrime.securesms.util;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.IconCompat;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.request.target.CustomViewTarget;
+import com.bumptech.glide.request.transition.Transition;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.color.MaterialColor;
@@ -27,6 +33,35 @@ import java.util.concurrent.ExecutionException;
 public final class AvatarUtil {
 
   private AvatarUtil() {
+  }
+
+  public static void loadBlurredIconIntoViewBackground(@NonNull Recipient recipient, @NonNull View target) {
+    Context context = target.getContext();
+
+    if (recipient.getContactPhoto() == null) {
+      target.setBackgroundColor(ContextCompat.getColor(target.getContext(), R.color.black));
+      return;
+    }
+
+    GlideApp.with(target)
+            .load(recipient.getContactPhoto())
+            .transform(new CenterCrop(), new BlurTransformation(context, 0.25f, BlurTransformation.MAX_RADIUS))
+            .into(new CustomViewTarget<View, Drawable>(target) {
+              @Override
+              public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                target.setBackgroundColor(ContextCompat.getColor(target.getContext(), R.color.black));
+              }
+
+              @Override
+              public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                target.setBackground(resource);
+              }
+
+              @Override
+              protected void onResourceCleared(@Nullable Drawable placeholder) {
+                target.setBackground(placeholder);
+              }
+            });
   }
 
   public static void loadIconIntoImageView(@NonNull Recipient recipient, @NonNull ImageView target) {

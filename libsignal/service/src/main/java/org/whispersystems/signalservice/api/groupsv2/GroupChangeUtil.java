@@ -169,12 +169,12 @@ public final class GroupChangeUtil {
   }
 
   private static void resolveField9PromotePendingMembers(DecryptedGroupChange conflictingChange, GroupChange.Actions.Builder result, HashMap<ByteString, DecryptedPendingMember> pendingMembersByUuid) {
-    List<ByteString> promotePendingMembersList = conflictingChange.getPromotePendingMembersList();
+    List<DecryptedMember> promotePendingMembersList = conflictingChange.getPromotePendingMembersList();
 
     for (int i = promotePendingMembersList.size() - 1; i >= 0; i--) {
-      ByteString member = promotePendingMembersList.get(i);
+      DecryptedMember member = promotePendingMembersList.get(i);
       
-      if (!pendingMembersByUuid.containsKey(member)) {
+      if (!pendingMembersByUuid.containsKey(member.getUuid())) {
         result.removePromotePendingMembers(i);
       }
     }

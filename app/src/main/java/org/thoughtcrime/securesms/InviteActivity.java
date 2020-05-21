@@ -22,8 +22,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
-import com.annimon.stream.Stream;
-
 import org.thoughtcrime.securesms.components.ContactFilterToolbar;
 import org.thoughtcrime.securesms.components.ContactFilterToolbar.OnFilterChangedListener;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
@@ -42,6 +40,7 @@ import org.thoughtcrime.securesms.util.concurrent.ListenableFuture.Listener;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class InviteActivity extends PassphraseRequiredActionBarActivity implements ContactSelectionListFragment.OnContactSelectedListener {
@@ -135,14 +134,15 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
     new SendSmsInvitesAsyncTask(this, inviteText.getText().toString())
         .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,
                            contactsFragment.getSelectedContacts()
-                                           .toArray(new SelectedContact[contactsFragment.getSelectedContacts().size()]));
+                                           .toArray(new SelectedContact[0]));
   }
 
   private void updateSmsButtonText() {
+    List<SelectedContact> selectedContacts = contactsFragment.getSelectedContacts();
     smsSendButton.setText(getResources().getQuantityString(R.plurals.InviteActivity_send_sms_to_friends,
-                                                           contactsFragment.getSelectedContacts().size(),
-                                                           contactsFragment.getSelectedContacts().size()));
-    smsSendButton.setEnabled(!contactsFragment.getSelectedContacts().isEmpty());
+                                                           selectedContacts.size(),
+                                                           selectedContacts.size()));
+    smsSendButton.setEnabled(!selectedContacts.isEmpty());
   }
 
   @Override public void onBackPressed() {

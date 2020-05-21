@@ -166,6 +166,7 @@
   <string name="ConversationItem_read_more">  Dahasını Okuyun</string>
   <string name="ConversationItem_download_more">  Dahasını İndirin</string>
   <string name="ConversationItem_pending">  Beklemede </string>
+  <string name="ConversationItem_this_message_was_deleted">Bu ileti silindi.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Güvenli oturumu sıfırla?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Bu sohbette şifreleme sorunları yaşıyorsanız bu işlem yardımcı olabilir. İletileriniz saklanacaktır.</string>
@@ -200,7 +201,6 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Cihazınızda bu bağlantıyı işleyebilecek uygulama bulunmamaktadır.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Sesli ileti göndermek için Signal\'in mikrofonunuza erişmesine izin verin.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal, sesli iletiler göndermek için Mikrofon iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Mikrofon\"u etkinleştirin.</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">%s ile arama yapmanız için, Signal\'in mikrofonunuza ve kameranıza erişime ihtiyacı var.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal, %s ile arama yapmanız için Mikrofon ve Kamera iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, \"Mikrofon\" ve \"Kamera\"yı etkinleştirin.</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Fotoğraf veya video çekmek için, Signal\'in kameraya erişmesine izin verin.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal, fotoğraf veya video çekmek için Kamera iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Kamera\"yı etkinleştirin.</string>
@@ -382,6 +382,28 @@
   <string name="GroupMembersDialog_you">Siz</string>
   <!--GV2 access levels-->
   <!--PendingMembersActivity-->
+  <string name="PendingMembersActivity_people_you_invited">Davet ettiğiniz kişiler</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">Diğer grup üyelerinin davetiyeleri</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">Diğer grup üyeleri tarafından davet edilen kişilerin ayrıntıları gösterilmez. Davetliler katılmayı seçerse, bilgileri o zaman grupla paylaşılacaktır. Katılıncaya kadar grupta herhangi bir ileti görmezler.</string>
+  <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__create">Oluştur</string>
+  <string name="AddGroupDetailsFragment__members">Üyeler</string>
+  <string name="AddGroupDetailsFragment__group_name_required">Grup adı (gereklidir)</string>
+  <string name="AddGroupDetailsFragment__remove">Kaldır</string>
+  <!--ManageGroupActivity-->
+  <string name="ManageGroupActivity_disappearing_messages">Kaybolan iletiler</string>
+  <string name="ManageGroupActivity_leave_group">Gruptan ayrıl</string>
+  <string name="ManageGroupActivity_mute_notifications">Bildirimleri sessize al</string>
+  <string name="ManageGroupActivity_custom_notifications">Özel bildirimler</string>
+  <string name="ManageGroupActivity_off">Kapalı</string>
+  <string name="ManageGroupActivity_on">Açık</string>
+  <string name="ManageGroupActivity_add_members">Üye ekle</string>
+  <string name="ManageGroupActivity_view_all_members">Tüm üyeleri görüntüle</string>
+  <!--CustomNotificationsDialogFragment-->
+  <string name="CustomNotificationsDialogFragment__custom_notifications">Özel bildirimler</string>
+  <string name="CustomNotificationsDialogFragment__messages">İletiler</string>
+  <string name="CustomNotificationsDialogFragment__notification_sound">Bildirim sesi</string>
+  <string name="CustomNotificationsDialogFragment__vibrate">Titreşim</string>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grup resmi</string>
@@ -508,6 +530,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Tüm içerik</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_unknown">Bilinmeyen</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Artık desteklenmeyen eski bir Signal sürümü kullanılarak şifrelenmiş bir ileti alındı. Gönderen kişiden Signal\'i en son sürüme güncellemesini ve iletiyi yeniden göndermesini isteyin.</string>
   <string name="MessageRecord_left_group">Gruptan ayrıldınız.</string>
   <string name="MessageRecord_you_updated_group">Grubu güncellediniz.</string>
@@ -524,6 +547,8 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Kaybolan ileti zamanlayıcısını %1$s olarak ayarladınız.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s kaybolan ileti zamanlayıcısını %2$s olarak ayarladı.</string>
   <!--GV2 specific-->
+  <string name="MessageRecord_you_created_the_group">Grubu oluşturdunuz.</string>
+  <string name="MessageRecord_group_updated">Grup güncellendi.</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_joined_the_group">Gruba katıldınız.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s gruba katıldı.</string>
@@ -611,6 +636,8 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Kurulu Google Play Hizmetleri sürümü doğru çalışmıyor. Lütfen Google Play Hizmetleri\'ni tekrar yükleyin ve yeniden deneyin.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">Yanlış PIN</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">PIN\'inizi hatırlayamıyorsanız, yeni bir tane oluşturabilirsiniz. Hesabınızı kaydedebilir ve kullanabilirsiniz, ancak profil bilgileriniz gibi kaydedilmiş bazı ayarları kaybedersiniz.</string>
+  <string name="PinRestoreEntryFragment_create_new_pin">Yeni PIN Oluştur</string>
   <string name="PinRestoreEntryFragment_contact_support">Destekle İletişime Geçin</string>
   <string name="PinRestoreEntryFragment_cancel">İptal</string>
   <string name="PinRestoreEntryFragment_skip">Atla</string>
@@ -626,7 +653,6 @@
   <string name="RatingManager_later">Sonra</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Aman aman, Play Store uygulaması nereye gitmiş, cihazınızda yüklü gözükmüyor.</string>
   <!--ReactionsBottomSheetDialogFragment-->
-  <string name="ReactionsBottomSheetDialogFragment_all">Tümü %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
@@ -652,6 +678,9 @@
   <string name="RedPhone_number_not_registered">Numara kayıtlı değil!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Aradığınız numara güvenli ses sistemini desteklemiyor!</string>
   <string name="RedPhone_got_it">Anladım</string>
+  <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Görüntünüzü açmak için buraya dokunun</string>
+  <!--WebRtcCallView-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Ülkenizi seçin</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Ülke kodunuzu
@@ -694,6 +723,7 @@
   <string name="RegistrationActivity_country_code_description">Ülke kodu</string>
   <string name="RegistrationActivity_call">Ara</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Signal\'e tekrar kaydolurken Signal PIN\'inizi unutursanız, hesabınıza 7 gün boyunca erişemezsiniz. </string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Fotoğrafı Görüntüle</string>
   <string name="RevealableMessageView_view_video">Videoyu Görüntüle</string>
@@ -765,6 +795,13 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Panoya kopyalandı</string>
   <string name="SubmitDebugLogActivity_ok">Tamam</string>
   <string name="SubmitDebugLogActivity_share">Paylaş</string>
+  <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_subject">Konu:</string>
+  <string name="SupportEmailUtil_signal_android_support_request">Signal Android Destek İsteği</string>
+  <string name="SupportEmailUtil_device_info">Cihaz bilgisi:</string>
+  <string name="SupportEmailUtil_android_version">Android sürümü:</string>
+  <string name="SupportEmailUtil_signal_version">Signal sürümü:</string>
+  <string name="SupportEmailUtil_locale">Dil:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grup güncellendi</string>
   <string name="ThreadRecord_left_the_group">Gruptan ayrıldı</string>
@@ -778,6 +815,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ThreadRecord_view_once_photo">Tek görümlük fotoğraf</string>
   <string name="ThreadRecord_view_once_video">Tek görümlük video</string>
   <string name="ThreadRecord_view_once_media">Tek görümlük içerik</string>
+  <string name="ThreadRecord_this_message_was_deleted">Bu ileti silindi.</string>
   <string name="ThreadRecord_s_is_on_signal">%s Signal\'e katıldı!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Kaybolan iletiler devre dışı</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Kaybolan ileti süresi %s olarak ayarlandı</string>
@@ -887,6 +925,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">Tek görümlük fotoğrafınıza karşılık verdi: %1$s</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">Tek görümlük videonuza karşılık verdi: %1$s</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Çıkartmanıza karşılık verdi: %1$s</string>
+  <string name="MessageNotifier_this_message_was_deleted">Bu ileti silindi.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Varsayılan</string>
   <string name="NotificationChannel_calls">Aramalar</string>
@@ -936,6 +975,12 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Yeni güvenlik numarası</string>
   <string name="WebRtcCallScreen_accept">Kabul et</string>
   <string name="WebRtcCallScreen_end_call">Aramayı sonlandır</string>
+  <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__answer">Yanıtla</string>
+  <!--WebRtcAudioOutputToggle-->
+  <string name="WebRtcAudioOutputToggle__phone">Telefon</string>
+  <string name="WebRtcAudioOutputToggle__speaker">Hoparlör</string>
+  <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Görüntünüzü etkinleştirmek için dokunun</string>
   <!--WebRtcCallControls Content Descriptions-->
@@ -970,6 +1015,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">İsim veya numara girin</string>
   <string name="contact_selection_activity__invite_to_signal">Signal\'e davet et</string>
+  <string name="contact_selection_activity__new_group">Yeni grup</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Yazılı metni temizle</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Klavyeyi göster</string>
@@ -1145,6 +1191,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="CreateProfileActivity_next">İleri</string>
   <string name="CreateProfileActivity__username">Kullanıcı adı</string>
   <string name="CreateProfileActivity__create_a_username">Bir kullanıcı adı oluşturun</string>
+  <!--EditProfileFragment-->
+  <string name="EditProfileFragment__group_name">Grup adı</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Paylaşılan içerik</string>
   <!--recipient_preferences-->
@@ -1223,18 +1271,14 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="HelpFragment__whats_this">Bu nedir?</string>
   <string name="HelpFragment__how_do_you_feel">Nasıl hissediyorsunuz?</string>
   <string name="HelpFragment__support_info">Destek Bilgisi</string>
-  <string name="HelpFragment__subject">Konu:</string>
   <string name="HelpFragment__signal_android_support_request">Signal Android Destek İsteği</string>
-  <string name="HelpFragment__device_info">Cihaz bilgisi:</string>
-  <string name="HelpFragment__android_version">Android sürümü:</string>
-  <string name="HelpFragment__signal_version">Signal sürümü:</string>
-  <string name="HelpFragment__locale">Dil:</string>
   <string name="HelpFragment__debug_log">Hata Ayıklama Günlüğü:</string>
   <string name="HelpFragment__na">mevcut değil</string>
   <string name="HelpFragment__could_not_upload_logs">Günlükler karşıya yüklenemedi</string>
   <string name="HelpFragment__signal_support">Signal Desteği</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Lütfen sorunu anlamamıza yardımcı olabilecek şekilde açıklayın.</string>
   <string name="HelpFragment__no_email_app_found">Eposta uygulaması bulunamadı.</string>
+  <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <!--arrays.xml-->
   <string name="arrays__import_export">İçe Aktar</string>
   <string name="arrays__use_default">Varsayılanı kullan</string>
@@ -1536,7 +1580,10 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
     <item quantity="other">PIN en az %1$d haneli olmalıdır</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Yeni PIN oluştur</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Bu cihaz kayıtlı olduğu sürece PIN\'inizi değiştirebilirsiniz.</string>
   <string name="CreateKbsPinFragment__create_your_pin">PIN\'inizi oluşturun</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN\'ler Signal\'de depolanan verileri şifreli olarak tutar böylelikle yalnızca siz erişebilirsiniz. Profiliniz, ayarlarınız ve kişileriniz Signal\'i yeniden yüklediğinizde geri yüklenecektir.</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">Daha güçlü bir PIN seçin</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN\'ler eşleşmiyor. Tekrar deneyin.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">PIN kodunuzu doğrulayın.</string>
@@ -1546,6 +1593,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ConfirmKbsPinFragment__creating_pin">PIN oluşturuluyor…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Karşınızda PIN\'ler</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN\'ler Signal\'de depolanan verileri şifreli olarak tutar böylelikle yalnızca siz erişebilirsiniz. Profiliniz, ayarlarınız ve kişileriniz Signal\'i yeniden yüklediğinizde geri yüklenecektir.</string>
   <string name="KbsSplashFragment__learn_more">Dahasını Öğrenin</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Kayıt Kilidi = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Kayıt Kilidi yerine artık PIN kullanılıyor. Şimdi güncelleyin.</string>
@@ -1595,6 +1643,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
     <item quantity="one">%1$d deneme hakkınız kaldı.</item>
     <item quantity="other">%1$d deneme hakkınız kaldı.</item>
   </plurals>
+  <!--CalleeMustAcceptMessageRequestDialogFragment-->
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">Tamam</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">PIN oluştur</string>
   <string name="KbsMegaphone__create_pin">PIN oluştur</string>
@@ -1664,7 +1714,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Bunun yerine beni ara \n (Kullanılabilir olmasına %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Signal Destek Ekibiyle İletişime Geç</string>
   <string name="RegistrationActivity_code_support_subject">Signal Kaydı - Android için Doğrulama Kodu</string>
-  <string name="RegistrationActivity_code_support_body">Konu: Signal Kaydı - Android için Doğrulama Kodu\nCihaz bilgisi: %1$s\nAndroid sürümü: %2$s\nSignal sürümü: %3$s\nKonum: %4$s</string>
   <string name="BackupUtil_never">Asla</string>
   <string name="BackupUtil_unknown">Bilinmiyor</string>
   <string name="preferences_app_protection__screen_lock">Ekran kilidi</string>
@@ -1673,6 +1722,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences_app_protection__signal_pin">Signal PIN\'i</string>
   <string name="preferences_app_protection__create_a_pin">PIN oluştur</string>
   <string name="preferences_app_protection__change_your_pin">PIN\'inizi değiştirin</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN\'ler Signal\'de depolanan verileri şifreli olarak tutar böylelikle yalnızca siz erişebilirsiniz. Profiliniz, ayarlarınız ve kişileriniz Signal\'i yeniden yüklediğinizde geri yüklenecektir.</string>
   <string name="AppProtectionPreferenceFragment_none">Hiçbiri</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Kaydolma Kilidi PIN\'iniz size gönderilen doğrulama koduyla aynı değildir. Lütfen önceden ayarlamış olduğunuz PIN\'inizi giriniz.  </string>
   <string name="registration_activity__registration_lock_pin">Kaydolma Kilidi PIN\'i</string>
@@ -1714,5 +1764,13 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="RegistrationLockDialog_reminder">Hatırlatma:</string>
   <string name="recipient_preferences__about">Hakkında</string>
   <string name="Recipient_unknown">Bilinmeyen</string>
+  <!--RecipientBottomSheet-->
+  <string name="RecipientBottomSheet_message">İleti</string>
+  <string name="RecipientBottomSheet_call">Ara</string>
+  <string name="RecipientBottomSheet_block">Engelle</string>
+  <string name="RecipientBottomSheet_unblock">Engeli kaldır</string>
+  <string name="RecipientBottomSheet_view_safety_number">Güvenlik numarasını görüntüle</string>
+  <string name="RecipientBottomSheet_remove">Kaldır</string>
+  <string name="GroupRecipientListItem_admin">Yönetici</string>
   <!--EOF-->
 </resources>

@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dd.CircularProgressButton;
 
-import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
+import org.thoughtcrime.securesms.BaseActionBarActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.ThemeUtil;
@@ -30,7 +30,7 @@ import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 import java.util.List;
 
-public class SubmitDebugLogActivity extends PassphraseRequiredActionBarActivity implements SubmitDebugLogAdapter.Listener {
+public class SubmitDebugLogActivity extends BaseActionBarActivity implements SubmitDebugLogAdapter.Listener {
 
   private RecyclerView            lineList;
   private SubmitDebugLogAdapter   adapter;
@@ -50,12 +50,9 @@ public class SubmitDebugLogActivity extends PassphraseRequiredActionBarActivity 
   private final DynamicTheme dynamicTheme = new DynamicTheme();
 
   @Override
-  protected void onPreCreate() {
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
     dynamicTheme.onCreate(this);
-  }
-
-  @Override
-  protected void onCreate(Bundle savedInstanceState, boolean ready) {
     setContentView(R.layout.submit_debug_log_activity);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

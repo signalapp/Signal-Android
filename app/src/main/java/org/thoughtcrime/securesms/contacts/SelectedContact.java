@@ -8,16 +8,12 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
-import java.util.Objects;
-
 /**
  * Model for a contact and the various ways it could be represented. Used in situations where we
  * don't want to create Recipients for the wrapped data (like a custom-entered phone number for
  * someone you don't yet have a conversation with).
- *
- * Designed so that two instances will be equal if *any* of its properties match.
  */
-public class SelectedContact {
+public final class SelectedContact {
   private final RecipientId recipientId;
   private final String      number;
   private final String      username;
@@ -46,19 +42,14 @@ public class SelectedContact {
     }
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    SelectedContact that = (SelectedContact) o;
+  /**
+   * Returns true iff any non-null property matches one on the other contact.
+   */
+  public boolean matches(@Nullable SelectedContact other) {
+    if (other == null) return false;
 
-    return Objects.equals(recipientId, that.recipientId) ||
-           Objects.equals(number, that.number)           ||
-           Objects.equals(username, that.username);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(recipientId, number, username);
+    return recipientId != null && recipientId.equals(other.recipientId) ||
+           number      != null && number     .equals(other.number)      ||
+           username    != null && username   .equals(other.username);
   }
 }

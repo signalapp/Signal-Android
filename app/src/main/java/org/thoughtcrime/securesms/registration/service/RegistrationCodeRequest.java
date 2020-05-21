@@ -42,13 +42,7 @@ public final class RegistrationCodeRequest {
         try {
           markAsVerifying(context);
 
-          Optional<String> fcmToken;
-
-          if (mode.isFcm()) {
-            fcmToken = FcmUtil.getToken();
-          } else {
-            fcmToken = Optional.absent();
-          }
+          Optional<String> fcmToken = FcmUtil.getToken();
 
           SignalServiceAccountManager accountManager = AccountManagerFactory.createUnauthenticated(context, credentials.getE164number(), credentials.getPassword());
 
@@ -101,41 +95,28 @@ public final class RegistrationCodeRequest {
   public enum Mode {
 
     /**
-     * Device supports FCM and SMS retrieval.
+     * Device is requesting an SMS and supports SMS retrieval.
      *
      * The SMS sent will be formatted for automatic SMS retrieval.
      */
-    SMS_FCM_WITH_LISTENER(true, true),
+    SMS_WITH_LISTENER(true),
 
     /**
-     * Device supports FCM but not SMS retrieval.
+     * Device is requesting an SMS and does not support SMS retrieval.
      *
      * The SMS sent will be not be specially formatted for automatic SMS retrieval.
      */
-    SMS_FCM_NO_LISTENER(true, false),
-
-    /**
-     * Device does not support FCM and so also not SMS retrieval.
-     */
-    SMS_NO_FCM(false, false),
+    SMS_WITHOUT_LISTENER(false),
 
     /**
      * Device is requesting a phone call.
-     *
-     * Neither FCM or SMS retrieval is relevant in this mode.
      */
-    PHONE_CALL(false, false);
+    PHONE_CALL(false);
 
-    private final boolean fcm;
     private final boolean smsRetrieverSupported;
 
-    Mode(boolean fcm, boolean smsRetrieverSupported) {
-      this.fcm                   = fcm;
+    Mode(boolean smsRetrieverSupported) {
       this.smsRetrieverSupported = smsRetrieverSupported;
-    }
-
-    public boolean isFcm() {
-      return fcm;
     }
 
     public boolean isSmsRetrieverSupported() {

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.tabs.TabLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/category_tabs"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/react_with_any_emoji_bottom_sheet_dialog_fragment_tabs_height"
+    android:layout_gravity="bottom"
+    android:background="?attr/emoji_tab_strip_background"
+    app:layout_constraintTop_toTopOf="parent"
+    app:tabIndicatorColor="@color/core_ultramarine"
+    app:tabPadding="0dp"
+    app:tabPaddingBottom="0dp"
+    app:tabPaddingEnd="0dp"
+    app:tabPaddingStart="0dp"
+    app:tabPaddingTop="0dp" />

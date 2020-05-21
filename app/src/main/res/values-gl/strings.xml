@@ -199,7 +199,6 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Non hai ningunha app dispoñible para tratar esta ligazón no teu dispositivo.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Para enviar mensaxes de audio, Signal necesita acceder ao teu micrófono.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal require permiso para poder enviar mensaxes de audio, pero este foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Micrófono\".</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Para chamar a %s, Signal necesita acceder ao teu micrófono e cámara.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal necesita permisos para acceder ao micrófono e á cámara para poder chamar a %s, pero foron denegados de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Micrófono\" e \"Cámara\".</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Para tirar fotografías e facer vídeos, Signal necesita acceder á cámara.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal necesita permiso para acceder á cámara e poder tirar fotografías, pero foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Cámara\".</string>
@@ -381,7 +380,28 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Ti</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_all_members">Todos os membros</string>
+  <string name="GroupManagement_access_level_only_admins">Só administradores</string>
   <!--PendingMembersActivity-->
+  <string name="PendingMembersActivity_people_you_invited">Persoas que convidaches</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">Non tes convites pendentes.</string>
+  <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__create">Crear</string>
+  <string name="AddGroupDetailsFragment__members">Membros</string>
+  <string name="AddGroupDetailsFragment__remove">Eliminar</string>
+  <!--ManageGroupActivity-->
+  <string name="ManageGroupActivity_disappearing_messages">Desaparición das mensaxes</string>
+  <string name="ManageGroupActivity_leave_group">Abandonar grupo</string>
+  <string name="ManageGroupActivity_mute_notifications">Silenciar notificacións</string>
+  <string name="ManageGroupActivity_custom_notifications">Personalizar notificacións</string>
+  <string name="ManageGroupActivity_off">Off</string>
+  <string name="ManageGroupActivity_on">On</string>
+  <string name="ManageGroupActivity_add_members">Engadir membros</string>
+  <!--CustomNotificationsDialogFragment-->
+  <string name="CustomNotificationsDialogFragment__custom_notifications">Personalizar notificacións</string>
+  <string name="CustomNotificationsDialogFragment__messages">Mensaxes</string>
+  <string name="CustomNotificationsDialogFragment__notification_sound">Son das notificacións</string>
+  <string name="CustomNotificationsDialogFragment__vibrate">Vibrar</string>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar do grupo</string>
@@ -474,6 +494,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Ficheiros multimedia</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_unknown">Descoñecido</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Recibiuse unha mensaxe cifrada a través dunha versión antiga de Signal que xa non ten soporte. Por favor, pídelle ao remitente que actualice a súa versión e volva enviar a mensaxe.</string>
   <string name="MessageRecord_left_group">Abandonaches o grupo.</string>
   <string name="MessageRecord_you_updated_group">Actualizaches o grupo.</string>
@@ -490,6 +511,7 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Estableciches a desaparición das mensaxes en %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s estableceu a desaparición das mensaxes en %2$s.</string>
   <!--GV2 specific-->
+  <string name="MessageRecord_group_updated">Grupo actualizado.</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_s_joined_the_group">%1$s uníronse ao grupo.</string>
   <!--GV2 member removals-->
@@ -575,6 +597,7 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">A versión de Servizos de Google Play que tes instalada non funciona correctamente. Volve instalala e proba de novo.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">PIN incorrecto</string>
+  <string name="PinRestoreEntryFragment_skip_pin_entry">Omitir o PIN?</string>
   <string name="PinRestoreEntryFragment_cancel">Cancelar</string>
   <string name="PinRestoreEntryFragment_skip">Omitir</string>
   <!--PinRestoreLockedFragment-->
@@ -610,6 +633,8 @@
   <string name="RedPhone_number_not_registered">Número non rexistrado!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">O número que marcaches non admite chamadas de voz seguras!</string>
   <string name="RedPhone_got_it">Entendo</string>
+  <!--WebRtcCallActivity-->
+  <!--WebRtcCallView-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Elixe o teu país</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Debes especificar o teu
@@ -710,9 +735,11 @@
   <string name="SubmitDebugLogActivity_edit">Editar</string>
   <string name="SubmitDebugLogActivity_done">Feito</string>
   <string name="SubmitDebugLogActivity_submit">Enviar</string>
+  <string name="SubmitDebugLogActivity_failed_to_submit_logs">Fallo ao enviar o rexistro</string>
   <string name="SubmitDebugLogActivity_success">Correcto!</string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Copiado ao portapapeis</string>
   <string name="SubmitDebugLogActivity_share">Compartir</string>
+  <!--SupportEmailUtil-->
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupo actualizado</string>
   <string name="ThreadRecord_left_the_group">Abandonou o grupo</string>
@@ -862,6 +889,11 @@
   <string name="WebRtcCallScreen_new_safety_number_title">Novo número de seguranza</string>
   <string name="WebRtcCallScreen_accept">Aceptar</string>
   <string name="WebRtcCallScreen_end_call">Finalizar chamada</string>
+  <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__answer">Responder</string>
+  <!--WebRtcAudioOutputToggle-->
+  <string name="WebRtcAudioOutputToggle__speaker">Altofalante</string>
+  <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Toca para activar o teu vídeo</string>
   <!--WebRtcCallControls Content Descriptions-->
@@ -896,6 +928,7 @@
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Inserir nome ou número</string>
   <string name="contact_selection_activity__invite_to_signal">Convidar a Signal</string>
+  <string name="contact_selection_activity__new_group">Novo grupo</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Limpar o texto inserido</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Mostrar teclado</string>
@@ -1067,6 +1100,8 @@
   <string name="CreateProfileActivity_next">Seguinte</string>
   <string name="CreateProfileActivity__username">Nome de usuario</string>
   <string name="CreateProfileActivity__create_a_username">Crear nome de usuario</string>
+  <!--EditProfileFragment-->
+  <string name="EditProfileFragment__group_name">Nome do grupo</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Ficheiros multimedia compartidos</string>
   <!--recipient_preferences-->
@@ -1138,6 +1173,7 @@
   <string name="HelpFragment__include_debug_log">Incluír rexistro de depuración.</string>
   <string name="HelpFragment__how_do_you_feel">Como te sintes? (Optativo)</string>
   <string name="HelpFragment__no_email_app_found">Non se atopou app para email.</string>
+  <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <!--arrays.xml-->
   <string name="arrays__import_export">Importar</string>
   <string name="arrays__use_default">Utilizar o predeterminado</string>
@@ -1422,6 +1458,8 @@
   <string name="KbsSplashFragment__learn_more">Saber máis</string>
   <string name="KbsSplashFragment__update_pin">Actualizar PIN</string>
   <!--KBS Reminder Dialog-->
+  <string name="KbsReminderDialog__enter_your_signal_pin">Escribe o teu PIN de Signal</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Para axudarche a lembrar o PIN, cada certo tempo pedirémosche que o escribas, cada vez con menos frecuencia.</string>
   <string name="KbsReminderDialog__skip">Omitir</string>
   <string name="KbsReminderDialog__submit">Enviar</string>
   <string name="KbsReminderDialog__forgot_pin">Esqueciches o PIN?</string>
@@ -1433,6 +1471,8 @@
   <string name="RegistrationLockFragment__next">Seguinte</string>
   <string name="RegistrationLockFragment__forgot_pin">Esqueciches o PIN?</string>
   <string name="RegistrationLockFragment__incorrect_pin">PIN incorrecto</string>
+  <string name="RegistrationLockFragment__forgot_your_pin">Esqueciches o PIN?</string>
+  <!--CalleeMustAcceptMessageRequestDialogFragment-->
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_pin">Crear PIN</string>
   <string name="KbsMegaphone__update_pin">Actualizar PIN</string>
@@ -1491,7 +1531,6 @@
   <string name="RegistrationActivity_call_me_instead_available_in">Chámame mellor \n (Dispoñible en%1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Contacta co Centro de Axuda de Signal</string>
   <string name="RegistrationActivity_code_support_subject">Rexistrarse en Signal - Código de verificación para Android</string>
-  <string name="RegistrationActivity_code_support_body">Asunto: Rexistrarse en Signal - Código de verificación para Android\nDispositivo: %1$s\nVersión de Android: %2$s\nVersión de Signal: %3$s\nLocalización: %4$s</string>
   <string name="BackupUtil_never">Nunca</string>
   <string name="BackupUtil_unknown">Descoñecido</string>
   <string name="preferences_app_protection__screen_lock">Bloqueo da pantalla</string>
@@ -1534,5 +1573,12 @@
   <string name="RegistrationLockDialog_reminder">Recordatorio:</string>
   <string name="recipient_preferences__about">Acerca de</string>
   <string name="Recipient_unknown">Descoñecido</string>
+  <!--RecipientBottomSheet-->
+  <string name="RecipientBottomSheet_message">Mensaxe</string>
+  <string name="RecipientBottomSheet_call">Chamar</string>
+  <string name="RecipientBottomSheet_block">Bloquear</string>
+  <string name="RecipientBottomSheet_unblock">Desbloquear</string>
+  <string name="RecipientBottomSheet_view_safety_number">Ver número de seguranza</string>
+  <string name="RecipientBottomSheet_remove">Eliminar</string>
   <!--EOF-->
 </resources>

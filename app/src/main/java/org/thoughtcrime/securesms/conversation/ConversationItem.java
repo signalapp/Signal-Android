@@ -103,6 +103,8 @@ import org.thoughtcrime.securesms.reactions.ReactionsConversationView;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
+import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.revealable.ViewOnceMessageView;
 import org.thoughtcrime.securesms.revealable.ViewOnceUtil;
 import org.thoughtcrime.securesms.stickers.StickerUrl;
@@ -234,8 +236,6 @@ public class ConversationItem extends LinearLayout implements BindableConversati
 
     bodyText.setOnLongClickListener(passthroughClickListener);
     bodyText.setOnClickListener(passthroughClickListener);
-
-    bodyText.setMovementMethod(LongClickMovementMethod.getInstance(getContext()));
   }
 
   @Override
@@ -520,6 +520,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
     bodyText.setClickable(false);
     bodyText.setFocusable(false);
     bodyText.setTextSize(TypedValue.COMPLEX_UNIT_SP, TextSecurePreferences.getMessageBodyTextSize(context));
+    bodyText.setMovementMethod(LongClickMovementMethod.getInstance(getContext()));
 
     if (messageRecord.isRemoteDelete()) {
       String deletedMessage = context.getString(R.string.ConversationItem_this_message_was_deleted);
@@ -823,7 +824,16 @@ public class ConversationItem extends LinearLayout implements BindableConversati
 
   private void setContactPhoto(@NonNull Recipient recipient) {
     if (contactPhoto == null) return;
-    contactPhoto.setAvatar(glideRequests, recipient, true);
+
+    final RecipientId recipientId = recipient.getId();
+
+    contactPhoto.setOnClickListener(v -> {
+      if (eventListener != null) {
+        eventListener.onGroupMemberAvatarClicked(recipientId, conversationRecipient.get().requireGroupId());
+      }
+    });
+
+    contactPhoto.setAvatar(glideRequests, recipient, false);
   }
 
   private SpannableString linkifyMessageBody(SpannableString messageBody, boolean shouldLinkifyAllLinks) {
@@ -1405,8 +1415,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
         database.markAsOutbox(messageRecord.getId());
         database.markAsForcedSms(messageRecord.getId());
 
-        ApplicationDependencies.getJobManager().add(new SmsSendJob(context,
-                                                                   messageRecord.getId(),
+        ApplicationDependencies.getJobManager().add(new SmsSendJob(messageRecord.getId(),
                                                                    messageRecord.getIndividualRecipient()));
       }
     });

@@ -139,6 +139,8 @@
     <attr name="conversation_scroll_to_bottom_background" format="reference" />
     <attr name="conversation_scroll_to_bottom_foreground_color" format="color" />
 
+    <attr name="tinted_circle_background" format="reference" />
+
     <attr name="dialog_info_icon" format="reference" />
     <attr name="dialog_alert_icon" format="reference" />
     <attr name="dialog_background_color" format="reference|color" />
@@ -150,6 +152,8 @@
     <attr name="contact_selection_lay_user" format="reference|color" />
     <attr name="contact_selection_label_text" format="reference|color" />
     <attr name="contact_selection_header_text" format="reference|color" />
+    <attr name="contact_selection_invite_icon" format="reference" />
+    <attr name="contact_selection_new_group_icon" format="reference" />
 
     <attr name="contact_filter_toolbar_icon_tint" format="color" />
     <attr name="contact_filter_toolbar_keyboard_icon" format="reference" />
@@ -192,6 +196,7 @@
     <attr name="menu_reply_icon" format="reference" />
     <attr name="menu_multi_select_icon" format="reference" />
     <attr name="menu_archive_icon" format="reference" />
+    <attr name="menu_edit_icon" format="reference" />
 
     <attr name="message_icon" format="reference" />
     <attr name="notifications_icon" format="reference" />
@@ -223,7 +228,10 @@
         <attr name="custom_pref_toggle" format="string"/>
     </declare-styleable>
 
+    <attr name="group_candidate_item_background" format="reference" />
     <attr name="group_members_dialog_icon" format="reference"/>
+    <attr name="manage_group_add_members_icon" format="reference"/>
+    <attr name="manage_group_view_all_icon" format="reference"/>
     <attr name="lockscreen_watermark" format="reference" />
 
     <attr name="recipient_preference_blocked" format="color"/>
@@ -280,6 +288,13 @@
     <attr name="debuglog_color_info" format="color" />
     <attr name="debuglog_color_warn" format="color" />
     <attr name="debuglog_color_error" format="color" />
+
+    <attr name="recipient_message_icon" format="reference"/>
+    <attr name="recipient_call_icon" format="reference"/>
+    <attr name="recipient_block_icon" format="reference"/>
+    <attr name="recipient_view_safety_icon" format="reference"/>
+    <attr name="recipient_make_admin_icon" format="reference"/>
+    <attr name="recipient_remove_icon" format="reference"/>
 
     <declare-styleable name="ColorPreference">
         <attr name="itemLayout" format="reference" />
@@ -500,4 +515,9 @@
         <attr name="maxHeight" />
     </declare-styleable>
 
+    <declare-styleable name="WebRtcAudioOutputToggleButtonState">
+        <attr name="state_headset" format="boolean" />
+        <attr name="state_speaker" format="boolean" />
+        <attr name="state_handset" format="boolean" />
+    </declare-styleable>
 </resources>

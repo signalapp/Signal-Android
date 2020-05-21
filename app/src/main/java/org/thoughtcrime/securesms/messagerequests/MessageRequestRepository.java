@@ -5,13 +5,22 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.core.util.Consumer;
 
+import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
+import org.thoughtcrime.securesms.groups.GroupChangeFailedException;
+import org.thoughtcrime.securesms.groups.GroupInsufficientRightsException;
+import org.thoughtcrime.securesms.groups.GroupManager;
+import org.thoughtcrime.securesms.groups.GroupNotAMemberException;
+import org.thoughtcrime.securesms.groups.ui.GroupChangeErrorCallback;
+import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.jobs.MultiDeviceMessageRequestResponseJob;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
@@ -20,13 +29,17 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.Executor;
 
 final class MessageRequestRepository {
+
+  private static final String TAG = Log.tag(MessageRequestRepository.class);
 
   private final Context  context;
   private final Executor executor;
@@ -48,14 +61,24 @@ final class MessageRequestRepository {
       GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
       Optional<GroupDatabase.GroupRecord> groupRecord = groupDatabase.getGroup(recipientId);
       onMemberCountLoaded.accept(groupRecord.transform(record -> {
+        if (record.isV2Group()) {
+          DecryptedGroup decryptedGroup = record.requireV2GroupProperties().getDecryptedGroup();
+          return new GroupMemberCount(decryptedGroup.getMembersCount(), decryptedGroup.getPendingMembersCount());
+        } else {
           return new GroupMemberCount(record.getMembers().size(), 0);
+        }
       }).or(GroupMemberCount.ZERO));
     });
   }
 
   void getMessageRequestState(@NonNull Recipient recipient, long threadId, @NonNull Consumer<MessageRequestState> state) {
     executor.execute(() -> {
-      if (!RecipientUtil.isMessageRequestAccepted(context, threadId)) {
+      if (recipient.isPushV2Group()) {
+        boolean pendingMember = DatabaseFactory.getGroupDatabase(context)
+                                               .isPendingMember(recipient.requireGroupId().requireV2(), Recipient.self());
+        state.accept(pendingMember ? MessageRequestState.UNACCEPTED
+                                   : MessageRequestState.ACCEPTED);
+      } else if (!RecipientUtil.isMessageRequestAccepted(context, threadId)) {
         state.accept(MessageRequestState.UNACCEPTED);
       } else if (RecipientUtil.isPreMessageRequestThread(context, threadId) && !RecipientUtil.isLegacyProfileSharingAccepted(recipient)) {
         state.accept(MessageRequestState.LEGACY);
@@ -65,23 +88,46 @@ final class MessageRequestRepository {
     });
   }
 
-  void acceptMessageRequest(@NonNull LiveRecipient liveRecipient, long threadId, @NonNull Runnable onMessageRequestAccepted) {
+  void acceptMessageRequest(@NonNull LiveRecipient liveRecipient,
+                            long threadId,
+                            @NonNull Runnable onMessageRequestAccepted,
+                            @NonNull GroupChangeErrorCallback mainThreadError)
+  {
+    GroupChangeErrorCallback error = e -> Util.runOnMain(() -> mainThreadError.onError(e));
     executor.execute(()-> {
-      RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
-      recipientDatabase.setProfileSharing(liveRecipient.getId(), true);
-      liveRecipient.refresh();
+      if (liveRecipient.get().isPushV2Group()) {
+        try {
+          Log.i(TAG, "GV2 accepting invite");
+          GroupManager.acceptInvite(context, liveRecipient.get().requireGroupId().requireV2());
 
-      List<MessagingDatabase.MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context)
-                                                                            .setEntireThreadRead(threadId);
-      MessageNotifier.updateNotification(context);
-      MarkReadReceiver.process(context, messageIds);
+          RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+          recipientDatabase.setProfileSharing(liveRecipient.getId(), true);
 
-      if (TextSecurePreferences.isMultiDevice(context)) {
-        ApplicationDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forAccept(liveRecipient.getId()));
+          onMessageRequestAccepted.run();
+        } catch (GroupInsufficientRightsException e) {
+          Log.w(TAG, e);
+          error.onError(GroupChangeFailureReason.NO_RIGHTS);
+        } catch (GroupChangeBusyException | GroupChangeFailedException | GroupNotAMemberException | IOException e) {
+          Log.w(TAG, e);
+          error.onError(GroupChangeFailureReason.OTHER);
+        }
+      } else {
+        RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+        recipientDatabase.setProfileSharing(liveRecipient.getId(), true);
+
+        MessageSender.sendProfileKey(context, threadId);
+
+        List<MessagingDatabase.MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context)
+                                                                              .setEntireThreadRead(threadId);
+        MessageNotifier.updateNotification(context);
+        MarkReadReceiver.process(context, messageIds);
+
+        if (TextSecurePreferences.isMultiDevice(context)) {
+          ApplicationDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forAccept(liveRecipient.getId()));
+        }
+
+        onMessageRequestAccepted.run();
       }
-
-      MessageSender.sendProfileKey(context, threadId);
-      onMessageRequestAccepted.run();
     });
   }
 

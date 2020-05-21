@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_arrow_left_24"
+        app:title="@string/AddGroupDetailsFragment__name_this_group"
+        app:titleTextAppearance="@style/TextAppearance.Signal.Body1.Bold" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/group_avatar"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="?attr/tinted_circle_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiEditText
+        android:id="@+id/group_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="16dp"
+        android:background="@null"
+        android:hint="@string/AddGroupDetailsFragment__group_name_required"
+        android:maxLength="34"
+        android:maxLines="1"
+        app:layout_constraintBottom_toBottomOf="@id/group_avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/group_avatar"
+        app:layout_constraintTop_toTopOf="@id/group_avatar" />
+
+    <TextView
+        android:id="@+id/mms_warning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@color/core_ultramarine"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp"
+        android:text="@string/AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/member_list_header"
+        app:layout_constraintTop_toBottomOf="@id/group_avatar"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/member_list_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/AddGroupDetailsFragment__members"
+        android:textAppearance="@style/TextAppearance.Signal.Subtitle2"
+        android:textColor="?attr/title_text_color_secondary"
+        app:layout_constraintTop_toBottomOf="@id/mms_warning"
+        app:layout_goneMarginTop="30dp" />
+
+    <org.thoughtcrime.securesms.groups.ui.GroupMemberListView
+        android:id="@+id/member_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/member_list_header" />
+
+    <com.dd.CircularProgressButton
+        android:id="@+id/create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/white"
+        app:cpb_colorIndicator="@color/white"
+        app:cpb_colorProgress="@color/core_ultramarine"
+        app:cpb_cornerRadius="28dp"
+        app:cpb_selectorIdle="@drawable/progress_button_state"
+        app:cpb_textIdle="@string/AddGroupDetailsFragment__create"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

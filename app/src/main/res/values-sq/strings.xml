@@ -120,6 +120,7 @@
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Hiqe</string>
   <string name="ClearProfileActivity_remove_profile_photo">Të hiqet foto profili?</string>
+  <string name="ClearProfileActivity_remove_group_photo">Të hiqet foto grupi?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">S\’u gjet shfletues.</string>
   <string name="CommunicationActions_no_email_app_found">S’u gjet aplikacion email-esh.</string>
@@ -205,7 +206,6 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">S\’ka aplikacion të gatshëm në celularin tuaj për trajtim të kësaj në pajisjen tuaj.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Për të dërguar mesazhe zanorë, lejojeni Signal-in të përdorë mikrofonin tuaj.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Që të mund të dërgojë mesazhe audio, Signal-i lyp leje përdorimi të Mikrofonit, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Mikrofonin\".</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Për të thirrur %s, Signal-i lyp hyrje në mikrofonin dhe kamerën tuaj.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Që të bëjë thirrje me %s, Signal-i lyp leje përdorimi të Mikrofonit dhe Kamerës, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Mikrofonin\" dhe \"Kamerën\".</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Për të bërë foto dhe dhe video, lejojini Signal-it të përdorë kamerën.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Që të bëjë foto ose video, Signal-i lyp leje përdorimi të Kamerës, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kamerën\".</string>
@@ -228,6 +228,8 @@
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Do ta braktisni këtë grup dhe do të fshihet prej krejt pajisjeve tuaja.</string>
   <string name="ConversationActivity_delete">Fshije</string>
   <string name="ConversationActivity_delete_and_leave">Fshije dhe braktise</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Për të thirrur %1$s, Signal-i lyp leje përdorimi të mikrofonit tuaj</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Për të thirrur %1$s, Signal-i lyp leje përdorimi të mikrofonit dhe kamerës tuaj.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mesazh i palexuar</item>
@@ -368,6 +370,7 @@
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Grup i ri</string>
   <string name="GroupCreateActivity_actionbar_edit_title">Përpunoni grupin</string>
+  <string name="GroupCreateActivity_actionbar_manage_title">Administroni grupin</string>
   <string name="GroupCreateActivity_group_name_hint">Emër grupi</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Grup MMS i ri</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Keni përzgjedhur një kontakt që nuk mbulon grupe Signal, prandaj ky grup do të jetë MMS.</string>
@@ -409,10 +412,49 @@
     <item quantity="one">Gabim në anulim ftese</item>
     <item quantity="other">Gabim në anulim ftesash</item>
   </plurals>
+  <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__name_this_group">Emërtojeni këtë grup</string>
+  <string name="AddGroupDetailsFragment__create">Krijoje</string>
+  <string name="AddGroupDetailsFragment__members">Anëtarë</string>
+  <string name="AddGroupDetailsFragment__group_name_required">Emër grupi (e domosdoshme)</string>
+  <string name="AddGroupDetailsFragment__this_field_is_required">Kjo fushë është e domosdoshme.</string>
+  <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Grupet lypin të paktën dy vetë.</string>
+  <string name="AddGroupDetailsFragment__group_creation_failed">Krijimi i grupit dështoi.</string>
+  <string name="AddGroupDetailsFragment__try_again_later">Riprovoni më vonë.</string>
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Keni përzgjedhur një kontakt që nuk mbulon grupe Signal, kështu që ky grup do të jetë MMS.</string>
+  <string name="AddGroupDetailsFragment__remove">Hiqe</string>
+  <string name="AddGroupDetailsFragment__sms_contact">Kontakt SMS</string>
+  <!--ManageGroupActivity-->
+  <string name="ManageGroupActivity_disappearing_messages">Zhdukje mesazhesh</string>
+  <string name="ManageGroupActivity_pending_group_invites">Ftesa për në grupe pezull</string>
+  <string name="ManageGroupActivity_who_can_edit_group_membership">Cilët mund të përpunojnë anëtarësi grupi</string>
+  <string name="ManageGroupActivity_who_can_edit_group_info">Cilët mund të përpunojnë të dhëna grupi</string>
+  <string name="ManageGroupActivity_block_group">Blloko grup</string>
+  <string name="ManageGroupActivity_leave_group">Braktise grupin</string>
+  <string name="ManageGroupActivity_mute_notifications">Heshtoji njoftimet</string>
+  <string name="ManageGroupActivity_custom_notifications">Njoftime vetjake</string>
+  <string name="ManageGroupActivity_until_s">Deri më %1$s</string>
+  <string name="ManageGroupActivity_off">Off</string>
+  <string name="ManageGroupActivity_on">On</string>
+  <string name="ManageGroupActivity_add_members">Shtoni anëtarë</string>
+  <string name="ManageGroupActivity_view_all_members">Shihni krejt anëtarët</string>
+  <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">S’keni të drejta për ta bërë këtë</string>
+  <string name="ManageGroupActivity_not_capable">Dikush që shtuat, nuk mbulon grupe të reja dhe lypset të përditësojë Signal-in</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group">S’u arrit të përditësohej grupi</string>
+  <string name="ManageGroupActivity_youre_not_a_member_of_the_group">S’jeni anëtar i grupit</string>
+  <string name="ManageGroupActivity_edit_name_and_picture">Përpunoni emër dhe foto</string>
+  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Zgjidhni cilët mund të shtojnë ose ftojnë anëtarë të rinj</string>
+  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Zgjidhni cilët mund të ndryshojnë emrin dhe foton e grupit</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s ftoi 1 person</item>
     <item quantity="other">%1$s ftoi %2$d vetë</item>
   </plurals>
+  <!--CustomNotificationsDialogFragment-->
+  <string name="CustomNotificationsDialogFragment__custom_notifications">Njoftime vetjake</string>
+  <string name="CustomNotificationsDialogFragment__messages">Mesazhe</string>
+  <string name="CustomNotificationsDialogFragment__use_custom_notifications">Përdor njoftime vetjake</string>
+  <string name="CustomNotificationsDialogFragment__notification_sound">Tingull njoftimesh</string>
+  <string name="CustomNotificationsDialogFragment__vibrate">Dridhu</string>
   <!--GV2 Invite cancellation confirmation-->
   <string name="GroupManagement_cancel_own_single_invite">Doni të anulohet ftesa që dërguat për %1$s?</string>
   <plurals name="GroupManagement_cancel_others_invites">
@@ -544,6 +586,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Krejt mediat</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_unknown">I panjohur</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Morët një mesazh të fshehtëzuar duke përdorur një version të vjetër të Signal-it, që nuk mirëmbahet më. Ju lutemi, kërkojini dërguesit ta përditësojë me versionin më të ri dhe ta ridërgojë mesazhin.</string>
   <string name="MessageRecord_left_group">E keni lënë grupin.</string>
   <string name="MessageRecord_you_updated_group">E përditësuat grupin.</string>
@@ -560,6 +603,8 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">E vutë kohëmatësin e zhdukjes së mesazheve për %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s e vuri kohëmatësin e tretjes së mesazheve në %2$s.</string>
   <!--GV2 specific-->
+  <string name="MessageRecord_you_created_the_group">E krijuat grupin.</string>
+  <string name="MessageRecord_group_updated">Grupi u përditësua.</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Shtuat %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s shtoi %2$s.</string>
@@ -627,6 +672,7 @@
   <string name="MessageRequestBottomView_unblock">Zhbllokoje</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Doni të lejohet %1$s t’ju dërgojë mesazh? S’do ta dijë se e keni parë mesazhin e tij, deri sa të pranoni.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Doni të bëheni pjesë e grupit %1$s? S’do ta dinë se i keni parë mesazhet e tyre, deri sa të pranoni.</string>
+  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Qetë ftuar në këtë grup nga %1$s. Doni t’i lini anëtarët e këtij grupi t’ju dërgojnë mesazhe?</string>
   <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Zhbllokojeni %1$s që t’i shkruani mesazhe dhe t’i bëni thirrje njëri-tjetrit.</string>
   <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Zhbllokojeni që t’u lejoni anëtarëve të grupit t’ju rishtojnë te ky grup.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Anëtar i %1$s</string>
@@ -700,7 +746,6 @@
     <item quantity="other">Keni edhe %1$d prova. Nëse ju mbarohen provat, mund të krijoni një PIN të ri. Mund të regjistroni dhe përdorni llogarinë tuaj, por do të humbni disa nga rregullimet e ruajtura, bie fjala, të dhënat e profilit tuaj.</item>
   </plurals>
   <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Regjistrim Signal-i - Ju Duhet Ndihmë me PIN-in për Android</string>
-  <string name="PinRestoreEntryFragment_subject_signal_registration">Subjekt: Regjistrim Signal-i - Më Duhet Ndihmë me PIN-in për Android\nTë dhëna pajisjeje: %1$s\nVersion Android: %2$s\nVersion Signal-i: %3$s\nGjuhë: %4$s</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Jepni PIN alfanumerik</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Jepni PIN numerik</string>
   <!--PinRestoreLockedFragment-->
@@ -715,7 +760,7 @@
   <string name="RatingManager_later">Më vonë</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Hëm, aplikacioni Play Store s\’duket të jetë i instaluar në pajisjen tuaj.</string>
   <!--ReactionsBottomSheetDialogFragment-->
-  <string name="ReactionsBottomSheetDialogFragment_all">Krejt %1$d</string>
+  <string name="ReactionsBottomSheetDialogFragment_all">Krejt · %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
@@ -741,6 +786,14 @@
   <string name="RedPhone_number_not_registered">Numër i paregjistruar</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Numri që thirrët nuk mbulon thirrje me zë të sigurta!</string>
   <string name="RedPhone_got_it">E mora</string>
+  <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Prekeni këtu që të ktheni te videoja juaj</string>
+  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Për të thirrur %1$s, Signal-i lyp leje përdorimi të kamerës tuaj</string>
+  <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
+  <string name="WebRtcCallActivity__calling">Po thirret…</string>
+  <!--WebRtcCallView-->
+  <string name="WebRtcCallView__signal_voice_call">Thirrje Signal me zë…</string>
+  <string name="WebRtcCallView__signal_video_call">Thirrje Signal me video…</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Përzgjidhni vendin tuaj</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Duhet të specifikoni
@@ -858,6 +911,14 @@
   <string name="SubmitDebugLogActivity_copied_to_clipboard">U kopjua në të papastër!</string>
   <string name="SubmitDebugLogActivity_ok">Ok</string>
   <string name="SubmitDebugLogActivity_share">Ndajeni Me të Tjerë</string>
+  <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_subject">Subjekt:</string>
+  <string name="SupportEmailUtil_signal_android_support_request">Kërkesë Për Asistencë për Signal Android</string>
+  <string name="SupportEmailUtil_device_info">Të dhëna pajisjeje:</string>
+  <string name="SupportEmailUtil_android_version">Version Android:</string>
+  <string name="SupportEmailUtil_signal_version">Version Signal-i:</string>
+  <string name="SupportEmailUtil_signal_package">Paketë Signal:</string>
+  <string name="SupportEmailUtil_locale">Vendore:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupi u përditësua</string>
   <string name="ThreadRecord_left_the_group">Iku nga grupi</string>
@@ -882,6 +943,7 @@
   <string name="ThreadRecord_message_could_not_be_processed">Mesazhi s’u përpunua dot</string>
   <string name="ThreadRecord_message_request">Kërkesë Mesazhi</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s ju shtoi te grupi</string>
+  <string name="ThreadRecord_s_invited_you_to_the_group">%1$s ju ftoi te grupi</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Përditësim i Signal-it</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Është gati një version i ri i Signal-it, prekeni që të përditësohet</string>
@@ -1025,12 +1087,23 @@
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Për t\’iu përgjigjur thirrjes prej %s, lejojini Signal-it të përdorë mikrofonin tuaj.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Që të bëjë ose pranojë thirrje, Signal-i lyp leje mbi Mikrofonin dhe Kamerën, por këto i janë mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Mikrofonin\" dhe \"Kamerën\".</string>
+  <string name="WebRtcCallActivity__answered_on_a_linked_device">U përgjigj në një pajisje të lidhur.</string>
+  <string name="WebRtcCallActivity__declined_on_a_linked_device">Hedhur tej në një pajisje të lidhur.</string>
+  <string name="WebRtcCallActivity__busy_on_a_linked_device">I zënë në një pajisje të lidhur.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Numri i sigurisë për bisedën tuaj me %1$s ka ndryshuar. Kjo mund të jetë shenjë se ose sepse dikush po rreket të përgjojë komunikimin tuaj, ose se %2$s thjesht ka riinstaluar Signal-in.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Mund të donit të verifikonit numrin tuaj të sigurisë me këtë kontakt.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Numër i ri sigurie</string>
   <string name="WebRtcCallScreen_accept">Pranoje</string>
   <string name="WebRtcCallScreen_end_call">Përfundoje thirrjen</string>
+  <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__decline">Hidhet tej</string>
+  <string name="WebRtcCallScreen__answer">Përgjigjuni</string>
+  <string name="WebRtcCallScreen__answer_without_video">Përgjigjuni pa video</string>
+  <!--WebRtcAudioOutputToggle-->
+  <string name="WebRtcAudioOutputToggle__phone">Telefon</string>
+  <string name="WebRtcAudioOutputToggle__speaker">Altoparlant</string>
+  <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Prekeni që të aktivizoni videon tuaj</string>
   <!--WebRtcCallControls Content Descriptions-->
@@ -1065,6 +1138,7 @@
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Jepni emër ose numër</string>
   <string name="contact_selection_activity__invite_to_signal">Ftojeni në Signal</string>
+  <string name="contact_selection_activity__new_group">Grup i ri</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Spastro tekstin e dhënë</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Shfaq tastierën</string>
@@ -1129,6 +1203,7 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Po ngarkohen vende…</string>
   <string name="country_selection_fragment__search">Kërko</string>
+  <string name="country_selection_fragment__no_matching_countries">Pa vende me përputhje</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Skanoni kodin QR të shfaqur te pajisja që do lidhur</string>
   <!--device_link_fragment-->
@@ -1240,6 +1315,9 @@
   <string name="CreateProfileActivity_next">Pasuesi</string>
   <string name="CreateProfileActivity__username">Emër përdoruesi</string>
   <string name="CreateProfileActivity__create_a_username">Krijoni emër përdoruesi</string>
+  <!--EditProfileFragment-->
+  <string name="EditProfileFragment__edit_group_name_and_photo">Përpunoni emër dhe foto grupi</string>
+  <string name="EditProfileFragment__group_name">Emër grupi</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Media e ndarë me të tjerët</string>
   <!--recipient_preferences-->
@@ -1318,18 +1396,24 @@
   <string name="HelpFragment__whats_this">Po kjo, ç’është?</string>
   <string name="HelpFragment__how_do_you_feel">Si ndiheni? (Opsionale)</string>
   <string name="HelpFragment__support_info">Të dhëna Asistence</string>
-  <string name="HelpFragment__subject">Subjekt:</string>
   <string name="HelpFragment__signal_android_support_request">Kërkesë Për Asistencë për Signal Android</string>
-  <string name="HelpFragment__device_info">Të dhëna pajisjeje:</string>
-  <string name="HelpFragment__android_version">Version Android:</string>
-  <string name="HelpFragment__signal_version">Version Signal-i:</string>
-  <string name="HelpFragment__locale">Vendore:</string>
   <string name="HelpFragment__debug_log">Regjistër Diagnostikimesh:</string>
   <string name="HelpFragment__na">n/a</string>
   <string name="HelpFragment__could_not_upload_logs">S’u ngarkuan dot regjistra</string>
   <string name="HelpFragment__signal_support">Asistencë Signal-i</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Ju lutemi, që të na ndihmoni të kuptojmë problemin, jini sa më përshkrues që të jetë e mundur.</string>
   <string name="HelpFragment__no_email_app_found">S’u gjet aplikacion email-esh.</string>
+  <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Përdorur Së Fundi</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Emotikone &amp; Persona</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natyrë</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Ushqim</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Veprimtari</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Vende</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objekte</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Simbole</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Flamuj</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emotikone</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importo</string>
   <string name="arrays__use_default">Përdor parazgjedhje</string>
@@ -1535,6 +1619,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Shto bashkëngjitje</string>
   <string name="conversation__menu_edit_group">Përpunoni grup</string>
+  <string name="conversation__menu_manage_group">Administroni grupin</string>
   <string name="conversation__menu_leave_group">Braktise grupin</string>
   <string name="conversation__menu_view_all_media">Krejt mediat</string>
   <string name="conversation__menu_conversation_settings">Rregullime bisedash</string>
@@ -1698,6 +1783,9 @@ spastrohet dhe krejt lënda do të fshihet.</item>
     <item quantity="one">Edhe %1$d provë.</item>
     <item quantity="other">Edhe %1$d prova.</item>
   </plurals>
+  <!--CalleeMustAcceptMessageRequestDialogFragment-->
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">OK</string>
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s do të marrë një kërkesë mesazhi nga ju. Mund të bëni thirrje sapo të pranohet kërkesa juaj e mesazhit.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Krijoni PIN</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN-et i mbajnë të fshehtëzuara të dhënat që depozitohen me Signal-in</string>
@@ -1768,7 +1856,6 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="RegistrationActivity_call_me_instead_available_in">Telefonomëni, më mirë \n (E përdorshme në %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Lidhuni Me Asistencën e Signal-it</string>
   <string name="RegistrationActivity_code_support_subject">Regjistrim Signal-i - Kod Verifikimi për Android</string>
-  <string name="RegistrationActivity_code_support_body">Subjekt: Regjistrim Signal-i - Kod Verifikimi për Android\nTë dhëna pajisjeje: %1$s\nVersion Android: %2$s\nVersion Signal-i: %3$s\nGjuhë: %4$s</string>
   <string name="BackupUtil_never">Kurrë</string>
   <string name="BackupUtil_unknown">E panjohur</string>
   <string name="preferences_app_protection__screen_lock">Kyçje ekrani</string>
@@ -1822,5 +1909,19 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="RegistrationLockDialog_reminder">Kujtues:</string>
   <string name="recipient_preferences__about">Mbi</string>
   <string name="Recipient_unknown">I panjohur</string>
+  <!--RecipientBottomSheet-->
+  <string name="RecipientBottomSheet_message">Mesazh</string>
+  <string name="RecipientBottomSheet_call">Thirrje</string>
+  <string name="RecipientBottomSheet_block">Bllokoje</string>
+  <string name="RecipientBottomSheet_unblock">Zhbllokoje</string>
+  <string name="RecipientBottomSheet_view_safety_number">Shihni numër sigurie</string>
+  <string name="RecipientBottomSheet_make_group_admin">Bëje përgjegjës grupi</string>
+  <string name="RecipientBottomSheet_remove_as_admin">Hiqe nga përgjegjës</string>
+  <string name="RecipientBottomSheet_remove_from_group">Hiqe nga grup</string>
+  <string name="RecipientBottomSheet_remove_s_as_group_admin">Të hiqet %1$s nga përgjegjës grupi?</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s do të jetë në gjendje të përpunojë këtë grup dhe anëtarët e tij</string>
+  <string name="RecipientBottomSheet_remove_s_from_s">Të hiqet %1$s nga \"%2$s\"?</string>
+  <string name="RecipientBottomSheet_remove">Hiqe</string>
+  <string name="GroupRecipientListItem_admin">Përgjegjës</string>
   <!--EOF-->
 </resources>
