@@ -56,13 +56,13 @@ public class PendingMemberInvitesViewModel extends ViewModel {
     for (PendingMemberRepository.SinglePendingMemberInvitedByYou pendingMember : inviteeResult.getByMe()) {
       byMe.add(new GroupMemberEntry.PendingMember(pendingMember.getInvitee(),
                                                   pendingMember.getInviteeCipherText(),
-                                                  true));
+                                                  inviteeResult.isCanCancelInvites()));
     }
 
     for (PendingMemberRepository.MultiplePendingMembersInvitedByAnother pendingMembers : inviteeResult.getByOthers()) {
       byOthers.add(new GroupMemberEntry.UnknownPendingMemberCount(pendingMembers.getInviter(),
                                                                   pendingMembers.getUuidCipherTexts(),
-                                                                  inviteeResult.isCanCancelOthersInvites()));
+                                                                  inviteeResult.isCanCancelInvites()));
     }
 
     setInvitees(byMe, byOthers);

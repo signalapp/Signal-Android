@@ -114,15 +114,15 @@ final class PendingMemberRepository {
   public static final class InviteeResult {
     private final List<SinglePendingMemberInvitedByYou>        byMe;
     private final List<MultiplePendingMembersInvitedByAnother> byOthers;
-    private final boolean                                      canCancelOthersInvites;
+    private final boolean                                      canCancelInvites;
 
     private InviteeResult(List<SinglePendingMemberInvitedByYou> byMe,
                           List<MultiplePendingMembersInvitedByAnother> byOthers,
-                          boolean canCancelOthersInvites)
+                          boolean canCancelInvites)
     {
-      this.byMe                   = byMe;
-      this.byOthers               = byOthers;
-      this.canCancelOthersInvites = canCancelOthersInvites;
+      this.byMe             = byMe;
+      this.byOthers         = byOthers;
+      this.canCancelInvites = canCancelInvites;
     }
 
     public List<SinglePendingMemberInvitedByYou> getByMe() {
@@ -133,8 +133,8 @@ final class PendingMemberRepository {
       return byOthers;
     }
 
-    public boolean isCanCancelOthersInvites() {
-      return canCancelOthersInvites;
+    public boolean isCanCancelInvites() {
+      return canCancelInvites;
     }
   }
 
