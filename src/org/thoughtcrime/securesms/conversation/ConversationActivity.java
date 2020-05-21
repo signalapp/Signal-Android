@@ -2396,7 +2396,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     // Loki - Send a friend request if we're not yet friends with the user in question
     LokiThreadFriendRequestStatus friendRequestStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadId);
-    outgoingMessage.isFriendRequest = !isGroupConversation() && friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS; // Needed for stageOutgoingMessage(...)
+    outgoingMessage.isFriendRequest = !isGroupConversation() && friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS
+      && !SessionMetaProtocol.shared.isNoteToSelf(recipient.getAddress().serialize()); // Needed for stageOutgoingMessage(...)
 
     if (clearComposeBox) {
       inputPanel.clearQuote();

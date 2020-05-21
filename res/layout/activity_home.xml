@@ -25,7 +25,7 @@
                 android:id="@+id/profileButton"
                 android:layout_width="@dimen/small_profile_picture_size"
                 android:layout_height="@dimen/small_profile_picture_size"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="9dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true" />
 

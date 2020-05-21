@@ -57,7 +57,7 @@ class PushEphemeralMessageSendJob private constructor(parameters: Parameters, pr
         val address = SignalServiceAddress(recipient)
         try {
             val udAccess = UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.fromSerialized(recipient), false))
-            messageSender.sendMessage(-1, address, udAccess, dataMessage.build()) // The message ID doesn't matter
+            messageSender.sendMessage(0, address, udAccess, dataMessage.build()) // The message ID doesn't matter
         } catch (e: Exception) {
             Log.d("Loki", "Failed to send background message to: $recipient due to error: $e.")
             throw e
