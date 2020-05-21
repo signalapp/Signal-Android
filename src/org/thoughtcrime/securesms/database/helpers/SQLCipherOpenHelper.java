@@ -544,7 +544,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
             if (publicChat != null) {
               byte[] groupId = publicChat.getId().getBytes();
               String oldId = GroupUtil.getEncodedId(groupId, false);
-              String newId = GroupUtil.getEncodedPublicChatId(groupId);
+              String newId = GroupUtil.getEncodedOpenGroupId(groupId);
               ContentValues threadUpdate = new ContentValues();
               threadUpdate.put("recipient_ids", newId);
               db.update("thread", threadUpdate, "recipient_ids = ?", new String[]{ oldId });

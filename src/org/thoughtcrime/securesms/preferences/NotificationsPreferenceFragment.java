@@ -37,11 +37,11 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
     String fcmKey = "pref_key_use_fcm";
     ((SwitchPreferenceCompat)findPreference(fcmKey)).setChecked(TextSecurePreferences.isUsingFCM(getContext()));
     this.findPreference(fcmKey)
-        .setOnPreferenceChangeListener((preference, newValue) -> {
-          TextSecurePreferences.setIsUsingFCM(getContext(), (boolean) newValue);
-          ApplicationContext.getInstance(getContext()).registerForFCMIfNeeded(true);
-          return true;
-        });
+      .setOnPreferenceChangeListener((preference, newValue) -> {
+        TextSecurePreferences.setIsUsingFCM(getContext(), (boolean) newValue);
+        ApplicationContext.getInstance(getContext()).registerForFCMIfNeeded(true);
+        return true;
+      });
 
     Preference ledBlinkPref = this.findPreference(TextSecurePreferences.LED_BLINK_PREF);
 

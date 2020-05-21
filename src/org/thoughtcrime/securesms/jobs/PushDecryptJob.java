@@ -128,6 +128,7 @@ import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager;
 import org.whispersystems.signalservice.loki.protocol.meta.LokiServiceMessage;
+import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation;
 
 import java.security.MessageDigest;
 import java.security.SecureRandom;
@@ -762,8 +763,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
 
     IncomingMediaMessage mediaMessage = new IncomingMediaMessage(masterAddress, message.getTimestamp(), -1,
-       message.getExpiresInSeconds() * 1000L, false, content.isNeedsReceipt(), message.getBody(), message.getGroupInfo(), message.getAttachments(),
-        quote, sharedContacts, linkPreviews, sticker);
+      message.getExpiresInSeconds() * 1000L, false, content.isNeedsReceipt(), message.getBody(), message.getGroupInfo(), message.getAttachments(),
+      quote, sharedContacts, linkPreviews, sticker);
 
     MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
     database.beginTransaction();
@@ -824,7 +825,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
   private long handleSynchronizeSentExpirationUpdate(@NonNull SentTranscriptMessage message) throws MmsException {
     MmsDatabase database  = DatabaseFactory.getMmsDatabase(context);
-    Recipient   recipient = getSyncMessageMasterDestination(message.getDestination().get());
+    Recipient   recipient = getSyncMessageMasterDestination(message);
 
     OutgoingExpirationUpdateMessage expirationUpdateMessage = new OutgoingExpirationUpdateMessage(recipient,
                                                                                                   message.getTimestamp(),
@@ -844,7 +845,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       throws MmsException
   {
     MmsDatabase                 database        = DatabaseFactory.getMmsDatabase(context);
-    Recipient                   recipients      = getSyncMessageMasterDestination(message.getDestination().get());
+    Recipient                   recipients      = getSyncMessageMasterDestination(message);
     Optional<QuoteModel>        quote           = getValidatedQuote(message.getMessage().getQuote());
     Optional<Attachment>        sticker         = getStickerAttachment(message.getMessage().getSticker());
     Optional<List<Contact>>     sharedContacts  = getContacts(message.getMessage().getSharedContacts());
@@ -1007,7 +1008,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       throws MmsException
   {
 
-    Recipient recipient       = getSyncMessageMasterDestination(message.getDestination().get());
+    Recipient recipient       = getSyncMessageMasterDestination(message);
     String    body            = message.getMessage().getBody().or("");
     long      expiresInMillis = message.getMessage().getExpiresInSeconds() * 1000L;
 
@@ -1394,10 +1395,42 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
   }
 
-  private Recipient getSyncMessageMasterDestination(String publicKey) {
-    Recipient recipient = Recipient.from(context, Address.fromSerialized(publicKey), false);
-    if (recipient.isGroupRecipient()) {
-      return recipient;
+  private Recipient getSyncMessageMasterDestination(SentTranscriptMessage message) {
+    if (message.getMessage().isGroupMessage()) {
+      return Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get())), false);
+    } else {
+      String publicKey = message.getDestination().get();
+      String userPublicKey = TextSecurePreferences.getLocalNumber(context);
+      Set<String> allUserDevices = org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey);
+      if (allUserDevices.contains(publicKey)) {
+        return Recipient.from(context, Address.fromSerialized(userPublicKey), false);
+      } else {
+        try {
+          // TODO: Burn this with fire when we can
+          PromiseUtilities.timeout(LokiFileServerAPI.shared.getDeviceLinks(publicKey, false), 4000).get();
+          String masterPublicKey = org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol.shared.getMasterDevice(publicKey);
+          if (masterPublicKey == null) {
+            masterPublicKey = publicKey;
+          }
+          return Recipient.from(context, Address.fromSerialized(masterPublicKey), false);
+        } catch (Exception e) {
+          return Recipient.from(context, Address.fromSerialized(publicKey), false);
+        }
+      }
+    }
+  }
+
+  private Recipient getMessageDestination(SignalServiceContent content, SignalServiceDataMessage message) {
+    if (message.getGroupInfo().isPresent()) {
+      return Recipient.from(context, Address.fromExternal(context, GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false)), false);
+    } else {
+      return Recipient.from(context, Address.fromExternal(context, content.getSender()), false);
+    }
+  }
+
+  private Recipient getMessageMasterDestination(String publicKey) {
+    if (!PublicKeyValidation.isValid(publicKey)) {
+      return Recipient.from(context, Address.fromSerialized(publicKey), false);
     } else {
       String userPublicKey = TextSecurePreferences.getLocalNumber(context);
       Set<String> allUserDevices = org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey);
@@ -1413,35 +1446,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           }
           return Recipient.from(context, Address.fromSerialized(masterPublicKey), false);
         } catch (Exception e) {
-          return recipient;
+          return Recipient.from(context, Address.fromSerialized(publicKey), false);
         }
-      }
-    }
-  }
-
-  private Recipient getMessageDestination(SignalServiceContent content, SignalServiceDataMessage message) {
-    if (message.getGroupInfo().isPresent()) {
-      return Recipient.from(context, Address.fromExternal(context, GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false)), false);
-    } else {
-      return Recipient.from(context, Address.fromExternal(context, content.getSender()), false);
-    }
-  }
-
-  private Recipient getMessageMasterDestination(String publicKey) {
-    Recipient recipient = Recipient.from(context, Address.fromSerialized(publicKey), false);
-    if (recipient.isGroupRecipient()) {
-      return recipient;
-    } else {
-      try {
-        // TODO: Burn this with fire when we can
-        PromiseUtilities.timeout(LokiFileServerAPI.shared.getDeviceLinks(publicKey, false), 4000).get();
-        String masterPublicKey = org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol.shared.getMasterDevice(publicKey);
-        if (masterPublicKey == null) {
-          masterPublicKey = publicKey;
-        }
-        return Recipient.from(context, Address.fromSerialized(masterPublicKey), false);
-      } catch (Exception e) {
-        return recipient;
       }
     }
   }

@@ -145,10 +145,10 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
   @Override
   public @NonNull Data serialize() {
     Data.Builder builder = new Data.Builder()
-            .putLong(KEY_TEMPLATE_MESSAGE_ID, templateMessageId)
-            .putLong(KEY_MESSAGE_ID, messageId)
-            .putString(KEY_DESTINATION, destination.serialize())
-            .putBoolean(KEY_IS_LOKI_PRE_KEY_BUNDLE_MESSAGE, isLokiPreKeyBundleMessage);
+                                   .putLong(KEY_TEMPLATE_MESSAGE_ID, templateMessageId)
+                                   .putLong(KEY_MESSAGE_ID, messageId)
+                                   .putString(KEY_DESTINATION, destination.serialize())
+                                   .putBoolean(KEY_IS_LOKI_PRE_KEY_BUNDLE_MESSAGE, isLokiPreKeyBundleMessage);
 
     if (customFriendRequestMessage != null) { builder.putString(KEY_CUSTOM_FR_MESSAGE, customFriendRequestMessage); }
     return builder.build();

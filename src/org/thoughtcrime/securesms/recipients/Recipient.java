@@ -456,7 +456,7 @@ public class Recipient implements RecipientModifiedListener {
 
   public synchronized String toShortString() {
     String name = getName();
-    return (name == null ? address.serialize() : name);
+    return (name != null ? name : address.serialize());
   }
 
   public synchronized @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted) {
@@ -469,8 +469,8 @@ public class Recipient implements RecipientModifiedListener {
     else {
       String userPublicKey = TextSecurePreferences.getLocalNumber(context);
       String publicKey = address.serialize();
-      String masterDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
-      String publicKeyToUse = (publicKey.equalsIgnoreCase(userPublicKey) && masterDevice != null) ? masterDevice : publicKey;
+      String userMasterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+      String publicKeyToUse = (publicKey.equalsIgnoreCase(userPublicKey) && userMasterPublicKey != null) ? userMasterPublicKey : publicKey;
       return new JazzIdenticonContactPhoto(publicKeyToUse);
     }
   }

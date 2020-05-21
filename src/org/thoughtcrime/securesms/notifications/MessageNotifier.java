@@ -332,8 +332,8 @@ public class MessageNotifier {
 
     if (canReply) {
       builder.addAndroidAutoAction(notificationState.getAndroidAutoReplyIntent(context, recipient),
-              notificationState.getAndroidAutoHeardIntent(context, notificationId),
-              notifications.get(0).getTimestamp());
+                                   notificationState.getAndroidAutoHeardIntent(context, notificationId),
+                                   notifications.get(0).getTimestamp());
     }
 
     ListIterator<NotificationItem> iterator = notifications.listIterator(notifications.size());

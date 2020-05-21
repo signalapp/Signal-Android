@@ -143,7 +143,7 @@ public class GroupMessageProcessor {
       // Loki - Only process update messages if we're part of the group
       Address userMasterDeviceAddress = Address.fromSerialized(userMasterDevice);
       if (!groupRecord.getMembers().contains(userMasterDeviceAddress) &&
-              !group.getMembers().or(Collections.emptyList()).contains(userMasterDevice)) {
+          !group.getMembers().or(Collections.emptyList()).contains(userMasterDevice)) {
         Log.d("Loki", "Received a group update message from a group we're not a member of:  " + id + "; ignoring.");
         database.setActive(id, false);
         return null;

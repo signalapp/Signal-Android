@@ -1,15 +1,12 @@
 package org.thoughtcrime.securesms.search;
 
-import android.Manifest;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
-import android.database.MergeCursor;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.annimon.stream.Stream;
-
 
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactsDatabase;
@@ -20,13 +17,11 @@ import org.thoughtcrime.securesms.database.SearchDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.search.model.MessageResult;
 import org.thoughtcrime.securesms.search.model.SearchResult;
 import org.thoughtcrime.securesms.util.Stopwatch;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -122,7 +117,7 @@ public class SearchRepository {
 
   private CursorList<Recipient> queryContacts(String query) {
     return CursorList.emptyList();
-    /* Loki - Don't need contact permissions
+    /* Loki - We don't need contacts permission
     if (!Permissions.hasAny(context, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)) {
       return CursorList.emptyList();
     }

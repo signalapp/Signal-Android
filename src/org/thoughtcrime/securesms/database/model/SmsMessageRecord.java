@@ -21,7 +21,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.SpannableString;
 
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
@@ -29,6 +28,8 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import network.loki.messenger.R;
 
 /**
  * The message record model which represents standard SMS messages.
@@ -67,9 +68,9 @@ public class SmsMessageRecord extends MessageRecord {
                           int readReceiptCount, boolean unidentified, boolean isFriendRequest)
   {
     super(id, body, recipient, individualRecipient, recipientDeviceId,
-            dateSent, dateReceived, threadId, status, deliveryReceiptCount, type,
-            mismatches, new LinkedList<>(), subscriptionId,
-            expiresIn, expireStarted, readReceiptCount, unidentified);
+          dateSent, dateReceived, threadId, status, deliveryReceiptCount, type,
+          mismatches, new LinkedList<>(), subscriptionId,
+          expiresIn, expireStarted, readReceiptCount, unidentified);
     this.isFriendRequest = isFriendRequest;
   }
 

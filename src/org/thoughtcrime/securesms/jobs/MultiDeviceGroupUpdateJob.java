@@ -124,7 +124,7 @@ public class MultiDeviceGroupUpdateJob extends BaseJob implements InjectableType
 
   @Override
   public boolean onShouldRetry(@NonNull Exception exception) {
-    // Loki - Disabled because we have our own retrying
+    // Loki - Disabled since we have our own retrying
     return false;
   }
 

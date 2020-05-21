@@ -341,12 +341,12 @@ public class SmsDatabase extends MessagingDatabase {
 
     try {
       cursor = database.query(TABLE_NAME, new String[] { ID, THREAD_ID, ADDRESS, TYPE },
-              DATE_SENT + " = ?", new String[] { String.valueOf(timestamp) },
-              null, null, null, null);
+               DATE_SENT + " = ?", new String[] { String.valueOf(timestamp) },
+               null, null, null, null);
 
       while (cursor.moveToNext()) {
         if (Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(TYPE)))) {
-            isOutgoing = true;
+          isOutgoing = true;
         }
       }
     } finally {

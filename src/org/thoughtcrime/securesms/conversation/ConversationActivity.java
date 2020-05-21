@@ -661,9 +661,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
        */
     case PICK_GIF:
       setMedia(data.getData(),
-              MediaType.GIF,
-              data.getIntExtra(GiphyActivity.EXTRA_WIDTH, 0),
-              data.getIntExtra(GiphyActivity.EXTRA_HEIGHT, 0));
+               MediaType.GIF,
+               data.getIntExtra(GiphyActivity.EXTRA_WIDTH, 0),
+               data.getIntExtra(GiphyActivity.EXTRA_HEIGHT, 0));
       break;
     case SMS_DEFAULT:
       initializeSecurity(isSecureText, isDefaultSms);
@@ -2932,12 +2932,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
 
       inputPanel.setQuote(GlideApp.with(this),
-              messageRecord.getDateSent(),
-              author,
-              body,
-              slideDeck,
-              recipient,
-              threadId);
+                          messageRecord.getDateSent(),
+                          author,
+                          body,
+                          slideDeck,
+                          recipient,
+                          threadId);
 
     } else if (messageRecord.isMms() && !((MmsMessageRecord) messageRecord).getLinkPreviews().isEmpty()) {
       LinkPreview linkPreview = ((MmsMessageRecord) messageRecord).getLinkPreviews().get(0);
@@ -2948,20 +2948,20 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
 
       inputPanel.setQuote(GlideApp.with(this),
-              messageRecord.getDateSent(),
-              author,
-              messageRecord.getBody(),
-              slideDeck,
-              recipient,
-              threadId);
+                          messageRecord.getDateSent(),
+                          author,
+                          messageRecord.getBody(),
+                          slideDeck,
+                          recipient,
+                          threadId);
     } else {
       inputPanel.setQuote(GlideApp.with(this),
-              messageRecord.getDateSent(),
-              author,
-              messageRecord.getBody(),
-              messageRecord.isMms() ? ((MmsMessageRecord) messageRecord).getSlideDeck() : new SlideDeck(),
-              recipient,
-              threadId);
+                          messageRecord.getDateSent(),
+                          author,
+                          messageRecord.getBody(),
+                          messageRecord.isMms() ? ((MmsMessageRecord) messageRecord).getSlideDeck() : new SlideDeck(),
+                          recipient,
+                          threadId);
     }
   }
 
@@ -3209,6 +3209,5 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     FriendRequestProtocol.rejectFriendRequest(this, recipient);
     updateInputPanel();
   }
-
   // endregion
 }

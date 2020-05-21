@@ -345,16 +345,16 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
             }
             String seed = new MnemonicCodec(languageFileDirectory).encode(hexEncodedSeed, MnemonicCodec.Language.Configuration.Companion.getEnglish());
             new AlertDialog.Builder(getContext())
-                    .setTitle(R.string.activity_settings_seed_dialog_title)
-                    .setMessage(seed)
-                    .setPositiveButton(R.string.activity_settings_seed_dialog_copy_button_title, (DialogInterface.OnClickListener) (dialog, which) -> {
-                      ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
-                      ClipData clip = ClipData.newPlainText("seed", seed);
-                      clipboard.setPrimaryClip(clip);
-                      Toast.makeText(getContext(), R.string.activity_settings_seed_copied_message, Toast.LENGTH_SHORT).show();
-                    })
-                    .setNeutralButton(R.string.activity_settings_seed_dialog_ok_button_title, null)
-                    .show();
+                           .setTitle(R.string.activity_settings_seed_dialog_title)
+                           .setMessage(seed)
+                           .setPositiveButton(R.string.activity_settings_seed_dialog_copy_button_title, (DialogInterface.OnClickListener) (dialog, which) -> {
+                             ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                             ClipData clip = ClipData.newPlainText("seed", seed);
+                             clipboard.setPrimaryClip(clip);
+                             Toast.makeText(getContext(), R.string.activity_settings_seed_copied_message, Toast.LENGTH_SHORT).show();
+                           })
+                           .setNeutralButton(R.string.activity_settings_seed_dialog_ok_button_title, null)
+                           .show();
           } catch (Exception e) {
             Log.d("Loki", e.getMessage());
           }

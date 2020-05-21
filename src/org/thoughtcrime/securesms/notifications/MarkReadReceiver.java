@@ -99,8 +99,8 @@ public class MarkReadReceiver extends BroadcastReceiver {
       for (String device : linkedDevices) {
         Address deviceAsAddress = Address.fromExternal(context, device);
         ApplicationContext.getInstance(context)
-                .getJobManager()
-                .add(new SendReadReceiptJob(deviceAsAddress, timestamps));
+                          .getJobManager()
+                          .add(new SendReadReceiptJob(deviceAsAddress, timestamps));
       }
     }
   }

@@ -84,8 +84,8 @@ public class TypingSendJob extends BaseJob implements InjectableType {
       throw new IllegalStateException("Tried to send a typing indicator to a non-existent thread.");
     }
 
-    List<Recipient> recipients = Collections.singletonList(recipient);
-    Optional<byte[]> groupId  = Optional.absent();
+    List<Recipient>  recipients = Collections.singletonList(recipient);
+    Optional<byte[]> groupId    = Optional.absent();
 
     if (recipient.isGroupRecipient()) {
       recipients = DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.getAddress().toGroupString(), false);

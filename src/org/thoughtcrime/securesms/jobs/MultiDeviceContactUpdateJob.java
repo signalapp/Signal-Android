@@ -142,15 +142,13 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
       // Loki - Only sync contacts we are friends with
       if (SyncMessagesProtocol.shouldSyncContact(context, address)) {
         out.write(new DeviceContact(address.toPhoneString(),
-                Optional.fromNullable(recipient.getName()),
-                getAvatar(recipient.getContactUri()),
-                Optional.fromNullable(recipient.getColor().serialize()),
-                verifiedMessage,
-                Optional.fromNullable(recipient.getProfileKey()),
-                recipient.isBlocked(),
-                recipient.getExpireMessages() > 0 ?
-                        Optional.of(recipient.getExpireMessages()) :
-                        Optional.absent()));
+                                    Optional.fromNullable(recipient.getName()),
+                                    getAvatar(recipient.getContactUri()),
+                                    Optional.fromNullable(recipient.getColor().serialize()),
+                                    verifiedMessage,
+                                    Optional.fromNullable(recipient.getProfileKey()),
+                                    recipient.isBlocked(),
+                                    recipient.getExpireMessages() > 0 ? Optional.of(recipient.getExpireMessages()) : Optional.absent()));
       }
 
       out.close();

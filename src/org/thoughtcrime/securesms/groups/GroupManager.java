@@ -37,7 +37,7 @@ import java.util.Set;
 public class GroupManager {
 
   public static long getOpenGroupThreadID(String id, @NonNull  Context context) {
-    final String groupID = GroupUtil.getEncodedPublicChatId(id.getBytes());
+    final String groupID = GroupUtil.getEncodedOpenGroupId(id.getBytes());
     return getThreadIDFromGroupID(groupID, context);
   }
 
@@ -47,7 +47,7 @@ public class GroupManager {
   }
 
   public static long getThreadIDFromGroupID(String groupID, @NonNull  Context context) {
-    final Recipient groupRecipient  = Recipient.from(context, Address.fromSerialized(groupID), false);
+    final Recipient groupRecipient = Recipient.from(context, Address.fromSerialized(groupID), false);
     return DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(groupRecipient);
   }
 
@@ -78,10 +78,10 @@ public class GroupManager {
     final Set<Address>  memberAddresses = getMemberAddresses(members);
     final Set<Address>  adminAddresses  = getMemberAddresses(admins);
 
-    String masterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
-    String publicKeyToUse = masterPublicKey != null ? masterPublicKey : TextSecurePreferences.getLocalNumber(context);
+    String masterPublicKeyOrNull = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+    String masterPublicKey = masterPublicKeyOrNull != null ? masterPublicKeyOrNull : TextSecurePreferences.getLocalNumber(context);
 
-    memberAddresses.add(Address.fromSerialized(publicKeyToUse));
+    memberAddresses.add(Address.fromSerialized(masterPublicKey));
     groupDatabase.create(groupId, name, new LinkedList<>(memberAddresses), null, null, new LinkedList<>(adminAddresses));
 
     if (!mms) {
@@ -94,28 +94,28 @@ public class GroupManager {
     }
   }
 
-  public static @NonNull GroupActionResult createOpenGroup(@NonNull  String         id,
-                                                           @NonNull  Context        context,
-                                                           @Nullable Bitmap         avatar,
-                                                           @Nullable String         name)
+  public static @NonNull GroupActionResult createOpenGroup(@NonNull  String  id,
+                                                           @NonNull  Context context,
+                                                           @Nullable Bitmap  avatar,
+                                                           @Nullable String  name)
   {
-    final String groupID = GroupUtil.getEncodedPublicChatId(id.getBytes());
+    final String groupID = GroupUtil.getEncodedOpenGroupId(id.getBytes());
     return createLokiGroup(groupID, context, avatar, name);
   }
 
-  public static @NonNull GroupActionResult createRSSFeed(@NonNull  String         id,
-                                                         @NonNull  Context        context,
-                                                         @Nullable Bitmap         avatar,
-                                                         @Nullable String         name)
+  public static @NonNull GroupActionResult createRSSFeed(@NonNull  String  id,
+                                                         @NonNull  Context context,
+                                                         @Nullable Bitmap  avatar,
+                                                         @Nullable String  name)
   {
     final String groupID = GroupUtil.getEncodedRSSFeedId(id.getBytes());
     return createLokiGroup(groupID, context, avatar, name);
   }
 
-  private static @NonNull GroupActionResult createLokiGroup(@NonNull  String         groupId,
-                                                            @NonNull  Context        context,
-                                                            @Nullable Bitmap         avatar,
-                                                            @Nullable String         name)
+  private static @NonNull GroupActionResult createLokiGroup(@NonNull  String  groupId,
+                                                            @NonNull  Context context,
+                                                            @Nullable Bitmap  avatar,
+                                                            @Nullable String  name)
   {
     final byte[]        avatarBytes     = BitmapUtil.toByteArray(avatar);
     final GroupDatabase groupDatabase   = DatabaseFactory.getGroupDatabase(context);

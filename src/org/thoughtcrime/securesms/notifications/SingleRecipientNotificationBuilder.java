@@ -247,10 +247,8 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
   }
 
   private Bitmap getCircularBitmap(Bitmap bitmap) {
-    final Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
-            bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+    final Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
     final Canvas canvas = new Canvas(output);
-
     final int color = Color.RED;
     final Paint paint = new Paint();
     final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
@@ -260,7 +258,6 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     canvas.drawARGB(0, 0, 0, 0);
     paint.setColor(color);
     canvas.drawOval(rectF, paint);
-
     paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
     canvas.drawBitmap(bitmap, rect, rect, paint);
 

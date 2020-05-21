@@ -28,16 +28,16 @@ import static org.whispersystems.signalservice.internal.push.SignalServiceProtos
 
 public class GroupUtil {
 
-  private static final String ENCODED_SIGNAL_GROUP_PREFIX = "__textsecure_group__!";
-  private static final String ENCODED_MMS_GROUP_PREFIX    = "__signal_mms_group__!";
-  private static final String ENCODED_PUBLIC_CHAT_GROUP_PREFIX = "__loki_public_chat_group__!";
-  private static final String ENCODED_RSS_FEED_GROUP_PREFIX    = "__loki_rss_feed_group__!";
-  private static final String TAG                         = GroupUtil.class.getSimpleName();
+  private static final String ENCODED_CLOSED_GROUP_PREFIX   = "__textsecure_group__!";
+  private static final String ENCODED_MMS_GROUP_PREFIX      = "__signal_mms_group__!";
+  private static final String ENCODED_OPEN_GROUP_PREFIX     = "__loki_public_chat_group__!";
+  private static final String ENCODED_RSS_FEED_GROUP_PREFIX = "__loki_rss_feed_group__!";
+  private static final String TAG                           = GroupUtil.class.getSimpleName();
 
   public static String getEncodedId(SignalServiceGroup group) {
     byte[] groupId = group.getGroupId();
     if (group.getGroupType() == SignalServiceGroup.GroupType.PUBLIC_CHAT) {
-      return getEncodedPublicChatId(groupId);
+      return getEncodedOpenGroupId(groupId);
     } else if (group.getGroupType() == SignalServiceGroup.GroupType.RSS_FEED) {
       return getEncodedRSSFeedId(groupId);
     }
@@ -45,11 +45,11 @@ public class GroupUtil {
   }
 
   public static String getEncodedId(byte[] groupId, boolean mms) {
-    return (mms ? ENCODED_MMS_GROUP_PREFIX  : ENCODED_SIGNAL_GROUP_PREFIX) + Hex.toStringCondensed(groupId);
+    return (mms ? ENCODED_MMS_GROUP_PREFIX  : ENCODED_CLOSED_GROUP_PREFIX) + Hex.toStringCondensed(groupId);
   }
 
-  public static String getEncodedPublicChatId(byte[] groupId) {
-    return ENCODED_PUBLIC_CHAT_GROUP_PREFIX + Hex.toStringCondensed(groupId);
+  public static String getEncodedOpenGroupId(byte[] groupId) {
+    return ENCODED_OPEN_GROUP_PREFIX + Hex.toStringCondensed(groupId);
   }
 
   public static String getEncodedRSSFeedId(byte[] groupId) {
@@ -70,7 +70,7 @@ public class GroupUtil {
   }
 
   public static boolean isEncodedGroup(@NonNull String groupId) {
-    return groupId.startsWith(ENCODED_SIGNAL_GROUP_PREFIX) || groupId.startsWith(ENCODED_MMS_GROUP_PREFIX) || groupId.startsWith(ENCODED_PUBLIC_CHAT_GROUP_PREFIX) || groupId.startsWith(ENCODED_RSS_FEED_GROUP_PREFIX);
+    return groupId.startsWith(ENCODED_CLOSED_GROUP_PREFIX) || groupId.startsWith(ENCODED_MMS_GROUP_PREFIX) || groupId.startsWith(ENCODED_OPEN_GROUP_PREFIX) || groupId.startsWith(ENCODED_RSS_FEED_GROUP_PREFIX);
   }
 
   public static boolean isMmsGroup(@NonNull String groupId) {
@@ -78,7 +78,7 @@ public class GroupUtil {
   }
 
   public static boolean isOpenGroup(@NonNull String groupId) {
-    return groupId.startsWith(ENCODED_PUBLIC_CHAT_GROUP_PREFIX);
+    return groupId.startsWith(ENCODED_OPEN_GROUP_PREFIX);
   }
 
   public static boolean isRSSFeed(@NonNull String groupId) {
@@ -86,7 +86,7 @@ public class GroupUtil {
   }
 
   public static boolean isClosedGroup(@NonNull String groupId) {
-    return groupId.startsWith(ENCODED_SIGNAL_GROUP_PREFIX);
+    return groupId.startsWith(ENCODED_CLOSED_GROUP_PREFIX);
   }
 
   @WorkerThread
@@ -159,9 +159,9 @@ public class GroupUtil {
         // If we were the one that quit then we need to leave the group (only relevant for slave
         // devices in a multi device context)
         if (!removedMembers.isEmpty()) {
-          String masterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
-          String userPublicKey = masterPublicKey != null ? masterPublicKey : TextSecurePreferences.getLocalNumber(context);
-          wasCurrentUserRemoved = removedMembers.contains(userPublicKey);
+          String masterPublicKeyOrNull = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+          String masterPublicKey = masterPublicKeyOrNull != null ? masterPublicKeyOrNull : TextSecurePreferences.getLocalNumber(context);
+          wasCurrentUserRemoved = removedMembers.contains(masterPublicKey);
         }
       }
     }

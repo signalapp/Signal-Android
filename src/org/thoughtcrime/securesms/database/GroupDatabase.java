@@ -168,7 +168,7 @@ public class GroupDatabase extends Database {
       GroupRecord record;
       while ((record = reader.getNext()) != null) {
         if (record.isClosedGroup() && record.members.contains(address)) {
-            return true;
+          return true;
         }
       }
 
@@ -293,8 +293,7 @@ public class GroupDatabase extends Database {
     contents.put(ADMINS, Address.toSerializedList(admins, ','));
     contents.put(ACTIVE, 1);
 
-    databaseHelper.getWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?",
-            new String[] {groupId});
+    databaseHelper.getWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?", new String[] {groupId});
   }
 
   public void remove(String groupId, Address source) {
