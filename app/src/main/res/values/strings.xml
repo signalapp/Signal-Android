@@ -2195,8 +2195,15 @@
     <string name="preferences_app_protection__signal_pin">Signal PIN</string>
     <string name="preferences_app_protection__create_a_pin">Create a PIN</string>
     <string name="preferences_app_protection__change_your_pin">Change your PIN</string>
+    <string name="preferences_app_protection__pin_reminders">PIN reminders</string>
     <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PINs keep information stored with Signal encrypted so only you can access it. Your profile, settings, and contacts will restore when you reinstall Signal.</string>
     <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Add extra security by requiring your Signal PIN to register your phone number with Signal again.</string>
+    <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Reminders help you remember your PIN since it can\'t be recovered. You\'ll be asked less frequently over time.</string>
+    <string name="preferences_app_protection__turn_off">Turn off</string>
+    <string name="preferences_app_protection__confirm_pin">Confirm PIN</string>
+    <string name="preferences_app_protection__confirm_your_signal_pin">Confirm your Signal PIN</string>
+    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Make sure you memorize or securely store your PIN as it can\'t be recovered. If you forget your PIN, you may lose data when re-registering your Signal account.</string>
+    <string name="preferences_app_protection__incorrect_pin_try_again">Incorrect PIN. Try again.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">Failed to enable registration lock.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">Failed to disable registration lock.</string>
     <string name="AppProtectionPreferenceFragment_none">None</string>
@@ -2226,7 +2233,7 @@
     <string name="RegistrationLockDialog_i_forgot_my_pin">I forgot my PIN.</string>
     <string name="RegistrationLockDialog_forgotten_pin">Forgotten PIN?</string>
     <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registration Lock helps protect your phone number from unauthorized registration attempts. This feature can be disabled at any time in your Signal privacy settings</string>
-    <string name="RegistrationLockDialog_registration_lock">Registration Lock</string>
+    <string name="RegistrationLockDialog_registration_lock">Registration lock</string>
     <string name="RegistrationLockDialog_enable">Enable</string>
     <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">The Registration Lock PIN must be at least %d digits.</string>
     <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">The two PINs you entered do not match.</string>

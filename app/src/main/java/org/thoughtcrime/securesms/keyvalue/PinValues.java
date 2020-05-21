@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.keyvalue;
 
-import androidx.annotation.CheckResult;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -21,6 +20,7 @@ public final class PinValues {
   private static final String NEXT_INTERVAL         = "pin.interval_index";
   private static final String KEYBOARD_TYPE         = "kbs.keyboard_type";
   private static final String PIN_STATE             = "pin.pin_state";
+  public  static final String PIN_REMINDERS_ENABLED = "pin.pin_reminders_enabled";
 
   private final KeyValueStore store;
 
@@ -79,6 +79,14 @@ public final class PinValues {
     store.beginWrite()
          .putString(KEYBOARD_TYPE, keyboardType.getCode())
          .commit();
+  }
+
+  public void setPinRemindersEnabled(boolean enabled) {
+    store.beginWrite().putBoolean(PIN_REMINDERS_ENABLED, enabled).apply();
+  }
+
+  public boolean arePinRemindersEnabled() {
+    return store.getBoolean(PIN_REMINDERS_ENABLED, true);
   }
 
   public @NonNull PinKeyboardType getKeyboardType() {

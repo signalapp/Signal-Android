@@ -3,11 +3,26 @@ package org.thoughtcrime.securesms.preferences;
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.InputType;
+import android.text.TextUtils;
+import android.util.DisplayMetrics;
+import android.view.Display;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.autofill.HintConstants;
+import androidx.core.app.DialogCompat;
+import androidx.core.view.ViewCompat;
 import androidx.preference.CheckBoxPreference;
 import androidx.preference.Preference;
 
@@ -19,15 +34,20 @@ import org.thoughtcrime.securesms.BlockedContactsActivity;
 import org.thoughtcrime.securesms.PassphraseChangeActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
+import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.keyvalue.KbsValues;
+import org.thoughtcrime.securesms.keyvalue.PinValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.lock.PinHashing;
 import org.thoughtcrime.securesms.lock.RegistrationLockV1Dialog;
+import org.thoughtcrime.securesms.lock.SignalPinReminderDialog;
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
+import org.thoughtcrime.securesms.lock.v2.KbsConstants;
 import org.thoughtcrime.securesms.lock.v2.RegistrationLockUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.pin.PinState;
@@ -37,13 +57,17 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import mobi.upod.timedurationpicker.TimeDurationPickerDialog;
@@ -62,9 +86,14 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     super.onCreate(paramBundle);
 
     disablePassphrase = (CheckBoxPreference) this.findPreference("pref_enable_passphrase_temporary");
+
     this.findPreference(KbsValues.V2_LOCK_ENABLED).setPreferenceDataStore(SignalStore.getPreferenceDataStore());
     ((SwitchPreferenceCompat) this.findPreference(KbsValues.V2_LOCK_ENABLED)).setChecked(SignalStore.kbsValues().isV2RegistrationLockEnabled());
     this.findPreference(KbsValues.V2_LOCK_ENABLED).setOnPreferenceChangeListener(new RegistrationLockV2ChangedListener());
+
+    this.findPreference(PinValues.PIN_REMINDERS_ENABLED).setPreferenceDataStore(SignalStore.getPreferenceDataStore());
+    ((SwitchPreferenceCompat) this.findPreference(PinValues.PIN_REMINDERS_ENABLED)).setChecked(SignalStore.pinValues().arePinRemindersEnabled());
+    this.findPreference(PinValues.PIN_REMINDERS_ENABLED).setOnPreferenceChangeListener(new PinRemindersChangedListener());
 
     this.findPreference(TextSecurePreferences.SCREEN_LOCK).setOnPreferenceChangeListener(new ScreenLockListener());
     this.findPreference(TextSecurePreferences.SCREEN_LOCK_TIMEOUT).setOnPreferenceClickListener(new ScreenLockTimeoutListener());
@@ -102,6 +131,7 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     SwitchPreferenceCompat registrationLockV1      = (SwitchPreferenceCompat) this.findPreference(TextSecurePreferences.REGISTRATION_LOCK_PREF_V1);
     Preference             signalPinGroup          = this.findPreference("prefs_signal_pin");
     Preference             signalPinCreateChange   = this.findPreference(TextSecurePreferences.SIGNAL_PIN_CHANGE);
+    SwitchPreferenceCompat signalPinReminders      = (SwitchPreferenceCompat) this.findPreference(PinValues.PIN_REMINDERS_ENABLED);
     SwitchPreferenceCompat registrationLockV2      = (SwitchPreferenceCompat) this.findPreference(KbsValues.V2_LOCK_ENABLED);
 
 
@@ -115,6 +145,7 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
       } else {
         signalPinCreateChange.setOnPreferenceClickListener(new KbsPinCreateListener());
         signalPinCreateChange.setTitle(R.string.preferences_app_protection__create_a_pin);
+        signalPinReminders.setEnabled(false);
         registrationLockV2.setEnabled(false);
       }
     } else {
@@ -428,6 +459,77 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
       }
 
       return false;
+    }
+  }
+
+  private class PinRemindersChangedListener implements Preference.OnPreferenceChangeListener {
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+      boolean value = (boolean) newValue;
+
+      if (!value) {
+        Context        context = preference.getContext();
+        DisplayMetrics metrics = preference.getContext().getResources().getDisplayMetrics();
+        AlertDialog    dialog  = new AlertDialog.Builder(context, ThemeUtil.isDarkTheme(context) ? R.style.Theme_Signal_AlertDialog_Dark_Cornered_ColoredAccent : R.style.Theme_Signal_AlertDialog_Light_Cornered_ColoredAccent)
+                                                .setView(R.layout.pin_disable_reminders_dialog)
+                                                .create();
+
+
+        dialog.show();
+        dialog.getWindow().setLayout((int)(metrics.widthPixels * .80), ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        EditText pinEditText   = (EditText) DialogCompat.requireViewById(dialog, R.id.reminder_disable_pin);
+        TextView statusText    = (TextView) DialogCompat.requireViewById(dialog, R.id.reminder_disable_status);
+        View     cancelButton  = DialogCompat.requireViewById(dialog, R.id.reminder_disable_cancel);
+        View     turnOffButton = DialogCompat.requireViewById(dialog, R.id.reminder_disable_turn_off);
+
+        pinEditText.post(() -> {
+          if (pinEditText.requestFocus()) {
+            ServiceUtil.getInputMethodManager(pinEditText.getContext()).showSoftInput(pinEditText, 0);
+          }
+        });
+
+        ViewCompat.setAutofillHints(pinEditText, HintConstants.AUTOFILL_HINT_PASSWORD);
+
+        switch (SignalStore.pinValues().getKeyboardType()) {
+          case NUMERIC:
+            pinEditText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+            break;
+          case ALPHA_NUMERIC:
+            pinEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            break;
+          default:
+            throw new AssertionError("Unexpected type!");
+        }
+
+        pinEditText.addTextChangedListener(new SimpleTextWatcher() {
+          @Override
+          public void onTextChanged(String text) {
+            turnOffButton.setEnabled(text.length() >= KbsConstants.MINIMUM_PIN_LENGTH);
+          }
+        });
+
+        pinEditText.setTypeface(Typeface.DEFAULT);
+
+        turnOffButton.setOnClickListener(v -> {
+          String  pin     = pinEditText.getText().toString();
+          boolean correct = PinHashing.verifyLocalPinHash(Objects.requireNonNull(SignalStore.kbsValues().getLocalPinHash()), pin);
+
+          if (correct) {
+            SignalStore.pinValues().setPinRemindersEnabled(false);
+            ((SwitchPreferenceCompat) findPreference(PinValues.PIN_REMINDERS_ENABLED)).setChecked(false);
+            dialog.dismiss();
+          } else {
+            statusText.setText(R.string.preferences_app_protection__incorrect_pin_try_again);
+          }
+        });
+
+        cancelButton.setOnClickListener(v -> dialog.dismiss());
+
+        return false;
+      } else {
+        return true;
+      }
     }
   }
 }

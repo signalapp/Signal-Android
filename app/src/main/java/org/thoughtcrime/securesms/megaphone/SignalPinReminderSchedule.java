@@ -15,6 +15,10 @@ final class SignalPinReminderSchedule implements MegaphoneSchedule {
       return false;
     }
 
+    if (!SignalStore.pinValues().arePinRemindersEnabled()) {
+      return false;
+    }
+
     long lastSuccessTime = SignalStore.pinValues().getLastSuccessfulEntryTime();
     long interval        = SignalStore.pinValues().getCurrentInterval();
 
