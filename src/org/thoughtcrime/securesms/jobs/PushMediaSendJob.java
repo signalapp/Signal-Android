@@ -45,6 +45,7 @@ import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.loki.api.LokiAPI;
+import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -293,7 +294,8 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
                                                                       .asFriendRequest(isLokiPreKeyBundleMessage)
                                                                       .build();
 
-      if (address.getNumber().equals(TextSecurePreferences.getLocalNumber(context))) {
+      if (SessionMetaProtocol.shared.isNoteToSelf(address.getNumber())) {
+        // Loki - Device link messages don't go through here
         Optional<UnidentifiedAccessPair> syncAccess  = UnidentifiedAccessUtil.getAccessForSync(context);
         SignalServiceSyncMessage         syncMessage = buildSelfSendSyncMessage(context, mediaMessage, syncAccess);
 

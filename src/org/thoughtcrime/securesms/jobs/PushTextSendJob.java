@@ -33,6 +33,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSy
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.loki.api.LokiAPI;
+import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol;
 
 import java.io.IOException;
 
@@ -232,9 +233,10 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
                                                                            .withPreKeyBundle(preKeyBundle)
                                                                            .build();
 
-      if (address.getNumber().equals(TextSecurePreferences.getLocalNumber(context))) {
+      if (SessionMetaProtocol.shared.isNoteToSelf(address.getNumber())) {
+        // Loki - Device link messages don't go through here
         Optional<UnidentifiedAccessPair> syncAccess  = UnidentifiedAccessUtil.getAccessForSync(context);
-        SignalServiceSyncMessage         syncMessage = buildSelfSendSyncMessage(context, textSecureMessage, syncAccess);
+        SignalServiceSyncMessage syncMessage = buildSelfSendSyncMessage(context, textSecureMessage, syncAccess);
 
         messageSender.sendMessage(syncMessage, syncAccess);
         return syncAccess.isPresent();

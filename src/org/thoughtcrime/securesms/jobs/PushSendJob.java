@@ -282,13 +282,13 @@ public abstract class PushSendJob extends SendJob {
   }
 
   protected SignalServiceSyncMessage buildSelfSendSyncMessage(@NonNull Context context, @NonNull SignalServiceDataMessage message, Optional<UnidentifiedAccessPair> syncAccess) {
-    String                primary     = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
-    String                localNumber = primary != null ? primary : TextSecurePreferences.getLocalNumber(context);
-    SentTranscriptMessage transcript  = new SentTranscriptMessage(localNumber,
-                                                                  message.getTimestamp(),
-                                                                  message,
-                                                                  message.getExpiresInSeconds(),
-                                                                  Collections.singletonMap(localNumber, syncAccess.isPresent()));
+    String                masterPublicKeyOrNull = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+    String                masterPublicKey       = masterPublicKeyOrNull != null ? masterPublicKeyOrNull : TextSecurePreferences.getLocalNumber(context);
+    SentTranscriptMessage transcript            = new SentTranscriptMessage(masterPublicKey,
+                                                                            message.getTimestamp(),
+                                                                            message,
+                                                                            message.getExpiresInSeconds(),
+                                                                            Collections.singletonMap(masterPublicKey, syncAccess.isPresent()));
     return SignalServiceSyncMessage.forSentTranscript(transcript);
   }
 

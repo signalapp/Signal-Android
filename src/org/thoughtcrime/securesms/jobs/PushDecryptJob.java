@@ -135,6 +135,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import javax.inject.Inject;
 
@@ -1393,16 +1394,22 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     if (recipient.isGroupRecipient()) {
       return recipient;
     } else {
-      try {
-        // TODO: Burn this with fire when we can
-        PromiseUtilities.timeout(LokiFileServerAPI.shared.getDeviceLinks(publicKey, false), 4000).get();
-        String masterPublicKey = org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol.shared.getMasterDevice(publicKey);
-        if (masterPublicKey == null) {
-          masterPublicKey = publicKey;
+      String userPublicKey = TextSecurePreferences.getLocalNumber(context);
+      Set<String> allUserDevices = org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey);
+      if (allUserDevices.contains(publicKey)) {
+        return Recipient.from(context, Address.fromSerialized(userPublicKey), false);
+      } else {
+        try {
+          // TODO: Burn this with fire when we can
+          PromiseUtilities.timeout(LokiFileServerAPI.shared.getDeviceLinks(publicKey, false), 4000).get();
+          String masterPublicKey = org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol.shared.getMasterDevice(publicKey);
+          if (masterPublicKey == null) {
+            masterPublicKey = publicKey;
+          }
+          return Recipient.from(context, Address.fromSerialized(masterPublicKey), false);
+        } catch (Exception e) {
+          return recipient;
         }
-        return Recipient.from(context, Address.fromSerialized(masterPublicKey), false);
-      } catch (Exception e) {
-        return recipient;
       }
     }
   }

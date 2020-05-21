@@ -34,7 +34,7 @@ object SyncMessagesProtocol {
     @JvmStatic
     fun shouldIgnoreSyncMessage(context: Context, sender: Recipient): Boolean {
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)
-        return MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey).contains(sender.address.serialize())
+        return !MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey).contains(sender.address.serialize())
     }
 
     @JvmStatic

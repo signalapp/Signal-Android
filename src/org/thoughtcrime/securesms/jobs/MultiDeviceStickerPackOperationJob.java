@@ -2,20 +2,14 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.support.annotation.NonNull;
 
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.Hex;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
-import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
-import org.whispersystems.signalservice.api.messages.multidevice.StickerPackOperationMessage;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
-import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
@@ -76,6 +70,7 @@ public class MultiDeviceStickerPackOperationJob extends BaseJob implements Injec
 
   @Override
   protected void onRun() throws Exception {
+    /*
     if (!TextSecurePreferences.isMultiDevice(context)) {
       Log.i(TAG, "Not multi device, aborting...");
       return;
@@ -96,6 +91,7 @@ public class MultiDeviceStickerPackOperationJob extends BaseJob implements Injec
 
     messageSender.sendMessage(SignalServiceSyncMessage.forStickerPackOperations(Collections.singletonList(stickerPackOperation)),
                               UnidentifiedAccessUtil.getAccessForSync(context));
+     */
   }
 
   @Override
