@@ -966,7 +966,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">Svar</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">Telefon</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefon</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Høyttaler</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->

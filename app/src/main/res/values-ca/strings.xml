@@ -1099,7 +1099,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="WebRtcCallScreen__answer">Respon</string>
   <string name="WebRtcCallScreen__answer_without_video">Respon sense vídeo</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">Telèfon</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telèfon</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Altaveu</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->

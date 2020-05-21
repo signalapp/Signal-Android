@@ -84,6 +84,7 @@
   <string name="BlockUnblockDialog_unblock_s">I-unblock ang %1$s?</string>
   <string name="BlockUnblockDialog_unblock">I-unblock</string>
   <string name="BlockUnblockDialog_block">I-block</string>
+  <string name="BlockUnblockDialog_block_and_delete">I-block at Burahin</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Ngayong araw</string>
   <string name="BucketedThreadMedia_Yesterday">Kahapon</string>
@@ -380,9 +381,12 @@
   <string name="GroupMembersDialog_you">Ikaw</string>
   <!--GV2 access levels-->
   <!--PendingMembersActivity-->
+  <string name="PendingMembersActivity_people_you_invited">Mga taong iyong inimbitahan</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">Mga imbitasyon ng iba pang mga kasapi ng grupo</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__create">Lumikha</string>
   <string name="AddGroupDetailsFragment__members">Mga Kasapi</string>
+  <string name="AddGroupDetailsFragment__group_name_required">Pangalan ng Grupo (kailangan)</string>
   <string name="AddGroupDetailsFragment__remove">Tanggalin</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Mga naglalahong mensahe</string>
@@ -541,7 +545,10 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Itinakda mo ang timer ng naglalahong mensahe sa %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">Itinakda ni %1$s ang timer ng naglalahong mensahe sa %2$s.</string>
   <!--GV2 specific-->
+  <string name="MessageRecord_you_created_the_group">Ginawa mo ang grupo.</string>
+  <string name="MessageRecord_group_updated">In-update ang grupo.</string>
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_joined_the_group">Sumali ka sa grupo.</string>
   <string name="MessageRecord_s_joined_the_group">Sumali si %1$s sa grupo.</string>
   <!--GV2 member removals-->
   <!--GV2 role change-->
@@ -626,6 +633,8 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Ang bersyon ng Google Play Services na iyong na-install ay hindi gumagana ng tama. Paki-reinstall ang Google Play Services at subukang muli.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">Hindi tama ang PIN</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Kung hindi mo matandaan ang iyong PIN, maaari kang lumikha ng bago. Makakapag-rehistro ka at magagamit mo ang iyong account ngunit mawawala ang mga naka-save na setting tulad ng iyong profile na impormasyon.</string>
+  <string name="PinRestoreEntryFragment_create_new_pin">Lumikha ng Bagong PIN</string>
   <string name="PinRestoreEntryFragment_contact_support">Makipag-ugnayan sa Suporta</string>
   <string name="PinRestoreEntryFragment_cancel">Kanselahin</string>
   <string name="PinRestoreEntryFragment_skip">Laktawan</string>
@@ -964,7 +973,7 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">Sagutin</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">Telepono</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telepono</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Speaker</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1566,7 +1575,9 @@
     <item quantity="other">Ang PIN ay kailangang hindi bababa sa %1$d numero</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Lumikha ng bagong PIN</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Mapapalitan mo ang iyong PIN hangga\'t rehistrado ang device na ito.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Likhain ang iyong PIN</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">Pumili ng mas malakas na PIN</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">Hindi tugma ang mga PIN. Subukang muli.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Kumpirmahin ang iyong PIN.</string>
@@ -1703,6 +1714,7 @@
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Timeout ng kawalang-aktibidad para sa lock ng screen</string>
   <string name="preferences_app_protection__signal_pin">PIN ng Signal</string>
   <string name="preferences_app_protection__create_a_pin">Lumikha ng PIN</string>
+  <string name="preferences_app_protection__change_your_pin">Baguhin ang iyong PIN</string>
   <string name="AppProtectionPreferenceFragment_none">Wala</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Ang Lock PIN sa Pagpaparehistro ay hindi kapareho ng verification code sa SMS na iyong natanggap. Pakilagay ang PIN na nakaraan mong na-configure sa application.</string>
   <string name="registration_activity__registration_lock_pin">Lock PIN sa Pagpaparehistro</string>
@@ -1751,5 +1763,6 @@
   <string name="RecipientBottomSheet_unblock">I-unblock</string>
   <string name="RecipientBottomSheet_view_safety_number">Tingnan ang numerong pangkaligtasan</string>
   <string name="RecipientBottomSheet_remove">Tanggalin</string>
+  <string name="GroupRecipientListItem_admin">Admin</string>
   <!--EOF-->
 </resources>

@@ -1105,7 +1105,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="WebRtcCallScreen__answer">Atender</string>
   <string name="WebRtcCallScreen__answer_without_video">Atender sin vídeo</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">Teléfono</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Teléfono</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Altavoz del dispositivo</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->

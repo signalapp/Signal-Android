@@ -923,7 +923,7 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">جواب دیں</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">فون</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">فون</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">سپیکر</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">بلوٹوتھ</string>
   <!--WebRtcCallControls-->

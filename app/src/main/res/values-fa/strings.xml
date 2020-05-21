@@ -77,18 +77,18 @@
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">مخاطبان مسدود شده</string>
   <!--BlockUnblockDialog-->
-  <string name="BlockUnblockDialog_block_and_leave_s">می‌خواهید گروه %1$s را مسدود و ترک کنید؟</string>
-  <string name="BlockUnblockDialog_block_s"> گروه %1$s مسدود شود؟</string>
+  <string name="BlockUnblockDialog_block_and_leave_s">مسدودسازی و ترک گروه %1$s؟</string>
+  <string name="BlockUnblockDialog_block_s"> مسدودسازی گروه %1$s؟</string>
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">شما دیگر از این گروه پیام و به‌روزرسانی دریافت نخواهید کرد. و اعضا قادر نخواهند بود دوباره شما را به این گروه اضافه کنند.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">اعضای گروه دیگر قادر نخواهند بود شما را به این گروه اضافه کنند.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">اعضای گروه می‌توانند دوباره شما را به این گروه اضافه کنند.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">شما قادر خواهید بود به یکدیگر پیام دهید و با آنها تماس بگیرید.</string>
-  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">افراد مسدود شده قادر به برقراری تماس با یا ارسال پیام به شما نخواهند بود.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">شما می‌توانید به دیگران پیام دهید و با آنها تماس بگیرید.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">افراد مسدود شده قادر به برقراری تماس با شما یا ارسال پیام به شما نخواهند بود.</string>
   <string name="BlockUnblockDialog_unblock_s">گروه %1$s از حالت مسدود خارج شود؟</string>
   <string name="BlockUnblockDialog_unblock">رفع مسدودیت</string>
   <string name="BlockUnblockDialog_block">مسدودسازی</string>
-  <string name="BlockUnblockDialog_block_and_leave">می‌خواهید گروه را ترک و مسدود کنید؟</string>
-  <string name="BlockUnblockDialog_block_and_delete">بلاک و حذف</string>
+  <string name="BlockUnblockDialog_block_and_leave">مسدودسازی و ترک گروه</string>
+  <string name="BlockUnblockDialog_block_and_delete">مسدودسازی و حذف</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">امروز</string>
   <string name="BucketedThreadMedia_Yesterday">دیروز</string>
@@ -120,6 +120,7 @@
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">حذف</string>
   <string name="ClearProfileActivity_remove_profile_photo">حذف عکس پروفایل؟</string>
+  <string name="ClearProfileActivity_remove_group_photo">عکس گروه حذف گردد؟</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found"> مرورگر اینترنت یافت نشد.</string>
   <string name="CommunicationActions_no_email_app_found">برنامهٔ ایمیل یافت نشد.</string>
@@ -367,6 +368,7 @@
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">گروه جدید</string>
   <string name="GroupCreateActivity_actionbar_edit_title">ویرایش گروه</string>
+  <string name="GroupCreateActivity_actionbar_manage_title">مدیریت گروه</string>
   <string name="GroupCreateActivity_group_name_hint">نام گروه</string>
   <string name="GroupCreateActivity_actionbar_mms_title">گروه فراپیام جدید</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">شما مخاطبی را انتخاب کرده‌اید که از گروه‌ های Signal پشتیبانی نمی‌کند، بنابراین این گروه فراپیام خواهد بود.</string>
@@ -409,8 +411,10 @@
     <item quantity="other">اشکال در لغو دعوت‌ها</item>
   </plurals>
   <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__name_this_group">برای گروه نامی انتخاب کنید</string>
   <string name="AddGroupDetailsFragment__create">ایجاد</string>
   <string name="AddGroupDetailsFragment__members">اعضا</string>
+  <string name="AddGroupDetailsFragment__group_name_required">نام گروه (ضروری)</string>
   <string name="AddGroupDetailsFragment__remove">حذف</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">پیام‌های ناپدید شونده</string>
@@ -1064,7 +1068,7 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">پاسخ دهید</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">تلفن</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">تلفن</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">بلندگو</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">بلوتوث</string>
   <!--WebRtcCallControls-->
@@ -1570,6 +1574,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">افزودن پیوست</string>
   <string name="conversation__menu_edit_group">ویرایش گروه</string>
+  <string name="conversation__menu_manage_group">مدیریت گروه</string>
   <string name="conversation__menu_leave_group">ترک گروه</string>
   <string name="conversation__menu_view_all_media">تمام رسانه‌ها</string>
   <string name="conversation__menu_conversation_settings">تنظیمات مکالمه</string>

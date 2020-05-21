@@ -1175,7 +1175,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="WebRtcCallScreen__answer">Ateb</string>
   <string name="WebRtcCallScreen__answer_without_video">Ateb heb fideo</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">Ffôn</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Ffôn</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Uchelseinydd</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->

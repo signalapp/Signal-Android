@@ -74,8 +74,13 @@
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">បិទលេខទំនាក់ទំនង</string>
   <!--BlockUnblockDialog-->
+  <string name="BlockUnblockDialog_block_and_leave_s">ហាមឃាត់ និងចាកចេញ %1$s?</string>
+  <string name="BlockUnblockDialog_block_s">ហាមឃាត់%1$s?</string>
+  <string name="BlockUnblockDialog_unblock_s">លែងហាមឃាត់ %1$s?</string>
   <string name="BlockUnblockDialog_unblock">បើកវិញ</string>
   <string name="BlockUnblockDialog_block">រារាំង</string>
+  <string name="BlockUnblockDialog_block_and_leave">ហាមឃាត់ និងចាកចេញ</string>
+  <string name="BlockUnblockDialog_block_and_delete">ហាមឃាត់ និងលុបចោល</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">ថ្ងៃនេះ</string>
   <string name="BucketedThreadMedia_Yesterday">ម្សិលមិញ</string>
@@ -107,13 +112,16 @@
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">លុបចេញ</string>
   <string name="ClearProfileActivity_remove_profile_photo">លុបរូបថតប្រវត្តិរូប?</string>
+  <string name="ClearProfileActivity_remove_group_photo">លុបរូបក្រុម?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">ទំព័រវែបសាយរកមិនឃើញ.</string>
+  <string name="CommunicationActions_no_email_app_found">អ៊ីម៉ែលរកមិនឃើញ។</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">ការហៅតាមទិន្នន័យទូរស័ព្ទ កំពុងដំណើរការ។</string>
   <string name="CommunicationActions_start_video_call">ចាប់ផ្តើមការជាហៅវីដេអូ?</string>
   <string name="CommunicationActions_start_voice_call">ចាប់ផ្តើមការហៅជាសំឡេង?</string>
   <string name="CommunicationActions_cancel">បោះបង់</string>
   <string name="CommunicationActions_call">ហៅចេញ</string>
+  <string name="CommunicationActions_insecure_call">ការហៅមិនមានសុវត្ថិភាព</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">លេខសុវត្ថិភាពរបស់អ្នក%1$s បានផ្លាស់ប្តូរ។ នេះមានន័យថា មាននរណាម្នាក់ព្យាយាមជ្រាតចូលការទំនាក់ទំនងរបស់អ្នក ឬក៏ %2$s ប្រើដំឡើង Signalឡើងវិញ។</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">អ្នកគួតែផ្ទៀងផ្ទាត់លេខសុវត្ថិភាពរបស់អ្នកជាមួយលេខទំនាក់ទំនងនេះ។</string>
@@ -154,6 +162,7 @@
   <string name="ConversationItem_read_more">  អានបន្ថែម</string>
   <string name="ConversationItem_download_more">  ទាញយកបន្ថែម</string>
   <string name="ConversationItem_pending">  កំពុងរង់ចាំ</string>
+  <string name="ConversationItem_this_message_was_deleted">សារនេះត្រូវបានលុប។</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">កំណត់ការប្រើប្រាស់សុវត្ថិភាពឡើងវិញ?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">នេះប្រហែលអាចជួយបាន បើអ្នកមានបញ្ហាកាណាល់កូដក្នុងការសន្ទនានេះ។ សាររបស់អ្នកនឹងត្រូវរក្សាទុក។</string>
@@ -204,7 +213,14 @@
   <string name="ConversationActivity_sticker_pack_installed">កញ្ចប់ស្ទីកគ័របានដំឡើង</string>
   <string name="ConversationActivity_new_say_it_with_stickers">ថ្មី! និយាយជាមួយស្ទីកគ័រ</string>
   <string name="ConversationActivity_cancel">បោះបង់</string>
+  <string name="ConversationActivity_delete_conversation">លុបការសន្ទនា?</string>
+  <string name="ConversationActivity_delete_and_leave_group">លុប និងចាកចេញពីក្រុម?</string>
+  <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">ការសន្ទនានេះនឹងត្រូវលុបពីឧបករណ៍របស់អ្នកទាំងអស់។</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">អ្នកនឹងចាកចេញពីក្រុមនេះ និងលុបចេញពីឧបករណ៍របស់អ្នកទាំងអស់។</string>
   <string name="ConversationActivity_delete">លុប</string>
+  <string name="ConversationActivity_delete_and_leave">លុប និងចាកចេញ</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">ដើម្បីហៅទៅ %1$s, Signal ត្រូវការចូលប្រើប្រាស់ម៉ៃក្រូហ្វូនរបស់អ្នក។</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">ដើម្បីហៅចេញ %1$s, Signal ត្រូវការចូលប្រើប្រាស់ម៉ៃក្រូហ្វូន និងកាមេរ៉ារបស់អ្នក។</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d សារមិនទាន់អាន</item>
@@ -236,6 +252,8 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">កំពុងលុប</string>
   <string name="ConversationFragment_deleting_messages">កំពុងលុបសារ…</string>
+  <string name="ConversationFragment_delete_for_me">លុបសម្រាប់ខ្ញុំ</string>
+  <string name="ConversationFragment_delete_for_everyone">លុបសម្រាប់ទាំងអស់គ្នា</string>
   <string name="ConversationFragment_quoted_message_not_found">រកមិនឃើញសារដើម</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">សារដើមលែងមានទៀតហើយ</string>
   <string name="ConversationFragment_failed_to_open_message">បរាជ័យក្នុងការបើកសារ</string>
@@ -263,6 +281,7 @@
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="other">ផ្លាស់ប្តូរការសន្ទនា %d ទៅកាន់ប្រអប់ទទួល</item>
   </plurals>
+  <string name="ConversationListFragment__your_profile_name_has_been_created">ពត៌មានផ្ទាល់ខ្លួនរបស់អ្នក ត្រូវបានបង្កើត។</string>
   <string name="ConversationListFragment__your_profile_name_has_been_saved">ពត៌មានផ្ទាល់ខ្លួនរបស់អ្នក ត្រូវបានរក្សាទុក។</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">សារផ្លាស់ប្តូរសោរ</string>
@@ -283,6 +302,9 @@
   <string name="CustomDefaultPreference_using_default">ប្រើលំនាំដើម៖ %s</string>
   <string name="CustomDefaultPreference_none">គ្មាន</string>
   <!--AvatarSelectionBottomSheetDialogFragment-->
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">ជ្រើសរើសរូបភាព</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">ថតរូបភាព</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">ជ្រើសរើសពីវិចិត្រសាល</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">លុបរូបថតចេញ</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">ឥឡូវនេះ</string>
@@ -314,6 +336,7 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ឧបករណ៍នេះ មិនគាំទ្រ Play Services។ ចុច ដើម្បីបិទការបង្កើនប្រសិទ្ធិភាពប្រព័ន្ធថ្ម ដែលរារាំង Signal ពីទាញយកសារនានា នៅពេលឧបករណ៍ទុកចោល។</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">ចែកទៅកាន់</string>
+  <string name="ShareActivity_multiple_attachments_are_only_supported">ពហុឯកសារភ្ជាប់ គាំទ្រសម្រាប់តែរូបភាព និងវីដេអូ</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">សារកំពុងទៅដល់…</string>
   <!--GcmRefreshJob-->
@@ -327,6 +350,7 @@
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">ក្រុមថ្មី</string>
   <string name="GroupCreateActivity_actionbar_edit_title">កែប្រែក្រុម</string>
+  <string name="GroupCreateActivity_actionbar_manage_title">គ្រប់គ្រងក្រុម</string>
   <string name="GroupCreateActivity_group_name_hint">ឈ្មោះក្រុម</string>
   <string name="GroupCreateActivity_actionbar_mms_title">ក្រុមMMSថ្មី</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">អ្នកបានជ្រើសរើសលេខទំនាក់ទំនងមួយ ដែលមិនស្គាល់ ក្រុមSignal។ ដូច្នេះ ក្រុមនេះនឹងទៅជា MMS។</string>
@@ -340,6 +364,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">មិនអាចបន្ថែម %1$s ព្រោះពួកគេមិនមែនជា អ្នកប្រើប្រាស់Signal ។</string>
   <string name="GroupCreateActivity_loading_group_details">កំពុងបើកព័ត៌មានក្រុម…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">អ្នកនៅក្នុងក្រុមហើយ។</string>
+  <string name="GroupCreateActivity_remove_member_description">លុបសមាជិក</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">ចែករំលែកឈ្មោះប្រវត្តិរូប និងរូបថតរបស់អ្នកជាមួយនឹងក្រុមនេះ?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">តើអ្នកចង់ដាក់បង្ហាញប្រវត្តរូប និងរូបភាពអ្នកទៅកាន់សមាជិកបច្ចុប្បន្ន និងអនាគតក្នុងក្រុមនេះទេ?</string>
@@ -347,7 +372,13 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">អ្នក</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">អ្នកណាមួយ</string>
+  <string name="GroupManagement_access_level_all_members">សមាជិកទាំងអស់</string>
+  <string name="GroupManagement_access_level_only_admins">តែអ្នកគ្រប់គ្រង</string>
   <!--PendingMembersActivity-->
+  <string name="PendingMembersActivity_invites_by_other_group_members">អញ្ជើញតាមសមាជិកក្រុមផ្សេង</string>
+  <string name="PendingMembersActivity_cancel_invite">បោះបង់ការអញ្ជើញ</string>
+  <string name="PendingMembersActivity_cancel_invites">បោះបង់ការអញ្ជើញ</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__create">បង្កើត</string>
   <string name="AddGroupDetailsFragment__members">សមាជិក</string>
@@ -735,6 +766,7 @@
   <string name="ThreadRecord_view_once_photo">បង្ហាញ-ម្តង រូបភាព</string>
   <string name="ThreadRecord_view_once_video">បង្ហាញ-ម្តង វីដេអូ</string>
   <string name="ThreadRecord_view_once_media">បង្ហាញ-ម្តង មេឌា</string>
+  <string name="ThreadRecord_this_message_was_deleted">សារនេះត្រូវបានលុប។</string>
   <string name="ThreadRecord_s_is_on_signal">%s ប្រើ Signal!​</string>
   <string name="ThreadRecord_disappearing_messages_disabled">សារបាត់ទៅវិញបានបិទ</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">កំណត់រយៈពេលលុបសារ %s</string>
@@ -843,6 +875,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">ប្រតិកម្ម %1$s ទៅរូបភាពមើលម្តងរបស់អ្នក។</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">ប្រតិកម្ម %1$s ទៅវីដេអូមើលម្តងរបស់អ្នក។</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">ប្រតិកម្ម %1$s ទៅស្ទីកគ័រអ្នក។</string>
+  <string name="MessageNotifier_this_message_was_deleted">សារនេះត្រូវបានលុប។</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">លំនាំដើម</string>
   <string name="NotificationChannel_calls">ការហៅ</string>
@@ -894,7 +927,7 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">ឆ្លើយតប</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">ទូរសព្ទ</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">ទូរសព្ទ</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">បំពងសំឡេង</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1167,6 +1200,7 @@
   <!--HelpFragment-->
   <string name="HelpFragment__help">ជំនួយ</string>
   <string name="HelpFragment__next">បន្ទាប់</string>
+  <string name="HelpFragment__no_email_app_found">អ៊ីម៉ែលរកមិនឃើញ។</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <!--arrays.xml-->
   <string name="arrays__import_export">នាំចូល</string>
@@ -1371,6 +1405,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">ភ្ជាប់ឯកសារបន្ថែម</string>
   <string name="conversation__menu_edit_group">កែប្រែក្រុម</string>
+  <string name="conversation__menu_manage_group">គ្រប់គ្រងក្រុម</string>
   <string name="conversation__menu_leave_group">ចាកចេញពីក្រុម</string>
   <string name="conversation__menu_view_all_media">ព័ត៌មានទាំងអស់</string>
   <string name="conversation__menu_conversation_settings">កំណត់ការសន្ទនា</string>

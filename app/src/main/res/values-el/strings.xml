@@ -1096,7 +1096,7 @@
   <string name="WebRtcCallScreen__answer">Απάντηση</string>
   <string name="WebRtcCallScreen__answer_without_video">Απάντηση χωρίς βίντεο</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">Τηλέφωνο</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Τηλέφωνο</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Μεγάφωνο</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->

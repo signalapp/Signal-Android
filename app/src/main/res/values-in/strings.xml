@@ -953,7 +953,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">Jawab</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">Telpon</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telpon</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Pengeras Suara</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->

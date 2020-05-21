@@ -369,6 +369,7 @@
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__create">생성</string>
   <string name="AddGroupDetailsFragment__members">멤버</string>
+  <string name="AddGroupDetailsFragment__group_name_required">그룹 이름(필수)</string>
   <string name="AddGroupDetailsFragment__remove">삭제</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">사라지는 메시지</string>
@@ -378,6 +379,7 @@
   <string name="ManageGroupActivity_off">꺼짐</string>
   <string name="ManageGroupActivity_on">켜짐</string>
   <string name="ManageGroupActivity_add_members">멤버 추가</string>
+  <string name="ManageGroupActivity_view_all_members">모든 멤버 보기</string>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">맞춤형 알림</string>
   <string name="CustomNotificationsDialogFragment__messages">메시지</string>
@@ -783,6 +785,7 @@
   <string name="ThreadRecord_you_marked_verified">인증됨으로 표시했습니다.</string>
   <string name="ThreadRecord_you_marked_unverified">인증되지 않음으로 표시했습니다.</string>
   <string name="ThreadRecord_message_could_not_be_processed">메시지를 처리할 수 없음</string>
+  <string name="ThreadRecord_message_request">메시지 요청</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal 업데이트</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">새 Signal 버전 출시, 탭하여 업데이트</string>
@@ -933,7 +936,7 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">응답</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">휴대전화</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">휴대전화</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">스피커</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">블루투스</string>
   <!--WebRtcCallControls-->
@@ -1690,5 +1693,6 @@
   <string name="RecipientBottomSheet_unblock">차단 해제</string>
   <string name="RecipientBottomSheet_view_safety_number">안전 번호 보기</string>
   <string name="RecipientBottomSheet_remove">삭제</string>
+  <string name="GroupRecipientListItem_admin">관리자</string>
   <!--EOF-->
 </resources>

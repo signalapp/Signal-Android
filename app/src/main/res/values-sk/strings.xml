@@ -1135,7 +1135,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">Odpovedať</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">Telefón</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefón</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Reproduktor</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->

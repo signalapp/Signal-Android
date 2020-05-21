@@ -1099,7 +1099,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="WebRtcCallScreen__answer">Vastaa</string>
   <string name="WebRtcCallScreen__answer_without_video">Vastaa ilman videota</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">Puhelin</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Puhelin</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Kaiutin</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->

@@ -42,6 +42,7 @@
   <string name="ApplicationPreferencesActivity_Off">বন্ধ</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$sটি, MMS%2$sটি</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">স্ক্রিন লক%1$s, নিবন্ধন লক%2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">স্ক্রিন লক %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">%1$sথীম, %2$s ভাষা</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -60,6 +61,8 @@
   <string name="AttachmentKeyboard_file">ফাইল</string>
   <string name="AttachmentKeyboard_contact">পরিচিতি</string>
   <string name="AttachmentKeyboard_location">স্থান</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">ছবি বা ভিডিও দেখাতে Signal কে অনুমতি দিন।</string>
+  <string name="AttachmentKeyboard_give_access">অ্যাক্সেসের অনুমতি দিন</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">মিডিয়া নির্বাচন করার জন্য কোন অ্যাপ খুঁজে পাওয়া যায়নি।</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">ছবি, ভিডিও অথবা অডিও সংযুক্ত করার জন্য Signal এর স্টোরেজ ব্যাবহারের অনুমতির প্রয়োজন কিন্তু এর উপর স্থায়ী নিষেধাজ্ঞা জারি করা হয়েছে। দয়া করে আ্যপ সেটিংস-এ যান, \"অনুমতি\" নির্বাচন করুন এবং \"স্টোরেজ\"  সক্ষম করুন।</string>
@@ -74,6 +77,9 @@
   <!--BlockedContactsActivity-->
   <string name="BlockedContactsActivity_blocked_contacts">অবরূদ্ধ পরিচিতিসমূহ</string>
   <!--BlockUnblockDialog-->
+  <string name="BlockUnblockDialog_block_and_leave_s">ব্লক করুন ও ছেড়ে যান %1$s?</string>
+  <string name="BlockUnblockDialog_block_s">ব্লক %1$s?</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">আপনি আর এই গ্রুপ থেকে বার্তা বা আপডেট পাবেন না, এবং গ্রুপের সদস্যরা আপনাকে আবার এই গ্রুপে যুক্ত করতে পারবে না।</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">গ্রুপের সদস্যরা আপনাকে আবার এই গ্রুপে যুক্ত করতে পারবে।</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">আপনি একে অপরকে বার্তা প্রেরণ এবং কল করতে সক্ষম হবেন।</string>
   <string name="BlockUnblockDialog_unblock">মূক্ত করুন</string>
@@ -533,6 +539,7 @@
   <string name="MessageRecord_you_joined_the_group">আপনি গ্রুপে যোগ দিয়েছেন।</string>
   <string name="MessageRecord_s_joined_the_group">%1$s গ্রুপে যোগ দিয়েছেন।</string>
   <!--GV2 member removals-->
+  <string name="MessageRecord_you_left_the_group">আপনি গ্রুপ ছেড়েছেন।</string>
   <!--GV2 role change-->
   <!--GV2 invitations-->
   <!--GV2 invitation revokes-->
@@ -922,7 +929,7 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">উত্তর</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">ফোন</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">ফোন</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">স্পিকার</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">ব্লুটুথ</string>
   <!--WebRtcCallControls-->
@@ -1602,7 +1609,7 @@
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">অ্যানড্রয়েড স্ক্রীন এর লক্ বা ফিঙ্গারপ্রিন্ট লক দিয়ে সিগন্যাল লক্ করুন </string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">স্ক্রীন এর লক্ নিষ্ক্রিয়তার সময়সীমা</string>
   <string name="preferences_app_protection__signal_pin">Signal পিন</string>
-  <string name="preferences_app_protection__create_a_pin">একটি পিন তৈরি করুন</string>
+  <string name="preferences_app_protection__create_a_pin">পিন তৈরি করুন</string>
   <string name="preferences_app_protection__change_your_pin">আপনার পিন পরিবর্তন করুন</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">পিনগুলি Signal-এ সঞ্চিত তথ্য এনক্রিপ্ট করে রাখে যাতে কেবল আপনি এটি অ্যাক্সেস করতে পারবেন। আপনি যখন Signal পুনরায় ইনস্টল করবেন তখন আপনার প্রোফাইল, সেটিংস এবং পরিচিতিগুলি পুনরুদ্ধার করবে।</string>
   <string name="AppProtectionPreferenceFragment_none">কেউ না</string>

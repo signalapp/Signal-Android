@@ -1105,7 +1105,7 @@
   <string name="WebRtcCallScreen__answer">Rispondi</string>
   <string name="WebRtcCallScreen__answer_without_video">Rispondi senza video</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">Telefono</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefono</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Vivavoce</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->

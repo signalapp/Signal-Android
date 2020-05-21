@@ -1166,7 +1166,7 @@
   <string name="WebRtcCallScreen__answer">Ответить</string>
   <string name="WebRtcCallScreen__answer_without_video">Ответить без видео</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">Телефон</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Телефон</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Динамик</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->

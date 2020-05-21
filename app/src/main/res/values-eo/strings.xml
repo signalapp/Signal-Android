@@ -1104,7 +1104,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="WebRtcCallScreen__answer">Respondi</string>
   <string name="WebRtcCallScreen__answer_without_video">Respondi sen video</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">Telefono</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefono</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Laŭtparolilo</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bludento</string>
   <!--WebRtcCallControls-->

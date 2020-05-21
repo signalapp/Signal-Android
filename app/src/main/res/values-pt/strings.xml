@@ -1101,7 +1101,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="WebRtcCallScreen__answer">Atender</string>
   <string name="WebRtcCallScreen__answer_without_video">Atender sem vídeo</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">Telemóvel</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telemóvel</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Altifalante</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->

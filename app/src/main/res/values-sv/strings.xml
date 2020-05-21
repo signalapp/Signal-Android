@@ -21,7 +21,7 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Ta bort alla gamla meddelanden nu?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">Detta kommer omedelbart trimma alla konversationer till det senaste meddelandet.</item>
-    <item quantity="other">Detta kommer omedelbart att korta av alla konversationer till de %d senaste meddelandena.</item>
+    <item quantity="other">Detta kommer omedelbart att korta ner alla konversationer till de %d senaste meddelandena.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Ta bort</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Inaktivera lösenord?</string>
@@ -1099,7 +1099,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="WebRtcCallScreen__answer">Svara</string>
   <string name="WebRtcCallScreen__answer_without_video">Svara utan video</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">Telefon</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefon</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Högtalare</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1507,7 +1507,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__chats">Konversationer och media</string>
   <string name="preferences__storage">Lagring</string>
   <string name="preferences__conversation_length_limit">Gräns för konversationslängd</string>
-  <string name="preferences__trim_all_conversations_now">Korta av alla konversationer nu</string>
+  <string name="preferences__trim_all_conversations_now">Korta ner alla konversationer nu</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Skanna alla konversationer och tvinga längdbegränsningar på konversationer</string>
   <string name="preferences__linked_devices">Länkade enheter</string>
   <string name="preferences__light_theme">Ljust</string>
@@ -1761,7 +1761,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Inte många försök kvar!</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">För din integritet och säkerhet finns det inget sätt att återställa din PIN-kod. Om du inte kan komma ihåg din PIN-kod kan du verifiera med SMS efter %1$d dag av inaktivitet. I det här fallet kommer ditt konto att rensas och allt innehåll tas bort.</item>
-    <item quantity="other">För din integritet och säkerhet finns det inget sätt att återställa din PIN-kod. Om du inte kan komma ihåg din PIN-kod kan du verifiera med SMS efter %1$d dagar av inaktivitet. I det här fallet kommer ditt konto att rensas och allt innehåll tas bort.</item>
+    <item quantity="other">För din integritet och säkerhet finns det inget sätt att återställa din PIN-kod. Om du inte kan komma ihåg din PIN-kod kan du återverifiera med SMS efter %1$d dagar av inaktivitet. I det här fallet kommer ditt konto att rensas och allt innehåll tas bort.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
     <item quantity="one">Felaktig PIN-kod. %1$d försök kvar.</item>
@@ -1886,7 +1886,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registrering av detta mobilnummer kommer att vara möjligt utan din PIN-kod för registreringslåset efter att 7 dagar har passerat sedan mobilnumret senast var aktivt på Signal. Du har %d dagar kvar.</string>
   <string name="RegistrationActivity_registration_lock_pin">PIN-kod för registreringslås</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Detta mobilnummer har registreringslåset aktiverat. Vänligen ange PIN-koden för registreringslåset.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Registreringslåset är aktiverat för ditt mobilnummer. För att hjälpa dig att komma ihåg din PIN-kod för registreringslåset kommer Signal periodvis att be dig bekräfta den.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Registreringslåset är aktiverat för ditt mobilnummer. För att hjälpa dig att memorera din PIN-kod för registreringslåset kommer Signal periodvis att be dig bekräfta den.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Jag har glömt min PIN-kod.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Glömt PIN-koden?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registreringslås hjälper till att skydda ditt mobilnummer från obehöriga registreringsförsök. Denna funktion kan när som helst stängas av under Signals integritetsskyddsinställningar.</string>

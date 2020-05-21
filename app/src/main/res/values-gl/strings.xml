@@ -460,6 +460,9 @@
   <string name="MediaOverviewActivity_image">Imaxe</string>
   <!--Megaphones-->
   <string name="Megaphones_remind_me_later">Lembrarmo máis tarde</string>
+  <string name="Megaphones_verify_your_signal_pin">Verifica o teu PIN Signal</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Ocasionalmente pedirémosche que verifiques o PIN para axudarche a memorizalo.</string>
+  <string name="Megaphones_verify_pin">Verificar PIN</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chamada Signal en progreso</string>
   <string name="NotificationBarManager__establishing_signal_call">Establecendo chamada Signal</string>
@@ -598,9 +601,22 @@
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">PIN incorrecto</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">Omitir o PIN?</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">O teu PIN é un código de  +%1$d díxitos creado por ti que pode ter letras e números.\n\nSe non lembras o PIN, podes crear un novo. Podes rexistrar e usar a túa conta pero perderás algúns axustes gardados como a información do perfil.</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Se non lembras o PIN, podes crear un novo. Podes rexistrar e usar a túa conta pero perderás algúns axustes gardados como a información de perfil.</string>
+  <string name="PinRestoreEntryFragment_create_new_pin">Crear Novo PIN</string>
   <string name="PinRestoreEntryFragment_cancel">Cancelar</string>
   <string name="PinRestoreEntryFragment_skip">Omitir</string>
+  <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
+    <item quantity="one">Quédache %1$d intento. Se os esgotas, podes crear un novo PIN. Podes rexistrar e usar a túa conta pero perderás algúns axustes gardados como a información do perfil.</item>
+    <item quantity="other">Quédache %1$d intentos. Se os esgotas, podes crear un novo PIN. Podes rexistrar e usar a túa conta pero perderás algúns axustes gardados como a información do perfil.</item>
+  </plurals>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Rexistro en Signal - Preciso Axuda co PIN para Android</string>
+  <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Escribe PIN alfanumérico</string>
+  <string name="PinRestoreEntryFragment_enter_numeric_pin">Escribe PIN numérico</string>
   <!--PinRestoreLockedFragment-->
+  <string name="PinRestoreLockedFragment_create_your_pin">Crea o teu PIN</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Esgotaches os intentos, pero aínda podes acceder á conta Signal creando un novo PIN. Por privacidade e seguridade a conta será restablecida sen a información de perfil gardada ou axustes.</string>
+  <string name="PinRestoreLockedFragment_create_new_pin">Crear novo PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Valorar esta app</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Se realmente che gusta esta aplicación, dedícalle, por favor, un intre a valorala.</string>
@@ -675,6 +691,7 @@
   <string name="RegistrationActivity_country_code_description">Código de país</string>
   <string name="RegistrationActivity_call">Chamar</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Se non lembras o teu PIN Signal ao voltar a rexistrar Signal de volta, perderás o acceso a conta durante 7 días.</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Ver fotografía</string>
   <string name="RevealableMessageView_view_video">Ver vídeo</string>
@@ -1451,31 +1468,82 @@
   <!--Edit KBS Pin-->
   <!--BaseKbsPinFragment-->
   <string name="BaseKbsPinFragment__next">Seguinte</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">Crear PIN alfanumérico</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">Crear PIN numérico</string>
   <!--CreateKbsPinFragment-->
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
+    <item quantity="one">O PIN debe ter %1$d carácter como mínimo</item>
+    <item quantity="other">O PIN debe ter %1$d caracteres como mínimo</item>
+  </plurals>
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
+    <item quantity="one">O PIN debe ter %1$d díxito como mínimo</item>
+    <item quantity="other">O PIN debe ter %1$d díxitos como mínimo</item>
+  </plurals>
+  <string name="CreateKbsPinFragment__create_a_new_pin">Crear un novo PIN</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Podes cambiar o PIN en tanto este dispositivo estea rexistrado.</string>
+  <string name="CreateKbsPinFragment__create_your_pin">Crea o teu PIN</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">O PIN cifra a información gardada con Signal para que só ti poidas acceder a ela. O perfil, axustes e contactos restablécense ao reinstalar Signal.</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">Escolle un PIN máis forte</string>
   <!--ConfirmKbsPinFragment-->
+  <string name="ConfirmKbsPinFragment__pins_dont_match">Os PIN non concordan, inténtao outra vez.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Confirma o teu PIN.</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">Fallou a creación do PIN</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Non se gardou o PIN. Pedirémosche máis tarde que o crees.</string>
+  <string name="ConfirmKbsPinFragment__pin_created">PIN establecido.</string>
+  <string name="ConfirmKbsPinFragment__re_enter_your_pin">Volve a escribir o PIN</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">Creando PIN…</string>
   <!--KbsSplashFragment-->
+  <string name="KbsSplashFragment__introducing_pins">Escribindo PINs</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">O PIN cifra a información gardada con Signal para que só ti poidas acceder a ela. O perfil, axustes e contactos restablécense ao reinstalar Signal.</string>
   <string name="KbsSplashFragment__learn_more">Saber máis</string>
+  <string name="KbsSplashFragment__registration_lock_equals_pin">Bloqueo do rexistro = PIN</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">O Bloqueo de Rexistro agora chámase PIN, e serve para máis. Actualiza agora.</string>
+  <string name="KbsSplashFragment__read_more_about_pins">Ler máis sobre os PINs.</string>
   <string name="KbsSplashFragment__update_pin">Actualizar PIN</string>
+  <string name="KbsSplashFragment__create_your_pin">Crea o teu PIN</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Escribe o teu PIN de Signal</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Para axudarche a lembrar o PIN, cada certo tempo pedirémosche que o escribas, cada vez con menos frecuencia.</string>
   <string name="KbsReminderDialog__skip">Omitir</string>
   <string name="KbsReminderDialog__submit">Enviar</string>
   <string name="KbsReminderDialog__forgot_pin">Esqueciches o PIN?</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">PIN incorrecto. Inténtao outra vez.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Conta bloqueada</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">A túa conta foi bloqueada para protexer a túa privacidade e seguridade. Após %1$d días de inactividade na conta poderás voltar a rexistrar este número se precisar dun PIN. Todo o contido será eliminado.</string>
   <string name="AccountLockedFragment__next">Seguinte</string>
   <string name="AccountLockedFragment__learn_more">Saber máis</string>
   <!--KbsLockFragment-->
+  <string name="RegistrationLockFragment__enter_your_pin">Escribe o teu PIN</string>
+  <string name="RegistrationLockFragment__enter_the_pin_you_created">Escribe o PIN creado para a túa conta. Non é o mesmo que o código de verificación por SMS.</string>
+  <string name="RegistrationLockFragment__enter_alphanumeric_pin">Escribe PIN alfanumérico</string>
+  <string name="RegistrationLockFragment__enter_numeric_pin">Escribe PIN numérico</string>
   <string name="RegistrationLockFragment__next">Seguinte</string>
+  <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN incorrecto. Inténtao outra vez.</string>
   <string name="RegistrationLockFragment__forgot_pin">Esqueciches o PIN?</string>
   <string name="RegistrationLockFragment__incorrect_pin">PIN incorrecto</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Esqueciches o PIN?</string>
+  <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
+    <item quantity="one">Non hai xeito de recuperar o PIN, por seguridade e privacidade. Se non lembras o PIN, podes voltar a verificar a conta cun SMS tras %1$d día de inactividade. Neste caso, a conta será eliminada e o contido borrado.</item>
+    <item quantity="other">Non hai xeito de recuperar o teu PIN, por privacidade e seguridade. Se non podes lembrar o PIN, podes voltar a verificar a conta cun SMS tras %1$d días de inactividade. Neste caso, a conta será eliminada e todo o contido borrado.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
+    <item quantity="one">PIN incorrecto. %1$d intento restante.</item>
+    <item quantity="other">PIN incorrecto. %1$d intentos restantes.</item>
+  </plurals>
+  <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
+    <item quantity="one">Se esgotas os intentos a conta quedará bloqueada durante %1$d día. Após %1$d día de inactividade, poderás voltar a rexistrala sen precisar PIN. A conta será eliminada e o contido borrado.</item>
+    <item quantity="other">Se esgotas os intentos a conta será bloqueada durante %1$d días. Tras %1$d días de inactividade, podes voltar a rexistrala sen precisar PIN. A conta será eliminada e todo o contido borrado.</item>
+  </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
   <!--KBS Megaphone-->
+  <string name="KbsMegaphone__create_a_pin">Crea un PIN</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Os números PIN cifran a información que gardas con Signal.</string>
   <string name="KbsMegaphone__create_pin">Crear PIN</string>
+  <string name="KbsMegaphone__introducing_pins">Escribindo PINs</string>
   <string name="KbsMegaphone__update_pin">Actualizar PIN</string>
+  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Lembrarémoscho máis tarde. Será obrigatorio crear un PIN tras %1$d días.</string>
+  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Lembrarémoscho máis tarde. Confirmar o PIN será obrigatorio en %1$d días.</string>
   <!--Profile Names Megaphone-->
   <string name="ProfileNamesMegaphone__your_profile_can_now_include">Agora, como opción, tamén podes engadir o apelido.</string>
   <!--transport_selection_list_item-->
@@ -1536,6 +1604,11 @@
   <string name="preferences_app_protection__screen_lock">Bloqueo da pantalla</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Bloquea o acceso a Signal co bloqueo de pantalla de Android ou coa impresión dixital</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Tempo de inactividade para o bloqueo de pantalla</string>
+  <string name="preferences_app_protection__signal_pin">PIN Signal</string>
+  <string name="preferences_app_protection__create_a_pin">Crea un PIN</string>
+  <string name="preferences_app_protection__change_your_pin">Cambiar o PIN</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">O PIN cifra a información gardada con Signal para que só ti poidas acceder a ela. O perfil, axustes e contactos restablécense ao reinstalar Signal.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Engadimos seguridade extra ao solicitar o teu PIN Signal para rexistrar o teu número de teléfono en Signal outra vez.</string>
   <string name="AppProtectionPreferenceFragment_none">Ningunha</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">O PIN do bloqueo de rexistro non é o mesmo que o código de verificación que recibiches por SMS. Insire o PIN con que configuraches a aplicación.</string>
   <string name="registration_activity__registration_lock_pin">PIN de bloqueo do rexistro</string>
@@ -1549,6 +1622,7 @@
   <string name="preferences_app_protection__registration_lock_pin">PIN de bloqueo do rexistro</string>
   <string name="preferences_app_protection__registration_lock">Bloqueo do rexistro</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Debes inserir o PIN de bloqueo do rexistro</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">O teu PIN ten %d díxitos ou caracteres como mínimo</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">PIN de bloqueo do rexistro incorrecto</string>
   <string name="RegistrationActivity_too_many_attempts">Demasiadas tentativas</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Inseriches incorrectamente o PIN de bloqueo do rexistro demasiadas veces. Téntao outra vez así que pase un día.</string>
@@ -1563,10 +1637,12 @@
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">O bloqueo de rexistro protexe o teu número de teléfono de tentativas non autorizadas de rexistro. Esta funcionalidade pode ser desactivada en calquera momento nos axustes de privacidade.</string>
   <string name="RegistrationLockDialog_registration_lock">Bloqueo do rexistro</string>
   <string name="RegistrationLockDialog_enable">Activar</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">O PIN de Bloqueo do Rexistro debe ter %d díxitos como mínimo.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Os dous PIN inseridos non coinciden.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Erro ao conectarse ao servizo</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Desactivar o PIN de bloqueo do rexistro?</string>
   <string name="RegistrationLockDialog_disable">Desactivar</string>
+  <string name="RegistrationActivity_pin_incorrect">PIN incorrecto</string>
   <string name="preferences_chats__backups">Copias de seguranza</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal está bloqueado</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TOCA PARA DESBLOQUEAR</string>

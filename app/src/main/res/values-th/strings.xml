@@ -953,7 +953,7 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">รับสาย</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">โทรศัพท์</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">โทรศัพท์</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">ลำโพง</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">บลูทูธ</string>
   <!--WebRtcCallControls-->

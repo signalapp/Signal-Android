@@ -924,7 +924,7 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">જવાબ</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">ફોન</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">ફોન</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">સ્પીકર</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">બ્લુટુથ</string>
   <!--WebRtcCallControls-->

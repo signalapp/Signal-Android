@@ -1105,7 +1105,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="WebRtcCallScreen__answer">Svar</string>
   <string name="WebRtcCallScreen__answer_without_video">Besvar uden video</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">Telefon</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefon</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Højttaler</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->

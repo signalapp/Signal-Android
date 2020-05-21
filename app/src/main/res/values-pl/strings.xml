@@ -1165,7 +1165,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="WebRtcCallScreen__answer">Odbierz</string>
   <string name="WebRtcCallScreen__answer_without_video">Odbierz bez wideo</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">Numer telefonu</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Numer telefonu</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Głośnik</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1505,7 +1505,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="arrays__enabled">Włączone</string>
   <string name="arrays__disabled">Wyłączone</string>
   <string name="arrays__name_and_message">Imię i wiadomość</string>
-  <string name="arrays__name_only">Tylko imie</string>
+  <string name="arrays__name_only">Tylko imię</string>
   <string name="arrays__no_name_or_message">Brak imienia lub wiadomości</string>
   <string name="arrays__images">Zdjęcia</string>
   <string name="arrays__audio">Audio</string>

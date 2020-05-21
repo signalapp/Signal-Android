@@ -84,6 +84,7 @@
   <string name="BlockUnblockDialog_unblock_s">%1$s engeli kaldırılsın mı?</string>
   <string name="BlockUnblockDialog_unblock">Engeli kaldır</string>
   <string name="BlockUnblockDialog_block">Engelle</string>
+  <string name="BlockUnblockDialog_block_and_leave">Engelle ve Ayrıl</string>
   <string name="BlockUnblockDialog_block_and_delete">Engelle ve Sil</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Bugün</string>
@@ -116,6 +117,7 @@
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Kaldır</string>
   <string name="ClearProfileActivity_remove_profile_photo">Profil fotoğrafı kaldırılsın mı?</string>
+  <string name="ClearProfileActivity_remove_group_photo">Grup fotoğrafı kaldırılsın mı?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Hiçbir web tarayıcısı bulunamadı.</string>
   <string name="CommunicationActions_no_email_app_found">Eposta uygulaması bulunamadı.</string>
@@ -223,6 +225,8 @@
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Bu gruptan ayrılacaksınız ve tüm cihazlarınızdan silinecek.</string>
   <string name="ConversationActivity_delete">Sil</string>
   <string name="ConversationActivity_delete_and_leave">Sil ve ayrıl</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s ile arama yapmanız için, Signal\'in mikrofonunuza erişime ihtiyacı var.</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">%1$s ile arama yapmanız için, Signal\'in mikrofonunuza ve kameranıza erişime ihtiyacı var.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d okunmamış ileti</item>
@@ -261,6 +265,8 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Siliniyor</string>
   <string name="ConversationFragment_deleting_messages">İletiler siliniyor…</string>
+  <string name="ConversationFragment_delete_for_me">Benden sil</string>
+  <string name="ConversationFragment_delete_for_everyone">Herkesten sil</string>
   <string name="ConversationFragment_quoted_message_not_found">İletinin aslı bulunamadı</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">İletinin aslı artık mevcut değil</string>
   <string name="ConversationFragment_failed_to_open_message">İleti açılamadı</string>
@@ -361,6 +367,7 @@
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Yeni grup</string>
   <string name="GroupCreateActivity_actionbar_edit_title">Grubu düzenle</string>
+  <string name="GroupCreateActivity_actionbar_manage_title">Grubu yönet</string>
   <string name="GroupCreateActivity_group_name_hint">Grup adı</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Yeni MMS grubu</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Signal gruplarını desteklemeyen bir kişiyi seçtiniz, bu nedenle bu grup MMS olacaktır.</string>
@@ -374,6 +381,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s Signal kullanıcısı olmadığı için eklenemedi.</string>
   <string name="GroupCreateActivity_loading_group_details">Grup detayları yükleniyor…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Zaten gruptasınız.</string>
+  <string name="GroupCreateActivity_remove_member_description">Üyeyi sil</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Profil adınız ve fotoğrafınız bu grupla paylaşılsın mı?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Profil adınızı ve fotoğrafınızı bu grupta bulunan ve sonradan eklenecek üyelere görünür yapmak istiyor musunuz?</string>
@@ -381,17 +389,35 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Siz</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">Herhangi biri</string>
+  <string name="GroupManagement_access_level_all_members">Tüm üyeler</string>
+  <string name="GroupManagement_access_level_only_admins">Yalnızca yöneticiler</string>
   <!--PendingMembersActivity-->
+  <string name="PendingMemberInvitesActivity_pending_group_invites">Beklemedeki grup davetleri</string>
   <string name="PendingMembersActivity_people_you_invited">Davet ettiğiniz kişiler</string>
-  <string name="PendingMembersActivity_invites_by_other_group_members">Diğer grup üyelerinin davetiyeleri</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">Beklemede olan davetiniz yok.</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">Diğer grup üyelerinin davetleri</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Diğer grup üyeleri tarafından davet edilen kişilerin ayrıntıları gösterilmez. Davetliler katılmayı seçerse, bilgileri o zaman grupla paylaşılacaktır. Katılıncaya kadar grupta herhangi bir ileti görmezler.</string>
+  <string name="PendingMembersActivity_cancel_invite">Daveti iptal et</string>
+  <string name="PendingMembersActivity_cancel_invites">Davetleri iptal et</string>
+  <plurals name="PendingMembersActivity_cancel_d_invites">
+    <item quantity="one">Daveti iptal et</item>
+    <item quantity="other">%1$d davetlerini iptal et</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_canceling_invite">
+    <item quantity="one">Daveti iptal etmede hata</item>
+    <item quantity="other">Davetleri iptal etmede hata</item>
+  </plurals>
   <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__name_this_group">Bu grubu adlandır</string>
   <string name="AddGroupDetailsFragment__create">Oluştur</string>
   <string name="AddGroupDetailsFragment__members">Üyeler</string>
   <string name="AddGroupDetailsFragment__group_name_required">Grup adı (gereklidir)</string>
   <string name="AddGroupDetailsFragment__remove">Kaldır</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Kaybolan iletiler</string>
+  <string name="ManageGroupActivity_pending_group_invites">Beklemedeki grup davetleri</string>
+  <string name="ManageGroupActivity_block_group">Grubu engelle</string>
   <string name="ManageGroupActivity_leave_group">Gruptan ayrıl</string>
   <string name="ManageGroupActivity_mute_notifications">Bildirimleri sessize al</string>
   <string name="ManageGroupActivity_custom_notifications">Özel bildirimler</string>
@@ -399,12 +425,21 @@
   <string name="ManageGroupActivity_on">Açık</string>
   <string name="ManageGroupActivity_add_members">Üye ekle</string>
   <string name="ManageGroupActivity_view_all_members">Tüm üyeleri görüntüle</string>
+  <plurals name="GroupMemberList_invited">
+    <item quantity="one">%1$s, 1 kişiyi davet etti</item>
+    <item quantity="other">%1$s, %2$d kişiyi davet etti</item>
+  </plurals>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Özel bildirimler</string>
   <string name="CustomNotificationsDialogFragment__messages">İletiler</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Bildirim sesi</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Titreşim</string>
   <!--GV2 Invite cancellation confirmation-->
+  <string name="GroupManagement_cancel_own_single_invite">%1$s kişisine gönderdiğiniz davet iptal edilsin mi?</string>
+  <plurals name="GroupManagement_cancel_others_invites">
+    <item quantity="one">%1$s tarafından gönderilen davet iptal edilsin mi?</item>
+    <item quantity="other">%1$s tarafından gönderilen %2$d davet iptal edilsin mi?</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Grup resmi</string>
   <string name="CropImageActivity_profile_avatar">Resim</string>
@@ -550,14 +585,35 @@
   <string name="MessageRecord_you_created_the_group">Grubu oluşturdunuz.</string>
   <string name="MessageRecord_group_updated">Grup güncellendi.</string>
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_added_s">%1$s kişisini eklediniz.</string>
+  <string name="MessageRecord_s_added_s">%1$s, %2$s kişisini ekledi.</string>
+  <string name="MessageRecord_s_added_you">%1$s sizi gruba ekledi.</string>
   <string name="MessageRecord_you_joined_the_group">Gruba katıldınız.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s gruba katıldı.</string>
   <!--GV2 member removals-->
+  <string name="MessageRecord_you_removed_s">%1$s kişisini çıkarttınız.</string>
+  <string name="MessageRecord_s_removed_s">%1$s, %2$skişisini çıkarttı.</string>
+  <string name="MessageRecord_s_removed_you_from_the_group">%1$s sizi gruptan çıkarttı.</string>
   <string name="MessageRecord_you_left_the_group">Gruptan ayrıldınız.</string>
+  <string name="MessageRecord_s_left_the_group">%1$s gruptan ayrıldı.</string>
   <!--GV2 role change-->
+  <string name="MessageRecord_you_made_s_an_admin">%1$s kişisini yönetici yaptınız.</string>
+  <string name="MessageRecord_s_made_s_an_admin">%1$s, %2$s kişisini yönetici yaptı.</string>
+  <string name="MessageRecord_s_made_you_an_admin">%1$s sizi yönetici yaptı.</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">%1$s kişisinin yönetici yetkilerini iptal ettiniz.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s yönetici yetkilerinizi iptal etti.\"</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s, %2$s kişisinin yönetici yetkilerini iptal etti.</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_invited_s_to_the_group">%1$s kişisini gruba davet ettiniz.</string>
+  <string name="MessageRecord_s_invited_you_to_the_group">%1$s kişisi sizi gruba davet etti.</string>
+  <plurals name="MessageRecord_s_invited_members">
+    <item quantity="one">%1$s, 1 kişiyi gruba davet etti.</item>
+    <item quantity="other">%1$s, %2$d kişiyi gruba davet etti.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
   <!--GV2 invitation acceptance-->
+  <string name="MessageRecord_you_added_invited_member_s">Davet edilmiş %1$s üyesini eklediniz.</string>
+  <string name="MessageRecord_s_added_invited_member_s">%1$s, davet edilmiş %2$s üyesini ekledi.</string>
   <!--GV2 title change-->
   <!--GV2 avatar change-->
   <!--GV2 attribute access level change-->
@@ -575,6 +631,7 @@
   <string name="MessageRequestBottomView_unblock">Engeli kaldır</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s kişisinin sizle yazışmasına izin vermek istiyor musunuz? Kabul edene kadar iletilerini gördüğünüzü bilmeyecekler.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s grubuna katılmak istiyor musunuz? Kabul edene kadar iletilerini gördüğünüzü bilmeyecekler.</string>
+  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">%1$s grubuna katılmaya davet edildiniz. Bu grubun üyelerinin size yazmalarına izin vermek istiyor musunuz?</string>
   <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Birbirinizle yazışmak ve aramalar yapmak için %1$s engelini kaldırın.</string>
   <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Grup üyelerinin sizi bu gruba tekrar ekleyebilmeleri için engelini kaldırın.</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s grubuna üye</string>
@@ -636,6 +693,7 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Kurulu Google Play Hizmetleri sürümü doğru çalışmıyor. Lütfen Google Play Hizmetleri\'ni tekrar yükleyin ve yeniden deneyin.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">Yanlış PIN</string>
+  <string name="PinRestoreEntryFragment_need_help">Yardıma mı ihtiyacınız var?</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">PIN\'inizi hatırlayamıyorsanız, yeni bir tane oluşturabilirsiniz. Hesabınızı kaydedebilir ve kullanabilirsiniz, ancak profil bilgileriniz gibi kaydedilmiş bazı ayarları kaybedersiniz.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Yeni PIN Oluştur</string>
   <string name="PinRestoreEntryFragment_contact_support">Destekle İletişime Geçin</string>
@@ -680,7 +738,10 @@
   <string name="RedPhone_got_it">Anladım</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Görüntünüzü açmak için buraya dokunun</string>
+  <string name="WebRtcCallActivity__calling">Aranıyor…</string>
   <!--WebRtcCallView-->
+  <string name="WebRtcCallView__signal_voice_call">Signal sesli arama…</string>
+  <string name="WebRtcCallView__signal_video_call">Signal görüntülü arama…</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Ülkenizi seçin</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Ülke kodunuzu
@@ -724,6 +785,8 @@
   <string name="RegistrationActivity_call">Ara</string>
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Signal\'e tekrar kaydolurken Signal PIN\'inizi unutursanız, hesabınıza 7 gün boyunca erişemezsiniz. </string>
+  <string name="RegistrationLockV2Dialog_turn_on">Aç</string>
+  <string name="RegistrationLockV2Dialog_turn_off">Kapat</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Fotoğrafı Görüntüle</string>
   <string name="RevealableMessageView_view_video">Videoyu Görüntüle</string>
@@ -826,6 +889,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ThreadRecord_message_could_not_be_processed">İleti işlenemedi</string>
   <string name="ThreadRecord_message_request">İleti İsteği</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s sizi gruba ekledi</string>
+  <string name="ThreadRecord_s_invited_you_to_the_group">%1$s kişisi sizi gruba davet etti.</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal güncellemesi</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal\'in yeni sürümü mevcut, güncellemek için dokunun</string>
@@ -978,7 +1042,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">Yanıtla</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">Telefon</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefon</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Hoparlör</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1279,6 +1343,13 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Lütfen sorunu anlamamıza yardımcı olabilecek şekilde açıklayın.</string>
   <string name="HelpFragment__no_email_app_found">Eposta uygulaması bulunamadı.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Doğa</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Gıda</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Etkinlikler</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Mekanlar</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Nesneler</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Semboller</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Bayraklar</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">İçe Aktar</string>
   <string name="arrays__use_default">Varsayılanı kullan</string>
@@ -1484,10 +1555,12 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Eklenti ekle</string>
   <string name="conversation__menu_edit_group">Grubu düzenle</string>
+  <string name="conversation__menu_manage_group">Grubu yönet</string>
   <string name="conversation__menu_leave_group">Gruptan ayrıl</string>
   <string name="conversation__menu_view_all_media">Tüm içerik</string>
   <string name="conversation__menu_conversation_settings">Sohbet ayarları</string>
   <string name="conversation__menu_add_shortcut">Ana ekrana ekle</string>
+  <string name="conversation__menu_pending_members">Bekleyen üyeler</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Açılır pencereyi genişlet</string>
   <!--conversation_callable_insecure-->
@@ -1770,6 +1843,10 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="RecipientBottomSheet_block">Engelle</string>
   <string name="RecipientBottomSheet_unblock">Engeli kaldır</string>
   <string name="RecipientBottomSheet_view_safety_number">Güvenlik numarasını görüntüle</string>
+  <string name="RecipientBottomSheet_make_group_admin">Grup yöneticisi yap</string>
+  <string name="RecipientBottomSheet_remove_as_admin">Grup yöneticiliğinden çıkart</string>
+  <string name="RecipientBottomSheet_remove_from_group">Gruptan çıkart</string>
+  <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s grup yöneticiliğinden çıkartılsın mı?</string>
   <string name="RecipientBottomSheet_remove">Kaldır</string>
   <string name="GroupRecipientListItem_admin">Yönetici</string>
   <!--EOF-->

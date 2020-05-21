@@ -973,7 +973,7 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">Atender</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">Telefone</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefone</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Auto falante</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->

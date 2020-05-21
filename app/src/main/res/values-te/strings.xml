@@ -416,6 +416,7 @@
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__create">సృష్టించు</string>
   <string name="AddGroupDetailsFragment__members"> సభ్యులు</string>
+  <string name="AddGroupDetailsFragment__group_name_required">సమూహం పేరు (అవసరం)</string>
   <string name="AddGroupDetailsFragment__remove">తొలగించు</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">అదృశ్యమవుతున్న  సందేశాలు</string>
@@ -426,6 +427,7 @@
   <string name="ManageGroupActivity_off">ఆఫ్</string>
   <string name="ManageGroupActivity_on">ఆన్</string>
   <string name="ManageGroupActivity_add_members">సభ్యులు జోడించు</string>
+  <string name="ManageGroupActivity_view_all_members">సభ్యులందరినీ చూడండి</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$sఒక వ్యక్తిని ఆహ్వానించారు</item>
     <item quantity="other">%1$s%2$dవ్యక్తులను ఆహ్వానించారు</item>
@@ -583,6 +585,7 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">మీరు కనుమరుగైన సందేశ టైమర్ను సెట్ చేసారు %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s కనుమరుగవుతున్న సందేశాన్ని టైమర్కు సెట్ చేయండి %2$s.</string>
   <!--GV2 specific-->
+  <string name="MessageRecord_you_created_the_group">మీరు సమూహాన్ని సృష్టించారు.</string>
   <string name="MessageRecord_group_updated">సమూహం నవీకరించబడింది</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">మీరు %1$sని జోడించారు.</string>
@@ -805,6 +808,7 @@
   <string name="RegistrationActivity_country_code_description">దేశం కోడ్</string>
   <string name="RegistrationActivity_call">కాల్</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Signal ‌తో మళ్లీ నమోదు చేసేటప్పుడు మీరు మీ Signal పిన్‌ను మరచిపోతే, మీరు మీ ఖాతా నుండి 7 రోజులు లాక్ అవుతారు.</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">చిత్రాలు వీక్షించండి </string>
   <string name="RevealableMessageView_view_video">వీడియో చూడండి</string>
@@ -1042,7 +1046,7 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">సమాధానం</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">ఫోన్</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">ఫోన్</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">స్పీకర్</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1617,15 +1621,20 @@
   <string name="BaseKbsPinFragment__create_numeric_pin">సంఖ్యా పిన్ను సృష్టించండి</string>
   <!--CreateKbsPinFragment-->
   <string name="CreateKbsPinFragment__create_a_new_pin">క్రొత్త పిన్ను సృష్టించండి</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">ఈ పరికరం నమోదు చేయబడినంత వరకు మీరు మీ పిన్‌ను మార్చవచ్చు.</string>
   <string name="CreateKbsPinFragment__create_your_pin">మీ పిన్ను సృష్టించండి</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">పిన్‌లు Signal గుప్తీకరించిన సమాచారాన్ని నిల్వ చేస్తాయి కాబట్టి మీరు మాత్రమే దీన్ని యాక్సెస్ చేయవచ్చు. మీరు Signal ‌ను మళ్లీ ఇన్‌స్టాల్ చేసినప్పుడు మీ ప్రొఫైల్, సెట్టింగ్‌లు మరియు పరిచయాలు పునరుద్ధరించబడతాయి.</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">బలమైన పిన్ను ఎంచుకోండి</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">పిన్‌లు సరిపోలడం లేదు. మళ్ళీ ప్రయత్నించండి.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">మీ పిన్ను నిర్ధారించండి.</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">పిన్ సృష్టి విఫలమైంది</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">మీ పిన్ సేవ్ చేయబడలేదు. తరువాత పిన్ సృష్టించమని మేము మిమ్మల్ని అడుగుతాము.</string>
   <string name="ConfirmKbsPinFragment__pin_created">పిన్ సృష్టించబడింది.</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">పిన్ సృష్టిస్తోంది…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">పిన్‌లను పరిచయం చేస్తోంది</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">పిన్‌లు Signal గుప్తీకరించిన సమాచారాన్ని నిల్వ చేస్తాయి కాబట్టి మీరు మాత్రమే దీన్ని యాక్సెస్ చేయవచ్చు. మీరు Signal ‌ను మళ్లీ ఇన్‌స్టాల్ చేసినప్పుడు మీ ప్రొఫైల్, సెట్టింగ్‌లు మరియు పరిచయాలు పునరుద్ధరించబడతాయి.</string>
   <string name="KbsSplashFragment__learn_more">ఇంకా నేర్చుకో</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">నమోదు లాక్  = పిన్</string>
   <string name="KbsSplashFragment__read_more_about_pins">పిన్‌ల గురించి మరింత చదవండి.</string>
@@ -1655,9 +1664,14 @@
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
   <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">సరే</string>
   <!--KBS Megaphone-->
+  <string name="KbsMegaphone__create_a_pin">పిన్ సృష్టించండి</string>
+  <string name="KbsMegaphone__create_pin">పిన్ సృష్టించండి</string>
   <string name="KbsMegaphone__introducing_pins">పిన్‌లను పరిచయం చేస్తోంది</string>
   <string name="KbsMegaphone__update_pin">పిన్‌ను నవీకరించండి</string>
   <!--Profile Names Megaphone-->
+  <string name="ProfileNamesMegaphone__this_will_be_displayed_when_you_start">మీరు క్రొత్త సంభాషణను ప్రారంభించినప్పుడు లేదా భాగస్వామ్యం చేసినప్పుడు ఇది ప్రదర్శించబడుతుంది.</string>
+  <string name="ProfileNamesMegaphone__add_profile_name">ప్రొఫైల్ పేరును జోడించండి</string>
+  <string name="ProfileNamesMegaphone__your_profile_can_now_include">మీ ప్రొఫైల్ ఇప్పుడు ఐచ్ఛిక చివరి పేరును కలిగి ఉంటుంది.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">రవాణా చిహ్నం</string>
   <string name="ConversationListFragment_loading">లోడ్…</string>
@@ -1714,7 +1728,9 @@
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Android స్క్రీన్ లాక్ లేదా వేలిముద్రతో Signal యాక్సెస్ను లాక్ చేయండి</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">స్క్రీన్ లాక్ నిష్క్రియ సమయం</string>
   <string name="preferences_app_protection__signal_pin">Signal పిన్</string>
+  <string name="preferences_app_protection__create_a_pin">పిన్ సృష్టించండి</string>
   <string name="preferences_app_protection__change_your_pin">మీ పిన్ మార్చండి</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">పిన్‌లు Signal గుప్తీకరించిన సమాచారాన్ని నిల్వ చేస్తాయి కాబట్టి మీరు మాత్రమే దీన్ని యాక్సెస్ చేయవచ్చు. మీరు Signal ‌ను మళ్లీ ఇన్‌స్టాల్ చేసినప్పుడు మీ ప్రొఫైల్, సెట్టింగ్‌లు మరియు పరిచయాలు పునరుద్ధరించబడతాయి.</string>
   <string name="AppProtectionPreferenceFragment_none">ఏదీ కాదు</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">మీరు అందుకున్న SMS ధృవీకరణ కోడ్ వలె నమోదు లాక్ పిన్ అదే కాదు. దయచేసి మీరు మునుపు అనువర్తనం లో కాన్ఫిగర్ చేసిన పిన్ ను నమోదు చేయండి.</string>
   <string name="registration_activity__registration_lock_pin">నమోదు లాక్ పిన్</string>
@@ -1762,5 +1778,6 @@
   <string name="RecipientBottomSheet_unblock">అనుమతించు</string>
   <string name="RecipientBottomSheet_view_safety_number">భద్రతా సంఖ్యను వీక్షించండి</string>
   <string name="RecipientBottomSheet_remove">తొలగించు</string>
+  <string name="GroupRecipientListItem_admin">అడ్మిన్</string>
   <!--EOF-->
 </resources>

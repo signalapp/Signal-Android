@@ -954,7 +954,7 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">接听</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">电话</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">电话</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">扬声器</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">蓝牙</string>
   <!--WebRtcCallControls-->

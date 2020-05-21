@@ -1051,7 +1051,7 @@
   <string name="WebRtcCallScreen__answer">応答</string>
   <string name="WebRtcCallScreen__answer_without_video">ビデオなしで応答</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">電話番号</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">電話番号</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">スピーカー</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->

@@ -1026,7 +1026,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">Trả lời</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">Số điện thoại</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Số điện thoại</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Loa</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->

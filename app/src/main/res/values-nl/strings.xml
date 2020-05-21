@@ -1107,7 +1107,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="WebRtcCallScreen__answer">Beantwoorden</string>
   <string name="WebRtcCallScreen__answer_without_video">Beantwoorden zonder video</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">Telefoon</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefoon</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Luidspreker</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->

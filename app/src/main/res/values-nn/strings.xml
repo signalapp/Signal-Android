@@ -1104,7 +1104,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="WebRtcCallScreen__answer">Svar</string>
   <string name="WebRtcCallScreen__answer_without_video">Svar utan video</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">Telefon</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefon</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Høgtalar</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Blåtann</string>
   <!--WebRtcCallControls-->

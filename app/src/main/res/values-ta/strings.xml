@@ -940,7 +940,7 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">பதில்</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">தொலைபேசி</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">தொலைபேசி</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">சபாநாயகர்</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">ப்ளூடூத்</string>
   <!--WebRtcCallControls-->

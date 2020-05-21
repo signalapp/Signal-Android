@@ -962,7 +962,7 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">ಉತ್ತರಿಸಿ</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">ಫೋನ್</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">ಫೋನ್</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">ಸ್ಪೀಕರ್</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">ಬ್ಲೂಟೂತ್</string>
   <!--WebRtcCallControls-->

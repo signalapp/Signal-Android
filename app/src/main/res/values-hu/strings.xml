@@ -1108,7 +1108,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="WebRtcCallScreen__answer">Válasz</string>
   <string name="WebRtcCallScreen__answer_without_video">Válasz videó nélkül</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">Telefonszám</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefonszám</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Hangszóró</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->

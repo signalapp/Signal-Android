@@ -116,6 +116,7 @@
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Ezabatu</string>
   <string name="ClearProfileActivity_remove_profile_photo">Profileko argazkia ezabatu?</string>
+  <string name="ClearProfileActivity_remove_group_photo">Taldeko argazkia ezabatu?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Ezin izan da nabigatzailerik aurkitu.</string>
   <string name="CommunicationActions_no_email_app_found">Ez da e-posta aplikaziorik aurkitu.</string>
@@ -166,6 +167,7 @@
   <string name="ConversationItem_read_more">Irakurri gehiago</string>
   <string name="ConversationItem_download_more">Deskargatu gehiago</string>
   <string name="ConversationItem_pending">  Egiteke</string>
+  <string name="ConversationItem_this_message_was_deleted">Mezu hau ezabatu da.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Saio segurua berrabiarazi?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Agian honek lagunduko du enkriptatzeko arazorik baldin baduzu. Zure mezuak mantenduko dira.</string>
@@ -393,6 +395,7 @@
   <string name="ManageGroupActivity_off">Desaktibatuta</string>
   <string name="ManageGroupActivity_on">Aktibatuta</string>
   <string name="ManageGroupActivity_add_members">Partaideak gehitu</string>
+  <string name="ManageGroupActivity_view_all_members">Partaide guztiak ikusi</string>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Jakinarazpen pertsonalizatuak</string>
   <string name="CustomNotificationsDialogFragment__messages">Mezuak</string>
@@ -544,6 +547,7 @@
   <string name="MessageRecord_you_created_the_group">Taldea sortu duzu.</string>
   <string name="MessageRecord_group_updated">Taldea eguneratu da.</string>
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_joined_the_group">Taldean sartu zara.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s taldean sartu dira.</string>
   <!--GV2 member removals-->
   <!--GV2 role change-->
@@ -628,6 +632,7 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Instalatutako Google Play Services bertsioa ez dabil ongi.  Berrinstalatu Google Play Services eta saiatu berriro mesedez.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">PIN okerra</string>
+  <string name="PinRestoreEntryFragment_create_new_pin">Sortu PIN berria</string>
   <string name="PinRestoreEntryFragment_contact_support">Harremanetan jarri laguntza taldearekin</string>
   <string name="PinRestoreEntryFragment_cancel">Utzi</string>
   <string name="PinRestoreEntryFragment_skip">Saltatu</string>
@@ -805,6 +810,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ThreadRecord_view_once_photo">Behin ikusteko argazkia</string>
   <string name="ThreadRecord_view_once_video">Behin ikusteko bideoa</string>
   <string name="ThreadRecord_view_once_media">Behi ikusteko multimedia</string>
+  <string name="ThreadRecord_this_message_was_deleted">Mezu hau ezabatu da.</string>
   <string name="ThreadRecord_s_is_on_signal">%s Signal-en dago!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Mezuen desagerpena ezgaituta dago</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Desagertzen diren mezuen debora %s-tan ezarrita</string>
@@ -914,6 +920,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">%1$s izan da zure behin ikusteko argazkiarekiko erreakzioa.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">%1$s izan da zure behin ikusteko bideoarekiko erreakzioa.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s izan da zure eranskailuarekiko erreakzioa.</string>
+  <string name="MessageNotifier_this_message_was_deleted">Mezu hau ezabatu da.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Lehenetsia</string>
   <string name="NotificationChannel_calls">Deiak</string>
@@ -966,7 +973,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">Erantzuna</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">Telefonoa</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefonoa</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Bozgorailua</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth </string>
   <!--WebRtcCallControls-->

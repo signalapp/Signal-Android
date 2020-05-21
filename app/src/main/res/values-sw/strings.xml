@@ -930,7 +930,7 @@ nambari yako ya simu</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">Pokea</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">Simu</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Simu</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Msemaji</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->

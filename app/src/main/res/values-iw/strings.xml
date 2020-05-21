@@ -1173,7 +1173,7 @@
   <string name="WebRtcCallScreen__answer">ענה</string>
   <string name="WebRtcCallScreen__answer_without_video">ענה בלי וידאו</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">טלפון</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">טלפון</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">רמקול</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->

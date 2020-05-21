@@ -28,9 +28,9 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Signal et les notifications de message seront déverrouillées en permanence.</string>
   <string name="ApplicationPreferencesActivity_disable">Désactiver</string>
   <string name="ApplicationPreferencesActivity_unregistering">Annulation de l’inscription</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Annulation de l’inscription aux messages et appels Signal…</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Désactiver les messages et appels Signal ?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Désactiver les messages et appels Signal en vous désinscrivant du serveur. Vous devrez réinscrire votre numéro de téléphone pour les utiliser de nouveau à l’avenir.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Annulation de l’inscription aux messages et appels Signal…</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Désactiver les messages et appels Signal ?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Désactiver les messages et appels Signal en vous désinscrivant du serveur. Vous devrez réinscrire votre numéro de téléphone pour les utiliser de nouveau à l’avenir.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erreur de connexion au serveur.</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Les textos sont activés</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Touchez pour changer votre appli de texto par défaut</string>
@@ -108,12 +108,12 @@
   <string name="CameraXFragment_open_gallery_description">Ouvrir la galerie</string>
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Contacts récents</string>
-  <string name="CameraContacts_signal_contacts">Contacts Signal</string>
-  <string name="CameraContacts_signal_groups">Groupes Signal</string>
+  <string name="CameraContacts_signal_contacts">Contacts Signal</string>
+  <string name="CameraContacts_signal_groups">Groupes Signal</string>
   <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Vous pouvez partager avec un maximum de %d conversations.</string>
-  <string name="CameraContacts_select_signal_recipients">Sélectionner les destinataires Signal</string>
-  <string name="CameraContacts_no_signal_contacts">Aucun contact Signal</string>
-  <string name="CameraContacts_you_can_only_use_the_camera_button">Vous ne pouvez utiliser le bouton Appareil photo que pour envoyer des photos à des contacts Signal.</string>
+  <string name="CameraContacts_select_signal_recipients">Sélectionner les destinataires Signal</string>
+  <string name="CameraContacts_no_signal_contacts">Aucun contact Signal</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Vous ne pouvez utiliser le bouton Appareil photo que pour envoyer des photos à des contacts Signal.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Éprouvez-vous des difficultés à trouver qui vous cherchiez ?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Inviter un contact à se joindre à Signal</string>
   <string name="CameraContacts__menu_search">Chercher</string>
@@ -143,7 +143,7 @@
   <string name="ContactsCursorLoader_username_search">Recherche par nom d’utilisateur</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Message %s</string>
-  <string name="ContactsDatabase_signal_call_s">Appel Signal %s</string>
+  <string name="ContactsDatabase_signal_call_s">Appel Signal %s</string>
   <!--ContactNameEditActivity-->
   <string name="ContactNameEditActivity_given_name">Prénom</string>
   <string name="ContactNameEditActivity_family_name">Nom de famille</string>
@@ -315,7 +315,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Problème de définition du profil</string>
   <string name="CreateProfileActivity_profile_photo">Photo de profil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Configurez votre profil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Les profils Signal sont chiffrés de bout en bout et le service Signal n’a jamais accès à ces renseignements.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Les profils Signal sont chiffrés de bout en bout et le service Signal n’a jamais accès à ces renseignements.</string>
   <string name="CreateProfileActivity_set_avatar_description">Définir un avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Personnalisé utilisé : %s</string>
@@ -360,8 +360,8 @@
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Récupération d’un message…</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Échec de communication Signal permanent.</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal n’a pas réussi à s’inscrire auprès des services Google Play. Les appels et messages Signal ont été désactivés. Veuillez essayer de vous réinscrire dans Paramètres &gt; Avancé.</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Échec permanent de communication de Signal.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal n’a pas réussi à s’inscrire auprès des services Google Play. Les appels et messages Signal ont été désactivés. Veuillez essayer de vous réinscrire dans Paramètres &gt; Avancé.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Erreur de récupération du GIF à pleine résolution</string>
   <!--GiphyFragmentPageAdapter-->
@@ -373,8 +373,8 @@
   <string name="GroupCreateActivity_actionbar_manage_title">Gérer le groupe</string>
   <string name="GroupCreateActivity_group_name_hint">Nom du groupe</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nouveau groupe de message multimédia</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Vous avez sélectionné un contact qui ne prend pas en charge les groupes Signal, donc ce groupe sera un groupe de message multimédia.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Vous n’êtes pas inscrit aux appels et messages Signal et les groupes Signal sont donc désactivés. Veuillez essayer de vous inscrire dans Paramètres &gt; Avancé.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Vous avez sélectionné un contact qui ne prend pas en charge les groupes Signal, donc ce groupe sera un groupe de message multimédia.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Vous n’êtes pas inscrit aux appels et messages Signal et les groupes Signal sont donc désactivés. Veuillez essayer de vous inscrire dans Paramètres &gt; Avancé.</string>
   <string name="GroupCreateActivity_contacts_no_members">Votre groupe doit comprendre au moins une personne.</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Le numéro d’un des membres de votre groupe ne peut pas être lu correctement. Veuillez corriger ou supprimer ce contact et ressayer.</string>
   <string name="GroupCreateActivity_avatar_content_description">Avatar du groupe</string>
@@ -421,7 +421,7 @@
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Il faut au moins deux membres par groupe.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Échec de création du groupe.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Ressayez ultérieurement.</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Vous avez sélectionné un contact qui ne prend pas en charge les groupes Signal, donc ce groupe sera un groupe de message multimédia.</string>
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Vous avez sélectionné un contact qui ne prend pas en charge les groupes Signal, donc ce groupe sera un groupe de message multimédia.</string>
   <string name="AddGroupDetailsFragment__remove">Supprimer</string>
   <string name="AddGroupDetailsFragment__sms_contact">Contact texto</string>
   <!--ManageGroupActivity-->
@@ -548,13 +548,13 @@
   <string name="Megaphones_introducing_reactions">Nous présentons les réactions</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Touchez et maintenez n’importe quel message pour partager rapidement ce que vous ressentez.</string>
   <string name="Megaphones_remind_me_later">Me le rappeler ultérieurement</string>
-  <string name="Megaphones_verify_your_signal_pin">Confirmer votre NIP Signal</string>
+  <string name="Megaphones_verify_your_signal_pin">Confirmer votre NIP Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Nous vous demanderons de temps en temps de confirmer votre NIP afin que vous vous en souveniez.</string>
   <string name="Megaphones_verify_pin">Confirmer le NIP</string>
   <!--NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">Appel Signal en cours</string>
-  <string name="NotificationBarManager__establishing_signal_call">Établissement de l’appel Signal</string>
-  <string name="NotificationBarManager__incoming_signal_call">Appel Signal entrant</string>
+  <string name="NotificationBarManager_signal_call_in_progress">Appel Signal en cours</string>
+  <string name="NotificationBarManager__establishing_signal_call">Établissement de l’appel Signal</string>
+  <string name="NotificationBarManager__incoming_signal_call">Appel Signal entrant</string>
   <string name="NotificationBarManager__deny_call">Refuser l’appel</string>
   <string name="NotificationBarManager__answer_call">Répondre à l’appel</string>
   <string name="NotificationBarManager__end_call">Raccrocher</string>
@@ -711,8 +711,8 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">Le code QR est invalide</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Désolé, trop d’appareils sont déjà reliés. Essayez d’en supprimer</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Désolé, cela n’est pas un code QR valide de liaison d’appareil.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Relier un appareil Signal ?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Il semble que vous tentiez de relier un appareil Signal en utilisant un lecteur tiers. Pour votre protection, veuillez balayer le code de nouveau à partir Signal.</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Relier un appareil Signal ?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Il semble que vous tentiez de relier un appareil Signal en utilisant un lecteur tiers. Pour votre protection, veuillez balayer le code de nouveau à partir Signal.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal a besoin de l’autorisation Appareil photo afin de balayer un code QR, mais elle a été refusée définitivement. Veuillez accéder aux paramètres de l’appli, sélectionner Autorisations et activer Appareil photo.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Impossible de balayer un code QR sans l’autorisation Appareil photo</string>
   <!--ExpirationDialog-->
@@ -751,7 +751,7 @@
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Saisir un NIP numérique</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Créer votre NIP</string>
-  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Vous avez épuisé tous vos essais de NIP, mais vous pouvez encore accéder à votre compte Signal en créant un nouveau NIP. Afin de protéger vos données personnelles et votre sécurité, votre compte sera restauré sans renseignements de profil enregistrés ni préférences.</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Vous avez épuisé tous vos essais de NIP, mais vous pouvez encore accéder à votre compte Signal en créant un nouveau NIP. Afin de protéger vos données personnelles et votre sécurité, votre compte sera restauré sans renseignements de profil enregistrés ni préférences.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Créer un nouveau NIP</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Notez cette appli</string>
@@ -793,8 +793,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Appel en cours…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Appel vocal Signal…</string>
-  <string name="WebRtcCallView__signal_video_call">Appel vidéo Signal…</string>
+  <string name="WebRtcCallView__signal_voice_call">Appel vocal Signal…</string>
+  <string name="WebRtcCallView__signal_video_call">Appel vidéo Signal…</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Sélectionner votre pays</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Vous devez indiquer votre indicatif de pays</string>
@@ -833,7 +833,7 @@
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Activer le blocage de l’inscription ?</string>
   <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Désactiver le blocage de l’inscription ?</string>
-  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Si vous oubliez votre NIP Signal lors d’une nouvelle inscription à Signal, vous ne pourrez pas accéder à votre compte pendant sept jours.</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Si vous oubliez votre NIP Signal lors d’une nouvelle inscription à Signal, vous ne pourrez pas accéder à votre compte pendant sept jours.</string>
   <string name="RegistrationLockV2Dialog_turn_on">Activer</string>
   <string name="RegistrationLockV2Dialog_turn_off">Désactiver</string>
   <!--RevealableMessageView-->
@@ -851,12 +851,12 @@
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Ajouter aux contacts</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Inviter à Signal</string>
-  <string name="SharedContactDetailsActivity_signal_message">Message Signal</string>
-  <string name="SharedContactDetailsActivity_signal_call">Appel Signal</string>
+  <string name="SharedContactDetailsActivity_signal_message">Message Signal</string>
+  <string name="SharedContactDetailsActivity_signal_call">Appel Signal</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">Ajouter aux contacts</string>
   <string name="SharedContactView_invite_to_signal">Inviter à Signal</string>
-  <string name="SharedContactView_message">Message Signal</string>
+  <string name="SharedContactView_message">Message Signal</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Nous vous le rappellerons ultérieurement.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Nous vous le rappellerons demain.</string>
@@ -912,7 +912,7 @@
   <string name="SupportEmailUtil_device_info">Renseignements sur l’appareil :</string>
   <string name="SupportEmailUtil_android_version">Version d’Android :</string>
   <string name="SupportEmailUtil_signal_version">Version de Signal :</string>
-  <string name="SupportEmailUtil_signal_package">Paquet Signal :</string>
+  <string name="SupportEmailUtil_signal_package">Paquet Signal :</string>
   <string name="SupportEmailUtil_locale">Paramètres régionaux :</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Le groupe a été mis à jour</string>
@@ -974,7 +974,7 @@
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Votre contact utilise une version plus récente de Signal dont le format de code QR est incompatible. Veuillez mettre Signal à jour pour comparer.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Le code QR balayé n’est pas un code de confirmation du numéro de sécurité correctement formaté. Veuillez ressayer de le balayer.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Partager le numéro de sécurité par…</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_number">Notre numéro de sécurité Signal :</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Notre numéro de sécurité Signal :</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Vous semblez n’avoir aucune appli vers laquelle partager.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Aucun numéro de sécurité à comparer n’a été trouvé dans le presse-papiers</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal a besoin de l’autorisation Appareil photo afin de balayer un code QR, mais elle a été refusée définitivement. Veuillez accéder aux paramètres de l’appli, sélectionner Autorisations et activer Appareil photo.</string>
@@ -1024,7 +1024,7 @@
   <string name="MessageNotifier_view_once_photo">Photo éphémère</string>
   <string name="MessageNotifier_view_once_video">Vidéo éphémère</string>
   <string name="MessageNotifier_reply">Répondre</string>
-  <string name="MessageNotifier_signal_message">Message Signal</string>
+  <string name="MessageNotifier_signal_message">Message Signal</string>
   <string name="MessageNotifier_unsecured_sms">Texto non sécurisé</string>
   <string name="MessageNotifier_you_may_have_new_messages">Vous pourriez avoir de nouveaux messages</string>
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Ouvrez Signal pour vérifier les notifications récentes.</string>
@@ -1096,7 +1096,7 @@
   <string name="WebRtcCallScreen__answer">Répondre</string>
   <string name="WebRtcCallScreen__answer_without_video">Répondre sans vidéo</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">Téléphone</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Téléphone</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Haut-parleur</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1155,7 +1155,7 @@
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal a besoin d’accéder à vos contacts afin de les afficher.</string>
   <string name="contact_selection_list_fragment__show_contacts">Afficher les contacts</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Message Signal</string>
+  <string name="conversation_activity__type_message_push">Message Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">Texto non sécurisé</string>
   <string name="conversation_activity__type_message_mms_insecure">Message multimédia non sécurisé</string>
   <string name="conversation_activity__from_sim_name">De %1$s</string>
@@ -1329,7 +1329,7 @@
   <string name="recipient_preferences__call_settings">Paramètres des appels</string>
   <string name="recipient_preferences__ringtone">Sonnerie</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Appel Signal</string>
+  <string name="redphone_call_card__signal_call">Appel Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NUMÉRO DE TÉLÉPHONE</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal facilite la communication en utilisant vos numéro de téléphone et carnet d’adresses existants. Les amis et contacts qui savent déjà comment vous joindre par téléphone pourront facilement vous contacter avec Signal.\n\nL’inscription transmet des renseignements de contact au serveur. Ils ne sont pas conservés.</string>
@@ -1376,7 +1376,7 @@
   <string name="AndroidManifest_remove_photo">Supprimer la photo</string>
   <!--Message Requests Megaphone-->
   <string name="MessageRequestsMegaphone__message_requests">Demande de message</string>
-  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Les utilisateurs peuvent désormais choisir d’accepter une nouvelle conversation. Les noms de profile permettent de savoir qui envoie les messages.</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Les utilisateurs peuvent désormais choisir d’accepter une nouvelle conversation. Les noms de profil permettent de savoir qui envoie les messages.</string>
   <string name="MessageRequestsMegaphone__add_profile_name">Ajouter un nom de profil</string>
   <string name="MessageRequestsMegaphone__new_message_requests">Nouveau : Les demandes de message</string>
   <string name="MessageRequestsMegaphone__add_name">Ajouter un nom</string>
@@ -1514,7 +1514,7 @@
   <string name="preferences__system_default">Valeur par défaut du système</string>
   <string name="preferences__default">Valeur par défaut</string>
   <string name="preferences__language">Langue</string>
-  <string name="preferences__signal_messages_and_calls">Appels et messages Signal</string>
+  <string name="preferences__signal_messages_and_calls">Appels et messages Signal</string>
   <string name="preferences__free_private_messages_and_calls">Messages et appels gratuits et confidentiels vers les utilisateurs de Signal</string>
   <string name="preferences__submit_debug_log">Envoyer le journal de débogage</string>
   <string name="preferences__support_wifi_calling">Mode de compatibilité « Appels Wi-Fi »</string>
@@ -1539,7 +1539,7 @@
   <string name="preferences_storage__review_storage">État de la mémoire</string>
   <string name="preferences_advanced__use_system_emoji">Utiliser les émojis du système</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Désactiver la prise en charge des émojis intégrés à Signal</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Relayer tous les appels par le serveur Signal pour éviter de divulguer votre adresse IP à votre contact. L’activation de cette option réduira la qualité des appels.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Relayer tous les appels par le serveur Signal pour éviter de divulguer votre adresse IP à votre contact. L’activation de cette option réduira la qualité des appels.</string>
   <string name="preferences_advanced__always_relay_calls">Toujours relayer les appels</string>
   <string name="preferences_app_protection__app_access">Accès à l’appli</string>
   <string name="preferences_app_protection__communication">Communication</string>
@@ -1569,8 +1569,8 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Appeler</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">Appel Signal</string>
-  <string name="conversation_callable_secure__menu_video">Appel vidéo Signal</string>
+  <string name="conversation_callable_secure__menu_call">Appel Signal</string>
+  <string name="conversation_callable_secure__menu_video">Appel vidéo Signal</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Détails du message</string>
   <string name="conversation_context__menu_copy_text">Copier le texte</string>
@@ -1652,14 +1652,14 @@
   <string name="reminder_header_sms_default_text">Touchez pour faire de Signal votre appli de texto par défaut.</string>
   <string name="reminder_header_sms_import_title">Importer les textos du système</string>
   <string name="reminder_header_sms_import_text">Touchez pour copier les textos de votre téléphone dans la base de données chiffrée de Signal.</string>
-  <string name="reminder_header_push_title">Activer les messages et appels Signal</string>
+  <string name="reminder_header_push_title">Activer les messages et appels Signal</string>
   <string name="reminder_header_push_text">Survoltez votre expérience de communication.</string>
   <string name="reminder_header_invite_title">Inviter à Signal</string>
   <string name="reminder_header_invite_text">Passez votre conversation avec %1$s au niveau supérieur.</string>
   <string name="reminder_header_share_title">Invitez vos amis !</string>
   <string name="reminder_header_share_text">Plus vos amis utilisent Signal, plus ça devient intéressant.</string>
   <string name="reminder_header_service_outage_text">Signal éprouve des difficultés techniques. Nous mettons tout en œuvre pour restaurer le service aussi rapidement que possible.</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">Les dernières fonctions de Signal ne fonctionneront pas sur cette version d’Android. Veuillez mettre cet appareil à niveau afin de recevoir les mises à jour ultérieures de Signal.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">Les dernières fonctions de Signal ne sont pas compatibles avec cette version d’Android. Veuillez mettre cet appareil à niveau afin de recevoir les mises à jour ultérieures de Signal.</string>
   <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Enregistrer</string>
@@ -1678,7 +1678,7 @@
   <string name="Insights__percent"> %</string>
   <string name="Insights__title">Aperçu</string>
   <string name="InsightsDashboardFragment__title">Aperçu</string>
-  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Le protocole Signal a protégé automatiquement %1$d %% de vos messages sortants au cours des %2$d derniers jours. Les conversations entre les utilisateurs de Signal sont toujours chiffrées de bout en bout.</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Le protocole Signal a protégé automatiquement %1$d %% de vos messages sortants au cours des %2$d derniers jours. Les conversations entre les utilisateurs de Signal sont toujours chiffrées de bout en bout.</string>
   <string name="InsightsDashboardFragment__boost_your_signal">Amélioration par Signal</string>
   <string name="InsightsDashboardFragment__not_enough_data">Pas assez de données</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Votre pourcentage d’Aperçu est calculé d’après le nombre de messages sortants qui n’ont ni disparu ni été supprimés au cours des %1$d derniers jours.</string>
@@ -1734,7 +1734,7 @@
   <string name="KbsSplashFragment__update_pin">Mettre le NIP à jour</string>
   <string name="KbsSplashFragment__create_your_pin">Créer votre NIP</string>
   <!--KBS Reminder Dialog-->
-  <string name="KbsReminderDialog__enter_your_signal_pin">Saisissez votre NIP Signal</string>
+  <string name="KbsReminderDialog__enter_your_signal_pin">Saisissez votre NIP Signal</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Pour vous aider à mémoriser votre NIP, nous vous demanderons de le saisir régulièrement. Nous vous le demanderons de moins en moins souvent.</string>
   <string name="KbsReminderDialog__skip">Ignorer</string>
   <string name="KbsReminderDialog__submit">Envoyer</string>
@@ -1803,7 +1803,7 @@
   <string name="Permissions_continue">Poursuivre</string>
   <string name="Permissions_not_now">Pas maintenant</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal a besoin de l’autorisation Contacts afin d’effectuer une recherche dans vos contacts, mais elle a été refusée définitivement. Veuillez accéder aux paramètres de l’appli, sélectionner Autorisations et activer Contacts.</string>
-  <string name="conversation_activity__enable_signal_messages">ACTIVER LES MESSAGES SIGNAL</string>
+  <string name="conversation_activity__enable_signal_messages">ACTIVER LES MESSAGES SIGNAL</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Migration de la base de données de Signal</string>
   <string name="PushDecryptJob_new_locked_message">Nouveau message verrouillé</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Déverrouiller pour visualiser les messages en attente</string>
@@ -1854,11 +1854,11 @@
   <string name="preferences_app_protection__screen_lock">Verrouillage de l’écran</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Verrouiller l’accès à Signal avec le verrouillage de l’écran d’Android ou une empreinte</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Délai d’inactivité avant verrouillage de l’écran</string>
-  <string name="preferences_app_protection__signal_pin">NIP Signal</string>
+  <string name="preferences_app_protection__signal_pin">NIP Signal</string>
   <string name="preferences_app_protection__create_a_pin">Créer un NIP</string>
   <string name="preferences_app_protection__change_your_pin">Changer votre NIP</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Les NIP font en sorte que les renseignements sont enregistrés chiffrés dans Signal afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés quand vous réinstallerez Signal.</string>
-  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Pour une sécurité accrue, exigez votre NIP Signal pour réinscrire votre numéro de téléphone auprès de Signal.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Pour une sécurité accrue, exigez votre NIP Signal pour réinscrire votre numéro de téléphone auprès de Signal.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Échec d’activation du blocage de l’inscription.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Échec de désactivation du blocage de l’inscription.</string>
   <string name="AppProtectionPreferenceFragment_none">Aucun</string>

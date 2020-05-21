@@ -1068,7 +1068,7 @@
   <string name="WebRtcCallScreen__answer">接聽</string>
   <string name="WebRtcCallScreen__answer_without_video">已無視訊的方式回應</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">電話號碼</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">電話號碼</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">揚聲器</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">藍牙</string>
   <!--WebRtcCallControls-->

@@ -928,7 +928,7 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">Amsa</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">Lambar waya</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Lambar waya</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Sipika</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->

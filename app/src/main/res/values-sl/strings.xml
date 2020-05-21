@@ -726,7 +726,7 @@
   <string name="MessageRequestBottomView_delete">Izbriši</string>
   <string name="MessageRequestBottomView_block">Blokiraj</string>
   <string name="MessageRequestBottomView_unblock">Odblokiraj</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Želite omogočiti uporabniku %1$s da vam pošilja sporočila? Dokler ne date dovoljenja, oseba ne bo vedela, da ste videli njeno sporočilo.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Želite omogočiti uporabniku %1$s da vam pošilja sporočila? Dokler ne privolite, oseba ne bo vedela, da ste videli njena sporočila.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Se želite pridružiti skupini %1$s? Dokler se ne pridružite, skupina ne bo vedela, da ste videli njena sporočila.</string>
   <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Povabljeni ste bili, da se pridružite skupini %1$s. Ali dovolite članom te skupine, da vam pošiljajo sporočila?</string>
   <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Odblokiraj uporabnika %1$s in omogoči medsebojna sporočila in klice.</string>
@@ -797,7 +797,7 @@
   <string name="PinRestoreEntryFragment_incorrect_pin">Napačen PIN</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">Želite preskočiti vnos kode PIN?</string>
   <string name="PinRestoreEntryFragment_need_help">Potrebujete pomoč?</string>
-  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Vaš PIN je %1$d+ številčna koda, ki je lahko sestavljena zgolj iz številk ali iz alfanumeričnih znakov.\n\nČe se ne morete spomniti svoje kode PIN, lahko ustvarite novo. Z njo se lahko ponovno registrirate in uporabljate svoj račun, izgubili pa boste nekatere nastavitve, kot so npr. informacije iz vašega profila.</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Vaš PIN je koda %1$d+ znakov, ki je lahko sestavljena zgolj iz številk ali iz kombinacije črk in številk.\n\nČe se ne morete spomniti svoje kode PIN, lahko ustvarite novo. Z njo se lahko ponovno registrirate in uporabljate svoj račun, zgubili pa boste nekatere shranjene nastavitve, kot npr. podatke iz vašega profila.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Če se ne morete spomniti svoje kode PIN, lahko ustvarite novo. Z njo se lahko ponovno registrirate in uporabljate svoj račun, izgubili pa boste nekatere nastavitve, kot so npr. informacije iz vašega profila.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Ustvari nov PIN</string>
   <string name="PinRestoreEntryFragment_contact_support">Stopi v stik s pomočjo uporabnikom</string>
@@ -814,7 +814,7 @@
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Vnesite številčni PIN</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Ustvarite svoj PIN</string>
-  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Ostali ste brez poskusov za vnos kode PIN. Za dostop do svojega računa SIgnal morate ustvariti nov PIN. Zaradi vaše varnosti in zasebnosti bo vaš račun obnovljen brez informacij shranjenih na vašem profilu.</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Ostali ste brez poskusov za vnos kode PIN. Za dostop do računa SIgnal morate ustvariti nov PIN. Zaradi varnosti in zasebnosti bo vaš račun obnovljen brez informacij shranjenih na vašem profilu.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Ustvari nov PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Oceni to aplikacijo</string>
@@ -854,7 +854,7 @@
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Tapnite tukaj za vklop videa</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Za klic uporabnika %1$s, potrebuje Signal dostop do kamere</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
-  <string name="WebRtcCallActivity__calling">Kličem …</string>
+  <string name="WebRtcCallActivity__calling">Klicanje …</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Zvočni klic Signal …</string>
   <string name="WebRtcCallView__signal_video_call">Video klic Signal …</string>
@@ -896,8 +896,8 @@
   <string name="RegistrationActivity_country_code_description">Koda države</string>
   <string name="RegistrationActivity_call">Kliči</string>
   <!--RegistrationLockV2Dialog-->
-  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Želite vklopiti kodo za zaklep registracije?</string>
-  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Želite izklopiti kodo za zaklep registracije?</string>
+  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Želite vklopiti zaklep registracije?</string>
+  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Želite izklopiti zaklep registracije?</string>
   <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Če boste pozabili svoj Signal PIN, ko se boste ponovno registrirali v Signal, se bo vaš račun za 7 dni zaklenil.</string>
   <string name="RegistrationLockV2Dialog_turn_on">Vklopi</string>
   <string name="RegistrationLockV2Dialog_turn_off">Izklopi</string>
@@ -1164,7 +1164,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="WebRtcCallScreen__answer">Sprejmi</string>
   <string name="WebRtcCallScreen__answer_without_video">Odgovori brez videa</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__phone">Telefon</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefon</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Zvočnik</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1623,7 +1623,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_storage__review_storage">Pregled porabe pomnilnika</string>
   <string name="preferences_advanced__use_system_emoji">Sistemski znaki emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Izklop privzetih znakov emoji aplikacije Signal</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Vsi klici bodo posredovani preko strežnika Signal. S tem boste klicani strani onemogočili, da bi izvedela vaš naslov IP. Kvaliteta klica bo zaradi tega slabša.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Vsi klici bodo posredovani preko strežnika Signal. S tem boste klicani strani onemogočili, da bi odkrila vaš naslov IP. Kvaliteta klica bo zaradi tega slabša.</string>
   <string name="preferences_advanced__always_relay_calls">Vedno posreduj klice</string>
   <string name="preferences_app_protection__app_access">Dostop</string>
   <string name="preferences_app_protection__communication">Komunikacija</string>
@@ -1881,7 +1881,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">Uporabnik %1$s bo prejel vašo prošnjo. Ko bo sprejeta, ga lahko pokličete.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Ustvari PIN</string>
-  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Koda PIN zavaruje informacije shranjene na Signalu z uporabo enkripcije.</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN zavaruje informacije shranjene na Signalu z uporabo šifriranja.</string>
   <string name="KbsMegaphone__create_pin">Ustvari PIN</string>
   <string name="KbsMegaphone__introducing_pins">Predstavljamo vam PIN kode!</string>
   <string name="KbsMegaphone__update_pin">Posodobite PIN</string>
@@ -1959,8 +1959,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_app_protection__change_your_pin">Spremenite svoj PIN</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Koda PIN zavaruje informacije shranjene na Signalu z uporabo enkripcije, tako da so dostopne le vam. Vaš profil, nastavitve in stiki bodo obnovljeni ob ponovni namestitvi aplikacije Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Izboljšajte varnost svojega uporabniškega računa z zahtevo po vnosu Signal PIN kode pri registraciji telefona s strežniki Signal.</string>
-  <string name="preferences_app_protection__failed_to_enable_registration_lock">Neuspešen vklop kode za zaklep registracije.</string>
-  <string name="preferences_app_protection__failed_to_disable_registration_lock">Neuspešen izklop kode za zaklep registracije.</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">Neuspešen vklop zaklepa registracije.</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">Neuspešen izklop zaklepa registracije.</string>
   <string name="AppProtectionPreferenceFragment_none">Brez</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Koda PIN za prijavo v omrežje ni enaka potrditveni kodi SMS, ki ste jo prejeli ravnokar. Prosimo, vnesite PIN, ki ste ga predhodno določili za zaklepanje.</string>
   <string name="registration_activity__registration_lock_pin">PIN za prijavo v omrežje</string>
