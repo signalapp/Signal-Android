@@ -28,8 +28,6 @@ import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
 
 object MultiDeviceProtocol {
 
-    // TODO: Closed groups
-
     enum class MessageType { Text, Media }
 
     @JvmStatic

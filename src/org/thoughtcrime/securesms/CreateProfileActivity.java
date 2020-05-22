@@ -406,7 +406,7 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
             String newProfileKey = ProfileKeyUtil.generateEncodedProfileKey(context);
             byte[] profileKey = ProfileKeyUtil.getProfileKeyFromEncodedString(newProfileKey);
 
-            //Loki - Upload the profile photo here
+            // Loki - Upload the profile photo here
             if (avatar != null) {
               Log.d("Loki", "Start uploading profile photo");
               LokiFileServerAPI storageAPI = LokiFileServerAPI.shared;
