@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.loki.protocol
 
 import android.content.Context
+import nl.komponents.kovenant.Promise
+import nl.komponents.kovenant.functional.map
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore
 import org.thoughtcrime.securesms.database.Address
@@ -14,6 +16,7 @@ import org.whispersystems.libsignal.SignalProtocolAddress
 import org.whispersystems.signalservice.api.messages.SignalServiceContent
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
+import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI
 import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
 import java.util.*
 
@@ -38,27 +41,29 @@ object ClosedGroupsProtocol {
     }
 
     @JvmStatic
-    fun getDestinations(groupID: String, context: Context): List<Address> {
-        if (GroupUtil.isRSSFeed(groupID)) { return listOf() }
+    fun getDestinations(groupID: String, context: Context): Promise<List<Address>, Exception> {
+        if (GroupUtil.isRSSFeed(groupID)) { return Promise.of(listOf()) }
         if (GroupUtil.isOpenGroup(groupID)) {
             val result = mutableListOf<Address>()
             result.add(Address.fromSerialized(groupID))
-            return result
+            return Promise.of(result)
         } else {
             // A closed group's members should never include slave devices
             val members = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupID, false)
-            val destinations = members.flatMap { member ->
-                MultiDeviceProtocol.shared.getAllLinkedDevices(member.address.serialize()).map { Address.fromSerialized(it) }
-            }.toMutableSet()
-            val userMasterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
-            if (userMasterPublicKey != null && destinations.contains(Address.fromSerialized(userMasterPublicKey))) {
-                destinations.remove(Address.fromSerialized(userMasterPublicKey))
+            return LokiFileServerAPI.shared.getDeviceLinks(members.map { it.address.serialize() }.toSet()).map {
+                val result = members.flatMap { member ->
+                    MultiDeviceProtocol.shared.getAllLinkedDevices(member.address.serialize()).map { Address.fromSerialized(it) }
+                }.toMutableSet()
+                val userMasterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
+                if (userMasterPublicKey != null && result.contains(Address.fromSerialized(userMasterPublicKey))) {
+                    result.remove(Address.fromSerialized(userMasterPublicKey))
+                }
+                val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+                if (userPublicKey != null && result.contains(Address.fromSerialized(userPublicKey))) {
+                    result.remove(Address.fromSerialized(userPublicKey))
+                }
+                result.toList()
             }
-            val userPublicKey = TextSecurePreferences.getLocalNumber(context)
-            if (userPublicKey != null && destinations.contains(Address.fromSerialized(userPublicKey))) {
-                destinations.remove(Address.fromSerialized(userPublicKey))
-            }
-            return destinations.toList()
         }
     }
 

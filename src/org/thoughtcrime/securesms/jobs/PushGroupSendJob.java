@@ -154,7 +154,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
       if      (filterAddress != null)              targets = Collections.singletonList(Address.fromSerialized(filterAddress));
       else if (!existingNetworkFailures.isEmpty()) targets = Stream.of(existingNetworkFailures).map(NetworkFailure::getAddress).toList();
-      else                                         targets = getGroupMessageRecipients(message.getRecipient().getAddress().toGroupString(), messageId);
+      else                                         targets = ClosedGroupsProtocol.getDestinations(message.getRecipient().getAddress().toGroupString(), context).get();
 
       List<SendMessageResult>   results                  = deliver(message, targets);
       List<NetworkFailure>      networkFailures          = Stream.of(results).filter(SendMessageResult::isNetworkFailure).map(result -> new NetworkFailure(Address.fromSerialized(result.getAddress().getNumber()))).toList();
@@ -205,7 +205,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
         database.markAsSentFailed(messageId);
         notifyMediaMessageDeliveryFailed(context, messageId);
       }
-    } catch (UntrustedIdentityException | UndeliverableMessageException e) {
+    } catch (Exception e) {
       warn(TAG, e);
       database.markAsSentFailed(messageId);
       notifyMediaMessageDeliveryFailed(context, messageId);
@@ -231,7 +231,9 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     Address address = message.getRecipient().getAddress();
     if (address.isRSSFeed()) {
       List<SendMessageResult> results = new ArrayList<>();
-      for (Address destination : destinations) results.add(SendMessageResult.networkFailure(new SignalServiceAddress(destination.toPhoneString())));
+      for (Address destination : destinations) {
+        results.add(SendMessageResult.networkFailure(new SignalServiceAddress(destination.toPhoneString())));
+      }
       return results;
     }
 
@@ -263,7 +265,6 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       SignalServiceDataMessage  groupDataMessage = SignalServiceDataMessage.newBuilder()
                                                                            .withTimestamp(message.getSentTimeMillis())
                                                                            .withExpiration(message.getRecipient().getExpireMessages())
-                                                                           .withBody(message.getBody())
                                                                            .asGroupMessage(group)
                                                                            .build();
 
@@ -286,10 +287,6 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
       return messageSender.sendMessage(messageId, addresses, unidentifiedAccess, groupMessage);
     }
-  }
-
-  private @NonNull List<Address> getGroupMessageRecipients(String groupId, long messageId) {
-    return ClosedGroupsProtocol.getDestinations(groupId, context);
   }
 
   public static class Factory implements Job.Factory<PushGroupSendJob> {
