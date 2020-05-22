@@ -1500,7 +1500,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         boolean isLeaveMessage   = message.getGroupInfo().isPresent() && message.getGroupInfo().get().getType() == SignalServiceGroup.Type.QUIT;
 
         boolean shouldIgnoreContentMessage = ClosedGroupsProtocol.shouldIgnoreContentMessage(context, conversation, groupId.orNull(), content);
-        return (isContentMessage && !isGroupActive) || (sender.isBlocked() && !isLeaveMessage) || (isContentMessage && !shouldIgnoreContentMessage);
+        return (isContentMessage && !isGroupActive) || (sender.isBlocked() && !isLeaveMessage) || (isContentMessage && shouldIgnoreContentMessage);
       } else {
         return sender.isBlocked();
       }
