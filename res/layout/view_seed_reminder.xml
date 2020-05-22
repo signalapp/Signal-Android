@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/cell_background"
@@ -39,11 +40,12 @@
 
             <TextView
                 android:id="@+id/subtitleTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="224dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:textColor="@color/text"
                 android:textSize="@dimen/very_small_font_size"
+                android:lines="2"
                 android:alpha="0.6"
                 android:text="Secure your account by saving your recovery phrase" />
 
@@ -52,14 +54,15 @@
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:layout_marginLeft="4dp" />
 
         <Button
             style="@style/MediumProminentOutlineButton"
             android:id="@+id/button"
             android:layout_width="wrap_content"
-            android:layout_height="27dp"
-            android:layout_marginLeft="@dimen/small_spacing"
+            android:layout_height="28dp"
+            android:layout_marginLeft="4dp"
             android:textStyle="normal"
             android:text="Continue" />
 

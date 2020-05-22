@@ -13,7 +13,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
+import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.whispersystems.libsignal.util.guava.Preconditions;
 

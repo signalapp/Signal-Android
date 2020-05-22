@@ -36,18 +36,18 @@ import java.util.Set;
 
 public class GroupManager {
 
-  public static long getPublicChatThreadId(String id, @NonNull  Context context) {
-    final String groupId = GroupUtil.getEncodedPublicChatId(id.getBytes());
-    return getThreadIdFromGroupId(groupId, context);
+  public static long getOpenGroupThreadID(String id, @NonNull  Context context) {
+    final String groupID = GroupUtil.getEncodedOpenGroupId(id.getBytes());
+    return getThreadIDFromGroupID(groupID, context);
   }
 
-  public static long getRSSFeedThreadId(String id, @NonNull  Context context) {
-    final String groupId = GroupUtil.getEncodedRSSFeedId(id.getBytes());
-    return getThreadIdFromGroupId(groupId, context);
+  public static long getRSSFeedThreadID(String id, @NonNull  Context context) {
+    final String groupID = GroupUtil.getEncodedRSSFeedId(id.getBytes());
+    return getThreadIDFromGroupID(groupID, context);
   }
 
-  public static long getThreadIdFromGroupId(String groupId, @NonNull  Context context) {
-    final Recipient groupRecipient  = Recipient.from(context, Address.fromSerialized(groupId), false);
+  public static long getThreadIDFromGroupID(String groupID, @NonNull  Context context) {
+    final Recipient groupRecipient = Recipient.from(context, Address.fromSerialized(groupID), false);
     return DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(groupRecipient);
   }
 
@@ -78,10 +78,10 @@ public class GroupManager {
     final Set<Address>  memberAddresses = getMemberAddresses(members);
     final Set<Address>  adminAddresses  = getMemberAddresses(admins);
 
-    String masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
-    String ourNumber = masterHexEncodedPublicKey != null ? masterHexEncodedPublicKey : TextSecurePreferences.getLocalNumber(context);
+    String masterPublicKeyOrNull = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+    String masterPublicKey = masterPublicKeyOrNull != null ? masterPublicKeyOrNull : TextSecurePreferences.getLocalNumber(context);
 
-    memberAddresses.add(Address.fromSerialized(ourNumber));
+    memberAddresses.add(Address.fromSerialized(masterPublicKey));
     groupDatabase.create(groupId, name, new LinkedList<>(memberAddresses), null, null, new LinkedList<>(adminAddresses));
 
     if (!mms) {
@@ -94,28 +94,28 @@ public class GroupManager {
     }
   }
 
-  public static @NonNull GroupActionResult createPublicChatGroup(@NonNull  String         id,
-                                                                 @NonNull  Context        context,
-                                                                 @Nullable Bitmap         avatar,
-                                                                 @Nullable String         name)
+  public static @NonNull GroupActionResult createOpenGroup(@NonNull  String  id,
+                                                           @NonNull  Context context,
+                                                           @Nullable Bitmap  avatar,
+                                                           @Nullable String  name)
   {
-    final String groupId = GroupUtil.getEncodedPublicChatId(id.getBytes());
-    return createLokiGroup(groupId, context, avatar, name);
+    final String groupID = GroupUtil.getEncodedOpenGroupId(id.getBytes());
+    return createLokiGroup(groupID, context, avatar, name);
   }
 
-  public static @NonNull GroupActionResult createRSSFeedGroup(@NonNull  String         id,
-                                                              @NonNull  Context        context,
-                                                              @Nullable Bitmap         avatar,
-                                                              @Nullable String         name)
+  public static @NonNull GroupActionResult createRSSFeed(@NonNull  String  id,
+                                                         @NonNull  Context context,
+                                                         @Nullable Bitmap  avatar,
+                                                         @Nullable String  name)
   {
-    final String groupId = GroupUtil.getEncodedRSSFeedId(id.getBytes());
-    return createLokiGroup(groupId, context, avatar, name);
+    final String groupID = GroupUtil.getEncodedRSSFeedId(id.getBytes());
+    return createLokiGroup(groupID, context, avatar, name);
   }
 
-  private static @NonNull GroupActionResult createLokiGroup(@NonNull  String         groupId,
-                                                            @NonNull  Context        context,
-                                                            @Nullable Bitmap         avatar,
-                                                            @Nullable String         name)
+  private static @NonNull GroupActionResult createLokiGroup(@NonNull  String  groupId,
+                                                            @NonNull  Context context,
+                                                            @Nullable Bitmap  avatar,
+                                                            @Nullable String  name)
   {
     final byte[]        avatarBytes     = BitmapUtil.toByteArray(avatar);
     final GroupDatabase groupDatabase   = DatabaseFactory.getGroupDatabase(context);
@@ -127,8 +127,8 @@ public class GroupManager {
 
     groupDatabase.updateAvatar(groupId, avatarBytes);
 
-    long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
-    return new GroupActionResult(groupRecipient, threadId);
+    long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
+    return new GroupActionResult(groupRecipient, threadID);
   }
 
   public static GroupActionResult updateGroup(@NonNull  Context        context,

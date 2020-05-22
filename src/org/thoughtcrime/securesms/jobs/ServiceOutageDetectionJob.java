@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.jobs;
 import android.support.annotation.NonNull;
 
 import org.greenrobot.eventbus.EventBus;
-import network.loki.messenger.BuildConfig;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -14,6 +13,8 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+
+import network.loki.messenger.BuildConfig;
 
 public class ServiceOutageDetectionJob extends BaseJob {
 
@@ -29,7 +30,7 @@ public class ServiceOutageDetectionJob extends BaseJob {
     this(new Job.Parameters.Builder()
                            .setQueue("ServiceOutageDetectionJob")
                            .addConstraint(NetworkConstraint.KEY)
-                           .setMaxAttempts(5)
+                           .setMaxAttempts(3)
                            .setMaxInstances(1)
                            .build());
   }

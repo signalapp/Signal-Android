@@ -27,15 +27,16 @@ public class WelcomeActivity extends BaseActionBarActivity {
   @Override
   protected void onResume() {
     super.onResume();
-    if (TextSecurePreferences.databaseResetFromUnpair(this)) {
+    if (TextSecurePreferences.getWasUnlinked(this)) {
       AlertDialog.Builder builder = new AlertDialog.Builder(this);
       builder.setTitle(R.string.dialog_device_unlink_title);
       builder.setMessage(R.string.dialog_device_unlink_message);
       builder.setPositiveButton(R.string.ok, null);
       builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+
         @Override
         public void onDismiss(DialogInterface dialog) {
-          TextSecurePreferences.setDatabaseResetFromUnpair(getBaseContext(), false);
+          TextSecurePreferences.setWasUnlinked(getBaseContext(), false);
         }
       });
       builder.show();
@@ -57,8 +58,6 @@ public class WelcomeActivity extends BaseActionBarActivity {
         .ifNecessary()
         .withRationaleDialog(getString(R.string.activity_landing_permission_dialog_message), R.drawable.ic_folder_white_48dp)
         .onAnyResult(() -> {
-          // TextSecurePreferences.setHasSeenWelcomeScreen(WelcomeActivity.this, true);
-
           Intent nextIntent = getIntent().getParcelableExtra("next_intent");
 
           if (nextIntent == null) {

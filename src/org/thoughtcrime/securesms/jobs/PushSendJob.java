@@ -9,8 +9,6 @@ import android.text.TextUtils;
 import com.annimon.stream.Stream;
 
 import org.greenrobot.eventbus.EventBus;
-import org.signal.libsignal.metadata.certificate.InvalidCertificateException;
-import org.signal.libsignal.metadata.certificate.SenderCertificate;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.TextSecureExpiredException;
 import org.thoughtcrime.securesms.attachments.Attachment;
@@ -68,7 +66,7 @@ public abstract class PushSendJob extends SendJob {
                          .setQueue(destination.serialize())
                          .addConstraint(NetworkConstraint.KEY)
                          .setLifespan(TimeUnit.DAYS.toMillis(1))
-                         .setMaxAttempts(3)
+                         .setMaxAttempts(1)
                          .build();
   }
 
@@ -284,13 +282,13 @@ public abstract class PushSendJob extends SendJob {
   }
 
   protected SignalServiceSyncMessage buildSelfSendSyncMessage(@NonNull Context context, @NonNull SignalServiceDataMessage message, Optional<UnidentifiedAccessPair> syncAccess) {
-    String                primary     = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
-    String                localNumber = primary != null ? primary : TextSecurePreferences.getLocalNumber(context);
-    SentTranscriptMessage transcript  = new SentTranscriptMessage(localNumber,
-                                                                  message.getTimestamp(),
-                                                                  message,
-                                                                  message.getExpiresInSeconds(),
-                                                                  Collections.singletonMap(localNumber, syncAccess.isPresent()));
+    String                masterPublicKeyOrNull = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+    String                masterPublicKey       = masterPublicKeyOrNull != null ? masterPublicKeyOrNull : TextSecurePreferences.getLocalNumber(context);
+    SentTranscriptMessage transcript            = new SentTranscriptMessage(masterPublicKey,
+                                                                            message.getTimestamp(),
+                                                                            message,
+                                                                            message.getExpiresInSeconds(),
+                                                                            Collections.singletonMap(masterPublicKey, syncAccess.isPresent()));
     return SignalServiceSyncMessage.forSentTranscript(transcript);
   }
 

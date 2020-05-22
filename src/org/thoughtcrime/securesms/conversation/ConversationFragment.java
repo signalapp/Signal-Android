@@ -79,7 +79,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.redesign.views.FriendRequestViewDelegate;
+import org.thoughtcrime.securesms.loki.views.FriendRequestViewDelegate;
 import org.thoughtcrime.securesms.longmessage.LongMessageActivity;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -101,8 +101,8 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.loki.api.publicchats.LokiPublicChat;
-import org.whispersystems.signalservice.loki.api.publicchats.LokiPublicChatAPI;
+import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChat;
+import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChatAPI;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -375,9 +375,9 @@ public class ConversationFragment extends Fragment
     }
 
     if (messageRecords.size() > 1) {
-      // menu.findItem(R.id.menu_context_forward).setVisible(false);
+//      menu.findItem(R.id.menu_context_forward).setVisible(false);
       menu.findItem(R.id.menu_context_reply).setVisible(false);
-      // menu.findItem(R.id.menu_context_details).setVisible(false);
+//      menu.findItem(R.id.menu_context_details).setVisible(false);
       menu.findItem(R.id.menu_context_save_attachment).setVisible(false);
       menu.findItem(R.id.menu_context_resend).setVisible(false);
     } else {
@@ -726,7 +726,7 @@ public class ConversationFragment extends Fragment
     }
 
     if (!loader.hasSent() && !recipient.isSystemContact() && !recipient.isGroupRecipient() && recipient.getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
-      // adapter.setHeaderView(unknownSenderView);
+//      adapter.setHeaderView(unknownSenderView);
     } else {
       clearHeaderIfNotTyping(adapter);
     }

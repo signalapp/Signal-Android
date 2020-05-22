@@ -105,11 +105,11 @@ public class Address implements Parcelable, Comparable<Address> {
 
   public boolean isGroup() { return GroupUtil.isEncodedGroup(address); }
 
-  public boolean isSignalGroup() { return GroupUtil.isSignalGroup(address); }
+  public boolean isClosedGroup() { return GroupUtil.isClosedGroup(address); }
 
-  public boolean isPublicChat() { return GroupUtil.isPublicChat(address); }
+  public boolean isOpenGroup() { return GroupUtil.isOpenGroup(address); }
 
-  public boolean isRSSFeed() { return GroupUtil.isRssFeed(address); }
+  public boolean isRSSFeed() { return GroupUtil.isRSSFeed(address); }
 
   public boolean isMmsGroup() { return GroupUtil.isMmsGroup(address); }
 
@@ -127,7 +127,7 @@ public class Address implements Parcelable, Comparable<Address> {
   }
 
   public @NonNull String toPhoneString() {
-    if (!isPhone() && !isPublicChat()) {
+    if (!isPhone() && !isOpenGroup()) {
       if (isEmail()) throw new AssertionError("Not e164, is email");
       if (isGroup()) throw new AssertionError("Not e164, is group");
       throw new AssertionError("Not e164, unknown");

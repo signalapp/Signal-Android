@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/very_large_spacing"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="4dp"
         android:layout_marginRight="@dimen/very_large_spacing"
         android:textSize="@dimen/small_font_size"
         android:textColor="@color/text"
@@ -37,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/very_large_spacing"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="@dimen/very_large_spacing"
         android:hint="Enter a display name" />
 

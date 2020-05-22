@@ -105,16 +105,16 @@ public class ConversationUpdateItem extends LinearLayout
 
     this.sender.addListener(this);
 
-    if      (messageRecord.isGroupAction())           setGroupRecord(messageRecord);
-    else if (messageRecord.isCallLog())               setCallRecord(messageRecord);
-    else if (messageRecord.isJoined())                setJoinedRecord(messageRecord);
-    else if (messageRecord.isExpirationTimerUpdate()) setTimerRecord(messageRecord);
-    else if (messageRecord.isEndSession())            setEndSessionRecord(messageRecord);
-    else if (messageRecord.isIdentityUpdate())        setIdentityRecord(messageRecord);
+    if      (messageRecord.isGroupAction())            setGroupRecord(messageRecord);
+    else if (messageRecord.isCallLog())                setCallRecord(messageRecord);
+    else if (messageRecord.isJoined())                 setJoinedRecord(messageRecord);
+    else if (messageRecord.isExpirationTimerUpdate())  setTimerRecord(messageRecord);
+    else if (messageRecord.isEndSession())             setEndSessionRecord(messageRecord);
+    else if (messageRecord.isIdentityUpdate())         setIdentityRecord(messageRecord);
     else if (messageRecord.isIdentityVerified() ||
-             messageRecord.isIdentityDefault())       setIdentityVerifyUpdate(messageRecord);
+             messageRecord.isIdentityDefault())        setIdentityVerifyUpdate(messageRecord);
     else if (messageRecord.isLokiSessionRestoreSent()) setTextMessageRecord(messageRecord);
-    else                                              throw new AssertionError("Neither group nor log nor joined.");
+    else                                               throw new AssertionError("Neither group nor log nor joined.");
 
     if (batchSelected.contains(messageRecord)) setSelected(true);
     else                                       setSelected(false);

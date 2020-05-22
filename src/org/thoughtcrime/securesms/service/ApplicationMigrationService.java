@@ -18,7 +18,7 @@ import android.support.v4.app.NotificationCompat;
 
 import org.thoughtcrime.securesms.database.SmsMigrator;
 import org.thoughtcrime.securesms.database.SmsMigrator.ProgressDescription;
-import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
+import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 
 import java.lang.ref.WeakReference;

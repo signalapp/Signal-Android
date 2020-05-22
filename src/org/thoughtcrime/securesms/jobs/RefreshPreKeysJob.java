@@ -2,16 +2,11 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.support.annotation.NonNull;
 
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.crypto.PreKeyUtil;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.IdentityKeyPair;
+import org.thoughtcrime.securesms.loki.protocol.SessionManagementProtocol;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
@@ -34,7 +29,7 @@ public class RefreshPreKeysJob extends BaseJob implements InjectableType {
     this(new Job.Parameters.Builder()
                            .setQueue("RefreshPreKeysJob")
                            .addConstraint(NetworkConstraint.KEY)
-                           .setMaxAttempts(5)
+                           .setMaxAttempts(3)
                            .build());
   }
 
@@ -54,15 +49,7 @@ public class RefreshPreKeysJob extends BaseJob implements InjectableType {
 
   @Override
   public void onRun() throws IOException {
-    if (TextSecurePreferences.isSignedPreKeyRegistered(context)) {
-      Log.d("Loki", "A signed pre key has already been registered.");
-    } else {
-      Log.d("Loki", "Registering a new signed pre key.");
-      IdentityKeyPair identityKey = IdentityKeyUtil.getIdentityKeyPair(context);
-      PreKeyUtil.generateSignedPreKey(context, identityKey, true);
-      TextSecurePreferences.setSignedPreKeyRegistered(context, true);
-      ApplicationContext.getInstance(context).getJobManager().add(new CleanPreKeysJob());
-    }
+    SessionManagementProtocol.refreshSignedPreKey(context);
   }
 
   /* Loki - Original code
@@ -77,7 +64,7 @@ public class RefreshPreKeysJob extends BaseJob implements InjectableType {
       return;
     }
 
-    List<PreKeyRecord> preKeyRecords       = PreKeyUtil.generatePreKeys(context);
+    List<PreKeyRecord> preKeyRecords       = PreKeyUtil.generatePreKeyRecords(context);
     IdentityKeyPair    identityKey         = IdentityKeyUtil.getIdentityKeyPair(context);
     SignedPreKeyRecord signedPreKeyRecord  = PreKeyUtil.generateSignedPreKey(context, identityKey, false);
 

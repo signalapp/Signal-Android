@@ -3,23 +3,16 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.support.annotation.NonNull;
 
-import org.thoughtcrime.securesms.jobmanager.Data;
-import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.logging.Log;
-
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKey;
-import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
-import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
@@ -89,6 +82,7 @@ public class MultiDeviceVerifiedUpdateJob extends BaseJob implements InjectableT
 
   @Override
   public void onRun() throws IOException, UntrustedIdentityException {
+    /*
     try {
       if (!TextSecurePreferences.isMultiDevice(context)) {
         Log.i(TAG, "Not multi device...");
@@ -104,12 +98,12 @@ public class MultiDeviceVerifiedUpdateJob extends BaseJob implements InjectableT
       VerifiedMessage.VerifiedState verifiedState        = getVerifiedState(verifiedStatus);
       VerifiedMessage               verifiedMessage      = new VerifiedMessage(canonicalDestination.toPhoneString(), new IdentityKey(identityKey, 0), verifiedState, timestamp);
 
-      // TODO: Message ID
-      messageSender.sendMessage(0, SignalServiceSyncMessage.forVerified(verifiedMessage),
+      messageSender.sendMessage(SignalServiceSyncMessage.forVerified(verifiedMessage),
                                 UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.fromSerialized(destination), false)));
     } catch (InvalidKeyException e) {
       throw new IOException(e);
     }
+     */
   }
 
   private VerifiedMessage.VerifiedState getVerifiedState(VerifiedStatus status) {

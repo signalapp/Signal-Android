@@ -75,7 +75,6 @@ public class LinkPreviewView extends FrameLayout {
       container.setBackgroundColor(Color.TRANSPARENT);
       container.setPadding(0, 0, 0, 0);
       divider.setVisibility(VISIBLE);
-      // closeButton.setVisibility(VISIBLE);
 
       closeButton.setOnClickListener(v -> {
         if (closeClickedListener != null) {

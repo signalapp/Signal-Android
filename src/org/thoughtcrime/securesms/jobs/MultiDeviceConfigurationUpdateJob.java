@@ -91,8 +91,7 @@ public class MultiDeviceConfigurationUpdateJob extends BaseJob implements Inject
       return;
     }
 
-    // TODO: Message ID
-    messageSender.sendMessage(0, SignalServiceSyncMessage.forConfiguration(new ConfigurationMessage(Optional.of(readReceiptsEnabled),
+    messageSender.sendMessage(SignalServiceSyncMessage.forConfiguration(new ConfigurationMessage(Optional.of(readReceiptsEnabled),
                                                                                                  Optional.of(unidentifiedDeliveryIndicatorsEnabled),
                                                                                                  Optional.of(typingIndicatorsEnabled),
                                                                                                  Optional.of(linkPreviewsEnabled))),

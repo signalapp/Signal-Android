@@ -21,7 +21,7 @@ import android.widget.Toast;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.loki.redesign.utilities.MnemonicUtilities;
+import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -36,7 +36,7 @@ public class ProfilePreference extends Preference {
   private TextView  profileNameView;
   private TextView  profileNumberView;
   private TextView  profileTagView;
-  private String    ourDeviceWords;
+  private String shortDeviceMnemonic;
 
   @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
   public ProfilePreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
@@ -80,16 +80,16 @@ public class ProfilePreference extends Preference {
     if (profileNumberView == null) return;
 
     Context context = getContext();
-    String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context);
-    String primaryDevicePublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
-    String publicKey = primaryDevicePublicKey != null ? primaryDevicePublicKey : userHexEncodedPublicKey;
-    final Address localAddress = Address.fromSerialized(publicKey);
-    final Recipient recipient = Recipient.from(context, localAddress, false);
-    final String  profileName  = TextSecurePreferences.getProfileName(context);
+    String userPublicKey = TextSecurePreferences.getLocalNumber(context);
+    String userMasterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+    String publicKeyToUse = userMasterPublicKey != null ? userMasterPublicKey : userPublicKey;
+    final Address address = Address.fromSerialized(publicKeyToUse);
+    final Recipient recipient = Recipient.from(context, address, false);
+    final String displayName  = TextSecurePreferences.getProfileName(context);
 
     containerView.setOnLongClickListener(v -> {
       ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-      ClipData clip = ClipData.newPlainText("Public Key", publicKey);
+      ClipData clip = ClipData.newPlainText("Public Key", publicKeyToUse);
       clipboard.setPrimaryClip(clip);
       Toast.makeText(context, R.string.activity_settings_public_key_copied_message, Toast.LENGTH_SHORT).show();
       return true;
@@ -114,20 +114,21 @@ public class ProfilePreference extends Preference {
             .into(avatarView);
 
 
-    if (!TextUtils.isEmpty(profileName)) {
-      profileNameView.setText(profileName);
+    if (!TextUtils.isEmpty(displayName)) {
+      profileNameView.setText(displayName);
     }
 
-    profileNameView.setVisibility(TextUtils.isEmpty(profileName) ? View.GONE : View.VISIBLE);
-    profileNumberView.setText(localAddress.toPhoneString());
+    profileNameView.setVisibility(TextUtils.isEmpty(displayName) ? View.GONE : View.VISIBLE);
+    profileNumberView.setText(address.toPhoneString());
 
-    profileTagView.setVisibility(primaryDevicePublicKey == null ? View.GONE : View.VISIBLE);
-    if (primaryDevicePublicKey != null && ourDeviceWords == null) {
+    profileTagView.setVisibility(userMasterPublicKey == null ? View.GONE : View.VISIBLE);
+
+    if (userMasterPublicKey != null && shortDeviceMnemonic == null) {
       MnemonicCodec codec = new MnemonicCodec(MnemonicUtilities.getLanguageFileDirectory(context));
-      ourDeviceWords = MnemonicUtilities.getFirst3Words(codec, userHexEncodedPublicKey);
+      shortDeviceMnemonic = MnemonicUtilities.getFirst3Words(codec, userPublicKey);
     }
 
     String tag = context.getResources().getString(R.string.activity_settings_linked_device_tag);
-    profileTagView.setText(String.format(tag, ourDeviceWords != null ? ourDeviceWords : "-"));
+    profileTagView.setText(String.format(tag, shortDeviceMnemonic != null ? shortDeviceMnemonic : "-"));
   }
 }

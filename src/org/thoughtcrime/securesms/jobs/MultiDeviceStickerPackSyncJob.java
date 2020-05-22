@@ -2,24 +2,14 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.support.annotation.NonNull;
 
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.StickerDatabase.StickerPackRecordReader;
-import org.thoughtcrime.securesms.database.model.StickerPackRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.Hex;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
-import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
-import org.whispersystems.signalservice.api.messages.multidevice.StickerPackOperationMessage;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
@@ -59,6 +49,8 @@ public class MultiDeviceStickerPackSyncJob extends BaseJob implements Injectable
 
   @Override
   protected void onRun() throws Exception {
+    return;
+    /*
     if (!TextSecurePreferences.isMultiDevice(context)) {
       Log.i(TAG, "Not multi device, aborting...");
       return;
@@ -76,8 +68,9 @@ public class MultiDeviceStickerPackSyncJob extends BaseJob implements Injectable
       }
     }
 
-    messageSender.sendMessage(0, SignalServiceSyncMessage.forStickerPackOperations(operations), // The message ID doesn't matter
+    messageSender.sendMessage(SignalServiceSyncMessage.forStickerPackOperations(operations),
                               UnidentifiedAccessUtil.getAccessForSync(context));
+     */
   }
 
   @Override

@@ -37,11 +37,11 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
     String fcmKey = "pref_key_use_fcm";
     ((SwitchPreferenceCompat)findPreference(fcmKey)).setChecked(TextSecurePreferences.isUsingFCM(getContext()));
     this.findPreference(fcmKey)
-        .setOnPreferenceChangeListener((preference, newValue) -> {
-          TextSecurePreferences.setIsUsingFCM(getContext(), (boolean) newValue);
-          ApplicationContext.getInstance(getContext()).registerForFCMIfNeeded(true);
-          return true;
-        });
+      .setOnPreferenceChangeListener((preference, newValue) -> {
+        TextSecurePreferences.setIsUsingFCM(getContext(), (boolean) newValue);
+        ApplicationContext.getInstance(getContext()).registerForFCMIfNeeded(true);
+        return true;
+      });
 
     Preference ledBlinkPref = this.findPreference(TextSecurePreferences.LED_BLINK_PREF);
 
@@ -127,9 +127,9 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
     }
 
     initializeRingtoneSummary(findPreference(TextSecurePreferences.RINGTONE_PREF));
-    // initializeCallRingtoneSummary(findPreference(TextSecurePreferences.CALL_RINGTONE_PREF));
+//    initializeCallRingtoneSummary(findPreference(TextSecurePreferences.CALL_RINGTONE_PREF));
     initializeMessageVibrateSummary((SwitchPreferenceCompat)findPreference(TextSecurePreferences.VIBRATE_PREF));
-    // initializeCallVibrateSummary((SwitchPreferenceCompat)findPreference(TextSecurePreferences.CALL_VIBRATE_PREF));
+//    initializeCallVibrateSummary((SwitchPreferenceCompat)findPreference(TextSecurePreferences.CALL_VIBRATE_PREF));
   }
 
   @Override
@@ -161,7 +161,7 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
         TextSecurePreferences.setCallNotificationRingtone(getContext(), uri != null ? uri.toString() : Uri.EMPTY.toString());
       }
 
-      // initializeCallRingtoneSummary(findPreference(TextSecurePreferences.CALL_RINGTONE_PREF));
+//      initializeCallRingtoneSummary(findPreference(TextSecurePreferences.CALL_RINGTONE_PREF));
     }
   }
 

@@ -83,8 +83,7 @@ public class SendDeliveryReceiptJob extends BaseJob implements InjectableType {
                                                                                  Collections.singletonList(messageId),
                                                                                  timestamp);
 
-    // TODO: Message ID
-    messageSender.sendReceipt(0, remoteAddress,
+    messageSender.sendReceipt(remoteAddress,
                               UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.fromSerialized(address), false)),
                               receiptMessage);
   }

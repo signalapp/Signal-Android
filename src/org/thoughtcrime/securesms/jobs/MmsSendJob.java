@@ -3,11 +3,6 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
-
-import org.thoughtcrime.securesms.jobmanager.Data;
-import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.logging.Log;
 import android.webkit.MimeTypeMap;
 
 import com.android.mms.dom.smil.parser.SmilXmlSerializer;
@@ -30,6 +25,10 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.CompatMmsConnection;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MmsException;
@@ -64,7 +63,7 @@ public class MmsSendJob extends SendJob {
     this(new Job.Parameters.Builder()
                            .setQueue("mms-operation")
                            .addConstraint(NetworkConstraint.KEY)
-                           .setMaxAttempts(15)
+                           .setMaxAttempts(25)
                            .build(),
          messageId);
   }

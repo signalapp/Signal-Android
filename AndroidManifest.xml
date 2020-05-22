@@ -16,12 +16,6 @@
     <uses-feature
         android:name="android.hardware.bluetooth"
         android:required="false" />
-    <!--
- Loki - Enable again once we have location sharing
-    <uses-feature android:name="android.hardware.location" android:required="false"/>
-    <uses-feature android:name="android.hardware.location.network" android:required="false"/>
-    <uses-feature android:name="android.hardware.location.gps" android:required="false"/>
-    -->
     <uses-feature
         android:name="android.hardware.microphone"
         android:required="false" />
@@ -56,8 +50,6 @@
     <!-- For conversation 'shortcuts' on the desktop -->
     <uses-permission android:name="android.permission.INSTALL_SHORTCUT" />
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
-    <!-- Set image as wallpaper -->
-    <uses-permission android:name="android.permission.SET_WALLPAPER" />
 
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
@@ -96,62 +88,62 @@
 
         <!-- Session -->
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.LandingActivity"
+            android:name="org.thoughtcrime.securesms.loki.activities.LandingActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.RegisterActivity"
+            android:name="org.thoughtcrime.securesms.loki.activities.RegisterActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.RestoreActivity"
+            android:name="org.thoughtcrime.securesms.loki.activities.RestoreActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.LinkDeviceActivity"
+            android:name="org.thoughtcrime.securesms.loki.activities.LinkDeviceActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.DisplayNameActivity"
+            android:name="org.thoughtcrime.securesms.loki.activities.DisplayNameActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.PNModeActivity"
+            android:name="org.thoughtcrime.securesms.loki.activities.PNModeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity"
+            android:name="org.thoughtcrime.securesms.loki.activities.HomeActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTask"
             android:theme="@style/Session.DarkTheme.NoActionBar" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.SettingsActivity"
+            android:name="org.thoughtcrime.securesms.loki.activities.SettingsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Session.DarkTheme.NoActionBar" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.QRCodeActivity"
+            android:name="org.thoughtcrime.securesms.loki.activities.QRCodeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.CreatePrivateChatActivity"
+            android:name="org.thoughtcrime.securesms.loki.activities.CreatePrivateChatActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.CreateClosedGroupActivity"
+            android:name="org.thoughtcrime.securesms.loki.activities.CreateClosedGroupActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.JoinPublicChatActivity"
+            android:name="org.thoughtcrime.securesms.loki.activities.JoinPublicChatActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.SeedActivity"
+            android:name="org.thoughtcrime.securesms.loki.activities.SeedActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.PrivacySettingsActivity"
+            android:name="org.thoughtcrime.securesms.loki.activities.PrivacySettingsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.NotificationSettingsActivity"
+            android:name="org.thoughtcrime.securesms.loki.activities.NotificationSettingsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.ChatSettingsActivity"
+            android:name="org.thoughtcrime.securesms.loki.activities.ChatSettingsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.LinkedDevicesActivity"
+            android:name="org.thoughtcrime.securesms.loki.activities.LinkedDevicesActivity"
             android:screenOrientation="portrait" />
         <!-- Session -->
         <activity
@@ -166,7 +158,7 @@
         <activity
             android:name="org.thoughtcrime.securesms.InviteActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:parentActivityName="org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity"
+            android:parentActivityName="org.thoughtcrime.securesms.loki.activities.HomeActivity"
             android:theme="@style/TextSecure.HighlightTheme"
             android:windowSoftInputMode="stateHidden">
             <meta-data
@@ -225,7 +217,7 @@
         <activity-alias
             android:name=".RoutingActivity"
             android:exported="true"
-            android:targetActivity="org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity">
+            android:targetActivity="org.thoughtcrime.securesms.loki.activities.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -264,7 +256,7 @@
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:label="@string/AndroidManifest_archived_conversations"
             android:launchMode="singleTask"
-            android:parentActivityName="org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity">
+            android:parentActivityName="org.thoughtcrime.securesms.loki.activities.HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="PsiClass:HomeActivity" />
@@ -275,7 +267,7 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/Session.DarkTheme.NoActionBar"
-            android:parentActivityName="org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity"
+            android:parentActivityName="org.thoughtcrime.securesms.loki.activities.HomeActivity"
             android:windowSoftInputMode="stateUnchanged">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -514,7 +506,7 @@
             android:exported="true"
             android:theme="@style/TextSecure.LightNoActionBar" />
         <service
-            android:name="org.thoughtcrime.securesms.service.PushNotificationService"
+            android:name="org.thoughtcrime.securesms.loki.api.PushNotificationService"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -673,12 +665,12 @@
             </intent-filter>
         </receiver>
         <!-- Session -->
-        <receiver android:name="org.thoughtcrime.securesms.loki.redesign.messaging.BackgroundPollWorker">
+        <receiver android:name="org.thoughtcrime.securesms.loki.api.BackgroundPollWorker">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <receiver android:name="org.thoughtcrime.securesms.loki.redesign.messaging.BackgroundOpenGroupPollWorker">
+        <receiver android:name="org.thoughtcrime.securesms.loki.api.BackgroundOpenGroupPollWorker">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>

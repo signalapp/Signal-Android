@@ -8,11 +8,11 @@ import com.annimon.stream.Stream;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.devicelist.Device;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.redesign.utilities.MnemonicUtilities;
+import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities;
 import org.thoughtcrime.securesms.util.AsyncLoader;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.signalservice.loki.api.multidevice.LokiDeviceLinkUtilities;
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec;
+import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol;
 
 import java.io.File;
 import java.util.Collections;
@@ -33,9 +33,9 @@ public class DeviceListLoader extends AsyncLoader<List<Device>> {
   @Override
   public List<Device> loadInBackground() {
     try {
-      String ourPublicKey = TextSecurePreferences.getLocalNumber(getContext());
-      Set<String> secondaryDevicePublicKeys = LokiDeviceLinkUtilities.INSTANCE.getSlaveHexEncodedPublicKeys(ourPublicKey).get();
-      List<Device> devices = Stream.of(secondaryDevicePublicKeys).map(this::mapToDevice).toList();
+      String userPublicKey = TextSecurePreferences.getLocalNumber(getContext());
+      Set<String> slaveDevicePublicKeys = MultiDeviceProtocol.shared.getSlaveDevices(userPublicKey);
+      List<Device> devices = Stream.of(slaveDevicePublicKeys).map(this::mapToDevice).toList();
       Collections.sort(devices, new DeviceComparator());
       return devices;
     } catch (Exception e) {

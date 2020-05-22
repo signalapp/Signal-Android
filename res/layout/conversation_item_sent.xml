@@ -18,7 +18,7 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/large_spacing"
+        android:layout_marginEnd="12dp"
         android:clipToPadding="false"
         android:clipChildren="false">
 
@@ -161,7 +161,7 @@
 
             </LinearLayout>
 
-            <org.thoughtcrime.securesms.loki.redesign.views.FriendRequestView
+            <org.thoughtcrime.securesms.loki.views.FriendRequestView
                 android:id="@+id/friend_request_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

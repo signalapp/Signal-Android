@@ -11,14 +11,12 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import network.loki.messenger.BuildConfig;
 import org.thoughtcrime.securesms.service.UpdateApkReadyListener;
 import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.Hex;
@@ -29,6 +27,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.MessageDigest;
 
+import network.loki.messenger.BuildConfig;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -43,7 +42,7 @@ public class UpdateApkJob extends BaseJob {
     this(new Job.Parameters.Builder()
                            .setQueue("UpdateApkJob")
                            .addConstraint(NetworkConstraint.KEY)
-                           .setMaxAttempts(2)
+                           .setMaxAttempts(3)
                            .build());
   }
 

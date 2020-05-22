@@ -8,9 +8,9 @@ import android.provider.Telephony;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
+
+import network.loki.messenger.R;
 
 public class DefaultSmsReminder extends Reminder {
 
@@ -40,14 +40,5 @@ public class DefaultSmsReminder extends Reminder {
 
   public static boolean isEligible(Context context) {
     return false;
-    // Loki - Original code
-    // ========
-//    final boolean isDefault = Util.isDefaultSmsProvider(context);
-//    if (isDefault) {
-//      TextSecurePreferences.setPromptedDefaultSmsProvider(context, false);
-//    }
-//
-//    return !isDefault && !TextSecurePreferences.hasPromptedDefaultSmsProvider(context);
-    // ========
   }
 }

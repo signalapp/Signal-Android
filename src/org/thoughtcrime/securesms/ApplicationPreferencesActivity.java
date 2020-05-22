@@ -41,7 +41,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
+import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.ChatsPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.CorrectedPreferenceFragment;
@@ -345,16 +345,16 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
             }
             String seed = new MnemonicCodec(languageFileDirectory).encode(hexEncodedSeed, MnemonicCodec.Language.Configuration.Companion.getEnglish());
             new AlertDialog.Builder(getContext())
-                    .setTitle(R.string.activity_settings_seed_dialog_title)
-                    .setMessage(seed)
-                    .setPositiveButton(R.string.activity_settings_seed_dialog_copy_button_title, (DialogInterface.OnClickListener) (dialog, which) -> {
-                      ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
-                      ClipData clip = ClipData.newPlainText("seed", seed);
-                      clipboard.setPrimaryClip(clip);
-                      Toast.makeText(getContext(), R.string.activity_settings_seed_copied_message, Toast.LENGTH_SHORT).show();
-                    })
-                    .setNeutralButton(R.string.activity_settings_seed_dialog_ok_button_title, null)
-                    .show();
+                           .setTitle(R.string.activity_settings_seed_dialog_title)
+                           .setMessage(seed)
+                           .setPositiveButton(R.string.activity_settings_seed_dialog_copy_button_title, (DialogInterface.OnClickListener) (dialog, which) -> {
+                             ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                             ClipData clip = ClipData.newPlainText("seed", seed);
+                             clipboard.setPrimaryClip(clip);
+                             Toast.makeText(getContext(), R.string.activity_settings_seed_copied_message, Toast.LENGTH_SHORT).show();
+                           })
+                           .setNeutralButton(R.string.activity_settings_seed_dialog_ok_button_title, null)
+                           .show();
           } catch (Exception e) {
             Log.d("Loki", e.getMessage());
           }

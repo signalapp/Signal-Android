@@ -12,15 +12,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 
+import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.ConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraintObserver;
-import org.thoughtcrime.securesms.logging.Log;
-
-import org.thoughtcrime.securesms.ApplicationContext;
-import network.loki.messenger.R;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -32,6 +30,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import javax.inject.Inject;
+
+import network.loki.messenger.R;
 
 public class IncomingMessageObserver implements InjectableType, ConstraintObserver.Notifier {
 
@@ -159,7 +159,7 @@ public class IncomingMessageObserver implements InjectableType, ConstraintObserv
               localPipe.read(REQUEST_TIMEOUT_MINUTES, TimeUnit.MINUTES,
                              envelope -> {
                                Log.i(TAG, "Retrieved envelope! " + String.valueOf(envelope.getSource()));
-                               new PushContentReceiveJob(context).processEnvelope(envelope);
+                               new PushContentReceiveJob(context).processEnvelope(envelope, false);
                              });
             } catch (TimeoutException e) {
               Log.w(TAG, "Application level read timeout...");

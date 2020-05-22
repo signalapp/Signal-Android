@@ -49,7 +49,7 @@
               android:layout_below="@id/toolbar"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:name="org.thoughtcrime.securesms.loki.redesign.fragments.contactselection.ContactSelectionListFragment" />
+              android:name="org.thoughtcrime.securesms.loki.fragments.ContactSelectionListFragment" />
 
     <org.thoughtcrime.securesms.components.SearchToolbar
             android:id="@+id/search_toolbar"
