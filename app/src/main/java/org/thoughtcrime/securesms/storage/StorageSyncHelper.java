@@ -404,10 +404,10 @@ public final class StorageSyncHelper {
     if (!update.isPresent()) {
       return;
     }
-    applyAccountStorageSyncUpdates(context, update.get().getOld().getId(), update.get().getNew());
+    applyAccountStorageSyncUpdates(context, update.get().getOld().getId(), update.get().getNew(), true);
   }
 
-  public static void applyAccountStorageSyncUpdates(@NonNull Context context, @NonNull StorageId storageId, @NonNull SignalAccountRecord update) {
+  public static void applyAccountStorageSyncUpdates(@NonNull Context context, @NonNull StorageId storageId, @NonNull SignalAccountRecord update, boolean fetchProfile) {
     DatabaseFactory.getRecipientDatabase(context).applyStorageSyncUpdates(storageId, update);
     DatabaseFactory.getThreadDatabase(context).setArchived(Recipient.self().getId(), update.isNoteToSelfArchived());
 
@@ -415,7 +415,8 @@ public final class StorageSyncHelper {
     TextSecurePreferences.setTypingIndicatorsEnabled(context, update.isTypingIndicatorsEnabled());
     TextSecurePreferences.setShowUnidentifiedDeliveryIndicatorsEnabled(context, update.isSealedSenderIndicatorsEnabled());
     TextSecurePreferences.setLinkPreviewsEnabled(context, update.isLinkPreviewsEnabled());
-    if (update.getAvatarUrlPath().isPresent()) {
+
+    if (fetchProfile && update.getAvatarUrlPath().isPresent()) {
       ApplicationDependencies.getJobManager().add(new RetrieveProfileAvatarJob(Recipient.self(), update.getAvatarUrlPath().get()));
     }
   }

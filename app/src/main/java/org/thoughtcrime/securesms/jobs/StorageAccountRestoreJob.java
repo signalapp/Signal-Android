@@ -1,11 +1,14 @@
 package org.thoughtcrime.securesms.jobs;
 
+import android.app.job.JobScheduler;
+
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.jobmanager.JobTracker;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
@@ -67,6 +70,7 @@ public class StorageAccountRestoreJob extends BaseJob {
     SignalServiceAccountManager accountManager    = ApplicationDependencies.getSignalServiceAccountManager();
     StorageKey                  storageServiceKey = SignalStore.storageServiceValues().getOrCreateStorageKey();
 
+    Log.i(TAG, "Retrieving manifest...");
     Optional<SignalStorageManifest> manifest = accountManager.getStorageManifest(storageServiceKey);
 
     if (!manifest.isPresent()) {
@@ -82,6 +86,7 @@ public class StorageAccountRestoreJob extends BaseJob {
       return;
     }
 
+    Log.i(TAG, "Retrieving account record...");
     List<SignalStorageRecord> records = accountManager.readStorageRecords(storageServiceKey, Collections.singletonList(accountId.get()));
     SignalStorageRecord       record  = records.size() > 0 ? records.get(0) : null;
 
@@ -96,16 +101,34 @@ public class StorageAccountRestoreJob extends BaseJob {
       return;
     }
 
+
+    Log.i(TAG, "Applying changes locally...");
     StorageId selfStorageId = StorageId.forAccount(Recipient.self().getStorageServiceId());
-    StorageSyncHelper.applyAccountStorageSyncUpdates(context, selfStorageId, accountRecord);
+    StorageSyncHelper.applyAccountStorageSyncUpdates(context, selfStorageId, accountRecord, false);
 
     JobManager jobManager = ApplicationDependencies.getJobManager();
 
     if (accountRecord.getAvatarUrlPath().isPresent()) {
-      jobManager.runSynchronously(new RetrieveProfileAvatarJob(Recipient.self(), accountRecord.getAvatarUrlPath().get()), LIFESPAN/2);
+      Log.i(TAG,  "Fetching avatar...");
+      Optional<JobTracker.JobState> state = jobManager.runSynchronously(new RetrieveProfileAvatarJob(Recipient.self(), accountRecord.getAvatarUrlPath().get()), LIFESPAN/2);
+
+      if (state.isPresent()) {
+        Log.i(TAG, "Avatar retrieved successfully. " + state.get());
+      } else {
+        Log.w(TAG, "Avatar retrieval did not complete in time (or otherwise failed).");
+      }
+    } else {
+      Log.i(TAG, "No avatar present. Not fetching.");
     }
 
-    jobManager.runSynchronously(new RefreshAttributesJob(), LIFESPAN/2);
+    Log.i(TAG,  "Refreshing attributes...");
+    Optional<JobTracker.JobState> state = jobManager.runSynchronously(new RefreshAttributesJob(), LIFESPAN/2);
+
+    if (state.isPresent()) {
+      Log.i(TAG, "Attributes refreshed successfully. " + state.get());
+    } else {
+      Log.w(TAG, "Attribute refresh did not complete in time (or otherwise failed).");
+    }
   }
 
   @Override
