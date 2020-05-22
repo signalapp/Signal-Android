@@ -556,6 +556,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     TextSecurePreferences.clearAll(this);
     TextSecurePreferences.setWasUnlinked(this, wasUnlinked);
     MasterSecretUtil.clear(this);
+    if (!deleteDatabase("signal.db")) {
+      Log.d("Loki", "Failed to delete database.");
+    }
     new Handler().postDelayed(this::restartApplication, 200);
   }
 
