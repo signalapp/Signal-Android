@@ -12,63 +12,63 @@ public final class LocalCodeRequestRateLimiterTest {
   public void initially_can_request() {
     LocalCodeRequestRateLimiter limiter = new LocalCodeRequestRateLimiter(60_000);
 
-    assertTrue(limiter.canRequest(RegistrationCodeRequest.Mode.SMS_NO_FCM, "+155512345678", 1000));
+    assertTrue(limiter.canRequest(RegistrationCodeRequest.Mode.SMS_WITHOUT_LISTENER, "+155512345678", 1000));
   }
 
   @Test
   public void cant_request_within_same_time_period() {
     LocalCodeRequestRateLimiter limiter = new LocalCodeRequestRateLimiter(60_000);
 
-    assertTrue(limiter.canRequest(RegistrationCodeRequest.Mode.SMS_NO_FCM, "+155512345678", 1000));
+    assertTrue(limiter.canRequest(RegistrationCodeRequest.Mode.SMS_WITHOUT_LISTENER, "+155512345678", 1000));
 
-    limiter.onSuccessfulRequest(RegistrationCodeRequest.Mode.SMS_NO_FCM, "+155512345678", 1000);
+    limiter.onSuccessfulRequest(RegistrationCodeRequest.Mode.SMS_WITHOUT_LISTENER, "+155512345678", 1000);
 
-    assertFalse(limiter.canRequest(RegistrationCodeRequest.Mode.SMS_NO_FCM, "+155512345678", 1000 + 59_000));
+    assertFalse(limiter.canRequest(RegistrationCodeRequest.Mode.SMS_WITHOUT_LISTENER, "+155512345678", 1000 + 59_000));
   }
 
   @Test
   public void can_request_within_same_time_period_if_different_number() {
     LocalCodeRequestRateLimiter limiter = new LocalCodeRequestRateLimiter(60_000);
 
-    assertTrue(limiter.canRequest(RegistrationCodeRequest.Mode.SMS_NO_FCM, "+155512345678", 1000));
+    assertTrue(limiter.canRequest(RegistrationCodeRequest.Mode.SMS_WITHOUT_LISTENER, "+155512345678", 1000));
 
-    limiter.onSuccessfulRequest(RegistrationCodeRequest.Mode.SMS_NO_FCM, "+155512345678", 1000);
+    limiter.onSuccessfulRequest(RegistrationCodeRequest.Mode.SMS_WITHOUT_LISTENER, "+155512345678", 1000);
 
-    assertTrue(limiter.canRequest(RegistrationCodeRequest.Mode.SMS_NO_FCM, "+15559874566", 1000 + 59_000));
+    assertTrue(limiter.canRequest(RegistrationCodeRequest.Mode.SMS_WITHOUT_LISTENER, "+15559874566", 1000 + 59_000));
   }
 
   @Test
   public void can_request_within_same_time_period_if_different_mode() {
     LocalCodeRequestRateLimiter limiter = new LocalCodeRequestRateLimiter(60_000);
 
-    assertTrue(limiter.canRequest(RegistrationCodeRequest.Mode.SMS_NO_FCM, "+155512345678", 1000));
+    assertTrue(limiter.canRequest(RegistrationCodeRequest.Mode.SMS_WITH_LISTENER, "+155512345678", 1000));
 
-    limiter.onSuccessfulRequest(RegistrationCodeRequest.Mode.SMS_NO_FCM, "+155512345678", 1000);
+    limiter.onSuccessfulRequest(RegistrationCodeRequest.Mode.SMS_WITH_LISTENER, "+155512345678", 1000);
 
-    assertTrue(limiter.canRequest(RegistrationCodeRequest.Mode.SMS_FCM_NO_LISTENER, "+155512345678", 1000 + 59_000));
+    assertTrue(limiter.canRequest(RegistrationCodeRequest.Mode.SMS_WITHOUT_LISTENER, "+155512345678", 1000 + 59_000));
   }
 
   @Test
   public void can_request_after_time_period() {
     LocalCodeRequestRateLimiter limiter = new LocalCodeRequestRateLimiter(60_000);
 
-    assertTrue(limiter.canRequest(RegistrationCodeRequest.Mode.SMS_NO_FCM, "+155512345678", 1000));
+    assertTrue(limiter.canRequest(RegistrationCodeRequest.Mode.SMS_WITH_LISTENER, "+155512345678", 1000));
 
-    limiter.onSuccessfulRequest(RegistrationCodeRequest.Mode.SMS_NO_FCM, "+155512345678", 1000);
+    limiter.onSuccessfulRequest(RegistrationCodeRequest.Mode.SMS_WITH_LISTENER, "+155512345678", 1000);
 
-    assertTrue(limiter.canRequest(RegistrationCodeRequest.Mode.SMS_NO_FCM, "+155512345678", 1000 + 60_001));
+    assertTrue(limiter.canRequest(RegistrationCodeRequest.Mode.SMS_WITH_LISTENER, "+155512345678", 1000 + 60_001));
   }
 
   @Test
   public void can_request_within_same_time_period_if_an_unsuccessful_request_is_seen() {
     LocalCodeRequestRateLimiter limiter = new LocalCodeRequestRateLimiter(60_000);
 
-    assertTrue(limiter.canRequest(RegistrationCodeRequest.Mode.SMS_NO_FCM, "+155512345678", 1000));
+    assertTrue(limiter.canRequest(RegistrationCodeRequest.Mode.SMS_WITH_LISTENER, "+155512345678", 1000));
 
-    limiter.onSuccessfulRequest(RegistrationCodeRequest.Mode.SMS_NO_FCM, "+155512345678", 1000);
+    limiter.onSuccessfulRequest(RegistrationCodeRequest.Mode.SMS_WITH_LISTENER, "+155512345678", 1000);
 
     limiter.onUnsuccessfulRequest();
 
-    assertTrue(limiter.canRequest(RegistrationCodeRequest.Mode.SMS_NO_FCM, "+155512345678", 1000 + 59_000));
+    assertTrue(limiter.canRequest(RegistrationCodeRequest.Mode.SMS_WITH_LISTENER, "+155512345678", 1000 + 59_000));
   }
 }

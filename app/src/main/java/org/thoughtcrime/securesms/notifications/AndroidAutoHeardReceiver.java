@@ -26,7 +26,7 @@ import androidx.core.app.NotificationManagerCompat;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
-import org.whispersystems.libsignal.logging.Log;
+import org.thoughtcrime.securesms.logging.Log;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -36,7 +36,7 @@ import java.util.List;
  */
 public class AndroidAutoHeardReceiver extends BroadcastReceiver {
 
-  public static final String TAG                   = AndroidAutoHeardReceiver.class.getSimpleName();
+  public static final String TAG                   = Log.tag(AndroidAutoHeardReceiver.class);
   public static final String HEARD_ACTION          = "org.thoughtcrime.securesms.notifications.ANDROID_AUTO_HEARD";
   public static final String THREAD_IDS_EXTRA      = "car_heard_thread_ids";
   public static final String NOTIFICATION_ID_EXTRA = "car_notification_id";

@@ -22,29 +22,15 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.FeatureFlags;
-import org.thoughtcrime.securesms.util.UsernameUtil;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
-import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
-import org.whispersystems.signalservice.api.util.UuidUtil;
-
-import java.io.IOException;
-import java.util.UUID;
 
 /**
  * Activity container for starting a new conversation.
@@ -53,7 +39,7 @@ import java.util.UUID;
  *
  */
 public class NewConversationActivity extends ContactSelectionActivity
-                                    implements ContactSelectionListFragment.InviteCallback
+                                    implements ContactSelectionListFragment.ListCallback
 {
 
   @SuppressWarnings("unused")
@@ -112,7 +98,7 @@ public class NewConversationActivity extends ContactSelectionActivity
   }
 
   private void handleCreateGroup() {
-    startActivity(new Intent(this, GroupCreateActivity.class));
+    startActivity(CreateGroupActivity.newIntent(this));
   }
 
   private void handleInvite() {
@@ -120,10 +106,10 @@ public class NewConversationActivity extends ContactSelectionActivity
   }
 
   @Override
-  protected boolean onPrepareOptionsPanel(View view, Menu menu) {
-    MenuInflater inflater = this.getMenuInflater();
+  public boolean onPrepareOptionsMenu(Menu menu) {
     menu.clear();
-    inflater.inflate(R.menu.new_conversation_activity, menu);
+    getMenuInflater().inflate(R.menu.new_conversation_activity, menu);
+
     super.onPrepareOptionsMenu(menu);
     return true;
   }
@@ -131,5 +117,12 @@ public class NewConversationActivity extends ContactSelectionActivity
   @Override
   public void onInvite() {
     handleInvite();
+    finish();
+  }
+
+  @Override
+  public void onNewGroup() {
+    handleCreateGroup();
+    finish();
   }
 }

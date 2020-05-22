@@ -150,7 +150,7 @@
         <!-- Allows for Overrides -->
     </style>
 
-    <style name="TextSecure.BaseLightTheme" parent="@style/Theme.AppCompat.Light">
+    <style name="TextSecure.BaseLightTheme" parent="@style/Theme.MaterialComponents.Light.Bridge">
         <item name="theme_type">light</item>
         <item name="icon_tint">@color/core_grey_75</item>
         <item name="icon_tint_dark">@color/core_grey_15</item>
@@ -187,6 +187,8 @@
         <item name="homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
         <item name="android:homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
         <!--<item name="android:windowContentOverlay">@drawable/compat_actionbar_shadow_background</item>-->
+
+        <item name="group_candidate_item_background">@drawable/group_candidate_item_background_light</item>
 
         <item name="kbs_splash_image">@drawable/ic_kbs_splash_light_svg</item>
 
@@ -250,6 +252,8 @@
         <item name="conversation_popup_theme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="conversation_title_color">@color/white</item>
         <item name="conversation_subtitle_color">@color/transparent_white_90</item>
+
+        <item name="tinted_circle_background">@drawable/tinted_circle_light</item>
 
         <item name="contact_list_divider">@drawable/contact_list_divider_light</item>
 
@@ -358,8 +362,9 @@
         <item name="menu_reply_icon">@drawable/ic_reply_outline_24</item>
         <item name="menu_multi_select_icon">@drawable/ic_select_24</item>
         <item name="menu_archive_icon">@drawable/ic_archive_white_24dp</item>
+        <item name="menu_edit_icon">@drawable/ic_compose_outline_tinted_24</item>
 
-        <item name="message_icon">@drawable/ic_message_outline_tinted_24</item>
+        <item name="message_icon">@drawable/ic_message_outline_tinted_bitmap_24</item>
         <item name="notifications_icon">@drawable/ic_bell_outline_24</item>
         <item name="privacy_icon">@drawable/ic_lock_outline_24</item>
         <item name="appearance_icon">@drawable/ic_appearance_outline_24</item>
@@ -404,6 +409,8 @@
         <item name="quote_dismiss_button_tint">@color/core_grey_70</item>
 
         <item name="group_members_dialog_icon">@drawable/ic_group_outline_24</item>
+        <item name="manage_group_add_members_icon">@drawable/ic_add_members_circle_light</item>
+        <item name="manage_group_view_all_icon">@drawable/ic_view_all_circle_light</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
 
         <item name="search_toolbar_background">@color/white</item>
@@ -418,6 +425,11 @@
         <item name="pending_member_background">@color/core_grey_02</item>
         <item name="pending_member_empty_text_color">@color/core_grey_60</item>
 
+        <item name="contact_selection_new_group_icon">@drawable/ic_new_group_circle_light</item>
+        <item name="contact_selection_invite_icon">@drawable/ic_invite_circle_light</item>
+
+        <item name="chipStyle">@style/Signal.Chip.Action.Light</item>
+
         <item name="colorControlNormal">@color/core_grey_90</item>
     </style>
 
@@ -425,7 +437,7 @@
         <!-- leave empty to allow overriding -->
     </style>
 
-    <style name="TextSecure.BaseDarkTheme" parent="@style/Theme.AppCompat">
+    <style name="TextSecure.BaseDarkTheme" parent="@style/Theme.MaterialComponents.Bridge">
         <item name="theme_type">dark</item>
         <item name="icon_tint">@color/core_grey_15</item>
         <item name="icon_tint_dark">?icon_tint</item>
@@ -466,6 +478,10 @@
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleDark</item>
         <item name="homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
         <item name="android:homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
+
+        <item name="group_candidate_item_background">@drawable/group_candidate_item_background_dark</item>
+
+        <item name="tinted_circle_background">@drawable/tinted_circle_dark</item>
 
         <item name="kbs_splash_image">@drawable/ic_kbs_splash_dark_svg</item>
 
@@ -636,8 +652,9 @@
         <item name="menu_reply_icon">@drawable/ic_reply_solid_24</item>
         <item name="menu_multi_select_icon">@drawable/ic_select_24</item>
         <item name="menu_archive_icon">@drawable/ic_archive_white_24dp</item>
+        <item name="menu_edit_icon">@drawable/ic_compose_solid_tinted_24</item>
 
-        <item name="message_icon">@drawable/ic_message_solid_tinted_24</item>
+        <item name="message_icon">@drawable/ic_message_solid_tinted_bitmap_24</item>
         <item name="notifications_icon">@drawable/ic_bell_solid_24</item>
         <item name="privacy_icon">@drawable/ic_lock_solid_24</item>
         <item name="appearance_icon">@drawable/ic_appearance_solid_24</item>
@@ -682,6 +699,8 @@
         <item name="quote_dismiss_button_tint">@color/core_white</item>
 
         <item name="group_members_dialog_icon">@drawable/ic_group_solid_24</item>
+        <item name="manage_group_add_members_icon">@drawable/ic_add_members_circle_dark</item>
+        <item name="manage_group_view_all_icon">@drawable/ic_view_all_circle_dark</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
         <item name="search_toolbar_background">@color/core_grey_95</item>
         <item name="search_background">@color/black</item>
@@ -692,6 +711,11 @@
 
         <item name="pending_member_background">@color/core_grey_80</item>
         <item name="pending_member_empty_text_color">@color/core_grey_25</item>
+
+        <item name="contact_selection_new_group_icon">@drawable/ic_new_group_circle_dark</item>
+        <item name="contact_selection_invite_icon">@drawable/ic_invite_circle_dark</item>
+
+        <item name="chipStyle">@style/Signal.Chip.Action</item>
 
         <item name="colorControlNormal">@color/core_white</item>
     </style>
@@ -768,17 +792,123 @@
 
     <style name="TextSecure.LightTheme.WebRTCCall">
         <item name="android:statusBarColor" tools:ignore="NewApi">@color/core_ultramarine</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">false</item>
         <item name="android:navigationBarColor" tools:ignore="NewApi">@color/core_black</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
     </style>
 
-    <style name="Theme.Design.Light.BottomSheetDialog.Fixed">
+    <style name="Theme.Signal.Light.BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+    </style>
+
+    <style name="Theme.Signal.BottomSheetDialog" parent="Theme.Design.BottomSheetDialog">
+    </style>
+
+    <style name="Theme.Signal.Light.BottomSheetDialog.Fixed">
         <item name="android:windowIsFloating">false</item>
     </style>
 
-    <style name="Theme.Design.BottomSheetDialog.Fixed">
+    <style name="Theme.Signal.BottomSheetDialog.Fixed" parent="Theme.Design.BottomSheetDialog">
         <item name="android:windowIsFloating">false</item>
+    </style>
+
+    <style name="Theme.Signal.BottomSheetDialog.Fixed.ReactWithAny">
+        <item name="bottomSheetStyle">@style/Widget.Signal.BottomSheet.ReactWithAny</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="Theme.Signal.Light.BottomSheetDialog.Fixed.ReactWithAny">
+        <item name="bottomSheetStyle">@style/Widget.Signal.BottomSheet.ReactWithAny.Light</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
+    </style>
+
+    <style name="Widget.Signal.BottomSheet.ReactWithAny" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="backgroundTint">@color/core_grey_75</item>
+        <item name="behavior_peekHeight">@dimen/react_with_any_emoji_bottom_sheet_dialog_fragment_min_height</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
+    </style>
+
+    <style name="Widget.Signal.BottomSheet.ReactWithAny.Light">
+        <item name="backgroundTint">@color/white</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.Signal.BottomSheet.Rounded" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">8dp</item>
+        <item name="cornerSizeTopLeft">8dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <style name="Widget.Signal.BottomSheet.Rounded" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
+        <item name="backgroundTint">@color/core_grey_75</item>
+    </style>
+
+    <style name="Widget.Signal.BottomSheet.Rounded.Light">
+        <item name="backgroundTint">@color/white</item>
+    </style>
+
+    <style name="Theme.Signal.RecipientBottomSheet.Light">
+        <item name="bottomSheetStyle">@style/Widget.Signal.BottomSheet.Rounded.Light</item>
+        <item name="icon_tint">@color/core_grey_75</item>
+
+        <item name="android:textColorPrimary">@color/core_grey_90</item>
+        <item name="title_text_color_primary">@color/core_grey_90</item>
+        <item name="title_text_color_secondary">@color/core_grey_60</item>
+
+        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/white</item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
+
+        <item name="recipient_message_icon">@drawable/ic_message_outline_tinted_24</item>
+        <item name="recipient_call_icon">@drawable/ic_phone_right_outline_tinted_24</item>
+        <item name="recipient_block_icon">@drawable/ic_block_tinted_24</item>
+        <item name="recipient_view_safety_icon">@drawable/ic_info_outline_tinted_24</item>
+        <item name="recipient_make_admin_icon">@drawable/ic_group_outline_24</item>
+        <item name="recipient_remove_icon">@drawable/ic_leave_tinted_24</item>
+    </style>
+
+    <style name="Theme.Signal.RecipientBottomSheet" parent="Theme.MaterialComponents.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="bottomSheetStyle">@style/Widget.Signal.BottomSheet.Rounded</item>
+        <item name="icon_tint">@color/core_grey_15</item>
+
+        <item name="android:textColorPrimary">@color/core_grey_05</item>
+        <item name="title_text_color_primary">@color/core_grey_05</item>
+        <item name="title_text_color_secondary">@color/core_grey_25</item>
+
+        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/core_grey_75</item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
+        <item name="android:statusBarColor" tools:ignore="NewApi">@color/transparent</item>
+
+        <item name="recipient_message_icon">@drawable/ic_message_solid_tinted_24</item>
+        <item name="recipient_call_icon">@drawable/ic_phone_right_solid_tinted_24</item>
+        <item name="recipient_block_icon">@drawable/ic_block_tinted_24</item>
+        <item name="recipient_view_safety_icon">@drawable/ic_info_solid_tinted_24</item>
+        <item name="recipient_make_admin_icon">@drawable/ic_group_solid_24</item>
+        <item name="recipient_remove_icon">@drawable/ic_leave_tinted_24</item>
+    </style>
+
+    <style name="Signal.Chip.Action" parent="Widget.MaterialComponents.Chip.Action">
+        <item name="chipIconSize">32dp</item>
+        <item name="chipStartPadding">0dp</item>
+        <item name="closeIcon">@drawable/ic_x</item>
+        <item name="closeIconSize">12dp</item>
+        <item name="textEndPadding">4dp</item>
+        <!-- Negative padding gives us 4dp between icon and text, while allowing 10dp for when no icon -->
+        <item name="iconEndPadding">-6dp</item>
+        <item name="textStartPadding">10dp</item>
+        <item name="android:textColor">@color/core_white</item>
+        <item name="chipBackgroundColor">@color/core_grey_80</item>
+        <item name="closeIconTint">@color/core_grey_15</item>
+    </style>
+
+    <style name="Signal.Chip.Action.Light">
+        <item name="android:textColor">@color/core_grey_90</item>
+        <item name="chipBackgroundColor">@color/core_grey_05</item>
+        <item name="closeIconTint">@color/core_grey_60</item>
     </style>
 
 </resources>

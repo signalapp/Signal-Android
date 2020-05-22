@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/core_grey_80" />
+        </shape>
+    </item>
+    <item
+        android:bottom="12dp"
+        android:drawable="@drawable/ic_view_all_20"
+        android:left="12dp"
+        android:right="12dp"
+        android:top="12dp" />
+</layer-list>

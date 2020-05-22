@@ -1,8 +1,10 @@
 package org.thoughtcrime.securesms;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
 import java.util.concurrent.TimeUnit;
@@ -23,6 +25,10 @@ public class MuteDialog extends AlertDialog {
   }
 
   public static void show(final Context context, final @NonNull MuteSelectionListener listener) {
+    show(context, listener, null);
+  }
+
+  public static void show(final Context context, final @NonNull MuteSelectionListener listener, @Nullable Runnable cancelListener) {
     AlertDialog.Builder builder = new AlertDialog.Builder(context);
     builder.setTitle(R.string.MuteDialog_mute_notifications);
     builder.setItems(R.array.mute_durations, new DialogInterface.OnClickListener() {
@@ -42,6 +48,13 @@ public class MuteDialog extends AlertDialog {
         listener.onMuted(muteUntil);
       }
     });
+
+    if (cancelListener != null) {
+      builder.setOnCancelListener(dialog -> {
+        cancelListener.run();
+        dialog.dismiss();
+      });
+    }
 
     builder.show();
 

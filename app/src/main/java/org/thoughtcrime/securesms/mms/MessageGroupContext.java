@@ -1,19 +1,24 @@
 package org.thoughtcrime.securesms.mms;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
-import com.annimon.stream.Stream;
-
+import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.groups.GroupMasterKey;
-import org.signal.zkgroup.util.UUIDUtil;
+import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
+import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContextV2;
-import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,9 +27,10 @@ import java.util.UUID;
  */
 public final class MessageGroupContext {
 
-  private final String            encodedGroupContext;
-  private final GroupV1Properties groupV1;
-  private final GroupV2Properties groupV2;
+  @NonNull  private final String            encodedGroupContext;
+  @NonNull  private final GroupProperties   group;
+  @Nullable private final GroupV1Properties groupV1;
+  @Nullable private final GroupV2Properties groupV2;
 
   public MessageGroupContext(@NonNull String encodedGroupContext, boolean v2)
       throws IOException
@@ -33,9 +39,11 @@ public final class MessageGroupContext {
     if (v2) {
       this.groupV1 = null;
       this.groupV2 = new GroupV2Properties(DecryptedGroupV2Context.parseFrom(Base64.decode(encodedGroupContext)));
+      this.group   = groupV2;
     } else {
       this.groupV1 = new GroupV1Properties(GroupContext.parseFrom(Base64.decode(encodedGroupContext)));
       this.groupV2 = null;
+      this.group   = groupV1;
     }
   }
 
@@ -43,12 +51,14 @@ public final class MessageGroupContext {
     this.encodedGroupContext = Base64.encodeBytes(group.toByteArray());
     this.groupV1             = new GroupV1Properties(group);
     this.groupV2             = null;
+    this.group               = groupV1;
   }
 
   public MessageGroupContext(@NonNull DecryptedGroupV2Context group) {
     this.encodedGroupContext = Base64.encodeBytes(group.toByteArray());
     this.groupV1             = null;
     this.groupV2             = new GroupV2Properties(group);
+    this.group               = groupV2;
   }
   
   public @NonNull GroupV1Properties requireGroupV1Properties() {
@@ -73,7 +83,20 @@ public final class MessageGroupContext {
     return encodedGroupContext;
   }
 
-  public static class GroupV1Properties {
+  public String getName() {
+    return group.getName();
+  }
+
+  public List<RecipientId> getMembersListExcludingSelf() {
+    return group.getMembersListExcludingSelf();
+  }
+
+  interface GroupProperties {
+    @NonNull String getName();
+    @NonNull List<RecipientId> getMembersListExcludingSelf();
+  }
+
+  public static class GroupV1Properties implements GroupProperties {
 
     private final GroupContext groupContext;
 
@@ -92,9 +115,32 @@ public final class MessageGroupContext {
     public boolean isUpdate() {
       return groupContext.getType().getNumber() == GroupContext.Type.UPDATE_VALUE;
     }
+
+    @Override
+    public @NonNull String getName() {
+      return groupContext.getName();
+    }
+
+    @Override
+    public @NonNull List<RecipientId> getMembersListExcludingSelf() {
+      List<GroupContext.Member> membersList = groupContext.getMembersList();
+      if (membersList.isEmpty()) {
+        return Collections.emptyList();
+      } else {
+        LinkedList<RecipientId> members = new LinkedList<>();
+
+        for (GroupContext.Member member : membersList) {
+          RecipientId recipient = RecipientId.from(UuidUtil.parseOrNull(member.getUuid()), member.getE164());
+          if (!Recipient.self().getId().equals(recipient)) {
+            members.add(recipient);
+          }
+        }
+        return members;
+      }
+    }
   }
 
-  public static class GroupV2Properties {
+  public static class GroupV2Properties implements GroupProperties {
 
     private final DecryptedGroupV2Context decryptedGroupV2Context;
     private final GroupContextV2          groupContext;
@@ -126,9 +172,32 @@ public final class MessageGroupContext {
       return DecryptedGroupUtil.pendingToUuidList(decryptedGroupV2Context.getGroupState().getPendingMembersList());
     }
 
+    public @NonNull List<UUID> getRemovedMembers() {
+      return DecryptedGroupUtil.removedMembersUuidList(decryptedGroupV2Context.getChange());
+    }
+
     public boolean isUpdate() {
       // The group context is only stored on update messages.
       return true;
+    }
+
+    @Override
+    public @NonNull String getName() {
+      return decryptedGroupV2Context.getGroupState().getTitle();
+    }
+
+    @Override
+    public @NonNull List<RecipientId> getMembersListExcludingSelf() {
+      List<RecipientId> members = new ArrayList<>(decryptedGroupV2Context.getGroupState().getMembersCount());
+
+      for (DecryptedMember member : decryptedGroupV2Context.getGroupState().getMembersList()) {
+        RecipientId recipient = RecipientId.from(UuidUtil.fromByteString(member.getUuid()), null);
+        if (!Recipient.self().getId().equals(recipient)) {
+          members.add(recipient);
+        }
+      }
+
+      return members;
     }
   }
 }

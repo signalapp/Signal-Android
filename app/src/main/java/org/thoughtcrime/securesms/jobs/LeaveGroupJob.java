@@ -125,7 +125,7 @@ public class LeaveGroupJob extends BaseJob {
   }
 
   private static @NonNull List<Recipient> deliver(@NonNull Context context,
-                                                  @NonNull GroupId groupId,
+                                                  @NonNull GroupId.Push groupId,
                                                   @NonNull String name,
                                                   @NonNull List<RecipientId> members,
                                                   @NonNull List<RecipientId> destinations)

@@ -107,18 +107,6 @@ public class ConversationTitleView extends RelativeLayout {
     updateVerifiedSubtitleVisibility();
   }
 
-  @Override
-  public void setOnClickListener(@Nullable OnClickListener listener) {
-    this.content.setOnClickListener(listener);
-    this.avatar.setOnClickListener(listener);
-  }
-
-  @Override
-  public void setOnLongClickListener(@Nullable OnLongClickListener listener) {
-    this.content.setOnLongClickListener(listener);
-    this.avatar.setOnLongClickListener(listener);
-  }
-
   private void setComposeTitle() {
     this.title.setText(R.string.ConversationActivity_compose_message);
     this.subtitle.setText(null);

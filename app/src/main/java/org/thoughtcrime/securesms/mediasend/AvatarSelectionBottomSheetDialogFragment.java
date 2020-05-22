@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.annimon.stream.Stream;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
+import org.thoughtcrime.securesms.ClearProfileAvatarActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
@@ -29,8 +30,9 @@ public class AvatarSelectionBottomSheetDialogFragment extends BottomSheetDialogF
 
   private static final String ARG_OPTIONS      = "options";
   private static final String ARG_REQUEST_CODE = "request_code";
+  private static final String ARG_IS_GROUP     = "is_group";
 
-  public static DialogFragment create(boolean includeClear, boolean includeCamera, short resultCode) {
+  public static DialogFragment create(boolean includeClear, boolean includeCamera, short requestCode, boolean isGroup) {
     DialogFragment        fragment         = new AvatarSelectionBottomSheetDialogFragment();
     List<SelectionOption> selectionOptions = new ArrayList<>(3);
     Bundle                args             = new Bundle();
@@ -50,7 +52,8 @@ public class AvatarSelectionBottomSheetDialogFragment extends BottomSheetDialogF
                              .toArray(String[]::new);
 
     args.putStringArray(ARG_OPTIONS, options);
-    args.putShort(ARG_REQUEST_CODE, resultCode);
+    args.putShort(ARG_REQUEST_CODE, requestCode);
+    args.putBoolean(ARG_IS_GROUP, isGroup);
     fragment.setArguments(args);
 
     return fragment;
@@ -59,8 +62,8 @@ public class AvatarSelectionBottomSheetDialogFragment extends BottomSheetDialogF
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     setStyle(DialogFragment.STYLE_NORMAL,
-             ThemeUtil.isDarkTheme(requireContext()) ? R.style.Theme_Design_BottomSheetDialog_Fixed
-                                                     : R.style.Theme_Design_Light_BottomSheetDialog_Fixed);
+             ThemeUtil.isDarkTheme(requireContext()) ? R.style.Theme_Signal_BottomSheetDialog_Fixed
+                                                     : R.style.Theme_Signal_Light_BottomSheetDialog_Fixed);
 
     super.onCreate(savedInstanceState);
 
@@ -93,7 +96,7 @@ public class AvatarSelectionBottomSheetDialogFragment extends BottomSheetDialogF
   }
 
   private void launchOptionAndDismiss(@NonNull SelectionOption option) {
-    Intent intent = createIntent(requireContext(), option);
+    Intent intent = createIntent(requireContext(), option, requireArguments().getBoolean(ARG_IS_GROUP));
 
     int requestCode = requireArguments().getShort(ARG_REQUEST_CODE);
     if (getParentFragment() != null) {
@@ -105,14 +108,15 @@ public class AvatarSelectionBottomSheetDialogFragment extends BottomSheetDialogF
     dismiss();
   }
 
-  private static Intent createIntent(@NonNull Context context, @NonNull SelectionOption selectionOption) {
+  private static Intent createIntent(@NonNull Context context, @NonNull SelectionOption selectionOption, boolean isGroup) {
     switch (selectionOption) {
       case CAPTURE:
         return AvatarSelectionActivity.getIntentForCameraCapture(context);
       case GALLERY:
         return AvatarSelectionActivity.getIntentForGallery(context);
       case DELETE:
-        return new Intent("org.thoughtcrime.securesms.action.CLEAR_PROFILE_PHOTO");
+        return isGroup ? ClearProfileAvatarActivity.createForGroupProfilePhoto()
+                       : ClearProfileAvatarActivity.createForUserProfilePhoto();
       default:
         throw new IllegalStateException("Unknown option: " + selectionOption);
     }

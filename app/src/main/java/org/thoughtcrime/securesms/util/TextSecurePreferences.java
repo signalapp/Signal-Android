@@ -181,7 +181,6 @@ public class TextSecurePreferences {
   private static final String NEEDS_MESSAGE_PULL = "pref_needs_message_pull";
 
   private static final String UNIDENTIFIED_ACCESS_CERTIFICATE_ROTATION_TIME_PREF = "pref_unidentified_access_certificate_rotation_time";
-  private static final String UNIDENTIFIED_ACCESS_CERTIFICATE_LEGACY             = "pref_unidentified_access_certificate";
   private static final String UNIDENTIFIED_ACCESS_CERTIFICATE                    = "pref_unidentified_access_certificate_uuid";
   public  static final String UNIVERSAL_UNIDENTIFIED_ACCESS                      = "pref_universal_unidentified_access";
   public  static final String SHOW_UNIDENTIFIED_DELIVERY_INDICATORS              = "pref_show_unidentifed_delivery_indicators";
@@ -599,14 +598,6 @@ public class TextSecurePreferences {
 
   public static byte[] getUnidentifiedAccessCertificate(Context context) {
     return parseCertificate(getStringPreference(context, UNIDENTIFIED_ACCESS_CERTIFICATE, null));
-  }
-
-  public static void setUnidentifiedAccessCertificateLegacy(Context context, byte[] value) {
-    setStringPreference(context, UNIDENTIFIED_ACCESS_CERTIFICATE_LEGACY, Base64.encodeBytes(value));
-  }
-
-  public static byte[] getUnidentifiedAccessCertificateLegacy(Context context) {
-    return parseCertificate(getStringPreference(context, UNIDENTIFIED_ACCESS_CERTIFICATE_LEGACY, null));
   }
 
   private static byte[] parseCertificate(String raw) {

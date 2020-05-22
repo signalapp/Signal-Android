@@ -20,14 +20,14 @@ public class SubmitDebugLogViewModel extends ViewModel {
 
   private final SubmitDebugLogRepository            repo;
   private final DefaultValueLiveData<List<LogLine>> lines;
-  private final DefaultValueLiveData<Mode>          mode;
+  private final MutableLiveData<Mode>               mode;
 
   private List<LogLine> sourceLines;
 
   private SubmitDebugLogViewModel() {
     this.repo  = new SubmitDebugLogRepository();
     this.lines = new DefaultValueLiveData<>(Collections.emptyList());
-    this.mode  = new DefaultValueLiveData<>(Mode.NORMAL);
+    this.mode  = new MutableLiveData<>();
 
     repo.getLogLines(result -> {
       sourceLines = result;
@@ -94,7 +94,7 @@ public class SubmitDebugLogViewModel extends ViewModel {
   }
 
   boolean onBackPressed() {
-    if (mode.getValue().equals(Mode.EDIT)) {
+    if (mode.getValue() == Mode.EDIT) {
       mode.setValue(Mode.NORMAL);
       return true;
     } else {

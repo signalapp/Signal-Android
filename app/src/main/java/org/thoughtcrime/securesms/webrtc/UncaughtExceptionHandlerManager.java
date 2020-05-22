@@ -12,6 +12,9 @@ import java.util.List;
  * Errors in one handler do not prevent subsequent handlers from being called.
  */
 public class UncaughtExceptionHandlerManager implements Thread.UncaughtExceptionHandler {
+
+  private static final String TAG = Log.tag(UncaughtExceptionHandlerManager.class);
+
   private final Thread.UncaughtExceptionHandler originalHandler;
   private final List<Thread.UncaughtExceptionHandler> handlers = new ArrayList<Thread.UncaughtExceptionHandler>();
 
@@ -35,7 +38,7 @@ public class UncaughtExceptionHandlerManager implements Thread.UncaughtException
       try {
         handlers.get(i).uncaughtException(thread, throwable);
       } catch(Throwable t) {
-        Log.e("UncaughtExceptionHandlerManager", "Error in uncaught exception handling", t);
+        Log.e(TAG, "Error in uncaught exception handling", t);
       }
     }
   }

@@ -102,7 +102,7 @@ public class LegacyMigrationJob extends MigrationJob {
   
   @Override
   void performMigration() throws RetryLaterException {
-    Log.i("DatabaseUpgradeActivity", "Running background upgrade..");
+    Log.i(TAG, "Running background upgrade..");
     int          lastSeenVersion = VersionTracker.getLastSeenVersion(context);
     MasterSecret masterSecret    = KeyCachingService.getMasterSecret(context);
     

@@ -188,7 +188,6 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">មិនមានកម្មវិធីដើម្បីបើកតំណនេះ នៅលើឧបករណ៍របស់អ្នកទេ។</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">ដើម្បីផ្ញើសារជាសំឡេង អនុញ្ញាតឱ្យ Signal ចូលទៅប្រើប្រាស់មីក្រូហ្វូនរបស់អ្នក។</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal សុំសិទ្ធិប្រើប្រាស់ម៉ៃក្រូហ្វូន ដើម្បីផ្ញើសារជាសំឡេង, ប៉ុន្តែ វាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់កម្មវិធី, ជ្រើសរើស  \"ការអនុញ្ញាត\", និងបើក \"ប្រដាប់ស្រូបសំឡេង\"។</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">ដើម្បីហៅចេញ %s, Signal ត្រូវការចូលប្រើប្រាស់ប្រដាប់ម៉ៃក្រូហ្វូន និងកាមេរ៉ារបស់អ្នក។</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signalត្រូវការសិទ្ធិប្រើប្រាស់ម៉ៃក្រូហ្វូន និងកាមេរ៉ាដើម្បីហៅទៅកាន់ %s, ប៉ុន្តែពួកវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅការកំណត់ជ្រើសរើស \"អនុញ្ញាត\" ហើយបើក \"ម៉ៃក្រូហ្វូន\" និង \"កាមេរ៉ា\"។</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">ដើម្បីថតរូបភាព និងវីដេអូ, សូមអនុញ្ញាត Signal ចូលប្រើប្រាស់កាមេរ៉ា។</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signalត្រូវការសិទ្ធិប្រើប្រាស់កាមេរ៉ាដើម្បីថតរូប ឬវីដេអូ ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅការកំណត់ជ្រើសរើស \"អនុញ្ញាត\" ហើយបើក \"កាមេរ៉ា\"។</string>
@@ -349,6 +348,23 @@
   <string name="GroupMembersDialog_you">អ្នក</string>
   <!--GV2 access levels-->
   <!--PendingMembersActivity-->
+  <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__create">បង្កើត</string>
+  <string name="AddGroupDetailsFragment__members">សមាជិក</string>
+  <string name="AddGroupDetailsFragment__remove">លុបចេញ</string>
+  <!--ManageGroupActivity-->
+  <string name="ManageGroupActivity_disappearing_messages">សារបាត់ទៅវិញ</string>
+  <string name="ManageGroupActivity_leave_group">ចាកចេញពីក្រុម</string>
+  <string name="ManageGroupActivity_mute_notifications">បិទសំឡេងសារជូនដំណឹង</string>
+  <string name="ManageGroupActivity_custom_notifications">សារជូនដំណឹងផ្សេង</string>
+  <string name="ManageGroupActivity_off">បិទ</string>
+  <string name="ManageGroupActivity_on">បើក</string>
+  <string name="ManageGroupActivity_add_members">បន្ថែមសមាជិក</string>
+  <!--CustomNotificationsDialogFragment-->
+  <string name="CustomNotificationsDialogFragment__custom_notifications">សារជូនដំណឹងផ្សេង</string>
+  <string name="CustomNotificationsDialogFragment__messages">សារ</string>
+  <string name="CustomNotificationsDialogFragment__notification_sound">សំឡេងសារជូនដំណឹង</string>
+  <string name="CustomNotificationsDialogFragment__vibrate">ញ័រ</string>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">រូបតំណាងក្រុម</string>
@@ -468,6 +484,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">ព័ត៌មានទាំងអស់</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_unknown">មិនស្គាល់</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ទទួលបានសារដែលមានកាណាល់កូដសម្ងាត់ តែជាជំនាន់ចាស់របស់Signal ដែលគេលែងប្រើហើយ។ សូមប្រាប់អ្នកផ្ញើ ឲ្យធ្វើបច្ចុប្បន្នភាពទៅជំនាន់ចុងក្រោយបង្អស់ និងផ្ញើសារម្តងទៀត។</string>
   <string name="MessageRecord_left_group">អ្នកបានចាកចេញពីក្រុម។</string>
   <string name="MessageRecord_you_updated_group">អ្នកបានធ្វើបច្ចុប្បន្នភាពក្រុម។</string>
@@ -484,6 +501,8 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">អ្នកបានកំណត់រយៈពេលសារបាត់ទៅវិញជា %1$s។</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s បានកំណត់រយៈពេលលុបសារ %2$s។</string>
   <!--GV2 specific-->
+  <string name="MessageRecord_you_created_the_group">អ្នកបានបង្កើតក្រុមនេះ។</string>
+  <string name="MessageRecord_group_updated">បានធ្វើបច្ចុប្បន្នភាពក្រុម។</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_s_joined_the_group">%1$s ចូលក្រុម។</string>
   <!--GV2 member removals-->
@@ -569,7 +588,6 @@
   <string name="RatingManager_later">ពេលក្រោយ</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">ចុម កម្មវិធី Play Store មានសម្រាប់ដំឡើងក្នុងឧបករណ៍របស់អ្នកទេ។</string>
   <!--ReactionsBottomSheetDialogFragment-->
-  <string name="ReactionsBottomSheetDialogFragment_all">ទាំងអស់ %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
@@ -595,6 +613,9 @@
   <string name="RedPhone_number_not_registered">លេខមិនទាន់ចុះឈ្មោះ!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">លេខដែលអ្នកកំពុងហៅ មិនគាំទ្រសំឡេងសុវត្ថិភាពទេ!</string>
   <string name="RedPhone_got_it">ទទួលបាន</string>
+  <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">ចុច​ នៅទីនេះ ដើម្បីបើកវីដេអូរបស់អ្នក</string>
+  <!--WebRtcCallView-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">ជ្រើសរើសប្រទេសរបស់អ្នក</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">អ្នកត្រូវបញ្ជាក់
@@ -700,6 +721,7 @@
   <string name="SubmitDebugLogActivity_success">ជោគជ័យ!</string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">បានចម្លងទៅ clipboard</string>
   <string name="SubmitDebugLogActivity_share">ចែករំលែក</string>
+  <!--SupportEmailUtil-->
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">បានធ្វើបច្ចុប្បន្នភាពក្រុម</string>
   <string name="ThreadRecord_left_the_group">បានចាកចេញពីក្រុម</string>
@@ -869,6 +891,12 @@
   <string name="WebRtcCallScreen_new_safety_number_title">លេខសុវត្ថិភាពថ្មី</string>
   <string name="WebRtcCallScreen_accept">យល់ព្រម</string>
   <string name="WebRtcCallScreen_end_call">បញ្ចប់ការហៅ</string>
+  <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__answer">ឆ្លើយតប</string>
+  <!--WebRtcAudioOutputToggle-->
+  <string name="WebRtcAudioOutputToggle__phone">ទូរសព្ទ</string>
+  <string name="WebRtcAudioOutputToggle__speaker">បំពងសំឡេង</string>
+  <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">ចុច ដើម្បីបើកវីដេអូរបស់អ្នក</string>
   <!--WebRtcCallControls Content Descriptions-->
@@ -903,6 +931,7 @@
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">បញ្ចូលឈ្មោះ និងលេខទូរស័ព្ទ</string>
   <string name="contact_selection_activity__invite_to_signal">អញ្ជើញចូលប្រើSignal</string>
+  <string name="contact_selection_activity__new_group">ក្រុមថ្មី</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">លុបអក្សរដែលបានបញ្ចូល</string>
   <string name="contact_filter_toolbar__show_keyboard_description">បង្ហាញក្តារចុច</string>
@@ -1071,6 +1100,8 @@
   <string name="CreateProfileActivity_next">បន្ទាប់</string>
   <string name="CreateProfileActivity__username">ឈ្មោះអ្នកប្រើប្រាស់</string>
   <string name="CreateProfileActivity__create_a_username">បង្កើតឈ្មោះអ្នកប្រើប្រាស់</string>
+  <!--EditProfileFragment-->
+  <string name="EditProfileFragment__group_name">ឈ្មោះក្រុម</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">ចែករំលែកព័ត៌មាន</string>
   <!--recipient_preferences-->
@@ -1136,6 +1167,7 @@
   <!--HelpFragment-->
   <string name="HelpFragment__help">ជំនួយ</string>
   <string name="HelpFragment__next">បន្ទាប់</string>
+  <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <!--arrays.xml-->
   <string name="arrays__import_export">នាំចូល</string>
   <string name="arrays__use_default">ប្រើលំនាំដើម</string>
@@ -1486,6 +1518,8 @@
   <plurals name="RegistrationLockFragment__d_attempts_remaining">
     <item quantity="other">ការព្យាយាមនៅសល់ %1$d ។</item>
   </plurals>
+  <!--CalleeMustAcceptMessageRequestDialogFragment-->
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">យល់ព្រម</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">បង្កើតលេខកូដ PIN មួយ</string>
   <string name="KbsMegaphone__create_pin">បង្កើតលេខកូដ PIN</string>
@@ -1551,7 +1585,6 @@
   <string name="RegistrationActivity_call_me_instead_available_in">ហៅមកខ្ញុំជំនួសវិញ  \n (ទំនេរក្នុងរយៈពេល %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">ទាក់ទងជំនួយ Signal</string>
   <string name="RegistrationActivity_code_support_subject">ការចុះឈ្មោះ Signal - ការផ្ទៀងផ្ទាត់កូដសម្រាប់ Android</string>
-  <string name="RegistrationActivity_code_support_body">Subject: Signal Registration - Verification Code for Android\nDevice info: %1$s\nAndroid version: %2$s\nSignal version: %3$s\nLocale: %4$s</string>
   <string name="BackupUtil_never">មិនធ្លាប់</string>
   <string name="BackupUtil_unknown">មិនស្គាល់</string>
   <string name="preferences_app_protection__screen_lock">ចាក់សោរអេក្រង់</string>
@@ -1601,5 +1634,12 @@
   <string name="RegistrationLockDialog_reminder">ក្រើនរំលឹក៖</string>
   <string name="recipient_preferences__about">អំពី</string>
   <string name="Recipient_unknown">មិនស្គាល់</string>
+  <!--RecipientBottomSheet-->
+  <string name="RecipientBottomSheet_message">សារ</string>
+  <string name="RecipientBottomSheet_call">ហៅចេញ</string>
+  <string name="RecipientBottomSheet_block">រារាំង</string>
+  <string name="RecipientBottomSheet_unblock">បើកវិញ</string>
+  <string name="RecipientBottomSheet_view_safety_number">មើលលេខសុវត្ថិភាព</string>
+  <string name="RecipientBottomSheet_remove">លុបចេញ</string>
   <!--EOF-->
 </resources>

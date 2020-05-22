@@ -182,10 +182,10 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
 
       Cursor smsCursor = null;
 
-      Log.i("DatabaseFactory", "Upgrade count: " + (smsCount + threadCount));
+      Log.i(TAG, "Upgrade count: " + (smsCount + threadCount));
 
       do {
-        Log.i("DatabaseFactory", "Looping SMS cursor...");
+        Log.i(TAG, "Looping SMS cursor...");
         if (smsCursor != null)
           smsCursor.close();
 
@@ -224,7 +224,7 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
                          new String[] {body, type+"", id+""});
             }
           } catch (InvalidMessageException e) {
-            Log.w("DatabaseFactory", e);
+            Log.w(TAG, e);
           }
         }
 
@@ -237,7 +237,7 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
       skip                = 0;
 
       do {
-        Log.i("DatabaseFactory", "Looping thread cursor...");
+        Log.i(TAG, "Looping thread cursor...");
 
         if (threadCursor != null)
           threadCursor.close();
@@ -281,7 +281,7 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
                          new String[] {snippet, snippetType+"", id+""});
             }
           } catch (InvalidMessageException e) {
-            Log.w("DatabaseFactory", e);
+            Log.w(TAG, e);
           }
         }
 
@@ -296,13 +296,13 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
     }
 
     if (fromVersion < LegacyMigrationJob.MMS_BODY_VERSION) {
-      Log.i("DatabaseFactory", "Update MMS bodies...");
+      Log.i(TAG, "Update MMS bodies...");
       MasterCipher masterCipher = new MasterCipher(masterSecret);
       Cursor mmsCursor          = db.query("mms", new String[] {"_id"},
                                            "msg_box & " + 0x80000000L + " != 0",
                                            null, null, null, null);
 
-      Log.i("DatabaseFactory", "Got MMS rows: " + (mmsCursor == null ? "null" : mmsCursor.getCount()));
+      Log.i(TAG, "Got MMS rows: " + (mmsCursor == null ? "null" : mmsCursor.getCount()));
 
       while (mmsCursor != null && mmsCursor.moveToNext()) {
         listener.setProgress(mmsCursor.getPosition(), mmsCursor.getCount());
@@ -336,7 +336,7 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
               dataFile.delete();
               db.delete("part", "_id = ?", new String[] {partId+""});
             } catch (IOException e) {
-              Log.w("DatabaseFactory", e);
+              Log.w(TAG, e);
             }
           } else if (MediaUtil.isAudioType(contentType) ||
               MediaUtil.isImageType(contentType) ||
@@ -355,7 +355,7 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
                      new String[] {partCount+"", mmsId+""});
         }
 
-        Log.i("DatabaseFactory", "Updated body: " + body + " and part_count: " + partCount);
+        Log.i(TAG, "Updated body: " + body + " and part_count: " + partCount);
       }
     }
 

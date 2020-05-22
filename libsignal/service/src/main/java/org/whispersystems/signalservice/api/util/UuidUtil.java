@@ -13,6 +13,8 @@ import java.util.regex.Pattern;
 
 public final class UuidUtil {
 
+  public static final UUID UNKNOWN_UUID = new UUID(0, 0);
+
   private static final Pattern UUID_PATTERN = Pattern.compile("[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}", Pattern.CASE_INSENSITIVE);
 
   private UuidUtil() { }
@@ -55,6 +57,19 @@ public final class UuidUtil {
 
   public static UUID fromByteString(ByteString bytes) {
     return parseOrThrow(bytes.toByteArray());
+  }
+
+  public static UUID fromByteStringOrNull(ByteString bytes) {
+    return parseOrNull(bytes.toByteArray());
+  }
+
+  public static UUID fromByteStringOrUnknown(ByteString bytes) {
+    UUID uuid = parseOrNull(bytes.toByteArray());
+    return uuid != null ? uuid : UNKNOWN_UUID;
+  }
+
+  private static UUID parseOrNull(byte[] byteArray) {
+    return byteArray != null && byteArray.length == 16 ? parseOrThrow(byteArray) : null;
   }
 
   public static List<UUID> fromByteStrings(Collection<ByteString> byteStringCollection) {

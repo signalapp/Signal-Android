@@ -35,6 +35,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
   private CheckBox        checkBox;
 
   private String        number;
+  private String        chipName;
   private int           contactType;
   private LiveRecipient recipient;
   private GlideRequests glideRequests;
@@ -128,13 +129,23 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
 
     if (recipient != null) {
       this.nameView.setText(recipient);
+      chipName = recipient.getShortDisplayName(getContext());
     } else {
       this.nameView.setText(name);
+      chipName = name;
     }
   }
 
   public String getNumber() {
     return number;
+  }
+
+  public String getChipName() {
+    return chipName;
+  }
+
+  public @Nullable LiveRecipient getRecipient() {
+    return recipient;
   }
 
   public boolean isUsernameType() {

@@ -530,12 +530,15 @@ public final class SignalServiceContent {
   }
 
   private static SignalServiceCallMessage createCallMessage(SignalServiceProtos.CallMessage content) {
+    boolean isMultiRing         = content.getMultiRing();
+    Integer destinationDeviceId = content.hasDestinationDeviceId() ? content.getDestinationDeviceId() : null;
+
     if (content.hasOffer()) {
       SignalServiceProtos.CallMessage.Offer offerContent = content.getOffer();
-      return SignalServiceCallMessage.forOffer(new OfferMessage(offerContent.getId(), offerContent.getDescription()));
+      return SignalServiceCallMessage.forOffer(new OfferMessage(offerContent.getId(), offerContent.getDescription(), OfferMessage.Type.fromProto(offerContent.getType())), isMultiRing, destinationDeviceId);
     } else if (content.hasAnswer()) {
       SignalServiceProtos.CallMessage.Answer answerContent = content.getAnswer();
-      return SignalServiceCallMessage.forAnswer(new AnswerMessage(answerContent.getId(), answerContent.getDescription()));
+      return SignalServiceCallMessage.forAnswer(new AnswerMessage(answerContent.getId(), answerContent.getDescription()), isMultiRing, destinationDeviceId);
     } else if (content.getIceUpdateCount() > 0) {
       List<IceUpdateMessage> iceUpdates = new LinkedList<>();
 
@@ -543,13 +546,13 @@ public final class SignalServiceContent {
         iceUpdates.add(new IceUpdateMessage(iceUpdate.getId(), iceUpdate.getSdpMid(), iceUpdate.getSdpMLineIndex(), iceUpdate.getSdp()));
       }
 
-      return SignalServiceCallMessage.forIceUpdates(iceUpdates);
+      return SignalServiceCallMessage.forIceUpdates(iceUpdates, isMultiRing, destinationDeviceId);
     } else if (content.hasHangup()) {
-      SignalServiceProtos.CallMessage.Hangup hangup = content.getHangup();
-      return SignalServiceCallMessage.forHangup(new HangupMessage(hangup.getId()));
+      SignalServiceProtos.CallMessage.Hangup hangup = content.hasLegacyHangup() ? content.getLegacyHangup() : content.getHangup();
+      return SignalServiceCallMessage.forHangup(new HangupMessage(hangup.getId(), HangupMessage.Type.fromProto(hangup.getType()), hangup.getDeviceId(), content.hasLegacyHangup()), isMultiRing, destinationDeviceId);
     } else if (content.hasBusy()) {
       SignalServiceProtos.CallMessage.Busy busy = content.getBusy();
-      return SignalServiceCallMessage.forBusy(new BusyMessage(busy.getId()));
+      return SignalServiceCallMessage.forBusy(new BusyMessage(busy.getId()), isMultiRing, destinationDeviceId);
     }
 
     return SignalServiceCallMessage.empty();

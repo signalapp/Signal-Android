@@ -120,6 +120,7 @@
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Αφαίρεση</string>
   <string name="ClearProfileActivity_remove_profile_photo">Αφαίρεση φωτογραφίας προφίλ;</string>
+  <string name="ClearProfileActivity_remove_group_photo">Αφαίρεση φωτογραφίας ομάδας;</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Δεν βρέθηκε web browser.</string>
   <string name="CommunicationActions_no_email_app_found">Δεν βρέθηκε εφαρμογή email.</string>
@@ -205,7 +206,6 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Δεν έχεις κάποια εφαρμογή στην συσκευή σου που να μπορεί να διαχειριστεί αυτό τον σύνδεσμο.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Για να στείλεις μηνύματα ήχου, δώσε στο Signal πρόσβαση στο μικρόφωνο.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Το Signal χρειάζεται τα δικαιώματα Μικροφώνου για την αποστολή μηνυμάτων ήχου, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε το \"Μικρόφωνο\".</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Για να καλέσεις τον/την %s, το Signal χρειάζεται πρόσβαση στο μικρόφωνο και την κάμερα.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Το Signal χρειάζεται τα δικαιώματα Μικροφώνου και Κάμερας για να καλέσεις τον/την %s, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε το \"Μικρόφωνο\" και \"Κάμερα\".</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Για να τραβήξεις φωτογραφίες και βίντεο, δώσε στο Signal πρόσβαση στην κάμερα.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Το Signal χρειάζεται τα δικαιώματα Κάμερας για τη λήψη φωτογραφίων και βίντεο, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε την \"Κάμερα\".</string>
@@ -228,6 +228,8 @@
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Θα αποχωρήσεις από αυτήν την ομάδα, και θα διαγραφεί από όλες τις συσκευές σου.</string>
   <string name="ConversationActivity_delete">Διαγραφή</string>
   <string name="ConversationActivity_delete_and_leave">Διαγραφή και αποχώρηση</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Για να καλέσεις τον/την %1$s, το Signal χρειάζεται πρόσβαση στο μικρόφωνό σου.</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Για να καλέσεις τον/την %1$s, το Signal χρειάζεται πρόσβαση στο μικρόφωνο και την κάμερά σου.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d μη αναγνωσμένο μήνυμα</item>
@@ -275,7 +277,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Μπορείς να σύρεις οποιοδήποτε μήνυμα προς τα αριστερά για γρήγορη απάντηση</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Τα εξερχόμενα πολυμέσα μιας μόνο προβολής αφαιρούνται αυτόματα αφού αποσταλθούν</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Έχεις ήδη δει αυτό το μήνυμα</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Μπορείς να προσθέσεις σημειώσεις για δική σου χρήση σε αυτήν τη συνομιλία. Εάν ο λογαριασμός σου είναι συνδεδεμένος με άλλες συσκευές, οι νέες σημειώσεις θα συγχρονίζονται.</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Μπορείς να προσθέσεις σημειώσεις για δική σου χρήση σε αυτήν τη συνομιλία. Εάν ο λογαριασμός σου είναι συνδεμένος με άλλες συσκευές, οι νέες σημειώσεις θα συγχρονίζονται.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Δεν υπάρχει εγκατεστημένο πρόγραμμα περιήγησης στη συσκευή σου.</string>
   <!--ConversationListFragment-->
@@ -368,6 +370,7 @@
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Νέα ομάδα</string>
   <string name="GroupCreateActivity_actionbar_edit_title">Επεξεργασία ομάδας</string>
+  <string name="GroupCreateActivity_actionbar_manage_title">Διαχείριση ομάδας</string>
   <string name="GroupCreateActivity_group_name_hint">Όνομα ομάδας</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Νέα ομάδα MMS</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Επέλεξες μια επαφή που δεν υποστηρίζει ομάδες Signal, οπότε αυτή η ομάδα θα είναι MMS.</string>
@@ -409,10 +412,49 @@
     <item quantity="one">Σφάλμα στην ακύρωση πρόσκλησης</item>
     <item quantity="other">Σφάλμα στην ακύρωση προσκλήσεων</item>
   </plurals>
+  <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__name_this_group">Ονομασία ομάδας</string>
+  <string name="AddGroupDetailsFragment__create">Δημιουργία</string>
+  <string name="AddGroupDetailsFragment__members">Μέλη</string>
+  <string name="AddGroupDetailsFragment__group_name_required">Όνομα ομάδας (απαιτείται)</string>
+  <string name="AddGroupDetailsFragment__this_field_is_required">Αυτό το πεδίο απαιτείται.</string>
+  <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Οι ομάδες χρειάζονται τουλάχιστον δυο μέλη.</string>
+  <string name="AddGroupDetailsFragment__group_creation_failed">Η δημιουργία της ομάδας απέτυχε.</string>
+  <string name="AddGroupDetailsFragment__try_again_later">Ξαναδοκίμασε αργότερα.</string>
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Επέλεξες μια επαφή που δεν υποστηρίζει τις ομάδες του Signal, οπότε αυτή η ομάδα θα είναι με MMS.</string>
+  <string name="AddGroupDetailsFragment__remove">Αφαίρεση</string>
+  <string name="AddGroupDetailsFragment__sms_contact">Επαφή SMS</string>
+  <!--ManageGroupActivity-->
+  <string name="ManageGroupActivity_disappearing_messages">Μηνύματα που εξαφανίζονται</string>
+  <string name="ManageGroupActivity_pending_group_invites">Προσκλήσεις σε ομάδες που εκκρεμούν</string>
+  <string name="ManageGroupActivity_who_can_edit_group_membership">Ποιοί μπορούν να επεξεργαστούν τα μέλη της ομάδας</string>
+  <string name="ManageGroupActivity_who_can_edit_group_info">Ποιοί μπορούν να επεξεργαστούν τις πληροφορίες της ομάδας</string>
+  <string name="ManageGroupActivity_block_group">Φραγή ομάδας</string>
+  <string name="ManageGroupActivity_leave_group">Αποχώρηση απ\' την ομάδα</string>
+  <string name="ManageGroupActivity_mute_notifications">Σίγαση ειδοποιήσεων</string>
+  <string name="ManageGroupActivity_custom_notifications">Προσαρμοσμένες ειδοποιήσεις</string>
+  <string name="ManageGroupActivity_until_s">Μέχρι %1$s</string>
+  <string name="ManageGroupActivity_off">Απενεργοποιημένο</string>
+  <string name="ManageGroupActivity_on">Ενεργοποιημένο</string>
+  <string name="ManageGroupActivity_add_members">Προσθήκη μελών</string>
+  <string name="ManageGroupActivity_view_all_members">Προβολή όλων των μελών</string>
+  <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Δεν έχεις το δικαίωμα να το κάνεις</string>
+  <string name="ManageGroupActivity_not_capable">Κάποιος/α που πρόσθεσες δεν υποστηρίζει τις νέες ομάδες και πρέπει να αναβαθμίσει το Signal</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group">Αποτυχία ενημέρωσης της ομάδας</string>
+  <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Δεν είσαι μέλος της ομάδας</string>
+  <string name="ManageGroupActivity_edit_name_and_picture">Επεξεργασία ονόματος και φωτογραφίας</string>
+  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Διάλεξε ποιοί μπορούν να προσθέτουν ή να προσκαλούν νέα μέλη</string>
+  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Διάλεξε ποιοί μπορούν να αλλάζουν το όνομα και τη φωτογραφία της ομάδας.</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">Ο/Η %1$s προσκάλεσε 1 άτομο</item>
     <item quantity="other">Ο/Η %1$s προσκάλεσε %2$d άτομα</item>
   </plurals>
+  <!--CustomNotificationsDialogFragment-->
+  <string name="CustomNotificationsDialogFragment__custom_notifications">Προσαρμοσμένες ειδοποιήσεις</string>
+  <string name="CustomNotificationsDialogFragment__messages">Μηνύματα</string>
+  <string name="CustomNotificationsDialogFragment__use_custom_notifications">Χρήση προσαρμοσμένων ειδοποιήσεων</string>
+  <string name="CustomNotificationsDialogFragment__notification_sound">Ήχος ειδοποίησης</string>
+  <string name="CustomNotificationsDialogFragment__vibrate">Δόνηση</string>
   <!--GV2 Invite cancellation confirmation-->
   <string name="GroupManagement_cancel_own_single_invite">Θέλεις να ακυρώσεις την πρόσκληση που έστειλες στον/στην %1$s;</string>
   <plurals name="GroupManagement_cancel_others_invites">
@@ -544,6 +586,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Όλα τα πολυμέσα</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_unknown">Άγνωστο</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Λήφθηκε ένα μήνυμα που είναι κρυπτογραφημένο με μια παλιά έκδοση του Signal που πλέον δεν υποστηρίζεται. Παρακαλώ ζήτα από τον αποστολέα να αναβαθμίσει στην πιο πρόσφατη έκδοση και να σου ξαναστείλει το μήνυμα.</string>
   <string name="MessageRecord_left_group">Αποχώρησες απ\' την ομάδα.</string>
   <string name="MessageRecord_you_updated_group">Ενημέρωσες την ομάδα</string>
@@ -560,6 +603,8 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Όρισες τη χρονική καθυστέρηση εξαφάνισης των μηνυμάτων σε %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">Ο/Η %1$s όρισε τη χρονική καθυστέρηση εξαφάνισης των μηνυμάτων σε %2$s.</string>
   <!--GV2 specific-->
+  <string name="MessageRecord_you_created_the_group">Δημιούργησες την ομάδα.</string>
+  <string name="MessageRecord_group_updated">Η ομάδα ενημερώθηκε.</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Πρόσθεσες τον/την %1$s.</string>
   <string name="MessageRecord_s_added_s">Ο/Η %1$s πρόσθεσε τον/την %2$s.</string>
@@ -627,6 +672,7 @@
   <string name="MessageRequestBottomView_unblock">Κατάργηση φραγής</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Θες να επιτρέψεις στον/στην %1$s να σου στέλνει μηνύματα; Δεν θα γνωρίζει ότι έχεις δει το μήνυμά του/της μέχρι να δεχθείς.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Θέλεις να μπείς στην ομάδα %1$s; Δεν θα ξέρουν ότι έχεις δει τα μηνύματά τους μέχρι να δεχθείς.</string>
+  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Έχεις μια πρόσκληση να μπεις στην ομάδα %1$s. Θέλεις να επιτρέψεις στα μέλη αυτής της ομάδας να σου στείλουν μηνύματα;</string>
   <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Κατάργησε τη φραγή για τον/την %1$s για να στέλνετε μηνύματα και να καλείτε ο ένας τον άλλον.</string>
   <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Κατάργησε τη φραγή για να επιτρέψεις στα μέλη της ομάδας να σε ξαναπροσθέσουν σε αυτήν.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Μέλος του %1$s</string>
@@ -658,7 +704,7 @@
   <string name="DeviceProvisioningActivity_content_progress_no_device">Δεν βρέθηκε συσκευή.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Σφάλμα δικτύου.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Μη έγκυρος QR κωδικός.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Δυστυχώς έχεις πάρα πολλές συσκευές συνδεδεμένες, προσπάθησε να διαγράψεις κάποιες</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Δυστυχώς έχεις πάρα πολλές συσκευές συνδεμένες, προσπάθησε να διαγράψεις κάποιες</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Συγγνώμη, αυτός δεν είναι ένας έγκυρος κωδικός QR για σύνδεση συσκευών.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Σύνδεση κάποιας συσκευής Signal;</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Φαίνεται πως προσπαθείς να συνδέσεις μια συσκευή Signal χρησιμοποιώντας κάποιο άλλο πρόγραμμα σκαναρίσματος. Για την προστασία σου, παρακαλώ σκάναρε ξανά τον κωδικό μέσω του Signal.</string>
@@ -696,8 +742,6 @@
     <item quantity="other">Έχεις ακόμα %1$d προσπάθειες. Αν τις εξαντλήσεις, θα πρέπει να δημιουργήσεις ένα νέο PIN. Θα έχεις τη δυνατότητα να εγγραφτείς και να χρησιμοποιήσεις τον λογαριασμό σου, αλλά θα χάσεις κάποιες αποθηκευμένες ρυθμίσεις όπως οι πληροφορίες προφίλ σου.</item>
   </plurals>
   <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Εγγραφή στο Signal - Βοήθεια με το PIN σε Android</string>
-  <string name="PinRestoreEntryFragment_subject_signal_registration">Θέμα:  
-Εγγραφή στο Signal - Βοήθεια με το PIN σε Android\nΠληροφορίες συσκευής: %1$s\nΈκδοση Android: %2$s\nΈκδοση Signal: %3$s\nΤοπικές ρυθμίσεις: %4$s</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Εισαγωγή αλφαριθμητικού PIN</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Εισαγωγή αριθμητικού PIN</string>
   <!--PinRestoreLockedFragment-->
@@ -712,7 +756,7 @@
   <string name="RatingManager_later">Αργότερα</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Ουπς, δε φαίνεται να έχεις εγκατεστημένη την εφαρμογή Play Store στην συσκευή σου.</string>
   <!--ReactionsBottomSheetDialogFragment-->
-  <string name="ReactionsBottomSheetDialogFragment_all">Όλα %1$d</string>
+  <string name="ReactionsBottomSheetDialogFragment_all">Όλα · %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
@@ -738,6 +782,14 @@
   <string name="RedPhone_number_not_registered">Ο αριθμός δεν είναι εγγεγραμμένος!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Ο αριθμός που κάλεσες δεν υποστηρίζει ασφαλή φωνή!</string>
   <string name="RedPhone_got_it">Εντάξει</string>
+  <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Πάτα εδώ για να ενεργοποιήσεις το βίντεό σου</string>
+  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Για να καλέσεις τον/την %1$s, το Signal χρειάζεται πρόσβαση στην κάμερά σου</string>
+  <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
+  <string name="WebRtcCallActivity__calling">Καλεί…</string>
+  <!--WebRtcCallView-->
+  <string name="WebRtcCallView__signal_voice_call">Κλήση φωνής Signal…</string>
+  <string name="WebRtcCallView__signal_video_call">Βιντεοκλήση Signal…</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Διάλεξε τη χώρα σου</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Πρέπει να γράψεις τον
@@ -854,6 +906,14 @@
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
   <string name="SubmitDebugLogActivity_ok">Εντάξει</string>
   <string name="SubmitDebugLogActivity_share">Διαμοιρασμός</string>
+  <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_subject">Θέμα:</string>
+  <string name="SupportEmailUtil_signal_android_support_request">Αίτημα υποστήριξης Signal Android</string>
+  <string name="SupportEmailUtil_device_info">Πληροφορίες συσκευής:</string>
+  <string name="SupportEmailUtil_android_version">Έκδοση Android:</string>
+  <string name="SupportEmailUtil_signal_version">Έκδοση Signal:</string>
+  <string name="SupportEmailUtil_signal_package">Πακέτο Signal:</string>
+  <string name="SupportEmailUtil_locale">Τοπικές ρυθμίσεις:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Η ομάδα ενημερώθηκε</string>
   <string name="ThreadRecord_left_the_group">Έφυγες απ\' την ομάδα</string>
@@ -878,6 +938,7 @@
   <string name="ThreadRecord_message_could_not_be_processed">Αποτυχία επεξεργασίας μηνύματος</string>
   <string name="ThreadRecord_message_request">Αίτημα μηνύματος</string>
   <string name="ThreadRecord_s_added_you_to_the_group">Ο/Η %1$s σε πρόσθεσε στην ομάδα</string>
+  <string name="ThreadRecord_s_invited_you_to_the_group">Ο/Η %1$s σε προσκάλεσε στην ομάδα</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Αναβάθμιση Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Μια νέα έκδοση του Signal είναι διαθέσιμη, πάτα για αναβάθμιση</string>
@@ -1021,12 +1082,23 @@
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Για να απαντήσεις την κλήση από τον/την %s, δώσε στο Signal πρόσβαση στο μικρόφωνο.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Το Signal χρειάζεται τα δικαιώματα Μικροφώνου και Κάμερας για την πραγματοποίηση κλήσεων, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα \"Δικαιώματα\", και ενεργοποίησε το \"Μικρόφωνο\" και \"Κάμερα\".</string>
+  <string name="WebRtcCallActivity__answered_on_a_linked_device">Απαντήθηκε από συνδεμένη συσκευή.</string>
+  <string name="WebRtcCallActivity__declined_on_a_linked_device">Απορρίφθηκε απο συνδεμένη συσκευή.</string>
+  <string name="WebRtcCallActivity__busy_on_a_linked_device">Απασχολημένος/η από συνδεμένη συσκευή.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Ο αριθμός ασφαλείας για τη συνομιλία σου με τον/την %1$s έχει αλλάξει. Αυτό μπορεί να σημαίνει πως κάποιος προσπαθεί να υποκλέψει τις επικοινωνίες σας, ή πως απλά ο/η %2$s επανεγκατέστησε το Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Ίσως να θέλεις να επιβεβαιώσετε τον αριθμό ασφαλείας σου με αυτή την επαφή.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Νέος αριθμός ασφαλείας</string>
   <string name="WebRtcCallScreen_accept">Αποδοχή</string>
   <string name="WebRtcCallScreen_end_call">Τερματισμός κλήσης</string>
+  <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__decline">Απόρριψη</string>
+  <string name="WebRtcCallScreen__answer">Απάντηση</string>
+  <string name="WebRtcCallScreen__answer_without_video">Απάντηση χωρίς βίντεο</string>
+  <!--WebRtcAudioOutputToggle-->
+  <string name="WebRtcAudioOutputToggle__phone">Τηλέφωνο</string>
+  <string name="WebRtcAudioOutputToggle__speaker">Μεγάφωνο</string>
+  <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Πάτα για ενεργοποίηση του βίντεό σου</string>
   <!--WebRtcCallControls Content Descriptions-->
@@ -1061,6 +1133,7 @@
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Εισαγωγή ονόματος ή αριθμού</string>
   <string name="contact_selection_activity__invite_to_signal">Πρόσκληση στο Signal</string>
+  <string name="contact_selection_activity__new_group">Νέα ομάδα</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Καθαρισμός πληκτρολογημένου κειμένου</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Εμφάνιση πληκτρολογίου</string>
@@ -1125,12 +1198,13 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Γίνεται φόρτωση χωρών…</string>
   <string name="country_selection_fragment__search">Αναζήτηση</string>
+  <string name="country_selection_fragment__no_matching_countries">Καμία χώρα που να ταιριάζει</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Σκάναρε το QR code που εμφανίζεται στη συσκευή για να γίνει η σύνδεση</string>
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Σύνδεση συσκευής</string>
   <!--device_list_fragment-->
-  <string name="device_list_fragment__no_devices_linked">Καμία συνδεδεμένη συσκευή</string>
+  <string name="device_list_fragment__no_devices_linked">Καμία συνδεμένη συσκευή</string>
   <string name="device_list_fragment__link_new_device">Σύνδεση νέας συσκευής</string>
   <!--experience_upgrade_activity-->
   <string name="experience_upgrade_activity__continue">συνέχεια</string>
@@ -1236,6 +1310,9 @@
   <string name="CreateProfileActivity_next">Επόμενο</string>
   <string name="CreateProfileActivity__username">Όνομα χρήστη</string>
   <string name="CreateProfileActivity__create_a_username">Δημιουργία ονόματος χρήστη</string>
+  <!--EditProfileFragment-->
+  <string name="EditProfileFragment__edit_group_name_and_photo">Επεξεργασία ονόματος και φωτογραφίας ομάδας</string>
+  <string name="EditProfileFragment__group_name">Όνομα ομάδας</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Διαμοιρασμένα πολυμέσα</string>
   <!--recipient_preferences-->
@@ -1293,7 +1370,7 @@
   <string name="AndroidManifest__log_submit">Αποστολή αρχείου συμβάντων αποσφαλμάτωσης</string>
   <string name="AndroidManifest__media_preview">Προεπισκόπιση</string>
   <string name="AndroidManifest__message_details">Λεπτομέρειες μηνύματος</string>
-  <string name="AndroidManifest__linked_devices">Συνδεδεμένες συσκευές</string>
+  <string name="AndroidManifest__linked_devices">Συνδεμένες συσκευές</string>
   <string name="AndroidManifest__invite_friends">Πρόσκληση φίλων</string>
   <string name="AndroidManifest_archived_conversations">Αρχειοθετημένες συνομιλίες</string>
   <string name="AndroidManifest_remove_photo">Αφαίρεση φωτογραφίας</string>
@@ -1314,18 +1391,24 @@
   <string name="HelpFragment__whats_this">Τι είναι αυτό;</string>
   <string name="HelpFragment__how_do_you_feel">Πώς αισθάνεσαι; (Προαιρετικό)</string>
   <string name="HelpFragment__support_info">Πληροφορίες υποστήριξης</string>
-  <string name="HelpFragment__subject">Θέμα:</string>
   <string name="HelpFragment__signal_android_support_request">Αίτημα υποστήριξης Signal Android</string>
-  <string name="HelpFragment__device_info">Πληροφορίες συσκευής:</string>
-  <string name="HelpFragment__android_version">Έκδοση Android:</string>
-  <string name="HelpFragment__signal_version">Έκδοση Signal:</string>
-  <string name="HelpFragment__locale">Τοπικές ρυθμίσεις:</string>
   <string name="HelpFragment__debug_log">Αρχείο εντοπισμού σφαλμάτων:</string>
   <string name="HelpFragment__na">μη διαθέσιμο</string>
   <string name="HelpFragment__could_not_upload_logs">Δεν μπόρεσαν να ανέβουν τα αρχεία καταγραφής</string>
   <string name="HelpFragment__signal_support">Υποστήριξη Signal</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Παρακαλούμε να είσαι όσο γίνεται πιο περιγραφικός/ή για να μας βοηθήσεις να καταλάβουμε το πρόβλημα.</string>
   <string name="HelpFragment__no_email_app_found">Δεν βρέθηκε εφαρμογή email.</string>
+  <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Πρόσφατα χρησιμοποιημένα</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Φατσούλες &amp; Άνθρωποι</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Φύση</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Φαγητό</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Δραστηριότητες</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Τοποθεσίες</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Αντικείμενα</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Σύμβολα</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Σημαίες</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticons</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Εισαγωγή</string>
   <string name="arrays__use_default">Χρήση προκαθορισμένου</string>
@@ -1532,6 +1615,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Προσθήκη συνημμένου</string>
   <string name="conversation__menu_edit_group">Επεξεργασία ομάδας</string>
+  <string name="conversation__menu_manage_group">Διαχείριση ομάδας</string>
   <string name="conversation__menu_leave_group">Αποχώρηση απ\' την ομάδα</string>
   <string name="conversation__menu_view_all_media">Όλα τα πολυμέσα</string>
   <string name="conversation__menu_conversation_settings">Επιλογές συνομιλίας</string>
@@ -1693,6 +1777,9 @@
     <item quantity="one">Απομένει %1$d προσπάθεια.</item>
     <item quantity="other">Απομένουν %1$d προσπάθειες.</item>
   </plurals>
+  <!--CalleeMustAcceptMessageRequestDialogFragment-->
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">Εντάξει</string>
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">Ο/Η %1$s θα λάβει ένα αίτημα μηνύματος από σένα. Θα μπορέσεις να τον/την καλέσεις όταν αποδεχτεί αυτό το αίτημα.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Δημιούργησε ένα PIN</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Τα PIN κρατούν τις πληροφορίες που αποθηκεύονται στο Signal κρυπτογραφημένες.</string>
@@ -1763,7 +1850,6 @@
   <string name="RegistrationActivity_call_me_instead_available_in">Καλέστε με  \n (Διαθέσιμο σε %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Επικοινωνία με την Υποστήριξη Signal</string>
   <string name="RegistrationActivity_code_support_subject">Εγγραφή Signal - Κωδικός επιβεβαίωσης για Android</string>
-  <string name="RegistrationActivity_code_support_body">Θέμα: Εγγραφή Signal - Κωδικός επιβεβαίωσης για Android\nΠληροφορίες συσκεής: %1$s\nΈκδοση Android: %2$s\nΈκδοση Signal: %3$s\nΤοπικές ρυθμίσεις: %4$s</string>
   <string name="BackupUtil_never">Ποτέ</string>
   <string name="BackupUtil_unknown">Άγνωστο</string>
   <string name="preferences_app_protection__screen_lock">Κλείδωμα οθόνης</string>
@@ -1817,5 +1903,19 @@
   <string name="RegistrationLockDialog_reminder">Υπενθύμιση:</string>
   <string name="recipient_preferences__about">Πληροφορίες</string>
   <string name="Recipient_unknown">Άγνωστο</string>
+  <!--RecipientBottomSheet-->
+  <string name="RecipientBottomSheet_message">Μήνυμα</string>
+  <string name="RecipientBottomSheet_call">Κλήση</string>
+  <string name="RecipientBottomSheet_block">Φραγή</string>
+  <string name="RecipientBottomSheet_unblock">Κατάργηση φραγής</string>
+  <string name="RecipientBottomSheet_view_safety_number">Προβολή αριθμού ασφαλείας</string>
+  <string name="RecipientBottomSheet_make_group_admin">Ορισμός ως διαχειριστή/τρια ομάδας</string>
+  <string name="RecipientBottomSheet_remove_as_admin">Αφαίρεση διαχειριστή/τριας</string>
+  <string name="RecipientBottomSheet_remove_from_group">Αφαίρεση απ\' την ομάδα</string>
+  <string name="RecipientBottomSheet_remove_s_as_group_admin">Αφαίρεση των δικαιωμάτων διαχείρισης της ομάδας από τον/την %1$s;</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">Ο/Η %1$s θα μπορεί να επεξεργάζεται αυτή την ομάδα και τα μέλη της.</string>
+  <string name="RecipientBottomSheet_remove_s_from_s">Αφαίρεση του/της %1$s από \"%2$s\";</string>
+  <string name="RecipientBottomSheet_remove">Αφαίρεση</string>
+  <string name="GroupRecipientListItem_admin">Διαχειριστής/τρια</string>
   <!--EOF-->
 </resources>

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
 
-import java.util.Collection;
+import java.util.List;
 
 public final class GroupMemberListView extends RecyclerView {
 
@@ -34,7 +34,10 @@ public final class GroupMemberListView extends RecyclerView {
   }
 
   private void initialize(@NonNull Context context, @Nullable AttributeSet attrs) {
-    setHasFixedSize(true);
+    if (maxHeight > 0) {
+      setHasFixedSize(true);
+    }
+
     setLayoutManager(new LinearLayoutManager(context));
     setAdapter(membersAdapter);
 
@@ -52,7 +55,15 @@ public final class GroupMemberListView extends RecyclerView {
     membersAdapter.setAdminActionsListener(adminActionsListener);
   }
 
-  public void setMembers(@NonNull Collection<? extends GroupMemberEntry> recipients) {
+  public void setRecipientClickListener(@Nullable RecipientClickListener listener) {
+    membersAdapter.setRecipientClickListener(listener);
+  }
+
+  public void setRecipientLongClickListener(@Nullable RecipientLongClickListener listener) {
+    membersAdapter.setRecipientLongClickListener(listener);
+  }
+
+  public void setMembers(@NonNull List<? extends GroupMemberEntry> recipients) {
     membersAdapter.updateData(recipients);
   }
 

@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
 
-import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.groups.GroupSecretParams;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -81,6 +80,15 @@ public final class AvatarGroupsV2DownloadJob extends BaseJob {
         return;
       }
 
+      if (cdnKey.length() == 0) {
+        Log.w(TAG, "Removing avatar for group " + groupId);
+        AvatarHelper.setAvatar(context, record.get().getRecipientId(), null);
+        database.onAvatarUpdated(groupId, false);
+        return;
+      }
+
+      Log.i(TAG, "Downloading new avatar for group " + groupId);
+
       attachment = File.createTempFile("avatar", "gv2", context.getCacheDir());
       attachment.deleteOnExit();
 
@@ -102,7 +110,7 @@ public final class AvatarGroupsV2DownloadJob extends BaseJob {
         database.onAvatarUpdated(groupId, true);
       }
 
-    } catch (NonSuccessfulResponseCodeException | VerificationFailedException e) {
+    } catch (NonSuccessfulResponseCodeException e) {
       Log.w(TAG, e);
     } finally {
       if (attachment != null && attachment.exists())

@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.help;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -27,8 +28,10 @@ import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiImageView;
+import org.thoughtcrime.securesms.util.AppSignatureUtil;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.IntentUtils;
+import org.thoughtcrime.securesms.util.SupportEmailUtil;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 
 import java.util.ArrayList;
@@ -150,70 +153,36 @@ public class HelpFragment extends Fragment {
                             .findFirst().orElse(null);
 
     CommunicationActions.openEmail(requireContext(),
-                                   getString(R.string.RegistrationActivity_support_email),
+                                   SupportEmailUtil.getSupportEmailAddress(requireContext()),
                                    getEmailSubject(),
-                                   getEmailBody(debugLog, feeling).toString());
+                                   getEmailBody(debugLog, feeling));
   }
 
   private String getEmailSubject() {
     return getString(R.string.HelpFragment__signal_android_support_request);
   }
 
-  private Spanned getEmailBody(@Nullable String debugLog, @Nullable Feeling feeling) {
-    SpannableStringBuilder builder = new SpannableStringBuilder();
-
-    builder.append(problem.getText().toString());
-    builder.append("\n\n");
-    builder.append("--- ");
-    builder.append(getString(R.string.HelpFragment__support_info));
-    builder.append(" ---\n");
-    builder.append(getString(R.string.HelpFragment__subject));
-    builder.append(" ");
-    builder.append(getString(R.string.HelpFragment__signal_android_support_request));
-    builder.append("\n");
-    builder.append(getString(R.string.HelpFragment__device_info));
-    builder.append(" ");
-    builder.append(getDeviceInfo());
-    builder.append("\n");
-    builder.append(getString(R.string.HelpFragment__android_version));
-    builder.append(" ");
-    builder.append(getAndroidVersion());
-    builder.append("\n");
-    builder.append(getString(R.string.HelpFragment__signal_version));
-    builder.append(" ");
-    builder.append(getSignalVersion());
-    builder.append("\n");
-    builder.append(getString(R.string.HelpFragment__locale));
-    builder.append(" ");
-    builder.append(Locale.getDefault().toString());
+  private String getEmailBody(@Nullable String debugLog, @Nullable Feeling feeling) {
+    StringBuilder suffix = new StringBuilder();
 
     if (debugLog != null) {
-      builder.append("\n");
-      builder.append(getString(R.string.HelpFragment__debug_log));
-      builder.append(" ");
-      builder.append(debugLog);
+      suffix.append("\n");
+      suffix.append(getString(R.string.HelpFragment__debug_log));
+      suffix.append(" ");
+      suffix.append(debugLog);
     }
 
     if (feeling != null) {
-      builder.append("\n\n");
-      builder.append(feeling.getEmojiCode());
-      builder.append("\n");
-      builder.append(getString(feeling.getStringId()));
+      suffix.append("\n\n");
+      suffix.append(feeling.getEmojiCode());
+      suffix.append("\n");
+      suffix.append(getString(feeling.getStringId()));
     }
 
-    return builder;
-  }
-
-  private static CharSequence getDeviceInfo() {
-    return String.format("%s %s (%s)", Build.MANUFACTURER, Build.MODEL, Build.PRODUCT);
-  }
-
-  private static CharSequence getAndroidVersion() {
-    return String.format("%s (%s, %s)", Build.VERSION.RELEASE, Build.VERSION.INCREMENTAL, Build.DISPLAY);
-  }
-
-  private static CharSequence getSignalVersion() {
-    return BuildConfig.VERSION_NAME;
+    return SupportEmailUtil.generateSupportEmailBody(requireContext(),
+                                                     getString(R.string.HelpFragment__signal_android_support_request),
+                                                     problem.getText().toString() + "\n\n",
+                                                     suffix.toString());
   }
 
   private static void setSpinning(@Nullable CircularProgressButton button) {

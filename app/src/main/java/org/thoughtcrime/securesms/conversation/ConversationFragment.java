@@ -21,7 +21,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -37,6 +36,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
@@ -52,8 +52,6 @@ import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
@@ -65,6 +63,8 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.MessageDetailsActivity;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.sharing.ShareActivity;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.components.ConversationTypingView;
@@ -73,13 +73,12 @@ import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearL
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.contactshare.SharedContactDetailsActivity;
-import org.thoughtcrime.securesms.conversation.ConversationAdapter.HeaderViewHolder;
+import org.thoughtcrime.securesms.conversation.ConversationAdapter.StickyHeaderViewHolder;
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.ItemClickListener;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
@@ -107,6 +106,7 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity;
+import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.HtmlUtil;
@@ -133,13 +133,9 @@ import java.util.Locale;
 import java.util.Set;
 
 @SuppressLint("StaticFieldLeak")
-public class ConversationFragment extends Fragment
-  implements LoaderManager.LoaderCallbacks<Cursor>
-{
-  private static final String TAG       = ConversationFragment.class.getSimpleName();
-  private static final String KEY_LIMIT = "limit";
+public class ConversationFragment extends Fragment {
+  private static final String TAG = ConversationFragment.class.getSimpleName();
 
-  private static final int PARTIAL_CONVERSATION_LIMIT = 500;
   private static final int SCROLL_ANIMATION_THRESHOLD = 50;
   private static final int CODE_ADD_EDIT_CONTACT      = 77;
 
@@ -150,11 +146,6 @@ public class ConversationFragment extends Fragment
 
   private LiveRecipient               recipient;
   private long                        threadId;
-  private long                        lastSeen;
-  private int                         startingPosition;
-  private int                         previousOffset;
-  private int                         activeOffset;
-  private boolean                     firstLoad;
   private boolean                     isReacting;
   private ActionMode                  actionMode;
   private Locale                      locale;
@@ -170,6 +161,17 @@ public class ConversationFragment extends Fragment
   private ConversationBannerView      conversationBanner;
   private ConversationBannerView      emptyConversationBanner;
   private MessageRequestViewModel     messageRequestViewModel;
+  private ConversationViewModel       conversationViewModel;
+
+  public static void prepare(@NonNull Context context) {
+    FrameLayout parent = new FrameLayout(context);
+    parent.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT));
+
+    CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_received, parent, 10);
+    CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_sent, parent, 10);
+    CachedInflater.from(context).cacheUntilLimit(R.layout.conversation_item_update, parent, 5);
+    CachedInflater.from(context).cacheUntilLimit(R.layout.cursor_adapter_header_footer_view, parent, 2);
+  }
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -211,6 +213,14 @@ public class ConversationFragment extends Fragment
     ).attachToRecyclerView(list);
 
     setupListLayoutListeners();
+
+    this.conversationViewModel = ViewModelProviders.of(requireActivity(), new ConversationViewModel.Factory()).get(ConversationViewModel.class);
+    conversationViewModel.getMessages().observe(this, list -> {
+      if (getListAdapter() != null) {
+        getListAdapter().submitList(list);
+      }
+    });
+    conversationViewModel.getConversationMetadata().observe(this, this::presentConversationMetadata);
 
     return view;
   }
@@ -291,18 +301,10 @@ public class ConversationFragment extends Fragment
     initializeResources();
     messageRequestViewModel.setConversationInfo(recipient.getId(), threadId);
     initializeListAdapter();
-
-    if (threadId == -1) {
-      getLoaderManager().restartLoader(0, Bundle.EMPTY, this);
-    }
-  }
-
-  public void reloadList() {
-    getLoaderManager().restartLoader(0, Bundle.EMPTY, this);
   }
 
   public void moveToLastSeen() {
-    if (lastSeen <= 0) {
+    if (conversationViewModel.getLastSeenPosition() <= 0) {
       Log.i(TAG, "No need to move to last seen.");
       return;
     }
@@ -312,7 +314,7 @@ public class ConversationFragment extends Fragment
       return;
     }
 
-    int position = getListAdapter().findLastSeenPosition(lastSeen);
+    int position = getListAdapter().getAdapterPositionForMessagePosition(conversationViewModel.getLastSeenPosition());
     scrollToLastSeenPosition(position);
   }
 
@@ -401,12 +403,13 @@ public class ConversationFragment extends Fragment
   private void initializeResources() {
     long oldThreadId = threadId;
 
+    int startingPosition  = this.getActivity().getIntent().getIntExtra(ConversationActivity.STARTING_POSITION_EXTRA, -1);
+
     this.recipient         = Recipient.live(getActivity().getIntent().getParcelableExtra(ConversationActivity.RECIPIENT_EXTRA));
     this.threadId          = this.getActivity().getIntent().getLongExtra(ConversationActivity.THREAD_ID_EXTRA, -1);
-    this.lastSeen          = this.getActivity().getIntent().getLongExtra(ConversationActivity.LAST_SEEN_EXTRA, -1);
-    this.startingPosition  = this.getActivity().getIntent().getIntExtra(ConversationActivity.STARTING_POSITION_EXTRA, -1);
-    this.firstLoad         = true;
-    this.unknownSenderView = new UnknownSenderView(getActivity(), recipient.get(), threadId);
+    this.unknownSenderView = new UnknownSenderView(getActivity(), recipient.get(), threadId, () -> clearHeaderIfNotTyping(getListAdapter()));
+
+    conversationViewModel.onConversationDataAvailable(threadId, startingPosition);
 
     OnScrollListener scrollListener = new ConversationScrollListener(getActivity());
     list.addOnScrollListener(scrollListener);
@@ -419,12 +422,12 @@ public class ConversationFragment extends Fragment
   private void initializeListAdapter() {
     if (this.recipient != null && this.threadId != -1) {
       Log.d(TAG, "Initializing adapter for " + recipient.getId());
-      ConversationAdapter adapter = new ConversationAdapter(requireContext(), GlideApp.with(this), locale, selectionClickListener, null, this.recipient.get());
+      ConversationAdapter adapter = new ConversationAdapter(GlideApp.with(this), locale, selectionClickListener, this.recipient.get());
       list.setAdapter(adapter);
       list.addItemDecoration(new StickyHeaderDecoration(adapter, false, false));
+      ConversationAdapter.initializePool(list.getRecycledViewPool());
 
-      setLastSeen(lastSeen);
-      getLoaderManager().restartLoader(0, Bundle.EMPTY, this);
+      setLastSeen(conversationViewModel.getLastSeen());
 
       emptyConversationBanner.setVisibility(View.GONE);
     } else if (FeatureFlags.messageRequests() && threadId == -1) {
@@ -434,9 +437,6 @@ public class ConversationFragment extends Fragment
 
   private void initializeLoadMoreView(ViewSwitcher loadMoreView) {
     loadMoreView.setOnClickListener(v -> {
-      Bundle args = new Bundle();
-      args.putInt(KEY_LIMIT, 0);
-      getLoaderManager().restartLoader(0, args, ConversationFragment.this);
       loadMoreView.showNext();
       loadMoreView.setOnClickListener(null);
     });
@@ -550,6 +550,7 @@ public class ConversationFragment extends Fragment
     if (this.threadId != threadId) {
       this.threadId = threadId;
       messageRequestViewModel.setConversationInfo(recipient.getId(), threadId);
+      conversationViewModel.onConversationDataAvailable(threadId, -1);
       initializeListAdapter();
     }
   }
@@ -563,12 +564,11 @@ public class ConversationFragment extends Fragment
   }
 
   public void setLastSeen(long lastSeen) {
-    this.lastSeen = lastSeen;
     if (lastSeenDecoration != null) {
       list.removeItemDecoration(lastSeenDecoration);
     }
 
-    lastSeenDecoration = new ConversationAdapter.LastSeenHeader(getListAdapter(), lastSeen);
+    lastSeenDecoration = new LastSeenHeader(getListAdapter(), lastSeen);
     list.addItemDecoration(lastSeenDecoration);
   }
 
@@ -825,106 +825,9 @@ public class ConversationFragment extends Fragment
     });
   }
 
-  @Override
-  public @NonNull Loader<Cursor> onCreateLoader(int id, Bundle args) {
-    Log.i(TAG, "onCreateLoader");
-
-    int limit  = args.getInt(KEY_LIMIT, PARTIAL_CONVERSATION_LIMIT);
-    int offset = 0;
-    if (limit != 0 && startingPosition >= limit) {
-      offset = Math.max(startingPosition - (limit / 2) + 1, 0);
-      startingPosition -= offset - 1;
-    }
-
-    return new ConversationLoader(getActivity(), threadId, offset, limit, lastSeen);
-  }
-
-  @Override
-  public void onLoadFinished(@NonNull Loader<Cursor> cursorLoader, Cursor cursor) {
-    int                count  = cursor.getCount();
-    ConversationLoader loader = (ConversationLoader) cursorLoader;
-
-    ConversationAdapter adapter = getListAdapter();
-    if (adapter == null) {
-      return;
-    }
-
-    if (cursor.getCount() >= PARTIAL_CONVERSATION_LIMIT && loader.hasLimit()) {
-      adapter.setFooterView(topLoadMoreView);
-    } else if (FeatureFlags.messageRequests()) {
-      adapter.setFooterView(conversationBanner);
-    } else {
-      adapter.setFooterView(null);
-    }
-
-    if (lastSeen == -1) {
-      setLastSeen(loader.getLastSeen());
-    }
-
-    if (FeatureFlags.messageRequests() && !loader.hasPreMessageRequestMessages()) {
-      clearHeaderIfNotTyping(adapter);
-    } else {
-      if (!loader.hasSent() && !recipient.get().isSystemContact() && !recipient.get().isGroup() && recipient.get().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
-        adapter.setHeaderView(unknownSenderView);
-      } else {
-        clearHeaderIfNotTyping(adapter);
-      }
-    }
-
-    if (loader.hasOffset()) {
-      adapter.setHeaderView(bottomLoadMoreView);
-    }
-
-    if (firstLoad || loader.hasOffset()) {
-      previousOffset = loader.getOffset();
-    }
-
-    activeOffset = loader.getOffset();
-    adapter.changeCursor(cursor);
-    listener.onCursorChanged();
-
-    int lastSeenPosition = adapter.findLastSeenPosition(lastSeen);
-
-    if (isTypingIndicatorShowing()) {
-      lastSeenPosition = Math.max(lastSeenPosition - 1, 0);
-    }
-
-    if (firstLoad) {
-      if (startingPosition >= 0) {
-        scrollToStartingPosition(startingPosition);
-      } else if (loader.isMessageRequestAccepted()) {
-        scrollToLastSeenPosition(lastSeenPosition);
-      } else if (FeatureFlags.messageRequests()) {
-        list.post(() -> getListLayoutManager().scrollToPosition(adapter.getItemCount() - 1));
-      }
-      firstLoad = false;
-    } else if (previousOffset > 0) {
-      int scrollPosition = previousOffset + getListLayoutManager().findFirstVisibleItemPosition();
-      scrollPosition = Math.min(scrollPosition, count - 1);
-
-      View firstView = list.getLayoutManager().getChildAt(scrollPosition);
-      int pixelOffset = (firstView == null) ? 0 : (firstView.getBottom() - list.getPaddingBottom());
-
-      getListLayoutManager().scrollToPositionWithOffset(scrollPosition, pixelOffset);
-      previousOffset = 0;
-    }
-
-    if (lastSeenPosition <= 0) {
-      setLastSeen(0);
-    }
-  }
-
   private void clearHeaderIfNotTyping(ConversationAdapter adapter) {
     if (adapter.getHeaderView() != typingView) {
       adapter.setHeaderView(null);
-    }
-  }
-
-  @Override
-  public void onLoaderReset(@NonNull Loader<Cursor> arg0) {
-    if (list.getAdapter() != null) {
-      getListAdapter().changeCursor(null);
-      listener.onCursorChanged();
     }
   }
 
@@ -935,6 +838,7 @@ public class ConversationFragment extends Fragment
       clearHeaderIfNotTyping(getListAdapter());
       setLastSeen(0);
       getListAdapter().addFastRecord(messageRecord);
+      list.post(() -> list.scrollToPosition(0));
     }
 
     return messageRecord.getId();
@@ -947,6 +851,7 @@ public class ConversationFragment extends Fragment
       clearHeaderIfNotTyping(getListAdapter());
       setLastSeen(0);
       getListAdapter().addFastRecord(messageRecord);
+      list.post(() -> list.scrollToPosition(0));
     }
 
     return messageRecord.getId();
@@ -958,14 +863,53 @@ public class ConversationFragment extends Fragment
     }
   }
 
-  private void scrollToStartingPosition(final int startingPosition) {
+  private void presentConversationMetadata(@NonNull ConversationData conversation) {
+    Log.d(TAG, "presentConversationMetadata()");
+
+    ConversationAdapter adapter = getListAdapter();
+    if (adapter == null) {
+      return;
+    }
+
+    if (FeatureFlags.messageRequests()) {
+      adapter.setFooterView(conversationBanner);
+    } else {
+      adapter.setFooterView(null);
+    }
+
+    setLastSeen(conversation.getLastSeen());
+
+    if (FeatureFlags.messageRequests() && !conversation.hasPreMessageRequestMessages()) {
+      clearHeaderIfNotTyping(adapter);
+    } else {
+      if (!conversation.hasSent() && !recipient.get().isSystemContact() && !recipient.get().isGroup() && recipient.get().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
+        adapter.setHeaderView(unknownSenderView);
+      } else {
+        clearHeaderIfNotTyping(adapter);
+      }
+    }
+
+    listener.onCursorChanged();
+
+    int lastSeenPosition = adapter.getAdapterPositionForMessagePosition(conversation.getLastSeenPosition());
+
+    if (conversation.shouldJumpToMessage()) {
+      scrollToStartingPosition(conversation.getJumpToPosition());
+    } else if (conversation.isMessageRequestAccepted()) {
+      scrollToLastSeenPosition(lastSeenPosition);
+    } else if (FeatureFlags.messageRequests()) {
+      list.post(() -> getListLayoutManager().scrollToPosition(adapter.getItemCount() - 1));
+    }
+  }
+
+  private void scrollToStartingPosition(int startingPosition) {
     list.post(() -> {
       list.getLayoutManager().scrollToPosition(startingPosition);
       getListAdapter().pulseHighlightItem(startingPosition);
     });
   }
 
-  private void scrollToLastSeenPosition(final int lastSeenPosition) {
+  private void scrollToLastSeenPosition(int lastSeenPosition) {
     if (lastSeenPosition > 0) {
       list.post(() -> getListLayoutManager().scrollToPositionWithOffset(lastSeenPosition, list.getHeight()));
     }
@@ -1002,23 +946,23 @@ public class ConversationFragment extends Fragment
   }
 
   private void moveToMessagePosition(int position, @Nullable Runnable onMessageNotFound) {
-    Log.d(TAG, "Moving to message position: " + position + "  activeOffset: " + activeOffset + "  cursorCount: " + getListAdapter().getCursorCount());
+    if (position >= 0) {
+      list.scrollToPosition(position);
 
-    if (position >= activeOffset && position >= 0 && position < getListAdapter().getCursorCount()) {
-      int offset = activeOffset > 0 ? activeOffset - 1 : 0;
-      list.scrollToPosition(position - offset);
-      getListAdapter().pulseHighlightItem(position - offset);
-    } else if (position < 0) {
-      Log.w(TAG, "Tried to navigate to message, but it wasn't found.");
+      if (getListAdapter() == null || getListAdapter().getItem(position) == null) {
+        Log.i(TAG, "[moveToMessagePosition] Position " + position + " not currently populated. Scheduling a jump.");
+        conversationViewModel.scheduleForNextMessageUpdate(() -> {
+          list.scrollToPosition(position);
+          getListAdapter().pulseHighlightItem(position);
+        });
+      } else {
+        getListAdapter().pulseHighlightItem(position);
+      }
+    } else {
+      Log.w(TAG, "[moveToMessagePosition] Tried to navigate to message, but it wasn't found.");
       if (onMessageNotFound != null) {
         onMessageNotFound.run();
       }
-    } else {
-      Log.i(TAG, "Message was outside of the loaded range. Need to restart the loader.");
-
-      firstLoad        = true;
-      startingPosition = position;
-      getLoaderManager().restartLoader(0, Bundle.EMPTY, ConversationFragment.this);
     }
   }
 
@@ -1112,7 +1056,7 @@ public class ConversationFragment extends Fragment
       return getListLayoutManager().findLastVisibleItemPosition();
     }
 
-    private void bindScrollHeader(HeaderViewHolder headerViewHolder, int positionId) {
+    private void bindScrollHeader(StickyHeaderViewHolder headerViewHolder, int positionId) {
       if (((ConversationAdapter)list.getAdapter()).getHeaderId(positionId) != -1) {
         ((ConversationAdapter) list.getAdapter()).onBindHeaderViewHolder(headerViewHolder, positionId);
       }
@@ -1301,6 +1245,13 @@ public class ConversationFragment extends Fragment
 
       ReactionsBottomSheetDialogFragment.create(messageId, isMms).show(requireFragmentManager(), null);
     }
+
+    @Override
+    public void onGroupMemberAvatarClicked(@NonNull RecipientId recipientId, @NonNull GroupId groupId) {
+      if (getContext() == null) return;
+
+      RecipientBottomSheetDialogFragment.create(recipientId, groupId).show(requireFragmentManager(), "BOTTOM");
+    }
   }
 
   @Override
@@ -1422,7 +1373,7 @@ public class ConversationFragment extends Fragment
     }
   }
 
-  private static class ConversationDateHeader extends HeaderViewHolder {
+  private static class ConversationDateHeader extends StickyHeaderViewHolder {
 
     private final Animation animateIn;
     private final Animation animateOut;

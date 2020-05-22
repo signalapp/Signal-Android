@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 
 public class VoiceCallShare extends Activity {
   
@@ -34,7 +35,8 @@ public class VoiceCallShare extends Activity {
             if (!TextUtils.isEmpty(destination)) {
               Intent serviceIntent = new Intent(this, WebRtcCallService.class);
               serviceIntent.setAction(WebRtcCallService.ACTION_OUTGOING_CALL)
-                           .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER, new RemotePeer(recipient.getId()));
+                           .putExtra(WebRtcCallService.EXTRA_REMOTE_PEER, new RemotePeer(recipient.getId()))
+                           .putExtra(WebRtcCallService.EXTRA_OFFER_TYPE, OfferMessage.Type.AUDIO_CALL.getCode());
               startService(serviceIntent);
 
               Intent activityIntent = new Intent(this, WebRtcCallActivity.class);

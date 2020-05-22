@@ -186,7 +186,7 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Tiada aplikasi yang tersedia untuk mengendalikan pautan ini pada peranti anda.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Untuk menghantar mesej audio, benarkan Signal untuk mengakses mikrofon anda.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal memerlukan kebenaran Mikrofon untuk menghantar mesej audio, tetapi telah ditolak secara kekal. Sila terus ke menu tetapan aplikasi, pilih \"Kebenaran\", dan dayakan \"Mikrofon\".</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Untuk memanggil %s, Signal memerlukan akses kepada mikrofon dan kamera anda.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Untuk memanggil %s, Signal memerlukan akses kepada mikrofon dan kamera anda.</string> -->
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal memerlukan kebenaran Mikrofon dan Kamera untuk memanggil %s, tetapi telah ditolak secara kekal. Sila terus ke menu tetapan aplikasi, pilih \"Kebenaran\", dan dayakan \"Mikrofon\" dan \"Kamera\".</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Untuk menangkap foto dan video, benarkan Signal untuk mengakses kamera anda.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal memerlukan kebenaran Kamera untuk menangkap foto dan video, tetapi telah ditolak secara kekal. Sila terus ke menu tetapan aplikasi, pilih \"Kebenaran\", dan dayakan \"Kamera\".</string>
@@ -1414,7 +1414,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Hubungi saya \n (Tersedia dalam %1$02d:%2$02d )</string>
   <string name="RegistrationActivity_contact_signal_support">Hubungi Sokongan Signal</string>
   <string name="RegistrationActivity_code_support_subject">Pendaftaran Signal - Kod Pengesahan untuk Android</string>
-  <string name="RegistrationActivity_code_support_body">Subjek: Pendaftaran Signal - Kod Pengesahan untuk Android\nPeranti maklumat: %1$s\nVersi Android:%2$s\nVersi Signal: %3$s\nTempatan: %4$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_code_support_body">Subjek: Pendaftaran Signal - Kod Pengesahan untuk Android\nPeranti maklumat: %1$s\nVersi Android:%2$s\nVersi Signal: %3$s\nTempatan: %4$s</string> -->
   <string name="BackupUtil_never">Tidak pernah</string>
   <string name="BackupUtil_unknown">Tidak diketahui</string>
   <string name="preferences_app_protection__screen_lock">Kunci skrin</string>

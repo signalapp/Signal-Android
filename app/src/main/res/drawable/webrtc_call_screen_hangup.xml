@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/webrtc_call_screen_circle_red" />
+    <item
+        android:bottom="14dp"
+        android:drawable="@drawable/ic_phone_down_28"
+        android:left="14dp"
+        android:right="14dp"
+        android:top="14dp" />
+</layer-list>

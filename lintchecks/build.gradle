@@ -1,0 +1,20 @@
+apply plugin: 'java-library'
+
+repositories {
+    google()
+    jcenter()
+}
+
+dependencies {
+    compileOnly 'com.android.tools.lint:lint-api:26.6.3'
+    compileOnly 'com.android.tools.lint:lint-checks:26.6.3'
+
+    testImplementation 'com.android.tools.lint:lint-tests:26.6.3'
+    testImplementation 'junit:junit:4.12'
+}
+
+jar {
+    manifest {
+        attributes('Lint-Registry-v2': 'org.signal.lint.Registry')
+    }
+}

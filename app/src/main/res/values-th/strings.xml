@@ -163,6 +163,7 @@
   <string name="ConversationItem_read_more">อ่านเพิ่มเติม</string>
   <string name="ConversationItem_download_more">ดาวน์โหลดเพิ่มเติม</string>
   <string name="ConversationItem_pending">อยู่ระหว่างดำเนินการ</string>
+  <string name="ConversationItem_this_message_was_deleted">ข้อความนี้ถูกลบ</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">ต้องการรีเซ็ตเซสชันที่ปลอดภัยหรือไม่?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">นี่อาจจะช่วยได้ หากคุณมีปัญหากับการเข้ารหัสข้อความในการสนทนานี้ ข้อความของคุณจะถูกเก็บไว้</string>
@@ -197,7 +198,6 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">อุปกรณ์ของคุณไม่มีแอปที่สามารถจัดการกับลิงก์นี้ได้</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">เพื่อจะส่งข้อความเสียง คุณต้องอนุญาตให้ Signal เข้าถึงไมโครโฟน</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">เพื่อจะส่งข้อความเสียง Signal ต้องได้รับอนุญาตให้เข้าถึงไมโครโฟน แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ไมโครโฟน\"</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">เพื่อจะโทรหา %s Signal จำเป็นต้องเข้าถึงไมโครโฟนและกล้องของคุณ</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">เพื่อที่จะโทรหา %s Signal ต้องได้รับอนุญาตให้เข้าถึงไมโครโฟนและกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ไมโครโฟน\" และ \"กล้อง\"</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">อนุญาต Signal ให้ใช้กล้องเพื่อถ่ายรูปและวิดีโอ</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">เพื่อที่จะถ่ายรูปหรือวิดีโอ Signal ต้องได้รับอนุญาตให้เข้าถึงกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"กล้อง\"</string>
@@ -369,6 +369,27 @@
   <!--GV2 access levels-->
   <!--PendingMembersActivity-->
   <string name="PendingMembersActivity_people_you_invited">ผู้คนที่คุณได้เชิญ</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">เชิญโดยสมาชิกกลุ่มคนอื่น</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">รายละเอียดของบุคคลที่ถูกเชิญเข้ากลุ่มโดยสมาชิกคนอื่นจะไม่ถูกแสดง ถ้าผู้ถูกเชิญเลือกเข้าร่วมกลุ่ม ข้อมูลของบุคคลเหล่านั้นจะถูกแบ่งปันกับกลุ่ม ผู้ถูกเชิญจะมองไม่เห็นข้อความในกลุ่มจนกว่าจะเข้าร่วม</string>
+  <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__create">สร้าง</string>
+  <string name="AddGroupDetailsFragment__members">สมาชิก</string>
+  <string name="AddGroupDetailsFragment__group_name_required">ชื่อกลุ่ม (ต้องมี)</string>
+  <string name="AddGroupDetailsFragment__remove">เอาออก</string>
+  <!--ManageGroupActivity-->
+  <string name="ManageGroupActivity_disappearing_messages">ข้อความที่ลบตัวเอง</string>
+  <string name="ManageGroupActivity_leave_group">ออกจากกลุ่ม</string>
+  <string name="ManageGroupActivity_mute_notifications">ปิดเสียงการแจ้งเตือน</string>
+  <string name="ManageGroupActivity_custom_notifications">การแจ้งเตือนที่กำหนดเอง</string>
+  <string name="ManageGroupActivity_off">ปิด</string>
+  <string name="ManageGroupActivity_on">เปิด</string>
+  <string name="ManageGroupActivity_add_members">เพิ่มสมาชิก</string>
+  <string name="ManageGroupActivity_view_all_members">ดูสมาชิกทั้งหมด</string>
+  <!--CustomNotificationsDialogFragment-->
+  <string name="CustomNotificationsDialogFragment__custom_notifications">การแจ้งเตือนที่กำหนดเอง</string>
+  <string name="CustomNotificationsDialogFragment__messages">ข้อความ</string>
+  <string name="CustomNotificationsDialogFragment__notification_sound">เสียงการแจ้งเตือน</string>
+  <string name="CustomNotificationsDialogFragment__vibrate">สั่น</string>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">อวตารกลุ่ม</string>
@@ -488,6 +509,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">สื่อทั้งหมด</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_unknown">ไม่ทราบ</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ได้รับข้อความที่เข้ารหัสลับด้วย Signal รุ่นเก่าที่ไม่รองรับอีกต่อไปแล้ว โปรดขอให้ผู้ส่งปรับปรุงแอปเป็นรุ่นล่าสุดและส่งข้อความอีกครั้ง</string>
   <string name="MessageRecord_left_group">คุณได้ออกจากกลุ่ม</string>
   <string name="MessageRecord_you_updated_group">คุณได้อัปเดตกลุ่ม</string>
@@ -504,6 +526,8 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">คุณได้ตั้งเวลาให้ข้อความลบตัวเองไว้ที่ %1$s</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ตั้งเวลาให้ข้อความลบตัวเองไว้ที่ %2$s</string>
   <!--GV2 specific-->
+  <string name="MessageRecord_you_created_the_group">คุณได้สร้างกลุ่มแล้ว</string>
+  <string name="MessageRecord_group_updated">ปรับปรุงกลุ่ม</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_joined_the_group">คุณได้ร่วมกลุ่ม</string>
   <string name="MessageRecord_s_joined_the_group">%1$s ได้เข้าร่วมกลุ่ม</string>
@@ -587,6 +611,7 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">รุ่นของ Google Play Services ที่คุณมีอยู่ทำงานไม่ถูกต้อง โปรดติดตั้ง Google Play Services ใหม่และลองอีกครั้ง</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">รหัส PIN ไม่ถูกต้อง </string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">ถ้าคุณไม่สามารถจำรหัส PIN ได้ คุณสามารถสร้างรหัส PIN ใหม่ คุณสามารถลงทะเบียนและใช้บัญชีของคุณได้ แต่คุณจะสูญเสียการตั้งค่าเดิมเช่นข้อมูลโปรไฟล์ของคุณ</string>
   <string name="PinRestoreEntryFragment_create_new_pin">สร้างรหัส PIN ใหม่</string>
   <string name="PinRestoreEntryFragment_contact_support">ติดต่อการสนับสนุน</string>
   <string name="PinRestoreEntryFragment_cancel">ยกเลิก</string>
@@ -603,7 +628,6 @@
   <string name="RatingManager_later">ไว้คราวหน้า</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">โอ๊ะ ไม่พบว่าแอป Play Store ถูกติดตั้งบนอุปกรณ์ของคุณ</string>
   <!--ReactionsBottomSheetDialogFragment-->
-  <string name="ReactionsBottomSheetDialogFragment_all">ทั้งหมด %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
@@ -629,6 +653,9 @@
   <string name="RedPhone_number_not_registered">หมายเลขยังไม่ได้ลงทะเบียน!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">หมายเลขที่คุณโทรออกไม่รองรับการโทรแบบปลอดภัย</string>
   <string name="RedPhone_got_it">เข้าใจแล้ว</string>
+  <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">แตะเพื่อเปิดวีดิโอของคุณ</string>
+  <!--WebRtcCallView-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">เลือกประเทศของคุณ</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">คุณต้องระบุรหัส
@@ -670,6 +697,7 @@
   <string name="RegistrationActivity_country_code_description">รหัสประเทศ</string>
   <string name="RegistrationActivity_call">โทร</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">ถ้าคุณลืมรหัส PIN ของคุณตอนที่คุณลงทะเบียนกับ Signal อีกครั้ง คุณจะถูกล็อกจากบัญชีของคุณเป็นเวลา 7 วัน</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">ดูรูปภาพ</string>
   <string name="RevealableMessageView_view_video">ดูวิดีโอ</string>
@@ -743,6 +771,13 @@
   <string name="SubmitDebugLogActivity_copied_to_clipboard">คัดลอกไปคลิปบอร์ดแล้ว</string>
   <string name="SubmitDebugLogActivity_ok">ตกลง</string>
   <string name="SubmitDebugLogActivity_share">แบ่งปัน</string>
+  <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_subject">หัวข้อ:</string>
+  <string name="SupportEmailUtil_signal_android_support_request">การขอความช่วยเหลือ Signal บนแอนดรอยด์</string>
+  <string name="SupportEmailUtil_device_info">ข้อมูลอุปกรณ์:</string>
+  <string name="SupportEmailUtil_android_version">รุ่นแอนดรอยด์:</string>
+  <string name="SupportEmailUtil_signal_version">รุ่น Signal:</string>
+  <string name="SupportEmailUtil_locale">ท้องถิ่น:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">อัปเดตกลุ่มแล้ว</string>
   <string name="ThreadRecord_left_the_group">ออกจากกลุ่ม</string>
@@ -756,6 +791,7 @@
   <string name="ThreadRecord_view_once_photo">รูปภาพที่ดูได้ครั้งเดียว</string>
   <string name="ThreadRecord_view_once_video">วิดีโอที่ดูได้ครั้งเดียว</string>
   <string name="ThreadRecord_view_once_media">สื่อที่ดูได้ครั้งเดียว</string>
+  <string name="ThreadRecord_this_message_was_deleted">ข้อความนี้ถูกลบ</string>
   <string name="ThreadRecord_s_is_on_signal">%s ใช้งาน Signal</string>
   <string name="ThreadRecord_disappearing_messages_disabled">ข้อความที่ลบตัวเองถูกปิดใช้งานแล้ว</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">ตั้งเวลาข้อความที่ลบตัวเองไว้ที่ %s</string>
@@ -865,6 +901,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">ตอบสนอง %1$s กับรูปภาพที่ดูได้ครั้งเดียวของคุณ</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">ตอบสนอง %1$s กับวิดีโอที่ดูได้ครั้งเดียวของคุณ</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">ตอบสนอง %1$s ต่อสติกเกอร์ของคุณ</string>
+  <string name="MessageNotifier_this_message_was_deleted">ข้อความนี้ถูกลบ</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">ค่าเริ่มต้น</string>
   <string name="NotificationChannel_calls">การโทร</string>
@@ -913,6 +950,12 @@
   <string name="WebRtcCallScreen_new_safety_number_title">หมายเลขความปลอดภัยใหม่</string>
   <string name="WebRtcCallScreen_accept">ยอมรับ</string>
   <string name="WebRtcCallScreen_end_call">วางสาย</string>
+  <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__answer">รับสาย</string>
+  <!--WebRtcAudioOutputToggle-->
+  <string name="WebRtcAudioOutputToggle__phone">โทรศัพท์</string>
+  <string name="WebRtcAudioOutputToggle__speaker">ลำโพง</string>
+  <string name="WebRtcAudioOutputToggle__bluetooth">บลูทูธ</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">แตะเพื่อเปิดใช้งานวิดีโอของคุณ</string>
   <!--WebRtcCallControls Content Descriptions-->
@@ -947,6 +990,7 @@
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">ใส่ชื่อหรือหมายเลข</string>
   <string name="contact_selection_activity__invite_to_signal">เชิญมาใช้ Signal</string>
+  <string name="contact_selection_activity__new_group">กลุ่มใหม่</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">ล้างข้อความที่พิมพ์เข้าไป</string>
   <string name="contact_filter_toolbar__show_keyboard_description">แสดงคีย์บอร์ด</string>
@@ -1115,6 +1159,8 @@
   <string name="CreateProfileActivity_next">ต่อไป</string>
   <string name="CreateProfileActivity__username">ชื่อผู้ใช้</string>
   <string name="CreateProfileActivity__create_a_username">สร้างชื่อผู้ใช้</string>
+  <!--EditProfileFragment-->
+  <string name="EditProfileFragment__group_name">ชื่อกลุ่ม</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">สื่อที่ถูกแบ่งปัน</string>
   <!--recipient_preferences-->
@@ -1193,18 +1239,14 @@
   <string name="HelpFragment__whats_this">นี่คืออะไร?</string>
   <string name="HelpFragment__how_do_you_feel">คุณรู้สึกอย่างไร? (ใส่หรือไม่ก็ได้)</string>
   <string name="HelpFragment__support_info">ข้อมูลความช่วยเหลือ</string>
-  <string name="HelpFragment__subject">หัวข้อ:</string>
   <string name="HelpFragment__signal_android_support_request">การขอความช่วยเหลือ Signal บนแอนดรอยด์</string>
-  <string name="HelpFragment__device_info">ข้อมูลอุปกรณ์:</string>
-  <string name="HelpFragment__android_version">รุ่นแอนดรอยด์:</string>
-  <string name="HelpFragment__signal_version">รุ่น Signal:</string>
-  <string name="HelpFragment__locale">ท้องถิ่น:</string>
   <string name="HelpFragment__debug_log">ปูมดีบัก:</string>
   <string name="HelpFragment__na">ไม่มีข้อมูล</string>
   <string name="HelpFragment__could_not_upload_logs">ไม่สามารถอัปโหลดปูม</string>
   <string name="HelpFragment__signal_support">การสนับสนุน Signal</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">กรุณาอธิบายละเอียดที่สุดเท่าที่จะทำได้ เพื่อช่วยให้เราเข้าใจปัญหา</string>
   <string name="HelpFragment__no_email_app_found">ไม่พอแอปอีเมล</string>
+  <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <!--arrays.xml-->
   <string name="arrays__import_export">นำเข้า</string>
   <string name="arrays__use_default">ใช้ค่าเริ่มต้น</string>
@@ -1502,7 +1544,10 @@
     <item quantity="other">รหัส PIN ต้องมีอย่างน้อย %1$d หลัก</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">สร้างรหัส PIN ใหม่</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">คุณสามารถเปลี่ยนรหัส PIN ได้ตราบเท่าที่คุณยังลงทะเบียนอุปกรณ์นี้</string>
   <string name="CreateKbsPinFragment__create_your_pin">สร้างรหัส PIN ของคุณ</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">รหัส PIN รักษาข้อมูลที่เก็บไว้ใน Signal ที่เข้ารหัส ดังนั้นจึงมีแต่คุณที่เข้าถึงข้อมูลนี้ได้ โปรไฟล์ของคุณ การตั้งค่า และรายชื่อผู้ติดต่อจะถูกกู้คืนเมื่อคุณติดตั้ง Signal อีกครั้ง</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">เลือกรหัส PIN ที่แข็งแรงกว่านี้</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">รหัส PIN ไม่ตรงกัน ลองอีกครั้ง</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">ยืนยันรหัส PIN ของคุณ</string>
@@ -1512,6 +1557,7 @@
   <string name="ConfirmKbsPinFragment__creating_pin">สร้างรหัส PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">แนะนำรหัส PINs</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">รหัส PIN รักษาข้อมูลที่เก็บไว้ใน Signal ที่เข้ารหัส ดังนั้นจึงมีแต่คุณที่เข้าถึงข้อมูลนี้ได้ โปรไฟล์ของคุณ การตั้งค่า และรายชื่อผู้ติดต่อจะถูกกู้คืนเมื่อคุณติดตั้ง Signal อีกครั้ง</string>
   <string name="KbsSplashFragment__learn_more">เรียนรู้เพิ่มเติม</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">กุญแจลงทะเบียน = รหัส PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">จากนี้กุญแจลงทะเบียนของคุณจะถูกเรียกว่ารหัส PIN และมันมีที่ใช้มากขึ้น ปรับปรุงมันเดี๋ยวนี้</string>
@@ -1556,6 +1602,8 @@
   <plurals name="RegistrationLockFragment__d_attempts_remaining">
     <item quantity="other">ยังลองได้อีก %1$d ครั้ง</item>
   </plurals>
+  <!--CalleeMustAcceptMessageRequestDialogFragment-->
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">ตกลง</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">สร้างรหัส PIN</string>
   <string name="KbsMegaphone__create_pin">สร้างรหัส PIN</string>
@@ -1625,7 +1673,6 @@
   <string name="RegistrationActivity_call_me_instead_available_in">โทรหาฉัน \n (ใช้งานได้ใน %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">ติดต่อทีมซัพพอร์ตของ Signal</string>
   <string name="RegistrationActivity_code_support_subject">การลงทะเบียน Signal - รหัสตรวจยืนยันสำหรับ Android</string>
-  <string name="RegistrationActivity_code_support_body">หัวข้อ: การลงทะเบียน Signal - รหัสตรวจยืนยันสำหรับแอนดรอยด์\nข้อมูลอุปกรณ์: %1$s\nรุ่นแอนดรอยด์:  %2$s\nรุ่น Signal: %3$s\nท้องถิ่น: %4$s</string>
   <string name="BackupUtil_never">ไม่เลย</string>
   <string name="BackupUtil_unknown">ไม่ทราบ</string>
   <string name="preferences_app_protection__screen_lock">ล็อกหน้าจอ</string>
@@ -1634,6 +1681,7 @@
   <string name="preferences_app_protection__signal_pin">รหัส PIN ของ Signal</string>
   <string name="preferences_app_protection__create_a_pin">สร้างรหัส PIN</string>
   <string name="preferences_app_protection__change_your_pin">เปลี่ยนรหัส PIN ของคุณ</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">รหัส PIN รักษาข้อมูลที่เก็บไว้ใน Signal ที่เข้ารหัส ดังนั้นจึงมีแต่คุณที่เข้าถึงข้อมูลนี้ได้ โปรไฟล์ของคุณ การตั้งค่า และรายชื่อผู้ติดต่อจะถูกกู้คืนเมื่อคุณติดตั้ง Signal อีกครั้ง</string>
   <string name="AppProtectionPreferenceFragment_none">ไม่มี</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">รหัส PIN กุญแจลงทะเบียนไม่เหมือนกับรหัสตรวจยืนยันทาง SMS ที่คุณเพิ่งได้รับ โปรดป้อนรหัส PIN ที่คุณได้กำหนดไว้ในโปรแกรมก่อนหน้านี้</string>
   <string name="registration_activity__registration_lock_pin">รหัส PIN กุญแจลงทะเบียน</string>
@@ -1675,5 +1723,13 @@
   <string name="RegistrationLockDialog_reminder">เตือนความจำ:</string>
   <string name="recipient_preferences__about">เกี่ยวกับ</string>
   <string name="Recipient_unknown">ไม่ทราบ</string>
+  <!--RecipientBottomSheet-->
+  <string name="RecipientBottomSheet_message">ข้อความ</string>
+  <string name="RecipientBottomSheet_call">โทร</string>
+  <string name="RecipientBottomSheet_block">ปิดกั้น</string>
+  <string name="RecipientBottomSheet_unblock">เลิกปิดกั้น</string>
+  <string name="RecipientBottomSheet_view_safety_number">ดูหมายเลขความปลอดภัย</string>
+  <string name="RecipientBottomSheet_remove">เอาออก</string>
+  <string name="GroupRecipientListItem_admin">ผู้ดูแล</string>
   <!--EOF-->
 </resources>

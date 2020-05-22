@@ -103,7 +103,7 @@ public class ConversationUpdateItem extends LinearLayout
     }
 
     if (this.messageRecord != null && messageRecord.isGroupAction()) {
-      GroupUtil.getDescription(getContext(), messageRecord.getBody()).removeObserver(this);
+      GroupUtil.getDescription(getContext(), messageRecord.getBody(), messageRecord.isGroupV2()).removeObserver(this);
     }
 
     this.messageRecord = messageRecord;
@@ -113,7 +113,7 @@ public class ConversationUpdateItem extends LinearLayout
     this.sender.observeForever(this);
 
     if (this.messageRecord != null && messageRecord.isGroupAction()) {
-      GroupUtil.getDescription(getContext(), messageRecord.getBody()).addObserver(this);
+      GroupUtil.getDescription(getContext(), messageRecord.getBody(), messageRecord.isGroupV2()).addObserver(this);
     }
 
     present(messageRecord);
@@ -236,7 +236,7 @@ public class ConversationUpdateItem extends LinearLayout
       sender.removeForeverObserver(this);
     }
     if (this.messageRecord != null && messageRecord.isGroupAction()) {
-      GroupUtil.getDescription(getContext(), messageRecord.getBody()).removeObserver(this);
+      GroupUtil.getDescription(getContext(), messageRecord.getBody(), messageRecord.isGroupV2()).removeObserver(this);
     }
   }
 

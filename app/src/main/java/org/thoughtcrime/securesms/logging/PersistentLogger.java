@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.logging;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import androidx.annotation.AnyThread;
 import androidx.annotation.WorkerThread;
@@ -21,7 +22,8 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-public class PersistentLogger extends Log.Logger {
+@SuppressLint("LogNotSignal")
+public final class PersistentLogger extends Log.Logger {
 
   private static final String TAG     = PersistentLogger.class.getSimpleName();
 

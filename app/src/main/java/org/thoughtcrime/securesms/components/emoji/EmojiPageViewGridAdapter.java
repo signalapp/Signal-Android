@@ -22,17 +22,20 @@ public class EmojiPageViewGridAdapter extends RecyclerView.Adapter<EmojiPageView
   private final EmojiVariationSelectorPopup popup;
   private final VariationSelectorListener   variationSelectorListener;
   private final EmojiEventListener          emojiEventListener;
+  private final boolean                     allowVariations;
 
   public EmojiPageViewGridAdapter(@NonNull EmojiProvider emojiProvider,
                                   @NonNull EmojiVariationSelectorPopup popup,
                                   @NonNull EmojiEventListener emojiEventListener,
-                                  @NonNull VariationSelectorListener variationSelectorListener)
+                                  @NonNull VariationSelectorListener variationSelectorListener,
+                                  boolean allowVariations)
   {
     this.emojiList                 = new ArrayList<>();
     this.emojiProvider             = emojiProvider;
     this.popup                     = popup;
     this.emojiEventListener        = emojiEventListener;
     this.variationSelectorListener = variationSelectorListener;
+    this.allowVariations           = allowVariations;
 
     popup.setOnDismissListener(this);
   }
@@ -65,7 +68,7 @@ public class EmojiPageViewGridAdapter extends RecyclerView.Adapter<EmojiPageView
       emojiEventListener.onEmojiSelected(emoji.getValue());
     });
 
-    if (emoji.getVariations().size() > 1) {
+    if (allowVariations && emoji.getVariations().size() > 1) {
       viewHolder.itemView.setOnLongClickListener(v -> {
         popup.dismiss();
         popup.setVariations(emoji.getVariations());

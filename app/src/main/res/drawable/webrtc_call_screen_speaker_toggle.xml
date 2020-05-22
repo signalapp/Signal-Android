@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item app:state_handset="true">
+        <layer-list>
+            <item android:drawable="@drawable/webrtc_call_screen_circle_grey" />
+            <item android:bottom="14dp" android:drawable="@drawable/ic_speaker_solid_white_28" android:left="14dp" android:right="14dp" android:top="14dp" />
+        </layer-list>
+    </item>
+    <item app:state_speaker="true">
+        <layer-list>
+            <item android:drawable="@drawable/circle_tintable" />
+            <item android:bottom="14dp" android:drawable="@drawable/ic_speaker_solid_28" android:left="14dp" android:right="14dp" android:top="14dp" />
+        </layer-list>
+    </item>
+    <item app:state_headset="true">
+        <layer-list>
+            <item android:drawable="@drawable/webrtc_call_screen_circle_grey" />
+            <item android:bottom="14dp" android:drawable="@drawable/ic_speaker_bt_solid_28" android:left="14dp" android:right="14dp" android:top="14dp" />
+        </layer-list>
+    </item>
+</selector>

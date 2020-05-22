@@ -143,6 +143,10 @@ message GroupChanges {
   repeated GroupChangeState groupChanges = 1;
 }
 
-message DisappearingMessagesTimer {
-  uint32 duration = 1;
+message GroupAttributeBlob {
+  oneof content {
+    string title                        = 1;
+    bytes  avatar                       = 2;
+    uint32 disappearingMessagesDuration = 3;
+  }
 }

@@ -21,7 +21,6 @@ import static androidx.camera.core.SurfaceRequest.Result;
 import android.annotation.SuppressLint;
 import android.graphics.Point;
 import android.graphics.SurfaceTexture;
-import android.util.Log;
 import android.util.Pair;
 import android.util.Size;
 import android.view.Surface;
@@ -41,6 +40,8 @@ import androidx.core.content.ContextCompat;
 import androidx.core.util.Preconditions;
 
 import com.google.common.util.concurrent.ListenableFuture;
+
+import org.thoughtcrime.securesms.logging.Log;
 
 /**
  * The {@link TextureView} implementation for {@link PreviewView}

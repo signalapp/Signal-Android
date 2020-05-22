@@ -57,12 +57,10 @@ public class RotateCertificateJob extends BaseJob {
     }
 
     synchronized (RotateCertificateJob.class) {
-      SignalServiceAccountManager accountManager    = ApplicationDependencies.getSignalServiceAccountManager();
-      byte[]                      certificate       = accountManager.getSenderCertificate();
-      byte[]                      legacyCertificate = accountManager.getSenderCertificateLegacy();
+      SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
+      byte[]                      certificate    = accountManager.getSenderCertificate();
 
       TextSecurePreferences.setUnidentifiedAccessCertificate(context, certificate);
-      TextSecurePreferences.setUnidentifiedAccessCertificateLegacy(context, legacyCertificate);
     }
   }
 

@@ -6,6 +6,7 @@ import org.whispersystems.libsignal.util.Pair;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -35,6 +36,10 @@ public final class EmojiUtil {
   }
 
   private EmojiUtil() {}
+
+  public static List<EmojiPageModel> getDisplayPages() {
+    return EmojiPages.DISPLAY_PAGES;
+  }
 
   /**
    * This will return all ways we know of expressing a singular emoji. This is to aid in search,

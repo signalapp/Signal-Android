@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools"
-           xmlns:app="http://schemas.android.com/apk/res-auto">
+<resources xmlns:tools="http://schemas.android.com/tools">
     <style name="NoAnimation.Theme.BlackScreen" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowBackground">@android:color/black</item>
@@ -263,6 +262,13 @@
         <item name="android:textOff">@null</item>
     </style>
 
+    <style name="WebRtcCallV2CompoundButton">
+        <item name="android:layout_height">56dp</item>
+        <item name="android:layout_width">56dp</item>
+        <item name="android:textOn">@null</item>
+        <item name="android:textOff">@null</item>
+    </style>
+
     <style name="IdentityKey">
         <item name="android:fontFamily">monospace</item>
         <item name="android:typeface">monospace</item>
@@ -408,4 +414,31 @@
             <enum name="textureView" value="1"/>
         </attr>
     </declare-styleable>
+
+    <style name="Widget.Signal.Button.TextButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:textAppearance">@style/TextAppearance.Signal.Body2</item>
+    </style>
+
+    <style name="Widget.Signal.Button.TextButton.Drawable">
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:drawablePadding">16dp</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="Widget.Signal.Button.TextButton.Red" >
+        <item name="android:textColor">@color/core_red</item>
+    </style>
+
+    <style name="Widget.Signal.Button.TextButton.Ultramarine" >
+        <item name="android:textColor">@color/ultramarine_text_button</item>
+    </style>
+
+    <style name="Widget.Signal.Button.TextButton.Drawable.Ultramarine" >
+        <item name="android:textColor">@color/ultramarine_text_button</item>
+    </style>
+
+    <style name="Widget.Signal.Button.CalleeDialog" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/core_ultramarine</item>
+        <item name="android:background">@drawable/callee_dialog_button_background</item>
+    </style>
 </resources>

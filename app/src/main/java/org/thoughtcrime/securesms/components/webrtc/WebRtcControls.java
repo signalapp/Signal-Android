@@ -1,0 +1,11 @@
+package org.thoughtcrime.securesms.components.webrtc;
+
+public enum WebRtcControls {
+  NONE,
+  ONGOING_LOCAL_AUDIO_REMOTE_AUDIO,
+  ONGOING_LOCAL_AUDIO_REMOTE_VIDEO,
+  ONGOING_LOCAL_VIDEO_REMOTE_AUDIO,
+  ONGOING_LOCAL_VIDEO_REMOTE_VIDEO,
+  INCOMING_AUDIO,
+  INCOMING_VIDEO
+}

@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
 import org.thoughtcrime.securesms.video.videoconverter.EncodingException;
 import org.thoughtcrime.securesms.video.videoconverter.MediaConverter;
-import org.thoughtcrime.securesms.video.videoconverter.VideoInput;
+import org.thoughtcrime.securesms.media.MediaInput;
 
 import java.io.Closeable;
 import java.io.FileDescriptor;
@@ -129,7 +129,7 @@ public final class InMemoryTranscoder implements Closeable {
 
     final MediaConverter converter = new MediaConverter();
 
-    converter.setInput(new VideoInput.MediaDataSourceVideoInput(dataSource));
+    converter.setInput(new MediaInput.MediaDataSourceMediaInput(dataSource));
     converter.setOutput(memoryFileFileDescriptor);
     converter.setVideoResolution(outputFormat);
     converter.setVideoBitrate(targetVideoBitRate);

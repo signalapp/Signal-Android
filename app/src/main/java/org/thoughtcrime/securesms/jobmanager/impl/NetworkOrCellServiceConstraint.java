@@ -5,17 +5,19 @@ import android.app.job.JobInfo;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.jobmanager.Constraint;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class NetworkOrCellServiceConstraint implements Constraint {
 
-  public static final String KEY = "NetworkOrCellServiceConstraint";
+  public static final String KEY        = "NetworkOrCellServiceConstraint";
+  public static final String LEGACY_KEY = "CellServiceConstraint";
 
-  private final NetworkConstraint     networkConstraint;
-  private final CellServiceConstraint serviceConstraint;
+  private final Application       application;
+  private final NetworkConstraint networkConstraint;
 
-  public NetworkOrCellServiceConstraint(@NonNull Application application) {
-    networkConstraint = new NetworkConstraint.Factory(application).create();
-    serviceConstraint = new CellServiceConstraint.Factory(application).create();
+  private NetworkOrCellServiceConstraint(@NonNull Application application) {
+    this.application       = application;
+    this.networkConstraint = new NetworkConstraint.Factory(application).create();
   }
 
   @Override
@@ -25,11 +27,19 @@ public class NetworkOrCellServiceConstraint implements Constraint {
 
   @Override
   public boolean isMet() {
-    return networkConstraint.isMet() || serviceConstraint.isMet();
+    if (TextSecurePreferences.isWifiSmsEnabled(application)) {
+      return networkConstraint.isMet() || hasCellService(application);
+    } else {
+      return hasCellService(application);
+    }
   }
 
   @Override
   public void applyToJobInfo(@NonNull JobInfo.Builder jobInfoBuilder) {
+  }
+
+  private static boolean hasCellService(@NonNull Application application) {
+    return CellServiceConstraintObserver.getInstance(application).hasService();
   }
 
   public static class Factory implements Constraint.Factory<NetworkOrCellServiceConstraint> {

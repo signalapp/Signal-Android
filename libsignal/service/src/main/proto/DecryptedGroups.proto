@@ -40,13 +40,13 @@ message DecryptedModifyMemberRole {
 // Decrypted version of message Group
 // Keep field numbers in step
 message DecryptedGroup {
-           string                    title                     = 2;
-           string                    avatar                    = 3;
-           DisappearingMessagesTimer disappearingMessagesTimer = 4;
-           AccessControl             accessControl             = 5;
-           uint32                    version                   = 6;
-  repeated DecryptedMember           members                   = 7;
-  repeated DecryptedPendingMember    pendingMembers            = 8;
+           string                 title                     = 2;
+           string                 avatar                    = 3;
+           DecryptedTimer         disappearingMessagesTimer = 4;
+           AccessControl          accessControl             = 5;
+           uint32                 version                   = 6;
+  repeated DecryptedMember        members                   = 7;
+  repeated DecryptedPendingMember pendingMembers            = 8;
 }
 
 // Decrypted version of message GroupChange.Actions
@@ -60,14 +60,18 @@ message DecryptedGroupChange {
   repeated DecryptedMember               modifiedProfileKeys   = 6;
   repeated DecryptedPendingMember        newPendingMembers     = 7;
   repeated DecryptedPendingMemberRemoval deletePendingMembers  = 8;
-  repeated bytes                         promotePendingMembers = 9;
+  repeated DecryptedMember               promotePendingMembers = 9;
            DecryptedString               newTitle              = 10;
            DecryptedString               newAvatar             = 11;
-           DisappearingMessagesTimer     newTimer              = 12;
+           DecryptedTimer                newTimer              = 12;
            AccessControl.AccessRequired  newAttributeAccess    = 13;
            AccessControl.AccessRequired  newMemberAccess       = 14;
 }
 
 message DecryptedString {
   string value = 1;
+}
+
+message DecryptedTimer {
+  uint32 duration = 1;
 }

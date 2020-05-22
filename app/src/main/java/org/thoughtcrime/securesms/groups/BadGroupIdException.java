@@ -1,15 +1,18 @@
 package org.thoughtcrime.securesms.groups;
 
-public final class BadGroupIdException extends Exception {
-  BadGroupIdException(String message) {
-    super(message);
-  }
+import androidx.annotation.NonNull;
 
-  BadGroupIdException() {
+public final class BadGroupIdException extends Exception {
+
+  public BadGroupIdException() {
     super();
   }
 
-  BadGroupIdException(Exception e) {
+  BadGroupIdException(@NonNull String message) {
+    super(message);
+  }
+
+  BadGroupIdException(@NonNull Exception e) {
     super(e);
   }
 }

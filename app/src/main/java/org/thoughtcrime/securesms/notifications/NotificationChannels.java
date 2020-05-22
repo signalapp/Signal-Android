@@ -25,10 +25,10 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.logging.Log;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,7 +38,7 @@ import java.util.Set;
 
 public class NotificationChannels {
 
-  private static final String TAG = NotificationChannels.class.getSimpleName();
+  private static final String TAG = Log.tag(NotificationChannels.class);
 
   private static class Version {
     static final int MESSAGES_CATEGORY   = 2;

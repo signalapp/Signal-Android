@@ -119,7 +119,7 @@ public class MasterCipher {
 		
       return encryptedAndMacBody;
     } catch (GeneralSecurityException ge) {
-      Log.w("bodycipher", ge);
+      Log.w(TAG, "bodycipher", ge);
       return null;
     }	
 		

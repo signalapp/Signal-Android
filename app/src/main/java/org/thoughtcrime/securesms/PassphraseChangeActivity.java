@@ -41,6 +41,8 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class PassphraseChangeActivity extends PassphraseActivity {
 
+  private static final String TAG = Log.tag(PassphraseChangeActivity.class);
+
   private DynamicTheme    dynamicTheme    = new DynamicTheme();
   private DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
@@ -145,7 +147,7 @@ public class PassphraseChangeActivity extends PassphraseActivity {
         return masterSecret;
 
       } catch (InvalidPassphraseException e) {
-        Log.w(PassphraseChangeActivity.class.getSimpleName(), e);
+        Log.w(TAG, e);
         return null;
       }
     }

@@ -12,6 +12,9 @@ import java.io.UnsupportedEncodingException;
 
 
 public class PartParser {
+
+  private static final String TAG = Log.tag(PartParser.class);
+
   public static String getMessageText(PduBody body) {
     String bodyText = null;
 
@@ -31,7 +34,7 @@ public class PartParser {
             partText = "";
           }
         } catch (UnsupportedEncodingException e) {
-          Log.w("PartParser", e);
+          Log.w(TAG, e);
           partText = "Unsupported Encoding!";
         }
 

@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.conversationlist.ConversationListArchiveFragment;
 import org.thoughtcrime.securesms.conversationlist.ConversationListFragment;
+import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity;
 import org.thoughtcrime.securesms.insights.InsightsLauncher;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
@@ -55,8 +56,8 @@ public class MainNavigator {
     return false;
   }
 
-  public void goToConversation(@NonNull RecipientId recipientId, long threadId, int distributionType, long lastSeen, int startingPosition) {
-    Intent intent = ConversationActivity.buildIntent(activity, recipientId, threadId, distributionType, lastSeen, startingPosition);
+  public void goToConversation(@NonNull RecipientId recipientId, long threadId, int distributionType, int startingPosition) {
+    Intent intent = ConversationActivity.buildIntent(activity, recipientId, threadId, distributionType, startingPosition);
 
     activity.startActivity(intent);
     activity.overridePendingTransition(R.anim.slide_from_end, R.anim.fade_scale_out);
@@ -77,8 +78,7 @@ public class MainNavigator {
   }
 
   public void goToGroupCreation() {
-    Intent intent = new Intent(activity, GroupCreateActivity.class);
-    activity.startActivity(intent);
+    activity.startActivity(CreateGroupActivity.newIntent(activity));
   }
 
   public void goToInvite() {

@@ -45,7 +45,7 @@ public final class GroupIdTest {
   public void can_create_for_gv2_from_GroupIdentifier() throws IOException, InvalidInputException {
     GroupId.V2 groupId = GroupId.v2(new GroupIdentifier(Hex.fromStringCondensed("0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef")));
 
-    assertEquals("__textsecure_group__!0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef", groupId.toString());
+    assertEquals("__signal_group__v2__!0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef", groupId.toString());
     assertFalse(groupId.isMms());
     assertFalse(groupId.isV1());
     assertTrue(groupId.isV2());
@@ -58,7 +58,7 @@ public final class GroupIdTest {
 
     GroupId.V2 groupId = GroupId.v2(new GroupMasterKey(Hex.fromStringCondensed("0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef")));
 
-    assertEquals("__textsecure_group__!9f475f59b2518bff6df22e820803f0e3585bd99e686fa7e7fbfc2f92fd5d953e", groupId.toString());
+    assertEquals("__signal_group__v2__!8c4a5ec277691282f64b965b1b9affc0285380c993c413f7560967d502dcf2e6", groupId.toString());
     assertFalse(groupId.isMms());
     assertFalse(groupId.isV1());
     assertTrue(groupId.isV2());
@@ -67,9 +67,9 @@ public final class GroupIdTest {
 
   @Test
   public void can_parse_gv2() throws IOException {
-    GroupId groupId = GroupId.parseOrThrow("__textsecure_group__!9f475f59b2518bff6df22e820803f0e3585bd99e686fa7e7fbfc2f92fd5d953e");
+    GroupId groupId = GroupId.parseOrThrow("__signal_group__v2__!9f475f59b2518bff6df22e820803f0e3585bd99e686fa7e7fbfc2f92fd5d953e");
 
-    assertEquals("__textsecure_group__!9f475f59b2518bff6df22e820803f0e3585bd99e686fa7e7fbfc2f92fd5d953e", groupId.toString());
+    assertEquals("__signal_group__v2__!9f475f59b2518bff6df22e820803f0e3585bd99e686fa7e7fbfc2f92fd5d953e", groupId.toString());
     assertArrayEquals(Hex.fromStringCondensed("9f475f59b2518bff6df22e820803f0e3585bd99e686fa7e7fbfc2f92fd5d953e"), groupId.getDecodedId());
     assertFalse(groupId.isMms());
     assertFalse(groupId.isV1());
@@ -145,6 +145,11 @@ public final class GroupIdTest {
     GroupId.parseOrThrow("__textsecure_group__!0001020305060708090b0c0d0e0fODD_HEX");
   }
 
+  @Test(expected = BadGroupIdException.class)
+  public void bad_encoding__gv2_prefix_with_wrong_length() throws BadGroupIdException {
+    GroupId.parse("__signal_group__v2__!000102030405060708090a0b0c0d0e0f");
+  }
+
   @Test
   public void get_bytes() {
     byte[] bytes = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
@@ -212,7 +217,7 @@ public final class GroupIdTest {
 
   @Test
   public void require_v2_and_push() {
-    GroupId groupId = GroupId.parseOrThrow("__textsecure_group__!9f475f59b2518bff6df22e820803f0e3585bd99e686fa7e7fbfc2f92fd5d953e");
+    GroupId groupId = GroupId.parseOrThrow("__signal_group__v2__!9f475f59b2518bff6df22e820803f0e3585bd99e686fa7e7fbfc2f92fd5d953e");
 
     GroupId.V2   v2   = groupId.requireV2();
     GroupId.Push push = groupId.requirePush();
@@ -244,7 +249,7 @@ public final class GroupIdTest {
 
   @Test(expected = AssertionError.class)
   public void cannot_require_v1_of_v2() throws BadGroupIdException {
-    GroupId groupId = GroupId.parse("__textsecure_group__!9f475f59b2518bff6df22e820803f0e3585bd99e686fa7e7fbfc2f92fd5d953e");
+    GroupId groupId = GroupId.parse("__signal_group__v2__!9f475f59b2518bff6df22e820803f0e3585bd99e686fa7e7fbfc2f92fd5d953e");
 
     groupId.requireV1();
   }
@@ -298,6 +303,6 @@ public final class GroupIdTest {
   public void parse_bytes_to_v2_via_by_push() throws BadGroupIdException {
     GroupId.V2 v2 = GroupId.push(new byte[]{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 }).requireV2();
 
-    assertEquals("__textsecure_group__!000102030405060708090a0b0c0d0e0f000102030405060708090a0b0c0d0e0f", v2.toString());
+    assertEquals("__signal_group__v2__!000102030405060708090a0b0c0d0e0f000102030405060708090a0b0c0d0e0f", v2.toString());
   }
 }

@@ -62,7 +62,8 @@ public class InputPanel extends LinearLayout
 
   private static final String TAG = InputPanel.class.getSimpleName();
 
-  private static final int FADE_TIME = 150;
+  private static final long QUOTE_REVEAL_DURATION_MILLIS = 150;
+  private static final int  FADE_TIME                    = 150;
 
   private RecyclerView    stickerSuggestion;
   private QuoteView       quoteView;
@@ -209,7 +210,8 @@ public class InputPanel extends LinearLayout
                                                     int finalHeight,
                                                     @Nullable AnimationCompleteListener onAnimationComplete)
   {
-    ValueAnimator animator = ValueAnimator.ofInt(originalHeight, finalHeight);
+    ValueAnimator animator = ValueAnimator.ofInt(originalHeight, finalHeight)
+                                          .setDuration(QUOTE_REVEAL_DURATION_MILLIS);
 
     animator.addUpdateListener(animation -> {
       ViewGroup.LayoutParams params = view.getLayoutParams();

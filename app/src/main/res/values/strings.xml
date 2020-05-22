@@ -143,6 +143,7 @@
     <!-- ClearProfileActivity -->
     <string name="ClearProfileActivity_remove">Remove</string>
     <string name="ClearProfileActivity_remove_profile_photo">Remove profile photo?</string>
+    <string name="ClearProfileActivity_remove_group_photo">Remove group photo?</string>
 
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">No web browser found.</string>
@@ -238,7 +239,6 @@
 
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">To send audio messages, allow Signal access to your microphone.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal requires the Microphone permission in order to send audio messages, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Microphone\".</string>
-    <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">To call %s, Signal needs access to your microphone and camera.</string>
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal needs the Microphone and Camera permissions in order to call %s, but they have been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Microphone\" and \"Camera\".</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">To capture photos and video, allow Signal access to the camera.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal needs the Camera permission to take photos or video, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Camera\".</string>
@@ -264,6 +264,8 @@
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">You will leave this group, and it will be deleted from all your devices.</string>
     <string name="ConversationActivity_delete">Delete</string>
     <string name="ConversationActivity_delete_and_leave">Delete and leave</string>
+    <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">To call %1$s, Signal needs access to your microphone</string>
+    <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">To call %1$s, Signal needs access to your microphone and camera.</string>
 
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
@@ -428,6 +430,7 @@
     <!-- GroupCreateActivity -->
     <string name="GroupCreateActivity_actionbar_title">New group</string>
     <string name="GroupCreateActivity_actionbar_edit_title">Edit group</string>
+    <string name="GroupCreateActivity_actionbar_manage_title">Manage group</string>
     <string name="GroupCreateActivity_group_name_hint">Group name</string>
     <string name="GroupCreateActivity_actionbar_mms_title">New MMS group</string>
     <string name="GroupCreateActivity_contacts_dont_support_push">You have selected a contact that doesn\'t support Signal groups, so this group will be MMS.</string>
@@ -456,6 +459,14 @@
     <string name="GroupManagement_access_level_all_members">All members</string>
     <string name="GroupManagement_access_level_only_admins">Only admins</string>
     <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string>
+    <array name="GroupManagement_edit_group_membership_choices">
+        <item>@string/GroupManagement_access_level_all_members</item>
+        <item>@string/GroupManagement_access_level_only_admins</item>
+    </array>
+    <array name="GroupManagement_edit_group_info_choices">
+        <item>@string/GroupManagement_access_level_all_members</item>
+        <item>@string/GroupManagement_access_level_only_admins</item>
+    </array>
 
     <!-- PendingMembersActivity -->
     <string name="PendingMemberInvitesActivity_pending_group_invites">Pending group invites</string>
@@ -476,10 +487,55 @@
         <item quantity="other">Error canceling invites</item>
     </plurals>
 
+    <!-- AddGroupDetailsFragment -->
+    <string name="AddGroupDetailsFragment__name_this_group">Name this group</string>
+    <string name="AddGroupDetailsFragment__create">Create</string>
+    <string name="AddGroupDetailsFragment__members">Members</string>
+    <string name="AddGroupDetailsFragment__group_name_required">Group name (required)</string>
+    <string name="AddGroupDetailsFragment__this_field_is_required">This field is required.</string>
+    <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Groups require at least two members.</string>
+    <string name="AddGroupDetailsFragment__group_creation_failed">Group creation failed.</string>
+    <string name="AddGroupDetailsFragment__try_again_later">Try again later.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">You\'ve selected a contact that doesn\'t support Signal groups, so this group will be MMS.</string>
+    <string name="AddGroupDetailsFragment__remove">Remove</string>
+    <string name="AddGroupDetailsFragment__sms_contact">SMS contact</string>
+
+    <!-- ManageGroupActivity -->
+    <string name="ManageGroupActivity_disappearing_messages">Disappearing messages</string>
+    <string name="ManageGroupActivity_pending_group_invites">Pending group invites</string>
+    <string name="ManageGroupActivity_who_can_edit_group_membership">Who can edit group membership</string>
+    <string name="ManageGroupActivity_who_can_edit_group_info">Who can edit group info</string>
+    <string name="ManageGroupActivity_block_group">Block group</string>
+    <string name="ManageGroupActivity_leave_group">Leave group</string>
+    <string name="ManageGroupActivity_mute_notifications">Mute notifications</string>
+    <string name="ManageGroupActivity_custom_notifications">Custom notifications</string>
+    <string name="ManageGroupActivity_until_s">Until %1$s</string>
+    <string name="ManageGroupActivity_off">Off</string>
+    <string name="ManageGroupActivity_on">On</string>
+    <string name="ManageGroupActivity_add_members">Add members</string>
+    <string name="ManageGroupActivity_view_all_members">View all members</string>
+
+    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
+    <string name="ManageGroupActivity_not_capable">Someone you added does not support new groups and needs to update Signal</string>
+    <string name="ManageGroupActivity_failed_to_update_the_group">Failed to update the group</string>
+    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">You\'re not a member of the group</string>
+
+    <string name="ManageGroupActivity_edit_name_and_picture">Edit name and picture</string>
+
+    <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Choose who can add or invite new members</string>
+    <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Choose who can change the group name and photo</string>
+
     <plurals name="GroupMemberList_invited">
         <item quantity="one">%1$s invited 1 person</item>
         <item quantity="other">%1$s invited %2$d people</item>
     </plurals>
+
+    <!-- CustomNotificationsDialogFragment -->
+    <string name="CustomNotificationsDialogFragment__custom_notifications">Custom notifications</string>
+    <string name="CustomNotificationsDialogFragment__messages">Messages</string>
+    <string name="CustomNotificationsDialogFragment__use_custom_notifications">Use custom notifications</string>
+    <string name="CustomNotificationsDialogFragment__notification_sound">Notification sound</string>
+    <string name="CustomNotificationsDialogFragment__vibrate">Vibrate</string>
 
     <!-- GV2 Invite cancellation confirmation -->
     <string name="GroupManagement_cancel_own_single_invite">Do you want to cancel the invite you sent to %1$s?</string>
@@ -635,6 +691,7 @@
     <string name="MediaRepository_all_media">All media</string>
 
     <!-- MessageRecord -->
+    <string name="MessageRecord_unknown">Unknown</string>
     <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Received a message encrypted using an old version of Signal that is no longer supported. Please ask the sender to update to the most recent version and resend the message.</string>
     <string name="MessageRecord_left_group">You have left the group.</string>
     <string name="MessageRecord_you_updated_group">You updated the group.</string>
@@ -652,6 +709,9 @@
     <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s set the disappearing message timer to %2$s.</string>
 
     <!-- GV2 specific -->
+    <string name="MessageRecord_you_created_the_group">You created the group.</string>
+    <string name="MessageRecord_group_updated">Group updated.</string>
+
     <!-- GV2 member additions -->
     <string name="MessageRecord_you_added_s">You added %1$s.</string>
     <string name="MessageRecord_s_added_s">%1$s added %2$s.</string>
@@ -731,6 +791,7 @@
     <string name="MessageRequestBottomView_unblock">Unblock</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Do you want to let %1$s message you? They won\'t know you\'ve seen their messages until you accept.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Do you want to join the group %1$s? They won\'t know you\'ve seen their messages until you accept.</string>
+    <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">You were invited to join the group %1$s. Do you want to let members of this group message you?</string>
     <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Unblock %1$s to message and call each other.</string>
     <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Unblock to allow group members to add you to this group again.</string>
     <string name="MessageRequestProfileView_member_of_one_group">Member of %1$s</string>
@@ -814,9 +875,7 @@
         <item quantity="one">You have %1$d attempt remaining. If you run out of attempts, you can create a new PIN. You can register and use your account but you\'ll lose some saved settings like your profile information.</item>
         <item quantity="other">You have %1$d attempts remaining. If you run out of attempts, you can create a new PIN. You can register and use your account but you\'ll lose some saved settings like your profile information.</item>
     </plurals>
-    <string name="PinRestoreEntryFragment_support_email" translatable="false">support@signal.org</string>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal Registration - Need Help with PIN for Android</string>
-    <string name="PinRestoreEntryFragment_subject_signal_registration">Subject: Signal Registration - Need Help with PIN for Android\nDevice info: %1$s\nAndroid version: %2$s\nSignal version: %3$s\nLocale: %4$s</string>
     <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Enter alphanumeric PIN</string>
     <string name="PinRestoreEntryFragment_enter_numeric_pin">Enter numeric PIN</string>
 
@@ -835,7 +894,7 @@
     <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Whoops, the Play Store app does not appear to be installed on your device.</string>
 
     <!-- ReactionsBottomSheetDialogFragment -->
-    <string name="ReactionsBottomSheetDialogFragment_all">All %1$d</string>
+    <string name="ReactionsBottomSheetDialogFragment_all">All &#183; %1$d</string>
 
     <!-- ReactionsConversationView -->
     <string name="ReactionsConversationView_plus">+%1$d</string>
@@ -866,6 +925,16 @@
     <string name="RedPhone_number_not_registered">Number not registered!</string>
     <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">The number you dialed does not support secure voice!</string>
     <string name="RedPhone_got_it">Got it</string>
+
+    <!-- WebRtcCallActivity -->
+    <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Tap here to turn on your video</string>
+    <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">To call %1$s, Signal needs access to your camera</string>
+    <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
+    <string name="WebRtcCallActivity__calling">Calling…</string>
+
+    <!-- WebRtcCallView -->
+    <string name="WebRtcCallView__signal_voice_call">Signal voice call…</string>
+    <string name="WebRtcCallView__signal_video_call">Signal video call…</string>
 
     <!-- RegistrationActivity -->
     <string name="RegistrationActivity_select_your_country">Select your country</string>
@@ -1002,6 +1071,16 @@
     <string name="SubmitDebugLogActivity_ok">Ok</string>
     <string name="SubmitDebugLogActivity_share">Share</string>
 
+    <!-- SupportEmailUtil -->
+    <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>
+    <string name="SupportEmailUtil_subject">Subject:</string>
+    <string name="SupportEmailUtil_signal_android_support_request">Signal Android Support Request</string>
+    <string name="SupportEmailUtil_device_info">Device info:</string>
+    <string name="SupportEmailUtil_android_version">Android version:</string>
+    <string name="SupportEmailUtil_signal_version">Signal version:</string>
+    <string name="SupportEmailUtil_signal_package">Signal package:</string>
+    <string name="SupportEmailUtil_locale">Locale:</string>
+
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Group updated</string>
     <string name="ThreadRecord_left_the_group">Left the group</string>
@@ -1026,6 +1105,7 @@
     <string name="ThreadRecord_message_could_not_be_processed">Message could not be processed</string>
     <string name="ThreadRecord_message_request">Message Request</string>
     <string name="ThreadRecord_s_added_you_to_the_group">%1$s added you to the group</string>
+    <string name="ThreadRecord_s_invited_you_to_the_group">%1$s invited you to the group</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signal update</string>
@@ -1197,6 +1277,9 @@
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">To answer the call from %s, give Signal access to your microphone.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal requires Microphone and Camera permissions in order to make or receive calls, but they have been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Microphone\" and \"Camera\".</string>
+    <string name="WebRtcCallActivity__answered_on_a_linked_device">Answered on a linked device.</string>
+    <string name="WebRtcCallActivity__declined_on_a_linked_device">Declined on a linked device.</string>
+    <string name="WebRtcCallActivity__busy_on_a_linked_device">Busy on a linked device.</string>
 
     <!-- WebRtcCallScreen -->
     <string name="WebRtcCallScreen_new_safety_numbers">The safety number for your conversation with %1$s has changed. This could either mean that someone is trying to intercept your communication, or that %2$s simply re-installed Signal.</string>
@@ -1204,6 +1287,16 @@
     <string name="WebRtcCallScreen_new_safety_number_title">New safety number</string>
     <string name="WebRtcCallScreen_accept">Accept</string>
     <string name="WebRtcCallScreen_end_call">End call</string>
+
+    <!-- WebRtcCallScreen V2 -->
+    <string name="WebRtcCallScreen__decline">Decline</string>
+    <string name="WebRtcCallScreen__answer">Answer</string>
+    <string name="WebRtcCallScreen__answer_without_video">Answer without video</string>
+
+    <!-- WebRtcAudioOutputToggle -->
+    <string name="WebRtcAudioOutputToggle__phone">Phone</string>
+    <string name="WebRtcAudioOutputToggle__speaker">Speaker</string>
+    <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
 
     <!-- WebRtcCallControls -->
     <string name="WebRtcCallControls_tap_to_enable_your_video">Tap to enable your video</string>
@@ -1245,6 +1338,7 @@
     <!-- contact_selection_activity -->
     <string name="contact_selection_activity__enter_name_or_number">Enter name or number</string>
     <string name="contact_selection_activity__invite_to_signal">Invite to Signal</string>
+    <string name="contact_selection_activity__new_group">New group</string>
 
     <!-- contact_filter_toolbar -->
     <string name="contact_filter_toolbar__clear_entered_text_description">Clear entered text</string>
@@ -1324,6 +1418,7 @@
     <!-- country_selection_fragment -->
     <string name="country_selection_fragment__loading_countries">Loading countries…</string>
     <string name="country_selection_fragment__search">Search</string>
+    <string name="country_selection_fragment__no_matching_countries">No matching countries</string>
 
     <!-- device_add_fragment -->
     <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scan the QR code displayed on the device to link</string>
@@ -1470,6 +1565,10 @@
     <string name="CreateProfileActivity__username">Username</string>
     <string name="CreateProfileActivity__create_a_username">Create a username</string>
 
+    <!-- EditProfileFragment -->
+    <string name="EditProfileFragment__edit_group_name_and_photo">Edit group name and photo</string>
+    <string name="EditProfileFragment__group_name">Group name</string>
+
     <!-- recipient_preferences_activity -->
     <string name="recipient_preference_activity__shared_media">Shared media</string>
 
@@ -1567,18 +1666,25 @@
     <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string>
     <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string>
     <string name="HelpFragment__support_info">Support Info</string>
-    <string name="HelpFragment__subject">Subject:</string>
     <string name="HelpFragment__signal_android_support_request">Signal Android Support Request</string>
-    <string name="HelpFragment__device_info">Device info:</string>
-    <string name="HelpFragment__android_version">Android version:</string>
-    <string name="HelpFragment__signal_version">Signal version:</string>
-    <string name="HelpFragment__locale">Locale:</string>
     <string name="HelpFragment__debug_log">Debug Log:</string>
     <string name="HelpFragment__na">n/a</string>
     <string name="HelpFragment__could_not_upload_logs">Could not upload logs</string>
     <string name="HelpFragment__signal_support">Signal Support</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Please be as descriptive as possible to help us understand the issue.</string>
     <string name="HelpFragment__no_email_app_found">No email app found.</string>
+
+    <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Recently Used</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smileys &amp; People</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Nature</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Food</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Activities</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Places</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objects</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symbols</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Flags</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticons</string>
 
     <!-- arrays.xml -->
     <string name="arrays__import_export">Import</string>
@@ -1814,6 +1920,7 @@
     <!-- conversation -->
     <string name="conversation__menu_add_attachment">Add attachment</string>
     <string name="conversation__menu_edit_group">Edit group</string>
+    <string name="conversation__menu_manage_group">Manage group</string>
     <string name="conversation__menu_leave_group">Leave group</string>
     <string name="conversation__menu_view_all_media">All media</string>
     <string name="conversation__menu_conversation_settings">Conversation settings</string>
@@ -2004,6 +2111,10 @@
         <item quantity="other">%1$d attempts remaining.</item>
     </plurals>
 
+    <!-- CalleeMustAcceptMessageRequestDialogFragment -->
+    <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">Okay</string>
+    <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s will get a message request from you. You can call once your message request is accepted.</string>
+
     <!-- KBS Megaphone -->
     <string name="KbsMegaphone__create_a_pin">Create a PIN</string>
     <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PINs keep information that’s stored with Signal encrypted.</string>
@@ -2075,9 +2186,7 @@
     <string name="RegistrationActivity_wrong_number">Wrong number</string>
     <string name="RegistrationActivity_call_me_instead_available_in">Call me instead \n (Available in %1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Contact Signal Support</string>
-    <string name="RegistrationActivity_support_email" translatable="false">support@signal.org</string>
     <string name="RegistrationActivity_code_support_subject">Signal Registration - Verification Code for Android</string>
-    <string name="RegistrationActivity_code_support_body">Subject: Signal Registration - Verification Code for Android\nDevice info: %1$s\nAndroid version: %2$s\nSignal version: %3$s\nLocale: %4$s</string>
     <string name="BackupUtil_never">Never</string>
     <string name="BackupUtil_unknown">Unknown</string>
     <string name="preferences_app_protection__screen_lock">Screen lock</string>
@@ -2131,6 +2240,25 @@
     <string name="RegistrationLockDialog_reminder">Reminder:</string>
     <string name="recipient_preferences__about">About</string>
     <string name="Recipient_unknown">Unknown</string>
+
+    <!-- RecipientBottomSheet -->
+    <string name="RecipientBottomSheet_message">Message</string>
+    <string name="RecipientBottomSheet_call">Call</string>
+    <string name="RecipientBottomSheet_block">Block</string>
+    <string name="RecipientBottomSheet_unblock">Unblock</string>
+    <string name="RecipientBottomSheet_view_safety_number">View safety number</string>
+    <string name="RecipientBottomSheet_make_group_admin">Make group admin</string>
+    <string name="RecipientBottomSheet_remove_as_admin">Remove as admin</string>
+    <string name="RecipientBottomSheet_remove_from_group">Remove from group</string>
+
+    <string name="RecipientBottomSheet_remove_s_as_group_admin">Remove %1$s as group admin?</string>
+    <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s will be able to edit this group and its members</string>
+
+    <string name="RecipientBottomSheet_remove_s_from_s">Remove %1$s from "%2$s"?</string>
+    <string name="RecipientBottomSheet_remove">Remove</string>
+
+    <string name="GroupRecipientListItem_admin">Admin</string>
+
     <!-- EOF -->
 
 </resources>

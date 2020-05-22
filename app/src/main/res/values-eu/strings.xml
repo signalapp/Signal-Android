@@ -200,7 +200,6 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Ez dago erabil daitekeen aplikaziorik lotura hau kudeatzeko zure gailuan.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Audio mezuak bidaltzeko, onartu Signalek zure mikrofonoa erabiltzea</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signalek Mikrofono baimena behar du audio mezuak bidaltzeko, baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Mikrofonoa\"</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">%s kontaktuari deitzeko, Signal aplikazioak zure mikrofono eta kamera erabiltzeko baimena behar du.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal aplikazioak Mikronofoa eta Kamera baimenak behar ditu %skontaktuari deitzeko, baina ukatu egin dizkiozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Mikrofonoa\" eta \"Kamera\"</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Argazkiak eta bideoak grabatzeko, eman baimena Signali kamera erabiltzeko.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal aplikazioak Kamera baimena behar du argazkiak eta bideoak egiteko, baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Kamera\".</string>
@@ -382,6 +381,23 @@
   <string name="GroupMembersDialog_you">Zu</string>
   <!--GV2 access levels-->
   <!--PendingMembersActivity-->
+  <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__create">Sortu</string>
+  <string name="AddGroupDetailsFragment__members">Kideak</string>
+  <string name="AddGroupDetailsFragment__remove">Ezabatu</string>
+  <!--ManageGroupActivity-->
+  <string name="ManageGroupActivity_disappearing_messages">Mezuen desagerpena</string>
+  <string name="ManageGroupActivity_leave_group">Taldea utzi</string>
+  <string name="ManageGroupActivity_mute_notifications">Desaktibatu jakinarazpenak</string>
+  <string name="ManageGroupActivity_custom_notifications">Jakinarazpen pertsonalizatuak</string>
+  <string name="ManageGroupActivity_off">Desaktibatuta</string>
+  <string name="ManageGroupActivity_on">Aktibatuta</string>
+  <string name="ManageGroupActivity_add_members">Partaideak gehitu</string>
+  <!--CustomNotificationsDialogFragment-->
+  <string name="CustomNotificationsDialogFragment__custom_notifications">Jakinarazpen pertsonalizatuak</string>
+  <string name="CustomNotificationsDialogFragment__messages">Mezuak</string>
+  <string name="CustomNotificationsDialogFragment__notification_sound">Jakinarazpenaren soinua</string>
+  <string name="CustomNotificationsDialogFragment__vibrate">Bibratu</string>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Taldearen abatarra</string>
@@ -508,6 +524,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Euskarri guztiak</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_unknown">Ezezaguna</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Signal bertsio zaharregitik jaso da mezu zifratua.  Eskatu igorleari birbidaltzeko mesedez bere Signal egiaztatu ondoren.</string>
   <string name="MessageRecord_left_group">Taldea utzi duzu.</string>
   <string name="MessageRecord_you_updated_group">Taldea eguneratu duzu</string>
@@ -524,6 +541,8 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Mezuen desagerpenaren debora %1$s-tan ezarrita</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">Mezuen desagerpenaren debora %2$s-tan ezarri du %1$s-k</string>
   <!--GV2 specific-->
+  <string name="MessageRecord_you_created_the_group">Taldea sortu duzu.</string>
+  <string name="MessageRecord_group_updated">Taldea eguneratu da.</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_s_joined_the_group">%1$s taldean sartu dira.</string>
   <!--GV2 member removals-->
@@ -624,7 +643,6 @@
   <string name="RatingManager_later">Geroago</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Epa, Play Store applikazioa zure gailuan instalaturik ez dagoela ematen du.</string>
   <!--ReactionsBottomSheetDialogFragment-->
-  <string name="ReactionsBottomSheetDialogFragment_all">Denak: %1$d </string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
@@ -650,6 +668,9 @@
   <string name="RedPhone_number_not_registered">Zenbakia ez da erregistratu!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Markatu duzun zenbakiak ez du dei segururik babesten!</string>
   <string name="RedPhone_got_it">Jasota</string>
+  <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Sakatu - Tap - egin hemen bideoa aktibatzeko</string>
+  <!--WebRtcCallView-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Zure herrialdea aukeratu</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Zure herrialdearen 
@@ -764,6 +785,13 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Arbelera kopiatuta</string>
   <string name="SubmitDebugLogActivity_ok">Ok</string>
   <string name="SubmitDebugLogActivity_share">Elkarbanatu</string>
+  <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_subject">Gaia:</string>
+  <string name="SupportEmailUtil_signal_android_support_request">Eskaera Signal Android-ekin Laguntzeko</string>
+  <string name="SupportEmailUtil_device_info">Gailuaren informazioa:</string>
+  <string name="SupportEmailUtil_android_version">Android bertsioa:</string>
+  <string name="SupportEmailUtil_signal_version">Signal bertsioa:</string>
+  <string name="SupportEmailUtil_locale">Hizkuntza:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Taldea eguneratu da</string>
   <string name="ThreadRecord_left_the_group">Taldea utzi duzu</string>
@@ -935,6 +963,12 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="WebRtcCallScreen_new_safety_number_title">Segurtasun zenbaki berria</string>
   <string name="WebRtcCallScreen_accept">Onartu</string>
   <string name="WebRtcCallScreen_end_call">Amaitu deia</string>
+  <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__answer">Erantzuna</string>
+  <!--WebRtcAudioOutputToggle-->
+  <string name="WebRtcAudioOutputToggle__phone">Telefonoa</string>
+  <string name="WebRtcAudioOutputToggle__speaker">Bozgorailua</string>
+  <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth </string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Ukitu zure bideoa gaitzeko</string>
   <!--WebRtcCallControls Content Descriptions-->
@@ -969,6 +1003,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Idatzi izena edo zenbakia</string>
   <string name="contact_selection_activity__invite_to_signal">Gonbidatu Signal erabiltzera</string>
+  <string name="contact_selection_activity__new_group">Talde berria</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Garbitu idatzitako testua</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Erakutsi teklatua</string>
@@ -1145,6 +1180,8 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="CreateProfileActivity_next">Hurrengoa</string>
   <string name="CreateProfileActivity__username">Erabiltzailearen izena</string>
   <string name="CreateProfileActivity__create_a_username">Sortu erabiltzaile izena</string>
+  <!--EditProfileFragment-->
+  <string name="EditProfileFragment__group_name">Taldearen izena</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Partekatutako media</string>
   <!--recipient_preferences-->
@@ -1223,18 +1260,14 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="HelpFragment__whats_this">Zer da hau?</string>
   <string name="HelpFragment__how_do_you_feel">Nola sentitzen zara? (Aukerazkoa)</string>
   <string name="HelpFragment__support_info">Laguntzarako Informazioa</string>
-  <string name="HelpFragment__subject">Gaia:</string>
   <string name="HelpFragment__signal_android_support_request">Eskaera Signal Android-ekin Laguntzeko</string>
-  <string name="HelpFragment__device_info">Gailuaren informazioa:</string>
-  <string name="HelpFragment__android_version">Android bertsioa:</string>
-  <string name="HelpFragment__signal_version">Signal bertsioa:</string>
-  <string name="HelpFragment__locale">Hizkuntza:</string>
   <string name="HelpFragment__debug_log">Arazteko Informazioa:</string>
   <string name="HelpFragment__na">n/a</string>
   <string name="HelpFragment__could_not_upload_logs">Ezin izan da arazteko informazioa igo</string>
   <string name="HelpFragment__signal_support">Signal-en Laguntza</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Mesedez, deskriba ezazu arazoa ahalik eta ondoen ulertzen laguntzeko.</string>
   <string name="HelpFragment__no_email_app_found">Ez da e-posta aplikaziorik aurkitu.</string>
+  <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <!--arrays.xml-->
   <string name="arrays__import_export">Inportatu</string>
   <string name="arrays__use_default">Erabili lehenetsia</string>
@@ -1595,6 +1628,8 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
     <item quantity="one">Saiakera %1$d daukazu</item>
     <item quantity="other">%1$d saiakera dauzkazu</item>
   </plurals>
+  <!--CalleeMustAcceptMessageRequestDialogFragment-->
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">Ados</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">PIN bat sortu</string>
   <string name="KbsMegaphone__create_pin">PINa sortu</string>
@@ -1664,7 +1699,6 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="RegistrationActivity_call_me_instead_available_in">Dei iezadazu \n (Hemen topatuko nauzu: %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Harremanetan jarri Signal Laguntza Taldearekin</string>
   <string name="RegistrationActivity_code_support_subject">Signal Errejistratzea - Androiderako Egiaztatze Kodea</string>
-  <string name="RegistrationActivity_code_support_body">Gaia: Signal errejistratzea - Egiaztatze Kodea Android\nGailurako info: %1$s\n bertsioa: %2$s\nSignalen bertsioa: %3$s\nHizkuntza: %4$s</string>
   <string name="BackupUtil_never">Inoiz ez</string>
   <string name="BackupUtil_unknown">Ezezaguna</string>
   <string name="preferences_app_protection__screen_lock">Blokeo-pantaila</string>
@@ -1714,5 +1748,12 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="RegistrationLockDialog_reminder">Oroigarria:</string>
   <string name="recipient_preferences__about">Honi buruz</string>
   <string name="Recipient_unknown">Ezezaguna</string>
+  <!--RecipientBottomSheet-->
+  <string name="RecipientBottomSheet_message">Mezua</string>
+  <string name="RecipientBottomSheet_call">Deitu</string>
+  <string name="RecipientBottomSheet_block">Blokeatu</string>
+  <string name="RecipientBottomSheet_unblock">Desblokeatu</string>
+  <string name="RecipientBottomSheet_view_safety_number">Segurtasun zenbakia ikusi</string>
+  <string name="RecipientBottomSheet_remove">Ezabatu</string>
   <!--EOF-->
 </resources>

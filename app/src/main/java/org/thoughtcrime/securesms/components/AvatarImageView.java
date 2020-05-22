@@ -6,7 +6,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.provider.ContactsContract;
 import android.util.AttributeSet;
 
 import androidx.annotation.NonNull;
@@ -24,7 +23,6 @@ import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
@@ -160,13 +158,12 @@ public final class AvatarImageView extends AppCompatImageView {
   }
 
   private void setAvatarClickHandler(final Recipient recipient, boolean quickContactEnabled) {
-    super.setOnClickListener(v -> {
-      if (quickContactEnabled) {
-        getContext().startActivity(RecipientPreferenceActivity.getLaunchIntent(getContext(), recipient.getId()));
-      } else if (listener != null) {
-        listener.onClick(v);
-      }
-    });
+    if (quickContactEnabled) {
+      super.setOnClickListener(v -> getContext().startActivity(RecipientPreferenceActivity.getLaunchIntent(getContext(), recipient.getId())));
+    } else {
+      super.setOnClickListener(listener);
+      setClickable(listener != null);
+    }
   }
 
   private static class RecipientContactPhoto {

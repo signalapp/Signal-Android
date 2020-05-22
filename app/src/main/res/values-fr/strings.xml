@@ -120,6 +120,7 @@
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Supprimer</string>
   <string name="ClearProfileActivity_remove_profile_photo">Supprimer la photo de profil ?</string>
+  <string name="ClearProfileActivity_remove_group_photo">Supprimer la photo du groupe ?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Aucun navigateur Web n’a été trouvé.</string>
   <string name="CommunicationActions_no_email_app_found">Aucune appli de courriel n’a été trouvée.</string>
@@ -205,7 +206,6 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Il n’y a aucune appli pour gérer ce lien sur votre appareil.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Pour envoyer des messages audio, autorisez Signal à accéder à votre microphone.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal exige l’autorisation Microphone afin d’envoyer des messages audio, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner Autorisations et activer Microphone.</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Pour appeler %s, Signal a besoin d’accéder à votre microphone et à votre appareil photo.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal a besoin des autorisations Microphone et Appareil photo pour appeler %s, mais elles ont été refusées définitivement. Veuillez accéder aux paramètres de l’appli, sélectionner Autorisations et activer Microphone et Appareil photo.</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Pour prendre des photos et des vidéos, autorisez Signal à accéder à l’appareil photo.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal a besoin de l’autorisation Appareil photo afin de prendre des photos ou des vidéos, mais elle a été refusée définitivement. Veuillez accéder aux paramètres de l’appli, sélectionner Autorisations et activer Appareil photo.</string>
@@ -228,6 +228,8 @@
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Vous quitterez ce groupe et il sera supprimé de tous vos appareils.</string>
   <string name="ConversationActivity_delete">Supprimer</string>
   <string name="ConversationActivity_delete_and_leave">Supprimer et quitter</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Pour appeler %1$s, Signal a besoin d’accéder à votre microphone</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Pour appeler %1$s, Signal a besoin d’accéder à votre microphone et à votre appareil photo.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d message non lu</item>
@@ -368,6 +370,7 @@
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nouveau groupe</string>
   <string name="GroupCreateActivity_actionbar_edit_title">Modifier le groupe</string>
+  <string name="GroupCreateActivity_actionbar_manage_title">Gérer le groupe</string>
   <string name="GroupCreateActivity_group_name_hint">Nom du groupe</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nouveau groupe de message multimédia</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Vous avez sélectionné un contact qui ne prend pas en charge les groupes Signal, donc ce groupe sera un groupe de message multimédia.</string>
@@ -409,10 +412,49 @@
     <item quantity="one">Erreur d’annulation de l’invitation</item>
     <item quantity="other">Erreur d’annulation des invitations</item>
   </plurals>
+  <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__name_this_group">Nommez ce groupe</string>
+  <string name="AddGroupDetailsFragment__create">Créer</string>
+  <string name="AddGroupDetailsFragment__members">Membres</string>
+  <string name="AddGroupDetailsFragment__group_name_required">Nom du groupe (requis)</string>
+  <string name="AddGroupDetailsFragment__this_field_is_required">Ce champ est requis.</string>
+  <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Il faut au moins deux membres par groupe.</string>
+  <string name="AddGroupDetailsFragment__group_creation_failed">Échec de création du groupe.</string>
+  <string name="AddGroupDetailsFragment__try_again_later">Ressayez ultérieurement.</string>
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Vous avez sélectionné un contact qui ne prend pas en charge les groupes Signal, donc ce groupe sera un groupe de message multimédia.</string>
+  <string name="AddGroupDetailsFragment__remove">Supprimer</string>
+  <string name="AddGroupDetailsFragment__sms_contact">Contact texto</string>
+  <!--ManageGroupActivity-->
+  <string name="ManageGroupActivity_disappearing_messages">Messages éphémères</string>
+  <string name="ManageGroupActivity_pending_group_invites">Invitations de groupe en attente</string>
+  <string name="ManageGroupActivity_who_can_edit_group_membership">Qui peut modifier les membres du groupe</string>
+  <string name="ManageGroupActivity_who_can_edit_group_info">Qui peut personnaliser les renseignements du groupe</string>
+  <string name="ManageGroupActivity_block_group">Bloquer le groupe</string>
+  <string name="ManageGroupActivity_leave_group">Quitter le groupe</string>
+  <string name="ManageGroupActivity_mute_notifications">Notifications en sourdine</string>
+  <string name="ManageGroupActivity_custom_notifications">Notifications personnalisées</string>
+  <string name="ManageGroupActivity_until_s">Jusqu’à %1$s</string>
+  <string name="ManageGroupActivity_off">Désactivé</string>
+  <string name="ManageGroupActivity_on">Activé</string>
+  <string name="ManageGroupActivity_add_members">Ajouter des membres</string>
+  <string name="ManageGroupActivity_view_all_members">Visualiser tous les membres</string>
+  <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Vous n’avez pas les droits pour ce faire</string>
+  <string name="ManageGroupActivity_not_capable">Une personne que vous avez ajoutée ne prend pas en charge les nouveaux groupes et doit mettre Signal à jour.</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group">Échec de mise à jour du groupe</string>
+  <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Vous n’êtes pas un membre du groupe</string>
+  <string name="ManageGroupActivity_edit_name_and_picture">Modifier le nom et l’image</string>
+  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Choisissez qui peut ajouter ou inviter de nouveaux membres</string>
+  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Choisissez qui peut changer le nom et la photo du groupe</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s a invité une personne</item>
     <item quantity="other">%1$s a invité %2$d personnes</item>
   </plurals>
+  <!--CustomNotificationsDialogFragment-->
+  <string name="CustomNotificationsDialogFragment__custom_notifications">Notifications personnalisées</string>
+  <string name="CustomNotificationsDialogFragment__messages">Messages</string>
+  <string name="CustomNotificationsDialogFragment__use_custom_notifications">Utiliser des notifications personnalisées</string>
+  <string name="CustomNotificationsDialogFragment__notification_sound">Son de notification</string>
+  <string name="CustomNotificationsDialogFragment__vibrate">Vibrer</string>
   <!--GV2 Invite cancellation confirmation-->
   <string name="GroupManagement_cancel_own_single_invite">Voulez-vous annuler l’invitation envoyée à %1$s ?</string>
   <plurals name="GroupManagement_cancel_others_invites">
@@ -505,7 +547,7 @@
   <!--Megaphones-->
   <string name="Megaphones_introducing_reactions">Nous présentons les réactions</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Touchez et maintenez n’importe quel message pour partager rapidement ce que vous ressentez.</string>
-  <string name="Megaphones_remind_me_later">Me le rappeler plus tard</string>
+  <string name="Megaphones_remind_me_later">Me le rappeler ultérieurement</string>
   <string name="Megaphones_verify_your_signal_pin">Confirmer votre NIP Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Nous vous demanderons de temps en temps de confirmer votre NIP afin que vous vous en souveniez.</string>
   <string name="Megaphones_verify_pin">Confirmer le NIP</string>
@@ -544,6 +586,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Tous les médias</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_unknown">Inconnu</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Vous avez reçu un message chiffré avec une ancienne version de Signal qui n’est plus prise en charge. Veuillez demander à l’expéditeur de mettre Signal à jour vers la version la plus récente et de renvoyer le message.</string>
   <string name="MessageRecord_left_group">Vous avez quitté le groupe</string>
   <string name="MessageRecord_you_updated_group">Vous avez mis le groupe à jour.</string>
@@ -560,6 +603,8 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Vous avez défini l’expiration des messages éphémères à %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a défini l’expiration des messages éphémères à %2$s.</string>
   <!--GV2 specific-->
+  <string name="MessageRecord_you_created_the_group">Vous avez créé le groupe.</string>
+  <string name="MessageRecord_group_updated">Le groupe a été mis à jour.</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Vous avez ajouté %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s a ajouté %2$s.</string>
@@ -583,8 +628,8 @@
   <string name="MessageRecord_you_invited_s_to_the_group">Vous avez invité %1$s au groupe.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s vous a invité au groupe.</string>
   <plurals name="MessageRecord_s_invited_members">
-    <item quantity="one">%1$s a invité une personne dans le groupe.</item>
-    <item quantity="other">%1$s a invité %2$d personnes dans le groupe.</item>
+    <item quantity="one">%1$s a invité une personne au groupe.</item>
+    <item quantity="other">%1$s a invité %2$d personnes au groupe.</item>
   </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
@@ -627,6 +672,7 @@
   <string name="MessageRequestBottomView_unblock">Débloquer</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Souhaitez-vous autoriser %1$s à échanger des messages avec vous ? La personne ne saura pas que vous avez vu ses messages tant que vous n’aurez pas accepté.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Souhaitez-vous vous joindre au groupe %1$s ? Ils ne sauront pas que vous avez lu leurs messages tant que vous n’aurez pas accepté.</string>
+  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Vous avez été invité à vous joindre au groupe%1$s. Souhaitez-vous permettre aux membres de ce groupe de vous envoyer des messages ?</string>
   <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Débloquez %1$s pour vous échanger des messages et des appels.</string>
   <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Débloquez pour permettre aux membres du groupe de vous rajouter à ce groupe.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Membre de %1$s</string>
@@ -701,7 +747,6 @@
     <item quantity="other">Il vous reste %1$d essai. Si vous épuisez le nombre limite d’essais, vous pouvez créer un nouveau NIP. Vous pouvez vous inscrire et utiliser votre compte, mais vous perdrez certains paramètres enregistrés tels que les renseignements de votre profil.</item>
   </plurals>
   <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Inscription à Signal – Besoin d’aide avec le NIP sur Android</string>
-  <string name="PinRestoreEntryFragment_subject_signal_registration">Objet : Inscription à Signal – Besoin d’aide avec le NIP sur Android\nRenseignements sur l’appareil : %1$s\nVersion d’Android : %2$s\nVersion de Signal : %3$s\nLangue : %4$s</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Saisir un NIP alphanumérique</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Saisir un NIP numérique</string>
   <!--PinRestoreLockedFragment-->
@@ -716,7 +761,7 @@
   <string name="RatingManager_later">Ultérieurement</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Oups, il semble que la logithèque Play Store n’est pas installée sur votre appareil.</string>
   <!--ReactionsBottomSheetDialogFragment-->
-  <string name="ReactionsBottomSheetDialogFragment_all">Tous les %1$d</string>
+  <string name="ReactionsBottomSheetDialogFragment_all">Tous · %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
@@ -742,6 +787,14 @@
   <string name="RedPhone_number_not_registered">Le numéro n’est pas inscrit.</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Le numéro que vous avez composé ne prend pas en charge les communications vocales sécurisées.</string>
   <string name="RedPhone_got_it">Compris</string>
+  <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Touchez ici pour activer votre vidéo</string>
+  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Pour appeler %1$s, Signal a besoin d’accéder à votre appareil photo</string>
+  <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
+  <string name="WebRtcCallActivity__calling">Appel en cours…</string>
+  <!--WebRtcCallView-->
+  <string name="WebRtcCallView__signal_voice_call">Appel vocal Signal…</string>
+  <string name="WebRtcCallView__signal_video_call">Appel vidéo Signal…</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Sélectionner votre pays</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Vous devez indiquer votre indicatif de pays</string>
@@ -853,6 +906,14 @@
   <string name="SubmitDebugLogActivity_copied_to_clipboard">A été copié dans le presse-papiers</string>
   <string name="SubmitDebugLogActivity_ok">Valider</string>
   <string name="SubmitDebugLogActivity_share">Partager</string>
+  <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_subject">Objet :</string>
+  <string name="SupportEmailUtil_signal_android_support_request">Demande d’assistance – Signal pour Android</string>
+  <string name="SupportEmailUtil_device_info">Renseignements sur l’appareil :</string>
+  <string name="SupportEmailUtil_android_version">Version d’Android :</string>
+  <string name="SupportEmailUtil_signal_version">Version de Signal :</string>
+  <string name="SupportEmailUtil_signal_package">Paquet Signal :</string>
+  <string name="SupportEmailUtil_locale">Paramètres régionaux :</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Le groupe a été mis à jour</string>
   <string name="ThreadRecord_left_the_group">A quitté le groupe</string>
@@ -877,6 +938,7 @@
   <string name="ThreadRecord_message_could_not_be_processed">Impossible de traiter le message</string>
   <string name="ThreadRecord_message_request">Demande de message</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s vous a ajouté au groupe</string>
+  <string name="ThreadRecord_s_invited_you_to_the_group">%1$s vous a invité au groupe</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Mise à jour de Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Une nouvelle version de Signal est proposée, touchez pour lancer la mise à jour</string>
@@ -1020,12 +1082,23 @@
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Pour répondre à l’appel de %s, accordez à Signal l’accès à votre microphone.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal exige les autorisations Microphone et Appareil photo afin d’effectuer et de recevoir des appels, mais elles ont été refusées définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Microphone » et « Appareil photo ».</string>
+  <string name="WebRtcCallActivity__answered_on_a_linked_device">L’appel a été pris sur un appareil relié.</string>
+  <string name="WebRtcCallActivity__declined_on_a_linked_device">L’appel a été refusé sur un appareil relié.</string>
+  <string name="WebRtcCallActivity__busy_on_a_linked_device">Occupé sur un appareil relié.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Le numéro de sécurité de votre conversation avec %1$s a changé. Cela pourrait signifier soit que quelqu’un tente d’intercepter votre communication, soit que %2$s a simplement réinstallé Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Vous devriez peut-être confirmer votre numéro de sécurité avec ce contact.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Nouveau numéro de sécurité</string>
   <string name="WebRtcCallScreen_accept">Accepter</string>
   <string name="WebRtcCallScreen_end_call">Raccrocher</string>
+  <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__decline">Refuser</string>
+  <string name="WebRtcCallScreen__answer">Répondre</string>
+  <string name="WebRtcCallScreen__answer_without_video">Répondre sans vidéo</string>
+  <!--WebRtcAudioOutputToggle-->
+  <string name="WebRtcAudioOutputToggle__phone">Téléphone</string>
+  <string name="WebRtcAudioOutputToggle__speaker">Haut-parleur</string>
+  <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Touchez pour activer votre vidéo</string>
   <!--WebRtcCallControls Content Descriptions-->
@@ -1060,6 +1133,7 @@
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Saisissez un nom ou un numéro</string>
   <string name="contact_selection_activity__invite_to_signal">Inviter à Signal</string>
+  <string name="contact_selection_activity__new_group">Nouveau groupe</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Effacer le texte saisi</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Afficher le clavier</string>
@@ -1124,6 +1198,7 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Chargement des pays…</string>
   <string name="country_selection_fragment__search">Chercher</string>
+  <string name="country_selection_fragment__no_matching_countries">Aucun pays ne correspond</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Balayez le code QR affiché sur l’appareil pour le relier</string>
   <!--device_link_fragment-->
@@ -1235,6 +1310,9 @@
   <string name="CreateProfileActivity_next">Suivant</string>
   <string name="CreateProfileActivity__username">Nom d’utilisateur</string>
   <string name="CreateProfileActivity__create_a_username">Créer un nom d’utilisateur</string>
+  <!--EditProfileFragment-->
+  <string name="EditProfileFragment__edit_group_name_and_photo">Modifier le nom et la photo du groupe</string>
+  <string name="EditProfileFragment__group_name">Nom du groupe</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Médias partagés</string>
   <!--recipient_preferences-->
@@ -1313,18 +1391,24 @@
   <string name="HelpFragment__whats_this">Qu’est-ce donc ?</string>
   <string name="HelpFragment__how_do_you_feel">Comment vous sentez-vous ? (facultatif)</string>
   <string name="HelpFragment__support_info">Renseignements sur l’assistance.</string>
-  <string name="HelpFragment__subject">Objet :</string>
   <string name="HelpFragment__signal_android_support_request">Demande d’assistance – Signal pour Android</string>
-  <string name="HelpFragment__device_info">Renseignements sur l’appareil :</string>
-  <string name="HelpFragment__android_version">Version d’Android :</string>
-  <string name="HelpFragment__signal_version">Version de Signal :</string>
-  <string name="HelpFragment__locale">Paramètres régionaux :</string>
   <string name="HelpFragment__debug_log">Journal de débogage :</string>
   <string name="HelpFragment__na">s.o</string>
   <string name="HelpFragment__could_not_upload_logs">Impossible de téléverser les journaux</string>
   <string name="HelpFragment__signal_support">Assistance de Signal</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Veuillez nous donner autant de détails que possible, afin de nous aider comprendre la situation.</string>
   <string name="HelpFragment__no_email_app_found">Aucune appli de courriel n’a été trouvée.</string>
+  <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Utilisés récemment</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Frimousses et personnes</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Nature</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Nourriture</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Activités</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Lieux</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objets</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symboles</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Drapeaux</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Émoticônes</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importer</string>
   <string name="arrays__use_default">Valeur par défaut</string>
@@ -1530,6 +1614,7 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Ajouter un fichier joint</string>
   <string name="conversation__menu_edit_group">Modifier le groupe</string>
+  <string name="conversation__menu_manage_group">Gérer le groupe</string>
   <string name="conversation__menu_leave_group">Quitter le groupe</string>
   <string name="conversation__menu_view_all_media">Tous les médias</string>
   <string name="conversation__menu_conversation_settings">Paramètres de la conversation</string>
@@ -1691,6 +1776,9 @@
     <item quantity="one">Il reste %1$d essai.</item>
     <item quantity="other">Il reste %1$d essais.</item>
   </plurals>
+  <!--CalleeMustAcceptMessageRequestDialogFragment-->
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">D’accord</string>
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s recevra une demande de message de votre part. Vous pourrez appeler une fois la demande de message acceptée.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Créer un NIP</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Les NIP font en sorte que les renseignements sont enregistrés chiffrés dans Signal.</string>
@@ -1761,7 +1849,6 @@
   <string name="RegistrationActivity_call_me_instead_available_in">Appelez-moi plutôt \n (disponible dans (%1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Contacter l’assistance de Signal</string>
   <string name="RegistrationActivity_code_support_subject">Inscription à Signal – Code de confirmation pour Android</string>
-  <string name="RegistrationActivity_code_support_body">Objet : Inscription à Signal – Code de confirmation pour Android\nRenseignements sur l’appareil : %1$s\nVersion d’Android : %2$s\nVersion de Signal : %3$s\nParamètres de lieu : %4$s</string>
   <string name="BackupUtil_never">Jamais</string>
   <string name="BackupUtil_unknown">Inconnu</string>
   <string name="preferences_app_protection__screen_lock">Verrouillage de l’écran</string>
@@ -1815,5 +1902,19 @@
   <string name="RegistrationLockDialog_reminder">Rappel :</string>
   <string name="recipient_preferences__about">À propos</string>
   <string name="Recipient_unknown">Inconnu</string>
+  <!--RecipientBottomSheet-->
+  <string name="RecipientBottomSheet_message">Message</string>
+  <string name="RecipientBottomSheet_call">Appeler</string>
+  <string name="RecipientBottomSheet_block">Bloquer</string>
+  <string name="RecipientBottomSheet_unblock">Débloquer</string>
+  <string name="RecipientBottomSheet_view_safety_number">Afficher le numéro de sécurité</string>
+  <string name="RecipientBottomSheet_make_group_admin">Nommer administrateur du groupe</string>
+  <string name="RecipientBottomSheet_remove_as_admin">Supprimer en tant qu’administrateur</string>
+  <string name="RecipientBottomSheet_remove_from_group">Supprimer du groupe</string>
+  <string name="RecipientBottomSheet_remove_s_as_group_admin">Supprimer %1$s en tant qu’administrateur du groupe ?</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s pourra modifier ce groupe et ses membres</string>
+  <string name="RecipientBottomSheet_remove_s_from_s">Supprimer %1$s de « %2$s » ?</string>
+  <string name="RecipientBottomSheet_remove">Supprimer</string>
+  <string name="GroupRecipientListItem_admin">Administrateur</string>
   <!--EOF-->
 </resources>

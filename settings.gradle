@@ -1,4 +1,6 @@
-include ':app', ':libsignal-service'
+include ':app'
+include ':libsignal-service'
+include ':lintchecks'
 
 project(':app').name = 'Signal-Android'
 

@@ -32,6 +32,8 @@ import org.thoughtcrime.securesms.util.Util;
 
 public class SmsListener extends BroadcastReceiver {
 
+  private static final String TAG = Log.tag(SmsListener.class);
+
   private static final String SMS_RECEIVED_ACTION  = Telephony.Sms.Intents.SMS_RECEIVED_ACTION;
   private static final String SMS_DELIVERED_ACTION = Telephony.Sms.Intents.SMS_DELIVER_ACTION;
 
@@ -98,12 +100,12 @@ public class SmsListener extends BroadcastReceiver {
 
   @Override
   public void onReceive(Context context, Intent intent) {
-    Log.i("SMSListener", "Got SMS broadcast...");
+    Log.i(TAG, "Got SMS broadcast...");
 
     if ((intent.getAction().equals(SMS_DELIVERED_ACTION)) ||
         (intent.getAction().equals(SMS_RECEIVED_ACTION)) && isRelevant(context, intent))
     {
-      Log.i("SmsListener", "Constructing SmsReceiveJob...");
+      Log.i(TAG, "Constructing SmsReceiveJob...");
       Object[] pdus           = (Object[]) intent.getExtras().get("pdus");
       int      subscriptionId = intent.getExtras().getInt("subscription", -1);
 

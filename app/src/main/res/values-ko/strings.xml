@@ -196,7 +196,6 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">기기 링크를 처리할 수 있는 앱이 없습니다.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">음성 메시지를 보내려면 Signal이 마이크를 사용할 수 있도록 허용해 주세요.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal에서 오디오 메시지를 보내려면 마이크 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'마이크\' 항목을 허용해 주세요.</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Signal에서 %s에게 전화하려면 마이크와 카메라 권한이 필요합니다.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal에서 %s에게 전화하려면 마이크와 카메라 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'마이크\'와 \'카메라\' 항목을 허용해 주세요.</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Signal에서 사진과 동영상을 찍으려면 카메라 권한이 필요합니다.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal에서 사진이나 동영상을 찍으려면 카메라 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'카메라\' 항목을 허용해 주세요.</string>
@@ -367,6 +366,23 @@
   <string name="GroupMembersDialog_you">나</string>
   <!--GV2 access levels-->
   <!--PendingMembersActivity-->
+  <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__create">생성</string>
+  <string name="AddGroupDetailsFragment__members">멤버</string>
+  <string name="AddGroupDetailsFragment__remove">삭제</string>
+  <!--ManageGroupActivity-->
+  <string name="ManageGroupActivity_disappearing_messages">사라지는 메시지</string>
+  <string name="ManageGroupActivity_leave_group">그룹 탈퇴</string>
+  <string name="ManageGroupActivity_mute_notifications">대화 알림 끄기</string>
+  <string name="ManageGroupActivity_custom_notifications">맞춤형 알림</string>
+  <string name="ManageGroupActivity_off">꺼짐</string>
+  <string name="ManageGroupActivity_on">켜짐</string>
+  <string name="ManageGroupActivity_add_members">멤버 추가</string>
+  <!--CustomNotificationsDialogFragment-->
+  <string name="CustomNotificationsDialogFragment__custom_notifications">맞춤형 알림</string>
+  <string name="CustomNotificationsDialogFragment__messages">메시지</string>
+  <string name="CustomNotificationsDialogFragment__notification_sound">알림 벨소리</string>
+  <string name="CustomNotificationsDialogFragment__vibrate">진동</string>
   <!--GV2 Invite cancellation confirmation-->
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">그룹 아바타</string>
@@ -486,6 +502,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">모든 미디어</string>
   <!--MessageRecord-->
+  <string name="MessageRecord_unknown">알 수 없음</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">지원하지 않는 이전 Signal 버전으로부터 암호화 메시지를 받았습니다. 발신자에게 최신 버전으로 업데이트하고 다시 보내도록 요청하세요.</string>
   <string name="MessageRecord_left_group">그룹에서 탈퇴했습니다.</string>
   <string name="MessageRecord_you_updated_group">그룹을 업데이트했습니다.</string>
@@ -502,6 +519,8 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">사라지는 메시지 시간을 %1$s(으)로 설정했습니다.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s 님이 사라지는 메시지 시간을 %2$s(으)로 설정했습니다.</string>
   <!--GV2 specific-->
+  <string name="MessageRecord_you_created_the_group">그룹을 생성했습니다.</string>
+  <string name="MessageRecord_group_updated">그룹 업데이트됨.</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_joined_the_group">그룹에 참가하였습니다.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s 님이 그룹에 참여했습니다.</string>
@@ -599,7 +618,6 @@
   <string name="RatingManager_later">나중에</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">이런, 기기에 Play Store 앱이 설치되지 않은 것 같습니다.</string>
   <!--ReactionsBottomSheetDialogFragment-->
-  <string name="ReactionsBottomSheetDialogFragment_all">모든 %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
@@ -625,6 +643,9 @@
   <string name="RedPhone_number_not_registered">전화번호가 Signal에 등록되지 않았습니다!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">지금 거신 전화번호는 보안 전화를 지원하지 않습니다.</string>
   <string name="RedPhone_got_it">확인</string>
+  <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">비디오를 사용하려면 탭하세요</string>
+  <!--WebRtcCallView-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">국가 선택</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">국가 번호를
@@ -738,6 +759,9 @@
   <string name="SubmitDebugLogActivity_copied_to_clipboard">클립보드로 복사됨</string>
   <string name="SubmitDebugLogActivity_ok">확인</string>
   <string name="SubmitDebugLogActivity_share">공유</string>
+  <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_signal_version">Signal 버전:</string>
+  <string name="SupportEmailUtil_locale">언어:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">그룹이 업데이트됨</string>
   <string name="ThreadRecord_left_the_group">그룹을 탈퇴함</string>
@@ -906,6 +930,12 @@
   <string name="WebRtcCallScreen_new_safety_number_title">새 안전 번호</string>
   <string name="WebRtcCallScreen_accept">수락</string>
   <string name="WebRtcCallScreen_end_call">전화 종료</string>
+  <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__answer">응답</string>
+  <!--WebRtcAudioOutputToggle-->
+  <string name="WebRtcAudioOutputToggle__phone">휴대전화</string>
+  <string name="WebRtcAudioOutputToggle__speaker">스피커</string>
+  <string name="WebRtcAudioOutputToggle__bluetooth">블루투스</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">탭하여 동영상 사용</string>
   <!--WebRtcCallControls Content Descriptions-->
@@ -940,6 +970,7 @@
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">이름 또는 전화번호 입력</string>
   <string name="contact_selection_activity__invite_to_signal">Signal로 초대</string>
+  <string name="contact_selection_activity__new_group">새 그룹</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">입력된 텍스트 삭제</string>
   <string name="contact_filter_toolbar__show_keyboard_description">키보드 표시</string>
@@ -1108,6 +1139,8 @@
   <string name="CreateProfileActivity_next">다음</string>
   <string name="CreateProfileActivity__username">사용자 이름</string>
   <string name="CreateProfileActivity__create_a_username">사용자 이름 생성</string>
+  <!--EditProfileFragment-->
+  <string name="EditProfileFragment__group_name">그룹 이름</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">공유된 미디어</string>
   <!--recipient_preferences-->
@@ -1173,13 +1206,12 @@
   <!--HelpFragment-->
   <string name="HelpFragment__help">도움</string>
   <string name="HelpFragment__next">다음</string>
-  <string name="HelpFragment__signal_version">Signal 버전:</string>
-  <string name="HelpFragment__locale">언어:</string>
   <string name="HelpFragment__debug_log">디버그 로그:</string>
   <string name="HelpFragment__na">없음</string>
   <string name="HelpFragment__could_not_upload_logs">로그를 업로드할 수 없습니다.</string>
   <string name="HelpFragment__signal_support">Signal 지원</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">저희가 문제를 해결할 수 있도록 최대한으로 설명해 주세요.</string>
+  <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <!--arrays.xml-->
   <string name="arrays__import_export">가져오기</string>
   <string name="arrays__use_default">기본값 사용</string>
@@ -1531,6 +1563,8 @@
   <plurals name="RegistrationLockFragment__d_attempts_remaining">
     <item quantity="other">%1$d회 남았습니다.</item>
   </plurals>
+  <!--CalleeMustAcceptMessageRequestDialogFragment-->
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">확인</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">번호 생성</string>
   <string name="KbsMegaphone__create_pin">번호 생성</string>
@@ -1600,7 +1634,6 @@
   <string name="RegistrationActivity_call_me_instead_available_in">전화로 인증\n(%1$02d:%2$02d 이후 이용 가능)</string>
   <string name="RegistrationActivity_contact_signal_support">Signal 지원 팀에 문의</string>
   <string name="RegistrationActivity_code_support_subject">Signal 등록 - 안드로이드용 인증 코드</string>
-  <string name="RegistrationActivity_code_support_body">제목: Signal 등록 - 안드로이드용 인증 코드\n기기 정보: %1$s\n안드로이드 버전: %2$s\nSignal 버전: %3$s\n로케일: %4$s</string>
   <string name="BackupUtil_never">없음</string>
   <string name="BackupUtil_unknown">알 수 없음</string>
   <string name="preferences_app_protection__screen_lock">화면 잠금</string>
@@ -1650,5 +1683,12 @@
   <string name="RegistrationLockDialog_reminder">알림:</string>
   <string name="recipient_preferences__about">정보</string>
   <string name="Recipient_unknown">알 수 없음</string>
+  <!--RecipientBottomSheet-->
+  <string name="RecipientBottomSheet_message">메시지</string>
+  <string name="RecipientBottomSheet_call">전화</string>
+  <string name="RecipientBottomSheet_block">차단</string>
+  <string name="RecipientBottomSheet_unblock">차단 해제</string>
+  <string name="RecipientBottomSheet_view_safety_number">안전 번호 보기</string>
+  <string name="RecipientBottomSheet_remove">삭제</string>
   <!--EOF-->
 </resources>

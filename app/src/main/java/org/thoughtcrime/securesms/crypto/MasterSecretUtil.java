@@ -56,6 +56,8 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class MasterSecretUtil {
 
+  private static final String TAG = Log.tag(MasterSecretUtil.class);
+
   public static final String UNENCRYPTED_PASSPHRASE  = "unencrypted";
   public static final String PREFERENCES_NAME        = "SecureSMS-Preferences";
 
@@ -115,10 +117,10 @@ public class MasterSecretUtil {
       return new MasterSecret(new SecretKeySpec(encryptionSecret, "AES"),
                               new SecretKeySpec(macSecret, "HmacSHA1"));
     } catch (GeneralSecurityException e) {
-      Log.w("keyutil", e);
+      Log.w(TAG, e);
       return null; //XXX
     } catch (IOException e) {
-      Log.w("keyutil", e);
+      Log.w(TAG, e);
       return null; //XXX
     }
   }
@@ -183,7 +185,7 @@ public class MasterSecretUtil {
       return new MasterSecret(new SecretKeySpec(encryptionSecret, "AES"),
                               new SecretKeySpec(macSecret, "HmacSHA1"));
     } catch (GeneralSecurityException e) {
-      Log.w("keyutil", e);
+      Log.w(TAG, e);
       return null;
     }
   }
@@ -249,7 +251,7 @@ public class MasterSecretUtil {
       SecretKey key = generator.generateKey();
       return key.getEncoded();
     } catch (NoSuchAlgorithmException ex) {
-      Log.w("keyutil", ex);
+      Log.w(TAG, ex);
       return null;
     }
   }
@@ -259,7 +261,7 @@ public class MasterSecretUtil {
       KeyGenerator generator = KeyGenerator.getInstance("HmacSHA1");
       return generator.generateKey().getEncoded();
     } catch (NoSuchAlgorithmException e) {
-      Log.w("keyutil", e);
+      Log.w(TAG, e);
       return null;
     }
   }
@@ -290,10 +292,10 @@ public class MasterSecretUtil {
       if (scaledIterationTarget < MINIMUM_ITERATION_COUNT) return MINIMUM_ITERATION_COUNT;
       else                                                 return scaledIterationTarget;
     } catch (NoSuchAlgorithmException e) {
-      Log.w("MasterSecretUtil", e);
+      Log.w(TAG, e);
       return MINIMUM_ITERATION_COUNT;
     } catch (InvalidKeySpecException e) {
-      Log.w("MasterSecretUtil", e);
+      Log.w(TAG, e);
       return MINIMUM_ITERATION_COUNT;
     }
   }

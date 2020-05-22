@@ -128,11 +128,11 @@ public final class LiveRecipient {
       Log.w(TAG, "[Resolve][MAIN] " + getId(), new Throwable());
     }
 
-    Recipient       updated      = fetchRecipientFromDisk(getId());
+    Recipient       updated      = fetchAndCacheRecipientFromDisk(getId());
     List<Recipient> participants = Stream.of(updated.getParticipants())
                                          .filter(Recipient::isResolving)
                                          .map(Recipient::getId)
-                                         .map(this::fetchRecipientFromDisk)
+                                         .map(this::fetchAndCacheRecipientFromDisk)
                                          .toList();
 
     for (Recipient participant : participants) {
@@ -155,10 +155,10 @@ public final class LiveRecipient {
       Log.w(TAG, "[Refresh][MAIN] " + getId(), new Throwable());
     }
 
-    Recipient       recipient    = fetchRecipientFromDisk(getId());
+    Recipient       recipient    = fetchAndCacheRecipientFromDisk(getId());
     List<Recipient> participants = Stream.of(recipient.getParticipants())
                                          .map(Recipient::getId)
-                                         .map(this::fetchRecipientFromDisk)
+                                         .map(this::fetchAndCacheRecipientFromDisk)
                                          .toList();
 
     for (Recipient participant : participants) {
@@ -172,12 +172,14 @@ public final class LiveRecipient {
     return liveData;
   }
 
-  private @NonNull Recipient fetchRecipientFromDisk(RecipientId id) {
+  private @NonNull Recipient fetchAndCacheRecipientFromDisk(@NonNull RecipientId id) {
     RecipientSettings settings = recipientDatabase.getRecipientSettings(id);
     RecipientDetails  details  = settings.getGroupId() != null ? getGroupRecipientDetails(settings)
                                                                : getIndividualRecipientDetails(settings);
 
-    return new Recipient(id, details);
+    Recipient recipient = new Recipient(id, details);
+    RecipientIdCache.INSTANCE.put(recipient);
+    return recipient;
   }
 
   private @NonNull RecipientDetails getIndividualRecipientDetails(RecipientSettings settings) {
@@ -194,7 +196,7 @@ public final class LiveRecipient {
 
     if (groupRecord.isPresent()) {
       String          title    = groupRecord.get().getTitle();
-      List<Recipient> members  = Stream.of(groupRecord.get().getMembers()).filterNot(RecipientId::isUnknown).map(this::fetchRecipientFromDisk).toList();
+      List<Recipient> members  = Stream.of(groupRecord.get().getMembers()).filterNot(RecipientId::isUnknown).map(this::fetchAndCacheRecipientFromDisk).toList();
       Optional<Long>  avatarId = Optional.absent();
 
       if (settings.getGroupId() != null && settings.getGroupId().isPush() && title == null) {

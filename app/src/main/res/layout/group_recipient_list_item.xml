@@ -3,7 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="64dp">
+    android:layout_height="64dp"
+    android:background="?selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
 
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/recipient_avatar"
@@ -22,14 +25,30 @@
         android:layout_marginEnd="8dp"
         android:gravity="start|center_vertical"
         android:textAlignment="viewStart"
-        android:textColor="?title_text_color_primary"
-        android:textSize="14sp"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
         app:layout_constraintBottom_toBottomOf="@+id/recipient_avatar"
-        app:layout_constraintEnd_toStartOf="@+id/popupMenuProgressContainer"
+        app:layout_constraintEnd_toStartOf="@+id/admin"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/recipient_avatar"
         app:layout_constraintTop_toTopOf="@+id/recipient_avatar"
         tools:text="@tools:sample/full_names" />
+
+    <TextView
+        android:id="@+id/admin"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="start|center_vertical"
+        android:text="@string/GroupRecipientListItem_admin"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:textColor="?attr/title_text_color_secondary"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/recipient_name"
+        app:layout_constraintEnd_toStartOf="@+id/popupMenuProgressContainer"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/recipient_name"
+        app:layout_constraintTop_toTopOf="@+id/recipient_name"
+        tools:visibility="visible" />
 
     <FrameLayout
         android:id="@+id/popupMenuProgressContainer"

@@ -11,6 +11,7 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import org.thoughtcrime.securesms.groups.ui.GroupChangeErrorCallback;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
@@ -38,9 +39,9 @@ public class MessageRequestViewModel extends ViewModel {
   private LiveRecipient liveRecipient;
   private long          threadId;
 
-  @SuppressWarnings("CodeBlock2Expr")
   private final RecipientForeverObserver recipientObserver = recipient -> {
     loadMessageRequestAccepted(recipient);
+    loadMemberCount();
     this.recipient.setValue(recipient);
   };
 
@@ -89,10 +90,11 @@ public class MessageRequestViewModel extends ViewModel {
   }
 
   @MainThread
-  public void onAccept() {
+  public void onAccept(@NonNull GroupChangeErrorCallback error) {
     repository.acceptMessageRequest(liveRecipient, threadId, () -> {
       status.postValue(Status.ACCEPTED);
-    });
+    },
+    error);
   }
 
   @MainThread
