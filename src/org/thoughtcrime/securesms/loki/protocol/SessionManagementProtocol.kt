@@ -76,6 +76,11 @@ object SessionManagementProtocol {
     @JvmStatic
     fun handleSessionRequestIfNeeded(context: Context, content: SignalServiceContent) {
         if (!content.dataMessage.isPresent || !content.dataMessage.get().isSessionRequest) { return }
+        val sentSessionRequestTimestamp = DatabaseFactory.getLokiAPIDatabase(context).getSessionRequestTimestamp(content.sender)
+        if (sentSessionRequestTimestamp != null && content.timestamp < sentSessionRequestTimestamp) {
+            // We sent a session request after this one was sent
+            return
+        }
         // Auto-accept all session requests
         val ephemeralMessage = EphemeralMessage.create(content.sender)
         ApplicationContext.getInstance(context).jobManager.add(PushEphemeralMessageSendJob(ephemeralMessage))

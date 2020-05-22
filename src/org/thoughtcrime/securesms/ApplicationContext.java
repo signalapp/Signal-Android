@@ -567,6 +567,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   @Override
   public void sendSessionRequest(@NotNull String publicKey) {
+    DatabaseFactory.getLokiAPIDatabase(this).setSessionRequestTimestamp(publicKey, new Date().getTime());
     EphemeralMessage sessionRequest = EphemeralMessage.createSessionRequest(publicKey);
     jobManager.add(new PushEphemeralMessageSendJob(sessionRequest));
   }

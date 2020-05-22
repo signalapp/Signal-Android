@@ -32,10 +32,10 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         private val receivedMessageHashValues = "received_message_hash_values"
         @JvmStatic val createReceivedMessageHashValuesTableCommand = "CREATE TABLE $receivedMessageHashValuesCache ($userID TEXT PRIMARY KEY, $receivedMessageHashValues TEXT);"
         // Group chat auth token cache
-        private val groupChatAuthTokenTable = "loki_api_group_chat_auth_token_database"
+        private val groupChatAuthTokenCache = "loki_api_group_chat_auth_token_database"
         private val server = "server"
         private val token = "token"
-        @JvmStatic val createGroupChatAuthTokenTableCommand = "CREATE TABLE $groupChatAuthTokenTable ($server TEXT PRIMARY KEY, $token TEXT);"
+        @JvmStatic val createGroupChatAuthTokenTableCommand = "CREATE TABLE $groupChatAuthTokenCache ($server TEXT PRIMARY KEY, $token TEXT);"
         // Last message server ID cache
         private val lastMessageServerIDCache = "loki_api_last_message_server_id_cache"
         private val lastMessageServerIDCacheIndex = "loki_api_last_message_server_id_cache_index"
@@ -59,6 +59,11 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         private val publicChatID = "public_chat_id"
         private val userCount = "user_count"
         @JvmStatic val createUserCountTableCommand = "CREATE TABLE $userCountCache ($publicChatID STRING PRIMARY KEY, $userCount INTEGER DEFAULT 0);"
+        // Session request timestamp cache
+        private val sessionRequestTimestampCache = "session_request_timestamp_cache"
+        private val publicKey = "public_key"
+        private val timestamp = "timestamp"
+        @JvmStatic val createSessionRequestTimestampTableCommand = "CREATE TABLE $sessionRequestTimestampCache ($publicKey STRING PRIMARY KEY, $timestamp INTEGER DEFAULT 0);"
     }
 
     override fun getSwarmCache(hexEncodedPublicKey: String): Set<LokiAPITarget>? {
@@ -120,7 +125,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
 
     override fun getAuthToken(server: String): String? {
         val database = databaseHelper.readableDatabase
-        return database.get(groupChatAuthTokenTable, "${Companion.server} = ?", wrap(server)) { cursor ->
+        return database.get(groupChatAuthTokenCache, "${Companion.server} = ?", wrap(server)) { cursor ->
             cursor.getString(cursor.getColumnIndexOrThrow(token))
         }
     }
@@ -129,9 +134,9 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         val database = databaseHelper.writableDatabase
         if (newValue != null) {
             val row = wrap(mapOf(Companion.server to server, token to newValue))
-            database.insertOrUpdate(groupChatAuthTokenTable, row, "${Companion.server} = ?", wrap(server))
+            database.insertOrUpdate(groupChatAuthTokenCache, row, "${Companion.server} = ?", wrap(server))
         } else {
-            database.delete(groupChatAuthTokenTable, "${Companion.server} = ?", wrap(server))
+            database.delete(groupChatAuthTokenCache, "${Companion.server} = ?", wrap(server))
         }
     }
 
@@ -221,6 +226,19 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         val index = "$server.$group"
         val row = wrap(mapOf(publicChatID to index, Companion.userCount to userCount.toString()))
         database.insertOrUpdate(userCountCache, row, "$publicChatID = ?", wrap(index))
+    }
+
+    fun getSessionRequestTimestamp(publicKey: String): Long? {
+        val database = databaseHelper.readableDatabase
+        return database.get(sessionRequestTimestampCache, "$LokiAPIDatabase.publicKey = ?", wrap(publicKey)) { cursor ->
+            cursor.getInt(LokiAPIDatabase.timestamp)
+        }?.toLong()
+    }
+
+    fun setSessionRequestTimestamp(publicKey: String, timestamp: Long) {
+        val database = databaseHelper.writableDatabase
+        val row = wrap(mapOf(LokiAPIDatabase.publicKey to publicKey, LokiAPIDatabase.timestamp to timestamp.toString()))
+        database.insertOrUpdate(sessionRequestTimestampCache, row, "${LokiAPIDatabase.publicKey} = ?", wrap(publicKey))
     }
 }
 
