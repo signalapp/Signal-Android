@@ -36,8 +36,9 @@ object ClosedGroupsProtocol {
     @JvmStatic
     fun shouldIgnoreGroupCreatedMessage(context: Context, group: SignalServiceGroup): Boolean {
         val members = group.members
-        val userMasterDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
-        return !members.isPresent || !members.get().contains(userMasterDevice)
+        val masterPublicKeyOrNull = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
+        val masterPublicKey = masterPublicKeyOrNull ?: TextSecurePreferences.getLocalNumber(context)
+        return !members.isPresent || !members.get().contains(masterPublicKey)
     }
 
     @JvmStatic
