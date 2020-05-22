@@ -81,7 +81,7 @@ public class MessageSender {
       FriendRequestProtocol.setFriendRequestStatusToSendingIfNeeded(context, messageId, allocatedThreadId);
     }
 
-    sendTextMessage(context, recipient, forceSms, keyExchange, messageId);
+    sendTextMessage(context, recipient, forceSms, keyExchange, messageId, message.isEndSession());
 
     return allocatedThreadId;
   }
@@ -135,7 +135,7 @@ public class MessageSender {
     if (messageRecord.isMms()) {
       sendMediaMessage(context, recipient, forceSms, messageId, expiresIn);
     } else {
-      sendTextMessage(context, recipient, forceSms, keyExchange, messageId);
+      sendTextMessage(context, recipient, forceSms, keyExchange, messageId, messageRecord.isEndSession());
     }
   }
 
@@ -152,17 +152,17 @@ public class MessageSender {
 
   private static void sendTextMessage(Context context, Recipient recipient,
                                       boolean forceSms, boolean keyExchange,
-                                      long messageId)
+                                      long messageId, boolean isEndSession)
   {
     if (isLocalSelfSend(context, recipient, forceSms)) {
       sendLocalTextSelf(context, messageId);
     } else {
-      sendTextPush(context, recipient, messageId);
+      sendTextPush(context, recipient, messageId, isEndSession);
     }
   }
 
-  private static void sendTextPush(Context context, Recipient recipient, long messageId) {
-    MultiDeviceProtocol.sendTextPush(context, recipient, messageId);
+  private static void sendTextPush(Context context, Recipient recipient, long messageId, boolean isEndSession) {
+    MultiDeviceProtocol.sendTextPush(context, recipient, messageId, isEndSession);
   }
 
   private static void sendMediaPush(Context context, Recipient recipient, long messageId) {

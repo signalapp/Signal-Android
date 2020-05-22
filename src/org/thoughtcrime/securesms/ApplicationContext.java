@@ -490,7 +490,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     LokiAPI.Companion.configureIfNeeded(userPublicKey, apiDB, broadcaster);
     lokiPoller = new LokiPoller(userPublicKey, apiDB, protos -> {
       for (SignalServiceProtos.Envelope proto : protos) {
-        new PushContentReceiveJob(context).processEnvelope(new SignalServiceEnvelope(proto));
+        new PushContentReceiveJob(context).processEnvelope(new SignalServiceEnvelope(proto), false);
       }
       return Unit.INSTANCE;
     });

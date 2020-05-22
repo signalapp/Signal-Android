@@ -22,7 +22,7 @@ public abstract class PushReceivedJob extends BaseJob {
     super(parameters);
   }
 
-  public void processEnvelope(@NonNull SignalServiceEnvelope envelope) {
+  public void processEnvelope(@NonNull SignalServiceEnvelope envelope, boolean isPushNotification) {
     synchronized (RECEIVE_LOCK) {
       try {
         if (envelope.hasSource()) {
@@ -37,7 +37,7 @@ public abstract class PushReceivedJob extends BaseJob {
         if (envelope.isReceipt()) {
           handleReceipt(envelope);
         } else if (envelope.isPreKeySignalMessage() || envelope.isSignalMessage() || envelope.isUnidentifiedSender() || envelope.isFriendRequest()) {
-          handleMessage(envelope);
+          handleMessage(envelope, isPushNotification);
         } else {
           Log.w(TAG, "Received envelope of unknown type: " + envelope.getType());
         }
@@ -47,8 +47,8 @@ public abstract class PushReceivedJob extends BaseJob {
     }
   }
 
-  private void handleMessage(SignalServiceEnvelope envelope) {
-    new PushDecryptJob(context).processMessage(envelope);
+  private void handleMessage(SignalServiceEnvelope envelope, boolean isPushNotification) {
+    new PushDecryptJob(context).processMessage(envelope, isPushNotification);
   }
 
   @SuppressLint("DefaultLocale")

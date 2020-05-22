@@ -207,7 +207,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       SignalServiceEnvelope envelope             = database.get(messageId);
       Optional<Long>        optionalSmsMessageId = smsMessageId > 0 ? Optional.of(smsMessageId) : Optional.absent();
 
-      handleMessage(envelope, optionalSmsMessageId);
+      handleMessage(envelope, optionalSmsMessageId, false);
       database.delete(messageId);
     }
   }
@@ -222,7 +222,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
   }
 
-  public void processMessage(@NonNull SignalServiceEnvelope envelope) {
+  public void processMessage(@NonNull SignalServiceEnvelope envelope, boolean isPushNotification) {
     synchronized (PushReceivedJob.RECEIVE_LOCK) {
       if (needsMigration()) {
         Log.w(TAG, "Skipping and storing envelope, waiting for migration...");
@@ -231,7 +231,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         return;
       }
 
-      handleMessage(envelope, Optional.absent());
+      handleMessage(envelope, Optional.absent(), isPushNotification);
     }
   }
 
@@ -253,7 +253,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
   }
 
-  private void handleMessage(@NonNull SignalServiceEnvelope envelope, @NonNull Optional<Long> smsMessageId) {
+  private void handleMessage(@NonNull SignalServiceEnvelope envelope, @NonNull Optional<Long> smsMessageId, boolean isPushNotification) {
     try {
       GroupDatabase            groupDatabase            = DatabaseFactory.getGroupDatabase(context);
       SignalProtocolStore      axolotlStore             = new SignalProtocolStoreImpl(context);
@@ -378,7 +378,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       handleInvalidVersionMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId);
     } catch (ProtocolInvalidMessageException e) {
       Log.w(TAG, e);
-      handleCorruptMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId);
+      if (!isPushNotification) { // This can be triggered if a PN encrypted with an old session comes in after the user performed a session reset
+        handleCorruptMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId);
+      }
     } catch (ProtocolInvalidKeyIdException | ProtocolInvalidKeyException | ProtocolUntrustedIdentityException e) {
       Log.w(TAG, e);
       handleCorruptMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId);

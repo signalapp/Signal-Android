@@ -89,7 +89,6 @@ object SessionManagementProtocol {
     @JvmStatic
     fun handleEndSessionMessageIfNeeded(context: Context, content: SignalServiceContent) {
         if (!content.dataMessage.isPresent || !content.dataMessage.get().isEndSession) { return }
-        // TODO: Notify the user
         val sessionStore = TextSecureSessionStore(context)
         val lokiThreadDB = DatabaseFactory.getLokiThreadDatabase(context)
         Log.d("Loki", "Received a session reset request from: ${content.sender}; archiving the session.")

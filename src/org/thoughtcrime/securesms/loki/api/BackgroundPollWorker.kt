@@ -38,7 +38,7 @@ class BackgroundPollWorker : PersistentAlarmManagerListener() {
                 LokiAPI.configureIfNeeded(userHexEncodedPublicKey, lokiAPIDatabase, broadcaster)
                 LokiAPI.shared.getMessages().map { messages ->
                     messages.forEach {
-                        PushContentReceiveJob(context).processEnvelope(SignalServiceEnvelope(it))
+                        PushContentReceiveJob(context).processEnvelope(SignalServiceEnvelope(it), false)
                     }
                 }
             } catch (exception: Throwable) {
