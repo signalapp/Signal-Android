@@ -85,7 +85,7 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
     // region Settings
     companion object {
         private val pollForNewMessagesInterval: Long = 4 * 1000
-        private val pollForDeletedMessagesInterval: Long = 20 * 1000
+        private val pollForDeletedMessagesInterval: Long = 60 * 1000
         private val pollForModeratorsInterval: Long = 10 * 60 * 1000
         private val pollForDisplayNamesInterval: Long = 60 * 1000
     }
@@ -225,11 +225,6 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
         // Kovenant propagates a context to chained promises, so LokiPublicChatAPI.sharedContext should be used for all of the below
         api.getMessages(group.channel, group.server).bind(LokiPublicChatAPI.sharedContext) { messages ->
             if (messages.isNotEmpty()) {
-                if (messages.count() == 1) {
-                    Log.d("Loki", "Fetched 1 new message.")
-                } else {
-                    Log.d("Loki", "Fetched ${messages.count()} new messages.")
-                }
                 // We need to fetch the device mapping for any devices we don't have
                 uniqueDevices = messages.map { it.hexEncodedPublicKey }.toSet()
                 val devicesToUpdate = uniqueDevices.filter { !userDevices.contains(it) && LokiFileServerAPI.shared.hasDeviceLinkCacheExpired(hexEncodedPublicKey = it) }
