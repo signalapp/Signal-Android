@@ -1438,22 +1438,20 @@ public class RecipientDatabase extends Database {
       Stream.of(updates.entrySet()).forEach(entry -> Recipient.live(entry.getKey()).refresh());
     }
   }
-  public @Nullable Cursor getSignalContacts() {
-    return getSignalContacts(true);
-  }
 
   public @Nullable Cursor getSignalContacts(boolean includeSelf) {
-    String   selection = BLOCKED         + " = ? AND " +
-                         REGISTERED      + " = ? AND " +
-                         GROUP_ID        + " IS NULL AND " +
+    String   selection = BLOCKED    + " = ? AND "                                                     +
+                         REGISTERED + " = ? AND "                                                     +
+                         GROUP_ID   + " IS NULL AND "                                                 +
+                         "(" + SYSTEM_DISPLAY_NAME + " NOT NULL OR " + PROFILE_SHARING + " = ?) AND " +
                          "(" + SORT_NAME + " NOT NULL OR " + USERNAME + " NOT NULL)";
     String[] args;
 
     if (includeSelf) {
-      args = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()) };
+      args = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), "1" };
     } else {
       selection += " AND " + ID + " != ?";
-      args       = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), String.valueOf(Recipient.self().getId().toLong()) };
+      args       = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), Recipient.self().getId().serialize() };
     }
 
     String   orderBy   = SORT_NAME + ", " + SYSTEM_DISPLAY_NAME + ", " + SEARCH_PROFILE_NAME + ", " + USERNAME + ", " + PHONE;
@@ -1468,6 +1466,7 @@ public class RecipientDatabase extends Database {
     String   selection = BLOCKED     + " = ? AND " +
                          REGISTERED  + " = ? AND " +
                          GROUP_ID    + " IS NULL AND " +
+                         "(" + SYSTEM_DISPLAY_NAME + " NOT NULL OR " + PROFILE_SHARING + " = ?) AND " +
                          "(" +
                            PHONE     + " LIKE ? OR " +
                            SORT_NAME + " LIKE ? OR " +
@@ -1476,10 +1475,10 @@ public class RecipientDatabase extends Database {
     String[] args;
 
     if (includeSelf) {
-      args = new String[]{"0", String.valueOf(RegisteredState.REGISTERED.getId()), query, query, query};
+      args = new String[]{"0", String.valueOf(RegisteredState.REGISTERED.getId()), "1", query, query, query};
     } else {
       selection += " AND " + ID + " != ?";
-      args       = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), query, query, query, String.valueOf(Recipient.self().getId().toLong()) };
+      args       = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), "1", query, query, query, String.valueOf(Recipient.self().getId().toLong()) };
     }
 
     String   orderBy   = SORT_NAME + ", " + SYSTEM_DISPLAY_NAME + ", " + SEARCH_PROFILE_NAME + ", " + PHONE;
