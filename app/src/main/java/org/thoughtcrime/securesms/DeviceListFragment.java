@@ -3,18 +3,8 @@ package org.thoughtcrime.securesms;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.ListFragment;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.Loader;
-import androidx.appcompat.app.AlertDialog;
-
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.devicelist.Device;
-import org.thoughtcrime.securesms.logging.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,12 +14,20 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.ListFragment;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
+
 import com.melnykov.fab.FloatingActionButton;
 
 import org.thoughtcrime.securesms.database.loaders.DeviceListLoader;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.devicelist.Device;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 
 import java.io.IOException;
@@ -40,8 +38,7 @@ public class DeviceListFragment extends ListFragment
     implements LoaderManager.LoaderCallbacks<List<Device>>,
                ListView.OnItemClickListener, Button.OnClickListener
 {
-
-  private static final String TAG = DeviceListFragment.class.getSimpleName();
+  private static final String TAG = Log.tag(DeviceListFragment.class);
 
   private SignalServiceAccountManager accountManager;
   private Locale                      locale;
@@ -57,8 +54,8 @@ public class DeviceListFragment extends ListFragment
   }
 
   @Override
-  public void onAttach(Activity activity) {
-    super.onAttach(activity);
+  public void onAttach(@NonNull Context context) {
+    super.onAttach(context);
     this.accountManager = ApplicationDependencies.getSignalServiceAccountManager();
   }
 
@@ -68,7 +65,7 @@ public class DeviceListFragment extends ListFragment
 
     this.empty             = view.findViewById(R.id.empty);
     this.progressContainer = view.findViewById(R.id.progress_container);
-    this.addDeviceButton   = ViewUtil.findById(view, R.id.add_device);
+    this.addDeviceButton   = view.findViewById(R.id.add_device);
     this.addDeviceButton.setOnClickListener(this);
 
     return view;
@@ -77,7 +74,7 @@ public class DeviceListFragment extends ListFragment
   @Override
   public void onActivityCreated(Bundle bundle) {
     super.onActivityCreated(bundle);
-    getLoaderManager().initLoader(0, null, this);
+    LoaderManager.getInstance(requireActivity()).initLoader(0, null, this);
     getListView().setOnItemClickListener(this);
   }
 
@@ -122,42 +119,22 @@ public class DeviceListFragment extends ListFragment
     final String deviceName = ((DeviceListItem)view).getDeviceName();
     final long   deviceId   = ((DeviceListItem)view).getDeviceId();
 
-    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-    builder.setTitle(getActivity().getString(R.string.DeviceListActivity_unlink_s, deviceName));
+    AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+    builder.setTitle(requireContext().getString(R.string.DeviceListActivity_unlink_s, deviceName));
     builder.setMessage(R.string.DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive);
     builder.setNegativeButton(android.R.string.cancel, null);
-    builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialog, int which) {
-        handleDisconnectDevice(deviceId);
-      }
-    });
+    builder.setPositiveButton(android.R.string.ok, (dialog, which) -> handleDisconnectDevice(deviceId));
     builder.show();
   }
 
   private void handleLoaderFailed() {
-    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+    AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
     builder.setMessage(R.string.DeviceListActivity_network_connection_failed);
-    builder.setPositiveButton(R.string.DeviceListActivity_try_again,
-                              new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialog, int which) {
-        getLoaderManager().restartLoader(0, null, DeviceListFragment.this);
-      }
-    });
-
-    builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialog, int which) {
-        DeviceListFragment.this.getActivity().onBackPressed();
-      }
-    });
-    builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-      @Override
-      public void onCancel(DialogInterface dialog) {
-        DeviceListFragment.this.getActivity().onBackPressed();
-      }
-    });
+    builder.setPositiveButton(R.string.DeviceListActivity_try_again, (dialog, which) ->
+        LoaderManager.getInstance(requireActivity()).restartLoader(0, null, DeviceListFragment.this));
+    builder.setNegativeButton(android.R.string.cancel, (dialog, which) ->
+        DeviceListFragment.this.requireActivity().onBackPressed());
+    builder.setOnCancelListener(dialog -> DeviceListFragment.this.requireActivity().onBackPressed());
 
     builder.show();
   }
@@ -183,7 +160,7 @@ public class DeviceListFragment extends ListFragment
       protected void onPostExecute(Boolean result) {
         super.onPostExecute(result);
         if (result) {
-          getLoaderManager().restartLoader(0, null, DeviceListFragment.this);
+          LoaderManager.getInstance(requireActivity()).restartLoader(0, null, DeviceListFragment.this);
         } else {
           Toast.makeText(getActivity(), R.string.DeviceListActivity_network_failed, Toast.LENGTH_LONG).show();
         }
@@ -201,10 +178,10 @@ public class DeviceListFragment extends ListFragment
     private final int    resource;
     private final Locale locale;
 
-    public DeviceListAdapter(Context context, int resource, List<Device> objects, Locale locale) {
+    DeviceListAdapter(Context context, int resource, List<Device> objects, Locale locale) {
       super(context, resource, objects);
       this.resource = resource;
-      this.locale = locale;
+      this.locale   = locale;
     }
 
     @Override
