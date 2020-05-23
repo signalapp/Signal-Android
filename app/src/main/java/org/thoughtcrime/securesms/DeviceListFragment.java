@@ -164,25 +164,29 @@ public class DeviceListFragment extends ListFragment
 
   @SuppressLint("StaticFieldLeak")
   private void handleDisconnectDevice(final long deviceId) {
-    new ProgressDialogAsyncTask<Void, Void, Void>(getActivity(),
-                                                  R.string.DeviceListActivity_unlinking_device_no_ellipsis,
-                                                  R.string.DeviceListActivity_unlinking_device)
+    new ProgressDialogAsyncTask<Void, Void, Boolean>(getActivity(),
+                                                     R.string.DeviceListActivity_unlinking_device_no_ellipsis,
+                                                     R.string.DeviceListActivity_unlinking_device)
     {
       @Override
-      protected Void doInBackground(Void... params) {
+      protected Boolean doInBackground(Void... params) {
         try {
           accountManager.removeDevice(deviceId);
+          return true;
         } catch (IOException e) {
           Log.w(TAG, e);
-          Toast.makeText(getActivity(), R.string.DeviceListActivity_network_failed, Toast.LENGTH_LONG).show();
+          return false;
         }
-        return null;
       }
 
       @Override
-      protected void onPostExecute(Void result) {
+      protected void onPostExecute(Boolean result) {
         super.onPostExecute(result);
-        getLoaderManager().restartLoader(0, null, DeviceListFragment.this);
+        if (result) {
+          getLoaderManager().restartLoader(0, null, DeviceListFragment.this);
+        } else {
+          Toast.makeText(getActivity(), R.string.DeviceListActivity_network_failed, Toast.LENGTH_LONG).show();
+        }
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
