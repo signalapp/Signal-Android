@@ -513,7 +513,6 @@ public class RecipientDatabase extends Database {
               IdentityKey identityKey = new IdentityKey(insert.getIdentityKey().get(), 0);
 
               DatabaseFactory.getIdentityDatabase(context).updateIdentityAfterSync(recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(insert.getIdentityState()));
-              IdentityUtil.markIdentityVerified(context, Recipient.resolved(recipientId), true, true);
             } catch (InvalidKeyException e) {
               Log.w(TAG, "Failed to process identity key during insert! Skipping.", e);
             }
