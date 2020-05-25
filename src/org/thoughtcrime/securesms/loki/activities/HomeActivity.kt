@@ -49,6 +49,8 @@ import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager
 import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol
 import org.whispersystems.signalservice.loki.protocol.sessionmanagement.SessionManagementProtocol
 import org.whispersystems.signalservice.loki.protocol.syncmessages.SyncMessagesProtocol
+import org.whispersystems.signalservice.loki.protocol.todo.LokiMessageFriendRequestStatus
+import org.whispersystems.signalservice.loki.protocol.todo.LokiThreadFriendRequestStatus
 import kotlin.math.abs
 
 class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListener, SeedReminderViewDelegate, NewConversationButtonSetViewDelegate {
@@ -164,6 +166,28 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             SessionManagementProtocol.configureIfNeeded(sessionResetImpl, threadDB, application)
             SyncMessagesProtocol.configureIfNeeded(apiDB, userPublicKey)
             application.lokiPublicChatManager.startPollersIfNeeded()
+        }
+        // TODO: Temporary hack to unbork existing clients
+        val c = DatabaseFactory.getThreadDatabase(this).conversationList
+        val lokiMessageDB = DatabaseFactory.getLokiMessageDatabase(this)
+        fun unborkThreadIfNeeded() {
+            try {
+                val threadID = c.getLong(c.getColumnIndexOrThrow(ThreadDatabase.ID))
+                val hasPendingFR = (DatabaseFactory.getLokiThreadDatabase(this).getFriendRequestStatus(threadID) == LokiThreadFriendRequestStatus.REQUEST_RECEIVED)
+                if (!hasPendingFR) { return }
+                val lastMessageID = org.thoughtcrime.securesms.loki.protocol.FriendRequestProtocol.getLastMessageID(this, threadID)
+                if (lastMessageID == null) { return }
+                val lastMessageFRStatus = lokiMessageDB.getFriendRequestStatus(lastMessageID)
+                if (lastMessageFRStatus == LokiMessageFriendRequestStatus.REQUEST_PENDING) { return }
+                lokiMessageDB.setFriendRequestStatus(lastMessageID, LokiMessageFriendRequestStatus.REQUEST_PENDING)
+            } catch (exception: Exception) {
+                // Do nothing
+            }
+        }
+        c.moveToFirst()
+        unborkThreadIfNeeded()
+        while (c.moveToNext()) {
+            unborkThreadIfNeeded()
         }
     }
 
