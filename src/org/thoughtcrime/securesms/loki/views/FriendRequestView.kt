@@ -160,7 +160,7 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
     // region Interaction
     private fun accept() {
         val lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context)
-        lokiMessageDatabase.setFriendRequestStatus(message!!.id, LokiMessageFriendRequestStatus.REQUEST_SENDING)
+        lokiMessageDatabase.setFriendRequestStatus(message!!.id, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED)
         updateUI()
         delegate?.acceptFriendRequest(message!!)
     }
