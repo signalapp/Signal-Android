@@ -154,7 +154,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             adapter.typingThreadIDs = threadIDs ?: setOf()
         })
         // Set up remaining components if needed
-        val application = ApplicationContext.getInstance(this)d
+        val application = ApplicationContext.getInstance(this)
         val apiDB = DatabaseFactory.getLokiAPIDatabase(this)
         val threadDB = DatabaseFactory.getLokiThreadDatabase(this)
         val userDB = DatabaseFactory.getLokiUserDatabase(this)
