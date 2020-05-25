@@ -194,10 +194,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       FriendRequestProtocol.Companion.configureIfNeeded(apiDB, userPublicKey);
       MentionsManager.Companion.configureIfNeeded(userPublicKey, threadDB, userDB);
       SessionMetaProtocol.Companion.configureIfNeeded(apiDB, userPublicKey);
-      MultiDeviceProtocol.Companion.configureIfNeeded(apiDB);
-      SessionManagementProtocol.Companion.configureIfNeeded(sessionResetImpl, threadDB, this);
       SyncMessagesProtocol.Companion.configureIfNeeded(apiDB, userPublicKey);
     }
+    MultiDeviceProtocol.Companion.configureIfNeeded(apiDB);
+    SessionManagementProtocol.Companion.configureIfNeeded(sessionResetImpl, threadDB, this);
     setUpP2PAPIIfNeeded();
     LokiPushNotificationAcknowledgement.Companion.configureIfNeeded(BuildConfig.DEBUG);
     if (setUpStorageAPIIfNeeded()) {
