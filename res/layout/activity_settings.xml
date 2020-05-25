@@ -43,7 +43,7 @@
                         android:id="@+id/titleTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Settings"
+                        android:text="@string/activity_settings_title"
                         android:textColor="@color/text"
                         android:textSize="@dimen/very_large_font_size"
                         android:fontFamily="sans-serif-medium" />
@@ -94,7 +94,7 @@
                     android:paddingTop="12dp"
                     android:paddingBottom="12dp"
                     android:visibility="invisible"
-                    android:hint="Enter a display name" />
+                    android:hint="@string/activity_settings_display_name_edit_text_hint" />
 
                 <TextView
                     android:id="@+id/displayNameTextView"
@@ -142,7 +142,7 @@
                     android:layout_width="0dp"
                     android:layout_height="@dimen/medium_button_height"
                     android:layout_weight="1"
-                    android:text="Copy" />
+                    android:text="@string/copy" />
 
                 <Button
                     style="@style/MediumUnimportantOutlineButton"
@@ -151,7 +151,7 @@
                     android:layout_height="@dimen/medium_button_height"
                     android:layout_weight="1"
                     android:layout_marginLeft="@dimen/medium_spacing"
-                    android:text="Share" />
+                    android:text="@string/share" />
 
             </LinearLayout>
 
@@ -170,7 +170,7 @@
                 android:textSize="@dimen/medium_font_size"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:text="Privacy" />
+                android:text="@string/activity_settings_privacy_button_title" />
 
             <View
                 android:layout_width="match_parent"
@@ -186,7 +186,7 @@
                 android:textSize="@dimen/medium_font_size"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:text="Notifications" />
+                android:text="@string/activity_settings_notifications_button_title" />
 
             <View
                 android:layout_width="match_parent"
@@ -202,7 +202,7 @@
                 android:textSize="@dimen/medium_font_size"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:text="Chats" />
+                android:text="@string/activity_settings_chats_button_title" />
 
             <View
                 android:id="@+id/linkedDevicesButtonTopSeparator"
@@ -219,7 +219,7 @@
                 android:textSize="@dimen/medium_font_size"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:text="Devices" />
+                android:text="@string/activity_settings_devices_button_title" />
 
             <View
                 android:id="@+id/seedButtonTopSeparator"
@@ -236,7 +236,7 @@
                 android:textSize="@dimen/medium_font_size"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:text="Recovery Phrase" />
+                android:text="@string/activity_settings_recovery_phrase_button_title" />
 
             <View
                 android:layout_width="match_parent"
@@ -252,7 +252,7 @@
                 android:textSize="@dimen/medium_font_size"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:text="Clear All Data" />
+                android:text="@string/activity_settings_clear_all_data_button_title" />
 
             <View
                 android:layout_width="match_parent"

@@ -40,7 +40,7 @@ class QRCodeActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperF
         // Set content view
         setContentView(R.layout.activity_qr_code)
         // Set title
-        supportActionBar!!.title = "QR Code"
+        supportActionBar!!.title = resources.getString(R.string.activity_qr_code_title)
         // Set up view pager
         viewPager.adapter = adapter
         tabLayout.setupWithViewPager(viewPager)
@@ -53,7 +53,7 @@ class QRCodeActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperF
     }
 
     fun createPrivateChatIfPossible(hexEncodedPublicKey: String) {
-        if (!PublicKeyValidation.isValid(hexEncodedPublicKey)) { return Toast.makeText(this, "Invalid Session ID", Toast.LENGTH_SHORT).show() }
+        if (!PublicKeyValidation.isValid(hexEncodedPublicKey)) { return Toast.makeText(this, R.string.invalid_session_id, Toast.LENGTH_SHORT).show() }
         val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this)
         val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)
         val targetHexEncodedPublicKey = if (hexEncodedPublicKey == masterHexEncodedPublicKey) userHexEncodedPublicKey else hexEncodedPublicKey
@@ -84,7 +84,7 @@ private class QRCodeActivityAdapter(val activity: QRCodeActivity) : FragmentPage
             1 -> {
                 val result = ScanQRCodeWrapperFragment()
                 result.delegate = activity
-                result.message = "Scan someone\'s QR code to start a conversation with them"
+                result.message = activity.resources.getString(R.string.activity_qr_code_view_scan_qr_code_explanation)
                 result
             }
             else -> throw IllegalStateException()
@@ -93,8 +93,8 @@ private class QRCodeActivityAdapter(val activity: QRCodeActivity) : FragmentPage
 
     override fun getPageTitle(index: Int): CharSequence? {
         return when (index) {
-            0 -> "View My QR Code"
-            1 -> "Scan QR Code"
+            0 -> activity.resources.getString(R.string.activity_qr_code_view_my_qr_code_tab_title)
+            1 -> activity.resources.getString(R.string.activity_qr_code_view_scan_qr_code_tab_title)
             else -> throw IllegalStateException()
         }
     }
@@ -122,7 +122,7 @@ class ViewMyQRCodeFragment : Fragment() {
         qrCodeImageView.setImageBitmap(qrCode)
 //        val explanation = SpannableStringBuilder("This is your unique public QR code. Other users can scan this to start a conversation with you.")
 //        explanation.setSpan(StyleSpan(Typeface.BOLD), 8, 34, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        explanationTextView.text = "This is your QR code. Other users can scan it to start a session with you."
+        explanationTextView.text = resources.getString(R.string.fragment_view_my_qr_code_explanation)
         shareButton.setOnClickListener { shareQRCode() }
     }
 
@@ -142,7 +142,7 @@ class ViewMyQRCodeFragment : Fragment() {
             intent.putExtra(Intent.EXTRA_STREAM, FileProviderUtil.getUriFor(activity!!, file))
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             intent.type = "image/png"
-            startActivity(Intent.createChooser(intent, "Share QR Code"))
+            startActivity(Intent.createChooser(intent, resources.getString(R.string.fragment_view_my_qr_code_share_title)))
         }
         if (RxPermissions(this).isGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             proceed()

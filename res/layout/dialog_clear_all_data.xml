@@ -14,7 +14,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Clear All Data"
+        android:text="@string/dialog_clear_all_data_title"
         android:textColor="@color/text"
         android:textStyle="bold"
         android:textSize="@dimen/medium_font_size" />
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_spacing"
-        android:text="This will permanently delete your Session ID, including all messages, sessions, and contacts."
+        android:text="@string/dialog_clear_all_data_explanation"
         android:textColor="@color/text"
         android:textSize="@dimen/small_font_size"
         android:textAlignment="center" />
@@ -41,7 +41,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/small_button_height"
             android:layout_weight="1"
-            android:text="Cancel" />
+            android:text="@string/cancel" />
 
         <Button
             style="@style/DestructiveDialogButton"
@@ -50,7 +50,7 @@
             android:layout_height="@dimen/small_button_height"
             android:layout_weight="1"
             android:layout_marginLeft="@dimen/medium_spacing"
-            android:text="Delete" />
+            android:text="@string/delete" />
 
     </LinearLayout>
 

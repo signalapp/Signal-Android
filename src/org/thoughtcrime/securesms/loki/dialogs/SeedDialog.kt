@@ -45,7 +45,7 @@ class SeedDialog : DialogFragment() {
         val clipboard = activity!!.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val clip = ClipData.newPlainText("Seed", seed)
         clipboard.primaryClip = clip
-        Toast.makeText(context!!, R.string.activity_register_public_key_copied_message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(context!!, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
         dismiss()
     }
 }
