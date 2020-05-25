@@ -1674,10 +1674,11 @@
 
     <string name="continue_2">Continue</string>
     <string name="copy">Copy</string>
-    <string name="invalid_url">Couldn\'t open link</string>
+    <string name="invalid_url">Invalid URL</string>
     <string name="copied_to_clipboard">Copied to clipboard</string>
     <string name="device_linking_failed">Couldn\'t link device.</string>
     <string name="next">Next</string>
+    <string name="share">Share</string>
     <string name="invalid_session_id">Invalid Session ID</string>
 
     <string name="activity_landing_title_2">Your Session begins here...</string>
@@ -1703,7 +1704,7 @@
     <string name="activity_link_device_title">Link Device</string>
     <string name="activity_link_device_enter_session_id_tab_title">Enter Session ID</string>
     <string name="activity_link_device_scan_qr_code_tab_title">Scan QR Code</string>
-    <string name="activity_link_device_scan_qr_code_explanation">"Navigate to "Settings" > "Devices" > "Link a Device" on your other device and then scan the QR code that comes up to start the linking process."</string>
+    <string name="activity_link_device_scan_qr_code_explanation">Navigate to "Settings" > "Devices" > "Link a Device" on your other device and then scan the QR code that comes up to start the linking process.</string>
 
     <string name="fragment_enter_session_id_title">Link your device</string>
     <string name="fragment_enter_session_id_explanation">Navigate to "Settings" > "Devices" > "Link a Device" on your other device and then enter your Session ID here to start the linking process.</string>
@@ -1751,6 +1752,30 @@
     <string name="view_seed_reminder_subtitle_1">Secure your account by saving your recovery phrase</string>
     <string name="view_seed_reminder_subtitle_2">Tap and hold the redacted words to reveal your recovery phrase, then store it safely to secure your Session ID.</string>
     <string name="view_seed_reminder_subtitle_3">Make sure to store your recovery phrase in a safe place</string>
+
+    <string name="activity_create_private_chat_title">New Session</string>
+    <string name="activity_create_private_chat_enter_session_id_tab_title">Enter Session ID</string>
+    <string name="activity_create_private_chat_scan_qr_code_tab_title">Scan QR Code</string>
+    <string name="activity_create_private_chat_scan_qr_code_explanation">Scan a user\’s QR code to start a session. QR codes can be found by tapping the QR code icon in account settings.</string>
+
+    <string name="fragment_enter_public_key_edit_text_hint">Enter Session ID of recipient</string>
+    <string name="fragment_enter_public_key_explanation">Users can share their Session ID by going into their account settings and tapping "Share Session ID", or by sharing their QR code.</string>
+
+    <string name="activity_create_closed_group_edit_text_hint">Enter a group name</string>
+    <string name="activity_create_closed_group_explanation">Closed groups support up to 10 members and provide the same privacy protections as one-on-one sessions.</string>
+    <string name="activity_create_closed_group_empty_state_message">You don\'t have any contacts yet</string>
+    <string name="activity_create_closed_group_empty_state_button_title">Start a Session</string>
+
+    <string name="activity_join_public_chat_title">Join Open Group</string>
+    <string name="activity_join_public_chat_error">Couldn\'t join group</string>
+    <string name="activity_join_public_chat_enter_group_url_tab_title">Open Group URL</string>
+    <string name="activity_join_public_chat_scan_qr_code_tab_title">Scan QR Code</string>
+    <string name="activity_join_public_chat_scan_qr_code_explanation">Scan the QR code of the open group you\'d like to join</string>
+
+    <string name="fragment_enter_chat_url_edit_text_hint">Enter an open group URL</string>
+    <string name="fragment_enter_chat_url_privacy_warning">Open groups can be joined by anyone and do not provide full privacy protection</string>
+
+
 
     <string name="fragment_contact_selection_contacts_title">Contacts</string>
     <string name="fragment_contact_selection_closed_groups_title">Closed Groups</string>

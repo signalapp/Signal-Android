@@ -19,7 +19,7 @@
             android:layout_marginLeft="@dimen/large_spacing"
             android:layout_marginTop="@dimen/medium_spacing"
             android:layout_marginRight="@dimen/large_spacing"
-            android:hint="Enter a group name" />
+            android:hint="@string/activity_create_closed_group_edit_text_hint" />
 
         <TextView
             android:layout_width="match_parent"
@@ -32,7 +32,7 @@
             android:textColor="@color/text"
             android:alpha="0.6"
             android:textAlignment="center"
-            android:text="Closed groups support up to 10 members and provide the same privacy protections as one-on-one sessions." />
+            android:text="@string/activity_create_closed_group_explanation" />
 
         <View
             android:layout_width="match_parent"
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/medium_font_size"
             android:textColor="@color/text"
-            android:text="You don't have any contacts yet" />
+            android:text="@string/activity_create_closed_group_empty_state_message" />
 
         <Button
             style="@style/MediumProminentOutlineButton"
@@ -67,7 +67,7 @@
             android:layout_width="196dp"
             android:layout_height="@dimen/medium_button_height"
             android:layout_marginTop="@dimen/medium_spacing"
-            android:text="Start a Session" />
+            android:text="@string/activity_create_closed_group_empty_state_button_title" />
 
     </LinearLayout>
 

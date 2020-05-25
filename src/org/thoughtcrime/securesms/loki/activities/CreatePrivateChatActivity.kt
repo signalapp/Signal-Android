@@ -34,7 +34,7 @@ class CreatePrivateChatActivity : PassphraseRequiredActionBarActivity(), ScanQRC
         // Set content view
         setContentView(R.layout.activity_create_private_chat)
         // Set title
-        supportActionBar!!.title = "New Session"
+        supportActionBar!!.title = resources.getString(R.string.activity_create_private_chat_title)
         // Set up view pager
         viewPager.adapter = adapter
         tabLayout.setupWithViewPager(viewPager)
@@ -47,7 +47,7 @@ class CreatePrivateChatActivity : PassphraseRequiredActionBarActivity(), ScanQRC
     }
 
     fun createPrivateChatIfPossible(hexEncodedPublicKey: String) {
-        if (!PublicKeyValidation.isValid(hexEncodedPublicKey)) { return Toast.makeText(this, "Invalid Session ID", Toast.LENGTH_SHORT).show() }
+        if (!PublicKeyValidation.isValid(hexEncodedPublicKey)) { return Toast.makeText(this, R.string.invalid_session_id, Toast.LENGTH_SHORT).show() }
         val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this)
         val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)
         val targetHexEncodedPublicKey = if (hexEncodedPublicKey == masterHexEncodedPublicKey) userHexEncodedPublicKey else hexEncodedPublicKey
@@ -78,7 +78,7 @@ private class CreatePrivateChatActivityAdapter(val activity: CreatePrivateChatAc
             1 -> {
                 val result = ScanQRCodeWrapperFragment()
                 result.delegate = activity
-                result.message = "Scan a user’s QR code to start a session. QR codes can be found by tapping the QR code icon in account settings."
+                result.message = activity.resources.getString(R.string.activity_create_private_chat_scan_qr_code_explanation)
                 result
             }
             else -> throw IllegalStateException()
@@ -87,8 +87,8 @@ private class CreatePrivateChatActivityAdapter(val activity: CreatePrivateChatAc
 
     override fun getPageTitle(index: Int): CharSequence? {
         return when (index) {
-            0 -> "Enter Session ID"
-            1 -> "Scan QR Code"
+            0 -> activity.resources.getString(R.string.activity_create_private_chat_enter_session_id_tab_title)
+            1 -> activity.resources.getString(R.string.activity_create_private_chat_scan_qr_code_tab_title)
             else -> throw IllegalStateException()
         }
     }
@@ -122,7 +122,7 @@ class EnterPublicKeyFragment : Fragment() {
         val clipboard = activity!!.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val clip = ClipData.newPlainText("Session ID", hexEncodedPublicKey)
         clipboard.primaryClip = clip
-        Toast.makeText(context!!, R.string.activity_register_public_key_copied_message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(context!!, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
     }
 
     private fun sharePublicKey() {
