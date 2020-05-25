@@ -15,14 +15,17 @@ import nl.komponents.kovenant.ui.failUi
 import nl.komponents.kovenant.ui.successUi
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
+import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.devicelist.Device
+import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.loki.dialogs.*
-import org.thoughtcrime.securesms.loki.protocol.EphemeralMessage
-import org.thoughtcrime.securesms.loki.protocol.PushEphemeralMessageSendJob
 import org.thoughtcrime.securesms.loki.protocol.SyncMessagesProtocol
+import org.thoughtcrime.securesms.loki.utilities.recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
+import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI
 import java.util.*
 import kotlin.concurrent.schedule
@@ -130,12 +133,24 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity, LoaderManager
         LokiFileServerAPI.shared.setDeviceLinks(setOf()).successUi {
             DatabaseFactory.getLokiAPIDatabase(this).clearDeviceLinks(userPublicKey)
             deviceLinks.forEach { deviceLink ->
+                // We don't use PushEphemeralMessageJob because want these messages to send before the pre key and
+                // session associated with the slave device have been deleted
+                val unlinkingRequest = SignalServiceDataMessage.newBuilder()
+                    .withTimestamp(System.currentTimeMillis())
+                    .asUnlinkingRequest(true)
+                val messageSender = ApplicationContext.getInstance(this@LinkedDevicesActivity).communicationModule.provideSignalMessageSender()
+                val address = SignalServiceAddress(deviceLink.slaveHexEncodedPublicKey)
+                try {
+                    val udAccess = UnidentifiedAccessUtil.getAccessFor(this@LinkedDevicesActivity, recipient(this@LinkedDevicesActivity, deviceLink.slaveHexEncodedPublicKey))
+                    messageSender.sendMessage(0, address, udAccess, unlinkingRequest.build()) // The message ID doesn't matter
+                } catch (e: Exception) {
+                    Log.d("Loki", "Failed to send unlinking request due to error: $e.")
+                    throw e
+                }
                 DatabaseFactory.getLokiPreKeyBundleDatabase(this).removePreKeyBundle(deviceLink.slaveHexEncodedPublicKey)
                 val sessionStore = TextSecureSessionStore(this@LinkedDevicesActivity)
                 sessionStore.deleteAllSessions(deviceLink.slaveHexEncodedPublicKey)
             }
-            val unlinkingRequest = EphemeralMessage.createUnlinkingRequest(slaveDevicePublicKey)
-            ApplicationContext.getInstance(this@LinkedDevicesActivity).jobManager.add(PushEphemeralMessageSendJob(unlinkingRequest))
             LoaderManager.getInstance(this).restartLoader(0, null, this)
             Toast.makeText(this, "Your device was unlinked successfully", Toast.LENGTH_LONG).show()
         }.failUi {

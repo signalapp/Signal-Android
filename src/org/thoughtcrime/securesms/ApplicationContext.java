@@ -84,6 +84,7 @@ import org.thoughtcrime.securesms.service.RotateSenderCertificateListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
 import org.webrtc.PeerConnectionFactory;
 import org.webrtc.PeerConnectionFactory.InitializationOptions;
@@ -559,7 +560,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     if (!deleteDatabase("signal.db")) {
       Log.d("Loki", "Failed to delete database.");
     }
-    new Handler().postDelayed(this::restartApplication, 200);
+    Util.runOnMain(() -> new Handler().postDelayed(ApplicationContext.this::restartApplication, 200));
   }
 
   public void restartApplication() {
