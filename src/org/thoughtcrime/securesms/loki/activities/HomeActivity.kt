@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
 import org.thoughtcrime.securesms.loki.protocol.LokiSessionResetImplementation
 import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import org.thoughtcrime.securesms.loki.utilities.push
+import org.thoughtcrime.securesms.loki.utilities.recipient
 import org.thoughtcrime.securesms.loki.utilities.show
 import org.thoughtcrime.securesms.loki.views.ConversationView
 import org.thoughtcrime.securesms.loki.views.NewConversationButtonSetViewDelegate
@@ -47,6 +48,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.loki.protocol.friendrequests.FriendRequestProtocol
 import org.whispersystems.signalservice.loki.protocol.mentions.MentionsManager
 import org.whispersystems.signalservice.loki.protocol.meta.SessionMetaProtocol
+import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol
 import org.whispersystems.signalservice.loki.protocol.sessionmanagement.SessionManagementProtocol
 import org.whispersystems.signalservice.loki.protocol.syncmessages.SyncMessagesProtocol
 import org.whispersystems.signalservice.loki.protocol.todo.LokiMessageFriendRequestStatus
@@ -162,32 +164,32 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             FriendRequestProtocol.configureIfNeeded(apiDB, userPublicKey)
             MentionsManager.configureIfNeeded(userPublicKey, threadDB, userDB)
             SessionMetaProtocol.configureIfNeeded(apiDB, userPublicKey)
-            org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol.configureIfNeeded(apiDB)
+            MultiDeviceProtocol.configureIfNeeded(apiDB)
             SessionManagementProtocol.configureIfNeeded(sessionResetImpl, threadDB, application)
             SyncMessagesProtocol.configureIfNeeded(apiDB, userPublicKey)
             application.lokiPublicChatManager.startPollersIfNeeded()
         }
         // TODO: Temporary hack to unbork existing clients
-        val c = DatabaseFactory.getThreadDatabase(this).conversationList
+        val allContacts = DatabaseFactory.getRecipientDatabase(this).allAddresses.map {
+            MultiDeviceProtocol.shared.getMasterDevice(it.serialize()) ?: it.serialize()
+        }.toSet()
         val lokiMessageDB = DatabaseFactory.getLokiMessageDatabase(this)
-        fun unborkThreadIfNeeded() {
-            try {
-                val threadID = c.getLong(c.getColumnIndexOrThrow(ThreadDatabase.ID))
-                val hasPendingFR = (DatabaseFactory.getLokiThreadDatabase(this).getFriendRequestStatus(threadID) == LokiThreadFriendRequestStatus.REQUEST_RECEIVED)
-                if (!hasPendingFR) { return }
-                val lastMessageID = org.thoughtcrime.securesms.loki.protocol.FriendRequestProtocol.getLastMessageID(this, threadID)
-                if (lastMessageID == null) { return }
-                val lastMessageFRStatus = lokiMessageDB.getFriendRequestStatus(lastMessageID)
-                if (lastMessageFRStatus == LokiMessageFriendRequestStatus.REQUEST_PENDING) { return }
-                lokiMessageDB.setFriendRequestStatus(lastMessageID, LokiMessageFriendRequestStatus.REQUEST_PENDING)
-            } catch (exception: Exception) {
-                // Do nothing
+        for (contact in allContacts) {
+            val slaveDeviceHasPendingFR = MultiDeviceProtocol.shared.getSlaveDevices(contact).any {
+                val slaveDeviceThreadID = DatabaseFactory.getThreadDatabase(this).getThreadIdFor(recipient(this, it))
+                DatabaseFactory.getLokiThreadDatabase(this).getFriendRequestStatus(slaveDeviceThreadID) == LokiThreadFriendRequestStatus.REQUEST_RECEIVED
             }
-        }
-        c.moveToFirst()
-        unborkThreadIfNeeded()
-        while (c.moveToNext()) {
-            unborkThreadIfNeeded()
+            val masterDeviceThreadID = DatabaseFactory.getThreadDatabase(this).getThreadIdFor(recipient(this, contact))
+            val masterDeviceHasNoPendingFR = (DatabaseFactory.getLokiThreadDatabase(this).getFriendRequestStatus(masterDeviceThreadID) == LokiThreadFriendRequestStatus.NONE)
+            if (slaveDeviceHasPendingFR && masterDeviceHasNoPendingFR) {
+                val lastMessageID = org.thoughtcrime.securesms.loki.protocol.FriendRequestProtocol.getLastMessageID(this, masterDeviceThreadID)
+                if (lastMessageID != null) {
+                    val lastMessageFRStatus = lokiMessageDB.getFriendRequestStatus(lastMessageID)
+                    if (lastMessageFRStatus != LokiMessageFriendRequestStatus.REQUEST_PENDING) {
+                        lokiMessageDB.setFriendRequestStatus(lastMessageID, LokiMessageFriendRequestStatus.REQUEST_PENDING)
+                    }
+                }
+            }
         }
     }
 
