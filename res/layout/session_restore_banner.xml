@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_spacing"
-            android:text="@string/session_restore_banner_message"
+            android:text="@string/session_reset_banner_message"
             android:textColor="@color/text"
             android:textSize="@dimen/small_font_size"
             android:textAlignment="center" />
@@ -50,7 +50,7 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/small_button_height"
                 android:layout_weight="1"
-                android:text="@string/session_restore_banner_dismiss_button_title" />
+                android:text="@string/session_reset_banner_dismiss_button_title" />
 
             <Button
                 style="@style/ProminentDialogButton"
@@ -59,7 +59,7 @@
                 android:layout_height="@dimen/small_button_height"
                 android:layout_weight="1"
                 android:layout_marginLeft="@dimen/medium_spacing"
-                android:text="@string/session_restore_banner_restore_button_title" />
+                android:text="@string/session_reset_banner_restore_button_title" />
 
         </LinearLayout>
 

@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_spacing"
-        android:text="Waiting for Device"
+        android:text="@string/dialog_link_device_master_mode_title_1"
         android:textColor="@color/text"
         android:textStyle="bold"
         android:textSize="@dimen/medium_font_size" />
@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_spacing"
-        android:text="Download Session on your other device and tap &quot;Link to an existing account&quot; at the bottom of the landing screen. If you have an existing account on your other device already you will have to delete that account first."
+        android:text="@string/dialog_link_device_master_mode_explanation_1"
         android:textColor="@color/text"
         android:textSize="@dimen/small_font_size"
         android:textAlignment="center" />
@@ -79,7 +79,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/small_button_height"
             android:layout_weight="1"
-            android:text="Cancel" />
+            android:text="@string/cancel" />
 
         <Button
             style="@style/ProminentDialogButton"
@@ -88,7 +88,7 @@
             android:layout_height="@dimen/small_button_height"
             android:layout_weight="1"
             android:layout_marginLeft="@dimen/medium_spacing"
-            android:text="Authorize"
+            android:text="@string/dialog_link_device_master_mode_authorize_button_title"
             android:visibility="gone" />
 
     </LinearLayout>

@@ -1619,16 +1619,6 @@
     <string name="fragment_add_public_chat_add_button_title_2">Adding Server...</string>
     <string name="fragment_add_public_chat_invalid_url_message">Invalid URL</string>
     <string name="fragment_add_public_chat_connection_failed_message">Couldn\'t Connect</string>
-    <!-- Friend request view -->
-    <string name="view_friend_request_accept_button_title">Accept</string>
-    <string name="view_friend_request_reject_button_title">Decline</string>
-    <string name="view_friend_request_incoming_pending_message">%1$s sent you a session request</string>
-    <string name="view_friend_request_incoming_accepted_message">You\'ve accepted %1$s\'s session request</string>
-    <string name="view_friend_request_incoming_declined_message">You\'ve declined %1$s\'s session request</string>
-    <string name="view_friend_request_incoming_expired_message">%1$s\'s session request has expired</string>
-    <string name="view_friend_request_outgoing_pending_message">You\'ve sent %1$s a session request</string>
-    <string name="view_friend_request_outgoing_accepted_message">%1$s accepted your session request</string>
-    <string name="view_friend_request_outgoing_expired_message">Your session request to %1$s has expired</string>
     <!-- Conversation activity -->
     <string name="activity_conversation_pending_friend_request_hint">Pending Friend Request…</string>
     <string name="activity_conversation_default_hint">New Message</string>
@@ -1662,9 +1652,6 @@
     <string name="dialog_device_unlink_title">Device unlinked</string>
     <string name="dialog_device_unlink_message">This device has been successfully unlinked</string>
     <!-- Session restore banner -->
-    <string name="session_restore_banner_message">Would you like to restore your session with %s?</string>
-    <string name="session_restore_banner_dismiss_button_title">Dismiss</string>
-    <string name="session_restore_banner_restore_button_title">Restore</string>
 
 
 
@@ -1794,9 +1781,40 @@
     <string name="activity_settings_recovery_phrase_button_title">Recovery Phrase</string>
     <string name="activity_settings_clear_all_data_button_title">Clear Data</string>
 
+    <string name="activity_notification_settings_title">Notifications</string>
+
+    <string name="activity_privacy_settings_title">Privacy</string>
+
+    <string name="activity_chat_settings_title">Chats</string>
+
+    <string name="activity_linked_devices_title">Devices</string>
+    <string name="activity_linked_devices_multi_device_limit_reached_dialog_title">Device Limit Reached</string>
+    <string name="activity_linked_devices_multi_device_limit_reached_dialog_explanation">It\'s currently not allowed to link more than one device.</string>
+    <string name="activity_linked_devices_unlinking_failed_message">Couldn\'t unlink device.</string>
+    <string name="activity_linked_devices_unlinking_successful_message">Your device was unlinked successfully</string>
+    <string name="activity_linked_devices_linking_failed_message">Couldn\'t link device.</string>
+
     <string name="preferences_notifications_strategy_category_title">Notification Strategy</string>
     <string name="preferences_notifications_use_fcm_option_title">Use FCM</string>
     <string name="preferences_notifications_use_fcm_option_explanation">Using Firebase Cloud Messaging allows for more reliable push notifications, but exposes your IP to Google.</string>
+
+    <string name="dialog_link_device_slave_mode_title_1">Waiting for Authorization</string>
+    <string name="dialog_link_device_slave_mode_title_2">Device Link Authorized</string>
+    <string name="dialog_link_device_slave_mode_explanation_1">Please check that the words below match those shown on your other device.</string>
+    <string name="dialog_link_device_slave_mode_explanation_2">Your device has been linked successfully</string>
+
+    <string name="dialog_link_device_master_mode_title_1">Waiting for Device</string>
+    <string name="dialog_link_device_master_mode_title_2">Linking Request Received</string>
+    <string name="dialog_link_device_master_mode_title_3">Authorizing Device Link</string>
+    <string name="dialog_link_device_master_mode_explanation_1">Download Session on your other device and tap "Link to an existing account" at the bottom of the landing screen. If you have an existing account on your other device already you will have to delete that account first.</string>
+    <string name="dialog_link_device_master_mode_explanation_2">Please check that the words below match those shown on your other device.</string>
+    <string name="dialog_link_device_master_mode_explanation_3">Please wait while the device link is created. This can take up to a minute.</string>
+    <string name="dialog_link_device_master_mode_authorize_button_title">Authorize</string>
+
+    <string name="fragment_device_list_bottom_sheet_change_name_button_title">Change name</string>
+    <string name="fragment_device_list_bottom_sheet_unlink_device_button_title">Unlink device</string>
+
+    <string name="dialog_edit_device_name_edit_text_hint">Enter a name</string>
 
     <string name="dialog_seed_title">Your Recovery Phrase</string>
     <string name="dialog_seed_explanation">This is your recovery phrase. With it, you can restore or migrate your Session ID to a new device.</string>
@@ -1811,6 +1829,20 @@
 
     <string name="fragment_view_my_qr_code_explanation">This is your QR code. Other users can scan it to start a session with you.</string>
     <string name="fragment_view_my_qr_code_share_title">Share QR Code</string>
+
+    <string name="view_friend_request_accept_button_title">Accept</string>
+    <string name="view_friend_request_reject_button_title">Decline</string>
+    <string name="view_friend_request_incoming_pending_message">%1$s sent you a session request</string>
+    <string name="view_friend_request_incoming_accepted_message">You\'ve accepted %1$s\'s session request</string>
+    <string name="view_friend_request_incoming_declined_message">You\'ve declined %1$s\'s session request</string>
+    <string name="view_friend_request_incoming_expired_message">%1$s\'s session request has expired</string>
+    <string name="view_friend_request_outgoing_pending_message">You\'ve sent %1$s a session request</string>
+    <string name="view_friend_request_outgoing_accepted_message">%1$s accepted your session request</string>
+    <string name="view_friend_request_outgoing_expired_message">Your session request to %1$s has expired</string>
+
+    <string name="session_reset_banner_message">Would you like to restore your session with %s?</string>
+    <string name="session_reset_banner_dismiss_button_title">Dismiss</string>
+    <string name="session_reset_banner_restore_button_title">Restore</string>
 
     <string name="fragment_contact_selection_contacts_title">Contacts</string>
     <string name="fragment_contact_selection_closed_groups_title">Closed Groups</string>

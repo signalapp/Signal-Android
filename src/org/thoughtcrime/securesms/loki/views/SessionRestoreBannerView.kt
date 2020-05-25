@@ -27,7 +27,7 @@ class SessionRestoreBannerView : LinearLayout {
 
   fun update(recipient: Recipient) {
     this.recipient = recipient
-    messageTextView.text = context.getString(R.string.session_restore_banner_message, recipient.toShortString())
+    messageTextView.text = context.getString(R.string.session_reset_banner_message, recipient.toShortString())
   }
 
   fun show() {
