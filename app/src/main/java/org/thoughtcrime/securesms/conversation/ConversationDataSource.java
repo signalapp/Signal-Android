@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.concurrent.Executor;
 
 /**
@@ -72,9 +71,9 @@ class ConversationDataSource extends PositionalDataSource<MessageRecord> {
       }
     }
 
-    records = ensureMultipleOfPageSize(records, params.pageSize, totalCount);
+    SizeFixResult result = ensureMultipleOfPageSize(records, params.requestedStartPosition, params.pageSize, totalCount);
 
-    callback.onResult(records, params.requestedStartPosition, totalCount);
+    callback.onResult(result.messages, params.requestedStartPosition, result.total);
     Util.runOnMain(dataUpdateCallback::onDataUpdated);
 
     Log.d(TAG, "[Initial Load] " + (System.currentTimeMillis() - start) + " ms" + (isInvalid() ? " -- invalidated" : ""));
@@ -100,12 +99,33 @@ class ConversationDataSource extends PositionalDataSource<MessageRecord> {
     Log.d(TAG, "[Update] " + (System.currentTimeMillis() - start) + " ms" + (isInvalid() ? " -- invalidated" : ""));
   }
 
-  private static @NonNull List<MessageRecord> ensureMultipleOfPageSize(@NonNull List<MessageRecord> records, int pageSize, int total) {
-    if (records.size() != total && records.size() > pageSize && records.size() % pageSize != 0) {
-      int overflow = records.size() % pageSize;
-      return records.subList(0, records.size() - overflow);
-    } else {
-      return records;
+  private static @NonNull SizeFixResult ensureMultipleOfPageSize(@NonNull List<MessageRecord> records,
+                                                                 int startPosition,
+                                                                 int pageSize,
+                                                                 int total)
+  {
+    if (records.size() + startPosition == total || records.size() % pageSize == 0) {
+      return new SizeFixResult(records, total);
+    }
+
+    if (records.size() < pageSize) {
+      Log.w(TAG, "Hit a miscalculation where we don't have the full dataset, but it's smaller than a page size. records: " + records.size() + ", startPosition: " + startPosition + ", pageSize: " + pageSize + ", total: " + total);
+      return new SizeFixResult(records, records.size() + startPosition);
+    }
+
+    Log.w(TAG, "Hit a miscalculation where our data size isn't a multiple of the page size. records: " + records.size() + ", startPosition: " + startPosition + ", pageSize: " + pageSize + ", total: " + total);
+    int overflow = records.size() % pageSize;
+
+    return new SizeFixResult(records.subList(0, records.size() - overflow), total);
+  }
+
+  private static class SizeFixResult {
+    final List<MessageRecord> messages;
+    final int                 total;
+
+    private SizeFixResult(@NonNull List<MessageRecord> messages, int total) {
+      this.messages = messages;
+      this.total    = total;
     }
   }
 
