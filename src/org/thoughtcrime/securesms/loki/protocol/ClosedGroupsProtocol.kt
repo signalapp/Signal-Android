@@ -22,11 +22,15 @@ import java.util.*
 
 object ClosedGroupsProtocol {
 
+    /**
+     * Blocks the calling thread.
+     */
     @JvmStatic
     fun shouldIgnoreContentMessage(context: Context, conversation: Recipient, groupID: String?, content: SignalServiceContent): Boolean {
         if (!conversation.address.isClosedGroup || groupID == null) { return false }
         // A closed group's members should never include slave devices
         val senderPublicKey = content.sender
+        LokiFileServerAPI.shared.getDeviceLinks(senderPublicKey).get()
         val senderMasterPublicKey = MultiDeviceProtocol.shared.getMasterDevice(senderPublicKey)
         val publicKeyToCheckFor = senderMasterPublicKey ?: senderPublicKey
         val members = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupID, true)
