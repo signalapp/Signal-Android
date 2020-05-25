@@ -1068,7 +1068,6 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">پاسخ دهید</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">تلفن</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">بلندگو</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">بلوتوث</string>
   <!--WebRtcCallControls-->
@@ -1818,6 +1817,9 @@
   <string name="preferences_app_protection__change_your_pin">پین خود را تغییر دهید</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">پین‌ها اطلاعات ذخیره شده در Signal را رمز‌گذاری می‌کنند تا فقط شما قادر به دسترسی به آن‌ها باشید. پروفایل، تنظیمات و مخاطبین شما هنگام نصب دوبارهٔ سیگنال بازگردانی می‌شوند.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">امنیت بیشتر با افزودن درخواست پین Signal برای ثبت‌نام دوباره</string>
+  <string name="preferences_app_protection__turn_off">خاموش</string>
+  <string name="preferences_app_protection__confirm_pin">پین را تأیید کنید</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">پین نادرست. دوباره تلاش کنید.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">قفل ثبت‌نام فعال نشد.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">قفل ثبت‌نام غیرفعال نشد.</string>
   <string name="AppProtectionPreferenceFragment_none">هیچ‌کدام</string>
@@ -1846,7 +1848,6 @@
   <string name="RegistrationLockDialog_i_forgot_my_pin">پین را فراموش کردم.</string>
   <string name="RegistrationLockDialog_forgotten_pin">پین فراموش شده؟</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">قفل ثبت‌نام کمک می‌کند تا شماره‌ٔ خود را از تلاش‌ غیرمجاز برای ثبت‌نام محافظت کنید. هر موقع که بخواهید می‌توانید این ویژگی را در تنظیمات حریم خصوصی Signal غیرفعال کنید</string>
-  <string name="RegistrationLockDialog_registration_lock">قفل ثبت‌نام</string>
   <string name="RegistrationLockDialog_enable">فعال‌سازی</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">پین قفل ثبت‌نام باید حداقل شامل %d رقم باشد.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">دو پین وارد شده تطابق ندارند.</string>
@@ -1868,5 +1869,6 @@
   <string name="RecipientBottomSheet_unblock">رفع مسدودیت</string>
   <string name="RecipientBottomSheet_view_safety_number">دیدن شماره امنیتی</string>
   <string name="RecipientBottomSheet_remove">حذف</string>
+  <string name="GroupRecipientListItem_admin">مدیر</string>
   <!--EOF-->
 </resources>

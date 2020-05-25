@@ -925,7 +925,6 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">उत्तर</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">फ़ोन</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">स्पीकर</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">ब्लूटुथ</string>
   <!--WebRtcCallControls-->
@@ -1608,6 +1607,8 @@
   <string name="preferences_app_protection__create_a_pin">पिेन बनाएँ</string>
   <string name="preferences_app_protection__change_your_pin">अपना पिन बदलें</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">पिन Signal द्वारा संग्रहीत जानकारी को एन्क्रिप्ट रखता है, ताकी सिर्फ़ आप उसे देख पाएँ। आपका प्रोफ़ाइल, सेटिंग्स, और संपर्क, अपके Signal इंस्टाॅल के बाद, पुनः स्थापित हो जाऐंगे।</string>
+  <string name="preferences_app_protection__confirm_pin">पिन की पुष्टि करें</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">गलत पिन। पुनः प्रयास करें।</string>
   <string name="AppProtectionPreferenceFragment_none">कुछ नहीं</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">पंजीकरण लॉक पिन आपके द्वारा प्राप्त किए गए एसएमएस सत्यापन कोड जैसा नहीं है। कृपया उस पिन को दर्ज करें जिसे आपने पहले एप्लिकेशन में कॉन्फ़िगर किया था।</string>
   <string name="registration_activity__registration_lock_pin">पंजीकरण लॉक पिन</string>
@@ -1633,7 +1634,6 @@
   <string name="RegistrationLockDialog_i_forgot_my_pin">मैं अपना पिन भूल गया।</string>
   <string name="RegistrationLockDialog_forgotten_pin">भूल गए पिन?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">पंजीकरण लॉक अनधिकृत पंजीकरण प्रयासों से आपके फोन नंबर की सुरक्षा में मदद करता है। यह सुविधा किसी भी समय आपकी Signal गोपनीयता सेटिंग्स में अक्षम की जा सकती है।</string>
-  <string name="RegistrationLockDialog_registration_lock">पंजीकरण लॉक</string>
   <string name="RegistrationLockDialog_enable">सक्षम करना</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">पंजीकरण लॉक पिन कम से कम %d अंकों का होना चाहिए।</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">आपके द्वारा दर्ज किए गए दो पिन मेल नहीं खाते हैं</string>

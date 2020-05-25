@@ -1165,7 +1165,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="WebRtcCallScreen__answer">Odbierz</string>
   <string name="WebRtcCallScreen__answer_without_video">Odbierz bez wideo</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Numer telefonu</string> -->
+  <string name="WebRtcAudioOutputToggle__audio_output">Wyjście audio</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">Słuchawka</string>
   <string name="WebRtcAudioOutputToggle__speaker">Głośnik</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1958,8 +1959,15 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_app_protection__signal_pin">PIN Signal</string>
   <string name="preferences_app_protection__create_a_pin">Utwórz PIN</string>
   <string name="preferences_app_protection__change_your_pin">Zmień swój PIN</string>
+  <string name="preferences_app_protection__pin_reminders">Przypomnienia PINu</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Kody PIN gwarantują, że informacje przechowywane w Signal są zaszyfrowane i tylko Ty masz do nich dostęp. Twój profil, ustawienia i kontakty zostaną przywrócone, gdy ponownie zainstalujesz Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Zwiększ bezpieczeństwo, wymagając podania Twojego PINu Signal przy ponownej rejestracji numeru telefonu w Signal.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Przypomnienia pomagają Ci zapamiętać Twój kod PIN, gdyż nie da się go odzyskać. Z czasem pytania będą coraz rzadsze.</string>
+  <string name="preferences_app_protection__turn_off">Wyłącz</string>
+  <string name="preferences_app_protection__confirm_pin">Potwierdź PIN</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Potwierdź swój PIN Signal</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Upewnij się, że zapamiętałeś(aś) lub zapisałeś(aś) swój PIN w bezpiecznym miejscu, gdyż nie da się go odzyskać. Jeśli zapomnisz swojego PINu, możesz stracić dane przy kolejnej rejestracji swojego konta Signal.</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">Nieprawidłowy PIN. Spróbuj ponownie.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Nie udało się włączyć blokady rejestracji.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Nie udało się wyłączyć blokady rejestracji.</string>
   <string name="AppProtectionPreferenceFragment_none">Brak</string>
@@ -1979,6 +1987,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Nieprawidłowy PIN blokady rejestracji</string>
   <string name="RegistrationActivity_too_many_attempts">Zbyt wiele prób</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Zbyt wiele nieprawidłowych prób wprowadzenia kodu PIN blokady rejestracji. Spróbuj ponownie za jeden dzień.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Zbyt dużo nieudanych prób. Spróbuj ponownie później.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Błąd podczas łączenia się z usługą</string>
   <string name="RegistrationActivity_oh_no">O nie!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Rejestracja tego numeru telefonu będzie możliwa bez kodu PIN blokady rejestracji, po upływie 7 dni od ostatniej aktywności tego numeru telefonu w usłudze Signal. Pozostało Ci %d dni.</string>

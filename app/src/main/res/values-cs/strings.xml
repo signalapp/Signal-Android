@@ -1172,7 +1172,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="WebRtcCallScreen__answer">Odpovědět</string>
   <string name="WebRtcCallScreen__answer_without_video">Přijmout bez videa</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefon</string> -->
+  <string name="WebRtcAudioOutputToggle__audio_output">Audio výstup</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">Sluchátko</string>
   <string name="WebRtcAudioOutputToggle__speaker">Reproduktor</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1473,7 +1474,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Nyní si můžete vybrat, zda novou konverzaci přijmete. Máte možnost \"Přijmout\", \"Smazat\" nebo \"Zablokovat\".</string>
   <!--HelpFragment-->
   <string name="HelpFragment__help">Nápověda</string>
-  <string name="HelpFragment__have_you_read_our_faq_yet">Četl jste už často kladené otázky (FAQ)?</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">Četli jste už často kladené otázky (FAQ)?</string>
   <string name="HelpFragment__next">Další</string>
   <string name="HelpFragment__contact_us">Kontaktujte nás</string>
   <string name="HelpFragment__tell_us_whats_going_on">Řekněte nám, co se děje</string>
@@ -1965,8 +1966,15 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences_app_protection__signal_pin">Signal PIN</string>
   <string name="preferences_app_protection__create_a_pin">Vytvořit PIN</string>
   <string name="preferences_app_protection__change_your_pin">Změnit váš PIN</string>
+  <string name="preferences_app_protection__pin_reminders">Připomínání PIN</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN uchovává informace uložené u Signalu zašifrované, takže pouze vy se k nim můžete dostat. Váš profil, nastavení a kontakty budou při reinstalaci Signalu obnoveny.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Zvyšte zabezpečení tím, že budete požadovat PIN pro opakovanou registraci vašeho telefonního čísla u Signalu.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Upomínky vám pomohou zapamatovat si váš PIN, protože ten nelze obnovit. V průběhu času vás budeme žádat méně často.</string>
+  <string name="preferences_app_protection__turn_off">Vypnout</string>
+  <string name="preferences_app_protection__confirm_pin">Potvrďte PIN</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Potvrdit váš Singal PIN</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Ujistěte se, že si PIN pamatujete nebo ho máte bezpečně uložený, protože jej nelze obnovit. Pokud váš PIN zapomenete, můžete při opakované registraci Signal účtu přijít o data.</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">Nesprávný PIN. Zkuste to znovu.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Aktivace zámku registrace se nezdařila.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Zablokování zámku registrace se nezdařilo.</string>
   <string name="AppProtectionPreferenceFragment_none">Nic</string>
@@ -1986,6 +1994,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Chybný PIN zámku registrace</string>
   <string name="RegistrationActivity_too_many_attempts">Příliš mnoho pokusů</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Provedli jste příliš mnoho chybných pokusů o zadání PIN zámku registrace. Zkuste to prosím znovu další den.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Uskutečnili jste příliš mnoho pokusů. Prosím zkuste to znovu později</string>
   <string name="RegistrationActivity_error_connecting_to_service">Chyba při připojování k službě</string>
   <string name="RegistrationActivity_oh_no">Ale ne!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registrace tohoto telefonního čísla bude možná bez vašeho PIN zámku registrace po 7 dnech od poslední aktivity na Signalu. Zbývá ještě %ddnů.</string>
@@ -2007,7 +2016,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences_chats__backups">Zálohy</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal je zamčen</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">KLEPNUTÍM ODEMKNĚTE</string>
-  <string name="RegistrationLockDialog_reminder">Připomínka:</string>
+  <string name="RegistrationLockDialog_reminder">Upomínka:</string>
   <string name="recipient_preferences__about">Info</string>
   <string name="Recipient_unknown">Neznámý</string>
   <!--RecipientBottomSheet-->

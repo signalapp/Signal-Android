@@ -923,7 +923,6 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">جواب دیں</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">فون</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">سپیکر</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">بلوٹوتھ</string>
   <!--WebRtcCallControls-->
@@ -1606,6 +1605,9 @@
   <string name="preferences_app_protection__create_a_pin">ایک پن بنائیں</string>
   <string name="preferences_app_protection__change_your_pin">اپنا پن تبدیل کریں</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PINs Signal کے ساتھ ذخیرہ شدہ معلومات کو خفیہ شدہ رکھتا ہے لہذا صرف آپ ہی اس تک رسائی حاصل کرسکتے ہیں۔ جب آپ Signal کو دوبارہ انسٹال کرتے ہیں تو آپ کا پروفائل ، ترتیبات اور رابطے بحال ہوجائیں گے۔</string>
+  <string name="preferences_app_protection__confirm_pin">پن کی تصدیق کریں</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">اپنے سگنل پن کی تصدیق کریں</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">غلط پن. دوبارہ کوشش کریں.</string>
   <string name="AppProtectionPreferenceFragment_none">کوئی نہیں</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">رجسٹریشن لاک پن وہی نہیں ہے جو آپ نے ابھی موصول کردہ ایس ایم ایس کا تصدیقی کوڈ سے کیا ہے۔ براہ کرم درخواست میں جو پن آپ نے پہلے تشکیل کیا تھا اسے درج کریں۔</string>
   <string name="registration_activity__registration_lock_pin">رجسٹریشن لاک پن</string>
@@ -1631,7 +1633,6 @@
   <string name="RegistrationLockDialog_i_forgot_my_pin">میں اپنا پن بھول گیا</string>
   <string name="RegistrationLockDialog_forgotten_pin">پن بھول گیا؟</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">رجسٹریشن لاک آپ کے فون نمبر کو غیر مجاز رجسٹریشن کی کوششوں سے بچانے میں مدد کرتا ہے۔ آپ کی Signal پرائیویسی کی ترتیبات میں کسی بھی وقت یہ خصوصیت غیر فعال کی جاسکتی ہے</string>
-  <string name="RegistrationLockDialog_registration_lock">رجسٹریشن لاک</string>
   <string name="RegistrationLockDialog_enable">فعال کریں</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">رجسٹریشن لاک پن کم از کم %d ہندسوں کا ہونا ضروری ہے۔</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">جو دو پن آپ نے داخل کی ہیں میچ نہیں ہو رہی۔</string>

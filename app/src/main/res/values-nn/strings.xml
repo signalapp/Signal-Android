@@ -33,7 +33,7 @@
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Slå av Signal-meldingar og -samtalar ved å avregistrera deg frå tenaren. Du må registrera telefonnummeret ditt for å kunna finna igjen desse seinare.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Det oppstod ein feil under tilkopling til tenar.</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS slått på</string>
-  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Trykk for å byta forvald SMS-program</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Trykk for å byta standard SMS-program</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS slått av</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Trykk for å bruka Signal som standard SMS-program</string>
   <string name="ApplicationPreferencesActivity_on">på</string>
@@ -319,7 +319,7 @@
   <string name="CreateProfileActivity_set_avatar_description">Vel avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Brukar sjølvvald: %s</string>
-  <string name="CustomDefaultPreference_using_default">Brukar forvald: %s</string>
+  <string name="CustomDefaultPreference_using_default">Brukar standard: %s</string>
   <string name="CustomDefaultPreference_none">Ingen</string>
   <!--AvatarSelectionBottomSheetDialogFragment-->
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Vel bilde</string>
@@ -1048,7 +1048,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">reagerte med %1$s til klistremerket ditt.</string>
   <string name="MessageNotifier_this_message_was_deleted">Meldinga er sletta</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Forvald</string>
+  <string name="NotificationChannel_messages">Standard</string>
   <string name="NotificationChannel_calls">Samtalar</string>
   <string name="NotificationChannel_failures">Feil</string>
   <string name="NotificationChannel_backups">Reservekopiar</string>
@@ -1104,7 +1104,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="WebRtcCallScreen__answer">Svar</string>
   <string name="WebRtcCallScreen__answer_without_video">Svar utan video</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefon</string> -->
+  <string name="WebRtcAudioOutputToggle__audio_output">Lydutgang</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">Telefon-øyreplugg</string>
   <string name="WebRtcAudioOutputToggle__speaker">Høgtalar</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Blåtann</string>
   <!--WebRtcCallControls-->
@@ -1421,7 +1422,7 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emotikon</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importer</string>
-  <string name="arrays__use_default">Bruk forvald</string>
+  <string name="arrays__use_default">Bruk standard</string>
   <string name="arrays__use_custom">Bruk sjølvvald</string>
   <string name="arrays__mute_for_one_hour">Demp i 1 time</string>
   <string name="arrays__mute_for_two_hours">Demp i 2 timar</string>
@@ -1442,7 +1443,7 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="arrays__normal">Normal</string>
   <string name="arrays__large">Stor</string>
   <string name="arrays__extra_large">Veldig stor</string>
-  <string name="arrays__default">Forvald</string>
+  <string name="arrays__default">Standard</string>
   <string name="arrays__high">Høg</string>
   <string name="arrays__max">Maks</string>
   <!--plurals.xml-->
@@ -1522,7 +1523,7 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences__appearance">Utsjåande</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__system_default">Systemstandard</string>
-  <string name="preferences__default">Forvald</string>
+  <string name="preferences__default">Standard</string>
   <string name="preferences__language">Språk</string>
   <string name="preferences__signal_messages_and_calls">Signal-meldingar og -samtalar</string>
   <string name="preferences__free_private_messages_and_calls">Gratis privatmeldingar og -samtalar til Signal-brukarar</string>
@@ -1659,8 +1660,8 @@ Du er à jour!</string>
   <string name="reminder_header_outdated_build_details_today">Denne utgåva av Signal er forelda frå og med i dag. Trykk for å oppdatera til nyaste utgåve.</string>
   <string name="reminder_header_expired_build">Denne utgåva av Signal er forelda!</string>
   <string name="reminder_header_expired_build_details">Meldingar vert frå no av ikkje send. Trykk for å oppdatera til nyaste versjon.</string>
-  <string name="reminder_header_sms_default_title">Bruk som forvald SMS-program</string>
-  <string name="reminder_header_sms_default_text">Trykk for å gjera Signal til forvald SMS-program.</string>
+  <string name="reminder_header_sms_default_title">Bruk som standard SMS-program</string>
+  <string name="reminder_header_sms_default_text">Trykk for å gjera Signal til standard SMS-program.</string>
   <string name="reminder_header_sms_import_title">Importer system-SMS</string>
   <string name="reminder_header_sms_import_text">Trykk for å kopiera telefonen sin SMS-meldingar til Signal sin krypterte database.</string>
   <string name="reminder_header_push_title">Slå på Signal-meldingar og -samtalar</string>
@@ -1869,8 +1870,15 @@ Du er à jour!</string>
   <string name="preferences_app_protection__signal_pin">Signal-PIN</string>
   <string name="preferences_app_protection__create_a_pin">Opprett PIN</string>
   <string name="preferences_app_protection__change_your_pin">Endra PIN?</string>
+  <string name="preferences_app_protection__pin_reminders">PIN-påminningar</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-en held informasjonen som signal Signal lagrar kryptert, slik at berre du kan få tilgang til han. Profilen, innstillingane og kontaktane dine blir gjenoppretta når du installerer Signal på nytt.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Få ekstra tryggleik ved å krevja din Signal-PIN for å registrera telefonnummeret ditt med Signal igjen.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Påminningar hjelper deg med å hugsa PIN-en din, sidan han ikkje kan gjenopprettast. Du får færre påminningar over tid.</string>
+  <string name="preferences_app_protection__turn_off">Skru av</string>
+  <string name="preferences_app_protection__confirm_pin">Stadfest PIN-koden</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Stadfest Signal-PIN-en din</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Pass på at du lærer PIN-en din utanat, eller lagrar han trygt, sidan han ikkje kan gjenopprettast. Viss du gløymer PIN-en, kan du mista data viss du må gjenoppretta Signal-kontoen din.</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">Feil PIN. Prøv igjen.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Klarte ikkje skru på registreringslås.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Klarte ikkje skru av registreringslås.</string>
   <string name="AppProtectionPreferenceFragment_none">Inga</string>
@@ -1890,6 +1898,7 @@ Du er à jour!</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Feil PIN-kode for registreringslås</string>
   <string name="RegistrationActivity_too_many_attempts">For mange forsøk</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Du har skrive PIN-koden for registreringslås feil for mange gongar. Prøv igjen neste dag.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Du har gjort for mange forsøk. Prøv igjen seinare.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Klarte ikkje kopla til tenesta</string>
   <string name="RegistrationActivity_oh_no">Ånei!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Du kan registrera dette telefonnummeret utan PIN-koden for registreringslås tidlegast 7 dagar etter at dette telefonnummeret sist var aktivt på Signal. Du har %d dagar igjen.</string>

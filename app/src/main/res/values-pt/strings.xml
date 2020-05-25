@@ -1101,7 +1101,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="WebRtcCallScreen__answer">Atender</string>
   <string name="WebRtcCallScreen__answer_without_video">Atender sem vídeo</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telemóvel</string> -->
+  <string name="WebRtcAudioOutputToggle__audio_output">Saída de áudio</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">Auscultador de ouvido do telemóvel</string>
   <string name="WebRtcAudioOutputToggle__speaker">Altifalante</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1862,8 +1863,15 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences_app_protection__signal_pin">PIN do Signal</string>
   <string name="preferences_app_protection__create_a_pin">Criar um PIN</string>
   <string name="preferences_app_protection__change_your_pin">Alterar o seu PIN</string>
+  <string name="preferences_app_protection__pin_reminders">Lembretes de PIN</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Os PINs mantém encriptada a informação guardada no Signal de forma a que apenas você lhe possa aceder. O seu perfil, definições e contactos serão restaurados quando reinstalar o Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Adicione uma segurança extra ao pedir o seu PIN do Signal para registar o seu número de telemóvel novamente com o Signal.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Os lembretes ajudam-no a lembrar-se do seu PIN, pois ele não pode ser recuperado. Este, ser-lhe-á solicitado com menos frequência ao longo do tempo.</string>
+  <string name="preferences_app_protection__turn_off">Desativar</string>
+  <string name="preferences_app_protection__confirm_pin">Confirmar PIN</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Confirme o seu PIN do Signal</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Lembre-se de memorizar ou armazenar em segurança o seu PIN, pois ele não poderá ser recuperado. Se se esquecer do seu PIN, poderá perder dados ao registar novamente a sua conta do Signal.</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">PIN incorreto. Tente novamente.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Não foi possível ativar o bloqueio de registo.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Não foi possível desativar o bloqueio de registo.</string>
   <string name="AppProtectionPreferenceFragment_none">Nenhum</string>
@@ -1883,6 +1891,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="RegistrationActivity_incorrect_registration_lock_pin">PIN de bloqueio de registo incorreto</string>
   <string name="RegistrationActivity_too_many_attempts">Demasiadas tentativas</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Introduziu demasiadas vezes incorretamente o PIN de bloqueio do registo. Por favor, tente novamente dentro de um dia.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Demasiadas tentativas. Por favor, tente novamente mais tarde.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Erro a estabelecer ligação com o serviço</string>
   <string name="RegistrationActivity_oh_no">Oh não!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">O registo deste número de telefone será possível sem o PIN de bloqueio do registo 7 dias após o número ter estado ativo pela última vez no Signal. Tem %d restantes.</string>

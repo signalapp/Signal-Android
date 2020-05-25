@@ -1175,7 +1175,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="WebRtcCallScreen__answer">Ateb</string>
   <string name="WebRtcCallScreen__answer_without_video">Ateb heb fideo</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Ffôn</string> -->
+  <string name="WebRtcAudioOutputToggle__audio_output">Allbwn sain</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">Clystffon ffôn</string>
   <string name="WebRtcAudioOutputToggle__speaker">Uchelseinydd</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1968,8 +1969,15 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences_app_protection__signal_pin">PIN Signal</string>
   <string name="preferences_app_protection__create_a_pin">Crëwch PIN</string>
   <string name="preferences_app_protection__change_your_pin">Newid eich PIN</string>
+  <string name="preferences_app_protection__pin_reminders">Atgoffwr PIN</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Mae PINs yn cadw gwybodaeth wedi\'i storio gyda Signal wedi\'i hamgryptio felly dim ond chi sy\'n cael mynediad ati. Bydd eich proffil, gosodiadau, a chysylltiadau yn cael eu hadfer pan fyddwch yn ailosod Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Ychwanegwch ddiogelwch ychwanegol trwy ei gwneud yn ofynnol i\'ch PIN Signal gofrestru\'ch rhif ffôn gyda Signal eto.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Mae atgoffwyr yn eich helpu i gofio\'ch PIN gan nad oes modd ei adfer. Byddwn yn gofyn i chi\'n llai aml dros amser.</string>
+  <string name="preferences_app_protection__turn_off">Diffodd</string>
+  <string name="preferences_app_protection__confirm_pin">Cadarnhau PIN</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Cadarnhewch eich PIN Signal</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Gwnewch yn siŵr eich bod yn cofio neu\'n cadw eich PIN yn ddiogel gan nad oes modd ei adfer. Os fyddwch yn anghofio eich PIN, efallai y byddwch yn colli data wrth ailgofrestru eich cyfrif Signal.</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">PIN anghywir. Ceisiwch eto.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Wedi methu galluogi clo cofrestru.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Wedi methu analluogi clo cofrestru.</string>
   <string name="AppProtectionPreferenceFragment_none">Dim</string>
@@ -1989,6 +1997,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">PIN Clo Cofrestru Anghywir</string>
   <string name="RegistrationActivity_too_many_attempts">Gormod o geisiadau</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Rydych wedi gwneud gormod o geisiadau PIN Clo Cofrestru anghywir. Ceisiwch eto ymhen diwrnod.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Rydych wedi ceisio gormod o weithiau. Ceisiwch eto\'n hwyrach.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Gwall wrth gysylltu â gwasanaeth</string>
   <string name="RegistrationActivity_oh_no">O na!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Bydd cofrestru\'r rhif ffôn hwn yn bosibl heb eich PIN Clo Cofrestru ar ôl i 7 diwrnod fynd heibio ers i\'r rhif ffôn hwn fod yn weithredol ddiwethaf ar Signal. Mae gennych %d diwrnod ar ôl.</string>
@@ -1998,7 +2007,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Wedi anghofio fy PIN.</string>
   <string name="RegistrationLockDialog_forgotten_pin">PIN wedi\'i anghofio?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Mae Clo Cofrestru yn helpu i ddiogelu eich rhif ffôn rhag ymdrechion cofrestru heb awdurdod. Gall y nodwedd hon gael ei analluogi ar unrhyw adeg yng ngosodiadau preifatrwydd Signal</string>
-  <string name="RegistrationLockDialog_registration_lock">Clo Cofrestru</string>
+  <string name="RegistrationLockDialog_registration_lock">Clo cofrestru</string>
   <string name="RegistrationLockDialog_enable">Galluogi</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">Rhaid i\'r PIN Clo Cofrestru fod yn o leiaf %d nod.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Nid yw\'r ddau PIN rydych chi wedi\'u cofnodi yn cyfateb.</string>

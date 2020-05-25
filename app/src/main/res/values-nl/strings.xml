@@ -1107,7 +1107,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="WebRtcCallScreen__answer">Beantwoorden</string>
   <string name="WebRtcCallScreen__answer_without_video">Beantwoorden zonder video</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefoon</string> -->
+  <string name="WebRtcAudioOutputToggle__audio_output">Audio-uitvoer</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">Telefoonoortje</string>
   <string name="WebRtcAudioOutputToggle__speaker">Luidspreker</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1870,8 +1871,15 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_app_protection__signal_pin">Signal-pincode</string>
   <string name="preferences_app_protection__create_a_pin">Pincode aanmaken</string>
   <string name="preferences_app_protection__change_your_pin">Pincode wijzigen</string>
+  <string name="preferences_app_protection__pin_reminders">Pincode-herinneringen</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Met een pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam en -foto, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Zelfs Signal\'s ontwikkelaars kunnen je informatie niet inzien.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Door dit in te schakelen voeg je extra beveiliging toe. Je zult dan wanneer je je huidige telefoonnummer opnieuw probeert te registreren pas na 7 dagen het invoeren van je pincode kunnen overslaan. Hierdoor kan niemand behalve jij Signal registreren met je huidige telefoonnummer.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Herinneringen helpen je om je Signal-pincode te onthouden. Dit is belangrijk, omdat je je pincode later niet opnieuw in kunt stellen. Zonder je pincode verlies je misschien Signal-gegevens wanneer je je telefoonnummer opnieuw registreert. Je zult naarmate tijd verstrijkt krijg je minder herinneringen te zien.</string>
+  <string name="preferences_app_protection__turn_off">Uitschakelen</string>
+  <string name="preferences_app_protection__confirm_pin">Bevestig pincode</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Je Signal-pincode bevestigen</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Zorg er voor dat je je Signal-pincode onthoud of op een goed beveiligd manier opslaat, want je kunt de pincode later niet opnieuw instellen. Als je je pincode toch vergeet, dan verlies je mogelijk je Signal-gegevens wanneer je in de toekomst je telefoonnummer opnieuw registreert.</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">Foutieve pincode, probeer het opnieuw.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Het is niet gelukt on registratievergrendeling in te schakelen.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Het is niet gelukt om registratievergrendeling uit te schakelen.</string>
   <string name="AppProtectionPreferenceFragment_none">Geen</string>
@@ -1891,6 +1899,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Ongeldige pincode voor registratievergrendeling</string>
   <string name="RegistrationActivity_too_many_attempts">Te veel pogingen</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Je hebt te veel ongeldige pogingen ondernomen om een pincode voor registratievergrendeling in te voeren, probeer het morgen opnieuw.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Je hebt te veel pogingen ondernomen. Probeer het later opnieuw.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Fout bij het verbinden met Signal\'s servers</string>
   <string name="RegistrationActivity_oh_no">Oh nee!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registratie van dit telefoonnummer zal zonder de pincode voor registratievergrendeling pas mogelijk zijn 7 dagen nadat dit telefoonnummer voor het laatst actief was op Signal. Je hebt nog %d dagen te gaan.</string>

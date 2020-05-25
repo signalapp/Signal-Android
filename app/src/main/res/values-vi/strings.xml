@@ -1026,7 +1026,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">Trả lời</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Số điện thoại</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Loa</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1759,6 +1758,9 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences_app_protection__change_your_pin">Thay đổi mã PIN của bạn.</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Mã PIN mã hoá các thông tin được lưu trữ với Signal để chỉ mình bạn có thể truy cập được. Thông tin người dùng, cài đặt, và các liên hệ sẽ được khôi phục khi bạn cài đặt lại Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Thêm một lớp bảo mật bằng cách yêu cầu điền mã PIN Signal khi ai đó đăng kí lại số điện thoại của bạn với Signal.</string>
+  <string name="preferences_app_protection__turn_off">Tắt</string>
+  <string name="preferences_app_protection__confirm_pin">Xác nhận mã PIN</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">PIN không đúng. Hãy thử lại.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Không thể bật khóa đăng kí.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Không thể tắt khóa đăng kí.</string>
   <string name="AppProtectionPreferenceFragment_none">Không</string>
@@ -1787,7 +1789,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="RegistrationLockDialog_i_forgot_my_pin">Tôi đã quên mã PIN.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Quên mã PIN?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Khóa Đăng ký giúp bạn bảo vệ số điện thoại của mình khỏi bị đăng kí khi không có sự cho phép của bạn. Tính năng này có thể được tắt bất cứ lúc nào trong phần cài đặt riêng tư Signal.</string>
-  <string name="RegistrationLockDialog_registration_lock">Khóa Đăng ký</string>
   <string name="RegistrationLockDialog_enable">Bật</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">Mã PIN Khoá Đăng ký phải có ít nhất %d chữ số.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Hai mã PIN bạn vừa điền không khớp nhau.</string>

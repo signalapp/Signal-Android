@@ -954,7 +954,6 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">接听</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">电话</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">扬声器</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">蓝牙</string>
   <!--WebRtcCallControls-->
@@ -1683,6 +1682,8 @@
   <string name="preferences_app_protection__create_a_pin">创建你的密码</string>
   <string name="preferences_app_protection__change_your_pin">更改 PIN</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN 令信息以 Signal 加密方式保存，这样只有你可以访问它。重新安装 Signal 时，可恢复你的个人资料、设置和联系人。</string>
+  <string name="preferences_app_protection__confirm_pin">确认 PIN</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">PIN 错误，请重试。</string>
   <string name="AppProtectionPreferenceFragment_none">无</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">注册锁定 PIN 密码不是您刚刚收到的短信验证码。请输入之前在应用中设置的 PIN。</string>
   <string name="registration_activity__registration_lock_pin">注册锁定 PIN</string>
@@ -1709,7 +1710,6 @@
   <string name="RegistrationLockDialog_i_forgot_my_pin">忘记 PIN 密码。</string>
   <string name="RegistrationLockDialog_forgotten_pin">忘记 PIN？</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">注册锁定可防止他人未经授权使用你的号码注册。可随时在 Signal 隐私设置里禁用该功能。</string>
-  <string name="RegistrationLockDialog_registration_lock">注册锁定</string>
   <string name="RegistrationLockDialog_enable">启用</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">注册锁定 PIN 必须不少于 %d 位数字。</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">两次输入的 PIN 不匹配。</string>

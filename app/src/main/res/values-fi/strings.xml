@@ -1099,7 +1099,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="WebRtcCallScreen__answer">Vastaa</string>
   <string name="WebRtcCallScreen__answer_without_video">Vastaa ilman videota</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Puhelin</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Kaiutin</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1862,6 +1861,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences_app_protection__change_your_pin">Vaihda PIN-koodi</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-koodit pitävät Signalin luona tallennetut tiedot salattuina, jotta vain sinä pääset niihin käsiksi. Profiilisi, asetuksesi ja yhteystietosi palautuvat kun asennat Signalin uudelleen.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Paranna turvallisuutta vaatimalla Signal PIN-koodisi silloin kun rekisteröit puhelinnumerosi uudelleen.</string>
+  <string name="preferences_app_protection__turn_off">Poista käytöstä</string>
+  <string name="preferences_app_protection__confirm_pin">Vahvista PIN</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">Väärä PIN-koodi. Yritä uudelleen.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Rekisteröinnin lukitusta ei voitu ottaa käyttöön.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Rekisteröinnin lukitusta ei voitu poistaa käytöstä.</string>
   <string name="AppProtectionPreferenceFragment_none">Ei mitään</string>
@@ -1890,7 +1892,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="RegistrationLockDialog_i_forgot_my_pin">Unohdin PIN-koodini.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Unohditko PIN-koodisi?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Rekisteröinnin lukitus auttaa suojaamaan puhelinnumeroasi luvattomilta rekisteröintiyrityksiltä. Voit ottaa tämän ominaisuuden pois käytöstä milloin tahansa Signalin yksityisyysasetuksista.</string>
-  <string name="RegistrationLockDialog_registration_lock">Rekisteröinnin lukitus</string>
   <string name="RegistrationLockDialog_enable">Ota käyttöön</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">Rekisteröinnin lukituksen PIN-koodi on oltava vähintään %d numeroa.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Syöttämäsi PIN-koodit eivät täsmää.</string>

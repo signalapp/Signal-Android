@@ -1108,7 +1108,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="WebRtcCallScreen__answer">Válasz</string>
   <string name="WebRtcCallScreen__answer_without_video">Válasz videó nélkül</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefonszám</string> -->
+  <string name="WebRtcAudioOutputToggle__audio_output">Hang kimenet</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">Telefon hangszóró</string>
   <string name="WebRtcAudioOutputToggle__speaker">Hangszóró</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1869,8 +1870,15 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences_app_protection__signal_pin">Signal PIN</string>
   <string name="preferences_app_protection__create_a_pin">PIN létrehozása</string>
   <string name="preferences_app_protection__change_your_pin">PIN kód megváltoztatása</string>
+  <string name="preferences_app_protection__pin_reminders">PIN emlékeztetők</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">A PIN-nek köszönhetően a Signal által tárolt információk titkosítva vannak, így csak te férhetsz hozzájuk. Újratelepítés esetén profilod, beállításaid és kontaktjaid visszaállításra kerülnek.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Növeld a biztonságot azáltal, hogy a telefonszámod regisztrációját Signal PIN kódod megadásához kötöd.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Az emlékeztetők a PIN kód megjegyzését segítik, ugyanis a PIN-t nem lehet visszaállítani. Az idő múlásával egyre kevesebbszer fogunk megkérni a megadására.</string>
+  <string name="preferences_app_protection__turn_off">Kikapcsolás</string>
+  <string name="preferences_app_protection__confirm_pin">Erősítsd meg a PIN-t</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Signal PIN kód megerősítése</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Bizonyosodj meg róla, hogy PIN kódodat megjegyezted vagy biztonságos helyre eltároltad, ugyanis a PIN kódot nem lehet visszaállítani. Amennyiben elfelejted PIN kódodat, akkor a Signal fiókod újraregisztrációja során adataid elveszhetnek.</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">Hibás PIN kód. Próbáld újra!</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Nem sikerült engedélyezni a regisztrációs zárat.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Nem sikerült kikapcsolni a regisztrációs zárat.</string>
   <string name="AppProtectionPreferenceFragment_none">Egyik sem</string>
@@ -1890,6 +1898,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Hibás regisztrációs zár PIN kód</string>
   <string name="RegistrationActivity_too_many_attempts">Túl sok próbálkozás</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Túl sokszor próbáltad megadni regisztrációs zár PIN kódodat. Kérlek próbáld újra egy nap múlva!</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Túl sokszor próbálkoztál. Kérlek próbáld újra később!</string>
   <string name="RegistrationActivity_error_connecting_to_service">Hiba történt a szolgáltatáshoz történő csatlakozás során</string>
   <string name="RegistrationActivity_oh_no">Jaj ne!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Ezt a telefonszámot regisztrációs zár PIN kód nélkül is újra lehet regisztrálni 7 nappal azután, hogy a telefonszám utoljára aktív volt Signal-on. Addig még %d nap van hátra.</string>

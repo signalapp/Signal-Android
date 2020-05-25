@@ -966,7 +966,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">Svar</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefon</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Høyttaler</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1670,6 +1669,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_app_protection__create_a_pin">Lag en PIN</string>
   <string name="preferences_app_protection__change_your_pin">Endre PIN-koden</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-koder holder informasjon lagret med Signal kryptert slik at bare du kan få tilgang til den. Profilen, innstillingene og kontaktene dine vil gjenopprette når du installerer Signal på nytt.</string>
+  <string name="preferences_app_protection__turn_off">Skru av</string>
+  <string name="preferences_app_protection__confirm_pin">Bekreft PIN-koden</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">Feil PIN-kode. Prøv igjen.</string>
   <string name="AppProtectionPreferenceFragment_none">Ingen</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Registreringslås-PIN-koden er ikke den samme som SMS-bekreftelseskoden du nettopp har mottatt. Vennligst skriv inn PIN-koden du tidligere konfigurert i programmet.</string>
   <string name="registration_activity__registration_lock_pin">Registrerings-PIN</string>
@@ -1695,7 +1697,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Jeg har glemt PIN-koden min.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Har du glemt PIN-koden?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registreringslås beskytter telefonnummeret ditt mot uautoriserte registreringsforsøk. Denne funksjonen kan deaktiveres når som helst i Signal-personverninnstillingene</string>
-  <string name="RegistrationLockDialog_registration_lock">Registreringslås</string>
   <string name="RegistrationLockDialog_enable">Aktiver</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">PIN-kodene du skrev inn var ikke like.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Feil ved å koble til tjenesten</string>

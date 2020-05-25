@@ -1143,7 +1143,6 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">أجب</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">رقم الهاتف</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">السمّاعة</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">بلوتوث</string>
   <!--WebRtcCallControls-->
@@ -1912,6 +1911,9 @@
   <string name="preferences_app_protection__create_a_pin">إنشاء رقم تعريفي شخصي</string>
   <string name="preferences_app_protection__change_your_pin">ر غيِّر رقم التعريف الشخصي الخاص بك</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">يمكنك الرقم التعريفي الشخصي من حفظ معلوماتك بشكل مُعمَّى في Signal بحيث يمكنك الوصول إليها وحدك. سوف تتم استعادة حسابك وإعداداتك و جهات اتصالك عند إعادة تثبيت Signal.</string>
+  <string name="preferences_app_protection__turn_off">أطفيء</string>
+  <string name="preferences_app_protection__confirm_pin">تأكيد الرقم التعريفي الشخصي</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">الرقم التعريفي الشخصي غير صحيح. يرجى إعادة المحاولة.</string>
   <string name="AppProtectionPreferenceFragment_none">لا شيء </string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">الرقم التعريفي الشخصي لحماية التسجيل مختلف عن رمز التحقق في رسالة SMS التي استقبلتها الآن. يُرجى إدخال الرقم التعريفي الشخصي الذي قمت بتحديده في إعدادات التطبيق من قبل.</string>
   <string name="registration_activity__registration_lock_pin">الرقم التعريفي الشخصي لحماية التسجيل</string>
@@ -1938,7 +1940,6 @@
   <string name="RegistrationLockDialog_i_forgot_my_pin">لقد نسيتُ الرّقم التعريفي الشّخصي.</string>
   <string name="RegistrationLockDialog_forgotten_pin">هل نسيت الرّقم التعريفي الشّخصي؟</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">الرقم التعريفي الشخصي لحماية التسجيل يحمي رقم هاتفك من محاولات غير مصرّحة  للتسجيل في الخدمة. يمكن إلغاء هذه الخاصية في أي وقت عبر إعدادات الخصوصية في تطبيق Signal.</string>
-  <string name="RegistrationLockDialog_registration_lock">الرقم التعريفي الشخصي لحماية التسجيل</string>
   <string name="RegistrationLockDialog_enable">تفعيل</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">الرقم التعريفي الشخصي لحماية التسجيل يجب أن يتكون من %d رقما على الأقل.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">الأرقام التي أدخلتها غير متطابقة.</string>

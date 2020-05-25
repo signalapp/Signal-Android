@@ -973,7 +973,6 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">Erantzuna</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefonoa</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Bozgorailua</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth </string>
   <!--WebRtcCallControls-->
@@ -1714,6 +1713,8 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="preferences_app_protection__signal_pin">Signal PIN</string>
   <string name="preferences_app_protection__create_a_pin">PIN bat sortu</string>
   <string name="preferences_app_protection__change_your_pin">Aldatu zure PINa</string>
+  <string name="preferences_app_protection__confirm_pin">Berretsi PINa</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">PIN okerra. Saia zaitez berriro.</string>
   <string name="AppProtectionPreferenceFragment_none">Bat ere ez</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Erregistratzea blokeatzeko PINa ez da jaso berri duzun SMS bidezko egiaztapen-kodearen berdina. Sartu aurrez aplikazioan konfiguratu duzun PINa.</string>
   <string name="registration_activity__registration_lock_pin">Erregistratzea blokeatzeko PINa</string>
@@ -1740,7 +1741,6 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den enkriptatu gabeko babesk
   <string name="RegistrationLockDialog_i_forgot_my_pin">Nire PINa ahaztu dut.</string>
   <string name="RegistrationLockDialog_forgotten_pin">PINa ahaztu al duzu?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Erregistratzea blokeatzeko aukerak zure telefono-zenbakia baimenik gabe erregistratzeko saiakeretatik babesten du. Aukera hau nahi duzunean desgaitu daiteke Signal-eko pribatutasun-ezarpenetan</string>
-  <string name="RegistrationLockDialog_registration_lock">Erregistratze-blokeoa</string>
   <string name="RegistrationLockDialog_enable">Gaitu</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">Errejistrate-blokeorako PINak gutxienez %d zenbaki izan behar ditu.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Sartu dituzun bi PINak ez datoz bat.</string>

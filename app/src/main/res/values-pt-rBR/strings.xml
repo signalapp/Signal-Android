@@ -973,7 +973,6 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">Atender</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefone</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Auto falante</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1714,6 +1713,9 @@
   <string name="preferences_app_protection__signal_pin">PIN do Signal</string>
   <string name="preferences_app_protection__create_a_pin">Crie um PIN</string>
   <string name="preferences_app_protection__change_your_pin">Troque o seu PIN</string>
+  <string name="preferences_app_protection__confirm_pin">Confirme o PIN</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Confirme o seu PIN do Signal</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">PIN incorreto. Tente novamente.</string>
   <string name="AppProtectionPreferenceFragment_none">Nenhuma</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">O PIN de Desbloqueio de Cadastro não é igual ao código de verificação que você acabou de receber. Por favor, insira o PIN definido anteriormente por meio do aplicativo.</string>
   <string name="registration_activity__registration_lock_pin">PIN de Desbloqueio de Cadastro</string>
@@ -1740,7 +1742,6 @@
   <string name="RegistrationLockDialog_i_forgot_my_pin">Esqueci meu PIN.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Esqueceu o PIN?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">O Desbloqueio de Cadastro ajuda a proteger seu número de telefone de tentativas de cadastro não autorizadas. Esse recurso pode ser desativado a qualquer instante nas configurações de privacidade do Signal.</string>
-  <string name="RegistrationLockDialog_registration_lock">Desbloqueio de Cadastro</string>
   <string name="RegistrationLockDialog_enable">Habilitar</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">O PIN de Desbloqueio de Cadastro deve ter pelo menos %d dígitos.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Os PINs inseridos não correspondem.</string>

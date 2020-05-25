@@ -1164,7 +1164,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="WebRtcCallScreen__answer">Sprejmi</string>
   <string name="WebRtcCallScreen__answer_without_video">Odgovori brez videa</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefon</string> -->
+  <string name="WebRtcAudioOutputToggle__audio_output">Zvončni izhod</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">Ušesna slušalka</string>
   <string name="WebRtcAudioOutputToggle__speaker">Zvočnik</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1957,8 +1958,15 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_app_protection__signal_pin">Signal PIN</string>
   <string name="preferences_app_protection__create_a_pin">Ustvari PIN</string>
   <string name="preferences_app_protection__change_your_pin">Spremenite svoj PIN</string>
+  <string name="preferences_app_protection__pin_reminders">Opomniki za PIN</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Koda PIN zavaruje informacije shranjene na Signalu z uporabo enkripcije, tako da so dostopne le vam. Vaš profil, nastavitve in stiki bodo obnovljeni ob ponovni namestitvi aplikacije Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Izboljšajte varnost svojega uporabniškega računa z zahtevo po vnosu Signal PIN kode pri registraciji telefona s strežniki Signal.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Opomniki vam bodo pomagali, da si lažje zapomnite svoj PIN, saj ni obnovljiv. Sčasoma se bo frekvenca opomnikov zmanjšala.</string>
+  <string name="preferences_app_protection__turn_off">Izklopi</string>
+  <string name="preferences_app_protection__confirm_pin">Potrdite PIN</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Potrdite svoj PIN Signal</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Prosimo, dobro si zapomnite ali zapišite svoj PIN, saj ni obnovljiv. Če ga boste pozabili, lahko izgubite svoje podatke ob ponovni registraciji v račun Signal.</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">Napačen PIN. Poskusite znova.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Neuspešen vklop zaklepa registracije.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Neuspešen izklop zaklepa registracije.</string>
   <string name="AppProtectionPreferenceFragment_none">Brez</string>
@@ -1978,6 +1986,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Napačna koda PIN za prijavo v omrežje</string>
   <string name="RegistrationActivity_too_many_attempts">Preveč poskusov</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Prevečkrat ste vnesli napačen PIN za prijavo v omrežje Signal. Poskusite znova jutri.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Preveč neuspešnih poskusov. Prosimo poskusite znova kasneje.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Napaka pri povezavi do storitve</string>
   <string name="RegistrationActivity_oh_no">Neeee!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Prijava s to telefonsko številko brez kode za zaklep bo zopet možna po sedmih dneh, odkar je bila številka nazadnje aktivna v omrežju Signal. Število dni do prijave: %d</string>

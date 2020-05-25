@@ -1099,7 +1099,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="WebRtcCallScreen__answer">Svara</string>
   <string name="WebRtcCallScreen__answer_without_video">Svara utan video</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefon</string> -->
+  <string name="WebRtcAudioOutputToggle__audio_output">Ljudutgång</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">Telefon öronsnäcka</string>
   <string name="WebRtcAudioOutputToggle__speaker">Högtalare</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1860,8 +1861,15 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_app_protection__signal_pin">Signal PIN-kod</string>
   <string name="preferences_app_protection__create_a_pin">Skapa en PIN-kod</string>
   <string name="preferences_app_protection__change_your_pin">Ändra din PIN-kod</string>
+  <string name="preferences_app_protection__pin_reminders">PIN-kodspåminnelser</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-koder håller information lagrad med Signal krypterad så bara du kan komma åt den. Din profil, inställningar och kontakter kommer att återställas när du installerar om Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Lägg till extra säkerhet genom att kräva din Signal PIN-kod för att registrera ditt telefonnummer med Signal igen.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Påminnelser hjälper dig att memorera din PIN-kod eftersom den inte kan återställas. Du blir frågad mindre ofta med tiden.</string>
+  <string name="preferences_app_protection__turn_off">Slå av</string>
+  <string name="preferences_app_protection__confirm_pin">Bekräfta PIN-kod</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Bekräfta din Signal PIN-kod</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Se till att du lagrar din PIN-kod på ett säkert sätt, eftersom den inte kan återställas. Om du glömmer din PIN-kod kan du förlora data när du registrerar ditt Signal-konto igen.</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">Felaktig PIN-kod. Försök igen.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Det gick inte att aktivera registreringslåset.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Det gick inte att inaktivera registreringslåset.</string>
   <string name="AppProtectionPreferenceFragment_none">Ingen</string>
@@ -1881,6 +1889,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Felaktig PIN-kod för registreringslåset</string>
   <string name="RegistrationActivity_too_many_attempts">För många försök</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Du har gjort för många PIN-kodsförsök. Vänligen försök igen efter ett dygn.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Du har gjort för många försök. Vänligen försök igen senare.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Fel vid anslutning till tjänst</string>
   <string name="RegistrationActivity_oh_no">Åh nej!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registrering av detta mobilnummer kommer att vara möjligt utan din PIN-kod för registreringslåset efter att 7 dagar har passerat sedan mobilnumret senast var aktivt på Signal. Du har %d dagar kvar.</string>

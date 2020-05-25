@@ -1096,7 +1096,8 @@
   <string name="WebRtcCallScreen__answer">Απάντηση</string>
   <string name="WebRtcCallScreen__answer_without_video">Απάντηση χωρίς βίντεο</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Τηλέφωνο</string> -->
+  <string name="WebRtcAudioOutputToggle__audio_output">Έξοδος ήχου</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">Ακουστικό συσκευής</string>
   <string name="WebRtcAudioOutputToggle__speaker">Μεγάφωνο</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1858,8 +1859,15 @@
   <string name="preferences_app_protection__signal_pin">PIN Signal</string>
   <string name="preferences_app_protection__create_a_pin">Δημιουργία PIN</string>
   <string name="preferences_app_protection__change_your_pin">Αλλαγή του PIN σου</string>
+  <string name="preferences_app_protection__pin_reminders">Υπενθυμίσεις PIN</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Τα PIN κρατούν τις πληροφορίες που αποθηκεύονται στο Signal κρυπτογραφημένες, οπότε μόνο εσύ έχεις πρόσβαση σε αυτές. Το προφίλ σου, οι ρυθμίσεις και οι επαφές να επαναφερθούν όταν επανεγκαταστήσεις το Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Απόκτησε επιπλέον ασφάλεια, κάνοντας τη χρήση του Signal PIN σου υποχρεωτική για να επανεγγράψεις τον αριθμό τηλεφώνου σου στο Signal.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Οι υπενθυμίσεις σε βοηθάνε να θυμάσαι το PIN σου, καθώς αυτό δεν μπορεί να ανακτηθεί. Θα σ\' το ζητάμε πιο σπάνια όσο περνάει ο καιρός.</string>
+  <string name="preferences_app_protection__turn_off">Απενεργοποίηση</string>
+  <string name="preferences_app_protection__confirm_pin">Επιβεβαίωση PIN</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Επιβεβαίωση PIN Signal</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Επιβεβαιώσου πως θυμάσαι ή πως έχεις αποθηκεύσει σε ασφαλές μέρος το PIN σου, καθώς αυτό δεν μπορεί να ανακτηθεί. Αν ξεχάσεις το PIN σου, ίσως χαθούν δεδομένα κατά την επανεγγραφή του λογαριασμού Signal σου.</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">Λάθος PIN. Ξαναδοκίμασε.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Αποτυχία ενεργοποίησης Κλειδώματος εγγραφής.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Αποτυχία απενεργοποίησης Κλειδώματος εγγραφής.</string>
   <string name="AppProtectionPreferenceFragment_none">Κανένα</string>
@@ -1879,6 +1887,7 @@
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Λάθος PIN Κλειδώματος εγγραφής</string>
   <string name="RegistrationActivity_too_many_attempts">Υπερβολικά πολλές προσπάθειες</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Έκανες πάρα πολλές λάθος προσπάθειες εισαγωγής του PIN Κλειδώματος εγγραφής. Παρακαλώ ξαναδοκίμασε σε μια ημέρα.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Προσπάθησες πάρα πολλές φορές. Παρακαλώ ξαναδοκίμασε αργότερα.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Σφάλμα κατά τη σύνδεση στην υπηρεσία</string>
   <string name="RegistrationActivity_oh_no">Ωχ όχι!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Η εγγραφή αυτού του αριθμού τηλεφώνου θα είναι εφικτή χωρίς να γνωρίζεις το PIN Κλειδώματος εγγραφής αφού περάσουν 7 ημέρες από την τελευταία φορά που αυτός ο αριθμός ήταν τελευταία ενεργός στο Signal. Σου απομένουν %d ημέρες.</string>

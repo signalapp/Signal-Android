@@ -123,6 +123,7 @@
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Ukloni</string>
   <string name="ClearProfileActivity_remove_profile_photo">Ukloni fotografiju profila?</string>
+  <string name="ClearProfileActivity_remove_group_photo">Ukloni sliku grupe</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nije pronađen internet-preglednik.</string>
   <string name="CommunicationActions_no_email_app_found">Nije pronađena aplikacija za email.</string>
@@ -230,6 +231,8 @@
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Napustit ćete ovu grupu i ona će biti izbrisana sa svih Vaših uređaja.</string>
   <string name="ConversationActivity_delete">Izbriši</string>
   <string name="ConversationActivity_delete_and_leave">Izbriši i napusti</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Da biste nazvali %1$s, Signalu je potreban pristup Vašem mikrofonu</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Da biste nazvali %1$s, Signalu je potreban pristup Vašem mikrofonu i kameri.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nepročitana poruka</item>
@@ -381,6 +384,7 @@
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Nova grupa</string>
   <string name="GroupCreateActivity_actionbar_edit_title">Uredi grupu</string>
+  <string name="GroupCreateActivity_actionbar_manage_title">Uredi grupu</string>
   <string name="GroupCreateActivity_group_name_hint">Naziv grupe</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Nova MMS grupa</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Odabrali ste kontakt koji ne podržava Signal grupe, stoga će ovo biti MMS grupa</string>
@@ -425,18 +429,38 @@
     <item quantity="other">Greška prilikom poništavanja pozivnica</item>
   </plurals>
   <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__name_this_group">Dodijeli naziv grupi</string>
   <string name="AddGroupDetailsFragment__create">Kreiraj</string>
   <string name="AddGroupDetailsFragment__members">Članovi</string>
+  <string name="AddGroupDetailsFragment__group_name_required">Naziv grupe (obavezno)</string>
+  <string name="AddGroupDetailsFragment__this_field_is_required">Ovo se polje mora ispuniti.</string>
+  <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Grupu moraju sačinjavati barem dva člana.</string>
+  <string name="AddGroupDetailsFragment__group_creation_failed">Neuspjelo kreiranje grupe.</string>
+  <string name="AddGroupDetailsFragment__try_again_later">Pokušajte ponovo kasnije.</string>
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Odabrali ste kontakt koji ne podržava Signal grupe, stoga će ovo biti MMS grupa.</string>
   <string name="AddGroupDetailsFragment__remove">Ukloni</string>
+  <string name="AddGroupDetailsFragment__sms_contact">SMS kontakt</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Nestajuće poruke</string>
   <string name="ManageGroupActivity_pending_group_invites">Aktivne pozivnice u grupu</string>
+  <string name="ManageGroupActivity_who_can_edit_group_membership">Ko može regulisati članstvo u grupi</string>
+  <string name="ManageGroupActivity_who_can_edit_group_info">Ko može mijenjati informacije o grupi</string>
+  <string name="ManageGroupActivity_block_group">Blokiraj grupu</string>
   <string name="ManageGroupActivity_leave_group">Napusti grupu</string>
   <string name="ManageGroupActivity_mute_notifications">Stišaj obavještenja</string>
   <string name="ManageGroupActivity_custom_notifications">Korisničke obavijesti</string>
+  <string name="ManageGroupActivity_until_s">Do %1$s</string>
   <string name="ManageGroupActivity_off">Isključeno</string>
   <string name="ManageGroupActivity_on">Uključeno</string>
   <string name="ManageGroupActivity_add_members">Dodajte članove</string>
+  <string name="ManageGroupActivity_view_all_members">Vidi sve članove</string>
+  <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Niste ovlašteni za to</string>
+  <string name="ManageGroupActivity_not_capable">Neko koga ste uvrstili ne podržava nove grupe i treba ažurirati verziju Signala</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group">Neuspjelo ažuriranje grupe</string>
+  <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Niste član ove grupe</string>
+  <string name="ManageGroupActivity_edit_name_and_picture">Upišite ime i dodajte sliku</string>
+  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Odredite ko može uvrstiti ili pozvati nove članove</string>
+  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Odredite ko može promijeniti ime i sliku grupe</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s je pozvao/la jednu osobu</item>
     <item quantity="few">%1$s je pozvao/la %2$d osobe</item>
@@ -445,6 +469,7 @@
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Korisničke obavijesti</string>
   <string name="CustomNotificationsDialogFragment__messages">Poruke</string>
+  <string name="CustomNotificationsDialogFragment__use_custom_notifications">Koristi ručno podešena obavještenja</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Zvuk obavještenja</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Vibracija</string>
   <!--GV2 Invite cancellation confirmation-->
@@ -603,6 +628,7 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Vrijeme za nestajanje poruka postavili ste na %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s je postavio/la vrijeme za nestajanje poruka na %2$s.</string>
   <!--GV2 specific-->
+  <string name="MessageRecord_you_created_the_group">Kreirali ste grupu.</string>
   <string name="MessageRecord_group_updated">Grupa je ažurirana.</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Uvrstili ste %1$s.</string>
@@ -617,13 +643,50 @@
   <string name="MessageRecord_you_left_the_group">Napustili ste grupu.</string>
   <string name="MessageRecord_s_left_the_group">%1$s je napustio grupu.</string>
   <!--GV2 role change-->
+  <string name="MessageRecord_you_made_s_an_admin">Odredili ste da %1$s bude administrator.</string>
+  <string name="MessageRecord_s_made_s_an_admin">%1$s je odredio/la da %2$s bude administrator.</string>
+  <string name="MessageRecord_s_made_you_an_admin">%1$s Vas je odredio/la za administratora.</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">Opozvali ste administratorske privilegije za %1$s.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s opozvao/la je Vaše administratorske privilegije.\"</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s je opozvao/la administratorske privilegije za %2$s.</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_invited_s_to_the_group">Pozvali ste %1$s u grupu.</string>
+  <string name="MessageRecord_s_invited_you_to_the_group">%1$s Vas je pozvao/la u grupu.</string>
+  <plurals name="MessageRecord_s_invited_members">
+    <item quantity="one">%1$s je pozvao/la jednu osobu u grupu.</item>
+    <item quantity="few">%1$s je pozvao/la %2$d osobe u grupu.</item>
+    <item quantity="other">%1$s je pozvao/la %2$d osoba u grupu.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
+  <plurals name="MessageRecord_you_revoked_invites">
+    <item quantity="one">Povukli ste pozivnicu u grupu.</item>
+    <item quantity="few">Povukli ste %1$d pozivnice u grupu.</item>
+    <item quantity="other">Povukli ste %1$d pozivnica u grupu.</item>
+  </plurals>
+  <plurals name="MessageRecord_s_revoked_invites">
+    <item quantity="one">%1$s je povukao/la pozivnicu u grupu.</item>
+    <item quantity="few">%1$s je povukao/la %2$d pozivnice u grupu.</item>
+    <item quantity="other">%1$s je povukao/la %2$d pozivnica u grupu.</item>
+  </plurals>
+  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Neko je odbio pozivnicu u grupu.</string>
+  <string name="MessageRecord_you_declined_the_invitation_to_the_group">Odbili ste pozivnicu u grupu.</string>
   <!--GV2 invitation acceptance-->
+  <string name="MessageRecord_you_accepted_invite">Prihvatili ste pozivnicu u grupu.</string>
+  <string name="MessageRecord_s_accepted_invite">%1$s je prihvatio/la pozivnicu u grupu.</string>
+  <string name="MessageRecord_you_added_invited_member_s">Uvrstili ste pozvanog člana %1$s.</string>
+  <string name="MessageRecord_s_added_invited_member_s">%1$s je uvrstio/la pozvanog člana %2$s.</string>
   <!--GV2 title change-->
+  <string name="MessageRecord_you_changed_the_group_name_to_s">Promijenili ste naziv grupe u \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s je promijenio/la naziv grupe u \"%2$s\".</string>
   <!--GV2 avatar change-->
+  <string name="MessageRecord_you_changed_the_group_avatar">Promijenili ste sliku grupe.</string>
+  <string name="MessageRecord_s_changed_the_group_avatar">%1$s je promijenio/la sliku grupe.</string>
   <!--GV2 attribute access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Promijenili ste ovlasti za uređivanje informacija o grupi na \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s je promijenio/la ovlasti za uređivanje informacija o grupi na \"%2$s\".</string>
   <!--GV2 membership access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Promijenili ste ovlasti za upravljanje članstvom u grupi na \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s je promijenio/la ovlasti za upravljanje članstvom u grupi na \"%2$s\".</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Vaš je sigurnosni broj sa %s promijenjen.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Označili ste svoj sigurnosni broj sa %s kao potvrđen</string>
@@ -637,6 +700,7 @@
   <string name="MessageRequestBottomView_unblock">Deblokiraj</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Hoćete li dopustiti da Vam %1$s šalje poruke? On ili ona neće znati da ste vidjeli njihove poruke dok ne prihvatite.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Želite li pristupiti grupi %1$s? Oni neće znati da ste vidjeli njihove poruke dok ne prihvatite.</string>
+  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Pozvani ste da se pridružite grupi %1$s. Želite li dopustiti članovima grupe da Vam šalju poruke?</string>
   <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Deblokirajte %1$s da biste mogli razmjenjivati poruke i pozive.</string>
   <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Deblokirajte kako biste omogućili članovima grupe da Vas ponovo dodaju u ovu grupu.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Član grupe %1$s</string>
@@ -701,12 +765,26 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Google Play Services koje ste instalirali ne rade kako treba. Molimo iznova instalirajte Google Play Services i pokušajte ponovo.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">Netačan PIN</string>
+  <string name="PinRestoreEntryFragment_skip_pin_entry">Preskočiti unošenje PIN-a?</string>
+  <string name="PinRestoreEntryFragment_need_help">Trebate li pomoć?</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Vaš PIN je digitalni kōd koji ste kreirali i koji se sastoji od %1$dili više numeričkih ili alfanumeričkih znakova.\n\nAko ne možete zapamtiti svoj PIN, možete kreirati novi. Moći ćete registrovati i koristiti svoj račun, ali će neke postavke računa, poput informacija o profilu, biti poništene.</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Ako ne možete zapamtiti svoj PIN, možete kreirati novi. Moći ćete registrovati i koristiti svoj račun, ali će neke postavke računa, poput informacija o profilu, biti poništene.</string>
+  <string name="PinRestoreEntryFragment_create_new_pin">Kreiraj novi PIN</string>
+  <string name="PinRestoreEntryFragment_contact_support">Kontaktirajte podršku</string>
   <string name="PinRestoreEntryFragment_cancel">Prekini</string>
   <string name="PinRestoreEntryFragment_skip">Preskoči</string>
+  <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
+    <item quantity="one">Preostao Vam je %1$d pokušaj. Ako svi Vaši pokušaji budu neuspješni, možete kreirati novi PIN. Moći ćete registrovati i koristiti svoj račun, ali će neke postavke računa, poput informacija o profilu, biti poništene.</item>
+    <item quantity="few">Preostala su Vam %1$d pokušaja. Ako svi Vaši pokušaji budu neuspješni, možete kreirati novi PIN. Moći ćete registrovati i koristiti svoj račun, ali će neke postavke računa, poput informacija o profilu, biti poništene.</item>
+    <item quantity="other">Preostalo Vam je %1$d pokušaja. Ako svi Vaši pokušaji budu neuspješni, možete kreirati novi PIN. Moći ćete registrovati i koristiti svoj račun, ali će neke postavke računa, poput informacija o profilu, biti poništene.</item>
+  </plurals>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal registracija – trebate pomoć u vezi s PIN-om za Android</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Unesite alfanumerički PIN</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Unesite numerički PIN</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Kreirajte svoj PIN</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Iskoristili ste sve pokušaje za unošenje PIN-a, ali i dalje možete pristupiti svom Signal računu kreiranjem novog PIN-a. Radi zaštite privatnosti i sigurnosti, Vaš će račun biti obnovljen, ali neće sadržavati stare informacije o profilu ili podešavanja.</string>
+  <string name="PinRestoreLockedFragment_create_new_pin">Kreiraj novi PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Ocijenite ovu aplikaciju</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Ako sa zadovoljstvom koristite ovu aplikaciju, molimo izdvojite trenutak da nam pomognete tako što ćete je ocijeniti.</string>
@@ -715,6 +793,7 @@
   <string name="RatingManager_later">Kasnije</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Uh, izgleda da Play Store nije instaliran na Vašem uređaju.</string>
   <!--ReactionsBottomSheetDialogFragment-->
+  <string name="ReactionsBottomSheetDialogFragment_all">Sve · %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
@@ -741,7 +820,13 @@
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Broj koji ste birali ne podržava sigurne pozive!</string>
   <string name="RedPhone_got_it">Primljeno na znanje</string>
   <!--WebRtcCallActivity-->
+  <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Pritisnite ovdje da uključite video</string>
+  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Da biste nazvali %1$s, Signalu je potreban pristup Vašoj kameri</string>
+  <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
+  <string name="WebRtcCallActivity__calling">Pozivam…</string>
   <!--WebRtcCallView-->
+  <string name="WebRtcCallView__signal_voice_call">Signal glasovni poziv…</string>
+  <string name="WebRtcCallView__signal_video_call">Signal videopoziv…</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Odaberite svoju zemlju</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Morate precizirati
@@ -785,6 +870,11 @@
   <string name="RegistrationActivity_country_code_description">Državni kōd</string>
   <string name="RegistrationActivity_call">Poziv</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Uključiti zaključavanje registracije?</string>
+  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Isključiti zaključavanje registracije?</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Ako zaboravite svoj Signal PIN kad se budete ponovo registrovali na Signalu, Vaš račun bit će Vam nedostupan 7 dana.</string>
+  <string name="RegistrationLockV2Dialog_turn_on">Uključi</string>
+  <string name="RegistrationLockV2Dialog_turn_off">Isključi</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Vidi fotografiju</string>
   <string name="RevealableMessageView_view_video">Pogledaj videozapis</string>
@@ -829,6 +919,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s je iznova pokrenuo/la zaštićenu sesiju.</string>
   <string name="SmsMessageRecord_duplicate_message">Dvostruka poruka.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Poruka nije mogla biti obrađena jer je poslata putem novije verzije Signala. Nakon što ažurirate Signal, možete zamoliti sagovornika da Vam poruku pošalje ponovo.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Greška u obradi dolazne poruke.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Naljepnice</string>
   <!--StickerManagementAdapter-->
@@ -863,6 +954,7 @@
   <string name="SupportEmailUtil_device_info">Podaci o uređaju:</string>
   <string name="SupportEmailUtil_android_version">Verzija Androida:</string>
   <string name="SupportEmailUtil_signal_version">Verzija Signala:</string>
+  <string name="SupportEmailUtil_signal_package">Signal paket:</string>
   <string name="SupportEmailUtil_locale">Region:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupa ažurirana</string>
@@ -888,6 +980,7 @@
   <string name="ThreadRecord_message_could_not_be_processed">Poruku nije bilo moguće obraditi</string>
   <string name="ThreadRecord_message_request">Zahtjev za komunikaciju</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s Vas je dodao/la u grupu</string>
+  <string name="ThreadRecord_s_invited_you_to_the_group">%1$s Vas je pozvao/la u grupu</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Nova verzija Signala</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Dostupna je nova verzija Signala, pritisnite da ažurirate</string>
@@ -1032,6 +1125,9 @@
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Da biste odgovorili na poziv %s, dozvolite Signalu pristup Vašem mikrofonu.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signalu je potrebno dopuštenje da pristupi mikrofonu i kameri kako bi mogao slati i primati pozive, ali je ono trajno uskraćeno. Molimo nastavite do postavki aplikacije, odaberite \"Dozvole\" i aktivirajte stavke \"Mikrofon\" i \"Kamera\". </string>
+  <string name="WebRtcCallActivity__answered_on_a_linked_device">Odgovoreno na povezanom uređaju.</string>
+  <string name="WebRtcCallActivity__declined_on_a_linked_device">Odbijeno na povezanom uređaju.</string>
+  <string name="WebRtcCallActivity__busy_on_a_linked_device">Zauzeto na povezanom uređaju.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Promijenjen je sigurnosni broj za Vašu konverzaciju sa %1$s. Ovo može značiti da neko pokušava presresti Vašu komunikaciju ili da je %2$s iznova instalirao/la Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Trebali biste provjeriti svoj sigurnosni broj s ovom osobom.</string>
@@ -1039,8 +1135,12 @@
   <string name="WebRtcCallScreen_accept">Prihvati</string>
   <string name="WebRtcCallScreen_end_call">Završi razgovor</string>
   <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__decline">Prekini</string>
   <string name="WebRtcCallScreen__answer">Odgovori</string>
+  <string name="WebRtcCallScreen__answer_without_video">Odgovori bez videa</string>
   <!--WebRtcAudioOutputToggle-->
+  <string name="WebRtcAudioOutputToggle__audio_output">Audio izlaz</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">Slušalice</string>
   <string name="WebRtcAudioOutputToggle__speaker">Zvučnik</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1142,6 +1242,7 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Učitavam države…</string>
   <string name="country_selection_fragment__search">Traži</string>
+  <string name="country_selection_fragment__no_matching_countries">Nema tražene države</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Za povezivanje skenirajte QR kōd prikazan na uređaju</string>
   <!--device_link_fragment-->
@@ -1261,6 +1362,7 @@
   <string name="CreateProfileActivity__username">Korisničko ime</string>
   <string name="CreateProfileActivity__create_a_username">Kreirajte korisničko ime</string>
   <!--EditProfileFragment-->
+  <string name="EditProfileFragment__edit_group_name_and_photo">Upišite naziv grupe i dodajte sliku</string>
   <string name="EditProfileFragment__group_name">Naziv grupe</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Razmijenjene datoteke</string>
@@ -1348,6 +1450,16 @@
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Molimo budite što detaljniji kako biste nam pomogli u razumijevanju problema.</string>
   <string name="HelpFragment__no_email_app_found">Nije pronađena aplikacija za email.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedavno korištene</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smješko i osobe</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Priroda</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Hrana</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Aktivnosti</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Mjesta</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Predmeti</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Simboli</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Zastave</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emotikoni</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Unesi</string>
   <string name="arrays__use_default">Koristi standardno</string>
@@ -1554,10 +1666,12 @@
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Dodajte prilog</string>
   <string name="conversation__menu_edit_group">Uredi grupu</string>
+  <string name="conversation__menu_manage_group">Uredi grupu</string>
   <string name="conversation__menu_leave_group">Napusti grupu</string>
   <string name="conversation__menu_view_all_media">Svi prilozi</string>
   <string name="conversation__menu_conversation_settings">Podešavanja</string>
   <string name="conversation__menu_add_shortcut">Stavi na početni ekran</string>
+  <string name="conversation__menu_pending_members">Članovi na čekanju</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Proširi iskočni prozor</string>
   <!--conversation_callable_insecure-->
@@ -1653,16 +1767,21 @@
     <item quantity="other">PIN mora sadržavati najmanje %1$d brojki</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Kreiraj novi PIN</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Možete promijeniti PIN sve dok je ovaj uređaj registrovan.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Kreirajte svoj PIN</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN služi za šifriranje informacija na Signalu tako da im samo Vi možete pristupiti. Vaš profil, podešavanja i kontakti bit će sačuvani i učitani kad ponovo instalirate Signal.</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">Izaberite snažniji PIN</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-ovi se ne podudaraju. Pokušajte ponovo.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Potvrdite svoj PIN.</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Neuspjelo kreiranje PIN-a.</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Vaš PIN nije pohranjen. Podsjetit ćemo Vas kasnije da kreirate PIN.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN je kreiran.</string>
+  <string name="ConfirmKbsPinFragment__re_enter_your_pin">Ponovite svoj PIN</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Kreiram PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Novo: PIN-ovi</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN služi za šifriranje informacija na Signalu tako da im samo Vi možete pristupiti. Vaš profil, podešavanja i kontakti bit će sačuvani i učitani kad ponovo instalirate Signal.</string>
   <string name="KbsSplashFragment__learn_more">Saznaj više</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Zaključavanje registracije = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Vaš ključ za zaključavanje registracije sada se naziva PIN i on vrši dodatne funkcije. Izvršite nadogradnju odmah.</string>
@@ -1719,8 +1838,10 @@
   </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
   <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">Uredu</string>
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s će od Vas dobiti poruku o zahtjevu za komunikaciju. Nakon što je zahtjev prihvaćen, moći ćete pozvati.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Kreiraj PIN</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN služi za šifriranje informacija na Signalu.</string>
   <string name="KbsMegaphone__create_pin">Kreiraj PIN</string>
   <string name="KbsMegaphone__introducing_pins">Novo: PIN-ovi</string>
   <string name="KbsMegaphone__update_pin">Ažurirajte PIN</string>
@@ -1795,6 +1916,18 @@
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Zaključavanje ekrana nakon neaktivnosti</string>
   <string name="preferences_app_protection__signal_pin">Signal PIN</string>
   <string name="preferences_app_protection__create_a_pin">Kreiraj PIN</string>
+  <string name="preferences_app_protection__change_your_pin">Promijenite svoj PIN</string>
+  <string name="preferences_app_protection__pin_reminders">PIN podsjetnici</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN služi za šifriranje informacija na Signalu tako da im samo Vi možete pristupiti. Vaš profil, podešavanja i kontakti bit će sačuvani i učitani kad ponovo instalirate Signal.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Povećajte sigurnost tako što ćete svoj Signal PIN učiniti obaveznim prilikom ponovne registracije Vašeg telefonskog broja na Signalu.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Podsjetnici Vam pomažu da se prisjetite svog PIN-a, jer se on ne može vratiti na drugi način. Vremenom ćete biti podsjećani sve rjeđe.</string>
+  <string name="preferences_app_protection__turn_off">Isključi</string>
+  <string name="preferences_app_protection__confirm_pin">Potvrdite PIN</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Potvrdite svoj Signal PIN</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Budite sigurni da ste svoj PIN zapamtili ili pohranili na sigurno mjesto, jer se on ne može vratiti. Ako zaboravite PIN, može se dogoditi da izgubite stare podatke prilikom ponovne registracije na Signal.</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">Netačan PIN. Pokušajte ponovo.</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">Neuspjelo aktiviranje zaključavanja registracije.</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">Neuspjelo deaktiviranje zaključavanja registracije.</string>
   <string name="AppProtectionPreferenceFragment_none">Nijedno</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN za zaključavanje registracije nije isto što i kōd za provjeru koji ste upravo primili putem SMS poruke. Molimo unesite PIN koji ste ranije konfigurisali kroz aplikaciju.</string>
   <string name="registration_activity__registration_lock_pin">PIN za zaključavanje registracije</string>
@@ -1812,6 +1945,7 @@
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Pogrešan PIN za zaključavanje registracije</string>
   <string name="RegistrationActivity_too_many_attempts">Previše pokušaja</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Unijeli ste previše pogrešnih PIN-ova za zaključavanje registracije. Molimo pokušajte ponovo za dan.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Pokušali ste previše puta. Molimo pokušajte ponovo kasnije.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Greška pri povezivanju sa uslugom</string>
   <string name="RegistrationActivity_oh_no">O, ne!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registracija ovog telefonskog broja bit će moguća bez Vašeg PIN-a za zaključavanje registracije kada protekne 7 dana otkad je broj bio zadnji put aktivan na Signalu. Preostalo je još %d dana.</string>
@@ -1842,6 +1976,13 @@
   <string name="RecipientBottomSheet_block">Blokiraj</string>
   <string name="RecipientBottomSheet_unblock">Deblokiraj</string>
   <string name="RecipientBottomSheet_view_safety_number">Vidi sigurnosni broj</string>
+  <string name="RecipientBottomSheet_make_group_admin">Odredi administratora grupe</string>
+  <string name="RecipientBottomSheet_remove_as_admin">Ukloni administratorske ovlasti</string>
+  <string name="RecipientBottomSheet_remove_from_group">Udalji iz grupe</string>
+  <string name="RecipientBottomSheet_remove_s_as_group_admin">Smijeniti %1$s kao administratora grupe?</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s će moći uređivati ovu grupu i njene članove</string>
+  <string name="RecipientBottomSheet_remove_s_from_s">Udaljiti %1$s iz \"%2$s\"?</string>
   <string name="RecipientBottomSheet_remove">Ukloni</string>
+  <string name="GroupRecipientListItem_admin">Administrator</string>
   <!--EOF-->
 </resources>

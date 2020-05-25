@@ -906,7 +906,6 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">Wangsulaken</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Nomer Telepon</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Speaker</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1579,6 +1578,8 @@
   <string name="preferences_app_protection__create_a_pin">Damelaken PIN</string>
   <string name="preferences_app_protection__change_your_pin">Gantos PIN</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN njagi supados informasi disimpen kangge enkripsi Signal, dados sampeyan mawon ingkang saged ngakses. Profil, panatanan, lan kontak bakal dipulihaken kala sampeyan masangaken Signal malih.</string>
+  <string name="preferences_app_protection__confirm_pin">Konfirmasi PIN</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">PIN klintu. Cobi malih.</string>
   <string name="AppProtectionPreferenceFragment_none">Mboten enten</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN Kunci Pendaftaran mboten sami kaliyan kode verifikasi SMS ingkang nembe sampeyan tampi. Lebetaken PIN ingkang sampeyan tetapaken ing aplikasi saderengipun.</string>
   <string name="registration_activity__registration_lock_pin">PIN Kunci Pendaftaran</string>
@@ -1604,7 +1605,6 @@
   <string name="RegistrationLockDialog_i_forgot_my_pin">Kula kesupen PIN kula.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Kesupen PIN sampeyan?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Kunci Pendaftaran mbiantu nglindhungi nomer telepon sampeyan saking upaya pendaftaran ingkang mboten sah. Fitur niki saged dinonaktifaken kapan mawon saking panatanan privasi Signal</string>
-  <string name="RegistrationLockDialog_registration_lock">Kunci Pendaftaran</string>
   <string name="RegistrationLockDialog_enable">Aktifaken</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">PIN Kunci Pendaftaran betah paling sekedhik %d digit.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Kalih PIN ingkang dipunlebetaken mboten gathuk.</string>

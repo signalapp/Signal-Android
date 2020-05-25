@@ -1135,7 +1135,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="WebRtcCallScreen__answer">Răspunde</string>
   <string name="WebRtcCallScreen__answer_without_video">Răspundeți fără video</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefon</string> -->
+  <string name="WebRtcAudioOutputToggle__audio_output">Ieșire audio</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">Difuzor telefon</string>
   <string name="WebRtcAudioOutputToggle__speaker">Difuzor</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1913,8 +1914,15 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_app_protection__signal_pin">PIN Signal</string>
   <string name="preferences_app_protection__create_a_pin">Creați un PIN</string>
   <string name="preferences_app_protection__change_your_pin">Schimbați-vă PIN-ul</string>
+  <string name="preferences_app_protection__pin_reminders">Memento-uri PIN</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-urile păstrează informațiile stocate în Signal criptate, astfel încât numai tu să le poți accesa. Profilul, setările și contactele se vor restabili atunci când reinstalați Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Adăugați securitate suplimentară necesitând PIN-ul dvs. Signal pentru a vă înregistra din nou numărul de telefon la Signal.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Memento-urile vă ajută să vă amintiți codul PIN deoarece nu poate fi recuperat. Vi se va cere mai rar în timp.</string>
+  <string name="preferences_app_protection__turn_off">Dezactivare</string>
+  <string name="preferences_app_protection__confirm_pin">Confirmați PIN-ul</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Confirmați PIN-ul dvs. Signal</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Asigurați-vă că memorați sau salvați în siguranță codul PIN, deoarece acesta nu poate fi recuperat. Dacă uitați codul PIN, este posibil să pierdeți date la înregistrarea din nou a contului dvs. de Signal.</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">PIN incorect. Încercați din nou.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Activarea blocării înregistrării a eșuat.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Dezactivarea blocării înregistrării a eșuat.</string>
   <string name="AppProtectionPreferenceFragment_none">Niciuna</string>
@@ -1934,6 +1942,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="RegistrationActivity_incorrect_registration_lock_pin">PIN de blocare a înregistrării incorect</string>
   <string name="RegistrationActivity_too_many_attempts">Prea multe încercări</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Ați introdus greșit de prea multe ori PIN-ul de blocare a înregistrării. Vă rugăm să încercați din nou peste o zi.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Ai făcut prea multe încercări. Vă rugăm să încercați din nou mai târziu.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Eroare de conectare la serviciu</string>
   <string name="RegistrationActivity_oh_no">Oh nu!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Înregistrarea acestui număr de telefon va fi posibilă fără un Cod PIN de Blocare a Înregistrării după 7 zile de când acest număr de telefon a fost activ ultima oară în Signal. Mai ai %d zile rămase.</string>

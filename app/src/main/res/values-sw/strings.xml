@@ -930,7 +930,6 @@ nambari yako ya simu</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">Pokea</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Simu</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Msemaji</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1653,6 +1652,9 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="preferences_app_protection__create_a_pin">Unda Nenosiri</string>
   <string name="preferences_app_protection__change_your_pin">Badilisha PINI yako</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PINI hufanya taarifa iliyohifadhiwa na Signal iliyosimbwa kuweza kufikiwa na wewe tu. Wasifu wako, mipangilio, na wawasiliani vitarejeshwa utakaposakinisha upya Signal.</string>
+  <string name="preferences_app_protection__confirm_pin">Thibitisha PIN</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Thibitisha PINI yako ya Signal</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">Nenosiri sio sahihi. Jaribu tena.</string>
   <string name="AppProtectionPreferenceFragment_none">Hakuna</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Nambari ya PIN ya Usajili si sawa na msimbo wa uthibitisho wa SMS unayopokea tu. Tafadhali ingiza PIN uliyoiweka hapo awali katika programu.</string>
   <string name="registration_activity__registration_lock_pin">Nenosiri la usajili</string>
@@ -1679,7 +1681,6 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Nilisahau nenosiri</string>
   <string name="RegistrationLockDialog_forgotten_pin">Umesahau nenosiri?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Usajili Lock husaidia kulinda nambari yako ya simu kutokana na majaribio ya usajili yasiyoidhinishwa. Kipengele hiki kinaweza kulemazwa wakati wowote kwenye mipangilio ya faragha yako ya Signal</string>
-  <string name="RegistrationLockDialog_registration_lock">Usajili wa kufunga</string>
   <string name="RegistrationLockDialog_enable">Wezesha</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">Nambari ya siri ya Usajili lazima iwe na angalau nambari%d.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Nambari mbili za siri ulizoingiza haziendani.</string>

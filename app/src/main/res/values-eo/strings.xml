@@ -1104,7 +1104,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="WebRtcCallScreen__answer">Respondi</string>
   <string name="WebRtcCallScreen__answer_without_video">Respondi sen video</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefono</string> -->
+  <string name="WebRtcAudioOutputToggle__audio_output">Aŭda eligo</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">Telefona kapaŭdilo</string>
   <string name="WebRtcAudioOutputToggle__speaker">Laŭtparolilo</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bludento</string>
   <!--WebRtcCallControls-->
@@ -1865,8 +1866,15 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences_app_protection__signal_pin">Signal-PIN</string>
   <string name="preferences_app_protection__create_a_pin">Krei  PIN-on</string>
   <string name="preferences_app_protection__change_your_pin">Ŝanĝu vian PIN</string>
+  <string name="preferences_app_protection__pin_reminders">PIN-memorigoj</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN konservas informojn ĉifritajn ĉe Signal, tiel ke nur vi povas aliri ilin. Via profilo, viaj agordoj kaj kontaktoj revenos, kiam vi reinstalos Signal-on.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Aldonu plian sekurigon postulante, ke via Signal-PIN estu deviga por reregistri vian telefonnumeron al Signal.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Memorigoj helpas al vi memori vian PIN, ĉar ĝi ne estas rehavebla. Oni demandos al vi malpli ofte iom post iom.</string>
+  <string name="preferences_app_protection__turn_off">Malaktivigi</string>
+  <string name="preferences_app_protection__confirm_pin">Konfirmu personan identigan numeron</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Konfirmu vian Signal-PIN</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Memoru vian PIN, aŭ konservu ĝin sekure, ĉar ĝi ne estas rehavebla. Se vi forgesos vian PIN, vi povos perdi datumojn dum reregistriĝo de via Signal-konto.</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">Malĝusta PIN. Reprovu.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Malsukceso ebligi la blokon de registriĝo</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Malsukceso malebligi la blokon de registriĝo</string>
   <string name="AppProtectionPreferenceFragment_none">Neniu</string>
@@ -1886,6 +1894,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Neĝusta PIN de bloko de registriĝo</string>
   <string name="RegistrationActivity_too_many_attempts">Tro da provoj</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Vi tro faris neĝustajn provojn kun via persona identiga numero de bloko de registriĝo. Bv. reprovi post unu tago.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Vi tro faris neĝustajn provojn. Reprovi poste.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Eraro dum konekto al servo</string>
   <string name="RegistrationActivity_oh_no">Ho, ne!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registriĝo de tiu ĉi telefonnumero eblos, sen via PIN de bloko de registriĝo, 7 tagojn post la lasta Signal-a aktiveco de tiu ĉi telefonnumero. Restas %d tagoj.</string>

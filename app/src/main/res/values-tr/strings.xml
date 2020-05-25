@@ -413,18 +413,31 @@
   <string name="AddGroupDetailsFragment__create">Oluştur</string>
   <string name="AddGroupDetailsFragment__members">Üyeler</string>
   <string name="AddGroupDetailsFragment__group_name_required">Grup adı (gereklidir)</string>
+  <string name="AddGroupDetailsFragment__group_creation_failed">Grup yaratma başarısız oldu.</string>
+  <string name="AddGroupDetailsFragment__try_again_later">Daha sonra tekrar dene.</string>
   <string name="AddGroupDetailsFragment__remove">Kaldır</string>
+  <string name="AddGroupDetailsFragment__sms_contact">SMS kişisi</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Kaybolan iletiler</string>
   <string name="ManageGroupActivity_pending_group_invites">Beklemedeki grup davetleri</string>
+  <string name="ManageGroupActivity_who_can_edit_group_membership">Grup üyeliğini kimler düzenleyebilir</string>
+  <string name="ManageGroupActivity_who_can_edit_group_info">Grup bilgisini kimler düzenleyebilir</string>
   <string name="ManageGroupActivity_block_group">Grubu engelle</string>
   <string name="ManageGroupActivity_leave_group">Gruptan ayrıl</string>
   <string name="ManageGroupActivity_mute_notifications">Bildirimleri sessize al</string>
   <string name="ManageGroupActivity_custom_notifications">Özel bildirimler</string>
+  <string name="ManageGroupActivity_until_s">%1$s tarihine kadar</string>
   <string name="ManageGroupActivity_off">Kapalı</string>
   <string name="ManageGroupActivity_on">Açık</string>
   <string name="ManageGroupActivity_add_members">Üye ekle</string>
   <string name="ManageGroupActivity_view_all_members">Tüm üyeleri görüntüle</string>
+  <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Bunu yapma için hakkınız yok</string>
+  <string name="ManageGroupActivity_not_capable">Eklediğiniz biri yeni grupları desteklemiyor ve Signal\'i güncellemesi gerekiyor</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group">Grubu güncelleme başarısız oldu</string>
+  <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Grubun üyesi değilsiniz</string>
+  <string name="ManageGroupActivity_edit_name_and_picture">Adı ve resmi düzenleyin</string>
+  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Yeni üyeleri kimlerin ekleyebileceğini veya davet edebileceğini seçin</string>
+  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Grup adını ve resmini kimlerin değiştirebileceğini seçin</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s, 1 kişiyi davet etti</item>
     <item quantity="other">%1$s, %2$d kişiyi davet etti</item>
@@ -611,13 +624,33 @@
     <item quantity="other">%1$s, %2$d kişiyi gruba davet etti.</item>
   </plurals>
   <!--GV2 invitation revokes-->
+  <plurals name="MessageRecord_you_revoked_invites">
+    <item quantity="one">Bir grup davetiyesini iptal ettiniz.</item>
+    <item quantity="other">%1$dgrup davetiyesini iptal ettiniz.</item>
+  </plurals>
+  <plurals name="MessageRecord_s_revoked_invites">
+    <item quantity="one">%1$s, bir grup davetiyesini iptal etti.</item>
+    <item quantity="other">%1$s %2$d grup davetiyesini iptal etti. </item>
+  </plurals>
+  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Biri grup davetiyesini reddetti.</string>
+  <string name="MessageRecord_you_declined_the_invitation_to_the_group">Grup davetiyesini reddettiniz.</string>
   <!--GV2 invitation acceptance-->
+  <string name="MessageRecord_you_accepted_invite">Grup davetiyesini kabul ettiniz.</string>
+  <string name="MessageRecord_s_accepted_invite">%1$s grup davetiyesini kabul etti.</string>
   <string name="MessageRecord_you_added_invited_member_s">Davet edilmiş %1$s üyesini eklediniz.</string>
   <string name="MessageRecord_s_added_invited_member_s">%1$s, davet edilmiş %2$s üyesini ekledi.</string>
   <!--GV2 title change-->
+  <string name="MessageRecord_you_changed_the_group_name_to_s">Grup adını \"%1$s\" olarak değiştirdiniz.</string>
+  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s grup adını \"%2$s\" olarak değiştirdi.</string>
   <!--GV2 avatar change-->
+  <string name="MessageRecord_you_changed_the_group_avatar">Grup resmini değiştirdiniz.</string>
+  <string name="MessageRecord_s_changed_the_group_avatar">%1$s grup resmini değiştirdi.</string>
   <!--GV2 attribute access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Grup bilgisini kimlerin düzenleyebileceğini \"%1$s\" olarak değiştirdiniz.</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s grup bilgisini kimlerin düzenleyebileceğini \"%2$s\" olarak değiştirdi.</string>
   <!--GV2 membership access level change-->
+  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Grup üyeliğini kimlerin düzenleyebileceğini \"%1$s\" olarak değiştirdiniz.</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s grup üyeliğini kimlerin düzenleyebileceğini \"%2$s\" olarak değiştirdi.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">%s ile güvenlik numaranız değişti.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">%s ile olan güvenlik numaranızı doğrulanmış olarak işaretlediniz.</string>
@@ -693,6 +726,7 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Kurulu Google Play Hizmetleri sürümü doğru çalışmıyor. Lütfen Google Play Hizmetleri\'ni tekrar yükleyin ve yeniden deneyin.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">Yanlış PIN</string>
+  <string name="PinRestoreEntryFragment_skip_pin_entry">PIN girişini atla?</string>
   <string name="PinRestoreEntryFragment_need_help">Yardıma mı ihtiyacınız var?</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">PIN\'inizi hatırlayamıyorsanız, yeni bir tane oluşturabilirsiniz. Hesabınızı kaydedebilir ve kullanabilirsiniz, ancak profil bilgileriniz gibi kaydedilmiş bazı ayarları kaybedersiniz.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Yeni PIN Oluştur</string>
@@ -703,6 +737,7 @@
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Sayısal PIN\'i Girin</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">PIN\'inizi oluşturun</string>
+  <string name="PinRestoreLockedFragment_create_new_pin">Yeni PIN oluştur</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Bu uygulamaya puan verin</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Bu uygulamayı kullanmaktan hoşlanıyorsanız, lütfen bir dakikanızı ayırıp puan vererek bize yardımcı olun.</string>
@@ -711,6 +746,7 @@
   <string name="RatingManager_later">Sonra</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Aman aman, Play Store uygulaması nereye gitmiş, cihazınızda yüklü gözükmüyor.</string>
   <!--ReactionsBottomSheetDialogFragment-->
+  <string name="ReactionsBottomSheetDialogFragment_all">Tümü · %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
@@ -738,6 +774,8 @@
   <string name="RedPhone_got_it">Anladım</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Görüntünüzü açmak için buraya dokunun</string>
+  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s ile arama yapmanız için, Signal\'in kameranıza erişime ihtiyacı var</string>
+  <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Aranıyor…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Signal sesli arama…</string>
@@ -1033,6 +1071,9 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%s tarafından gelen aramayı yanıtlamak için, Signal\'in mikrofonunuza erişmesine izin verin.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal, arama yapmak ve almak için Mikrofon ve Kamera iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, \"Mikrofon\" ve \"Kamera\"yı etkinleştirin.</string>
+  <string name="WebRtcCallActivity__answered_on_a_linked_device">Bağlı cihazdan yanıtlandı.</string>
+  <string name="WebRtcCallActivity__declined_on_a_linked_device">Bağlı cihazdan reddedildi.</string>
+  <string name="WebRtcCallActivity__busy_on_a_linked_device">Bağlı cihazda meşgul.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">%1$s ile sohbetinizin güvenlik numarası değişti. Bu, birisinin iletişiminizi kesmeye çalıştığı ya da %2$s Signal\'i yeniden yüklemiş olduğu anlamına gelebilir.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Bu kişi ile güvenlik numaranızı doğrulamak isteyebilirsiniz.</string>
@@ -1040,9 +1081,9 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="WebRtcCallScreen_accept">Kabul et</string>
   <string name="WebRtcCallScreen_end_call">Aramayı sonlandır</string>
   <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__decline">Reddet</string>
   <string name="WebRtcCallScreen__answer">Yanıtla</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefon</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Hoparlör</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1663,6 +1704,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN oluşturma başarısız oldu</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN\'iniz kaydedilmedi. PIN oluşturmanız için daha sonra hatırlatacağız.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN oluşturuldu.</string>
+  <string name="ConfirmKbsPinFragment__re_enter_your_pin">PIN\'inizi tekrar girin</string>
   <string name="ConfirmKbsPinFragment__creating_pin">PIN oluşturuluyor…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Karşınızda PIN\'ler</string>
@@ -1796,6 +1838,10 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences_app_protection__create_a_pin">PIN oluştur</string>
   <string name="preferences_app_protection__change_your_pin">PIN\'inizi değiştirin</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN\'ler Signal\'de depolanan verileri şifreli olarak tutar böylelikle yalnızca siz erişebilirsiniz. Profiliniz, ayarlarınız ve kişileriniz Signal\'i yeniden yüklediğinizde geri yüklenecektir.</string>
+  <string name="preferences_app_protection__turn_off">Kapat</string>
+  <string name="preferences_app_protection__confirm_pin">PIN\'i onaylayınız</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Signal PIN\'inizi onaylayın</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">Yanlış PIN. Tekrar deneyin.</string>
   <string name="AppProtectionPreferenceFragment_none">Hiçbiri</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Kaydolma Kilidi PIN\'iniz size gönderilen doğrulama koduyla aynı değildir. Lütfen önceden ayarlamış olduğunuz PIN\'inizi giriniz.  </string>
   <string name="registration_activity__registration_lock_pin">Kaydolma Kilidi PIN\'i</string>
@@ -1813,6 +1859,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Geçersiz Kaydolma Kilidi PIN\'i</string>
   <string name="RegistrationActivity_too_many_attempts">Çok fazla deneme yapıldı</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Çok fazla Kaydolma Kilidi PIN denemesi yaptınız. Lütfen bir gün içerisinde tekrar deneyin.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Çok fazla deneme yaptınız. Lütfen daha sonra tekrar deneyiniz.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Hizmete bağlanırken hata</string>
   <string name="RegistrationActivity_oh_no">Olamaz! </string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Bu telefon numarasının Signal üzerindeki son görülmesi 7 günü geçtiğinde Kaydolma Kilidi PIN\'i olmadan bu telefon numarası ile tekrar kaydolmak mümkün. %d gününüz kaldı.</string>
@@ -1822,7 +1869,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">PIN\'imi unuttum.</string>
   <string name="RegistrationLockDialog_forgotten_pin">PIN\'inizi mi unuttunuz?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Kaydolma Kilidi PIN\'iniz numaranızı izinsiz kaydolma denemelerinden korur. Bu özelliği istediğiniz zaman Signal\'in gizlilik ayarlarından devre dışı bırakabilirsiniz</string>
-  <string name="RegistrationLockDialog_registration_lock">Kaydolma Kilidi</string>
+  <string name="RegistrationLockDialog_registration_lock">Kayıt kilidi</string>
   <string name="RegistrationLockDialog_enable">Etkinleştir</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">Kayıt Kilidi PIN\'i en az %d haneli olmalıdır.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Girmiş olduğunuz PIN\'ler uyuşmuyor.</string>

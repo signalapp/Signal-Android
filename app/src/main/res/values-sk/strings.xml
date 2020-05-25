@@ -1135,7 +1135,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">Odpovedať</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefón</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Reproduktor</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1916,6 +1915,10 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_app_protection__change_your_pin">Zmente si PIN</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN kódy udržiavajú informácie uložené v Signale zašifrované, aby ste k nim mali prístup iba vy. Váš profil, vaše nastavenia a kontakty sa po opätovnej inštalácii Signalu obnovia.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Zvýšte svoje zabezpečenie tým, že pri opakovanej registrácii svojho telefónneho čísla v Signale budete vyžadovať PIN.</string>
+  <string name="preferences_app_protection__turn_off">Vypnúť</string>
+  <string name="preferences_app_protection__confirm_pin">Potvrďte PIN</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Overte váš PIN pre Signal</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">Nesprávny PIN kód. Skúste to znova.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Aktivácia registračného zámku zlyhala.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Dektivácia registračného zámku zlyhala.</string>
   <string name="AppProtectionPreferenceFragment_none">Žiadny</string>
@@ -1944,7 +1947,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="RegistrationLockDialog_i_forgot_my_pin">Zabudol som svoj PIN.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Zabudli ste PIN?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registračný zámok pomáha chrániť Vaše telefónne číslo pred neautorizovanou registráciou. Táto funkcia sa dá vypnúť kedykoľvek v nastaveniach súkromia Signalu.</string>
-  <string name="RegistrationLockDialog_registration_lock">Registračný zámok</string>
   <string name="RegistrationLockDialog_enable">Zapnúť</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">PIN kód registračného zámku musí mať min. %d číslic.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">PINy ktoré ste zadali sa nezhodujú.</string>

@@ -1099,7 +1099,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="WebRtcCallScreen__answer">Respon</string>
   <string name="WebRtcCallScreen__answer_without_video">Respon sense vídeo</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telèfon</string> -->
+  <string name="WebRtcAudioOutputToggle__audio_output">Sortida d\'àudio</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">Auricular del telèfon</string>
   <string name="WebRtcAudioOutputToggle__speaker">Altaveu</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1860,8 +1861,15 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences_app_protection__signal_pin">PIN del Signal</string>
   <string name="preferences_app_protection__create_a_pin">Crea un PIN</string>
   <string name="preferences_app_protection__change_your_pin">Canvieu el PIN</string>
+  <string name="preferences_app_protection__pin_reminders">Recordatoris del PIN</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Els PIN mantenen encriptada la informació desada amb el Signal de manera que no hi pugui accedir ningú més. El perfil, la configuració i els contactes es restauraran quan el reinstal·leu.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Afegiu-hi més seguretat fent que el PIN torni a registrar el número de telèfon al Signal.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Els recordatoris us ajuden a recordar el PIN, ja que no es pot recuperar. Se us demanarà menys freqüentment amb el pas del temps.</string>
+  <string name="preferences_app_protection__turn_off">Desactiva</string>
+  <string name="preferences_app_protection__confirm_pin">Confirmeu-lo</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Confirmeu el PIN del Signal</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Assegureu-vos de memoritzar o desar de forma segura el PIN, ja que no es pot recuperar. Si l\'oblideu, podríeu perdre dades quan torneu a registrar el compte del Signal.</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">PIN incorrecte. Torneu-ho a provar.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Ha fallat activar el bloqueig de registre.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Ha fallat desactivar el bloqueig de registre.</string>
   <string name="AppProtectionPreferenceFragment_none">Cap</string>
@@ -1881,6 +1889,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="RegistrationActivity_incorrect_registration_lock_pin">PIN de bloqueig del registre incorrecte</string>
   <string name="RegistrationActivity_too_many_attempts">Massa intents</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Heu marcat un PIN de bloqueig de registre incorrecte massa vegades. Si us plau, torneu-ho a provar d\'aquí a un dia.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Massa intents. Si us plau, torneu-ho a provar més tard.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Error en connectar al servei</string>
   <string name="RegistrationActivity_oh_no">Oh, no!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">El registre d\'aquest número de telèfon serà possible sense el PIN de bloqueig del registre 7 dies després des de l\'últim cop que el número es va usar al Signal. Us manquen %d dies.</string>
@@ -1890,7 +1899,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="RegistrationLockDialog_i_forgot_my_pin">He oblidat el PIN.</string>
   <string name="RegistrationLockDialog_forgotten_pin">PIN oblidat?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">El bloqueig de registre ajuda a protegir el número de telèfon d\'intents de registre no autoritzats. Aquesta funció es pot desactivar en qualsevol moment a la configuració de privadesa del Signal.</string>
-  <string name="RegistrationLockDialog_registration_lock">Bloqueig del registre</string>
+  <string name="RegistrationLockDialog_registration_lock">Bloqueig de registre</string>
   <string name="RegistrationLockDialog_enable">Activa</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">El PIN de bloqueig del registre ha de tenir com a mínim %d dígits.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Els dos PIN que heu escrit no coincideixen.</string>

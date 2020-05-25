@@ -1173,7 +1173,8 @@
   <string name="WebRtcCallScreen__answer">ענה</string>
   <string name="WebRtcCallScreen__answer_without_video">ענה בלי וידאו</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">טלפון</string> -->
+  <string name="WebRtcAudioOutputToggle__audio_output">פלט שמע</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">אפרכסת הטלפון</string>
   <string name="WebRtcAudioOutputToggle__speaker">רמקול</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1966,8 +1967,15 @@
   <string name="preferences_app_protection__signal_pin">PIN של Signal</string>
   <string name="preferences_app_protection__create_a_pin">צור PIN</string>
   <string name="preferences_app_protection__change_your_pin">שנה את ה־PIN שלך</string>
+  <string name="preferences_app_protection__pin_reminders">תזכורות PIN</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">קודי PIN שומרים על מידע מאוחסן עם Signal מוצפן כך שרק אתה יכול להשיג גישה אליו. הפרופיל, ההגדרות ואנשי הקשר שלך ישוחזרו כשתתקין מחדש את Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">הוסף אבטחה יתרה ע״י הידרשות ה־PIN של Signal שלך כדי להירשם שוב עם מספר הטלפון שלך ב־Signal.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">תזכורות עוזרות לך לזכור את ה־PIN שלך מאחר שהוא בלתי ניתן להשבה. תישאל לגביו לעיתים פחות תכופות עם הזמן.</string>
+  <string name="preferences_app_protection__turn_off">כבה</string>
+  <string name="preferences_app_protection__confirm_pin">אשר PIN</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">אשר את ה־PIN של Signal שלך</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">וודא ששיננת או שאחסנת בבטחה את ה־PIN שלך הואיל והוא בלתי ניתן להשבה. אם תשכח את ה־PIN שלך, ייתכן שתאבד נתונים כשתרשום שוב את חשבון Signal שלך.</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">PIN שגוי. נסה שוב.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">נכשל באיפשור נעילת הרשמה.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">נכשל בהשבתת נעילת הרשמה.</string>
   <string name="AppProtectionPreferenceFragment_none">ללא</string>
@@ -1987,6 +1995,7 @@
   <string name="RegistrationActivity_incorrect_registration_lock_pin">PIN נעילת הרשמה שגוי</string>
   <string name="RegistrationActivity_too_many_attempts">יותר מדי ניסיונות</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">עשית יותר מדי ניסיונות נעילת הרשמה לא נכונים. אנא נסה שוב עוד יום.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">עשית יותר מדי ניסיונות. אנא נסה שוב מאוחר יותר.</string>
   <string name="RegistrationActivity_error_connecting_to_service">שגיאה בהתחברות אל שירות</string>
   <string name="RegistrationActivity_oh_no">הו לא!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">הרשמת מספר טלפון זה תהיה אפשרית ללא PIN נעילת ההרשמה שלך בחלוף 7 ימים מאז שמספר טלפון זה היה פעיל ב־Signal. נותרו לך %d ימים.</string>

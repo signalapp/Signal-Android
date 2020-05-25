@@ -417,6 +417,7 @@
   <string name="ManageGroupActivity_leave_group">グループを抜ける</string>
   <string name="ManageGroupActivity_mute_notifications">通知をミュート</string>
   <string name="ManageGroupActivity_custom_notifications">カスタム通知</string>
+  <string name="ManageGroupActivity_until_s">%1$s まで</string>
   <string name="ManageGroupActivity_off">オフ</string>
   <string name="ManageGroupActivity_on">オン</string>
   <string name="ManageGroupActivity_add_members">メンバーを追加</string>
@@ -1051,7 +1052,7 @@
   <string name="WebRtcCallScreen__answer">応答</string>
   <string name="WebRtcCallScreen__answer_without_video">ビデオなしで応答</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">電話番号</string> -->
+  <string name="WebRtcAudioOutputToggle__audio_output">音声出力</string>
   <string name="WebRtcAudioOutputToggle__speaker">スピーカー</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1795,8 +1796,15 @@
   <string name="preferences_app_protection__signal_pin">Signal PIN</string>
   <string name="preferences_app_protection__create_a_pin">PIN を作成</string>
   <string name="preferences_app_protection__change_your_pin">PIN を変更</string>
+  <string name="preferences_app_protection__pin_reminders">PINリマインダー</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN はあなたの情報を暗号化された状態で保管され、あなただけがアクセスすることができます。Signal を再インストールした時、あなたのプロフィール、設定、連絡先は復元されます。</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">登録ロックを有効にすると追加のセキュリティ対策として、あなたの電話番号で Signal に再度登録する際に Signal PIN の入力を求めるようになります。</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">リマインダーはPINの暗記を手助けします。PINは復元できませんので。質問回数は徐々に減らしていきます。</string>
+  <string name="preferences_app_protection__turn_off">オフ</string>
+  <string name="preferences_app_protection__confirm_pin">PIN を再入力してください</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Signal PINの確認</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">PINは忘れないようにするか、安全に保管してください。復元はできませんので。PINを忘れると、Signalに登録し直しても、データは失われる可能性があります。</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">PIN が違います。もう一度お試しください。</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">登録ロックを有効にすることに失敗しました。</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">登録ロックを無効にすることに失敗しました</string>
   <string name="AppProtectionPreferenceFragment_none">なし</string>

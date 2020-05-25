@@ -162,6 +162,7 @@
   <string name="ConversationItem_read_more"> 더 알아보기</string>
   <string name="ConversationItem_download_more"> 더 다운로드</string>
   <string name="ConversationItem_pending"> 대기 중</string>
+  <string name="ConversationItem_this_message_was_deleted">본 메세지는 삭제되었습니다.&lt;br&gt;</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">보안 세션을 초기화하시겠습니까?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">대화에서 암호화 문제가 발생할 경우 해당 기능이 도움이 될 수 있습니다. 메시지는 저장됩니다.</string>
@@ -366,6 +367,9 @@
   <string name="GroupMembersDialog_you">나</string>
   <!--GV2 access levels-->
   <!--PendingMembersActivity-->
+  <string name="PendingMembersActivity_people_you_invited">초대한 사람들</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">다른 그룹 멤버들의 초대</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">다른 그룹 멤버들이 초대한 사람들의 세부정보는 표시되지 않습니다. 초대된 사람이 참가하기로 했다면, 정보가 즉시 그룹에 공유됩니다. 참가할 때까지 그룹 내 메시지는 볼 수 없습니다. </string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__create">생성</string>
   <string name="AddGroupDetailsFragment__members">멤버</string>
@@ -527,6 +531,7 @@
   <string name="MessageRecord_you_joined_the_group">그룹에 참가하였습니다.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s 님이 그룹에 참여했습니다.</string>
   <!--GV2 member removals-->
+  <string name="MessageRecord_you_left_the_group">당신은 그룹에서 떠났습니다.</string>
   <!--GV2 role change-->
   <!--GV2 invitations-->
   <!--GV2 invitation revokes-->
@@ -605,6 +610,8 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">설치된 Google Play Serivces 버전이 제대로 작동하지 않습니다. Google Play Services를 다시 설치한 후 다시 시도해 주세요.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">잘못된 번호</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">PIN 번호를 잊어버렸다면 새 번호를 생성할 수 있습니다. 가입 후 계정을 사용할 수 있지만, 프로필 정보와 같이 저장된 설정은 삭제됩니다</string>
+  <string name="PinRestoreEntryFragment_create_new_pin">새 PIN 생성ㅂ</string>
   <string name="PinRestoreEntryFragment_contact_support">지원에 문의</string>
   <string name="PinRestoreEntryFragment_cancel">취소</string>
   <string name="PinRestoreEntryFragment_skip">건너뛰기</string>
@@ -689,6 +696,7 @@
   <string name="RegistrationActivity_country_code_description">국가 번호</string>
   <string name="RegistrationActivity_call">전화</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Signal에 등록할 때 또 Signal PIN 번호을 잊어버렸다면 7일 동안 계정이 잠깁니다.</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">사진 보기</string>
   <string name="RevealableMessageView_view_video">동영상 보기</string>
@@ -777,6 +785,7 @@
   <string name="ThreadRecord_view_once_photo">한 번 볼 수 있는 이미지</string>
   <string name="ThreadRecord_view_once_video">한 번 볼 수 있는 동영상</string>
   <string name="ThreadRecord_view_once_media">한 번 볼 수 있는 미디어</string>
+  <string name="ThreadRecord_this_message_was_deleted">본 메세지는 삭제되었습니다.&lt;br&gt;</string>
   <string name="ThreadRecord_s_is_on_signal">%s 님이 온라인입니다!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">사라지는 메시지 기능이 비활성화됨</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">사라지는 메시지 시간을 %s(으)로 설정했습니다.</string>
@@ -885,6 +894,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_photo">한 번 볼 수 있는 이미지에 대해 %1$s로 리액션했습니다.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_video">한 번 볼 수 있는 동영상에 대해 %1$s로 리액션했습니다.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">스티커에 대해 %1$s로 리액션했습니다.</string>
+  <string name="MessageNotifier_this_message_was_deleted">본 메세지는 삭제되었습니다.&lt;br&gt;</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">기본</string>
   <string name="NotificationChannel_calls">전화</string>
@@ -936,7 +946,6 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">응답</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">휴대전화</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">스피커</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">블루투스</string>
   <!--WebRtcCallControls-->
@@ -1512,7 +1521,10 @@
     <item quantity="other">번호는 최소 %1$d자여야 합니다.</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">새 번호 생성</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">기기가 등록된 동안은 PIN 번호를 언제든지 변경할 수 있습니다</string>
   <string name="CreateKbsPinFragment__create_your_pin">내 번호 생성</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN 번호는 정보를 Signal에서 암호화하여 저장하므로 사용자만 액세스할 수 있습니다. 프로필, 설정과 연락처는 Signal을 다시 설치할 때 복원됩니다.</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">더 강력한 PIN 번호 선택</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">번호가 일치하지 않습니다. 다시 시도해 주세요.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">번호를 확인하세요.</string>
@@ -1522,6 +1534,7 @@
   <string name="ConfirmKbsPinFragment__creating_pin">번호 생성 중…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">번호를 소개합니다.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN 번호는 정보를 Signal에서 암호화하여 저장하므로 사용자만 액세스할 수 있습니다. 프로필, 설정과 연락처는 Signal을 다시 설치할 때 복원됩니다.</string>
   <string name="KbsSplashFragment__learn_more">더 알아보기</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">등록 잠금 = 번호</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">등록 잠금을 번호라 합니다. 하지만, 단순한 번호 그 이상입니다. 지금 업데이트하세요.</string>
@@ -1645,6 +1658,10 @@
   <string name="preferences_app_protection__signal_pin">Signal 번호</string>
   <string name="preferences_app_protection__create_a_pin">번호 생성</string>
   <string name="preferences_app_protection__change_your_pin">PIN 번호 바꾸기</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN 번호는 정보를 Signal에서 암호화하여 저장하므로 사용자만 액세스할 수 있습니다. 프로필, 설정과 연락처는 Signal을 다시 설치할 때 복원됩니다.</string>
+  <string name="preferences_app_protection__confirm_pin">번호 확인</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Signal PIN 번호 확인</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">잘못된 번호입니다. 다시 시도해 주세요.</string>
   <string name="AppProtectionPreferenceFragment_none">없음</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">등록 잠금 번호는 현재 전송된 SMS 인증 코드와는 다릅니다. 이전에 앱에서 설정했던 번호를 입력하세요.</string>
   <string name="registration_activity__registration_lock_pin">등록 잠금 번호</string>
@@ -1671,7 +1688,6 @@
   <string name="RegistrationLockDialog_i_forgot_my_pin">번호를 잊어버렸습니다.</string>
   <string name="RegistrationLockDialog_forgotten_pin">번호를 잊어버리셨나요?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">등록 잠금을 통해 휴대 전화 번호를 비승인 등록 시도로부터 보호할 수 있습니다. 이 기능은 Signal 개인 정보 보호 설정에서 언제든지 켜고 끌 수 있습니다.</string>
-  <string name="RegistrationLockDialog_registration_lock">등록 잠금</string>
   <string name="RegistrationLockDialog_enable">활성화</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">등록 잠금 번호는 최소 %d자여야 합니다.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">입력한 두 번호가 일치하지 않습니다.</string>

@@ -1609,6 +1609,8 @@
   <string name="preferences_app_protection__change_your_pin">Cambiar o PIN</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">O PIN cifra a información gardada con Signal para que só ti poidas acceder a ela. O perfil, axustes e contactos restablécense ao reinstalar Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Engadimos seguridade extra ao solicitar o teu PIN Signal para rexistrar o teu número de teléfono en Signal outra vez.</string>
+  <string name="preferences_app_protection__confirm_pin">Confirmar PIN</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">PIN incorrecto. Inténtao outra vez.</string>
   <string name="AppProtectionPreferenceFragment_none">Ningunha</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">O PIN do bloqueo de rexistro non é o mesmo que o código de verificación que recibiches por SMS. Insire o PIN con que configuraches a aplicación.</string>
   <string name="registration_activity__registration_lock_pin">PIN de bloqueo do rexistro</string>
@@ -1635,7 +1637,6 @@
   <string name="RegistrationLockDialog_i_forgot_my_pin">Esquecín o meu PIN.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Esqueciches o PIN?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">O bloqueo de rexistro protexe o teu número de teléfono de tentativas non autorizadas de rexistro. Esta funcionalidade pode ser desactivada en calquera momento nos axustes de privacidade.</string>
-  <string name="RegistrationLockDialog_registration_lock">Bloqueo do rexistro</string>
   <string name="RegistrationLockDialog_enable">Activar</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">O PIN de Bloqueo do Rexistro debe ter %d díxitos como mínimo.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Os dous PIN inseridos non coinciden.</string>

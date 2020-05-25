@@ -962,7 +962,6 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">ಉತ್ತರಿಸಿ</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">ಫೋನ್</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">ಸ್ಪೀಕರ್</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">ಬ್ಲೂಟೂತ್</string>
   <!--WebRtcCallControls-->
@@ -1693,6 +1692,8 @@
   <string name="preferences_app_protection__create_a_pin">ಒಂದು ಪಿನ್ ರಚಿಸಿ</string>
   <string name="preferences_app_protection__change_your_pin">ನಿಮ್ಮ ಪಿನ್ ಬದಲಾಯಿಸಿ</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">ಪಿನ್‌ಗಳು Signal ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಿದ ಮಾಹಿತಿಯನ್ನು ಸಂಗ್ರಹಿಸಿಡುತ್ತವೆ ಆದ್ದರಿಂದ ನೀವು ಮಾತ್ರ ಅದನ್ನು ಪ್ರವೇಶಿಸಬಹುದು. ನೀವು Signal ಅನ್ನು ಪುನಃ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿದಾಗ ನಿಮ್ಮ ಪ್ರೊಫೈಲ್, ಸೆಟ್ಟಿಂಗ್‌‌ಗಳು ಮತ್ತು ಸಂಪರ್ಕಗಳು ಪುನಃಸ್ಥಾಪನೆಯಾಗುತ್ತವೆ.</string>
+  <string name="preferences_app_protection__confirm_pin">ಪಿನ್ ದೃಢೀಕರಿಸಿ</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">ತಪ್ಪಾದ ಪಿನ್. ಮತ್ತೆ  ಪ್ರಯತ್ನಿಸಿ.</string>
   <string name="AppProtectionPreferenceFragment_none">ಯಾವುದೂ ಇಲ್ಲ</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">ನೋಂದಣಿ ಲಾಕ್ ಪಿನ್ ನೀವು ಇದೀಗ ಸ್ವೀಕರಿಸಿದ ಎಸ್‌ಎಂಎಸ್ ದೃಢೀಕರಣ ಕೋಡ್‌ನಂತೆಯೇ ಇರುವುದಿಲ್ಲ. ದಯವಿಟ್ಟು ನೀವು ಈ ಹಿಂದೆ ಅಪ್ಲಿಕೇಶನ್‌ನಲ್ಲಿ ಕಾನ್ಫಿಗರ್ ಮಾಡಿದ ಪಿನ್ ಅನ್ನು ನಮೂದಿಸಿ.</string>
   <string name="registration_activity__registration_lock_pin">ನೋಂದಣಿ ಲಾಕ್ ಪಿನ್</string>
@@ -1719,7 +1720,6 @@
   <string name="RegistrationLockDialog_i_forgot_my_pin">ನಾನು ನನ್ನ ಪಿನ್ ಮರೆತಿದ್ದೇನೆ.</string>
   <string name="RegistrationLockDialog_forgotten_pin">ಪಿನ್ ಮರೆತುಹೋಗಿದೆಯೇ?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">ನೋಂದಣಿ ಲಾಕ್ ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಅನಧಿಕೃತ ನೋಂದಣಿ ಪ್ರಯತ್ನಗಳಿಂದ ರಕ್ಷಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ. ನಿಮ್ಮ Signal ಖಾಸಗಿತನ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಈ ವೈಶಿಷ್ಟ್ಯವನ್ನು ಯಾವುದೇ ಸಮಯದಲ್ಲಿ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಬಹುದು.</string>
-  <string name="RegistrationLockDialog_registration_lock">ನೋಂದಣಿ ಲಾಕ್</string>
   <string name="RegistrationLockDialog_enable">ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">ನೋಂದಣಿ ಲಾಕ್ ಪಿನ್ ಕನಿಷ್ಠ  %dಅಂಕಿಗಳನ್ನು ಹೊಂದಿರಬೇಕು.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">ನೀವು ನಮೂದಿಸಿದ ಎರಡು ಪಿನ್‌ಗಳು ಹೊಂದುತ್ತಿಲ್ಲ.</string>

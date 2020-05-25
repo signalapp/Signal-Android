@@ -1068,7 +1068,8 @@
   <string name="WebRtcCallScreen__answer">接聽</string>
   <string name="WebRtcCallScreen__answer_without_video">已無視訊的方式回應</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">電話號碼</string> -->
+  <string name="WebRtcAudioOutputToggle__audio_output">聲音輸出</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">手機聽筒</string>
   <string name="WebRtcAudioOutputToggle__speaker">揚聲器</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">藍牙</string>
   <!--WebRtcCallControls-->
@@ -1813,8 +1814,15 @@
   <string name="preferences_app_protection__signal_pin">Signal PIN碼</string>
   <string name="preferences_app_protection__create_a_pin">建立 PIN碼</string>
   <string name="preferences_app_protection__change_your_pin">變更 PIN碼</string>
+  <string name="preferences_app_protection__pin_reminders">PIN碼提示器</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN碼會以Signal加密方式儲存資訊，因此只有你可以讀取。 重新安裝Signal時，你的個人資料，設定和聯絡人將復元。</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">透過要求你的Signal PIN碼重新在Signal上註冊你的電話號碼來增加安全性。</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">提醒可以幫助你記住你的PIN碼，因為它無法回復。 隨著時間的過去，你的詢問頻率會降低。</string>
+  <string name="preferences_app_protection__turn_off">關閉</string>
+  <string name="preferences_app_protection__confirm_pin">確認 PIN 碼</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">確認你的 Signal PIN碼</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">確保你記住或安全地儲存了PIN碼，因為它無法回復。 如果你忘記了PIN碼，則在重新註冊Signal帳號時可能會遺失資料。</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">不正確的PIN碼。請再試一次。</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">無法啟用註冊鎖。</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">無法停用註冊鎖。</string>
   <string name="AppProtectionPreferenceFragment_none">無</string>
@@ -1834,6 +1842,7 @@
   <string name="RegistrationActivity_incorrect_registration_lock_pin">不正確的註冊鎖定 PIN 碼</string>
   <string name="RegistrationActivity_too_many_attempts">您已重複嘗試太多次</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">你已經嘗試太多不正確的註冊鎖定 PIN 碼。請一天後再重試。</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">您進行了太多次嘗試。 請稍後再試。</string>
   <string name="RegistrationActivity_error_connecting_to_service">連線到服務錯誤</string>
   <string name="RegistrationActivity_oh_no">不好了！</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">如果你沒有註冊鎖定 PIN 碼，在此電話號碼，最後活躍於 Signal 的 7 天過後，才可以註冊此電話號碼。你還剩下 %d 天。</string>
@@ -1843,7 +1852,7 @@
   <string name="RegistrationLockDialog_i_forgot_my_pin">我忘記我的 PIN 碼。</string>
   <string name="RegistrationLockDialog_forgotten_pin">忘記 PIN 碼？</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">註冊鎖定協助護你的電話號碼，免於未經授權註冊的企圖。此功能可以隨時在 Signal 的隱私權設定內關閉。</string>
-  <string name="RegistrationLockDialog_registration_lock">註冊鎖定</string>
+  <string name="RegistrationLockDialog_registration_lock">註冊鎖</string>
   <string name="RegistrationLockDialog_enable">啟用</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">註冊鎖定PIN碼必需至少%d數字字母。</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">你輸入的兩個 PIN 碼不一致。</string>

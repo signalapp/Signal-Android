@@ -1096,7 +1096,8 @@
   <string name="WebRtcCallScreen__answer">Répondre</string>
   <string name="WebRtcCallScreen__answer_without_video">Répondre sans vidéo</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Téléphone</string> -->
+  <string name="WebRtcAudioOutputToggle__audio_output">Sortie son</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">Écouteur de téléphone</string>
   <string name="WebRtcAudioOutputToggle__speaker">Haut-parleur</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1857,8 +1858,15 @@
   <string name="preferences_app_protection__signal_pin">NIP Signal</string>
   <string name="preferences_app_protection__create_a_pin">Créer un NIP</string>
   <string name="preferences_app_protection__change_your_pin">Changer votre NIP</string>
+  <string name="preferences_app_protection__pin_reminders">Rappels du NIP</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Les NIP font en sorte que les renseignements sont enregistrés chiffrés dans Signal afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés quand vous réinstallerez Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Pour une sécurité accrue, exigez votre NIP Signal pour réinscrire votre numéro de téléphone auprès de Signal.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Les rappels vous aident à vous souvenir de votre NIP, car il ne peut pas être récupéré. Il vous sera demandé de moins en moins souvent.</string>
+  <string name="preferences_app_protection__turn_off">Désactiver</string>
+  <string name="preferences_app_protection__confirm_pin">Confirmer le NIP</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Confirmer votre NIP Signal</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Assurez-vous de mémoriser votre NIP ou de le conserver à l’abri, car il ne peut pas être récupéré. Si vous oubliez votre NIP, vous risquez de perdre des données lors de la réinscription de votre compte Signal. </string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">Le NIP est erroné. Veuillez ressayer.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Échec d’activation du blocage de l’inscription.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Échec de désactivation du blocage de l’inscription.</string>
   <string name="AppProtectionPreferenceFragment_none">Aucun</string>
@@ -1878,6 +1886,7 @@
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Le NIP de blocage de l’inscription est erroné.</string>
   <string name="RegistrationActivity_too_many_attempts">Trop d’essais</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Vous avez effectué trop d’essais infructueux de saisie du NIP de blocage de l’inscription. Veuillez ressayer dans un jour.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Vous avez fait trop d’essais. Veuillez ressayer ultérieurement.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Erreur de connexion au service</string>
   <string name="RegistrationActivity_oh_no">Oh non !</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">L’inscription de ce numéro de téléphone sera possible sans votre NIP de blocage de l’inscription sept jours après la dernière activité de ce numéro de téléphone sur Signal. Il vous reste %d jours.</string>

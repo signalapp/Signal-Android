@@ -76,11 +76,15 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">ปิดกั้นและออกจาก %1$s หรือไม่?</string>
   <string name="BlockUnblockDialog_block_s">ปิดกั้น %1$s หรือไม่?</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">คุณจะไม่ได้รับข้อความหรือข่าวสารจากกลุ่มนี้อีกต่อไป และสมาชิกจะไม่สามารถเพิ่มคุณกลับเข้ามาในกลุ่มนี้อีก</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">สมาชิกจะไม่สามารถเพิ่มคุณกลับเข้ามาในกลุ่มนี้อีก</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">สมาชิกกลุ่มจะสามารถเพิ่มคุณเข้ากลุ่มนี้อีก</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">คุณจะสามารถส่งข้อความและโทรหากันและกันได้</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">คนที่ถูกปิดกั้นจะไม่สามารถโทรหรือส่งข้อความหาคุณได้</string>
   <string name="BlockUnblockDialog_unblock_s">เลิกปิดกั้น %1$sหรือไม่?</string>
   <string name="BlockUnblockDialog_unblock">เลิกปิดกั้น</string>
   <string name="BlockUnblockDialog_block">ปิดกั้น</string>
+  <string name="BlockUnblockDialog_block_and_leave">ปิดกั้นและออก</string>
   <string name="BlockUnblockDialog_block_and_delete">ปิดกั้นและลบ</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">วันนี้</string>
@@ -113,6 +117,7 @@
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">เอาออก</string>
   <string name="ClearProfileActivity_remove_profile_photo">ลบรูปโปรไฟล์หรือไม่?</string>
+  <string name="ClearProfileActivity_remove_group_photo">ลบภาพกลุ่มหรือไม่?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">ไม่เจอเว็บเบราว์เซอร์</string>
   <string name="CommunicationActions_no_email_app_found">ไม่พอแอปอีเมล</string>
@@ -367,30 +372,57 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">คุณ</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">ใครก็ได้</string>
+  <string name="GroupManagement_access_level_all_members">สมาชิกทุกคน</string>
+  <string name="GroupManagement_access_level_only_admins">เฉพาะผู้ดูแล</string>
   <!--PendingMembersActivity-->
+  <string name="PendingMemberInvitesActivity_pending_group_invites">คำเชิญเข้ากลุ่มที่รอตอบกลับ</string>
   <string name="PendingMembersActivity_people_you_invited">ผู้คนที่คุณได้เชิญ</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">คุณไม่มีคำเชิญที่ค้างอยู่</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">เชิญโดยสมาชิกกลุ่มคนอื่น</string>
+  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">ไม่มีคำเชิญโดยสมาชิกคนอื่นในกลุ่มที่ค้างอยู่</string>
   <string name="PendingMembersActivity_missing_detail_explanation">รายละเอียดของบุคคลที่ถูกเชิญเข้ากลุ่มโดยสมาชิกคนอื่นจะไม่ถูกแสดง ถ้าผู้ถูกเชิญเลือกเข้าร่วมกลุ่ม ข้อมูลของบุคคลเหล่านั้นจะถูกแบ่งปันกับกลุ่ม ผู้ถูกเชิญจะมองไม่เห็นข้อความในกลุ่มจนกว่าจะเข้าร่วม</string>
+  <string name="PendingMembersActivity_cancel_invite">ยกเลิกคำเชิญ</string>
+  <string name="PendingMembersActivity_cancel_invites">ยกเลิกคำเชิญ</string>
+  <plurals name="PendingMembersActivity_cancel_d_invites">
+    <item quantity="other">ยกเลิก %1$d คำเชิญ</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_canceling_invite">
+    <item quantity="other">พบข้อผิดพลาดระหว่างยกเลิกคำเชิญ</item>
+  </plurals>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__create">สร้าง</string>
   <string name="AddGroupDetailsFragment__members">สมาชิก</string>
   <string name="AddGroupDetailsFragment__group_name_required">ชื่อกลุ่ม (ต้องมี)</string>
+  <string name="AddGroupDetailsFragment__try_again_later">ลองใหม่ภายหลัง</string>
   <string name="AddGroupDetailsFragment__remove">เอาออก</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">ข้อความที่ลบตัวเอง</string>
+  <string name="ManageGroupActivity_pending_group_invites">คำเชิญเข้ากลุ่มที่รอตอบกลับ</string>
+  <string name="ManageGroupActivity_block_group">ปิดกั้นกลุ่ม</string>
   <string name="ManageGroupActivity_leave_group">ออกจากกลุ่ม</string>
   <string name="ManageGroupActivity_mute_notifications">ปิดเสียงการแจ้งเตือน</string>
   <string name="ManageGroupActivity_custom_notifications">การแจ้งเตือนที่กำหนดเอง</string>
+  <string name="ManageGroupActivity_until_s">จนถึง %1$s</string>
   <string name="ManageGroupActivity_off">ปิด</string>
   <string name="ManageGroupActivity_on">เปิด</string>
   <string name="ManageGroupActivity_add_members">เพิ่มสมาชิก</string>
   <string name="ManageGroupActivity_view_all_members">ดูสมาชิกทั้งหมด</string>
+  <string name="ManageGroupActivity_edit_name_and_picture">แก้ไขชื่อและภาพ</string>
+  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">เลือกว่าใครสามารถเพิ่มหรือเชิญสมาชิกใหม่</string>
+  <plurals name="GroupMemberList_invited">
+    <item quantity="other">%1$s ได้เชิญ %2$d คน</item>
+  </plurals>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">การแจ้งเตือนที่กำหนดเอง</string>
   <string name="CustomNotificationsDialogFragment__messages">ข้อความ</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">เสียงการแจ้งเตือน</string>
   <string name="CustomNotificationsDialogFragment__vibrate">สั่น</string>
   <!--GV2 Invite cancellation confirmation-->
+  <string name="GroupManagement_cancel_own_single_invite"> คุณต้องการยกเลิกคำเชิญที่คุณได้ส่งให้ %1$s หรือไม่?</string>
+  <plurals name="GroupManagement_cancel_others_invites">
+    <item quantity="other">คุณต้องการยกเลิก %2$d คำเชิญที่ส่งโดย %1$sหรือไม่?</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">อวตารกลุ่ม</string>
   <string name="CropImageActivity_profile_avatar">อวตาร</string>
@@ -440,7 +472,7 @@
     <item quantity="other">ลบรายการที่เลือกหรือไม่?</item>
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="other">นี่จะลบไฟล์ %1$d ที่เลือกทั้งหมดอย่างถาวร ข้อความใดที่เกี่ยวข้องกับไอเทมเหล่านี้จะถูกลบเช่นกัน</item>
+    <item quantity="other">นี่จะลบ %1$d แฟ้มที่ถูกเลือกทั้งหมดโดยถาวร ข้อความใดที่เกี่ยวข้องกับรายการเหล่านี้จะถูกลบเช่นกัน</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">กำลังลบ</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">กำลังลบข้อความ…</string>
@@ -455,10 +487,10 @@
   <string name="MediaOverviewActivity_List_view_description">แสดงข้อมูลแบบแถว</string>
   <string name="MediaOverviewActivity_Selected_description">ถูกเลือก</string>
   <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="other">%1$d ไอเทม %2$s</item>
+    <item quantity="other">%1$d รายการ %2$s</item>
   </plurals>
   <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="other">%1$d ไอเทม</item>
+    <item quantity="other">%1$d รายการ</item>
   </plurals>
   <string name="MediaOverviewActivity_file">แฟ้ม</string>
   <string name="MediaOverviewActivity_audio">เสียง</string>
@@ -494,7 +526,7 @@
   <string name="MediaPickerItemFragment_tap_to_select">แตะเพื่อเลือก</string>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">เพิ่มคำบรรยายภาพ…</string>
-  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">ไอเทมนี้ถูกลบเพราะมีขนาดใหญ่เกินกำหนด</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">รายการนี้ถูกลบเพราะมีขนาดใหญ่เกินกำหนด</string>
   <string name="MediaSendActivity_camera_unavailable">ใช้กล้องไม่ได้</string>
   <string name="MediaSendActivity_message_to_s">ข้อความถึง %s</string>
   <string name="MediaSendActivity_message">ข้อความ</string>
@@ -502,7 +534,7 @@
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal ต้องการเข้าถึงผู้ติดต่อของคุณ เพื่อที่จะแสดงข้อมูลเหล่านั้นได้</string>
   <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">เพื่อที่จะแสดงรายชื่อผู้ติดต่อ Signal ต้องได้รับอนุญาตให้เข้าถึงรายชื่อผู้ติดต่อ แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ผู้ติดต่อ\"</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
-    <item quantity="other">คุณไม่สามารถแบ่งปันได้มากกว่า %d ไอเทม</item>
+    <item quantity="other">คุณไม่สามารถแบ่งปันได้มากกว่า %d รายการ</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">เลือกผู้รับ</string>
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">แตะที่นี่เพื่อทำให้ข้อความหายไปหลังจากเห็นข้อความ</string>
@@ -529,13 +561,41 @@
   <string name="MessageRecord_you_created_the_group">คุณได้สร้างกลุ่มแล้ว</string>
   <string name="MessageRecord_group_updated">ปรับปรุงกลุ่ม</string>
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_added_s">คุณได้เพิ่ม %1$s</string>
+  <string name="MessageRecord_s_added_s">%1$s ได้เพิ่ม %2$s</string>
+  <string name="MessageRecord_s_added_you">%1$s ได้เพิ่มคุณเข้ากลุ่ม</string>
   <string name="MessageRecord_you_joined_the_group">คุณได้ร่วมกลุ่ม</string>
   <string name="MessageRecord_s_joined_the_group">%1$s ได้เข้าร่วมกลุ่ม</string>
   <!--GV2 member removals-->
+  <string name="MessageRecord_you_removed_s">คุณได้นำ %1$s ออกจากกลุ่ม</string>
+  <string name="MessageRecord_s_removed_s">%1$s ได้นำ %2$s ออกจากกลุ่ม</string>
+  <string name="MessageRecord_s_removed_you_from_the_group">%1$s ได้นำคุณออกจากกลุ่ม</string>
+  <string name="MessageRecord_you_left_the_group">คุณได้ออกจากกลุ่ม</string>
+  <string name="MessageRecord_s_left_the_group">%1$s ออกจากกลุ่ม</string>
   <!--GV2 role change-->
+  <string name="MessageRecord_you_made_s_an_admin">คุณได้ตั้ง %1$s เป็นผู้ดูแล</string>
+  <string name="MessageRecord_s_made_s_an_admin">%1$s ได้ตั้ง %2$s เป็นผู้ดูแล</string>
+  <string name="MessageRecord_s_made_you_an_admin">%1$s ได้ตั้งคุณเป็นผู้ดูแล</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">คุณได้เพิกถอนสิทธิ์ผู้ดูแลจาก %1$s</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s ได้เพิกถอนสิทธิ์ผู้ดูแลจากคุณ</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ได้เพิกถอนสิทธิ์ผู้ดูแลจาก %2$s</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_invited_s_to_the_group">คุณได้เชิญ %1$s เข้ากลุ่ม</string>
+  <string name="MessageRecord_s_invited_you_to_the_group">%1$s ได้เชิญคุณเข้ากลุ่ม</string>
+  <plurals name="MessageRecord_s_invited_members">
+    <item quantity="other">%1$s ได้เชิญ %2$d คนเข้ากลุ่ม</item>
+  </plurals>
   <!--GV2 invitation revokes-->
+  <plurals name="MessageRecord_you_revoked_invites">
+    <item quantity="other">คุณได้เพิกถอน %1$d คำเชิญเข้ากลุ่ม</item>
+  </plurals>
+  <plurals name="MessageRecord_s_revoked_invites">
+    <item quantity="other">%1$s ได้เพิกถอน %2$d คำเชิญเข้ากลุ่ม</item>
+  </plurals>
+  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">ใครบางคนได้ปฏิเสธคำเชิญเข้าร่วมกลุ่ม</string>
   <!--GV2 invitation acceptance-->
+  <string name="MessageRecord_you_added_invited_member_s">คุณได้เพิ่มสมาชิกที่ถูกเชิญ %1$s</string>
+  <string name="MessageRecord_s_added_invited_member_s">%1$s ได้เพิ่มสมาชิกที่ถูกเชิญ %2$s</string>
   <!--GV2 title change-->
   <!--GV2 avatar change-->
   <!--GV2 attribute access level change-->
@@ -553,6 +613,7 @@
   <string name="MessageRequestBottomView_unblock">เลิกปิดกั้น</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">คุณต้องการปล่อยให้ %1$s ส่งข้อความหาคุณหรือไม่? พวกเขาจะไม่รู้ว่าคุณได้เห็นข้อความของพวกเขาแล้วจนกว่าคุณจะยอมรับ</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">คุณต้องการเข้าร่วมกลุ่ม %1$s หรือไม่? พวกเขาจะไม่รู้ว่าคุณได้เห็นข้อความของพวกเขาแล้วจนกว่าคุณจะยอมรับ</string>
+  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">คุณได้ถูกเชิญให้เข้ากลุ่ม %1$s คุณต้องการให้สมาชิกของกลุ่มนี้ส่งข้อความหาคุณได้หรือไม่?</string>
   <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">เลิกปิดกั้น %1$s เพื่อส่งข้อความและโทรหากัน</string>
   <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">การเลิกปิดกั้นจะอนุญาตให้สมาชิกในกลุ่มสามารถเพิ่มคุณเข้ากลุ่มนี้อีกครั้ง</string>
   <string name="MessageRequestProfileView_member_of_one_group">สมาชิกของ %1$s</string>
@@ -802,6 +863,7 @@
   <string name="ThreadRecord_message_could_not_be_processed">ไม่สามารถประมวลผลข้อความ</string>
   <string name="ThreadRecord_message_request">คำร้องขอส่งข้อความ</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$s เพิ่มคุณเข้ากลุ่ม</string>
+  <string name="ThreadRecord_s_invited_you_to_the_group">%1$s ได้เชิญคุณเข้ากลุ่ม</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">อัปเดต Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal รุ่นใหม่มาแล้ว แตะเพื่อปรับปรุง</string>
@@ -934,7 +996,7 @@
   <string name="ThumbnailView_Has_a_caption_description">มีคำบรรยายภาพ</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
-    <item quantity="other">%d ไอเทม</item>
+    <item quantity="other">%d รายการ</item>
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">อุปกรณ์นี้ไม่ได้ลงทะเบียนอีกต่อไป</string>
@@ -953,7 +1015,6 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">รับสาย</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">โทรศัพท์</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">ลำโพง</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">บลูทูธ</string>
   <!--WebRtcCallControls-->
@@ -1682,6 +1743,9 @@
   <string name="preferences_app_protection__create_a_pin">สร้างรหัส PIN</string>
   <string name="preferences_app_protection__change_your_pin">เปลี่ยนรหัส PIN ของคุณ</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">รหัส PIN รักษาข้อมูลที่เก็บไว้ใน Signal ที่เข้ารหัส ดังนั้นจึงมีแต่คุณที่เข้าถึงข้อมูลนี้ได้ โปรไฟล์ของคุณ การตั้งค่า และรายชื่อผู้ติดต่อจะถูกกู้คืนเมื่อคุณติดตั้ง Signal อีกครั้ง</string>
+  <string name="preferences_app_protection__confirm_pin">ยืนยันรหัส PIN</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">ยืนยันรหัส PIN สำหรับ Signal ของคุณ</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">รหัส PIN ไม่ถูกต้อง ลองอีกครั้ง</string>
   <string name="AppProtectionPreferenceFragment_none">ไม่มี</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">รหัส PIN กุญแจลงทะเบียนไม่เหมือนกับรหัสตรวจยืนยันทาง SMS ที่คุณเพิ่งได้รับ โปรดป้อนรหัส PIN ที่คุณได้กำหนดไว้ในโปรแกรมก่อนหน้านี้</string>
   <string name="registration_activity__registration_lock_pin">รหัส PIN กุญแจลงทะเบียน</string>
@@ -1708,7 +1772,6 @@
   <string name="RegistrationLockDialog_i_forgot_my_pin">ฉันลืมรหัส PIN</string>
   <string name="RegistrationLockDialog_forgotten_pin">ลืมรหัส PIN หรือ?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">กุญแจลงทะเบียนช่วยป้องกันหมายเลขโทรศัพท์ของคุณจากความพยายามลงทะเบียนที่ไม่ได้รับอนุญาต คุณสามารถปิดใช้งานคุณสมบัตินี้ได้ทุกเมื่อที่การตั้งค่าความเป็นส่วนตัวใน Signal ของคุณ</string>
-  <string name="RegistrationLockDialog_registration_lock">กุญแจลงทะเบียน</string>
   <string name="RegistrationLockDialog_enable">เปิดใช้งาน</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">รหัส PIN กุญแจลงทะเบียนต้องมีอย่างน้อย %d หลัก</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">รหัส PIN ทั้งสองที่คุณใส่นั้นไม่ตรงกัน</string>

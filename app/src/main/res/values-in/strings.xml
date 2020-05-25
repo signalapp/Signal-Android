@@ -76,11 +76,15 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Blok dan tinggalkan %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Blok %1$s?</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Anda tidak lagi dapat menerima pesan atau info terbaru dari grup ini, dan anggota grup tidak dapat menambahkan Anda ke grup ini lagi.</string>
+  <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Anggota grup tidak dapat lagi menambahkan Anda ke grup ini.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Anggota grup dapat mengundang Anda kembali ke dalam grup.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Anda akan dapat mengirim pesan dan membuat panggilan satu sama lain.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Orang yang Anda blokir tidak akan dapat menelepon atau mengirim pesan pada Anda</string>
   <string name="BlockUnblockDialog_unblock_s">Berhenti blok %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Buka blokir</string>
   <string name="BlockUnblockDialog_block">Blokir</string>
+  <string name="BlockUnblockDialog_block_and_leave">Blokir dan Tinggalkan</string>
   <string name="BlockUnblockDialog_block_and_delete">Blok dan Hapus</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Hari ini</string>
@@ -113,9 +117,10 @@
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Hapus</string>
   <string name="ClearProfileActivity_remove_profile_photo">Hapus foto profil?</string>
+  <string name="ClearProfileActivity_remove_group_photo">Hapus foto grup?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Peramban web tidak ditemukan.</string>
-  <string name="CommunicationActions_no_email_app_found">Aplikasi pengirim email tidak ditermukan.</string>
+  <string name="CommunicationActions_no_email_app_found">Aplikasi pengirim email tidak ditemukan.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Panggilan melalui jaringan seluler sedang berlangsung.</string>
   <string name="CommunicationActions_start_video_call">Buat panggilan video?</string>
   <string name="CommunicationActions_start_voice_call">Buat panggilan suara?</string>
@@ -220,6 +225,8 @@
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Anda akan meninggalkan grup ini. Catatan mengenai grup akan dihapus dari semua perangkat Anda.</string>
   <string name="ConversationActivity_delete">Hapus</string>
   <string name="ConversationActivity_delete_and_leave">Hapus dan tinggalkan</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Untuk menelepon %1$s, Signal memerlukan akses mikrofon Anda</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Untuk menelepon %1$s, Signal memerlukan akses mikrofon dan kamera Anda</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d pesan belum dibaca</item>
@@ -251,6 +258,8 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Menghapus</string>
   <string name="ConversationFragment_deleting_messages">Menghapus pesan-pesan …</string>
+  <string name="ConversationFragment_delete_for_me">Hapus untuk saya</string>
+  <string name="ConversationFragment_delete_for_everyone">Hapus untuk semua</string>
   <string name="ConversationFragment_quoted_message_not_found">Pesan asli tidak ditemukan</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Pesan asli tidak lagi tersedia</string>
   <string name="ConversationFragment_failed_to_open_message">Gagal membuka pesan</string>
@@ -347,6 +356,7 @@
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Grup baru</string>
   <string name="GroupCreateActivity_actionbar_edit_title">Ubah grup</string>
+  <string name="GroupCreateActivity_actionbar_manage_title">Pengaturan grup</string>
   <string name="GroupCreateActivity_group_name_hint">Nama grup</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Grup MMS baru</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Anda telah memilih kontak yang tidak mendukung grup Signal, maka grup ini akan menjadi grup MMS.</string>
@@ -360,6 +370,7 @@
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Tidak bisa menambahkan %1$s karena mereka bukan pengguna Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Memuat detail grup…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Anda sudah berada di grup.</string>
+  <string name="GroupCreateActivity_remove_member_description">Hapus anggota</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Bagi nama profil dan foto anda di grup ini?</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Apakah anda ingin nama dan profil anda ditampilkan untuk semua anggota group saat ini dan yang akan datang? </string>
@@ -367,30 +378,71 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Anda</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">Siapapun</string>
+  <string name="GroupManagement_access_level_all_members">Semua anggota</string>
+  <string name="GroupManagement_access_level_only_admins">Khusus para admin</string>
   <!--PendingMembersActivity-->
+  <string name="PendingMemberInvitesActivity_pending_group_invites">Undangan grup yang tertunda</string>
   <string name="PendingMembersActivity_people_you_invited">Orang yang Anda undang</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">Anda tidak memiliki undangan tertunda</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Undangan dari anggota grup yang lain</string>
+  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Tidak ada undangan tertunda dari anggota grup lain</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Detil dari orang yang diundang oleh anggota grup lain tidak terlihat. Jika mereka memilih bergabung, informasi mereka akan dibagikan ke dalam grup pada saat itu. Mereka tidak akan melihat pesan apapun di dalam grup sampai mereka bergabung.</string>
+  <string name="PendingMembersActivity_cancel_invite">Batalkan undangan</string>
+  <string name="PendingMembersActivity_cancel_invites">Batalkan undangan-undangan</string>
+  <plurals name="PendingMembersActivity_cancel_d_invites">
+    <item quantity="other">Batalkan %1$d undangan</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_canceling_invite">
+    <item quantity="other">Gagal membatalkan undangan</item>
+  </plurals>
   <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__name_this_group">Beri nama grup ini</string>
   <string name="AddGroupDetailsFragment__create">Buat</string>
   <string name="AddGroupDetailsFragment__members">Anggota-anggota</string>
   <string name="AddGroupDetailsFragment__group_name_required">Nama grup (diperlukan)</string>
+  <string name="AddGroupDetailsFragment__this_field_is_required">Kolom ini diperlukan</string>
+  <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Grup memerlukan minimal dua anggota</string>
+  <string name="AddGroupDetailsFragment__group_creation_failed">Pembuatan grup gagal</string>
+  <string name="AddGroupDetailsFragment__try_again_later">Coba lagi lain waktu</string>
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Anda telah memilih kontak yang tidak mendukung grup Signal, maka grup ini akan menjadi grup MMS.</string>
   <string name="AddGroupDetailsFragment__remove">Hapus</string>
+  <string name="AddGroupDetailsFragment__sms_contact">Kontak pesan singkat</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Penghilangan pesan</string>
+  <string name="ManageGroupActivity_pending_group_invites">Undangan grup yang tertunda</string>
+  <string name="ManageGroupActivity_who_can_edit_group_membership">Pemilik akses untuk menyunting keanggotaan grup</string>
+  <string name="ManageGroupActivity_who_can_edit_group_info">Pemilik akses untuk menyunting informasi grup</string>
+  <string name="ManageGroupActivity_block_group">Blokir grup</string>
   <string name="ManageGroupActivity_leave_group">Keluar grup</string>
   <string name="ManageGroupActivity_mute_notifications">Senyapkan pemberitahuan</string>
   <string name="ManageGroupActivity_custom_notifications">Notifikasi khusus</string>
+  <string name="ManageGroupActivity_until_s">Sampai %1$s</string>
   <string name="ManageGroupActivity_off">Mati</string>
   <string name="ManageGroupActivity_on">Aktif</string>
   <string name="ManageGroupActivity_add_members">Tambahkan anggota</string>
   <string name="ManageGroupActivity_view_all_members">Lihat semua anggota</string>
+  <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Anda tidak memiliki hak untuk melakukan hal ini</string>
+  <string name="ManageGroupActivity_not_capable">Seseorang yang Anda tambahkan belum menunjang fitur grup baru dan perlu memperbarui Signal</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group">Gagal untuk memperbarui grup</string>
+  <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Anda bukan member grup ini</string>
+  <string name="ManageGroupActivity_edit_name_and_picture">Sunting nama dan gambar</string>
+  <string name="GroupManagement_choose_who_can_add_or_invite_new_members">Pilih siapa yang dapat menambahkan atau mengundang anggota baru</string>
+  <string name="GroupManagement_choose_who_can_change_the_group_name_and_photo">Pilih siapa yang dapat mengubah nama dan foto grup</string>
+  <plurals name="GroupMemberList_invited">
+    <item quantity="other">%1$s telah mengundang %2$d orang</item>
+  </plurals>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Notifikasi khusus</string>
   <string name="CustomNotificationsDialogFragment__messages">Pesan</string>
+  <string name="CustomNotificationsDialogFragment__use_custom_notifications">Gunakan notifikasi khusus</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Suara pemberitahuan</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Bergetar</string>
   <!--GV2 Invite cancellation confirmation-->
+  <string name="GroupManagement_cancel_own_single_invite">Apakah Anda ingin membatalkan undangan yang Anda kirim pada  %1$s?</string>
+  <plurals name="GroupManagement_cancel_others_invites">
+    <item quantity="other">Apakah Anda ingin membatalkan %2$d undangan yang dikirim oleh %1$s?</item>
+  </plurals>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar grup</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
@@ -529,14 +581,46 @@
   <string name="MessageRecord_you_created_the_group">Grup telah dibuat.</string>
   <string name="MessageRecord_group_updated">Group dimutakhirkan</string>
   <!--GV2 member additions-->
+  <string name="MessageRecord_you_added_s">Anda menambahkan %1$s.</string>
+  <string name="MessageRecord_s_added_s">%1$s menambahkan %2$s.</string>
+  <string name="MessageRecord_s_added_you">%1$s menambahkan Anda ke grup.</string>
   <string name="MessageRecord_you_joined_the_group">Anda bergabung ke dalam grup.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s bergabung dengan grup</string>
   <!--GV2 member removals-->
+  <string name="MessageRecord_you_removed_s">Anda mengeluarkan %1$s.</string>
+  <string name="MessageRecord_s_removed_s">%1$s mengeluarkan %2$s.</string>
+  <string name="MessageRecord_s_removed_you_from_the_group">%1$s mengeluarkan Anda dari grup.</string>
+  <string name="MessageRecord_you_left_the_group">Anda telah meninggalkan grup</string>
+  <string name="MessageRecord_s_left_the_group">%1$s telah meninggalkan grup.</string>
   <!--GV2 role change-->
+  <string name="MessageRecord_you_made_s_an_admin">Anda menjadikan %1$s sebagai admin.</string>
+  <string name="MessageRecord_s_made_s_an_admin">%1$s menjadikan %2$s sebagai admin.</string>
+  <string name="MessageRecord_s_made_you_an_admin">%1$s menjadikan Anda sebagai admin.</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">Anda membatalkan akses admin dari %1$s.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s membatalkan akses admin Anda.\"</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s membatalkan akses admin %2$s.</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_invited_s_to_the_group">Anda mengundang %1$s ke grup.</string>
+  <string name="MessageRecord_s_invited_you_to_the_group">%1$s mengundang Anda ke grup.</string>
+  <plurals name="MessageRecord_s_invited_members">
+    <item quantity="other">%1$s mengundang %2$d orang ke grup.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
+  <plurals name="MessageRecord_you_revoked_invites">
+    <item quantity="other">Anda membatalkan %1$d undangan ke grup.</item>
+  </plurals>
+  <plurals name="MessageRecord_s_revoked_invites">
+    <item quantity="other">%1$s membatalkan %2$d undangan ke grup.</item>
+  </plurals>
+  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Seseorang menolak undangan masuk ke grup.</string>
+  <string name="MessageRecord_you_declined_the_invitation_to_the_group">Anda menolak undangan masuk ke grup.</string>
   <!--GV2 invitation acceptance-->
+  <string name="MessageRecord_you_accepted_invite">Anda menerima undangan masuk ke grup.</string>
+  <string name="MessageRecord_s_accepted_invite">%1$s menerima undangan masuk ke grup.</string>
+  <string name="MessageRecord_you_added_invited_member_s">Anda menambahkan anggota undangan %1$s.</string>
+  <string name="MessageRecord_s_added_invited_member_s">%1$s menambahkan anggota undangan %2$s.</string>
   <!--GV2 title change-->
+  <string name="MessageRecord_you_changed_the_group_name_to_s">Anda mengubah nama grup menjadi \"%1$s\".</string>
   <!--GV2 avatar change-->
   <!--GV2 attribute access level change-->
   <!--GV2 membership access level change-->
@@ -620,6 +704,7 @@
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Masukkan PIN numerik</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Buat PIN Anda</string>
+  <string name="PinRestoreLockedFragment_create_new_pin">Buat PIN baru</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Nilai aplikasi ini</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Jika Anda suka menggunakan aplikasi ini, luangkan waktu sejenak untuk membantu kami dengan memberikan nilai pada aplikasi.</string>
@@ -628,6 +713,7 @@
   <string name="RatingManager_later">Nanti</string>
   <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Eiittts, aplikasi Play Store nampaknya tidak terpasang pada perangkat anda.</string>
   <!--ReactionsBottomSheetDialogFragment-->
+  <string name="ReactionsBottomSheetDialogFragment_all">Semua · %1$d</string>
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
@@ -655,7 +741,12 @@
   <string name="RedPhone_got_it">Paham</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Ketuk di sini untuk menyalakan video Anda</string>
+  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Untuk menelepon %1$s, Signal memerlukan akses kamera Anda</string>
+  <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
+  <string name="WebRtcCallActivity__calling">Panggilan…</string>
   <!--WebRtcCallView-->
+  <string name="WebRtcCallView__signal_voice_call">Panggilan suara Signal…</string>
+  <string name="WebRtcCallView__signal_video_call">Panggilan video Signal…</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Pilih negara Anda</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Anda harus mengisi
@@ -697,7 +788,11 @@ isikan (%s) tidak valid.
   <string name="RegistrationActivity_country_code_description">Kode negara</string>
   <string name="RegistrationActivity_call">Panggil</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Nyalakan Kunci Pendaftaran?</string>
+  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Matikan Kunci Pendaftaran?</string>
   <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Jika Anda lupa PIN Signal saat melakukan pendaftaran lagi, akun Anda akan terkunci selama 7 hari.</string>
+  <string name="RegistrationLockV2Dialog_turn_on">Nyalakan</string>
+  <string name="RegistrationLockV2Dialog_turn_off">Matikan</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Lihat Foto</string>
   <string name="RevealableMessageView_view_video">Lihat Video</string>
@@ -777,6 +872,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SupportEmailUtil_device_info">Informasi perangkat:</string>
   <string name="SupportEmailUtil_android_version">Versi Android:</string>
   <string name="SupportEmailUtil_signal_version">Versi Signal:</string>
+  <string name="SupportEmailUtil_signal_package">Paket Signal:</string>
   <string name="SupportEmailUtil_locale">Bahasa:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grup diperbarui</string>
@@ -802,6 +898,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ThreadRecord_message_could_not_be_processed">Pesan tidak dapat diproses</string>
   <string name="ThreadRecord_message_request">Permintaan Pesan</string>
   <string name="ThreadRecord_s_added_you_to_the_group">%1$stelah menambahkan Anda ke grup.</string>
+  <string name="ThreadRecord_s_invited_you_to_the_group">%1$s mengundang Anda ke grup</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Pembaharuan Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Versi baru Signal tersedia, ketuk untuk memperbarui</string>
@@ -944,6 +1041,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Untuk menjawab panggilan dari %s, berikan Signal akses ke mikrofon Anda.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal memerlukan izin Mikrofon dan Kamera untuk menerima atau melakukan panggilan, tetapi saat ini izin ditolak secara permanen. Mohon lanjutkan ke pengatuaran aplikasi, pilih \"Izin\" lalu aktifkan \"Mikrofon\" serta \"Kamera\". </string>
+  <string name="WebRtcCallActivity__answered_on_a_linked_device">Jawab di perangkat terkait</string>
+  <string name="WebRtcCallActivity__declined_on_a_linked_device">Tolak di perangkat terkait</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Nomor keamanan untuk percakapan Anda dengan %1$s telah berubah. Ini bisa berarti seseorang mencoba untuk mencegat komunikasi Anda, atau %2$s hanya perlu memasang kembali Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Sebaiknya Anda memverifikasi nomor keamanan dengan kontak ini.</string>
@@ -951,9 +1050,9 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="WebRtcCallScreen_accept">Terima</string>
   <string name="WebRtcCallScreen_end_call">Akhiri panggilan</string>
   <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__decline">Tolak</string>
   <string name="WebRtcCallScreen__answer">Jawab</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telpon</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Pengeras Suara</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1247,6 +1346,15 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Mohon jelaskan secara deskriptif untuk membantu kami memahami permasalahannya.</string>
   <string name="HelpFragment__no_email_app_found">Aplikasi pengirim email tidak ditermukan.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smiley &amp; Orang</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Alam</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Makanan</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Aktivitas</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Tempat</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Obyek</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Simbol</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Bendera</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emotikon</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Impor</string>
   <string name="arrays__use_default">Gunakan standar</string>
@@ -1451,6 +1559,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--conversation-->
   <string name="conversation__menu_add_attachment">Tambahkan lampiran</string>
   <string name="conversation__menu_edit_group">Ubah grup</string>
+  <string name="conversation__menu_manage_group">Pengaturan grup</string>
   <string name="conversation__menu_leave_group">Keluar grup</string>
   <string name="conversation__menu_view_all_media">Semua media</string>
   <string name="conversation__menu_conversation_settings">Pengaturan percakapan</string>
@@ -1554,6 +1663,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Pembuatan PIN gagal</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN Anda tidak disimpan. Signal akan meminta Anda membuat PIN lagi nanti.</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN dibuat.</string>
+  <string name="ConfirmKbsPinFragment__re_enter_your_pin">Masukkan ulang PIN Anda</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Membuat PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Memperkenalkan PIN</string>
@@ -1682,6 +1792,10 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_app_protection__create_a_pin">Buat PIN</string>
   <string name="preferences_app_protection__change_your_pin">Ganti PIN Anda</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN menjaga informasi yang disimpan di Signal terenkripsi sehingga hanya Anda yang dapat mengaksesnya. Profil, pengaturan, dan kontak akan dipulihkan saat Anda memasang ulang Signal.</string>
+  <string name="preferences_app_protection__turn_off">Matikan</string>
+  <string name="preferences_app_protection__confirm_pin">Konfimasi PIN</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Konfirmasi PIN Signal Anda</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">PIN Salah. Coba lagi.</string>
   <string name="AppProtectionPreferenceFragment_none">Kosong</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN Kunci Pendaftaran berbeda dengan SMS kode verifikasi yang baru Anda terima. Harap masukkan konfigurasi PIN yang sebelumnya telah Anda buat. </string>
   <string name="registration_activity__registration_lock_pin">PIN Kunci Pendaftaran</string>
@@ -1708,7 +1822,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="RegistrationLockDialog_i_forgot_my_pin">Saya lupa PIN.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Lupa PIN?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Kunci Pendaftaran membantu melindungi nomor telepon Anda dari upaya pendaftaran tanpa izin. Fitur ini dapat ditinjau kembali setiap saat dalam pengaturan privasi Signal</string>
-  <string name="RegistrationLockDialog_registration_lock">Kunci Pendaftaran</string>
   <string name="RegistrationLockDialog_enable">Aktifkan</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">PIN Kunci Pendaftaran harus terdiri dari minimal %d digit.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Kedua PIN yang Anda masukkan tidak cocok.</string>
@@ -1729,6 +1842,9 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="RecipientBottomSheet_block">Blokir</string>
   <string name="RecipientBottomSheet_unblock">Buka blokir</string>
   <string name="RecipientBottomSheet_view_safety_number">Lihat nomor keamanan</string>
+  <string name="RecipientBottomSheet_make_group_admin">Jadikan admin grup</string>
+  <string name="RecipientBottomSheet_remove_as_admin">Cabut dari admin</string>
+  <string name="RecipientBottomSheet_remove_from_group">Keluarkan dari grup</string>
   <string name="RecipientBottomSheet_remove">Hapus</string>
   <string name="GroupRecipientListItem_admin">Admin</string>
   <!--EOF-->

@@ -928,7 +928,6 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">Amsa</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Lambar waya</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Sipika</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1610,6 +1609,8 @@
   <string name="preferences_app_protection__create_a_pin">Kirkira lambobin sirri</string>
   <string name="preferences_app_protection__change_your_pin">Canza lambobin sirri</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Ka/ki tsare bayanai da ka/kika ajiye da Signal domin ya Zaman to kai/ke kadai ne/ceke damar isonshi. Furofayil, saiti, da lambobin sadarwarka/ki za su dawo saitin ainihi idan ka/kika sake girka Signal. </string>
+  <string name="preferences_app_protection__confirm_pin">Tabbatar da lambar sirri</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">Lambobin sirrinnan ba dai dai bane. Kara gwadawa.</string>
   <string name="AppProtectionPreferenceFragment_none">Babu.</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Lambar sirrin rijista ba daya bane da lambar sirrin tabbatarwar SMS da ka/kika samu. Dan shigar da lambar sirrin that ka/kika fara sakawa a manhajar.</string>
   <string name="registration_activity__registration_lock_pin">Lambar sirrin rijista</string>
@@ -1635,7 +1636,6 @@
   <string name="RegistrationLockDialog_i_forgot_my_pin">Na manta lambar sirrina</string>
   <string name="RegistrationLockDialog_forgotten_pin">An manta da lambar sirri?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Mukullin rijista na taimakawa wajen kare lambar wayarka/ki daga gwajin rijista da ba\'a yarda dashi ba. Za\'a iya nakashe wannan fasalin ko da yaushe a cikin saitin sirri na Signal dinka/ki.</string>
-  <string name="RegistrationLockDialog_registration_lock">Mukullin rijista</string>
   <string name="RegistrationLockDialog_enable">Karfafa</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">Dole sai lambobin sirrin rijista sun kai wa\'adi %d .</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Lambobin sirri da ka/kika shigar basu dace ba</string>

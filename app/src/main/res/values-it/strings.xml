@@ -1105,7 +1105,8 @@
   <string name="WebRtcCallScreen__answer">Rispondi</string>
   <string name="WebRtcCallScreen__answer_without_video">Rispondi senza video</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefono</string> -->
+  <string name="WebRtcAudioOutputToggle__audio_output">Uscita audio</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">Auricolari</string>
   <string name="WebRtcAudioOutputToggle__speaker">Vivavoce</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1866,8 +1867,15 @@
   <string name="preferences_app_protection__signal_pin">PIN di Signal</string>
   <string name="preferences_app_protection__create_a_pin">Crea un PIN</string>
   <string name="preferences_app_protection__change_your_pin">Cambia il tuo PIN</string>
+  <string name="preferences_app_protection__pin_reminders">Promemoria del PIN</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">I PIN mantengono le informazioni memorizzate con Signal crittografate in modo che solo tu possa accedervi. Il profilo, le impostazioni e i contatti verranno ripristinati quando reinstalli Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Aggiungi ulteriore sicurezza richiedendo il tuo PIN di Signal per registrare nuovamente il tuo numero di telefono con Signal.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">I promemoria ti aiutano a ricordare il tuo PIN poiché non può essere recuperato. Ti verrà chiesto meno frequentemente nel corso del tempo.</string>
+  <string name="preferences_app_protection__turn_off">Disattiva</string>
+  <string name="preferences_app_protection__confirm_pin">Conferma PIN</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Conferma il tuo PIN di Signal</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Assicurati di memorizzare o archiviare in modo sicuro il tuo PIN in quanto non può essere recuperato. Se dimentichi il tuo PIN, potresti perdere dati durante la nuova registrazione del tuo account Signal.</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">PIN errato. Riprova.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Impossibile abilitare il blocco registrazione.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Impossibile disabilitare il blocco registrazione.</string>
   <string name="AppProtectionPreferenceFragment_none">Nessuna</string>
@@ -1887,6 +1895,7 @@
   <string name="RegistrationActivity_incorrect_registration_lock_pin">PIN errato</string>
   <string name="RegistrationActivity_too_many_attempts">Troppi tentativi</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Hai sbagliato il PIN di blocco registrazione troppe volte. Per favore riprova tra un giorno.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Hai fatto troppi tentativi. Riprova più tardi.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Errore durante la connessione al servizio</string>
   <string name="RegistrationActivity_oh_no">Oh no!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">La registrazione di questo numero di telefono sarà possibile senza il PIN di blocco della registrazione dopo che saranno trascorsi 7 giorni dall\'ultima volta in cui questo numero di telefono è stato attivo su Signal. Hai %d giorni rimanenti.</string>

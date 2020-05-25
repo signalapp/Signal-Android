@@ -427,8 +427,8 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Verschwindende Nachrichten</string>
   <string name="ManageGroupActivity_pending_group_invites">Ausstehende Gruppeneinladungen</string>
-  <string name="ManageGroupActivity_who_can_edit_group_membership">Wer kann Gruppenmitgliedschaften ändern</string>
-  <string name="ManageGroupActivity_who_can_edit_group_info">Wer kann Gruppendetails ändern</string>
+  <string name="ManageGroupActivity_who_can_edit_group_membership">Wer kann Gruppenmitgliedschaften bearbeiten</string>
+  <string name="ManageGroupActivity_who_can_edit_group_info">Wer kann Gruppendetails bearbeiten</string>
   <string name="ManageGroupActivity_block_group">Gruppe blockieren</string>
   <string name="ManageGroupActivity_leave_group">Gruppe verlassen</string>
   <string name="ManageGroupActivity_mute_notifications">Benachrichtigungen stummschalten</string>
@@ -439,7 +439,7 @@
   <string name="ManageGroupActivity_add_members">Mitglieder hinzufügen</string>
   <string name="ManageGroupActivity_view_all_members">Alle Mitglieder anzeigen</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Dir fehlen die hierfür erforderlichen Rechte</string>
-  <string name="ManageGroupActivity_not_capable">Ein von dir hinzugefügtes Mitglied unterstützt nicht die neueste Version für Gruppenunterhaltungen und muss Signal daher aktualisieren</string>
+  <string name="ManageGroupActivity_not_capable">Die Signal-App eines von dir hinzugefügten Mitglieds unterstützt nicht die neueste Version von Gruppenunterhaltungen und muss daher aktualisiert werden</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Gruppe konnte nicht aktualisiert werden</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Du bist kein Mitglied der Gruppe</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Name und Bild bearbeiten</string>
@@ -1094,7 +1094,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="WebRtcCallScreen__answer">Annehmen</string>
   <string name="WebRtcCallScreen__answer_without_video">Ohne Video annehmen</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefon</string> -->
+  <string name="WebRtcAudioOutputToggle__audio_output">Audioausgang</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">Hörer</string>
   <string name="WebRtcAudioOutputToggle__speaker">Lautsprecher</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1855,8 +1856,15 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_app_protection__signal_pin">Signal-PIN</string>
   <string name="preferences_app_protection__create_a_pin">Erstelle eine PIN</string>
   <string name="preferences_app_protection__change_your_pin">PIN ändern</string>
+  <string name="preferences_app_protection__pin_reminders">PIN-Erinnerungen</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PINs halten deine bei Signal gespeicherten Informationen verschlüsselt, sodass nur du auf sie zugreifen kannst. Falls du Signal erneut installierst, werden so dein Profil und deine Einstellungen und Kontakte wiederhergestellt.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Als zusätzliches Sicherheitsmerkmal deine Signal-PIN erforderlich machen, sobald du deine Telefonnummer erneut bei Signal registrierst.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Erinnerungen helfen dir dabei, dir deine PIN zu merken, da diese nicht wiederhergestellt werden kann. Sie wird mit der Zeit seltener abgefragt.</string>
+  <string name="preferences_app_protection__turn_off">Ausschalten</string>
+  <string name="preferences_app_protection__confirm_pin">PIN bestätigen</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Bestätige deine Signal-PIN</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Sorge dafür, dass du dir deine PIN einprägst oder sicher verwahrst, da sie nicht wiederhergestellt werden kann. Falls du deine PIN vergisst, könntest du bei erneutem Registrieren deines Signal-Kontos deine Daten verlieren.</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">Falsche PIN. Bitte erneut versuchen.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Registrierungssperre konnte nicht aktiviert werden.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Registrierungssperre konnte nicht deaktiviert werden.</string>
   <string name="AppProtectionPreferenceFragment_none">Keine</string>
@@ -1876,6 +1884,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Falsche PIN für Registrierungssperre</string>
   <string name="RegistrationActivity_too_many_attempts">Zu viele Versuche</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Du hast deine PIN für die Registrierungssperre zu oft falsch eingegeben. Bitte versuche es in einem Tag wieder.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Du hast zu viele Versuche benötigt. Bitte versuche es später erneut.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Fehler beim Verbinden mit Dienst</string>
   <string name="RegistrationActivity_oh_no">Oh nein!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Ohne deine PIN für die Registrierungssperre kann diese Rufnummer erst 7 Tage nach der letzten Aktivität auf Signal wieder registriert werden. Es verbleiben noch %d Tage.</string>

@@ -1105,7 +1105,6 @@
   <string name="WebRtcCallScreen__answer">Vasta</string>
   <string name="WebRtcCallScreen__answer_without_video">Vasta ilma videota</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefon</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Valjuhääldi</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1868,6 +1867,9 @@
   <string name="preferences_app_protection__change_your_pin">Muuda enda PIN-koodi</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-koodid hoiavad Signal-is salvestatud teabe krüptituna, et ainult sinul on sellele juurdepääs. Kui paigaldad Signal-i uuesti, siis sinu profiil, sätted ja kontaktid taastatakse.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Lisa turvalisust, nõudes selle telefoninumbri Signal-is uuesti registreerimiseks Signal-i PIN-koodi.</string>
+  <string name="preferences_app_protection__turn_off">Lülita välja</string>
+  <string name="preferences_app_protection__confirm_pin">Kinnita PIN</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">Lubamatu PIN-kood. Proovi uuesti.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Registreerimisluku lubamine ei õnnestunud.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Registreerimisluku keelamine ei õnnestunud.</string>
   <string name="AppProtectionPreferenceFragment_none">Puudub</string>
@@ -1896,7 +1898,6 @@
   <string name="RegistrationLockDialog_i_forgot_my_pin">Ma unustasin oma PINi.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Unustasid PINi?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registreerimislukk aitab kaitsta sinu telefoninumbrit soovimatute registreerimiskatsete eest. Seda funktsiooni saab igal ajal keelata sinu Signali privaatsusseadetest.</string>
-  <string name="RegistrationLockDialog_registration_lock">Registreerimislukk</string>
   <string name="RegistrationLockDialog_enable">Luba</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">Registreerimisluku PIN peab koosnema vähemalt %d numbrist.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Sisestatud PINid ei ole samad.</string>

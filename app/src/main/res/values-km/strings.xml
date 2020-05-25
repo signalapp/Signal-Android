@@ -927,7 +927,6 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">ឆ្លើយតប</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">ទូរសព្ទ</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">បំពងសំឡេង</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1628,6 +1627,8 @@
   <string name="preferences_app_protection__signal_pin">លេខកូដ PIN Signal</string>
   <string name="preferences_app_protection__create_a_pin">បង្កើតលេខកូដ PIN មួយ</string>
   <string name="preferences_app_protection__change_your_pin">ផ្លាស់ប្តូរលេខ PIN របស់អ្នក</string>
+  <string name="preferences_app_protection__confirm_pin">ផ្ទៀងផ្ទាត់លេខ PIN</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">លេខកូដ PIN មិនត្រឹមត្រូវ។ សាកល្បងម្តងទៀត។</string>
   <string name="AppProtectionPreferenceFragment_none">គ្មាន</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">លេខPIN សម្រាប់ចាក់សោរការចុះឈ្មោះ មិនដូចគ្នានឹងលេខកូដផ្ទៀងផ្ទាត់ទទួលពីសារSMS ។ សូមបញ្ចូលលេខកូដដែលអ្នកបានកំណត់ពីមុន ក្នុងកម្មវិធីនេះ។</string>
   <string name="registration_activity__registration_lock_pin">លេខ PIN សម្រាប់ចាក់សោការចុះឈ្មោះ</string>
@@ -1654,7 +1655,6 @@
   <string name="RegistrationLockDialog_i_forgot_my_pin">ខ្ញុំបានភ្លេចលេខ PIN។</string>
   <string name="RegistrationLockDialog_forgotten_pin">ភ្លេចលេខ PIN?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">ចាក់សោរការចុះឈ្មោះ ជួយការពារលេខទូរស័ព្ទអ្នក ពីការព្យយាមបន្លំការចុះឈ្មោះ។ មុខងារនេះ អាចបិទបានគ្រប់ពេល ក្នុងការកំណត់ឯកជនភាពរបស់ Signal</string>
-  <string name="RegistrationLockDialog_registration_lock">ចាក់សោរការចុះឈ្មោះ</string>
   <string name="RegistrationLockDialog_enable">បើក</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">ការចាក់សោរការចុះឈ្មោះលេខកូដ PIN ត្រូវមានយ៉ាងហោចណាស់ %d ខ្ទង់។</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">លេខ PIN ទាំងពីរដែលអ្នកបានបញ្ចូល មិនត្រូវគ្នា។</string>

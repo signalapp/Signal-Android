@@ -924,7 +924,6 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">જવાબ</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">ફોન</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">સ્પીકર</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">બ્લુટુથ</string>
   <!--WebRtcCallControls-->
@@ -1606,6 +1605,8 @@
   <string name="preferences_app_protection__create_a_pin">એક PIN બનાવો</string>
   <string name="preferences_app_protection__change_your_pin">તમારો PIN બદલો</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN Signal સાથેની માહિતી સ્ટોર કરેલી માહિતીને એન્ક્રિપ્ટ કરે છે જેથી ફક્ત તમે જ તેને એક્સેસ કરી શકો. જ્યારે તમે Signal ને ફરીથી ઇન્સ્ટોલ કરો છો ત્યારે તમારી પ્રોફાઇલ, સેટિંગ્સ અને સંપર્કો રિસ્ટોર થશે.</string>
+  <string name="preferences_app_protection__confirm_pin">PIN ખાતરી કરો</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">ખોટો પિન. ફરીથી પ્રયત્ન કરો.</string>
   <string name="AppProtectionPreferenceFragment_none">કંઈ નહીં</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">રજીસ્ટરેશન લૉક પિન તમે હમણાં જ પ્રાપ્ત કરેલા SMS ચકાસણી કોડ જેવો નથી. કૃપા કરીને એપ્લિકેશનમાં તમે પહેલાં ગોઠવેલો પિન દાખલ કરો.</string>
   <string name="registration_activity__registration_lock_pin">રજીસ્ટ્રેશન લૉક PIN</string>
@@ -1631,7 +1632,6 @@
   <string name="RegistrationLockDialog_i_forgot_my_pin">હું મારો PIN ભૂલી ગયો</string>
   <string name="RegistrationLockDialog_forgotten_pin">PIN ભૂલી ગયા છો?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">રજીસ્ટ્રેશન લૉક તમારા ફોન નંબરને અનધિકૃત રજીસ્ટ્રેશન પ્રયત્નોથી સુરક્ષિત કરવામાં મદદ કરે છે. તમારી Signal ગોપનીયતા સેટિંગ્સ માં આ સુવિધાને કોઈપણ સમયે અક્ષમ કરી શકાય છે</string>
-  <string name="RegistrationLockDialog_registration_lock">રજીસ્ટ્રેશન લૉક</string>
   <string name="RegistrationLockDialog_enable">સક્ષમ</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">રજીસ્ટ્રેશન લૉક પિન ઓછામાં ઓછો %d અંકનો હોવો જોઈએ.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">તમે દાખલ કરેલા બે PIN મેળ ખાતા નથી.</string>

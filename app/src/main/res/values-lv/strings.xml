@@ -1092,7 +1092,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="WebRtcCallScreen__answer">Atbildēt</string>
   <string name="WebRtcCallScreen__answer_without_video">Atbildēt bez video</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefons</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">Skaļrunis</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1861,6 +1860,9 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="preferences_app_protection__change_your_pin">Labot Jūsu PIN</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN noglabā Signal informāciju šifrētā veidā tā, ka tikai Jūs varat tai piekļūt. Jūsu profils, uzstādījumu un kontakti tiks atjaunoti, ja uzstādīsiet Signal no jauna.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Pievienojiet papildus drošību ievadīt PIN reģistrējoties Signal no jauna.</string>
+  <string name="preferences_app_protection__turn_off">Izslēgt</string>
+  <string name="preferences_app_protection__confirm_pin">Apstiprināt PIN</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">Nepareizs PIN. Mēģiniet vēlreiz.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Reģistrācijas bloķēšanas iestatīšanas laikā notikusi kļūda.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Reģistrācijas bloķēšanas atiestatīšanas laikā notikusi kļūda.</string>
   <string name="AppProtectionPreferenceFragment_none">Nekas</string>
@@ -1889,7 +1891,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="RegistrationLockDialog_i_forgot_my_pin">Aizmirsu savu PIN.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Aizmirsāt PIN?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Reģistrācijas bloķēšana palīdz aizsargāt tālruņa numuru pret nesankcionētiem reģistrācijas mēģinājumiem. Šo līdzekli Signāla privātuma iestatījumos var atspējot jebkurā laikā</string>
-  <string name="RegistrationLockDialog_registration_lock">Reģistrācijas bloķēšana</string>
   <string name="RegistrationLockDialog_enable">Iespējot</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">Reģistrēšanas bloķēšanas PIN ir jābūt vismaz %d cipariem.b</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Divi ievadītie PIN nesakrīt.</string>

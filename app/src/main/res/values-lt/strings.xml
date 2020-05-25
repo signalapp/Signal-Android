@@ -415,6 +415,9 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Jūs</string>
   <!--GV2 access levels-->
+  <string name="GroupManagement_access_level_anyone">Bet kas</string>
+  <string name="GroupManagement_access_level_all_members">Visi dalyviai</string>
+  <string name="GroupManagement_access_level_only_admins">Tik administratoriai</string>
   <!--PendingMembersActivity-->
   <string name="PendingMembersActivity_people_you_invited">Jūsų pakviesti žmonės</string>
   <!--AddGroupDetailsFragment-->
@@ -422,8 +425,11 @@
   <string name="AddGroupDetailsFragment__members">Dalyviai</string>
   <string name="AddGroupDetailsFragment__group_name_required">Grupės pavadinimas (būtina)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Šis laukas yra būtinas.</string>
+  <string name="AddGroupDetailsFragment__group_creation_failed">Grupės sukūrimas nepavyko.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Vėliau bandykite dar kartą.</string>
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Jūs pasirinkote adresatą, kuris nepalaiko Signal grupių, taigi, ši grupė bus MMS.</string>
   <string name="AddGroupDetailsFragment__remove">Šalinti</string>
+  <string name="AddGroupDetailsFragment__sms_contact">SMS adresatas</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Išnykstančios žinutės</string>
   <string name="ManageGroupActivity_who_can_edit_group_info">Kas gali taisyti grupės informaciją</string>
@@ -437,9 +443,16 @@
   <string name="ManageGroupActivity_add_members">Pridėti narių</string>
   <string name="ManageGroupActivity_view_all_members">Rodyti visus dalyvius</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Jūs neturite teisių to daryti</string>
+  <string name="ManageGroupActivity_not_capable">Kažkas iš jūsų pridėtų asmenų nepalaiko naujų grupių ir turi atsinaujinti Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Nepavyko atnaujinti grupės</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Jūs nesate šios grupės dalyvis</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Taisyti pavadinimą ir paveikslą</string>
+  <plurals name="GroupMemberList_invited">
+    <item quantity="one">%1$s pakvietė 1 žmogų</item>
+    <item quantity="few">%1$s pakvietė %2$d žmones</item>
+    <item quantity="many">%1$s pakvietė %2$d žmonių</item>
+    <item quantity="other">%1$s pakvietė %2$d žmogų</item>
+  </plurals>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Tinkinti pranešimai</string>
   <string name="CustomNotificationsDialogFragment__messages">Žinutės</string>
@@ -622,6 +635,8 @@
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Jūs priėmėte pakvietimą prisijungti prie grupės.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s priėmė pakvietimą prisijungti prie grupės.</string>
+  <string name="MessageRecord_you_added_invited_member_s">Jūs pridėjote pakviestą dalyvį %1$s.</string>
+  <string name="MessageRecord_s_added_invited_member_s">%1$s pridėjo pakviestą dalyvį %2$s.</string>
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">Jūs pakeitėte grupės pavadinimą į \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s pakeitė grupės pavadinimą į \"%2$s\".</string>
@@ -643,6 +658,7 @@
   <string name="MessageRequestBottomView_unblock">Atblokuoti</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ar norite leisti naudotojui %1$s rašyti jums žinutes? Šis naudotojas nežinos, kad jūs matėte jo žinutes tol, kol nesutiksite.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_the_group_s_they_wont_know_youve_seen_their_messages_until_you_accept">Ar norite prisijungti prie grupės %1$s? Kiti asmenys nežinos, kad jūs matėte jų žinutes tol, kol nesutiksite.</string>
+  <string name="MessageRequestBottomView_you_were_invited_to_join_the_group_s">Jūs buvote pakviesti prisijungti prie grupės %1$s. Ar norite leisti šios grupės dalyviams rašyti jums žinutes?</string>
   <string name="MessageRequestBottomView_unblock_s_to_message_and_call_each_other">Atblokuokite %1$s, norėdami vieni kitiems rašyti žinutes bei skambinti.</string>
   <string name="MessageRequestBottomView_unblock_to_allow_group_members_to_add_you_to_this_group_again">Atblokuokite, norėdami leisti grupės dalyviams vėl pridėti jus į šią grupę.</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s grupės dalyvis</string>
@@ -1066,10 +1082,11 @@
   <string name="WebRtcCallScreen_accept">Priimti</string>
   <string name="WebRtcCallScreen_end_call">Baigti skambutį</string>
   <!--WebRtcCallScreen V2-->
+  <string name="WebRtcCallScreen__decline">Atmesti</string>
   <string name="WebRtcCallScreen__answer">Atsakyti</string>
   <string name="WebRtcCallScreen__answer_without_video">Atsiliepti be vaizdo</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefonas</string> -->
+  <string name="WebRtcAudioOutputToggle__audio_output">Garso išvestis</string>
   <string name="WebRtcAudioOutputToggle__speaker">Garsiakalbis</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1171,6 +1188,7 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Įkeliamos šalys…</string>
   <string name="country_selection_fragment__search">Ieškoti</string>
+  <string name="country_selection_fragment__no_matching_countries">Nėra atitinkančių šalių</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Norėdami susieti, nuskenuokite įrenginyje rodomą QR kodą</string>
   <!--device_link_fragment-->
@@ -1606,6 +1624,7 @@
   <string name="conversation__menu_view_all_media">Visa medija</string>
   <string name="conversation__menu_conversation_settings">Pokalbio nustatymai</string>
   <string name="conversation__menu_add_shortcut">Pridėti į pradžios ekraną</string>
+  <string name="conversation__menu_pending_members">Laukiantys dalyviai</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Išskleisti iškylantįjį langą</string>
   <!--conversation_callable_insecure-->
@@ -1852,6 +1871,10 @@
   <string name="preferences_app_protection__signal_pin">Signal PIN kodas</string>
   <string name="preferences_app_protection__create_a_pin">Sukurti PIN kodą</string>
   <string name="preferences_app_protection__change_your_pin">Keisti PIN kodą</string>
+  <string name="preferences_app_protection__pin_reminders">PIN kodo priminimai</string>
+  <string name="preferences_app_protection__turn_off">Išjungti</string>
+  <string name="preferences_app_protection__confirm_pin">Patvirtinkite PIN</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">Neteisingas PIN kodas. Bandykite dar kartą.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Nepavyko įjungti registracijos užrakto.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Nepavyko išjungti registracijos užrakto.</string>
   <string name="AppProtectionPreferenceFragment_none">Nėra</string>
@@ -1901,7 +1924,9 @@
   <string name="RecipientBottomSheet_block">Užblokuoti</string>
   <string name="RecipientBottomSheet_unblock">Atblokuoti</string>
   <string name="RecipientBottomSheet_view_safety_number">Rodyti saugumo numerį</string>
+  <string name="RecipientBottomSheet_remove_as_admin">Pašalinti iš administratorių</string>
   <string name="RecipientBottomSheet_remove_from_group">Šalinti iš grupės</string>
+  <string name="RecipientBottomSheet_remove_s_as_group_admin">Pašalinti %1$s iš grupės administratorių?</string>
   <string name="RecipientBottomSheet_remove_s_from_s">Šalinti %1$s iš \"%2$s\"?</string>
   <string name="RecipientBottomSheet_remove">Šalinti</string>
   <string name="GroupRecipientListItem_admin">Administratorius</string>

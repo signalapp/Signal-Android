@@ -1101,7 +1101,8 @@
   <string name="WebRtcCallScreen__answer">Përgjigjuni</string>
   <string name="WebRtcCallScreen__answer_without_video">Përgjigjuni pa video</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">Telefon</string> -->
+  <string name="WebRtcAudioOutputToggle__audio_output">Zë në dalje</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">Kufje telefoni</string>
   <string name="WebRtcAudioOutputToggle__speaker">Altoparlant</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
@@ -1864,8 +1865,15 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="preferences_app_protection__signal_pin">PIN Signal-i</string>
   <string name="preferences_app_protection__create_a_pin">Krijoni PIN</string>
   <string name="preferences_app_protection__change_your_pin">Ndryshoni PIN-in tuaj</string>
+  <string name="preferences_app_protection__pin_reminders">Kujtues PIN-i</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-et i mbajnë të fshehtëzuara të dhëna e depozituara me Signal, që kështu të mund t’i përdorni. Profili, rregullimet dhe kontaktet tuaja do të rikthehen, kur të riinstaloni Signal-in.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Shtoni siguri ekstra duke kërkuar doemos që për PIN-in tuaj Signal të regjistrohet sërish numri juaj i telefonit me Signal.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Kujtuesit ju ndihmojnë të mbani mend PIN-in tuaj, ngaqë ky s’mund të rimerret. Me kalimin e kohës, do t’ju kërkohet më rrallë.</string>
+  <string name="preferences_app_protection__turn_off">Çaktivizoje</string>
+  <string name="preferences_app_protection__confirm_pin">Ripohoni PIN-in</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Ripohoni PIN-in tuaj për Signal</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Sigurohuni që e mbani mend ose e depozitoni diku në mënyrë të sigurt PIN-in tuaj, ngaqë s’mund të rimerret. Nëse harroni PIN-in tuaj, mund të humbni të dhëna, kur riregjistroni llogarinë tuaj Signal.</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">PIN i pasaktë. Riprovoni.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">S’u arrit të aktivizohej kyçje regjistrimesh.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">S’u arrit të çaktivizohej kyçje regjistrimesh.</string>
   <string name="AppProtectionPreferenceFragment_none">Asnjë</string>
@@ -1885,6 +1893,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">PIN Kyçjeje Regjistrimi i pasaktë</string>
   <string name="RegistrationActivity_too_many_attempts">Shumë përpjekje</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Keni bërë shumë përpjekje të pasakta dhënieje PIN-i Kyçjeje Regjistrimi. Ju lutemi, riprovoni pas një dite.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Keni bërë shumë përpjekje. Ju lutemi, riprovoni më vonë.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Gabim në lidhjen me shërbimin</string>
   <string name="RegistrationActivity_oh_no">Oh, mos!</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Regjistrimi i këtij numri telefoni do të jetë i mundshëm pa PIN-in tuaj të Kyçjes së Regjistrimit pasi të kenë kaluar 7 ditë qëkur ky numër telefoni qe së fundi aktiv në Signal. Ju mbeten edhe %d ditë.</string>
@@ -1894,7 +1903,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Harrova PIN-in tim.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Harruat PIN-in?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Kyçja e Regjistrimit ndihmon të mbrohet numri juaj i telefoni nga përpjekje regjistrimi të paautorizuara. Kjo veçori mund të çaktivizohet kur të doni, te rregullimet tuaja mbi privatësinë në Signal</string>
-  <string name="RegistrationLockDialog_registration_lock">Kyçj Regjistrimi</string>
+  <string name="RegistrationLockDialog_registration_lock">Kyçje regjistrimi</string>
   <string name="RegistrationLockDialog_enable">Aktivizoje</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">PIN-i i Kyçjes së Regjistrimit duhet të jetë të paktën %d shifra.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Dy PIN-et që dhatë nuk përputhen.</string>

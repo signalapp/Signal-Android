@@ -942,7 +942,6 @@
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">उत्तर</string>
   <!--WebRtcAudioOutputToggle-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcAudioOutputToggle__phone">फोन</string> -->
   <string name="WebRtcAudioOutputToggle__speaker">स्पीकर</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">ब्लुटूथ</string>
   <!--WebRtcCallControls-->
@@ -1626,6 +1625,9 @@
   <string name="preferences_app_protection__create_a_pin">PIN तयार करा.</string>
   <string name="preferences_app_protection__change_your_pin">आपला PIN बदला</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Signal सोबत संचयित केलेली माहिती PIN एन्क्रिप्टेड ठेवतात जेणेकरून ती फक्त आपण अॅक्सेस करू शकता. आपण Signal पुन्हा स्थापन केल्यावर आपली प्रोफाईल, सेटिंग, आणि संपर्क पुनर्स्थित होईल.</string>
+  <string name="preferences_app_protection__confirm_pin">PIN ची पुष्टी करा</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">आपल्या Signal PIN याची पुष्टी करा</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">चुकीचा PIN.पुन्हा प्रयत्न करा.</string>
   <string name="AppProtectionPreferenceFragment_none">कुठलेही नाही</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">आपल्याला आता प्राप्त झालेल्या SMS सत्यापन कोड आणि नोंदणी लॉक PIN सारखे नाहीत. कृपया आपण अॅपलिकेशनमध्ये पूर्वी कॉन्फिगर केलेले PIN प्रविष्ट करा.</string>
   <string name="registration_activity__registration_lock_pin">नोंदणी लॉक PIN</string>
@@ -1651,7 +1653,6 @@
   <string name="RegistrationLockDialog_i_forgot_my_pin">मी माझा PIN विसरलो.</string>
   <string name="RegistrationLockDialog_forgotten_pin">PIN विसरलात?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">नोंदणी लॉक आपल्या फोन नंबरला अनाधिकृत नोंदणी प्रयत्नांपासून संरक्षित करण्यास मदत करते. हे वैशिष्ट्य आपल्या Signal गोपनीयता सेटिंग मध्ये कधीही अक्षम केले जाऊ शकते</string>
-  <string name="RegistrationLockDialog_registration_lock">नोंदणी लॉक</string>
   <string name="RegistrationLockDialog_enable">सक्षम करा</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">नोंदणी लॉक PIN कमीतकमी %d अंकी असायला हवे.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">आपण प्रविष्ट केलेले दोन PIN जुळत नाहीत.</string>
