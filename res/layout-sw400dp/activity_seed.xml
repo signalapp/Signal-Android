@@ -25,7 +25,7 @@
         android:textSize="@dimen/very_large_font_size"
         android:textStyle="bold"
         android:textColor="@color/text"
-        android:text="Meet your recovery phrase" />
+        android:text="@string/activity_seed_title_2" />
 
     <TextView
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
         android:layout_marginRight="@dimen/very_large_spacing"
         android:textSize="@dimen/medium_font_size"
         android:textColor="@color/text"
-        android:text="Your recovery phrase is the master key to your Session ID — you can use it to restore your Session ID if you lose access to your device. Store your recovery phrase in a safe place, and don’t give it to anyone. To restore your Session ID, launch Session and tap Continue your Session." />
+        android:text="@string/activity_seed_explanation" />
 
     <TextView
         style="@style/SessionIDTextView"
@@ -59,7 +59,7 @@
         android:textSize="@dimen/medium_font_size"
         android:textColor="@color/text"
         android:alpha="0.6"
-        android:text="Hold to reveal" />
+        android:text="@string/activity_seed_reveal_button_title" />
 
     <View
         android:layout_width="match_parent"
@@ -72,6 +72,6 @@
         android:layout_width="196dp"
         android:layout_height="@dimen/medium_button_height"
         android:layout_marginBottom="@dimen/medium_spacing"
-        android:text="Copy" />
+        android:text="@string/copy" />
 
 </LinearLayout>

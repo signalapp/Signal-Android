@@ -1719,30 +1719,43 @@
     <string name="activity_pn_mode_title">Push Notifications</string>
     <string name="activity_pn_mode_explanation">There are two ways Session can handle push notifications. Make sure to read the descriptions carefully before you choose.</string>
     <string name="activity_pn_mode_fcm_option_title">Firebase Cloud Messaging</string>
-    <string name="activity_pn_mode_fcm_option_explanation">Session will use the Firebase Cloud Messaging service to receive push notifications. You’ll be notified of new messages reliably and immediately. Using FCM means that this device will communicate directly with Google’s servers to retrieve push notifications, which will expose your IP address to Google. Your messages will still be onion-routed and end-to-end encrypted, so the contents of your messages will remain completely private.</string>
+    <string name="activity_pn_mode_fcm_option_explanation">Session will use the Firebase Cloud Messaging service to receive push notifications. You\’ll be notified of new messages reliably and immediately. Using FCM means that this device will communicate directly with Google\’s servers to retrieve push notifications, which will expose your IP address to Google. Your messages will still be onion-routed and end-to-end encrypted, so the contents of your messages will remain completely private.</string>
     <string name="activity_pn_mode_background_polling_option_title">Background Polling</string>
     <string name="activity_pn_mode_background_polling_option_explanation">Session will occasionally check for new messages in the background. This guarantees full privacy protection, but message notifications may be significantly delayed.</string>
     <string name="activity_pn_mode_recommended_option_tag">Recommended</string>
     <string name="activity_pn_mode_no_option_picked_dialog_title">Please Pick an Option</string>
 
-
-
+    <string name="activity_home_empty_state_message">You don\'t have any contacts yet</string>
+    <string name="activity_home_empty_state_button_title">Start a Session</string>
     <string name="activity_home_leave_group_dialog_message">Are you sure you want to leave this group?</string>
+    <string name="activity_home_leaving_group_failed_message">"Couldn\'t leave group"</string>
     <string name="activity_home_delete_conversation_dialog_message">Are you sure you want to delete this conversation?</string>
     <string name="activity_home_conversation_deleted_message">Conversation deleted</string>
-    <string name="fragment_contact_selection_contacts_title">Contacts</string>
-    <string name="fragment_contact_selection_closed_groups_title">Closed Groups</string>
-    <string name="fragment_contact_selection_open_groups_title">Open Groups</string>
+
     <string name="sheet_pn_mode_title">Push Notifications</string>
     <string name="sheet_pn_mode_explanation">Session now features two ways to handle push notifications. Make sure to read the descriptions carefully before you choose.</string>
     <string name="sheet_pn_mode_fcm_option_title">Firebase Cloud Messaging</string>
-    <string name="sheet_pn_mode_fcm_option_explanation">Session will use the Firebase Cloud Messaging service to receive push notifications. You’ll be notified of new messages reliably and immediately. Using FCM means that this device will communicate directly with Google’s servers to retrieve push notifications, which will expose your IP address to Google. Your messages will still be onion-routed and end-to-end encrypted, so the contents of your messages will remain completely private.</string>
+    <string name="sheet_pn_mode_fcm_option_explanation">Session will use the Firebase Cloud Messaging service to receive push notifications. You\’ll be notified of new messages reliably and immediately. Using FCM means that this device will communicate directly with Google\’s servers to retrieve push notifications, which will expose your IP address to Google. Your messages will still be onion-routed and end-to-end encrypted, so the contents of your messages will remain completely private.</string>
     <string name="sheet_pn_mode_background_polling_option_title">Background Polling</string>
     <string name="sheet_pn_mode_background_polling_option_explanation">Session will occasionally check for new messages in the background. This guarantees full privacy protection, but message notifications may be significantly delayed.</string>
     <string name="sheet_pn_mode_recommended_option_tag">Recommended</string>
     <string name="sheet_pn_mode_no_option_picked_dialog_title">Please Pick an Option</string>
     <string name="sheet_pn_mode_confirm_button_title">Confirm</string>
     <string name="sheet_pn_mode_skip_button_title">Skip</string>
+
+    <string name="activity_seed_title">Your Recovery Phrase</string>
+    <string name="activity_seed_title_2">Meet your recovery phrase</string>
+    <string name="activity_seed_explanation">Your recovery phrase is the master key to your Session ID — you can use it to restore your Session ID if you lose access to your device. Store your recovery phrase in a safe place, and don\’t give it to anyone. To restore your Session ID, launch Session and tap Continue your Session.</string>
+    <string name="activity_seed_reveal_button_title">Hold to reveal</string>
+
+    <string name="view_seed_reminder_subtitle_1">Secure your account by saving your recovery phrase</string>
+    <string name="view_seed_reminder_subtitle_2">Tap and hold the redacted words to reveal your recovery phrase, then store it safely to secure your Session ID.</string>
+    <string name="view_seed_reminder_subtitle_3">Make sure to store your recovery phrase in a safe place</string>
+
+    <string name="fragment_contact_selection_contacts_title">Contacts</string>
+    <string name="fragment_contact_selection_closed_groups_title">Closed Groups</string>
+    <string name="fragment_contact_selection_open_groups_title">Open Groups</string>
+
     <string name="preferences_notifications_strategy_category_title">Notification Strategy</string>
     <string name="preferences_notifications_use_fcm_option_title">Use FCM</string>
     <string name="preferences_notifications_use_fcm_option_explanation">Using Firebase Cloud Messaging allows for more reliable push notifications, but exposes your IP to Google.</string>
