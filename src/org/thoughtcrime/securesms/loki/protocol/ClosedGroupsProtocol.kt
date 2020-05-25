@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.utilities.recipient
+import org.thoughtcrime.securesms.loki.utilities.timeout
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.GroupUtil
@@ -30,7 +31,7 @@ object ClosedGroupsProtocol {
         if (!conversation.address.isClosedGroup || groupID == null) { return false }
         // A closed group's members should never include slave devices
         val senderPublicKey = content.sender
-        LokiFileServerAPI.shared.getDeviceLinks(senderPublicKey).get()
+        LokiFileServerAPI.shared.getDeviceLinks(senderPublicKey).timeout(6000).get()
         val senderMasterPublicKey = MultiDeviceProtocol.shared.getMasterDevice(senderPublicKey)
         val publicKeyToCheckFor = senderMasterPublicKey ?: senderPublicKey
         val members = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupID, true)

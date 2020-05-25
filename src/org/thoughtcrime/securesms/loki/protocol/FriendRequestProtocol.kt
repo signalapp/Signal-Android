@@ -224,9 +224,17 @@ object FriendRequestProtocol {
             // friend request status is reset to NONE. Bob now sends Alice a friend request. Alice's thread's
             // friend request status is reset to RECEIVED
             lokiThreadDB.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.REQUEST_RECEIVED)
-            val lastMessageID = getLastMessageID(context, threadID)
-            if (lastMessageID != null) {
-                DatabaseFactory.getLokiMessageDatabase(context).setFriendRequestStatus(lastMessageID, LokiMessageFriendRequestStatus.REQUEST_PENDING)
+            val masterPublicKey = MultiDeviceProtocol.shared.getMasterDevice(publicKey) ?: publicKey
+            val masterThreadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient(context, masterPublicKey))
+            val masterThreadLastMessageID = getLastMessageID(context, masterThreadID) // Messages get routed into the master thread
+            if (masterThreadLastMessageID != null) {
+                DatabaseFactory.getLokiMessageDatabase(context).setFriendRequestStatus(masterThreadLastMessageID, LokiMessageFriendRequestStatus.REQUEST_PENDING)
+            } else {
+                // Device link fetching could fail, in which case the message could get routed into the slave thread
+                val slaveThreadLastMessageID = getLastMessageID(context, threadID)
+                if (slaveThreadLastMessageID != null) {
+                    DatabaseFactory.getLokiMessageDatabase(context).setFriendRequestStatus(slaveThreadLastMessageID, LokiMessageFriendRequestStatus.REQUEST_PENDING)
+                }
             }
         }
     }

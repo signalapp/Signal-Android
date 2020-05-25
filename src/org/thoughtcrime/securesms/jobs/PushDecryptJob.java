@@ -1409,7 +1409,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       } else {
         try {
           // TODO: Burn this with fire when we can
-          PromiseUtilities.timeout(LokiFileServerAPI.shared.getDeviceLinks(publicKey, false), 4000).get();
+          PromiseUtilities.timeout(LokiFileServerAPI.shared.getDeviceLinks(publicKey, false), 6000).get();
           String masterPublicKey = org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol.shared.getMasterDevice(publicKey);
           if (masterPublicKey == null) {
             masterPublicKey = publicKey;
@@ -1441,7 +1441,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       } else {
         try {
           // TODO: Burn this with fire when we can
-          PromiseUtilities.timeout(LokiFileServerAPI.shared.getDeviceLinks(publicKey, false), 4000).get();
+          PromiseUtilities.timeout(LokiFileServerAPI.shared.getDeviceLinks(publicKey, false), 6000).get();
           String masterPublicKey = org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol.shared.getMasterDevice(publicKey);
           if (masterPublicKey == null) {
             masterPublicKey = publicKey;
