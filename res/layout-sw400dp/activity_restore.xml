@@ -19,7 +19,7 @@
         android:textSize="@dimen/very_large_font_size"
         android:textStyle="bold"
         android:textColor="@color/text"
-        android:text="Restore your account" />
+        android:text="@string/activity_restore_title" />
 
     <TextView
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
         android:layout_marginRight="@dimen/very_large_spacing"
         android:textSize="@dimen/medium_font_size"
         android:textColor="@color/text"
-        android:text="Enter the recovery phrase that was given to you when you signed up to restore your account." />
+        android:text="@string/activity_restore_explanation" />
 
     <EditText
         style="@style/SessionEditText"
@@ -39,7 +39,7 @@
         android:layout_marginLeft="@dimen/very_large_spacing"
         android:layout_marginTop="@dimen/medium_spacing"
         android:layout_marginRight="@dimen/very_large_spacing"
-        android:hint="Enter your recovery phrase" />
+        android:hint="@string/activity_restore_seed_edit_text_hint" />
 
     <View
         android:layout_width="match_parent"
@@ -53,7 +53,7 @@
         android:layout_height="@dimen/medium_button_height"
         android:layout_marginLeft="@dimen/massive_spacing"
         android:layout_marginRight="@dimen/massive_spacing"
-        android:text="Continue" />
+        android:text="@string/continue_2" />
 
     <TextView
         android:id="@+id/termsTextView"
@@ -65,6 +65,6 @@
         android:textColorLink="@color/text"
         android:textSize="@dimen/very_small_font_size"
         android:textColor="@color/text"
-        android:text="By using this service, you agree to our Terms of Service and Privacy Policy" />
+        android:text="By using this service, you agree to our Terms of Service and Privacy Policy" /> <!-- Intentionally not yet translated -->
 
 </LinearLayout>

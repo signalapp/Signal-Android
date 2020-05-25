@@ -26,7 +26,7 @@ class LinkDeviceActivity : BaseActionBarActivity(), ScanQRCodeWrapperFragmentDel
         // Set content view
         setContentView(R.layout.activity_link_device)
         // Set title
-        supportActionBar!!.title = "Link Device"
+        supportActionBar!!.title = resources.getString(R.string.activity_link_device_title)
         // Set up view pager
         viewPager.adapter = adapter
         tabLayout.setupWithViewPager(viewPager)
@@ -40,7 +40,7 @@ class LinkDeviceActivity : BaseActionBarActivity(), ScanQRCodeWrapperFragmentDel
 
     fun requestDeviceLinkIfPossible(hexEncodedPublicKey: String) {
         if (!PublicKeyValidation.isValid(hexEncodedPublicKey)) {
-            Toast.makeText(this, "Invalid Session ID", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.invalid_session_id, Toast.LENGTH_SHORT).show()
         } else {
             val intent = Intent()
             intent.putExtra("hexEncodedPublicKey", hexEncodedPublicKey)
@@ -64,7 +64,7 @@ private class LinkDeviceActivityAdapter(val activity: LinkDeviceActivity) : Frag
             1 -> {
                 val result = ScanQRCodeWrapperFragment()
                 result.delegate = activity
-                result.message = "Navigate to \"Settings\" > \"Devices\" > \"Link a Device\" on your other device and then scan the QR code that comes up to start the linking process."
+                result.message = activity.resources.getString(R.string.activity_link_device_scan_qr_code_explanation)
                 result
             }
             else -> throw IllegalStateException()
@@ -73,8 +73,8 @@ private class LinkDeviceActivityAdapter(val activity: LinkDeviceActivity) : Frag
 
     override fun getPageTitle(index: Int): CharSequence? {
         return when (index) {
-            0 -> "Enter Session ID"
-            1 -> "Scan QR Code"
+            0 -> activity.getString(R.string.activity_link_device_enter_session_id_tab_title)
+            1 -> activity.getString(R.string.activity_link_device_scan_qr_code_tab_title)
             else -> throw IllegalStateException()
         }
     }

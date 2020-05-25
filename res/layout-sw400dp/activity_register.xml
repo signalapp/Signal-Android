@@ -19,7 +19,7 @@
         android:textSize="@dimen/very_large_font_size"
         android:textStyle="bold"
         android:textColor="@color/text"
-        android:text="Say hello to your Session ID" />
+        android:text="@string/activity_register_title" />
 
     <TextView
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
         android:layout_marginRight="@dimen/very_large_spacing"
         android:textSize="@dimen/medium_font_size"
         android:textColor="@color/text"
-        android:text="Your Session ID is the unique address people can use to contact you on Session. With no connection to your real identity, your Session ID is totally anonymous and private by design." />
+        android:text="@string/activity_register_explanation" />
 
     <TextView
         style="@style/SessionIDTextView"
@@ -53,7 +53,7 @@
         android:layout_height="@dimen/medium_button_height"
         android:layout_marginLeft="@dimen/massive_spacing"
         android:layout_marginRight="@dimen/massive_spacing"
-        android:text="Continue" />
+        android:text="@string/continue_2" />
 
     <Button
         style="@style/MediumProminentOutlineButton"
@@ -63,7 +63,7 @@
         android:layout_marginLeft="@dimen/massive_spacing"
         android:layout_marginTop="@dimen/medium_spacing"
         android:layout_marginRight="@dimen/massive_spacing"
-        android:text="Copy" />
+        android:text="@string/copy" />
 
     <TextView
         android:id="@+id/termsTextView"
@@ -75,6 +75,6 @@
         android:textColorLink="@color/text"
         android:textSize="@dimen/very_small_font_size"
         android:textColor="@color/text"
-        android:text="By using this service, you agree to our Terms of Service and Privacy Policy" />
+        android:text="By using this service, you agree to our Terms of Service and Privacy Policy" /> <!-- Intentionally not yet translated -->
 
 </LinearLayout>

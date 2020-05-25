@@ -1549,9 +1549,12 @@
     <string name="prompt_passphrase_activity__tap_to_unlock">TAP TO UNLOCK</string>
     <string name="RegistrationLockDialog_reminder">Reminder:</string>
     <string name="recipient_preferences__about">About</string>
-    <!-- EOF -->
 
-    <!-- Loki -->
+
+
+
+
+    <!-- Old Loki Messenger Copy -->
 
     <!-- Landing activity -->
     <string name="activity_landing_title">Session</string>
@@ -1663,14 +1666,56 @@
     <string name="session_restore_banner_dismiss_button_title">Dismiss</string>
     <string name="session_restore_banner_restore_button_title">Restore</string>
 
+
+
+
+
     <!-- Session -->
+
+    <string name="continue_2">Continue</string>
+    <string name="copy">Copy</string>
+    <string name="invalid_url">Couldn\'t open link</string>
+    <string name="copied_to_clipboard">Copied to clipboard</string>
+    <string name="device_linking_failed">Couldn\'t link device.</string>
+    <string name="next">Next</string>
+    <string name="invalid_session_id">Invalid Session ID</string>
+
+    <string name="activity_landing_title_2">Your Session begins here...</string>
+    <string name="activity_landing_register_button_title">Create Session ID</string>
+    <string name="activity_landing_restore_button_title">Continue Your Session</string>
+    <string name="activity_landing_link_button_title">Link to an existing account</string>
+    <string name="activity_landing_device_unlinked_dialog_title">Your device was unlinked successfully</string>
+
+    <string name="view_fake_chat_bubble_1">What\'s Session?</string>
+    <string name="view_fake_chat_bubble_2">It\'s a decentralized, encrypted messaging app</string>
+    <string name="view_fake_chat_bubble_3">So it doesn\'t collect my personal information or my conversation metadata? How does it work?</string>
+    <string name="view_fake_chat_bubble_4">Using a combination of advanced anonymous routing and end-to-end encryption technologies.</string>
+    <string name="view_fake_chat_bubble_5">Friends don\'t let friends use compromised messengers. You\'re welcome.</string>
+
+    <string name="activity_register_title">Say hello to your Session ID</string>
+    <string name="activity_register_explanation">Your Session ID is the unique address people can use to contact you on Session. With no connection to your real identity, your Session ID is totally anonymous and private by design.</string>
     <string name="activity_register_public_key_copied_message">Copied to clipboard</string>
-    <string name="activity_home_leave_group_dialog_message">Are you sure you want to leave this group?</string>
-    <string name="activity_home_delete_conversation_dialog_message">Are you sure you want to delete this conversation?</string>
-    <string name="activity_home_conversation_deleted_message">Conversation deleted</string>
-    <string name="fragment_contact_selection_contacts_title">Contacts</string>
-    <string name="fragment_contact_selection_closed_groups_title">Closed Groups</string>
-    <string name="fragment_contact_selection_open_groups_title">Open Groups</string>
+
+    <string name="activity_restore_title">Restore your account</string>
+    <string name="activity_restore_explanation">Enter the recovery phrase that was given to you when you signed up to restore your account.</string>
+    <string name="activity_restore_seed_edit_text_hint">Enter your recovery phrase</string>
+
+    <string name="activity_link_device_title">Link Device</string>
+    <string name="activity_link_device_enter_session_id_tab_title">Enter Session ID</string>
+    <string name="activity_link_device_scan_qr_code_tab_title">Scan QR Code</string>
+    <string name="activity_link_device_scan_qr_code_explanation">"Navigate to "Settings" > "Devices" > "Link a Device" on your other device and then scan the QR code that comes up to start the linking process."</string>
+
+    <string name="fragment_enter_session_id_title">Link your device</string>
+    <string name="fragment_enter_session_id_explanation">Navigate to "Settings" > "Devices" > "Link a Device" on your other device and then enter your Session ID here to start the linking process.</string>
+    <string name="fragment_enter_session_id_edit_text_hint">Enter your Session ID</string>
+
+    <string name="activity_display_name_title_2">Pick your display name</string>
+    <string name="activity_display_name_explanation">This will be your name when you use Session.</string>
+    <string name="activity_display_name_edit_text_hint">Enter a display name</string>
+    <string name="activity_display_name_display_name_missing_error">Please pick a display name</string>
+    <string name="activity_display_name_display_name_invalid_error">Please pick a display name that consists of only a-z, A-Z, 0-9 and _ characters</string>
+    <string name="activity_display_name_display_name_too_long_error">Please pick a shorter display name</string>
+
     <string name="activity_pn_mode_title">Push Notifications</string>
     <string name="activity_pn_mode_explanation">There are two ways Session can handle push notifications. Make sure to read the descriptions carefully before you choose.</string>
     <string name="activity_pn_mode_fcm_option_title">Firebase Cloud Messaging</string>
@@ -1679,6 +1724,15 @@
     <string name="activity_pn_mode_background_polling_option_explanation">Session will occasionally check for new messages in the background. This guarantees full privacy protection, but message notifications may be significantly delayed.</string>
     <string name="activity_pn_mode_recommended_option_tag">Recommended</string>
     <string name="activity_pn_mode_no_option_picked_dialog_title">Please Pick an Option</string>
+
+
+
+    <string name="activity_home_leave_group_dialog_message">Are you sure you want to leave this group?</string>
+    <string name="activity_home_delete_conversation_dialog_message">Are you sure you want to delete this conversation?</string>
+    <string name="activity_home_conversation_deleted_message">Conversation deleted</string>
+    <string name="fragment_contact_selection_contacts_title">Contacts</string>
+    <string name="fragment_contact_selection_closed_groups_title">Closed Groups</string>
+    <string name="fragment_contact_selection_open_groups_title">Open Groups</string>
     <string name="sheet_pn_mode_title">Push Notifications</string>
     <string name="sheet_pn_mode_explanation">Session now features two ways to handle push notifications. Make sure to read the descriptions carefully before you choose.</string>
     <string name="sheet_pn_mode_fcm_option_title">Firebase Cloud Messaging</string>

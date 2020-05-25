@@ -154,7 +154,7 @@ class RegisterActivity : BaseActionBarActivity() {
         val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val clip = ClipData.newPlainText("Session ID", keyPair!!.hexEncodedPublicKey)
         clipboard.primaryClip = clip
-        Toast.makeText(this, R.string.activity_register_public_key_copied_message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
     }
 
     private fun openURL(url: String) {
@@ -162,7 +162,7 @@ class RegisterActivity : BaseActionBarActivity() {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             startActivity(intent)
         } catch (e: Exception) {
-            Toast.makeText(this, "Couldn't open link", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.invalid_url, Toast.LENGTH_SHORT).show()
         }
     }
     // endregion

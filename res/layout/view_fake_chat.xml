@@ -13,7 +13,7 @@
         android:layout_width="@dimen/fake_chat_view_bubble_width"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/medium_spacing"
-        android:text="What's Session?"
+        android:text="@string/view_fake_chat_bubble_1"
         android:layout_gravity="right" />
 
     <TextView
@@ -22,7 +22,7 @@
         android:layout_width="@dimen/fake_chat_view_bubble_width"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/medium_spacing"
-        android:text="It's a decentralized, encrypted messaging app"
+        android:text="@string/view_fake_chat_bubble_2"
         android:layout_gravity="left" />
 
     <TextView
@@ -31,7 +31,7 @@
         android:layout_width="@dimen/fake_chat_view_bubble_width"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/medium_spacing"
-        android:text="So it doesn't collect my personal information or my conversation metadata? How does it work?"
+        android:text="@string/view_fake_chat_bubble_3"
         android:layout_gravity="right" />
 
     <TextView
@@ -40,7 +40,7 @@
         android:layout_width="@dimen/fake_chat_view_bubble_width"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/medium_spacing"
-        android:text="Using a combination of advanced anonymous routing and end-to-end encryption technologies."
+        android:text="@string/view_fake_chat_bubble_4"
         android:layout_gravity="left" />
 
     <TextView
@@ -49,7 +49,7 @@
         android:layout_width="@dimen/fake_chat_view_bubble_width"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/medium_spacing"
-        android:text="Friends don't let friends use compromised messengers. You're welcome."
+        android:text="@string/view_fake_chat_bubble_5"
         android:layout_gravity="left" />
 
 </LinearLayout>

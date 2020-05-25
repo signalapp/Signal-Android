@@ -47,7 +47,7 @@ class LandingActivity : BaseActionBarActivity(), LinkDeviceSlaveModeDialogDelega
         restoreButton.setOnClickListener { restore() }
         linkButton.setOnClickListener { linkDevice() }
         if (TextSecurePreferences.getWasUnlinked(this)) {
-            Toast.makeText(this, "Your device was unlinked successfully", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, R.string.activity_landing_device_unlinked_dialog_title, Toast.LENGTH_LONG).show()
         }
     }
 
@@ -102,7 +102,7 @@ class LandingActivity : BaseActionBarActivity(), LinkDeviceSlaveModeDialogDelega
         if (deviceLink == null) {
             Log.d("Loki", "Failed to sign device link request.")
             reset()
-            return Toast.makeText(application, "Couldn't link device.", Toast.LENGTH_LONG).show()
+            return Toast.makeText(application, R.string.device_linking_failed, Toast.LENGTH_LONG).show()
         }
         val application = ApplicationContext.getInstance(this)
         application.startPollingIfNeeded()

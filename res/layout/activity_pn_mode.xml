@@ -111,6 +111,6 @@
         android:layout_marginLeft="@dimen/massive_spacing"
         android:layout_marginRight="@dimen/massive_spacing"
         android:layout_marginBottom="@dimen/medium_spacing"
-        android:text="Continue" />
+        android:text="@string/continue_2" />
 
 </LinearLayout>
