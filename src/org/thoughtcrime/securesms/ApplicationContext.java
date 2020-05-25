@@ -170,20 +170,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     initializeLogging();
     initializeCrashHandling();
     initializeDependencyInjection();
-    initializeJobManager();
-    initializeMessageRetrieval();
-    initializeExpiringMessageManager();
-    initializeTypingStatusRepository();
-    initializeTypingStatusSender();
-    initializeSignedPreKeyCheck();
-    initializePeriodicTasks();
-    initializeWebRtc();
-    initializePendingMessages();
-    initializeUnidentifiedDeliveryAbilityRefresh();
-    initializeBlobProvider();
     NotificationChannels.create(this);
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
     // Loki
+    // ========
     broadcaster = new Broadcaster(this);
     LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
     LokiThreadDatabase threadDB = DatabaseFactory.getLokiThreadDatabase(this);
@@ -210,6 +200,18 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     lokiPublicChatManager = new LokiPublicChatManager(this);
     updateOpenGroupProfilePicturesIfNeeded();
     registerForFCMIfNeeded(false);
+    // ========
+    initializeJobManager();
+    initializeMessageRetrieval();
+    initializeExpiringMessageManager();
+    initializeTypingStatusRepository();
+    initializeTypingStatusSender();
+    initializeSignedPreKeyCheck();
+    initializePeriodicTasks();
+    initializeWebRtc();
+    initializePendingMessages();
+    initializeUnidentifiedDeliveryAbilityRefresh();
+    initializeBlobProvider();
   }
 
   @Override
