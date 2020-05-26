@@ -43,13 +43,19 @@ public final class SelectedContact {
   }
 
   /**
-   * Returns true iff any non-null property matches one on the other contact.
+   * Returns true when non-null recipient ids match, and false if not.
+   * <p>
+   * If one or more recipient id is not set, then it returns true iff any other non-null property
+   * matches one on the other contact.
    */
   public boolean matches(@Nullable SelectedContact other) {
     if (other == null) return false;
 
-    return recipientId != null && recipientId.equals(other.recipientId) ||
-           number      != null && number     .equals(other.number)      ||
-           username    != null && username   .equals(other.username);
+    if (recipientId != null && other.recipientId != null) {
+      return recipientId.equals(other.recipientId);
+    }
+
+    return number   != null && number  .equals(other.number)   ||
+           username != null && username.equals(other.username);
   }
 }
