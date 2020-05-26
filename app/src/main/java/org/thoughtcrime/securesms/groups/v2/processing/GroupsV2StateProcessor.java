@@ -165,7 +165,7 @@ public final class GroupsV2StateProcessor {
 
       if (inputGroupState == null) {
         try {
-          inputGroupState = queryServer(localState);
+          inputGroupState = queryServer(localState, revision == LATEST && localState == null);
         } catch (GroupNotAMemberException e) {
           Log.w(TAG, "Unable to query server for group " + groupId + " server says we're not in group, inserting leave message");
           insertGroupLeave();
@@ -297,7 +297,7 @@ public final class GroupsV2StateProcessor {
       }
     }
 
-    private @NonNull GlobalGroupState queryServer(@Nullable DecryptedGroup localState)
+    private @NonNull GlobalGroupState queryServer(@Nullable DecryptedGroup localState, boolean latestOnly)
         throws IOException, GroupNotAMemberException
     {
       DecryptedGroup      latestServerGroup;
@@ -312,13 +312,13 @@ public final class GroupsV2StateProcessor {
         throw new IOException(e);
       }
 
-      int versionWeWereAdded = GroupProtoUtil.findVersionWeWereAdded(latestServerGroup, selfUuid);
-      int logsNeededFrom     = localState != null ? Math.max(localState.getVersion(), versionWeWereAdded) : versionWeWereAdded;
-
-      if (GroupProtoUtil.isMember(selfUuid, latestServerGroup.getMembersList())) {
-        history = getFullMemberHistory(selfUuid, logsNeededFrom);
-      } else {
+      if (latestOnly || !GroupProtoUtil.isMember(selfUuid, latestServerGroup.getMembersList())) {
         history = Collections.singletonList(new GroupLogEntry(latestServerGroup, null));
+      } else {
+        int versionWeWereAdded = GroupProtoUtil.findVersionWeWereAdded(latestServerGroup, selfUuid);
+        int logsNeededFrom     = localState != null ? Math.max(localState.getVersion(), versionWeWereAdded) : versionWeWereAdded;
+
+        history = getFullMemberHistory(selfUuid, logsNeededFrom);
       }
 
       return new GlobalGroupState(localState, history);

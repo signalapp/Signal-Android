@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.v2.ProfileKeySet;
-import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob;
+import org.thoughtcrime.securesms.jobs.WakeGroupV2Job;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileName;
@@ -619,7 +619,7 @@ public class RecipientDatabase extends Database {
         GroupId.V2 groupId   = GroupId.v2(insert.getMasterKey());
         Recipient  recipient = Recipient.externalGroup(context, groupId);
 
-        ApplicationDependencies.getJobManager().add(new RequestGroupV2InfoJob(groupId));
+        ApplicationDependencies.getJobManager().add(new WakeGroupV2Job(insert.getMasterKey()));
 
         threadDatabase.setArchived(recipient.getId(), insert.isArchived());
         recipient.live().refresh();
