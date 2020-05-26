@@ -531,7 +531,9 @@
 
     <service android:name=".service.GenericForegroundService"/>
 
-    <service android:name=".gcm.FcmService">
+    <service android:name=".gcm.FcmFetchService" />
+
+    <service android:name=".gcm.FcmReceiveService">
         <intent-filter>
             <action android:name="com.google.firebase.MESSAGING_EVENT" />
         </intent-filter>

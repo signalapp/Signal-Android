@@ -9,16 +9,14 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
 /**
- * Pulls down messages. Used when we fail to pull down messages in {@link FcmService}.
+ * Pulls down messages. Used when we fail to pull down messages in {@link FcmReceiveService}.
  */
 @RequiresApi(26)
 public class FcmJobService extends JobService {
