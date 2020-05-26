@@ -62,7 +62,8 @@ public class ManageGroupFragment extends Fragment {
 
   private ManageGroupViewModel               viewModel;
   private GroupMemberListView                groupMemberList;
-  private View                               listPending;
+  private View                               pendingMembersRow;
+  private TextView                           pendingMembersCount;
   private Toolbar                            toolbar;
   private TextView                           memberCountUnderAvatar;
   private TextView                           memberCountAboveList;
@@ -124,7 +125,8 @@ public class ManageGroupFragment extends Fragment {
     memberCountUnderAvatar      = view.findViewById(R.id.member_count);
     memberCountAboveList        = view.findViewById(R.id.member_count_2);
     groupMemberList             = view.findViewById(R.id.group_members);
-    listPending                 = view.findViewById(R.id.listPending);
+    pendingMembersRow           = view.findViewById(R.id.pending_members_row);
+    pendingMembersCount         = view.findViewById(R.id.pending_members_count);
     threadPhotoRailView         = view.findViewById(R.id.recent_photos);
     groupMediaCard              = view.findViewById(R.id.group_media_card);
     accessControlCard           = view.findViewById(R.id.group_access_control_card);
@@ -171,16 +173,15 @@ public class ManageGroupFragment extends Fragment {
     });
 
     viewModel.getPendingMemberCount().observe(getViewLifecycleOwner(),
-      members -> {
-        if (members > 0) {
-          listPending.setEnabled(true);
-          listPending.setOnClickListener(v -> {
-            FragmentActivity activity = requireActivity();
-            activity.startActivity(PendingMemberInvitesActivity.newIntent(activity, groupId.requireV2()));
-          });
+      pendingInviteCount -> {
+        pendingMembersRow.setOnClickListener(v -> {
+          FragmentActivity activity = requireActivity();
+          activity.startActivity(PendingMemberInvitesActivity.newIntent(activity, groupId.requireV2()));
+        });
+        if (pendingInviteCount == 0) {
+          pendingMembersCount.setText(R.string.ManageGroupActivity_none);
         } else {
-          listPending.setEnabled(false);
-          listPending.setOnClickListener(null);
+          pendingMembersCount.setText(getResources().getQuantityString(R.plurals.ManageGroupActivity_invited, pendingInviteCount, pendingInviteCount));
         }
       });
 

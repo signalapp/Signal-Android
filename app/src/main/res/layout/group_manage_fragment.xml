@@ -403,12 +403,34 @@
                 app:cardBackgroundColor="?android:attr/windowBackground"
                 app:layout_constraintTop_toBottomOf="@id/group_membership_card">
 
-                <Button
-                    android:id="@+id/listPending"
-                    style="@style/Widget.Signal.Button.TextButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ManageGroupActivity_pending_group_invites" />
+                <LinearLayout
+                    android:id="@+id/pending_members_row"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/group_manage_fragment_row_height"
+                    android:background="?selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/group_manage_fragment_row_horizontal_padding"
+                    android:paddingEnd="@dimen/group_manage_fragment_row_horizontal_padding">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical|start"
+                        android:text="@string/ManageGroupActivity_pending_group_invites"
+                        android:textAppearance="@style/TextAppearance.Signal.Body2" />
+
+                    <TextView
+                        android:id="@+id/pending_members_count"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical|end"
+                        android:textAppearance="@style/TextAppearance.Signal.Body2"
+                        android:textColor="@color/ultramarine_text_button"
+                        tools:text="@string/ManageGroupActivity_none" />
+
+                </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
