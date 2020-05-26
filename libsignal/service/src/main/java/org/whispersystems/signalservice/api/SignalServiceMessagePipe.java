@@ -19,7 +19,6 @@ import org.whispersystems.libsignal.InvalidVersionException;
 import org.whispersystems.libsignal.util.Hex;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.FeatureFlags;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
@@ -187,16 +186,21 @@ public class SignalServiceMessagePipe {
                                                                        .setVerb("GET")
                                                                        .addAllHeaders(headers);
 
-      if (FeatureFlags.VERSIONED_PROFILES && requestType == SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL && uuid.isPresent() && profileKey.isPresent()) {
-        UUID                               target               = uuid.get();
-        ProfileKeyVersion                  profileKeyIdentifier = profileKey.get().getProfileKeyVersion(target);
-                                           requestContext       = clientZkProfile.createProfileKeyCredentialRequestContext(random, target, profileKey.get());
-        ProfileKeyCredentialRequest        request              = requestContext.getRequest();
+      if (uuid.isPresent() && profileKey.isPresent()) {
+        UUID              target               = uuid.get();
+        ProfileKeyVersion profileKeyIdentifier = profileKey.get().getProfileKeyVersion(target);
+        String            version              = profileKeyIdentifier.serialize();
 
-        String version           = profileKeyIdentifier.serialize();
-        String credentialRequest = Hex.toStringCondensed(request.serialize());
+        if (requestType == SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL) {
+          requestContext = clientZkProfile.createProfileKeyCredentialRequestContext(random, target, profileKey.get());
 
-        builder.setPath(String.format("/v1/profile/%s/%s/%s", target, version, credentialRequest));
+          ProfileKeyCredentialRequest request           = requestContext.getRequest();
+          String                      credentialRequest = Hex.toStringCondensed(request.serialize());
+
+          builder.setPath(String.format("/v1/profile/%s/%s/%s", target, version, credentialRequest));
+        } else {
+          builder.setPath(String.format("/v1/profile/%s/%s", target, version));
+        }
       } else {
         builder.setPath(String.format("/v1/profile/%s", address.getIdentifier()));
       }

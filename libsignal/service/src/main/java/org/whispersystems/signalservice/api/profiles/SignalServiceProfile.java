@@ -131,8 +131,6 @@ public class SignalServiceProfile {
   }
 
   public ProfileKeyCredentialResponse getProfileKeyCredentialResponse() {
-    if (!FeatureFlags.VERSIONED_PROFILES) return null;
-
     if (credential == null) return null;
 
     try {

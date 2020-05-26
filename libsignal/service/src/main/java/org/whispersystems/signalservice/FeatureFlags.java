@@ -6,6 +6,6 @@ package org.whispersystems.signalservice;
  */
 public final class FeatureFlags {
 
-  /** Read and write versioned profile information. */
-  public static final boolean VERSIONED_PROFILES = false;
+  /** Prevent usage of non-versioned profile endpoints. */
+  public static final boolean DISALLOW_OLD_PROFILE_SETTING = false;
 }

@@ -93,7 +93,7 @@ public class RefreshOwnProfileJob extends BaseJob {
   }
 
   private static SignalServiceProfile.RequestType getRequestType(@NonNull Recipient recipient) {
-    return FeatureFlags.VERSIONED_PROFILES && !recipient.hasProfileKeyCredential()
+    return FeatureFlags.versionedProfiles() && !recipient.hasProfileKeyCredential()
            ? SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL
            : SignalServiceProfile.RequestType.PROFILE;
   }

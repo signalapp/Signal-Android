@@ -11,6 +11,7 @@ import com.google.android.collect.Sets;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -59,8 +60,9 @@ public final class FeatureFlags {
   private static final String REMOTE_DELETE              = "android.remoteDelete";
   private static final String PROFILE_FOR_CALLING        = "android.profileForCalling";
   private static final String CALLING_PIP                = "android.callingPip";
-  private static final String NEW_GROUP_UI               = "android.newGroupUI";
   private static final String REACT_WITH_ANY_EMOJI       = "android.reactWithAnyEmoji";
+  private static final String NEW_GROUP_UI               = "android.newGroupUI";
+  private static final String VERSIONED_PROFILES         = "android.versionedProfiles";
   private static final String GROUPS_V2                  = "android.groupsv2";
   private static final String GROUPS_V2_CREATE           = "android.groupsv2.create";
 
@@ -81,7 +83,8 @@ public final class FeatureFlags {
       PROFILE_FOR_CALLING,
       CALLING_PIP,
       NEW_GROUP_UI,
-      REACT_WITH_ANY_EMOJI
+      REACT_WITH_ANY_EMOJI,
+      VERSIONED_PROFILES
   );
 
   /**
@@ -113,6 +116,7 @@ public final class FeatureFlags {
   private static final Set<String> STICKY = Sets.newHashSet(
       PINS_FOR_ALL_LEGACY,
       PINS_FOR_ALL,
+      VERSIONED_PROFILES,
       GROUPS_V2
   );
 
@@ -128,8 +132,9 @@ public final class FeatureFlags {
    * desired test state.
    */
   private static final Map<String, OnFlagChange> FLAG_CHANGE_LISTENERS = new HashMap<String, OnFlagChange>() {{
-    put(MESSAGE_REQUESTS, (change) -> SignalStore.setMessageRequestEnableTime(change == Change.ENABLED ? System.currentTimeMillis() : 0));
-    put(GROUPS_V2,        (change) -> ApplicationDependencies.getJobManager().add(new RefreshAttributesJob()));
+    put(MESSAGE_REQUESTS,   (change) -> SignalStore.setMessageRequestEnableTime(change == Change.ENABLED ? System.currentTimeMillis() : 0));
+    put(VERSIONED_PROFILES, (change) -> ApplicationDependencies.getJobManager().add(new ProfileUploadJob()));
+    put(GROUPS_V2,          (change) -> ApplicationDependencies.getJobManager().add(new RefreshAttributesJob()));
   }};
 
   private static final Map<String, Object> REMOTE_VALUES = new TreeMap<>();
@@ -260,9 +265,14 @@ public final class FeatureFlags {
     return getBoolean(REACT_WITH_ANY_EMOJI, false);
   }
 
+  /** Read and write versioned profile information. */
+  public static boolean versionedProfiles() {
+    return getBoolean(VERSIONED_PROFILES, false);
+  }
+
   /** Groups v2 send and receive. */
   public static boolean groupsV2() {
-    return getBoolean(GROUPS_V2, false);
+    return versionedProfiles() && getBoolean(GROUPS_V2, false);
   }
 
   /** Groups v2 send and receive. */
@@ -504,7 +514,4 @@ public final class FeatureFlags {
   enum Change {
     ENABLED, DISABLED, CHANGED, REMOVED
   }
-
-  /** Read and write versioned profile information. */
-  public static final boolean VERSIONED_PROFILES = org.whispersystems.signalservice.FeatureFlags.VERSIONED_PROFILES;
 }

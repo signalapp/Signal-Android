@@ -9,10 +9,8 @@ package org.whispersystems.signalservice.api;
 import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.zkgroup.profiles.ProfileKey;
-import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.FeatureFlags;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream;
 import org.whispersystems.signalservice.api.crypto.ProfileCipherInputStream;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
@@ -130,12 +128,18 @@ public class SignalServiceMessageReceiver {
   {
     Optional<UUID> uuid = address.getUuid();
 
-    if (FeatureFlags.VERSIONED_PROFILES && requestType == SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL && uuid.isPresent() && profileKey.isPresent()) {
-      return socket.retrieveProfile(uuid.get(), profileKey.get(), unidentifiedAccess);
+    if (uuid.isPresent() && profileKey.isPresent()) {
+      if (requestType == SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL) {
+        return socket.retrieveVersionedProfileAndCredential(uuid.get(), profileKey.get(), unidentifiedAccess);
+      } else {
+        return new ProfileAndCredential(socket.retrieveVersionedProfile(uuid.get(), profileKey.get(), unidentifiedAccess),
+                                        SignalServiceProfile.RequestType.PROFILE,
+                                        Optional.absent());
+      }
     } else {
       return new ProfileAndCredential(socket.retrieveProfile(address, unidentifiedAccess),
                                       SignalServiceProfile.RequestType.PROFILE,
-                                      Optional.<ProfileKeyCredential>absent());
+                                      Optional.absent());
     }
   }
 

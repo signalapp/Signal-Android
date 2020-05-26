@@ -57,7 +57,7 @@ public class RotateProfileKeyJob extends BaseJob {
     recipientDatabase.setProfileKey(self.getId(), profileKey);
 
      try (StreamDetails avatarStream = AvatarHelper.getSelfProfileAvatarStream(context)) {
-      if (FeatureFlags.VERSIONED_PROFILES) {
+      if (FeatureFlags.versionedProfiles()) {
         accountManager.setVersionedProfile(self.getUuid().get(),
                                            profileKey,
                                            Recipient.self().getProfileName().serialize(),
