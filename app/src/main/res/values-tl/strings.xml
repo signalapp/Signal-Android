@@ -383,6 +383,7 @@
   <!--PendingMembersActivity-->
   <string name="PendingMembersActivity_people_you_invited">Mga taong iyong inimbitahan</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Mga imbitasyon ng iba pang mga kasapi ng grupo</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">Ang mga detalye ng mga taong inimbitahan ng ibang kasapi ng grupo ay hindi ipinakita. Kung piliing sumali ng mga inimbitahan, ang kanilang impormasyon ay maibabahagi sa grupo sa puntong iyon. Hindi nila makikita ang anumang mga mensahe sa grupo hanggang sila ay sumali.</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__create">Lumikha</string>
   <string name="AddGroupDetailsFragment__members">Mga Kasapi</string>

@@ -1749,7 +1749,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="KbsSplashFragment__create_your_pin">Pincode aanmaken</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Voer je Signal-pincode in</string>
-  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Om je te helpen je pincode te onthouden zal Signal je periodiek vragen om je pincode in te voeren. Na verloop van tijd zal Signal dit minder vaak vragen.</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Om je te helpen je pincode te onthouden vraagt Signal je periodiek om je pincode opnieuw in te voeren. Als je die een aantal keer juist invoert, dan zal Signal dit na verloop van tijd minder vaak vragen.</string>
   <string name="KbsReminderDialog__skip">Overslaan</string>
   <string name="KbsReminderDialog__submit">Bevestigen</string>
   <string name="KbsReminderDialog__forgot_pin">Pincode vergeten?</string>

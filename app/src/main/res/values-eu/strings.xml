@@ -81,9 +81,11 @@
   <string name="BlockUnblockDialog_block_s">Blokeatu %1$s?</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Taldearen partaideak gai izango dira zu talde honetan berriro sartzeko.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Elkarri deitzeko eta mezuak bidaltzeko gai izango zarete.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokeatutako pertsonek ezingo dizute deitu edo mezuak bidali. </string>
   <string name="BlockUnblockDialog_unblock_s">Desblokeatu %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Desblokeatu</string>
   <string name="BlockUnblockDialog_block">Blokeatu</string>
+  <string name="BlockUnblockDialog_block_and_leave">Blokeatu eta utzi</string>
   <string name="BlockUnblockDialog_block_and_delete">Blokeatu eta ezabatu</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Gaur</string>
@@ -384,8 +386,11 @@
   <!--GV2 access levels-->
   <!--PendingMembersActivity-->
   <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__name_this_group">Eman izena talde honi</string>
   <string name="AddGroupDetailsFragment__create">Sortu</string>
   <string name="AddGroupDetailsFragment__members">Kideak</string>
+  <string name="AddGroupDetailsFragment__group_name_required">Taldearen izena (beharrezkoa)</string>
+  <string name="AddGroupDetailsFragment__try_again_later">Saiatu berriro beranduago.</string>
   <string name="AddGroupDetailsFragment__remove">Ezabatu</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Mezuen desagerpena</string>
