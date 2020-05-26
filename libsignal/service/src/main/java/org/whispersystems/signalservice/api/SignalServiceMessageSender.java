@@ -1228,25 +1228,25 @@ public class SignalServiceMessageSender {
 
         if (pipe.isPresent() && !unidentifiedAccess.isPresent()) {
           try {
-            Log.w(TAG, "Transmitting over pipe...");
+            Log.i(TAG, "[sendMessage] Transmitting over pipe...");
             SendMessageResponse response = pipe.get().send(messages, Optional.<UnidentifiedAccess>absent());
             return SendMessageResult.success(recipient, false, response.getNeedsSync() || isMultiDevice.get());
           } catch (IOException e) {
             Log.w(TAG, e);
-            Log.w(TAG, "Falling back to new connection...");
+            Log.w(TAG, "[sendMessage] Falling back to new connection...");
           }
         } else if (unidentifiedPipe.isPresent() && unidentifiedAccess.isPresent()) {
           try {
-            Log.w(TAG, "Transmitting over unidentified pipe...");
+            Log.i(TAG, "[sendMessage] Transmitting over unidentified pipe...");
             SendMessageResponse response = unidentifiedPipe.get().send(messages, unidentifiedAccess);
             return SendMessageResult.success(recipient, true, response.getNeedsSync() || isMultiDevice.get());
           } catch (IOException e) {
             Log.w(TAG, e);
-            Log.w(TAG, "Falling back to new connection...");
+            Log.w(TAG, "[sendMessage] Falling back to new connection...");
           }
         }
 
-        Log.w(TAG, "Not transmitting over pipe...");
+        Log.w(TAG, "[sendMessage] Not transmitting over pipe...");
         SendMessageResponse response = socket.sendMessage(messages, unidentifiedAccess);
         return SendMessageResult.success(recipient, unidentifiedAccess.isPresent(), response.getNeedsSync() || isMultiDevice.get());
 
@@ -1282,10 +1282,10 @@ public class SignalServiceMessageSender {
 
     for (SignalServiceAttachment attachment : attachments.get()) {
       if (attachment.isStream()) {
-        Log.w(TAG, "Found attachment, creating pointer...");
+        Log.i(TAG, "Found attachment, creating pointer...");
         pointers.add(createAttachmentPointer(attachment.asStream()));
       } else if (attachment.isPointer()) {
-        Log.w(TAG, "Including existing attachment pointer...");
+        Log.i(TAG, "Including existing attachment pointer...");
         pointers.add(createAttachmentPointer(attachment.asPointer()));
       }
     }
