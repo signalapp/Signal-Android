@@ -258,6 +258,7 @@
               android:theme="@style/TextSecure.LightNoActionBar" />
 
     <activity android:name=".groups.ui.managegroup.ManageGroupActivity"
+              android:windowSoftInputMode="stateAlwaysHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".DatabaseMigrationActivity"
@@ -422,7 +423,7 @@
 
     <activity android:name=".profiles.edit.EditProfileActivity"
               android:theme="@style/TextSecure.LightRegistrationTheme"
-              android:windowSoftInputMode="adjustResize" />
+              android:windowSoftInputMode="stateVisible|adjustResize" />
 
     <activity android:name=".lock.v2.CreateKbsPinActivity"
             android:theme="@style/TextSecure.LightRegistrationTheme"

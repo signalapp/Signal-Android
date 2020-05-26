@@ -515,6 +515,7 @@
     <string name="ManageGroupActivity_on">On</string>
     <string name="ManageGroupActivity_add_members">Add members</string>
     <string name="ManageGroupActivity_view_all_members">View all members</string>
+    <string name="ManageGroupActivity_see_all">See all</string>
 
     <string name="ManageGroupActivity_none">None</string>
     <plurals name="ManageGroupActivity_invited">

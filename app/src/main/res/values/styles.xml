@@ -442,4 +442,10 @@
         <item name="android:textColor">@color/core_ultramarine</item>
         <item name="android:background">@drawable/callee_dialog_button_background</item>
     </style>
+
+    <style name="Widget.Signal.CardView.PreferenceRow" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">0dp</item>
+        <item name="cardElevation">0.5dp</item>
+        <item name="cardBackgroundColor">?android:attr/windowBackground</item>
+    </style>
 </resources>

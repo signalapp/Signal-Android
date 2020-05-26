@@ -12,11 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProviders;
@@ -32,11 +32,11 @@ public class CustomNotificationsDialogFragment extends DialogFragment {
 
   private static final String ARG_GROUP_ID = "group_id";
 
-  private Switch   customNotificationsSwitch;
-  private View     soundLabel;
-  private TextView soundSelector;
-  private View     vibrateLabel;
-  private Switch   vibrateSwitch;
+  private SwitchCompat customNotificationsSwitch;
+  private View         soundLabel;
+  private TextView     soundSelector;
+  private View         vibrateLabel;
+  private SwitchCompat vibrateSwitch;
 
   private CustomNotificationsViewModel viewModel;
 

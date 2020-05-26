@@ -11,11 +11,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
@@ -83,7 +83,7 @@ public class ManageGroupFragment extends Fragment {
   private TextView                           blockGroup;
   private TextView                           leaveGroup;
   private TextView                           addMembers;
-  private Switch                             muteNotificationsSwitch;
+  private SwitchCompat                       muteNotificationsSwitch;
   private View                               muteNotificationsRow;
   private TextView                           muteNotificationsUntilLabel;
   private TextView                           customNotificationsButton;
@@ -254,6 +254,7 @@ public class ManageGroupFragment extends Fragment {
     viewModel.getCanAddMembers().observe(getViewLifecycleOwner(), canEdit -> addMembers.setVisibility(canEdit ? View.VISIBLE : View.GONE));
 
     groupMemberList.setRecipientClickListener(recipient -> RecipientBottomSheetDialogFragment.create(recipient.getId(), groupId).show(requireFragmentManager(), "BOTTOM"));
+    groupMemberList.setOverScrollMode(View.OVER_SCROLL_NEVER);
 
     final CompoundButton.OnCheckedChangeListener muteSwitchListener = (buttonView, isChecked) -> {
       if (isChecked) {
