@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
@@ -39,21 +38,11 @@ public class ManageGroupActivity extends PassphraseRequiredActionBarActivity {
                                  .replace(R.id.container, ManageGroupFragment.newInstance(getIntent().getStringExtra(GROUP_ID)))
                                  .commitNow();
     }
-    Toolbar toolbar = findViewById(R.id.toolbar);
-    setSupportActionBar(toolbar);
-    //noinspection ConstantConditions
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
   }
 
   @Override
   public void onResume() {
     super.onResume();
     dynamicTheme.onResume(this);
-  }
-
-  @Override
-  public boolean onSupportNavigateUp() {
-    onBackPressed();
-    return true;
   }
 }

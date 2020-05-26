@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -62,7 +63,7 @@ public class ManageGroupFragment extends Fragment {
   private ManageGroupViewModel               viewModel;
   private GroupMemberListView                groupMemberList;
   private View                               listPending;
-  private TextView                           groupTitle;
+  private Toolbar                            toolbar;
   private TextView                           memberCountUnderAvatar;
   private TextView                           memberCountAboveList;
   private AvatarImageView                    avatar;
@@ -119,7 +120,7 @@ public class ManageGroupFragment extends Fragment {
     View view = inflater.inflate(R.layout.group_manage_fragment, container, false);
 
     avatar                      = view.findViewById(R.id.group_avatar);
-    groupTitle                  = view.findViewById(R.id.group_title);
+    toolbar                     = view.findViewById(R.id.toolbar);
     memberCountUnderAvatar      = view.findViewById(R.id.member_count);
     memberCountAboveList        = view.findViewById(R.id.member_count_2);
     groupMemberList             = view.findViewById(R.id.group_members);
@@ -185,7 +186,9 @@ public class ManageGroupFragment extends Fragment {
 
     avatar.setFallbackPhotoProvider(fallbackPhotoProvider);
 
-    viewModel.getTitle().observe(getViewLifecycleOwner(), groupTitle::setText);
+    toolbar.setNavigationOnClickListener(v -> requireActivity().finish());
+
+    viewModel.getTitle().observe(getViewLifecycleOwner(), toolbar::setTitle);
     viewModel.getMemberCountSummary().observe(getViewLifecycleOwner(), memberCountUnderAvatar::setText);
     viewModel.getFullMemberCountSummary().observe(getViewLifecycleOwner(), memberCountAboveList::setText);
     viewModel.getGroupRecipient().observe(getViewLifecycleOwner(), avatar::setRecipient);
