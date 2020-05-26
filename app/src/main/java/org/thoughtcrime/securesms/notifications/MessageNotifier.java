@@ -97,7 +97,7 @@ public class MessageNotifier {
 
   private static final String EMOJI_REPLACEMENT_STRING  = "__EMOJI__";
   private static final String NOTIFICATION_GROUP        = "messages";
-  private static final long   MIN_AUDIBLE_PERIOD_MILLIS = TimeUnit.SECONDS.toMillis(2);
+  private static final long   MIN_AUDIBLE_PERIOD_MILLIS = TimeUnit.SECONDS.toMillis(30);
   private static final long   DESKTOP_ACTIVITY_PERIOD   = TimeUnit.MINUTES.toMillis(1);
 
   private volatile static       long               visibleThread                = -1;
