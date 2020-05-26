@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View.OnClickListener;
 
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.RegistrationActivity;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+
+import network.loki.messenger.R;
 
 public class PushRegistrationReminder extends Reminder {
 
@@ -30,9 +30,5 @@ public class PushRegistrationReminder extends Reminder {
 
   public static boolean isEligible(Context context) {
     return false;
-    // Loki - Original code
-    // ========
-//    return !TextSecurePreferences.isPushRegistered(context);
-    // ========
   }
 }

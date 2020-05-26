@@ -70,7 +70,7 @@
 
             </android.support.v7.widget.Toolbar>
 
-            <org.thoughtcrime.securesms.loki.redesign.views.ProfilePictureView
+            <org.thoughtcrime.securesms.loki.views.ProfilePictureView
                 android:id="@+id/profilePictureView"
                 android:layout_width="@dimen/large_profile_picture_size"
                 android:layout_height="@dimen/large_profile_picture_size"
@@ -107,7 +107,7 @@
 
             </RelativeLayout>
 
-            <org.thoughtcrime.securesms.loki.redesign.views.LabeledSeparatorView
+            <org.thoughtcrime.securesms.loki.views.LabeledSeparatorView
                 android:id="@+id/separatorView"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"

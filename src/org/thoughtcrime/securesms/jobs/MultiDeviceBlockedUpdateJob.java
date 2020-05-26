@@ -84,8 +84,7 @@ public class MultiDeviceBlockedUpdateJob extends BaseJob implements InjectableTy
         }
       }
 
-      // TODO: Message ID
-      messageSender.sendMessage(0, SignalServiceSyncMessage.forBlocked(new BlockedListMessage(blockedIndividuals, blockedGroups)),
+      messageSender.sendMessage(SignalServiceSyncMessage.forBlocked(new BlockedListMessage(blockedIndividuals, blockedGroups)),
                                 UnidentifiedAccessUtil.getAccessForSync(context));
     }
   }

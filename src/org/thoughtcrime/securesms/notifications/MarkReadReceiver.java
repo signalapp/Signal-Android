@@ -20,17 +20,15 @@ import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
+import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
+import org.thoughtcrime.securesms.loki.protocol.SyncMessagesProtocol;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
-import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI;
+import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
-import kotlin.Unit;
-import kotlin.contracts.Returns;
+import java.util.Set;
 
 public class MarkReadReceiver extends BroadcastReceiver {
 
@@ -78,7 +76,8 @@ public class MarkReadReceiver extends BroadcastReceiver {
 
     for (MarkedMessageInfo messageInfo : markedReadMessages) {
       scheduleDeletion(context, messageInfo.getExpirationInfo());
-      if (!messageInfo.getSyncMessageId().getAddress().isGroup()) {
+
+      if (SyncMessagesProtocol.shouldSyncReadReceipt(messageInfo.getSyncMessageId().getAddress())) {
         syncMessageIds.add(messageInfo.getSyncMessageId());
       }
     }
@@ -93,17 +92,16 @@ public class MarkReadReceiver extends BroadcastReceiver {
 
     for (Address address : addressMap.keySet()) {
       List<Long> timestamps = Stream.of(addressMap.get(address)).map(SyncMessageId::getTimetamp).toList();
-      MultiDeviceUtilities.getAllDevicePublicKeysWithFriendStatus(context, address.serialize()).success(devices -> {
-        for (Map.Entry<String, Boolean> entry : devices.entrySet()) {
-          String device = entry.getKey();
-          boolean isFriend = entry.getValue();
-          // Loki - This also prevents read receipts from being sent in group chats as they don't maintain a friend request status
-          if (isFriend) {
-            Util.runOnMain(() -> ApplicationContext.getInstance(context).getJobManager().add(new SendReadReceiptJob(Address.fromSerialized(device), timestamps)));
-          }
-        }
-        return Unit.INSTANCE;
-      });
+      // Loki - Check whether we want to send a read receipt to this user
+      if (!SessionMetaProtocol.shouldSendReadReceipt(address, context)) { continue; }
+      // Loki - Take into account multi device
+      Set<String> linkedDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(address.serialize());
+      for (String device : linkedDevices) {
+        Address deviceAsAddress = Address.fromExternal(context, device);
+        ApplicationContext.getInstance(context)
+                          .getJobManager()
+                          .add(new SendReadReceiptJob(deviceAsAddress, timestamps));
+      }
     }
   }
 

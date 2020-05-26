@@ -9,16 +9,15 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
+import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.signalservice.loki.api.multidevice.LokiDeviceLinkUtilities;
-import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI;
+import org.whispersystems.signalservice.loki.protocol.multidevice.MultiDeviceProtocol;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
-
-import kotlin.Unit;
 
 @SuppressLint("UseSparseArrays")
 public class TypingStatusSender {
@@ -82,24 +81,17 @@ public class TypingStatusSender {
   }
 
   private void sendTyping(long threadId, boolean typingStarted) {
-    LokiFileServerAPI storageAPI = LokiFileServerAPI.Companion.getShared();
     ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
     Recipient recipient = threadDatabase.getRecipientForThreadId(threadId);
-
-    if (recipient == null) {
-      ApplicationContext.getInstance(context).getJobManager().add(new TypingSendJob(threadId, typingStarted));
-      return;
+    // Loki - Check whether we want to send a typing indicator to this user
+    if (!SessionMetaProtocol.shouldSendTypingIndicator(recipient, context)) { return; }
+    // Loki - Take into account multi device
+    Set<String> linkedDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(recipient.getAddress().serialize());
+    for (String device : linkedDevices) {
+      Recipient deviceAsRecipient = Recipient.from(context, Address.fromSerialized(device), false);
+      long deviceThreadID = threadDatabase.getThreadIdFor(deviceAsRecipient);
+      ApplicationContext.getInstance(context).getJobManager().add(new TypingSendJob(deviceThreadID, typingStarted));
     }
-    LokiDeviceLinkUtilities.INSTANCE.getAllLinkedDeviceHexEncodedPublicKeys(recipient.getAddress().serialize()).success(devices -> {
-      for (String device : devices) {
-        Recipient deviceRecipient = Recipient.from(context, Address.fromSerialized(device), false);
-        long deviceThreadID = threadDatabase.getThreadIdIfExistsFor(deviceRecipient);
-        if (deviceThreadID > -1) {
-          ApplicationContext.getInstance(context).getJobManager().add(new TypingSendJob(deviceThreadID, typingStarted));
-        }
-      }
-      return Unit.INSTANCE;
-    });
   }
 
   private class StartRunnable implements Runnable {

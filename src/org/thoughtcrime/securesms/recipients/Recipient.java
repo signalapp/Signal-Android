@@ -43,8 +43,8 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.JazzIdenticonContactPhoto;
-import org.thoughtcrime.securesms.loki.RecipientAvatarModifiedEvent;
+import org.thoughtcrime.securesms.loki.todo.JazzIdenticonContactPhoto;
+import org.thoughtcrime.securesms.loki.utilities.ProfilePictureModifiedEvent;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.RecipientProvider.RecipientDetails;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
@@ -277,9 +277,9 @@ public class Recipient implements RecipientModifiedListener {
     return isLocalNumber;
   }
 
-  public boolean isOurMasterDevice() {
-    String ourMasterDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
-    return ourMasterDevice != null && ourMasterDevice.equals(getAddress().serialize());
+  public boolean isUserMasterDevice() {
+    String userMasterDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+    return userMasterDevice != null && userMasterDevice.equals(getAddress().serialize());
   }
 
   public synchronized @Nullable Uri getContactUri() {
@@ -399,7 +399,7 @@ public class Recipient implements RecipientModifiedListener {
     }
 
     notifyListeners();
-    EventBus.getDefault().post(new RecipientAvatarModifiedEvent(this));
+    EventBus.getDefault().post(new ProfilePictureModifiedEvent(this));
   }
 
   public synchronized boolean isProfileSharing() {
@@ -455,7 +455,8 @@ public class Recipient implements RecipientModifiedListener {
   }
 
   public synchronized String toShortString() {
-    return (getName() == null ? address.serialize() : getName());
+    String name = getName();
+    return (name != null ? name : address.serialize());
   }
 
   public synchronized @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted) {
@@ -466,11 +467,11 @@ public class Recipient implements RecipientModifiedListener {
     if      (isResolving())            return new TransparentContactPhoto();
     else if (isGroupRecipient())       return new GeneratedContactPhoto(name, R.drawable.ic_profile_default);
     else {
-      String currentUser = TextSecurePreferences.getLocalNumber(context);
-      String recipientAddress = address.serialize();
-      String primaryAddress = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
-      String profileAddress = (recipientAddress.equalsIgnoreCase(currentUser) && primaryAddress != null) ? primaryAddress : recipientAddress;
-      return new JazzIdenticonContactPhoto(profileAddress);
+      String userPublicKey = TextSecurePreferences.getLocalNumber(context);
+      String publicKey = address.serialize();
+      String userMasterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+      String publicKeyToUse = (publicKey.equalsIgnoreCase(userPublicKey) && userMasterPublicKey != null) ? userMasterPublicKey : publicKey;
+      return new JazzIdenticonContactPhoto(publicKeyToUse);
     }
   }
 

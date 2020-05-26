@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/large_spacing"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="4dp"
         android:layout_marginRight="@dimen/large_spacing"
         android:textSize="14sp"
         android:textColor="@color/text"
@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/large_spacing"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="@dimen/large_spacing"
         android:hint="Enter your session ID" />
 

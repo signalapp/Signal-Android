@@ -56,10 +56,12 @@ public class RotateCertificateJob extends BaseJob implements InjectableType {
   @Override
   public void onRun() throws IOException {
     // Loki - Do nothing
-//    synchronized (RotateCertificateJob.class) {
-//      byte[] certificate = accountManager.getSenderCertificate();
-//      TextSecurePreferences.setUnidentifiedAccessCertificate(context, certificate);
-//    }
+    /*
+    synchronized (RotateCertificateJob.class) {
+      byte[] certificate = accountManager.getSenderCertificate();
+      TextSecurePreferences.setUnidentifiedAccessCertificate(context, certificate);
+    }
+     */
   }
 
   @Override

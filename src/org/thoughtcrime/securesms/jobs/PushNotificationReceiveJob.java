@@ -57,7 +57,7 @@ public class PushNotificationReceiveJob extends PushReceivedJob implements Injec
     synchronized (PushReceivedJob.RECEIVE_LOCK) {
       receiver.retrieveMessages(envelope -> {
         Log.i(tag, "Retrieved an envelope." + timeSuffix(startTime));
-        processEnvelope(envelope);
+        processEnvelope(envelope, false);
         Log.i(tag, "Successfully processed an envelope." + timeSuffix(startTime));
       });
       TextSecurePreferences.setNeedsMessagePull(context, false);

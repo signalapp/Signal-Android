@@ -9,21 +9,14 @@ import android.support.annotation.WorkerThread;
 import org.signal.libsignal.metadata.SignalProtos;
 import org.signal.libsignal.metadata.certificate.CertificateValidator;
 import org.signal.libsignal.metadata.certificate.InvalidCertificateException;
-import network.loki.messenger.BuildConfig;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.InvalidKeyException;
-import org.whispersystems.libsignal.ecc.Curve;
-import org.whispersystems.libsignal.ecc.ECPublicKey;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-
-import java.io.IOException;
 
 public class UnidentifiedAccessUtil {
 
@@ -116,9 +109,9 @@ public class UnidentifiedAccessUtil {
     String ourNumber = TextSecurePreferences.getLocalNumber(context);
     if (ourNumber != null) {
       SignalProtos.SenderCertificate certificate = SignalProtos.SenderCertificate.newBuilder()
-              .setSender(ourNumber)
-              .setSenderDevice(SignalServiceAddress.DEFAULT_DEVICE_ID)
-              .build();
+                                                                                 .setSender(ourNumber)
+                                                                                 .setSenderDevice(SignalServiceAddress.DEFAULT_DEVICE_ID)
+                                                                                 .build();
       return certificate.toByteArray();
     }
 

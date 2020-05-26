@@ -19,7 +19,7 @@ import com.nineoldandroids.animation.ArgbEvaluator;
 
 import org.thoughtcrime.securesms.IntroPagerAdapter.IntroPage;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
+import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;

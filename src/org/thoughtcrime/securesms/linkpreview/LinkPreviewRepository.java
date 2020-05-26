@@ -8,10 +8,8 @@ import android.text.Html;
 import android.text.TextUtils;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.bumptech.glide.request.FutureTarget;
 
-import com.bumptech.glide.util.ByteBufferUtil;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
@@ -73,7 +71,7 @@ public class LinkPreviewRepository implements InjectableType {
     ApplicationContext.getInstance(context).injectDependencies(this);
   }
 
-  public RequestController getLinkPreview(@NonNull Context context, @NonNull String url, @NonNull Callback<Optional<LinkPreview>> callback) {
+  RequestController getLinkPreview(@NonNull Context context, @NonNull String url, @NonNull Callback<Optional<LinkPreview>> callback) {
     CompositeRequestController compositeController = new CompositeRequestController();
 
     if (!LinkPreviewUtil.isWhitelistedLinkUrl(url)) {
@@ -150,28 +148,6 @@ public class LinkPreviewRepository implements InjectableType {
     });
 
     return new CallRequestController(call);
-  }
-
-  public @NonNull RequestController fetchGIF(@NonNull Context context, @NonNull String url, @NonNull Callback<Optional<Attachment>> callback) {
-    FutureTarget<GifDrawable> future = GlideApp.with(context).asGif().load(new ChunkedImageUrl(url)).skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE)
-      .centerInside().submit(1024, 1024);
-    RequestController controller = () -> future.cancel(false);
-    SignalExecutors.UNBOUNDED.execute(() -> {
-      try {
-        GifDrawable gif = future.get();
-        byte[] bytes = ByteBufferUtil.toBytes(gif.getBuffer());
-        Uri uri = BlobProvider.getInstance().forData(bytes).createForSingleSessionInMemory();
-        Optional<Attachment> thumbnail = Optional.of(new UriAttachment(uri, uri, MediaUtil.IMAGE_GIF, AttachmentDatabase.TRANSFER_PROGRESS_DONE,
-          bytes.length, gif.getIntrinsicWidth(), gif.getIntrinsicHeight(), null, null, false, false, null, null));
-        callback.onComplete(thumbnail);
-      } catch (CancellationException | ExecutionException | InterruptedException e) {
-        controller.cancel();
-        callback.onComplete(Optional.absent());
-      } finally {
-        future.cancel(false);
-      }
-    });
-    return () -> future.cancel(true);
   }
 
   private @NonNull RequestController fetchThumbnail(@NonNull Context context, @NonNull String imageUrl, @NonNull Callback<Optional<Attachment>> callback) {
@@ -317,7 +293,7 @@ public class LinkPreviewRepository implements InjectableType {
     }
   }
 
-  public interface Callback<T> {
+  interface Callback<T> {
     void onComplete(@NonNull T result);
   }
 }

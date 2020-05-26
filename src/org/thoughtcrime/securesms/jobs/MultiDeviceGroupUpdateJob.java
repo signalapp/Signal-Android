@@ -23,7 +23,6 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStre
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceGroup;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceGroupsOutputStream;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -85,7 +84,7 @@ public class MultiDeviceGroupUpdateJob extends BaseJob implements InjectableType
       reader = DatabaseFactory.getGroupDatabase(context).getGroups();
 
       while ((record = reader.getNext()) != null) {
-        if (record.isSignalGroup()) {
+        if (record.isClosedGroup()) {
           List<String> members = new LinkedList<>();
           List<String> admins  = new LinkedList<>();
 
@@ -125,8 +124,7 @@ public class MultiDeviceGroupUpdateJob extends BaseJob implements InjectableType
 
   @Override
   public boolean onShouldRetry(@NonNull Exception exception) {
-    // Loki - Disabled because we have our own retrying
-    // if (exception instanceof PushNetworkException) return true;
+    // Loki - Disabled since we have our own retrying
     return false;
   }
 
@@ -145,7 +143,7 @@ public class MultiDeviceGroupUpdateJob extends BaseJob implements InjectableType
                                                                               .withLength(contactsFile.length())
                                                                               .build();
 
-    messageSender.sendMessage(0, SignalServiceSyncMessage.forGroups(attachmentStream),
+    messageSender.sendMessage(SignalServiceSyncMessage.forGroups(attachmentStream),
                               UnidentifiedAccessUtil.getAccessForSync(context));
   }
 

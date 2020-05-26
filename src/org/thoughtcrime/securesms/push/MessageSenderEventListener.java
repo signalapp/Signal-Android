@@ -3,15 +3,11 @@ package org.thoughtcrime.securesms.push;
 import android.content.Context;
 
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
-import org.thoughtcrime.securesms.loki.FriendRequestHandler;
-import org.thoughtcrime.securesms.sms.MessageSender;
+import org.thoughtcrime.securesms.loki.protocol.FriendRequestProtocol;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 public class MessageSenderEventListener implements SignalServiceMessageSender.EventListener {
-
-  private static final String TAG = MessageSenderEventListener.class.getSimpleName();
-
   private final Context context;
 
   public MessageSenderEventListener(Context context) {
@@ -24,21 +20,17 @@ public class MessageSenderEventListener implements SignalServiceMessageSender.Ev
   }
 
   @Override
-  public void onSyncEvent(long messageID, long timestamp, byte[] message, int ttl) {
-    if (messageID >= 0 && timestamp > 0 && message != null && ttl > 0) {
-      MessageSender.sendSyncMessageToOurDevices(context, messageID, timestamp, message, ttl);
-    }
+  public void onFriendRequestSending(long messageID, long threadID) {
+    FriendRequestProtocol.setFriendRequestStatusToSendingIfNeeded(context, messageID, threadID);
   }
 
-  @Override public void onFriendRequestSending(long messageID, long threadID) {
-    FriendRequestHandler.updateFriendRequestState(context, FriendRequestHandler.ActionType.Sending, messageID, threadID);
+  @Override
+  public void onFriendRequestSent(long messageID, long threadID) {
+    FriendRequestProtocol.setFriendRequestStatusToSentIfNeeded(context, messageID, threadID);
   }
 
-  @Override public void onFriendRequestSent(long messageID, long threadID) {
-    FriendRequestHandler.updateFriendRequestState(context, FriendRequestHandler.ActionType.Sent, messageID, threadID);
-  }
-
-  @Override public void onFriendRequestSendingFailed(long messageID, long threadID) {
-    FriendRequestHandler.updateFriendRequestState(context, FriendRequestHandler.ActionType.Failed, messageID, threadID);
+  @Override
+  public void onFriendRequestSendingFailed(long messageID, long threadID) {
+    FriendRequestProtocol.setFriendRequestStatusToFailedIfNeeded(context, messageID, threadID);
   }
 }

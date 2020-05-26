@@ -445,11 +445,11 @@ public class TextSecurePreferences {
     return getIntegerPreference(context, PROFILE_AVATAR_ID_PREF, 0);
   }
 
-  public static void setProfileAvatarUrl(Context context, String url) {
+  public static void setProfilePictureURL(Context context, String url) {
     setStringPreference(context, PROFILE_AVATAR_URL_PREF, url);
   }
 
-  public static String getProfileAvatarUrl(Context context) {
+  public static String getProfilePictureURL(Context context) {
     return getStringPreference(context, PROFILE_AVATAR_URL_PREF, null);
   }
 
@@ -1256,21 +1256,20 @@ public class TextSecurePreferences {
     setBooleanPreference(context, "has_viewed_seed", hasViewedSeed);
   }
 
-  public static void setResetDatabase(Context context, boolean resetDatabase) {
-    // We do it this way so that it gets persisted in storage straight away
+  public static void setNeedsDatabaseReset(Context context, boolean resetDatabase) {
     PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean("database_reset", resetDatabase).commit();
   }
 
-  public static boolean resetDatabase(Context context) {
+  public static boolean getNeedsDatabaseReset(Context context) {
     return getBooleanPreference(context, "database_reset", false);
   }
 
-  public static void setDatabaseResetFromUnpair(Context context, boolean value) {
+  public static void setWasUnlinked(Context context, boolean value) {
     // We do it this way so that it gets persisted in storage straight away
     PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean("database_reset_unpair", value).commit();
   }
 
-  public static boolean databaseResetFromUnpair(Context context) {
+  public static boolean getWasUnlinked(Context context) {
     return getBooleanPreference(context, "database_reset_unpair", false);
   }
 
@@ -1305,9 +1304,17 @@ public class TextSecurePreferences {
   public static void setLastProfilePictureUpload(Context context, long newValue) {
     setLongPreference(context, "last_profile_picture_upload", newValue);
   }
-  // endregion
+
+  public static boolean hasSeenGIFMetaDataWarning(Context context) {
+    return getBooleanPreference(context, "has_seen_gif_metadata_warning", false);
+  }
+
+  public static void setHasSeenGIFMetaDataWarning(Context context) {
+    setBooleanPreference(context, "has_seen_gif_metadata_warning", true);
+  }
 
   public static void clearAll(Context context) {
     PreferenceManager.getDefaultSharedPreferences(context).edit().clear().commit();
   }
+  // endregion
 }

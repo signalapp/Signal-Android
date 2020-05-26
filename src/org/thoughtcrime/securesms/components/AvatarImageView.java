@@ -80,7 +80,7 @@ public class AvatarImageView extends AppCompatImageView {
     setOutlineProvider(new ViewOutlineProvider() {
       @Override
       public void getOutline(View view, Outline outline) {
-          outline.setOval(0, 0, view.getWidth(), view.getHeight());
+        outline.setOval(0, 0, view.getWidth(), view.getHeight());
       }
     });
     setClipToOutline(true);
@@ -132,11 +132,11 @@ public class AvatarImageView extends AppCompatImageView {
 
           if (photo.contactPhoto != null) {
             requestManager.load(photo.contactPhoto)
-                    .fallback(fallbackContactPhotoDrawable)
-                    .error(fallbackContactPhotoDrawable)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .circleCrop()
-                    .into(this);
+                          .fallback(fallbackContactPhotoDrawable)
+                          .error(fallbackContactPhotoDrawable)
+                          .diskCacheStrategy(DiskCacheStrategy.ALL)
+                          .circleCrop()
+                          .into(this);
           } else {
             setImageDrawable(fallbackContactPhotoDrawable);
           }
@@ -184,9 +184,9 @@ public class AvatarImageView extends AppCompatImageView {
       if (other == null) return false;
 
       return other.recipient.equals(recipient) &&
-              other.recipient.getColor().equals(recipient.getColor()) &&
-              other.ready == ready &&
-              Objects.equals(other.contactPhoto, contactPhoto);
+             other.recipient.getColor().equals(recipient.getColor()) &&
+             other.ready == ready &&
+             Objects.equals(other.contactPhoto, contactPhoto);
     }
   }
 }

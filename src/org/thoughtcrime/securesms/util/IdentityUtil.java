@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.Address;
@@ -38,6 +37,8 @@ import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 
 import java.util.List;
+
+import network.loki.messenger.R;
 
 import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
 
@@ -74,7 +75,7 @@ public class IdentityUtil {
     GroupDatabase.GroupRecord groupRecord;
 
     while ((groupRecord = reader.getNext()) != null) {
-      if (groupRecord.isRSSFeed() || groupRecord.isPublicChat()) { continue; }
+      if (groupRecord.isRSSFeed() || groupRecord.isOpenGroup()) { continue; }
       if (groupRecord.getMembers().contains(recipient.getAddress()) && groupRecord.isActive() && !groupRecord.isMms()) {
         SignalServiceGroup group = new SignalServiceGroup(groupRecord.getId(), SignalServiceGroup.GroupType.SIGNAL);
 
@@ -127,7 +128,7 @@ public class IdentityUtil {
     GroupDatabase.GroupRecord groupRecord;
 
     while ((groupRecord = reader.getNext()) != null) {
-      if (groupRecord.isRSSFeed() || groupRecord.isPublicChat()) { continue; }
+      if (groupRecord.isRSSFeed() || groupRecord.isOpenGroup()) { continue; }
       if (groupRecord.getMembers().contains(recipient.getAddress()) && groupRecord.isActive()) {
         SignalServiceGroup            group       = new SignalServiceGroup(groupRecord.getId(), SignalServiceGroup.GroupType.SIGNAL);
         IncomingTextMessage           incoming    = new IncomingTextMessage(recipient.getAddress(), 1, time, null, Optional.of(group), 0, false);

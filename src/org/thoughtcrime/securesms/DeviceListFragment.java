@@ -25,8 +25,8 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.DeviceListLoader;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.devicelist.Device;
-import org.thoughtcrime.securesms.loki.redesign.dialogs.DeviceEditingOptionsBottomSheet;
-import org.thoughtcrime.securesms.loki.redesign.utilities.MnemonicUtilities;
+import org.thoughtcrime.securesms.loki.dialogs.DeviceEditingOptionsBottomSheet;
+import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.libsignal.util.guava.Function;
@@ -39,7 +39,7 @@ import kotlin.Pair;
 import kotlin.Unit;
 import network.loki.messenger.R;
 
-import static org.thoughtcrime.securesms.loki.GeneralUtilitiesKt.toPx;
+import static org.thoughtcrime.securesms.loki.utilities.GeneralUtilitiesKt.toPx;
 
 public class DeviceListFragment extends ListFragment
     implements LoaderManager.LoaderCallbacks<List<Device>>,

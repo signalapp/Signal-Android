@@ -160,14 +160,15 @@ public class GroupDatabase extends Database {
     return recipients;
   }
 
-  public boolean signalGroupsHaveMember(String hexEncodedPublicKey) {
+  public boolean isClosedGroupMember(String hexEncodedPublicKey) {
     try {
       Address address = Address.fromSerialized(hexEncodedPublicKey);
       Reader reader = DatabaseFactory.getGroupDatabase(context).getGroups();
+
       GroupRecord record;
       while ((record = reader.getNext()) != null) {
-        if (record.isSignalGroup() && record.members.contains(address)) {
-            return true;
+        if (record.isClosedGroup() && record.members.contains(address)) {
+          return true;
         }
       }
 
@@ -292,8 +293,7 @@ public class GroupDatabase extends Database {
     contents.put(ADMINS, Address.toSerializedList(admins, ','));
     contents.put(ACTIVE, 1);
 
-    databaseHelper.getWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?",
-            new String[] {groupId});
+    databaseHelper.getWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?", new String[] {groupId});
   }
 
   public void remove(String groupId, Address source) {
@@ -489,11 +489,11 @@ public class GroupDatabase extends Database {
       return mms;
     }
 
-    public boolean isPublicChat() { return Address.fromSerialized(id).isPublicChat(); }
+    public boolean isOpenGroup() { return Address.fromSerialized(id).isOpenGroup(); }
 
     public boolean isRSSFeed() { return Address.fromSerialized(id).isRSSFeed(); }
 
-    public boolean isSignalGroup() { return Address.fromSerialized(id).isSignalGroup(); }
+    public boolean isClosedGroup() { return Address.fromSerialized(id).isClosedGroup(); }
 
     public String getUrl() { return url; }
 

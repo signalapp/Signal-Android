@@ -35,17 +35,17 @@ import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
-import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
-import org.thoughtcrime.securesms.loki.redesign.messaging.LokiAPIDatabase;
-import org.thoughtcrime.securesms.loki.redesign.messaging.LokiPreKeyBundleDatabase;
-import org.thoughtcrime.securesms.loki.redesign.messaging.LokiPreKeyRecordDatabase;
-import org.thoughtcrime.securesms.loki.redesign.messaging.LokiUserDatabase;
+import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
+import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
+import org.thoughtcrime.securesms.loki.database.LokiPreKeyBundleDatabase;
+import org.thoughtcrime.securesms.loki.database.LokiPreKeyRecordDatabase;
+import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
+import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.signalservice.loki.api.publicchats.LokiPublicChat;
+import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChat;
 
 import java.io.File;
 
@@ -81,8 +81,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV5                           = 26;
   private static final int lokiV6                           = 27;
   private static final int lokiV7                           = 28;
+  private static final int lokiV8                           = 29;
 
-  private static final int    DATABASE_VERSION = lokiV7; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
+  private static final int    DATABASE_VERSION = lokiV8; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -138,6 +139,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiAPIDatabase.getCreateLastDeletionServerIDTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateDeviceLinkTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateUserCountTableCommand());
+    db.execSQL(LokiAPIDatabase.getCreateSessionRequestTimestampTableCommand());
     db.execSQL(LokiPreKeyBundleDatabase.getCreateTableCommand());
     db.execSQL(LokiPreKeyRecordDatabase.getCreateTableCommand());
     db.execSQL(LokiMessageDatabase.getCreateMessageFriendRequestTableCommand());
@@ -181,8 +183,8 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   @Override
   public void onConfigure(SQLiteDatabase db) {
     super.onConfigure(db);
-    // Loki: Enable Write Ahead Logging Mode, increase the cache size
-    // This should be disabled if we ever run into serious race condition bugs
+    // Loki - Enable write ahead logging mode and increase the cache size.
+    // This should be disabled if we ever run into serious race condition bugs.
     db.enableWriteAheadLogging();
     db.execSQL("PRAGMA cache_size = 10000");
   }
@@ -544,7 +546,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
             if (publicChat != null) {
               byte[] groupId = publicChat.getId().getBytes();
               String oldId = GroupUtil.getEncodedId(groupId, false);
-              String newId = GroupUtil.getEncodedPublicChatId(groupId);
+              String newId = GroupUtil.getEncodedOpenGroupId(groupId);
               ContentValues threadUpdate = new ContentValues();
               threadUpdate.put("recipient_ids", newId);
               db.update("thread", threadUpdate, "recipient_ids = ?", new String[]{ oldId });
@@ -555,7 +557,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
           }
         }
 
-        // Migrate rss feeds from __textsecure_group__ to __loki_rss_feed_group__
+        // Migrate RSS feeds from __textsecure_group__ to __loki_rss_feed_group__
         String[] rssFeedIds = new String[] { "loki.network.feed", "loki.network.messenger-updates.feed" };
         for (String groupId : rssFeedIds) {
           String oldId = GroupUtil.getEncodedId(groupId.getBytes(), false);
@@ -574,6 +576,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < lokiV7) {
         db.execSQL(LokiMessageDatabase.getCreateErrorMessageTableCommand());
+      }
+
+      if (oldVersion < lokiV8) {
+        db.execSQL(LokiAPIDatabase.getCreateSessionRequestTimestampTableCommand());
       }
 
       db.setTransactionSuccessful();

@@ -537,7 +537,7 @@ public class ThreadDatabase extends Database {
   }
 
   public @Nullable Recipient getRecipientForThreadId(long threadId) {
-    // Loki - Cache the address.
+    // Loki - Cache the address
     if (addressCache.containsKey(threadId) && addressCache.get(threadId) != null) {
       return Recipient.from(context, addressCache.get(threadId), false);
     }

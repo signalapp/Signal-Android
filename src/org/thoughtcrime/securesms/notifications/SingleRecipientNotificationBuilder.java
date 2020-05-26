@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.utilities.NotificationUtilities;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.Slide;
@@ -170,24 +171,20 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
       String actionName = context.getString(R.string.MessageNotifier_reply);
       String label = context.getString(replyMethodLongDescription(replyMethod));
 
-      Action replyAction = new Action(R.drawable.ic_reply_white_36dp,
-              actionName,
-              quickReplyIntent);
+      Action replyAction = new Action(R.drawable.ic_reply_white_36dp, actionName, quickReplyIntent);
 
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         replyAction = new Action.Builder(R.drawable.ic_reply_white_36dp,
                 actionName,
                 wearableReplyIntent)
-                .addRemoteInput(new RemoteInput.Builder(MessageNotifier.EXTRA_REMOTE_REPLY)
-                        .setLabel(label).build())
+                .addRemoteInput(new RemoteInput.Builder(MessageNotifier.EXTRA_REMOTE_REPLY).setLabel(label).build())
                 .build();
       }
 
       Action wearableReplyAction = new Action.Builder(R.drawable.ic_reply,
               actionName,
               wearableReplyIntent)
-              .addRemoteInput(new RemoteInput.Builder(MessageNotifier.EXTRA_REMOTE_REPLY)
-                      .setLabel(label).build())
+              .addRemoteInput(new RemoteInput.Builder(MessageNotifier.EXTRA_REMOTE_REPLY).setLabel(label).build())
               .build();
 
 
@@ -244,16 +241,14 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
       Bitmap recipientPhotoBitmap = BitmapUtil.createFromDrawable(drawable, largeIconTargetSize, largeIconTargetSize);
 
       if (recipientPhotoBitmap != null) {
-        setLargeIcon(getCircleBitmap(recipientPhotoBitmap));
+        setLargeIcon(getCircularBitmap(recipientPhotoBitmap));
       }
     }
   }
 
-  private Bitmap getCircleBitmap(Bitmap bitmap) {
-    final Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
-            bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+  private Bitmap getCircularBitmap(Bitmap bitmap) {
+    final Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
     final Canvas canvas = new Canvas(output);
-
     final int color = Color.RED;
     final Paint paint = new Paint();
     final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
@@ -263,7 +258,6 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     canvas.drawARGB(0, 0, 0, 0);
     paint.setColor(color);
     canvas.drawOval(rectF, paint);
-
     paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
     canvas.drawBitmap(bitmap, rect, rect, paint);
 

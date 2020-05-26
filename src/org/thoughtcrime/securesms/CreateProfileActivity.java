@@ -59,7 +59,7 @@ import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.util.StreamDetails;
 import org.whispersystems.signalservice.loki.api.LokiDotNetAPI;
 import org.whispersystems.signalservice.loki.api.fileserver.LokiFileServerAPI;
-import org.whispersystems.signalservice.loki.api.publicchats.LokiPublicChatAPI;
+import org.whispersystems.signalservice.loki.api.opengroups.LokiPublicChatAPI;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -406,7 +406,7 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
             String newProfileKey = ProfileKeyUtil.generateEncodedProfileKey(context);
             byte[] profileKey = ProfileKeyUtil.getProfileKeyFromEncodedString(newProfileKey);
 
-            //Loki - Upload the profile photo here
+            // Loki - Upload the profile photo here
             if (avatar != null) {
               Log.d("Loki", "Start uploading profile photo");
               LokiFileServerAPI storageAPI = LokiFileServerAPI.shared;
@@ -415,9 +415,9 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
                 return Unit.INSTANCE;
               });
               Log.d("Loki", "Profile photo uploaded, the url is " + result.getUrl());
-              TextSecurePreferences.setProfileAvatarUrl(context, result.getUrl());
+              TextSecurePreferences.setProfilePictureURL(context, result.getUrl());
             } else {
-              TextSecurePreferences.setProfileAvatarUrl(context, null);
+              TextSecurePreferences.setProfilePictureURL(context, null);
             }
 
             AvatarHelper.setAvatar(context, Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)), avatarBytes);
@@ -427,7 +427,7 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
             ProfileKeyUtil.setEncodedProfileKey(context, newProfileKey);
 
             // Update profile key on the public chat server
-            ApplicationContext.getInstance(context).updatePublicChatProfilePictureIfNeeded();
+            ApplicationContext.getInstance(context).updateOpenGroupProfilePicturesIfNeeded();
           } catch (Exception e) {
             Log.d("Loki", "Failed to upload profile photo: " + e);
             return false;

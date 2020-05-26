@@ -20,11 +20,11 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 
 import org.thoughtcrime.securesms.components.ContactFilterToolbar;
-import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
+import org.thoughtcrime.securesms.loki.fragments.ContactSelectionListFragment;
+import org.thoughtcrime.securesms.loki.fragments.ContactSelectionListLoader.DisplayMode;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import network.loki.messenger.R;
@@ -36,8 +36,8 @@ import network.loki.messenger.R;
  *
  */
 public abstract class ContactSelectionActivity extends PassphraseRequiredActionBarActivity
-                                               implements SwipeRefreshLayout.OnRefreshListener,
-                                                          ContactSelectionListFragment.OnContactSelectedListener
+        implements SwipeRefreshLayout.OnRefreshListener,
+        ContactSelectionListFragment.OnContactSelectedListener
 {
   private static final String TAG = ContactSelectionActivity.class.getSimpleName();
 
@@ -57,9 +57,7 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
   @Override
   protected void onCreate(Bundle icicle, boolean ready) {
     if (!getIntent().hasExtra(ContactSelectionListFragment.DISPLAY_MODE)) {
-      int displayMode = TextSecurePreferences.isSmsEnabled(this) ? DisplayMode.FLAG_ALL
-                                                                 : DisplayMode.FLAG_PUSH | DisplayMode.FLAG_GROUPS;
-      getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE, displayMode);
+      getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE, DisplayMode.FLAG_ALL);
     }
 
     setContentView(R.layout.contact_selection_activity);

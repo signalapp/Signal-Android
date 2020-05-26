@@ -14,7 +14,6 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
-import org.thoughtcrime.securesms.sms.MessageSender;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 
@@ -29,16 +28,16 @@ import static org.whispersystems.signalservice.internal.push.SignalServiceProtos
 
 public class GroupUtil {
 
-  private static final String ENCODED_SIGNAL_GROUP_PREFIX = "__textsecure_group__!";
-  private static final String ENCODED_MMS_GROUP_PREFIX    = "__signal_mms_group__!";
-  private static final String ENCODED_PUBLIC_CHAT_GROUP_PREFIX = "__loki_public_chat_group__!";
-  private static final String ENCODED_RSS_FEED_GROUP_PREFIX    = "__loki_rss_feed_group__!";
-  private static final String TAG                         = GroupUtil.class.getSimpleName();
+  private static final String ENCODED_CLOSED_GROUP_PREFIX   = "__textsecure_group__!";
+  private static final String ENCODED_MMS_GROUP_PREFIX      = "__signal_mms_group__!";
+  private static final String ENCODED_OPEN_GROUP_PREFIX     = "__loki_public_chat_group__!";
+  private static final String ENCODED_RSS_FEED_GROUP_PREFIX = "__loki_rss_feed_group__!";
+  private static final String TAG                           = GroupUtil.class.getSimpleName();
 
   public static String getEncodedId(SignalServiceGroup group) {
     byte[] groupId = group.getGroupId();
     if (group.getGroupType() == SignalServiceGroup.GroupType.PUBLIC_CHAT) {
-      return getEncodedPublicChatId(groupId);
+      return getEncodedOpenGroupId(groupId);
     } else if (group.getGroupType() == SignalServiceGroup.GroupType.RSS_FEED) {
       return getEncodedRSSFeedId(groupId);
     }
@@ -46,11 +45,11 @@ public class GroupUtil {
   }
 
   public static String getEncodedId(byte[] groupId, boolean mms) {
-    return (mms ? ENCODED_MMS_GROUP_PREFIX  : ENCODED_SIGNAL_GROUP_PREFIX) + Hex.toStringCondensed(groupId);
+    return (mms ? ENCODED_MMS_GROUP_PREFIX  : ENCODED_CLOSED_GROUP_PREFIX) + Hex.toStringCondensed(groupId);
   }
 
-  public static String getEncodedPublicChatId(byte[] groupId) {
-    return ENCODED_PUBLIC_CHAT_GROUP_PREFIX + Hex.toStringCondensed(groupId);
+  public static String getEncodedOpenGroupId(byte[] groupId) {
+    return ENCODED_OPEN_GROUP_PREFIX + Hex.toStringCondensed(groupId);
   }
 
   public static String getEncodedRSSFeedId(byte[] groupId) {
@@ -71,23 +70,23 @@ public class GroupUtil {
   }
 
   public static boolean isEncodedGroup(@NonNull String groupId) {
-    return groupId.startsWith(ENCODED_SIGNAL_GROUP_PREFIX) || groupId.startsWith(ENCODED_MMS_GROUP_PREFIX) || groupId.startsWith(ENCODED_PUBLIC_CHAT_GROUP_PREFIX) || groupId.startsWith(ENCODED_RSS_FEED_GROUP_PREFIX);
+    return groupId.startsWith(ENCODED_CLOSED_GROUP_PREFIX) || groupId.startsWith(ENCODED_MMS_GROUP_PREFIX) || groupId.startsWith(ENCODED_OPEN_GROUP_PREFIX) || groupId.startsWith(ENCODED_RSS_FEED_GROUP_PREFIX);
   }
 
   public static boolean isMmsGroup(@NonNull String groupId) {
     return groupId.startsWith(ENCODED_MMS_GROUP_PREFIX);
   }
 
-  public static boolean isPublicChat(@NonNull String groupId) {
-    return groupId.startsWith(ENCODED_PUBLIC_CHAT_GROUP_PREFIX);
+  public static boolean isOpenGroup(@NonNull String groupId) {
+    return groupId.startsWith(ENCODED_OPEN_GROUP_PREFIX);
   }
 
-  public static boolean isRssFeed(@NonNull String groupId) {
+  public static boolean isRSSFeed(@NonNull String groupId) {
     return groupId.startsWith(ENCODED_RSS_FEED_GROUP_PREFIX);
   }
 
-  public static boolean isSignalGroup(@NonNull String groupId) {
-    return groupId.startsWith(ENCODED_SIGNAL_GROUP_PREFIX);
+  public static boolean isClosedGroup(@NonNull String groupId) {
+    return groupId.startsWith(ENCODED_CLOSED_GROUP_PREFIX);
   }
 
   @WorkerThread
@@ -116,30 +115,6 @@ public class GroupUtil {
     return Optional.of(new OutgoingGroupMediaMessage(groupRecipient, groupContext, null, System.currentTimeMillis(), 0, null, Collections.emptyList(), Collections.emptyList()));
   }
 
-  public static boolean leaveGroup(@NonNull Context context, Recipient groupRecipient) {
-    if (!groupRecipient.getAddress().isSignalGroup()) { return true; }
-
-    long                                threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
-    Optional<OutgoingGroupMediaMessage> leaveMessage   = GroupUtil.createGroupLeaveMessage(context, groupRecipient);
-
-    if (threadId < 0 || !leaveMessage.isPresent()) {
-      return false;
-    }
-
-    MessageSender.send(context, leaveMessage.get(), threadId, false, null);
-
-    // We need to remove the master device from the group
-    String masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
-    String localNumber = masterHexEncodedPublicKey != null ? masterHexEncodedPublicKey : TextSecurePreferences.getLocalNumber(context);
-
-    GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
-    String        groupId       = groupRecipient.getAddress().toGroupString();
-    groupDatabase.setActive(groupId, false);
-    groupDatabase.remove(groupId, Address.fromSerialized(localNumber));
-
-    return true;
-  }
-
   public static @NonNull GroupDescription getDescription(@NonNull Context context, @Nullable String encodedGroup) {
     if (encodedGroup == null) {
       return new GroupDescription(context, null);
@@ -156,11 +131,11 @@ public class GroupUtil {
 
   public static class GroupDescription {
 
-    @NonNull  private final Context         context;
-    @Nullable private final GroupContext    groupContext;
+    @NonNull  private final Context context;
+    @Nullable private final GroupContext groupContext;
     private final List<Recipient> newMembers;
     private final List<Recipient> removedMembers;
-    private boolean ourDeviceWasRemoved;
+    private boolean wasCurrentUserRemoved;
 
     public GroupDescription(@NonNull Context context, @Nullable GroupContext groupContext) {
       this.context      = context.getApplicationContext();
@@ -168,7 +143,7 @@ public class GroupUtil {
 
       this.newMembers = new LinkedList<>();
       this.removedMembers = new LinkedList<>();
-      this.ourDeviceWasRemoved = false;
+      this.wasCurrentUserRemoved = false;
 
       if (groupContext != null) {
         List<String> newMembers = groupContext.getNewMembersList();
@@ -181,11 +156,12 @@ public class GroupUtil {
           this.removedMembers.add(this.toRecipient(member));
         }
 
-        // Check if our device was removed
+        // If we were the one that quit then we need to leave the group (only relevant for slave
+        // devices in a multi device context)
         if (!removedMembers.isEmpty()) {
-          String masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
-          String hexEncodedPublicKey = masterHexEncodedPublicKey != null ? masterHexEncodedPublicKey : TextSecurePreferences.getLocalNumber(context);
-          ourDeviceWasRemoved = removedMembers.contains(hexEncodedPublicKey);
+          String masterPublicKeyOrNull = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+          String masterPublicKey = masterPublicKeyOrNull != null ? masterPublicKeyOrNull : TextSecurePreferences.getLocalNumber(context);
+          wasCurrentUserRemoved = removedMembers.contains(masterPublicKey);
         }
       }
     }
@@ -196,8 +172,7 @@ public class GroupUtil {
     }
 
     public String toString(Recipient sender) {
-      // Show the local removed message
-      if (ourDeviceWasRemoved) {
+      if (wasCurrentUserRemoved) {
           return context.getString(R.string.GroupUtil_you_were_removed_from_group);
       }
 
