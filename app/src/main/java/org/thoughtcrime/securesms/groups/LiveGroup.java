@@ -29,8 +29,10 @@ public final class LiveGroup {
 
   private static final Comparator<GroupMemberEntry.FullMember>         LOCAL_FIRST  = (m1, m2) -> Boolean.compare(m2.getMember().isLocalNumber(), m1.getMember().isLocalNumber());
   private static final Comparator<GroupMemberEntry.FullMember>         ADMIN_FIRST  = (m1, m2) -> Boolean.compare(m2.isAdmin(), m1.isAdmin());
+  private static final Comparator<GroupMemberEntry.FullMember>         ALPHABETICAL = (m1, m2) -> m1.getMember().toShortString(ApplicationDependencies.getApplication()).compareToIgnoreCase(m2.getMember().toShortString(ApplicationDependencies.getApplication()));
   private static final Comparator<? super GroupMemberEntry.FullMember> MEMBER_ORDER = ComparatorCompat.chain(LOCAL_FIRST)
-                                                                                                      .thenComparing(ADMIN_FIRST);
+                                                                                                      .thenComparing(ADMIN_FIRST)
+                                                                                                      .thenComparing(ALPHABETICAL);
 
   private final GroupDatabase                       groupDatabase;
   private final LiveData<Recipient>                 recipient;
