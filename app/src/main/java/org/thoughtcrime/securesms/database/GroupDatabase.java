@@ -391,11 +391,14 @@ public final class GroupDatabase extends Database {
     RecipientId       groupRecipientId  = recipientDatabase.getOrInsertFromGroupId(groupId);
     String            title             = decryptedGroup.getTitle();
     ContentValues     contentValues     = new ContentValues();
+    UUID              uuid              = Recipient.self().getUuid().get();
 
     contentValues.put(TITLE, title);
     contentValues.put(V2_REVISION, decryptedGroup.getVersion());
     contentValues.put(V2_DECRYPTED_GROUP, decryptedGroup.toByteArray());
     contentValues.put(MEMBERS, serializeV2GroupMembers(decryptedGroup));
+    contentValues.put(ACTIVE, DecryptedGroupUtil.findMemberByUuid(decryptedGroup.getMembersList(), uuid).isPresent() ||
+                              DecryptedGroupUtil.findPendingByUuid(decryptedGroup.getPendingMembersList(), uuid).isPresent() ? 1 : 0);
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues,
                                                 GROUP_ID + " = ?",
