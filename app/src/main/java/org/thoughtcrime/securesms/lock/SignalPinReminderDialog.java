@@ -39,11 +39,17 @@ import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
+import java.util.Objects;
+
 public final class SignalPinReminderDialog {
 
   private static final String TAG = Log.tag(SignalPinReminderDialog.class);
 
   public static void show(@NonNull Context context, @NonNull Launcher launcher, @NonNull Callback mainCallback) {
+    if (!SignalStore.kbsValues().hasPin()) {
+      throw new AssertionError("Must have a PIN!");
+    }
+
     Log.i(TAG, "Showing PIN reminder dialog.");
 
     AlertDialog dialog = new AlertDialog.Builder(context, ThemeUtil.isDarkTheme(context) ? R.style.Theme_Signal_AlertDialog_Dark_Cornered_ColoredAccent : R.style.Theme_Signal_AlertDialog_Light_Cornered_ColoredAccent)
@@ -99,8 +105,7 @@ public final class SignalPinReminderDialog {
     reminder.setMovementMethod(LinkMovementMethod.getInstance());
 
     PinVerifier.Callback callback = getPinWatcherCallback(context, dialog, pinEditText, pinStatus, mainCallback);
-    PinVerifier          verifier = SignalStore.kbsValues().hasPin() ? new V2PinVerifier()
-                                                                     : new V1PinVerifier(context);
+    PinVerifier          verifier = new V2PinVerifier();
 
     skip.setOnClickListener(v -> {
       dialog.dismiss();
@@ -115,10 +120,18 @@ public final class SignalPinReminderDialog {
     });
 
     pinEditText.addTextChangedListener(new SimpleTextWatcher() {
+
+      private final String localHash = Objects.requireNonNull(SignalStore.kbsValues().getLocalPinHash());
+
       @Override
       public void onTextChanged(String text) {
         if (text.length() >= KbsConstants.MINIMUM_PIN_LENGTH) {
           submit.setEnabled(true);
+
+          if (PinHashing.verifyLocalPinHash(localHash, text)) {
+            dialog.dismiss();
+            mainCallback.onReminderCompleted(callback.hadWrongGuess());
+          }
         } else {
           submit.setEnabled(false);
         }
@@ -155,28 +168,6 @@ public final class SignalPinReminderDialog {
         return hadWrongGuess;
       }
     };
-  }
-
-  private static final class V1PinVerifier implements PinVerifier {
-
-    private final String pinInPreferences;
-
-    private V1PinVerifier(@NonNull Context context) {
-      //noinspection deprecation Acceptable to check the old pin in a reminder on a non-migrated system.
-      this.pinInPreferences = TextSecurePreferences.getDeprecatedV1RegistrationLockPin(context);
-    }
-
-    @Override
-    public void verifyPin(@Nullable String pin, @NonNull Callback callback) {
-      if (pin != null && pin.replace(" ", "").equals(pinInPreferences)) {
-        callback.onPinCorrect();
-
-        Log.i(TAG, "Pin V1 successfully remembered, scheduling a migration to V2");
-        ApplicationDependencies.getJobManager().add(new RegistrationPinV2MigrationJob());
-      } else {
-        callback.onPinWrong();
-      }
-    }
   }
 
   private static final class V2PinVerifier implements PinVerifier {
