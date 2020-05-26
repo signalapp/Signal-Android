@@ -2,15 +2,15 @@ package org.thoughtcrime.securesms.conversation;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
@@ -22,7 +22,6 @@ import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -152,8 +151,6 @@ public class ConversationTitleView extends RelativeLayout {
   }
 
   private void setGroupRecipientTitle(Recipient recipient) {
-    String localNumber = TextSecurePreferences.getLocalNumber(getContext());
-
     if (FeatureFlags.profileDisplay()) {
       this.title.setText(recipient.getDisplayName(getContext()));
     } else {
@@ -161,8 +158,9 @@ public class ConversationTitleView extends RelativeLayout {
     }
 
     this.subtitle.setText(Stream.of(recipient.getParticipants())
-                                .filterNot(Recipient::isLocalNumber)
-                                .map(r -> r.toShortString(getContext()))
+                                .sorted((a, b) -> Boolean.compare(a.isLocalNumber(), b.isLocalNumber()))
+                                .map(r -> r.isLocalNumber() ? getResources().getString(R.string.ConversationTitleView_you)
+                                                            : r.getDisplayName(getContext()))
                                 .collect(Collectors.joining(", ")));
 
     updateSubtitleVisibility();

@@ -353,6 +353,7 @@
 
     <!-- ConversationTitleView -->
     <string name="ConversationTitleView_verified">Verified</string>
+    <string name="ConversationTitleView_you">You</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Profile</string>
