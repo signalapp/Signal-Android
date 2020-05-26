@@ -1921,7 +1921,7 @@
     <!-- conversation -->
     <string name="conversation__menu_add_attachment">Add attachment</string>
     <string name="conversation__menu_edit_group">Edit group</string>
-    <string name="conversation__menu_manage_group">Manage group</string>
+    <string name="conversation__menu_group_settings">Group settings</string>
     <string name="conversation__menu_leave_group">Leave group</string>
     <string name="conversation__menu_view_all_media">All media</string>
     <string name="conversation__menu_conversation_settings">Conversation settings</string>

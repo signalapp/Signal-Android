@@ -157,7 +157,6 @@ import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.groups.ui.GroupErrors;
 import org.thoughtcrime.securesms.groups.ui.LeaveGroupDialog;
 import org.thoughtcrime.securesms.groups.ui.managegroup.ManageGroupActivity;
-import org.thoughtcrime.securesms.groups.ui.pendingmemberinvites.PendingMemberInvitesActivity;
 import org.thoughtcrime.securesms.insights.InsightsLauncher;
 import org.thoughtcrime.securesms.invites.InviteReminderModel;
 import org.thoughtcrime.securesms.invites.InviteReminderRepository;
@@ -784,6 +783,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       hideMenuItem(menu, R.id.menu_mute_notifications);
     }
 
+    if (isActiveV2Group()) {
+      hideMenuItem(menu, R.id.menu_mute_notifications);
+      hideMenuItem(menu, R.id.menu_conversation_settings);
+    }
+
     searchViewItem = menu.findItem(R.id.menu_search);
 
     SearchView                     searchView    = (SearchView) searchViewItem.getActionView();
@@ -855,8 +859,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case R.id.menu_distribution_broadcast:    handleDistributionBroadcastEnabled(item);          return true;
     case R.id.menu_distribution_conversation: handleDistributionConversationEnabled(item);       return true;
     case R.id.menu_edit_group:                handleEditPushGroupV1();                           return true;
-    case R.id.menu_manage_group:              handleManagePushGroup();                           return true;
-    case R.id.menu_pending_members:           handlePendingMembers();                            return true;
+    case R.id.menu_group_settings:            handleManagePushGroup();                           return true;
     case R.id.menu_leave:                     handleLeavePushGroup();                            return true;
     case R.id.menu_invite:                    handleInviteLink();                                return true;
     case R.id.menu_mute_notifications:        handleMuteNotifications();                         return true;
@@ -1156,10 +1159,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void handleManagePushGroup() {
     startActivityForResult(ManageGroupActivity.newIntent(ConversationActivity.this, recipient.get().requireGroupId()), GROUP_EDIT);
-  }
-
-  private void handlePendingMembers() {
-    startActivity(PendingMemberInvitesActivity.newIntent(ConversationActivity.this, recipient.get().requireGroupId().requireV2()));
   }
 
   private void handleDistributionBroadcastEnabled(MenuItem item) {
