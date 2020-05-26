@@ -30,7 +30,7 @@ public class CreateGroupActivity extends ContactSelectionActivity {
   private View next;
 
   public static Intent newIntent(@NonNull Context context) {
-    if (!FeatureFlags.newGroupUI()) {
+    if (!FeatureFlags.newGroupUI() || !FeatureFlags.groupsV2create()) {
       return new Intent(context, GroupCreateActivity.class);
     }
 

@@ -84,7 +84,10 @@ public final class FeatureFlags {
       CALLING_PIP,
       NEW_GROUP_UI,
       REACT_WITH_ANY_EMOJI,
-      VERSIONED_PROFILES
+      VERSIONED_PROFILES,
+      GROUPS_V2,
+      GROUPS_V2_CREATE,
+      NEW_GROUP_UI
   );
 
   /**
