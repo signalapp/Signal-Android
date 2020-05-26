@@ -84,6 +84,7 @@ public class ConversationListItem extends RelativeLayout
   private TextView            unreadIndicator;
   private long                lastSeen;
   private ThreadRecord        thread;
+  private boolean             batchMode;
 
   private int             unreadCount;
   private AvatarImageView contactPhotoImage;
@@ -203,10 +204,10 @@ public class ConversationListItem extends RelativeLayout
 
     setStatusIcons(thread);
     setThumbnailSnippet(thread);
-    setBatchState(batchMode);
+    setBatchMode(batchMode);
     setRippleColor(recipient.get());
     setUnreadIndicator(thread);
-    this.contactPhotoImage.setAvatar(glideRequests, recipient.get(), true);
+    this.contactPhotoImage.setAvatar(glideRequests, recipient.get(), !batchMode);
   }
 
   public void bind(@NonNull  Recipient     contact,
@@ -233,9 +234,9 @@ public class ConversationListItem extends RelativeLayout
     alertView.setNone();
     thumbnailView.setVisibility(GONE);
 
-    setBatchState(false);
+    setBatchMode(false);
     setRippleColor(contact);
-    contactPhotoImage.setAvatar(glideRequests, recipient.get(), true);
+    contactPhotoImage.setAvatar(glideRequests, recipient.get(), !batchMode);
   }
 
   public void bind(@NonNull  MessageResult messageResult,
@@ -261,9 +262,9 @@ public class ConversationListItem extends RelativeLayout
     alertView.setNone();
     thumbnailView.setVisibility(GONE);
 
-    setBatchState(false);
+    setBatchMode(false);
     setRippleColor(recipient.get());
-    contactPhotoImage.setAvatar(glideRequests, recipient.get(), true);
+    contactPhotoImage.setAvatar(glideRequests, recipient.get(), !batchMode);
   }
 
   @Override
@@ -271,7 +272,9 @@ public class ConversationListItem extends RelativeLayout
     if (this.recipient != null) {
       this.recipient.removeForeverObserver(this);
       this.recipient = null;
-      contactPhotoImage.setAvatar(glideRequests, null, true);
+
+      setBatchMode(false);
+      contactPhotoImage.setAvatar(glideRequests, null, !batchMode);
     }
 
     if (this.groupAddedBy != null) {
@@ -280,8 +283,9 @@ public class ConversationListItem extends RelativeLayout
     }
   }
 
-  private void setBatchState(boolean batch) {
-    setSelected(batch && selectedThreads.contains(threadId));
+  private void setBatchMode(boolean batchMode) {
+    this.batchMode = batchMode;
+    setSelected(batchMode && selectedThreads.contains(threadId));
   }
 
   public Recipient getRecipient() {
@@ -304,7 +308,7 @@ public class ConversationListItem extends RelativeLayout
     return lastSeen;
   }
 
-  private @NonNull CharSequence getTrimmedSnippet(@NonNull CharSequence snippet) {
+  private static @NonNull CharSequence getTrimmedSnippet(@NonNull CharSequence snippet) {
     return snippet.length() <= MAX_SNIPPET_LENGTH ? snippet
                                                   : snippet.subSequence(0, MAX_SNIPPET_LENGTH);
   }
@@ -316,9 +320,7 @@ public class ConversationListItem extends RelativeLayout
 
       LayoutParams subjectParams = (RelativeLayout.LayoutParams)this.subjectContainer .getLayoutParams();
       subjectParams.addRule(RelativeLayout.LEFT_OF, R.id.thumbnail);
-      if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN_MR1) {
-        subjectParams.addRule(RelativeLayout.START_OF, R.id.thumbnail);
-      }
+      subjectParams.addRule(RelativeLayout.START_OF, R.id.thumbnail);
       this.subjectContainer.setLayoutParams(subjectParams);
       this.post(new ThumbnailPositioner(thumbnailView, archivedView, deliveryStatusIndicator, dateView));
     } else {
@@ -326,9 +328,7 @@ public class ConversationListItem extends RelativeLayout
 
       LayoutParams subjectParams = (RelativeLayout.LayoutParams)this.subjectContainer.getLayoutParams();
       subjectParams.addRule(RelativeLayout.LEFT_OF, R.id.status);
-      if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN_MR1) {
-        subjectParams.addRule(RelativeLayout.START_OF, R.id.status);
-      }
+      subjectParams.addRule(RelativeLayout.START_OF, R.id.status);
       this.subjectContainer.setLayoutParams(subjectParams);
     }
   }
@@ -373,7 +373,7 @@ public class ConversationListItem extends RelativeLayout
   @Override
   public void onRecipientChanged(@NonNull Recipient recipient) {
     fromView.setText(recipient, unreadCount == 0);
-    contactPhotoImage.setAvatar(glideRequests, recipient, true);
+    contactPhotoImage.setAvatar(glideRequests, recipient, !batchMode);
     setRippleColor(recipient);
   }
 
@@ -399,14 +399,10 @@ public class ConversationListItem extends RelativeLayout
           (archivedView.getWidth() + deliveryStatusView.getWidth()) > dateView.getWidth())
       {
         thumbnailParams.addRule(RelativeLayout.LEFT_OF, R.id.status);
-        if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN_MR1) {
-          thumbnailParams.addRule(RelativeLayout.START_OF, R.id.status);
-        }
+        thumbnailParams.addRule(RelativeLayout.START_OF, R.id.status);
       } else {
         thumbnailParams.addRule(RelativeLayout.LEFT_OF, R.id.date);
-        if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN_MR1) {
-          thumbnailParams.addRule(RelativeLayout.START_OF, R.id.date);
-        }
+        thumbnailParams.addRule(RelativeLayout.START_OF, R.id.date);
       }
 
       thumbnailView.setLayoutParams(thumbnailParams);
