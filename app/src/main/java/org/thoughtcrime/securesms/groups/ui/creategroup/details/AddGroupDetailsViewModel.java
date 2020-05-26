@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.groups.ui.creategroup.details;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
@@ -72,8 +73,12 @@ public final class AddGroupDetailsViewModel extends ViewModel {
     return isMms;
   }
 
-  void setAvatar(@NonNull byte[] avatar) {
+  void setAvatar(@Nullable byte[] avatar) {
     this.avatar.setValue(avatar);
+  }
+
+  boolean hasAvatar() {
+    return avatar.getValue() != null;
   }
 
   void setName(@NonNull String name) {

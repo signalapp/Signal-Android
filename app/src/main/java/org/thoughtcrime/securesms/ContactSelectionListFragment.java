@@ -23,6 +23,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -314,7 +315,11 @@ public final class ContactSelectionListFragment extends    Fragment
     }
 
     if (headerAdapter != null) {
-      headerAdapter.show();
+      if (TextUtils.isEmpty(cursorFilter)) {
+        headerAdapter.show();
+      } else {
+        headerAdapter.hide();
+      }
     }
 
     emptyText.setText(R.string.contact_selection_group_activity__no_contacts);

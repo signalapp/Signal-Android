@@ -1451,7 +1451,7 @@ public class RecipientDatabase extends Database {
       args = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), "1" };
     } else {
       selection += " AND " + ID + " != ?";
-      args       = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), Recipient.self().getId().serialize() };
+      args       = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), "1", Recipient.self().getId().serialize() };
     }
 
     String   orderBy   = SORT_NAME + ", " + SYSTEM_DISPLAY_NAME + ", " + SEARCH_PROFILE_NAME + ", " + USERNAME + ", " + PHONE;

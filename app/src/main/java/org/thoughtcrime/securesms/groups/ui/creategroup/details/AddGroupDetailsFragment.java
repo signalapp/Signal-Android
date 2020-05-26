@@ -140,7 +140,7 @@ public class AddGroupDetailsFragment extends Fragment {
 
     initializeViewModel();
 
-    avatar.setOnClickListener(v -> AvatarSelectionBottomSheetDialogFragment.create(false, true, REQUEST_CODE_AVATAR, true)
+    avatar.setOnClickListener(v -> AvatarSelectionBottomSheetDialogFragment.create(viewModel.hasAvatar(), true, REQUEST_CODE_AVATAR, true)
                                                                            .show(getChildFragmentManager(), "BOTTOM"));
     members.setRecipientLongClickListener(this::handleRecipientLongClick);
     members.setRecipientClickListener(this::handleRecipientClick);
@@ -162,11 +162,19 @@ public class AddGroupDetailsFragment extends Fragment {
                 .into(avatar);
       }
     });
+
+    name.requestFocus();
   }
 
   @Override
   public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
     if (requestCode == REQUEST_CODE_AVATAR && resultCode == Activity.RESULT_OK && data != null) {
+
+      if (data.getBooleanExtra("delete", false)) {
+        viewModel.setAvatar(null);
+        return;
+      }
+
       final Media                                     result         = data.getParcelableExtra(AvatarSelectionActivity.EXTRA_MEDIA);
       final DecryptableStreamUriLoader.DecryptableUri decryptableUri = new DecryptableStreamUriLoader.DecryptableUri(result.getUri());
 
