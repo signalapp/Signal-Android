@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_spacing"
-        android:text="Waiting for Authorization"
+        android:text="@string/dialog_link_device_slave_mode_title_1"
         android:textColor="@color/text"
         android:textStyle="bold"
         android:textSize="@dimen/medium_font_size" />
@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_spacing"
-        android:text="Please check that the words below match those shown on your other device."
+        android:text="@string/dialog_link_device_slave_mode_explanation_1"
         android:textColor="@color/text"
         android:textSize="@dimen/small_font_size"
         android:textAlignment="center" />
@@ -56,6 +56,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/small_button_height"
         android:layout_marginTop="@dimen/large_spacing"
-        android:text="Cancel" />
+        android:text="@string/cancel" />
 
 </LinearLayout>

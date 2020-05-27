@@ -15,7 +15,7 @@
         android:drawableStart="@drawable/ic_edit_white_24dp"
         android:textSize="@dimen/medium_font_size"
         android:textColor="@color/text"
-        android:text="Change name"/>
+        android:text="@string/fragment_device_list_bottom_sheet_change_name_button_title"/>
 
     <TextView
         android:id="@+id/unlinkDeviceText"
@@ -23,6 +23,6 @@
         android:drawableStart="@drawable/ic_phonelink_erase_white_24dp"
         android:textSize="@dimen/medium_font_size"
         android:textColor="@color/text"
-        android:text="@string/fragment_device_list_unlink_device_title" />
+        android:text="@string/fragment_device_list_bottom_sheet_unlink_device_button_title" />
 
 </LinearLayout>

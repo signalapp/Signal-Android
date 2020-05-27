@@ -34,11 +34,11 @@ class SeedActivity : BaseActionBarActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_seed)
-        supportActionBar!!.title = "Your Recovery Phrase"
-        val seedReminderViewTitle = SpannableString("You're almost finished! 90%")
+        supportActionBar!!.title = resources.getString(R.string.activity_seed_title)
+        val seedReminderViewTitle = SpannableString("You're almost finished! 90%") // Intentionally not yet translated
         seedReminderViewTitle.setSpan(ForegroundColorSpan(resources.getColorWithID(R.color.accent, theme)), 24, 27, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         seedReminderView.title = seedReminderViewTitle
-        seedReminderView.subtitle = "Tap and hold the redacted words to reveal your recovery phrase, then store it safely to secure your Session ID."
+        seedReminderView.subtitle = resources.getString(R.string.view_seed_reminder_subtitle_2)
         seedReminderView.setProgress(90, false)
         seedReminderView.hideContinueButton()
         var redactedSeed = seed
@@ -59,10 +59,10 @@ class SeedActivity : BaseActionBarActivity() {
 
     // region Updating
     private fun revealSeed() {
-        val seedReminderViewTitle = SpannableString("Account secured! 100%")
+        val seedReminderViewTitle = SpannableString("Account secured! 100%") // Intentionally not yet translated
         seedReminderViewTitle.setSpan(ForegroundColorSpan(resources.getColorWithID(R.color.accent, theme)), 17, 21, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         seedReminderView.title = seedReminderViewTitle
-        seedReminderView.subtitle = "Make sure to store your recovery phrase in a safe place"
+        seedReminderView.subtitle = resources.getString(R.string.view_seed_reminder_subtitle_3)
         seedReminderView.setProgress(100, true)
         val seedTextViewLayoutParams = seedTextView.layoutParams as LinearLayout.LayoutParams
         seedTextViewLayoutParams.height = seedTextView.height
@@ -79,7 +79,7 @@ class SeedActivity : BaseActionBarActivity() {
         val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val clip = ClipData.newPlainText("Seed", seed)
         clipboard.primaryClip = clip
-        Toast.makeText(this, R.string.activity_register_public_key_copied_message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
     }
     // endregion
 }

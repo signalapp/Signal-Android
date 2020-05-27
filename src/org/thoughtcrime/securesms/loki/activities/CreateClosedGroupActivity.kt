@@ -47,7 +47,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
         setContentView(R.layout.activity_create_closed_group)
-        supportActionBar!!.title = "New Closed Group"
+        supportActionBar!!.title = resources.getString(R.string.activity_create_closed_group_title)
         recyclerView.adapter = createClosedGroupAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         createNewPrivateChatButton.setOnClickListener { createNewPrivateChat() }
@@ -103,17 +103,17 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
     private fun createClosedGroup() {
         val name = nameEditText.text.trim()
         if (name.isEmpty()) {
-            return Toast.makeText(this, "Please enter a group name", Toast.LENGTH_LONG).show()
+            return Toast.makeText(this, R.string.activity_create_closed_group_group_name_missing_error, Toast.LENGTH_LONG).show()
         }
         if (name.length >= 64) {
-            return Toast.makeText(this, "Please enter a shorter group name", Toast.LENGTH_LONG).show()
+            return Toast.makeText(this, R.string.activity_create_closed_group_group_name_too_long_error, Toast.LENGTH_LONG).show()
         }
         val selectedMembers = this.selectedMembers
         if (selectedMembers.count() < 2) {
-            return Toast.makeText(this, "Please pick at least 2 group members", Toast.LENGTH_LONG).show()
+            return Toast.makeText(this, R.string.activity_create_closed_group_not_enough_group_members_error, Toast.LENGTH_LONG).show()
         }
         if (selectedMembers.count() > 10) {
-            return Toast.makeText(this, "A closed group cannot have more than 10 members", Toast.LENGTH_LONG).show()
+            return Toast.makeText(this, R.string.activity_create_closed_group_too_many_group_members_error, Toast.LENGTH_LONG).show()
         }
         val recipients = selectedMembers.map {
             Recipient.from(this, Address.fromSerialized(it), false)
@@ -155,7 +155,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), MemberC
                 }
             } else {
                 super.onPostExecute(result)
-                Toast.makeText(activity.applicationContext, "One of the members of your group has an invalid Session ID.", Toast.LENGTH_LONG).show()
+                Toast.makeText(activity.applicationContext, R.string.activity_create_closed_group_invalid_session_id_error, Toast.LENGTH_LONG).show()
             }
         }
     }

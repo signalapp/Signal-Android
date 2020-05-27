@@ -39,13 +39,13 @@ class DisplayNameActivity : BaseActionBarActivity() {
     private fun register() {
         val displayName = displayNameEditText.text.toString().trim()
         if (displayName.isEmpty()) {
-            return Toast.makeText(this, "Please pick a display name", Toast.LENGTH_SHORT).show()
+            return Toast.makeText(this, R.string.activity_display_name_display_name_missing_error, Toast.LENGTH_SHORT).show()
         }
         if (!displayName.matches(Regex("[a-zA-Z0-9_]+"))) {
-            return Toast.makeText(this, "Please pick a display name that consists of only a-z, A-Z, 0-9 and _ characters", Toast.LENGTH_SHORT).show()
+            return Toast.makeText(this, R.string.activity_display_name_display_name_invalid_error, Toast.LENGTH_SHORT).show()
         }
         if (displayName.toByteArray().size > ProfileCipher.NAME_PADDED_LENGTH) {
-            return Toast.makeText(this, "Please pick a shorter display name", Toast.LENGTH_SHORT).show()
+            return Toast.makeText(this, R.string.activity_display_name_display_name_too_long_error, Toast.LENGTH_SHORT).show()
         }
         val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(displayNameEditText.windowToken, 0)

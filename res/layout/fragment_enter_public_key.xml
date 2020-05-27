@@ -16,7 +16,7 @@
         android:layout_marginLeft="@dimen/large_spacing"
         android:layout_marginTop="@dimen/large_spacing"
         android:layout_marginRight="@dimen/large_spacing"
-        android:hint="Enter Session ID of recipient" />
+        android:hint="@string/fragment_enter_public_key_edit_text_hint" />
 
     <TextView
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
         android:textColor="@color/text"
         android:alpha="0.6"
         android:textAlignment="center"
-        android:text="Users can share their Session ID by going into their account settings and tapping &quot;Share Session ID&quot;, or by sharing their QR code." />
+        android:text="@string/fragment_enter_public_key_explanation" />
     
     <org.thoughtcrime.securesms.loki.views.LabeledSeparatorView
         android:id="@+id/separatorView"
@@ -65,7 +65,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/medium_button_height"
             android:layout_weight="1"
-            android:text="Copy" />
+            android:text="@string/copy" />
 
         <Button
             style="@style/MediumUnimportantFilledButton"
@@ -74,7 +74,7 @@
             android:layout_height="@dimen/medium_button_height"
             android:layout_weight="1"
             android:layout_marginLeft="@dimen/medium_spacing"
-            android:text="Share" />
+            android:text="@string/share" />
 
     </LinearLayout>
 
@@ -89,6 +89,6 @@
         android:layout_width="196dp"
         android:layout_height="@dimen/medium_button_height"
         android:layout_marginBottom="@dimen/medium_spacing"
-        android:text="Next" />
+        android:text="@string/next" />
 
 </LinearLayout>

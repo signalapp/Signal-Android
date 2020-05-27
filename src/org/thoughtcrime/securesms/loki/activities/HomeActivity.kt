@@ -105,10 +105,10 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         val isMasterDevice = (TextSecurePreferences.getMasterHexEncodedPublicKey(this) == null)
         val hasViewedSeed = TextSecurePreferences.getHasViewedSeed(this)
         if (!hasViewedSeed && isMasterDevice) {
-            val seedReminderViewTitle = SpannableString("You're almost finished! 80%")
+            val seedReminderViewTitle = SpannableString("You're almost finished! 80%") // Intentionally not yet translated
             seedReminderViewTitle.setSpan(ForegroundColorSpan(resources.getColorWithID(R.color.accent, theme)), 24, 27, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             seedReminderView.title = seedReminderViewTitle
-            seedReminderView.subtitle = "Secure your account by saving your recovery phrase"
+            seedReminderView.subtitle = resources.getString(R.string.view_seed_reminder_subtitle_1)
             seedReminderView.setProgress(80, false)
             seedReminderView.delegate = this
         } else {
@@ -313,7 +313,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
                 // Send a leave group message if this is an active closed group
                 if (isClosedGroup && DatabaseFactory.getGroupDatabase(activity).isActive(recipient.address.toGroupString())) {
                     if (!ClosedGroupsProtocol.leaveGroup(activity, recipient)) {
-                        Toast.makeText(activity, "Couldn't leave group", Toast.LENGTH_LONG).show()
+                        Toast.makeText(activity, R.string.activity_home_leaving_group_failed_message, Toast.LENGTH_LONG).show()
                         clearView(activity.recyclerView, viewHolder)
                         return@setPositiveButton
                     }

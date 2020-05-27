@@ -215,13 +215,13 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     private fun saveDisplayName() {
         val displayName = displayNameEditText.text.toString().trim()
         if (displayName.isEmpty()) {
-            return Toast.makeText(this, "Please pick a display name", Toast.LENGTH_SHORT).show()
+            return Toast.makeText(this, R.string.activity_settings_display_name_missing_error, Toast.LENGTH_SHORT).show()
         }
         if (!displayName.matches(Regex("[a-zA-Z0-9_]+"))) {
-            return Toast.makeText(this, "Please pick a display name that consists of only a-z, A-Z, 0-9 and _ characters", Toast.LENGTH_SHORT).show()
+            return Toast.makeText(this, R.string.activity_settings_invalid_display_name_error, Toast.LENGTH_SHORT).show()
         }
         if (displayName.toByteArray().size > ProfileCipher.NAME_PADDED_LENGTH) {
-            return Toast.makeText(this, "Please pick a shorter display name", Toast.LENGTH_SHORT).show()
+            return Toast.makeText(this, R.string.activity_settings_display_name_too_long_error, Toast.LENGTH_SHORT).show()
         }
         isEditingDisplayName = false
         displayNameToBeUploaded = displayName
@@ -245,7 +245,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val clip = ClipData.newPlainText("Session ID", hexEncodedPublicKey)
         clipboard.primaryClip = clip
-        Toast.makeText(this, R.string.activity_register_public_key_copied_message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
     }
 
     private fun sharePublicKey() {

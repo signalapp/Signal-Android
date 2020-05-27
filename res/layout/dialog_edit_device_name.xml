@@ -30,7 +30,7 @@
         android:textAlignment="center"
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
-        android:hint="Enter a name" />
+        android:hint="@string/dialog_edit_device_name_edit_text_hint" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,7 +44,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/small_button_height"
             android:layout_weight="1"
-            android:text="Cancel" />
+            android:text="@string/cancel" />
 
         <Button
             style="@style/UnimportantDialogButton"
@@ -53,7 +53,7 @@
             android:layout_height="@dimen/small_button_height"
             android:layout_weight="1"
             android:layout_marginLeft="@dimen/medium_spacing"
-            android:text="OK" />
+            android:text="@string/ok" />
 
     </LinearLayout>
 

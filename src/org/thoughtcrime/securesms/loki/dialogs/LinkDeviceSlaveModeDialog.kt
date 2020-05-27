@@ -15,10 +15,10 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
+import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
 import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLink
 import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLinkingSession
 import org.whispersystems.signalservice.loki.protocol.multidevice.DeviceLinkingSessionListener
-import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
 
 class LinkDeviceSlaveModeDialog : DialogFragment(), DeviceLinkingSessionListener {
     private val languageFileDirectory by lazy { MnemonicUtilities.getLanguageFileDirectory(context!!) }
@@ -50,8 +50,8 @@ class LinkDeviceSlaveModeDialog : DialogFragment(), DeviceLinkingSessionListener
             val titleTextViewLayoutParams = contentView.titleTextView.layoutParams as LinearLayout.LayoutParams
             titleTextViewLayoutParams.topMargin = 0
             contentView.titleTextView.layoutParams = titleTextViewLayoutParams
-            contentView.titleTextView.text = "Device Link Authorized"
-            contentView.explanationTextView.text = "Your device has been linked successfully"
+            contentView.titleTextView.text = resources.getString(R.string.dialog_link_device_slave_mode_title_2)
+            contentView.explanationTextView.text = resources.getString(R.string.dialog_link_device_slave_mode_explanation_2)
             contentView.mnemonicTextView.visibility = View.GONE
             contentView.cancelButton.visibility = View.GONE
             Handler().postDelayed({

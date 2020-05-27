@@ -46,7 +46,7 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity, LoaderManager
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
         setContentView(R.layout.activity_linked_devices)
-        supportActionBar!!.title = "Devices"
+        supportActionBar!!.title = resources.getString(R.string.activity_linked_devices_title)
         recyclerView.adapter = linkedDevicesAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         linkDeviceButton.setOnClickListener { linkDevice() }
@@ -99,9 +99,9 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity, LoaderManager
             linkDeviceDialog.show(supportFragmentManager, "Link Device Dialog")
         } else {
             val builder = AlertDialog.Builder(this)
-            builder.setTitle("Multi Device Limit Reached")
-            builder.setMessage("It's currently not allowed to link more than one device.")
-            builder.setPositiveButton("OK", { dialog, _ -> dialog.dismiss() })
+            builder.setTitle(resources.getString(R.string.activity_linked_devices_multi_device_limit_reached_dialog_title))
+            builder.setMessage(resources.getString(R.string.activity_linked_devices_multi_device_limit_reached_dialog_explanation))
+            builder.setPositiveButton(resources.getString(R.string.ok), { dialog, _ -> dialog.dismiss() })
             builder.create().show()
         }
     }
@@ -128,7 +128,7 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity, LoaderManager
         val deviceLinks = apiDB.getDeviceLinks(userPublicKey)
         val deviceLink = deviceLinks.find { it.masterHexEncodedPublicKey == userPublicKey && it.slaveHexEncodedPublicKey == slaveDevicePublicKey }
         if (deviceLink == null) {
-            return Toast.makeText(this, "Couldn't unlink device.", Toast.LENGTH_LONG).show()
+            return Toast.makeText(this, R.string.activity_linked_devices_unlinking_failed_message, Toast.LENGTH_LONG).show()
         }
         LokiFileServerAPI.shared.setDeviceLinks(setOf()).successUi {
             DatabaseFactory.getLokiAPIDatabase(this).clearDeviceLinks(userPublicKey)
@@ -152,9 +152,9 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity, LoaderManager
                 sessionStore.deleteAllSessions(deviceLink.slaveHexEncodedPublicKey)
             }
             LoaderManager.getInstance(this).restartLoader(0, null, this)
-            Toast.makeText(this, "Your device was unlinked successfully", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, R.string.activity_linked_devices_unlinking_successful_message, Toast.LENGTH_LONG).show()
         }.failUi {
-            Toast.makeText(this, "Couldn't unlink device.", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, R.string.activity_linked_devices_unlinking_failed_message, Toast.LENGTH_LONG).show()
         }
     }
 
@@ -168,7 +168,7 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity, LoaderManager
     }
 
     override fun onDeviceLinkAuthorizationFailed() {
-        Toast.makeText(this, "Couldn't link device", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, R.string.activity_linked_devices_linking_failed_message, Toast.LENGTH_LONG).show()
     }
 
     override fun onDeviceLinkCanceled() {

@@ -32,7 +32,7 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
         // Set content view
         setContentView(R.layout.activity_join_public_chat)
         // Set title
-        supportActionBar!!.title = "Join Open Group"
+        supportActionBar!!.title = resources.getString(R.string.activity_join_public_chat_title)
         // Set up view pager
         viewPager.adapter = adapter
         tabLayout.setupWithViewPager(viewPager)
@@ -63,7 +63,7 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
 
     fun joinPublicChatIfPossible(url: String) {
         if (!Patterns.WEB_URL.matcher(url).matches() || !url.startsWith("https://")) {
-            return Toast.makeText(this, "Invalid URL", Toast.LENGTH_SHORT).show()
+            return Toast.makeText(this, R.string.invalid_url, Toast.LENGTH_SHORT).show()
         }
         showLoader()
         val channel: Long = 1
@@ -73,7 +73,7 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
             finish()
         }.failUi {
             hideLoader()
-            Toast.makeText(this, "Couldn't join channel", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.activity_join_public_chat_error, Toast.LENGTH_SHORT).show()
         }
     }
     // endregion
@@ -92,7 +92,7 @@ private class JoinPublicChatActivityAdapter(val activity: JoinPublicChatActivity
             1 -> {
                 val result = ScanQRCodeWrapperFragment()
                 result.delegate = activity
-                result.message = "Scan the QR code of the open group you'd like to join"
+                result.message = activity.resources.getString(R.string.activity_join_public_chat_scan_qr_code_explanation)
                 result
             }
             else -> throw IllegalStateException()
@@ -101,8 +101,8 @@ private class JoinPublicChatActivityAdapter(val activity: JoinPublicChatActivity
 
     override fun getPageTitle(index: Int): CharSequence? {
         return when (index) {
-            0 -> "Open Group URL"
-            1 -> "Scan QR Code"
+            0 -> activity.resources.getString(R.string.activity_join_public_chat_enter_group_url_tab_title)
+            1 -> activity.resources.getString(R.string.activity_join_public_chat_scan_qr_code_tab_title)
             else -> throw IllegalStateException()
         }
     }

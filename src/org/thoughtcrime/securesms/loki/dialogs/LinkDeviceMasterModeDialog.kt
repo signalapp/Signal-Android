@@ -59,8 +59,8 @@ class LinkDeviceMasterModeDialog : DialogFragment(), DeviceLinkingSessionListene
             val titleTextViewLayoutParams = contentView.titleTextView.layoutParams as LinearLayout.LayoutParams
             titleTextViewLayoutParams.topMargin = toPx(8, resources)
             contentView.titleTextView.layoutParams = titleTextViewLayoutParams
-            contentView.titleTextView.text = "Linking Request Received"
-            contentView.explanationTextView.text = "Please check that the words below match those shown on your other device"
+            contentView.titleTextView.text = resources.getString(R.string.dialog_link_device_master_mode_title_2)
+            contentView.explanationTextView.text = resources.getString(R.string.dialog_link_device_master_mode_explanation_2)
             contentView.mnemonicTextView.visibility = View.VISIBLE
             contentView.mnemonicTextView.text = MnemonicUtilities.getFirst3Words(MnemonicCodec(languageFileDirectory), deviceLink.slaveHexEncodedPublicKey)
             contentView.authorizeButton.visibility = View.VISIBLE
@@ -77,8 +77,8 @@ class LinkDeviceMasterModeDialog : DialogFragment(), DeviceLinkingSessionListene
             val titleTextViewLayoutParams = contentView.titleTextView.layoutParams as LinearLayout.LayoutParams
             titleTextViewLayoutParams.topMargin = toPx(24, resources)
             contentView.titleTextView.layoutParams = titleTextViewLayoutParams
-            contentView.titleTextView.text = "Authorizing Device Link"
-            contentView.explanationTextView.text = "Please wait while the device link is created. This can take up to a minute."
+            contentView.titleTextView.text = resources.getString(R.string.dialog_link_device_master_mode_title_3)
+            contentView.explanationTextView.text = resources.getString(R.string.dialog_link_device_master_mode_explanation_3)
             contentView.mnemonicTextView.visibility = View.GONE
             contentView.buttonContainer.visibility = View.GONE
             contentView.cancelButton.visibility = View.GONE

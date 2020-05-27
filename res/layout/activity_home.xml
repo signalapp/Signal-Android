@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/medium_font_size"
                 android:textColor="@color/text"
-                android:text="You don't have any contacts yet" />
+                android:text="@string/activity_home_empty_state_message" />
 
             <Button
                 style="@style/MediumProminentOutlineButton"
@@ -95,7 +95,7 @@
                 android:layout_width="196dp"
                 android:layout_height="@dimen/medium_button_height"
                 android:layout_marginTop="@dimen/medium_spacing"
-                android:text="Start a Session" />
+                android:text="@string/activity_home_empty_state_button_title" />
 
         </LinearLayout>
 
