@@ -67,7 +67,6 @@ import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.UsernameUtil;
-import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.adapter.FixedViewsAdapter;
 import org.thoughtcrime.securesms.util.adapter.RecyclerViewConcatenateAdapterStickyHeader;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
@@ -114,6 +113,7 @@ public final class ContactSelectionListFragment extends    Fragment
   @Nullable private FixedViewsAdapter headerAdapter;
   @Nullable private FixedViewsAdapter footerAdapter;
   @Nullable private ListCallback      listCallback;
+  @Nullable private ScrollCallback    scrollCallback;
             private GlideRequests     glideRequests;
 
   @Override
@@ -122,6 +122,10 @@ public final class ContactSelectionListFragment extends    Fragment
 
     if (context instanceof ListCallback) {
       listCallback = (ListCallback) context;
+    }
+
+    if (context instanceof ScrollCallback) {
+      scrollCallback = (ScrollCallback) context;
     }
   }
 
@@ -164,10 +168,10 @@ public final class ContactSelectionListFragment extends    Fragment
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.contact_selection_list_fragment, container, false);
 
-    emptyText                = ViewUtil.findById(view, android.R.id.empty);
-    recyclerView             = ViewUtil.findById(view, R.id.recycler_view);
-    swipeRefresh             = ViewUtil.findById(view, R.id.swipe_refresh);
-    fastScroller             = ViewUtil.findById(view, R.id.fast_scroller);
+    emptyText                = view.findViewById(android.R.id.empty);
+    recyclerView             = view.findViewById(R.id.recycler_view);
+    swipeRefresh             = view.findViewById(R.id.swipe_refresh);
+    fastScroller             = view.findViewById(R.id.fast_scroller);
     showContactsLayout       = view.findViewById(R.id.show_contacts_container);
     showContactsButton       = view.findViewById(R.id.show_contacts_button);
     showContactsDescription  = view.findViewById(R.id.show_contacts_description);
@@ -236,6 +240,16 @@ public final class ContactSelectionListFragment extends    Fragment
 
     recyclerView.setAdapter(concatenateAdapter);
     recyclerView.addItemDecoration(new StickyHeaderDecoration(concatenateAdapter, true, true));
+    recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+      @Override
+      public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+        if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+          if (scrollCallback != null) {
+            scrollCallback.onBeginScroll();
+          }
+        }
+      }
+    });
   }
 
   private View createInviteActionView(@NonNull ListCallback listCallback) {
@@ -292,15 +306,16 @@ public final class ContactSelectionListFragment extends    Fragment
     cursorRecyclerViewAdapter.clearSelectedContacts();
 
     if (!isDetached() && !isRemoving() && getActivity() != null && !getActivity().isFinishing()) {
-      getLoaderManager().restartLoader(0, null, this);
+      LoaderManager.getInstance(this).restartLoader(0, null, this);
     }
   }
 
   @Override
   public @NonNull Loader<Cursor> onCreateLoader(int id, Bundle args) {
-    return new ContactsCursorLoader(getActivity(),
-                                    getActivity().getIntent().getIntExtra(DISPLAY_MODE, DisplayMode.FLAG_ALL),
-                                    cursorFilter, getActivity().getIntent().getBooleanExtra(RECENTS, false));
+    FragmentActivity activity = requireActivity();
+    return new ContactsCursorLoader(activity,
+                                    activity.getIntent().getIntExtra(DISPLAY_MODE, DisplayMode.FLAG_ALL),
+                                    cursorFilter, activity.getIntent().getBooleanExtra(RECENTS, false));
   }
 
   @Override
@@ -500,5 +515,9 @@ public final class ContactSelectionListFragment extends    Fragment
   public interface ListCallback {
     void onInvite();
     void onNewGroup();
+  }
+
+  public interface ScrollCallback {
+    void onBeginScroll();
   }
 }

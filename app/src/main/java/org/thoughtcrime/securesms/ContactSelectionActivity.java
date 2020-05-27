@@ -19,20 +19,18 @@ package org.thoughtcrime.securesms;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import org.thoughtcrime.securesms.logging.Log;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.thoughtcrime.securesms.components.ContactFilterToolbar;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
@@ -46,14 +44,14 @@ import java.lang.ref.WeakReference;
  */
 public abstract class ContactSelectionActivity extends PassphraseRequiredActionBarActivity
                                                implements SwipeRefreshLayout.OnRefreshListener,
-                                                          ContactSelectionListFragment.OnContactSelectedListener
+                                                          ContactSelectionListFragment.OnContactSelectedListener,
+                                                          ContactSelectionListFragment.ScrollCallback
 {
   private static final String TAG = ContactSelectionActivity.class.getSimpleName();
 
   public static final String EXTRA_LAYOUT_RES_ID = "layout_res_id";
 
-  private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
-  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
+  private final DynamicTheme dynamicTheme = new DynamicNoActionBarTheme();
 
   protected ContactSelectionListFragment contactsFragment;
 
@@ -62,7 +60,6 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
   @Override
   protected void onPreCreate() {
     dynamicTheme.onCreate(this);
-    dynamicLanguage.onCreate(this);
   }
 
   @Override
@@ -84,7 +81,6 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
   public void onResume() {
     super.onResume();
     dynamicTheme.onResume(this);
-    dynamicLanguage.onResume(this);
   }
 
   protected ContactFilterToolbar getToolbar() {
@@ -95,7 +91,6 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
     this.toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 
-    assert  getSupportActionBar() != null;
     getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     getSupportActionBar().setDisplayShowTitleEnabled(false);
     getSupportActionBar().setIcon(null);
@@ -122,6 +117,17 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
 
   @Override
   public void onContactDeselected(Optional<RecipientId> recipientId, String number) {}
+
+  @Override
+  public void onBeginScroll() {
+    hideKeyboard();
+  }
+
+  private void hideKeyboard() {
+    ServiceUtil.getInputMethodManager(this)
+               .hideSoftInputFromWindow(toolbar.getWindowToken(), 0);
+    toolbar.clearFocus();
+  }
 
   private static class RefreshDirectoryTask extends AsyncTask<Context, Void, Void> {
 
