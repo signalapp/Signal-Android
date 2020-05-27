@@ -15,6 +15,8 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkOrCellServiceConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
+import org.thoughtcrime.securesms.jobmanager.impl.WebsocketDrainedConstraint;
+import org.thoughtcrime.securesms.jobmanager.impl.WebsocketDrainedConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.migrations.PushProcessMessageQueueJobMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdFollowUpJobMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdFollowUpJobMigration2;
@@ -149,13 +151,15 @@ public final class JobManagerFactories {
       put(NetworkOrCellServiceConstraint.KEY,        new NetworkOrCellServiceConstraint.Factory(application));
       put(NetworkOrCellServiceConstraint.LEGACY_KEY, new NetworkOrCellServiceConstraint.Factory(application));
       put(SqlCipherMigrationConstraint.KEY,          new SqlCipherMigrationConstraint.Factory(application));
+      put(WebsocketDrainedConstraint.KEY,            new WebsocketDrainedConstraint.Factory());
     }};
   }
 
   public static List<ConstraintObserver> getConstraintObservers(@NonNull Application application) {
     return Arrays.asList(CellServiceConstraintObserver.getInstance(application),
                          new NetworkConstraintObserver(application),
-                         new SqlCipherMigrationConstraintObserver());
+                         new SqlCipherMigrationConstraintObserver(),
+                         new WebsocketDrainedConstraintObserver());
   }
 
   public static List<JobMigration> getJobMigrations(@NonNull Application application) {
