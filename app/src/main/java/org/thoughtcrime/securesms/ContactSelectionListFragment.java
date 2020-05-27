@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms;
 
 
 import android.Manifest;
+import android.animation.LayoutTransition;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
@@ -36,6 +37,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.loader.app.LoaderManager;
@@ -43,6 +46,8 @@ import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.transition.AutoTransition;
+import androidx.transition.TransitionManager;
 
 import com.google.android.material.chip.ChipGroup;
 import com.pnikosis.materialishprogress.ProgressWheel;
@@ -89,13 +94,15 @@ public final class ContactSelectionListFragment extends    Fragment
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(ContactSelectionListFragment.class);
 
+  private static final int CHIP_GROUP_EMPTY_COUNT        = 1;
+  private static final int CHIP_GROUP_REVEAL_DURATION_MS = 150;
+
   public static final String DISPLAY_MODE = "display_mode";
   public static final String MULTI_SELECT = "multi_select";
   public static final String REFRESHABLE  = "refreshable";
   public static final String RECENTS      = "recents";
 
-  private final Debouncer scrollDebounce = new Debouncer(100);
-
+  private ConstraintLayout            constraintLayout;
   private TextView                    emptyText;
   private OnContactSelectedListener   onContactSelectedListener;
   private SwipeRefreshLayout          swipeRefresh;
@@ -178,12 +185,11 @@ public final class ContactSelectionListFragment extends    Fragment
     showContactsProgress     = view.findViewById(R.id.progress);
     chipGroup                = view.findViewById(R.id.chipGroup);
     chipGroupScrollContainer = view.findViewById(R.id.chipGroupScrollContainer);
+    constraintLayout         = view.findViewById(R.id.container);
 
     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
     swipeRefresh.setEnabled(requireActivity().getIntent().getBooleanExtra(REFRESHABLE, true));
-
-    autoScrollOnNewItem();
 
     return view;
   }
@@ -445,7 +451,7 @@ public final class ContactSelectionListFragment extends    Fragment
     cursorRecyclerViewAdapter.addSelectedContact(selectedContact);
     listItem.setChecked(true);
     if (isMulti() && FeatureFlags.newGroupUI()) {
-      chipGroup.addView(newChipForContact(listItem, selectedContact));
+      addChipForContact(listItem, selectedContact);
     }
   }
 
@@ -462,28 +468,65 @@ public final class ContactSelectionListFragment extends    Fragment
         chipGroup.removeView(v);
       }
     }
+
+    if (chipGroup.getChildCount() == CHIP_GROUP_EMPTY_COUNT) {
+      setChipGroupVisibility(ConstraintSet.GONE);
+    }
   }
 
-  private View newChipForContact(@NonNull ContactSelectionListItem contact, @NonNull SelectedContact selectedContact) {
+  private void addChipForContact(@NonNull ContactSelectionListItem contact, @NonNull SelectedContact selectedContact) {
     final ContactChip chip = new ContactChip(requireContext());
+
+    if (chipGroup.getChildCount() == CHIP_GROUP_EMPTY_COUNT) {
+      setChipGroupVisibility(ConstraintSet.VISIBLE);
+    }
+
     chip.setText(contact.getChipName());
     chip.setContact(selectedContact);
+    chip.setCloseIconVisible(true);
+    chip.setOnCloseIconClickListener(view -> markContactUnselected(selectedContact, contact));
+
+    chipGroup.getLayoutTransition().addTransitionListener(new LayoutTransition.TransitionListener() {
+      @Override
+      public void startTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
+      }
+
+      @Override
+      public void endTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
+        if (view == chip && transitionType == LayoutTransition.APPEARING) {
+          chipGroup.getLayoutTransition().removeTransitionListener(this);
+          registerChipRecipientObserver(chip, contact.getRecipient());
+          chipGroup.post(ContactSelectionListFragment.this::smoothScrollChipsToEnd);
+        }
+      }
+    });
 
     LiveRecipient recipient = contact.getRecipient();
     if (recipient != null) {
+      chip.setAvatar(glideRequests, recipient.get(), () -> chipGroup.addView(chip));
+    } else {
+      chipGroup.addView(chip);
+    }
+  }
+
+  private void registerChipRecipientObserver(@NonNull ContactChip chip, @Nullable LiveRecipient recipient) {
+    if (recipient != null) {
       recipient.observe(getViewLifecycleOwner(), resolved -> {
-          chip.setAvatar(glideRequests, resolved);
+        if (chip.isAttachedToWindow()) {
+          chip.setAvatar(glideRequests, resolved, null);
           chip.setText(resolved.getShortDisplayName(chip.getContext()));
         }
-      );
+      });
     }
+  }
 
-    chip.setCloseIconVisible(true);
-    chip.setOnCloseIconClickListener(view -> {
-      markContactUnselected(selectedContact, contact);
-      chipGroup.removeView(chip);
-    });
-    return chip;
+  private void setChipGroupVisibility(int visibility) {
+    TransitionManager.beginDelayedTransition(constraintLayout, new AutoTransition().setDuration(CHIP_GROUP_REVEAL_DURATION_MS));
+
+    ConstraintSet constraintSet = new ConstraintSet();
+    constraintSet.clone(constraintLayout);
+    constraintSet.setVisibility(R.id.chipGroupScrollContainer, visibility);
+    constraintSet.applyTo(constraintLayout);
   }
 
   public void setOnContactSelectedListener(OnContactSelectedListener onContactSelectedListener) {
@@ -492,14 +535,6 @@ public final class ContactSelectionListFragment extends    Fragment
 
   public void setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener onRefreshListener) {
     this.swipeRefresh.setOnRefreshListener(onRefreshListener);
-  }
-
-  private void autoScrollOnNewItem() {
-    chipGroup.addOnLayoutChangeListener((view1, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
-      if (right > oldRight) {
-        scrollDebounce.publish(this::smoothScrollChipsToEnd);
-      }
-    });
   }
 
   private void smoothScrollChipsToEnd() {

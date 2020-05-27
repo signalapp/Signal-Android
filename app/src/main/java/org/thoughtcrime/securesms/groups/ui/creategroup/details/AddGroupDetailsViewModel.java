@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 import java.util.HashSet;
@@ -28,7 +29,6 @@ import java.util.Set;
 public final class AddGroupDetailsViewModel extends ViewModel {
 
   private final LiveData<List<GroupMemberEntry.NewGroupCandidate>> members;
-  private final DefaultValueLiveData<Set<RecipientId>>             selected          = new DefaultValueLiveData<>(new HashSet<>());
   private final DefaultValueLiveData<Set<RecipientId>>             deleted           = new DefaultValueLiveData<>(new HashSet<>());
   private final MutableLiveData<String>                            name              = new MutableLiveData<>("");
   private final MutableLiveData<byte[]>                            avatar            = new MutableLiveData<>();
@@ -37,17 +37,14 @@ public final class AddGroupDetailsViewModel extends ViewModel {
   private final LiveData<Boolean>                                  canSubmitForm     = Transformations.map(name, name -> !TextUtils.isEmpty(name));
   private final AddGroupDetailsRepository                          repository;
 
-  AddGroupDetailsViewModel(@NonNull RecipientId[] recipientIds,
-                           @NonNull AddGroupDetailsRepository repository)
+  private AddGroupDetailsViewModel(@NonNull RecipientId[] recipientIds,
+                                   @NonNull AddGroupDetailsRepository repository)
   {
     this.repository = repository;
 
-    MutableLiveData<List<GroupMemberEntry.NewGroupCandidate>> initialMembers        = new MutableLiveData<>();
-    LiveData<List<GroupMemberEntry.NewGroupCandidate>>        membersWithoutDeleted = LiveDataUtil.combineLatest(initialMembers,
-                                                                                                               deleted,
-                                                                                                               AddGroupDetailsViewModel::filterDeletedMembers);
+    MutableLiveData<List<GroupMemberEntry.NewGroupCandidate>> initialMembers = new MutableLiveData<>();
 
-    members = LiveDataUtil.combineLatest(membersWithoutDeleted, selected, AddGroupDetailsViewModel::updateSelectedMembers);
+    members = LiveDataUtil.combineLatest(initialMembers, deleted, AddGroupDetailsViewModel::filterDeletedMembers);
     isMms   = Transformations.map(members, this::isAnyForcedSms);
 
     repository.resolveMembers(recipientIds, initialMembers::postValue);
@@ -85,27 +82,10 @@ public final class AddGroupDetailsViewModel extends ViewModel {
     this.name.setValue(name);
   }
 
-  int toggleSelected(@NonNull Recipient recipient) {
-    Set<RecipientId> selected = this.selected.getValue();
-
-    if (!selected.add(recipient.getId())) {
-      selected.remove(recipient.getId());
-    }
-
-    this.selected.setValue(selected);
-
-    return selected.size();
-  }
-
-  void clearSelected() {
-    this.selected.setValue(new HashSet<>());
-  }
-
-  void deleteSelected() {
-    Set<RecipientId> selected = this.selected.getValue();
+  void delete(@NonNull RecipientId recipientId) {
     Set<RecipientId> deleted  = this.deleted.getValue();
 
-    deleted.addAll(selected);
+    deleted.add(recipientId);
     this.deleted.setValue(deleted);
   }
 
@@ -137,14 +117,6 @@ public final class AddGroupDetailsViewModel extends ViewModel {
     return Stream.of(members)
                  .filterNot(member -> deleted.contains(member.getMember().getId()))
                  .toList();
-  }
-
-  private static @NonNull List<GroupMemberEntry.NewGroupCandidate> updateSelectedMembers(@NonNull List<GroupMemberEntry.NewGroupCandidate> members, @NonNull Set<RecipientId> selected) {
-    for (GroupMemberEntry.NewGroupCandidate member : members) {
-      member.setSelected(selected.contains(member.getMember().getId()));
-    }
-
-    return members;
   }
 
   private boolean isAnyForcedSms(@NonNull List<GroupMemberEntry.NewGroupCandidate> members) {

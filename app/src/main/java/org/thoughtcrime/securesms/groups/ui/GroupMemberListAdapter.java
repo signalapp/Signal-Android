@@ -246,9 +246,6 @@ final class GroupMemberListAdapter extends LifecycleRecyclerAdapter<GroupMemberL
       bindRecipient(newGroupCandidate.getMember());
       bindRecipientClick(newGroupCandidate.getMember());
 
-      itemView.setSelected(false);
-      newGroupCandidate.isSelected().observe(this, itemView::setSelected);
-
       int smsWarningVisibility = newGroupCandidate.getMember().isRegistered() ? View.GONE : View.VISIBLE;
 
       smsContact.setVisibility(smsWarningVisibility);

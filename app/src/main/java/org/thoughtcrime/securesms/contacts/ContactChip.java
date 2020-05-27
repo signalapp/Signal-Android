@@ -44,17 +44,21 @@ public final class ContactChip extends Chip {
     return contact;
   }
 
-  public void setAvatar(@NonNull GlideRequests requestManager, @Nullable Recipient recipient) {
+  public void setAvatar(@NonNull GlideRequests requestManager, @Nullable Recipient recipient, @Nullable Runnable onAvatarSet) {
     if (recipient != null) {
       requestManager.clear(this);
 
-      Drawable     fallbackContactPhotoDrawable = recipient.getFallbackContactPhotoDrawable(getContext(), false);
+      Drawable     fallbackContactPhotoDrawable = new HalfScaleDrawable(recipient.getFallbackContactPhotoDrawable(getContext(), false));
       ContactPhoto contactPhoto                 = recipient.getContactPhoto();
 
       if (contactPhoto == null) {
-        setChipIcon(new HalfScaleDrawable(fallbackContactPhotoDrawable));
+        setChipIcon(fallbackContactPhotoDrawable);
+        if (onAvatarSet != null) {
+          onAvatarSet.run();
+        }
       } else {
         requestManager.load(contactPhoto)
+                      .placeholder(fallbackContactPhotoDrawable)
                       .fallback(fallbackContactPhotoDrawable)
                       .error(fallbackContactPhotoDrawable)
                       .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -63,6 +67,9 @@ public final class ContactChip extends Chip {
                         @Override
                         public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
                           setChipIcon(resource);
+                          if (onAvatarSet != null) {
+                            onAvatarSet.run();
+                          }
                         }
 
                         @Override

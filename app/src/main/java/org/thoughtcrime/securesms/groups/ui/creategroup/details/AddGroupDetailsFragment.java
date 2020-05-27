@@ -20,6 +20,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
@@ -58,38 +59,6 @@ public class AddGroupDetailsFragment extends Fragment {
   private Drawable                 avatarPlaceholder;
   private EditText                 name;
   private Toolbar                  toolbar;
-  private ActionMode               actionMode;
-
-  private ActionMode.Callback recipientActionModeCallback = new ActionMode.Callback() {
-    @Override
-    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-      mode.getMenuInflater().inflate(R.menu.add_group_details_fragment_context_menu, menu);
-
-      return true;
-    }
-
-    @Override
-    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-      return false;
-    }
-
-    @Override
-    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-      if (item.getItemId() == R.id.action_delete) {
-        viewModel.deleteSelected();
-        mode.finish();
-        return true;
-      }
-
-      return false;
-    }
-
-    @Override
-    public void onDestroyActionMode(ActionMode mode) {
-      actionMode = null;
-      viewModel.clearSelected();
-    }
-  };
 
   @Override
   public void onAttach(@NonNull Context context) {
@@ -142,7 +111,6 @@ public class AddGroupDetailsFragment extends Fragment {
 
     avatar.setOnClickListener(v -> AvatarSelectionBottomSheetDialogFragment.create(viewModel.hasAvatar(), true, REQUEST_CODE_AVATAR, true)
                                                                            .show(getChildFragmentManager(), "BOTTOM"));
-    members.setRecipientLongClickListener(this::handleRecipientLongClick);
     members.setRecipientClickListener(this::handleRecipientClick);
     name.addTextChangedListener(new AfterTextChanged(editable -> viewModel.setName(editable.toString())));
     toolbar.setNavigationOnClickListener(unused -> callback.onNavigationButtonPressed());
@@ -219,29 +187,15 @@ public class AddGroupDetailsFragment extends Fragment {
   }
 
   private void handleRecipientClick(@NonNull Recipient recipient) {
-    if (actionMode == null) {
-      return;
-    }
-
-    int size = viewModel.toggleSelected(recipient);
-    if (size == 0) {
-      actionMode.finish();
-    }
-  }
-
-  private boolean handleRecipientLongClick(@NonNull Recipient recipient) {
-    if (actionMode != null) {
-      return false;
-    }
-
-    actionMode = toolbar.startActionMode(recipientActionModeCallback);
-
-    if (actionMode != null) {
-      viewModel.toggleSelected(recipient);
-      return true;
-    }
-
-    return false;
+    new AlertDialog.Builder(requireContext())
+                   .setMessage(getString(R.string.AddGroupDetailsFragment__remove_s_from_this_group, recipient.getDisplayName(requireContext())))
+                   .setCancelable(true)
+                   .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.cancel())
+                   .setPositiveButton(R.string.AddGroupDetailsFragment__remove, (dialog, which) -> {
+                     viewModel.delete(recipient.getId());
+                     dialog.dismiss();
+                   })
+                   .show();
   }
 
   private void handleGroupCreateResult(@NonNull GroupCreateResult groupCreateResult) {

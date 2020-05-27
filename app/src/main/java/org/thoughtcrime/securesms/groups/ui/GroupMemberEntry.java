@@ -35,8 +35,7 @@ public abstract class GroupMemberEntry {
 
   public final static class NewGroupCandidate extends GroupMemberEntry {
 
-    private final DefaultValueLiveData<Boolean> isSelected = new DefaultValueLiveData<>(false);
-    private final Recipient                     member;
+    private final Recipient member;
 
     public NewGroupCandidate(@NonNull Recipient member) {
       this.member = member;
@@ -44,14 +43,6 @@ public abstract class GroupMemberEntry {
 
     public @NonNull Recipient getMember() {
       return member;
-    }
-
-    public @NonNull LiveData<Boolean> isSelected() {
-      return isSelected;
-    }
-
-    public void setSelected(boolean isSelected) {
-      this.isSelected.postValue(isSelected);
     }
 
     @Override
