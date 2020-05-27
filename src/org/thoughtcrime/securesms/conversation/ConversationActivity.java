@@ -467,7 +467,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadId);
     if (publicChat != null) {
-      ApplicationContext.getInstance(this).getLokiPublicChatAPI().getUserCount(publicChat.getChannel(), publicChat.getServer()).success(integer -> {
+      ApplicationContext.getInstance(this).getLokiPublicChatAPI().getChannelInfo(publicChat.getChannel(), publicChat.getServer()).success( displayName -> {
         updateSubtitleTextView();
         return Unit.INSTANCE;
       });
@@ -3109,11 +3109,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       if (publicChat != null) {
         Integer userCount = DatabaseFactory.getLokiAPIDatabase(this).getUserCount(publicChat.getChannel(), publicChat.getServer());
         if (userCount == null) { userCount = 0; }
-        if (userCount >= 200) {
-          subtitleTextView.setText("200+ members");
-        } else {
-          subtitleTextView.setText(userCount + " members");
-        }
+        subtitleTextView.setText(userCount + " members");
       } else if (PublicKeyValidation.isValid(recipient.getAddress().toString())) {
         subtitleTextView.setText(recipient.getAddress().toString());
       } else {
