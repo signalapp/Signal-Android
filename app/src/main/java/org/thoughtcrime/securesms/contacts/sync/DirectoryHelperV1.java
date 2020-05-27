@@ -30,7 +30,6 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
@@ -178,9 +177,9 @@ class DirectoryHelperV1 {
         if (insertResult.isPresent()) {
           int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
           if (hour >= 9 && hour < 23) {
-            MessageNotifier.updateNotification(context, insertResult.get().getThreadId(), true);
+            ApplicationDependencies.getMessageNotifier().updateNotification(context, insertResult.get().getThreadId(), true);
           } else {
-            MessageNotifier.updateNotification(context, insertResult.get().getThreadId(), false);
+            ApplicationDependencies.getMessageNotifier().updateNotification(context, insertResult.get().getThreadId(), false);
           }
         }
       }

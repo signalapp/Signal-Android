@@ -193,7 +193,6 @@ import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.GroupShareProfileView;
@@ -498,14 +497,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       ApplicationDependencies.getJobManager().add(new RequestGroupV2InfoJob(recipientSnapshot.getGroupId().get().requireV2()));
     }
 
-    MessageNotifier.setVisibleThread(threadId);
+    ApplicationDependencies.getMessageNotifier().setVisibleThread(threadId);
     markThreadAsRead();
   }
 
   @Override
   protected void onPause() {
     super.onPause();
-    MessageNotifier.setVisibleThread(-1L);
+    ApplicationDependencies.getMessageNotifier().clearVisibleThread();
     if (isFinishing()) overridePendingTransition(R.anim.fade_scale_in, R.anim.slide_to_end);
     inputPanel.onPause();
 
@@ -2229,7 +2228,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         Context                 context    = ConversationActivity.this;
         List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(params[0], false);
 
-        MessageNotifier.updateNotification(context);
+        ApplicationDependencies.getMessageNotifier().updateNotification(context);
         MarkReadReceiver.process(context, messageIds);
 
         return null;
@@ -2259,7 +2258,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (refreshFragment) {
       fragment.reload(recipient.get(), threadId);
-      MessageNotifier.setVisibleThread(threadId);
+      ApplicationDependencies.getMessageNotifier().setVisibleThread(threadId);
     }
 
     fragment.scrollToBottom();

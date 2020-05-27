@@ -52,7 +52,6 @@ import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.SignalUncaughtExceptionHandler;
 import org.thoughtcrime.securesms.messages.InitialMessageRetriever;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
@@ -162,7 +161,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     isAppVisible = false;
     Log.i(TAG, "App is no longer visible.");
     KeyCachingService.onAppBackgrounded(this);
-    MessageNotifier.setVisibleThread(-1);
+    ApplicationDependencies.getMessageNotifier().clearVisibleThread();
     ApplicationDependencies.getFrameRateTracker().end();
   }
 

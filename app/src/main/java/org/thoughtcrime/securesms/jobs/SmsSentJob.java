@@ -9,12 +9,10 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.logging.Log;
 
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.service.SmsDeliveryListener;
 
 public class SmsSentJob extends BaseJob {
@@ -107,7 +105,7 @@ public class SmsSentJob extends BaseJob {
           break;
         default:
           database.markAsSentFailed(messageId);
-          MessageNotifier.notifyMessageDeliveryFailed(context, record.getRecipient(), record.getThreadId());
+          ApplicationDependencies.getMessageNotifier().notifyMessageDeliveryFailed(context, record.getRecipient(), record.getThreadId());
       }
     } catch (NoSuchMessageException e) {
       Log.w(TAG, e);

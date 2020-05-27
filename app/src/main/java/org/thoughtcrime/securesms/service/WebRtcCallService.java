@@ -5,7 +5,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Build;
@@ -34,7 +33,6 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.DoNotDisturbUtil;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.ringrtc.CallState;
@@ -58,10 +56,8 @@ import org.thoughtcrime.securesms.webrtc.audio.OutgoingRinger;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.webrtc.EglBase;
-import org.webrtc.EglRenderer;
 import org.webrtc.IceCandidate;
 import org.webrtc.PeerConnection;
-import org.webrtc.SurfaceViewRenderer;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -455,7 +451,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
 
   private void insertMissedCall(@NonNull RemotePeer remotePeer, boolean signal) {
     Pair<Long, Long> messageAndThreadId = DatabaseFactory.getSmsDatabase(this).insertMissedCall(remotePeer.getId());
-    MessageNotifier.updateNotification(this, messageAndThreadId.second, signal);
+    ApplicationDependencies.getMessageNotifier().updateNotification(this, messageAndThreadId.second, signal);
   }
 
   private void handleDenyCall(Intent intent) {

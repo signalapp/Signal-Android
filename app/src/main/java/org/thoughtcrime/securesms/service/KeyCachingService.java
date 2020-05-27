@@ -33,6 +33,7 @@ import androidx.core.app.NotificationCompat;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.MainActivity;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.DummyActivity;
@@ -41,7 +42,6 @@ import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -115,7 +115,7 @@ public class KeyCachingService extends Service {
         @Override
         protected Void doInBackground(Void... params) {
           if (!ApplicationMigrations.isUpdate(KeyCachingService.this)) {
-            MessageNotifier.updateNotification(KeyCachingService.this);
+            ApplicationDependencies.getMessageNotifier().updateNotification(KeyCachingService.this);
           }
           return null;
         }
@@ -188,7 +188,7 @@ public class KeyCachingService extends Service {
     new AsyncTask<Void, Void, Void>() {
       @Override
       protected Void doInBackground(Void... params) {
-        MessageNotifier.updateNotification(KeyCachingService.this);
+        ApplicationDependencies.getMessageNotifier().updateNotification(KeyCachingService.this);
         return null;
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);

@@ -32,6 +32,7 @@ import androidx.loader.content.Loader;
 
 import org.thoughtcrime.securesms.conversation.ConversationItem;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -52,7 +53,6 @@ import org.thoughtcrime.securesms.database.loaders.MessageDetailsLoader;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -133,13 +133,13 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     assert getSupportActionBar() != null;
     getSupportActionBar().setTitle(R.string.AndroidManifest__message_details);
 
-    MessageNotifier.setVisibleThread(threadId);
+    ApplicationDependencies.getMessageNotifier().setVisibleThread(threadId);
   }
 
   @Override
   protected void onPause() {
     super.onPause();
-    MessageNotifier.setVisibleThread(-1L);
+    ApplicationDependencies.getMessageNotifier().clearVisibleThread();
   }
 
   @Override

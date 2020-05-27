@@ -16,8 +16,8 @@ import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.IncomingIdentityDefaultMessage;
@@ -141,7 +141,7 @@ public class IdentityUtil {
     Optional<InsertResult>        insertResult     = smsDatabase.insertMessageInbox(individualUpdate);
 
     if (insertResult.isPresent()) {
-      MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
+      ApplicationDependencies.getMessageNotifier().updateNotification(context, insertResult.get().getThreadId());
     }
   }
 

@@ -20,7 +20,6 @@ import org.thoughtcrime.securesms.jobs.PushGroupUpdateJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingGroupUpdateMessage;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -252,7 +251,7 @@ public final class GroupV1MessageProcessor {
         Optional<InsertResult> insertResult = smsDatabase.insertMessageInbox(groupMessage);
 
         if (insertResult.isPresent()) {
-          MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
+          ApplicationDependencies.getMessageNotifier().updateNotification(context, insertResult.get().getThreadId());
           return insertResult.get().getThreadId();
         } else {
           return null;

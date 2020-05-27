@@ -20,7 +20,6 @@ import org.thoughtcrime.securesms.jobmanager.JobLogger;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MmsException;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.Hex;
@@ -109,7 +108,7 @@ public class AttachmentDownloadJob extends BaseJob {
   @Override
   public void onRun() throws IOException {
     doWork();
-    MessageNotifier.updateNotification(context, 0);
+    ApplicationDependencies.getMessageNotifier().updateNotification(context, 0);
   }
 
   public void doWork() throws IOException {

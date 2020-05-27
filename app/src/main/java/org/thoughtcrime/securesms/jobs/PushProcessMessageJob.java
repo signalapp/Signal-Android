@@ -69,6 +69,7 @@ import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.StickerSlide;
+import org.thoughtcrime.securesms.notifications.DefaultMessageNotifier;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -623,7 +624,7 @@ public final class PushProcessMessageJob extends BaseJob {
       sessionStore.deleteAllSessions(content.getSender().getIdentifier());
 
       SecurityEvent.broadcastSecurityUpdateEvent(context);
-      MessageNotifier.updateNotification(context, threadId);
+      ApplicationDependencies.getMessageNotifier().updateNotification(context, threadId);
     }
   }
 
@@ -748,11 +749,11 @@ public final class PushProcessMessageJob extends BaseJob {
 
       if (reaction.isRemove()) {
         db.deleteReaction(targetMessage.getId(), reactionAuthor.getId());
-        MessageNotifier.updateNotification(context);
+        ApplicationDependencies.getMessageNotifier().updateNotification(context);
       } else {
         ReactionRecord reactionRecord = new ReactionRecord(reaction.getEmoji(), reactionAuthor.getId(), message.getTimestamp(), System.currentTimeMillis());
         db.addReaction(targetMessage.getId(), reactionRecord);
-        MessageNotifier.updateNotification(context, targetMessage.getThreadId(), false);
+        ApplicationDependencies.getMessageNotifier().updateNotification(context, targetMessage.getThreadId(), false);
       }
     } else if (targetMessage != null) {
       Log.w(TAG, "[handleReaction] Found a matching message, but it's flagged as remotely deleted. timestamp: " + reaction.getTargetSentTimestamp() + "  author: " + targetAuthor.getId());
@@ -771,7 +772,7 @@ public final class PushProcessMessageJob extends BaseJob {
     if (targetMessage != null && RemoteDeleteUtil.isValidReceive(targetMessage, sender, content.getServerTimestamp())) {
       MessagingDatabase db = targetMessage.isMms() ? DatabaseFactory.getMmsDatabase(context) : DatabaseFactory.getSmsDatabase(context);
       db.markAsRemoteDelete(targetMessage.getId());
-      MessageNotifier.updateNotification(context, targetMessage.getThreadId(), false);
+      ApplicationDependencies.getMessageNotifier().updateNotification(context, targetMessage.getThreadId(), false);
     } else if (targetMessage == null) {
       Log.w(TAG, "[handleRemoteDelete] Could not find matching message! timestamp: " + delete.getTargetSentTimestamp() + "  author: " + sender.getId());
       ApplicationDependencies.getEarlyMessageCache().store(sender.getId(), delete.getTargetSentTimestamp(), content);
@@ -930,10 +931,10 @@ public final class PushProcessMessageJob extends BaseJob {
 
       if (threadId != null) {
         DatabaseFactory.getThreadDatabase(context).setRead(threadId, true);
-        MessageNotifier.updateNotification(context);
+        ApplicationDependencies.getMessageNotifier().updateNotification(context);
       }
 
-      MessageNotifier.setLastDesktopActivityTimestamp(message.getTimestamp());
+      ApplicationDependencies.getMessageNotifier().setLastDesktopActivityTimestamp(message.getTimestamp());
     } catch (MmsException e) {
       throw new StorageFailedException(e, content.getSender().getIdentifier(), content.getSenderDevice());
     }
@@ -985,9 +986,10 @@ public final class PushProcessMessageJob extends BaseJob {
       }
     }
 
-    MessageNotifier.setLastDesktopActivityTimestamp(envelopeTimestamp);
-    MessageNotifier.cancelDelayedNotifications();
-    MessageNotifier.updateNotification(context);
+    MessageNotifier messageNotifier = ApplicationDependencies.getMessageNotifier();
+    messageNotifier.setLastDesktopActivityTimestamp(envelopeTimestamp);
+    messageNotifier.cancelDelayedNotifications();
+    messageNotifier.updateNotification(context);
   }
 
   private void handleSynchronizeViewOnceOpenMessage(@NonNull ViewOnceOpenMessage openMessage, long envelopeTimestamp) {
@@ -999,9 +1001,10 @@ public final class PushProcessMessageJob extends BaseJob {
       DatabaseFactory.getAttachmentDatabase(context).deleteAttachmentFilesForViewOnceMessage(record.getId());
     }
 
-    MessageNotifier.setLastDesktopActivityTimestamp(envelopeTimestamp);
-    MessageNotifier.cancelDelayedNotifications();
-    MessageNotifier.updateNotification(context);
+    MessageNotifier messageNotifier = ApplicationDependencies.getMessageNotifier();
+    messageNotifier.setLastDesktopActivityTimestamp(envelopeTimestamp);
+    messageNotifier.cancelDelayedNotifications();
+    messageNotifier.updateNotification(context);
   }
 
   private void handleMediaMessage(@NonNull SignalServiceContent content,
@@ -1063,7 +1066,7 @@ public final class PushProcessMessageJob extends BaseJob {
     }
 
     if (insertResult.isPresent()) {
-      MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
+      ApplicationDependencies.getMessageNotifier().updateNotification(context, insertResult.get().getThreadId());
 
       if (message.isViewOnce()) {
         ApplicationContext.getInstance(context).getViewOnceMessageManager().scheduleIfNecessary();
@@ -1258,7 +1261,7 @@ public final class PushProcessMessageJob extends BaseJob {
     }
 
     if (threadId != null) {
-      MessageNotifier.updateNotification(context, threadId);
+      ApplicationDependencies.getMessageNotifier().updateNotification(context, threadId);
     }
   }
 
@@ -1323,7 +1326,7 @@ public final class PushProcessMessageJob extends BaseJob {
 
       if (insertResult.isPresent()) {
         smsDatabase.markAsInvalidVersionKeyExchange(insertResult.get().getMessageId());
-        MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
+        ApplicationDependencies.getMessageNotifier().updateNotification(context, insertResult.get().getThreadId());
       }
     } else {
       smsDatabase.markAsInvalidVersionKeyExchange(smsMessageId.get());
@@ -1340,7 +1343,7 @@ public final class PushProcessMessageJob extends BaseJob {
 
       if (insertResult.isPresent()) {
         smsDatabase.markAsDecryptFailed(insertResult.get().getMessageId());
-        MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
+        ApplicationDependencies.getMessageNotifier().updateNotification(context, insertResult.get().getThreadId());
       }
     } else {
       smsDatabase.markAsDecryptFailed(smsMessageId.get());
@@ -1357,7 +1360,7 @@ public final class PushProcessMessageJob extends BaseJob {
 
       if (insertResult.isPresent()) {
         smsDatabase.markAsNoSession(insertResult.get().getMessageId());
-        MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
+        ApplicationDependencies.getMessageNotifier().updateNotification(context, insertResult.get().getThreadId());
       }
     } else {
       smsDatabase.markAsNoSession(smsMessageId.get());
@@ -1377,7 +1380,7 @@ public final class PushProcessMessageJob extends BaseJob {
 
       if (insertResult.isPresent()) {
         smsDatabase.markAsUnsupportedProtocolVersion(insertResult.get().getMessageId());
-        MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
+        ApplicationDependencies.getMessageNotifier().updateNotification(context, insertResult.get().getThreadId());
       }
     } else {
       smsDatabase.markAsNoSession(smsMessageId.get());
@@ -1397,7 +1400,7 @@ public final class PushProcessMessageJob extends BaseJob {
 
       if (insertResult.isPresent()) {
         smsDatabase.markAsInvalidMessage(insertResult.get().getMessageId());
-        MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
+        ApplicationDependencies.getMessageNotifier().updateNotification(context, insertResult.get().getThreadId());
       }
     } else {
       smsDatabase.markAsNoSession(smsMessageId.get());
@@ -1414,7 +1417,7 @@ public final class PushProcessMessageJob extends BaseJob {
 
       if (insertResult.isPresent()) {
         smsDatabase.markAsLegacyVersion(insertResult.get().getMessageId());
-        MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
+        ApplicationDependencies.getMessageNotifier().updateNotification(context, insertResult.get().getThreadId());
       }
     } else {
       smsDatabase.markAsLegacyVersion(smsMessageId.get());
@@ -1431,7 +1434,7 @@ public final class PushProcessMessageJob extends BaseJob {
 //    if (smsMessageId <= 0) {
 //      Pair<Long, Long> messageAndThreadId = insertPlaceholder(masterSecret, envelope);
 //      smsDatabase.markAsDecryptDuplicate(messageAndThreadId.first);
-//      MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
+//      ApplicationDependencies.getMessageNotifier().updateNotification(context, masterSecret, messageAndThreadId.second);
 //    } else {
 //      smsDatabase.markAsDecryptDuplicate(smsMessageId);
 //    }

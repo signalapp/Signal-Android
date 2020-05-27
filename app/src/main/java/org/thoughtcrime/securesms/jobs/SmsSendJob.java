@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.SmsManager;
 
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkOrCellServiceConstraint;
@@ -17,7 +18,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.SmsDeliveryListener;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
@@ -87,7 +87,7 @@ public class SmsSendJob extends SendJob {
     } catch (UndeliverableMessageException ude) {
       warn(TAG, ude);
       DatabaseFactory.getSmsDatabase(context).markAsSentFailed(record.getId());
-      MessageNotifier.notifyMessageDeliveryFailed(context, record.getRecipient(), record.getThreadId());
+      ApplicationDependencies.getMessageNotifier().notifyMessageDeliveryFailed(context, record.getRecipient(), record.getThreadId());
     }
   }
 
@@ -105,7 +105,7 @@ public class SmsSendJob extends SendJob {
     DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);
 
     if (threadId != -1 && recipient != null) {
-      MessageNotifier.notifyMessageDeliveryFailed(context, recipient, threadId);
+      ApplicationDependencies.getMessageNotifier().notifyMessageDeliveryFailed(context, recipient, threadId);
     }
   }
 

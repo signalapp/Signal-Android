@@ -90,7 +90,6 @@ import org.thoughtcrime.securesms.components.reminder.ServiceOutageReminder;
 import org.thoughtcrime.securesms.components.reminder.ShareReminder;
 import org.thoughtcrime.securesms.components.reminder.SystemSmsImportReminder;
 import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder;
-import org.thoughtcrime.securesms.conversation.ConversationFragment;
 import org.thoughtcrime.securesms.conversationlist.ConversationListAdapter.ItemClickListener;
 import org.thoughtcrime.securesms.conversationlist.model.MessageResult;
 import org.thoughtcrime.securesms.conversationlist.model.SearchResult;
@@ -113,13 +112,11 @@ import org.thoughtcrime.securesms.megaphone.MegaphoneViewBuilder;
 import org.thoughtcrime.securesms.megaphone.Megaphones;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.AvatarUtil;
-import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -591,7 +588,7 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
     SignalExecutors.BOUNDED.execute(() -> {
       List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setAllThreadsRead();
 
-      MessageNotifier.updateNotification(context);
+      ApplicationDependencies.getMessageNotifier().updateNotification(context);
       MarkReadReceiver.process(context, messageIds);
     });
   }
@@ -672,7 +669,7 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
           @Override
           protected Void doInBackground(Void... params) {
             DatabaseFactory.getThreadDatabase(getActivity()).deleteConversations(selectedConversations);
-            MessageNotifier.updateNotification(getActivity());
+            ApplicationDependencies.getMessageNotifier().updateNotification(getActivity());
             return null;
           }
 
@@ -873,7 +870,7 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
 
         if (unreadCount > 0) {
           List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(getActivity()).setRead(threadId, false);
-          MessageNotifier.updateNotification(getActivity());
+          ApplicationDependencies.getMessageNotifier().updateNotification(getActivity());
           MarkReadReceiver.process(getActivity(), messageIds);
         }
       }
@@ -884,7 +881,7 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
 
         if (unreadCount > 0) {
           DatabaseFactory.getThreadDatabase(getActivity()).incrementUnread(threadId, unreadCount);
-          MessageNotifier.updateNotification(getActivity());
+          ApplicationDependencies.getMessageNotifier().updateNotification(getActivity());
         }
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, threadId);

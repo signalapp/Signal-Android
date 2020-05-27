@@ -27,6 +27,7 @@ import androidx.core.app.RemoteInput;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -84,7 +85,7 @@ public class AndroidAutoReplyReceiver extends BroadcastReceiver {
 
           List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(replyThreadId, true);
 
-          MessageNotifier.updateNotification(context);
+          ApplicationDependencies.getMessageNotifier().updateNotification(context);
           MarkReadReceiver.process(context, messageIds);
 
           return null;

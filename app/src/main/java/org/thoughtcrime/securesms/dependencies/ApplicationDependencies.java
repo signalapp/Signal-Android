@@ -14,6 +14,8 @@ import org.thoughtcrime.securesms.keyvalue.KeyValueStore;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
 import org.thoughtcrime.securesms.messages.InitialMessageRetriever;
+import org.thoughtcrime.securesms.notifications.DefaultMessageNotifier;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
 import org.thoughtcrime.securesms.messages.IncomingMessageObserver;
@@ -57,6 +59,7 @@ public class ApplicationDependencies {
   private static GroupsV2Operations           groupsV2Operations;
   private static EarlyMessageCache            earlyMessageCache;
   private static InitialMessageRetriever      initialMessageRetriever;
+  private static MessageNotifier              messageNotifier;
 
   public static synchronized void init(@NonNull Application application, @NonNull Provider provider) {
     if (ApplicationDependencies.application != null || ApplicationDependencies.provider != null) {
@@ -246,6 +249,16 @@ public class ApplicationDependencies {
     return initialMessageRetriever;
   }
 
+  public static synchronized @NonNull MessageNotifier getMessageNotifier() {
+    assertInitialization();
+
+    if (messageNotifier == null) {
+      messageNotifier = provider.provideMessageNotifier();
+    }
+
+    return messageNotifier;
+  }
+
   private static void assertInitialization() {
     if (application == null || provider == null) {
       throw new UninitializedException();
@@ -267,6 +280,7 @@ public class ApplicationDependencies {
     @NonNull MegaphoneRepository provideMegaphoneRepository();
     @NonNull EarlyMessageCache provideEarlyMessageCache();
     @NonNull InitialMessageRetriever provideInitialMessageRetriever();
+    @NonNull MessageNotifier provideMessageNotifier();
   }
 
   private static class UninitializedException extends IllegalStateException {

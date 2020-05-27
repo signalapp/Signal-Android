@@ -22,7 +22,6 @@ import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.jobs.MultiDeviceMessageRequestResponseJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -119,7 +118,7 @@ final class MessageRequestRepository {
 
         List<MessagingDatabase.MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context)
                                                                               .setEntireThreadRead(threadId);
-        MessageNotifier.updateNotification(context);
+        ApplicationDependencies.getMessageNotifier().updateNotification(context);
         MarkReadReceiver.process(context, messageIds);
 
         if (TextSecurePreferences.isMultiDevice(context)) {
@@ -189,7 +188,7 @@ final class MessageRequestRepository {
 
       List<MessagingDatabase.MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context)
                                                                             .setEntireThreadRead(threadId);
-      MessageNotifier.updateNotification(context);
+      ApplicationDependencies.getMessageNotifier().updateNotification(context);
       MarkReadReceiver.process(context, messageIds);
 
       if (TextSecurePreferences.isMultiDevice(context)) {
